@@ -10,6 +10,7 @@
     "dev": "npm run dev-native && concurrently \"npm run dev-dsp\" \"vite\"",
     "dev-native": "zx scripts/build-native.mjs --dev",
     "dev-dsp": "esbuild dsp/main.js --watch --bundle --outfile=public/dsp.main.js",
+    "dev-ui": "vite",
     "build-native": "zx scripts/build-native.mjs",
     "build-dsp": "esbuild dsp/main.js --bundle --outfile=public/dsp.main.js",
     "build-ui": "vite build",
