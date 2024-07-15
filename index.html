@@ -64,7 +64,7 @@
 
         document.addEventListener("CABLES.jsLoaded", function (event)
         {
-            CABLES.patch = new CABLES.Patch({
+            globalThis.CABLES.patch = new CABLES.Patch({
                 patch: CABLES.exportedPatch,
                 "prefixAssetPath": "",
                 "assetPath": "assets/",
@@ -78,8 +78,11 @@
             });
         });
 
+      
+
         // disable rubberband effect on mobile devices
         document.getElementById('glcanvas').addEventListener('touchmove', (e)=>{ e.preventDefault(); }, false);
     </script>
+      <script type="text/javascript" src="/src/cables-ui.js" ></script>
 </body>
 </html>

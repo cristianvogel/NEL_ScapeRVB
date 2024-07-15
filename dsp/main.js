@@ -2,7 +2,6 @@ import {Renderer, el} from '@elemaudio/core';
 import {RefMap} from './RefMap';
 import srvb from './srvb';
 
-
 // This project demonstrates writing a small FDN reverb effect in Elementary.
 //
 // First, we initialize a custom Renderer instance that marshals our instruction
