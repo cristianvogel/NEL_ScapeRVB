@@ -4,4 +4,7 @@
 [submodule "juce"]
 	path = native/juce
 	url = https://github.com/juce-framework/JUCE.git
+[submodule "choc"]
+	path = native/choc
+	url = https://github.com/cristianvogel/choc/tree/cristians-edits
 
