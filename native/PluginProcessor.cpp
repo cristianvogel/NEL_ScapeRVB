@@ -27,8 +27,7 @@ EffectsPluginProcessor::EffectsPluginProcessor()
     : AudioProcessor(BusesProperties()
                          .withInput("Input", juce::AudioChannelSet::stereo(), true)
                          .withOutput("Output", juce::AudioChannelSet::stereo(), true)),
-      jsContext(choc::javascript::createQuickJSContext()),
-      jsContext2(choc::javascript::createQuickJSContext())
+      jsContext(choc::javascript::createQuickJSContext())
 {
     // Initialize parameters from the manifest file
 #if ELEM_DEV_LOCALHOST
@@ -54,6 +53,7 @@ EffectsPluginProcessor::EffectsPluginProcessor()
     // The view state property has to have some value so that when state is loaded
     // from the host, the key exists and is populated.
    meshState.insert_or_assign(MESH_STATE_PROPERTY, "{}" );
+
 }
 
 EffectsPluginProcessor::~EffectsPluginProcessor()
@@ -103,7 +103,7 @@ void EffectsPluginProcessor::createParameters(const std::vector<elem::js::Value>
 juce::AudioProcessorEditor *EffectsPluginProcessor::createEditor()
 {
     const auto editor = new WebViewEditor(this, getAssetsDirectory(), 905, 600);
-    
+
 
     // -----------
     // semi-online license activation
@@ -145,6 +145,7 @@ juce::AudioProcessorEditor *EffectsPluginProcessor::createEditor()
             auto sent = sendJavascriptToUI(errorLogQueue.front());
             errorLogQueue.pop();
         }
+  
         dispatchStateChange();
         dispatchMeshStateChange();
     };
@@ -169,13 +170,10 @@ juce::AudioProcessorEditor *EffectsPluginProcessor::createEditor()
     };
 
 
-
-
 #if ELEM_DEV_LOCALHOST
     editor->reload = [this]()
     {
         initJavaScriptEngine();
-        initSecondJavaScriptEngine();
         dispatchStateChange();
         dispatchMeshStateChange();
     };
@@ -279,7 +277,7 @@ void EffectsPluginProcessor::processBlock(juce::AudioBuffer<float> &buffer, juce
     scratchBuffer.makeCopyOf(buffer, true);
 
     // Process the elementary runtime
-    if (runtime != nullptr && !runtimeSwapRequired)
+    if (runtime != nullptr && !runtimeSwapRequired )
 
     {
         runtime->process(
@@ -295,8 +293,9 @@ void EffectsPluginProcessor::processBlock(juce::AudioBuffer<float> &buffer, juce
         // Clear the output buffer to prevent any garbage if our runtime isn't ready
         buffer.clear();
     }
-
-    if (runtimeSwapRequired)
+    // added extra runtime check here
+    // seems to fix the occasional crashing on initialisation
+    if (runtimeSwapRequired || runtime == nullptr)
     {
         shouldInitialize.store(true);
         triggerAsyncUpdate();
@@ -326,7 +325,6 @@ void EffectsPluginProcessor::handleAsyncUpdate()
     {
         runtime = std::make_unique<elem::Runtime<float>>(lastKnownSampleRate, lastKnownBlockSize);
         initJavaScriptEngine();
-        initSecondJavaScriptEngine();
         runtimeSwapRequired.store(false);
     }
 
@@ -391,37 +389,6 @@ void EffectsPluginProcessor::initJavaScriptEngine()
     // Re-hydrate from current state
     const auto expr = serialize(jsFunctions::hydrateScript, runtime->snapshot());
     jsContext.evaluateExpression(expr);
-}
-
-void EffectsPluginProcessor::initSecondJavaScriptEngine()
-{
-    jsContext2 = choc::javascript::createQuickJSContext();
-
-    // Install some native interop functions in our JavaScript environment
-    jsContext2.registerFunction(NATIVE_MESSAGE_FUNCTION_NAME, [this](choc::javascript::ArgumentList args)
-                               {
-        const auto batch = elem::js::parseJSON(args[0]->toString());
-        
-       // const auto rc = runtime->applyInstructions(batch);
-        // if (rc != elem::ReturnCode::Ok()) {
-        //     dispatchError("Runtime Error", elem::ReturnCode::describe(rc));
-        // }
-
-        return choc::value::Value(); });
-
-   
-    const auto patchEntryFileContents = loadPatchEntryFileContents();
-
-    if (patchEntryFileContents.has_value())
-    {
-        jsContext2.evaluateExpression(patchEntryFileContents.value());
-    }
-    else
-    {
-        return;
-    }
-
-   
 }
 
 void EffectsPluginProcessor::dispatchStateChange()
@@ -508,25 +475,6 @@ std::optional<std::string> EffectsPluginProcessor::loadDspEntryFileContents() co
     return dspEntryFileContents;
 }
 
-std::optional<std::string> EffectsPluginProcessor::loadPatchEntryFileContents() const
-{
-    // Load and evaluate our Elementary js main file
-#if ELEM_DEV_LOCALHOST
-    auto patchEntryFile = juce::URL("http://localhost:5173/patch.main.js");
-    auto patchEntryFileContents = patchEntryFile.readEntireTextStream().toStdString();
-#else
-    auto patchEntryFile = getAssetsDirectory().getChildFile(MAIN_PATCH_JS_FILE);
-
-    if (!patchEntryFile.existsAsFile())
-        return std::nullopt;
-
-    auto patchEntryFileContents = patchEntryFile.loadFileAsString().toStdString();
-#endif
-
-    return patchEntryFileContents;
-}
-
-
 bool EffectsPluginProcessor::sendJavascriptToUI(const std::string &expr) const
 {
     if (const auto *editor = dynamic_cast<WebViewEditor *>(getActiveEditor()))
@@ -550,7 +498,6 @@ std::string EffectsPluginProcessor::serialize(const std::string &function, const
 //==============================================================================
 void EffectsPluginProcessor::getStateInformation(juce::MemoryBlock &destData)
 {
-
     // serialise the secondary store for meshData
     // then insert it into the data to be stored by the host
     state.insert_or_assign(MESH_STATE_PROPERTY, meshState.at(MESH_STATE_PROPERTY));
@@ -560,7 +507,7 @@ void EffectsPluginProcessor::getStateInformation(juce::MemoryBlock &destData)
     destData.replaceAll((void *)serializedState.c_str(), serializedState.size());
     // remove the meshData from the active param state updates
     // so the meshData doesn't get sent on every update
-    state.erase(MESH_STATE_PROPERTY);
+    // state.erase(MESH_STATE_PROPERTY);
 }
 
 void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInBytes)
@@ -594,10 +541,11 @@ void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInByt
             else
             {
                 meshState.insert_or_assign(MESH_STATE_PROPERTY, value);
-            }
+              
+            }  
+            dispatchStateChange();
+            dispatchMeshStateChange();
         }
-          dispatchStateChange();
-    dispatchMeshStateChange();
     }
 
     catch (...)
