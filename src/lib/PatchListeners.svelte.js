@@ -8,7 +8,7 @@ export function initPatchListeners(patch) {
     // Will be called every time value changes
     ui_dialValues.on("change", (newValues) => {
       // Update the Svelte store with new values
-      DialValues.value = newValues.map((v) => v.toFixed(2));
+      DialValues.update( newValues.map((v) => v.toFixed(2)) );
     });
   }
 }

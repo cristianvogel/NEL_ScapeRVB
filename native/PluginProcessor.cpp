@@ -269,11 +269,11 @@ void EffectsPluginProcessor::processBlock(juce::AudioBuffer<float> &buffer, juce
 {
 
     // If the license is invalid, we clear the buffer and return
-    if (licenseStatus != Keyzy::LicenseStatus::VALID)
-    {
-        buffer.clear();
-        return;
-    }
+    // if (licenseStatus != Keyzy::LicenseStatus::VALID)
+    // {
+    //     buffer.clear();
+    //     return;
+    // }
 
     // Copy the input so that our input and output buffers are distinct
     scratchBuffer.makeCopyOf(buffer, true);

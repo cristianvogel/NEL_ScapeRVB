@@ -5,7 +5,7 @@ import { DialValues } from "../stores/stores.svelte";
 </script>
 
 
-<div class="console-text" ><pre>{DialValues.value}</pre></div>
+<div class="console-text" ><pre>{DialValues.current}</pre></div>
 
 <style>
     .console-text {

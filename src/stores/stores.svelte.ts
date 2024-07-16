@@ -1,11 +1,8 @@
-
-
 export const DialValues = dialValues([]);
-
 function dialValues(initial) {
-    let value = $state(initial);
+    let current = $state(initial);
     return {
-        get value() { return value },
-        set value(v) { value = v }
+        get current() { return current },
+        update(newValues) { current = newValues }
     };
 }
