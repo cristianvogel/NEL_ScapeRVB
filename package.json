@@ -19,11 +19,13 @@
   },
   "dependencies": {
     "@elemaudio/core": "^3.0.0",
+    "@thi.ng/equiv": "^2.1.61",
     "cpy-cli": "^4.2.0",
     "esbuild": "^0.17.8",
     "invariant": "^2.2.4",
     "resize-observer-polyfill": "^1.5.1",
     "rimraf": "^5.0.0",
+    "svelte-hmr": "^0.16.0",
     "worker-timers": "^8.0.2",
     "zustand": "^4.3.8"
   },

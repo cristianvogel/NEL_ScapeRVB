@@ -36,11 +36,11 @@ WebViewEditor::WebViewEditor(juce::AudioProcessor *proc, juce::File const &asset
     choc::ui::WebView::Options opts;
 
 #if JUCE_DEBUG
-    opts.enableDebugMode = false;
+    opts.enableDebugMode = true;
 #endif
 
 #if !ELEM_DEV_LOCALHOST
-    opts.enableDebugMode = false;
+    opts.enableDebugMode = true;
     opts.fetchResource = [=](const choc::ui::WebView::Options::Path &p) -> std::optional<choc::ui::WebView::Options::Resource>
     {
         auto relPath = "." + (p == "/" ? "/index.html" : p);
@@ -107,7 +107,7 @@ WebViewEditor::WebViewEditor(juce::AudioProcessor *proc, juce::File const &asset
             }
         }
 
-        return {};
+        return {}; 
         });
 
 #if ELEM_DEV_LOCALHOST

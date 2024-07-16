@@ -2,47 +2,6 @@
 export declare var globalThis: any;
 
 
-import type {
-  NEL_Preset,
-  MessagesToHost,
-} from "../../types";
-
-import { getValueFromEntries } from "../utils/utils";
-import {
-  HostState,
-  LicenseStatus,
-  HostInfo,
-  LICENSE_VALIDATED,
-} from "./stores.svelte";
-
-
-/** ━━━━━━━ generated doc ━━━━━━━
- * `processHostState` is a function that processes and denormalizes parameter values sent from the host.
- * It receives these values via the `__receiveStateChange__` global function.
- * @param state - The state object received from the host.
- *
- * `MessageToHost` is an object that contains callable functions for interfacing with the Host code.
- *
- * `stashMeshState` is a function that manually gets the current state key of each storage slot and serializes it for persistentState storage in the host plugin.
- *
- * `requestParamValueUpdate` is a function that updates parameter values in the host.
- * @param paramId - The ID of the parameter to update.
- * @param value - The new value of the parameter.
- *
- * `requestReady` is a function that sends a ready message to the host.
- *
- * `requestUnlock` is a function that sends an unlock message to the KeyZey handler.
- * @param serial - The serial number for unlocking.
- *
- * `__setMeshStateInHost` is a function that stores any persistent UI state in the host.
- * @param dataToPersist - The data to persist in the host.
- *
- * `__bindHotReload` is a function that hot reloads the DSP during development.
- *
- * `RegisterMessagesFromHost` is a function that registers the message handlers for receiving and processing messages from the host.
- * It sets up global functions that handle state changes, mesh state changes, license activation, error handling, and host information.
- */ 
-
 
 /** ━━━━━━━
  * Main method for processing and denormalizing parameter values sent from the host
@@ -66,7 +25,8 @@ function processHostState(state: any) {
    * to the HostState store which triggers observer / subscribers
    * across the View code updating parameter values.
    **/
-  HostState.set(new Map(processedEntries));
+
+  /* TODO: Assign result to Svelte5 store */
 }
 
 /** ━━━━━━━
@@ -81,14 +41,8 @@ export const MessageToHost: MessagesToHost = {
    **/
   stashMeshState: function () {
     let dataToPersist = {
-      nodeStates: get(UI_NodesData).map((data) => get(data.state) as string),
-      presets: get(UI_NodesData).map((data) => {
-        if (!data.preset) return {} as NEL_Preset;
-        let parameters = Array.from(data.preset.parameters.entries());
-        return { ...data.preset, parameters } as unknown as NEL_Preset;
-      }),
-      license: get(LicenseStatus),
-      viewOptions: get(ViewOptions),
+       presets: {},
+      license: 'VALID',
     };
     this.__setMeshStateInHost(dataToPersist);
   },
@@ -170,37 +124,10 @@ export function RegisterMessagesFromHost() {
    * @param state - The host state change object.
    */
   globalThis.__receiveStateChange__ = function (state: any) {
-    processHostState(state);
+   // processHostState(state);
+   console.log("Receive state change: ", JSON.parse(state));
   };
 
-  /** ━━━━━━━
-   * Handles the mesh state change received from the host.
-   * @param meshState - The mesh state object.
-   */
-  globalThis.__receiveMeshStateChange__ = function (meshState: any) {
-    let incomingMeshState: IncomingMeshState;
-    try {
-      incomingMeshState = JSON.parse(JSON.parse(meshState).meshState);
-    } catch (e) {
-      // console.log("Invalid mesh state (rcv)", meshState, e);
-      LicenseStatus.set("Mesh state error. Contact support.");
-      return;
-    }
-    if (typeof incomingMeshState !== "object") return;
-
-    if (!incomingMeshState.license) {
-      MessageToHost.requestUnlock();
-    } else {
-      LicenseStatus.set(incomingMeshState.license);
-      MessageToHost.stashMeshState();
-    }
-
-    if (incomingMeshState.nodeStates && incomingMeshState.presets) {
-      MeshStateIncoming.set(incomingMeshState);
-    }
-
-    UI_needsUpdate.set(true);
-  };
 
   /** ━━━━━━━
    * Handles the unlock status received from the host.
@@ -220,7 +147,7 @@ export function RegisterMessagesFromHost() {
    */
   globalThis.__hostInfo__ = function (message: string) {
     HostInfo.set(message);
-    // console.log("Host Info: ", message);
+     console.log("Got host Info: ", message);
   };
 
   /** ━━━━━━━
@@ -228,7 +155,8 @@ export function RegisterMessagesFromHost() {
    * @param error - The error object.
    */
   globalThis.__receiveError__ = function (error: any) {
-    ConsoleText.set("Error: " + error);
+    //ConsoleText.set("Error: " + error);
+    console.error("Error: ", error);
   };
 }
  

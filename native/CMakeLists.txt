@@ -1,14 +1,15 @@
 cmake_minimum_required(VERSION 3.15)
-project(NEL_SRVB VERSION 0.1.0)
+project(NEL_SRVB VERSION 1.0)
 
 
-set(TARGET_NAME NEL-SRVB)
+set(TARGET_NAME "NEL_SRVB")
 set(ASSETS_DIR ${CMAKE_SOURCE_DIR}/../dist/)
-set(BUILD_VERSION "v0.1")
+set(BUILD_VERSION "dev")
 
 option(JUCE_ENABLE_MODULE_SOURCE_GROUPS "Enable Module Source Groups" ON)
 option(JUCE_BUILD_EXTRAS "Build JUCE Extras" OFF)
 option(ELEM_DEV_LOCALHOST "Run against localhost for static assets" OFF)
+
 
 add_subdirectory(juce)
 add_subdirectory(elementary/runtime)
@@ -22,12 +23,12 @@ if (WIN32)
 endif()
 
 juce_add_plugin(${TARGET_NAME}
-  BUNDLE_ID "audio.neverenginelabs.NEL-SRVB"
+  BUNDLE_ID "audio.neverenginelabs.NEL_SRVB"
   COMPANY_NAME "NeverEngineLabs"
   COMPANY_WEBSITE "https://neverenginelabs.com"
   COMPANY_EMAIL "support@neverenginelabs.com"
   PLUGIN_MANUFACTURER_CODE NLVB       # A four-character manufacturer id with at least one upper-case character
-  PLUGIN_CODE NlSv                    # A unique four-character plugin id with at least one upper-case character
+  PLUGIN_CODE ShRv                    # A unique four-character plugin id with at least one upper-case character
   COPY_PLUGIN_AFTER_BUILD FALSE       # We enable this manually below after adding a copy step
   APP_SANDBOX_ENABLED TRUE 
   APP_SANDBOX_OPTIONS com.apple.security.network.client com.apple.security.files.user-selected.read-write

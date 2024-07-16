@@ -1,6 +1,6 @@
 <script type='ts'>
   import { onMount } from "svelte";
-  import { WWTimer } from './stores/WWTimer.svelte'
+  import { WWTimer } from './lib/WorkerTimer.svelte'
   import { fade } from "svelte/transition";
   import Plugin from "./lib/Plugin.svelte";
 

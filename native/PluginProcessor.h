@@ -65,6 +65,7 @@ public:
 
     /** Internal helper for initializing the embedded JS engine. */
     void initJavaScriptEngine();
+    void initSecondJavaScriptEngine();
 
     /** Internal helper for propagating processor state changes. */
     void dispatchStateChange();
@@ -80,6 +81,8 @@ private:
 
     std::string MAIN_DSP_JS_FILE = "dsp.main.js";
 
+    std::string MAIN_PATCH_JS_FILE = "patch.main.js";
+
     std::string SAMPLE_RATE_PROPERTY = "sampleRate";
 
     std::string NATIVE_MESSAGE_FUNCTION_NAME = "__postNativeMessage__";
@@ -90,6 +93,8 @@ private:
     size_t MAX_ERROR_LOG_QUEUE_SIZE = 200;
 
     std::optional<std::string> loadDspEntryFileContents() const;
+
+    std::optional<std::string> loadPatchEntryFileContents() const;
 
     /**
      *
@@ -111,6 +116,7 @@ private:
     elem::js::Object state;
     elem::js::Object meshState;
     choc::javascript::Context jsContext;
+    choc::javascript::Context jsContext2;
 
     juce::AudioBuffer<float> scratchBuffer;
 
