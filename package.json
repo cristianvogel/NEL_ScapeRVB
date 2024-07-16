@@ -24,16 +24,17 @@
     "invariant": "^2.2.4",
     "resize-observer-polyfill": "^1.5.1",
     "rimraf": "^5.0.0",
+    "worker-timers": "^8.0.2",
     "zustand": "^4.3.8"
   },
   "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^3.1.1",
     "autoprefixer": "^10.4.14",
     "concurrently": "^8.2.2",
     "postcss": "^8.4.24",
     "svelte": "^5.0.0-next.184",
     "tailwindcss": "^3.3.2",
-    "vite": "^4.3.9",
-    "zx": "^7.2.3",
-    "vite-plugin-svelte": "^4.0.0-next.4"
+    "vite": "^5.0.0",
+    "zx": "^7.2.3"
   }
 }

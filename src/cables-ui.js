@@ -1,4 +1,4 @@
-console.log( 'cables-ui loading' );
+// console.log( 'cables-ui loading' );
 
 // const myVar = globalThis.CABLES.patch.getVar("ui_dialValues");
 
