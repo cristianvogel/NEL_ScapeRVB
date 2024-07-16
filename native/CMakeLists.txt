@@ -21,11 +21,11 @@ if (WIN32)
 endif()
 
 juce_add_plugin(${TARGET_NAME}
-  BUNDLE_ID "audio.neverenginelabs.NELShifterMesh"
+  BUNDLE_ID "audio.neverenginelabs.NEL_SRVB"
   COMPANY_NAME "NeverEngineLabs"
   COMPANY_WEBSITE "https://neverenginelabs.com"
   COMPANY_EMAIL "support@neverenginelabs.com"
-  PLUGIN_MANUFACTURER_CODE NVLB       # A four-character manufacturer id with at least one upper-case character
+  PLUGIN_MANUFACTURER_CODE NLVB       # A four-character manufacturer id with at least one upper-case character
   PLUGIN_CODE ShRv                    # A unique four-character plugin id with at least one upper-case character
   COPY_PLUGIN_AFTER_BUILD FALSE       # We enable this manually below after adding a copy step
   APP_SANDBOX_ENABLED TRUE 
