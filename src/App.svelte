@@ -1,10 +1,12 @@
 <script type='ts'>
   import { onMount } from "svelte";
-  import { WWTimer } from './stores/WWTimer'
+  import { WWTimer } from './stores/WWTimer.svelte'
   import { fade } from "svelte/transition";
+  import Plugin from "./lib/Plugin.svelte";
+
 
   let cablesLoaded = $state(false);
-  
+
   const timers = [ 
     new WWTimer(500),
     new WWTimer(1000),
@@ -15,7 +17,7 @@ let timedOut = $state(false)
 
   onMount( () => {
     document.addEventListener("CABLES.jsLoaded", function () {
-      cablesLoaded = true;
+      cablesLoaded = true; 
    })
 });
 
@@ -30,8 +32,9 @@ let timedOut = $state(false)
 
 {#if cablesLoaded }
  { timers[2].start( ()=> timedOut = true )  }
+<Plugin />
  {#if !timedOut}
- <pre class='console-text' out:fade>NEL SRVB</pre>
+ <pre class='console-text' out:fade>NEL SRVB v1.0</pre>
  {/if}
 {:else}
   <pre class='console-text' in:fade>Loading...</pre>

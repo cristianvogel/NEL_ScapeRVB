@@ -31,7 +31,7 @@ juce_add_plugin(${TARGET_NAME}
   APP_SANDBOX_ENABLED TRUE 
   APP_SANDBOX_OPTIONS com.apple.security.network.client com.apple.security.files.user-selected.read-write
   FORMATS AU VST3                     # The formats to build. Other valid formats are: AAX Unity VST AU AUv3
-  PRODUCT_NAME "NELShifterMesh_${CMAKE_OSX_ARCHITECTURES}${PC_ARCH}_${BUILD_VERSION}")        # The name of the final executable, which can differ from the target name
+  PRODUCT_NAME "NEL_SRVB_${CMAKE_OSX_ARCHITECTURES}${PC_ARCH}_${BUILD_VERSION}")        # The name of the final executable, which can differ from the target name
 
   # Keyzy Client Library
   # Replace KeyzyClientLibraryX.X.X with your actual library version

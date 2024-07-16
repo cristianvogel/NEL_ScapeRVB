@@ -31,12 +31,5 @@ export default defineConfig({
   plugins: [    
     svelte(),
     pubDirReloadPlugin(),
-  ],
-  server: {
-    watch: {
-      // The paths to be added to the watch list
-
-    }
-  },
-  
+  ]
 })

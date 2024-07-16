@@ -1,6 +1,7 @@
+//@ts-nocheck
 export declare var globalThis: any;
 
-import { get } from "svelte/store";
+
 import type {
   NEL_Preset,
   MessagesToHost,
@@ -12,7 +13,7 @@ import {
   LicenseStatus,
   HostInfo,
   LICENSE_VALIDATED,
-} from "./stores";
+} from "./stores.svelte";
 
 
 /** ━━━━━━━ generated doc ━━━━━━━
@@ -59,21 +60,7 @@ function processHostState(state: any) {
     console.warn("Bad state received", parsedEntries);
   }
   const processedEntries: Map<string, number> = new Map(parsedEntries);
-  // ━━━━━━━
-  // denormalize the full range type, shift, and climb parameters
-  processedEntries.set(
-    "type",
-    getValueFromEntries(processedEntries, "type") * 2 - 1
-  );
-  processedEntries.set(
-    "shift",
-    getValueFromEntries(processedEntries, "shift") * 2 - 1
-  );
-  processedEntries.set(
-    "climb",
-    getValueFromEntries(processedEntries, "climb") * 2 - 1
-  );
-
+ 
   /** ━━━━━━━
    * Finally, assign the processed entries as Map<string, number> )
    * to the HostState store which triggers observer / subscribers
@@ -113,9 +100,6 @@ export const MessageToHost: MessagesToHost = {
    */
   requestParamValueUpdate: function (paramId: string, value: number) {
     if (typeof globalThis.__postNativeMessage__ === "function") {
-      if (paramId === "type" || paramId === "shift" || paramId === "climb") {
-        value = (value + 1) / 2;
-      }
       globalThis.__postNativeMessage__("setParameterValue", {
         paramId,
         value,

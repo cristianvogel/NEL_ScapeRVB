@@ -1,4 +1,4 @@
-
+import { initPatchListeners } from '../lib/PatchListeners.svelte';
 
 document.addEventListener("CABLES.jsLoaded", function () {
     // Now CABLES is defined, proceed with initialization
@@ -10,9 +10,11 @@ document.addEventListener("CABLES.jsLoaded", function () {
       glCanvasId: "glcanvas",
       glCanvasResizeToWindow: true,
       onError: (e)=> console.error(e) ,
-      onPatchLoaded: ()=> console.log("Patch loaded") ,
-      onFinishedLoading: ()=>  console.log("Cables done loading"),
+      onPatchLoaded: ()=>console.log( "Patch Loaded" )  ,
+      onFinishedLoading: initPatchListeners,
       canvas: { alpha: true, premultipliedAlpha: true }, // make canvas transparent
     });
+    console.log( 'Patch vars ->', CABLES.patch.getVars() );
+
   });
 
