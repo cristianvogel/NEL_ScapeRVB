@@ -23,7 +23,7 @@ if (WIN32)
 endif()
 
 juce_add_plugin(${TARGET_NAME}
-  BUNDLE_ID "audio.neverenginelabs.NEL_SRVB"
+  BUNDLE_ID "audio.neverenginelabs.NEL-SRVB"
   COMPANY_NAME "NeverEngineLabs"
   COMPANY_WEBSITE "https://neverenginelabs.com"
   COMPANY_EMAIL "support@neverenginelabs.com"
