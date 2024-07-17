@@ -27,8 +27,7 @@ EffectsPluginProcessor::EffectsPluginProcessor()
     : AudioProcessor(BusesProperties()
                          .withInput("Input", juce::AudioChannelSet::stereo(), true)
                          .withOutput("Output", juce::AudioChannelSet::stereo(), true)),
-      jsContext(choc::javascript::createQuickJSContext()),
-      jsContext2(choc::javascript::createQuickJSContext())
+      jsContext(choc::javascript::createQuickJSContext())
 {
     // Initialize parameters from the manifest file
 #if ELEM_DEV_LOCALHOST
@@ -175,7 +174,6 @@ juce::AudioProcessorEditor *EffectsPluginProcessor::createEditor()
     editor->reload = [this]()
     {
         initJavaScriptEngine();
-        initSecondJavaScriptEngine();
         dispatchStateChange();
         dispatchMeshStateChange();
     };
@@ -326,7 +324,6 @@ void EffectsPluginProcessor::handleAsyncUpdate()
     {
         runtime = std::make_unique<elem::Runtime<float>>(lastKnownSampleRate, lastKnownBlockSize);
         initJavaScriptEngine();
-        initSecondJavaScriptEngine();
         runtimeSwapRequired.store(false);
     }
 
@@ -392,38 +389,6 @@ void EffectsPluginProcessor::initJavaScriptEngine()
     const auto expr = serialize(jsFunctions::hydrateScript, runtime->snapshot());
     jsContext.evaluateExpression(expr);
 }
-
-void EffectsPluginProcessor::initSecondJavaScriptEngine()
-{
-    jsContext2 = choc::javascript::createQuickJSContext();
-
-    // Install some native interop functions in our JavaScript environment
-    jsContext2.registerFunction(NATIVE_MESSAGE_FUNCTION_NAME, [this](choc::javascript::ArgumentList args)
-                               {
-        const auto batch = elem::js::parseJSON(args[0]->toString());
-        
-       // const auto rc = runtime->applyInstructions(batch);
-        // if (rc != elem::ReturnCode::Ok()) {
-        //     dispatchError("Runtime Error", elem::ReturnCode::describe(rc));
-        // }
-
-        return choc::value::Value(); });
-
-   
-    const auto patchEntryFileContents = loadPatchEntryFileContents();
-
-    if (patchEntryFileContents.has_value())
-    {
-        jsContext2.evaluateExpression(patchEntryFileContents.value());
-    }
-    else
-    {
-        return;
-    }
-
-   
-}
-
 void EffectsPluginProcessor::dispatchStateChange()
 {
     // Need the double serialize here to correctly form the string script. The first

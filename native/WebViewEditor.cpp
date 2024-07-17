@@ -53,30 +53,25 @@ WebViewEditor::WebViewEditor(juce::AudioProcessor *proc, juce::File const &asset
         return choc::ui::WebView::Options::Resource{
             std::string(mb.begin(), mb.end()),
             getMimeType(f.getFileExtension().toStdString())};
-
-
-
-
-
     };
 #endif
 
-        webView = std::make_unique<choc::ui::WebView>(opts);
+    webView = std::make_unique<choc::ui::WebView>(opts);
 
 #if JUCE_MAC
-        viewContainer.setView(webView->getViewHandle());
+    viewContainer.setView(webView->getViewHandle());
 #elif JUCE_WINDOWS
     viewContainer.setHWND(webView->getViewHandle());
 #else
 #error "We only support MacOS and Windows here yet."
 #endif
 
-        addAndMakeVisible(viewContainer);
-        viewContainer.setBounds({0, 0, 905, 600});
+    addAndMakeVisible(viewContainer);
+    viewContainer.setBounds({0, 0, 905, 600});
 
-        // Install message passing handlers
-        webView->bind(POST_NATIVE_MESSAGE, [=](const choc::value::ValueView &args) -> choc::value::Value
-                      {
+    // Install message passing handlers
+    webView->bind(POST_NATIVE_MESSAGE, [=](const choc::value::ValueView &args) -> choc::value::Value
+                  {
         if (args.isArray()) {
             const auto eventName = args[0].getString();
 
@@ -107,38 +102,41 @@ WebViewEditor::WebViewEditor(juce::AudioProcessor *proc, juce::File const &asset
             }
         }
 
-        return {}; 
-        });
+        return {}; });
 
 #if ELEM_DEV_LOCALHOST
-        webView->navigate("http://localhost:5173");
+    webView->navigate("http://localhost:5173");
 #endif
-    }
+}
+choc::ui::WebView *WebViewEditor::getWebViewPtr()
+{
+    return webView.get();
+}
 
-    void  WebViewEditor::paint(juce::Graphics &g)
+void WebViewEditor::paint(juce::Graphics &g)
+{
+}
+
+void WebViewEditor::resized()
+{
+    viewContainer.setBounds(getLocalBounds());
+}
+
+void WebViewEditor::executeJavascript(const std::string &script) const
+{
+    webView->evaluateJavascript(script);
+}
+
+//==============================================================================
+choc::value::Value WebViewEditor::handleSetParameterValueEvent(const choc::value::ValueView &e) const
+{
+    if (e.isObject() && e.hasObjectMember("paramId") && e.hasObjectMember("value"))
     {
+        auto const &paramId = e["paramId"].getString();
+        double const v = numberFromChocValue(e["value"]);
+
+        setParameterValue(std::string{paramId}, static_cast<float>(v));
     }
 
-    void WebViewEditor::resized()
-    {
-        viewContainer.setBounds(getLocalBounds());
-    }
-
-    void WebViewEditor::executeJavascript(const std::string &script) const
-    {
-        webView->evaluateJavascript(script);
-    }
-
-    //==============================================================================
-    choc::value::Value WebViewEditor::handleSetParameterValueEvent(const choc::value::ValueView &e) const
-    {
-        if (e.isObject() && e.hasObjectMember("paramId") && e.hasObjectMember("value"))
-        {
-            auto const &paramId = e["paramId"].getString();
-            double const v = numberFromChocValue(e["value"]);
-
-            setParameterValue(std::string{paramId}, static_cast<float>(v));
-        }
-
-        return {};
-    }
+    return {};
+}

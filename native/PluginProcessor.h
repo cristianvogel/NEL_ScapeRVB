@@ -65,7 +65,6 @@ public:
 
     /** Internal helper for initializing the embedded JS engine. */
     void initJavaScriptEngine();
-    void initSecondJavaScriptEngine();
 
     /** Internal helper for propagating processor state changes. */
     void dispatchStateChange();
@@ -116,7 +115,6 @@ private:
     elem::js::Object state;
     elem::js::Object meshState;
     choc::javascript::Context jsContext;
-    choc::javascript::Context jsContext2;
 
     juce::AudioBuffer<float> scratchBuffer;
 

@@ -14,6 +14,8 @@ public:
     //==============================================================================
     WebViewEditor(juce::AudioProcessor *proc, juce::File const &assetDirectory, int width, int height);
   
+   //==============================================================================
+    choc::ui::WebView* getWebViewPtr();
     //==============================================================================
     void paint(juce::Graphics &g) override;
     void resized() override;
