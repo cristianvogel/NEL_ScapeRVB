@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.15)
-project(NEL_SRVB VERSION 1.0)
+project(NEL-SRVB VERSION 1.0)
 
 
-set(TARGET_NAME "NEL_SRVB")
+set(TARGET_NAME "NEL-SRVB")
 set(ASSETS_DIR ${CMAKE_SOURCE_DIR}/../dist/)
-set(BUILD_VERSION "dev")
+set(BUILD_VERSION "devARM")
 
 option(JUCE_ENABLE_MODULE_SOURCE_GROUPS "Enable Module Source Groups" ON)
 option(JUCE_BUILD_EXTRAS "Build JUCE Extras" OFF)

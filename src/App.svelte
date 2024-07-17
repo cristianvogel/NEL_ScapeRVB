@@ -1,12 +1,13 @@
-<script type="ts">
+<script >
   import { onMount } from "svelte";
   import { WWTimer } from "./lib/WorkerTimer.svelte";
   import { fade } from "svelte/transition";
   import Plugin from "./lib/Plugin.svelte";
-  import { initPatchListeners } from "./lib/patchListeners.svelte";
+  import { initPatchListeners } from "./lib/PatchListeners.svelte";
+  import { MessageToHost, RegisterMessagesFromHost } from "./lib/NativeMessage.svelte";
 
  // @ts-ignore
- let cables = CABLES;
+
   let cablesLoaded = $state(false);
 
   const timers = [new WWTimer(500), new WWTimer(1000), new WWTimer(2000)];
@@ -14,10 +15,10 @@
   let timedOut = $state(false);
 
   onMount(() => {
+    // First setup the listener for CABLES loader
     document.addEventListener("CABLES.jsLoaded", function () {
-      // Now CABLES is defined, proceed with initialization
-      cables.patch = new cables.Patch({
-        patch: cables.exportedPatch,
+      CABLES.patch = new CABLES.Patch({
+        patch: CABLES.exportedPatch,
         prefixAssetPath: "",
         assetPath: "assets/",
         jsPath: "js/",
@@ -28,10 +29,14 @@
         onFinishedLoading: initPatchListeners,
         canvas: { alpha: true, premultipliedAlpha: true }, // make canvas transparent
       });
-      console.log("Patch vars ->", cables.patch.getVars());
+      console.log("Patch vars ->", CABLES.patch.getVars());
       // set state flag
       cablesLoaded = true;
     });
+
+      // Do first engine init
+      RegisterMessagesFromHost()
+      MessageToHost.requestReady()
   });
 </script>
 

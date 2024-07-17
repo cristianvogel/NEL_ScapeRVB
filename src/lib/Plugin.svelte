@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { DialValues } from "../stores/stores.svelte";
+  import { DialValues, ConsoleText } from "../stores/stores.svelte";
   import { MessageToHost, RegisterMessagesFromHost } from "./NativeMessage.svelte";
 
   let prevDialValues = [];
@@ -9,7 +9,7 @@
 
   $effect(() => {
     const current = DialValues.current;
-    const paramNames = ["size", "decay", "mode", "mix"];
+    const paramNames = ["size", "decay", "mod", "mix"];
     paramNames.forEach((param, index) => {
       if (current[index] !== prevDialValues[index]) {
         MessageToHost.requestParamValueUpdate(param, current[index] || 0);
@@ -24,7 +24,7 @@
   });
 </script>
 
-<div class="console-text"><pre>{DialValues.current}</pre></div>
+<div class="console-text"><pre>{DialValues.current} | {ConsoleText.current} </pre></div>
 
 <style>
   .console-text {
@@ -32,5 +32,6 @@
     left: 1rem;
     bottom: 1rem;
     color: chartreuse;
+    font-size: x-small;
   }
 </style>

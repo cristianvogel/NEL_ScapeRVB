@@ -1,3 +1,5 @@
+import { ConsoleText } from "../stores/stores.svelte";
+
 //@ts-nocheck
 export declare var globalThis: any;
 
@@ -32,7 +34,7 @@ function processHostState(state: any) {
 /** ━━━━━━━
  * Callable functions for interfacing with the Host code.
  **/
-export const MessageToHost: MessagesToHost = {
+export const MessageToHost = {
   /** ━━━━━━━
    * Manually get the current state key of each storage slot and serialize for
    * persistentState storage in the host plugin. We need to stash and retrieve the view state
@@ -54,6 +56,8 @@ export const MessageToHost: MessagesToHost = {
    */
   requestParamValueUpdate: function (paramId: string, value: number) {
     if (typeof globalThis.__postNativeMessage__ === "function") {
+      ConsoleText.update( paramId + " ► " + value);
+      console.log('dbg', paramId, value);
       globalThis.__postNativeMessage__("setParameterValue", {
         paramId,
         value,
@@ -75,12 +79,12 @@ export const MessageToHost: MessagesToHost = {
    * @param serial - The serial number for unlocking.
    */
   requestUnlock: function (serial: string = "") {
-    if (get(LicenseStatus) !== LICENSE_VALIDATED) {
-      console.count("Requesting unlock");
-      if (typeof globalThis.__postNativeMessage__ === "function") {
-        globalThis.__postNativeMessage__("unlock", { serial });
-      }
-    }
+    // if (get(LicenseStatus) !== LICENSE_VALIDATED) {
+    //   console.count("Requesting unlock");
+    //   if (typeof globalThis.__postNativeMessage__ === "function") {
+    //     // globalThis.__postNativeMessage__("unlock", { serial });
+    //   }
+    // }
   },
 
   /** ━━━━━━━
@@ -89,10 +93,7 @@ export const MessageToHost: MessagesToHost = {
    */
   __setMeshStateInHost: function (dataToPersist: any) {
     if (typeof globalThis.__postNativeMessage__ === "function") {
-      globalThis.__postNativeMessage__(
-        "setMeshState",
-        JSON.stringify(dataToPersist)
-      );
+     // stash view secondary state 
     }
   },
 
@@ -101,6 +102,7 @@ export const MessageToHost: MessagesToHost = {
    */
   __bindHotReload: function () {
     if (process.env.NODE_ENV !== "production") {
+      //@ts-ignore
       import.meta.hot?.on("reload-dsp", () => {
         // console.log("Sending reload dsp message");
 
@@ -126,6 +128,7 @@ export function RegisterMessagesFromHost() {
   globalThis.__receiveStateChange__ = function (state: any) {
    // processHostState(state);
    console.log("Receive state change: ", JSON.parse(state));
+   ConsoleText.update("Host send state change." );
   };
 
 
@@ -134,11 +137,12 @@ export function RegisterMessagesFromHost() {
    * @param status - The unlock status string.
    */
   globalThis.__onUnlock__ = function (status: string | undefined) {
-    LicenseStatus.set(status || "License not valid");
-    if (status === LICENSE_VALIDATED) {
-      globalThis.__postNativeMessage__("ready", {});
-      MessageToHost.stashMeshState();
-    }
+    /** to do */
+    // LicenseStatus.set(status || "License not valid");
+    // if (status === LICENSE_VALIDATED) {
+    //   globalThis.__postNativeMessage__("ready", {});
+    //   MessageToHost.stashMeshState();
+    // }
   };
 
   /** ━━━━━━━
@@ -146,7 +150,6 @@ export function RegisterMessagesFromHost() {
    * @param message - The host information object.
    */
   globalThis.__hostInfo__ = function (message: string) {
-    HostInfo.set(message);
      console.log("Got host Info: ", message);
   };
 
@@ -157,6 +160,11 @@ export function RegisterMessagesFromHost() {
   globalThis.__receiveError__ = function (error: any) {
     //ConsoleText.set("Error: " + error);
     console.error("Error: ", error);
+  };
+
+  globalThis.__log__ = function (log: any) {
+    //ConsoleText.set("Error: " + error);
+    console.warn("Log: ", log);
   };
 }
  
