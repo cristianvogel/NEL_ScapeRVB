@@ -1,10 +1,13 @@
-[submodule "elementary"]
+[submodule "native/elementary"]
 	path = native/elementary
 	url = https://github.com/elemaudio/elementary.git
-[submodule "juce"]
+[submodule "native/juce"]
 	path = native/juce
 	url = https://github.com/juce-framework/JUCE.git
-[submodule "choc"]
+[submodule "native/choc"]
 	path = native/choc
 	url = https://github.com/cristianvogel/choc
 	branch = cristians-edits
+[submodule "cables-ui"]
+	path = cables-ui
+	url = https://github.com/cristianvogel/NEL-ScapeRVB-UI
