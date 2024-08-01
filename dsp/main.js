@@ -29,6 +29,7 @@ function shouldRender(prevState, nextState) {
 // Given the new state, we simply update our refs or perform a full render depending
 // on the result of our `shouldRender` check.
 globalThis.__receiveStateChange__ = (serializedState) => {
+  console.log( 'received state change' )
   const state = JSON.parse(serializedState);
 
   if (shouldRender(prevState, state)) {
