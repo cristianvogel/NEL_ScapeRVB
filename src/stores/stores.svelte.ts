@@ -1,4 +1,4 @@
-export const DialValues = dialValues([]);
+export const DialValues = dialValues({});
 function dialValues(initial) {
     let current = $state(initial);
     return {
