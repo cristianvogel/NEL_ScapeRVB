@@ -128,7 +128,6 @@ export function RegisterMessagesFromHost() {
   globalThis.__receiveStateChange__ = function (state: any) {
    // processHostState(state);
    console.log("Receive state change: ", JSON.parse(state));
-   ConsoleText.update("Host send state change." );
   };
 
 
