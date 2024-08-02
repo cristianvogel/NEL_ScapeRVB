@@ -12,7 +12,6 @@
      // iterate over the keys and values of DialValues.current and send MessageToHost
     Object.keys(current).forEach((param) => {
       if (current[param] === dialValuesMemo[param]) return;
-      console.log(param, current[param]);
         MessageToHost.requestParamValueUpdate(param, current[param] || 0);   
         dialValuesMemo = current;
     });

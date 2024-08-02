@@ -31,7 +31,15 @@ globalThis.__receiveStateChange__ = (serializedState) => {
   const state = JSON.parse(serializedState);
 
   if (shouldRender(prevState, state)) {
-    let stats = core.render( );
+    let stats = core.render(...srvb({
+      key: 'srvb',
+      sampleRate: state.sampleRate,
+      size: refs.getOrCreate('size', 'const', {value: state.size}, []),
+      decay: refs.getOrCreate('decay', 'const', {value: state.decay}, []),
+      mod: refs.getOrCreate('mod', 'const', {value: state.mod}, []),
+      mix: refs.getOrCreate('mix', 'const', {value: state.mix}, []),
+    }, el.in({channel: 0}), el.in({channel: 1})));
+
   } else {
     refs.update('size', {value: state.size});
     refs.update('decay', {value: state.decay});
