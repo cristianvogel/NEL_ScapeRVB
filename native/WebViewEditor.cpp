@@ -36,7 +36,7 @@ WebViewEditor::WebViewEditor(juce::AudioProcessor *proc, juce::File const &asset
     choc::ui::WebView::Options opts;
 
 #if JUCE_DEBUG
-    opts.enableDebugMode = false;
+    opts.enableDebugMode = true;
 #endif
 
 #if !ELEM_DEV_LOCALHOST

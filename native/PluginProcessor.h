@@ -2,8 +2,10 @@
 
 #include <juce_audio_basics/juce_audio_basics.h>
 #include <juce_audio_processors/juce_audio_processors.h>
+#include <juce_audio_formats/juce_audio_formats.h>
 
 #include <choc_javascript.h>
+
 #include <elem/Runtime.h>
 
 #include <KeyzyLicenseActivator.h>
@@ -123,29 +125,38 @@ private:
     std::map<std::string, juce::AudioParameterFloat *> parameterMap;
     std::queue<std::string> errorLogQueue;
 
-    //==============================================================================
-    // A simple "dirty list" abstraction here for propagating realtime parameter
-    // value changes
-    struct ParameterReadout
-    {
-        float value = 0;
-        bool dirty = false;
-    };
+    //=============================================
+   
+   std::vector<juce::File> impulseResponses;
+    void addImpulseResponsesToVirtualFileSystem(std::vector<juce::File> );
+    std::vector<juce::File> loadImpulseResponses();
+    juce::AudioBuffer<float> getAudioBufferFromFile(juce::File file);
+    juce::AudioFormatManager formatManager;
 
-    std::list<std::atomic<ParameterReadout>> parameterReadouts;
-    static_assert(std::atomic<ParameterReadout>::is_always_lock_free);
-
-    //==============================================================================
-    // Keyzy License Activator
-    //     Keyzy::ProductData productData{"YOUR_APP_ID", "YOUR_API_KEY", "YOUR_PRODUCT_CODE", "YOUR_CRYPTION_KEY"};
-
-    Keyzy::ProductData productData{"JXgnTvml", "Q4PbXdKz6riNP3eVxOrj53aBRM9QIyB6LmF1QU5b", "01afc290-0c82-11ef-8629-07468c68230b", "3qKlXJ2vnkxbQhhSgpW1D7Qi6YNIOIhz"};
-    Keyzy::KeyzyLicenseActivator licenseActivator{productData};
-    Keyzy::LicenseStatus licenseStatus = Keyzy::LicenseStatus::NOT_AUTHORIZED;
-
-    //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(EffectsPluginProcessor)
+//==============================================================================
+// A simple "dirty list" abstraction here for propagating realtime parameter
+// value changes
+struct ParameterReadout
+{
+    float value = 0;
+    bool dirty = false;
 };
+
+std::list<std::atomic<ParameterReadout>> parameterReadouts;
+static_assert(std::atomic<ParameterReadout>::is_always_lock_free);
+
+//==============================================================================
+// Keyzy License Activator
+//     Keyzy::ProductData productData{"YOUR_APP_ID", "YOUR_API_KEY", "YOUR_PRODUCT_CODE", "YOUR_CRYPTION_KEY"};
+
+Keyzy::ProductData productData{"JXgnTvml", "Q4PbXdKz6riNP3eVxOrj53aBRM9QIyB6LmF1QU5b", "01afc290-0c82-11ef-8629-07468c68230b", "3qKlXJ2vnkxbQhhSgpW1D7Qi6YNIOIhz"};
+Keyzy::KeyzyLicenseActivator licenseActivator{productData};
+Keyzy::LicenseStatus licenseStatus = Keyzy::LicenseStatus::NOT_AUTHORIZED;
+
+//==============================================================================
+JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(EffectsPluginProcessor)
+}
+;
 
 namespace unlock
 {
@@ -266,24 +277,6 @@ namespace unlock
 
 namespace jsFunctions
 {
-    inline auto consoleLogScript = R"shim(
-(function() {
-  if (typeof globalThis.console === 'undefined') {
-    globalThis.console = {
-      log(...args) {
-        __log__('[embedded:log]', ...args);
-      },
-      warn(...args) {
-          __log__('[embedded:warn]', ...args);
-      },
-      error(...args) {
-          __log__('[embedded:error]', ...args);
-      }
-    };
-  }
-})();
-    )shim";
-
     inline auto hydrateScript = R"script(
 (function() {
   if (typeof globalThis.__receiveHydrationData__ !== 'function')

@@ -3,7 +3,7 @@ project(NEL_ShifterMesh VERSION 1.01)
 
 set(TARGET_NAME "NEL_ScapeRVB")
 set(ASSETS_DIR ${CMAKE_SOURCE_DIR}/../dist/)
-set(BUILD_VERSION "v0.0.1")
+set(BUILD_VERSION "v0.0.1x")
 
 option(JUCE_ENABLE_MODULE_SOURCE_GROUPS "Enable Module Source Groups" ON)
 option(JUCE_BUILD_EXTRAS "Build JUCE Extras" OFF)
@@ -30,9 +30,9 @@ juce_add_plugin(${TARGET_NAME}
   PLUGIN_MANUFACTURER_CODE NVLB # A four-character manufacturer id with at least one upper-case character
   PLUGIN_CODE ScRv # A unique four-character plugin id with at least one upper-case character
   COPY_PLUGIN_AFTER_BUILD FALSE # We enable this manually below after adding a copy step
-  APP_SANDBOX_ENABLED TRUE
+  APP_SANDBOX_ENABLED FALSE
   APP_SANDBOX_OPTIONS com.apple.security.network.client com.apple.security.files.user-selected.read-write
-  FORMATS AU VST3 # The formats to build. Other valid formats are: AAX Unity VST AU AUv3
+  FORMATS AU VST3 STANDALONE # The formats to build. Other valid formats are: AAX Unity VST AU AUv3
   PRODUCT_NAME "NEL_ScapeRVB_${CMAKE_OSX_ARCHITECTURES}${PC_ARCH}_${BUILD_VERSION}") # The name of the final executable, which can differ from the target name
 
 # Keyzy Client Library
@@ -125,6 +125,7 @@ target_include_directories(${TARGET_NAME}
   PRIVATE
   ${CMAKE_CURRENT_SOURCE_DIR}/choc/gui
   ${CMAKE_CURRENT_SOURCE_DIR}/choc/javascript
+  ${CMAKE_CURRENT_SOURCE_DIR}/choc/text
 )
 
 target_compile_features(${TARGET_NAME}
@@ -141,17 +142,17 @@ target_link_libraries(${TARGET_NAME}
   PRIVATE
   juce::juce_audio_basics
 
-  # juce::juce_audio_devices
-  # juce::juce_audio_plugin_client
+  juce::juce_audio_devices
+  juce::juce_audio_plugin_client
   juce::juce_audio_processors
   juce::juce_audio_utils
 
-  # juce::juce_core
-  # juce::juce_data_structures
+  juce::juce_core
+  juce::juce_data_structures
   # juce::juce_dsp
-  # juce::juce_events
-  # juce::juce_graphics
-  # juce::juce_gui_basics
+  juce::juce_events
+  juce::juce_graphics
+  juce::juce_gui_basics
   juce::juce_gui_extra
   runtime
 )

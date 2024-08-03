@@ -22,12 +22,12 @@ if (os.platform() === 'darwin') {
     // uncomment this to make the stuff in build/scripted runnable in XCode
     // await $`cmake -G Xcode -DCMAKE_BUILD_TYPE=${buildType} -DCMAKE_INSTALL_PREFIX=./out/ -DCMAKE_OSX_DEPLOYMENT_TARGET=10.15 -DCMAKE_OSX_ARCHITECTURES="arm64" ${devFlag} ../..`;
 
-    await $`cmake -DCMAKE_BUILD_TYPE=${buildType} -DCMAKE_INSTALL_PREFIX=./out/ -DCMAKE_OSX_DEPLOYMENT_TARGET=10.15 -DCMAKE_OSX_ARCHITECTURES="arm64" ${devFlag} ../..`;
-    await $`cmake --build . --config ${buildType} -j 4`;
+    // await $`cmake -DCMAKE_BUILD_TYPE=${buildType} -DCMAKE_INSTALL_PREFIX=./out/ -DCMAKE_OSX_DEPLOYMENT_TARGET=10.15 -DCMAKE_OSX_ARCHITECTURES="arm64" ${devFlag} ../..`;
+    // await $`cmake --build . --config ${buildType} -j 4`;
 
     // comment out not to build for x86_64 
-    //  await $`cmake -DCMAKE_BUILD_TYPE=${buildType} -DCMAKE_INSTALL_PREFIX=./out/ -DCMAKE_OSX_DEPLOYMENT_TARGET=10.13 -DCMAKE_OSX_ARCHITECTURES="x86_64" ${devFlag} ../..`;
-    // await $`cmake --build . --config ${buildType} -j 4`;
+     await $`cmake  -G Xcode  -DCMAKE_BUILD_TYPE=${buildType} -DCMAKE_INSTALL_PREFIX=./out/ -DCMAKE_OSX_DEPLOYMENT_TARGET=10.13 -DCMAKE_OSX_ARCHITECTURES="x86_64" ${devFlag} ../..`;
+    await $`cmake --build . --config ${buildType} -j 4`;
 
 } else if (os.platform() === 'win32') {     //nodejs os returns win32 even on 64-bit Windows.
     await $`cmake -G "Visual Studio 17 2022" -A x64 -DCMAKE_BUILD_TYPE=${buildType} -DCMAKE_INSTALL_PREFIX=./out/ ${devFlag} ../..`;
