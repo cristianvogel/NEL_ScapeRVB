@@ -55,9 +55,8 @@ EffectsPluginProcessor::EffectsPluginProcessor()
     // from the host, the key exists and is populated.
     meshState.insert_or_assign(MESH_STATE_PROPERTY, "{}");
 
-    // Add impulse responses to the virtual file system
-    impulseResponses = loadImpulseResponses();
-    addImpulseResponsesToVirtualFileSystem(impulseResponses);
+    // register audio file formats
+    formatManager.registerBasicFormats();
 }
 
 EffectsPluginProcessor::~EffectsPluginProcessor()
@@ -74,10 +73,10 @@ EffectsPluginProcessor::~EffectsPluginProcessor()
 // Load the impulse responses from the assets directory
 std::vector<juce::File> EffectsPluginProcessor::loadImpulseResponses()
 {
-    std::vector<juce::File> impulseResponses;
+    std::vector<juce::File> impulseResponses = {};
 
 #if ELEM_DEV_LOCALHOST
-    auto assetsDir = juce::File( "~/Desktop/Programming/NEL_ScapeRVB/public" ).getChildFile("/assets/impulse-responses");
+    auto assetsDir = juce::File(juce::String("~/Desktop/Programming/NEL_ScapeRVB/public/assets/impulse-responses"));
 #else
     auto assetsDir = getAssetsDirectory().getChildFile("assets/impulse-responses");
 #endif
@@ -96,24 +95,29 @@ std::vector<juce::File> EffectsPluginProcessor::loadImpulseResponses()
 // add each impulse response to the runtime virtual file system
 void EffectsPluginProcessor::addImpulseResponsesToVirtualFileSystem(std::vector<juce::File> impulseResponses)
 {
-    juce::AudioFormatManager().registerBasicFormats();
+
     for (auto &file : impulseResponses)
     {
         auto buffer = juce::AudioBuffer<float>();
-        auto reader = juce::AudioFormatManager().createReaderFor(file);
+
+        auto reader = formatManager.createReaderFor(file);
+
+        buffer.setSize(1, reader->lengthInSamples);
+
         auto key = choc::text::toUpperCase(file.getFileNameWithoutExtension().toStdString()); // "Long Ambience L.wav" -> "LONG AMBIENCE L"
+
         reader->read(&buffer, 0, reader->lengthInSamples, 0, true, false);
-      
+
         const bool result = runtime->updateSharedResourceMap(
-            key, 
+            key,
             buffer.getReadPointer(0),
-            buffer.getNumSamples()
-            );
-        delete reader;
+            buffer.getNumSamples());
+
         if (!result)
         {
             dispatchError("Impulse Response Error", ("Failed to load impulse response: " + file.getFileName()).toStdString());
         }
+        delete reader;
     }
 }
 //==============================================================================
@@ -367,6 +371,12 @@ void EffectsPluginProcessor::handleAsyncUpdate()
         runtime = std::make_unique<elem::Runtime<float>>(lastKnownSampleRate, lastKnownBlockSize);
         initJavaScriptEngine();
         runtimeSwapRequired.store(false);
+        if (runtime != nullptr)
+        {
+            // Add impulse responses to the virtual file system
+            impulseResponses = loadImpulseResponses();
+            addImpulseResponsesToVirtualFileSystem(impulseResponses);
+        }
     }
 
     // Next we iterate over the current parameter values to update our local state
@@ -667,18 +677,13 @@ void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInByt
 // https://forum.juce.com/t/reading-a-wav-file-into-an-array-of-samples/47449/2
 juce::AudioBuffer<float> EffectsPluginProcessor::getAudioBufferFromFile(juce::File file)
 {
-    // you need to actually register some formats before the manager can
-    // use them to open a file!
-    formatManager.registerBasicFormats();
     juce::AudioBuffer<float> audioBuffer;
     auto *reader = formatManager.createReaderFor(file);
-   delete reader; 
+    delete reader;
     audioBuffer.setSize(reader->numChannels, reader->lengthInSamples);
     reader->read(&audioBuffer, 0, reader->lengthInSamples, 0, true, true);
     return audioBuffer;
 }
-
-
 
 //==============================================================================
 // This creates new instances of the plugin..

@@ -131,7 +131,7 @@ private:
     void addImpulseResponsesToVirtualFileSystem(std::vector<juce::File> );
     std::vector<juce::File> loadImpulseResponses();
     juce::AudioBuffer<float> getAudioBufferFromFile(juce::File file);
-    juce::AudioFormatManager formatManager;
+    juce::AudioFormatManager formatManager; 
 
 //==============================================================================
 // A simple "dirty list" abstraction here for propagating realtime parameter

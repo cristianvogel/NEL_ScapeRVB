@@ -30,9 +30,11 @@ globalThis.__receiveStateChange__ = (serializedState) => {
  
   const state = JSON.parse(serializedState);
 
+  let test = el.mul(el.cycle(1), el.cycle(330));
+
   let stats = core.render( 
-    el.convolve( {path: 'LONG AMBIENCE L'}, el.cycle(330) )
-  ); // render close
+    el.sample({path: 'GOLDPLATE_L'}, el.train(1), 1)
+  ); 
   
   if (shouldRender(prevState, state)) {
     //
