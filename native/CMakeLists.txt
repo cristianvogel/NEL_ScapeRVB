@@ -119,12 +119,14 @@ target_sources(${TARGET_NAME}
   PRIVATE
   PluginProcessor.cpp
   WebViewEditor.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/TwoStageFFTConvolver.cpp 
 )
 
 target_include_directories(${TARGET_NAME}
   PRIVATE
   ${CMAKE_CURRENT_SOURCE_DIR}/choc/gui
   ${CMAKE_CURRENT_SOURCE_DIR}/choc/javascript
+  ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver
 )
 
 target_compile_features(${TARGET_NAME}

@@ -8,7 +8,10 @@ pnpm-debug.log*
 lerna-debug.log*
 
 # Builds
-native
+native/elementary
+native/choc
+native/juce
+native/KeyzyClientLibrary
 node_modules
 build
 dist
