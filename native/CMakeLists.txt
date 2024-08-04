@@ -120,6 +120,9 @@ target_sources(${TARGET_NAME}
   PluginProcessor.cpp
   WebViewEditor.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/TwoStageFFTConvolver.cpp 
+  ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/AudioFFT.cpp 
+  ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/Utilities.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/FFTConvolver.cpp 
 )
 
 target_include_directories(${TARGET_NAME}
@@ -143,15 +146,15 @@ target_link_libraries(${TARGET_NAME}
   PRIVATE
   juce::juce_audio_basics
 
-  # juce::juce_audio_devices
-  # juce::juce_audio_plugin_client
+   juce::juce_audio_devices
+   juce::juce_audio_plugin_client
   juce::juce_audio_processors
   juce::juce_audio_utils
 
-  # juce::juce_core
-  # juce::juce_data_structures
-  # juce::juce_dsp
-  # juce::juce_events
+   juce::juce_core
+   juce::juce_data_structures
+   juce::juce_dsp
+   juce::juce_events
   # juce::juce_graphics
   # juce::juce_gui_basics
   juce::juce_gui_extra
