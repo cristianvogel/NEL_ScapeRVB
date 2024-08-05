@@ -41,7 +41,8 @@ TwoStageFFTConvolver::TwoStageFFTConvolver() :
   _tailInput(),
   _tailInputFill(0),
   _precalculatedPos(0),
-  _backgroundProcessingInput()
+  _backgroundProcessingInput(),
+  backgroundThreadRunning(false) // Initialize the atomic flag
 {
 }
 
@@ -68,7 +69,10 @@ void TwoStageFFTConvolver::reset()
   _tailInputFill = 0;
   _precalculatedPos = 0;
   _backgroundProcessingInput.clear();
+   // Ensure background processing is stopped
+  waitForBackgroundProcessing();
 }
+
 
   
 bool TwoStageFFTConvolver::init(size_t headBlockSize,
@@ -222,18 +226,28 @@ void TwoStageFFTConvolver::process(const Sample* input, Sample* output, size_t l
 
 void TwoStageFFTConvolver::startBackgroundProcessing()
 {
-  doBackgroundProcessing();
+  if (backgroundThreadRunning) {
+    return;
+  }
+  backgroundThreadRunning = true;
+  backgroundThread = std::thread(&TwoStageFFTConvolver::doBackgroundProcessing, this);
 }
 
 
 void TwoStageFFTConvolver::waitForBackgroundProcessing()
 {
+  if (backgroundThread.joinable()) {
+    backgroundThread.join();
+  }
+  backgroundThreadRunning = false;
 }
-
 
 void TwoStageFFTConvolver::doBackgroundProcessing()
 {
+  // Perform the bulk convolution here
   _tailConvolver.process(_backgroundProcessingInput.data(), _tailOutput.data(), _tailBlockSize);
 }
     
 } // End of namespace fftconvolver
+
+

@@ -24,6 +24,8 @@
 
 #include "FFTConvolver.h"
 #include "Utilities.h"
+#include <atomic>
+#include <thread>
 
 
 namespace fftconvolver
@@ -118,6 +120,8 @@ private:
   size_t _tailInputFill;
   size_t _precalculatedPos;
   SampleBuffer _backgroundProcessingInput;
+  std::atomic_bool backgroundThreadRunning;
+  std::thread backgroundThread;
 
   // Prevent uncontrolled usage
   TwoStageFFTConvolver(const TwoStageFFTConvolver&);
