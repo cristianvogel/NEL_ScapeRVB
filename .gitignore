@@ -19,6 +19,7 @@ dist
 public/dsp.main.js
 public/patch.js
 public/assets
+!public/assets/impulse-responses
 src/cables-ui
 
 # Editor directories and files
