@@ -20,7 +20,7 @@ let convolver = (props, ...childs) => createNode("convolver", props, childs);
 
 // Define our paths always uppercase, even if the filename has lowercase
 // because it is a Map key, not a real fs path
-const paths = [
+const responses = [
   "GLASS",
   "AMBIENCE",
   "TANGLEWOOD",
@@ -42,25 +42,13 @@ const nFader = ramp(
 );
 
 // DSP not needed inside of render hook
-let tail = ( _path, key, channel, attenuationDb = -24, _in  ) => {
+let tail = ( _path, key = "attIr_", channel, attenuationDb = -24, _in  ) => {
   let path = _path + "_" + channel; // use upper case for everything in path
-  let result = convolver( { path, key }, el.mul( el.db2gain( el.const( {value: attenuationDb, key: "attIr_" + path} ) ) , _in ) )
+  let result = convolver( { path, key }, el.mul( el.db2gain( el.const( {value: attenuationDb, key: key + path} ) ) , _in ) )
   return result;
 };
 
-let faderAB = (  g, channel, _in ) => {
-  let a = tail( paths[0], "irA", channel, -18, _in );
-  let b = tail( paths[1], "irB", channel, -20, _in );
-  let out = el.select( el.sm(g), a, b );
-  return out;
-}
 
-let faderCD = (  g, channel, _in ) => {
-  let a = tail( paths[2], "irC", channel, -36, _in );
-  let b = tail( paths[3], "irD", channel, -42, _in );
-  let out = el.select( el.sm(g), a, b );
-  return out;
-}
 
 // Holding onto the previous state allows us a quick way to differentiate
 // when we need to fully re-render versus when we can just update refs
@@ -86,16 +74,22 @@ globalThis.__receiveStateChange__ = (serializedState) => {
   let interpolator = state.decay;
    console.log("nFader:", interpolator,FORMATTER(nFader.at( interpolator)));
   
+  // HERMITE vector cross fader
 
-  let outLR =  [  el.add(
-   faderAB(  nFader.at( interpolator )[0], "L", el.in( {channel: 0} ) ) ,
-   faderCD(  nFader.at( interpolator )[2], "L", el.in( {channel: 0} ) ) 
-  ),
-  el.add(
-    faderAB(  nFader.at( interpolator )[1], "R", el.in( {channel: 1} ) ) ,
-    faderCD(  nFader.at( interpolator )[3], "R", el.in( {channel: 1} ) )
-  )
+  function createHermiteInterpolationFor(channel) {
+    return el.add(
+      el.mul(el.sm(el.const({ value: nFader.at(interpolator)[0], key: `ir1_${channel}` })), tail(responses[0], "ir0", channel, -20, el.in({ channel: channel === "L" ? 0 : 1 }))),
+      el.mul(el.sm(el.const({ value: nFader.at(interpolator)[1], key: `ir2_${channel}` })), tail(responses[1], "ir1", channel, -18, el.in({ channel: channel === "L" ? 0 : 1 }))),
+      el.mul(el.sm(el.const({ value: nFader.at(interpolator)[2], key: `ir3_${channel}` })), tail(responses[2], "ir2", channel, -24, el.in({ channel: channel === "L" ? 0 : 1 }))),
+      el.mul(el.sm(el.const({ value: nFader.at(interpolator)[3], key: `ir4_${channel}` })), tail(responses[3], "ir3", channel, -48, el.in({ channel: channel === "L" ? 0 : 1 })))
+    );
+  }
+
+  let outLR =  [ 
+    createHermiteInterpolationFor("L"),
+    createHermiteInterpolationFor("R")
   ];
+      
 
   let stats = core.render( 
    ...outLR
