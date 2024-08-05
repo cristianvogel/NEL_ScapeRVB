@@ -119,6 +119,7 @@ void EffectsPluginProcessor::addImpulseResponsesToVirtualFileSystem(std::vector<
             dispatchError("Impulse Response Error", ("Failed to load impulse response: " + file.getFileName()).toStdString());
         }
         delete reader;
+            
     }
 }
 //==============================================================================
@@ -363,6 +364,8 @@ void EffectsPluginProcessor::parameterGestureChanged(int, bool)
 }
 
 //==============================================================================
+// INITIALISATION HAPPENS HERE
+
 void EffectsPluginProcessor::handleAsyncUpdate()
 {
     // First things first, we check the flag to identify if we should initialize the Elementary
@@ -374,7 +377,6 @@ void EffectsPluginProcessor::handleAsyncUpdate()
         runtime->registerNodeType("convolver", [](elem::NodeId const id, double sampleRate, int const blockSize) {
             return std::make_shared<ConvolverNode>(id, sampleRate, blockSize );
         });
-
 
         initJavaScriptEngine();
         runtimeSwapRequired.store(false);
@@ -686,9 +688,9 @@ juce::AudioBuffer<float> EffectsPluginProcessor::getAudioBufferFromFile(juce::Fi
 {
     juce::AudioBuffer<float> audioBuffer;
     auto *reader = formatManager.createReaderFor(file);
-    delete reader;
     audioBuffer.setSize(reader->numChannels, reader->lengthInSamples);
     reader->read(&audioBuffer, 0, reader->lengthInSamples, 0, true, true);
+    delete reader;
     return audioBuffer;
 }
 
