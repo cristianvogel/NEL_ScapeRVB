@@ -103,25 +103,37 @@ void EffectsPluginProcessor::addImpulseResponsesToVirtualFileSystem(std::vector<
 
         auto reader = formatManager.createReaderFor(file);
 
-        buffer.setSize(1, reader->lengthInSamples);
+        buffer.setSize(2, reader->lengthInSamples);
 
         auto key = choc::text::toUpperCase(file.getFileNameWithoutExtension().toStdString()); // "Long Ambience L.wav" -> "LONG AMBIENCE L"
 
         reader->read(&buffer, 0, reader->lengthInSamples, 0, true, false);
+        delete reader;
 
-        const bool result = runtime->updateSharedResourceMap(
+        // fabricate a gain ramp version on the next channel
+        // to use as a shaped option if user wants
+
+        buffer.copyFromWithRamp(1, 0, buffer.getReadPointer(0), buffer.getNumSamples(), 0.2, 1);
+        
+        runtime->updateSharedResourceMap(
             key,
             buffer.getReadPointer(0),
-            buffer.getNumSamples());
-
-        if (!result)
-        {
-            dispatchError("Impulse Response Error", ("Failed to load impulse response: " + file.getFileName()).toStdString());
-        }
-        delete reader;
+            buffer.getNumSamples()
+            );
             
+              
+        runtime->updateSharedResourceMap(
+            "SCAPED"+key,
+            buffer.getReadPointer(1),
+            buffer.getNumSamples()
+            );
     }
 }
+
+
+
+
+
 //==============================================================================
 void EffectsPluginProcessor::createParameters(const std::vector<elem::js::Value> &parameters)
 {

@@ -42,12 +42,23 @@ const nFader = ramp(
 );
 
 // DSP not needed inside of render hook
-let tail = ( _path, key = "attIr_", channel, attenuationDb = -24, _in  ) => {
-  let path = _path + "_" + channel; // use upper case for everything in path
+let tail = ( _path, SCAPED, key = "attIr_", channel, attenuationDb = -24, _in  ) => {
+  let path = SCAPED + _path + "_" + channel; // use upper case for everything in path
   let result = convolver( { path, key }, el.mul( el.db2gain( el.const( {value: attenuationDb, key: key + path} ) ) , _in ) )
   return result;
 };
 
+  
+  // HERMITE vector cross fader
+
+  function createHermiteInterpolationFor(channel, scaped = "", interpolator) {
+    return el.add(
+      el.mul(el.sm(el.const({ value: nFader.at(interpolator)[0], key: `ir1_${channel}` })), tail(responses[0], scaped, "ir0", channel, -20, el.in({ channel: channel === "L" ? 0 : 1 }))),
+      el.mul(el.sm(el.const({ value: nFader.at(interpolator)[1], key: `ir2_${channel}` })), tail(responses[1], scaped, "ir1", channel, -18, el.in({ channel: channel === "L" ? 0 : 1 }))),
+      el.mul(el.sm(el.const({ value: nFader.at(interpolator)[2], key: `ir3_${channel}` })), tail(responses[2], scaped, "ir2", channel, -24, el.in({ channel: channel === "L" ? 0 : 1 }))),
+      el.mul(el.sm(el.const({ value: nFader.at(interpolator)[3], key: `ir4_${channel}` })), tail(responses[3], scaped, "ir3", channel, -48, el.in({ channel: channel === "L" ? 0 : 1 })))
+    );
+  }
 
 
 // Holding onto the previous state allows us a quick way to differentiate
@@ -69,25 +80,13 @@ globalThis.__receiveStateChange__ = (serializedState) => {
   const state = JSON.parse(serializedState);
 
 
-
-
   let interpolator = state.decay;
-   console.log("nFader:", interpolator,FORMATTER(nFader.at( interpolator)));
-  
-  // HERMITE vector cross fader
+  let scaped = state.size > 0.5 ? "SCAPED" : "";
 
-  function createHermiteInterpolationFor(channel) {
-    return el.add(
-      el.mul(el.sm(el.const({ value: nFader.at(interpolator)[0], key: `ir1_${channel}` })), tail(responses[0], "ir0", channel, -20, el.in({ channel: channel === "L" ? 0 : 1 }))),
-      el.mul(el.sm(el.const({ value: nFader.at(interpolator)[1], key: `ir2_${channel}` })), tail(responses[1], "ir1", channel, -18, el.in({ channel: channel === "L" ? 0 : 1 }))),
-      el.mul(el.sm(el.const({ value: nFader.at(interpolator)[2], key: `ir3_${channel}` })), tail(responses[2], "ir2", channel, -24, el.in({ channel: channel === "L" ? 0 : 1 }))),
-      el.mul(el.sm(el.const({ value: nFader.at(interpolator)[3], key: `ir4_${channel}` })), tail(responses[3], "ir3", channel, -48, el.in({ channel: channel === "L" ? 0 : 1 })))
-    );
-  }
 
   let outLR =  [ 
-    createHermiteInterpolationFor("L"),
-    createHermiteInterpolationFor("R")
+    createHermiteInterpolationFor("L", scaped, interpolator),
+    createHermiteInterpolationFor("R", scaped, interpolator)
   ];
       
 

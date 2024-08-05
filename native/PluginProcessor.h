@@ -132,7 +132,7 @@ private:
     std::vector<juce::File> loadImpulseResponses();
     juce::AudioBuffer<float> getAudioBufferFromFile(juce::File file);
     juce::AudioFormatManager formatManager; 
-
+    
 //==============================================================================
 // A simple "dirty list" abstraction here for propagating realtime parameter
 // value changes
