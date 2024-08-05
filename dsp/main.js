@@ -37,8 +37,8 @@ globalThis.__receiveStateChange__ = (serializedState) => {
   const state = JSON.parse(serializedState);
 
   let outLR =  [  
-    convolver( {path: 'LONG_AMB_L'}, el.mul( el.db2gain(-19), el.in( {channel: 0} ) ) ) ,
-    convolver( {path: 'LONG_AMB_R'}, el.mul( el.db2gain(-19), el.in( {channel: 1} ) ) ) 
+    convolver( {path: 'EUROPA_L'}, el.mul( el.db2gain(-19), el.in( {channel: 0} ) ) ) ,
+    convolver( {path: 'EUROPA_R'}, el.mul( el.db2gain(-19), el.in( {channel: 1} ) ) ) 
   ];
   let stats = core.render( 
    ...outLR
