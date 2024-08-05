@@ -9,14 +9,20 @@ let core = new Renderer((batch) => {
   __postNativeMessage__( JSON.stringify(batch) );
 });
 
-// Create our custom nodes
-// A simple wrapper for calling to createNode
-let convolver = (props, ...childs) => createNode("convolver", props, childs);
 
 
+// Define our paths always uppercase, even if the filename has lowercase
+// because it is a Map key, not a real fs path
+const paths = [
+  "LONG_AMB",
+  "EUROPA_PAIR"
+];
 
 // Next, a RefMap for coordinating our refs
 let refs = new RefMap(core);
+
+// Create our custom nodes
+let convolver = (props, ...childs) => createNode("convolver", props, childs);
 
 // Holding onto the previous state allows us a quick way to differentiate
 // when we need to fully re-render versus when we can just update refs
@@ -36,10 +42,28 @@ globalThis.__receiveStateChange__ = (serializedState) => {
  
   const state = JSON.parse(serializedState);
 
+  let tail = ( _path, key, channel, attenuationDb = -24, _in  ) => {
+
+    let path = _path + "_" + channel; // use upper case for everything in path
+    console.log("path", path);
+    let result = convolver( { path, key }, el.mul( el.db2gain( el.const( {value: attenuationDb, key: "attIr_" + path} ) ) , _in ) )
+    return result;
+  };
+
+  let blend = (  g, channel, _in ) => {
+    let a = tail( paths[0], "irA", channel, -18, _in );
+    let b = tail( paths[1], "irB", channel, -42, _in );
+    let out = el.select( el.sm(g), a, b );
+    return out;
+  }
+
+  let testInterpolator = el.triangle(0.1)
+
   let outLR =  [  
-    convolver( {path: 'EUROPA_L'}, el.mul( el.db2gain(-19), el.in( {channel: 0} ) ) ) ,
-    convolver( {path: 'EUROPA_R'}, el.mul( el.db2gain(-19), el.in( {channel: 1} ) ) ) 
+   blend(  testInterpolator, "L", el.in( {channel: 0} ) ) ,
+   blend(  testInterpolator, "R", el.in( {channel: 1} ) ) 
   ];
+
   let stats = core.render( 
    ...outLR
   ); // render close
