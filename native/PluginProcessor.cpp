@@ -85,7 +85,7 @@ std::vector<juce::File> EffectsPluginProcessor::loadImpulseResponses()
     {
         for (auto &file : assetsDir.findChildFiles(juce::File::findFiles, true))
         {
-            impulseResponses.push_back(file);
+            if (file.hasFileExtension(juce::String("wav"))) impulseResponses.push_back(file);
         }
     }
 
