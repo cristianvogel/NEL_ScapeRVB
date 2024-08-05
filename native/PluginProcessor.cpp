@@ -378,14 +378,14 @@ void EffectsPluginProcessor::handleAsyncUpdate()
             return std::make_shared<ConvolverNode>(id, sampleRate, blockSize );
         });
 
-        initJavaScriptEngine();
-        runtimeSwapRequired.store(false);
-        if (runtime != nullptr)
-        {
-            // Add impulse responses to the virtual file system
+           // Add impulse responses to the virtual file system
             impulseResponses = loadImpulseResponses();
             addImpulseResponsesToVirtualFileSystem(impulseResponses);
-        }
+
+        initJavaScriptEngine();
+        runtimeSwapRequired.store(false);
+
+      
     }
 
     // Next we iterate over the current parameter values to update our local state

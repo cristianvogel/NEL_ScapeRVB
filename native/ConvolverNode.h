@@ -50,7 +50,7 @@ public:
             if (numChannels == 0 || convolver == nullptr)
                 return (void) std::fill_n(outputData, numSamples, float(0));
 
-            convolver->process(inputData[0], outputData, numSamples);
+            convolver->TwoStageFFTConvolver::process(inputData[0], outputData, numSamples);
    
     }
         elem::SingleWriterSingleReaderQueue<std::shared_ptr<fftconvolver::TwoStageFFTConvolver>> convolverQueue;

@@ -1,4 +1,4 @@
-import {Renderer, el} from '@elemaudio/core';
+import {Renderer, el, createNode } from '@elemaudio/core';
 import {RefMap} from './RefMap';
 import srvb from './srvb';
 
@@ -8,6 +8,12 @@ import srvb from './srvb';
 let core = new Renderer((batch) => {
   __postNativeMessage__( JSON.stringify(batch) );
 });
+
+// Create our custom nodes
+// A simple wrapper for calling to createNode
+let convolver = (props, ...childs) => createNode("convolver", props, childs);
+
+
 
 // Next, a RefMap for coordinating our refs
 let refs = new RefMap(core);
@@ -30,9 +36,12 @@ globalThis.__receiveStateChange__ = (serializedState) => {
  
   const state = JSON.parse(serializedState);
 
+  let outLR =  [  
+    convolver( {path: 'LONG_AMB_L'}, el.mul( el.db2gain(-19), el.in( {channel: 0} ) ) ) ,
+    convolver( {path: 'LONG_AMB_R'}, el.mul( el.db2gain(-19), el.in( {channel: 1} ) ) ) 
+  ];
   let stats = core.render( 
-    el.convolve( {path: 'LONG_AMB_L'},
-    el.cycle(303) )
+   ...outLR
   ); // render close
 
 
