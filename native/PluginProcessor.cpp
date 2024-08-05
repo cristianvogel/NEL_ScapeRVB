@@ -1,4 +1,5 @@
 #include "PluginProcessor.h"
+#include "ConvolverNode.h"
 #include "WebViewEditor.h"
 
 #include <choc_javascript_QuickJS.h>
@@ -369,6 +370,12 @@ void EffectsPluginProcessor::handleAsyncUpdate()
     if (shouldInitialize.exchange(false))
     {
         runtime = std::make_unique<elem::Runtime<float>>(lastKnownSampleRate, lastKnownBlockSize);
+     
+        runtime->registerNodeType("convolver", [](elem::NodeId const id, double sampleRate, int const blockSize) {
+            return std::make_shared<ConvolverNode>(id, sampleRate, blockSize );
+        });
+
+
         initJavaScriptEngine();
         runtimeSwapRequired.store(false);
         if (runtime != nullptr)
