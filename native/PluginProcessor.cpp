@@ -77,7 +77,7 @@ std::vector<juce::File> EffectsPluginProcessor::loadImpulseResponses()
     std::vector<juce::File> impulseResponses = {};
 
 #if ELEM_DEV_LOCALHOST
-    auto assetsDir = juce::File(juce::String("~/Desktop/Programming/NEL_ScapeRVB/public/assets/impulse-responses"));
+    auto assetsDir = juce::File(juce::String("~/Programming/NEL_ScapeRVB/public/assets/impulse-responses"));
 #else
     auto assetsDir = getAssetsDirectory().getChildFile("assets/impulse-responses");
 #endif
@@ -85,7 +85,7 @@ std::vector<juce::File> EffectsPluginProcessor::loadImpulseResponses()
     {
         for (auto &file : assetsDir.findChildFiles(juce::File::findFiles, true))
         {
-            if (file.hasFileExtension(juce::String("wav"))) impulseResponses.push_back(file);
+            if (file.hasFileExtension(juce::String("wav")) ) impulseResponses.push_back(file);
         }
     }
 
@@ -99,13 +99,10 @@ void EffectsPluginProcessor::addImpulseResponsesToVirtualFileSystem(std::vector<
 
     for (auto &file : impulseResponses)
     {
-        if ( file.hasFileExtension(juce::String("wav")) )
-        {
-            // load the impulse response file
         auto buffer = juce::AudioBuffer<float>();
         auto reader = formatManager.createReaderFor(file);
-        buffer.setSize(2, reader->lengthInSamples);
-        auto key = choc::text::toUpperCase(file.getFileNameWithoutExtension().toStdString()); // "Ambience_0.wav" -> "AMBIENCE_0"
+        buffer.setSize( 2, reader->lengthInSamples ); // source files are mono, but we use the second channel for a derived 'shaped' version
+        auto name = choc::text::toUpperCase(file.getFileNameWithoutExtension().toStdString()); // "Ambience_0.wav" -> "AMBIENCE_0"
         reader->read(&buffer, 0, reader->lengthInSamples, 0, true, false);
         delete reader;
         // fabricate a gain ramp version on the next channel
@@ -113,17 +110,16 @@ void EffectsPluginProcessor::addImpulseResponsesToVirtualFileSystem(std::vector<
         buffer.copyFromWithRamp(1, 0, buffer.getReadPointer(0), buffer.getNumSamples(), 0.2, 1);
         // add the non-shaped impulse response to the virtual file system    
         runtime->updateSharedResourceMap(
-            key,
+            name,
             buffer.getReadPointer(0),
             buffer.getNumSamples()
             );
         // add the shaped impulse response to the virtual file system         
         runtime->updateSharedResourceMap(
-            "SHAPED_"+key,
+            "SHAPED_"+name,
             buffer.getReadPointer(1),
             buffer.getNumSamples()
             );
-        }
     }
 }
 

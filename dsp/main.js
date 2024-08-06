@@ -21,10 +21,10 @@ let convolver = (props, ...childs) => createNode("convolver", props, childs);
 // Define our paths always uppercase, even if the filename has lowercase
 // because it is a Map key, not a real fs path
 const responses = [
-  { name: "GLASS", att: -16 },
-  { name: "AMBIENCE", att: -18 },
+  { name: "GLASS", att: -24 },
+  { name: "AMBIENCE", att: -12 },
   { name: "TANGLEWOOD", att: -24 },
-  { name: "EUROPA", att: -32 }
+  { name: "EUROPA", att: -36 }
 ];
 
 // use the generic `ramp()` factory function with a custom implementation
@@ -37,36 +37,36 @@ const vectorInterp = ramp(
       [0.0,   [1, 0, 0, 0]], // a
       [0.125,  [0, 1, 0, 0]], // b
       [0.45,  [0, 0, 1, 0]], // c
-      [0.75,  [0, 0, 0.2, 0]],
-      [1.0,   [0, 0, 0, 1]], // d
+      [1.0,   [0, 0, 0, 0.9]], // d
   ]
 );
 
 // DSP not needed inside of render hook
-let tail = ( _path, shaped, key = "attIr_", channel, attenuationDb = -24, _in  ) => {
+let tail = ( _path, shaped, key = "attIr_", channel = 0, attenuationDb = -24, _in  ) => {
   let path = (shaped ? "SHAPED_" : "") + _path + "_" + channel; // use upper case for everything in path
-  let result = convolver( { path, key }, el.mul( el.db2gain( el.const( {value: attenuationDb, key: key + path} ) ) , _in ) )
+  console.log( 'loking up:', path );
+  let result = convolver( { path, key }, el.mul( el.db2gain( el.const( {value: attenuationDb, key: 'att_'+ key} ) ) , _in ) )
   return result;
 };
 
   
   // HERMITE vector cross fader
 
-  function createHermiteVInterpolation(channel, shaped = false, x) {
+  function createHermiteVInterpolation( channel = 0, shaped = false, x) {
     let mixer = []
     responses.forEach((response, index) => {
       const { name, att } = response;
+      const key = `ir${name+index}`;
       console.log(name, att);
       mixer.push(
       el.mul(
         el.sm(
-          el.const( { value: vectorInterp.at(x)[index], key: `ir${index + 1}_${channel}` }  )
+          el.const( { value: vectorInterp.at(x)[index], key }  )
         ),
-        tail(name, shaped, `ir${index}`, channel, att, el.in({ channel }))
+          tail( name, shaped, key, channel, att, el.in( { channel } ) )
       )
     );
     });
-    console.log(mixer.length)
     return el.add(...mixer)
   }
 
@@ -90,13 +90,13 @@ globalThis.__receiveStateChange__ = (serializedState) => {
   const state = JSON.parse(serializedState);
 
 
-  let interpolator = state.decay;
+  let fader = state.decay;
   let shaped = state.size > 0.5;
 
 
   let outLR =  [ 
-    createHermiteVInterpolation( 0, shaped, interpolator),
-    createHermiteVInterpolation( 1, shaped, interpolator)
+    createHermiteVInterpolation( 0, shaped, fader ),
+    createHermiteVInterpolation( 1, shaped, fader )
   ];
       
 
@@ -104,7 +104,7 @@ globalThis.__receiveStateChange__ = (serializedState) => {
    ...outLR
   ); // render close
 
-
+  console.log( 'Element Stats:', stats );
   
   if (shouldRender(prevState, state)) {
     //

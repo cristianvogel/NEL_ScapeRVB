@@ -57,7 +57,7 @@ export const MessageToHost = {
   requestParamValueUpdate: function (paramId: string, value: number) {
     if (typeof globalThis.__postNativeMessage__ === "function") {
       ConsoleText.update( paramId + " ► " + value);
-      console.log('dbg', paramId, value);
+     
       globalThis.__postNativeMessage__("setParameterValue", {
         paramId,
         value,
@@ -127,7 +127,7 @@ export function RegisterMessagesFromHost() {
    */
   globalThis.__receiveStateChange__ = function (state: any) {
    // processHostState(state);
-   console.log("Receive state change: ", JSON.parse(state));
+   // console.log("Receive state change: ", JSON.parse(state));
   };
 
 
