@@ -21,15 +21,15 @@ let convolver = (props, ...childs) => createNode("convolver", props, childs);
 // Define our paths always uppercase, even if the filename has lowercase
 // because it is a Map key, not a real fs path
 const responses = [
-  "GLASS",
-  "AMBIENCE",
-  "TANGLEWOOD",
-  "EUROPA"
+  { name: "GLASS", att: -16 },
+  { name: "AMBIENCE", att: -18 },
+  { name: "TANGLEWOOD", att: -24 },
+  { name: "EUROPA", att: -32 }
 ];
 
 // use the generic `ramp()` factory function with a custom implementation
 // see: https://docs.thi.ng/umbrella/ramp/interfaces/RampImpl.html
-const nFader = ramp(
+const vectorInterp = ramp(
   // use a vector interpolation preset with the VEC3 API
   HERMITE_V(VEC3),
   // keyframes used for crossfading between 4 IRs
@@ -43,8 +43,8 @@ const nFader = ramp(
 );
 
 // DSP not needed inside of render hook
-let tail = ( _path, SCAPED, key = "attIr_", channel, attenuationDb = -24, _in  ) => {
-  let path = SCAPED + _path + "_" + channel; // use upper case for everything in path
+let tail = ( _path, shaped, key = "attIr_", channel, attenuationDb = -24, _in  ) => {
+  let path = (shaped ? "SHAPED_" : "") + _path + "_" + channel; // use upper case for everything in path
   let result = convolver( { path, key }, el.mul( el.db2gain( el.const( {value: attenuationDb, key: key + path} ) ) , _in ) )
   return result;
 };
@@ -52,13 +52,22 @@ let tail = ( _path, SCAPED, key = "attIr_", channel, attenuationDb = -24, _in  )
   
   // HERMITE vector cross fader
 
-  function createHermiteInterpolationFor(channel, scaped = "", interpolator) {
-    return el.add(
-      el.mul(el.sm(el.const({ value: nFader.at(interpolator)[0], key: `ir1_${channel}` })), tail(responses[0], scaped, "ir0", channel, -20, el.in({ channel: channel === "L" ? 0 : 1 }))),
-      el.mul(el.sm(el.const({ value: nFader.at(interpolator)[1], key: `ir2_${channel}` })), tail(responses[1], scaped, "ir1", channel, -18, el.in({ channel: channel === "L" ? 0 : 1 }))),
-      el.mul(el.sm(el.const({ value: nFader.at(interpolator)[2], key: `ir3_${channel}` })), tail(responses[2], scaped, "ir2", channel, -24, el.in({ channel: channel === "L" ? 0 : 1 }))),
-      el.mul(el.sm(el.const({ value: nFader.at(interpolator)[3], key: `ir4_${channel}` })), tail(responses[3], scaped, "ir3", channel, -48, el.in({ channel: channel === "L" ? 0 : 1 })))
+  function createHermiteVInterpolation(channel, shaped = false, x) {
+    let mixer = []
+    responses.forEach((response, index) => {
+      const { name, att } = response;
+      console.log(name, att);
+      mixer.push(
+      el.mul(
+        el.sm(
+          el.const( { value: vectorInterp.at(x)[index], key: `ir${index + 1}_${channel}` }  )
+        ),
+        tail(name, shaped, `ir${index}`, channel, att, el.in({ channel }))
+      )
     );
+    });
+    console.log(mixer.length)
+    return el.add(...mixer)
   }
 
 
@@ -82,12 +91,12 @@ globalThis.__receiveStateChange__ = (serializedState) => {
 
 
   let interpolator = state.decay;
-  let scaped = state.size > 0.5 ? "SCAPED" : "";
+  let shaped = state.size > 0.5;
 
 
   let outLR =  [ 
-    createHermiteInterpolationFor("L", scaped, interpolator),
-    createHermiteInterpolationFor("R", scaped, interpolator)
+    createHermiteVInterpolation( 0, shaped, interpolator),
+    createHermiteVInterpolation( 1, shaped, interpolator)
   ];
       
 

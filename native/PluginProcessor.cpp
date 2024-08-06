@@ -99,13 +99,16 @@ void EffectsPluginProcessor::addImpulseResponsesToVirtualFileSystem(std::vector<
 
     for (auto &file : impulseResponses)
     {
+        if ( file.hasFileExtension(juce::String("wav")) )
+        {
+            // load the impulse response file
         auto buffer = juce::AudioBuffer<float>();
 
         auto reader = formatManager.createReaderFor(file);
 
         buffer.setSize(2, reader->lengthInSamples);
 
-        auto key = choc::text::toUpperCase(file.getFileNameWithoutExtension().toStdString()); // "Long Ambience L.wav" -> "LONG AMBIENCE L"
+        auto key = choc::text::toUpperCase(file.getFileNameWithoutExtension().toStdString()); // "Ambience_0.wav" -> "AMBIENCE_0"
 
         reader->read(&buffer, 0, reader->lengthInSamples, 0, true, false);
         delete reader;
@@ -123,7 +126,7 @@ void EffectsPluginProcessor::addImpulseResponsesToVirtualFileSystem(std::vector<
             
               
         runtime->updateSharedResourceMap(
-            "SCAPED"+key,
+            "SHAPED_"+key,
             buffer.getReadPointer(1),
             buffer.getNumSamples()
             );
