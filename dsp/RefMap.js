@@ -3,6 +3,7 @@ import invariant from 'invariant';
 
 export class RefMap {
   constructor(core) {
+    console.log('RefMap constructor');
     this._map = new Map();
     this._core = core;
   }
@@ -12,12 +13,11 @@ export class RefMap {
       let ref = this._core.createRef(type, props, children);
       this._map.set(name, ref);
     }
-
     return this._map.get(name)[0];
   }
 
   update(name, props) {
-    invariant(this._map.has(name), "Oops, trying to update a ref that doesn't exist");
+    invariant(this._map.has(name), `Trying to update a ref to ${name} that doesn't exist`);
 
     let [node, setter] = this._map.get(name);
     setter(props);
