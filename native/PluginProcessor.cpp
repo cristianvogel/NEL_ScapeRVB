@@ -103,33 +103,27 @@ void EffectsPluginProcessor::addImpulseResponsesToVirtualFileSystem(std::vector<
         {
             // load the impulse response file
         auto buffer = juce::AudioBuffer<float>();
-
         auto reader = formatManager.createReaderFor(file);
-
         buffer.setSize(2, reader->lengthInSamples);
-
         auto key = choc::text::toUpperCase(file.getFileNameWithoutExtension().toStdString()); // "Ambience_0.wav" -> "AMBIENCE_0"
-
         reader->read(&buffer, 0, reader->lengthInSamples, 0, true, false);
         delete reader;
-
         // fabricate a gain ramp version on the next channel
         // to use as a shaped option if user wants
-
         buffer.copyFromWithRamp(1, 0, buffer.getReadPointer(0), buffer.getNumSamples(), 0.2, 1);
-        
+        // add the non-shaped impulse response to the virtual file system    
         runtime->updateSharedResourceMap(
             key,
             buffer.getReadPointer(0),
             buffer.getNumSamples()
             );
-            
-              
+        // add the shaped impulse response to the virtual file system         
         runtime->updateSharedResourceMap(
             "SHAPED_"+key,
             buffer.getReadPointer(1),
             buffer.getNumSamples()
             );
+        }
     }
 }
 
