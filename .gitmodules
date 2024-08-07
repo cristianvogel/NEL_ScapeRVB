@@ -1,10 +1,4 @@
-[submodule "native/elementary"]
-	path = native/elementary
-	url = https://github.com/cristianvogel/elementary.git
-	branch = customisations
-[submodule "native/juce"]
-	path = native/juce
-	url = https://github.com/juce-framework/JUCE.git
+
 [submodule "native/choc"]
 	path = native/choc
 	url = https://github.com/cristianvogel/choc

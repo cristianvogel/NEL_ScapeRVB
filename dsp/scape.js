@@ -50,7 +50,7 @@ let tail = ( _path, shaped, key = "attIr_", channel = 0, attenuationDb = -24, _i
     responses.forEach((response, index) => {
       const { name, att } = response;
       const key = `ir${name+index}`;
-      console.log(name, att);
+
       mixer.push(
       el.mul(
         el.sm(

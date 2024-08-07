@@ -9,8 +9,8 @@ option(JUCE_ENABLE_MODULE_SOURCE_GROUPS "Enable Module Source Groups" ON)
 option(JUCE_BUILD_EXTRAS "Build JUCE Extras" OFF)
 option(ELEM_DEV_LOCALHOST "Run against localhost for static assets" OFF)
 
-add_subdirectory(juce)
-add_subdirectory(elementary/runtime)
+add_subdirectory(juce-static)
+add_subdirectory(elementary-static/runtime)
 
 if(WIN32)
   set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>") # Martin's famous fix ... JUCE and plugins need this
@@ -153,7 +153,7 @@ target_link_libraries(${TARGET_NAME}
   juce::juce_audio_utils
   juce::juce_core
   juce::juce_data_structures
-  juce::juce_dsp
+ # juce::juce_dsp
   juce::juce_events
   juce::juce_graphics
   juce::juce_gui_basics

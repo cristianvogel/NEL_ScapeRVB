@@ -21,6 +21,7 @@ let refs = new RefMap(core);
 // Create our custom nodes
 let _convolver = (props, ...childs) => createNode("convolver", props, childs);
 
+
 // Holding onto the previous state allows us a quick way to differentiate
 // when we need to fully re-render versus when we can just update refs
 let __prevState = null;
@@ -29,17 +30,13 @@ function shouldRender(prevState, nextState) {
   return (prevState === null) || (nextState === null) || (prevState.sampleRate !== nextState.sampleRate);
 }
 
+
+
+
 globalThis.__receiveStateChange__ = (incomingState) => {
 
   const __state = JSON.parse(incomingState);
-
-  // ui controls / design parameters 
-  const scape = {
-    scape: __state.scape,
-    shape: __state.shape < 0.5 ? 0.0 : 1.0,
-    blend: __state.scapeBlend,
-  };
-
+  
   const early = {
     size: __state.size,
     preDelay: __state.preDelay,
@@ -56,16 +53,17 @@ globalThis.__receiveStateChange__ = (incomingState) => {
       key: 'scape-',
       sampleRate: __state.sampleRate,
       size: refs.getOrCreate('size', 'const', { value: early.size }, []),
-      dimension: refs.getOrCreate('dimension', 'const', { value: early.dimension }, []),
+      dimension: refs.getOrCreate('dimension', 'const', { value: early.dimension }, []),      
+      drive: refs.getOrCreate('drive', 'const', { value: early.drive }, []),
       preDelay: refs.getOrCreate('preDelay', 'const', { value: early.preDelay }, []),  // is in ms
       excursion: refs.getOrCreate('excursion', 'const', { value: early.excursion }, []),
       build: refs.getOrCreate('build', 'const', { value: early.build }, []), // was fb_amount
       preScape: refs.getOrCreate('preScape', 'const', { value: early.preScape }, []), // overall wet level
       tone: refs.getOrCreate('tone', 'const', { value: early.tone * 16000 }, []), // was fb_cutoff
-      drive: refs.getOrCreate('drive', 'const', { value: early.drive }, []),
+
     },
     el.in( { channel: 0 } ), el.in( { channel: 1 } ) )
-  );
+    );
   } else {
     refs.update('size', { value: early.size });
     refs.update('dimension', { value: early.dimension });
@@ -75,7 +73,6 @@ globalThis.__receiveStateChange__ = (incomingState) => {
     refs.update('build', { value: early.build });
     refs.update('preScape', { value: early.preScape });
     refs.update('tone', { value: early.tone * 16000 });
-    refs.update('drive', { value: early.drive });
   }
 
   __prevState = __state;
@@ -84,7 +81,7 @@ globalThis.__receiveStateChange__ = (incomingState) => {
 /////////////////////////////////////////////////////////////////
 // Finally, an error callback which just logs back to native
 globalThis.__receiveError__ = (err) => {
-  console.log(`[Error: ${err.name}] ${err.message}`);
+  console.log(`[Elem: ${err.name}] ${err.message}`);
 };
 // NOTE: This is highly experimental and should not yet be relied on
 // as a consistent feature.
