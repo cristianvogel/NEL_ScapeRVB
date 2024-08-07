@@ -77,7 +77,7 @@ std::vector<juce::File> EffectsPluginProcessor::loadImpulseResponses()
     std::vector<juce::File> impulseResponses = {};
 
 #if ELEM_DEV_LOCALHOST
-    auto assetsDir = juce::File(juce::String("~/Programming/NEL_ScapeRVB/public/assets/impulse-responses"));
+    auto assetsDir = juce::File(juce::String("~/Programming/ProgrammingSubFolder/NEL_ScapeRVB/public/assets/impulse-responses"));
 #else
     auto assetsDir = getAssetsDirectory().getChildFile("assets/impulse-responses");
 #endif

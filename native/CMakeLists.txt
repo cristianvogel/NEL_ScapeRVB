@@ -9,8 +9,8 @@ option(JUCE_ENABLE_MODULE_SOURCE_GROUPS "Enable Module Source Groups" ON)
 option(JUCE_BUILD_EXTRAS "Build JUCE Extras" OFF)
 option(ELEM_DEV_LOCALHOST "Run against localhost for static assets" OFF)
 
-add_subdirectory(juce-static)
-add_subdirectory(elementary-static/runtime)
+add_subdirectory(juce) # using the static non-submodule version
+add_subdirectory(elementary/runtime) # using the static non-submodule version
 
 if(WIN32)
   set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>") # Martin's famous fix ... JUCE and plugins need this
