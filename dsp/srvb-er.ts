@@ -1,8 +1,7 @@
 //@ts-check
 
-import invariant from 'invariant';
-import {el, ElemNode} from '@elemaudio/core';
-
+import invariant from "invariant";
+import { el, ElemNode } from "@elemaudio/core";
 
 // A size 8 Hadamard matrix constructed using Numpy and Scipy.
 //
@@ -14,33 +13,56 @@ import {el, ElemNode} from '@elemaudio/core';
 //
 // @see https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.linalg.hadamard.html
 // @see https://nhigham.com/2020/04/10/what-is-a-hadamard-matrix/
-const H8 = [[ 1,  1,  1,  1,  1,  1,  1,  1],
-            [ 1, -1,  1, -1,  1, -1,  1, -1],
-            [ 1,  1, -1, -1,  1,  1, -1, -1],
-            [ 1, -1, -1,  1,  1, -1, -1,  1],
-            [ 1,  1,  1,  1, -1, -1, -1, -1],
-            [ 1, -1,  1, -1, -1,  1, -1,  1],
-            [ 1,  1, -1, -1, -1, -1,  1,  1],
-            [ 1, -1, -1,  1, -1,  1,  1, -1]];
+const H8 = [
+  [ 1,  1,  1,  1,  1,  1,  1,  1],
+  [ 1, -1,  1, -1,  1, -1,  1, -1],
+  [ 1,  1, -1, -1,  1,  1, -1, -1],
+  [ 1, -1, -1,  1,  1, -1, -1,  1],
+  [ 1,  1,  1,  1, -1, -1, -1, -1],
+  [ 1, -1,  1, -1, -1,  1, -1,  1],
+  [ 1,  1, -1, -1, -1, -1,  1,  1],
+  [ 1, -1, -1,  1, -1,  1,  1, -1]
+];
+
+function next8Primes(start): Array<number> {
+  const primes: Array<number> = [];
+  let num = start + 1;
+  while (primes.length < 8) {
+    let isPrime = true;
+    for (let i = 2; i <= Math.sqrt(num); i++) {
+      if (num % i === 0) {
+        isPrime = false;
+        break;
+      }
+    }
+    if (isPrime) primes.push(num);
+    num++;
+  }
+  return primes;
+}
 
 // A diffusion step expecting exactly 8 input channels with
 // a maximum diffusion time of 500ms
-function diffuse(size, ...ins) {
+function diffuse(primes: Array<number>, size: number, ...ins) {
+
+  
   const len = ins.length;
   const scale = Math.sqrt(1 / len);
 
   invariant(len === 8, "Invalid diffusion step!");
-  invariant(typeof size === 'number', "Diffusion step size must be a number");
+  invariant(typeof size === "number", "Diffusion step size must be a number");
 
-  const dels = ins.map(function(input, i) {
-    const lineSize = size * ((i + 1) / len);
-    return el.sdelay({size: lineSize}, input);
+  const dels = ins.map(function (input, i) {
+   // const lineSize = size * ((i + 1) / len);
+   const lineSize = size * ( 1  / len )  ;
+    return el.sdelay({ size: lineSize }, (i % 2) ? input : el.mul(-1, input) );  // do some polarity permutation
   });
-
-  return H8.map(function(row, i) {
-    return el.add(...row.map(function(col, j) {
-      return el.mul(col * scale, dels[j]);
-    }));
+  return H8.map(function (row, i) {
+    return el.add(
+      ...row.map(function (col, j) {
+        return el.mul(col * scale, dels[j]);
+      })
+    );
   });
 }
 
@@ -52,57 +74,54 @@ function diffuse(size, ...ins) {
 // @param {el.const} decay in the range [0, 1]
 // @param {el.const} modDepth in the range [0, 1]
 // @param {...core.Node} ...ins eight input channels
-function dampFDN(name, sampleRate, size, decay, modDepth, ...ins) {
+function dampFDN(name, sampleRate, primes:Array<number>, size, decay, modDepth, ...ins) {
   const len = ins.length;
   const scale = Math.sqrt(1 / len);
   const md = el.mul(modDepth, 0.02);
 
-  if (len !== 8)
-    throw new Error("Invalid FDN step!");
+  if (len !== 8) throw new Error("Invalid FDN step!");
 
   // The unity-gain one pole lowpass here is tuned to taste along
   // the range [0.001, 0.5]. Towards the top of the range, we get into the region
   // of killing the decay time too quickly. Towards the bottom, not much damping.
-  const dels = ins.map(function(input, i) {
+  const dels = ins.map(function (input, i) {
     return el.add(
       input,
-      el.mul(
-        decay,
-        el.smooth(
-          0.0105,
-          el.tapIn({name: `${name}:fdn${i}`}),
-        ),
-      ),
+      el.mul(decay, el.smooth(0.0105, el.tapIn({ name: `${name}:fdn${i}` })))
     );
   });
 
-  let mix = H8.map(function(row, i) {
-    return el.add(...row.map(function(col, j) {
-      return el.mul(col * scale, dels[j]);
-    }));
+  let mix = H8.map(function (row, i) {
+    return el.add(
+      ...row.map(function (col, j) {
+        return el.mul(col * scale, dels[j]);
+      })
+    );
   });
 
-  return mix.map(function(mm, i) {
+  return mix.map(function (mm, i) {
     const modulate = (x, rate, amt) => el.add(x, el.mul(amt, el.cycle(rate)));
     const ms2samps = (ms) => sampleRate * (ms / 1000.0);
 
     // Each delay line here will be ((i + 1) * 17)ms long, multiplied by [1, 4]
     // depending on the size parameter. So at size = 0, delay lines are 17, 34, 51, ...,
     // and at size = 1 we have 68, 136, ..., all in ms here.
-    const delaySize = el.mul(el.add(1.00, el.mul(3, size)), ms2samps((i + 1) * 19));
+    const delaySize = el.mul(
+      el.add(1.0, el.mul(3, size)),
+      ms2samps( primes[i] )
+    );
 
     // Then we modulate the read position for each tap to add some chorus in the
     // delay network.
-    const readPos = modulate(delaySize, el.add(0.1, el.mul(i, md)), ms2samps(2.5));
+    const readPos = modulate(
+      delaySize,
+      el.add(0.1, el.mul(i, md)),
+      ms2samps(2.5)
+    );
 
     return el.tapOut(
-      {name: `${name}:fdn${i}`},
-      el.delay(
-        {size: ms2samps(750)},
-        readPos,
-        0,
-        mm
-      ),
+      { name: `${name}:fdn${i}` },
+      el.delay({ size: ms2samps(750) }, readPos, 0, mm)
     );
   });
 }
@@ -125,26 +144,46 @@ interface SRVBProps {
   key: string;
 }
 
-export default function srvbEarly( props: SRVBProps , xl, xr) {
-  
-        const { sampleRate , key } = props;
+export default function srvbEarly(props: SRVBProps, xl, xr) {
+  const { sampleRate, key } = props;
 
   // Upmix to eight channels
   const mid = el.mul(0.5, el.add(xl, xr));
   const side = el.mul(0.5, el.sub(xl, xr));
-  const four = [xl, xr, el.mul( el.sub( 1.125, props.dimension), mid ) , el.mul( el.add( 0.5, props.dimension), side ) ];
-  const eight = [...four, ...four.map(x => el.mul(-1, x))];
+  const four = [
+    xl,
+    xr,
+    el.mul(el.sub(1.125, props.dimension), mid),
+    el.mul(el.add(0.5, props.dimension), side),
+  ];
+  const eight = [...four, ...four.map((x) => el.mul(-1, x))];
 
   // Diffusion
   const ms2samps = (ms) => sampleRate * (ms / 1000.0);
-
-  const d1 = diffuse( ms2samps( 42.30 ), ...eight);  // from EUVerb
-  const d2 = diffuse( ms2samps( 51.45 ), ...d1);
-  const d3 = diffuse( ms2samps( 76.91 ), ...d2);
+  const primes = next8Primes(13);
+  const d1 = diffuse(primes, ms2samps(42.3), ...eight); // from EUVerb
+  const d2 = diffuse(primes, ms2samps(51.45), ...d1);
+  const d3 = diffuse(primes, ms2samps(76.91), ...d2);
 
   // Reverb network
-  const d4 = dampFDN(`${key}:d4`, sampleRate, props.size, 0.004, props.excursion, ...d3)
-  const r0 = dampFDN(`${key}:r0`, sampleRate, props.size, props.decay, props.excursion, ...d4);
+  const d4 = dampFDN(
+    `${key}:d4`,
+    sampleRate,
+    primes,
+    props.size,
+    0.004,
+    props.excursion,
+    ...d3
+  );
+  const r0 = dampFDN(
+    `${key}:r0`,
+    sampleRate,
+    primes,
+    props.size,
+    props.decay,
+    props.excursion,
+    ...d4
+  );
 
   // Downmix
   //
@@ -158,8 +197,5 @@ export default function srvbEarly( props: SRVBProps , xl, xr) {
   const yr = el.mul(0.25, el.add(r0[1], r0[3], r0[5], r0[7]));
 
   // Wet dry mixing
-  return [
-    el.select(props.mix, yl, xl),
-    el.select(props.mix, yr, xr),
-  ];
+  return [el.select(props.mix, yl, xl), el.select(props.mix, yr, xr)];
 }
