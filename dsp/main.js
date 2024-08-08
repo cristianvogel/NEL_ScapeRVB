@@ -4,6 +4,8 @@
 import { Renderer, el, createNode } from '@elemaudio/core';
 import { RefMap } from './RefMap';
 import srvbEarly from './srvb-er';
+import {clamp} from '@thi.ng/math';
+
 
 
 
@@ -43,7 +45,7 @@ globalThis.__receiveStateChange__ = (incomingState) => {
     excursion: __state.excursion,
     decay: __state.decay,   
     mix: __state.mix,
-    tone: __state.tone  // was cutoff
+    tone: clamp( __state.tone * 2 - 1, -0.99, 1 )  // was cutoff
   };
 
   if ( shouldRender(__prevState, __state) ) {
@@ -55,7 +57,7 @@ globalThis.__receiveStateChange__ = (incomingState) => {
       excursion: refs.getOrCreate('excursion', 'const', { value: early.excursion }, []),
       decay: refs.getOrCreate('decay', 'const', { value: early.decay }, []), // was fb_amount
       mix: refs.getOrCreate('mix', 'const', { value: early.mix }, []), // overall wet level
-      tone: refs.getOrCreate('tone', 'const', { value: early.tone * 16000 }, []), // was fb_cutoff
+      tone: refs.getOrCreate('tone', 'const', { value: early.tone  }, []), // coming always as 0-1
     },
     el.in( { channel: 0 } ), el.in( { channel: 1 } ) )
     );
@@ -65,7 +67,7 @@ globalThis.__receiveStateChange__ = (incomingState) => {
     refs.update('excursion', { value: early.excursion });
     refs.update('decay', { value: early.decay });
     refs.update('mix', { value: early.mix });
-    refs.update('tone', { value: 200 + (early.tone * 16000) });
+    refs.update('tone', { value: early.tone  });
   }
 
   __prevState = __state;

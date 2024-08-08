@@ -74,24 +74,34 @@ function diffuse(primes: Array<number>, size: number, ...ins) {
 // @param {el.const} decay in the range [0, 1]
 // @param {el.const} modDepth in the range [0, 1]
 // @param {...core.Node} ...ins eight input channels
-function dampFDN(name, sampleRate, primes:Array<number>, size, decay, modDepth, ...ins) {
+function dampFDN(name, sampleRate, primes:Array<number>, tone: ElemNode, size: ElemNode, decay, modDepth, ...ins) {
   const len = ins.length;
   const scale = Math.sqrt(1 / len);
   const md = el.mul(modDepth, 0.02);
 
   if (len !== 8) throw new Error("Invalid FDN step!");
 
+  const toneDial = (input, offset: number ) => {
+    const dial = el.smooth( el.tau2pole(0.5), el.le(tone, 0) );
+    const fcLPF =  el.add( 48, el.mul( 12000 + offset, el.sub( 1, el.abs(tone) ) ) ) ;
+    return el.select( dial,
+      // darker
+      el.svf( fcLPF , 1.0e-2 + (offset * 1.0e-3) , input ),
+      // brighter
+      el.svfshelf( {mode: 'highshelf'}, 650 + offset, 0.5, el.mul( tone , el.db2gain( 6 )) , el.mul( el.db2gain(-1.5), input )  )
+  );
+  }
   // The unity-gain one pole lowpass here is tuned to taste along
   // the range [0.001, 0.5]. Towards the top of the range, we get into the region
   // of killing the decay time too quickly. Towards the bottom, not much damping.
   const dels = ins.map(function (input, i) {
     return el.add(
-      input,
+      toneDial(input,  i * 10 ),
       el.mul(decay, el.smooth(0.0105, el.tapIn({ name: `${name}:fdn${i}` })))
     );
   });
 
-  let mix = H8.map(function (row, i) {
+  let mix = H8.map(function (row, i) { 
     return el.add(
       ...row.map(function (col, j) {
         return el.mul(col * scale, dels[j]);
@@ -103,19 +113,21 @@ function dampFDN(name, sampleRate, primes:Array<number>, size, decay, modDepth, 
     const modulate = (x, rate, amt) => el.add(x, el.mul(amt, el.cycle(rate)));
     const ms2samps = (ms) => sampleRate * (ms / 1000.0);
 
+   
+
     // Each delay line here will be ((i + 1) * 17)ms long, multiplied by [1, 4]
     // depending on the size parameter. So at size = 0, delay lines are 17, 34, 51, ...,
     // and at size = 1 we have 68, 136, ..., all in ms here.
     const delaySize = el.mul(
-      el.smooth( el.tau2pole(1.5), el.add(1.0, el.mul(3, size) ) ),
-      ms2samps( primes[i] )
+        el.add(1.0, el.mul(3, size) ) ,
+        ms2samps( primes[i] )
     );
 
     // Then we modulate the read position for each tap to add some chorus in the
     // delay network.
     const readPos = modulate(
       delaySize,
-      el.smooth( el.tau2pole( 3 ) , el.add(   0.05 * primes[i]   , el.mul(i, md)) ),
+      el.smooth( el.tau2pole( 0.1 ) , el.add(   0.05 * primes[i]   , el.mul(i, md)) ),
       ms2samps( primes[i] * 0.2 )
     );
 
@@ -148,7 +160,7 @@ export default function srvbEarly(props: SRVBProps, xl, xr) {
   const { sampleRate, key } = props;
 
   // Upmix to eight channels
-  const mid = el.mul(0.5, el.add(xl, xr));
+  const mid =  el.mul(0.5, el.add(xl, xr) ) ;
   const side = el.mul(0.5, el.sub(xl, xr));
   const four = [
     xl,
@@ -170,6 +182,7 @@ export default function srvbEarly(props: SRVBProps, xl, xr) {
     `${key}:d4`,
     sampleRate,
     primes,
+    props.tone,
     props.size,
     0.004,
     props.excursion,
@@ -179,22 +192,21 @@ export default function srvbEarly(props: SRVBProps, xl, xr) {
     `${key}:r0`,
     sampleRate,
     primes,
+    props.tone,
     props.size,
     props.decay,
     props.excursion,
     ...d4
   );
 
-  // Downmix
-  //
-  // It's important here to interleave the output channels because the way that
-  // the multi-channel delay lines are written above tends to correlate the delay
-  // length with the current index in the 8-channel array. That means the smaller
-  // the index, the shorter the delay line. The mix matrix will mostly address this,
-  // but if you sum index 0-3 into the left and 4-7 into the right you can definitely
-  // hear the energy in the left channel build before the energy in the right.
-  const yl = el.mul(0.25, el.add(r0[0], r0[2], r0[4], r0[6]));
-  const yr = el.mul(0.25, el.add(r0[1], r0[3], r0[5], r0[7]));
+  // interleaved Downmix
+  let yl = el.mul(0.25, el.add(r0[0], r0[2], r0[4], r0[6]));
+  let yr = el.mul(0.25, el.add(r0[1], r0[3], r0[5], r0[7]));
+
+  // let duck = el.eq( props.size, el.z(props.size) );
+  // let window = el.env(el.tau2pole(0.00001), el.tau2pole(2), duck)
+  // yl = el.mul( window , yl);
+  // yr = el.mul( window , yr);
 
   // Wet dry mixing
   return [el.select(props.mix, yl, xl), el.select(props.mix, yr, xr)];
