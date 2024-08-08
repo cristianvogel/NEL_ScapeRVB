@@ -541,7 +541,8 @@ void EffectsPluginProcessor::dispatchMeshStateChange()
 void EffectsPluginProcessor::dispatchError(std::string const &name, std::string const &message)
 {
     std::string logMessage = "globalThis.__log__('Native error: " + name + " - " + message + "')";
-    // using updated CHOC Javascript console logging, registered in initJavaScriptEngine
+    // using updated CHOC Javascript 
+    // console logging, registered in initJavaScriptEngine
     sendJavascriptToUI(logMessage);
 }
 
