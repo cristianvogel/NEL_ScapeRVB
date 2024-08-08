@@ -24,10 +24,10 @@ const H8 = [
   [ 1, -1, -1,  1, -1,  1,  1, -1]
 ];
 
-function next8Primes(start): Array<number> {
+function next16Primes(start): Array<number> {
   const primes: Array<number> = [];
   let num = start + 1;
-  while (primes.length < 8) {
+  while (primes.length < 16) {
     let isPrime = true;
     for (let i = 2; i <= Math.sqrt(num); i++) {
       if (num % i === 0) {
@@ -121,7 +121,7 @@ function dampFDN(name, sampleRate, primes:Array<number>, size, decay, modDepth, 
 
     return el.tapOut(
       { name: `${name}:fdn${i}` },
-      el.delay({ size: ms2samps(750) }, readPos, 0, mm)
+      el.delay({ size: ms2samps(700 + primes[i]) }, readPos, 0, mm)
     );
   });
 }
@@ -160,7 +160,7 @@ export default function srvbEarly(props: SRVBProps, xl, xr) {
 
   // Diffusion
   const ms2samps = (ms) => sampleRate * (ms / 1000.0);
-  const primes = next8Primes(13);
+  const primes = next16Primes(13);
   const d1 = diffuse(primes, ms2samps(42.3), ...eight); // from EUVerb
   const d2 = diffuse(primes, ms2samps(51.45), ...d1);
   const d3 = diffuse(primes, ms2samps(76.91), ...d2);
