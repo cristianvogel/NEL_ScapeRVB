@@ -107,7 +107,7 @@ function dampFDN(name, sampleRate, primes:Array<number>, size, decay, modDepth, 
     // depending on the size parameter. So at size = 0, delay lines are 17, 34, 51, ...,
     // and at size = 1 we have 68, 136, ..., all in ms here.
     const delaySize = el.mul(
-      el.add(1.0, el.mul(3, size)),
+      el.smooth( el.tau2pole(1.5), el.add(1.0, el.mul(3, size) ) ),
       ms2samps( primes[i] )
     );
 
@@ -115,13 +115,13 @@ function dampFDN(name, sampleRate, primes:Array<number>, size, decay, modDepth, 
     // delay network.
     const readPos = modulate(
       delaySize,
-      el.add(0.1, el.mul(i, md)),
-      ms2samps(2.5)
+      el.smooth( el.tau2pole( 3 ) , el.add(   0.05 * primes[i]   , el.mul(i, md)) ),
+      ms2samps( primes[i] * 0.2 )
     );
 
     return el.tapOut(
       { name: `${name}:fdn${i}` },
-      el.delay({ size: ms2samps(700 + primes[i]) }, readPos, 0, mm)
+      el.delay({ size: ms2samps(700 + primes[i]) }, readPos, 0, mm)   // more jiggying
     );
   });
 }
