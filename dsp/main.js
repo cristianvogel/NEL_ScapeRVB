@@ -4,7 +4,7 @@
 import { Renderer, el, createNode } from '@elemaudio/core';
 import { RefMap } from './RefMap';
 import srvbEarly from './srvb-er';
-import {clamp} from '@thi.ng/math';
+import {clamp , easeIn2} from '@thi.ng/math';
 
 
 
@@ -40,7 +40,7 @@ globalThis.__receiveStateChange__ = (incomingState) => {
   const __state = JSON.parse(incomingState);
   
   const early = {
-    size: __state.size,    
+    size: easeIn2(__state.size),    
     dimension: __state.dimension,  // decorrelation
     excursion: __state.excursion,
     decay: __state.decay,   

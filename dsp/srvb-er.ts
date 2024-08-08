@@ -50,7 +50,7 @@ function diffuse(primes: Array<number>, size: number, ...ins) {
 
   const dels = ins.map(function (input, i) {
     //const lineSize = size > 0.75 ? size * ((i + 1) / len) : size * ( 1  / len )  ;
-    const lineSize = size  ;
+    const lineSize = size * ( 1  / len )  ;
    
     return el.sdelay({ size: lineSize }, (i % 2) ? input : el.mul(1, input) );  // do some polarity permutation
   });
@@ -162,8 +162,8 @@ export default function srvbEarly(props: SRVBProps, xl, xr) {
   const four = [
     xl,
     xr,
-    el.mul(el.sub(1.1, props.dimension), mid),
-    el.mul(el.add(0.1, props.dimension), side),
+    mid,
+    side,
   ];
   const eight = [...four, ...four.map((x) => el.mul(-1, x))];
 
