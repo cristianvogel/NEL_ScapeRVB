@@ -45,17 +45,14 @@ function next16Primes(start): Array<number> {
 // a maximum diffusion time of 500ms
 function diffuse(primes: Array<number>, size: number, ...ins) {
 
-  
   const len = ins.length;
   const scale = Math.sqrt(1 / len);
 
-  invariant(len === 8, "Invalid diffusion step!");
-  invariant(typeof size === "number", "Diffusion step size must be a number");
-
   const dels = ins.map(function (input, i) {
-   // const lineSize = size * ((i + 1) / len);
-   const lineSize = size * ( 1  / len )  ;
-    return el.sdelay({ size: lineSize }, (i % 2) ? input : el.mul(-1, input) );  // do some polarity permutation
+    //const lineSize = size > 0.75 ? size * ((i + 1) / len) : size * ( 1  / len )  ;
+    const lineSize = size  ;
+   
+    return el.sdelay({ size: lineSize }, (i % 2) ? input : el.mul(1, input) );  // do some polarity permutation
   });
   return H8.map(function (row, i) {
     return el.add(
@@ -77,7 +74,7 @@ function diffuse(primes: Array<number>, size: number, ...ins) {
 function dampFDN(name, sampleRate, primes:Array<number>, tone: ElemNode, size: ElemNode, decay, modDepth, ...ins) {
   const len = ins.length;
   const scale = Math.sqrt(1 / len);
-  const md = el.mul(modDepth, 0.02);
+  const md = el.mul( modDepth, 0.02);
 
   if (len !== 8) throw new Error("Invalid FDN step!");
 
@@ -86,9 +83,9 @@ function dampFDN(name, sampleRate, primes:Array<number>, tone: ElemNode, size: E
     const fcLPF =  el.add( 48, el.mul( 12000 + offset, el.sub( 1, el.abs(tone) ) ) ) ;
     return el.select( dial,
       // darker
-      el.svf( fcLPF , 1.0e-2 + (offset * 1.0e-3) , input ),
+      el.svf( fcLPF , 1.0e-2 + (offset * 1.0e-3) , el.mul( el.db2gain(1.5), input ) ),
       // brighter
-      el.svfshelf( {mode: 'highshelf'}, 650 + offset, 0.5, el.mul( tone , el.db2gain( 6 )) , el.mul( el.db2gain(-1.5), input )  )
+      el.svfshelf( {mode: 'highshelf'}, 650 + offset, 0.5, el.mul( tone , el.db2gain( 6 )) ,  el.mul( el.db2gain(-1), input )  )
   );
   }
   // The unity-gain one pole lowpass here is tuned to taste along
@@ -110,16 +107,16 @@ function dampFDN(name, sampleRate, primes:Array<number>, tone: ElemNode, size: E
   });
 
   return mix.map(function (mm, i) {
-    const modulate = (x, rate, amt) => el.add(x, el.mul(amt, el.cycle(rate)));
+    const modulate = (x, rate, amt) => el.add(x, el.mul( amt, el.cycle(rate) ) );
     const ms2samps = (ms) => sampleRate * (ms / 1000.0);
 
-   
-
+  
     // Each delay line here will be ((i + 1) * 17)ms long, multiplied by [1, 4]
     // depending on the size parameter. So at size = 0, delay lines are 17, 34, 51, ...,
     // and at size = 1 we have 68, 136, ..., all in ms here.
     const delaySize = el.mul(
-        el.add(1.0, el.mul(3, size) ) ,
+        //el.add(1.0, el.mul( 1 + (i % 3), size) ) ,
+        el.add(1.0, el.mul( 3, size) ) ,
         ms2samps( primes[i] )
     );
 
@@ -127,8 +124,8 @@ function dampFDN(name, sampleRate, primes:Array<number>, tone: ElemNode, size: E
     // delay network.
     const readPos = modulate(
       delaySize,
-      el.smooth( el.tau2pole( 0.1 ) , el.add(   0.05 * primes[i]   , el.mul(i, md)) ),
-      ms2samps( primes[i] * 0.2 )
+      el.add(  5.0e-2 * primes[i + 5]   , el.mul( 1.0e-2, md)) ,
+      ms2samps( primes[15 - i] * 5.0e-3 )
     );
 
     return el.tapOut(
