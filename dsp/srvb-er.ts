@@ -153,8 +153,8 @@ export default function srvbEarly(props: SRVBProps, xl, xr) {
   const four = [
     xl,
     xr,
-    el.mul(el.sub(1.125, props.dimension), mid),
-    el.mul(el.add(0.5, props.dimension), side),
+    el.mul(el.sub(1.1, props.dimension), mid),
+    el.mul(el.add(0.1, props.dimension), side),
   ];
   const eight = [...four, ...four.map((x) => el.mul(-1, x))];
 
