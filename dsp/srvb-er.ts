@@ -52,7 +52,7 @@ function diffuse(primes: Array<number>, size: number, ...ins) {
     //const lineSize = size > 0.75 ? size * ((i + 1) / len) : size * ( 1  / len )  ;
     const lineSize = size * ( 1  / len )  ;
    
-    return el.sdelay({ size: lineSize }, (i % 2) ? input : el.mul(1, input) );  // do some polarity permutation
+    return el.sdelay({ size: lineSize }, (i % 2) ? input : el.mul(-1, input) );  // do some polarity permutation
   });
   return H8.map(function (row, i) {
     return el.add(
