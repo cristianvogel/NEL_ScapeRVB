@@ -3,7 +3,7 @@
 
 import { Renderer, el, createNode } from '@elemaudio/core';
 import { RefMap } from './RefMap';
-import tapNetwork from './tapNetwork';
+import srvbEarly from './srvb-er';
 
 
 
@@ -38,41 +38,34 @@ globalThis.__receiveStateChange__ = (incomingState) => {
   const __state = JSON.parse(incomingState);
   
   const early = {
-    size: __state.size,
-    preDelay: __state.preDelay,
-    excursion: __state.excursion,
-    build: __state.build,
-    tone: __state.tone,  // was cutoff
-    preScape: __state.preScape,
+    size: __state.size,    
     dimension: __state.dimension,  // decorrelation
-    drive: __state.drive,
+    excursion: __state.excursion,
+    decay: __state.decay,   
+    mix: __state.mix,
+    tone: __state.tone  // was cutoff
   };
 
   if ( shouldRender(__prevState, __state) ) {
-    const graph = core.render(...tapNetwork({
-      key: 'scape-',
+    const graph = core.render(...srvbEarly({
+      key: 'srvbEarly',
       sampleRate: __state.sampleRate,
       size: refs.getOrCreate('size', 'const', { value: early.size }, []),
       dimension: refs.getOrCreate('dimension', 'const', { value: early.dimension }, []),      
-      drive: refs.getOrCreate('drive', 'const', { value: early.drive }, []),
-      preDelay: refs.getOrCreate('preDelay', 'const', { value: early.preDelay }, []),  // is in ms
       excursion: refs.getOrCreate('excursion', 'const', { value: early.excursion }, []),
-      build: refs.getOrCreate('build', 'const', { value: early.build }, []), // was fb_amount
-      preScape: refs.getOrCreate('preScape', 'const', { value: early.preScape }, []), // overall wet level
+      decay: refs.getOrCreate('decay', 'const', { value: early.decay }, []), // was fb_amount
+      mix: refs.getOrCreate('mix', 'const', { value: early.mix }, []), // overall wet level
       tone: refs.getOrCreate('tone', 'const', { value: early.tone * 16000 }, []), // was fb_cutoff
-
     },
     el.in( { channel: 0 } ), el.in( { channel: 1 } ) )
     );
   } else {
     refs.update('size', { value: early.size });
     refs.update('dimension', { value: early.dimension });
-    refs.update('drive', { value: early.drive });
-    refs.update('preDelay', { value: early.preDelay });
     refs.update('excursion', { value: early.excursion });
-    refs.update('build', { value: early.build });
-    refs.update('preScape', { value: early.preScape });
-    refs.update('tone', { value: early.tone * 16000 });
+    refs.update('decay', { value: early.decay });
+    refs.update('mix', { value: early.mix });
+    refs.update('tone', { value: 200 + (early.tone * 16000) });
   }
 
   __prevState = __state;

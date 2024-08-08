@@ -85,7 +85,8 @@ std::vector<juce::File> EffectsPluginProcessor::loadImpulseResponses()
     {
         for (auto &file : assetsDir.findChildFiles(juce::File::findFiles, true))
         {
-            if (file.hasFileExtension(juce::String("wav")) ) impulseResponses.push_back(file);
+            if (file.hasFileExtension(juce::String("wav")))
+                impulseResponses.push_back(file);
         }
     }
 
@@ -101,31 +102,25 @@ void EffectsPluginProcessor::addImpulseResponsesToVirtualFileSystem(std::vector<
     {
         auto buffer = juce::AudioBuffer<float>();
         auto reader = formatManager.createReaderFor(file);
-        buffer.setSize( 2, reader->lengthInSamples ); // source files are mono, but we use the second channel for a derived 'shaped' version
+        buffer.setSize(2, reader->lengthInSamples);                                            // source files are mono, but we use the second channel for a derived 'shaped' version
         auto name = choc::text::toUpperCase(file.getFileNameWithoutExtension().toStdString()); // "Ambience_0.wav" -> "AMBIENCE_0"
         reader->read(&buffer, 0, reader->lengthInSamples, 0, true, false);
         delete reader;
         // fabricate a gain ramp version on the next channel
         // to use as a shaped option if user wants
         buffer.copyFromWithRamp(1, 0, buffer.getReadPointer(0), buffer.getNumSamples(), 0.2, 1);
-        // add the non-shaped impulse response to the virtual file system    
+        // add the non-shaped impulse response to the virtual file system
         runtime->updateSharedResourceMap(
             name,
             buffer.getReadPointer(0),
-            buffer.getNumSamples()
-            );
-        // add the shaped impulse response to the virtual file system         
+            buffer.getNumSamples());
+        // add the shaped impulse response to the virtual file system
         runtime->updateSharedResourceMap(
-            "SHAPED_"+name,
+            "SHAPED_" + name,
             buffer.getReadPointer(1),
-            buffer.getNumSamples()
-            );
+            buffer.getNumSamples());
     }
 }
-
-
-
-
 
 //==============================================================================
 void EffectsPluginProcessor::createParameters(const std::vector<elem::js::Value> &parameters)
@@ -378,19 +373,16 @@ void EffectsPluginProcessor::handleAsyncUpdate()
     if (shouldInitialize.exchange(false))
     {
         runtime = std::make_unique<elem::Runtime<float>>(lastKnownSampleRate, lastKnownBlockSize);
-     
-        runtime->registerNodeType("convolver", [](elem::NodeId const id, double sampleRate, int const blockSize) {
-            return std::make_shared<ConvolverNode>(id, sampleRate, blockSize );
-        });
 
-           // Add impulse responses to the virtual file system
-            impulseResponses = loadImpulseResponses();
-            addImpulseResponsesToVirtualFileSystem(impulseResponses);
+        runtime->registerNodeType("convolver", [](elem::NodeId const id, double sampleRate, int const blockSize)
+                                  { return std::make_shared<ConvolverNode>(id, sampleRate, blockSize); });
+
+        // Add impulse responses to the virtual file system
+        impulseResponses = loadImpulseResponses();
+        addImpulseResponsesToVirtualFileSystem(impulseResponses);
 
         initJavaScriptEngine();
         runtimeSwapRequired.store(false);
-
-      
     }
 
     // Next we iterate over the current parameter values to update our local state
@@ -548,26 +540,9 @@ void EffectsPluginProcessor::dispatchMeshStateChange()
 // NO END OF PROBLEMS from this logging system!
 void EffectsPluginProcessor::dispatchError(std::string const &name, std::string const &message)
 {
-
-    sendJavascriptToUI("globalThis.__log__('Native error.')");
-
-    // Need the serialize here to correctly form the string script.
-    const auto expr = juce::String(jsFunctions::errorScript).replace("@", elem::js::serialize(name)).replace("%", elem::js::serialize(message)).toStdString();
-
-    // First we try to dispatch to the UI if it's available, because running this step will
-    // just involve placing a message in a queue.
-    if (!sendJavascriptToUI(expr))
-    {
-        if (errorLogQueue.size() == MAX_ERROR_LOG_QUEUE_SIZE)
-        {
-            errorLogQueue.pop();
-        }
-        errorLogQueue.push(expr);
-    }
-
-    // Next we dispatch to the local engine which will evaluate any necessary JavaScript synchronously
-    // here on the main thread
-    jsContext.evaluateExpression(expr);
+    std::string logMessage = "globalThis.__log__('Native error: " + name + " - " + message + "')";
+    // using updated CHOC Javascript console logging, registered in initJavaScriptEngine
+    sendJavascriptToUI(logMessage);
 }
 
 std::optional<std::string> EffectsPluginProcessor::loadDspEntryFileContents() const

@@ -1,5 +1,7 @@
+//@ts-check
+
 import invariant from 'invariant';
-import {el} from '@elemaudio/core';
+import {el, ElemNode} from '@elemaudio/core';
 
 
 // A size 8 Hadamard matrix constructed using Numpy and Scipy.
@@ -67,7 +69,7 @@ function dampFDN(name, sampleRate, size, decay, modDepth, ...ins) {
       el.mul(
         decay,
         el.smooth(
-          0.105,
+          0.0105,
           el.tapIn({name: `${name}:fdn${i}`}),
         ),
       ),
@@ -87,7 +89,7 @@ function dampFDN(name, sampleRate, size, decay, modDepth, ...ins) {
     // Each delay line here will be ((i + 1) * 17)ms long, multiplied by [1, 4]
     // depending on the size parameter. So at size = 0, delay lines are 17, 34, 51, ...,
     // and at size = 1 we have 68, 136, ..., all in ms here.
-    const delaySize = el.mul(el.add(1.00, el.mul(3, size)), ms2samps((i + 1) * 17));
+    const delaySize = el.mul(el.add(1.00, el.mul(3, size)), ms2samps((i + 1) * 19));
 
     // Then we modulate the read position for each tap to add some chorus in the
     // delay network.
@@ -110,40 +112,39 @@ function dampFDN(name, sampleRate, size, decay, modDepth, ...ins) {
 // Upmixes the stereo input into an 8-channel diffusion network and
 // feedback delay network. Must supply a `key` prop to uniquely identify the
 // feedback taps in here.
-//
-// @param {object} props
-// @param {number} props.size in [0, 1]
-// @param {number} props.decay in [0, 1]
-// @param {number} props.mod in [0, 1]
-// @param {number} props.mix in [0, 1]
-// @param {core.Node} xl input
-// @param {core.Node} xr input
-export default function srvb(props, xl, xr) {
-  invariant(typeof props === 'object', 'Unexpected props object');
 
-  const key = props.key;
-  const sampleRate = props.sampleRate;
-  const size = el.sm(props.size);
-  const decay = el.sm(props.decay);
-  const modDepth = el.sm(props.mod);
-  const mix = el.sm(props.mix);
+interface SRVBProps {
+  size: ElemNode;
+  decay: ElemNode;
+  excursion: ElemNode;
+  mix: ElemNode;
+  dimension: ElemNode;
+  tone: ElemNode;
+  // non-signal data
+  sampleRate: number;
+  key: string;
+}
+
+export default function srvbEarly( props: SRVBProps , xl, xr) {
+  
+        const { sampleRate , key } = props;
 
   // Upmix to eight channels
   const mid = el.mul(0.5, el.add(xl, xr));
   const side = el.mul(0.5, el.sub(xl, xr));
-  const four = [xl, xr, mid, side];
+  const four = [xl, xr, el.mul( el.sub( 1.125, props.dimension), mid ) , el.mul( el.add( 0.5, props.dimension), side ) ];
   const eight = [...four, ...four.map(x => el.mul(-1, x))];
 
   // Diffusion
   const ms2samps = (ms) => sampleRate * (ms / 1000.0);
 
-  const d1 = diffuse(ms2samps(43), ...eight);
-  const d2 = diffuse(ms2samps(97), ...d1);
-  const d3 = diffuse(ms2samps(117), ...d2);
+  const d1 = diffuse( ms2samps( 42.30 ), ...eight);  // from EUVerb
+  const d2 = diffuse( ms2samps( 51.45 ), ...d1);
+  const d3 = diffuse( ms2samps( 76.91 ), ...d2);
 
   // Reverb network
-  const d4 = dampFDN(`${key}:d4`, sampleRate, size, 0.004, modDepth, ...d3)
-  const r0 = dampFDN(`${key}:r0`, sampleRate, size, decay, modDepth, ...d4);
+  const d4 = dampFDN(`${key}:d4`, sampleRate, props.size, 0.004, props.excursion, ...d3)
+  const r0 = dampFDN(`${key}:r0`, sampleRate, props.size, props.decay, props.excursion, ...d4);
 
   // Downmix
   //
@@ -158,7 +159,7 @@ export default function srvb(props, xl, xr) {
 
   // Wet dry mixing
   return [
-    el.select(mix, yl, xl),
-    el.select(mix, yr, xr),
+    el.select(props.mix, yl, xl),
+    el.select(props.mix, yr, xr),
   ];
 }
