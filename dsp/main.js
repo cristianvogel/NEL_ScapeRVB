@@ -63,7 +63,7 @@ globalThis.__receiveStateChange__ = (incomingState) => {
     );
   } else {
     refs.update('size', { value: early.size });
-    refs.update('dimension', { value: early.dimension });
+   // refs.update('dimension', { value: early.dimension });
     refs.update('excursion', { value: early.excursion });
     refs.update('decay', { value: early.decay });
     refs.update('mix', { value: early.mix });
