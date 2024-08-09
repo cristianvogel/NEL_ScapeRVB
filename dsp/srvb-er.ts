@@ -110,13 +110,13 @@ function dampFDN(name, sampleRate, primes:Array<number>, tone: ElemNode, size: E
     const modulate = (x, rate, amt) => el.add(x, el.mul( amt, el.cycle(rate) ) );
     const ms2samps = (ms) => sampleRate * (ms / 1000.0);
 
-  
-    // Each delay line here will be ((i + 1) * 17)ms long, multiplied by [1, 4]
-    // depending on the size parameter. So at size = 0, delay lines are 17, 34, 51, ...,
-    // and at size = 1 we have 68, 136, ..., all in ms here.
     const delaySize = el.mul(
         //el.add(1.0, el.mul( 1 + (i % 3), size) ) ,
-        el.add(1.0, el.mul( 3, size) ) ,
+        // exotic exponential smoothing on size param
+        el.add( 1.0, 
+          el.mul( 3, el.env( el.tau2pole( el.max( 1.0e-4, el.abs( el.cycle(100) ) ) ), 
+          el.tau2pole( el.max( 1.0e-2,  el.abs( el.cycle(50) ) ) ), 
+          size ) ) ) ,
         ms2samps( primes[i] )
     );
 
@@ -200,11 +200,7 @@ export default function srvbEarly(props: SRVBProps, xl, xr) {
   let yl = el.mul(0.25, el.add(r0[0], r0[2], r0[4], r0[6]));
   let yr = el.mul(0.25, el.add(r0[1], r0[3], r0[5], r0[7]));
 
-  // let duck = el.eq( props.size, el.z(props.size) );
-  // let window = el.env(el.tau2pole(0.00001), el.tau2pole(2), duck)
-  // yl = el.mul( window , yl);
-  // yr = el.mul( window , yr);
-
   // Wet dry mixing
   return [el.select(props.mix, yl, xl), el.select(props.mix, yr, xr)];
 }
+  
