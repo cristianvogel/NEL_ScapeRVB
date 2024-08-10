@@ -3,6 +3,7 @@
 #include "WebViewEditor.h"
 
 #include <choc_javascript_QuickJS.h>
+#include <choc_javascript_Timer.h>
 #include <choc_StringUtilities.h>
 
 //==============================================================================
@@ -161,6 +162,8 @@ void EffectsPluginProcessor::createParameters(const std::vector<elem::js::Value>
 juce::AudioProcessorEditor *EffectsPluginProcessor::createEditor()
 {
     const auto editor = new WebViewEditor(this, getAssetsDirectory(), 905, 600);
+
+  
 
     // -----------
     // semi-online license activation
@@ -416,6 +419,8 @@ void EffectsPluginProcessor::handleAsyncUpdate()
 void EffectsPluginProcessor::initJavaScriptEngine()
 {
     jsContext = choc::javascript::createQuickJSContext();
+
+      choc::javascript::registerTimerFunctions(jsContext);
 
     // Install some native interop functions in our JavaScript environment
     jsContext.registerFunction(NATIVE_MESSAGE_FUNCTION_NAME, [this](choc::javascript::ArgumentList args)

@@ -12,7 +12,6 @@ export class RefMap {
       let ref = this._core.createRef(type, props, children);
       this._map.set(name, ref);
     }
-    console.log(this._map.get(name));
     return this._map.get(name)[0];
   }
 

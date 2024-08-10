@@ -2,6 +2,19 @@
 
 import invariant from "invariant";
 import { el, ElemNode } from "@elemaudio/core";
+import { rotate, shuffle  } from "@thi.ng/arrays";
+import { Smush32 } from "@thi.ng/random";
+
+let prevDimension = 0;
+let primes = next16Primes(13).slice();
+let shuffleDimensions = false;
+const smush = new Smush32(0xcafebabe);
+// Function to shuffle seedArray
+
+// Create an array of 8 shuffled versions of seedArray
+const shuffledPrimes: Array<number[]> = Array.from({ length: 16 }).map(() => { shuffle(primes, 16, smush); return primes.slice(); });
+
+
 
 // A size 8 Hadamard matrix constructed using Numpy and Scipy.
 //
@@ -50,9 +63,13 @@ function diffuse(primes: Array<number>, size: number, ...ins) {
 
   const dels = ins.map(function (input, i) {
     //const lineSize = size > 0.75 ? size * ((i + 1) / len) : size * ( 1  / len )  ;
-    const lineSize = size * ( 1  / len )  ;
+    const lineSize = size * 1.0e-2  ;
    
-    return el.sdelay({ size: lineSize }, (i % 2) ? input : el.mul(-1, input) );  // do some polarity permutation
+    return el.delay(
+      { size: lineSize, key: `srvb-diff:${i}`}, 
+      ( 1 / primes[i] ) ,
+      0,
+      (i % 2) ? input : el.mul(-1, input) );  // do some polarity permutation
   });
   return H8.map(function (row, i) {
     return el.add(
@@ -94,7 +111,7 @@ function dampFDN(name, sampleRate, primes:Array<number>, tone: ElemNode, size: E
   const dels = ins.map(function (input, i) {
     return el.add(
       toneDial(input,  i * 10 ),
-      el.mul(decay, el.smooth(0.0105, el.tapIn({ name: `${name}:fdn${i}` })))
+      el.mul(decay, el.smooth(0.011, el.tapIn({ name: `${name}:fdn${i}` })))
     );
   });
 
@@ -124,13 +141,13 @@ function dampFDN(name, sampleRate, primes:Array<number>, tone: ElemNode, size: E
     // delay network.
     const readPos = modulate(
       delaySize,
-      el.add(  5.0e-2 * primes[i + 5]   , el.mul( 1.0e-2, md)) ,
-      ms2samps( primes[15 - i] * 5.0e-3 )
+      el.add(  5.0e-1    , el.mul( 1.0e-2, md)) ,
+      ms2samps(  5.0e-2 )
     );
 
     return el.tapOut(
       { name: `${name}:fdn${i}` },
-      el.delay({ size: ms2samps(700 + primes[i]) }, readPos, 0, mm)   // more jiggying
+      el.delay({ size: Math.abs(ms2samps( 137 - primes[i] )) }, readPos, 0, mm)   // more jiggying
     );
   });
 }
@@ -146,7 +163,7 @@ interface SRVBProps {
   decay: ElemNode;
   excursion: ElemNode;
   mix: ElemNode;
-  dimension: ElemNode;
+  dimension: number; // rounded integerm
   tone: ElemNode;
   // non-signal data
   sampleRate: number;
@@ -154,8 +171,9 @@ interface SRVBProps {
 }
 
 export default function srvbEarly(props: SRVBProps, xl, xr) {
-  const { sampleRate, key } = props;
-
+  const { sampleRate, key, dimension } = props;
+   if ( prevDimension !== dimension ) { shuffleDimensions = true; prevDimension = dimension; }
+ 
   // Upmix to eight channels
   const mid =  el.mul(0.5, el.add(xl, xr) ) ;
   const side = el.mul(0.5, el.sub(xl, xr));
@@ -169,16 +187,16 @@ export default function srvbEarly(props: SRVBProps, xl, xr) {
 
   // Diffusion
   const ms2samps = (ms) => sampleRate * (ms / 1000.0);
-  const primes = next16Primes(13);
-  const d1 = diffuse(primes, ms2samps(42.3), ...eight); // from EUVerb
-  const d2 = diffuse(primes, ms2samps(51.45), ...d1);
-  const d3 = diffuse(primes, ms2samps(76.91), ...d2);
-
+  const d1 = diffuse( primes, ms2samps(42.3), ...eight); 
+  const d2 = diffuse( primes, ms2samps(51.45), ...d1);
+ 
+  const d3 = diffuse( shuffleDimensions ? shuffledPrimes[dimension] : primes, ms2samps(76.91), ...d2);
+  shuffleDimensions = false;
   // Reverb network
   const d4 = dampFDN(
     `${key}:d4`,
     sampleRate,
-    primes,
+    shuffleDimensions ? shuffledPrimes[dimension] : primes,
     props.tone,
     props.size,
     0.004,
@@ -188,7 +206,7 @@ export default function srvbEarly(props: SRVBProps, xl, xr) {
   const r0 = dampFDN(
     `${key}:r0`,
     sampleRate,
-    primes,
+    shuffleDimensions ? shuffledPrimes[dimension] : primes,
     props.tone,
     props.size,
     props.decay,
