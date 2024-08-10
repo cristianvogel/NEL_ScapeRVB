@@ -37,12 +37,12 @@ let _convolver = (props, ...childs) => createNode("convolver", props, childs);
 // when we need to fully re-render versus when we can just update refs
 let __prevState = null;
 let t = 0.0; // interpolation time
-function shouldRender(prevState, newState) {
+function shouldRender(prevState, currentState) {
   const result = (prevState === null) 
-                  || (newState === null) 
+                  || (currentState === null) 
                   // || (prevState.size !== nextState.size) 
-                  || prevState.dimension  !== Math.round( newState.dimension * 8) 
-                  || (prevState.sampleRate !== newState.sampleRate);
+                  || prevState.dimension  !== Math.round( currentState.dimension * 8) 
+                  || (prevState.sampleRate !== currentState.sampleRate);
   return result;
 }
 

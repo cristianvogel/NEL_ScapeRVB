@@ -57,10 +57,10 @@ function next16Primes(start): Array<number> {
 
 // A diffusion step expecting exactly 8 input channels with
 // a maximum diffusion time of 500ms
-function diffuse(primes: Array<number>, size: number, ...ins) {
+function diffuse( primes: Array<number>, size: number, ...ins) {
 
-  const len = ins.length;
-  const scale = Math.sqrt(1 / len);
+  const len = ins.length;   // 8
+  const scale = (i)=> Math.sqrt(0.5 / (1 + (primes[i] % len) ) ); ;
 
   const dels = ins.map(function (input, i) {
     //const lineSize = size > 0.75 ? size * ((i + 1) / len) : size * ( 1  / len )  ;
@@ -68,14 +68,14 @@ function diffuse(primes: Array<number>, size: number, ...ins) {
    
     return el.delay(
       { size: lineSize, key: `srvb-diff:${i}`}, 
-      ( 1 / primes[i] ) ,
+      ( 2 / primes[i] ) ,
       0,
       (i % 2) ? input : el.mul(-1, input) );  // do some polarity permutation
   });
   return H8.map(function (row, i) {
     return el.add(
       ...row.map(function (col, j) {
-        return el.mul(col * scale, dels[j]);
+        return el.mul(col * scale(i), dels[j]);
       })
     );
   });
@@ -111,7 +111,7 @@ function dampFDN(name, sampleRate, primes:Array<number>, tone: ElemNode, size: E
   // of killing the decay time too quickly. Towards the bottom, not much damping.
   const dels = ins.map(function (input, i) {
     return el.add(
-      toneDial(input,  i * 10 ),
+      toneDial(input,  i * smush.minmaxInt( 1, 3 ) ),
       el.mul(decay, el.smooth(0.011, el.tapIn({ name: `${name}:fdn${i}` })))
     );
   });
@@ -185,13 +185,13 @@ export default function srvbEarly(props: SRVBProps, xl, xr) {
     side,
   ];
   const eight = [...four, ...four.map((x) => el.mul(-1, x))];
-  rotate( eight, dimension % 8 );
+  
   let shufflingPrimes = shuffleDimensions ? shuffledPrimes[dimension] : primes;
   // Diffusion
   const ms2samps = (ms) => sampleRate * (ms / 1000.0);
-  const d1 = diffuse( primes, ms2samps(42.3), ...eight); 
-  const d2 = diffuse( primes, ms2samps(51.45), ...d1);
-  const d3 = diffuse( shufflingPrimes, ms2samps(76.91), ...d2);
+  const d1 = diffuse( primes, ms2samps( 12.3 ), ...eight); 
+  const d2 = diffuse( primes, ms2samps( 51.45 ), ...d1);
+  const d3 = diffuse( shufflingPrimes, ms2samps( 42.3 ), ...d2);
   shuffleDimensions = false;
   // Reverb network
   const d4 = dampFDN(
@@ -207,7 +207,7 @@ export default function srvbEarly(props: SRVBProps, xl, xr) {
   let r0: ElemNode[] = dampFDN(
     `${key}:r0`,
     sampleRate,
-    shufflingPrimes,
+    primes,
     props.tone,
     props.size,
     props.decay,
@@ -220,13 +220,13 @@ export default function srvbEarly(props: SRVBProps, xl, xr) {
   let r2 = r0;
   const shuffledChannels: Array<ElemNode[]> = Array.from({ length: 8 }).map(() => { shuffle(r1, 8, smush); return r1.slice(); });
   if (dimension > 0) { 
-    r2 = shuffledChannels[dimension - 1]}
-    else
-    { r2 = r0; }
+    r2 = shuffledChannels[dimension - 1]
+  } else { r2 = r0; }
 
    // interleaved Downmix
-  let yl = el.mul(0.25, el.add(r2[0], r2[2], r2[4], r2[6]));
-  let yr = el.mul(0.25, el.add(r2[1], r2[3], r2[5], r2[7]));
+  let dimConst = el.sm( el.const( { value: (1/7) * (dimension - 1), key: 'deco_dimension' } ) );
+  let yl = el.mul(0.25, el.add(r2[0], el.delay( {key: 'ldeco', size: 1024}, dimConst, 0, r2[2] ), r2[4], r2[6]));
+  let yr = el.mul(0.25, el.add(r2[1], el.delay( {key: 'rdeco', size: 512},  dimConst, 0, r2[3] ), r2[5], r2[7]));
 
   // Wet dry mixing
   return [el.select(props.mix, yl, xl), el.select(props.mix, yr, xr)];
