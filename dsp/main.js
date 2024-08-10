@@ -4,7 +4,7 @@
 import { Renderer, el, createNode } from '@elemaudio/core';
 import { RefMap } from './RefMap';
 import srvbEarly from './srvb-er';
-import { clamp, easeIn2, mix, smoothStep, easeIn3 } from '@thi.ng/math';
+import { clamp, easeIn2, smoothStep, schlick } from '@thi.ng/math';
 
 
 
@@ -23,15 +23,13 @@ let refs = new RefMap(core);
 let _convolver = (props, ...childs) => createNode("convolver", props, childs);
 
 
-// Holding onto the previous state allows us a quick way to differentiate
-// when we need to fully re-render versus when we can just update refs
 let __prevState = null;
-let t = 0.0; // interpolation time
+let t = 0.0; // interpolation time for size param
+
+// the conditions that will trigger a full re-render of the node graph
 function shouldRender(prevState, currentState) {
   const result = (prevState === null)
     || (currentState === null)
-    // || (prevState.size !== nextState.size) 
-    || prevState.dimension !== Math.round(currentState.dimension * 8)
     || (prevState.sampleRate !== currentState.sampleRate);
   return result;
 }
@@ -45,39 +43,39 @@ globalThis.__receiveStateChange__ = (incomingState) => {
   const interpTimer = ( a, b ) => {
     const intervalId = setInterval(() => {
       t += 0.01,
-      smoothS = smoothStep( a, b, t );
-      console.log( __state.size );
-      if ( __state ){   __state.size = smoothS; }
+      smoothS = schlick(  3 , 0.5 , smoothStep( a, b, t) );
+      if ( __state  &&  __state.size ){   __state.size = smoothS; }
       if (t > 1.0) {
-        t = 0.0;
+        t = -1.0e-5; // reset to just below 0
         clearInterval(intervalId);
       }
     }, 1);
   };
 
-  if (__prevState && __state && t === 0.0 && (__state.size !== __prevState.size)) {
+  if (__prevState && __state && t < 0.0 && (__state.size !== __prevState.size)) {
     interpTimer( __prevState.size, __state.size );
   }
 
   const srvb = {
-    size: easeIn3( __state.size ),
-    dimension: Math.round(__state.dimension * 8),
+    size:  __state.size ,
+    dimension: clamp( __state.dimension, 1.0e-5, 1.0), 
     excursion: __state.excursion,
     decay: easeIn2(__state.decay),
     mix: __state.mix,
     tone: clamp(__state.tone * 2 - 1, -0.99, 1)  // was cutoff
   };
 
-  if (shouldRender(__prevState, __state)) {
+
+  if (shouldRender(__prevState, __state) ) {
     const graph = core.render(...srvbEarly({
       key: 'srvbEarly',
       sampleRate: __state.sampleRate,
       size: refs.getOrCreate('size', 'const', { value: srvb.size }, []),
-      dimension: srvb.dimension,
       excursion: refs.getOrCreate('excursion', 'const', { value: srvb.excursion }, []),
       decay: refs.getOrCreate('decay', 'const', { value: srvb.decay }, []), // was fb_amount
       mix: refs.getOrCreate('mix', 'const', { value: srvb.mix }, []), // overall wet level
       tone: refs.getOrCreate('tone', 'const', { value: srvb.tone }, []), // coming always as 0-1
+      dimension: refs.getOrCreate('dimension', 'const', { value: srvb.dimension }, []), // coming always as 0-1
     },
       el.in({ channel: 0 }), el.in({ channel: 1 }))
     );
@@ -88,10 +86,11 @@ globalThis.__receiveStateChange__ = (incomingState) => {
     refs.update('decay', { value: srvb.decay });
     refs.update('mix', { value: srvb.mix });
     refs.update('tone', { value: srvb.tone });
+    refs.update('dimension', { value: srvb.dimension });
   }
 
   __prevState = __state;
-  __prevState.dimension = srvb.dimension; // because it is a rounded int, needs to stash the rounded value
+
 };
 
 /////////////////////////////////////////////////////////////////
