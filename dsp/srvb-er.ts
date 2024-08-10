@@ -135,9 +135,7 @@ function dampFDN(name, sampleRate, primes:Array<number>, tone: ElemNode, size: E
         //el.add(1.0, el.mul( 1 + (i % 3), size) ) ,
         // exotic exponential smoothing on size param
         el.add( 1.0, 
-          el.mul( 3, el.env( el.tau2pole( el.max( 1.0e-4, el.abs( el.cycle(100) ) ) ), 
-          el.tau2pole( el.max( 1.0e-2,  el.abs( el.cycle(50) ) ) ), 
-          size ) ) ) ,
+          el.sm( size )) ,
         ms2samps( primes[i] )
     );
 
