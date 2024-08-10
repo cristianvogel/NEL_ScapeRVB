@@ -6,13 +6,17 @@ import { Smush32 } from "@thi.ng/random";
 
 
 const smush = new Smush32(0xcafebabe);
+const oeisSequences = [ 
+  [ 38, 67, 143, 232, 10, 22, 46, 101, 177, 376, 609, 11, 27, 59, 122, 266 ] // A0355077
+ ];
 // Function to shuffle seedArray
-let primes =  rotate(next16Primes(19).slice(), -8) ;
+// let primes =  rotate(setOfPrimes(19).slice(), -8) ;
+let series = oeisSequences[0];
 
 // Create an array of 8 shuffled versions of seedArray
-const shuffledPrimes: Array<number[]> = Array.from({ length: 16 }).map(() => { shuffle(primes, 8, smush); return primes.slice(); });
+const shuffledSeries: Array<number[]> = Array.from({ length: 16 }).map(() => { shuffle(series, 8, smush); return series.slice(); });
 const seededNormMinMax: Array<number> = Array.from({ length: 8 }).map(() => smush.normMinMax(0.01, 1.618) );
-let shuffledChannels: Array<ElemNode[]> = [];
+
 
 // A size 8 Hadamard matrix constructed using Numpy and Scipy.
 //
@@ -35,7 +39,7 @@ const H8 = [
   [ 1, -1, -1,  1, -1,  1,  1, -1]
 ];
 
-function next16Primes(start): Array<number> {
+function setOfPrimes(start): Array<number> {
   const primes: Array<number> = [];
   let num = start + 1;
   while (primes.length < 16) {
@@ -52,12 +56,14 @@ function next16Primes(start): Array<number> {
   return primes;
 }
 
+
+
 // A diffusion step expecting exactly 8 input channels with
 // a maximum diffusion time of 500ms
-function diffuse( seededNormMinMax, primes: Array<number>, size: number, ...ins) {
+function diffuse( seededNormMinMax, series: Array<number>, size: number, ...ins) {
 
   const len = ins.length;   // 8
-  const scale = (i)=> Math.sqrt(0.5 / (1 + (primes[i] % len) ) ); ;
+  const scale = (i)=> Math.sqrt(0.5 / (1 + (series[i] % len) ) ); ;
 
   const dels = ins.map(function (input, i) {
 
@@ -88,7 +94,7 @@ function diffuse( seededNormMinMax, primes: Array<number>, size: number, ...ins)
 // @param {el.const} decay in the range [0, 1]
 // @param {el.const} modDepth in the range [0, 1]
 // @param {...core.Node} ...ins eight input channels
-function dampFDN(name, sampleRate, primes:Array<number>, tone: ElemNode, size: ElemNode, decay, modDepth, ...ins) {
+function dampFDN(name, sampleRate, series:Array<number>, tone: ElemNode, size: ElemNode, decay, modDepth, ...ins) {
   const len = ins.length;
   const scale = Math.sqrt(1 / len);
   const md = el.mul( modDepth, 0.05);
@@ -110,7 +116,7 @@ function dampFDN(name, sampleRate, primes:Array<number>, tone: ElemNode, size: E
   // of killing the decay time too quickly. Towards the bottom, not much damping.
   const dels = ins.map(function (input, i) {
     return el.add(
-      toneDial(input,  primes[i] ),
+      toneDial(input,  series[i] ),
       el.mul( decay, el.smooth(0.25, el.tapIn({ name: `${name}:fdn${i}` })))
     );
   });
@@ -129,7 +135,7 @@ function dampFDN(name, sampleRate, primes:Array<number>, tone: ElemNode, size: E
     const delaySize = el.mul(
         el.add( 1.0, 
           el.sm( size )) ,
-        ms2samps( primes[i * 2] )
+        ms2samps( series[i * 2] )
     );
     // Then we modulate the read position for each tap to add some chorus in the
     // delay network.
@@ -143,7 +149,7 @@ function dampFDN(name, sampleRate, primes:Array<number>, tone: ElemNode, size: E
     );
     return el.tapOut(
       { name: `${name}:fdn${i}` },
-      el.delay( { size: Math.abs( ms2samps(  primes[i] ) ) }, readPos, 0.0, mm)   // more jiggying
+      el.delay( { size: Math.abs( ms2samps(  series[i] ) ) }, readPos, 0.0, mm)   // more jiggying
     );
   });
 }
@@ -183,15 +189,15 @@ export default function srvbEarly(props: SRVBProps, xl, xr) {
 
   // Diffusion
   const ms2samps = (ms) => sampleRate * (ms / 1000.0);
-  const d1 = diffuse( seededNormMinMax, primes, ms2samps( 137 ), ...eight); 
-  const d2 = diffuse( seededNormMinMax, shuffledPrimes[1], ms2samps( 137 ), ...d1);
-  const d3 = diffuse( seededNormMinMax, primes, ms2samps( 137 ), ...d2);
+  const d1 = diffuse( seededNormMinMax, series, ms2samps( 137 ), ...eight); 
+  const d2 = diffuse( seededNormMinMax, series, ms2samps( 137 ), ...d1);
+  const d3 = diffuse( seededNormMinMax, series, ms2samps( 137 ), ...d2);
 
   // Reverb network
   const d4: ElemNode[] = dampFDN(
     `${key}:d4`,
     sampleRate,
-    primes,
+    series,
     props.tone,
     props.size,
     0.004,
@@ -201,7 +207,7 @@ export default function srvbEarly(props: SRVBProps, xl, xr) {
   let r0: ElemNode[] = dampFDN(
     `${key}:r0`,
     sampleRate,
-    primes,
+    series,
     props.tone,
     props.size,
     props.decay,
@@ -211,7 +217,7 @@ export default function srvbEarly(props: SRVBProps, xl, xr) {
 
  
    // interleaved dimensional Downmix
-let dmx = r0.map( (x, i) => el.delay( {key: `downmix:${i}`, size: ms2samps( shuffledPrimes[i][i] ) }, el.sm( el.sub( 1, dimension ) ), 0, x) );
+let dmx = r0.map( (x, i) => el.delay( {key: `downmix:${i}`, size: ms2samps( shuffledSeries[i][i] ) }, el.sm( el.sub( 1, dimension ) ), 0, x) );
 
   let yl = el.mul( el.db2gain(-3), el.add( dmx[0],  r0[2] , dmx[4],  r0[6] ) ); 
   let yr = el.mul( el.db2gain(-3), el.add(  r0[1],  dmx[3] ,  r0[5], dmx[7] ) );
