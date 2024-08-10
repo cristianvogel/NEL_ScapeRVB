@@ -1,15 +1,16 @@
 //@ts-check
 
 import { el, ElemNode } from "@elemaudio/core";
-import { shuffle  } from "@thi.ng/arrays";
+import { shuffle, rotate  } from "@thi.ng/arrays";
 import { Smush32 } from "@thi.ng/random";
 
-let primes = next16Primes(3).slice();
+
 const smush = new Smush32(0xcafebabe);
 // Function to shuffle seedArray
+let primes =  rotate(next16Primes(19).slice(), -8) ;
 
 // Create an array of 8 shuffled versions of seedArray
-const shuffledPrimes: Array<number[]> = Array.from({ length: 16 }).map(() => { shuffle(primes, 16, smush); return primes.slice(); });
+const shuffledPrimes: Array<number[]> = Array.from({ length: 16 }).map(() => { shuffle(primes, 8, smush); return primes.slice(); });
 const seededNormMinMax: Array<number> = Array.from({ length: 8 }).map(() => smush.normMinMax(0.01, 1.618) );
 let shuffledChannels: Array<ElemNode[]> = [];
 
@@ -45,7 +46,7 @@ function next16Primes(start): Array<number> {
         break;
       }
     }
-    if (isPrime) primes.push(num);
+    if (isPrime) primes.push( num  );
     num++;
   }
   return primes;
@@ -124,7 +125,7 @@ function dampFDN(name, sampleRate, primes:Array<number>, tone: ElemNode, size: E
 
    return mix.map(function (mm, i) {
     const ms2samps = (ms) => sampleRate * (ms / 1000.0);
-    const modulate = (x, rate, amt) => el.add(x, el.mul( amt, el.cycle(rate) ) );
+
     const delaySize = el.mul(
         el.add( 1.0, 
           el.sm( size )) ,
@@ -132,14 +133,17 @@ function dampFDN(name, sampleRate, primes:Array<number>, tone: ElemNode, size: E
     );
     // Then we modulate the read position for each tap to add some chorus in the
     // delay network.
+
+    const modulate = (x, rate, amt) => el.add(x, el.mul( el.sqrt(amt, el.cycle(rate) ) ));
+
     const readPos = modulate(
       delaySize,
-      ms2samps(  smush.float() ),
+      smush.float() * 0.001 ,
       md 
     );
     return el.tapOut(
       { name: `${name}:fdn${i}` },
-      el.delay( { size: Math.abs( ms2samps( 137 - primes[i] ) ) }, readPos, 0.0, mm)   // more jiggying
+      el.delay( { size: Math.abs( ms2samps(  primes[i] ) ) }, readPos, 0.0, mm)   // more jiggying
     );
   });
 }
@@ -179,9 +183,9 @@ export default function srvbEarly(props: SRVBProps, xl, xr) {
 
   // Diffusion
   const ms2samps = (ms) => sampleRate * (ms / 1000.0);
-  const d1 = diffuse( seededNormMinMax, primes, ms2samps( 12.3 ), ...eight); 
-  const d2 = diffuse( seededNormMinMax, primes, ms2samps( 51.45 ), ...d1);
-  const d3 = diffuse( seededNormMinMax, primes, ms2samps( 42.3 ), ...d2);
+  const d1 = diffuse( seededNormMinMax, primes, ms2samps( 137 ), ...eight); 
+  const d2 = diffuse( seededNormMinMax, shuffledPrimes[1], ms2samps( 137 ), ...d1);
+  const d3 = diffuse( seededNormMinMax, primes, ms2samps( 137 ), ...d2);
 
   // Reverb network
   const d4: ElemNode[] = dampFDN(
@@ -205,12 +209,12 @@ export default function srvbEarly(props: SRVBProps, xl, xr) {
     ...d4
   );
 
-
+ 
    // interleaved dimensional Downmix
-let dmx = r0.map( (x, i) => el.delay( {key: `downmix:${i}`, size: ms2samps(shuffledPrimes[i][i])  }, dimension, 0, x) );
- // let yl = el.mul(0.25, el.add(r0[0], el.delay( {key: 'ldeco', size: 1024}, dimConst, 0, r0[2] ), r0[4], r0[6]));
-  let yr = el.mul( 0.25, el.add(r0[1],  dmx[3] , r0[5], dmx[7] ) );
-  let yl = el.mul( 0.25, el.add(dmx[0],  r0[2] , dmx[4], r0[6] ) );
+let dmx = r0.map( (x, i) => el.delay( {key: `downmix:${i}`, size: ms2samps( shuffledPrimes[i][i] ) }, el.sm( el.sub( 1, dimension ) ), 0, x) );
+
+  let yl = el.mul( el.db2gain(-3), el.add( dmx[0],  r0[2] , dmx[4],  r0[6] ) ); 
+  let yr = el.mul( el.db2gain(-3), el.add(  r0[1],  dmx[3] ,  r0[5], dmx[7] ) );
   // Wet dry mixing
   return [el.select(props.mix, yl, xl), el.select(props.mix, yr, xr)];
 }

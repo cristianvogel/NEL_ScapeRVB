@@ -8,7 +8,7 @@
     { "paramId": "decay", "name": "Decay", "min": 0.0, "max": 0.5, "defaultValue": 0.25 },
     { "paramId": "excursion", "name": "Excursion", "min": 0.0, "max": 1.0, "defaultValue": 0.15 },
     { "paramId": "mix", "name": "Mix", "min": 0.0, "max": 1, "defaultValue": 1 },
-    { "paramId": "dimension", "name": "Dimension", "min": 0.0, "max": 1.0, "defaultValue": 0 },
+    { "paramId": "dimension", "name": "Position", "min": 0.0, "max": 1.0, "defaultValue": 0.25 },
     { "paramId": "tone", "name": "Tone", "min": -1, "max": 1, "defaultValue": 0 }
   ]
 }

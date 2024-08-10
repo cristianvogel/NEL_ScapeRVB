@@ -4,7 +4,7 @@
 import { Renderer, el, createNode } from '@elemaudio/core';
 import { RefMap } from './RefMap';
 import srvbEarly from './srvb-er';
-import { clamp, easeIn2, smoothStep, schlick } from '@thi.ng/math';
+import { clamp, smoothStep, schlick, EPS } from '@thi.ng/math';
 
 
 
@@ -58,9 +58,9 @@ globalThis.__receiveStateChange__ = (incomingState) => {
 
   const srvb = {
     size:  __state.size ,
-    dimension: clamp( __state.dimension, 1.0e-5, 1.0), 
-    excursion: __state.excursion,
-    decay: easeIn2(__state.decay),
+    dimension: clamp( __state.dimension, EPS, 1 - EPS ), 
+    excursion: __state.excursion ,
+    decay: (__state.decay),
     mix: __state.mix,
     tone: clamp(__state.tone * 2 - 1, -0.99, 1)  // was cutoff
   };
