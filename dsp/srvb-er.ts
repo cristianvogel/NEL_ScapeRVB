@@ -1,26 +1,24 @@
 //@ts-check
 
 import { el, ElemNode } from "@elemaudio/core";
-import { shuffle, rotate, argMax  } from "@thi.ng/arrays";
+import {  argMax  } from "@thi.ng/arrays";
 import { Smush32 } from "@thi.ng/random";
 
 
+
+
+// THese number seies are from the OEIS and all sound really cool
 const smush = new Smush32(0xcafebabe);
 const oeisSequences = [ 
- 
-  [ 38, 67, 143, 232, 10, 22, 46, 101, 177, 376, 609, 11, 27, 59, 122, 266 ], // A0355077
-  [ 35, 28, 117, 29, 119, 45, 37, 112, 123, 38, 55, 126, 39, 47, 129, 56 ], // A362023
-  
+  [ 11, 27, 59, 122, 266, 38, 67, 143, 232, 10, 22, 46, 101, 177, 376, 609 ], // A0355077 	Inverse Stolarsky array read by antidiagonals 
+  [ 39, 31, 23, 17, 34, 68, 76, 63, 50, 37, 28, 20, 55, 110, 123, 102 ], // A035506		Stolarsky array read by antidiagonals.  ⭐️⭐️⭐️⭐️
+  [ 34, 76, 63, 71, 50, 37, 25, 20, 55, 123, 102, 115, 81, 60, 41, 33 ], // A199535		Clark Kimberling's even first column Stolarsky array read by antidiagonals. ⭐️⭐️⭐️
+  [ 97, 66, 53, 35, 26, 144, 322, 267, 301, 212, 157, 107, 86, 57, 43, 28 ] // A199535		Clark Kimberling's even first column Stolarsky array read by antidiagonals. ⭐️⭐️⭐️ quite large
  ];
-// Function to shuffle seedArray
-// let primes =  rotate(setOfPrimes(19).slice(), -8) ;
-let series = oeisSequences[0];
 
+let series = oeisSequences[ 1 ];
 let seriesMax = series[argMax(series)];
-
-// Create an array of 8 shuffled versions of seedArray
-const shuffledSeries: Array<number[]> = Array.from({ length: 16 }).map(() => { shuffle(series, 8, smush); return series.slice(); });
-const seededNormMinMax: Array<number> = Array.from({ length: 8 }).map(() => smush.normMinMax(0.01, 1.618) );
+const seededNormMinMax: Array<number> = Array.from({ length: 8 }).map(() => smush.normMinMax(0.01, 1.618) );   /// not using for now 
 
 
 // A size 8 Hadamard matrix constructed using Numpy and Scipy.
@@ -44,24 +42,6 @@ const H8 = [
   [ 1, -1, -1,  1, -1,  1,  1, -1]
 ];
 
-function setOfPrimes(start): Array<number> {
-  const primes: Array<number> = [];
-  let num = start + 1;
-  while (primes.length < 16) {
-    let isPrime = true;
-    for (let i = 2; i <= Math.sqrt(num); i++) {
-      if (num % i === 0) {
-        isPrime = false;
-        break;
-      }
-    }
-    if (isPrime) primes.push( num  );
-    num++;
-  }
-  return primes;
-}
-
-
 
 // A diffusion step expecting exactly 8 input channels with
 // a maximum diffusion time of 500ms
@@ -76,7 +56,8 @@ function diffuse( seededNormMinMax, series: Array<number>, size: number, ...ins)
    
     return el.delay(
       { size: lineSize, key: `srvb-diff:${i}`}, 
-       seededNormMinMax[i],
+       //seededNormMinMax[i],
+       1,
       0,
      // (i % 2) ? input : el.mul( -1, input) );  // do some polarity permutation?
       el.mul( input , el.db2gain( -1.5 ) )
@@ -104,7 +85,7 @@ function dampFDN(name, sampleRate, series:Array<number>, tone: ElemNode, size: E
 
   const scale = (i)=> { return ( Math.min( 1/8, ( series[i] / seriesMax ) ) ) } ;   // get normalised and distributed by series
 
-  const md = el.mul( modDepth, 0.05);
+  const md = modDepth;
 
   if (len !== 8) throw new Error("Invalid FDN step!");
 
@@ -113,7 +94,7 @@ function dampFDN(name, sampleRate, series:Array<number>, tone: ElemNode, size: E
     const fcLPF =  el.add( 48, el.mul( 12000 + offset, el.sub( 1, el.abs(tone) ) ) ) ;
     return el.select( dial,
       // darker
-      el.svf( fcLPF , 1.0e-2 + (offset * 1.0e-3) , el.mul( el.db2gain(1.5), input ) ),
+      el.svf( fcLPF , 1.0e-2 + (offset * 1.0e-3) , el.mul( el.db2gain( 0.5 ), input ) ),
       // brighter
       el.svfshelf( {mode: 'highshelf'}, 650 + offset, 0.5, el.mul( tone , el.db2gain( 6 )) ,  el.mul( el.db2gain(-1), input )  )
   );
@@ -145,16 +126,16 @@ function dampFDN(name, sampleRate, series:Array<number>, tone: ElemNode, size: E
         ms2samps( series[i * 2] )
     );
 
-    const modulate = (x, rate, amt) => el.add(x, el.mul( el.sqrt(amt, el.cycle(rate) ) ));
+    const modulate = (x, rate, amt) => el.add(x, el.mul( amt, el.cycle( rate ) ) );
 
     const readPos = modulate(
       delaySize,
-      smush.float() * 0.001 ,
+      smush.normMinMax( 0.001, 0.1 ),
       md 
     );
     return el.tapOut(
       { name: `${name}:fdn${i}` },
-      el.delay( { size: Math.abs( ms2samps(  series[i] ) ) }, readPos, 0.0, el.mul( el.db2gain( 6 ) , mm ))   // more jiggying
+      el.delay( { size: Math.abs( ms2samps(  series[i] ) ) }, readPos, 0.0, el.mul( el.db2gain( 7.5 ) , mm ))   // more jiggying
     );
   });
 }
@@ -174,11 +155,18 @@ interface SRVBProps {
   dimension: ElemNode; // rounded integer behaviour
   // non-signal data
   sampleRate: number;
+  geometry: number;
   key: string;
 }
 
 export default function srvbEarly(props: SRVBProps, xl, xr) {
-  const { sampleRate, key, dimension } = props;
+
+
+
+  const { sampleRate, key, dimension, geometry } = props;
+
+  let series = oeisSequences[ geometry  ];
+  let seriesMax = series[argMax(series)];
 
   // Upmix to eight channels
   const mid =  el.mul(0.5, el.add(xl, xr) ) ;
@@ -194,9 +182,13 @@ export default function srvbEarly(props: SRVBProps, xl, xr) {
 
   // Diffusion
   const ms2samps = (ms) => sampleRate * (ms / 1000.0);
-  const d1 = diffuse( seededNormMinMax, series, ms2samps( 137 ), ...eight); 
-  const d2 = diffuse( seededNormMinMax, series, ms2samps( 137 ), ...d1);
-  const d3 = diffuse( seededNormMinMax, series, ms2samps( 137 ), ...d2);
+  const d1 = diffuse( 1, series, ms2samps( 137 ), ...eight); 
+  const d2 = diffuse( 1, series, ms2samps( 137 ), ...d1);
+  const d3 = diffuse( 1, series, ms2samps( 137 ), ...d2);
+
+  // const d1 = diffuse( seededNormMinMax, series, ms2samps( 137 ), ...eight); 
+  // const d2 = diffuse( seededNormMinMax, series, ms2samps( 137 ), ...d1);
+  // const d3 = diffuse( seededNormMinMax, series, ms2samps( 137 ), ...d2);
 
   // Reverb network
   const d4: ElemNode[] = dampFDN(
@@ -205,7 +197,7 @@ export default function srvbEarly(props: SRVBProps, xl, xr) {
     series,
     props.tone,
     props.size,
-    0.004,
+    0.01,
     props.excursion,
     ...d3
   );

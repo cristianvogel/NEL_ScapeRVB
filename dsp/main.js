@@ -30,7 +30,8 @@ let t = 0.0; // interpolation time for size param
 function shouldRender(prevState, currentState) {
   const result = (prevState === null)
     || (currentState === null)
-    || (prevState.sampleRate !== currentState.sampleRate);
+    || (prevState.sampleRate !== currentState.sampleRate)
+    || (prevState.geometry !== Math.round(currentState.geometry * 3) )
   return result;
 }
 
@@ -62,7 +63,8 @@ globalThis.__receiveStateChange__ = (incomingState) => {
     excursion: __state.excursion ,
     decay: (__state.decay),
     mix: __state.mix,
-    tone: clamp(__state.tone * 2 - 1, -0.99, 1)  // was cutoff
+    tone: clamp(__state.tone * 2 - 1, -0.99, 1) ,
+    geometry: Math.round( __state.geometry * 3 ),
   };
 
 
@@ -76,6 +78,7 @@ globalThis.__receiveStateChange__ = (incomingState) => {
       mix: refs.getOrCreate('mix', 'const', { value: srvb.mix }, []), // overall wet level
       tone: refs.getOrCreate('tone', 'const', { value: srvb.tone }, []), // coming always as 0-1
       dimension: refs.getOrCreate('dimension', 'const', { value: srvb.dimension }, []), // coming always as 0-1
+      geometry: srvb.geometry,
     },
       el.in({ channel: 0 }), el.in({ channel: 1 }))
     );
@@ -88,9 +91,9 @@ globalThis.__receiveStateChange__ = (incomingState) => {
     refs.update('tone', { value: srvb.tone });
     refs.update('dimension', { value: srvb.dimension });
   }
-
+ 
   __prevState = __state;
-
+  __prevState.geometry = srvb.geometry;
 };
 
 /////////////////////////////////////////////////////////////////
