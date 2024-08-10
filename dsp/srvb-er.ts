@@ -6,15 +6,16 @@ import { rotate, shuffle  } from "@thi.ng/arrays";
 import { Smush32 } from "@thi.ng/random";
 import * as vec from "@thi.ng/vectors";
 
+
 let prevDimension = 0;
-let primes = next16Primes(13).slice();
+let primes = next16Primes(3).slice();
 let shuffleDimensions = false;
 const smush = new Smush32(0xcafebabe);
 // Function to shuffle seedArray
 
 // Create an array of 8 shuffled versions of seedArray
 const shuffledPrimes: Array<number[]> = Array.from({ length: 16 }).map(() => { shuffle(primes, 16, smush); return primes.slice(); });
-
+const seededNormMinMax: Array<number> = Array.from({ length: 8 }).map(() => smush.normMinMax(0.01, 1.618) );
 
 
 // A size 8 Hadamard matrix constructed using Numpy and Scipy.
@@ -57,20 +58,20 @@ function next16Primes(start): Array<number> {
 
 // A diffusion step expecting exactly 8 input channels with
 // a maximum diffusion time of 500ms
-function diffuse( primes: Array<number>, size: number, ...ins) {
+function diffuse( seededNormMinMax, primes: Array<number>, size: number, ...ins) {
 
   const len = ins.length;   // 8
   const scale = (i)=> Math.sqrt(0.5 / (1 + (primes[i] % len) ) ); ;
 
   const dels = ins.map(function (input, i) {
-    //const lineSize = size > 0.75 ? size * ((i + 1) / len) : size * ( 1  / len )  ;
+
     const lineSize = size * 1.0e-2  ;
    
     return el.delay(
       { size: lineSize, key: `srvb-diff:${i}`}, 
-      ( 2 / primes[i] ) ,
+       seededNormMinMax[i],
       0,
-      (i % 2) ? input : el.mul(-1, input) );  // do some polarity permutation
+      (i % 2) ? input : el.mul(1, input) );  // do some polarity permutation
   });
   return H8.map(function (row, i) {
     return el.add(
@@ -92,7 +93,7 @@ function diffuse( primes: Array<number>, size: number, ...ins) {
 function dampFDN(name, sampleRate, primes:Array<number>, tone: ElemNode, size: ElemNode, decay, modDepth, ...ins) {
   const len = ins.length;
   const scale = Math.sqrt(1 / len);
-  const md = el.mul( modDepth, 0.02);
+  const md = el.mul( modDepth, 0.05);
 
   if (len !== 8) throw new Error("Invalid FDN step!");
 
@@ -111,8 +112,8 @@ function dampFDN(name, sampleRate, primes:Array<number>, tone: ElemNode, size: E
   // of killing the decay time too quickly. Towards the bottom, not much damping.
   const dels = ins.map(function (input, i) {
     return el.add(
-      toneDial(input,  i * smush.minmaxInt( 1, 3 ) ),
-      el.mul(decay, el.smooth(0.011, el.tapIn({ name: `${name}:fdn${i}` })))
+      toneDial(input,  primes[i] ),
+      el.mul( decay, el.smooth(0.25, el.tapIn({ name: `${name}:fdn${i}` })))
     );
   });
 
@@ -142,8 +143,8 @@ function dampFDN(name, sampleRate, primes:Array<number>, tone: ElemNode, size: E
     // delay network.
     const readPos = modulate(
       delaySize,
-      el.add(  5.0e-1    , el.mul( 1.0e-2, md)) ,
-      ms2samps(  5.0e-2 )
+      ms2samps(  smush.float() ),
+       md 
     );
 
     return el.tapOut(
@@ -189,15 +190,15 @@ export default function srvbEarly(props: SRVBProps, xl, xr) {
   let shufflingPrimes = shuffleDimensions ? shuffledPrimes[dimension] : primes;
   // Diffusion
   const ms2samps = (ms) => sampleRate * (ms / 1000.0);
-  const d1 = diffuse( primes, ms2samps( 12.3 ), ...eight); 
-  const d2 = diffuse( primes, ms2samps( 51.45 ), ...d1);
-  const d3 = diffuse( shufflingPrimes, ms2samps( 42.3 ), ...d2);
+  const d1 = diffuse( seededNormMinMax, primes, ms2samps( 12.3 ), ...eight); 
+  const d2 = diffuse( seededNormMinMax, primes, ms2samps( 51.45 ), ...d1);
+  const d3 = diffuse( seededNormMinMax, shufflingPrimes, ms2samps( 42.3 ), ...d2);
   shuffleDimensions = false;
   // Reverb network
-  const d4 = dampFDN(
+  const d4: ElemNode[] = dampFDN(
     `${key}:d4`,
     sampleRate,
-    shufflingPrimes,
+    primes,
     props.tone,
     props.size,
     0.004,
@@ -218,7 +219,7 @@ export default function srvbEarly(props: SRVBProps, xl, xr) {
   // Create an array of 8 shuffled versions of seedArray
   let r1 = r0.slice();
   let r2 = r0;
-  const shuffledChannels: Array<ElemNode[]> = Array.from({ length: 8 }).map(() => { shuffle(r1, 8, smush); return r1.slice(); });
+  const shuffledChannels: Array<ElemNode[]> = Array.from({ length: 8 }).map(() => { shuffle( r1, 8, smush ); return r1.slice(); });
   if (dimension > 0) { 
     r2 = shuffledChannels[dimension - 1]
   } else { r2 = r0; }

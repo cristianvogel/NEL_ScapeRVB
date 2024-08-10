@@ -4,7 +4,7 @@
 import { Renderer, el, createNode } from '@elemaudio/core';
 import { RefMap } from './RefMap';
 import srvbEarly from './srvb-er';
-import { clamp, easeIn2, mix } from '@thi.ng/math';
+import { clamp, easeIn2, mix, easeIn3 } from '@thi.ng/math';
 
 
 // tried putting native calls here, but it crashes plug in a new and interesting way
@@ -57,10 +57,10 @@ globalThis.__receiveStateChange__ = (incomingState) => {
   }
 
   const srvb = {
-    size: __state.size,
+    size: easeIn3(__state.size),
     dimension: Math.round( __state.dimension * 8 ),
     excursion: __state.excursion,
-    decay: __state.decay,
+    decay: easeIn2(__state.decay),
     mix: __state.mix,
     tone: clamp(__state.tone * 2 - 1, -0.99, 1)  // was cutoff
   };
