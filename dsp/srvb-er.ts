@@ -4,6 +4,7 @@ import invariant from "invariant";
 import { el, ElemNode } from "@elemaudio/core";
 import { rotate, shuffle  } from "@thi.ng/arrays";
 import { Smush32 } from "@thi.ng/random";
+import * as vec from "@thi.ng/vectors";
 
 let prevDimension = 0;
 let primes = next16Primes(13).slice();
@@ -184,39 +185,48 @@ export default function srvbEarly(props: SRVBProps, xl, xr) {
     side,
   ];
   const eight = [...four, ...four.map((x) => el.mul(-1, x))];
-
+  rotate( eight, dimension % 8 );
+  let shufflingPrimes = shuffleDimensions ? shuffledPrimes[dimension] : primes;
   // Diffusion
   const ms2samps = (ms) => sampleRate * (ms / 1000.0);
   const d1 = diffuse( primes, ms2samps(42.3), ...eight); 
   const d2 = diffuse( primes, ms2samps(51.45), ...d1);
- 
-  const d3 = diffuse( shuffleDimensions ? shuffledPrimes[dimension] : primes, ms2samps(76.91), ...d2);
+  const d3 = diffuse( shufflingPrimes, ms2samps(76.91), ...d2);
   shuffleDimensions = false;
   // Reverb network
   const d4 = dampFDN(
     `${key}:d4`,
     sampleRate,
-    shuffleDimensions ? shuffledPrimes[dimension] : primes,
+    shufflingPrimes,
     props.tone,
     props.size,
     0.004,
     props.excursion,
     ...d3
   );
-  const r0 = dampFDN(
+  let r0: ElemNode[] = dampFDN(
     `${key}:r0`,
     sampleRate,
-    shuffleDimensions ? shuffledPrimes[dimension] : primes,
+    shufflingPrimes,
     props.tone,
     props.size,
     props.decay,
     props.excursion,
     ...d4
   );
+  // dimension jiggling
+  // Create an array of 8 shuffled versions of seedArray
+  let r1 = r0.slice();
+  let r2 = r0;
+  const shuffledChannels: Array<ElemNode[]> = Array.from({ length: 8 }).map(() => { shuffle(r1, 8, smush); return r1.slice(); });
+  if (dimension > 0) { 
+    r2 = shuffledChannels[dimension - 1]}
+    else
+    { r2 = r0; }
 
-  // interleaved Downmix
-  let yl = el.mul(0.25, el.add(r0[0], r0[2], r0[4], r0[6]));
-  let yr = el.mul(0.25, el.add(r0[1], r0[3], r0[5], r0[7]));
+   // interleaved Downmix
+  let yl = el.mul(0.25, el.add(r2[0], r2[2], r2[4], r2[6]));
+  let yr = el.mul(0.25, el.add(r2[1], r2[3], r2[5], r2[7]));
 
   // Wet dry mixing
   return [el.select(props.mix, yl, xl), el.select(props.mix, yr, xr)];
