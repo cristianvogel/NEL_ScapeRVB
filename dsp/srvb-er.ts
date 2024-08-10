@@ -71,7 +71,9 @@ function diffuse( seededNormMinMax, primes: Array<number>, size: number, ...ins)
       { size: lineSize, key: `srvb-diff:${i}`}, 
        seededNormMinMax[i],
       0,
-      (i % 2) ? input : el.mul(1, input) );  // do some polarity permutation
+     // (i % 2) ? input : el.mul( -1, input) );  // do some polarity permutation?
+      el.mul( input , el.db2gain( -1.5 ) )
+    );
   });
   return H8.map(function (row, i) {
     return el.add(

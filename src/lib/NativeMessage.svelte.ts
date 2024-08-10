@@ -57,7 +57,6 @@ export const MessageToHost = {
   requestParamValueUpdate: function (paramId: string, value: number) {
     if (typeof globalThis.__postNativeMessage__ === "function") {
       ConsoleText.update( paramId + " ► " + value);
-     
       globalThis.__postNativeMessage__("setParameterValue", {
         paramId,
         value,

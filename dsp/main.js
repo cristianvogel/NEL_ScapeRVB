@@ -4,19 +4,9 @@
 import { Renderer, el, createNode } from '@elemaudio/core';
 import { RefMap } from './RefMap';
 import srvbEarly from './srvb-er';
-import { clamp, easeIn2, mix, easeIn3 } from '@thi.ng/math';
+import { clamp, easeIn2, mix, smoothStep, easeIn3 } from '@thi.ng/math';
 
 
-// tried putting native calls here, but it crashes plug in a new and interesting way
-const interpTimer = (_prev, _target) => {
-  const intervalId = setInterval(() => {
-    t = Math.min(1.0, t + 0.01);
-    if (t === 1.0) {
-      t = 0.0;
-      clearInterval(intervalId);
-    }
-  }, 10);
-};
 
 // First, we initialize a custom Renderer instance that marshals our instruction
 // batches through the __postNativeMessage__ function to direct the underlying native
@@ -38,11 +28,11 @@ let _convolver = (props, ...childs) => createNode("convolver", props, childs);
 let __prevState = null;
 let t = 0.0; // interpolation time
 function shouldRender(prevState, currentState) {
-  const result = (prevState === null) 
-                  || (currentState === null) 
-                  // || (prevState.size !== nextState.size) 
-                  || prevState.dimension  !== Math.round( currentState.dimension * 8) 
-                  || (prevState.sampleRate !== currentState.sampleRate);
+  const result = (prevState === null)
+    || (currentState === null)
+    // || (prevState.size !== nextState.size) 
+    || prevState.dimension !== Math.round(currentState.dimension * 8)
+    || (prevState.sampleRate !== currentState.sampleRate);
   return result;
 }
 
@@ -50,15 +40,28 @@ globalThis.__receiveStateChange__ = (incomingState) => {
 
   const __state = JSON.parse(incomingState);
 
-  // probably not working because it doesn't send back to native
-  if (__prevState && t === 0.0 && (__state.size !== __prevState.size)) {
-    interpTimer(__prevState.size, __state.size);
-    t += 0.001;
+ // smooth step on the size param using CHOC setInterval and thi.ng interpolation
+  let smoothS = 0.0;
+  const interpTimer = ( a, b ) => {
+    const intervalId = setInterval(() => {
+      t += 0.01,
+      smoothS = smoothStep( a, b, t );
+      console.log( __state.size );
+      if ( __state ){   __state.size = smoothS; }
+      if (t > 1.0) {
+        t = 0.0;
+        clearInterval(intervalId);
+      }
+    }, 1);
+  };
+
+  if (__prevState && __state && t === 0.0 && (__state.size !== __prevState.size)) {
+    interpTimer( __prevState.size, __state.size );
   }
 
   const srvb = {
-    size: easeIn3(__state.size),
-    dimension: Math.round( __state.dimension * 8 ),
+    size: easeIn3( __state.size ),
+    dimension: Math.round(__state.dimension * 8),
     excursion: __state.excursion,
     decay: easeIn2(__state.decay),
     mix: __state.mix,
@@ -88,7 +91,7 @@ globalThis.__receiveStateChange__ = (incomingState) => {
   }
 
   __prevState = __state;
-  __prevState.dimension = srvb.dimension;
+  __prevState.dimension = srvb.dimension; // because it is a rounded int, needs to stash the rounded value
 };
 
 /////////////////////////////////////////////////////////////////
