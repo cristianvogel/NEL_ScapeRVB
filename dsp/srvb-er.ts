@@ -1,17 +1,22 @@
 //@ts-check
 
 import { el, ElemNode } from "@elemaudio/core";
-import { shuffle, rotate  } from "@thi.ng/arrays";
+import { shuffle, rotate, argMax  } from "@thi.ng/arrays";
 import { Smush32 } from "@thi.ng/random";
 
 
 const smush = new Smush32(0xcafebabe);
 const oeisSequences = [ 
-  [ 38, 67, 143, 232, 10, 22, 46, 101, 177, 376, 609, 11, 27, 59, 122, 266 ] // A0355077
+ 
+  [ 38, 67, 143, 232, 10, 22, 46, 101, 177, 376, 609, 11, 27, 59, 122, 266 ], // A0355077
+  [ 35, 28, 117, 29, 119, 45, 37, 112, 123, 38, 55, 126, 39, 47, 129, 56 ], // A362023
+  
  ];
 // Function to shuffle seedArray
 // let primes =  rotate(setOfPrimes(19).slice(), -8) ;
 let series = oeisSequences[0];
+
+let seriesMax = series[argMax(series)];
 
 // Create an array of 8 shuffled versions of seedArray
 const shuffledSeries: Array<number[]> = Array.from({ length: 16 }).map(() => { shuffle(series, 8, smush); return series.slice(); });
@@ -96,7 +101,9 @@ function diffuse( seededNormMinMax, series: Array<number>, size: number, ...ins)
 // @param {...core.Node} ...ins eight input channels
 function dampFDN(name, sampleRate, series:Array<number>, tone: ElemNode, size: ElemNode, decay, modDepth, ...ins) {
   const len = ins.length;
-  const scale = Math.sqrt(1 / len);
+
+  const scale = (i)=> { return ( Math.min( 1/8, ( series[i] / seriesMax ) ) ) } ;   // get normalised and distributed by series
+
   const md = el.mul( modDepth, 0.05);
 
   if (len !== 8) throw new Error("Invalid FDN step!");
@@ -124,7 +131,7 @@ function dampFDN(name, sampleRate, series:Array<number>, tone: ElemNode, size: E
   let mix = H8.map(function (row, i) { 
     return el.add(
       ...row.map(function (col, j) {
-        return el.mul( col * scale, dels[j]);
+        return el.mul( col * scale(i), dels[j]);
       })
     );
   });
@@ -137,8 +144,6 @@ function dampFDN(name, sampleRate, series:Array<number>, tone: ElemNode, size: E
           el.sm( size )) ,
         ms2samps( series[i * 2] )
     );
-    // Then we modulate the read position for each tap to add some chorus in the
-    // delay network.
 
     const modulate = (x, rate, amt) => el.add(x, el.mul( el.sqrt(amt, el.cycle(rate) ) ));
 
@@ -149,7 +154,7 @@ function dampFDN(name, sampleRate, series:Array<number>, tone: ElemNode, size: E
     );
     return el.tapOut(
       { name: `${name}:fdn${i}` },
-      el.delay( { size: Math.abs( ms2samps(  series[i] ) ) }, readPos, 0.0, mm)   // more jiggying
+      el.delay( { size: Math.abs( ms2samps(  series[i] ) ) }, readPos, 0.0, el.mul( el.db2gain( 6 ) , mm ))   // more jiggying
     );
   });
 }
@@ -217,7 +222,7 @@ export default function srvbEarly(props: SRVBProps, xl, xr) {
 
  
    // interleaved dimensional Downmix
-let dmx = r0.map( (x, i) => el.delay( {key: `downmix:${i}`, size: ms2samps( shuffledSeries[i][i] ) }, el.sm( el.sub( 1, dimension ) ), 0, x) );
+let dmx = r0.map( (x, i) => el.delay( {key: `downmix:${i}`, size: ms2samps( series[i] ) }, el.sm( el.sub( 1, dimension ) ), 0, x) );
 
   let yl = el.mul( el.db2gain(-3), el.add( dmx[0],  r0[2] , dmx[4],  r0[6] ) ); 
   let yr = el.mul( el.db2gain(-3), el.add(  r0[1],  dmx[3] ,  r0[5], dmx[7] ) );
