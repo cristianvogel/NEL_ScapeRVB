@@ -260,21 +260,21 @@ export default function srvbEarly(props: SRVBProps, xl: ElemNode, xr: ElemNode )
   );
 
   // interleaved dimensional Downmix ( optimised to build the spatial delays when needed )
-  let spat = ( i, x: ElemNode ): ElemNode => el.delay( { key: `downmix:${i}`, size: ms2samps( series[i] ) }, el.sm( dimension ), 0, x);
+  let spat = ( i, x: ElemNode ): ElemNode => el.delay( { key: `downmix:${i}`, size: ms2samps( series[ 7 - i ]) }, el.sm( el.sub(1, dimension) ), 0, x);
 
   let yl = el.mul(el.db2gain(-3), 
                       el.add(
-                            spat( 4, r0[0] ), 
-                            r0[2], 
-                            spat( 0, r0[4] ),
-                            r0[6]
+                            spat( 0, r0[0] ), 
+                            r0[1], 
+                            spat( 2, r0[2] ),
+                            r0[3]
                           ));
 
   let yr = el.mul(el.db2gain(-3),
                       el.add(
-                            r0[1], 
-                            spat( 3, r0[3] ), 
-                            r0[5], 
+                            r0[4], 
+                            spat( 5, r0[5] ), 
+                            r0[6], 
                             spat( 7, r0[7] )
                           ));
   // Wet dry mixing
