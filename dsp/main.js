@@ -5,7 +5,7 @@ import { Renderer, el, createNode } from '@elemaudio/core';
 import { RefMap } from './RefMap';
 import srvbEarly from './srvb-er';
 import { clamp, smoothStep, schlick, EPS } from '@thi.ng/math';
-
+import { NUM_SEQUENCES } from './srvb-er';
 
 
 // First, we initialize a custom Renderer instance that marshals our instruction
@@ -20,55 +20,39 @@ let core = new Renderer((batch) => {
 let refs = new RefMap(core);
 
 // Create our custom nodes
-let _convolver = (props, ...childs) => createNode("convolver", props, childs);
+// let _convolver = (props, ...childs) => createNode("convolver", props, childs);
 
-
-let __prevState = null;
+let __memState = null;
 let t = 0.0; // interpolation time for size param
 
 // the conditions that will trigger a full re-render of the node graph
-function shouldRender(prevState, currentState) {
-  const result = (prevState === null)
-    || (currentState === null)
-    || (prevState.sampleRate !== currentState.sampleRate)
-    || (prevState.geometry !== Math.round(currentState.geometry * 3) )
+function shouldRender(prev, curr) {
+  const result = (prev === null)
+    || (curr === null)
+    || (prev.sampleRate !== curr.sampleRate)
+    || (prev.structure !== Math.round(curr.structure * NUM_SEQUENCES) )
   return result;
 }
 
-globalThis.__receiveStateChange__ = (incomingState) => {
+globalThis.__receiveStateChange__ = ( stateReceivedFromNative ) => {
 
-  const __state = JSON.parse(incomingState);
+  const __state = JSON.parse( stateReceivedFromNative );
 
- // smooth step on the size param using CHOC setInterval and thi.ng interpolation
-  let smoothS = 0.0;
-  const interpTimer = ( a, b ) => {
-    const intervalId = setInterval(() => {
-      t += 0.01,
-      smoothS = schlick(  3 , 0.5 , smoothStep( a, b, t) );
-      if ( __state  &&  __state.size ){   __state.size = smoothS; }
-      if (t > 1.0) {
-        t = -1.0e-5; // reset to just below 0
-        clearInterval(intervalId);
-      }
-    }, 1);
-  };
+  smoothSizeInterpolation();
 
-  if (__prevState && __state && t < 0.0 && (__state.size !== __prevState.size)) {
-    interpTimer( __prevState.size, __state.size );
-  }
-
+  // interpreted state, any adjustments should be done here before rendering to the graph
   const srvb = {
     size:  __state.size ,
     dimension: clamp( __state.dimension, EPS, 1 - EPS ), 
     excursion: __state.excursion ,
-    decay: (__state.decay),
+    decay: __state.decay,
     mix: __state.mix,
     tone: clamp(__state.tone * 2 - 1, -0.99, 1) ,
-    geometry: Math.round( __state.geometry * 3 ),
+    structure: Math.round( __state.structure * NUM_SEQUENCES ),
   };
 
 
-  if (shouldRender(__prevState, __state) ) {
+  if (shouldRender(__memState, __state) ) {
     const graph = core.render(...srvbEarly({
       key: 'srvbEarly',
       sampleRate: __state.sampleRate,
@@ -78,7 +62,7 @@ globalThis.__receiveStateChange__ = (incomingState) => {
       mix: refs.getOrCreate('mix', 'const', { value: srvb.mix }, []), // overall wet level
       tone: refs.getOrCreate('tone', 'const', { value: srvb.tone }, []), // coming always as 0-1
       dimension: refs.getOrCreate('dimension', 'const', { value: srvb.dimension }, []), // coming always as 0-1
-      geometry: srvb.geometry,
+      structure: srvb.structure || 0,
     },
       el.in({ channel: 0 }), el.in({ channel: 1 }))
     );
@@ -92,8 +76,28 @@ globalThis.__receiveStateChange__ = (incomingState) => {
     refs.update('dimension', { value: srvb.dimension });
   }
  
-  __prevState = __state;
-  __prevState.geometry = srvb.geometry;
+  __memState = __state;
+  __memState.structure = srvb.structure;
+
+  // smooth step on the size param using CHOC setInterval and thi.ng interpolation
+  // mutates the __state.size entry directly
+  function smoothSizeInterpolation() {
+    let smoothS = 0.0;
+    const interpTimer = (a, b) => {
+      const intervalId = setInterval(() => {
+        t += 0.01,
+          smoothS = schlick(3, 0.5, smoothStep(a, b, t));
+        if (__state && __state.size) { __state.size = smoothS; }
+        if (t > 1.0) {
+          t = -1.0e-5; // reset to just below 0
+          clearInterval(intervalId);
+        }
+      }, 1);
+    };
+    if (__memState && __state && t < 0.0 && (__state.size !== __memState.size)) {
+      interpTimer(__memState.size, __state.size);
+    }
+  }
 };
 
 /////////////////////////////////////////////////////////////////
