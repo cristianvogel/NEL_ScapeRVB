@@ -44,7 +44,6 @@ globalThis.__receiveStateChange__ = ( stateReceivedFromNative ) => {
   const srvb = {
     size:  __state.size ,
     dimension: clamp( __state.dimension, EPS, 1 - EPS ), 
-    excursion: __state.excursion ,
     decay: __state.decay,
     mix: __state.mix,
     tone: clamp(__state.tone * 2 - 1, -0.99, 1) ,
@@ -57,7 +56,6 @@ globalThis.__receiveStateChange__ = ( stateReceivedFromNative ) => {
       key: 'srvbEarly',
       sampleRate: __state.sampleRate,
       size: refs.getOrCreate('size', 'const', { value: srvb.size }, []),
-      excursion: refs.getOrCreate('excursion', 'const', { value: srvb.excursion }, []),
       decay: refs.getOrCreate('decay', 'const', { value: srvb.decay }, []), // was fb_amount
       mix: refs.getOrCreate('mix', 'const', { value: srvb.mix }, []), // overall wet level
       tone: refs.getOrCreate('tone', 'const', { value: srvb.tone }, []), // coming always as 0-1
@@ -69,7 +67,6 @@ globalThis.__receiveStateChange__ = ( stateReceivedFromNative ) => {
   } else {
 
     refs.update('size', { value: srvb.size });
-    refs.update('excursion', { value: srvb.excursion });
     refs.update('decay', { value: srvb.decay });
     refs.update('mix', { value: srvb.mix });
     refs.update('tone', { value: srvb.tone });
