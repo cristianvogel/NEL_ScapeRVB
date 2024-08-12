@@ -123,13 +123,14 @@ function dampFDN(props: FDNProps, ...ins) {
    */
   const tapDelayLevel = (i: number) => {
     const baseAtt = Math.sqrt(1 / len);
-    const normStruct = el.sub(
-      1.0, // maybe should be more than 1
-      el.div( structure[i % structure.length], structureMax)  // todo: pass in the const of the max value
-    );
-    return el.mul(normStruct, baseAtt);
+    const normStruct = el.max( el.db2gain(-35), el.sub(
+      1,
+      el.div( structure[i % structure.length], structureMax) 
+    ));
+    // this will help the taps not explode but have enough energy
+    return el.min( el.db2gain( -0.5 ), el.mul( normStruct, baseAtt ) );
   };
-  // const tapDelayLevel = ()=> Math.sqrt(1 / len);
+
   //const md = modDepth;
 
   const toneDial = (input, offset: ElemNode) => {
@@ -168,16 +169,16 @@ function dampFDN(props: FDNProps, ...ins) {
   });
 
   return mix.map(function (mm, i) {
-    const ms2samps = (ms) => sampleRate * (ms / 1000.0);
+    const ms2samps = (ms:number): number => sampleRate * (ms / 1000.0);
 
     const delayScale = el.mul(
       el.add(1.0, el.sm(size)),
-     el.ms2samps( structure[i % structure.length])
+      el.ms2samps( structure[i % structure.length] )
     );
 
     return el.tapOut(
       { name: `${name}:fdn${i}` },
-      el.delay({ size: ms2samps(750) }, delayScale, 0.0, mm)
+      el.delay({ size: ms2samps(137) }, delayScale, 0.0, mm)
     );
   });
 } // end of dampFDN
@@ -260,7 +261,7 @@ export default function srvbEarly(
   let spat = (i, x: ElemNode): ElemNode =>
     el.delay(
       { key: `downmix:${i}`, size: ms2samps(100) },
-      el.sm(el.sub(1, dimension)),
+      el.sm( el.sub(1, dimension) ),
       0,
       x
     );

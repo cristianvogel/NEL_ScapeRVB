@@ -133,7 +133,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
       let series = OEIS_SEQUENCES[currStructIndex].slice(0, 8);
       console.log(`Using series ${series} `);
       // this should compute norm only on the set actually being used which is 8 at a time
-      const seriesMax = Math.min( series[argMax(series, 17)], 137 );
+      const seriesMax =  series[ argMax(series, 17) ] ;
       // as the overall volume of a delayunit is also computed from the series, i had to put an upped limit
       // on the max value to prevent the series from being too quiet ( i.e. the normalised range is too wide )
       console.log(`Using series max ${seriesMax} `);
