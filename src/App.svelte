@@ -41,7 +41,7 @@
 </script>
 
 <svelte:head>
-  <script type="text/javascript" src="/src/cables-js/patch.js" async></script>
+  <script type="text/javascript" src="/cables-ui/js/patch.js" async></script>
 </svelte:head>
 
 <canvas id="glcanvas" width="100vw" height="100vh"></canvas>

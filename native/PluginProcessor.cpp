@@ -1,7 +1,10 @@
 #include "PluginProcessor.h"
+#include "ConvolverNode.h"
 #include "WebViewEditor.h"
 
 #include <choc_javascript_QuickJS.h>
+#include <choc_javascript_Timer.h>
+#include <choc_StringUtilities.h>
 
 //==============================================================================
 // A quick helper for locating bundled asset files
@@ -52,7 +55,10 @@ EffectsPluginProcessor::EffectsPluginProcessor()
 
     // The view state property has to have some value so that when state is loaded
     // from the host, the key exists and is populated.
-   meshState.insert_or_assign(MESH_STATE_PROPERTY, "{}" );
+    meshState.insert_or_assign(MESH_STATE_PROPERTY, "{}");
+
+    // register audio file formats
+    formatManager.registerBasicFormats();
 }
 
 EffectsPluginProcessor::~EffectsPluginProcessor()
@@ -60,6 +66,60 @@ EffectsPluginProcessor::~EffectsPluginProcessor()
     for (auto &p : getParameters())
     {
         p->removeListener(this);
+    }
+}
+
+//==============================================================================
+
+//==============================================================================
+// Load the impulse responses from the assets directory
+std::vector<juce::File> EffectsPluginProcessor::loadImpulseResponses()
+{
+    std::vector<juce::File> impulseResponses = {};
+
+#if ELEM_DEV_LOCALHOST
+    auto assetsDir = juce::File(juce::String("~/Programming/ProgrammingSubFolder/NEL_ScapeRVB/public/assets/impulse-responses"));
+#else
+    auto assetsDir = getAssetsDirectory().getChildFile("assets/impulse-responses");
+#endif
+    if (assetsDir.isDirectory())
+    {
+        for (auto &file : assetsDir.findChildFiles(juce::File::findFiles, true))
+        {
+            if (file.hasFileExtension(juce::String("wav")))
+                impulseResponses.push_back(file);
+        }
+    }
+
+    return impulseResponses;
+}
+
+//==============================================================================
+// add each impulse response to the runtime virtual file system
+void EffectsPluginProcessor::addImpulseResponsesToVirtualFileSystem(std::vector<juce::File> impulseResponses)
+{
+
+    for (auto &file : impulseResponses)
+    {
+        auto buffer = juce::AudioBuffer<float>();
+        auto reader = formatManager.createReaderFor(file);
+        buffer.setSize(2, reader->lengthInSamples);                                            // source files are mono, but we use the second channel for a derived 'shaped' version
+        auto name = choc::text::toUpperCase(file.getFileNameWithoutExtension().toStdString()); // "Ambience_0.wav" -> "AMBIENCE_0"
+        reader->read(&buffer, 0, reader->lengthInSamples, 0, true, false);
+        delete reader;
+        // fabricate a gain ramp version on the next channel
+        // to use as a shaped option if user wants
+        buffer.copyFromWithRamp(1, 0, buffer.getReadPointer(0), buffer.getNumSamples(), 0.2, 1);
+        // add the non-shaped impulse response to the virtual file system
+        runtime->updateSharedResourceMap(
+            name,
+            buffer.getReadPointer(0),
+            buffer.getNumSamples());
+        // add the shaped impulse response to the virtual file system
+        runtime->updateSharedResourceMap(
+            "SHAPED_" + name,
+            buffer.getReadPointer(1),
+            buffer.getNumSamples());
     }
 }
 
@@ -102,7 +162,8 @@ void EffectsPluginProcessor::createParameters(const std::vector<elem::js::Value>
 juce::AudioProcessorEditor *EffectsPluginProcessor::createEditor()
 {
     const auto editor = new WebViewEditor(this, getAssetsDirectory(), 905, 600);
-    
+
+  
 
     // -----------
     // semi-online license activation
@@ -142,7 +203,6 @@ juce::AudioProcessorEditor *EffectsPluginProcessor::createEditor()
         dispatchMeshStateChange();
     };
 
-    
     // When setting a parameter value, we simply tell the host. This will in turn fire
     // a parameterValueChanged event, which will catch and propagate through dispatching
     // a state change event
@@ -158,11 +218,8 @@ juce::AudioProcessorEditor *EffectsPluginProcessor::createEditor()
     {
         meshState.insert_or_assign(MESH_STATE_PROPERTY, v.toString());
         dispatchStateChange();
-      //  dispatchMeshStateChange();   <--- was causing feedback loop! 
+        //  dispatchMeshStateChange();   <--- was causing feedback loop!
     };
-
-
-
 
 #if ELEM_DEV_LOCALHOST
     editor->reload = [this]()
@@ -310,6 +367,8 @@ void EffectsPluginProcessor::parameterGestureChanged(int, bool)
 }
 
 //==============================================================================
+// INITIALISATION HAPPENS HERE
+
 void EffectsPluginProcessor::handleAsyncUpdate()
 {
     // First things first, we check the flag to identify if we should initialize the Elementary
@@ -317,6 +376,14 @@ void EffectsPluginProcessor::handleAsyncUpdate()
     if (shouldInitialize.exchange(false))
     {
         runtime = std::make_unique<elem::Runtime<float>>(lastKnownSampleRate, lastKnownBlockSize);
+
+        runtime->registerNodeType("convolver", [](elem::NodeId const id, double sampleRate, int const blockSize)
+                                  { return std::make_shared<ConvolverNode>(id, sampleRate, blockSize); });
+
+        // Add impulse responses to the virtual file system
+        impulseResponses = loadImpulseResponses();
+        addImpulseResponsesToVirtualFileSystem(impulseResponses);
+
         initJavaScriptEngine();
         runtimeSwapRequired.store(false);
     }
@@ -353,6 +420,8 @@ void EffectsPluginProcessor::initJavaScriptEngine()
 {
     jsContext = choc::javascript::createQuickJSContext();
 
+      choc::javascript::registerTimerFunctions(jsContext);
+
     // Install some native interop functions in our JavaScript environment
     jsContext.registerFunction(NATIVE_MESSAGE_FUNCTION_NAME, [this](choc::javascript::ArgumentList args)
                                {
@@ -379,6 +448,54 @@ void EffectsPluginProcessor::initJavaScriptEngine()
     // Re-hydrate from current state
     const auto expr = serialize(jsFunctions::hydrateScript, runtime->snapshot());
     jsContext.evaluateExpression(expr);
+
+    jsContext.registerFunction("__log__", [this](choc::javascript::ArgumentList args)
+                               {
+        const auto* kDispatchScript = R"script(
+(function() {
+  console.log(...JSON.parse(%));
+  return true;
+})();
+)script";
+
+        // Forward logs to the editor if it's available; then logs show up in one place.
+        //
+        // If not available, we fall back to std out.
+        if (auto* editor = static_cast<WebViewEditor*>(getActiveEditor())) {
+            auto v = choc::value::createEmptyArray();
+
+            for (size_t i = 0; i < args.numArgs; ++i) {
+                v.addArrayElement(*args[i]);
+            }
+
+            auto expr = juce::String(kDispatchScript).replace("%", elem::js::serialize(choc::json::toString(v))).toStdString();
+            editor->getWebViewPtr()->evaluateJavascript(expr);
+        } else {
+            for (size_t i = 0; i < args.numArgs; ++i) {
+                DBG(choc::json::toString(*args[i]));
+            }
+        }
+
+        return choc::value::Value(); });
+
+    // A simple shim to write various console operations to our native __log__ handler
+    jsContext.evaluateExpression(R"shim(
+(function() {
+  if (typeof globalThis.console === 'undefined') {
+    globalThis.console = {
+      log(...args) {
+        __log__('[embedded:log]', ...args);
+      },
+      warn(...args) {
+          __log__('[embedded:warn]', ...args);
+      },
+      error(...args) {
+          __log__('[embedded:error]', ...args);
+      }
+    };
+  }
+})();
+    )shim");
 }
 void EffectsPluginProcessor::dispatchStateChange()
 {
@@ -428,27 +545,23 @@ void EffectsPluginProcessor::dispatchMeshStateChange()
 // NO END OF PROBLEMS from this logging system!
 void EffectsPluginProcessor::dispatchError(std::string const &name, std::string const &message)
 {
+   // Need the serialize here to correctly form the string script.
+    const auto expr = juce::String(jsFunctions::errorScript).replace("@", elem::js::serialize(name)).replace("%", elem::js::serialize(message)).toStdString();
 
- sendJavascriptToUI("globalThis.__log__('Native error.')");
+    // First we try to dispatch to the UI if it's available, because running this step will
+    // just involve placing a message in a queue.
+    if (!sendJavascriptToUI(expr))
+    {
+        if (errorLogQueue.size() == MAX_ERROR_LOG_QUEUE_SIZE)
+        {
+            errorLogQueue.pop();
+        }
+        errorLogQueue.push(expr);
+    } 
 
-
-//    // Need the serialize here to correctly form the string script.
-//    const auto expr = juce::String(jsFunctions::errorScript).replace("@", elem::js::serialize(name)).replace("%", elem::js::serialize(message)).toStdString();
-//
-//    // First we try to dispatch to the UI if it's available, because running this step will
-//    // just involve placing a message in a queue.
-//    if (!sendJavascriptToUI(expr))
-//    {
-//        if (errorLogQueue.size() == MAX_ERROR_LOG_QUEUE_SIZE)
-//        {
-//            errorLogQueue.pop();
-//        }
-//        errorLogQueue.push(expr);
-//    }
-//
-//    // Next we dispatch to the local engine which will evaluate any necessary JavaScript synchronously
-//    // here on the main thread
-//    jsContext.evaluateExpression(expr);
+    // Next we dispatch to the local engine which will evaluate any necessary JavaScript synchronously
+    // here on the main thread
+    jsContext.evaluateExpression(expr);
 }
 
 std::optional<std::string> EffectsPluginProcessor::loadDspEntryFileContents() const
@@ -486,7 +599,6 @@ std::optional<std::string> EffectsPluginProcessor::loadPatchEntryFileContents() 
 
     return patchEntryFileContents;
 }
-
 
 bool EffectsPluginProcessor::sendJavascriptToUI(const std::string &expr) const
 {
@@ -557,8 +669,8 @@ void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInByt
                 meshState.insert_or_assign(MESH_STATE_PROPERTY, value);
             }
         }
-          dispatchStateChange();
-    dispatchMeshStateChange();
+        dispatchStateChange();
+        dispatchMeshStateChange();
     }
 
     catch (...)
@@ -567,8 +679,18 @@ void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInByt
         // an object type. How you handle it is up to you.
         dispatchError("State Error", "Failed to restore mesh!");
     }
+}
 
-  
+//=============================================================================
+// https://forum.juce.com/t/reading-a-wav-file-into-an-array-of-samples/47449/2
+juce::AudioBuffer<float> EffectsPluginProcessor::getAudioBufferFromFile(juce::File file)
+{
+    juce::AudioBuffer<float> audioBuffer;
+    auto *reader = formatManager.createReaderFor(file);
+    audioBuffer.setSize(reader->numChannels, reader->lengthInSamples);
+    reader->read(&audioBuffer, 0, reader->lengthInSamples, 0, true, true);
+    delete reader;
+    return audioBuffer;
 }
 
 //==============================================================================

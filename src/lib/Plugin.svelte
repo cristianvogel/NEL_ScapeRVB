@@ -2,29 +2,28 @@
   import { DialValues, ConsoleText } from "../stores/stores.svelte";
   import { MessageToHost, RegisterMessagesFromHost } from "./NativeMessage.svelte";
 
-  let prevDialValues = [];
-
   RegisterMessagesFromHost();
   MessageToHost.requestReady();
 
+  let dialValuesMemo = {};
   $effect(() => {
-    const current = DialValues.current;
-    const paramNames = ["size", "decay", "mod", "mix"];
-    paramNames.forEach((param, index) => {
-      if (current[index] !== prevDialValues[index]) {
-        MessageToHost.requestParamValueUpdate(param, current[index] || 0);
-      }
+    const current = DialValues.current; 
+
+     // iterate over the keys and values of DialValues.current and send MessageToHost
+    Object.keys(current).forEach((param) => {
+      if (current[param] === dialValuesMemo[param]) return;
+        MessageToHost.requestParamValueUpdate(param, current[param] || 0);   
+        dialValuesMemo = current;
     });
     return () => {
       // if a callback is provided, it will run
       // a) immediately before the effect re-runs
       // b) when the component is destroyed
-      prevDialValues = current;
     };
   });
 </script>
 
-<div class="console-text"><pre>{DialValues.current} | {ConsoleText.current} </pre></div>
+<div class="console-text"><pre>{Object.values(DialValues.current)} | {ConsoleText.current} </pre></div>
 
 <style>
   .console-text {

@@ -8,12 +8,19 @@ pnpm-debug.log*
 lerna-debug.log*
 
 # Builds
-native
+native/elementary
+native/choc
+native/juce
+native/KeyzyClientLibrary
 node_modules
 build
 dist
 *.local
 public/dsp.main.js
+public/patch.js
+public/assets
+!public/assets/impulse-responses
+src/cables-ui
 
 # Editor directories and files
 .vscode
