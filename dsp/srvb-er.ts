@@ -70,25 +70,22 @@ type DiffuseProps = {
 function diffuse(props: DiffuseProps, ...ins) {
   const { maxLengthSamp } = props;
   const structure: Array<ElemNode> = props.structure;
-  const structureMax: ElemNode = props.structureMax;
- // const structureMax: ElemNode = props.structure.max;
+
   const len = ins.length; // 8
 
- /* 
+  /* 
  keep this one uniform, have tried using the 
  sequence data, but it loses all energy 
  */
-  const diffusionStageLevel = (i: number): number => {
-    const baseAtt = Math.sqrt( 1.25 / len);
+  const diffusionStageLevel = (): number => {
+    const baseAtt = Math.sqrt(1.2 / len);
     return baseAtt;
   };
- 
 
   const dels = ins.map(function (input, i) {
     return el.delay(
       { size: maxLengthSamp, key: `srvb-diff:${i}` },
-    //  el.div( structure[i], structureMax ),
-    structure[i % structure.length] , 
+      el.smooth( el.tau2pole( i * 0.21) , structure[i % structure.length] ) ,
       0,
       input
     );
@@ -96,7 +93,7 @@ function diffuse(props: DiffuseProps, ...ins) {
   return H8.map(function (row, i) {
     return el.add(
       ...row.map(function (col, j) {
-        return el.mul( col , diffusionStageLevel(i), dels[j]);
+        return el.mul(col, diffusionStageLevel(), dels[j]);
       })
     );
   });
@@ -129,27 +126,34 @@ function dampFDN(props: FDNProps, ...ins) {
    */
   const tapDelayLevel = (i: number) => {
     const baseAtt = Math.sqrt(1 / len);
-    const normStruct = el.max( el.db2gain(-35), el.sub(
-      1 + EPS,
-      el.div( structure[i % structure.length], structureMax) 
-    ));
+    const normStruct = el.max(
+      el.db2gain(-35),
+      el.sub(1 + EPS, el.div(structure[i % structure.length], structureMax)  )
+    );
     // this will help the taps not explode but have enough energy
-    return el.min( el.db2gain( -0.5 ), el.mul( normStruct, baseAtt ) );
+    return  el.min( el.db2gain(-0.5) , el.mul( normStruct, baseAtt ) );
   };
 
   //const md = modDepth;
 
   const toneDial = (input, offset: ElemNode) => {
-    const dial = el.smooth( el.tau2pole(0.5), el.le(tone, 0));
-    const fcLPF = el.add(48, el.mul( el.add( 12000 , offset ), el.sub(1, el.abs(tone))));
+    const dial = el.smooth(el.tau2pole(0.5), el.le(tone, 0));
+    const fcLPF = el.add(
+      48,
+      el.mul(el.add(12000, offset), el.sub(1, el.abs(tone)))
+    );
     return el.select(
       dial,
       // darker
-      el.svf( fcLPF, el.div(1 , el.square(offset)), el.mul(el.db2gain(0.5), input)),
+      el.svf(
+        fcLPF,
+        el.div(1, el.square(offset)),
+        el.mul(el.db2gain(0.5), input)
+      ),
       // brighter
       el.svfshelf(
         { mode: "highshelf" },
-        el.add( 650 , offset ),
+        el.add(650, offset),
         0.5,
         el.mul(tone, el.db2gain(6)),
         el.mul(el.db2gain(-1), input)
@@ -162,29 +166,33 @@ function dampFDN(props: FDNProps, ...ins) {
   const dels = ins.map(function (input, i) {
     return el.add(
       toneDial(input, structure[i]),
-      el.mul( 1 + EPS, decay, el.smooth(0.0025, el.tapIn({ name: `${name}:fdn${i}` })))
+      el.mul(
+        1 + EPS,
+        decay,
+        el.smooth(0.0025, el.tapIn({ name: `${name}:fdn${i}` }))
+      )
     );
   });
 
   let mix = H8.map(function (row, i) {
     return el.add(
       ...row.map(function (col, j) {
-        return el.mul( col, tapDelayLevel(i), dels[j]);
+        return el.mul(col, tapDelayLevel(i), dels[j]);
       })
     );
   });
 
   return mix.map(function (mm, i) {
-    const ms2samps = (ms:number): number => sampleRate * (ms / 1000.0);
+    const ms2samps = (ms: number): number => sampleRate * (ms / 1000.0);
 
     const delayScale = el.mul(
       el.add(1.0, el.sm(size)),
-      el.ms2samps( structure[i % structure.length] )
+       el.ms2samps( el.smooth( el.tau2pole( i * 0.25) , structure[i % structure.length] ) ) 
     );
 
     return el.tapOut(
       { name: `${name}:fdn${i}` },
-      el.delay({ size: ms2samps(137) }, delayScale, 0.0, mm)
+      el.delay({ size: ms2samps(137) }, delayScale , 0.0, mm)
     );
   });
 } // end of dampFDN
@@ -205,14 +213,10 @@ interface SRVBProps {
   key: string;
 }
 
-export default function srvbEarly(
-  props: SRVBProps,
-  inputs,
-  ...structureArray
-) {
+export default function srvbEarly(props: SRVBProps, inputs, ...structureArray) {
   // xl , xr -- unprocessed input
   const { sampleRate, key, dimension, structureMax } = props;
-  const  [ xl, xr ] = inputs;
+  const [xl, xr] = inputs;
   // input attenuation
   const _xl = el.dcblock(el.mul(xl, el.db2gain(-1.5)));
   const _xr = el.dcblock(el.mul(xl, el.db2gain(-1.5)));
@@ -233,7 +237,7 @@ export default function srvbEarly(
     ...d1
   );
   const d3 = diffuse(
-    { structure: structureArray, structureMax,maxLengthSamp: ms2samps(117) },
+    { structure: structureArray, structureMax, maxLengthSamp: ms2samps(117) },
     ...d2
   );
 
@@ -243,10 +247,10 @@ export default function srvbEarly(
       name: `${key}:d4`,
       sampleRate,
       structureArray,
+      structureMax,
       tone: props.tone,
       size: props.size,
       decay: 0.004,
-      structureMax
     },
     ...d3
   );
@@ -255,10 +259,10 @@ export default function srvbEarly(
       name: `${key}:r0`,
       sampleRate,
       structureArray,
+      structureMax,
       tone: props.tone,
       size: props.size,
       decay: props.decay,
-      structureMax
     },
     ...d4
   );
@@ -266,29 +270,20 @@ export default function srvbEarly(
   // interleaved dimensional Downmix ( optimised to build the spatial delays when needed )
   let spat = (i, x: ElemNode): ElemNode =>
     el.delay(
-      { key: `downmix:${i}`, size: ms2samps( 60 + ( i * 1.618) ) },
-      el.sm( el.sub(1, dimension) ),
+      { key: `downmix:${i}`, size: ms2samps(60 + i * 1.618) },
+      el.sm(el.sub(1, dimension)),
       0,
       el.mul(-1, x)
     );
 
   let yl = el.mul(
     el.db2gain(-3),
-      el.add( 
-            spat(0, r0[0]), 
-            r0[3], 
-            spat(5, r0[5]), 
-            r0[7] 
-      )
+    el.add(spat(0, r0[0]), r0[3], spat(5, r0[5]), r0[7])
   );
 
   let yr = el.mul(
     el.db2gain(-3),
-      el.add( 
-            r0[1], 
-            spat(2, r0[2]), 
-            r0[4], 
-            spat(6, r0[6] ))
+    el.add(r0[1], spat(2, r0[2]), r0[4], spat(6, r0[6]))
   );
   // Wet dry mixing
   return [el.select(props.mix, yl, xl), el.select(props.mix, yr, xr)];
