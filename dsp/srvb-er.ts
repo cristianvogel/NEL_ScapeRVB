@@ -1,7 +1,7 @@
 //@ts-check
 
 import { el, ElemNode } from "@elemaudio/core";
-import { argMax, rotate } from "@thi.ng/arrays";
+import { EPS } from "@thi.ng/math";
 import { Smush32 } from "@thi.ng/random";
 
 // THese number seies are from the OEIS and all sound really cool
@@ -63,20 +63,26 @@ type Structure = {
 type DiffuseProps = {
   seededNormMinMax?: number;
   structure: Array<ElemNode>;
+  structureMax: ElemNode;
   maxLengthSamp: number;
 };
 
 function diffuse(props: DiffuseProps, ...ins) {
   const { maxLengthSamp } = props;
   const structure: Array<ElemNode> = props.structure;
+  const structureMax: ElemNode = props.structureMax;
  // const structureMax: ElemNode = props.structure.max;
   const len = ins.length; // 8
 
-  // keep this one uniform?
+ /* 
+ keep this one uniform, have tried using the 
+ sequence data, but it loses all energy 
+ */
   const diffusionStageLevel = (i: number): number => {
-    const baseAtt = Math.sqrt(1 / len);
+    const baseAtt = Math.sqrt( 1.25 / len);
     return baseAtt;
   };
+ 
 
   const dels = ins.map(function (input, i) {
     return el.delay(
@@ -124,7 +130,7 @@ function dampFDN(props: FDNProps, ...ins) {
   const tapDelayLevel = (i: number) => {
     const baseAtt = Math.sqrt(1 / len);
     const normStruct = el.max( el.db2gain(-35), el.sub(
-      1,
+      1 + EPS,
       el.div( structure[i % structure.length], structureMax) 
     ));
     // this will help the taps not explode but have enough energy
@@ -139,7 +145,7 @@ function dampFDN(props: FDNProps, ...ins) {
     return el.select(
       dial,
       // darker
-      el.svf(fcLPF, el.div(1 , offset), el.mul(el.db2gain(0.5), input)),
+      el.svf( fcLPF, el.div(1 , el.square(offset)), el.mul(el.db2gain(0.5), input)),
       // brighter
       el.svfshelf(
         { mode: "highshelf" },
@@ -156,7 +162,7 @@ function dampFDN(props: FDNProps, ...ins) {
   const dels = ins.map(function (input, i) {
     return el.add(
       toneDial(input, structure[i]),
-      el.mul(decay, el.smooth(0.0105, el.tapIn({ name: `${name}:fdn${i}` })))
+      el.mul( 1 + EPS, decay, el.smooth(0.0025, el.tapIn({ name: `${name}:fdn${i}` })))
     );
   });
 
@@ -219,15 +225,15 @@ export default function srvbEarly(
   const ms2samps = (ms) => sampleRate * (ms / 1000.0);
 
   const d1 = diffuse(
-    { structure: structureArray, maxLengthSamp: ms2samps(43) },
+    { structure: structureArray, structureMax, maxLengthSamp: ms2samps(43) },
     ...eight
   );
   const d2 = diffuse(
-    { structure: structureArray, maxLengthSamp: ms2samps(97) },
+    { structure: structureArray, structureMax, maxLengthSamp: ms2samps(97) },
     ...d1
   );
   const d3 = diffuse(
-    { structure: structureArray, maxLengthSamp: ms2samps(117) },
+    { structure: structureArray, structureMax,maxLengthSamp: ms2samps(117) },
     ...d2
   );
 
@@ -260,20 +266,29 @@ export default function srvbEarly(
   // interleaved dimensional Downmix ( optimised to build the spatial delays when needed )
   let spat = (i, x: ElemNode): ElemNode =>
     el.delay(
-      { key: `downmix:${i}`, size: ms2samps(100) },
+      { key: `downmix:${i}`, size: ms2samps( 60 + ( i * 1.618) ) },
       el.sm( el.sub(1, dimension) ),
       0,
-      x
+      el.mul(-1, x)
     );
 
   let yl = el.mul(
     el.db2gain(-3),
-    el.add(spat(0, r0[0]), r0[1], spat(2, r0[2]), r0[3])
+      el.add( 
+            spat(0, r0[0]), 
+            r0[3], 
+            spat(5, r0[5]), 
+            r0[7] 
+      )
   );
 
   let yr = el.mul(
     el.db2gain(-3),
-    el.add(r0[4], spat(5, r0[5]), r0[6], spat(7, r0[7]))
+      el.add( 
+            r0[1], 
+            spat(2, r0[2]), 
+            r0[4], 
+            spat(6, r0[6] ))
   );
   // Wet dry mixing
   return [el.select(props.mix, yl, xl), el.select(props.mix, yr, xr)];
