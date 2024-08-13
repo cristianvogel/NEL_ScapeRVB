@@ -1,11 +1,12 @@
 
-import { Renderer, el, createNode, ElemNode } from '@elemaudio/core';
+import { Renderer, el, ElemNode } from '@elemaudio/core';
 import { argMax, rotate } from "@thi.ng/arrays";
 import { RefMap } from './RefMap';
 import srvbEarly from './srvb-er';
 import { clamp, smoothStep, schlick, EPS } from '@thi.ng/math';
 import { equiv } from '@thi.ng/equiv';
 import { NUM_SEQUENCES, OEIS_SEQUENCES } from './srvb-er';
+import scape from './scape';
 
 type StructureData = {
   consts: Array<ElemNode>;
@@ -23,8 +24,7 @@ let core = new Renderer((batch) => {
 // Next, a RefMap for coordinating our refs
 let refs:RefMap = new RefMap(core);
 
-// Create our custom nodes
-// let _convolver = (props, ...childs) => createNode("convolver", props, childs);
+
 
 
 // the conditions that will trigger a full re-render of the node graph
@@ -33,6 +33,7 @@ function shouldRender(prev, curr) {
     || (curr === null)
     || (prev.sampleRate !== curr.sampleRate)
     || (prev.structure !== Math.round(curr.structure * NUM_SEQUENCES))
+    || (prev.fader !== curr.fader)
   return result;
 }
 // needs to have populated structure data to start with
@@ -66,11 +67,22 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     structureMax: __state.structureMax || 400, // handle the case where the max was not computed
   };
 
+  const tailScape = {
+    shaped: true,
+    fader: clamp(__state.fader, EPS, 1 - EPS),
+  };
+
   if (shouldRender(__memState, __state)) {
       // first, build all the new structure const refs
       structureData = handleStructureChange( refs, srvb.structure );
       // then, render the graph
-      const graph = core.render(...srvbEarly({
+      const graph = core.render(
+      ...scape({
+        shaped: true,
+        position:  tailScape.fader, // fader is the position
+      }, 
+        
+        ...srvbEarly({
       key: 'srvbEarly',
       sampleRate: __state.sampleRate,
       size: refs.getOrCreate('size', 'const', { value: srvb.size }, []),
@@ -82,8 +94,9 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
       structureMax: refs.getOrCreate('structureMax', 'const', { value: structureData.max, key: 'structureMax' }, []), // max value of the series
     },
       [ el.in({ channel: 0 }), el.in({ channel: 1 }) ],
-      ...structureData.consts)
-    );
+      ...structureData.consts ) // end srvbEarly
+    ) // end scape
+ ); // end core.render
   } else {
 
     refs.update('size', { value: srvb.size });
@@ -105,6 +118,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
   __memState = __state;
   __memState.structure = srvb.structure;
   __memState.structureMax = structureData.max;
+  __memState.fader = tailScape.fader;
 
   // smooth step on the size param using CHOC setInterval and thi.ng interpolation
   // mutates the __state.size entry directly
