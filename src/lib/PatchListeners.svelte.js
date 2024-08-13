@@ -5,6 +5,7 @@ import { equiv } from "@thi.ng/equiv";
 // via the Cables patch
 export function initPatchListeners(patch) {
   const ui_dialValues = patch.getVar("ui_dialValues_object");
+
  let prevValues = null;
   if (ui_dialValues) {
     // Will be called every time value changes

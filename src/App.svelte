@@ -1,21 +1,38 @@
-<script >
+<script>
   import { onMount } from "svelte";
-  import { WWTimer } from "./lib/WorkerTimer.svelte";
+  import { SimpleTimer } from "./lib/Timer";
+  import { CablesPatch } from "./stores/stores.svelte";
   import { fade } from "svelte/transition";
   import Plugin from "./lib/Plugin.svelte";
   import { initPatchListeners } from "./lib/PatchListeners.svelte";
-  import { MessageToHost, RegisterMessagesFromHost } from "./lib/NativeMessage.svelte";
-
- // @ts-ignore
+  import {
+    MessageToHost,
+    RegisterMessagesFromHost,
+  } from "./lib/NativeMessage.svelte";
 
   let cablesLoaded = $state(false);
 
-  const timers = [new WWTimer(500), new WWTimer(1000), new WWTimer(2000)];
-
+  const timers = [
+    new SimpleTimer(500),
+    new SimpleTimer(1000),
+    new SimpleTimer(2000),
+  ];
   let timedOut = $state(false);
 
+  //// CABLES loaded this way works most reliably
+  const script = document.createElement("script");
+  script.type = "text/javascript";
+  script.src = "/cables-ui/js/patch.js";
+  script.async = true;
+  document.head.appendChild(script);
+
   onMount(() => {
-    // First setup the listener for CABLES loader
+    // Do first engine init
+    RegisterMessagesFromHost();
+    MessageToHost.requestReady();
+
+    // Second setup the listener for CABLES loader
+
     document.addEventListener("CABLES.jsLoaded", function () {
       CABLES.patch = new CABLES.Patch({
         patch: CABLES.exportedPatch,
@@ -25,33 +42,22 @@
         glCanvasId: "glcanvas",
         glCanvasResizeToWindow: true,
         onError: (e) => console.error(e),
-        onPatchLoaded: () => console.log("Patch Loaded"),
+        onPatchLoaded: () => (cablesLoaded = true),
         onFinishedLoading: initPatchListeners,
         canvas: { alpha: true, premultipliedAlpha: true }, // make canvas transparent
       });
+      // update stores related to Cables patch
       console.log("Patch vars ->", CABLES.patch.getVars());
-      // set state flag
-      cablesLoaded = true;
-    });
 
-      // Do first engine init
-      RegisterMessagesFromHost()
-      MessageToHost.requestReady()
+      CablesPatch.update(CABLES.patch);
+    });
   });
 </script>
-
-<svelte:head>
-  <script type="text/javascript" src="/cables-ui/js/patch.js" async></script>
-</svelte:head>
 
 <canvas id="glcanvas" width="100vw" height="100vh"></canvas>
 
 {#if cablesLoaded}
-  {timers[2].start(() => (timedOut = true))}
   <Plugin />
-  {#if !timedOut}
-    <pre class="console-text" out:fade>NEL SRVB v1.0</pre>
-  {/if}
 {:else}
   <pre class="console-text" in:fade>Loading...</pre>
 {/if}
