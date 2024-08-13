@@ -63,7 +63,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     mix: __state.mix,
     tone: clamp(__state.tone * 2 - 1, -0.99, 1),
     structure: Math.round( (__state.structure || 0) * NUM_SEQUENCES ),
-    structureMax: __state.structureMax || 400,
+    structureMax: __state.structureMax || 400, // handle the case where the max was not computed
   };
 
   if (shouldRender(__memState, __state)) {
@@ -148,6 +148,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
   function convertSeriesToConsts(series: number[], seriesMax: number, _refs: RefMap) {
     return series.map( (value, j) => {
       let updatedValue = value;
+      // try to invent a value if it's not there
       if ( value === null || value === undefined) {
         updatedValue = Math.random() * seriesMax ;
       }
