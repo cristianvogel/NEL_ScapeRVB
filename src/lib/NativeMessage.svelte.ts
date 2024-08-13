@@ -1,4 +1,4 @@
-import { ConsoleText } from "../stores/stores.svelte";
+import { ConsoleText, HostState } from "../stores/stores.svelte";
 
 //@ts-nocheck
 export declare var globalThis: any;
@@ -14,21 +14,13 @@ export declare var globalThis: any;
 function processHostState(state: any) {
   // ━━━━━━━
   // Parse the state object and convert it to an array of key-value pairs
-  let parsedEntries: Array<[string, any]> = [];
+  let parsedEntries: { [key: string]: number | number[] } = {};
   try {
-    parsedEntries = Object.entries(JSON.parse(state));
+    parsedEntries = JSON.parse(state);
   } catch (e) {
     console.warn("Bad state received", parsedEntries);
   }
-  const processedEntries: Map<string, number> = new Map(parsedEntries);
- 
-  /** ━━━━━━━
-   * Finally, assign the processed entries as Map<string, number> )
-   * to the HostState store which triggers observer / subscribers
-   * across the View code updating parameter values.
-   **/
-
-  /* TODO: Assign result to Svelte5 store */
+  HostState.update(parsedEntries);
 }
 
 /** ━━━━━━━
@@ -125,8 +117,8 @@ export function RegisterMessagesFromHost() {
    * @param state - The host state change object.
    */
   globalThis.__receiveStateChange__ = function (state: any) {
-   // processHostState(state);
-   //console.log("Receive state change: ", JSON.parse(state));
+  processHostState(state);
+
   };
 
 

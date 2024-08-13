@@ -1,3 +1,4 @@
+//@ts-nocheck
 /// Svelte5 state stores
 
 /////////////////////////
@@ -21,6 +22,15 @@ function consoleText(initial) {
 //////////////////////
 export const CablesPatch = cablesPatch({});
 function cablesPatch(initial) {
+    let current = $state(initial);
+    return {
+        get current() { return current },
+        update(newValues) { current = newValues }
+    };
+}
+//////////////////////
+export const HostState = hostState(new Map< string, number | number[] >());
+function hostState(initial) {
     let current = $state(initial);
     return {
         get current() { return current },

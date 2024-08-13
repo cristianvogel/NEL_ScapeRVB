@@ -3,12 +3,14 @@
   import { SimpleTimer } from "./lib/Timer";
   import { CablesPatch } from "./stores/stores.svelte";
   import { fade } from "svelte/transition";
-  import Plugin from "./lib/Plugin.svelte";
+  import SendToHost from "./lib/SendToHost.svelte";
+  import SendToUi from "./lib/SendToUI.svelte";
   import { initPatchListeners } from "./lib/PatchListeners.svelte";
   import {
     MessageToHost,
     RegisterMessagesFromHost,
   } from "./lib/NativeMessage.svelte";
+
 
   let cablesLoaded = $state(false);
 
@@ -57,7 +59,8 @@
 <canvas id="glcanvas" width="100vw" height="100vh"></canvas>
 
 {#if cablesLoaded}
-  <Plugin />
+  <SendToHost />
+  <SendToUi />
 {:else}
   <pre class="console-text" in:fade>Loading...</pre>
 {/if}

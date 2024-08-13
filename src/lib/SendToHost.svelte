@@ -1,9 +1,7 @@
 <script lang="ts">
-  import { DialValues, ConsoleText } from "../stores/stores.svelte";
-  import { MessageToHost, RegisterMessagesFromHost } from "./NativeMessage.svelte";
-
-  RegisterMessagesFromHost();
-  MessageToHost.requestReady();
+  import { DialValues, ConsoleText, HostState } from "../stores/stores.svelte";
+  import { MessageToHost } from "./NativeMessage.svelte";
+  import SendToUI from "./SendToUI.svelte";
 
   let dialValuesMemo = {};
   $effect(() => {
@@ -21,6 +19,8 @@
       // b) when the component is destroyed
     };
   });
+
+
 </script>
 
 <div class="console-text"><pre>{Object.values(DialValues.current)} | {ConsoleText.current} </pre></div>
