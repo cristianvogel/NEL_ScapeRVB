@@ -12,9 +12,10 @@
       // and an optimisation to avoid sending the same value twice
       
       if (equiv(current[param], hostStateMemo[param])) return;
-      console.log("param ->", param);
+
       if (REGISTERED_PARAM_NAMES.includes(param)) {
-        composeDialValuesUpdate(param, current[param] || 0);
+        composeDialParamsUpdate(param, current[param] || 0);
+        composeExtraParamsUpdate(param, current[param] || 0);
       }
       // now send and update the Svelte5 store
       messageToUI(param, current[param] || 0);
@@ -27,6 +28,11 @@
     };
   });
 
+  /**
+    this can all be massively improved code-wise,
+    just want to see it working first
+  **/
+
   function messageToUI(param, value) {
     let targetVar = CablesPatch.current.getVar("rcv_" + param);
     if (targetVar) {
@@ -34,11 +40,29 @@
     }
   }
 
-  function composeDialValuesUpdate(param, value) {
+  function composeDialParamsUpdate(param, value) {
     let targetVar = CablesPatch.current.getVar("ui_dialValues_object");
-    if (targetVar) {
+    if (!targetVar || Object.keys(targetVar.getValue()).length === 0) return;
+    if (Object.keys(targetVar.getValue()).includes(param)) {
         let currentValue = targetVar.getValue();
         targetVar.setValue( {...currentValue, [param]: value} );
     }
   }
+
+ /**
+  *  This is not working, causing conflicts between sender and receiver
+  * todo: make Object of all extra parameters, like the Dials one
+  */
+  function composeExtraParamsUpdate(param, value) {
+    let targetVar = CablesPatch.current.getVar("ui_position");
+    if (targetVar && param === "position") {
+        targetVar.setValue( value );
+    }
+    targetVar = CablesPatch.current.getVar("ui_scape");
+    if (targetVar && param === "scape") {
+        targetVar.setValue( value );
+    }
+  }
+
+
 </script>

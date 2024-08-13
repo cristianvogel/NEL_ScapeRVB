@@ -1,12 +1,13 @@
 <script lang="ts">
-  import { DialValues, ConsoleText, HostState } from "../stores/stores.svelte";
+  import { UI_DialParams, ConsoleText, UI_ExtraParams } from "../stores/stores.svelte";
   import { MessageToHost } from "./NativeMessage.svelte";
   import SendToUI from "./SendToUI.svelte";
 
   let dialValuesMemo = {};
-  $effect(() => {
-    const current = DialValues.current; 
+  let extraValuesMemo = {};
 
+  $effect(() => {
+    const current = UI_DialParams.current; 
      // iterate over the keys and values of DialValues.current and send MessageToHost
     Object.keys(current).forEach((param) => {
       if (current[param] === dialValuesMemo[param]) return;
@@ -17,13 +18,25 @@
       // if a callback is provided, it will run
       // a) immediately before the effect re-runs
       // b) when the component is destroyed
-    };
+    }
   });
+
+  $effect(() => {
+    const current = UI_ExtraParams.current;
+    // iterate over the keys and values of ExtraValues.current and send MessageToHost
+    Object.keys(current).forEach((param) => {
+      if (current[param] === extraValuesMemo[param]) return;
+        MessageToHost.requestParamValueUpdate(param, current[param] || 0);   
+        extraValuesMemo = current;
+    });
+    return () => { }
+  });
+
 
 
 </script>
 
-<div class="console-text"><pre>{Object.values(DialValues.current)} | {ConsoleText.current} </pre></div>
+<div class="console-text"><pre>{Object.values(UI_DialParams.current)} | {ConsoleText.current} </pre></div>
 
 <style>
   .console-text {
