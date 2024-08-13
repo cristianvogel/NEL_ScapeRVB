@@ -6,7 +6,7 @@ import { Smush32 } from "@thi.ng/random";
 
 // THese number seies are from the OEIS and all sound really cool
 const smush = new Smush32(0xcafebabe);
-export const OEIS_SEQUENCES = [
+const  OEIS_SEQUENCES_16 = [
   [39, 31, 23, 17, 34, 68, 76, 63, 50, 37, 28, 20, 55, 110, 123, 102], // A035506		Stolarsky array read by antidiagonals.  ⭐️⭐️⭐️⭐️
   [16, 22, 31, 40, 52, 68, 90, 121, 152, 192, 244, 312, 402, 523, 644, 796], //  A007604		a(n) = a(n-1) + a(n-1-(number of odd terms so far))
   [22, 37, 21, 59, 27, 43, 24, 83, 35, 53, 26, 31, 20, 29, 18, 67], // A227413		a(1)=1, a(2n)=nthprime(a(n)), a(2n+1)=nthcomposite(a(n)), where nthprime = A000040, nthcomposite = A002808.
@@ -15,7 +15,7 @@ export const OEIS_SEQUENCES = [
   [17, 19, 23, 26, 30, 35, 40, 46, 52, 60, 67, 77, 87, 98, 111, 124], // A000607		Number of partitions of n into prime parts.
   [13, 18, 23, 30, 37, 47, 57, 70, 84, 101, 119, 141, 164, 192, 221, 255], // A01401 Number of partitions of n into at most 5 parts.
   [34, 47, 62, 79, 97, 118, 141, 166, 192, 221, 253, 285, 320, 357, 395, 436], // A064356		Dimension of J_(12n,n+1), the Jacobi form of weight 12n and index n+1.
-  [38, 67, 143, 232, 10, 22, 46, 101, 177, 376, 609], // A0355077 	Inverse Stolarsky array read by antidiagonals  :: cropped down
+  [17, 12, 26, 18, 37, 27, 54, 38, 76, 54, 106, 76, 145, 104, 199, 142], // A096441		Number of palindromic and unimodal compositions of n. 
   [15, 18, 22, 27, 32, 38, 46, 54, 64, 76, 89, 104, 122, 142, 165, 192], // A000009 number of partitions of n into distinct parts; number of partitions of n into odd parts.
   [97, 66, 53, 35, 26, 144, 322, 267, 301, 212, 157, 107, 86, 57, 43, 28], // A199535		Clark Kimberling's even first column Stolarsky array read by antidiagonals.  quite large
   [16, 42, 20, 32, 24, 52, 18, 40, 24, 36, 28, 58, 16, 60, 30, 36], // A000010		Euler totient function phi(n)
@@ -24,6 +24,8 @@ export const OEIS_SEQUENCES = [
   [16, 22, 29, 37, 46, 56, 67, 79, 92, 106, 121, 137, 154, 172, 191, 211], // A000124		Central polygonal numbers (the Lazy Caterer's sequence)
   [17, 43, 16, 44, 15, 45, 14, 46, 79, 113, 78, 114, 77, 39, 78, 38], // A005132		Recamán's sequence
 ];
+// crop down to sequences of 8
+export const OEIS_SEQUENCES = OEIS_SEQUENCES_16.map((seq) => seq.slice(0, 8));
 
 export const NUM_SEQUENCES = OEIS_SEQUENCES.length - 1;
 
@@ -52,13 +54,19 @@ const H8 = [
   [1, -1, -1, 1, -1, 1, 1, -1],
 ];
 
-// A diffusion step expecting exactly 8 input channels with
-// a maximum diffusion time of 500ms
-type Structure = {
-  integers: Array<number> | Array<ElemNode>;
-  length: () => number;
-  max: number | ElemNode;
-};
+interface SRVBProps {
+  size: ElemNode;
+  decay: ElemNode;
+  excursion?: ElemNode;
+  mix: ElemNode;
+  tone: ElemNode;
+  position: ElemNode; // rounded integer behaviour
+  structureMax: ElemNode; // max value of the series
+  // non-signal data
+  sampleRate: number;
+  structure: number;
+  key: string;
+}
 
 type DiffuseProps = {
   seededNormMinMax?: number;
@@ -66,7 +74,18 @@ type DiffuseProps = {
   structureMax: ElemNode;
   maxLengthSamp: number;
 };
-
+type FDNProps = {
+  name: string;
+  sampleRate: number;
+  structureArray: Array<ElemNode>;
+  structureMax: ElemNode;
+  tone: ElemNode;
+  size: ElemNode;
+  decay: ElemNode;
+  modDepth?: ElemNode;
+};
+// A diffusion step expecting exactly 8 input channels with
+// a maximum diffusion time of 500ms
 function diffuse(props: DiffuseProps, ...ins) {
   const { maxLengthSamp } = props;
   const structure: Array<ElemNode> = props.structure;
@@ -100,17 +119,6 @@ function diffuse(props: DiffuseProps, ...ins) {
 }
 
 // An eight channel feedback delay network
-type FDNProps = {
-  name: string;
-  sampleRate: number;
-  structureArray: Array<ElemNode>;
-  structureMax: ElemNode;
-  tone: ElemNode;
-  size: ElemNode;
-  decay: ElemNode;
-  modDepth?: ElemNode;
-};
-
 function dampFDN(props: FDNProps, ...ins) {
   const len = ins.length;
   const { name, tone, size, decay, modDepth } = props;
@@ -199,23 +207,10 @@ function dampFDN(props: FDNProps, ...ins) {
 /** /
  * /// MAIN
  **/
-interface SRVBProps {
-  size: ElemNode;
-  decay: ElemNode;
-  excursion?: ElemNode;
-  mix: ElemNode;
-  tone: ElemNode;
-  dimension: ElemNode; // rounded integer behaviour
-  structureMax: ElemNode; // max value of the series
-  // non-signal data
-  sampleRate: number;
-  structure: number;
-  key: string;
-}
 
 export default function srvbEarly(props: SRVBProps, inputs, ...structureArray) {
   // xl , xr -- unprocessed input
-  const { sampleRate, key, dimension, structureMax } = props;
+  const { sampleRate, key, position, structureMax } = props;
   const [xl, xr] = inputs;
   // input attenuation
   const _xl = el.dcblock(el.mul(xl, el.db2gain(-1.5)));
@@ -229,15 +224,15 @@ export default function srvbEarly(props: SRVBProps, inputs, ...structureArray) {
   const ms2samps = (ms) => sampleRate * (ms / 1000.0);
 
   const d1 = diffuse(
-    { structure: structureArray, structureMax, maxLengthSamp: ms2samps(43) },
+    { structure: structureArray, structureMax , maxLengthSamp: ms2samps(43) },
     ...eight
   );
   const d2 = diffuse(
-    { structure: structureArray, structureMax, maxLengthSamp: ms2samps(97) },
+    { structure: structureArray, structureMax , maxLengthSamp: ms2samps(97) },
     ...d1
   );
   const d3 = diffuse(
-    { structure: structureArray, structureMax, maxLengthSamp: ms2samps(117) },
+    { structure: structureArray, structureMax , maxLengthSamp: ms2samps(117) },
     ...d2
   );
 
@@ -268,22 +263,22 @@ export default function srvbEarly(props: SRVBProps, inputs, ...structureArray) {
   );
 
   // interleaved dimensional Downmix ( optimised to build the spatial delays when needed )
-  let spat = (i, x: ElemNode): ElemNode =>
+  let positioning = (i, x: ElemNode): ElemNode =>
     el.delay(
       { key: `downmix:${i}`, size: ms2samps(60 + i * 1.618) },
-      el.sm(el.sub(1, dimension)),
+      el.sm(el.sub(1, position)),
       0,
       el.mul(-1, x)
     );
 
   let yl = el.mul(
     el.db2gain(-3),
-    el.add(spat(0, r0[0]), r0[3], spat(5, r0[5]), r0[7])
+    el.add(positioning(0, r0[0]), r0[3], positioning(5, r0[5]), r0[7])
   );
 
   let yr = el.mul(
     el.db2gain(-3),
-    el.add(r0[1], spat(2, r0[2]), r0[4], spat(6, r0[6]))
+    el.add(r0[1], positioning(2, r0[2]), r0[4], positioning(6, r0[6]))
   );
   // Wet dry mixing
   return [el.select(props.mix, yl, xl), el.select(props.mix, yr, xr)];

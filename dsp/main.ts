@@ -1,5 +1,3 @@
-//@ts-check
-
 
 import { Renderer, el, createNode, ElemNode } from '@elemaudio/core';
 import { argMax, rotate } from "@thi.ng/arrays";
@@ -11,7 +9,7 @@ import { NUM_SEQUENCES, OEIS_SEQUENCES } from './srvb-er';
 
 type StructureData = {
   consts: Array<ElemNode>;
-  max: () => ElemNode;
+  max: number;
 };
 
 // First, we initialize a custom Renderer instance that marshals our instruction
@@ -37,47 +35,51 @@ function shouldRender(prev, curr) {
     || (prev.structure !== Math.round(curr.structure * NUM_SEQUENCES))
   return result;
 }
+// needs to have populated structure data to start with
+const defaultStructure = OEIS_SEQUENCES[0];
 
 let structureData:StructureData = {
-  consts: convertSeriesToConsts(OEIS_SEQUENCES[0].slice(0, 8), refs),
-  max: ()=>el.const({ value: 0 }),
+  consts: convertSeriesToConsts(defaultStructure, argMax( defaultStructure, 17 ), refs),
+  max: argMax( defaultStructure, 17 ),
 };
 
-
+/////////////////////////////////////////////////////////////////
 // using memoization to store the last state and only re-render if the state has changed
 let __memState: null | any = null;
 let t = 0.0; // interpolation time for size param
-
+/////////////////////////////////////////////////////////////////
+// this will receive updated state from the native side
 globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
 
+  // parse the state
   const __state = JSON.parse(stateReceivedFromNative);
-
-  smoothSizeInterpolation();
-
+  // special case for the size param, we want to interpolate it smoothly
+  smoothSizeInterpolation();  
   // interpreted state, any adjustments should be done here before rendering to the graph
   const srvb = {
     size: __state.size,
-    dimension: clamp(__state.dimension, EPS, 1 - EPS),
-    decay: __state.decay,
+    position: clamp(__state.position, EPS, 1 - EPS),
+    diffuse: __state.diffuse,
     mix: __state.mix,
     tone: clamp(__state.tone * 2 - 1, -0.99, 1),
-    structure: Math.round(__state.structure * NUM_SEQUENCES),
-    structureMax: __state.structureMax,
+    structure: Math.round( (__state.structure || 0) * NUM_SEQUENCES ),
+    structureMax: __state.structureMax || 400,
   };
 
   if (shouldRender(__memState, __state)) {
-     structureData = handleStructureChange( refs, srvb.structure );
-    const graph = core.render(...srvbEarly({
+      // first, build all the new structure const refs
+      structureData = handleStructureChange( refs, srvb.structure );
+      // then, render the graph
+      const graph = core.render(...srvbEarly({
       key: 'srvbEarly',
       sampleRate: __state.sampleRate,
       size: refs.getOrCreate('size', 'const', { value: srvb.size }, []),
-      decay: refs.getOrCreate('decay', 'const', { value: srvb.decay }, []), // was fb_amount
+      decay: refs.getOrCreate('diffuse', 'const', { value: srvb.diffuse }, []), // was fb_amount
       mix: refs.getOrCreate('mix', 'const', { value: srvb.mix }, []), // overall wet level
       tone: refs.getOrCreate('tone', 'const', { value: srvb.tone }, []), // coming always as 0-1
-      dimension: refs.getOrCreate('dimension', 'const', { value: srvb.dimension }, []), // coming always as 0-1
+      position: refs.getOrCreate('position', 'const', { value: srvb.position }, []), // coming always as 0-1
       structure: srvb.structure || 0,
-      structureMax: structureData.max(),
-      
+      structureMax: refs.getOrCreate('structureMax', 'const', { value: structureData.max, key: 'structureMax' }, []), // max value of the series
     },
       [ el.in({ channel: 0 }), el.in({ channel: 1 }) ],
       ...structureData.consts)
@@ -85,14 +87,15 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
   } else {
 
     refs.update('size', { value: srvb.size });
-    refs.update('decay', { value: srvb.decay });
+    refs.update('diffuse', { value: srvb.diffuse });
     refs.update('mix', { value: srvb.mix });
     refs.update('tone', { value: srvb.tone });
-    refs.update('dimension', { value: srvb.dimension });
-    refs.update('structureMax', { value: srvb.structureMax });
+    refs.update('position', { value: srvb.position });
+    refs.update('structureMax', { value: srvb.structureMax});
 
-   // update the structure consts
-    OEIS_SEQUENCES[srvb.structure].slice(0,8).forEach((value, i) => { refs.update(`structureConstNode_${i}`, { value });
+   // update the structure consts, should match the refs names set up by handleStructureChange
+    OEIS_SEQUENCES[srvb.structure].forEach((value, i) => { 
+      if ( value !== undefined) refs.update(`structureConstNode_${i}`, { value: value });
     });
 
 
@@ -101,6 +104,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
 
   __memState = __state;
   __memState.structure = srvb.structure;
+  __memState.structureMax = structureData.max;
 
   // smooth step on the size param using CHOC setInterval and thi.ng interpolation
   // mutates the __state.size entry directly
@@ -122,39 +126,35 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     }
   }
 
-
 }; // end of receiveStateChange
 
   // build the structure outside the dsp code
   function handleStructureChange( _refs:RefMap, currStructIndex = 0) {
     {
-      console.log( OEIS_SEQUENCES );
-      let series = OEIS_SEQUENCES[currStructIndex].slice(0, 8);
+      let series = OEIS_SEQUENCES[currStructIndex];
       console.log(`Using series ${series} `);
-      // this should compute norm only on the set actually being used which is 8 at a time
+      // this should compute norm only on the set actually being used which is 8 elements long
       const seriesMax =  series[ argMax(series) ] ;
-      // as the overall volume of a delayunit is also computed from the series, i had to put an upped limit
-      // on the max value to prevent the series from being too quiet ( i.e. the normalised range is too wide )
-      console.log(`Using series max ${seriesMax} `);
       // convert the sequences to signals
-  
-      const sequenceAsSignals = convertSeriesToConsts(series, _refs);
-
-      const structureEight:StructureData = {
+      const sequenceAsSignals = convertSeriesToConsts(series, seriesMax, _refs);
+      const sd:StructureData = {
         consts: sequenceAsSignals,
-        max: ()=>_refs.getOrCreate( 'structureMax', 'const', { value: seriesMax, key: `oeis:max_${series.slice(0,8)}` }, [] ),
+        max: seriesMax,
       };
-
-      return structureEight;
+      return sd;
     };
   }
 
-function convertSeriesToConsts(series: number[], _refs: RefMap) {
-  return series.map((value, j) => {
-    const t = _refs.getOrCreate(`structureConstNode_${j}`, "const", { value, key: `structureConst:${j}` }, []);
-    return t;
-  });
-}
+  function convertSeriesToConsts(series: number[], seriesMax: number, _refs: RefMap) {
+    return series.map( (value, j) => {
+      let updatedValue = value;
+      if ( value === null || value === undefined) {
+        updatedValue = Math.random() * seriesMax ;
+      }
+      const t = _refs.getOrCreate(`structureConstNode_${j}`, "const", { value: updatedValue, key: `structureConst:${j}` }, []);
+      return t;
+    });
+  }
 
 
 /////////////////////////////////////////////////////////////////
