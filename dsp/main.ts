@@ -92,8 +92,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     refs.update('structureMax', { value: srvb.structureMax });
 
    // update the structure consts
-    OEIS_SEQUENCES[srvb.structure].forEach((value, i) => {
-      refs.update(`structureConstNode_${i}`, { value });
+    OEIS_SEQUENCES[srvb.structure].slice(0,8).forEach((value, i) => { refs.update(`structureConstNode_${i}`, { value });
     });
 
 
