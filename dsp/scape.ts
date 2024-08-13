@@ -8,11 +8,12 @@ export default function scape(props, ...inputs) {
   invariant(typeof props === 'object', 'Unexpected props object');
   // Create our custom nodes
   let convolver = (props, ...childs) => createNode("convolver", props, childs);
-  const { shaped, position } = props;
+
+  const { shaped, fader } = props;
 
   let tailSectionLR = (_inputs) => [
-    createHermiteVInterpolation(0, shaped, position, _inputs[0]),
-    createHermiteVInterpolation(1, shaped, position, _inputs[1])
+    createHermiteVInterpolation(0, shaped, fader, _inputs[0]),
+    createHermiteVInterpolation(1, shaped, fader, _inputs[1])
   ];
 
   // Define our paths always uppercase, even if the filename has lowercase
@@ -33,8 +34,8 @@ export default function scape(props, ...inputs) {
     [
       [0.0, [1, 0, 0, 0]], // a
       [0.125, [0, 1, 0, 0]], // b
-      [0.45, [0, 0, 1, 0]], // c
-      [1.0, [0, 0, 0, 0.9]], // d
+      [0.45, [0, 0, 0.707, 0]], // c
+      [1.0, [0, 0, 0, 0.303]], // d
     ]
   );
 

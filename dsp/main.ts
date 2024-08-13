@@ -78,8 +78,8 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
       // then, render the graph
       const graph = core.render(
       ...scape({
-        shaped: true,
-        position:  tailScape.fader, // fader is the position
+        shaped: false,
+        fader:  tailScape.fader, // fader is the position
       }, 
         
         ...srvbEarly({

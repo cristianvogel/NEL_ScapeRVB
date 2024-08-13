@@ -42,12 +42,10 @@
 
   function composeDialParamsUpdate(param, value) {
     let targetVar = CablesPatch.current.getVar("ui_dialValues_object");
-    const keys = Object.keys(targetVar.getValue());
-    if (!targetVar || keys.length === 0 ) return;
-    if (Object.keys(targetVar.getValue()).includes(param)) {
+  
         let currentValue = targetVar.getValue();
         targetVar.setValue( {...currentValue, [param]: value} );
-    }
+    
   }
 
  /**
