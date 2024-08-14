@@ -1,20 +1,16 @@
-import invariant from 'invariant';
+
 import { el, createNode, ElemNode } from '@elemaudio/core';
-import { HERMITE_V, VEC3, ramp } from "@thi.ng/ramp";
 
 
-export default function scape(props, ...inputs) {
+export default function scape(props, currentVec: ElemNode[], ...inputs: ElemNode[]) {
 
-  invariant(typeof props === 'object', 'Unexpected props object');
-  // Create our custom nodes
-  let convolver = (props, ...childs) => createNode("convolver", props, childs);
+  console.log( `Current interpolation vector: ${currentVec}` );
+  const { shaped }: { shaped: boolean,  sampleRate: number } = props; // numbers
+  const {  mix, scape } : { mix: ElemNode, scape: ElemNode}  = props; // nodes
 
-  const { shaped, fader } = props;
+   // Create our custom nodes
+  let convolver = (_props, ...childs) => createNode("convolver", _props, childs);
 
-  let tailSectionLR = (_inputs) => [
-    createHermiteVInterpolation(0, shaped, fader, _inputs[0]),
-    createHermiteVInterpolation(1, shaped, fader, _inputs[1])
-  ];
 
   // Define our paths always uppercase, even if the filename has lowercase
   // because it is a Map key, not a real fs path
@@ -25,49 +21,47 @@ export default function scape(props, ...inputs) {
     { name: "EUROPA", att: -36 }
   ];
 
-  // use the generic `ramp()` factory function with a custom implementation
-  // see: https://docs.thi.ng/umbrella/ramp/interfaces/RampImpl.html
-  const vectorInterp = ramp(
-    // use a vector interpolation preset with the VEC3 API
-    HERMITE_V(VEC3),
-    // keyframes used for crossfading between 4 IRs
-    [
-      [0.0, [1, 0, 0, 0]], // a
-      [0.125, [0, 1, 0, 0]], // b
-      [0.45, [0, 0, 0.707, 0]], // c
-      [1.0, [0, 0, 0, 0.303]], // d
-    ]
-  );
 
-  // DSP not needed inside of render hook
-  let tail = (_path, shaped, key = "attIr_", channel = 0, attenuationDb = -24, _in) => {
+  let convolveTail = (_path, shaped, key = "attIr_", channel = 0, attenuationDb = -24, _in) => {
     let path = (shaped ? "SHAPED_" : "") + _path + "_" + channel; // use upper case for everything in path
-    let result = convolver({ path, key }, el.mul(el.db2gain(el.const({ value: attenuationDb, key: 'att_' + key })), _in))
-    return result;
+    return convolver({ path, key }, 
+                      el.mul( el.db2gain( el.const({ value: attenuationDb, key: 'att_' + key })), 
+                      _in));
   };
 
 
   // HERMITE vector cross fader
 
-  function createHermiteVInterpolation(channel = 0, shaped = false, fader = 0.1, _in) {
+  function HermiteVecInterp(channel = 0, shaped = false, _currentVec: ElemNode[],  _in: ElemNode) {
     let mixer: ElemNode[] = []
-    responses.forEach((response, index) => {
+    responses.forEach((response, i) => {
       const { name, att } = response;
-      const key = `ir${name + index}`;
-
+      const key = `ir${name + i}`;
+// possibly optimise here by conditionally not building silent IRs
       mixer.push(
         el.mul(
           el.sm(
-            el.const({ value: vectorInterp.at(fader)[index], key })
+           // el.const({ value: vectorInterp.at(t)[i], key })
+           _currentVec[i]
           ),
-          tail(name, shaped, key, channel, att, _in )
+          convolveTail( name, shaped, key, channel, att, _in )
         )
       );
     });
     return el.add(...mixer)
   }
 
-  return [
-    ...tailSectionLR( inputs )
+
+  let tailSectionLR = (_inputs: ElemNode[]) => [
+    el.mul( scape , HermiteVecInterp( 0, shaped, currentVec,  _inputs[0] ) ),
+    el.mul( scape,  HermiteVecInterp( 1, shaped, currentVec, _inputs[1] ) )
   ];
+
+  const erDryMix = [ el.add( el.mul( inputs[0], 0.5 ), el.mul( el.in({channel: 0}) , 0.5 ) ),
+                      el.add( el.mul( inputs[1], 0.5 ), el.mul( el.in({channel: 1}) , 0.5 ) ) ];
+
+  const yL = el.select( mix, tailSectionLR( erDryMix )[0], inputs[0] );
+  const yR = el.select( mix, tailSectionLR( erDryMix )[1], inputs[1] );
+
+  return [ yL, yR ];
 }

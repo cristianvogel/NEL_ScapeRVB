@@ -3,6 +3,7 @@
 import { el, ElemNode } from "@elemaudio/core";
 import { EPS } from "@thi.ng/math";
 import { Smush32 } from "@thi.ng/random";
+import { DiffuseProps, FDNProps, SRVBProps } from "../src/types";
 
 // THese number seies are from the OEIS and all sound really cool
 const smush = new Smush32(0xcafebabe);
@@ -54,36 +55,7 @@ const H8 = [
   [1, -1, -1, 1, -1, 1, 1, -1],
 ];
 
-interface SRVBProps {
-  size: ElemNode;
-  decay: ElemNode;
-  excursion?: ElemNode;
-  mix: ElemNode;
-  tone: ElemNode;
-  position: ElemNode; // rounded integer behaviour
-  structureMax: ElemNode; // max value of the series
-  // non-signal data
-  sampleRate: number;
-  structure: number;
-  key: string;
-}
 
-type DiffuseProps = {
-  seededNormMinMax?: number;
-  structure: Array<ElemNode>;
-  structureMax: ElemNode;
-  maxLengthSamp: number;
-};
-type FDNProps = {
-  name: string;
-  sampleRate: number;
-  structureArray: Array<ElemNode>;
-  structureMax: ElemNode;
-  tone: ElemNode;
-  size: ElemNode;
-  decay: ElemNode;
-  modDepth?: ElemNode;
-};
 // A diffusion step expecting exactly 8 input channels with
 // a maximum diffusion time of 500ms
 function diffuse(props: DiffuseProps, ...ins) {
@@ -171,7 +143,7 @@ function dampFDN(props: FDNProps, ...ins) {
   // The unity-gain one pole lowpass here is tuned to taste along
   // the range [0.001, 0.5]. Towards the top of the range, we get into the region
   // of killing the decay time too quickly. Towards the bottom, not much damping.
-  const dels = ins.map(function (input, i) {
+  const dels = ins.map( function (input, i) {
     return el.add(
       toneDial(input, structure[i]),
       el.mul(
@@ -208,9 +180,9 @@ function dampFDN(props: FDNProps, ...ins) {
  * /// MAIN
  **/
 
-export default function srvbEarly(props: SRVBProps, inputs, ...structureArray) {
+export default function srvbEarly(props: SRVBProps, inputs: ElemNode[], ...structureArray: ElemNode[]) {
   // xl , xr -- unprocessed input
-  const { sampleRate, key, position, structureMax } = props;
+  const { sampleRate, key, position, structureMax, mix } = props;
   const [xl, xr] = inputs;
   // input attenuation
   const _xl = el.dcblock(el.mul(xl, el.db2gain(-1.5)));
@@ -281,5 +253,5 @@ export default function srvbEarly(props: SRVBProps, inputs, ...structureArray) {
     el.add(r0[1], positioning(2, r0[2]), r0[4], positioning(6, r0[6]))
   );
   // Wet dry mixing
-  return [el.select(props.mix, yl, xl), el.select(props.mix, yr, xr)];
+  return [el.select( mix, yl, xl), el.select( mix, yr, xr)];
 }

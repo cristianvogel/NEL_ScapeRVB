@@ -149,7 +149,7 @@ export function RegisterMessagesFromHost() {
    */
   globalThis.__receiveError__ = function (error: any) {
     //ConsoleText.set("Error: " + error);
-    console.error("Error: ", error);
+    ConsoleText.update("Error: " + error);
   };
 
   globalThis.__log__ = function (log: any) {
