@@ -61,6 +61,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
   const shared = {
     sampleRate: __state.sampleRate,
     mix: __state.mix,
+    dryInputs: [el.in({ channel: 0 }), el.in({ channel: 1 })],
   };
   const srvb = {
     structure: Math.round((__state.structure || 0) * NUM_SEQUENCES),
@@ -87,89 +88,59 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
       structureData = handleStructureChange(refs, srvb.structure);
     }
 
-    // Then, build any new vector data from the Hermite ramp
-    if (__memState && __memState.scapeLength !== __state.scapeLength) {
-      vectorData = HERMITE.at(tailScape.scapeLength) as number[];
-    }
+    // prettier-ignore
     // then, render the graph
     const graph = core.render(
       ...scape(
         {
           sampleRate: shared.sampleRate,
           shaped: tailScape.shaped,
-          mix: refs.getOrCreate(
-            "mix",
-            "const",
-            { value: shared.mix, key: "effectMix" },
-            []
-          ),
-          scapeLevel: refs.getOrCreate(
-            "scapeLevel",
-            "const",
-            { value: tailScape.scapeLevel },
-            []
-          ),
-          v1: refs.getOrCreate("v1", "const", { value: vectorData[0] }, []),
+          mix: refs.getOrCreate("mix", "const", { value: shared.mix, key: "effectMix" }, []),
+          scapeLevel: refs.getOrCreate("scapeLevel", "const", { value: tailScape.scapeLevel }, []),
+          v1: refs.getOrCreate("v1", "const", { value: vectorData[0] }, []), 
           v2: refs.getOrCreate("v2", "const", { value: vectorData[1] }, []),
           v3: refs.getOrCreate("v3", "const", { value: vectorData[2] }, []),
           v4: refs.getOrCreate("v4", "const", { value: vectorData[3] }, []),
         },
+        shared.dryInputs,
         ...srvbEarly(
           {
             key: "srvbEarly",
             sampleRate: shared.sampleRate,
             size: refs.getOrCreate("size", "const", { value: srvb.size }, []),
-            decay: refs.getOrCreate(
-              "diffuse",
-              "const",
-              { value: srvb.diffuse },
-              []
-            ),
-            mix: refs.getOrCreate(
-              "mix",
-              "const",
-              { value: shared.mix, key: "effectMix" },
-              []
-            ),
+            decay: refs.getOrCreate("diffuse", "const", { value: srvb.diffuse }, []),
+            mix: refs.getOrCreate("mix", "const", { value: shared.mix, key: "effectMix" }, []),
             tone: refs.getOrCreate("tone", "const", { value: srvb.tone }, []),
-            position: refs.getOrCreate(
-              "position",
-              "const",
-              { value: srvb.position },
-              []
-            ),
+            position: refs.getOrCreate("position", "const", { value: srvb.position }, []),
             structure: srvb.structure || 0,
-            structureMax: refs.getOrCreate(
-              "structureMax",
-              "const",
-              { value: structureData.max, key: "structureMax" },
-              []
-            ),
+            structureMax: refs.getOrCreate("structureMax", "const", { value: structureData.max, key: "structureMax" }, []),
           },
-          [el.in({ channel: 0 }), el.in({ channel: 1 })],
+          shared.dryInputs,
           ...structureData.consts
         )
       )
     );
   } else {
+    // Update any new vector data from the Hermite ramp
+    vectorData = HERMITE.at(tailScape.scapeLength) as number[];
+    // update the structure consts, should match the refs names set up by handleStructureChange
+    OEIS_SEQUENCES[srvb.structure].forEach((value, i) => {
+      if (value !== undefined)
+        refs.update(`node:structureConst:${i}`, { value: value });
+    });
+    // then the rest of the refs for SRVB
     refs.update("size", { value: srvb.size });
     refs.update("diffuse", { value: srvb.diffuse });
     refs.update("mix", { value: shared.mix });
     refs.update("tone", { value: srvb.tone });
     refs.update("position", { value: srvb.position });
     refs.update("structureMax", { value: srvb.structureMax });
-
+    // and the scape refs
     refs.update("scapeLevel", { value: tailScape.scapeLevel });
     refs.update("v1", { value: vectorData[0] });
     refs.update("v2", { value: vectorData[1] });
     refs.update("v3", { value: vectorData[2] });
     refs.update("v4", { value: vectorData[3] });
-
-    // update the structure consts, should match the refs names set up by handleStructureChange
-    OEIS_SEQUENCES[srvb.structure].forEach((value, i) => {
-      if (value !== undefined)
-        refs.update(`node:structureConst:${i}`, { value: value });
-    });
   }
 
   // memoisation of nodes and non-node state
@@ -225,8 +196,8 @@ function createHermiteVecInterp(): Ramp<Vec> {
     // keyframes used for crossfading between 4 IRs
     [
       [0.0, [1, 0, 0, 0]], // a
-      [0.125, [0, 1, 0, 0]], // b
-      [0.45, [0, 0, 0.707, 0]], // c
+      [0.25, [0, 1, 0, 0]], // b
+      [0.75, [0, 0, 0.707, 0]], // c
       [1.0, [0, 0, 0, 0.303]], // d
     ]
   );

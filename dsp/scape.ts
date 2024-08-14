@@ -1,6 +1,6 @@
 import { el, createNode, ElemNode } from "@elemaudio/core";
 
-export default function scape(props, ...inputs: ElemNode[]) {
+export default function scape(props, dryInputs, ...earlyReflections: ElemNode[]) {
   const { shaped }: { shaped: boolean; sampleRate: number } = props; // numbers
   const { mix, scapeLevel }: { mix: ElemNode; scapeLevel: ElemNode } = props; // nodes
   const currentVec: ElemNode[] = [props.v1, props.v2, props.v3, props.v4]; // Hermite mixer
@@ -10,9 +10,9 @@ export default function scape(props, ...inputs: ElemNode[]) {
   // Define our VFS paths for the IR buffers always uppercase, even if the filename has lowercase
   // because it is a Map key, not a real fs path
   const responses = [
-    { name: "GLASS", att: -24 },
-    { name: "AMBIENCE", att: -12 },
-    { name: "TANGLEWOOD", att: -24 },
+    { name: "GLASS", att: -18 },
+    { name: "AMBIENCE", att: -15 },
+    { name: "TANGLEWOOD", att: -18 },
     { name: "EUROPA", att: -36 },
   ];
 
@@ -60,17 +60,19 @@ export default function scape(props, ...inputs: ElemNode[]) {
   
 
   let tailSectionLR = (_inputs: ElemNode[]) => [
-    el.mul(scapeLevel, HermiteVecInterp(0, shaped, currentVec, _inputs[0] )),
-    el.mul(scapeLevel, HermiteVecInterp(1, shaped, currentVec, _inputs[1] )),
+    HermiteVecInterp(0, shaped, currentVec, _inputs[0] ),
+    HermiteVecInterp(1, shaped, currentVec, _inputs[1] ),
   ];
 
-  const erDryMix = [
-    el.add(el.mul(inputs[0], 0.5), el.mul(el.in({ channel: 0 }), 0.5)),
-    el.add(el.mul(inputs[1], 0.5), el.mul(el.in({ channel: 1 }), 0.5)),
+  let scapeTail = (_inputs: ElemNode[]) => [
+   el.dcblock( el.mul( el.db2gain(2.5), tailSectionLR( _inputs )[0] ) ) ,
+   el.dcblock( el.mul( el.db2gain(2.5), tailSectionLR( _inputs )[1] ) 
   ];
 
-  const yL = el.select(mix, tailSectionLR(erDryMix)[0], inputs[0]);
-  const yR = el.select(mix, tailSectionLR(erDryMix)[1], inputs[1]);
+
+
+  const yL = el.select( scapeLevel , scapeTail( earlyReflections )[0]  , earlyReflections[0] ) ; // B
+  const yR = el.select( scapeLevel , scapeTail( earlyReflections )[1]  , earlyReflections[1] ) ; // B
 
   return [yL, yR];
 }
