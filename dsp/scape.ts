@@ -11,7 +11,7 @@ export default function scape(props, dryInputs, ...earlyReflections: ElemNode[])
   // because it is a Map key, not a real fs path
   const responses = [
     { name: "GLASS", att: -18 },
-    { name: "AMBIENCE", att: -15 },
+    { name: "SUNPLATE", att: -15 },
     { name: "TANGLEWOOD", att: -18 },
     { name: "EUROPA", att: -36 },
   ];
@@ -66,7 +66,7 @@ export default function scape(props, dryInputs, ...earlyReflections: ElemNode[])
 
   let scapeTail = (_inputs: ElemNode[]) => [
    el.dcblock( el.mul( el.db2gain(2.5), tailSectionLR( _inputs )[0] ) ) ,
-   el.dcblock( el.mul( el.db2gain(2.5), tailSectionLR( _inputs )[1] ) 
+   el.dcblock( el.mul( el.db2gain(2.5), tailSectionLR( _inputs )[1] ) )
   ];
 
 

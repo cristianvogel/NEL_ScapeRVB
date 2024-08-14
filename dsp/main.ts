@@ -195,8 +195,8 @@ function createHermiteVecInterp(): Ramp<Vec> {
     HERMITE_V(VEC3),
     // keyframes used for crossfading between 4 IRs
     [
-      [0.0, [1, 0, 0, 0]], // a
-      [0.25, [0, 1, 0, 0]], // b
+      [0.0, [1 , 0, 0, 0]], // a
+      [0.5, [0, 1, 0, 0]], // b
       [0.75, [0, 0, 0.707, 0]], // c
       [1.0, [0, 0, 0, 0.303]], // d
     ]
