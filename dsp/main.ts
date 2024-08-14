@@ -71,8 +71,8 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     tone: clamp(__state.tone * 2 - 1, -0.99, 1),
     structureMax: __state.structureMax || 400, // handle the case where the max was not computed
   };
-  const tailScape = {
-    shaped: true,
+  const tailScape = { 
+    shaped: false,
     scapeLevel: __state.scapeLevel || 0,
     scapeLength: __state.scapeLength || 0,
   };

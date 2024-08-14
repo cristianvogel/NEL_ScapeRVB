@@ -107,19 +107,27 @@ void EffectsPluginProcessor::addImpulseResponsesToVirtualFileSystem(std::vector<
         auto name = choc::text::toUpperCase(file.getFileNameWithoutExtension().toStdString()); // "Ambience_0.wav" -> "AMBIENCE_0"
         reader->read(&buffer, 0, reader->lengthInSamples, 0, true, false);
         delete reader;
-        // fabricate a gain ramp version on the next channel
-        // to use as a shaped option if user wants
-        buffer.copyFromWithRamp(1, 0, buffer.getReadPointer(0), buffer.getNumSamples(), 0.2, 1);
-        // add the non-shaped impulse response to the virtual file system
+
+        auto numSamples = buffer.getNumSamples();
+       // fade in, less ER energy from the IR, as we have a whole ER engine already
+        buffer.applyGainRamp( 0, numSamples, 0.2, 1 );
+       // buffer.copyFromWithRamp(1, 0, buffer.getReadPointer(0), buffer.getNumSamples(), 0.2, 1);
+        // add the gain ramped impulse response to the virtual file system
+        
         runtime->updateSharedResourceMap(
             name,
             buffer.getReadPointer(0),
-            buffer.getNumSamples());
+            numSamples);
+        // Creative touch: Reverse the IR and copy that to the other channel
+        // Get the reverse from a little way in too, so its less draggy
+        // so its easy to swap into in realtime
+        buffer.reverse( 0, numSamples * 0.75 );
+        buffer.copyFrom( 1, 0, buffer.getReadPointer(0), numSamples * 0.75 );
         // add the shaped impulse response to the virtual file system
         runtime->updateSharedResourceMap(
             "SHAPED_" + name,
             buffer.getReadPointer(1),
-            buffer.getNumSamples());
+            numSamples * 0.75);
     }
 }
 
