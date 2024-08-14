@@ -1,5 +1,5 @@
-import { Renderer, el, ElemNode } from "@elemaudio/core";
-import { argMax, rotate } from "@thi.ng/arrays";
+import { Renderer, el } from "@elemaudio/core";
+import { argMax } from "@thi.ng/arrays";
 import { RefMap } from "./RefMap";
 import srvbEarly from "./srvb-er";
 import { clamp, smoothStep, schlick, EPS } from "@thi.ng/math";
@@ -8,12 +8,8 @@ import { HERMITE_V, VEC3, ramp } from "@thi.ng/ramp";
 import type { Ramp } from "@thi.ng/ramp";
 import { NUM_SEQUENCES, OEIS_SEQUENCES } from "./srvb-er";
 import scape from "./scape";
-import type { Vec } from "@thi.ng/vectors";
-
-type StructureData = {
-  consts: Array<ElemNode>;
-  max: number;
-};
+import { eq, type Vec } from "@thi.ng/vectors";
+import { StructureData } from "../src/types";
 
 // First, we initialize a custom Renderer instance that marshals our instruction
 // batches through the __postNativeMessage__ function to direct the underlying native
@@ -25,97 +21,135 @@ let core = new Renderer((batch) => {
 
 // Next, a RefMap for coordinating our refs
 let refs: RefMap = new RefMap(core);
-
+// the Hermite vector interpolation ramp
+const HERMITE: Ramp<Vec> = createHermiteVecInterp();
+// Defaults!
+// Need to have populated some data to start with
+const defaultStructure = OEIS_SEQUENCES[0];
+const defaultMax = argMax(defaultStructure, 17);
+let structureData: StructureData = {
+  consts: castSequencesToRefs(defaultStructure, defaultMax, refs),
+  max: defaultMax,
+};
+let vectorData: number[] = HERMITE.at(0.0) as number[];
+//
+// using memoization to store the last state and only re-render if the state has changed
+let __memState: null | any = null;
 // the conditions that will trigger a full re-render of the node graph
 function shouldRender(prev, curr) {
   const result =
     prev === null ||
     curr === null ||
     prev.sampleRate !== curr.sampleRate ||
-    prev.structure !== Math.round(curr.structure * NUM_SEQUENCES) ||
-    prev.scape !== curr.scape;
+    prev.structure === null ||
+    prev.scapeLength === null;
+
   return result;
 }
-// needs to have populated structure data to start with
-const defaultStructure = OEIS_SEQUENCES[0];
-const defaultMax = argMax(defaultStructure, 17);
-
-let structureData: StructureData = {
-  consts: castSequencesToRefs(defaultStructure, defaultMax, refs),
-  max: defaultMax,
-};
-
-const HERMITE: Ramp<Vec> = createHermiteVecInterp();
-
-let vectorData = {
-  consts: castHermiteVecToRefs(HERMITE.at(0.0) as number[], refs)
-};
-
-
-/////////////////////////////////////////////////////////////////
-// using memoization to store the last state and only re-render if the state has changed
-let __memState: null | any = null;
-let t = 0.0; // interpolation time for size param
-/////////////////////////////////////////////////////////////////
-// this will receive updated state from the native side
+//
+// Here we will receive updated state from the native side
+// All js in dsp/main is running natively in the CHOC QuickJS context
+// There is also a globalThis.__receiveStateChange__ listener in
+// NativeMessage.svelte easier to debug and see the state changes
+//////////////////////////////
+/// ALTERED STATES //////////
 globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
-  // parse the state
+  // first parse the state TODO: try / catch
   const __state = JSON.parse(stateReceivedFromNative);
-  // special case for the size param, we want to interpolate it smoothly
-  smoothSizeInterpolation();
-  // interpreted state, any adjustments should be done here before rendering to the graph
-
-
+  // interpreted state seperated out into respective processor params.
+  // any adjustments should be done here before rendering to the graph
   const shared = {
     sampleRate: __state.sampleRate,
-    structure: Math.round((__state.structure || 0) * NUM_SEQUENCES),
     mix: __state.mix,
   };
-
   const srvb = {
+    structure: Math.round((__state.structure || 0) * NUM_SEQUENCES),
     size: __state.size,
-    position: clamp(__state.position, EPS, 1 - EPS),
+    position: clamp(__state.position, EPS, 1),
     diffuse: __state.diffuse,
     tone: clamp(__state.tone * 2 - 1, -0.99, 1),
     structureMax: __state.structureMax || 400, // handle the case where the max was not computed
   };
-
-  
-
   const tailScape = {
     shaped: true,
-    scape: __state.scape || 0,
-   
+    scapeLevel: __state.scapeLevel || 0,
+    scapeLength: __state.scapeLength || 0,
   };
 
-
+  /**
+   * ELEMENTARY
+   * GRAPH
+   * RENDERER
+   */
   if (shouldRender(__memState, __state)) {
-    // first, build all the new structure const refs
-    structureData = handleStructureChange(refs, shared.structure);
-    vectorData =  { consts: castHermiteVecToRefs( HERMITE.at( __state.structure / 15.0 ) as number[], refs) };
+    // first, build any  new structure const refs
+    if (__memState && __memState.structure !== __state.structure) {
+      structureData = handleStructureChange(refs, srvb.structure);
+    }
+
+    // Then, build any new vector data from the Hermite ramp
+    if (__memState && __memState.scapeLength !== __state.scapeLength) {
+      vectorData = HERMITE.at(tailScape.scapeLength) as number[];
+    }
     // then, render the graph
     const graph = core.render(
-      ...scape({
-        sampleRate: shared.sampleRate,
-        shaped: true,
-        scape: refs.getOrCreate("scape", "const", { value: tailScape.scape }, []),
-        mix: refs.getOrCreate("mix", "const", { value: shared.mix, key: "effectMix" }, []),
-        structure: shared.structure || 0,
-      }, vectorData.consts,
-
-      ...srvbEarly({
-        key: "srvbEarly",
-        sampleRate: shared.sampleRate,
-        size: refs.getOrCreate("size", "const", { value: srvb.size }, []),
-        decay: refs.getOrCreate("diffuse", "const", { value: srvb.diffuse }, []),
-        mix: refs.getOrCreate("mix", "const", { value: shared.mix, key: "effectMix" }, []),
-        tone: refs.getOrCreate("tone", "const", { value: srvb.tone }, []),
-        position: refs.getOrCreate("position", "const", { value: srvb.position }, []),
-        structure: shared.structure || 0,
-        structureMax: refs.getOrCreate("structureMax", "const", { value: structureData.max, key: "structureMax" }, []),
-      }, 
-      [el.in({ channel: 0 }), el.in({ channel: 1 })], 
-      ...structureData.consts))
+      ...scape(
+        {
+          sampleRate: shared.sampleRate,
+          shaped: tailScape.shaped,
+          mix: refs.getOrCreate(
+            "mix",
+            "const",
+            { value: shared.mix, key: "effectMix" },
+            []
+          ),
+          scapeLevel: refs.getOrCreate(
+            "scapeLevel",
+            "const",
+            { value: tailScape.scapeLevel },
+            []
+          ),
+          v1: refs.getOrCreate("v1", "const", { value: vectorData[0] }, []),
+          v2: refs.getOrCreate("v2", "const", { value: vectorData[1] }, []),
+          v3: refs.getOrCreate("v3", "const", { value: vectorData[2] }, []),
+          v4: refs.getOrCreate("v4", "const", { value: vectorData[3] }, []),
+        },
+        ...srvbEarly(
+          {
+            key: "srvbEarly",
+            sampleRate: shared.sampleRate,
+            size: refs.getOrCreate("size", "const", { value: srvb.size }, []),
+            decay: refs.getOrCreate(
+              "diffuse",
+              "const",
+              { value: srvb.diffuse },
+              []
+            ),
+            mix: refs.getOrCreate(
+              "mix",
+              "const",
+              { value: shared.mix, key: "effectMix" },
+              []
+            ),
+            tone: refs.getOrCreate("tone", "const", { value: srvb.tone }, []),
+            position: refs.getOrCreate(
+              "position",
+              "const",
+              { value: srvb.position },
+              []
+            ),
+            structure: srvb.structure || 0,
+            structureMax: refs.getOrCreate(
+              "structureMax",
+              "const",
+              { value: structureData.max, key: "structureMax" },
+              []
+            ),
+          },
+          [el.in({ channel: 0 }), el.in({ channel: 1 })],
+          ...structureData.consts
+        )
+      )
     );
   } else {
     refs.update("size", { value: srvb.size });
@@ -125,43 +159,29 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     refs.update("position", { value: srvb.position });
     refs.update("structureMax", { value: srvb.structureMax });
 
-    refs.update("scape", { value: tailScape.scape });
+    refs.update("scapeLevel", { value: tailScape.scapeLevel });
+    refs.update("v1", { value: vectorData[0] });
+    refs.update("v2", { value: vectorData[1] });
+    refs.update("v3", { value: vectorData[2] });
+    refs.update("v4", { value: vectorData[3] });
 
     // update the structure consts, should match the refs names set up by handleStructureChange
-    OEIS_SEQUENCES[shared.structure].forEach((value, i) => {
+    OEIS_SEQUENCES[srvb.structure].forEach((value, i) => {
       if (value !== undefined)
         refs.update(`node:structureConst:${i}`, { value: value });
     });
   }
 
-  __memState = __state;
-  __memState.structure = shared.structure;
-  __memState.structureMax = structureData.max;
-  __memState.scape = tailScape.scape;
-
-  // smooth step on the size param using CHOC setInterval and thi.ng interpolation
-  // mutates the __state.size entry directly
-  function smoothSizeInterpolation() {
-    let smoothS = 0.0;
-    const interpTimer = (a, b) => {
-      const intervalId = setInterval(() => {
-        (t += 0.01), (smoothS = schlick(3, 0.5, smoothStep(a, b, t)));
-        if (__state && __state.size) {
-          __state.size = smoothS;
-        }
-        if (t > 1.0) {
-          t = -1.0e-5; // reset to just below 0
-          clearInterval(intervalId);
-        }
-      }, 1);
-    };
-    if (__memState && __state && t < 0.0 && __state.size !== __memState.size) {
-      interpTimer(__memState.size, __state.size);
-    }
-  }
+  // memoisation of nodes and non-node state
+  __memState = {
+    ...__state,
+    structure: srvb.structure,
+    scapeLength: tailScape.scapeLength,
+    structureMax: structureData.max,
+  };
 }; // end of receiveStateChange
 
-// build the structure outside the dsp code
+// build structral sequences as ElemNodes and refs
 function handleStructureChange(_refs: RefMap, currStructIndex = 0) {
   {
     let series = OEIS_SEQUENCES[currStructIndex];
@@ -177,7 +197,6 @@ function handleStructureChange(_refs: RefMap, currStructIndex = 0) {
     return sd;
   }
 }
-
 function castSequencesToRefs(
   series: number[],
   seriesMax: number,
@@ -198,25 +217,7 @@ function castSequencesToRefs(
     return t;
   });
 }
-
-function castHermiteVecToRefs(
-  
-  vec: Array<number>,
-  _refs: RefMap
-): Array<ElemNode> {
-  return vec.map((value, j) => {
-    let updatedValue = value;
-    const t = _refs.getOrCreate(
-      `node:hermiteValue:${j}`,
-      "const",
-      { value: updatedValue, key: `key:hermiteValue:${j}` },
-      []
-    );
-    return t;
-  });
-}
-// create the vector interpolation ramp
-// which will be used to crossfade between 4 IRs
+// create the vector interpolation ramp, used to crossfade between 4 IRs
 function createHermiteVecInterp(): Ramp<Vec> {
   return ramp(
     // use a vector interpolation preset with the VEC3 API

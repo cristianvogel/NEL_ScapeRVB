@@ -9,6 +9,12 @@ type HostParams = {
     defaultValue: number;
 }
 
+type StructureData = {
+  consts: Array<ElemNode>;
+  max: number;
+};
+
+
 ////////// DSP
 interface SRVBProps {
     size: ElemNode;

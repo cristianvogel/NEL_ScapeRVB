@@ -6,6 +6,7 @@
   let hostStateMemo = {};
   $effect(() => {
     const current = HostState.current;
+    console.log("current", current);
     // iterate over the keys and values of DialValues.current and send MessageToHost
     Object.keys(current).forEach((param) => {
       // branches for dealing with the different types of parameters
