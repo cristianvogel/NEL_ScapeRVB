@@ -1,7 +1,6 @@
 <script lang="ts">
-  import { UI_DialParams, ConsoleText, UI_ExtraParams } from "../stores/stores.svelte";
+  import { UI_DialParams, ConsoleText, UI_ScapeParams } from "../stores/stores.svelte";
   import { MessageToHost } from "./NativeMessage.svelte";
-  import SendToUI from "./SendToUI.svelte";
 
   let dialValuesMemo = {};
   let extraValuesMemo = {};
@@ -22,7 +21,7 @@
   });
 
   $effect(() => {
-    const current = UI_ExtraParams.current;
+    const current = UI_ScapeParams.current;
     // iterate over the keys and values of ExtraValues.current and send MessageToHost
     Object.keys(current).forEach((param) => {
       if (current[param] === extraValuesMemo[param]) return;

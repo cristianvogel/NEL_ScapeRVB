@@ -12,7 +12,7 @@ function dialValues(initial) {
 }
 
 //////////////////////
-export const UI_ExtraParams = extraParams({});
+export const UI_ScapeParams = extraParams({});
 function extraParams(initial) {
     let current = $state(initial);
     return {
