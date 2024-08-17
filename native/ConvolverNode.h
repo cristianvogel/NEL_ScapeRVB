@@ -11,8 +11,20 @@ public:
         : elem::GraphNode<float>(id, sampleRate, blockSize){} 
 
  
-    int setProperty(std::string const& key, elem::js::Value const& val,  elem::SharedResourceMap<float>& resources) override
+    int setProperty(
+        std::string const& key, 
+        elem::js::Value const& val, 
+        elem::SharedResourceMap<float>& resources) override
     {
+        // if this prop value is 0 or negative, 
+        // the convolution stage will not be processed.
+        // Use it to switch off stages from ElemNode. 
+            if (key == "process") {
+                if (!val.isNumber())
+                    return elem::ReturnCode::InvalidPropertyType();
+
+                value.store(float((elem::js::Number) val));
+            }
 
          if (key == "path") {
                 if (!val.isString())
@@ -23,9 +35,9 @@ public:
 
                 auto ref = resources.get((elem::js::String) val);
                 auto co = std::make_shared<fftconvolver::TwoStageFFTConvolver>();
-
+               
                 co->reset();
-                co->init(512, 4096, ref->data(), ref->size());
+                co->init(512, 4096, ref->data(), ref->size()); // possible optimisation here
 
                 convolverQueue.push(std::move(co));
             }
@@ -47,7 +59,7 @@ public:
             while (convolverQueue.size() > 0)
                 convolverQueue.pop(convolver);
 
-            if (numChannels == 0 || convolver == nullptr)
+            if (numChannels == 0 || convolver == nullptr || value.load() < 1.0e-8 )
                 return (void) std::fill_n(outputData, numSamples, float(0));
 
             convolver->TwoStageFFTConvolver::process(inputData[0], outputData, numSamples);
@@ -55,5 +67,6 @@ public:
     }
         elem::SingleWriterSingleReaderQueue<std::shared_ptr<fftconvolver::TwoStageFFTConvolver>> convolverQueue;
         std::shared_ptr<fftconvolver::TwoStageFFTConvolver> convolver;
+        std::atomic<float> value = 1;      
   
 };// namespace elem

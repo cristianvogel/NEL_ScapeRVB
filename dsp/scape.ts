@@ -2,6 +2,7 @@ import { el, createNode, ElemNode } from "@elemaudio/core";
 
 export default function scape(props, dryInputs, ...earlyReflections: ElemNode[]) {
   const { shaped }: { shaped: boolean; sampleRate: number } = props; // numbers
+  const vectorData: number[] = props.vectorData;
   const { mix, scapeLevel }: { mix: ElemNode; scapeLevel: ElemNode } = props; // nodes
   const currentVec: ElemNode[] = [props.v1, props.v2, props.v3, props.v4]; // Hermite mixer
   // Create our custom nodes
@@ -16,9 +17,10 @@ export default function scape(props, dryInputs, ...earlyReflections: ElemNode[])
     { name: "EUROPA", att: -36 },
   ];
 
-  let convolveTail = (
+  let scapeConvolver = (
     _path,
     shaped,
+    process = 0, 
     key = "attIr_",
     channel = 0,
     attenuationDb = -24,
@@ -26,7 +28,7 @@ export default function scape(props, dryInputs, ...earlyReflections: ElemNode[])
   ) => {
     let path = (shaped ? "SHAPED_" : "") + _path + "_" + channel; // use upper case for everything in path
     return convolver(
-      { path, key },
+      { path, process, key },
       el.mul(
         el.db2gain(el.const({ value: attenuationDb, key: "att_" + key })),
         _in
@@ -39,6 +41,7 @@ export default function scape(props, dryInputs, ...earlyReflections: ElemNode[])
   function HermiteVecInterp(
     channel = 0,
     shaped = false,
+    vectorData: number[],
     _currentVec: ElemNode[],
     _in: ElemNode
   ) {
@@ -47,12 +50,11 @@ export default function scape(props, dryInputs, ...earlyReflections: ElemNode[])
       const { name, att } = response;
       const key = `ir${name + i}`;
       // possibly optimise here by conditionally not building silent IRs
-      mixer.push(
+      mixer.push( 
         el.mul(
           _currentVec[i],
-          convolveTail(name, shaped, key, channel, att, _in)
-        )
-      );
+          scapeConvolver(name, shaped, vectorData[i], key, channel, att, _in)
+      ));
     });
     return el.add(...mixer);
   }
@@ -60,8 +62,8 @@ export default function scape(props, dryInputs, ...earlyReflections: ElemNode[])
   
 
   let tailSectionLR = (_inputs: ElemNode[]) => [
-    HermiteVecInterp(0, shaped, currentVec, _inputs[0] ),
-    HermiteVecInterp(1, shaped, currentVec, _inputs[1] ),
+    HermiteVecInterp(0, shaped, vectorData, currentVec, _inputs[0] ),
+    HermiteVecInterp(1, shaped, vectorData, currentVec, _inputs[1] ),
   ];
 
   let scapeTail = (_inputs: ElemNode[]) => [

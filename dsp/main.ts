@@ -42,7 +42,8 @@ function shouldRender(prev, curr) {
     curr === null ||
     prev.sampleRate !== curr.sampleRate ||
     prev.structure === null ||
-    prev.scapeLength === null;
+    prev.scapeLength === null ||
+    !equiv( prev.vectorData, vectorData )
 
   return result;
 }
@@ -95,6 +96,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
         {
           sampleRate: shared.sampleRate,
           shaped: tailScape.shaped,
+          vectorData,
           mix: refs.getOrCreate("mix", "const", { value: shared.mix, key: "effectMix" }, []),
           scapeLevel: refs.getOrCreate("scapeLevel", "const", { value: tailScape.scapeLevel }, []),
           v1: refs.getOrCreate("v1", "const", { value: vectorData[0] }, []), 
@@ -149,6 +151,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     structure: srvb.structure,
     scapeLength: tailScape.scapeLength,
     structureMax: structureData.max,
+    vectorData
   };
 }; // end of receiveStateChange
 
