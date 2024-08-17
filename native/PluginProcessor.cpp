@@ -53,6 +53,8 @@ EffectsPluginProcessor::EffectsPluginProcessor()
     const auto parameters = manifest.getWithDefault("parameters", elem::js::Array());
     createParameters(parameters);
 
+    REVERSE_BUFFER_PREFIX = manifest.getWithDefault("REVERSED_", elem::js::String());
+
     // The view state property has to have some value so that when state is loaded
     // from the host, the key exists and is populated.
     meshState.insert_or_assign(MESH_STATE_PROPERTY, "{}");
@@ -125,7 +127,7 @@ void EffectsPluginProcessor::addImpulseResponsesToVirtualFileSystem(std::vector<
         buffer.copyFrom( 1, 0, buffer.getReadPointer(0), numSamples * 0.75 );
         // add the shaped impulse response to the virtual file system
         runtime->updateSharedResourceMap(
-            "SHAPED_" + name,
+            REVERSE_BUFFER_PREFIX + name,
             buffer.getReadPointer(1),
             numSamples * 0.75);
     }

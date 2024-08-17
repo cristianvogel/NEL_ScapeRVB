@@ -1,4 +1,5 @@
 import { el, createNode, ElemNode } from "@elemaudio/core";
+import { REVERSE_BUFFER_PREFIX } from "../src/stores/constants";
 
 export default function scape(props, dryInputs, ...earlyReflections: ElemNode[]) {
   const { shaped }: { shaped: boolean; sampleRate: number } = props; // numbers
@@ -26,7 +27,7 @@ export default function scape(props, dryInputs, ...earlyReflections: ElemNode[])
     attenuationDb = -24,
     _in
   ) => {
-    let path = (shaped ? "SHAPED_" : "") + _path + "_" + channel; // use upper case for everything in path
+    let path = (shaped ? REVERSE_BUFFER_PREFIX: "") + _path + "_" + channel; // use upper case for everything in path
     return convolver(
       { path, process, key },
       el.mul(

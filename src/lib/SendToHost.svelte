@@ -36,7 +36,7 @@
 
 </script>
 
-<div class="console-text"><pre>{Object.values(UI_DialParams.current)} | {ConsoleText.current} </pre></div>
+<div class="console-text"><pre>{ConsoleText.current}</pre></div>
 
 <style>
   .console-text {

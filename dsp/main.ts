@@ -23,18 +23,18 @@ let core = new Renderer((batch) => {
 let refs: RefMap = new RefMap(core);
 // the Hermite vector interpolation ramp
 const HERMITE: Ramp<Vec> = createHermiteVecInterp();
-// Defaults!
-// Need to have populated some data to start with
+//--------------- /
+// DEFAULT STATE
+// These  need to have populated some data to start with
+let vectorData: number[] = HERMITE.at(0.0) as number[];
+let __memState: null | any = null;
 const defaultStructure = OEIS_SEQUENCES[0];
 const defaultMax = argMax(defaultStructure, 17);
 let structureData: StructureData = {
   consts: castSequencesToRefs(defaultStructure, defaultMax, refs),
   max: defaultMax,
 };
-let vectorData: number[] = HERMITE.at(0.0) as number[];
-//
-// using memoization to store the last state and only re-render if the state has changed
-let __memState: null | any = null;
+
 // the conditions that will trigger a full re-render of the node graph
 function shouldRender(prev, curr) {
   const result =
