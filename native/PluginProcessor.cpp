@@ -53,8 +53,6 @@ EffectsPluginProcessor::EffectsPluginProcessor()
     const auto parameters = manifest.getWithDefault("parameters", elem::js::Array());
     createParameters(parameters);
 
-    REVERSE_BUFFER_PREFIX = manifest.getWithDefault("REVERSED_", elem::js::String());
-
     // The view state property has to have some value so that when state is loaded
     // from the host, the key exists and is populated.
     meshState.insert_or_assign(MESH_STATE_PROPERTY, "{}");

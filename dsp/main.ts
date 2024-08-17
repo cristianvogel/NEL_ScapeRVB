@@ -1,14 +1,14 @@
 import { Renderer, el } from "@elemaudio/core";
 import { argMax } from "@thi.ng/arrays";
 import { RefMap } from "./RefMap";
-import srvbEarly from "./srvb-er";
-import { clamp, smoothStep, schlick, EPS } from "@thi.ng/math";
+import SRVB from "./srvb-er";
+import { clamp, EPS } from "@thi.ng/math";
 import { equiv } from "@thi.ng/equiv";
 import { HERMITE_V, VEC3, ramp } from "@thi.ng/ramp";
 import type { Ramp } from "@thi.ng/ramp";
 import { NUM_SEQUENCES, OEIS_SEQUENCES } from "./srvb-er";
-import scape from "./scape";
-import { eq, type Vec } from "@thi.ng/vectors";
+import SCAPE from "./scape";
+import { Vec } from "@thi.ng/vectors";
 import { StructureData } from "../src/types";
 
 // First, we initialize a custom Renderer instance that marshals our instruction
@@ -26,8 +26,7 @@ const HERMITE: Ramp<Vec> = createHermiteVecInterp();
 //--------------- /
 // DEFAULT STATE
 // These  need to have populated some data to start with
-let vectorData: number[] = HERMITE.at(0.0) as number[];
-let __memState: null | any = null;
+
 const defaultStructure = OEIS_SEQUENCES[0];
 const defaultMax = argMax(defaultStructure, 17);
 let structureData: StructureData = {
@@ -36,14 +35,14 @@ let structureData: StructureData = {
 };
 
 // the conditions that will trigger a full re-render of the node graph
-function shouldRender(prev, curr) {
-  const result =
-    prev === null ||
-    curr === null ||
-    prev.sampleRate !== curr.sampleRate ||
-    prev.structure === null ||
-    prev.scapeLength === null ||
-    !equiv( prev.vectorData, vectorData )
+function shouldRender( _mem , _curr ) {
+
+  const result =  
+     _mem === null
+    ||  _curr === null 
+    ||  _curr.sampleRate !==  _mem?.sampleRate 
+    ||  _mem.structure === null 
+    ||  _mem?.scapeLength === null
 
   return result;
 }
@@ -54,28 +53,32 @@ function shouldRender(prev, curr) {
 // NativeMessage.svelte easier to debug and see the state changes
 //////////////////////////////
 /// ALTERED STATES //////////
+let memState: null | any = null;
+
 globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
+ 
   // first parse the state TODO: try / catch
-  const __state = JSON.parse(stateReceivedFromNative);
-  // interpreted state seperated out into respective processor params.
+  const state = JSON.parse(stateReceivedFromNative); 
+  // interpreted state captured out into respective processor properties.
   // any adjustments should be done here before rendering to the graph
   const shared = {
-    sampleRate: __state.sampleRate,
-    mix: __state.mix,
+    sampleRate: state.sampleRate,
+    mix: state.mix,
     dryInputs: [el.in({ channel: 0 }), el.in({ channel: 1 })],
   };
   const srvb = {
-    structure: Math.round((__state.structure || 0) * NUM_SEQUENCES),
-    size: __state.size,
-    position: clamp(__state.position, EPS, 1),
-    diffuse: __state.diffuse,
-    tone: clamp(__state.tone * 2 - 1, -0.99, 1),
-    structureMax: __state.structureMax || 400, // handle the case where the max was not computed
+    structure: Math.round((state.structure || 0) * NUM_SEQUENCES),
+    size: state.size,
+    position: clamp(state.position, EPS, 1),
+    diffuse: state.diffuse,
+    tone: clamp(state.tone * 2 - 1, -0.99, 1),
+    structureMax: state.structureMax || 400, // handle the case where the max was not computed
   };
-  const tailScape = { 
-    shaped: false,
-    scapeLevel: __state.scapeLevel || 0,
-    scapeLength: __state.scapeLength || 0,
+  const scape = { 
+    reverse: 0,
+    scapeLevel: state.scapeLevel || 0,
+    scapeLength: state.scapeLength || 0,
+    vectorData: HERMITE.at( state.scapeLength || 0 )
   };
 
   /**
@@ -83,29 +86,30 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
    * GRAPH
    * RENDERER
    */
-  if (shouldRender(__memState, __state)) {
+  if ( !memState && shouldRender( memState , state ) ) {
+
     // first, build any  new structure const refs
-    if (__memState && __memState.structure !== __state.structure) {
+    if ( state.structure !== memState?.structure ) {
       structureData = handleStructureChange(refs, srvb.structure);
     }
 
     // prettier-ignore
     // then, render the graph
     const graph = core.render(
-      ...scape(
+      ...SCAPE(
         {
           sampleRate: shared.sampleRate,
-          shaped: tailScape.shaped,
-          vectorData,
+          reverse: scape.reverse,
+          vectorData: scape.vectorData,
           mix: refs.getOrCreate("mix", "const", { value: shared.mix, key: "effectMix" }, []),
-          scapeLevel: refs.getOrCreate("scapeLevel", "const", { value: tailScape.scapeLevel }, []),
-          v1: refs.getOrCreate("v1", "const", { value: vectorData[0] }, []), 
-          v2: refs.getOrCreate("v2", "const", { value: vectorData[1] }, []),
-          v3: refs.getOrCreate("v3", "const", { value: vectorData[2] }, []),
-          v4: refs.getOrCreate("v4", "const", { value: vectorData[3] }, []),
+          scapeLevel: refs.getOrCreate("scapeLevel", "const", { value: scape.scapeLevel }, []),
+          v1: refs.getOrCreate("v1", "const", { value: scape.vectorData[0] }, []), 
+          v2: refs.getOrCreate("v2", "const", { value: scape.vectorData[1] }, []),
+          v3: refs.getOrCreate("v3", "const", { value: scape.vectorData[2] }, []),
+          v4: refs.getOrCreate("v4", "const", { value: scape.vectorData[3] }, []),
         },
         shared.dryInputs,
-        ...srvbEarly(
+        ...SRVB(
           {
             key: "srvbEarly",
             sampleRate: shared.sampleRate,
@@ -121,15 +125,16 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
           ...structureData.consts
         )
       )
-    );
+   );
+    
   } else {
     // Update any new vector data from the Hermite ramp
-    vectorData = HERMITE.at(tailScape.scapeLength) as number[];
     // update the structure consts, should match the refs names set up by handleStructureChange
     OEIS_SEQUENCES[srvb.structure].forEach((value, i) => {
       if (value !== undefined)
-        refs.update(`node:structureConst:${i}`, { value: value });
+        refs.update(`node:structureConst:${i}`, { value });
     });
+
     // then the rest of the refs for SRVB
     refs.update("size", { value: srvb.size });
     refs.update("diffuse", { value: srvb.diffuse });
@@ -138,20 +143,24 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     refs.update("position", { value: srvb.position });
     refs.update("structureMax", { value: srvb.structureMax });
     // and the scape refs
-    refs.update("scapeLevel", { value: tailScape.scapeLevel });
-    refs.update("v1", { value: vectorData[0] });
-    refs.update("v2", { value: vectorData[1] });
-    refs.update("v3", { value: vectorData[2] });
-    refs.update("v4", { value: vectorData[3] });
+    refs.update("scapeLevel", { value: scape.scapeLevel });
+    refs.update("v1", { value: scape.vectorData[0] });
+    refs.update("v2", { value: scape.vectorData[1] });
+    refs.update("v3", { value: scape.vectorData[2] });
+    refs.update("v4", { value: scape.vectorData[3] });
+//DBG
+
+    console.log( 'Elem refs updated, Mem -> ' , memState, '::: state -> ', state);
   }
 
   // memoisation of nodes and non-node state
-  __memState = {
-    ...__state,
+  memState = {
+    ...state,
     structure: srvb.structure,
-    scapeLength: tailScape.scapeLength,
+    scapeLength: scape.scapeLength,
     structureMax: structureData.max,
-    vectorData
+    scapeReverse: scape.reverse,
+    vectorData: scape.vectorData,
   };
 }; // end of receiveStateChange
 

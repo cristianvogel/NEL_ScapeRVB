@@ -1,9 +1,10 @@
 <script lang="ts">
   import { UI_DialParams, ConsoleText, UI_ScapeParams } from "../stores/stores.svelte";
   import { MessageToHost } from "./NativeMessage.svelte";
+  import { equiv } from "@thi.ng/equiv";
 
   let dialValuesMemo = {};
-  let extraValuesMemo = {};
+  let scapeValuesMemo = {};
 
   $effect(() => {
     const current = UI_DialParams.current; 
@@ -24,9 +25,9 @@
     const current = UI_ScapeParams.current;
     // iterate over the keys and values of ExtraValues.current and send MessageToHost
     Object.keys(current).forEach((param) => {
-      if (current[param] === extraValuesMemo[param]) return;
+      if (current[param] === scapeValuesMemo[param]) return;
         MessageToHost.requestParamValueUpdate(param, current[param] || 0);   
-        extraValuesMemo = current;
+        scapeValuesMemo = current;
     });
     return () => { }
   });

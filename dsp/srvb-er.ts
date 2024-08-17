@@ -180,7 +180,7 @@ function dampFDN(props: FDNProps, ...ins) {
  * /// MAIN
  **/
 
-export default function srvbEarly(props: SRVBProps, inputs: ElemNode[], ...structureArray: ElemNode[]) {
+export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureArray: ElemNode[]) {
   // xl , xr -- unprocessed input
   const { sampleRate, key, position, structureMax, mix } = props;
   const [xl, xr] = inputs;
