@@ -41,8 +41,8 @@ function shouldRender( _mem , _curr ) {
      _mem === null
     ||  _curr === null 
     ||  _curr.sampleRate !==  _mem?.sampleRate 
-    ||  _mem?.structure === _curr.structure 
-    ||  _mem?.scapeLength === _curr.scapeLength
+    ||  _mem?.structure !== _curr.structure 
+    ||  _mem?.scapeLength !== _curr.scapeLength
 
   return result;
 }
