@@ -1,4 +1,4 @@
-import manifest from '../manifest.json';
+import manifest from '../public/manifest.json';
 
 export const HOST_PARAMS = manifest.parameters;
 

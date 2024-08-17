@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "clean": "rimraf dist",
+    "clean": "rimraf dist",    
     "copyCablesAssets" : "cpy cables-ui/js/**/* src/cables-ui && cpy cables-ui/assets/**/* public/assets",
     "copyManifest": "cpy public/manifest.json src",
     "predev": "npm run clean && npm run copyCablesAssets && npm run copyManifest",

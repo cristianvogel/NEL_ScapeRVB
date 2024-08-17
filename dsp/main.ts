@@ -41,8 +41,8 @@ function shouldRender( _mem , _curr ) {
      _mem === null
     ||  _curr === null 
     ||  _curr.sampleRate !==  _mem?.sampleRate 
-    ||  _mem.structure === null 
-    ||  _mem?.scapeLength === null
+    ||  _mem?.structure === _curr.structure 
+    ||  _mem?.scapeLength === _curr.scapeLength
 
   return result;
 }
@@ -75,7 +75,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     structureMax: state.structureMax || 400, // handle the case where the max was not computed
   };
   const scape = { 
-    reverse: 0,
+    reverse: state.scapeReverse || 0,
     scapeLevel: state.scapeLevel || 0,
     scapeLength: state.scapeLength || 0,
     vectorData: HERMITE.at( state.scapeLength || 0 )
@@ -86,7 +86,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
    * GRAPH
    * RENDERER
    */
-  if ( !memState && shouldRender( memState , state ) ) {
+  if ( !memState || shouldRender( memState , state ) ) {
 
     // first, build any  new structure const refs
     if ( state.structure !== memState?.structure ) {
@@ -159,8 +159,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     structure: srvb.structure,
     scapeLength: scape.scapeLength,
     structureMax: structureData.max,
-    scapeReverse: scape.reverse,
-    vectorData: scape.vectorData,
+    scapeReverse: scape.reverse
   };
 }; // end of receiveStateChange
 
