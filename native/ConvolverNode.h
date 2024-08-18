@@ -59,10 +59,10 @@ public:
             while (convolverQueue.size() > 0)
                 convolverQueue.pop(convolver);
 
-            if (numChannels == 0 || convolver == nullptr || value.load() < 1.0e-3 )
+            if (numChannels == 0 || convolver == nullptr  )
                 return (void) std::fill_n(outputData, numSamples, float(0));
 
-            convolver->TwoStageFFTConvolver::process(inputData[0], outputData, numSamples);
+            convolver->TwoStageFFTConvolver::process(inputData[0], outputData, value.load() > 1.0e-3 ? numSamples : 0.0 );
    
     }
         elem::SingleWriterSingleReaderQueue<std::shared_ptr<fftconvolver::TwoStageFFTConvolver>> convolverQueue;

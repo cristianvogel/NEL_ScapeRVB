@@ -44,7 +44,6 @@ function shouldRender( _mem , _curr ) {
     || refs._map.size === 0
     ||  _curr.sampleRate !==  _mem?.sampleRate 
     ||  _mem?.structure !== _curr.structure 
-    ||  _mem?.scapeLength !== _curr.scapeLength
 
   return result;
 }
@@ -109,10 +108,6 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
           v2: refs.getOrCreate("v2", "const", { value: scape.vectorData[1] }, []),
           v3: refs.getOrCreate("v3", "const", { value: scape.vectorData[2] }, []),
           v4: refs.getOrCreate("v4", "const", { value: scape.vectorData[3] }, []),
-          p1: refs.getOrCreate("p1", "convolver", { process: scape.vectorData[0] }, []),
-          p2: refs.getOrCreate("p2", "convolver", { process: scape.vectorData[1] }, []),
-          p3: refs.getOrCreate("p3", "convolver", { process: scape.vectorData[2] }, []),
-          p4: refs.getOrCreate("p4", "convolver", { process: scape.vectorData[3] }, [])
         },
         shared.dryInputs,
         ...SRVB(

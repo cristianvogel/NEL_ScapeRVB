@@ -31,12 +31,14 @@ export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
     responses.forEach((response, index) => {
       const { path, attenuationDb } = response;
       const key = `key::${path}::${channel}`;
+      console.log( key );
       mixer.push( 
         el.mul(
           hermiteNodes[index], 
           scapeConvolver( { path, index, reverse, process: hermiteNumbers[index], key, channel, attenuationDb, _in } )  // maybe move the vector fade to the _in ?
       ));
     });
+   
     return el.add(...mixer);
   }
 
