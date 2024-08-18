@@ -21,8 +21,8 @@ export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
 
   // HERMITE vector cross fader
   function HermiteVecInterp(
-    channel ,
-    reverse ,
+    channel: number ,
+    reverse: number ,
     hermiteNumbers: number[],
     hermiteNodes: ElemNode[],
     _in: ElemNode
@@ -35,7 +35,7 @@ export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
       mixer.push( 
         el.mul(
           hermiteNodes[index], 
-          scapeConvolver( { path, index, reverse, process: hermiteNumbers[index], key, channel, attenuationDb, _in } )  // maybe move the vector fade to the _in ?
+          scapeConvolver( { path, index, reverse, process: hermiteNumbers[index], key, channel, attenuationDb, _in } ) 
       ));
     });
    
@@ -53,7 +53,7 @@ export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
     _in } : ScapeConvolver
   ) => {
     const dynamicPath = ( reverse > 0.5 ? REVERSE_BUFFER_PREFIX: "" ) + path + "_" + channel; // use upper case for everything in path
-    const attenuatedInputSignal = el.mul( el.db2gain( el.const( { value: attenuationDb, key: "att_" + key } ) ),   _in );
+    const attenuatedInputSignal = el.mul( el.db2gain( attenuationDb ) ,   _in );
     // console.log( key, 'path', dynamicPath, 'process', process );
     return convolver( { key, path: dynamicPath, process: 1 }, attenuatedInputSignal );
   };
