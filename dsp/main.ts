@@ -1,4 +1,4 @@
-import { Renderer, el } from "@elemaudio/core";
+import { Renderer, el, createNode, ElemNode } from "@elemaudio/core";
 import { argMax } from "@thi.ng/arrays";
 import { RefMap } from "./RefMap";
 import SRVB from "./srvb-er";
@@ -21,6 +21,7 @@ let core = new Renderer((batch) => {
 
 // Next, a RefMap for coordinating our refs
 let refs: RefMap = new RefMap(core);
+
 // the Hermite vector interpolation ramp
 const HERMITE: Ramp<Vec> = createHermiteVecInterp();
 //--------------- /
@@ -36,10 +37,11 @@ let structureData: StructureData = {
 
 // the conditions that will trigger a full re-render of the node graph
 function shouldRender( _mem , _curr ) {
-
+  
   const result =  
      _mem === null
     ||  _curr === null 
+    || refs._map.size === 0
     ||  _curr.sampleRate !==  _mem?.sampleRate 
     ||  _mem?.structure !== _curr.structure 
     ||  _mem?.scapeLength !== _curr.scapeLength
@@ -107,6 +109,10 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
           v2: refs.getOrCreate("v2", "const", { value: scape.vectorData[1] }, []),
           v3: refs.getOrCreate("v3", "const", { value: scape.vectorData[2] }, []),
           v4: refs.getOrCreate("v4", "const", { value: scape.vectorData[3] }, []),
+          p1: refs.getOrCreate("p1", "convolver", { process: scape.vectorData[0] }, []),
+          p2: refs.getOrCreate("p2", "convolver", { process: scape.vectorData[1] }, []),
+          p3: refs.getOrCreate("p3", "convolver", { process: scape.vectorData[2] }, []),
+          p4: refs.getOrCreate("p4", "convolver", { process: scape.vectorData[3] }, [])
         },
         shared.dryInputs,
         ...SRVB(
@@ -150,7 +156,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     refs.update("v4", { value: scape.vectorData[3] });
 //DBG
 
-    console.log( 'Elem refs updated, Mem -> ' , memState, '::: state -> ', state);
+    console.log( 'Vec: ' + scape.vectorData + '::: state -> ', state);
   }
 
   // memoisation of nodes and non-node state
@@ -159,7 +165,8 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     structure: srvb.structure,
     scapeLength: scape.scapeLength,
     structureMax: structureData.max,
-    scapeReverse: scape.reverse
+    scapeReverse: scape.reverse,
+    vectorData: scape.vectorData,
   };
 }; // end of receiveStateChange
 

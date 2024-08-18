@@ -19,8 +19,30 @@ export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
     { path: "EUROPA", attenuationDb: -36 },
   ];
 
+  // HERMITE vector cross fader
+  function HermiteVecInterp(
+    channel ,
+    reverse ,
+    hermiteNumbers: number[],
+    hermiteNodes: ElemNode[],
+    _in: ElemNode
+  ) {
+    let mixer: ElemNode[] = [];
+    responses.forEach((response, index) => {
+      const { path, attenuationDb } = response;
+      const key = `key::${path}::${channel}`;
+      mixer.push( 
+        el.mul(
+          hermiteNodes[index], 
+          scapeConvolver( { path, index, reverse, process: hermiteNumbers[index], key, channel, attenuationDb, _in } )  // maybe move the vector fade to the _in ?
+      ));
+    });
+    return el.add(...mixer);
+  }
+
   let scapeConvolver = (
    { path,
+    index = 0,
     reverse = 0,
     process = 1, 
     key = "attIr_",
@@ -29,31 +51,12 @@ export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
     _in } : ScapeConvolver
   ) => {
     const dynamicPath = ( reverse > 0.5 ? REVERSE_BUFFER_PREFIX: "" ) + path + "_" + channel; // use upper case for everything in path
-    const attenuatedInputSignal = el.mul( el.db2gain( el.const( { value: attenuationDb, key: "att_" + key } ) ),  _in );
-    console.log( 'key', key, 'path', dynamicPath, 'process', process );
-    return convolver( { key, path: dynamicPath, process }, attenuatedInputSignal );
+    const attenuatedInputSignal = el.mul( el.db2gain( el.const( { value: attenuationDb, key: "att_" + key } ) ),   _in );
+    // console.log( key, 'path', dynamicPath, 'process', process );
+    return convolver( { key, path: dynamicPath, process: 1 }, attenuatedInputSignal );
   };
 
-  // HERMITE vector cross fader
-  function HermiteVecInterp(
-    channel = 0,
-    reverse = 0,
-    hermiteNumbers: number[],
-    hermiteNodes: ElemNode[],
-    _in: ElemNode
-  ) {
-    let mixer: ElemNode[] = [];
-    responses.forEach((response, i) => {
-      const { path, attenuationDb } = response;
-      const key = `ir${path + i}`;
-      mixer.push( 
-        el.mul(
-          hermiteNodes[i], 
-          scapeConvolver( { path, reverse, process: hermiteNumbers[i], key, channel, attenuationDb, _in } )  // maybe move the vector fade to the _in ?
-      ));
-    });
-    return el.add(...mixer);
-  }
+  
 
   let tailSectionLR = (_inputs: ElemNode[]) => [
     HermiteVecInterp( 0, reverse, hermiteNumbers, hermiteNodes, _inputs[0] ),
