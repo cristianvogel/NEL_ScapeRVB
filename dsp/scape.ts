@@ -2,11 +2,6 @@ import { el, createNode, ElemNode } from "@elemaudio/core";
 import { REVERSE_BUFFER_PREFIX } from "../src/stores/constants";
 import { ScapeConvolver } from "../src/types";
 
-export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
-  const { reverse, vectorData: hermiteNumbers }: { reverse: number; sampleRate: number, vectorData: number[] } = props; // numbers
-  const { mix, scapeLevel }: { mix: ElemNode; scapeLevel: ElemNode } = props; // nodes
-  const hermiteNodes: ElemNode[] = [props.v1, props.v2, props.v3, props.v4]; // Hermite mixer as nodes
-
   // Create our custom nodes
   let convolver = (_props, ...childs) => createNode("convolver", _props, childs);
 
@@ -18,6 +13,16 @@ export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
     { path: "TANGLEWOOD", attenuationDb: -18 },
     { path: "EUROPA", attenuationDb: -36 },
   ];
+
+  let count = 0;
+
+export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
+  const { reverse = 1, vectorData: hermiteNumbers = [1,0,0,0] }: { reverse?: number; sampleRate: number, vectorData?: number[] } = props; // numbers
+  const { scapeLevel }: { scapeLevel: ElemNode } = props; // nodes
+  const hermiteNodes: ElemNode[] = [props.v1, props.v2, props.v3, props.v4]; // Hermite mixer as nodes
+
+  //DBG:
+  console.log( 'SCAPE called.....', count++ );
 
   // HERMITE vector cross fader
   function HermiteVecInterp(
@@ -31,7 +36,6 @@ export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
     responses.forEach((response, index) => {
       const { path, attenuationDb } = response;
       const key = `key::${path}::${channel}`;
-      console.log( key );
       mixer.push( 
         el.mul(
           hermiteNodes[index], 
@@ -44,9 +48,9 @@ export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
 
   let scapeConvolver = (
    { path,
-    index = 0,
-    reverse = 0,
-    process = 1, 
+    index,
+    reverse,
+    process, 
     key = "attIr_",
     channel = 0,
     attenuationDb = -24,
@@ -54,7 +58,6 @@ export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
   ) => {
     const dynamicPath = ( reverse > 0.5 ? REVERSE_BUFFER_PREFIX: "" ) + path + "_" + channel; // use upper case for everything in path
     const attenuatedInputSignal = el.mul( el.db2gain( attenuationDb ) ,   _in );
-    // console.log( key, 'path', dynamicPath, 'process', process );
     return convolver( { key, path: dynamicPath, process: 1 }, attenuatedInputSignal );
   };
 

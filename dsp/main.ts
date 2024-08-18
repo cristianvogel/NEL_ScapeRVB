@@ -43,7 +43,6 @@ function shouldRender( _mem , _curr ) {
     ||  _curr === null 
     || refs._map.size === 0
     ||  _curr.sampleRate !==  _mem?.sampleRate 
-    ||  _mem?.structure !== _curr.structure 
 
   return result;
 }
@@ -58,29 +57,8 @@ let memState: null | any = null;
 
 globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
  
-  // first parse the state TODO: try / catch
-  const state = JSON.parse(stateReceivedFromNative); 
-  // interpreted state captured out into respective processor properties.
-  // any adjustments should be done here before rendering to the graph
-  const shared = {
-    sampleRate: state.sampleRate,
-    mix: state.mix,
-    dryInputs: [el.in({ channel: 0 }), el.in({ channel: 1 })],
-  };
-  const srvb = {
-    structure: Math.round((state.structure || 0) * NUM_SEQUENCES),
-    size: state.size,
-    position: clamp(state.position, EPS, 1),
-    diffuse: state.diffuse,
-    tone: clamp(state.tone * 2 - 1, -0.99, 1),
-    structureMax: state.structureMax || 400, // handle the case where the max was not computed
-  };
-  const scape = { 
-    reverse: state.scapeReverse || 0,
-    scapeLevel: state.scapeLevel || 0,
-    scapeLength: state.scapeLength || 0,
-    vectorData: HERMITE.at( state.scapeLength || 0 )
-  };
+  // first parse the state 
+  const { state, srvb, shared, scape } = parseNewState( stateReceivedFromNative );
 
   /**
    * ELEMENTARY
@@ -89,20 +67,24 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
    */
   if ( !memState || shouldRender( memState , state ) ) {
 
+    let flags = { 
+      reverseChange: (scape.reverse !== memState?.reverse) , 
+      structureChange: (state.structure !== memState?.structure) ,
+      scapeChange: (state.scapeLength !== memState?.scapeLength)
+    };
     // first, build any  new structure const refs
-    if ( state.structure !== memState?.structure ) {
-      structureData = handleStructureChange(refs, srvb.structure);
+    if ( flags.structureChange ) {
+      structureData = buildStructures(refs, srvb.structure);
+      console.log( 'structure count -> ', structureData.consts.length );
     }
-
     // prettier-ignore
     // then, render the graph
     const graph = core.render(
       ...SCAPE(
         {
           sampleRate: shared.sampleRate,
-          reverse: scape.reverse,
-          vectorData: scape.vectorData,
-          mix: refs.getOrCreate("mix", "const", { value: shared.mix, key: "effectMix" }, []),
+          reverse: flags.reverseChange ? scape.reverse : memState?.scapeReverse,
+          vectorData: flags.scapeChange ? scape.vectorData : memState?.vectorData,
           scapeLevel: refs.getOrCreate("scapeLevel", "const", { value: scape.scapeLevel }, []),
           v1: refs.getOrCreate("v1", "const", { value: scape.vectorData[0] }, []), 
           v2: refs.getOrCreate("v2", "const", { value: scape.vectorData[1] }, []),
@@ -116,10 +98,10 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
             sampleRate: shared.sampleRate,
             size: refs.getOrCreate("size", "const", { value: srvb.size }, []),
             decay: refs.getOrCreate("diffuse", "const", { value: srvb.diffuse }, []),
-            mix: refs.getOrCreate("mix", "const", { value: shared.mix, key: "effectMix" }, []),
+            mix: refs.getOrCreate("mix", "const", { value: srvb.mix, key: "effectMix" }, []),
             tone: refs.getOrCreate("tone", "const", { value: srvb.tone }, []),
             position: refs.getOrCreate("position", "const", { value: srvb.position }, []),
-            structure: srvb.structure || 0,
+            structure: srvb.structure,
             structureMax: refs.getOrCreate("structureMax", "const", { value: structureData.max, key: "structureMax" }, []),
           },
           shared.dryInputs,
@@ -127,9 +109,9 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
         )
       )
    );
-    
+   console.log( 'RENDER called.....' );
   } else {
-    // Update any new vector data from the Hermite ramp
+  
     // update the structure consts, should match the refs names set up by handleStructureChange
     OEIS_SEQUENCES[srvb.structure].forEach((value, i) => {
       if (value !== undefined)
@@ -139,7 +121,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     // then the rest of the refs for SRVB
     refs.update("size", { value: srvb.size });
     refs.update("diffuse", { value: srvb.diffuse });
-    refs.update("mix", { value: shared.mix });
+    refs.update("mix", { value: srvb.mix });
     refs.update("tone", { value: srvb.tone });
     refs.update("position", { value: srvb.position });
     refs.update("structureMax", { value: srvb.structureMax });
@@ -151,7 +133,8 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     refs.update("v4", { value: scape.vectorData[3] });
 //DBG
 
-    console.log( 'Vec: ' + scape.vectorData + '::: state -> ', state);
+    console.log( '::: state -> ', scape.reverse, state.structure, state.scapeLength );
+    console.log( '::: memState -> ', memState.reverse, memState.structure, memState.scapeLength );
   }
 
   // memoisation of nodes and non-node state
@@ -160,13 +143,39 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     structure: srvb.structure,
     scapeLength: scape.scapeLength,
     structureMax: structureData.max,
-    scapeReverse: scape.reverse,
+    reverse: scape.reverse,
     vectorData: scape.vectorData,
   };
+
+  function parseNewState( stateReceivedFromNative ) {
+    const state = JSON.parse(stateReceivedFromNative);
+    // interpreted state captured out into respective processor properties.
+    // any adjustments should be done here before rendering to the graph
+    const shared = {
+      sampleRate: state.sampleRate,
+      dryInputs: [el.in({ channel: 0 }), el.in({ channel: 1 })],
+    };
+    const srvb = {
+      structure: Math.round((state.structure || 0) * NUM_SEQUENCES),
+      size: state.size,
+      position: clamp(state.position, EPS, 1),
+      diffuse: state.diffuse,
+      tone: clamp(state.tone * 2 - 1, -0.99, 1),
+      mix: state.mix,
+      structureMax: Math.round( state.structureMax ) || 400, // handle the case where the max was not computed
+    };
+    const scape = {
+      reverse: Math.round(state.scapeReverse),
+      scapeLevel: state.scapeLevel,
+      scapeLength: state.scapeLength,
+      vectorData: HERMITE.at(state.scapeLength)
+    };
+    return { state, srvb, shared, scape };
+  }
 }; // end of receiveStateChange
 
 // build structral sequences as ElemNodes and refs
-function handleStructureChange(_refs: RefMap, currStructIndex = 0) {
+function buildStructures(_refs: RefMap, currStructIndex = 0) {
   {
     let series = OEIS_SEQUENCES[currStructIndex];
     console.log(`Using series ${series} `);
