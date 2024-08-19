@@ -10,6 +10,7 @@ import { NUM_SEQUENCES, OEIS_SEQUENCES } from "./srvb-er";
 import SCAPE from "./scape";
 import { Vec } from "@thi.ng/vectors";
 import { StructureData } from "../src/types";
+import { REVERSE_BUFFER_PREFIX } from "../src/stores/constants";
 
 // First, we initialize a custom Renderer instance that marshals our instruction
 // batches through the __postNativeMessage__ function to direct the underlying native
@@ -18,6 +19,16 @@ let core = new Renderer((batch) => {
   //@ts-ignore
   __postNativeMessage__(JSON.stringify(batch));
 });
+
+// Register our custom nodes
+let convolver = (_props, ...childs) => createNode("convolver", _props, childs);
+
+const IRs = [
+  { name: "GLASS", index: 0 },
+  { name: "SUNPLATE", index: 1 },
+  { name: "TANGLEWOOD", index: 2 },
+  { name: "EUROPA", index: 3 },
+];
 
 // Next, a RefMap for coordinating our refs
 let refs: RefMap = new RefMap(core);
@@ -36,13 +47,12 @@ let structureData: StructureData = {
 };
 
 // the conditions that will trigger a full re-render of the node graph
-function shouldRender( _mem , _curr ) {
-  
-  const result =  
-     _mem === null
-    ||  _curr === null 
-    || refs._map.size === 0
-    ||  _curr.sampleRate !==  _mem?.sampleRate 
+function shouldRender(_mem, _curr) {
+  const result =
+    _mem === null ||
+    _curr === null ||
+    refs._map.size === 0 ||
+    _curr.sampleRate !== _mem?.sampleRate;
 
   return result;
 }
@@ -53,43 +63,43 @@ function shouldRender( _mem , _curr ) {
 // NativeMessage.svelte easier to debug and see the state changes
 //////////////////////////////
 /// ALTERED STATES //////////
-let memState: null | any = null;
+let memoized: null | any = null;
 
 globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
- 
-  // first parse the state 
-  const { state, srvb, shared, scape } = parseNewState( stateReceivedFromNative );
+  // first parse the state
+  const { state, srvb, shared, scape } = parseNewState(stateReceivedFromNative);
 
   /**
    * ELEMENTARY
    * GRAPH
    * RENDERER
    */
-  if ( !memState || shouldRender( memState , state ) ) {
+  if (!memoized || shouldRender(memoized, state)) {
+    // first, build structure const refs
+    structureData = buildStructures(refs, srvb.structure);
 
-    let flags = { 
-      reverseChange: (scape.reverse !== memState?.reverse) , 
-      structureChange: (state.structure !== memState?.structure) ,
-      scapeChange: (state.scapeLength !== memState?.scapeLength)
-    };
-    // first, build any  new structure const refs
-    if ( flags.structureChange ) {
-      structureData = buildStructures(refs, srvb.structure);
-      console.log( 'structure count -> ', structureData.consts.length );
-    }
     // prettier-ignore
-    // then, render the graph
     const graph = core.render(
       ...SCAPE(
+        refs,
         {
           sampleRate: shared.sampleRate,
-          reverse: flags.reverseChange ? scape.reverse : memState?.scapeReverse,
-          vectorData: flags.scapeChange ? scape.vectorData : memState?.vectorData,
+          vectorData: scape.vectorData,
           scapeLevel: refs.getOrCreate("scapeLevel", "const", { value: scape.scapeLevel }, []),
           v1: refs.getOrCreate("v1", "const", { value: scape.vectorData[0] }, []), 
           v2: refs.getOrCreate("v2", "const", { value: scape.vectorData[1] }, []),
           v3: refs.getOrCreate("v3", "const", { value: scape.vectorData[2] }, []),
           v4: refs.getOrCreate("v4", "const", { value: scape.vectorData[3] }, []),
+          // render the convolvers
+          GLASS_0: refs.getOrCreate("GLASS_0", "convolver", { path: "GLASS_0", process: scape.vectorData[0]  }, [  ] ),
+          GLASS_1: refs.getOrCreate("GLASS_1", "convolver", { path: "GLASS_1" , process: scape.vectorData[0] }, [  ]),
+          SUNPLATE_0: refs.getOrCreate("SUNPLATE_0", "convolver", { path: "SUNPLATE_0", process: scape.vectorData[1]  }, [ ] ),
+          SUNPLATE_1: refs.getOrCreate("SUNPLATE_1", "convolver", { path: "SUNPLATE_1", process: scape.vectorData[1]  }, [  ] ),
+          TANGLEWOOD_0: refs.getOrCreate("TANGLEWOOD_0", "convolver", { path: "TANGLEWOOD_0", process: scape.vectorData[2] }, [  ] ),
+          TANGLEWOOD_1: refs.getOrCreate("TANGLEWOOD_1", "convolver", { path: "TANGLEWOOD_1", process: scape.vectorData[2] }, [  ] ),
+          EUROPA_0: refs.getOrCreate("EUROPA_0", "convolver", { path: "EUROPA_0", process: scape.vectorData[3] }, [  ] ),
+          EUROPA_1: refs.getOrCreate("EUROPA_1", "convolver", { path: "EUROPA_1", process: scape.vectorData[3]  }, [  ] ),
+        
         },
         shared.dryInputs,
         ...SRVB(
@@ -102,16 +112,15 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
             tone: refs.getOrCreate("tone", "const", { value: srvb.tone }, []),
             position: refs.getOrCreate("position", "const", { value: srvb.position }, []),
             structure: srvb.structure,
-            structureMax: refs.getOrCreate("structureMax", "const", { value: structureData.max, key: "structureMax" }, []),
+            structureMax: refs.getOrCreate("structureMax", "const", { value: structureData.max, key: "structureMax" }, [])
           },
           shared.dryInputs,
           ...structureData.consts
         )
       )
    );
-   console.log( 'RENDER called.....' );
+    console.log("RENDER called.....");
   } else {
-  
     // update the structure consts, should match the refs names set up by handleStructureChange
     OEIS_SEQUENCES[srvb.structure].forEach((value, i) => {
       if (value !== undefined)
@@ -131,14 +140,25 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     refs.update("v2", { value: scape.vectorData[1] });
     refs.update("v3", { value: scape.vectorData[2] });
     refs.update("v4", { value: scape.vectorData[3] });
-//DBG
+    // update the convolvers
 
-    console.log( '::: state -> ', scape.reverse, state.structure, state.scapeLength );
-    console.log( '::: memState -> ', memState.reverse, memState.structure, memState.scapeLength );
+    IRs.forEach((item) => {
+      for (let i = 0; i < 2; i++) {
+        refs.update(`${item.name}_${i}`, {
+          path:
+            scape.reverse > 0.5
+              ? REVERSE_BUFFER_PREFIX + `${item.name}_${i}`
+              : `${item.name}_${i}`,
+          process: scape.vectorData[item.index],
+        });
+      }
+    });
   }
 
+  // console.log( Object.keys( refs._map.get("EUROPA_0")[0].children  ) );
+
   // memoisation of nodes and non-node state
-  memState = {
+  memoized = {
     ...state,
     structure: srvb.structure,
     scapeLength: scape.scapeLength,
@@ -147,7 +167,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     vectorData: scape.vectorData,
   };
 
-  function parseNewState( stateReceivedFromNative ) {
+  function parseNewState(stateReceivedFromNative) {
     const state = JSON.parse(stateReceivedFromNative);
     // interpreted state captured out into respective processor properties.
     // any adjustments should be done here before rendering to the graph
@@ -162,13 +182,13 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
       diffuse: state.diffuse,
       tone: clamp(state.tone * 2 - 1, -0.99, 1),
       mix: state.mix,
-      structureMax: Math.round( state.structureMax ) || 400, // handle the case where the max was not computed
+      structureMax: Math.round(state.structureMax) || 400, // handle the case where the max was not computed
     };
     const scape = {
       reverse: Math.round(state.scapeReverse),
       scapeLevel: state.scapeLevel,
       scapeLength: state.scapeLength,
-      vectorData: HERMITE.at(state.scapeLength)
+      vectorData: HERMITE.at(state.scapeLength),
     };
     return { state, srvb, shared, scape };
   }
@@ -217,7 +237,7 @@ function createHermiteVecInterp(): Ramp<Vec> {
     HERMITE_V(VEC3),
     // keyframes used for crossfading between 4 IRs
     [
-      [0.0, [1 , 0, 0, 0]], // a
+      [0.0, [1, 0, 0, 0]], // a
       [0.5, [0, 1, 0, 0]], // b
       [0.75, [0, 0, 0.707, 0]], // c
       [1.0, [0, 0, 0, 0.303]], // d

@@ -49,7 +49,6 @@ type FDNProps = {
 interface ScapeConvolver {
   path: string;
   index?: number;
-  reverse: number;
   process: number;
   key: string;
   channel: number;

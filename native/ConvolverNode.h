@@ -5,68 +5,69 @@
 #include <elem/Types.h>
 #include <elem/SingleWriterSingleReaderQueue.h>
 
-class ConvolverNode : public elem::GraphNode<float> {
+class ConvolverNode : public elem::GraphNode<float>
+{
 public:
-      ConvolverNode(elem::NodeId const id, double sampleRate, int const blockSize)
-        : elem::GraphNode<float>(id, sampleRate, blockSize){} 
+    ConvolverNode(elem::NodeId const id, double sampleRate, int const blockSize)
+        : elem::GraphNode<float>(id, sampleRate, blockSize) {}
 
- 
     int setProperty(
-        std::string const& key, 
-        elem::js::Value const& val, 
-        elem::SharedResourceMap<float>& resources) override
+        std::string const &key,
+        elem::js::Value const &val,
+        elem::SharedResourceMap<float> &resources) override
     {
-        // if this prop value is 0 or negative, 
-        // the convolution stage will not be processed.
-        // Use it to switch off stages from ElemNode. 
-            if (key == "process") {
-                if (!val.isNumber())
-                    return elem::ReturnCode::InvalidPropertyType();
 
-                value.store(float((elem::js::Number) val));
-            }
+        if (key == "process")
+        {
+            if (!val.isNumber())
+                return elem::ReturnCode::InvalidPropertyType();
 
-         if (key == "path") {
-                if (!val.isString())
-                    return elem::ReturnCode::InvalidPropertyType();
+            procFlag.store(float((elem::js::Number)val));
+        }
 
-                if (!resources.has((elem::js::String) val))
-                    return elem::ReturnCode::InvalidPropertyValue();
+        if (key == "path")
+        {
+            if (!val.isString())
+                return elem::ReturnCode::InvalidPropertyType();
 
-                auto ref = resources.get((elem::js::String) val);
-                auto co = std::make_shared<fftconvolver::TwoStageFFTConvolver>();
-               
-                co->reset();
-                co->init(512, 4096, ref->data(), ref->size()); // possible optimisation here
+            if (!resources.has((elem::js::String)val))
+                return elem::ReturnCode::InvalidPropertyValue();
 
-                convolverQueue.push(std::move(co));
-            }
+            auto ref = resources.get((elem::js::String)val);
+            auto co = std::make_shared<fftconvolver::TwoStageFFTConvolver>();
 
-            return GraphNode<float>::setProperty(key, val);
+            co->reset();
+            co->init(512, 4096, ref->data(), ref->size()); // possible optimisation here
+
+            convolverQueue.push(std::move(co));
+        }
+
+        return GraphNode<float>::setProperty(key, val);
     }
- 
-    void process (elem::BlockContext<float> const& ctx) override
+
+    void process(elem::BlockContext<float> const &ctx) override
     {
-            auto** inputData = ctx.inputData;
-            auto* outputData = ctx.outputData;
-            auto numChannels = ctx.numInputChannels;
-            auto numSamples = ctx.numSamples;
+        auto** inputData = ctx.inputData;
+        auto* outputData = ctx.outputData;
+        auto numChannels = ctx.numInputChannels;
+        auto numSamples = ctx.numSamples;
 
+        if ( procFlag.load() < 0.00001f )
+            return (void)std::copy_n(inputData[0], numSamples, outputData);
 
-            // First order of business: grab the most recent convolver to use if
-            // there's anything in the queue. This behavior means that changing the convolver
-            // impulse response while playing will cause a discontinuity.
-            while (convolverQueue.size() > 0)
-                convolverQueue.pop(convolver);
+        // First order of business: grab the most recent convolver to use if
+        // there's anything in the queue. This behavior means that changing the convolver
+        // impulse response while playing will cause a discontinuity.
+        while (convolverQueue.size() > 0)
+            convolverQueue.pop(convolver);
 
-            if (numChannels == 0 || convolver == nullptr  )
-                return (void) std::fill_n(outputData, numSamples, float(0));
+        if ( numChannels == 0 || convolver == nullptr )
+            return (void)std::fill_n(outputData, numSamples, float(0));
 
-            convolver->TwoStageFFTConvolver::process(inputData[0], outputData, value.load() > 1.0e-3 ? numSamples : 0.0 );
-   
+        convolver->TwoStageFFTConvolver::process(inputData[0], outputData, numSamples);
     }
-        elem::SingleWriterSingleReaderQueue<std::shared_ptr<fftconvolver::TwoStageFFTConvolver>> convolverQueue;
-        std::shared_ptr<fftconvolver::TwoStageFFTConvolver> convolver;
-        std::atomic<float> value = 1;      
-  
-};// namespace elem
+    elem::SingleWriterSingleReaderQueue<std::shared_ptr<fftconvolver::TwoStageFFTConvolver>> convolverQueue;
+    std::shared_ptr<fftconvolver::TwoStageFFTConvolver> convolver;
+    std::atomic<float> procFlag = 0.0f;
+
+}; // namespace elem
