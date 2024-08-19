@@ -25,6 +25,13 @@ public:
             procFlag.store(float((elem::js::Number)val));
         }
 
+        if (key == "scale")
+        {
+            if (!val.isNumber())
+                return elem::ReturnCode::InvalidPropertyType();
+            scalar.store(float((elem::js::Number)val));
+        }
+
         if (key == "path")
         {
             if (!val.isString())
@@ -47,12 +54,15 @@ public:
 
     void process(elem::BlockContext<float> const &ctx) override
     {
-        auto** inputData = ctx.inputData;
-        auto* outputData = ctx.outputData;
+        auto **inputData = ctx.inputData;
+        auto *outputData = ctx.outputData;
         auto numChannels = ctx.numInputChannels;
         auto numSamples = ctx.numSamples;
+        // Create a new buffer for scaled input data
+        std::vector<float> scaledData(numSamples);
 
-        if ( procFlag.load() < 0.00001f )
+        // bypass when procFlag is close to zero
+        if (procFlag.load() < 0.00001f)
             return (void)std::copy_n(inputData[0], numSamples, outputData);
 
         // First order of business: grab the most recent convolver to use if
@@ -61,13 +71,17 @@ public:
         while (convolverQueue.size() > 0)
             convolverQueue.pop(convolver);
 
-        if ( numChannels == 0 || convolver == nullptr )
+        if (numChannels == 0 || convolver == nullptr)
             return (void)std::fill_n(outputData, numSamples, float(0));
 
-        convolver->TwoStageFFTConvolver::process(inputData[0], outputData, numSamples);
+        // Scale the inputData with Scalar using JUCE FloatVectorOperations
+        juce::FloatVectorOperations::multiply(scaledData.data(), inputData[0], scalar.load(), numSamples);
+        // now convolve the scaledData with the impulse response
+        convolver->TwoStageFFTConvolver::process(scaledData.data(), outputData, numSamples);
     }
     elem::SingleWriterSingleReaderQueue<std::shared_ptr<fftconvolver::TwoStageFFTConvolver>> convolverQueue;
     std::shared_ptr<fftconvolver::TwoStageFFTConvolver> convolver;
     std::atomic<float> procFlag = 0.0f;
+    std::atomic<float> scalar = 1.0f;
 
 }; // namespace elem

@@ -1,8 +1,4 @@
-import { el, createNode, ElemNode } from "@elemaudio/core";
-
-import { ScapeConvolver } from "../src/types";
-
- 
+import { el, ElemNode } from "@elemaudio/core";
 
   // Define our VFS paths for the IR buffers always uppercase, even if the filename has lowercase
   // because it is a Map key, not a real fs path
@@ -14,13 +10,12 @@ import { ScapeConvolver } from "../src/types";
   ];
 
 
-export default function SCAPE(refs, props, dryInputs, ...outputFromSRVB: ElemNode[]) {
+export default function SCAPE( props, dryInputs, ...outputFromSRVB: ElemNode[]) {
 
   ///////////////////////////////////////////
   // SCAPE DSP setup
-  const {  vectorData: hermiteNumbers = [1,0,0,0] }: { sampleRate: number, vectorData?: number[] } = props; // numbers
-  const { scapeLevel }: { scapeLevel: ElemNode } = props; // nodes
-  const hermiteNodes: ElemNode[] = [props.v1, props.v2, props.v3, props.v4]; // Hermite mixer as nodes
+  const scapeLevel = el.sm( props.scapeLevel ); // nodes
+  const hermiteNodes: ElemNode[] = [ props.v1, props.v2, props.v3, props.v4 ].map( (n) => el.sm(n) ); // Hermite mixer as nodes
   const convolverNodes: Map< string, ElemNode[] > = new Map();
     convolverNodes.set( 'GLASS', [ props.GLASS_0, props.GLASS_1 ] );
     convolverNodes.set( 'SUNPLATE', [ props.SUNPLATE_0, props.SUNPLATE_1 ] );
@@ -33,33 +28,22 @@ export default function SCAPE(refs, props, dryInputs, ...outputFromSRVB: ElemNod
   // HERMITE vector cross fader
   function HermiteVecInterp(
     channel: number ,
-    hermiteNumbers: number[],
     hermiteNodes: ElemNode[],
     _in: ElemNode
   ) {
     let mixer: ElemNode[] = [];
     responses.forEach((response, index) => {
-      const { path, attenuationDb } = response;
-      const key = `key::${path}::${channel}`;
       mixer.push( 
         el.mul(
           hermiteNodes[index], 
-          scapeConvolver( { path, index, process: hermiteNumbers[index], key, channel, attenuationDb, _in } ) 
+          scapeConvolver( response.path, channel ) 
       ));
     });
    
     return el.add(...mixer);
   }
 
-  let scapeConvolver = (
-   { 
-    key,
-    path,
-    channel = 0,
-    attenuationDb = -24,
-    _in } : ScapeConvolver
-  ) => {
-     const attenuatedInputSignal: ElemNode = el.mul( el.db2gain( attenuationDb ) ,   _in );
+  let scapeConvolver = ( path, channel ) => {
     let selectConvolverRef = convolverNodes.get( path )![channel];
     return selectConvolverRef
   };
@@ -67,8 +51,8 @@ export default function SCAPE(refs, props, dryInputs, ...outputFromSRVB: ElemNod
 
 
   let tailSectionLR = (_inputs: ElemNode[]) => [
-    HermiteVecInterp( 0, hermiteNumbers, hermiteNodes, _inputs[0] ),
-    HermiteVecInterp( 1, hermiteNumbers, hermiteNodes, _inputs[1] ),
+    HermiteVecInterp( 0, hermiteNodes, _inputs[0] ),
+    HermiteVecInterp( 1, hermiteNodes, _inputs[1] ),
   ];
 
   let scapeProcessLR = (_inputs: ElemNode[]) => [

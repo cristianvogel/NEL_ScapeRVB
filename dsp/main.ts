@@ -81,7 +81,6 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     // prettier-ignore
     const graph = core.render(
       ...SCAPE(
-        refs,
         {
           sampleRate: shared.sampleRate,
           vectorData: scape.vectorData,
@@ -91,15 +90,14 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
           v3: refs.getOrCreate("v3", "const", { value: scape.vectorData[2] }, []),
           v4: refs.getOrCreate("v4", "const", { value: scape.vectorData[3] }, []),
           // render the convolvers
-          GLASS_0: refs.getOrCreate("GLASS_0", "convolver", { path: "GLASS_0", process: scape.vectorData[0]  }, [  ] ),
-          GLASS_1: refs.getOrCreate("GLASS_1", "convolver", { path: "GLASS_1" , process: scape.vectorData[0] }, [  ]),
-          SUNPLATE_0: refs.getOrCreate("SUNPLATE_0", "convolver", { path: "SUNPLATE_0", process: scape.vectorData[1]  }, [ ] ),
-          SUNPLATE_1: refs.getOrCreate("SUNPLATE_1", "convolver", { path: "SUNPLATE_1", process: scape.vectorData[1]  }, [  ] ),
-          TANGLEWOOD_0: refs.getOrCreate("TANGLEWOOD_0", "convolver", { path: "TANGLEWOOD_0", process: scape.vectorData[2] }, [  ] ),
-          TANGLEWOOD_1: refs.getOrCreate("TANGLEWOOD_1", "convolver", { path: "TANGLEWOOD_1", process: scape.vectorData[2] }, [  ] ),
-          EUROPA_0: refs.getOrCreate("EUROPA_0", "convolver", { path: "EUROPA_0", process: scape.vectorData[3] }, [  ] ),
-          EUROPA_1: refs.getOrCreate("EUROPA_1", "convolver", { path: "EUROPA_1", process: scape.vectorData[3]  }, [  ] ),
-        
+          GLASS_0: refs.getOrCreate("GLASS_0", "convolver", { path: "GLASS_0", process: scape.vectorData[0], scale: 0.5  }, [  ] ),
+          GLASS_1: refs.getOrCreate("GLASS_1", "convolver", { path: "GLASS_1" , process: scape.vectorData[0], scale: 0.5  }, [  ]),
+          SUNPLATE_0: refs.getOrCreate("SUNPLATE_0", "convolver", { path: "SUNPLATE_0", process: scape.vectorData[1], scale: 0.4   }, [ ] ),
+          SUNPLATE_1: refs.getOrCreate("SUNPLATE_1", "convolver", { path: "SUNPLATE_1", process: scape.vectorData[1], scale: 0.4   }, [  ] ),
+          TANGLEWOOD_0: refs.getOrCreate("TANGLEWOOD_0", "convolver", { path: "TANGLEWOOD_0", process: scape.vectorData[2], scale: 0.25  }, [  ] ),
+          TANGLEWOOD_1: refs.getOrCreate("TANGLEWOOD_1", "convolver", { path: "TANGLEWOOD_1", process: scape.vectorData[2], scale: 0.25  }, [  ] ),
+          EUROPA_0: refs.getOrCreate("EUROPA_0", "convolver", { path: "EUROPA_0", process: scape.vectorData[3], scale: 0.075  }, [  ] ),
+          EUROPA_1: refs.getOrCreate("EUROPA_1", "convolver", { path: "EUROPA_1", process: scape.vectorData[3], scale: 0.075   }, [  ] ),
         },
         shared.dryInputs,
         ...SRVB(
@@ -140,9 +138,9 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     refs.update("v2", { value: scape.vectorData[1] });
     refs.update("v3", { value: scape.vectorData[2] });
     refs.update("v4", { value: scape.vectorData[3] });
+    
     // update the convolvers
-
-    IRs.forEach((item) => {
+    IRs.forEach((item, index) => {
       for (let i = 0; i < 2; i++) {
         refs.update(`${item.name}_${i}`, {
           path:
@@ -150,6 +148,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
               ? REVERSE_BUFFER_PREFIX + `${item.name}_${i}`
               : `${item.name}_${i}`,
           process: scape.vectorData[item.index],
+          scale: [0.5, 0.4, 0.1, 0.01][index],
         });
       }
     });
