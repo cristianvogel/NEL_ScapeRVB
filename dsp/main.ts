@@ -114,7 +114,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
         shared.dryInputs,
         ...SRVB(
           {
-            key: "srvbEarly",
+            key: "srvb",
             sampleRate: shared.sampleRate,
             size: refs.getOrCreate("size", "const", { value: srvb.size }, []),
             decay: refs.getOrCreate("diffuse", "const", { value: srvb.diffuse }, []),
@@ -254,8 +254,8 @@ function createHermiteVecInterp(): Ramp<Vec> {
     // keyframes used for crossfading between 4 IRs
     [
       [0.0, [1, 0, 0, 0]], // a
-      [0.5, [0, 0.9, 0, 0]], // b
-      [0.75, [0, 0, 0.9, 0]], // c
+      [0.45, [0, 0.9, 0, 0]], // b
+      [0.65, [0, 0, 0.9, 0]], // c
       [1.0, [0, 0, 0, 0.626]], // d
     ]
   );

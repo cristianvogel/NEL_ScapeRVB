@@ -92,7 +92,7 @@ function diffuse(props: DiffuseProps, ...ins) {
 
 // An eight channel feedback delay network
 function dampFDN(props: FDNProps, ...ins) {
-  const len = ins.length;
+  const len = ins.length / 2;
   const { name, tone, size, decay } = props;
   const { sampleRate } = props;
   const structure: Array<ElemNode> = props.structureArray;
@@ -149,7 +149,7 @@ function dampFDN(props: FDNProps, ...ins) {
       el.mul(
         1 + EPS,
         decay,
-        el.smooth(0.0025, el.tapIn({ name: `${name}:fdn${i}` }))
+        el.smooth(0.0025, el.tapIn({ name: `srvb:fdn${i}` }))
       )
     );
   });
@@ -171,7 +171,7 @@ function dampFDN(props: FDNProps, ...ins) {
     );
 
     return el.tapOut(
-      { name: `${name}:fdn${i}` },
+      { name: `srvb:fdn${i}` },
       el.delay({ size: ms2samps(137) }, delayScale , 0.0, mm)
     );
   });
@@ -200,39 +200,39 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
     { structure: structureArray, structureMax , maxLengthSamp: ms2samps(43) },
     ...eight
   );
-  const d2 = diffuse(
-    { structure: structureArray, structureMax , maxLengthSamp: ms2samps(97) },
-    ...d1
-  );
-  const d3 = diffuse(
-    { structure: structureArray, structureMax , maxLengthSamp: ms2samps(117) },
-    ...d2
-  );
+  // const d2 = diffuse(
+  //   { structure: structureArray, structureMax , maxLengthSamp: ms2samps(97) },
+  //   ...d1
+  // );
+  // const d3 = diffuse(
+  //   { structure: structureArray, structureMax , maxLengthSamp: ms2samps(117) },
+  //   ...d2
+  // );
 
   // Reverb network
-  const d4: ElemNode[] = dampFDN(
-    {
-      name: `${key}:d4`,
-      sampleRate,
-      structureArray,
-      structureMax,
-      tone: props.tone,
-      size: props.size,
-      decay: 0.004,
-    },
-    ...d3
-  );
+  // const d4: ElemNode[] = dampFDN(
+  //   {
+  //     name: `${key}:d4`,
+  //     sampleRate,
+  //     structureArray,
+  //     structureMax,
+  //     tone: props.tone,
+  //     size: props.size,
+  //     decay: 0.004,
+  //   },
+  //   ...d1
+  // );
   let r0: ElemNode[] = dampFDN(
     {
-      name: `${key}:r0`,
+      name: `r0:`,
       sampleRate,
       structureArray,
       structureMax,
       tone: props.tone,
       size: props.size,
-      decay: props.decay,
+      decay: el.mul( props.decay , 0.5),
     },
-    ...d4
+    ...d1
   );
 
   // interleaved dimensional Downmix ( optimised to build the spatial delays when needed )
