@@ -32,3 +32,6 @@ src/cables-ui
 *.sln
 *.sw?
 *.swp
+
+# Assets
+ir-src
