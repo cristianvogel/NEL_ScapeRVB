@@ -24,11 +24,13 @@ let core = new Renderer((batch) => {
 let convolver = (_props, ...childs) => createNode("convolver", _props, childs);
 
 const IRs = [
-  { name: "GLASS", index: 0 },
-  { name: "SUNPLATE", index: 1 },
-  { name: "TANGLEWOOD", index: 2 },
-  { name: "EUROPA", index: 3 },
+  { name: "GLASS", index: 0 , att: 0.5 },
+  { name: "SUNPLATE", index: 1, att: 0.4 },
+  { name: "TANGLEWOOD", index: 2, att: 0.25 },
+  { name: "EUROPA", index: 3, att: 0.03 },
 ];
+
+let ir_inputAtt = IRs.map( (ir) => ir.att  )
 
 // Next, a RefMap for coordinating our refs
 let refs: RefMap = new RefMap(core);
@@ -148,7 +150,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
               ? REVERSE_BUFFER_PREFIX + `${item.name}_${i}`
               : `${item.name}_${i}`,
           process: scape.vectorData[item.index],
-          scale: [0.5, 0.4, 0.1, 0.01][index],
+          scale: ir_inputAtt[index],
         });
       }
     });
