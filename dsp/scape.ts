@@ -15,7 +15,7 @@ export default function SCAPE( props, dryInputs, ...outputFromSRVB: ElemNode[]) 
   ///////////////////////////////////////////
   // SCAPE DSP setup
   const scapeLevel = el.sm( props.scapeLevel ); // nodes
-  const position = el.sm( el.mul( 0.05, props.scapePosition ) ); // nodes
+  const position = el.sm(  props.scapePosition ); // nodes
   const hermiteNodes: ElemNode[] = [ props.v1, props.v2, props.v3, props.v4 ].map( (n) =>  el.sm(n) ); // Hermite mixer as nodes
   const convolverNodes: Map< string, ElemNode[] > = new Map();
     convolverNodes.set( 'GLASS', [ props.GLASS_0, props.GLASS_1 ] );
@@ -61,8 +61,11 @@ export default function SCAPE( props, dryInputs, ...outputFromSRVB: ElemNode[]) 
    el.dcblock( el.mul( el.db2gain(2.5), tailSectionLR( _inputs )[1] ) )
   ];
 
-  const yL = el.select( scapeLevel , scapeProcessLR( outputFromSRVB )[0]  , outputFromSRVB[0] ) ; // crossfaded blend
-  const yR = el.select( scapeLevel , scapeProcessLR( outputFromSRVB )[1]  , outputFromSRVB[1] ) ; // crossfaded blend
+  const asLeftPan =  ( x: ElemNode): ElemNode => { return   el.select( position, x, el.mul(x, el.db2gain( 3 ) ) )  };
+  const asRightPan =   ( x: ElemNode): ElemNode => { return el.select( position, el.mul( x, el.db2gain( 3.5 ) ) , x )  };
+
+  const yL = asLeftPan(   el.select( scapeLevel , scapeProcessLR( outputFromSRVB )[0]  , outputFromSRVB[0] ) ) ; // crossfaded blend
+  const yR = asRightPan(  el.select( scapeLevel , scapeProcessLR( outputFromSRVB )[1]  , outputFromSRVB[1] ) ) ; // crossfaded blend
 
   return [yL, yR];
 }

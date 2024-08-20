@@ -93,7 +93,7 @@ function diffuse(props: DiffuseProps, ...ins) {
 // An eight channel feedback delay network
 function dampFDN(props: FDNProps, ...ins) {
   const len = ins.length;
-  const { name, tone, size, decay, modDepth } = props;
+  const { name, tone, size, decay } = props;
   const { sampleRate } = props;
   const structure: Array<ElemNode> = props.structureArray;
   const structureMax: ElemNode = props.structureMax;
@@ -181,8 +181,9 @@ function dampFDN(props: FDNProps, ...ins) {
  **/
 
 export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureArray: ElemNode[]) {
-  // xl , xr -- unprocessed input
-  const { sampleRate, key, position, structureMax, mix } = props;
+  // xl , xr -- unprocessed inputs
+  const { sampleRate, key, structureMax, mix } = props;
+  const position = el.sm( props.position) 
   const [xl, xr] = inputs;
   // input attenuation
   const _xl = el.dcblock(el.mul(xl, el.db2gain(-1.5)));
@@ -243,15 +244,13 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
       el.mul(-1, x)
     );
 
-  let yl = el.mul(
-    el.db2gain(-3),
-    el.add(positioning(0, r0[0]), r0[3], positioning(5, r0[5]), r0[7])
-  );
+    const asLeftPan =  ( x: ElemNode): ElemNode => { return   el.select( position, x, el.mul(x, el.db2gain( 3 ) ) )  };
+    const asRightPan =   ( x: ElemNode): ElemNode => { return el.select( position, el.mul( x, el.db2gain( 3.5 ) ) , x )  };
+  
+    let yl = asLeftPan(   el.add(positioning(0, r0[0]), r0[2],                  positioning(4, r0[4]), r0[6] ) );
+    let yr = asRightPan(  el.add(                 r0[1], positioning(3, r0[3]), r0[5],                 positioning(7, r0[7]) ) ) 
 
-  let yr = el.mul(
-    el.db2gain(-3),
-    el.add(r0[1], positioning(2, r0[2]), r0[4], positioning(6, r0[6]))
-  );
   // Wet dry mixing
   return [el.select( mix, yl, xl), el.select( mix, yr, xr)];
 }
+ 

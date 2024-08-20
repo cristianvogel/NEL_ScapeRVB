@@ -142,6 +142,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     refs.update("v2", { value: scape.vectorData[1] });
     refs.update("v3", { value: scape.vectorData[2] });
     refs.update("v4", { value: scape.vectorData[3] });
+    refs.update("scapePosition", { value: shared.position });
     
     // update the convolvers
     IRs.forEach((item, index) => {
