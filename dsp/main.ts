@@ -87,19 +87,21 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
           sampleRate: shared.sampleRate,
           vectorData: scape.vectorData,
           scapeLevel: refs.getOrCreate("scapeLevel", "const", { value: scape.scapeLevel }, []),
+          scapePosition: refs.getOrCreate("scapePosition", "const", { value: shared.position }, []),
+          // the Hermite vector interpolation values as signals
           v1: refs.getOrCreate("v1", "const", { value: scape.vectorData[0] }, []), 
           v2: refs.getOrCreate("v2", "const", { value: scape.vectorData[1] }, []),
           v3: refs.getOrCreate("v3", "const", { value: scape.vectorData[2] }, []),
           v4: refs.getOrCreate("v4", "const", { value: scape.vectorData[3] }, []),
           // render the convolvers
-          GLASS_0: refs.getOrCreate("GLASS_0", "convolver", { path: "GLASS_0", process: scape.vectorData[0], scale: 0.5  }, [  ] ),
-          GLASS_1: refs.getOrCreate("GLASS_1", "convolver", { path: "GLASS_1" , process: scape.vectorData[0], scale: 0.5  }, [  ]),
-          SUNPLATE_0: refs.getOrCreate("SUNPLATE_0", "convolver", { path: "SUNPLATE_0", process: scape.vectorData[1], scale: 0.4   }, [ ] ),
-          SUNPLATE_1: refs.getOrCreate("SUNPLATE_1", "convolver", { path: "SUNPLATE_1", process: scape.vectorData[1], scale: 0.4   }, [  ] ),
-          TANGLEWOOD_0: refs.getOrCreate("TANGLEWOOD_0", "convolver", { path: "TANGLEWOOD_0", process: scape.vectorData[2], scale: 0.25  }, [  ] ),
-          TANGLEWOOD_1: refs.getOrCreate("TANGLEWOOD_1", "convolver", { path: "TANGLEWOOD_1", process: scape.vectorData[2], scale: 0.25  }, [  ] ),
-          EUROPA_0: refs.getOrCreate("EUROPA_0", "convolver", { path: "EUROPA_0", process: scape.vectorData[3], scale: 0.075  }, [  ] ),
-          EUROPA_1: refs.getOrCreate("EUROPA_1", "convolver", { path: "EUROPA_1", process: scape.vectorData[3], scale: 0.075   }, [  ] ),
+          GLASS_0: refs.getOrCreate("GLASS_0", "convolver", { path: "GLASS_0", process: scape.vectorData[0], scale: ir_inputAtt[0]  }, [  ] ),
+          GLASS_1: refs.getOrCreate("GLASS_1", "convolver", { path: "GLASS_1" , process: scape.vectorData[0], scale: ir_inputAtt[0] }, [  ]),
+          SUNPLATE_0: refs.getOrCreate("SUNPLATE_0", "convolver", { path: "SUNPLATE_0", process: scape.vectorData[1], scale: ir_inputAtt[1]  }, [ ] ),
+          SUNPLATE_1: refs.getOrCreate("SUNPLATE_1", "convolver", { path: "SUNPLATE_1", process: scape.vectorData[1], scale: ir_inputAtt[1]  }, [  ] ),
+          TANGLEWOOD_0: refs.getOrCreate("TANGLEWOOD_0", "convolver", { path: "TANGLEWOOD_0", process: scape.vectorData[2], scale: ir_inputAtt[2]  }, [  ] ),
+          TANGLEWOOD_1: refs.getOrCreate("TANGLEWOOD_1", "convolver", { path: "TANGLEWOOD_1", process: scape.vectorData[2], scale: ir_inputAtt[2]  }, [  ] ),
+          EUROPA_0: refs.getOrCreate("EUROPA_0", "convolver", { path: "EUROPA_0", process: scape.vectorData[3], scale: ir_inputAtt[3]  }, [  ] ),
+          EUROPA_1: refs.getOrCreate("EUROPA_1", "convolver", { path: "EUROPA_1", process: scape.vectorData[3], scale: ir_inputAtt[3]   }, [  ] ),
         },
         shared.dryInputs,
         ...SRVB(
@@ -110,7 +112,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
             decay: refs.getOrCreate("diffuse", "const", { value: srvb.diffuse }, []),
             mix: refs.getOrCreate("mix", "const", { value: srvb.mix, key: "effectMix" }, []),
             tone: refs.getOrCreate("tone", "const", { value: srvb.tone }, []),
-            position: refs.getOrCreate("position", "const", { value: srvb.position }, []),
+            position: refs.getOrCreate("position", "const", { value: shared.position }, []),
             structure: srvb.structure,
             structureMax: refs.getOrCreate("structureMax", "const", { value: structureData.max, key: "structureMax" }, [])
           },
@@ -132,7 +134,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     refs.update("diffuse", { value: srvb.diffuse });
     refs.update("mix", { value: srvb.mix });
     refs.update("tone", { value: srvb.tone });
-    refs.update("position", { value: srvb.position });
+    refs.update("position", { value: shared.position });
     refs.update("structureMax", { value: srvb.structureMax });
     // and the scape refs
     refs.update("scapeLevel", { value: scape.scapeLevel });
@@ -151,6 +153,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
               : `${item.name}_${i}`,
           process: scape.vectorData[item.index],
           scale: ir_inputAtt[index],
+
         });
       }
     });
@@ -175,11 +178,11 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     const shared = {
       sampleRate: state.sampleRate,
       dryInputs: [el.in({ channel: 0 }), el.in({ channel: 1 })],
+      position: clamp(state.position, EPS, 1),
     };
     const srvb = {
       structure: Math.round((state.structure || 0) * NUM_SEQUENCES),
       size: state.size,
-      position: clamp(state.position, EPS, 1),
       diffuse: state.diffuse,
       tone: clamp(state.tone * 2 - 1, -0.99, 1),
       mix: state.mix,

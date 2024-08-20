@@ -15,7 +15,8 @@ export default function SCAPE( props, dryInputs, ...outputFromSRVB: ElemNode[]) 
   ///////////////////////////////////////////
   // SCAPE DSP setup
   const scapeLevel = el.sm( props.scapeLevel ); // nodes
-  const hermiteNodes: ElemNode[] = [ props.v1, props.v2, props.v3, props.v4 ].map( (n) => el.sm(n) ); // Hermite mixer as nodes
+  const position = el.sm( el.mul( 0.05, props.scapePosition ) ); // nodes
+  const hermiteNodes: ElemNode[] = [ props.v1, props.v2, props.v3, props.v4 ].map( (n) =>  el.sm(n) ); // Hermite mixer as nodes
   const convolverNodes: Map< string, ElemNode[] > = new Map();
     convolverNodes.set( 'GLASS', [ props.GLASS_0, props.GLASS_1 ] );
     convolverNodes.set( 'SUNPLATE', [ props.SUNPLATE_0, props.SUNPLATE_1 ] );

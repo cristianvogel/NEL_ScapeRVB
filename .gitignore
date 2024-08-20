@@ -7,6 +7,9 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Assets
+ir-src
+
 # Builds
 native/elementary
 native/choc
@@ -33,3 +36,4 @@ cables-ui
 *.sln
 *.sw?
 *.swp
+
