@@ -25,9 +25,9 @@ let convolver = (_props, ...childs) => createNode("convolver", _props, childs);
 
 const IRs = [
   { name: "GLASS", index: 0 , att: 0.5 },
-  { name: "SUNPLATE", index: 1, att: 0.4 },
-  { name: "TANGLEWOOD", index: 2, att: 0.25 },
-  { name: "EUROPA", index: 3, att: 0.03 },
+  { name: "SURFACE", index: 1, att: 0.5 },
+  { name: "TANGLEWOOD", index: 2, att: 0.4 },
+  { name: "EUROPA", index: 3, att: 0.02 },
 ];
 
 let ir_inputAtt = IRs.map( (ir) => ir.att  )
@@ -94,14 +94,22 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
           v3: refs.getOrCreate("v3", "const", { value: scape.vectorData[2] }, []),
           v4: refs.getOrCreate("v4", "const", { value: scape.vectorData[3] }, []),
           // render the convolvers
-          GLASS_0: refs.getOrCreate("GLASS_0", "convolver", { path: "GLASS_0", process: scape.vectorData[0], scale: ir_inputAtt[0]  }, [  ] ),
-          GLASS_1: refs.getOrCreate("GLASS_1", "convolver", { path: "GLASS_1" , process: scape.vectorData[0], scale: ir_inputAtt[0] }, [  ]),
-          SUNPLATE_0: refs.getOrCreate("SUNPLATE_0", "convolver", { path: "SUNPLATE_0", process: scape.vectorData[1], scale: ir_inputAtt[1]  }, [ ] ),
-          SUNPLATE_1: refs.getOrCreate("SUNPLATE_1", "convolver", { path: "SUNPLATE_1", process: scape.vectorData[1], scale: ir_inputAtt[1]  }, [  ] ),
-          TANGLEWOOD_0: refs.getOrCreate("TANGLEWOOD_0", "convolver", { path: "TANGLEWOOD_0", process: scape.vectorData[2], scale: ir_inputAtt[2]  }, [  ] ),
-          TANGLEWOOD_1: refs.getOrCreate("TANGLEWOOD_1", "convolver", { path: "TANGLEWOOD_1", process: scape.vectorData[2], scale: ir_inputAtt[2]  }, [  ] ),
-          EUROPA_0: refs.getOrCreate("EUROPA_0", "convolver", { path: "EUROPA_0", process: scape.vectorData[3], scale: ir_inputAtt[3]  }, [  ] ),
-          EUROPA_1: refs.getOrCreate("EUROPA_1", "convolver", { path: "EUROPA_1", process: scape.vectorData[3], scale: ir_inputAtt[3]   }, [  ] ),
+          GLASS_0: refs.getOrCreate("GLASS_0", "convolver", 
+            { path: "GLASS_0", process: scape.vectorData[0], scale: ir_inputAtt[0], headSize: scape.headSize, tailSize: scape.tailSize  }, [  ] ),
+          GLASS_1: refs.getOrCreate("GLASS_1", "convolver", 
+            { path: "GLASS_1" , process: scape.vectorData[0], scale: ir_inputAtt[0], headSize: scape.headSize, tailSize: scape.tailSize }, [  ]),
+          SURFACE_0: refs.getOrCreate("SURFACE_0", "convolver", 
+            { path: "SURFACE_0", process: scape.vectorData[1], scale: ir_inputAtt[1] , headSize: scape.headSize, tailSize: scape.tailSize }, [ ] ),
+          SURFACE_1: refs.getOrCreate("SURFACE_1", "convolver", 
+            { path: "SURFACE_1", process: scape.vectorData[1], scale: ir_inputAtt[1] , headSize: scape.headSize, tailSize: scape.tailSize }, [  ] ),
+          TANGLEWOOD_0: refs.getOrCreate("TANGLEWOOD_0", "convolver", 
+            { path: "TANGLEWOOD_0", process: scape.vectorData[2], scale: ir_inputAtt[2] , headSize: scape.headSize, tailSize: scape.tailSize }, [  ] ),
+          TANGLEWOOD_1: refs.getOrCreate("TANGLEWOOD_1", "convolver", 
+            { path: "TANGLEWOOD_1", process: scape.vectorData[2], scale: ir_inputAtt[2] , headSize: scape.headSize, tailSize: scape.tailSize }, [  ] ),
+          EUROPA_0: refs.getOrCreate("EUROPA_0", "convolver", 
+            { path: "EUROPA_0", process: scape.vectorData[3], scale: ir_inputAtt[3] , headSize: scape.headSize, tailSize: scape.tailSize }, [  ] ),
+          EUROPA_1: refs.getOrCreate("EUROPA_1", "convolver", 
+            { path: "EUROPA_1", process: scape.vectorData[3], scale: ir_inputAtt[3]  , headSize: scape.headSize, tailSize: scape.tailSize }, [  ] ),
         },
         shared.dryInputs,
         ...SRVB(
@@ -143,6 +151,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     refs.update("v3", { value: scape.vectorData[2] });
     refs.update("v4", { value: scape.vectorData[3] });
     refs.update("scapePosition", { value: shared.position });
+
     
     // update the convolvers
     IRs.forEach((item, index) => {
@@ -152,7 +161,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
             scape.reverse > 0.5
               ? REVERSE_BUFFER_PREFIX + `${item.name}_${i}`
               : `${item.name}_${i}`,
-          process: scape.vectorData[item.index],
+          process: Math.min( scape.scapeLevel, scape.vectorData[item.index] ),
           scale: ir_inputAtt[index],
 
         });
@@ -194,6 +203,8 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
       scapeLevel: state.scapeLevel,
       scapeLength: state.scapeLength,
       vectorData: HERMITE.at(state.scapeLength),
+      headSize: 128,
+      tailSize: 512
     };
     return { state, srvb, shared, scape };
   }
@@ -243,9 +254,9 @@ function createHermiteVecInterp(): Ramp<Vec> {
     // keyframes used for crossfading between 4 IRs
     [
       [0.0, [1, 0, 0, 0]], // a
-      [0.5, [0, 1, 0, 0]], // b
-      [0.75, [0, 0, 0.707, 0]], // c
-      [1.0, [0, 0, 0, 0.303]], // d
+      [0.5, [0, 0.9, 0, 0]], // b
+      [0.75, [0, 0, 0.9, 0]], // c
+      [1.0, [0, 0, 0, 0.626]], // d
     ]
   );
 }

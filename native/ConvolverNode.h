@@ -25,6 +25,20 @@ public:
             procFlag.store(float((elem::js::Number)val));
         }
 
+        if( key == "headSize" || key == "tailSize" )
+        {
+
+            if (!val.isNumber())
+                return elem::ReturnCode::InvalidPropertyType();
+
+            if (key == "headSize")
+                headSize.store(int((elem::js::Number)val));
+
+            if (key == "tailSize")
+                tailSize.store(int((elem::js::Number)val));
+
+        }
+
         if (key == "scale")
         {
             if (!val.isNumber())
@@ -44,7 +58,7 @@ public:
             auto co = std::make_shared<fftconvolver::TwoStageFFTConvolver>();
 
             co->reset();
-            co->init(512, 4096, ref->data(), ref->size()); // possible optimisation here
+            co->init( headSize.load(), tailSize.load(), ref->data(), ref->size()); // possible optimisation here
 
             convolverQueue.push(std::move(co));
         }
@@ -83,5 +97,7 @@ public:
     std::shared_ptr<fftconvolver::TwoStageFFTConvolver> convolver;
     std::atomic<float> procFlag = 0.0f;
     std::atomic<float> scalar = 1.0f;
+    std::atomic<int> headSize = 512;
+    std::atomic<int> tailSize = 4096;
 
 }; // namespace elem

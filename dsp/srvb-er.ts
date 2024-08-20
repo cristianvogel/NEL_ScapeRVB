@@ -238,10 +238,10 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
   // interleaved dimensional Downmix ( optimised to build the spatial delays when needed )
   let positioning = (i, x: ElemNode): ElemNode =>
     el.delay(
-      { key: `downmix:${i}`, size: ms2samps(60 + i * 1.618) },
+      { key: `downmix:${i}`, size: ms2samps(60 + (i * 1.618)) },
       el.sm(el.sub(1, position)),
       0,
-      el.mul(-1, x)
+      el.mul( el.div( structureArray[i], structureMax) , x )
     );
 
     const asLeftPan =  ( x: ElemNode): ElemNode => { return   el.select( position, x, el.mul(x, el.db2gain( 3 ) ) )  };

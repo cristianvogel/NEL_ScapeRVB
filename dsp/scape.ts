@@ -4,7 +4,7 @@ import { el, ElemNode } from "@elemaudio/core";
   // because it is a Map key, not a real fs path
   const responses = [
     { path: "GLASS", attenuationDb: -18 },
-    { path: "SUNPLATE", attenuationDb: -15 },
+    { path: "SURFACE", attenuationDb: -15 },
     { path: "TANGLEWOOD", attenuationDb: -18 },
     { path: "EUROPA", attenuationDb: -36 },
   ];
@@ -19,7 +19,7 @@ export default function SCAPE( props, dryInputs, ...outputFromSRVB: ElemNode[]) 
   const hermiteNodes: ElemNode[] = [ props.v1, props.v2, props.v3, props.v4 ].map( (n) =>  el.sm(n) ); // Hermite mixer as nodes
   const convolverNodes: Map< string, ElemNode[] > = new Map();
     convolverNodes.set( 'GLASS', [ props.GLASS_0, props.GLASS_1 ] );
-    convolverNodes.set( 'SUNPLATE', [ props.SUNPLATE_0, props.SUNPLATE_1 ] );
+    convolverNodes.set( 'SURFACE', [ props.SURFACE_0, props.SURFACE_1 ] );
     convolverNodes.set( 'TANGLEWOOD', [ props.TANGLEWOOD_0, props.TANGLEWOOD_1 ] );
     convolverNodes.set( 'EUROPA', [ props.EUROPA_0, props.EUROPA_1 ] );
 
@@ -62,7 +62,7 @@ export default function SCAPE( props, dryInputs, ...outputFromSRVB: ElemNode[]) 
   ];
 
   const asLeftPan =  ( x: ElemNode): ElemNode => { return   el.select( position, x, el.mul(x, el.db2gain( 3 ) ) )  };
-  const asRightPan =   ( x: ElemNode): ElemNode => { return el.select( position, el.mul( x, el.db2gain( 3.5 ) ) , x )  };
+  const asRightPan =   ( x: ElemNode): ElemNode => { return el.select( position, el.mul( x, el.db2gain( 4.5 ) ) , x )  };
 
   const yL = asLeftPan(   el.select( scapeLevel , scapeProcessLR( outputFromSRVB )[0]  , outputFromSRVB[0] ) ) ; // crossfaded blend
   const yR = asRightPan(  el.select( scapeLevel , scapeProcessLR( outputFromSRVB )[1]  , outputFromSRVB[1] ) ) ; // crossfaded blend
