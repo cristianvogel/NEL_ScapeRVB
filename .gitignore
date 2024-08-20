@@ -21,6 +21,7 @@ public/patch.js
 public/assets
 !public/assets/impulse-responses
 src/cables-ui
+cables-ui
 
 # Editor directories and files
 .vscode
@@ -32,6 +33,3 @@ src/cables-ui
 *.sln
 *.sw?
 *.swp
-
-# Assets
-ir-src

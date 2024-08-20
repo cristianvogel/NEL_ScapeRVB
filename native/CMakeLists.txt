@@ -95,14 +95,11 @@ if(NOT ELEM_DEV_LOCALHOST)
 
     add_custom_command(TARGET ${ACTIVE_TARGET} POST_BUILD
       COMMAND ${CMAKE_COMMAND} -E rm -rf "${RESOURCE_DIR}/dist"
-      COMMAND ${CMAKE_COMMAND} -E echo "Removed directory: ${RESOURCE_DIR}/dist"
+
       COMMAND ${CMAKE_COMMAND} -E make_directory "${RESOURCE_DIR}/dist"
-      COMMAND ${CMAKE_COMMAND} -E echo "Created directory: ${RESOURCE_DIR}/dist"
 
       COMMAND ${CMAKE_COMMAND} -E make_directory "${ASSETS_DIR}/assets"
-      COMMAND ${CMAKE_COMMAND} -E echo "Created directory: ${ASSETS_DIR}/assets if it didn't already exist"
       COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/../cables-ui/assets" "${ASSETS_DIR}/assets"
-      COMMAND ${CMAKE_COMMAND} -E echo "Copied directory: ${CMAKE_CURRENT_SOURCE_DIR}/../cables-ui/assets to ${ASSETS_DIR}/assets"
 
       COMMAND ${CMAKE_COMMAND} -E copy_directory "${ASSETS_DIR}" "${RESOURCE_DIR}/dist"
       COMMAND ${CMAKE_COMMAND} -E echo "Copied directory: ${ASSETS_DIR} to ${RESOURCE_DIR}/dist"
