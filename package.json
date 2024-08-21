@@ -12,7 +12,7 @@
     "dev": "npm run dev-native && concurrently \"npm run dev-cables-ui\" \"npm run dev-dsp\" \"vite\"",
     "dev-native": "zx scripts/build-native.mjs --dev",
     "dev-dsp": "esbuild dsp/main.ts --watch --bundle --outfile=public/dsp.main.js ",
-    "dev-cables-ui": "esbuild cables-ui/js/patch.js  --outfile=public/patch.js",
+    "dev-cables-ui": "esbuild cables-ui/js/patch.js --outfile=public/patch.js",
     "build-cables-ui": "esbuild cables-ui/js/patch.js --outfile=public/patch.js",
     "dev-ui": "vite",
     "build-native": "zx scripts/build-native.mjs",

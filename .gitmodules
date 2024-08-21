@@ -3,6 +3,6 @@
 	path = native/choc
 	url = https://github.com/cristianvogel/choc
 	branch = cristians-edits
-[submodule "cables-ui"]
-	path = cables-ui
-	url = https://github.com/cristianvogel/NEL-ScapeRVB-UI
+# [submodule "cables-ui"]
+# 	path = cables-ui
+# 	url = https://github.com/cristianvogel/NEL-ScapeRVB-UI

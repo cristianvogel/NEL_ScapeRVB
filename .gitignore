@@ -8,7 +8,8 @@ pnpm-debug.log*
 lerna-debug.log*
 
 # Assets
-/ir-src/
+ 
+
 
 # Builds
 native/elementary
@@ -20,9 +21,7 @@ build
 dist
 *.local
 public/dsp.main.js
-public/patch.js
 public/assets
-!public/assets/impulse-responses
 src/cables-ui
 cables-ui
 
