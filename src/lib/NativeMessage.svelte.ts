@@ -117,8 +117,7 @@ export function RegisterMessagesFromHost() {
    * @param state - The host state change object.
    */
   globalThis.__receiveStateChange__ = function (state: any) {
-  processHostState(state);
-
+    processHostState(state);
   };
 
 
@@ -149,7 +148,7 @@ export function RegisterMessagesFromHost() {
    */
   globalThis.__receiveError__ = function (error: any) {
     //ConsoleText.set("Error: " + error);
-    console.error("Error: ", error);
+    ConsoleText.update(">> " + error);
   };
 
   globalThis.__log__ = function (log: any) {

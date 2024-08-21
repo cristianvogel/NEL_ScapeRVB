@@ -3,6 +3,7 @@
 import { el, ElemNode } from "@elemaudio/core";
 import { EPS } from "@thi.ng/math";
 import { Smush32 } from "@thi.ng/random";
+import { DiffuseProps, FDNProps, SRVBProps } from "../src/types";
 
 // THese number seies are from the OEIS and all sound really cool
 const smush = new Smush32(0xcafebabe);
@@ -54,36 +55,7 @@ const H8 = [
   [1, -1, -1, 1, -1, 1, 1, -1],
 ];
 
-interface SRVBProps {
-  size: ElemNode;
-  decay: ElemNode;
-  excursion?: ElemNode;
-  mix: ElemNode;
-  tone: ElemNode;
-  position: ElemNode; // rounded integer behaviour
-  structureMax: ElemNode; // max value of the series
-  // non-signal data
-  sampleRate: number;
-  structure: number;
-  key: string;
-}
 
-type DiffuseProps = {
-  seededNormMinMax?: number;
-  structure: Array<ElemNode>;
-  structureMax: ElemNode;
-  maxLengthSamp: number;
-};
-type FDNProps = {
-  name: string;
-  sampleRate: number;
-  structureArray: Array<ElemNode>;
-  structureMax: ElemNode;
-  tone: ElemNode;
-  size: ElemNode;
-  decay: ElemNode;
-  modDepth?: ElemNode;
-};
 // A diffusion step expecting exactly 8 input channels with
 // a maximum diffusion time of 500ms
 function diffuse(props: DiffuseProps, ...ins) {
@@ -120,8 +92,8 @@ function diffuse(props: DiffuseProps, ...ins) {
 
 // An eight channel feedback delay network
 function dampFDN(props: FDNProps, ...ins) {
-  const len = ins.length;
-  const { name, tone, size, decay, modDepth } = props;
+  const len = ins.length / 2;
+  const { name, tone, size, decay } = props;
   const { sampleRate } = props;
   const structure: Array<ElemNode> = props.structureArray;
   const structureMax: ElemNode = props.structureMax;
@@ -171,13 +143,13 @@ function dampFDN(props: FDNProps, ...ins) {
   // The unity-gain one pole lowpass here is tuned to taste along
   // the range [0.001, 0.5]. Towards the top of the range, we get into the region
   // of killing the decay time too quickly. Towards the bottom, not much damping.
-  const dels = ins.map(function (input, i) {
+  const dels = ins.map( function (input, i) {
     return el.add(
       toneDial(input, structure[i]),
       el.mul(
         1 + EPS,
         decay,
-        el.smooth(0.0025, el.tapIn({ name: `${name}:fdn${i}` }))
+        el.smooth(0.0025, el.tapIn({ name: `srvb:fdn${i}` }))
       )
     );
   });
@@ -199,7 +171,7 @@ function dampFDN(props: FDNProps, ...ins) {
     );
 
     return el.tapOut(
-      { name: `${name}:fdn${i}` },
+      { name: `srvb:fdn${i}` },
       el.delay({ size: ms2samps(137) }, delayScale , 0.0, mm)
     );
   });
@@ -208,9 +180,10 @@ function dampFDN(props: FDNProps, ...ins) {
  * /// MAIN
  **/
 
-export default function srvbEarly(props: SRVBProps, inputs, ...structureArray) {
-  // xl , xr -- unprocessed input
-  const { sampleRate, key, position, structureMax } = props;
+export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureArray: ElemNode[]) {
+  // xl , xr -- unprocessed inputs
+  const { sampleRate, key, structureMax, mix } = props;
+  const position = el.sm( props.position) 
   const [xl, xr] = inputs;
   // input attenuation
   const _xl = el.dcblock(el.mul(xl, el.db2gain(-1.5)));
@@ -227,59 +200,57 @@ export default function srvbEarly(props: SRVBProps, inputs, ...structureArray) {
     { structure: structureArray, structureMax , maxLengthSamp: ms2samps(43) },
     ...eight
   );
-  const d2 = diffuse(
-    { structure: structureArray, structureMax , maxLengthSamp: ms2samps(97) },
-    ...d1
-  );
-  const d3 = diffuse(
-    { structure: structureArray, structureMax , maxLengthSamp: ms2samps(117) },
-    ...d2
-  );
+  // const d2 = diffuse(
+  //   { structure: structureArray, structureMax , maxLengthSamp: ms2samps(97) },
+  //   ...d1
+  // );
+  // const d3 = diffuse(
+  //   { structure: structureArray, structureMax , maxLengthSamp: ms2samps(117) },
+  //   ...d2
+  // );
 
   // Reverb network
-  const d4: ElemNode[] = dampFDN(
-    {
-      name: `${key}:d4`,
-      sampleRate,
-      structureArray,
-      structureMax,
-      tone: props.tone,
-      size: props.size,
-      decay: 0.004,
-    },
-    ...d3
-  );
+  // const d4: ElemNode[] = dampFDN(
+  //   {
+  //     name: `${key}:d4`,
+  //     sampleRate,
+  //     structureArray,
+  //     structureMax,
+  //     tone: props.tone,
+  //     size: props.size,
+  //     decay: 0.004,
+  //   },
+  //   ...d1
+  // );
   let r0: ElemNode[] = dampFDN(
     {
-      name: `${key}:r0`,
+      name: `r0:`,
       sampleRate,
       structureArray,
       structureMax,
       tone: props.tone,
       size: props.size,
-      decay: props.decay,
+      decay: el.mul( props.decay , 0.5),
     },
-    ...d4
+    ...d1
   );
 
   // interleaved dimensional Downmix ( optimised to build the spatial delays when needed )
   let positioning = (i, x: ElemNode): ElemNode =>
     el.delay(
-      { key: `downmix:${i}`, size: ms2samps(60 + i * 1.618) },
+      { key: `downmix:${i}`, size: ms2samps(60 + (i * 1.618)) },
       el.sm(el.sub(1, position)),
       0,
-      el.mul(-1, x)
+      el.mul( el.div( structureArray[i], structureMax) , x )
     );
 
-  let yl = el.mul(
-    el.db2gain(-3),
-    el.add(positioning(0, r0[0]), r0[3], positioning(5, r0[5]), r0[7])
-  );
+    const asLeftPan =  ( x: ElemNode): ElemNode => { return   el.select( position, x, el.mul(x, el.db2gain( 3 ) ) )  };
+    const asRightPan =   ( x: ElemNode): ElemNode => { return el.select( position, el.mul( x, el.db2gain( 3.5 ) ) , x )  };
+  
+    let yl = asLeftPan(   el.add(positioning(0, r0[0]), r0[2],                  positioning(4, r0[4]), r0[6] ) );
+    let yr = asRightPan(  el.add(                 r0[1], positioning(3, r0[3]), r0[5],                 positioning(7, r0[7]) ) ) 
 
-  let yr = el.mul(
-    el.db2gain(-3),
-    el.add(r0[1], positioning(2, r0[2]), r0[4], positioning(6, r0[6]))
-  );
   // Wet dry mixing
-  return [el.select(props.mix, yl, xl), el.select(props.mix, yr, xr)];
+  return [el.select( mix, yl, xl), el.select( mix, yr, xr)];
 }
+ 

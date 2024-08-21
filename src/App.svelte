@@ -11,30 +11,16 @@
     RegisterMessagesFromHost,
   } from "./lib/NativeMessage.svelte";
 
-
   let cablesLoaded = $state(false);
 
-  const timers = [
-    new SimpleTimer(500),
-    new SimpleTimer(1000),
-    new SimpleTimer(2000),
-  ];
-  let timedOut = $state(false);
+  // Do first engine init
+  RegisterMessagesFromHost();
+  MessageToHost.requestReady();
 
-  //// CABLES loaded this way works most reliably
-  const script = document.createElement("script");
-  script.type = "text/javascript";
-  script.src = "/cables-ui/js/patch.js";
-  script.async = true;
-  document.head.appendChild(script);
+
 
   onMount(() => {
-    // Do first engine init
-    RegisterMessagesFromHost();
-    MessageToHost.requestReady();
-
     // Second setup the listener for CABLES loader
-
     document.addEventListener("CABLES.jsLoaded", function () {
       CABLES.patch = new CABLES.Patch({
         patch: CABLES.exportedPatch,

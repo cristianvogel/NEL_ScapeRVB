@@ -1,16 +1,16 @@
-
-import { Renderer, el, createNode, ElemNode } from '@elemaudio/core';
-import { argMax, rotate } from "@thi.ng/arrays";
-import { RefMap } from './RefMap';
-import srvbEarly from './srvb-er';
-import { clamp, smoothStep, schlick, EPS } from '@thi.ng/math';
-import { equiv } from '@thi.ng/equiv';
-import { NUM_SEQUENCES, OEIS_SEQUENCES } from './srvb-er';
-
-type StructureData = {
-  consts: Array<ElemNode>;
-  max: number;
-};
+import { Renderer, el, createNode, ElemNode } from "@elemaudio/core";
+import { argMax } from "@thi.ng/arrays";
+import { RefMap } from "./RefMap";
+import SRVB from "./srvb-er";
+import { clamp, EPS } from "@thi.ng/math";
+import { equiv } from "@thi.ng/equiv";
+import { HERMITE_V, VEC3, ramp } from "@thi.ng/ramp";
+import type { Ramp } from "@thi.ng/ramp";
+import { NUM_SEQUENCES, OEIS_SEQUENCES } from "./srvb-er";
+import SCAPE from "./scape";
+import { Vec } from "@thi.ng/vectors";
+import { StructureData } from "../src/types";
+import { REVERSE_BUFFER_PREFIX } from "../src/stores/constants";
 
 // First, we initialize a custom Renderer instance that marshals our instruction
 // batches through the __postNativeMessage__ function to direct the underlying native
@@ -20,143 +20,246 @@ let core = new Renderer((batch) => {
   __postNativeMessage__(JSON.stringify(batch));
 });
 
+// Register our custom nodes
+let convolver = (_props, ...childs) => createNode("convolver", _props, childs);
+
+const IRs = [
+  { name: "GLASS", index: 0 , att: 0.5 },
+  { name: "SURFACE", index: 1, att: 0.5 },
+  { name: "TANGLEWOOD", index: 2, att: 0.4 },
+  { name: "EUROPA", index: 3, att: 0.02 },
+];
+
+let ir_inputAtt = IRs.map( (ir) => ir.att  )
+
 // Next, a RefMap for coordinating our refs
-let refs:RefMap = new RefMap(core);
+let refs: RefMap = new RefMap(core);
 
-// Create our custom nodes
-// let _convolver = (props, ...childs) => createNode("convolver", props, childs);
+// the Hermite vector interpolation ramp
+const HERMITE: Ramp<Vec> = createHermiteVecInterp();
+//--------------- /
+// DEFAULT STATE
+// These  need to have populated some data to start with
 
-
-// the conditions that will trigger a full re-render of the node graph
-function shouldRender(prev, curr) {
-  const result = (prev === null)
-    || (curr === null)
-    || (prev.sampleRate !== curr.sampleRate)
-    || (prev.structure !== Math.round(curr.structure * NUM_SEQUENCES))
-  return result;
-}
-// needs to have populated structure data to start with
 const defaultStructure = OEIS_SEQUENCES[0];
-
-let structureData:StructureData = {
-  consts: convertSeriesToConsts(defaultStructure, argMax( defaultStructure, 17 ), refs),
-  max: argMax( defaultStructure, 17 ),
+const defaultMax = argMax(defaultStructure, 17);
+let structureData: StructureData = {
+  consts: castSequencesToRefs(defaultStructure, defaultMax, refs),
+  max: defaultMax,
 };
 
-/////////////////////////////////////////////////////////////////
-// using memoization to store the last state and only re-render if the state has changed
-let __memState: null | any = null;
-let t = 0.0; // interpolation time for size param
-/////////////////////////////////////////////////////////////////
-// this will receive updated state from the native side
-globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
+// the conditions that will trigger a full re-render of the node graph
+function shouldRender(_mem, _curr) {
+  const result =
+    _mem === null ||
+    _curr === null ||
+    refs._map.size === 0 ||
+    _curr.sampleRate !== _mem?.sampleRate;
 
-  // parse the state
-  const __state = JSON.parse(stateReceivedFromNative);
-  // special case for the size param, we want to interpolate it smoothly
-  smoothSizeInterpolation();  
-  // interpreted state, any adjustments should be done here before rendering to the graph
-  const srvb = {
-    size: __state.size,
-    position: clamp(__state.position, EPS, 1 - EPS),
-    diffuse: __state.diffuse,
-    mix: __state.mix,
-    tone: clamp(__state.tone * 2 - 1, -0.99, 1),
-    structure: Math.round( (__state.structure || 0) * NUM_SEQUENCES ),
-    structureMax: __state.structureMax || 400, // handle the case where the max was not computed
+  return result;
+}
+//
+// Here we will receive updated state from the native side
+// All js in dsp/main is running natively in the CHOC QuickJS context
+// There is also a globalThis.__receiveStateChange__ listener in
+// NativeMessage.svelte easier to debug and see the state changes
+//////////////////////////////
+/// ALTERED STATES //////////
+let memoized: null | any = null;
+
+globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
+  // first parse the state
+  const { state, srvb, shared, scape } = parseNewState(stateReceivedFromNative);
+
+  /**
+   * ELEMENTARY
+   * GRAPH
+   * RENDERER
+   */
+  if (!memoized || shouldRender(memoized, state)) {
+    // first, build structure const refs
+    structureData = buildStructures(refs, srvb.structure);
+
+    // prettier-ignore
+    const graph = core.render(
+      ...SCAPE(
+        {
+          sampleRate: shared.sampleRate,
+          vectorData: scape.vectorData,
+          scapeLevel: refs.getOrCreate("scapeLevel", "const", { value: scape.scapeLevel }, []),
+          scapePosition: refs.getOrCreate("scapePosition", "const", { value: shared.position }, []),
+          // the Hermite vector interpolation values as signals
+          v1: refs.getOrCreate("v1", "const", { value: scape.vectorData[0] }, []), 
+          v2: refs.getOrCreate("v2", "const", { value: scape.vectorData[1] }, []),
+          v3: refs.getOrCreate("v3", "const", { value: scape.vectorData[2] }, []),
+          v4: refs.getOrCreate("v4", "const", { value: scape.vectorData[3] }, []),
+          // render the convolvers
+          GLASS_0: refs.getOrCreate("GLASS_0", "convolver", 
+            { path: "GLASS_0", process: scape.vectorData[0], scale: ir_inputAtt[0], headSize: scape.headSize, tailSize: scape.tailSize  }, [  ] ),
+          GLASS_1: refs.getOrCreate("GLASS_1", "convolver", 
+            { path: "GLASS_1" , process: scape.vectorData[0], scale: ir_inputAtt[0], headSize: scape.headSize, tailSize: scape.tailSize }, [  ]),
+          SURFACE_0: refs.getOrCreate("SURFACE_0", "convolver", 
+            { path: "SURFACE_0", process: scape.vectorData[1], scale: ir_inputAtt[1] , headSize: scape.headSize, tailSize: scape.tailSize }, [ ] ),
+          SURFACE_1: refs.getOrCreate("SURFACE_1", "convolver", 
+            { path: "SURFACE_1", process: scape.vectorData[1], scale: ir_inputAtt[1] , headSize: scape.headSize, tailSize: scape.tailSize }, [  ] ),
+          TANGLEWOOD_0: refs.getOrCreate("TANGLEWOOD_0", "convolver", 
+            { path: "TANGLEWOOD_0", process: scape.vectorData[2], scale: ir_inputAtt[2] , headSize: scape.headSize, tailSize: scape.tailSize }, [  ] ),
+          TANGLEWOOD_1: refs.getOrCreate("TANGLEWOOD_1", "convolver", 
+            { path: "TANGLEWOOD_1", process: scape.vectorData[2], scale: ir_inputAtt[2] , headSize: scape.headSize, tailSize: scape.tailSize }, [  ] ),
+          EUROPA_0: refs.getOrCreate("EUROPA_0", "convolver", 
+            { path: "EUROPA_0", process: scape.vectorData[3], scale: ir_inputAtt[3] , headSize: scape.headSize, tailSize: scape.tailSize }, [  ] ),
+          EUROPA_1: refs.getOrCreate("EUROPA_1", "convolver", 
+            { path: "EUROPA_1", process: scape.vectorData[3], scale: ir_inputAtt[3]  , headSize: scape.headSize, tailSize: scape.tailSize }, [  ] ),
+        },
+        shared.dryInputs,
+        ...SRVB(
+          {
+            key: "srvb",
+            sampleRate: shared.sampleRate,
+            size: refs.getOrCreate("size", "const", { value: srvb.size }, []),
+            decay: refs.getOrCreate("diffuse", "const", { value: srvb.diffuse }, []),
+            mix: refs.getOrCreate("mix", "const", { value: srvb.mix, key: "effectMix" }, []),
+            tone: refs.getOrCreate("tone", "const", { value: srvb.tone }, []),
+            position: refs.getOrCreate("position", "const", { value: shared.position }, []),
+            structure: srvb.structure,
+            structureMax: refs.getOrCreate("structureMax", "const", { value: structureData.max, key: "structureMax" }, [])
+          },
+          shared.dryInputs,
+          ...structureData.consts
+        )
+      )
+   );
+    console.log("RENDER called.....");
+  } else {
+    // update the structure consts, should match the refs names set up by handleStructureChange
+    OEIS_SEQUENCES[srvb.structure].forEach((value, i) => {
+      if (value !== undefined)
+        refs.update(`node:structureConst:${i}`, { value });
+    });
+
+    // then the rest of the refs for SRVB
+    refs.update("size", { value: srvb.size });
+    refs.update("diffuse", { value: srvb.diffuse });
+    refs.update("mix", { value: srvb.mix });
+    refs.update("tone", { value: srvb.tone });
+    refs.update("position", { value: shared.position });
+    refs.update("structureMax", { value: srvb.structureMax });
+    // and the scape refs
+    refs.update("scapeLevel", { value: scape.scapeLevel });
+    refs.update("v1", { value: scape.vectorData[0] });
+    refs.update("v2", { value: scape.vectorData[1] });
+    refs.update("v3", { value: scape.vectorData[2] });
+    refs.update("v4", { value: scape.vectorData[3] });
+    refs.update("scapePosition", { value: shared.position });
+
+    
+    // update the convolvers
+    IRs.forEach((item, index) => {
+      for (let i = 0; i < 2; i++) {
+        refs.update(`${item.name}_${i}`, {
+          path:
+            scape.reverse > 0.5
+              ? REVERSE_BUFFER_PREFIX + `${item.name}_${i}`
+              : `${item.name}_${i}`,
+          process: Math.min( scape.scapeLevel, scape.vectorData[item.index] ),
+          scale: ir_inputAtt[index],
+
+        });
+      }
+    });
+  }
+
+  // console.log( Object.keys( refs._map.get("EUROPA_0")[0].children  ) );
+
+  // memoisation of nodes and non-node state
+  memoized = {
+    ...state,
+    structure: srvb.structure,
+    scapeLength: scape.scapeLength,
+    structureMax: structureData.max,
+    reverse: scape.reverse,
+    vectorData: scape.vectorData,
   };
 
-  if (shouldRender(__memState, __state)) {
-      // first, build all the new structure const refs
-      structureData = handleStructureChange( refs, srvb.structure );
-      // then, render the graph
-      const graph = core.render(...srvbEarly({
-      key: 'srvbEarly',
-      sampleRate: __state.sampleRate,
-      size: refs.getOrCreate('size', 'const', { value: srvb.size }, []),
-      decay: refs.getOrCreate('diffuse', 'const', { value: srvb.diffuse }, []), // was fb_amount
-      mix: refs.getOrCreate('mix', 'const', { value: srvb.mix }, []), // overall wet level
-      tone: refs.getOrCreate('tone', 'const', { value: srvb.tone }, []), // coming always as 0-1
-      position: refs.getOrCreate('position', 'const', { value: srvb.position }, []), // coming always as 0-1
-      structure: srvb.structure || 0,
-      structureMax: refs.getOrCreate('structureMax', 'const', { value: structureData.max, key: 'structureMax' }, []), // max value of the series
-    },
-      [ el.in({ channel: 0 }), el.in({ channel: 1 }) ],
-      ...structureData.consts)
-    );
-  } else {
-
-    refs.update('size', { value: srvb.size });
-    refs.update('diffuse', { value: srvb.diffuse });
-    refs.update('mix', { value: srvb.mix });
-    refs.update('tone', { value: srvb.tone });
-    refs.update('position', { value: srvb.position });
-    refs.update('structureMax', { value: srvb.structureMax});
-
-   // update the structure consts, should match the refs names set up by handleStructureChange
-    OEIS_SEQUENCES[srvb.structure].forEach((value, i) => { 
-      if ( value !== undefined) refs.update(`structureConstNode_${i}`, { value: value });
-    });
-
-
-
-  }
-
-  __memState = __state;
-  __memState.structure = srvb.structure;
-  __memState.structureMax = structureData.max;
-
-  // smooth step on the size param using CHOC setInterval and thi.ng interpolation
-  // mutates the __state.size entry directly
-  function smoothSizeInterpolation() {
-    let smoothS = 0.0;
-    const interpTimer = (a, b) => {
-      const intervalId = setInterval(() => {
-        t += 0.01,
-          smoothS = schlick(3, 0.5, smoothStep(a, b, t));
-        if (__state && __state.size) { __state.size = smoothS; }
-        if (t > 1.0) {
-          t = -1.0e-5; // reset to just below 0
-          clearInterval(intervalId);
-        }
-      }, 1);
+  function parseNewState(stateReceivedFromNative) {
+    const state = JSON.parse(stateReceivedFromNative);
+    // interpreted state captured out into respective processor properties.
+    // any adjustments should be done here before rendering to the graph
+    const shared = {
+      sampleRate: state.sampleRate,
+      dryInputs: [el.in({ channel: 0 }), el.in({ channel: 1 })],
+      position: clamp(state.position, EPS, 1),
     };
-    if (__memState && __state && t < 0.0 && (__state.size !== __memState.size)) {
-      interpTimer(__memState.size, __state.size);
-    }
+    const srvb = {
+      structure: Math.round((state.structure || 0) * NUM_SEQUENCES),
+      size: state.size,
+      diffuse: state.diffuse,
+      tone: clamp(state.tone * 2 - 1, -0.99, 1),
+      mix: state.mix,
+      structureMax: Math.round(state.structureMax) || 400, // handle the case where the max was not computed
+    };
+    const scape = {
+      reverse: Math.round(state.scapeReverse),
+      scapeLevel: state.scapeLevel,
+      scapeLength: state.scapeLength,
+      vectorData: HERMITE.at(state.scapeLength),
+      headSize: 128,
+      tailSize: 512
+    };
+    return { state, srvb, shared, scape };
   }
-
 }; // end of receiveStateChange
 
-  // build the structure outside the dsp code
-  function handleStructureChange( _refs:RefMap, currStructIndex = 0) {
-    {
-      let series = OEIS_SEQUENCES[currStructIndex];
-      console.log(`Using series ${series} `);
-      // this should compute norm only on the set actually being used which is 8 elements long
-      const seriesMax =  series[ argMax(series) ] ;
-      // convert the sequences to signals
-      const sequenceAsSignals = convertSeriesToConsts(series, seriesMax, _refs);
-      const sd:StructureData = {
-        consts: sequenceAsSignals,
-        max: seriesMax,
-      };
-      return sd;
+// build structral sequences as ElemNodes and refs
+function buildStructures(_refs: RefMap, currStructIndex = 0) {
+  {
+    let series = OEIS_SEQUENCES[currStructIndex];
+    console.log(`Using series ${series} `);
+    // this should compute norm only on the set actually being used which is 8 elements long
+    const seriesMax = series[argMax(series)];
+    // convert the sequences to signals
+    const sequenceAsSignals = castSequencesToRefs(series, seriesMax, _refs);
+    const sd: StructureData = {
+      consts: sequenceAsSignals,
+      max: seriesMax,
     };
+    return sd;
   }
-
-  function convertSeriesToConsts(series: number[], seriesMax: number, _refs: RefMap) {
-    return series.map( (value, j) => {
-      let updatedValue = value;
-      // try to invent a value if it's not there
-      if ( value === null || value === undefined) {
-        updatedValue = Math.random() * seriesMax ;
-      }
-      const t = _refs.getOrCreate(`structureConstNode_${j}`, "const", { value: updatedValue, key: `structureConst:${j}` }, []);
-      return t;
-    });
-  }
-
+}
+function castSequencesToRefs(
+  series: number[],
+  seriesMax: number,
+  _refs: RefMap
+) {
+  return series.map((value, j) => {
+    let updatedValue = value;
+    // try to invent a value if it's not there
+    if (value === null || value === undefined) {
+      updatedValue = Math.random() * seriesMax;
+    }
+    const t = _refs.getOrCreate(
+      `node:structureConst:${j}`,
+      "const",
+      { value: updatedValue, key: `key:structureConst:${j}` },
+      []
+    );
+    return t;
+  });
+}
+// create the vector interpolation ramp, used to crossfade between 4 IRs
+function createHermiteVecInterp(): Ramp<Vec> {
+  return ramp(
+    // use a vector interpolation preset with the VEC3 API
+    HERMITE_V(VEC3),
+    // keyframes used for crossfading between 4 IRs
+    [
+      [0.0, [1, 0, 0, 0]], // a
+      [0.45, [0, 0.9, 0, 0]], // b
+      [0.65, [0, 0, 0.9, 0]], // c
+      [1.0, [0, 0, 0, 0.626]], // d
+    ]
+  );
+}
 
 /////////////////////////////////////////////////////////////////
 // Finally, an error callback which just logs back to native
@@ -172,8 +275,8 @@ globalThis.__receiveHydrationData__ = (data) => {
 
   for (let [k, v] of Object.entries(payload)) {
     nodeMap.set(parseInt(k, 16), {
-      symbol: '__ELEM_NODE__',
-      kind: '__HYDRATED__',
+      symbol: "__ELEM_NODE__",
+      kind: "__HYDRATED__",
       hash: parseInt(k, 16),
       props: v,
       generation: {
@@ -182,5 +285,3 @@ globalThis.__receiveHydrationData__ = (data) => {
     });
   }
 };
-
-

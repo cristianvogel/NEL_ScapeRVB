@@ -78,6 +78,8 @@ public:
     void dispatchError(std::string const &name, std::string const &message);
 
 private:
+    std::string REVERSE_BUFFER_PREFIX = "REVERSED_";
+
     std::string MESH_STATE_PROPERTY = "meshState";
 
     std::string MAIN_DSP_JS_FILE = "dsp.main.js";
