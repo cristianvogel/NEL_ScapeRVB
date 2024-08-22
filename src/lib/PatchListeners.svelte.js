@@ -1,4 +1,4 @@
-import { UI_DialParams, UI_ScapeParams } from "../stores/stores.svelte";
+import { UI_DialParams, UI_ScapeParams, UI_AdditionalParams } from "../stores/stores.svelte";
 import { equiv } from "@thi.ng/equiv";
 
 // Function to initialize listeners for vars coming
@@ -29,6 +29,20 @@ ui_scapeParams.forEach((variable, param) => {
   }
 });
 
+const ui_additionalParams = new Map([
+  ["structure", patch.getVar("ui_structure")],
+  ["position", patch.getVar("ui_position")],
+]);
+
+ui_additionalParams.forEach((variable, param) => {
+  console.log("ui_additionalParams", variable, param);
+  if (variable) {
+    variable.on("change", (newValue) => {
+      if (equiv(newValue, UI_AdditionalParams.current[param])) return;
+      UI_AdditionalParams.update({ ...UI_AdditionalParams.current, [param]: newValue });
+    });
+  }
+});
 
 
 }; // end init patch listeners 

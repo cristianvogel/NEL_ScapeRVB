@@ -1,14 +1,15 @@
 <script lang="ts">
-  import { UI_DialParams, ConsoleText, UI_ScapeParams } from "../stores/stores.svelte";
+  import { UI_DialParams, ConsoleText, UI_ScapeParams, UI_AdditionalParams } from "../stores/stores.svelte";
   import { MessageToHost } from "./NativeMessage.svelte";
   import { equiv } from "@thi.ng/equiv";
 
   let dialValuesMemo = {};
   let scapeValuesMemo = {};
+  let additionalValuesMemo = {};
 
   $effect(() => {
     const current = UI_DialParams.current; 
-     // iterate over the keys and values of DialValues.current and send MessageToHost
+     // iterate over the keys and values, send MessageToHost
     Object.keys(current).forEach((param) => {
       if (current[param] === dialValuesMemo[param]) return;
         MessageToHost.requestParamValueUpdate(param, current[param] || 0);   
@@ -23,11 +24,20 @@
 
   $effect(() => {
     const current = UI_ScapeParams.current;
-    // iterate over the keys and values of ExtraValues.current and send MessageToHost
     Object.keys(current).forEach((param) => {
       if (current[param] === scapeValuesMemo[param]) return;
         MessageToHost.requestParamValueUpdate(param, current[param] || 0);   
         scapeValuesMemo = current;
+    });
+    return () => { }
+  });
+
+  $effect(() => {
+    const current = UI_AdditionalParams.current;
+    Object.keys(current).forEach((param) => {
+      if (current[param] === additionalValuesMemo[param]) return;
+        MessageToHost.requestParamValueUpdate(param, current[param] || 0);   
+        additionalValuesMemo = current;
     });
     return () => { }
   });

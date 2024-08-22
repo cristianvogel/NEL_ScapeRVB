@@ -17,16 +17,14 @@
         display: block;
         position: absolute;
         outline: 0;
+        
       }
 
       * {
         /* disable on touch highlights of html elements, especially on mobile! */
         -webkit-tap-highlight-color: transparent;
-        -webkit-touch-callout: none;
-        -webkit-user-select: auto;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: auto;
+        -webkit-user-select: none; /* Safari */
+        user-select: none;
       }
     </style>
 

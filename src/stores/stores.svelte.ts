@@ -11,9 +11,17 @@ function dialValues(initial) {
     };
 }
 
-//////////////////////
 export const UI_ScapeParams = extraParams({});
 function extraParams(initial) {
+    let current = $state(initial);
+    return {
+        get current() { return current },
+        update(newValues) { current = newValues }
+    };
+}
+
+export const UI_AdditionalParams = additionalParams({});
+function additionalParams(initial) {
     let current = $state(initial);
     return {
         get current() { return current },
