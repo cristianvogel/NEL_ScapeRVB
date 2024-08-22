@@ -14,7 +14,7 @@
       if (equiv(current[param], hostStateMemo[param])) return;
 
       if (REGISTERED_PARAM_NAMES.includes(param)) {
-        composeDialParamsUpdate(param, current[param] || 0);
+        updateRegisteredParams(param, current[param] || 0);
       }
       // now send and update the Svelte5 store
       hostStateMemo[param] = current[param];
@@ -31,7 +31,7 @@
     just want to see it working first
   **/
 
-  function composeDialParamsUpdate(param, value) {
+  function updateRegisteredParams(param, value) {
     let targetVar = CablesPatch.current.getVar("ui_dialValues_object");
     if (!targetVar) return;
         let currentValue = targetVar.getValue();

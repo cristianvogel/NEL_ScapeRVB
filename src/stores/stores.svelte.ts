@@ -4,54 +4,78 @@
 /////////////////////////
 export const UI_DialParams = dialValues({});
 function dialValues(initial) {
-    let current = $state(initial);
-    return {
-        get current() { return current },
-        update(newValues) { current = newValues }
-    };
+  let current = $state(initial);
+  return {
+    get current() {
+      return current;
+    },
+    update(newValues) {
+      current = newValues;
+    },
+  };
 }
 
-export const UI_ScapeParams = extraParams({});
-function extraParams(initial) {
-    let current = $state(initial);
-    return {
-        get current() { return current },
-        update(newValues) { current = newValues }
-    };
+export const UI_ScapeParams = scapeParams({});
+function scapeParams(initial) {
+  let current = $state(initial);
+  return {
+    get current() {
+      return current;
+    },
+    update(newValues) {
+      current = newValues;
+    },
+  };
 }
 
-export const UI_AdditionalParams = additionalParams({});
+export const UI_AdditionalParams = additionalParams( {} );
 function additionalParams(initial) {
-    let current = $state(initial);
-    return {
-        get current() { return current },
-        update(newValues) { current = newValues }
-    };
+  let current = $state(initial);
+  return {
+    get current() {
+      return current;
+    },
+    update(newValues) {
+      current = newValues;
+    },
+  };
 }
 //////////////////////
-export const ConsoleText = consoleText('_');
+export const ConsoleText = consoleText("_");
 function consoleText(initial) {
-    let current = $state(initial);
-    return {
-        get current() { return current },
-        update(newValues) { current = newValues }
-    };
+  let current = $state(initial);
+  return {
+    get current() {
+      return current;
+    },
+    update(newValues) {
+      current = newValues;
+    },
+  };
 }
 //////////////////////
 export const CablesPatch = cablesPatch({});
 function cablesPatch(initial) {
-    let current = $state(initial);
-    return {
-        get current() { return current },
-        update(newValues) { current = newValues }
-    };
+  let current = $state(initial);
+  return {
+    get current() {
+      return current;
+    },
+    update(newValues) {
+      current = newValues;
+    },
+  };
 }
 //////////////////////
-export const HostState = hostState(new Map< string, number | number[] >());
+export const HostState = hostState(new Map<string, number | number[]>());
 function hostState(initial) {
-    let current = $state(initial);
-    return {
-        get current() { return current },
-        update(newValues) { current = newValues }
-    };
+  let current = $state(initial);
+  return {
+    get current() {
+      return current;
+    },
+    update(newValues) {
+      current = newValues;
+    },
+  };
 }

@@ -1,5 +1,5 @@
 import { ConsoleText, HostState } from "../stores/stores.svelte";
-
+import { roundTo } from "@thi.ng/math"
 //@ts-nocheck
 export declare var globalThis: any;
 
@@ -20,6 +20,7 @@ function processHostState(state: any) {
   } catch (e) {
     console.warn("Bad state received", parsedEntries);
   }
+ 
   HostState.update(parsedEntries);
 }
 
@@ -46,9 +47,12 @@ export const MessageToHost = {
    * @param paramId - The ID of the parameter to update.
    * @param value - The new value of the parameter.
    */
-  requestParamValueUpdate: function (paramId: string, value: number) {
+  requestParamValueUpdate: function (paramId: string, _value: number) {
+
+    let value = _value;
+
     if (typeof globalThis.__postNativeMessage__ === "function") {
-      ConsoleText.update( paramId + " ► " + value);
+     // ConsoleText.update( paramId + " ► " + value);
       globalThis.__postNativeMessage__("setParameterValue", {
         paramId,
         value,
@@ -155,5 +159,12 @@ export function RegisterMessagesFromHost() {
     //ConsoleText.set("Error: " + error);
     console.warn("Log: ", log);
   };
+}
+
+// mutatesthe parsedEntries object
+function denormaliseStructureParam(parsedEntries: { [key: string]: number | number[]; }) {
+
+    parsedEntries = { ...parsedEntries, structure: parsedEntries.structure as number  };
+  console.log( parsedEntries.structure );
 }
  

@@ -1,5 +1,6 @@
 import { UI_DialParams, UI_ScapeParams, UI_AdditionalParams } from "../stores/stores.svelte";
 import { equiv } from "@thi.ng/equiv";
+import { roundTo } from "@thi.ng/math"
 
 // Function to initialize listeners for vars coming
 // via the Cables patch
@@ -35,10 +36,11 @@ const ui_additionalParams = new Map([
 ]);
 
 ui_additionalParams.forEach((variable, param) => {
-  console.log("ui_additionalParams", variable, param);
   if (variable) {
-    variable.on("change", (newValue) => {
-      if (equiv(newValue, UI_AdditionalParams.current[param])) return;
+    
+    variable.on("change", ( _newValue) => {
+      if (equiv( _newValue, UI_AdditionalParams.current[param] ) ) return;
+      let newValue = _newValue;
       UI_AdditionalParams.update({ ...UI_AdditionalParams.current, [param]: newValue });
     });
   }

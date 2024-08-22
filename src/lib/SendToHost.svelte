@@ -39,6 +39,7 @@
         MessageToHost.requestParamValueUpdate(param, current[param] || 0);   
         additionalValuesMemo = current;
     });
+
     return () => { }
   });
 
