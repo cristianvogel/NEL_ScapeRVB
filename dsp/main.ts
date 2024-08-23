@@ -23,14 +23,30 @@ let core = new Renderer((batch) => {
 // Register our custom nodes
 let convolver = (_props, ...childs) => createNode("convolver", _props, childs);
 
-const IRs = [
-  { name: "GLASS", index: 0 , att: 0.5 },
-  { name: "SURFACE", index: 1, att: 0.5 },
-  { name: "TANGLEWOOD", index: 2, att: 0.4 },
-  { name: "EUROPA", index: 3, att: 0.02 },
+const IRs = [ // SHOULD MATCH FILE NAMES IN THE PUBLIC IR FOLDER
+
+  { name: "AMBIENZ", index: 0, att: 0.65 },
+  { name: "GLASS", index: 1, att: 0.475 },
+  { name: "SURFACE", index: 2, att: 0.475 },
+  { name: "EUROPA", index: 3, att: 0.25},
 ];
 
-let ir_inputAtt = IRs.map( (ir) => ir.att  )
+// create the vector interpolation ramp, used to crossfade between 4 IRs
+function createHermiteVecInterp(): Ramp<Vec> {
+  return ramp(
+    // use a vector interpolation preset with the VEC3 API
+    HERMITE_V(VEC3),
+    // keyframes used for crossfading between 4 IRs
+    [
+      [0.0, [0.707, 0, 0, 0]], // a
+      [0.45, [0, 0.707, 0, 0]], // b
+      [0.65, [0, 0, 0.707, 0]], // c
+      [1.0, [0, 0, 0, 0.25]], // d
+    ]
+  );
+}
+
+let ir_inputAtt = IRs.map((ir) => ir.att);
 
 // Next, a RefMap for coordinating our refs
 let refs: RefMap = new RefMap(core);
@@ -71,6 +87,61 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
   // first parse the state
   const { state, srvb, shared, scape } = parseNewState(stateReceivedFromNative);
 
+  const blockSizes = [512, 4096];
+  // prettier-ignore
+  const srvbProps = () => { 
+    const props =  
+    {
+      key: "srvb",
+      IRs ,
+      srvbBypass: srvb.bypass,
+      sampleRate: shared.sampleRate,
+      size: refs.getOrCreate("size", "const", { value: srvb.size }, []),
+      decay: refs.getOrCreate("diffuse", "const", { value: srvb.diffuse }, []),
+      mix: refs.getOrCreate("mix", "const", { value: srvb.level, key: "effectMix" }, []),
+      tone: refs.getOrCreate("tone", "const", { value: srvb.tone }, []),
+      position: refs.getOrCreate("position", "const", { value: shared.position }, []),
+      structure: srvb.structure,
+      structureMax: refs.getOrCreate("structureMax", "const", { value: structureData.max, key: "structureMax" }, [])
+    }
+    return props;
+  };
+  // prettier-ignore
+  const scapeProps = () => {
+   const props =
+   {
+    IRs,
+    sampleRate: shared.sampleRate,
+    scapeBypass: scape.bypass,
+    vectorData: scape.vectorData,
+    scapeLevel: refs.getOrCreate("scapeLevel", "const", { value: scape.level }, []),
+    scapePosition: refs.getOrCreate("scapePosition", "const", { value: shared.position }, []),
+    // the Hermite vector interpolation values as signals
+    v1: refs.getOrCreate("v1", "const", { value: scape.vectorData[0] }, [ ]), 
+    v2: refs.getOrCreate("v2", "const", { value: scape.vectorData[1] }, [ ]),
+    v3: refs.getOrCreate("v3", "const", { value: scape.vectorData[2] }, [ ]),
+    v4: refs.getOrCreate("v4", "const", { value: scape.vectorData[3] }, [ ]),
+    // render the convolvers
+    GLASS_0: refs.getOrCreate("GLASS_0", "convolver", 
+      { path: "GLASS_0", process: scape.vectorData[0], scale: ir_inputAtt[0],    blockSizes }, [ el.tapIn( { name: "srvbOut:0" }) ] ),
+    GLASS_1: refs.getOrCreate("GLASS_1", "convolver", 
+      { path: "GLASS_1" , process: scape.vectorData[0], scale: ir_inputAtt[0],   blockSizes }, [ el.tapIn( { name: "srvbOut:1" }) ]),
+    SURFACE_0: refs.getOrCreate("SURFACE_0", "convolver", 
+      { path: "SURFACE_0", process: scape.vectorData[1], scale: ir_inputAtt[1] , blockSizes }, [ el.tapIn( { name: "srvbOut:0" }) ] ),
+    SURFACE_1: refs.getOrCreate("SURFACE_1", "convolver", 
+      { path: "SURFACE_1", process: scape.vectorData[1], scale: ir_inputAtt[1] , blockSizes }, [ el.tapIn( { name: "srvbOut:1" }) ] ),
+    AMBIENZ_0: refs.getOrCreate("AMBIENZ_0", "convolver", 
+      { path: "AMBIENZ_0", process: scape.vectorData[2], scale: ir_inputAtt[2] , blockSizes }, [ el.tapIn( { name: "srvbOut:0" }) ] ),
+    AMBIENZ_1: refs.getOrCreate("AMBIENZ_1", "convolver", 
+      { path: "AMBIENZ_1", process: scape.vectorData[2], scale: ir_inputAtt[2] , blockSizes }, [ el.tapIn( { name: "srvbOut:1" }) ] ),
+    EUROPA_0: refs.getOrCreate("EUROPA_0", "convolver", 
+      { path: "EUROPA_0", process: scape.vectorData[3], scale: ir_inputAtt[3] ,  blockSizes }, [ el.tapIn( { name: "srvbOut:0" }) ] ),
+    EUROPA_1: refs.getOrCreate("EUROPA_1", "convolver", 
+      { path: "EUROPA_1", process: scape.vectorData[3], scale: ir_inputAtt[3]  , blockSizes }, [ el.tapIn( { name: "srvbOut:1" }) ] ),
+  };
+  return props;
+  }
+
   /**
    * ELEMENTARY
    * GRAPH
@@ -80,56 +151,13 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     // first, build structure const refs
     structureData = buildStructures(refs, srvb.structure);
 
-    // prettier-ignore
     const graph = core.render(
       ...SCAPE(
-        {
-          sampleRate: shared.sampleRate,
-          vectorData: scape.vectorData,
-          scapeLevel: refs.getOrCreate("scapeLevel", "const", { value: scape.scapeLevel }, []),
-          scapePosition: refs.getOrCreate("scapePosition", "const", { value: shared.position }, []),
-          // the Hermite vector interpolation values as signals
-          v1: refs.getOrCreate("v1", "const", { value: scape.vectorData[0] }, []), 
-          v2: refs.getOrCreate("v2", "const", { value: scape.vectorData[1] }, []),
-          v3: refs.getOrCreate("v3", "const", { value: scape.vectorData[2] }, []),
-          v4: refs.getOrCreate("v4", "const", { value: scape.vectorData[3] }, []),
-          // render the convolvers
-          GLASS_0: refs.getOrCreate("GLASS_0", "convolver", 
-            { path: "GLASS_0", process: scape.vectorData[0], scale: ir_inputAtt[0], headSize: scape.headSize, tailSize: scape.tailSize  }, [  ] ),
-          GLASS_1: refs.getOrCreate("GLASS_1", "convolver", 
-            { path: "GLASS_1" , process: scape.vectorData[0], scale: ir_inputAtt[0], headSize: scape.headSize, tailSize: scape.tailSize }, [  ]),
-          SURFACE_0: refs.getOrCreate("SURFACE_0", "convolver", 
-            { path: "SURFACE_0", process: scape.vectorData[1], scale: ir_inputAtt[1] , headSize: scape.headSize, tailSize: scape.tailSize }, [ ] ),
-          SURFACE_1: refs.getOrCreate("SURFACE_1", "convolver", 
-            { path: "SURFACE_1", process: scape.vectorData[1], scale: ir_inputAtt[1] , headSize: scape.headSize, tailSize: scape.tailSize }, [  ] ),
-          TANGLEWOOD_0: refs.getOrCreate("TANGLEWOOD_0", "convolver", 
-            { path: "TANGLEWOOD_0", process: scape.vectorData[2], scale: ir_inputAtt[2] , headSize: scape.headSize, tailSize: scape.tailSize }, [  ] ),
-          TANGLEWOOD_1: refs.getOrCreate("TANGLEWOOD_1", "convolver", 
-            { path: "TANGLEWOOD_1", process: scape.vectorData[2], scale: ir_inputAtt[2] , headSize: scape.headSize, tailSize: scape.tailSize }, [  ] ),
-          EUROPA_0: refs.getOrCreate("EUROPA_0", "convolver", 
-            { path: "EUROPA_0", process: scape.vectorData[3], scale: ir_inputAtt[3] , headSize: scape.headSize, tailSize: scape.tailSize }, [  ] ),
-          EUROPA_1: refs.getOrCreate("EUROPA_1", "convolver", 
-            { path: "EUROPA_1", process: scape.vectorData[3], scale: ir_inputAtt[3]  , headSize: scape.headSize, tailSize: scape.tailSize }, [  ] ),
-        },
+        scapeProps(),
         shared.dryInputs,
-        ...SRVB(
-          {
-            key: "srvb",
-            sampleRate: shared.sampleRate,
-            size: refs.getOrCreate("size", "const", { value: srvb.size }, []),
-            decay: refs.getOrCreate("diffuse", "const", { value: srvb.diffuse }, []),
-            mix: refs.getOrCreate("mix", "const", { value: srvb.mix, key: "effectMix" }, []),
-            tone: refs.getOrCreate("tone", "const", { value: srvb.tone }, []),
-            position: refs.getOrCreate("position", "const", { value: shared.position }, []),
-            structure: srvb.structure,
-            structureMax: refs.getOrCreate("structureMax", "const", { value: structureData.max, key: "structureMax" }, [])
-          },
-          shared.dryInputs,
-          ...structureData.consts
-        )
+        ...SRVB( srvbProps(), shared.dryInputs, ...structureData.consts )
       )
-   );
-    console.log("RENDER called.....");
+    );
   } else {
     // update the structure consts, should match the refs names set up by handleStructureChange
     OEIS_SEQUENCES[srvb.structure].forEach((value, i) => {
@@ -140,19 +168,18 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     // then the rest of the refs for SRVB
     refs.update("size", { value: srvb.size });
     refs.update("diffuse", { value: srvb.diffuse });
-    refs.update("mix", { value: srvb.mix });
+    refs.update("mix", { value: srvb.level });
     refs.update("tone", { value: srvb.tone });
     refs.update("position", { value: shared.position });
     refs.update("structureMax", { value: srvb.structureMax });
     // and the scape refs
-    refs.update("scapeLevel", { value: scape.scapeLevel });
+    refs.update("scapeLevel", { value: scape.level });
     refs.update("v1", { value: scape.vectorData[0] });
     refs.update("v2", { value: scape.vectorData[1] });
     refs.update("v3", { value: scape.vectorData[2] });
     refs.update("v4", { value: scape.vectorData[3] });
     refs.update("scapePosition", { value: shared.position });
 
-    
     // update the convolvers
     IRs.forEach((item, index) => {
       for (let i = 0; i < 2; i++) {
@@ -161,9 +188,8 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
             scape.reverse > 0.5
               ? REVERSE_BUFFER_PREFIX + `${item.name}_${i}`
               : `${item.name}_${i}`,
-          process: Math.min( scape.scapeLevel, scape.vectorData[item.index] ),
+          process: Math.min(scape.level, scape.vectorData[item.index]),
           scale: ir_inputAtt[index],
-
         });
       }
     });
@@ -175,7 +201,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
   memoized = {
     ...state,
     structure: srvb.structure,
-    scapeLength: scape.scapeLength,
+    scapeLength: scape.ir,
     structureMax: structureData.max,
     reverse: scape.reverse,
     vectorData: scape.vectorData,
@@ -195,16 +221,16 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
       size: state.size,
       diffuse: state.diffuse,
       tone: clamp(state.tone * 2 - 1, -0.99, 1),
-      mix: state.mix,
+      level: state.mix,
       structureMax: Math.round(state.structureMax) || 400, // handle the case where the max was not computed
+      bypass: state.srvbBypass || false,
     };
     const scape = {
       reverse: Math.round(state.scapeReverse),
-      scapeLevel: state.scapeLevel,
-      scapeLength: state.scapeLength,
+      level: state.scapeLevel,
+      ir: state.scapeLength,
       vectorData: HERMITE.at(state.scapeLength),
-      headSize: 128,
-      tailSize: 512
+      bypass: state.scapeBypass || false
     };
     return { state, srvb, shared, scape };
   }
@@ -246,20 +272,7 @@ function castSequencesToRefs(
     return t;
   });
 }
-// create the vector interpolation ramp, used to crossfade between 4 IRs
-function createHermiteVecInterp(): Ramp<Vec> {
-  return ramp(
-    // use a vector interpolation preset with the VEC3 API
-    HERMITE_V(VEC3),
-    // keyframes used for crossfading between 4 IRs
-    [
-      [0.0, [1, 0, 0, 0]], // a
-      [0.45, [0, 0.9, 0, 0]], // b
-      [0.65, [0, 0, 0.9, 0]], // c
-      [1.0, [0, 0, 0, 0.626]], // d
-    ]
-  );
-}
+
 
 /////////////////////////////////////////////////////////////////
 // Finally, an error callback which just logs back to native

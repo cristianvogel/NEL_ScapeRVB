@@ -18,7 +18,6 @@ type StructureData = {
 interface SRVBProps {
   size: ElemNode;
   decay: ElemNode;
-  excursion?: ElemNode;
   mix: ElemNode;
   tone: ElemNode;
   position: ElemNode; // rounded integer behaviour
@@ -27,6 +26,8 @@ interface SRVBProps {
   sampleRate: number;
   structure: number;
   key: string;
+  srvbBypass: boolean;
+  IRs: { name: string, index: string, att: number }[];
 }
 
 type DiffuseProps = {

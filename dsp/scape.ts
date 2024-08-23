@@ -1,17 +1,12 @@
 import { el, ElemNode } from "@elemaudio/core";
 
-// Define our VFS paths for the IR buffers always uppercase, even if the filename has lowercase
-// because it is a Map key, not a real fs path
-const responses = [
-  { path: "GLASS", attenuationDb: -18 },
-  { path: "SURFACE", attenuationDb: -15 },
-  { path: "TANGLEWOOD", attenuationDb: -18 },
-  { path: "EUROPA", attenuationDb: -36 },
-];
+
 
 export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
+  if (props.scapeBypass)  return outputFromSRVB;
   ///////////////////////////////////////////
   // SCAPE DSP setup
+  const responses = props.IRs;
   const scapeLevel = el.sm(props.scapeLevel); // nodes
   const position = el.sm(props.scapePosition); // nodes
   const hermiteNodes: ElemNode[] = [props.v1, props.v2, props.v3, props.v4].map(
@@ -20,7 +15,7 @@ export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
   const convolverNodes: Map<string, ElemNode[]> = new Map();
   convolverNodes.set("GLASS", [props.GLASS_0, props.GLASS_1]);
   convolverNodes.set("SURFACE", [props.SURFACE_0, props.SURFACE_1]);
-  convolverNodes.set("TANGLEWOOD", [props.TANGLEWOOD_0, props.TANGLEWOOD_1]);
+  convolverNodes.set("AMBIENZ", [props.AMBIENZ_0, props.AMBIENZ_1]);
   convolverNodes.set("EUROPA", [props.EUROPA_0, props.EUROPA_1]);
 
   ////////////////////////////////////////////
@@ -35,7 +30,7 @@ export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
     let mixer: ElemNode[] = [];
     responses.forEach((response, index) => {
       mixer.push(
-        el.mul(hermiteNodes[index], scapeConvolver(response.path, channel))
+        el.mul( hermiteNodes[index], scapeConvolver(response.name, channel) )
       );
     });
 
@@ -52,24 +47,19 @@ export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
     HermiteVecInterp(1, hermiteNodes, _inputs[1]),
   ];
 
-  let scapeProcess_LR = (_inputs: ElemNode[]) => [
-      el.dcblock(el.mul(el.db2gain(2.5), crossFadeN_LR(_inputs)[0])),
-      el.dcblock(el.mul(el.db2gain(2.5), crossFadeN_LR(_inputs)[1]))
-  ];
-
   const asLeftPan = (x: ElemNode): ElemNode => {
     return el.select(position, x, el.mul(x, el.db2gain(3)));
   };
   const asRightPan = (x: ElemNode): ElemNode => {
-    return el.select(position, el.mul(x, el.db2gain(4.5)), x);
+    return el.select(position, el.mul(x, el.db2gain(3)), x);
   };
 
   let yL = el.add(
-    el.mul(scapeLevel, asLeftPan(scapeProcess_LR(outputFromSRVB)[1])),    // crossed over
+    el.mul(scapeLevel, asLeftPan(crossFadeN_LR(outputFromSRVB)[1])),    // crossed over
     outputFromSRVB[0]
   ); // crossfaded blend
   let yR = el.add(
-    el.mul(scapeLevel, asRightPan(scapeProcess_LR(outputFromSRVB)[0])), // crossed over
+    el.mul(scapeLevel, asRightPan(crossFadeN_LR(outputFromSRVB)[0])), // crossed over
     outputFromSRVB[1]
   ); // crossfaded blend
 

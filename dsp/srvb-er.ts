@@ -182,6 +182,7 @@ function dampFDN(props: FDNProps, ...ins) {
 
 export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureArray: ElemNode[]) {
   // xl , xr -- unprocessed inputs
+  if (props.srvbBypass) return inputs;
   const { sampleRate, key, structureMax, mix } = props;
   const position = el.sm( props.position) 
   const [xl, xr] = inputs;
@@ -247,10 +248,11 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
     const asLeftPan =  ( x: ElemNode): ElemNode => { return   el.select( position, x, el.mul(x, el.db2gain( 3 ) ) )  };
     const asRightPan =   ( x: ElemNode): ElemNode => { return el.select( position, el.mul( x, el.db2gain( 3.5 ) ) , x )  };
   
-    let yl = asLeftPan(   el.add(positioning(0, r0[0]), r0[2],                  positioning(4, r0[4]), r0[6] ) );
-    let yr = asRightPan(  el.add(                 r0[1], positioning(3, r0[3]), r0[5],                 positioning(7, r0[7]) ) ) 
-
-  // Wet dry mixing
-  return [el.select( mix, yl, xl), el.select( mix, yr, xr)];
+    let yl = el.tapOut({ name: "srvbOut:0" }, asLeftPan(   el.add(positioning(0, r0[0]), r0[2],                  positioning(4, r0[4]), r0[6] ) ) );
+    let yr = el.tapOut({ name: "srvbOut:1" }, asRightPan(  el.add(               r0[1], positioning(3, r0[3]),   r0[5],                 positioning(7, r0[7]) ) ) );
+    
+  
+  // reflections
+  return [  el.mul( mix, yl ), el.mul( mix, yr ) ];
 }
- 
+  
