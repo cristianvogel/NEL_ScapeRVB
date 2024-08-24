@@ -202,7 +202,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     ...state,
     structure: srvb.structure,
     scapeLength: scape.ir,
-    structureMax: structureData.max,
+    structureMax: srvb.structureMax,
     reverse: scape.reverse,
     vectorData: scape.vectorData,
   };
@@ -222,7 +222,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
       diffuse: state.diffuse,
       tone: clamp(state.tone * 2 - 1, -0.99, 1),
       level: state.mix,
-      structureMax: Math.round(state.structureMax) || 400, // handle the case where the max was not computed
+      structureMax: Math.round(state.structureMax) || 137, // handle the case where the max was not computed
       bypass: state.srvbBypass || false,
     };
     const scape = {

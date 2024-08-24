@@ -93,7 +93,7 @@ function diffuse(props: DiffuseProps, ...ins) {
 // An eight channel feedback delay network
 function dampFDN(props: FDNProps, ...ins) {
   const len = ins.length / 2;
-  const { name, tone, size, decay } = props;
+  const { size, decay } = props;
   const { sampleRate } = props;
   const structure: Array<ElemNode> = props.structureArray;
   const structureMax: ElemNode = props.structureMax;
@@ -116,37 +116,14 @@ function dampFDN(props: FDNProps, ...ins) {
 
   //const md = modDepth;
 
-  const toneDial = (input, offset: ElemNode) => {
-    const dial = el.smooth(el.tau2pole(0.5), el.le(tone, 0));
-    const fcLPF = el.add(
-      48,
-      el.mul(el.add(12000, offset), el.sub(1, el.abs(tone)))
-    );
-    return el.select(
-      dial,
-      // darker
-      el.svf(
-        fcLPF,
-        el.div(1, el.square(offset)),
-        el.mul(el.db2gain(0.5), input)
-      ),
-      // brighter
-      el.svfshelf(
-        { mode: "highshelf" },
-        el.add(650, offset),
-        0.5,
-        el.mul(tone, el.db2gain(6)),
-        el.mul(el.db2gain(-1), input)
-      )
-    );
-  };
   // The unity-gain one pole lowpass here is tuned to taste along
   // the range [0.001, 0.5]. Towards the top of the range, we get into the region
   // of killing the decay time too quickly. Towards the bottom, not much damping.
   const dels = ins.map( function (input, i) {
     return el.add(
-                  // toneDial(input, structure[i]),
-                  input,
+                   // two many instances of the filter, moving to output
+                 //  toneDial(input, structure[i]),
+                 input,
                   el.mul(
                     1 + EPS,
                     decay,
@@ -154,7 +131,6 @@ function dampFDN(props: FDNProps, ...ins) {
                   )
     );
   });
-
   let mix = H8.map(function (row, i) {
     return el.add(
       ...row.map(function (col, j) {
@@ -184,24 +160,61 @@ function dampFDN(props: FDNProps, ...ins) {
 export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureArray: ElemNode[]) {
   // xl , xr -- unprocessed inputs
   if (props.srvbBypass) return inputs;
-  const { sampleRate, key, structureMax, mix } = props;
+
+
+  const toneDial = (input, offset: ElemNode) => {
+    const dial = el.smooth(el.tau2pole(0.5), el.le(tone, 0));
+    const fcLPF = el.add(
+      48,
+      el.mul(el.add(12000, offset), el.sub(1, el.abs(tone)))
+    );
+    return el.select(
+      dial,
+      // darker
+      el.svf(
+        fcLPF,
+        el.div(1, el.square(offset)),
+        el.mul(el.db2gain(0.5), input)
+      ),
+      // brighter
+      el.svfshelf(
+        { mode: "highshelf" },
+        el.add(650, offset),
+        0.5,
+        el.mul(tone, el.db2gain(6)),
+        el.mul(el.db2gain(-1), input)
+      )
+    );
+  };
+
+
+  const { sampleRate, key, structureMax, mix, tone } = props;
   const position = el.sm( props.position) 
+
+
+
+
+
   const [xl, xr] = inputs;
   // input attenuation
-  const _xl = el.dcblock(el.mul(xl, el.db2gain(-1.5)));
-  const _xr = el.dcblock(el.mul(xl, el.db2gain(-1.5)));
+  // const _xl = el.dcblock( el.mul( xl, el.select( position, el.db2gain(-1.5), 1 ) ) );
+  // const _xr = el.dcblock( el.mul( xr, el.select( position, 1, el.db2gain(-1.5) ) ) );
+  const _xl = el.dcblock( xl );
+  const _xr = el.dcblock( xr );
   // Upmix to eight channels
-  const mid = el.mul(0.5, el.add(_xl, _xr));
-  const side = el.mul(0.5, el.sub(_xl, _xr));
-  const four = [_xl, _xr, mid, side];
-  const eight = [...four, ...four.map((x) => el.mul(-1, x))];
+  const mid = el.mul(  0.5, el.add( _xl, _xr ));
+  const side = el.mul( 0.5, el.sub( _xl, _xr) );
+  const four = [_xl, _xr, mid, side].map( (x, i ) => toneDial( x, structureArray[ (i * 2) % structureArray.length ] ) );
+  const eight = [...four, ...four.map((x, i ) =>  el.mul( 1, x) )];   // THIS WAS -1 FOR MONTHS...
   // Diffusion over 8 channels using core sequence for coefficients
   const ms2samps = (ms) => sampleRate * (ms / 1000.0);
 
-  const d1 = diffuse(
+
+
+  const d1 =  diffuse(
     { structure: structureArray, structureMax , maxLengthSamp: ms2samps(43) },
     ...eight
-  );
+);
   // const d2 = diffuse(
   //   { structure: structureArray, structureMax , maxLengthSamp: ms2samps(97) },
   //   ...d1
@@ -232,7 +245,7 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
       structureMax,
       tone: props.tone,
       size: props.size,
-      decay: el.mul( props.decay , 0.5),
+      decay: el.mul( props.decay , 0.7),
     },
     ...d1
   );
@@ -240,19 +253,19 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
   // interleaved dimensional Downmix ( optimised to build the spatial delays when needed )
   let positioning = (i, x: ElemNode): ElemNode =>
     el.delay(
-      { key: `downmix:${i}`, size: ms2samps(60 + (i * 1.618)) },
-      el.sm(el.sub(1, position)),
+      { key: `downmix:${i}`, size: ms2samps(137) },
+      el.sub( 1, el.abs( el.sin( el.mul( Math.PI * 2 ,  [ position , el.sub( 1, position ) ][ i % 2] ) ) ) ),
       0,
-      el.mul( el.div( structureArray[i], structureMax) , x )
+      el.mul( el.sub( 1.05 , el.div( structureArray[i], structureMax) )  , x )
     );
 
-    const asLeftPan =  ( x: ElemNode): ElemNode => { return   el.select( position, x, el.mul(x, el.db2gain( 3 ) ) )  };
-    const asRightPan =   ( x: ElemNode): ElemNode => { return el.select( position, el.mul( x, el.db2gain( 3.5 ) ) , x )  };
+     const asLeftPan =  ( x: ElemNode): ElemNode => { return   el.select( position, x, el.mul(x, el.db2gain( 3 ) ) )  };
+     const asRightPan =   ( x: ElemNode): ElemNode => { return el.select( position, el.mul( x, el.db2gain( 3 ) ) , x )  };
   
-    let yl = el.tapOut({ name: "srvbOut:0" }, asLeftPan(   el.add(positioning(0, r0[0]), r0[2],                  positioning(4, r0[4]), r0[6] ) ) );
-    let yr = el.tapOut({ name: "srvbOut:1" }, asRightPan(  el.add(               r0[1], positioning(3, r0[3]),   r0[5],                 positioning(7, r0[7]) ) ) );
-    
+    let yl = el.tapOut({ name: "srvbOut:0" },  asLeftPan( el.add(positioning(0, r0[0]), r0[2],                  positioning(4, r0[4]), r0[6] ) ) );
+    let yr = el.tapOut({ name: "srvbOut:1" },  asRightPan( el.add(               r0[1], positioning(3, r0[3]),   r0[5],                 positioning(7, r0[7]) ) ) );
   
+
   // reflections
   return [  el.mul( mix, yl ), el.mul( mix, yr ) ];
 }
