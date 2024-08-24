@@ -19445,8 +19445,8 @@ var CABLES = CABLES || {}; CABLES.build = {"timestamp":1723710716430,"created":"
 (()=>{"use strict";var t={d:(n,a)=>{for(var r in a)t.o(a,r)&&!t.o(n,r)&&Object.defineProperty(n,r,{enumerable:!0,get:a[r]})},o:(t,n)=>Object.prototype.hasOwnProperty.call(t,n),r:t=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})}},n={};t.r(n),t.d(n,{ARRAY_TYPE:()=>f,EPSILON:()=>M,RANDOM:()=>l,equals:()=>d,setMatrixArrayType:()=>v,toRadian:()=>m});var a={};t.r(a),t.d(a,{LDU:()=>j,add:()=>z,adjoint:()=>S,clone:()=>y,copy:()=>p,create:()=>x,determinant:()=>R,equals:()=>Y,exactEquals:()=>Q,frob:()=>V,fromRotation:()=>D,fromScaling:()=>F,fromValues:()=>w,identity:()=>q,invert:()=>P,mul:()=>_,multiply:()=>T,multiplyScalar:()=>X,multiplyScalarAndAdd:()=>Z,rotate:()=>I,scale:()=>E,set:()=>g,str:()=>L,sub:()=>B,subtract:()=>O,transpose:()=>A});var r={};t.r(r),t.d(r,{add:()=>it,clone:()=>k,copy:()=>U,create:()=>N,determinant:()=>J,equals:()=>ft,exactEquals:()=>Mt,frob:()=>ot,fromRotation:()=>at,fromScaling:()=>rt,fromTranslation:()=>ut,fromValues:()=>C,identity:()=>W,invert:()=>H,mul:()=>lt,multiply:()=>K,multiplyScalar:()=>ct,multiplyScalarAndAdd:()=>st,rotate:()=>$,scale:()=>tt,set:()=>G,str:()=>et,sub:()=>vt,subtract:()=>ht,translate:()=>nt});var u={};t.r(u),t.d(u,{add:()=>Yt,adjoint:()=>At,clone:()=>dt,copy:()=>xt,create:()=>bt,determinant:()=>Pt,equals:()=>Nt,exactEquals:()=>Bt,frob:()=>Qt,fromMat2d:()=>Lt,fromMat4:()=>mt,fromQuat:()=>Vt,fromRotation:()=>Dt,fromScaling:()=>Ft,fromTranslation:()=>Et,fromValues:()=>yt,identity:()=>qt,invert:()=>gt,mul:()=>kt,multiply:()=>St,multiplyScalar:()=>Zt,multiplyScalarAndAdd:()=>_t,normalFromMat4:()=>jt,projection:()=>zt,rotate:()=>Tt,scale:()=>It,set:()=>pt,str:()=>Ot,sub:()=>Ut,subtract:()=>Xt,translate:()=>Rt,transpose:()=>wt});var e={};t.r(e),t.d(e,{add:()=>Ln,adjoint:()=>nn,clone:()=>Ct,copy:()=>Gt,create:()=>Wt,determinant:()=>an,equals:()=>Qn,exactEquals:()=>On,frob:()=>Fn,fromQuat:()=>An,fromQuat2:()=>xn,fromRotation:()=>ln,fromRotationTranslation:()=>dn,fromRotationTranslationScale:()=>wn,fromRotationTranslationScaleOrigin:()=>gn,fromScaling:()=>fn,fromTranslation:()=>Mn,fromValues:()=>Ht,fromXRotation:()=>vn,fromYRotation:()=>bn,fromZRotation:()=>mn,frustum:()=>Pn,getRotation:()=>qn,getScaling:()=>pn,getTranslation:()=>yn,identity:()=>Kt,invert:()=>tn,lookAt:()=>In,mul:()=>Yn,multiply:()=>rn,multiplyScalar:()=>jn,multiplyScalarAndAdd:()=>zn,ortho:()=>Tn,perspective:()=>Sn,perspectiveFromFieldOfView:()=>Rn,rotate:()=>on,rotateX:()=>hn,rotateY:()=>cn,rotateZ:()=>sn,scale:()=>en,set:()=>Jt,str:()=>Dn,sub:()=>Xn,subtract:()=>Vn,targetTo:()=>En,translate:()=>un,transpose:()=>$t});var o={};t.r(o),t.d(o,{add:()=>Wn,angle:()=>wa,bezier:()=>va,ceil:()=>Jn,clone:()=>_n,copy:()=>kn,create:()=>Zn,cross:()=>Ma,dist:()=>Da,distance:()=>ua,div:()=>Ea,divide:()=>Hn,dot:()=>sa,equals:()=>Sa,exactEquals:()=>Pa,floor:()=>Kn,forEach:()=>ja,fromValues:()=>Nn,hermite:()=>la,inverse:()=>ha,len:()=>La,length:()=>Bn,lerp:()=>fa,max:()=>ta,min:()=>$n,mul:()=>Ia,multiply:()=>Gn,negate:()=>ia,normalize:()=>ca,random:()=>ba,rotateX:()=>ya,rotateY:()=>pa,rotateZ:()=>qa,round:()=>na,scale:()=>aa,scaleAndAdd:()=>ra,set:()=>Un,sqrDist:()=>Fa,sqrLen:()=>Va,squaredDistance:()=>ea,squaredLength:()=>oa,str:()=>Aa,sub:()=>Ta,subtract:()=>Cn,transformMat3:()=>da,transformMat4:()=>ma,transformQuat:()=>xa,zero:()=>ga});var i={};t.r(i),t.d(i,{add:()=>Za,ceil:()=>ka,clone:()=>Oa,copy:()=>Ya,create:()=>za,cross:()=>or,dist:()=>xr,distance:()=>Ka,div:()=>dr,divide:()=>Na,dot:()=>er,equals:()=>vr,exactEquals:()=>lr,floor:()=>Ua,forEach:()=>wr,fromValues:()=>Qa,inverse:()=>rr,len:()=>pr,length:()=>tr,lerp:()=>ir,max:()=>Ca,min:()=>Wa,mul:()=>mr,multiply:()=>Ba,negate:()=>ar,normalize:()=>ur,random:()=>hr,round:()=>Ga,scale:()=>Ha,scaleAndAdd:()=>Ja,set:()=>Xa,sqrDist:()=>yr,sqrLen:()=>qr,squaredDistance:()=>$a,squaredLength:()=>nr,str:()=>fr,sub:()=>br,subtract:()=>_a,transformMat4:()=>cr,transformQuat:()=>sr,zero:()=>Mr});var h={};t.r(h),t.d(h,{add:()=>$r,calculateW:()=>Fr,clone:()=>Gr,conjugate:()=>Yr,copy:()=>Jr,create:()=>gr,dot:()=>au,equals:()=>su,exactEquals:()=>cu,exp:()=>Lr,fromEuler:()=>Zr,fromMat3:()=>Xr,fromValues:()=>Hr,getAngle:()=>Rr,getAxisAngle:()=>Sr,identity:()=>Ar,invert:()=>Qr,len:()=>eu,length:()=>uu,lerp:()=>ru,ln:()=>Vr,mul:()=>tu,multiply:()=>Tr,normalize:()=>hu,pow:()=>jr,random:()=>Or,rotateX:()=>Ir,rotateY:()=>Er,rotateZ:()=>Dr,rotationTo:()=>Mu,scale:()=>nu,set:()=>Kr,setAxes:()=>lu,setAxisAngle:()=>Pr,slerp:()=>zr,sqlerp:()=>fu,sqrLen:()=>iu,squaredLength:()=>ou,str:()=>_r});var c={};t.r(c),t.d(c,{add:()=>Ou,clone:()=>bu,conjugate:()=>Nu,copy:()=>wu,create:()=>vu,dot:()=>Zu,equals:()=>Ku,exactEquals:()=>Ju,fromMat4:()=>qu,fromRotation:()=>pu,fromRotationTranslation:()=>xu,fromRotationTranslationValues:()=>du,fromTranslation:()=>yu,fromValues:()=>mu,getDual:()=>Su,getReal:()=>Pu,getTranslation:()=>Iu,identity:()=>gu,invert:()=>Bu,len:()=>Uu,length:()=>ku,lerp:()=>_u,mul:()=>Yu,multiply:()=>Qu,normalize:()=>Gu,rotateAroundAxis:()=>zu,rotateByQuatAppend:()=>Vu,rotateByQuatPrepend:()=>ju,rotateX:()=>Du,rotateY:()=>Fu,rotateZ:()=>Lu,scale:()=>Xu,set:()=>Au,setDual:()=>Tu,setReal:()=>Ru,sqrLen:()=>Cu,squaredLength:()=>Wu,str:()=>Hu,translate:()=>Eu});var s={};t.r(s),t.d(s,{add:()=>ue,angle:()=>De,ceil:()=>he,clone:()=>te,copy:()=>ae,create:()=>$u,cross:()=>ge,dist:()=>Xe,distance:()=>be,div:()=>Ye,divide:()=>ie,dot:()=>we,equals:()=>je,exactEquals:()=>Ve,floor:()=>ce,forEach:()=>Be,fromValues:()=>ne,inverse:()=>pe,len:()=>ze,length:()=>de,lerp:()=>Ae,max:()=>Me,min:()=>se,mul:()=>Qe,multiply:()=>oe,negate:()=>ye,normalize:()=>qe,random:()=>Pe,rotate:()=>Ee,round:()=>fe,scale:()=>le,scaleAndAdd:()=>ve,set:()=>re,sqrDist:()=>Ze,sqrLen:()=>_e,squaredDistance:()=>me,squaredLength:()=>xe,str:()=>Le,sub:()=>Oe,subtract:()=>ee,transformMat2:()=>Se,transformMat2d:()=>Re,transformMat3:()=>Te,transformMat4:()=>Ie,zero:()=>Fe});var M=1e-6,f="undefined"!=typeof Float32Array?Float32Array:Array,l=Math.random;function v(t){f=t}var b=Math.PI/180;function m(t){return t*b}function d(t,n){return Math.abs(t-n)<=M*Math.max(1,Math.abs(t),Math.abs(n))}function x(){var t=new f(4);return f!=Float32Array&&(t[1]=0,t[2]=0),t[0]=1,t[3]=1,t}function y(t){var n=new f(4);return n[0]=t[0],n[1]=t[1],n[2]=t[2],n[3]=t[3],n}function p(t,n){return t[0]=n[0],t[1]=n[1],t[2]=n[2],t[3]=n[3],t}function q(t){return t[0]=1,t[1]=0,t[2]=0,t[3]=1,t}function w(t,n,a,r){var u=new f(4);return u[0]=t,u[1]=n,u[2]=a,u[3]=r,u}function g(t,n,a,r,u){return t[0]=n,t[1]=a,t[2]=r,t[3]=u,t}function A(t,n){if(t===n){var a=n[1];t[1]=n[2],t[2]=a}else t[0]=n[0],t[1]=n[2],t[2]=n[1],t[3]=n[3];return t}function P(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=a*e-u*r;return o?(o=1/o,t[0]=e*o,t[1]=-r*o,t[2]=-u*o,t[3]=a*o,t):null}function S(t,n){var a=n[0];return t[0]=n[3],t[1]=-n[1],t[2]=-n[2],t[3]=a,t}function R(t){return t[0]*t[3]-t[2]*t[1]}function T(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=a[0],h=a[1],c=a[2],s=a[3];return t[0]=r*i+e*h,t[1]=u*i+o*h,t[2]=r*c+e*s,t[3]=u*c+o*s,t}function I(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=Math.sin(a),h=Math.cos(a);return t[0]=r*h+e*i,t[1]=u*h+o*i,t[2]=r*-i+e*h,t[3]=u*-i+o*h,t}function E(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=a[0],h=a[1];return t[0]=r*i,t[1]=u*i,t[2]=e*h,t[3]=o*h,t}function D(t,n){var a=Math.sin(n),r=Math.cos(n);return t[0]=r,t[1]=a,t[2]=-a,t[3]=r,t}function F(t,n){return t[0]=n[0],t[1]=0,t[2]=0,t[3]=n[1],t}function L(t){return"mat2("+t[0]+", "+t[1]+", "+t[2]+", "+t[3]+")"}function V(t){return Math.hypot(t[0],t[1],t[2],t[3])}function j(t,n,a,r){return t[2]=r[2]/r[0],a[0]=r[0],a[1]=r[1],a[3]=r[3]-t[2]*a[1],[t,n,a]}function z(t,n,a){return t[0]=n[0]+a[0],t[1]=n[1]+a[1],t[2]=n[2]+a[2],t[3]=n[3]+a[3],t}function O(t,n,a){return t[0]=n[0]-a[0],t[1]=n[1]-a[1],t[2]=n[2]-a[2],t[3]=n[3]-a[3],t}function Q(t,n){return t[0]===n[0]&&t[1]===n[1]&&t[2]===n[2]&&t[3]===n[3]}function Y(t,n){var a=t[0],r=t[1],u=t[2],e=t[3],o=n[0],i=n[1],h=n[2],c=n[3];return Math.abs(a-o)<=M*Math.max(1,Math.abs(a),Math.abs(o))&&Math.abs(r-i)<=M*Math.max(1,Math.abs(r),Math.abs(i))&&Math.abs(u-h)<=M*Math.max(1,Math.abs(u),Math.abs(h))&&Math.abs(e-c)<=M*Math.max(1,Math.abs(e),Math.abs(c))}function X(t,n,a){return t[0]=n[0]*a,t[1]=n[1]*a,t[2]=n[2]*a,t[3]=n[3]*a,t}function Z(t,n,a,r){return t[0]=n[0]+a[0]*r,t[1]=n[1]+a[1]*r,t[2]=n[2]+a[2]*r,t[3]=n[3]+a[3]*r,t}Math.hypot||(Math.hypot=function(){for(var t=0,n=arguments.length;n--;)t+=arguments[n]*arguments[n];return Math.sqrt(t)});var _=T,B=O;function N(){var t=new f(6);return f!=Float32Array&&(t[1]=0,t[2]=0,t[4]=0,t[5]=0),t[0]=1,t[3]=1,t}function k(t){var n=new f(6);return n[0]=t[0],n[1]=t[1],n[2]=t[2],n[3]=t[3],n[4]=t[4],n[5]=t[5],n}function U(t,n){return t[0]=n[0],t[1]=n[1],t[2]=n[2],t[3]=n[3],t[4]=n[4],t[5]=n[5],t}function W(t){return t[0]=1,t[1]=0,t[2]=0,t[3]=1,t[4]=0,t[5]=0,t}function C(t,n,a,r,u,e){var o=new f(6);return o[0]=t,o[1]=n,o[2]=a,o[3]=r,o[4]=u,o[5]=e,o}function G(t,n,a,r,u,e,o){return t[0]=n,t[1]=a,t[2]=r,t[3]=u,t[4]=e,t[5]=o,t}function H(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=n[4],i=n[5],h=a*e-r*u;return h?(h=1/h,t[0]=e*h,t[1]=-r*h,t[2]=-u*h,t[3]=a*h,t[4]=(u*i-e*o)*h,t[5]=(r*o-a*i)*h,t):null}function J(t){return t[0]*t[3]-t[1]*t[2]}function K(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=n[4],h=n[5],c=a[0],s=a[1],M=a[2],f=a[3],l=a[4],v=a[5];return t[0]=r*c+e*s,t[1]=u*c+o*s,t[2]=r*M+e*f,t[3]=u*M+o*f,t[4]=r*l+e*v+i,t[5]=u*l+o*v+h,t}function $(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=n[4],h=n[5],c=Math.sin(a),s=Math.cos(a);return t[0]=r*s+e*c,t[1]=u*s+o*c,t[2]=r*-c+e*s,t[3]=u*-c+o*s,t[4]=i,t[5]=h,t}function tt(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=n[4],h=n[5],c=a[0],s=a[1];return t[0]=r*c,t[1]=u*c,t[2]=e*s,t[3]=o*s,t[4]=i,t[5]=h,t}function nt(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=n[4],h=n[5],c=a[0],s=a[1];return t[0]=r,t[1]=u,t[2]=e,t[3]=o,t[4]=r*c+e*s+i,t[5]=u*c+o*s+h,t}function at(t,n){var a=Math.sin(n),r=Math.cos(n);return t[0]=r,t[1]=a,t[2]=-a,t[3]=r,t[4]=0,t[5]=0,t}function rt(t,n){return t[0]=n[0],t[1]=0,t[2]=0,t[3]=n[1],t[4]=0,t[5]=0,t}function ut(t,n){return t[0]=1,t[1]=0,t[2]=0,t[3]=1,t[4]=n[0],t[5]=n[1],t}function et(t){return"mat2d("+t[0]+", "+t[1]+", "+t[2]+", "+t[3]+", "+t[4]+", "+t[5]+")"}function ot(t){return Math.hypot(t[0],t[1],t[2],t[3],t[4],t[5],1)}function it(t,n,a){return t[0]=n[0]+a[0],t[1]=n[1]+a[1],t[2]=n[2]+a[2],t[3]=n[3]+a[3],t[4]=n[4]+a[4],t[5]=n[5]+a[5],t}function ht(t,n,a){return t[0]=n[0]-a[0],t[1]=n[1]-a[1],t[2]=n[2]-a[2],t[3]=n[3]-a[3],t[4]=n[4]-a[4],t[5]=n[5]-a[5],t}function ct(t,n,a){return t[0]=n[0]*a,t[1]=n[1]*a,t[2]=n[2]*a,t[3]=n[3]*a,t[4]=n[4]*a,t[5]=n[5]*a,t}function st(t,n,a,r){return t[0]=n[0]+a[0]*r,t[1]=n[1]+a[1]*r,t[2]=n[2]+a[2]*r,t[3]=n[3]+a[3]*r,t[4]=n[4]+a[4]*r,t[5]=n[5]+a[5]*r,t}function Mt(t,n){return t[0]===n[0]&&t[1]===n[1]&&t[2]===n[2]&&t[3]===n[3]&&t[4]===n[4]&&t[5]===n[5]}function ft(t,n){var a=t[0],r=t[1],u=t[2],e=t[3],o=t[4],i=t[5],h=n[0],c=n[1],s=n[2],f=n[3],l=n[4],v=n[5];return Math.abs(a-h)<=M*Math.max(1,Math.abs(a),Math.abs(h))&&Math.abs(r-c)<=M*Math.max(1,Math.abs(r),Math.abs(c))&&Math.abs(u-s)<=M*Math.max(1,Math.abs(u),Math.abs(s))&&Math.abs(e-f)<=M*Math.max(1,Math.abs(e),Math.abs(f))&&Math.abs(o-l)<=M*Math.max(1,Math.abs(o),Math.abs(l))&&Math.abs(i-v)<=M*Math.max(1,Math.abs(i),Math.abs(v))}var lt=K,vt=ht;function bt(){var t=new f(9);return f!=Float32Array&&(t[1]=0,t[2]=0,t[3]=0,t[5]=0,t[6]=0,t[7]=0),t[0]=1,t[4]=1,t[8]=1,t}function mt(t,n){return t[0]=n[0],t[1]=n[1],t[2]=n[2],t[3]=n[4],t[4]=n[5],t[5]=n[6],t[6]=n[8],t[7]=n[9],t[8]=n[10],t}function dt(t){var n=new f(9);return n[0]=t[0],n[1]=t[1],n[2]=t[2],n[3]=t[3],n[4]=t[4],n[5]=t[5],n[6]=t[6],n[7]=t[7],n[8]=t[8],n}function xt(t,n){return t[0]=n[0],t[1]=n[1],t[2]=n[2],t[3]=n[3],t[4]=n[4],t[5]=n[5],t[6]=n[6],t[7]=n[7],t[8]=n[8],t}function yt(t,n,a,r,u,e,o,i,h){var c=new f(9);return c[0]=t,c[1]=n,c[2]=a,c[3]=r,c[4]=u,c[5]=e,c[6]=o,c[7]=i,c[8]=h,c}function pt(t,n,a,r,u,e,o,i,h,c){return t[0]=n,t[1]=a,t[2]=r,t[3]=u,t[4]=e,t[5]=o,t[6]=i,t[7]=h,t[8]=c,t}function qt(t){return t[0]=1,t[1]=0,t[2]=0,t[3]=0,t[4]=1,t[5]=0,t[6]=0,t[7]=0,t[8]=1,t}function wt(t,n){if(t===n){var a=n[1],r=n[2],u=n[5];t[1]=n[3],t[2]=n[6],t[3]=a,t[5]=n[7],t[6]=r,t[7]=u}else t[0]=n[0],t[1]=n[3],t[2]=n[6],t[3]=n[1],t[4]=n[4],t[5]=n[7],t[6]=n[2],t[7]=n[5],t[8]=n[8];return t}function gt(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=n[4],i=n[5],h=n[6],c=n[7],s=n[8],M=s*o-i*c,f=-s*e+i*h,l=c*e-o*h,v=a*M+r*f+u*l;return v?(v=1/v,t[0]=M*v,t[1]=(-s*r+u*c)*v,t[2]=(i*r-u*o)*v,t[3]=f*v,t[4]=(s*a-u*h)*v,t[5]=(-i*a+u*e)*v,t[6]=l*v,t[7]=(-c*a+r*h)*v,t[8]=(o*a-r*e)*v,t):null}function At(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=n[4],i=n[5],h=n[6],c=n[7],s=n[8];return t[0]=o*s-i*c,t[1]=u*c-r*s,t[2]=r*i-u*o,t[3]=i*h-e*s,t[4]=a*s-u*h,t[5]=u*e-a*i,t[6]=e*c-o*h,t[7]=r*h-a*c,t[8]=a*o-r*e,t}function Pt(t){var n=t[0],a=t[1],r=t[2],u=t[3],e=t[4],o=t[5],i=t[6],h=t[7],c=t[8];return n*(c*e-o*h)+a*(-c*u+o*i)+r*(h*u-e*i)}function St(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=n[4],h=n[5],c=n[6],s=n[7],M=n[8],f=a[0],l=a[1],v=a[2],b=a[3],m=a[4],d=a[5],x=a[6],y=a[7],p=a[8];return t[0]=f*r+l*o+v*c,t[1]=f*u+l*i+v*s,t[2]=f*e+l*h+v*M,t[3]=b*r+m*o+d*c,t[4]=b*u+m*i+d*s,t[5]=b*e+m*h+d*M,t[6]=x*r+y*o+p*c,t[7]=x*u+y*i+p*s,t[8]=x*e+y*h+p*M,t}function Rt(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=n[4],h=n[5],c=n[6],s=n[7],M=n[8],f=a[0],l=a[1];return t[0]=r,t[1]=u,t[2]=e,t[3]=o,t[4]=i,t[5]=h,t[6]=f*r+l*o+c,t[7]=f*u+l*i+s,t[8]=f*e+l*h+M,t}function Tt(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=n[4],h=n[5],c=n[6],s=n[7],M=n[8],f=Math.sin(a),l=Math.cos(a);return t[0]=l*r+f*o,t[1]=l*u+f*i,t[2]=l*e+f*h,t[3]=l*o-f*r,t[4]=l*i-f*u,t[5]=l*h-f*e,t[6]=c,t[7]=s,t[8]=M,t}function It(t,n,a){var r=a[0],u=a[1];return t[0]=r*n[0],t[1]=r*n[1],t[2]=r*n[2],t[3]=u*n[3],t[4]=u*n[4],t[5]=u*n[5],t[6]=n[6],t[7]=n[7],t[8]=n[8],t}function Et(t,n){return t[0]=1,t[1]=0,t[2]=0,t[3]=0,t[4]=1,t[5]=0,t[6]=n[0],t[7]=n[1],t[8]=1,t}function Dt(t,n){var a=Math.sin(n),r=Math.cos(n);return t[0]=r,t[1]=a,t[2]=0,t[3]=-a,t[4]=r,t[5]=0,t[6]=0,t[7]=0,t[8]=1,t}function Ft(t,n){return t[0]=n[0],t[1]=0,t[2]=0,t[3]=0,t[4]=n[1],t[5]=0,t[6]=0,t[7]=0,t[8]=1,t}function Lt(t,n){return t[0]=n[0],t[1]=n[1],t[2]=0,t[3]=n[2],t[4]=n[3],t[5]=0,t[6]=n[4],t[7]=n[5],t[8]=1,t}function Vt(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=a+a,i=r+r,h=u+u,c=a*o,s=r*o,M=r*i,f=u*o,l=u*i,v=u*h,b=e*o,m=e*i,d=e*h;return t[0]=1-M-v,t[3]=s-d,t[6]=f+m,t[1]=s+d,t[4]=1-c-v,t[7]=l-b,t[2]=f-m,t[5]=l+b,t[8]=1-c-M,t}function jt(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=n[4],i=n[5],h=n[6],c=n[7],s=n[8],M=n[9],f=n[10],l=n[11],v=n[12],b=n[13],m=n[14],d=n[15],x=a*i-r*o,y=a*h-u*o,p=a*c-e*o,q=r*h-u*i,w=r*c-e*i,g=u*c-e*h,A=s*b-M*v,P=s*m-f*v,S=s*d-l*v,R=M*m-f*b,T=M*d-l*b,I=f*d-l*m,E=x*I-y*T+p*R+q*S-w*P+g*A;return E?(E=1/E,t[0]=(i*I-h*T+c*R)*E,t[1]=(h*S-o*I-c*P)*E,t[2]=(o*T-i*S+c*A)*E,t[3]=(u*T-r*I-e*R)*E,t[4]=(a*I-u*S+e*P)*E,t[5]=(r*S-a*T-e*A)*E,t[6]=(b*g-m*w+d*q)*E,t[7]=(m*p-v*g-d*y)*E,t[8]=(v*w-b*p+d*x)*E,t):null}function zt(t,n,a){return t[0]=2/n,t[1]=0,t[2]=0,t[3]=0,t[4]=-2/a,t[5]=0,t[6]=-1,t[7]=1,t[8]=1,t}function Ot(t){return"mat3("+t[0]+", "+t[1]+", "+t[2]+", "+t[3]+", "+t[4]+", "+t[5]+", "+t[6]+", "+t[7]+", "+t[8]+")"}function Qt(t){return Math.hypot(t[0],t[1],t[2],t[3],t[4],t[5],t[6],t[7],t[8])}function Yt(t,n,a){return t[0]=n[0]+a[0],t[1]=n[1]+a[1],t[2]=n[2]+a[2],t[3]=n[3]+a[3],t[4]=n[4]+a[4],t[5]=n[5]+a[5],t[6]=n[6]+a[6],t[7]=n[7]+a[7],t[8]=n[8]+a[8],t}function Xt(t,n,a){return t[0]=n[0]-a[0],t[1]=n[1]-a[1],t[2]=n[2]-a[2],t[3]=n[3]-a[3],t[4]=n[4]-a[4],t[5]=n[5]-a[5],t[6]=n[6]-a[6],t[7]=n[7]-a[7],t[8]=n[8]-a[8],t}function Zt(t,n,a){return t[0]=n[0]*a,t[1]=n[1]*a,t[2]=n[2]*a,t[3]=n[3]*a,t[4]=n[4]*a,t[5]=n[5]*a,t[6]=n[6]*a,t[7]=n[7]*a,t[8]=n[8]*a,t}function _t(t,n,a,r){return t[0]=n[0]+a[0]*r,t[1]=n[1]+a[1]*r,t[2]=n[2]+a[2]*r,t[3]=n[3]+a[3]*r,t[4]=n[4]+a[4]*r,t[5]=n[5]+a[5]*r,t[6]=n[6]+a[6]*r,t[7]=n[7]+a[7]*r,t[8]=n[8]+a[8]*r,t}function Bt(t,n){return t[0]===n[0]&&t[1]===n[1]&&t[2]===n[2]&&t[3]===n[3]&&t[4]===n[4]&&t[5]===n[5]&&t[6]===n[6]&&t[7]===n[7]&&t[8]===n[8]}function Nt(t,n){var a=t[0],r=t[1],u=t[2],e=t[3],o=t[4],i=t[5],h=t[6],c=t[7],s=t[8],f=n[0],l=n[1],v=n[2],b=n[3],m=n[4],d=n[5],x=n[6],y=n[7],p=n[8];return Math.abs(a-f)<=M*Math.max(1,Math.abs(a),Math.abs(f))&&Math.abs(r-l)<=M*Math.max(1,Math.abs(r),Math.abs(l))&&Math.abs(u-v)<=M*Math.max(1,Math.abs(u),Math.abs(v))&&Math.abs(e-b)<=M*Math.max(1,Math.abs(e),Math.abs(b))&&Math.abs(o-m)<=M*Math.max(1,Math.abs(o),Math.abs(m))&&Math.abs(i-d)<=M*Math.max(1,Math.abs(i),Math.abs(d))&&Math.abs(h-x)<=M*Math.max(1,Math.abs(h),Math.abs(x))&&Math.abs(c-y)<=M*Math.max(1,Math.abs(c),Math.abs(y))&&Math.abs(s-p)<=M*Math.max(1,Math.abs(s),Math.abs(p))}var kt=St,Ut=Xt;function Wt(){var t=new f(16);return f!=Float32Array&&(t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[6]=0,t[7]=0,t[8]=0,t[9]=0,t[11]=0,t[12]=0,t[13]=0,t[14]=0),t[0]=1,t[5]=1,t[10]=1,t[15]=1,t}function Ct(t){var n=new f(16);return n[0]=t[0],n[1]=t[1],n[2]=t[2],n[3]=t[3],n[4]=t[4],n[5]=t[5],n[6]=t[6],n[7]=t[7],n[8]=t[8],n[9]=t[9],n[10]=t[10],n[11]=t[11],n[12]=t[12],n[13]=t[13],n[14]=t[14],n[15]=t[15],n}function Gt(t,n){return t[0]=n[0],t[1]=n[1],t[2]=n[2],t[3]=n[3],t[4]=n[4],t[5]=n[5],t[6]=n[6],t[7]=n[7],t[8]=n[8],t[9]=n[9],t[10]=n[10],t[11]=n[11],t[12]=n[12],t[13]=n[13],t[14]=n[14],t[15]=n[15],t}function Ht(t,n,a,r,u,e,o,i,h,c,s,M,l,v,b,m){var d=new f(16);return d[0]=t,d[1]=n,d[2]=a,d[3]=r,d[4]=u,d[5]=e,d[6]=o,d[7]=i,d[8]=h,d[9]=c,d[10]=s,d[11]=M,d[12]=l,d[13]=v,d[14]=b,d[15]=m,d}function Jt(t,n,a,r,u,e,o,i,h,c,s,M,f,l,v,b,m){return t[0]=n,t[1]=a,t[2]=r,t[3]=u,t[4]=e,t[5]=o,t[6]=i,t[7]=h,t[8]=c,t[9]=s,t[10]=M,t[11]=f,t[12]=l,t[13]=v,t[14]=b,t[15]=m,t}function Kt(t){return t[0]=1,t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[5]=1,t[6]=0,t[7]=0,t[8]=0,t[9]=0,t[10]=1,t[11]=0,t[12]=0,t[13]=0,t[14]=0,t[15]=1,t}function $t(t,n){if(t===n){var a=n[1],r=n[2],u=n[3],e=n[6],o=n[7],i=n[11];t[1]=n[4],t[2]=n[8],t[3]=n[12],t[4]=a,t[6]=n[9],t[7]=n[13],t[8]=r,t[9]=e,t[11]=n[14],t[12]=u,t[13]=o,t[14]=i}else t[0]=n[0],t[1]=n[4],t[2]=n[8],t[3]=n[12],t[4]=n[1],t[5]=n[5],t[6]=n[9],t[7]=n[13],t[8]=n[2],t[9]=n[6],t[10]=n[10],t[11]=n[14],t[12]=n[3],t[13]=n[7],t[14]=n[11],t[15]=n[15];return t}function tn(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=n[4],i=n[5],h=n[6],c=n[7],s=n[8],M=n[9],f=n[10],l=n[11],v=n[12],b=n[13],m=n[14],d=n[15],x=a*i-r*o,y=a*h-u*o,p=a*c-e*o,q=r*h-u*i,w=r*c-e*i,g=u*c-e*h,A=s*b-M*v,P=s*m-f*v,S=s*d-l*v,R=M*m-f*b,T=M*d-l*b,I=f*d-l*m,E=x*I-y*T+p*R+q*S-w*P+g*A;return E?(E=1/E,t[0]=(i*I-h*T+c*R)*E,t[1]=(u*T-r*I-e*R)*E,t[2]=(b*g-m*w+d*q)*E,t[3]=(f*w-M*g-l*q)*E,t[4]=(h*S-o*I-c*P)*E,t[5]=(a*I-u*S+e*P)*E,t[6]=(m*p-v*g-d*y)*E,t[7]=(s*g-f*p+l*y)*E,t[8]=(o*T-i*S+c*A)*E,t[9]=(r*S-a*T-e*A)*E,t[10]=(v*w-b*p+d*x)*E,t[11]=(M*p-s*w-l*x)*E,t[12]=(i*P-o*R-h*A)*E,t[13]=(a*R-r*P+u*A)*E,t[14]=(b*y-v*q-m*x)*E,t[15]=(s*q-M*y+f*x)*E,t):null}function nn(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=n[4],i=n[5],h=n[6],c=n[7],s=n[8],M=n[9],f=n[10],l=n[11],v=n[12],b=n[13],m=n[14],d=n[15];return t[0]=i*(f*d-l*m)-M*(h*d-c*m)+b*(h*l-c*f),t[1]=-(r*(f*d-l*m)-M*(u*d-e*m)+b*(u*l-e*f)),t[2]=r*(h*d-c*m)-i*(u*d-e*m)+b*(u*c-e*h),t[3]=-(r*(h*l-c*f)-i*(u*l-e*f)+M*(u*c-e*h)),t[4]=-(o*(f*d-l*m)-s*(h*d-c*m)+v*(h*l-c*f)),t[5]=a*(f*d-l*m)-s*(u*d-e*m)+v*(u*l-e*f),t[6]=-(a*(h*d-c*m)-o*(u*d-e*m)+v*(u*c-e*h)),t[7]=a*(h*l-c*f)-o*(u*l-e*f)+s*(u*c-e*h),t[8]=o*(M*d-l*b)-s*(i*d-c*b)+v*(i*l-c*M),t[9]=-(a*(M*d-l*b)-s*(r*d-e*b)+v*(r*l-e*M)),t[10]=a*(i*d-c*b)-o*(r*d-e*b)+v*(r*c-e*i),t[11]=-(a*(i*l-c*M)-o*(r*l-e*M)+s*(r*c-e*i)),t[12]=-(o*(M*m-f*b)-s*(i*m-h*b)+v*(i*f-h*M)),t[13]=a*(M*m-f*b)-s*(r*m-u*b)+v*(r*f-u*M),t[14]=-(a*(i*m-h*b)-o*(r*m-u*b)+v*(r*h-u*i)),t[15]=a*(i*f-h*M)-o*(r*f-u*M)+s*(r*h-u*i),t}function an(t){var n=t[0],a=t[1],r=t[2],u=t[3],e=t[4],o=t[5],i=t[6],h=t[7],c=t[8],s=t[9],M=t[10],f=t[11],l=t[12],v=t[13],b=t[14],m=t[15];return(n*o-a*e)*(M*m-f*b)-(n*i-r*e)*(s*m-f*v)+(n*h-u*e)*(s*b-M*v)+(a*i-r*o)*(c*m-f*l)-(a*h-u*o)*(c*b-M*l)+(r*h-u*i)*(c*v-s*l)}function rn(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=n[4],h=n[5],c=n[6],s=n[7],M=n[8],f=n[9],l=n[10],v=n[11],b=n[12],m=n[13],d=n[14],x=n[15],y=a[0],p=a[1],q=a[2],w=a[3];return t[0]=y*r+p*i+q*M+w*b,t[1]=y*u+p*h+q*f+w*m,t[2]=y*e+p*c+q*l+w*d,t[3]=y*o+p*s+q*v+w*x,y=a[4],p=a[5],q=a[6],w=a[7],t[4]=y*r+p*i+q*M+w*b,t[5]=y*u+p*h+q*f+w*m,t[6]=y*e+p*c+q*l+w*d,t[7]=y*o+p*s+q*v+w*x,y=a[8],p=a[9],q=a[10],w=a[11],t[8]=y*r+p*i+q*M+w*b,t[9]=y*u+p*h+q*f+w*m,t[10]=y*e+p*c+q*l+w*d,t[11]=y*o+p*s+q*v+w*x,y=a[12],p=a[13],q=a[14],w=a[15],t[12]=y*r+p*i+q*M+w*b,t[13]=y*u+p*h+q*f+w*m,t[14]=y*e+p*c+q*l+w*d,t[15]=y*o+p*s+q*v+w*x,t}function un(t,n,a){var r,u,e,o,i,h,c,s,M,f,l,v,b=a[0],m=a[1],d=a[2];return n===t?(t[12]=n[0]*b+n[4]*m+n[8]*d+n[12],t[13]=n[1]*b+n[5]*m+n[9]*d+n[13],t[14]=n[2]*b+n[6]*m+n[10]*d+n[14],t[15]=n[3]*b+n[7]*m+n[11]*d+n[15]):(r=n[0],u=n[1],e=n[2],o=n[3],i=n[4],h=n[5],c=n[6],s=n[7],M=n[8],f=n[9],l=n[10],v=n[11],t[0]=r,t[1]=u,t[2]=e,t[3]=o,t[4]=i,t[5]=h,t[6]=c,t[7]=s,t[8]=M,t[9]=f,t[10]=l,t[11]=v,t[12]=r*b+i*m+M*d+n[12],t[13]=u*b+h*m+f*d+n[13],t[14]=e*b+c*m+l*d+n[14],t[15]=o*b+s*m+v*d+n[15]),t}function en(t,n,a){var r=a[0],u=a[1],e=a[2];return t[0]=n[0]*r,t[1]=n[1]*r,t[2]=n[2]*r,t[3]=n[3]*r,t[4]=n[4]*u,t[5]=n[5]*u,t[6]=n[6]*u,t[7]=n[7]*u,t[8]=n[8]*e,t[9]=n[9]*e,t[10]=n[10]*e,t[11]=n[11]*e,t[12]=n[12],t[13]=n[13],t[14]=n[14],t[15]=n[15],t}function on(t,n,a,r){var u,e,o,i,h,c,s,f,l,v,b,m,d,x,y,p,q,w,g,A,P,S,R,T,I=r[0],E=r[1],D=r[2],F=Math.hypot(I,E,D);return F<M?null:(I*=F=1/F,E*=F,D*=F,u=Math.sin(a),o=1-(e=Math.cos(a)),i=n[0],h=n[1],c=n[2],s=n[3],f=n[4],l=n[5],v=n[6],b=n[7],m=n[8],d=n[9],x=n[10],y=n[11],p=I*I*o+e,q=E*I*o+D*u,w=D*I*o-E*u,g=I*E*o-D*u,A=E*E*o+e,P=D*E*o+I*u,S=I*D*o+E*u,R=E*D*o-I*u,T=D*D*o+e,t[0]=i*p+f*q+m*w,t[1]=h*p+l*q+d*w,t[2]=c*p+v*q+x*w,t[3]=s*p+b*q+y*w,t[4]=i*g+f*A+m*P,t[5]=h*g+l*A+d*P,t[6]=c*g+v*A+x*P,t[7]=s*g+b*A+y*P,t[8]=i*S+f*R+m*T,t[9]=h*S+l*R+d*T,t[10]=c*S+v*R+x*T,t[11]=s*S+b*R+y*T,n!==t&&(t[12]=n[12],t[13]=n[13],t[14]=n[14],t[15]=n[15]),t)}function hn(t,n,a){var r=Math.sin(a),u=Math.cos(a),e=n[4],o=n[5],i=n[6],h=n[7],c=n[8],s=n[9],M=n[10],f=n[11];return n!==t&&(t[0]=n[0],t[1]=n[1],t[2]=n[2],t[3]=n[3],t[12]=n[12],t[13]=n[13],t[14]=n[14],t[15]=n[15]),t[4]=e*u+c*r,t[5]=o*u+s*r,t[6]=i*u+M*r,t[7]=h*u+f*r,t[8]=c*u-e*r,t[9]=s*u-o*r,t[10]=M*u-i*r,t[11]=f*u-h*r,t}function cn(t,n,a){var r=Math.sin(a),u=Math.cos(a),e=n[0],o=n[1],i=n[2],h=n[3],c=n[8],s=n[9],M=n[10],f=n[11];return n!==t&&(t[4]=n[4],t[5]=n[5],t[6]=n[6],t[7]=n[7],t[12]=n[12],t[13]=n[13],t[14]=n[14],t[15]=n[15]),t[0]=e*u-c*r,t[1]=o*u-s*r,t[2]=i*u-M*r,t[3]=h*u-f*r,t[8]=e*r+c*u,t[9]=o*r+s*u,t[10]=i*r+M*u,t[11]=h*r+f*u,t}function sn(t,n,a){var r=Math.sin(a),u=Math.cos(a),e=n[0],o=n[1],i=n[2],h=n[3],c=n[4],s=n[5],M=n[6],f=n[7];return n!==t&&(t[8]=n[8],t[9]=n[9],t[10]=n[10],t[11]=n[11],t[12]=n[12],t[13]=n[13],t[14]=n[14],t[15]=n[15]),t[0]=e*u+c*r,t[1]=o*u+s*r,t[2]=i*u+M*r,t[3]=h*u+f*r,t[4]=c*u-e*r,t[5]=s*u-o*r,t[6]=M*u-i*r,t[7]=f*u-h*r,t}function Mn(t,n){return t[0]=1,t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[5]=1,t[6]=0,t[7]=0,t[8]=0,t[9]=0,t[10]=1,t[11]=0,t[12]=n[0],t[13]=n[1],t[14]=n[2],t[15]=1,t}function fn(t,n){return t[0]=n[0],t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[5]=n[1],t[6]=0,t[7]=0,t[8]=0,t[9]=0,t[10]=n[2],t[11]=0,t[12]=0,t[13]=0,t[14]=0,t[15]=1,t}function ln(t,n,a){var r,u,e,o=a[0],i=a[1],h=a[2],c=Math.hypot(o,i,h);return c<M?null:(o*=c=1/c,i*=c,h*=c,r=Math.sin(n),e=1-(u=Math.cos(n)),t[0]=o*o*e+u,t[1]=i*o*e+h*r,t[2]=h*o*e-i*r,t[3]=0,t[4]=o*i*e-h*r,t[5]=i*i*e+u,t[6]=h*i*e+o*r,t[7]=0,t[8]=o*h*e+i*r,t[9]=i*h*e-o*r,t[10]=h*h*e+u,t[11]=0,t[12]=0,t[13]=0,t[14]=0,t[15]=1,t)}function vn(t,n){var a=Math.sin(n),r=Math.cos(n);return t[0]=1,t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[5]=r,t[6]=a,t[7]=0,t[8]=0,t[9]=-a,t[10]=r,t[11]=0,t[12]=0,t[13]=0,t[14]=0,t[15]=1,t}function bn(t,n){var a=Math.sin(n),r=Math.cos(n);return t[0]=r,t[1]=0,t[2]=-a,t[3]=0,t[4]=0,t[5]=1,t[6]=0,t[7]=0,t[8]=a,t[9]=0,t[10]=r,t[11]=0,t[12]=0,t[13]=0,t[14]=0,t[15]=1,t}function mn(t,n){var a=Math.sin(n),r=Math.cos(n);return t[0]=r,t[1]=a,t[2]=0,t[3]=0,t[4]=-a,t[5]=r,t[6]=0,t[7]=0,t[8]=0,t[9]=0,t[10]=1,t[11]=0,t[12]=0,t[13]=0,t[14]=0,t[15]=1,t}function dn(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=r+r,h=u+u,c=e+e,s=r*i,M=r*h,f=r*c,l=u*h,v=u*c,b=e*c,m=o*i,d=o*h,x=o*c;return t[0]=1-(l+b),t[1]=M+x,t[2]=f-d,t[3]=0,t[4]=M-x,t[5]=1-(s+b),t[6]=v+m,t[7]=0,t[8]=f+d,t[9]=v-m,t[10]=1-(s+l),t[11]=0,t[12]=a[0],t[13]=a[1],t[14]=a[2],t[15]=1,t}function xn(t,n){var a=new f(3),r=-n[0],u=-n[1],e=-n[2],o=n[3],i=n[4],h=n[5],c=n[6],s=n[7],M=r*r+u*u+e*e+o*o;return M>0?(a[0]=2*(i*o+s*r+h*e-c*u)/M,a[1]=2*(h*o+s*u+c*r-i*e)/M,a[2]=2*(c*o+s*e+i*u-h*r)/M):(a[0]=2*(i*o+s*r+h*e-c*u),a[1]=2*(h*o+s*u+c*r-i*e),a[2]=2*(c*o+s*e+i*u-h*r)),dn(t,n,a),t}function yn(t,n){return t[0]=n[12],t[1]=n[13],t[2]=n[14],t}function pn(t,n){var a=n[0],r=n[1],u=n[2],e=n[4],o=n[5],i=n[6],h=n[8],c=n[9],s=n[10];return t[0]=Math.hypot(a,r,u),t[1]=Math.hypot(e,o,i),t[2]=Math.hypot(h,c,s),t}function qn(t,n){var a=new f(3);pn(a,n);var r=1/a[0],u=1/a[1],e=1/a[2],o=n[0]*r,i=n[1]*u,h=n[2]*e,c=n[4]*r,s=n[5]*u,M=n[6]*e,l=n[8]*r,v=n[9]*u,b=n[10]*e,m=o+s+b,d=0;return m>0?(d=2*Math.sqrt(m+1),t[3]=.25*d,t[0]=(M-v)/d,t[1]=(l-h)/d,t[2]=(i-c)/d):o>s&&o>b?(d=2*Math.sqrt(1+o-s-b),t[3]=(M-v)/d,t[0]=.25*d,t[1]=(i+c)/d,t[2]=(l+h)/d):s>b?(d=2*Math.sqrt(1+s-o-b),t[3]=(l-h)/d,t[0]=(i+c)/d,t[1]=.25*d,t[2]=(M+v)/d):(d=2*Math.sqrt(1+b-o-s),t[3]=(i-c)/d,t[0]=(l+h)/d,t[1]=(M+v)/d,t[2]=.25*d),t}function wn(t,n,a,r){var u=n[0],e=n[1],o=n[2],i=n[3],h=u+u,c=e+e,s=o+o,M=u*h,f=u*c,l=u*s,v=e*c,b=e*s,m=o*s,d=i*h,x=i*c,y=i*s,p=r[0],q=r[1],w=r[2];return t[0]=(1-(v+m))*p,t[1]=(f+y)*p,t[2]=(l-x)*p,t[3]=0,t[4]=(f-y)*q,t[5]=(1-(M+m))*q,t[6]=(b+d)*q,t[7]=0,t[8]=(l+x)*w,t[9]=(b-d)*w,t[10]=(1-(M+v))*w,t[11]=0,t[12]=a[0],t[13]=a[1],t[14]=a[2],t[15]=1,t}function gn(t,n,a,r,u){var e=n[0],o=n[1],i=n[2],h=n[3],c=e+e,s=o+o,M=i+i,f=e*c,l=e*s,v=e*M,b=o*s,m=o*M,d=i*M,x=h*c,y=h*s,p=h*M,q=r[0],w=r[1],g=r[2],A=u[0],P=u[1],S=u[2],R=(1-(b+d))*q,T=(l+p)*q,I=(v-y)*q,E=(l-p)*w,D=(1-(f+d))*w,F=(m+x)*w,L=(v+y)*g,V=(m-x)*g,j=(1-(f+b))*g;return t[0]=R,t[1]=T,t[2]=I,t[3]=0,t[4]=E,t[5]=D,t[6]=F,t[7]=0,t[8]=L,t[9]=V,t[10]=j,t[11]=0,t[12]=a[0]+A-(R*A+E*P+L*S),t[13]=a[1]+P-(T*A+D*P+V*S),t[14]=a[2]+S-(I*A+F*P+j*S),t[15]=1,t}function An(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=a+a,i=r+r,h=u+u,c=a*o,s=r*o,M=r*i,f=u*o,l=u*i,v=u*h,b=e*o,m=e*i,d=e*h;return t[0]=1-M-v,t[1]=s+d,t[2]=f-m,t[3]=0,t[4]=s-d,t[5]=1-c-v,t[6]=l+b,t[7]=0,t[8]=f+m,t[9]=l-b,t[10]=1-c-M,t[11]=0,t[12]=0,t[13]=0,t[14]=0,t[15]=1,t}function Pn(t,n,a,r,u,e,o){var i=1/(a-n),h=1/(u-r),c=1/(e-o);return t[0]=2*e*i,t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[5]=2*e*h,t[6]=0,t[7]=0,t[8]=(a+n)*i,t[9]=(u+r)*h,t[10]=(o+e)*c,t[11]=-1,t[12]=0,t[13]=0,t[14]=o*e*2*c,t[15]=0,t}function Sn(t,n,a,r,u){var e,o=1/Math.tan(n/2);return t[0]=o/a,t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[5]=o,t[6]=0,t[7]=0,t[8]=0,t[9]=0,t[11]=-1,t[12]=0,t[13]=0,t[15]=0,null!=u&&u!==1/0?(e=1/(r-u),t[10]=(u+r)*e,t[14]=2*u*r*e):(t[10]=-1,t[14]=-2*r),t}function Rn(t,n,a,r){var u=Math.tan(n.upDegrees*Math.PI/180),e=Math.tan(n.downDegrees*Math.PI/180),o=Math.tan(n.leftDegrees*Math.PI/180),i=Math.tan(n.rightDegrees*Math.PI/180),h=2/(o+i),c=2/(u+e);return t[0]=h,t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[5]=c,t[6]=0,t[7]=0,t[8]=-(o-i)*h*.5,t[9]=(u-e)*c*.5,t[10]=r/(a-r),t[11]=-1,t[12]=0,t[13]=0,t[14]=r*a/(a-r),t[15]=0,t}function Tn(t,n,a,r,u,e,o){var i=1/(n-a),h=1/(r-u),c=1/(e-o);return t[0]=-2*i,t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[5]=-2*h,t[6]=0,t[7]=0,t[8]=0,t[9]=0,t[10]=2*c,t[11]=0,t[12]=(n+a)*i,t[13]=(u+r)*h,t[14]=(o+e)*c,t[15]=1,t}function In(t,n,a,r){var u,e,o,i,h,c,s,f,l,v,b=n[0],m=n[1],d=n[2],x=r[0],y=r[1],p=r[2],q=a[0],w=a[1],g=a[2];return Math.abs(b-q)<M&&Math.abs(m-w)<M&&Math.abs(d-g)<M?Kt(t):(s=b-q,f=m-w,l=d-g,u=y*(l*=v=1/Math.hypot(s,f,l))-p*(f*=v),e=p*(s*=v)-x*l,o=x*f-y*s,(v=Math.hypot(u,e,o))?(u*=v=1/v,e*=v,o*=v):(u=0,e=0,o=0),i=f*o-l*e,h=l*u-s*o,c=s*e-f*u,(v=Math.hypot(i,h,c))?(i*=v=1/v,h*=v,c*=v):(i=0,h=0,c=0),t[0]=u,t[1]=i,t[2]=s,t[3]=0,t[4]=e,t[5]=h,t[6]=f,t[7]=0,t[8]=o,t[9]=c,t[10]=l,t[11]=0,t[12]=-(u*b+e*m+o*d),t[13]=-(i*b+h*m+c*d),t[14]=-(s*b+f*m+l*d),t[15]=1,t)}function En(t,n,a,r){var u=n[0],e=n[1],o=n[2],i=r[0],h=r[1],c=r[2],s=u-a[0],M=e-a[1],f=o-a[2],l=s*s+M*M+f*f;l>0&&(s*=l=1/Math.sqrt(l),M*=l,f*=l);var v=h*f-c*M,b=c*s-i*f,m=i*M-h*s;return(l=v*v+b*b+m*m)>0&&(v*=l=1/Math.sqrt(l),b*=l,m*=l),t[0]=v,t[1]=b,t[2]=m,t[3]=0,t[4]=M*m-f*b,t[5]=f*v-s*m,t[6]=s*b-M*v,t[7]=0,t[8]=s,t[9]=M,t[10]=f,t[11]=0,t[12]=u,t[13]=e,t[14]=o,t[15]=1,t}function Dn(t){return"mat4("+t[0]+", "+t[1]+", "+t[2]+", "+t[3]+", "+t[4]+", "+t[5]+", "+t[6]+", "+t[7]+", "+t[8]+", "+t[9]+", "+t[10]+", "+t[11]+", "+t[12]+", "+t[13]+", "+t[14]+", "+t[15]+")"}function Fn(t){return Math.hypot(t[0],t[1],t[3],t[4],t[5],t[6],t[7],t[8],t[9],t[10],t[11],t[12],t[13],t[14],t[15])}function Ln(t,n,a){return t[0]=n[0]+a[0],t[1]=n[1]+a[1],t[2]=n[2]+a[2],t[3]=n[3]+a[3],t[4]=n[4]+a[4],t[5]=n[5]+a[5],t[6]=n[6]+a[6],t[7]=n[7]+a[7],t[8]=n[8]+a[8],t[9]=n[9]+a[9],t[10]=n[10]+a[10],t[11]=n[11]+a[11],t[12]=n[12]+a[12],t[13]=n[13]+a[13],t[14]=n[14]+a[14],t[15]=n[15]+a[15],t}function Vn(t,n,a){return t[0]=n[0]-a[0],t[1]=n[1]-a[1],t[2]=n[2]-a[2],t[3]=n[3]-a[3],t[4]=n[4]-a[4],t[5]=n[5]-a[5],t[6]=n[6]-a[6],t[7]=n[7]-a[7],t[8]=n[8]-a[8],t[9]=n[9]-a[9],t[10]=n[10]-a[10],t[11]=n[11]-a[11],t[12]=n[12]-a[12],t[13]=n[13]-a[13],t[14]=n[14]-a[14],t[15]=n[15]-a[15],t}function jn(t,n,a){return t[0]=n[0]*a,t[1]=n[1]*a,t[2]=n[2]*a,t[3]=n[3]*a,t[4]=n[4]*a,t[5]=n[5]*a,t[6]=n[6]*a,t[7]=n[7]*a,t[8]=n[8]*a,t[9]=n[9]*a,t[10]=n[10]*a,t[11]=n[11]*a,t[12]=n[12]*a,t[13]=n[13]*a,t[14]=n[14]*a,t[15]=n[15]*a,t}function zn(t,n,a,r){return t[0]=n[0]+a[0]*r,t[1]=n[1]+a[1]*r,t[2]=n[2]+a[2]*r,t[3]=n[3]+a[3]*r,t[4]=n[4]+a[4]*r,t[5]=n[5]+a[5]*r,t[6]=n[6]+a[6]*r,t[7]=n[7]+a[7]*r,t[8]=n[8]+a[8]*r,t[9]=n[9]+a[9]*r,t[10]=n[10]+a[10]*r,t[11]=n[11]+a[11]*r,t[12]=n[12]+a[12]*r,t[13]=n[13]+a[13]*r,t[14]=n[14]+a[14]*r,t[15]=n[15]+a[15]*r,t}function On(t,n){return t[0]===n[0]&&t[1]===n[1]&&t[2]===n[2]&&t[3]===n[3]&&t[4]===n[4]&&t[5]===n[5]&&t[6]===n[6]&&t[7]===n[7]&&t[8]===n[8]&&t[9]===n[9]&&t[10]===n[10]&&t[11]===n[11]&&t[12]===n[12]&&t[13]===n[13]&&t[14]===n[14]&&t[15]===n[15]}function Qn(t,n){var a=t[0],r=t[1],u=t[2],e=t[3],o=t[4],i=t[5],h=t[6],c=t[7],s=t[8],f=t[9],l=t[10],v=t[11],b=t[12],m=t[13],d=t[14],x=t[15],y=n[0],p=n[1],q=n[2],w=n[3],g=n[4],A=n[5],P=n[6],S=n[7],R=n[8],T=n[9],I=n[10],E=n[11],D=n[12],F=n[13],L=n[14],V=n[15];return Math.abs(a-y)<=M*Math.max(1,Math.abs(a),Math.abs(y))&&Math.abs(r-p)<=M*Math.max(1,Math.abs(r),Math.abs(p))&&Math.abs(u-q)<=M*Math.max(1,Math.abs(u),Math.abs(q))&&Math.abs(e-w)<=M*Math.max(1,Math.abs(e),Math.abs(w))&&Math.abs(o-g)<=M*Math.max(1,Math.abs(o),Math.abs(g))&&Math.abs(i-A)<=M*Math.max(1,Math.abs(i),Math.abs(A))&&Math.abs(h-P)<=M*Math.max(1,Math.abs(h),Math.abs(P))&&Math.abs(c-S)<=M*Math.max(1,Math.abs(c),Math.abs(S))&&Math.abs(s-R)<=M*Math.max(1,Math.abs(s),Math.abs(R))&&Math.abs(f-T)<=M*Math.max(1,Math.abs(f),Math.abs(T))&&Math.abs(l-I)<=M*Math.max(1,Math.abs(l),Math.abs(I))&&Math.abs(v-E)<=M*Math.max(1,Math.abs(v),Math.abs(E))&&Math.abs(b-D)<=M*Math.max(1,Math.abs(b),Math.abs(D))&&Math.abs(m-F)<=M*Math.max(1,Math.abs(m),Math.abs(F))&&Math.abs(d-L)<=M*Math.max(1,Math.abs(d),Math.abs(L))&&Math.abs(x-V)<=M*Math.max(1,Math.abs(x),Math.abs(V))}var Yn=rn,Xn=Vn;function Zn(){var t=new f(3);return f!=Float32Array&&(t[0]=0,t[1]=0,t[2]=0),t}function _n(t){var n=new f(3);return n[0]=t[0],n[1]=t[1],n[2]=t[2],n}function Bn(t){var n=t[0],a=t[1],r=t[2];return Math.hypot(n,a,r)}function Nn(t,n,a){var r=new f(3);return r[0]=t,r[1]=n,r[2]=a,r}function kn(t,n){return t[0]=n[0],t[1]=n[1],t[2]=n[2],t}function Un(t,n,a,r){return t[0]=n,t[1]=a,t[2]=r,t}function Wn(t,n,a){return t[0]=n[0]+a[0],t[1]=n[1]+a[1],t[2]=n[2]+a[2],t}function Cn(t,n,a){return t[0]=n[0]-a[0],t[1]=n[1]-a[1],t[2]=n[2]-a[2],t}function Gn(t,n,a){return t[0]=n[0]*a[0],t[1]=n[1]*a[1],t[2]=n[2]*a[2],t}function Hn(t,n,a){return t[0]=n[0]/a[0],t[1]=n[1]/a[1],t[2]=n[2]/a[2],t}function Jn(t,n){return t[0]=Math.ceil(n[0]),t[1]=Math.ceil(n[1]),t[2]=Math.ceil(n[2]),t}function Kn(t,n){return t[0]=Math.floor(n[0]),t[1]=Math.floor(n[1]),t[2]=Math.floor(n[2]),t}function $n(t,n,a){return t[0]=Math.min(n[0],a[0]),t[1]=Math.min(n[1],a[1]),t[2]=Math.min(n[2],a[2]),t}function ta(t,n,a){return t[0]=Math.max(n[0],a[0]),t[1]=Math.max(n[1],a[1]),t[2]=Math.max(n[2],a[2]),t}function na(t,n){return t[0]=Math.round(n[0]),t[1]=Math.round(n[1]),t[2]=Math.round(n[2]),t}function aa(t,n,a){return t[0]=n[0]*a,t[1]=n[1]*a,t[2]=n[2]*a,t}function ra(t,n,a,r){return t[0]=n[0]+a[0]*r,t[1]=n[1]+a[1]*r,t[2]=n[2]+a[2]*r,t}function ua(t,n){var a=n[0]-t[0],r=n[1]-t[1],u=n[2]-t[2];return Math.hypot(a,r,u)}function ea(t,n){var a=n[0]-t[0],r=n[1]-t[1],u=n[2]-t[2];return a*a+r*r+u*u}function oa(t){var n=t[0],a=t[1],r=t[2];return n*n+a*a+r*r}function ia(t,n){return t[0]=-n[0],t[1]=-n[1],t[2]=-n[2],t}function ha(t,n){return t[0]=1/n[0],t[1]=1/n[1],t[2]=1/n[2],t}function ca(t,n){var a=n[0],r=n[1],u=n[2],e=a*a+r*r+u*u;return e>0&&(e=1/Math.sqrt(e)),t[0]=n[0]*e,t[1]=n[1]*e,t[2]=n[2]*e,t}function sa(t,n){return t[0]*n[0]+t[1]*n[1]+t[2]*n[2]}function Ma(t,n,a){var r=n[0],u=n[1],e=n[2],o=a[0],i=a[1],h=a[2];return t[0]=u*h-e*i,t[1]=e*o-r*h,t[2]=r*i-u*o,t}function fa(t,n,a,r){var u=n[0],e=n[1],o=n[2];return t[0]=u+r*(a[0]-u),t[1]=e+r*(a[1]-e),t[2]=o+r*(a[2]-o),t}function la(t,n,a,r,u,e){var o=e*e,i=o*(2*e-3)+1,h=o*(e-2)+e,c=o*(e-1),s=o*(3-2*e);return t[0]=n[0]*i+a[0]*h+r[0]*c+u[0]*s,t[1]=n[1]*i+a[1]*h+r[1]*c+u[1]*s,t[2]=n[2]*i+a[2]*h+r[2]*c+u[2]*s,t}function va(t,n,a,r,u,e){var o=1-e,i=o*o,h=e*e,c=i*o,s=3*e*i,M=3*h*o,f=h*e;return t[0]=n[0]*c+a[0]*s+r[0]*M+u[0]*f,t[1]=n[1]*c+a[1]*s+r[1]*M+u[1]*f,t[2]=n[2]*c+a[2]*s+r[2]*M+u[2]*f,t}function ba(t,n){n=n||1;var a=2*l()*Math.PI,r=2*l()-1,u=Math.sqrt(1-r*r)*n;return t[0]=Math.cos(a)*u,t[1]=Math.sin(a)*u,t[2]=r*n,t}function ma(t,n,a){var r=n[0],u=n[1],e=n[2],o=a[3]*r+a[7]*u+a[11]*e+a[15];return o=o||1,t[0]=(a[0]*r+a[4]*u+a[8]*e+a[12])/o,t[1]=(a[1]*r+a[5]*u+a[9]*e+a[13])/o,t[2]=(a[2]*r+a[6]*u+a[10]*e+a[14])/o,t}function da(t,n,a){var r=n[0],u=n[1],e=n[2];return t[0]=r*a[0]+u*a[3]+e*a[6],t[1]=r*a[1]+u*a[4]+e*a[7],t[2]=r*a[2]+u*a[5]+e*a[8],t}function xa(t,n,a){var r=a[0],u=a[1],e=a[2],o=a[3],i=n[0],h=n[1],c=n[2],s=u*c-e*h,M=e*i-r*c,f=r*h-u*i,l=u*f-e*M,v=e*s-r*f,b=r*M-u*s,m=2*o;return s*=m,M*=m,f*=m,l*=2,v*=2,b*=2,t[0]=i+s+l,t[1]=h+M+v,t[2]=c+f+b,t}function ya(t,n,a,r){var u=[],e=[];return u[0]=n[0]-a[0],u[1]=n[1]-a[1],u[2]=n[2]-a[2],e[0]=u[0],e[1]=u[1]*Math.cos(r)-u[2]*Math.sin(r),e[2]=u[1]*Math.sin(r)+u[2]*Math.cos(r),t[0]=e[0]+a[0],t[1]=e[1]+a[1],t[2]=e[2]+a[2],t}function pa(t,n,a,r){var u=[],e=[];return u[0]=n[0]-a[0],u[1]=n[1]-a[1],u[2]=n[2]-a[2],e[0]=u[2]*Math.sin(r)+u[0]*Math.cos(r),e[1]=u[1],e[2]=u[2]*Math.cos(r)-u[0]*Math.sin(r),t[0]=e[0]+a[0],t[1]=e[1]+a[1],t[2]=e[2]+a[2],t}function qa(t,n,a,r){var u=[],e=[];return u[0]=n[0]-a[0],u[1]=n[1]-a[1],u[2]=n[2]-a[2],e[0]=u[0]*Math.cos(r)-u[1]*Math.sin(r),e[1]=u[0]*Math.sin(r)+u[1]*Math.cos(r),e[2]=u[2],t[0]=e[0]+a[0],t[1]=e[1]+a[1],t[2]=e[2]+a[2],t}function wa(t,n){var a=Nn(t[0],t[1],t[2]),r=Nn(n[0],n[1],n[2]);ca(a,a),ca(r,r);var u=sa(a,r);return u>1?0:u<-1?Math.PI:Math.acos(u)}function ga(t){return t[0]=0,t[1]=0,t[2]=0,t}function Aa(t){return"vec3("+t[0]+", "+t[1]+", "+t[2]+")"}function Pa(t,n){return t[0]===n[0]&&t[1]===n[1]&&t[2]===n[2]}function Sa(t,n){var a=t[0],r=t[1],u=t[2],e=n[0],o=n[1],i=n[2];return Math.abs(a-e)<=M*Math.max(1,Math.abs(a),Math.abs(e))&&Math.abs(r-o)<=M*Math.max(1,Math.abs(r),Math.abs(o))&&Math.abs(u-i)<=M*Math.max(1,Math.abs(u),Math.abs(i))}var Ra,Ta=Cn,Ia=Gn,Ea=Hn,Da=ua,Fa=ea,La=Bn,Va=oa,ja=(Ra=Zn(),function(t,n,a,r,u,e){var o,i;for(n||(n=3),a||(a=0),i=r?Math.min(r*n+a,t.length):t.length,o=a;o<i;o+=n)Ra[0]=t[o],Ra[1]=t[o+1],Ra[2]=t[o+2],u(Ra,Ra,e),t[o]=Ra[0],t[o+1]=Ra[1],t[o+2]=Ra[2];return t});function za(){var t=new f(4);return f!=Float32Array&&(t[0]=0,t[1]=0,t[2]=0,t[3]=0),t}function Oa(t){var n=new f(4);return n[0]=t[0],n[1]=t[1],n[2]=t[2],n[3]=t[3],n}function Qa(t,n,a,r){var u=new f(4);return u[0]=t,u[1]=n,u[2]=a,u[3]=r,u}function Ya(t,n){return t[0]=n[0],t[1]=n[1],t[2]=n[2],t[3]=n[3],t}function Xa(t,n,a,r,u){return t[0]=n,t[1]=a,t[2]=r,t[3]=u,t}function Za(t,n,a){return t[0]=n[0]+a[0],t[1]=n[1]+a[1],t[2]=n[2]+a[2],t[3]=n[3]+a[3],t}function _a(t,n,a){return t[0]=n[0]-a[0],t[1]=n[1]-a[1],t[2]=n[2]-a[2],t[3]=n[3]-a[3],t}function Ba(t,n,a){return t[0]=n[0]*a[0],t[1]=n[1]*a[1],t[2]=n[2]*a[2],t[3]=n[3]*a[3],t}function Na(t,n,a){return t[0]=n[0]/a[0],t[1]=n[1]/a[1],t[2]=n[2]/a[2],t[3]=n[3]/a[3],t}function ka(t,n){return t[0]=Math.ceil(n[0]),t[1]=Math.ceil(n[1]),t[2]=Math.ceil(n[2]),t[3]=Math.ceil(n[3]),t}function Ua(t,n){return t[0]=Math.floor(n[0]),t[1]=Math.floor(n[1]),t[2]=Math.floor(n[2]),t[3]=Math.floor(n[3]),t}function Wa(t,n,a){return t[0]=Math.min(n[0],a[0]),t[1]=Math.min(n[1],a[1]),t[2]=Math.min(n[2],a[2]),t[3]=Math.min(n[3],a[3]),t}function Ca(t,n,a){return t[0]=Math.max(n[0],a[0]),t[1]=Math.max(n[1],a[1]),t[2]=Math.max(n[2],a[2]),t[3]=Math.max(n[3],a[3]),t}function Ga(t,n){return t[0]=Math.round(n[0]),t[1]=Math.round(n[1]),t[2]=Math.round(n[2]),t[3]=Math.round(n[3]),t}function Ha(t,n,a){return t[0]=n[0]*a,t[1]=n[1]*a,t[2]=n[2]*a,t[3]=n[3]*a,t}function Ja(t,n,a,r){return t[0]=n[0]+a[0]*r,t[1]=n[1]+a[1]*r,t[2]=n[2]+a[2]*r,t[3]=n[3]+a[3]*r,t}function Ka(t,n){var a=n[0]-t[0],r=n[1]-t[1],u=n[2]-t[2],e=n[3]-t[3];return Math.hypot(a,r,u,e)}function $a(t,n){var a=n[0]-t[0],r=n[1]-t[1],u=n[2]-t[2],e=n[3]-t[3];return a*a+r*r+u*u+e*e}function tr(t){var n=t[0],a=t[1],r=t[2],u=t[3];return Math.hypot(n,a,r,u)}function nr(t){var n=t[0],a=t[1],r=t[2],u=t[3];return n*n+a*a+r*r+u*u}function ar(t,n){return t[0]=-n[0],t[1]=-n[1],t[2]=-n[2],t[3]=-n[3],t}function rr(t,n){return t[0]=1/n[0],t[1]=1/n[1],t[2]=1/n[2],t[3]=1/n[3],t}function ur(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=a*a+r*r+u*u+e*e;return o>0&&(o=1/Math.sqrt(o)),t[0]=a*o,t[1]=r*o,t[2]=u*o,t[3]=e*o,t}function er(t,n){return t[0]*n[0]+t[1]*n[1]+t[2]*n[2]+t[3]*n[3]}function or(t,n,a,r){var u=a[0]*r[1]-a[1]*r[0],e=a[0]*r[2]-a[2]*r[0],o=a[0]*r[3]-a[3]*r[0],i=a[1]*r[2]-a[2]*r[1],h=a[1]*r[3]-a[3]*r[1],c=a[2]*r[3]-a[3]*r[2],s=n[0],M=n[1],f=n[2],l=n[3];return t[0]=M*c-f*h+l*i,t[1]=-s*c+f*o-l*e,t[2]=s*h-M*o+l*u,t[3]=-s*i+M*e-f*u,t}function ir(t,n,a,r){var u=n[0],e=n[1],o=n[2],i=n[3];return t[0]=u+r*(a[0]-u),t[1]=e+r*(a[1]-e),t[2]=o+r*(a[2]-o),t[3]=i+r*(a[3]-i),t}function hr(t,n){var a,r,u,e,o,i;n=n||1;do{o=(a=2*l()-1)*a+(r=2*l()-1)*r}while(o>=1);do{i=(u=2*l()-1)*u+(e=2*l()-1)*e}while(i>=1);var h=Math.sqrt((1-o)/i);return t[0]=n*a,t[1]=n*r,t[2]=n*u*h,t[3]=n*e*h,t}function cr(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3];return t[0]=a[0]*r+a[4]*u+a[8]*e+a[12]*o,t[1]=a[1]*r+a[5]*u+a[9]*e+a[13]*o,t[2]=a[2]*r+a[6]*u+a[10]*e+a[14]*o,t[3]=a[3]*r+a[7]*u+a[11]*e+a[15]*o,t}function sr(t,n,a){var r=n[0],u=n[1],e=n[2],o=a[0],i=a[1],h=a[2],c=a[3],s=c*r+i*e-h*u,M=c*u+h*r-o*e,f=c*e+o*u-i*r,l=-o*r-i*u-h*e;return t[0]=s*c+l*-o+M*-h-f*-i,t[1]=M*c+l*-i+f*-o-s*-h,t[2]=f*c+l*-h+s*-i-M*-o,t[3]=n[3],t}function Mr(t){return t[0]=0,t[1]=0,t[2]=0,t[3]=0,t}function fr(t){return"vec4("+t[0]+", "+t[1]+", "+t[2]+", "+t[3]+")"}function lr(t,n){return t[0]===n[0]&&t[1]===n[1]&&t[2]===n[2]&&t[3]===n[3]}function vr(t,n){var a=t[0],r=t[1],u=t[2],e=t[3],o=n[0],i=n[1],h=n[2],c=n[3];return Math.abs(a-o)<=M*Math.max(1,Math.abs(a),Math.abs(o))&&Math.abs(r-i)<=M*Math.max(1,Math.abs(r),Math.abs(i))&&Math.abs(u-h)<=M*Math.max(1,Math.abs(u),Math.abs(h))&&Math.abs(e-c)<=M*Math.max(1,Math.abs(e),Math.abs(c))}var br=_a,mr=Ba,dr=Na,xr=Ka,yr=$a,pr=tr,qr=nr,wr=function(){var t=za();return function(n,a,r,u,e,o){var i,h;for(a||(a=4),r||(r=0),h=u?Math.min(u*a+r,n.length):n.length,i=r;i<h;i+=a)t[0]=n[i],t[1]=n[i+1],t[2]=n[i+2],t[3]=n[i+3],e(t,t,o),n[i]=t[0],n[i+1]=t[1],n[i+2]=t[2],n[i+3]=t[3];return n}}();function gr(){var t=new f(4);return f!=Float32Array&&(t[0]=0,t[1]=0,t[2]=0),t[3]=1,t}function Ar(t){return t[0]=0,t[1]=0,t[2]=0,t[3]=1,t}function Pr(t,n,a){a*=.5;var r=Math.sin(a);return t[0]=r*n[0],t[1]=r*n[1],t[2]=r*n[2],t[3]=Math.cos(a),t}function Sr(t,n){var a=2*Math.acos(n[3]),r=Math.sin(a/2);return r>M?(t[0]=n[0]/r,t[1]=n[1]/r,t[2]=n[2]/r):(t[0]=1,t[1]=0,t[2]=0),a}function Rr(t,n){var a=au(t,n);return Math.acos(2*a*a-1)}function Tr(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=a[0],h=a[1],c=a[2],s=a[3];return t[0]=r*s+o*i+u*c-e*h,t[1]=u*s+o*h+e*i-r*c,t[2]=e*s+o*c+r*h-u*i,t[3]=o*s-r*i-u*h-e*c,t}function Ir(t,n,a){a*=.5;var r=n[0],u=n[1],e=n[2],o=n[3],i=Math.sin(a),h=Math.cos(a);return t[0]=r*h+o*i,t[1]=u*h+e*i,t[2]=e*h-u*i,t[3]=o*h-r*i,t}function Er(t,n,a){a*=.5;var r=n[0],u=n[1],e=n[2],o=n[3],i=Math.sin(a),h=Math.cos(a);return t[0]=r*h-e*i,t[1]=u*h+o*i,t[2]=e*h+r*i,t[3]=o*h-u*i,t}function Dr(t,n,a){a*=.5;var r=n[0],u=n[1],e=n[2],o=n[3],i=Math.sin(a),h=Math.cos(a);return t[0]=r*h+u*i,t[1]=u*h-r*i,t[2]=e*h+o*i,t[3]=o*h-e*i,t}function Fr(t,n){var a=n[0],r=n[1],u=n[2];return t[0]=a,t[1]=r,t[2]=u,t[3]=Math.sqrt(Math.abs(1-a*a-r*r-u*u)),t}function Lr(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=Math.sqrt(a*a+r*r+u*u),i=Math.exp(e),h=o>0?i*Math.sin(o)/o:0;return t[0]=a*h,t[1]=r*h,t[2]=u*h,t[3]=i*Math.cos(o),t}function Vr(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=Math.sqrt(a*a+r*r+u*u),i=o>0?Math.atan2(o,e)/o:0;return t[0]=a*i,t[1]=r*i,t[2]=u*i,t[3]=.5*Math.log(a*a+r*r+u*u+e*e),t}function jr(t,n,a){return Vr(t,n),nu(t,t,a),Lr(t,t),t}function zr(t,n,a,r){var u,e,o,i,h,c=n[0],s=n[1],f=n[2],l=n[3],v=a[0],b=a[1],m=a[2],d=a[3];return(e=c*v+s*b+f*m+l*d)<0&&(e=-e,v=-v,b=-b,m=-m,d=-d),1-e>M?(u=Math.acos(e),o=Math.sin(u),i=Math.sin((1-r)*u)/o,h=Math.sin(r*u)/o):(i=1-r,h=r),t[0]=i*c+h*v,t[1]=i*s+h*b,t[2]=i*f+h*m,t[3]=i*l+h*d,t}function Or(t){var n=l(),a=l(),r=l(),u=Math.sqrt(1-n),e=Math.sqrt(n);return t[0]=u*Math.sin(2*Math.PI*a),t[1]=u*Math.cos(2*Math.PI*a),t[2]=e*Math.sin(2*Math.PI*r),t[3]=e*Math.cos(2*Math.PI*r),t}function Qr(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=a*a+r*r+u*u+e*e,i=o?1/o:0;return t[0]=-a*i,t[1]=-r*i,t[2]=-u*i,t[3]=e*i,t}function Yr(t,n){return t[0]=-n[0],t[1]=-n[1],t[2]=-n[2],t[3]=n[3],t}function Xr(t,n){var a,r=n[0]+n[4]+n[8];if(r>0)a=Math.sqrt(r+1),t[3]=.5*a,a=.5/a,t[0]=(n[5]-n[7])*a,t[1]=(n[6]-n[2])*a,t[2]=(n[1]-n[3])*a;else{var u=0;n[4]>n[0]&&(u=1),n[8]>n[3*u+u]&&(u=2);var e=(u+1)%3,o=(u+2)%3;a=Math.sqrt(n[3*u+u]-n[3*e+e]-n[3*o+o]+1),t[u]=.5*a,a=.5/a,t[3]=(n[3*e+o]-n[3*o+e])*a,t[e]=(n[3*e+u]+n[3*u+e])*a,t[o]=(n[3*o+u]+n[3*u+o])*a}return t}function Zr(t,n,a,r){var u=.5*Math.PI/180;n*=u,a*=u,r*=u;var e=Math.sin(n),o=Math.cos(n),i=Math.sin(a),h=Math.cos(a),c=Math.sin(r),s=Math.cos(r);return t[0]=e*h*s-o*i*c,t[1]=o*i*s+e*h*c,t[2]=o*h*c-e*i*s,t[3]=o*h*s+e*i*c,t}function _r(t){return"quat("+t[0]+", "+t[1]+", "+t[2]+", "+t[3]+")"}var Br,Nr,kr,Ur,Wr,Cr,Gr=Oa,Hr=Qa,Jr=Ya,Kr=Xa,$r=Za,tu=Tr,nu=Ha,au=er,ru=ir,uu=tr,eu=uu,ou=nr,iu=ou,hu=ur,cu=lr,su=vr,Mu=(Br=Zn(),Nr=Nn(1,0,0),kr=Nn(0,1,0),function(t,n,a){var r=sa(n,a);return r<-.999999?(Ma(Br,Nr,n),La(Br)<1e-6&&Ma(Br,kr,n),ca(Br,Br),Pr(t,Br,Math.PI),t):r>.999999?(t[0]=0,t[1]=0,t[2]=0,t[3]=1,t):(Ma(Br,n,a),t[0]=Br[0],t[1]=Br[1],t[2]=Br[2],t[3]=1+r,hu(t,t))}),fu=(Ur=gr(),Wr=gr(),function(t,n,a,r,u,e){return zr(Ur,n,u,e),zr(Wr,a,r,e),zr(t,Ur,Wr,2*e*(1-e)),t}),lu=(Cr=bt(),function(t,n,a,r){return Cr[0]=a[0],Cr[3]=a[1],Cr[6]=a[2],Cr[1]=r[0],Cr[4]=r[1],Cr[7]=r[2],Cr[2]=-n[0],Cr[5]=-n[1],Cr[8]=-n[2],hu(t,Xr(t,Cr))});function vu(){var t=new f(8);return f!=Float32Array&&(t[0]=0,t[1]=0,t[2]=0,t[4]=0,t[5]=0,t[6]=0,t[7]=0),t[3]=1,t}function bu(t){var n=new f(8);return n[0]=t[0],n[1]=t[1],n[2]=t[2],n[3]=t[3],n[4]=t[4],n[5]=t[5],n[6]=t[6],n[7]=t[7],n}function mu(t,n,a,r,u,e,o,i){var h=new f(8);return h[0]=t,h[1]=n,h[2]=a,h[3]=r,h[4]=u,h[5]=e,h[6]=o,h[7]=i,h}function du(t,n,a,r,u,e,o){var i=new f(8);i[0]=t,i[1]=n,i[2]=a,i[3]=r;var h=.5*u,c=.5*e,s=.5*o;return i[4]=h*r+c*a-s*n,i[5]=c*r+s*t-h*a,i[6]=s*r+h*n-c*t,i[7]=-h*t-c*n-s*a,i}function xu(t,n,a){var r=.5*a[0],u=.5*a[1],e=.5*a[2],o=n[0],i=n[1],h=n[2],c=n[3];return t[0]=o,t[1]=i,t[2]=h,t[3]=c,t[4]=r*c+u*h-e*i,t[5]=u*c+e*o-r*h,t[6]=e*c+r*i-u*o,t[7]=-r*o-u*i-e*h,t}function yu(t,n){return t[0]=0,t[1]=0,t[2]=0,t[3]=1,t[4]=.5*n[0],t[5]=.5*n[1],t[6]=.5*n[2],t[7]=0,t}function pu(t,n){return t[0]=n[0],t[1]=n[1],t[2]=n[2],t[3]=n[3],t[4]=0,t[5]=0,t[6]=0,t[7]=0,t}function qu(t,n){var a=gr();qn(a,n);var r=new f(3);return yn(r,n),xu(t,a,r),t}function wu(t,n){return t[0]=n[0],t[1]=n[1],t[2]=n[2],t[3]=n[3],t[4]=n[4],t[5]=n[5],t[6]=n[6],t[7]=n[7],t}function gu(t){return t[0]=0,t[1]=0,t[2]=0,t[3]=1,t[4]=0,t[5]=0,t[6]=0,t[7]=0,t}function Au(t,n,a,r,u,e,o,i,h){return t[0]=n,t[1]=a,t[2]=r,t[3]=u,t[4]=e,t[5]=o,t[6]=i,t[7]=h,t}var Pu=Jr;function Su(t,n){return t[0]=n[4],t[1]=n[5],t[2]=n[6],t[3]=n[7],t}var Ru=Jr;function Tu(t,n){return t[4]=n[0],t[5]=n[1],t[6]=n[2],t[7]=n[3],t}function Iu(t,n){var a=n[4],r=n[5],u=n[6],e=n[7],o=-n[0],i=-n[1],h=-n[2],c=n[3];return t[0]=2*(a*c+e*o+r*h-u*i),t[1]=2*(r*c+e*i+u*o-a*h),t[2]=2*(u*c+e*h+a*i-r*o),t}function Eu(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=.5*a[0],h=.5*a[1],c=.5*a[2],s=n[4],M=n[5],f=n[6],l=n[7];return t[0]=r,t[1]=u,t[2]=e,t[3]=o,t[4]=o*i+u*c-e*h+s,t[5]=o*h+e*i-r*c+M,t[6]=o*c+r*h-u*i+f,t[7]=-r*i-u*h-e*c+l,t}function Du(t,n,a){var r=-n[0],u=-n[1],e=-n[2],o=n[3],i=n[4],h=n[5],c=n[6],s=n[7],M=i*o+s*r+h*e-c*u,f=h*o+s*u+c*r-i*e,l=c*o+s*e+i*u-h*r,v=s*o-i*r-h*u-c*e;return Ir(t,n,a),r=t[0],u=t[1],e=t[2],o=t[3],t[4]=M*o+v*r+f*e-l*u,t[5]=f*o+v*u+l*r-M*e,t[6]=l*o+v*e+M*u-f*r,t[7]=v*o-M*r-f*u-l*e,t}function Fu(t,n,a){var r=-n[0],u=-n[1],e=-n[2],o=n[3],i=n[4],h=n[5],c=n[6],s=n[7],M=i*o+s*r+h*e-c*u,f=h*o+s*u+c*r-i*e,l=c*o+s*e+i*u-h*r,v=s*o-i*r-h*u-c*e;return Er(t,n,a),r=t[0],u=t[1],e=t[2],o=t[3],t[4]=M*o+v*r+f*e-l*u,t[5]=f*o+v*u+l*r-M*e,t[6]=l*o+v*e+M*u-f*r,t[7]=v*o-M*r-f*u-l*e,t}function Lu(t,n,a){var r=-n[0],u=-n[1],e=-n[2],o=n[3],i=n[4],h=n[5],c=n[6],s=n[7],M=i*o+s*r+h*e-c*u,f=h*o+s*u+c*r-i*e,l=c*o+s*e+i*u-h*r,v=s*o-i*r-h*u-c*e;return Dr(t,n,a),r=t[0],u=t[1],e=t[2],o=t[3],t[4]=M*o+v*r+f*e-l*u,t[5]=f*o+v*u+l*r-M*e,t[6]=l*o+v*e+M*u-f*r,t[7]=v*o-M*r-f*u-l*e,t}function Vu(t,n,a){var r=a[0],u=a[1],e=a[2],o=a[3],i=n[0],h=n[1],c=n[2],s=n[3];return t[0]=i*o+s*r+h*e-c*u,t[1]=h*o+s*u+c*r-i*e,t[2]=c*o+s*e+i*u-h*r,t[3]=s*o-i*r-h*u-c*e,i=n[4],h=n[5],c=n[6],s=n[7],t[4]=i*o+s*r+h*e-c*u,t[5]=h*o+s*u+c*r-i*e,t[6]=c*o+s*e+i*u-h*r,t[7]=s*o-i*r-h*u-c*e,t}function ju(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=a[0],h=a[1],c=a[2],s=a[3];return t[0]=r*s+o*i+u*c-e*h,t[1]=u*s+o*h+e*i-r*c,t[2]=e*s+o*c+r*h-u*i,t[3]=o*s-r*i-u*h-e*c,i=a[4],h=a[5],c=a[6],s=a[7],t[4]=r*s+o*i+u*c-e*h,t[5]=u*s+o*h+e*i-r*c,t[6]=e*s+o*c+r*h-u*i,t[7]=o*s-r*i-u*h-e*c,t}function zu(t,n,a,r){if(Math.abs(r)<M)return wu(t,n);var u=Math.hypot(a[0],a[1],a[2]);r*=.5;var e=Math.sin(r),o=e*a[0]/u,i=e*a[1]/u,h=e*a[2]/u,c=Math.cos(r),s=n[0],f=n[1],l=n[2],v=n[3];t[0]=s*c+v*o+f*h-l*i,t[1]=f*c+v*i+l*o-s*h,t[2]=l*c+v*h+s*i-f*o,t[3]=v*c-s*o-f*i-l*h;var b=n[4],m=n[5],d=n[6],x=n[7];return t[4]=b*c+x*o+m*h-d*i,t[5]=m*c+x*i+d*o-b*h,t[6]=d*c+x*h+b*i-m*o,t[7]=x*c-b*o-m*i-d*h,t}function Ou(t,n,a){return t[0]=n[0]+a[0],t[1]=n[1]+a[1],t[2]=n[2]+a[2],t[3]=n[3]+a[3],t[4]=n[4]+a[4],t[5]=n[5]+a[5],t[6]=n[6]+a[6],t[7]=n[7]+a[7],t}function Qu(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=a[4],h=a[5],c=a[6],s=a[7],M=n[4],f=n[5],l=n[6],v=n[7],b=a[0],m=a[1],d=a[2],x=a[3];return t[0]=r*x+o*b+u*d-e*m,t[1]=u*x+o*m+e*b-r*d,t[2]=e*x+o*d+r*m-u*b,t[3]=o*x-r*b-u*m-e*d,t[4]=r*s+o*i+u*c-e*h+M*x+v*b+f*d-l*m,t[5]=u*s+o*h+e*i-r*c+f*x+v*m+l*b-M*d,t[6]=e*s+o*c+r*h-u*i+l*x+v*d+M*m-f*b,t[7]=o*s-r*i-u*h-e*c+v*x-M*b-f*m-l*d,t}var Yu=Qu;function Xu(t,n,a){return t[0]=n[0]*a,t[1]=n[1]*a,t[2]=n[2]*a,t[3]=n[3]*a,t[4]=n[4]*a,t[5]=n[5]*a,t[6]=n[6]*a,t[7]=n[7]*a,t}var Zu=au;function _u(t,n,a,r){var u=1-r;return Zu(n,a)<0&&(r=-r),t[0]=n[0]*u+a[0]*r,t[1]=n[1]*u+a[1]*r,t[2]=n[2]*u+a[2]*r,t[3]=n[3]*u+a[3]*r,t[4]=n[4]*u+a[4]*r,t[5]=n[5]*u+a[5]*r,t[6]=n[6]*u+a[6]*r,t[7]=n[7]*u+a[7]*r,t}function Bu(t,n){var a=Wu(n);return t[0]=-n[0]/a,t[1]=-n[1]/a,t[2]=-n[2]/a,t[3]=n[3]/a,t[4]=-n[4]/a,t[5]=-n[5]/a,t[6]=-n[6]/a,t[7]=n[7]/a,t}function Nu(t,n){return t[0]=-n[0],t[1]=-n[1],t[2]=-n[2],t[3]=n[3],t[4]=-n[4],t[5]=-n[5],t[6]=-n[6],t[7]=n[7],t}var ku=uu,Uu=ku,Wu=ou,Cu=Wu;function Gu(t,n){var a=Wu(n);if(a>0){a=Math.sqrt(a);var r=n[0]/a,u=n[1]/a,e=n[2]/a,o=n[3]/a,i=n[4],h=n[5],c=n[6],s=n[7],M=r*i+u*h+e*c+o*s;t[0]=r,t[1]=u,t[2]=e,t[3]=o,t[4]=(i-r*M)/a,t[5]=(h-u*M)/a,t[6]=(c-e*M)/a,t[7]=(s-o*M)/a}return t}function Hu(t){return"quat2("+t[0]+", "+t[1]+", "+t[2]+", "+t[3]+", "+t[4]+", "+t[5]+", "+t[6]+", "+t[7]+")"}function Ju(t,n){return t[0]===n[0]&&t[1]===n[1]&&t[2]===n[2]&&t[3]===n[3]&&t[4]===n[4]&&t[5]===n[5]&&t[6]===n[6]&&t[7]===n[7]}function Ku(t,n){var a=t[0],r=t[1],u=t[2],e=t[3],o=t[4],i=t[5],h=t[6],c=t[7],s=n[0],f=n[1],l=n[2],v=n[3],b=n[4],m=n[5],d=n[6],x=n[7];return Math.abs(a-s)<=M*Math.max(1,Math.abs(a),Math.abs(s))&&Math.abs(r-f)<=M*Math.max(1,Math.abs(r),Math.abs(f))&&Math.abs(u-l)<=M*Math.max(1,Math.abs(u),Math.abs(l))&&Math.abs(e-v)<=M*Math.max(1,Math.abs(e),Math.abs(v))&&Math.abs(o-b)<=M*Math.max(1,Math.abs(o),Math.abs(b))&&Math.abs(i-m)<=M*Math.max(1,Math.abs(i),Math.abs(m))&&Math.abs(h-d)<=M*Math.max(1,Math.abs(h),Math.abs(d))&&Math.abs(c-x)<=M*Math.max(1,Math.abs(c),Math.abs(x))}function $u(){var t=new f(2);return f!=Float32Array&&(t[0]=0,t[1]=0),t}function te(t){var n=new f(2);return n[0]=t[0],n[1]=t[1],n}function ne(t,n){var a=new f(2);return a[0]=t,a[1]=n,a}function ae(t,n){return t[0]=n[0],t[1]=n[1],t}function re(t,n,a){return t[0]=n,t[1]=a,t}function ue(t,n,a){return t[0]=n[0]+a[0],t[1]=n[1]+a[1],t}function ee(t,n,a){return t[0]=n[0]-a[0],t[1]=n[1]-a[1],t}function oe(t,n,a){return t[0]=n[0]*a[0],t[1]=n[1]*a[1],t}function ie(t,n,a){return t[0]=n[0]/a[0],t[1]=n[1]/a[1],t}function he(t,n){return t[0]=Math.ceil(n[0]),t[1]=Math.ceil(n[1]),t}function ce(t,n){return t[0]=Math.floor(n[0]),t[1]=Math.floor(n[1]),t}function se(t,n,a){return t[0]=Math.min(n[0],a[0]),t[1]=Math.min(n[1],a[1]),t}function Me(t,n,a){return t[0]=Math.max(n[0],a[0]),t[1]=Math.max(n[1],a[1]),t}function fe(t,n){return t[0]=Math.round(n[0]),t[1]=Math.round(n[1]),t}function le(t,n,a){return t[0]=n[0]*a,t[1]=n[1]*a,t}function ve(t,n,a,r){return t[0]=n[0]+a[0]*r,t[1]=n[1]+a[1]*r,t}function be(t,n){var a=n[0]-t[0],r=n[1]-t[1];return Math.hypot(a,r)}function me(t,n){var a=n[0]-t[0],r=n[1]-t[1];return a*a+r*r}function de(t){var n=t[0],a=t[1];return Math.hypot(n,a)}function xe(t){var n=t[0],a=t[1];return n*n+a*a}function ye(t,n){return t[0]=-n[0],t[1]=-n[1],t}function pe(t,n){return t[0]=1/n[0],t[1]=1/n[1],t}function qe(t,n){var a=n[0],r=n[1],u=a*a+r*r;return u>0&&(u=1/Math.sqrt(u)),t[0]=n[0]*u,t[1]=n[1]*u,t}function we(t,n){return t[0]*n[0]+t[1]*n[1]}function ge(t,n,a){var r=n[0]*a[1]-n[1]*a[0];return t[0]=t[1]=0,t[2]=r,t}function Ae(t,n,a,r){var u=n[0],e=n[1];return t[0]=u+r*(a[0]-u),t[1]=e+r*(a[1]-e),t}function Pe(t,n){n=n||1;var a=2*l()*Math.PI;return t[0]=Math.cos(a)*n,t[1]=Math.sin(a)*n,t}function Se(t,n,a){var r=n[0],u=n[1];return t[0]=a[0]*r+a[2]*u,t[1]=a[1]*r+a[3]*u,t}function Re(t,n,a){var r=n[0],u=n[1];return t[0]=a[0]*r+a[2]*u+a[4],t[1]=a[1]*r+a[3]*u+a[5],t}function Te(t,n,a){var r=n[0],u=n[1];return t[0]=a[0]*r+a[3]*u+a[6],t[1]=a[1]*r+a[4]*u+a[7],t}function Ie(t,n,a){var r=n[0],u=n[1];return t[0]=a[0]*r+a[4]*u+a[12],t[1]=a[1]*r+a[5]*u+a[13],t}function Ee(t,n,a,r){var u=n[0]-a[0],e=n[1]-a[1],o=Math.sin(r),i=Math.cos(r);return t[0]=u*i-e*o+a[0],t[1]=u*o+e*i+a[1],t}function De(t,n){var a=t[0],r=t[1],u=n[0],e=n[1],o=a*a+r*r;o>0&&(o=1/Math.sqrt(o));var i=u*u+e*e;i>0&&(i=1/Math.sqrt(i));var h=(a*u+r*e)*o*i;return h>1?0:h<-1?Math.PI:Math.acos(h)}function Fe(t){return t[0]=0,t[1]=0,t}function Le(t){return"vec2("+t[0]+", "+t[1]+")"}function Ve(t,n){return t[0]===n[0]&&t[1]===n[1]}function je(t,n){var a=t[0],r=t[1],u=n[0],e=n[1];return Math.abs(a-u)<=M*Math.max(1,Math.abs(a),Math.abs(u))&&Math.abs(r-e)<=M*Math.max(1,Math.abs(r),Math.abs(e))}var ze=de,Oe=ee,Qe=oe,Ye=ie,Xe=be,Ze=me,_e=xe,Be=function(){var t=$u();return function(n,a,r,u,e,o){var i,h;for(a||(a=2),r||(r=0),h=u?Math.min(u*a+r,n.length):n.length,i=r;i<h;i+=a)t[0]=n[i],t[1]=n[i+1],e(t,t,o),n[i]=t[0],n[i+1]=t[1];return n}}();window.glMatrix=n,window.mat2=a,window.mat2d=r,window.mat3=u,window.mat4=e,window.quat=h,window.quat2=c,window.vec2=s,window.vec3=o,window.vec4=i})();
 //# sourceMappingURL=libs.core.js.map
 
-if(!CABLES.exportedPatches) CABLES.exportedPatches={};CABLES.exportedPatches['D8qfbm']={"_id":"66c7290c42d25de9e6d8e31f","ops":[{"id":"zdo60lxbk","uiAttribs":{},"portsIn":[{"name":"FPS Limit","value":0},{"name":"Reduce FPS not focussed","value":1},{"name":"Reduce FPS loading","value":1},{"name":"Clear","value":1},{"name":"ClearAlpha","value":0},{"name":"Fullscreen Button","value":0},{"name":"Active","value":1},{"name":"Hires Displays","value":1},{"name":"Pixel Unit index","value":0},{"name":"Pixel Unit","value":"Display"}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"e0268dfa-e089-4f1f-966c-c30218792023","objOut":"zdo60lxbk"}]},{"name":"width","value":1126},{"name":"height","value":724}],"objName":"Ops.Gl.MainLoop"},{"id":"141502b6-2964-42b8-b273-c6d7f5bcf303","uiAttribs":{},"portsOut":[{"name":"trigger 0","links":[{"portIn":"Trigger","portOut":"trigger 0","objIn":"e0698285-4e6a-4339-a9ba-d9b3e441372c","objOut":"141502b6-2964-42b8-b273-c6d7f5bcf303"},{"portIn":"Increment","portOut":"trigger 0","objIn":"6hojoyomj","objOut":"141502b6-2964-42b8-b273-c6d7f5bcf303"}]},{"name":"trigger 5","links":[{"portIn":"in0 Cursor Update","portOut":"trigger 5","objIn":"cd9136e7-4c7b-4555-bf01-18381685410b","objOut":"141502b6-2964-42b8-b273-c6d7f5bcf303"}]},{"name":"trigger 8","links":[{"portIn":"Trigger","portOut":"trigger 8","objIn":"ch5u1xz0l","objOut":"141502b6-2964-42b8-b273-c6d7f5bcf303"}]},{"name":"trigger 9","links":[{"portIn":"exe","portOut":"trigger 9","objIn":"124910bf-e88f-4da5-847e-888a7ac73020","objOut":"141502b6-2964-42b8-b273-c6d7f5bcf303"}]},{"name":"trigger 13","links":[{"portIn":"Trigger","portOut":"trigger 13","objIn":"afa40c7e-19f5-4546-911c-1e34c62f310b","objOut":"141502b6-2964-42b8-b273-c6d7f5bcf303"}]}],"objName":"Ops.Trigger.Sequence"},{"id":"4950e7c1-dcaf-47ac-9ca9-512013c4e9c9","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Coordinates index","value":0},{"name":"Coordinates","value":"-1 to 1"},{"name":"Area index","value":3},{"name":"Area","value":"Canvas Area"},{"name":"flip y","value":0},{"name":"right click prevent default","value":1},{"name":"Touch support","value":1},{"name":"Passive Events","value":0},{"name":"Active","value":1}],"portsOut":[{"name":"x","value":-1},{"name":"y","value":-0.03867403314917128},{"name":"click","links":[{"portIn":"Trigger","portOut":"click","objIn":"xz7qgpta6","objOut":"4950e7c1-dcaf-47ac-9ca9-512013c4e9c9"}]},{"name":"Button is down","value":0},{"name":"Mouse is hovering","links":[{"portIn":"Value","portOut":"Mouse is hovering","objIn":"d155f04b-ae78-473c-994b-81138389d0f0","objOut":"4950e7c1-dcaf-47ac-9ca9-512013c4e9c9"}]},{"name":"Movement X","value":-0.5},{"name":"Movement Y","value":0}],"objName":"Ops.Devices.Mouse.Mouse_v3"},{"id":"d155f04b-ae78-473c-994b-81138389d0f0","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_mouseOver"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"dq71li66q","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Limit","value":1},{"name":"Min","value":0},{"name":"Max","value":1},{"name":"Rubberband","value":0}],"portsOut":[{"name":"Absolute Value","links":[{"portIn":"Value In","portOut":"Absolute Value","objIn":"csl3j7cy1","objOut":"dq71li66q"}]}],"objName":"Ops.Math.DeltaSum"},{"id":"9d85ffdc-685a-42ef-bd41-b501521a114c","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"create port","value":0}],"objName":"Ops.Ui.PatchInput"},{"id":"7bebb5f0-9d69-43ee-98be-27a13edd98db","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"create port","value":0},{"name":"out1 Ops.Devices.Mouse.Mouse_v3 x","value":0},{"name":"out2 Ops.Devices.Mouse.Mouse_v3 y","value":0},{"name":"out3 DeltaSum Absolute Value","value":0,"title":"DeltaX"}],"objName":"Ops.Ui.PatchOutput"},{"id":"cd9136e7-4c7b-4555-bf01-18381685410b","uiAttribs":{},"storage":{"subPatchVer":1},"portsIn":[{"name":"create port","value":0},{"name":"dataStr","value":"{\"ports\":[{\"name\":\"in0 Cursor Update\",\"type\":1}],\"portsOut\":[{\"name\":\"out0 DeltaSum Absolute Value\",\"type\":0},{\"name\":\"out1 Ops.Devices.Mouse.Mouse_v3 x\",\"type\":0},{\"name\":\"out2 Ops.Devices.Mouse.Mouse_v3 y\",\"type\":0},{\"name\":\"out3 DeltaSum Absolute Value\",\"type\":0,\"title\":\"DeltaX\"}]}"},{"name":"patchId","value":"66dae55a-8297-4120-81e2-d946cc6b2b60"}],"portsOut":[{"name":"create port out","value":0},{"name":"out0 DeltaSum Absolute Value","links":[{"portIn":"Value","portOut":"out0 DeltaSum Absolute Value","objIn":"9fsk0rgx7","objOut":"cd9136e7-4c7b-4555-bf01-18381685410b"}]},{"name":"out3 DeltaSum Absolute Value","title":"DeltaX"}],"objName":"Ops.Ui.SubPatch"},{"id":"c2a85325-d75f-4f01-9b5c-83a2edd8d35d","uiAttribs":{},"portsIn":[{"name":"posY","value":-0.18},{"name":"posZ","value":0},{"name":"scale","value":0.25},{"name":"rotX","value":0},{"name":"rotY","value":180},{"name":"rotZ","value":315.48}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"li365texv","objOut":"c2a85325-d75f-4f01-9b5c-83a2edd8d35d"},{"portIn":"render","portOut":"trigger","objIn":"uc9r4wu0r","objOut":"c2a85325-d75f-4f01-9b5c-83a2edd8d35d"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"e0268dfa-e089-4f1f-966c-c30218792023","uiAttribs":{},"portsIn":[{"name":"r","value":0},{"name":"g","value":0},{"name":"b","value":0},{"name":"a","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"te11ob7nw","objOut":"e0268dfa-e089-4f1f-966c-c30218792023"},{"portIn":"Trigger","portOut":"trigger","objIn":"zcc6zzw4d","objOut":"e0268dfa-e089-4f1f-966c-c30218792023"}]}],"objName":"Ops.Gl.ClearColor"},{"id":"b65ca0b8-40c9-4d0a-9e22-aba7d89f3abf","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Active","value":1},{"name":"Input Type index","value":0},{"name":"Input Type","value":"All"},{"name":"Area index","value":0},{"name":"Area","value":"Canvas Area"}],"portsOut":[{"name":"Delta X","value":0},{"name":"Delta Y","links":[{"portIn":"Delta Value","portOut":"Delta Y","objIn":"dq71li66q","objOut":"b65ca0b8-40c9-4d0a-9e22-aba7d89f3abf"}]},{"name":"Is Dragging","links":[{"portIn":"Value","portOut":"Is Dragging","objIn":"ls3p3eowk","objOut":"b65ca0b8-40c9-4d0a-9e22-aba7d89f3abf"},{"portIn":"Value","portOut":"Is Dragging","objIn":"t1ryttgy8","objOut":"b65ca0b8-40c9-4d0a-9e22-aba7d89f3abf"}]}],"objName":"Ops.Patch.PD8qfbm.MouseDrag"},{"id":"e0698285-4e6a-4339-a9ba-d9b3e441372c","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"mainExe"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"babe81ef-3ee9-4ed3-ba28-8b648c21dd11","uiAttribs":{},"portsIn":[{"name":"Title","value":"LOOP: Main 4"}],"objName":"Ops.Ui.Area"},{"id":"a82e74aa-f66f-47c9-a07a-2f1b0376925b","uiAttribs":{},"portsIn":[{"name":"Title","value":"Data"}],"objName":"Ops.Ui.Area"},{"id":"afa40c7e-19f5-4546-911c-1e34c62f310b","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"finalExe"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"1aaf40f7-386a-40d0-80de-4857b3f558f4","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_NormValue"}],"portsOut":[{"name":"Value","links":[{"portIn":"Number","portOut":"Value","objIn":"2cbchlduf","objOut":"1aaf40f7-386a-40d0-80de-4857b3f558f4"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"7dq6j5p5k","uiAttribs":{},"portsIn":[{"name":"Check Body Collisions","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Trigger","portOut":"Next","objIn":"9sm9dp98r","objOut":"7dq6j5p5k"}]},{"name":"Total Bodies","value":4}],"objName":"Ops.Graphics.Intersection.IntersectWorld"},{"id":"9sm9dp98r","uiAttribs":{},"portsIn":[{"name":"Coordinate Format index","value":0},{"name":"Coordinate Format","value":"-1 to 1"},{"name":"Z","value":0},{"name":"To X","value":0},{"name":"To Y","value":0},{"name":"To Z","value":0},{"name":"Active","value":1},{"name":"Change Cursor","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"mbk4m8pcr","objOut":"9sm9dp98r"},{"portIn":"render","portOut":"Next","objIn":"7qikt1vaf","objOut":"9sm9dp98r"},{"portIn":"render","portOut":"Next","objIn":"aupoduf7d","objOut":"9sm9dp98r"},{"portIn":"render","portOut":"Next","objIn":"ge3zj70cy","objOut":"9sm9dp98r"}]},{"name":"Has Hit","value":0},{"name":"Hit Body Name","links":[{"portIn":"Value","portOut":"Hit Body Name","objIn":"tg35ehmtt","objOut":"9sm9dp98r"}]},{"name":"Hit X","value":0},{"name":"Hit Y","value":0},{"name":"Hit Z","value":0}],"objName":"Ops.Graphics.Intersection.IntersectTestRaycast"},{"id":"bs0d2bloj","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"mainExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Trigger","portOut":"Triggered","objIn":"7dq6j5p5k","objOut":"bs0d2bloj"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"5me0htliz","uiAttribs":{},"portsIn":[{"name":"Shape index","value":1},{"name":"Shape","value":"BoxAA"},{"name":"Name","value":"dial.2"},{"name":"Radius","value":0.22},{"name":"Size X","value":0.55},{"name":"Size Y","value":1},{"name":"Size Z","value":0},{"name":"Positions"},{"name":"Append Index to name","value":1}],"objName":"Ops.Graphics.Intersection.IntersectBody"},{"id":"mbk4m8pcr","uiAttribs":{},"portsIn":[{"name":"x","value":-0.28},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger","portOut":"trigger","objIn":"5me0htliz","objOut":"mbk4m8pcr"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"adh054ku6","uiAttribs":{},"portsIn":[{"name":"Shape index","value":1},{"name":"Shape","value":"BoxAA"},{"name":"Name","value":"dial.3"},{"name":"Radius","value":0.23},{"name":"Size X","value":0.55},{"name":"Size Y","value":1},{"name":"Size Z","value":0},{"name":"Positions"},{"name":"Append Index to name","value":1}],"objName":"Ops.Graphics.Intersection.IntersectBody"},{"id":"yjtjh6kai","uiAttribs":{},"portsIn":[{"name":"Shape index","value":1},{"name":"Shape","value":"BoxAA"},{"name":"Name","value":"dial.4"},{"name":"Radius","value":0.23},{"name":"Size X","value":0.56},{"name":"Size Y","value":1},{"name":"Size Z","value":0},{"name":"Positions"},{"name":"Append Index to name","value":1}],"objName":"Ops.Graphics.Intersection.IntersectBody"},{"id":"sfqxroo9q","uiAttribs":{},"portsIn":[{"name":"Coordinates index","value":0},{"name":"Coordinates","value":"-1 to 1"},{"name":"Area index","value":0},{"name":"Area","value":"Canvas"},{"name":"flip y","value":1},{"name":"right click prevent default","value":1},{"name":"Touch support","value":1},{"name":"Passive Events","value":0},{"name":"Active","value":1}],"portsOut":[{"name":"x","links":[{"portIn":"X","portOut":"x","objIn":"9sm9dp98r","objOut":"sfqxroo9q"}]},{"name":"y","links":[{"portIn":"Y","portOut":"y","objIn":"9sm9dp98r","objOut":"sfqxroo9q"}]},{"name":"Button is down","links":[{"portIn":"Value","portOut":"Button is down","objIn":"er6016ry9","objOut":"sfqxroo9q"}]},{"name":"Mouse is hovering","value":0},{"name":"Movement X","value":-28.5},{"name":"Movement Y","value":-3}],"objName":"Ops.Devices.Mouse.Mouse_v3"},{"id":"124910bf-e88f-4da5-847e-888a7ac73020","uiAttribs":{},"portsIn":[{"name":"num x","value":4},{"name":"num y","value":1},{"name":"center","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"zlpf1p0f5","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"},{"portIn":"render","portOut":"trigger","objIn":"c2a85325-d75f-4f01-9b5c-83a2edd8d35d","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"}]},{"name":"x","links":[{"portIn":"posX","portOut":"x","objIn":"c2a85325-d75f-4f01-9b5c-83a2edd8d35d","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"},{"portIn":"posX","portOut":"x","objIn":"zlpf1p0f5","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"},{"portIn":"Value","portOut":"x","objIn":"6v0s7i2sf","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"}]},{"name":"y","value":0},{"name":"index","links":[{"portIn":"Value","portOut":"index","objIn":"euqza6b25","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"}]},{"name":"total iterations","value":4}],"objName":"Ops.Trigger.Repeat2d"},{"id":"7qikt1vaf","uiAttribs":{},"portsIn":[{"name":"x","value":0.27},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger","portOut":"trigger","objIn":"adh054ku6","objOut":"7qikt1vaf"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"aupoduf7d","uiAttribs":{},"portsIn":[{"name":"x","value":0.84},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger","portOut":"trigger","objIn":"yjtjh6kai","objOut":"aupoduf7d"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"32lmfrmux","uiAttribs":{},"portsIn":[{"name":"Title","value":"Intersect"}],"objName":"Ops.Ui.Area"},{"id":"tg35ehmtt","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_hitBodyName"}],"objName":"Ops.Vars.VarSetString_v2"},{"id":"gb0lraco2","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_activeDial_ID"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"kcwn0w2tu","objOut":"gb0lraco2"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"qyara3wac","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"Value","portOut":"result","objIn":"hb06uwqts","objOut":"qyara3wac"}]}],"objName":"Ops.Math.Compare.Equals"},{"id":"xz7qgpta6","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Named Trigger","value":"mouseDown"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"53603a6e-a331-41a7-9822-120aba8de4f8","uiAttribs":{},"portsIn":[{"name":"number2","value":270}],"portsOut":[{"name":"result","links":[{"portIn":"rotY","portOut":"result","objIn":"li365texv","objOut":"53603a6e-a331-41a7-9822-120aba8de4f8"}]}],"objName":"Ops.Math.Multiply"},{"id":"9fsk0rgx7","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_NormValue"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"aqjh1act1","uiAttribs":{},"portsIn":[{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"Value","portOut":"value","objIn":"j3kd0q09w","objOut":"aqjh1act1"},{"portIn":"Value","portOut":"value","objIn":"1rc15x0gs","objOut":"aqjh1act1"},{"portIn":"number1","portOut":"value","objIn":"53603a6e-a331-41a7-9822-120aba8de4f8","objOut":"aqjh1act1"},{"portIn":"A","portOut":"value","objIn":"v11enlha4","objOut":"aqjh1act1"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"x6efudpvd","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_dialValues_array"}],"objName":"Ops.Vars.VarSetArray_v2"},{"id":"i0rjtphmz","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_dialValues_array"}],"portsOut":[{"name":"Value","links":[{"portIn":"array","portOut":"Value","objIn":"aqjh1act1","objOut":"i0rjtphmz"}]}],"objName":"Ops.Vars.VarGetArray_v2"},{"id":"er6016ry9","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_buttonIsDown"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"ls3p3eowk","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_mouseIsDragging"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"kcwn0w2tu","uiAttribs":{},"portsIn":[{"name":"number2","value":1}],"portsOut":[{"name":"result","links":[{"portIn":"number1","portOut":"result","objIn":"qyara3wac","objOut":"kcwn0w2tu"}]}],"objName":"Ops.Math.Subtract"},{"id":"pd9s43czm","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"patchId","value":"bp2sub_pd9s43czm"}],"objName":"Ops.Patch.PD8qfbm.SubPatch2"},{"id":"te11ob7nw","uiAttribs":{},"portsIn":[{"name":"projection mode index","value":0},{"name":"projection mode","value":"prespective"},{"name":"frustum near","value":0.01},{"name":"frustum far","value":5000},{"name":"fov","value":30},{"name":"Auto Aspect Ratio","value":1},{"name":"Aspect Ratio","value":1},{"name":"eye X","value":0},{"name":"eye Y","value":-0.03},{"name":"eye Z","value":0.73},{"name":"center X","value":0},{"name":"center Y","value":0},{"name":"center Z","value":0},{"name":"truck","value":0},{"name":"boom","value":0.23},{"name":"dolly","value":0},{"name":"tilt","value":0},{"name":"pan","value":0},{"name":"roll","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"exe","portOut":"trigger","objIn":"141502b6-2964-42b8-b273-c6d7f5bcf303","objOut":"te11ob7nw"},{"portIn":"Trigger","portOut":"trigger","objIn":"4pu8mr0y2","objOut":"te11ob7nw"}]},{"name":"Aspect","value":1.5552486187845305}],"objName":"Ops.Gl.Matrix.Camera"},{"id":"uc9r4wu0r","uiAttribs":{},"portsIn":[{"name":"r","value":0.885},{"name":"g","value":0.8560132010421952},{"name":"b","value":0.856},{"name":"colorizeTexture","value":1},{"name":"Vertex Colors","value":0},{"name":"Alpha Mask Source index","value":4},{"name":"Alpha Mask Source","value":"A"},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":0},{"name":"diffuseRepeatX","value":1},{"name":"diffuseRepeatY","value":0},{"name":"Tex Offset X","value":0},{"name":"Tex Offset Y","value":0},{"name":"Crop TexCoords","value":0},{"name":"billboard","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"3g7cbchrs","objOut":"uc9r4wu0r"}]}],"objName":"Ops.Gl.Shader.BasicMaterial_v3"},{"id":"j3kd0q09w","uiAttribs":{},"portsIn":[{"name":"Min","value":0},{"name":"Max","value":0.9},{"name":"Easing index","value":4},{"name":"Easing","value":"Cubic In"}],"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"conrnxfgk","objOut":"j3kd0q09w"},{"portIn":"Value","portOut":"Result","objIn":"s0o3lhs2y","objOut":"j3kd0q09w"}]}],"objName":"Ops.Math.Ease"},{"id":"conrnxfgk","uiAttribs":{},"portsIn":[{"name":"Min","value":0},{"name":"Max","value":0.27},{"name":"Easing index","value":5},{"name":"Easing","value":"Cubic Out"}],"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"z5bv7gal9","objOut":"conrnxfgk"}]}],"objName":"Ops.Math.Ease"},{"id":"chztenqi0","uiAttribs":{},"portsIn":[{"name":"r","value":1},{"name":"b","value":0.645},{"name":"Opacity","value":0.956},{"name":"AO Intensity","value":0.747},{"name":"Normal Map Intensity","value":0.66},{"name":"Repeat X","value":6},{"name":"Repeat Y","value":0},{"name":"Offset X","value":0},{"name":"Offset Y","value":1.6},{"name":"Screen Space Normals","value":0},{"name":"Calc normal tangents","value":0},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":1},{"name":"Alpha Mask Source index","value":0},{"name":"Alpha Mask Source","value":"Luminance"}],"portsOut":[{"name":"Next","links":[{"portIn":"Execute","portOut":"Next","objIn":"leqa7h4pd","objOut":"chztenqi0"}]},{"name":"Shader","links":[{"portIn":"Value","portOut":"Shader","objIn":"nnu0oo0gu","objOut":"chztenqi0"}]}],"objName":"Ops.Gl.Shader.MatCapMaterial_v3"},{"id":"0oya8etuv","uiAttribs":{},"portsIn":[{"name":"File","value":"assets/6697c3b245eb5d333bae2007_NEL_SRVB.webp","display":"file"},{"name":"Filter index","value":1},{"name":"Filter","value":"linear"},{"name":"Wrap index","value":0},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Data Format index","value":3},{"name":"Data Format","value":"RGBA"},{"name":"Flip","value":0},{"name":"Pre Multiplied Alpha","value":0},{"name":"Active","value":1},{"name":"Save Memory","value":1},{"name":"Add Cachebuster","value":1}],"portsOut":[{"name":"Texture","links":[{"portIn":"MatCap","portOut":"Texture","objIn":"chztenqi0","objOut":"0oya8etuv"}]},{"name":"Width","value":256},{"name":"Height","value":256},{"name":"Aspect Ratio","value":1},{"name":"Loaded","value":1},{"name":"Loading","value":0}],"objName":"Ops.Gl.Texture_v2"},{"id":"li365texv","uiAttribs":{},"portsIn":[{"name":"posX","value":0},{"name":"posY","value":0},{"name":"posZ","value":0},{"name":"scale","value":1},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"ts03zao35","objOut":"li365texv"},{"portIn":"Render","portOut":"trigger","objIn":"chztenqi0","objOut":"li365texv"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"bd0mu1qkj","uiAttribs":{},"portsIn":[{"name":"Title","value":"Main"}],"objName":"Ops.Ui.Area"},{"id":"6a24jo2e0","uiAttribs":{},"portsIn":[{"name":"Title","value":"Scape"}],"objName":"Ops.Ui.Area"},{"id":"kgtq6kbqp","uiAttribs":{},"portsIn":[{"name":"Font","value":"chivo"},{"name":"Scale","value":0.8},{"name":"Letter Spacing","value":-0.02},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":2},{"name":"Vertical Align","value":"Middle"},{"name":"r","value":0.949},{"name":"g","value":0.933},{"name":"b","value":0.899},{"name":"SDF","value":1},{"name":"Smoothing","value":0.126},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":1.3237500000000002},{"name":"Height","value":0.4727234848484848},{"name":"Start Y","value":0.24641098484848484},{"name":"Num Chars","value":7}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"1rc15x0gs","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentDialValueInsideRepeat2D"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"o8zk12f1r","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentDialValueInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"number","portOut":"Value","objIn":"2lpsqzgrb","objOut":"o8zk12f1r"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"2lpsqzgrb","uiAttribs":{},"portsIn":[{"name":"Decimal Places","value":4}],"portsOut":[{"name":"result","links":[{"portIn":"Number","portOut":"result","objIn":"vib72zx3n","objOut":"2lpsqzgrb"}]}],"objName":"Ops.Math.Round"},{"id":"vib72zx3n","uiAttribs":{},"portsIn":[{"name":"Decimal Places","value":4}],"portsOut":[{"name":"Result","links":[{"portIn":"String B","portOut":"Result","objIn":"hhpgrbf2g","objOut":"vib72zx3n"}]}],"objName":"Ops.String.NumberToString_v2"},{"id":"zlpf1p0f5","uiAttribs":{},"portsIn":[{"name":"posY","value":-0.59},{"name":"posZ","value":0.22},{"name":"scale","value":0.15},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"kgtq6kbqp","objOut":"zlpf1p0f5"}]}],"objName":"Ops.Gl.Matrix.TransformView"},{"id":"f67se0kft","uiAttribs":{},"portsIn":[{"name":"Title","value":"Text"}],"objName":"Ops.Ui.Area"},{"id":"6hojoyomj","uiAttribs":{},"portsIn":[{"name":"Limit","value":1},{"name":"Length","value":10},{"name":"Mode index","value":1},{"name":"Mode","value":"Stop at Max"},{"name":"Default","value":0}],"portsOut":[{"name":"Value","links":[{"portIn":"val","portOut":"Value","objIn":"1b7ls5v00","objOut":"6hojoyomj"}]}],"objName":"Ops.Math.Incrementor"},{"id":"m4wpz0q5c","uiAttribs":{},"portsIn":[{"name":"number2","value":0.06}],"portsOut":[{"name":"result","links":[{"portIn":"mul","portOut":"result","objIn":"124910bf-e88f-4da5-847e-888a7ac73020","objOut":"m4wpz0q5c"}]}],"objName":"Ops.Math.Multiply"},{"id":"1b7ls5v00","uiAttribs":{},"portsIn":[{"name":"min","value":0},{"name":"max","value":9}],"portsOut":[{"name":"result","links":[{"portIn":"number1","portOut":"result","objIn":"m4wpz0q5c","objOut":"1b7ls5v00"}]}],"objName":"Ops.Math.SmootherStep"},{"id":"hhpgrbf2g","uiAttribs":{},"portsIn":[{"name":"Format","value":"*$a $b"},{"name":"String C","value":2},{"name":"String D","value":3},{"name":"String E","value":""},{"name":"String F","value":""}],"portsOut":[{"name":"Result","links":[{"portIn":"Text","portOut":"Result","objIn":"kgtq6kbqp","objOut":"hhpgrbf2g"}]}],"objName":"Ops.String.StringCompose_v3"},{"id":"euqza6b25","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"34zd4vl4f","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"number2","portOut":"Value","objIn":"qyara3wac","objOut":"34zd4vl4f"},{"portIn":"number1","portOut":"Value","objIn":"ai5mgf397","objOut":"34zd4vl4f"},{"portIn":"index","portOut":"Value","objIn":"aqjh1act1","objOut":"34zd4vl4f"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"mtxdae1jj","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"index","portOut":"Value","objIn":"fxd9qy0nv","objOut":"mtxdae1jj"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"ejryfn62d","uiAttribs":{},"portsIn":[{"name":"Title","value":"*"}],"objName":"Ops.Ui.Area"},{"id":"yvvnsby8j","uiAttribs":{},"portsIn":[{"name":"text","value":"mix, diffuse, tone, size"},{"name":"separator","value":","},{"name":"Numbers","value":0},{"name":"Trim","value":1},{"name":"Split Lines","value":0}],"portsOut":[{"name":"array","links":[{"portIn":"array","portOut":"array","objIn":"fxd9qy0nv","objOut":"yvvnsby8j"}]},{"name":"length","value":4}],"objName":"Ops.Array.StringToArray_v2"},{"id":"fxd9qy0nv","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"String A","portOut":"result","objIn":"hhpgrbf2g","objOut":"fxd9qy0nv"}]}],"objName":"Ops.Array.ArrayGetString"},{"id":"xqowbomkj","uiAttribs":{},"portsIn":[{"name":"Title","value":"*"}],"objName":"Ops.Ui.Area"},{"id":"ch5u1xz0l","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"midExe"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"faiior48h","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"midExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Render","portOut":"Triggered","objIn":"48vrkn65x","objOut":"faiior48h"},{"portIn":"render","portOut":"Triggered","objIn":"33hdtkr51","objOut":"faiior48h"},{"portIn":"render","portOut":"Triggered","objIn":"fvg1zz75v","objOut":"faiior48h"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"smns78b6k","uiAttribs":{},"portsIn":[{"name":"Title","value":"*"}],"objName":"Ops.Ui.Area"},{"id":"piq1e64rw","uiAttribs":{},"portsIn":[{"name":"Title","value":"*"}],"objName":"Ops.Ui.Area"},{"id":"t83msa078","uiAttribs":{},"portsIn":[{"name":"Title","value":"*"}],"objName":"Ops.Ui.Area"},{"id":"4pu8mr0y2","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"preSequenceFlow"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"of6q9dm1m","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"midExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"render","portOut":"Triggered","objIn":"v2qv1ozh2","objOut":"of6q9dm1m"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"zcc6zzw4d","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"zi3u8x4zd","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_activeDial_ID"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"zhjkbd61e","objOut":"zi3u8x4zd"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"0txm5qrgs","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_dialValues_array"}],"portsOut":[{"name":"Value","links":[{"portIn":"array","portOut":"Value","objIn":"ccotjup9t","objOut":"0txm5qrgs"}]}],"objName":"Ops.Vars.VarGetArray_v2"},{"id":"ccotjup9t","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"Default Value","portOut":"value","objIn":"dq71li66q","objOut":"ccotjup9t"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"zhjkbd61e","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"number2","value":1}],"portsOut":[{"name":"result","links":[{"portIn":"index","portOut":"result","objIn":"ccotjup9t","objOut":"zhjkbd61e"}]}],"objName":"Ops.Math.Subtract"},{"id":"v2qv1ozh2","uiAttribs":{},"portsIn":[{"name":"Size index","value":1},{"name":"Size","value":"Manual"},{"name":"texture height","value":512},{"name":"Auto Aspect","value":1},{"name":"filter index","value":1},{"name":"filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"Repeat"},{"name":"MSAA index","value":1},{"name":"MSAA","value":"2x"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"Depth","value":0},{"name":"Clear","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"Execute","portOut":"trigger","objIn":"3so3f33cf","objOut":"v2qv1ozh2"}]},{"name":"texture","links":[{"portIn":"Base Texture","portOut":"texture","objIn":"eerqtlpnp","objOut":"v2qv1ozh2"}]}],"objName":"Ops.Gl.RenderToTexture_v3"},{"id":"o4q65sx2h","uiAttribs":{},"portsIn":[{"name":"x","value":-1.4},{"name":"y","value":-1.79}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"eb7wv37c6","objOut":"o4q65sx2h"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"gv2xr0zt3","uiAttribs":{},"portsIn":[{"name":"Font Name","value":"chivo"},{"name":"Font Data","value":"assets/6697c3b245eb5d333bae2007_ChivoMono-Medium-msdf.json","display":"file"},{"name":"Font Image","value":"assets/6697c3b245eb5d333bae2007_ChivoMono-Medium.png","display":"file"},{"name":"Font Image 1","value":0,"display":"file"},{"name":"Font Image 2","value":0,"display":"file"},{"name":"Font Image 3","value":0,"display":"file"}],"portsOut":[{"name":"Loaded","value":true},{"name":"Total Chars","value":66},{"name":"Chars","value":"jQgbdf03689CGOShikl12457ABDEFHIJKLMNPRTUVWXYZpqtyw+acemnorsuvxz*-."}],"objName":"Ops.Gl.FontMSDF_v2"},{"id":"kmdf8veed","uiAttribs":{},"portsIn":[{"name":"File","value":"assets/lib_matcaps_Chrome_Blue_Tint-White.png","display":"file"},{"name":"Filter index","value":2},{"name":"Filter","value":"mipmap"},{"name":"Wrap index","value":0},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Data Format index","value":3},{"name":"Data Format","value":"RGBA"},{"name":"Flip","value":0},{"name":"Pre Multiplied Alpha","value":0},{"name":"Active","value":1},{"name":"Save Memory","value":1},{"name":"Add Cachebuster","value":0}],"portsOut":[{"name":"Texture","links":[{"portIn":"Specular MatCap","portOut":"Texture","objIn":"chztenqi0","objOut":"kmdf8veed"}]},{"name":"Width","value":256},{"name":"Height","value":256},{"name":"Aspect Ratio","value":1},{"name":"Loaded","value":1},{"name":"Loading","value":0}],"objName":"Ops.Gl.Texture_v2"},{"id":"flv1jlkal","uiAttribs":{},"portsIn":[{"name":"File","value":"assets/6697c3b245eb5d333bae2007_Sterungs.webp","display":"file"},{"name":"Filter index","value":2},{"name":"Filter","value":"mipmap"},{"name":"Wrap index","value":0},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Data Format index","value":3},{"name":"Data Format","value":"RGBA"},{"name":"Flip","value":0},{"name":"Pre Multiplied Alpha","value":0},{"name":"Active","value":1},{"name":"Save Memory","value":1},{"name":"Add Cachebuster","value":0}],"portsOut":[{"name":"Texture","links":[{"portIn":"Specular Mask","portOut":"Texture","objIn":"chztenqi0","objOut":"flv1jlkal"}]},{"name":"Width","value":256},{"name":"Height","value":256},{"name":"Aspect Ratio","value":1},{"name":"Loaded","value":1},{"name":"Loading","value":0}],"objName":"Ops.Gl.Texture_v2"},{"id":"40fnzsucx","uiAttribs":{},"portsIn":[{"name":"Play","value":1},{"name":"Sync to timeline","value":0}],"portsOut":[{"name":"Time","links":[{"portIn":"Time","portOut":"Time","objIn":"lv0f0jbcs","objOut":"40fnzsucx"}]}],"objName":"Ops.Anim.Timer_v2"},{"id":"lv0f0jbcs","uiAttribs":{},"portsIn":[{"name":"Type index","value":2},{"name":"Type","value":"ramp up"},{"name":"Phase","value":0},{"name":"Range Min","value":-360},{"name":"Range Max","value":360}],"portsOut":[{"name":"Result","links":[{"portIn":"rotX","portOut":"Result","objIn":"li365texv","objOut":"lv0f0jbcs"}]}],"objName":"Ops.Anim.LFO_v2"},{"id":"ai5mgf397","uiAttribs":{},"portsIn":[{"name":"number2","value":0.01}],"portsOut":[{"name":"result","links":[{"portIn":"Frequency","portOut":"result","objIn":"lv0f0jbcs","objOut":"ai5mgf397"}]}],"objName":"Ops.Math.Multiply"},{"id":"dsy5j4yzl","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"result","links":[{"portIn":"Value","portOut":"result","objIn":"s9n3wwypa","objOut":"dsy5j4yzl"},{"portIn":"Pass Through","portOut":"result","objIn":"8lyuqd6tn","objOut":"dsy5j4yzl"},{"portIn":"Pass Through","portOut":"result","objIn":"csl3j7cy1","objOut":"dsy5j4yzl"}]}],"objName":"Ops.Boolean.And"},{"id":"hd8nl2ugk","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_buttonIsDown"}],"portsOut":[{"name":"Value","links":[{"portIn":"bool 2","portOut":"Value","objIn":"dsy5j4yzl","objOut":"hd8nl2ugk"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"yi13493pq","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_hitBodyName"}],"portsOut":[{"name":"Value","links":[{"portIn":"String","portOut":"Value","objIn":"i77gb1h2c","objOut":"yi13493pq"},{"portIn":"String In","portOut":"Value","objIn":"8lyuqd6tn","objOut":"yi13493pq"}]}],"objName":"Ops.Vars.VarGetString"},{"id":"i77gb1h2c","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"SearchValue","value":"dial"}],"portsOut":[{"name":"Found","links":[{"portIn":"bool 1","portOut":"Found","objIn":"dsy5j4yzl","objOut":"i77gb1h2c"}]},{"name":"Index","value":-1}],"objName":"Ops.String.StringContains_v2"},{"id":"ozs800vz3","uiAttribs":{},"objName":"Ops.Gl.GLTF.GltfDracoCompression"},{"id":"bmau99lwf","uiAttribs":{},"portsIn":[{"name":"data","value":"{\"hiddenNodes\":{}}"},{"name":"glb File","value":"assets/66a8cc11ac4e6d02513b1fae_spherical_animation.draco.glb","display":"file"},{"name":"Draw","value":1},{"name":"Camera index","value":0},{"name":"Camera","value":"None"},{"name":"Animation","value":"Anim "},{"name":"Center index","value":0},{"name":"Center","value":"None"},{"name":"Rescale","value":1},{"name":"Rescale Size","value":1},{"name":"Sync to timeline","value":0},{"name":"Loop","value":1},{"name":"Normals Format index","value":0},{"name":"Normals Format","value":"XYZ"},{"name":"Vertices Format index","value":0},{"name":"Vertices Format","value":"XYZ"},{"name":"Calc Normals index","value":0},{"name":"Calc Normals","value":"Auto"},{"name":"Hide Nodes","value":0},{"name":"Use Material Properties","value":0},{"name":"Active","value":1}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"38w7tj78u","objOut":"bmau99lwf"}]},{"name":"Generator","value":"Sketchfab-16.17.0"},{"name":"GLTF Version","value":2},{"name":"Anim Length","value":8.333333015441895},{"name":"Anim Time","value":6.186191991914054},{"name":"Loading","value":false}],"objName":"Ops.Gl.GLTF.GltfScene_v4"},{"id":"lb1qzrcoj","uiAttribs":{},"portsIn":[{"name":"Material Name","value":"FORGED_METAL"}],"portsOut":[{"name":"Material","links":[{"portIn":"Materials","portOut":"Material","objIn":"bmau99lwf","objOut":"lb1qzrcoj"}]}],"objName":"Ops.Gl.GLTF.GltfSetMaterial"},{"id":"fs2uw3jmy","uiAttribs":{},"portsIn":[{"name":"Material Name","value":"Side"}],"portsOut":[{"name":"Material","links":[{"portIn":"Materials","portOut":"Material","objIn":"bmau99lwf","objOut":"fs2uw3jmy"}]}],"objName":"Ops.Gl.GLTF.GltfSetMaterial"},{"id":"nnu0oo0gu","uiAttribs":{},"portsIn":[{"name":"Variable","value":"NEL_SRVB_Metals"}],"objName":"Ops.Vars.VarSetObject_v2"},{"id":"u5bcyfii0","uiAttribs":{},"portsIn":[{"name":"Variable","value":"NEL_SRVB_Metals"}],"portsOut":[{"name":"Value","links":[{"portIn":"Shader","portOut":"Value","objIn":"lb1qzrcoj","objOut":"u5bcyfii0"}]}],"objName":"Ops.Vars.VarGetObject_v2"},{"id":"leqa7h4pd","uiAttribs":{},"portsIn":[{"name":"Diffuse A","value":1},{"name":"Double Sided","value":0},{"name":"Colorize Texture","value":0}],"portsOut":[{"name":"next","links":[{"portIn":"Execute","portOut":"next","objIn":"0rcbij4av","objOut":"leqa7h4pd"}]},{"name":"Shader","links":[{"portIn":"Shader","portOut":"Shader","objIn":"fs2uw3jmy","objOut":"leqa7h4pd"}]}],"objName":"Ops.Gl.Phong.LambertMaterial_v2"},{"id":"s0o3lhs2y","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ringR"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"z5bv7gal9","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ringG"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"oa1101yyu","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ringR"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"y7uobh49q","objOut":"oa1101yyu"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"tnds1iu5y","uiAttribs":{},"portsIn":[{"name":"Material Name","value":"POINTS"}],"portsOut":[{"name":"Material","links":[{"portIn":"Materials","portOut":"Material","objIn":"bmau99lwf","objOut":"tnds1iu5y"}]}],"objName":"Ops.Gl.GLTF.GltfSetMaterial"},{"id":"0rcbij4av","uiAttribs":{},"portsIn":[{"name":"Diffuse R","value":0.919},{"name":"Diffuse G","value":0.97},{"name":"Diffuse B","value":1},{"name":"Diffuse A","value":1},{"name":"Double Sided","value":0},{"name":"Colorize Texture","value":0}],"portsOut":[{"name":"Shader","links":[{"portIn":"Shader","portOut":"Shader","objIn":"tnds1iu5y","objOut":"0rcbij4av"}]}],"objName":"Ops.Gl.Phong.LambertMaterial_v2"},{"id":"y7uobh49q","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"g","portOut":"Result","objIn":"chztenqi0","objOut":"y7uobh49q"}]}],"objName":"Ops.Math.OneMinus"},{"id":"ts03zao35","uiAttribs":{},"portsIn":[{"name":"r","value":1},{"name":"g","value":1},{"name":"b","value":1},{"name":"Opacity","value":1},{"name":"AO Intensity","value":1},{"name":"Normal Map Intensity","value":1},{"name":"Repeat X","value":1},{"name":"Repeat Y","value":1},{"name":"Offset X","value":0},{"name":"Offset Y","value":0},{"name":"Screen Space Normals","value":0},{"name":"Calc normal tangents","value":1},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":0},{"name":"Alpha Mask Source index","value":0},{"name":"Alpha Mask Source","value":"Luminance"}],"portsOut":[{"name":"Next","links":[{"portIn":"Execute","portOut":"Next","objIn":"l7fhi163a","objOut":"ts03zao35"},{"portIn":"render","portOut":"Next","objIn":"orseg18lf","objOut":"ts03zao35"}]}],"objName":"Ops.Gl.Shader.MatCapMaterial_v3"},{"id":"38w7tj78u","uiAttribs":{},"portsIn":[{"name":"Node Name","value":"c001_1"},{"name":"Translate Y","value":0},{"name":"Translate Z","value":0},{"name":"Rotation X","value":0},{"name":"Rotation Y","value":0},{"name":"Rotation Z","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"bq7dcj36g","objOut":"38w7tj78u"}]},{"name":"Found","value":true}],"objName":"Ops.Gl.GLTF.GltfTransformNode"},{"id":"5g6m8w0kd","uiAttribs":{},"portsIn":[{"name":"Node Name","value":"c003_3"},{"name":"Translate Y","value":0},{"name":"Translate Z","value":0},{"name":"Rotation X","value":0},{"name":"Rotation Y","value":0},{"name":"Rotation Z","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"br7cvag8u","objOut":"5g6m8w0kd"}]},{"name":"Found","value":true}],"objName":"Ops.Gl.GLTF.GltfTransformNode"},{"id":"bq7dcj36g","uiAttribs":{},"portsIn":[{"name":"Node Name","value":"c002_2"},{"name":"Translate Y","value":0},{"name":"Translate Z","value":0},{"name":"Rotation X","value":0},{"name":"Rotation Y","value":0},{"name":"Rotation Z","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"5g6m8w0kd","objOut":"bq7dcj36g"}]},{"name":"Found","value":true}],"objName":"Ops.Gl.GLTF.GltfTransformNode"},{"id":"br7cvag8u","uiAttribs":{},"portsIn":[{"name":"Node Name","value":"c004_4"},{"name":"Translate Y","value":0},{"name":"Translate Z","value":0},{"name":"Rotation X","value":0},{"name":"Rotation Y","value":0},{"name":"Rotation Z","value":0}],"portsOut":[{"name":"Found","value":true}],"objName":"Ops.Gl.GLTF.GltfTransformNode"},{"id":"hf23rbdfn","uiAttribs":{},"portsIn":[{"name":"number2","value":20}],"portsOut":[{"name":"result","links":[{"portIn":"Translate X","portOut":"result","objIn":"38w7tj78u","objOut":"hf23rbdfn"},{"portIn":"Translate X","portOut":"result","objIn":"bq7dcj36g","objOut":"hf23rbdfn"},{"portIn":"Translate X","portOut":"result","objIn":"5g6m8w0kd","objOut":"hf23rbdfn"},{"portIn":"Translate X","portOut":"result","objIn":"br7cvag8u","objOut":"hf23rbdfn"}]}],"objName":"Ops.Math.Multiply"},{"id":"w1vt61ydw","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_dialValues_array"}],"portsOut":[{"name":"Value","links":[{"portIn":"Array in","portOut":"Value","objIn":"z1obzd6uz","objOut":"w1vt61ydw"}]}],"objName":"Ops.Vars.VarGetArray_v2"},{"id":"9044xju7n","uiAttribs":{},"portsIn":[{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"number1","portOut":"value","objIn":"hf23rbdfn","objOut":"9044xju7n"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"z1obzd6uz","uiAttribs":{},"portsIn":[{"name":"When False index","value":0},{"name":"When False","value":"keep last array"}],"portsOut":[{"name":"Array Out","links":[{"portIn":"array","portOut":"Array Out","objIn":"9044xju7n","objOut":"z1obzd6uz"}]}],"objName":"Ops.Array.GateArray_v2"},{"id":"0lxocfgel","uiAttribs":{},"portsIn":[{"name":"Title","value":"Spatial GLTF"}],"objName":"Ops.Ui.Area"},{"id":"hb06uwqts","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentInstanceIsActive"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"9hyokghvg","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentInstanceIsActive"}],"portsOut":[{"name":"Value","links":[{"portIn":"Pass Through","portOut":"Value","objIn":"z1obzd6uz","objOut":"9hyokghvg"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"6dc9673bl","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"A","portOut":"Value","objIn":"88c0pg2n0","objOut":"6dc9673bl"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"88c0pg2n0","uiAttribs":{},"portsIn":[{"name":"B","value":1},{"name":"C","value":2},{"name":"D","value":3},{"name":"Expression","value":"(a + 1) % 4"}],"portsOut":[{"name":"Result","links":[{"portIn":"index","portOut":"Result","objIn":"9044xju7n","objOut":"88c0pg2n0"}]},{"name":"Expression Valid","value":true}],"objName":"Ops.Math.MathExpression"},{"id":"6v0s7i2sf","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_rep2d_x"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"q3siwjs06","uiAttribs":{},"portsIn":[{"name":"Frequency","value":0.002002},{"name":"Type index","value":0},{"name":"Type","value":"sine"},{"name":"Range Min","value":0},{"name":"Range Max","value":8}],"portsOut":[{"name":"Result","links":[{"portIn":"Time","portOut":"Result","objIn":"bmau99lwf","objOut":"q3siwjs06"}]}],"objName":"Ops.Anim.LFO_v2"},{"id":"l3284qrsh","uiAttribs":{},"portsOut":[{"name":"timesTriggered","links":[{"portIn":"A","portOut":"timesTriggered","objIn":"hd355ern0","objOut":"l3284qrsh"}]}],"objName":"Ops.Trigger.TriggerCounter"},{"id":"xja9p9adg","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"B","portOut":"Value","objIn":"hd355ern0","objOut":"xja9p9adg"},{"portIn":"Phase","portOut":"Value","objIn":"q3siwjs06","objOut":"xja9p9adg"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"orseg18lf","uiAttribs":{},"portsIn":[{"name":"scale","value":1.28},{"name":"x","value":1},{"name":"y","value":1},{"name":"z","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"bmau99lwf","objOut":"orseg18lf"}]}],"objName":"Ops.Gl.Matrix.Scale"},{"id":"hd355ern0","uiAttribs":{},"portsIn":[{"name":"C","value":-1},{"name":"D","value":0},{"name":"Expression","value":"a*(b * 0.01)"}],"portsOut":[{"name":"Result","links":[{"portIn":"Time","portOut":"Result","objIn":"q3siwjs06","objOut":"hd355ern0"}]},{"name":"Expression Valid","value":true}],"objName":"Ops.Math.MathExpression"},{"id":"2p7s5nsc9","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":0.005},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":2},{"name":"pivot y","value":"bottom"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":1},{"name":"num rows","value":1}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"cplq646td","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"j447574nb","objOut":"cplq646td"}]}],"objName":"Ops.Gl.Matrix.Billboard"},{"id":"j447574nb","uiAttribs":{},"portsIn":[{"name":"y","value":1.45},{"name":"z","value":6.66}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"lb4ss1de9","objOut":"j447574nb"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"l53eehg6x","uiAttribs":{},"portsIn":[{"name":"Text","value":"ScapeRVB"},{"name":"Font","value":"chivo"},{"name":"Scale","value":1.54},{"name":"Letter Spacing","value":0.02},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":1},{"name":"Vertical Align","value":"Top"},{"name":"r","value":0.179},{"name":"g","value":1},{"name":"b","value":0.692},{"name":"a","value":0.91},{"name":"SDF","value":1},{"name":"Smoothing","value":0.126},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":3.4483968750000003},{"name":"Height","value":0.9838645833333333},{"name":"Start Y","value":0.4781656249999999},{"name":"Num Chars","value":8}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"fevah6hns","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"finalExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"render","portOut":"Triggered","objIn":"bav6ydpr2","objOut":"fevah6hns"},{"portIn":"exe","portOut":"Triggered","objIn":"rw14ave8u","objOut":"fevah6hns"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"bav6ydpr2","uiAttribs":{},"portsIn":[{"name":"posX","value":0.89},{"name":"posY","value":0.435},{"name":"posZ","value":0},{"name":"scale","value":0.125},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"l53eehg6x","objOut":"bav6ydpr2"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"3g7cbchrs","uiAttribs":{},"portsIn":[{"name":"x","value":-0.6},{"name":"y","value":-0.835},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Exec","portOut":"trigger","objIn":"cplq646td","objOut":"3g7cbchrs"}]}],"objName":"Ops.Gl.Matrix.TranslateView"},{"id":"s9n3wwypa","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_mouseIsChangingDialValue"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"1a68gpjeh","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"2iozqy3i6","objOut":"1a68gpjeh"}]},{"name":"Result","links":[{"portIn":"Object","portOut":"Result","objIn":"2cbchlduf","objOut":"1a68gpjeh"}]}],"objName":"Ops.Data.Compose.Object.CompObject"},{"id":"2iozqy3i6","uiAttribs":{},"portsIn":[{"name":"Key","value":"mix"},{"name":"Number","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"42ukcss4d","objOut":"2iozqy3i6"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetNumber"},{"id":"42ukcss4d","uiAttribs":{},"portsIn":[{"name":"Key","value":"diffuse"},{"name":"Number","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"ebt09vc90","objOut":"42ukcss4d"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetNumber"},{"id":"ebt09vc90","uiAttribs":{},"portsIn":[{"name":"Key","value":"tone"},{"name":"Number","value":0.5}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"fdu5vba76","objOut":"ebt09vc90"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetNumber"},{"id":"fdu5vba76","uiAttribs":{},"portsIn":[{"name":"Key","value":"size"},{"name":"Number","value":0}],"objName":"Ops.Data.Compose.Object.CompObjectSetNumber"},{"id":"28d5nmh91","uiAttribs":{},"portsIn":[{"name":"ZoomText","value":0},{"name":"Line Numbers","value":1},{"name":"Font Size","value":10},{"name":"Scroll","value":0}],"objName":"Ops.Ui.VizObject"},{"id":"ueht75nuq","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"finalExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Exec","portOut":"Triggered","objIn":"x7p8k6vel","objOut":"ueht75nuq"},{"portIn":"Trigger","portOut":"Triggered","objIn":"2cbchlduf","objOut":"ueht75nuq"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"2k40p1ixu","uiAttribs":{},"portsOut":[{"name":"Values","links":[{"portIn":"Array","portOut":"Values","objIn":"o5k93vq6e","objOut":"2k40p1ixu"},{"portIn":"Value","portOut":"Values","objIn":"x6efudpvd","objOut":"2k40p1ixu"}]},{"name":"Num values","value":4}],"objName":"Ops.Json.ObjectValuesAsArray"},{"id":"o5k93vq6e","uiAttribs":{},"portsIn":[{"name":"Start Row","value":0}],"objName":"Ops.Ui.VizArrayTable"},{"id":"lgfxem7we","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_mouseIsChangingParamID"}],"objName":"Ops.Vars.VarSetString_v2"},{"id":"8lyuqd6tn","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"When False index","value":0},{"name":"When False","value":"keep last string"},{"name":"Custom Value","value":""}],"portsOut":[{"name":"String Out","links":[{"portIn":"Key","portOut":"String Out","objIn":"q2imefo72","objOut":"8lyuqd6tn"}]}],"objName":"Ops.String.GateString"},{"id":"8vvl2gwwz","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"el0us87h5","objOut":"8vvl2gwwz"}]},{"name":"Result","links":[{"portIn":"data","portOut":"Result","objIn":"q2imefo72","objOut":"8vvl2gwwz"}]}],"objName":"Ops.Data.Compose.Object.CompObject"},{"id":"madc5uih6","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Named Trigger","value":"mainExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Update","portOut":"Triggered","objIn":"8vvl2gwwz","objOut":"madc5uih6"},{"portIn":"Exec","portOut":"Triggered","objIn":"hf3ib8jqh","objOut":"madc5uih6"},{"portIn":"Update","portOut":"Triggered","objIn":"na2pda15t","objOut":"madc5uih6"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"el0us87h5","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Key","value":"dial.1"},{"name":"String","value":"mix"}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"lq1vvjm70","objOut":"el0us87h5"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetString"},{"id":"lq1vvjm70","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Key","value":"dial.2"},{"name":"String","value":"diffuse"}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"zuuutor70","objOut":"lq1vvjm70"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetString"},{"id":"zuuutor70","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Key","value":"dial.3"},{"name":"String","value":"tone"}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"fvxs3gsfk","objOut":"zuuutor70"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetString"},{"id":"fvxs3gsfk","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Key","value":"dial.4"},{"name":"String","value":"size"}],"objName":"Ops.Data.Compose.Object.CompObjectSetString"},{"id":"q2imefo72","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"lgfxem7we","objOut":"q2imefo72"}]}],"objName":"Ops.Json.ObjectGetString"},{"id":"5h3v4dsa0","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_mouseIsChangingParamID"}],"portsOut":[{"name":"Value","links":[{"portIn":"Key","portOut":"Value","objIn":"2cbchlduf","objOut":"5h3v4dsa0"}]}],"objName":"Ops.Vars.VarGetString"},{"id":"2cbchlduf","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Object In","portOut":"Result","objIn":"1qxuxacu8","objOut":"2cbchlduf"}]}],"objName":"Ops.Json.TriggerObjectSetNumber"},{"id":"x7p8k6vel","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"1a68gpjeh","objOut":"x7p8k6vel"},{"portIn":"Trigger","portOut":"Next","objIn":"z2nzidnng","objOut":"x7p8k6vel"}]},{"name":"Was Triggered","value":1}],"objName":"Ops.Trigger.TriggerOnce"},{"id":"bp5rcdeha","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"preSequenceFlow"}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"cconk53k8","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_dialValues_object"}],"objName":"Ops.Vars.VarSetObject_v2"},{"id":"eko3x9yfz","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_buttonIsDown"}],"portsOut":[{"name":"Value","links":[{"portIn":"bool 1","portOut":"Value","objIn":"uesg11629","objOut":"eko3x9yfz"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"h6fm96idh","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_dialValues_object"}],"portsOut":[{"name":"Value","links":[{"portIn":"Object2","portOut":"Value","objIn":"cx3uanmz2","objOut":"h6fm96idh"}]}],"objName":"Ops.Vars.VarGetObject_v2"},{"id":"1qxuxacu8","uiAttribs":{},"portsIn":[{"name":"When False index","value":0},{"name":"When False","value":"keep last object"},{"name":"Only Valid Objects","value":1}],"portsOut":[{"name":"Object Out","links":[{"portIn":"Object","portOut":"Object Out","objIn":"28d5nmh91","objOut":"1qxuxacu8"},{"portIn":"Value","portOut":"Object Out","objIn":"cconk53k8","objOut":"1qxuxacu8"},{"portIn":"Object1","portOut":"Object Out","objIn":"cx3uanmz2","objOut":"1qxuxacu8"}]}],"objName":"Ops.Json.GateObject"},{"id":"uesg11629","uiAttribs":{},"portsIn":[{"name":"bool 3","value":0},{"name":"bool 4","value":0},{"name":"bool 5","value":0},{"name":"bool 6","value":0},{"name":"bool 7","value":0},{"name":"bool 8","value":0},{"name":"bool 9","value":0},{"name":"bool 10","value":0}],"portsOut":[{"name":"result","links":[{"portIn":"Pass Through","portOut":"result","objIn":"1qxuxacu8","objOut":"uesg11629"}]}],"objName":"Ops.Boolean.Or"},{"id":"z2nzidnng","uiAttribs":{},"portsIn":[{"name":"Duration","value":0.1},{"name":"Value True","value":1},{"name":"Value False","value":0}],"portsOut":[{"name":"Result","links":[{"portIn":"bool 2","portOut":"Result","objIn":"uesg11629","objOut":"z2nzidnng"}]}],"objName":"Ops.Boolean.MonoFlop"},{"id":"tvhdy0oy7","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"key code","value":16},{"name":"canvas only","value":1},{"name":"Mod Key index","value":0},{"name":"Mod Key","value":"none"},{"name":"Enabled","value":1},{"name":"Prevent Default","value":0}],"portsOut":[{"name":"on press","links":[{"portIn":"Trigger 0","portOut":"on press","objIn":"9xrx1aiud","objOut":"tvhdy0oy7"}]},{"name":"on release","links":[{"portIn":"Trigger 1","portOut":"on release","objIn":"9xrx1aiud","objOut":"tvhdy0oy7"}]},{"name":"Pressed","value":1},{"name":"Key","value":"Shift"}],"objName":"Ops.Devices.Keyboard.KeyPressLearn"},{"id":"9xrx1aiud","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Value 0","value":0.05},{"name":"Value 1","value":0.5},{"name":"Value 2","value":0.5},{"name":"Value 3","value":0},{"name":"Value 4","value":0},{"name":"Value 5","value":0},{"name":"Value 6","value":0},{"name":"Value 7","value":0},{"name":"Default Value","value":""}],"portsOut":[{"name":"Value","links":[{"portIn":"Multiply","portOut":"Value","objIn":"dq71li66q","objOut":"9xrx1aiud"}]},{"name":"Last Value","value":""}],"objName":"Ops.Number.SwitchNumberOnTrigger"},{"id":"hf3ib8jqh","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"Next","links":[{"portIn":"Trigger 2","portOut":"Next","objIn":"9xrx1aiud","objOut":"hf3ib8jqh"}]},{"name":"Was Triggered","value":1}],"objName":"Ops.Trigger.TriggerOnce"},{"id":"48vrkn65x","uiAttribs":{},"portsIn":[{"name":"Size index","value":0},{"name":"Size","value":"Auto"},{"name":"Width","value":640},{"name":"Height","value":480},{"name":"Filter index","value":1},{"name":"Filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Pixel Format index","value":5},{"name":"Pixel Format","value":"SRGBA 8bit ubyte"},{"name":"R","value":0},{"name":"G","value":0},{"name":"B","value":0},{"name":"A","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"6fb2f0244","objOut":"48vrkn65x"}]},{"name":"texture_out","links":[{"portIn":"Diffuse","portOut":"texture_out","objIn":"flor1ge09","objOut":"48vrkn65x"}]},{"name":"Aspect Ratio","value":1.5552486187845305},{"name":"Texture Width","value":1126},{"name":"Texture Height","value":724}],"objName":"Ops.Gl.ImageCompose.ImageCompose_v4"},{"id":"wcm52u6xo","uiAttribs":{},"portsIn":[{"name":"x","value":-1},{"name":"y","value":0.4},{"name":"z","value":-1}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"62jtojeuu","objOut":"wcm52u6xo"}]}],"objName":"Ops.Gl.Matrix.ScaleXYZViewMatrix"},{"id":"flor1ge09","uiAttribs":{},"portsIn":[{"name":"r","value":0.07},{"name":"g","value":0.06},{"name":"b","value":0.51},{"name":"AO Intensity","value":1},{"name":"Normal Map Intensity","value":1},{"name":"Repeat X","value":1},{"name":"Repeat Y","value":1},{"name":"Offset X","value":0.93},{"name":"Offset Y","value":-0.89},{"name":"Screen Space Normals","value":0},{"name":"Calc normal tangents","value":1},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":1},{"name":"Alpha Mask Source index","value":0},{"name":"Alpha Mask Source","value":"Luminance"}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"wcm52u6xo","objOut":"flor1ge09"}]}],"objName":"Ops.Gl.Shader.MatCapMaterial_v3"},{"id":"9dqwuc8l6","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":1},{"name":"height","value":1.8},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":1},{"name":"num rows","value":1}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"2zbdnj6oz","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_size"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"zpf6nadj7","objOut":"2zbdnj6oz"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"eb7wv37c6","uiAttribs":{},"portsIn":[{"name":"file","value":"assets/6697c3b245eb5d333bae2007_NEL_SRVB.webp","display":"file"},{"name":"extrude","value":4.42},{"name":"width","value":3},{"name":"height","value":3},{"name":"columns","value":21},{"name":"texCoords slice","value":1},{"name":"flat","value":1}],"portsOut":[{"name":"geometry","links":[{"portIn":"Value","portOut":"geometry","objIn":"hr05yjyy0","objOut":"eb7wv37c6"}]}],"objName":"Ops.Gl.Meshes.HeightMap"},{"id":"u8jt2zskv","uiAttribs":{},"portsIn":[{"name":"Value","value":0},{"name":"Variable","value":"rcv_structure"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"omwm1ixga","uiAttribs":{},"portsIn":[{"name":"Title","value":"RCV"}],"objName":"Ops.Ui.Area"},{"id":"wku86fxpi","uiAttribs":{},"portsIn":[{"name":"Value","value":0},{"name":"Variable","value":"rcv_structureArray"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"cx3uanmz2","uiAttribs":{},"portsOut":[{"name":"Out Object","links":[{"portIn":"Object","portOut":"Out Object","objIn":"2k40p1ixu","objOut":"cx3uanmz2"}]}],"objName":"Ops.Json.ObjectFunnel"},{"id":"j4exj9jwp","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_tone"}],"portsOut":[{"name":"Value","links":[{"portIn":"Diffuse R","portOut":"Value","objIn":"leqa7h4pd","objOut":"j4exj9jwp"},{"portIn":"Diffuse G","portOut":"Value","objIn":"leqa7h4pd","objOut":"j4exj9jwp"},{"portIn":"Diffuse B","portOut":"Value","objIn":"leqa7h4pd","objOut":"j4exj9jwp"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"c4hww7lmi","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_tone"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"3gcrjukfk","objOut":"c4hww7lmi"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"33hdtkr51","uiAttribs":{},"portsIn":[{"name":"x","value":0},{"name":"y","value":0.31},{"name":"z","value":-0.01}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"flor1ge09","objOut":"33hdtkr51"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"pn1vr4quv","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_finalTextOut"}],"objName":"Ops.Vars.VarGetTexture_v2"},{"id":"3gcrjukfk","uiAttribs":{},"portsIn":[{"name":"Min","value":0},{"name":"Max","value":1},{"name":"Easing index","value":11},{"name":"Easing","value":"Sin Out"}],"portsOut":[{"name":"Result","links":[{"portIn":"Opacity","portOut":"Result","objIn":"flor1ge09","objOut":"3gcrjukfk"}]}],"objName":"Ops.Math.Ease"},{"id":"62voq6obk","uiAttribs":{},"portsIn":[{"name":"Value","value":0},{"name":"Variable","value":"ui_scapeDiffusion"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"l7fhi163a","uiAttribs":{},"portsIn":[{"name":"Nth","value":2}],"portsOut":[{"name":"Next","links":[{"portIn":"exe","portOut":"Next","objIn":"l3284qrsh","objOut":"l7fhi163a"}]}],"objName":"Ops.Trigger.NthTrigger_v2"},{"id":"zpf6nadj7","uiAttribs":{},"portsOut":[{"name":"Result","value":0.9}],"objName":"Ops.Math.OneMinus"},{"id":"oba4wt0jq","uiAttribs":{},"portsIn":[{"name":"scale","value":0.8},{"name":"x","value":1},{"name":"y","value":1},{"name":"z","value":0.86}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"o4q65sx2h","objOut":"oba4wt0jq"}]}],"objName":"Ops.Gl.Matrix.Scale"},{"id":"62jtojeuu","uiAttribs":{},"portsIn":[{"name":"posX","value":0},{"name":"posY","value":-1.15},{"name":"posZ","value":-3.52},{"name":"scale","value":3.57},{"name":"rotX","value":-83.76},{"name":"rotY","value":0},{"name":"rotZ","value":180}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"9dqwuc8l6","objOut":"62jtojeuu"}]}],"objName":"Ops.Gl.Matrix.TransformView"},{"id":"rw14ave8u","uiAttribs":{},"portsIn":[{"name":"easing index","value":8},{"name":"easing","value":"Expo Out"},{"name":"duration","value":0.75},{"name":"Direction index","value":0},{"name":"Direction","value":"Both"},{"name":"value false","value":0},{"name":"value true","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"Update","portOut":"trigger","objIn":"zpbecbb56","objOut":"rw14ave8u"}]},{"name":"value","links":[{"portIn":"Value","portOut":"value","objIn":"62fo5emt0","objOut":"rw14ave8u"},{"portIn":"Value","portOut":"value","objIn":"zpbecbb56","objOut":"rw14ave8u"}]},{"name":"finished","value":1}],"objName":"Ops.Anim.BoolAnim"},{"id":"73bb2nz0u","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_hitBodyName"}],"portsOut":[{"name":"Value","links":[{"portIn":"String","portOut":"Value","objIn":"vgzr81mxh","objOut":"73bb2nz0u"}]}],"objName":"Ops.Vars.VarGetString"},{"id":"vgzr81mxh","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"bool","portOut":"Result","objIn":"rw14ave8u","objOut":"vgzr81mxh"}]}],"objName":"Ops.String.StringLength_v2"},{"id":"n9u25c6ax","uiAttribs":{},"portsIn":[{"name":"posX","value":-0.51},{"name":"posY","value":-0.26},{"name":"posZ","value":0},{"name":"scale","value":1},{"name":"rotX","value":0},{"name":"rotY","value":180},{"name":"rotZ","value":180}],"portsOut":[{"name":"trigger","links":[{"portIn":"exe","portOut":"trigger","objIn":"124910bf-e88f-4da5-847e-888a7ac73020","objOut":"n9u25c6ax"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"st6y5rwmi","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Speed","value":0.025},{"name":"Play","value":1},{"name":"Sync to timeline","value":0}],"portsOut":[{"name":"Time","links":[{"portIn":"Value 1","portOut":"Time","objIn":"c0ib2t71q","objOut":"st6y5rwmi"}]}],"objName":"Ops.Anim.Timer_v2"},{"id":"t1ryttgy8","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"Next","links":[{"portIn":"Reset","portOut":"Next","objIn":"st6y5rwmi","objOut":"t1ryttgy8"}]},{"name":"Number","value":false}],"objName":"Ops.Number.TriggerOnChangeNumber"},{"id":"c0ib2t71q","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Value 2","value":0.02}],"portsOut":[{"name":"result","links":[{"portIn":"number1","portOut":"result","objIn":"gl8rvk911","objOut":"c0ib2t71q"}]}],"objName":"Ops.Math.Min_v3"},{"id":"gl8rvk911","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"number2","value":-1}],"portsOut":[{"name":"result","links":[{"portIn":"Speed","portOut":"result","objIn":"b65ca0b8-40c9-4d0a-9e22-aba7d89f3abf","objOut":"gl8rvk911"}]}],"objName":"Ops.Math.Multiply"},{"id":"csl3j7cy1","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"When False index","value":0},{"name":"When False","value":"keep last number"}],"portsOut":[{"name":"Value Out","links":[{"portIn":"out0 DeltaSum Absolute Value","portOut":"Value Out","objIn":"7bebb5f0-9d69-43ee-98be-27a13edd98db","objOut":"csl3j7cy1"}]}],"objName":"Ops.Number.GateNumber"},{"id":"na2pda15t","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Separate inc/dec","value":0},{"name":"Value","value":0},{"name":"Inc factor","value":4,"title":"Inc/Dec factor"},{"name":"Dec factor","value":4}],"portsOut":[{"name":"Result","links":[{"portIn":"Custom Value","portOut":"Result","objIn":"csl3j7cy1","objOut":"na2pda15t"}]}],"objName":"Ops.Anim.Smooth"},{"id":"ge3zj70cy","uiAttribs":{},"portsIn":[{"name":"x","value":-0.83},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger","portOut":"trigger","objIn":"jrkdakvqd","objOut":"ge3zj70cy"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"jrkdakvqd","uiAttribs":{},"portsIn":[{"name":"Shape index","value":1},{"name":"Shape","value":"BoxAA"},{"name":"Name","value":"dial.1"},{"name":"Radius","value":0.25},{"name":"Size X","value":0.55},{"name":"Size Y","value":1},{"name":"Size Z","value":0},{"name":"Positions"},{"name":"Append Index to name","value":1}],"objName":"Ops.Graphics.Intersection.IntersectBody"},{"id":"lb4ss1de9","uiAttribs":{},"portsIn":[{"name":"mul","value":-0.92}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"2p7s5nsc9","objOut":"lb4ss1de9"}]}],"objName":"Ops.Gl.Matrix.TransformMul"},{"id":"9f43w7192","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"6kwkmfn9z","objOut":"9f43w7192"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"6kwkmfn9z","uiAttribs":{},"portsIn":[{"name":"number2","value":5}],"portsOut":[{"name":"result","links":[{"portIn":"x","portOut":"result","objIn":"j447574nb","objOut":"6kwkmfn9z"}]}],"objName":"Ops.Math.Multiply"},{"id":"62fo5emt0","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__labelBoolAnim"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"3zhcjuyyj","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__labelBoolAnim"}],"portsOut":[{"name":"Value","links":[{"portIn":"a","portOut":"Value","objIn":"uc9r4wu0r","objOut":"3zhcjuyyj"},{"portIn":"B","portOut":"Value","objIn":"v11enlha4","objOut":"3zhcjuyyj"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"zpbecbb56","uiAttribs":{},"portsIn":[{"name":"Delay","value":0.5},{"name":"Clear on Change","value":0},{"name":"easing index","value":2},{"name":"easing","value":"smoothstep"}],"portsOut":[{"name":"Result","links":[{"portIn":"a","portOut":"Result","objIn":"kgtq6kbqp","objOut":"zpbecbb56"}]}],"objName":"Ops.Number.DelayedNumber"},{"id":"v11enlha4","uiAttribs":{},"portsIn":[{"name":"C","value":2},{"name":"D","value":3},{"name":"Expression","value":"(a*0.15) * b"}],"portsOut":[{"name":"Result","links":[{"portIn":"height","portOut":"Result","objIn":"2p7s5nsc9","objOut":"v11enlha4"}]},{"name":"Expression Valid","value":true}],"objName":"Ops.Math.MathExpression"},{"id":"vw32ba4ay","uiAttribs":{},"portsIn":[{"name":"Maximum","value":0.1}],"portsOut":[{"name":"result","links":[{"portIn":"Value","portOut":"result","objIn":"8dnvznngh","objOut":"vw32ba4ay"}]}],"objName":"Ops.Math.Max"},{"id":"k1xasfekl","uiAttribs":{},"portsIn":[{"name":"Separate inc/dec","value":0},{"name":"Inc factor","value":4,"title":"Inc/Dec factor"},{"name":"Dec factor","value":4}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"a1dx328je","objOut":"k1xasfekl"}]},{"name":"Array Out","links":[{"portIn":"array","portOut":"Array Out","objIn":"scp4776vv","objOut":"k1xasfekl"},{"portIn":"array","portOut":"Array Out","objIn":"ffpua72y1","objOut":"k1xasfekl"},{"portIn":"array","portOut":"Array Out","objIn":"0yopgevxd","objOut":"k1xasfekl"},{"portIn":"array","portOut":"Array Out","objIn":"jj4a1wi34","objOut":"k1xasfekl"}]}],"objName":"Ops.User.cristianvogel.LofiSmoothArray"},{"id":"98iul8y9a","uiAttribs":{},"portsIn":[{"name":"Maximum","value":0.005}],"portsOut":[{"name":"result","links":[{"portIn":"Value","portOut":"result","objIn":"iwrkcxo1s","objOut":"98iul8y9a"}]}],"objName":"Ops.Math.Max"},{"id":"8dnvznngh","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_size"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"ok235i5ag","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_mix"}],"portsOut":[{"name":"Value","links":[{"portIn":"number","portOut":"Value","objIn":"nf37ruj15","objOut":"ok235i5ag"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"6xynvbmkd","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_mix"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"hlukndsg2","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_tone"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"iwrkcxo1s","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_diffusion"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"6htv77yjw","uiAttribs":{},"portsIn":[{"name":"Title","value":"Warping"}],"objName":"Ops.Ui.Area"},{"id":"scp4776vv","uiAttribs":{},"portsIn":[{"name":"index","value":0},{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"Value","portOut":"value","objIn":"6xynvbmkd","objOut":"scp4776vv"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"ffpua72y1","uiAttribs":{},"portsIn":[{"name":"index","value":3},{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"value","portOut":"value","objIn":"vw32ba4ay","objOut":"ffpua72y1"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"0yopgevxd","uiAttribs":{},"portsIn":[{"name":"index","value":2},{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"Value","portOut":"value","objIn":"hlukndsg2","objOut":"0yopgevxd"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"jj4a1wi34","uiAttribs":{},"portsIn":[{"name":"index","value":1},{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"value","portOut":"value","objIn":"98iul8y9a","objOut":"jj4a1wi34"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"34zmy4a4l","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"mainExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Execute","portOut":"Triggered","objIn":"k1xasfekl","objOut":"34zmy4a4l"},{"portIn":"Render","portOut":"Triggered","objIn":"51ldwg650","objOut":"34zmy4a4l"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"g8s0zafv1","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_dialValues_array"}],"portsOut":[{"name":"Value","links":[{"portIn":"Array In","portOut":"Value","objIn":"k1xasfekl","objOut":"g8s0zafv1"}]}],"objName":"Ops.Vars.VarGetArray_v2"},{"id":"lxdfer2oi","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__lensFlareTexts"}],"objName":"Ops.Vars.VarGetTexture_v2"},{"id":"qgzxy88cq","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"render","portOut":"Triggered","objIn":"p3udn0kt2","objOut":"qgzxy88cq"},{"portIn":"blls2amps","portOut":"Triggered","objIn":"5jrf5b006","objOut":"qgzxy88cq"},{"portIn":"render","portOut":"Triggered","objIn":"ezv1vx872","objOut":"qgzxy88cq"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"e2dgivql3","uiAttribs":{},"portsIn":[{"name":"value","value":"slider_scapeLength"}],"portsOut":[{"name":"String","links":[{"portIn":"btagbs7z2","portOut":"String","objIn":"5jrf5b006","objOut":"e2dgivql3"}]}],"objName":"Ops.String.String_v2"},{"id":"lsscrp8mo","uiAttribs":{},"portsIn":[{"name":"Font","value":"chivo"},{"name":"Scale","value":0.12},{"name":"Letter Spacing","value":-0.02},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":2},{"name":"Vertical Align","value":"Middle"},{"name":"r","value":0.75},{"name":"g","value":0.75},{"name":"b","value":0.75},{"name":"SDF","value":1},{"name":"Smoothing","value":0.108},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.11716874999999999},{"name":"Height","value":0.07145227272727273},{"name":"Start Y","value":0.03672727272727272},{"name":"Num Chars","value":4}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"vh92hy3y9","uiAttribs":{},"portsIn":[{"name":"y","value":-0.94},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"lsscrp8mo","objOut":"vh92hy3y9"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"1kt28jybk","uiAttribs":{},"portsIn":[{"name":"Repeats","value":4},{"name":"Direction index","value":0},{"name":"Direction","value":"Forward"}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"vh92hy3y9","objOut":"1kt28jybk"}]},{"name":"index","links":[{"portIn":"number1","portOut":"index","objIn":"x156qdz90","objOut":"1kt28jybk"},{"portIn":"Index","portOut":"index","objIn":"pu033f5xy","objOut":"1kt28jybk"}]}],"objName":"Ops.Trigger.Repeat_v2"},{"id":"x156qdz90","uiAttribs":{},"portsIn":[{"name":"number2","value":0.8}],"portsOut":[{"name":"result","links":[{"portIn":"x","portOut":"result","objIn":"vh92hy3y9","objOut":"x156qdz90"}]}],"objName":"Ops.Math.Multiply"},{"id":"p3udn0kt2","uiAttribs":{},"portsIn":[{"name":"x","value":-1.2},{"name":"y","value":0.03},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Execute","portOut":"trigger","objIn":"1kt28jybk","objOut":"p3udn0kt2"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"3ph9rgnw8","uiAttribs":{},"portsIn":[{"name":"Title","value":"scape length"}],"objName":"Ops.Ui.Area"},{"id":"pu033f5xy","uiAttribs":{},"portsIn":[{"name":"String 0","value":"glass"},{"name":"String 1","value":"metal"},{"name":"String 2","value":"tangle"},{"name":"String 3","value":"blur"},{"name":"String 4","value":""},{"name":"String 5","value":""},{"name":"String 6","value":""},{"name":"String 7","value":""},{"name":"String 8","value":""},{"name":"String 9","value":""}],"portsOut":[{"name":"Result","links":[{"portIn":"Text","portOut":"Result","objIn":"lsscrp8mo","objOut":"pu033f5xy"}]}],"objName":"Ops.String.SwitchString"},{"id":"kvx1qrhxt","uiAttribs":{},"portsIn":[{"name":"number2","value":0.33}],"portsOut":[{"name":"result","links":[{"portIn":"value","portOut":"result","objIn":"9cfc0k1rh","objOut":"kvx1qrhxt"}]}],"objName":"Ops.Math.Sum"},{"id":"p4a68w5bu","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"render","portOut":"Triggered","objIn":"cdqihefdh","objOut":"p4a68w5bu"},{"portIn":"blls2amps","portOut":"Triggered","objIn":"827hbx7y7","objOut":"p4a68w5bu"},{"portIn":"render","portOut":"Triggered","objIn":"l8bvvana0","objOut":"p4a68w5bu"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"2ccc5csp8","uiAttribs":{},"portsIn":[{"name":"value","value":"slider_scapeLevel"}],"portsOut":[{"name":"String","links":[{"portIn":"btagbs7z2","portOut":"String","objIn":"827hbx7y7","objOut":"2ccc5csp8"}]}],"objName":"Ops.String.String_v2"},{"id":"nptv5gu82","uiAttribs":{},"portsIn":[{"name":"Text","value":"*Scape"},{"name":"Font","value":"chivo"},{"name":"Scale","value":0.24},{"name":"Letter Spacing","value":-0.02},{"name":"Line Height","value":1},{"name":"Align index","value":2},{"name":"Align","value":"Right"},{"name":"Vertical Align index","value":3},{"name":"Vertical Align","value":"Bottom"},{"name":"r","value":0.75},{"name":"g","value":0.75},{"name":"b","value":0.75},{"name":"a","value":1},{"name":"SDF","value":1},{"name":"Smoothing","value":0.085},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.341925},{"name":"Height","value":0.15647954545454545},{"name":"Start Y","value":0.15949431818181817},{"name":"Num Chars","value":6}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"t6jogaz9t","uiAttribs":{},"portsIn":[{"name":"Title","value":"scape mix"}],"objName":"Ops.Ui.Area"},{"id":"xagcljatm","uiAttribs":{},"portsIn":[{"name":"number2","value":0.4}],"portsOut":[{"name":"result","links":[{"portIn":"value","portOut":"result","objIn":"qkhcjgu05","objOut":"xagcljatm"}]}],"objName":"Ops.Math.Sum"},{"id":"l0tg11bqe","uiAttribs":{},"portsIn":[{"name":"width","value":10},{"name":"height","value":0.49},{"name":"Logarithmic","value":1},{"name":"pivot x index","value":0},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":0},{"name":"pivot y","value":"center"},{"name":"num columns","value":8},{"name":"num rows","value":12},{"name":"axis index","value":0},{"name":"axis","value":"xy"}],"portsOut":[{"name":"Point Arrays","links":[{"portIn":"Points","portOut":"Point Arrays","objIn":"bjn0972ht","objOut":"l0tg11bqe"}]}],"objName":"Ops.Gl.Meshes.LinesArray"},{"id":"bjn0972ht","uiAttribs":{},"portsIn":[{"name":"Tesselate Edges","value":0},{"name":"Render Mesh","value":1}],"objName":"Ops.Gl.Meshes.SplineMesh_v2"},{"id":"yte4ra0uu","uiAttribs":{},"portsIn":[{"name":"Width","value":1.03},{"name":"Width Perspective","value":0},{"name":"Mapping index","value":1},{"name":"Mapping","value":"Face"},{"name":"Colorize Texture","value":0},{"name":"Offset","value":0},{"name":"r","value":0.179},{"name":"g","value":1},{"name":"b","value":0.692}],"portsOut":[{"name":"Trigger","links":[{"portIn":"render","portOut":"Trigger","objIn":"kom6mxww1","objOut":"yte4ra0uu"}]}],"objName":"Ops.Gl.Meshes.SplineMeshMaterial_v2"},{"id":"ertlqmhh5","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"l0tg11bqe","objOut":"ertlqmhh5"}]},{"name":"Was Triggered","value":1}],"objName":"Ops.Trigger.TriggerOnce"},{"id":"kom6mxww1","uiAttribs":{},"portsIn":[{"name":"posX","value":0},{"name":"posY","value":-0.75},{"name":"posZ","value":0.45},{"name":"scale","value":1},{"name":"rotX","value":180},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"bjn0972ht","objOut":"kom6mxww1"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"9li4kwtsh","uiAttribs":{},"portsIn":[{"name":"number1","value":1},{"name":"number2","value":0.2}],"portsOut":[{"name":"result","links":[{"portIn":"a","portOut":"result","objIn":"yte4ra0uu","objOut":"9li4kwtsh"}]}],"objName":"Ops.Math.Multiply"},{"id":"99du8h3y9","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"preSequenceFlow"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Render","portOut":"Triggered","objIn":"yte4ra0uu","objOut":"99du8h3y9"},{"portIn":"Exec","portOut":"Triggered","objIn":"ertlqmhh5","objOut":"99du8h3y9"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"0oj6cpo44","uiAttribs":{},"portsIn":[{"name":"Title","value":"LInes"}],"objName":"Ops.Ui.Area"},{"id":"0aj10qlpy","uiAttribs":{},"portsIn":[{"name":"Width","value":0.35},{"name":"Height","value":0.3},{"name":"ID","value":""},{"name":"Class","value":""},{"name":"Pivot x index","value":0},{"name":"Pivot x","value":"center"},{"name":"Pivot y index","value":0},{"name":"Pivot y","value":"center"},{"name":"Axis index","value":0},{"name":"Axis","value":"xy"},{"name":"Is Interactive","value":1},{"name":"Render Rectangle","value":0},{"name":"Show Boundings","value":0},{"name":"Cursor index","value":2},{"name":"Cursor","value":"pointer"},{"name":"Render","value":1,"title":"Active"}],"portsOut":[{"name":"Trigger out","links":[{"portIn":"exe","portOut":"Trigger out","objIn":"txw282mz1","objOut":"0aj10qlpy"}]},{"name":"Pointer Hover","links":[{"portIn":"bool","portOut":"Pointer Hover","objIn":"txw282mz1","objOut":"0aj10qlpy"},{"portIn":"Value","portOut":"Pointer Hover","objIn":"xlw1du0hx","objOut":"0aj10qlpy"},{"portIn":"a","portOut":"Pointer Hover","objIn":"gji70mzgw","objOut":"0aj10qlpy"}]},{"name":"Pointer Down","links":[{"portIn":"Value","portOut":"Pointer Down","objIn":"kkiqqacrp","objOut":"0aj10qlpy"}]},{"name":"Pointer X","value":0.5845684216211225},{"name":"Pointer Y","value":0.1261919381535641},{"name":"Top","value":37.54103338718414},{"name":"Left","value":-55.094295501708984},{"name":"Right","value":58.46627879142761},{"name":"Bottom","value":134.87870395183563}],"objName":"Ops.Gl.InteractiveRectangle_v2"},{"id":"skw3mtb13","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"render","portOut":"Triggered","objIn":"0tooxrj1w","objOut":"skw3mtb13"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"0tooxrj1w","uiAttribs":{},"portsIn":[{"name":"x","value":-1.73},{"name":"y","value":0.85},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger in","portOut":"trigger","objIn":"0aj10qlpy","objOut":"0tooxrj1w"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"8jcmfxmos","uiAttribs":{},"portsIn":[{"name":"File","value":"assets/6697c3b245eb5d333bae2007_NEL_SRVB.webp","display":"file"},{"name":"Filter index","value":2},{"name":"Filter","value":"mipmap"},{"name":"Wrap index","value":0},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":3},{"name":"Anisotropic","value":"4"},{"name":"Data Format index","value":3},{"name":"Data Format","value":"RGBA"},{"name":"Flip","value":0},{"name":"Pre Multiplied Alpha","value":0},{"name":"Active","value":1},{"name":"Save Memory","value":1},{"name":"Add Cachebuster","value":0}],"portsOut":[{"name":"Texture","links":[{"portIn":"texture","portOut":"Texture","objIn":"alnrfm1xt","objOut":"8jcmfxmos"}]},{"name":"Width","value":256},{"name":"Height","value":256},{"name":"Aspect Ratio","value":1},{"name":"Loaded","value":1},{"name":"Loading","value":0}],"objName":"Ops.Gl.Texture_v2"},{"id":"cnlt8pfqr","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"render","portOut":"Triggered","objIn":"k9oj9uhcw","objOut":"cnlt8pfqr"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"k9oj9uhcw","uiAttribs":{},"portsIn":[{"name":"x","value":-2.64},{"name":"y","value":1.25},{"name":"z","value":-1}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"alnrfm1xt","objOut":"k9oj9uhcw"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"alnrfm1xt","uiAttribs":{},"portsIn":[{"name":"r","value":0.9084857245945317},{"name":"g","value":0.10570856602655021},{"name":"b","value":0.6349807163120653},{"name":"a","value":1},{"name":"colorizeTexture","value":0},{"name":"Vertex Colors","value":0},{"name":"Alpha Mask Source index","value":0},{"name":"Alpha Mask Source","value":"Luminance"},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":1},{"name":"diffuseRepeatX","value":1},{"name":"diffuseRepeatY","value":1},{"name":"Tex Offset X","value":1},{"name":"Tex Offset Y","value":1},{"name":"Crop TexCoords","value":0},{"name":"billboard","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"update","portOut":"trigger","objIn":"zte2jkdci","objOut":"alnrfm1xt"}]}],"objName":"Ops.Gl.Shader.BasicMaterial_v3"},{"id":"txw282mz1","uiAttribs":{},"portsIn":[{"name":"easing index","value":9},{"name":"easing","value":"Expo In Out"},{"name":"duration","value":0.25},{"name":"Direction index","value":0},{"name":"Direction","value":"Both"},{"name":"value false","value":0},{"name":"value true","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"Execute","portOut":"trigger","objIn":"u2xal6b27","objOut":"txw282mz1"},{"portIn":"render","portOut":"trigger","objIn":"fzsniu9pe","objOut":"txw282mz1"}]},{"name":"value","links":[{"portIn":"Percentage","portOut":"value","objIn":"pmu87q3eb","objOut":"txw282mz1"}]},{"name":"finished","links":[{"portIn":"Boolean","portOut":"finished","objIn":"m56qbr4ki","objOut":"txw282mz1"}]}],"objName":"Ops.Anim.BoolAnim"},{"id":"1u49ak691","uiAttribs":{},"portsIn":[{"name":"radius","value":0.5},{"name":"segments","value":3},{"name":"percent","value":1},{"name":"steps","value":0},{"name":"invertSteps","value":1},{"name":"mapping index","value":1},{"name":"mapping","value":"round"},{"name":"Spline","value":0},{"name":"Draw","value":0,"title":"Render mesh"}],"portsOut":[{"name":"geometry","links":[{"portIn":"Geometry","portOut":"geometry","objIn":"ee0okj3wi","objOut":"1u49ak691"}]}],"objName":"Ops.Gl.Meshes.Circle_v3"},{"id":"kkiqqacrp","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__scapeDirectionToggle"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"f4t828wlp","uiAttribs":{},"portsIn":[{"name":"Title","value":"rev"}],"objName":"Ops.Ui.Area"},{"id":"6lh7g16he","uiAttribs":{},"portsIn":[{"name":"Value 0","value":0.52},{"name":"Value 1","value":-0.53}],"portsOut":[{"name":"Out Value","links":[{"portIn":"Speed","portOut":"Out Value","objIn":"40fnzsucx","objOut":"6lh7g16he"}]}],"objName":"Ops.Boolean.BoolToNumber_v2"},{"id":"6fb2f0244","uiAttribs":{},"portsIn":[{"name":"Passes","value":1},{"name":"Clamp","value":0},{"name":"direction index","value":0},{"name":"direction","value":"both"},{"name":"Mask Invert","value":0}],"objName":"Ops.Gl.ImageCompose.FastBlur_v2"},{"id":"iw9wg4r88","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_finalTextOut"}],"objName":"Ops.Vars.VarGetTexture_v2"},{"id":"k2von2tr1","uiAttribs":{},"portsIn":[{"name":"Title","value":"reverse"}],"objName":"Ops.Ui.Area"},{"id":"cr8zmkk1u","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLength"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"bwbixjrcv","uiAttribs":{},"portsIn":[{"name":"B","value":1},{"name":"C","value":2},{"name":"D","value":3},{"name":"Expression","value":"a + 0.5"}],"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"cr8zmkk1u","objOut":"bwbixjrcv"}]},{"name":"Expression Valid","value":true}],"objName":"Ops.Math.MathExpression"},{"id":"8s8geqgwx","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLevel"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"6e04u3uk4","uiAttribs":{},"portsIn":[{"name":"B","value":1},{"name":"C","value":2},{"name":"D","value":3},{"name":"Expression","value":"a + 0.5"}],"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"8s8geqgwx","objOut":"6e04u3uk4"}]},{"name":"Expression Valid","value":true}],"objName":"Ops.Math.MathExpression"},{"id":"z3hsmrlsw","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_size"}],"portsOut":[{"name":"Value","links":[{"portIn":"Percentage","portOut":"Value","objIn":"o5rkdhq2k","objOut":"z3hsmrlsw"},{"portIn":"Percentage","portOut":"Value","objIn":"4jk31qlcv","objOut":"z3hsmrlsw"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"o5rkdhq2k","uiAttribs":{},"portsIn":[{"name":"Value 1","value":9},{"name":"Value 2","value":24}],"portsOut":[{"name":"Result","links":[{"portIn":"rows","portOut":"Result","objIn":"eb7wv37c6","objOut":"o5rkdhq2k"}]}],"objName":"Ops.Math.Interpolate"},{"id":"4jk31qlcv","uiAttribs":{},"portsIn":[{"name":"Value 1","value":1},{"name":"Value 2","value":2.6}],"portsOut":[{"name":"Result","links":[{"portIn":"z","portOut":"Result","objIn":"o4q65sx2h","objOut":"4jk31qlcv"}]}],"objName":"Ops.Math.Interpolate"},{"id":"hr05yjyy0","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__heightMapGeometry"}],"objName":"Ops.Vars.VarSetObject_v2"},{"id":"w2fqrmovh","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLength"}],"portsOut":[{"name":"Value","links":[{"portIn":"Percentage","portOut":"Value","objIn":"69bvpidqa","objOut":"w2fqrmovh"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"69bvpidqa","uiAttribs":{},"portsIn":[{"name":"Value 1","value":16},{"name":"Value 2","value":512}],"portsOut":[{"name":"Result","links":[{"portIn":"Number","portOut":"Result","objIn":"7pg8sq01l","objOut":"69bvpidqa"}]}],"objName":"Ops.Math.Interpolate"},{"id":"7pg8sq01l","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"texture width","portOut":"Result","objIn":"v2qv1ozh2","objOut":"7pg8sq01l"}]}],"objName":"Ops.Math.Ceil"},{"id":"3so3f33cf","uiAttribs":{},"portsIn":[{"name":"Diffuse R","value":0.21561448295683894},{"name":"Diffuse G","value":1},{"name":"Diffuse B","value":0.666},{"name":"Diffuse A","value":1},{"name":"Double Sided","value":0},{"name":"Colorize Texture","value":0}],"portsOut":[{"name":"next","links":[{"portIn":"render","portOut":"next","objIn":"oba4wt0jq","objOut":"3so3f33cf"}]}],"objName":"Ops.Gl.Phong.LambertMaterial_v2"},{"id":"65mpod5qd","uiAttribs":{},"portsIn":[{"name":"value","value":-0.15}],"portsOut":[{"name":"result","links":[{"portIn":"y","portOut":"result","objIn":"aupoduf7d","objOut":"65mpod5qd"},{"portIn":"y","portOut":"result","objIn":"7qikt1vaf","objOut":"65mpod5qd"},{"portIn":"y","portOut":"result","objIn":"mbk4m8pcr","objOut":"65mpod5qd"},{"portIn":"y","portOut":"result","objIn":"ge3zj70cy","objOut":"65mpod5qd"}]}],"objName":"Ops.Number.Number"},{"id":"ee0okj3wi","uiAttribs":{},"portsIn":[{"name":"Translate X","value":0},{"name":"Translate Y","value":0.03},{"name":"Translate Z","value":0},{"name":"Rotation X","value":0},{"name":"Rotation Z","value":0}],"portsOut":[{"name":"Result","links":[{"portIn":"Geometry","portOut":"Result","objIn":"iaywmhxb7","objOut":"ee0okj3wi"}]}],"objName":"Ops.Graphics.Geometry.TransformGeometry"},{"id":"iaywmhxb7","uiAttribs":{},"portsIn":[{"name":"Render Mesh","value":1},{"name":"Add Vertex Numbers","value":1}],"objName":"Ops.Gl.RenderGeometry_v2"},{"id":"u2xal6b27","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"render","portOut":"Trigger out","objIn":"1u49ak691","objOut":"u2xal6b27"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"m56qbr4ki","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"bool 1","portOut":"Result","objIn":"2td6endox","objOut":"m56qbr4ki"}]}],"objName":"Ops.Boolean.Not"},{"id":"zy3ewhgid","uiAttribs":{},"portsIn":[{"name":"easing index","value":8},{"name":"easing","value":"Expo Out"},{"name":"duration","value":2},{"name":"Direction index","value":0},{"name":"Direction","value":"Both"},{"name":"value false","value":0},{"name":"value true","value":180}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"iaywmhxb7","objOut":"zy3ewhgid"}]},{"name":"value","links":[{"portIn":"Rotation Y","portOut":"value","objIn":"ee0okj3wi","objOut":"zy3ewhgid"}]},{"name":"finished","value":1}],"objName":"Ops.Anim.BoolAnim"},{"id":"14rplnqfv","uiAttribs":{},"portsIn":[{"name":"value","value":0.3}],"portsOut":[{"name":"result","links":[{"portIn":"Scale X","portOut":"result","objIn":"ee0okj3wi","objOut":"14rplnqfv"},{"portIn":"Scale Y","portOut":"result","objIn":"ee0okj3wi","objOut":"14rplnqfv"},{"portIn":"Scale Z","portOut":"result","objIn":"ee0okj3wi","objOut":"14rplnqfv"}]}],"objName":"Ops.Number.Number"},{"id":"xlw1du0hx","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__directionHover"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"zte2jkdci","uiAttribs":{},"portsIn":[{"name":"Duration","value":0.1},{"name":"Invert","value":0}],"portsOut":[{"name":"Trigger Out","links":[{"portIn":"exe","portOut":"Trigger Out","objIn":"zy3ewhgid","objOut":"zte2jkdci"}]},{"name":"Value","links":[{"portIn":"bool 2","portOut":"Value","objIn":"2td6endox","objOut":"zte2jkdci"}]}],"objName":"Ops.Anim.Bang"},{"id":"2td6endox","uiAttribs":{},"portsIn":[{"name":"bool 3","value":0},{"name":"bool 4","value":0},{"name":"bool 5","value":0},{"name":"bool 6","value":0},{"name":"bool 7","value":0},{"name":"bool 8","value":0},{"name":"bool 9","value":0},{"name":"bool 10","value":0}],"portsOut":[{"name":"result","links":[{"portIn":"Pass Through","portOut":"result","objIn":"u2xal6b27","objOut":"2td6endox"}]}],"objName":"Ops.Boolean.Or"},{"id":"3cv6rdwm5","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"mainExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Exec","portOut":"Triggered","objIn":"litlcklxl","objOut":"3cv6rdwm5"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"litlcklxl","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Bang","portOut":"Next","objIn":"zte2jkdci","objOut":"litlcklxl"}]},{"name":"Was Triggered","value":1}],"objName":"Ops.Trigger.TriggerOnce"},{"id":"5jrf5b006","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"blls2amps","title":"Trigger in"},{"name":"btagbs7z2","title":"Class"},{"name":"lj06d561p","value":0,"title":"Show Boundings"},{"name":"patchId","value":"bp2sub_5jrf5b006"}],"portsOut":[{"name":"nti406vwi","title":"Result","links":[{"portIn":"A","portOut":"nti406vwi","objIn":"bwbixjrcv","objOut":"5jrf5b006"}]},{"name":"gjvx0zyv5","title":"value","links":[{"portIn":"number1","portOut":"gjvx0zyv5","objIn":"kvx1qrhxt","objOut":"5jrf5b006"}]}],"objName":"Ops.Patch.PD8qfbm.BasicSlider_v2"},{"id":"827hbx7y7","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"blls2amps","title":"Trigger in"},{"name":"btagbs7z2","title":"Class"},{"name":"lj06d561p","value":0,"title":"Show Boundings"},{"name":"patchId","value":"bp2sub_827hbx7y7"}],"portsOut":[{"name":"nti406vwi","title":"Result","links":[{"portIn":"A","portOut":"nti406vwi","objIn":"6e04u3uk4","objOut":"827hbx7y7"}]},{"name":"gjvx0zyv5","title":"value","links":[{"portIn":"number1","portOut":"gjvx0zyv5","objIn":"xagcljatm","objOut":"827hbx7y7"}]}],"objName":"Ops.Patch.PD8qfbm.BasicSlider_v1"},{"id":"hvxfadyo3","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"render","portOut":"Triggered","objIn":"vr3j7sk4c","objOut":"hvxfadyo3"},{"portIn":"render","portOut":"Triggered","objIn":"zcqvrg63v","objOut":"hvxfadyo3"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"vr3j7sk4c","uiAttribs":{},"portsIn":[{"name":"posX","value":0.95},{"name":"posY","value":0.89},{"name":"posZ","value":0},{"name":"scale","value":1},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"akq5o2oet","objOut":"vr3j7sk4c"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"akq5o2oet","uiAttribs":{},"portsIn":[{"name":"Text","value":"* structure"},{"name":"Font","value":"chivo"},{"name":"Scale","value":0.14},{"name":"Letter Spacing","value":0},{"name":"Line Height","value":1},{"name":"Align index","value":0},{"name":"Align","value":"Left"},{"name":"Vertical Align index","value":1},{"name":"Vertical Align","value":"Top"},{"name":"r","value":0.75},{"name":"g","value":0.75},{"name":"b","value":0.75},{"name":"a","value":1},{"name":"SDF","value":1},{"name":"Smoothing","value":0.048},{"name":"Border","value":0},{"name":"Border Width","value":0.5},{"name":"Smoothness","value":0.25},{"name":"Border r","value":1},{"name":"Border g","value":1},{"name":"Border b","value":1},{"name":"Shadow","value":1},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"utt0283xl","objOut":"akq5o2oet"},{"portIn":"Update","portOut":"Next","objIn":"lmzv6xxhp","objOut":"akq5o2oet"}]},{"name":"Num Lines","value":1},{"name":"Width","value":0.3912562500000001},{"name":"Height","value":0.08395160984848485},{"name":"Start Y","value":0.04530710227272727},{"name":"Num Chars","value":11}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"l01dmydzd","uiAttribs":{},"portsIn":[{"name":"Font","value":"chivo"},{"name":"Letter Spacing","value":0},{"name":"Line Height","value":1},{"name":"Align index","value":0},{"name":"Align","value":"Left"},{"name":"Vertical Align index","value":1},{"name":"Vertical Align","value":"Top"},{"name":"SDF","value":1},{"name":"Smoothing","value":0.096},{"name":"Border","value":0},{"name":"Border Width","value":0.5},{"name":"Smoothness","value":0.25},{"name":"Border r","value":1},{"name":"Border g","value":1},{"name":"Border b","value":1},{"name":"Shadow","value":1},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"d394u2tn6","objOut":"l01dmydzd"}]},{"name":"Num Lines","value":1},{"name":"Width","value":0.350728125},{"name":"Height","value":0.10977807765151512},{"name":"Start Y","value":0.05899446022727271},{"name":"Num Chars","value":7}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"utt0283xl","uiAttribs":{},"portsIn":[{"name":"x","value":0.43},{"name":"y","value":0},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"l01dmydzd","objOut":"utt0283xl"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"qt0hony1d","uiAttribs":{},"portsIn":[{"name":"Width","value":0.56},{"name":"Height","value":0.12},{"name":"ID","value":"slider_structure"},{"name":"Class","value":""},{"name":"Pivot x index","value":0},{"name":"Pivot x","value":"center"},{"name":"Pivot y index","value":0},{"name":"Pivot y","value":"center"},{"name":"Axis index","value":0},{"name":"Axis","value":"xy"},{"name":"Is Interactive","value":1},{"name":"Render Rectangle","value":0},{"name":"Show Boundings","value":0},{"name":"Cursor index","value":2},{"name":"Cursor","value":"pointer"},{"name":"Render","value":1,"title":"Active"}],"portsOut":[{"name":"Trigger out","links":[{"portIn":"update","portOut":"Trigger out","objIn":"zarq8c2tv","objOut":"qt0hony1d"},{"portIn":"exe","portOut":"Trigger out","objIn":"b4bc3876u","objOut":"qt0hony1d"}]},{"name":"Pointer Hover","links":[{"portIn":"bool","portOut":"Pointer Hover","objIn":"b4bc3876u","objOut":"qt0hony1d"}]},{"name":"Pointer Down","value":0},{"name":"Pointer X","value":0.5822848957476648},{"name":"Pointer Y","value":0},{"name":"Top","value":53.763978481292725},{"name":"Left","value":910.1710893511772},{"name":"Right","value":1091.8681156039238},{"name":"Bottom","value":92.69907259941101},{"name":"Left Click","links":[{"portIn":"Bang","portOut":"Left Click","objIn":"zarq8c2tv","objOut":"qt0hony1d"},{"portIn":"trigger in","portOut":"Left Click","objIn":"giylicm3u","objOut":"qt0hony1d"}]}],"objName":"Ops.Gl.InteractiveRectangle_v2"},{"id":"zcqvrg63v","uiAttribs":{},"portsIn":[{"name":"x","value":1.35},{"name":"y","value":0.89},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger in","portOut":"trigger","objIn":"qt0hony1d","objOut":"zcqvrg63v"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"zarq8c2tv","uiAttribs":{},"portsIn":[{"name":"Duration","value":0.5},{"name":"Invert","value":0}],"portsOut":[{"name":"Value","links":[{"portIn":"Random Seed ","portOut":"Value","objIn":"dssq1axq2","objOut":"zarq8c2tv"},{"portIn":"number1","portOut":"Value","objIn":"tusq6xfh3","objOut":"zarq8c2tv"}]}],"objName":"Ops.Anim.Bang"},{"id":"giylicm3u","uiAttribs":{},"portsIn":[{"name":"Loop min","value":0},{"name":"Loop max","value":15}],"portsOut":[{"name":"current count","links":[{"portIn":"number1","portOut":"current count","objIn":"55jf7ng6g","objOut":"giylicm3u"}]}],"objName":"Ops.Trigger.TriggerCounterLoop"},{"id":"djbr6tym4","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"Text","portOut":"result","objIn":"l01dmydzd","objOut":"djbr6tym4"}]}],"objName":"Ops.Array.ArrayGetString"},{"id":"pnzzc7ulm","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_structure"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"26j6rhozk","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_structure"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"lmzv6xxhp","objOut":"26j6rhozk"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"iijz0ye9r","uiAttribs":{},"portsIn":[{"name":"text","value":"A035506\nA007604\nA227413\nA000040\nA052330\nA000607\nA01401\nA064356\nA096441\nA000009\nA199535\nA000010\nA316667\nA111133\nA000124\nA005132"},{"name":"separator","value":" "},{"name":"Numbers","value":0},{"name":"Trim","value":1},{"name":"Split Lines","value":1}],"portsOut":[{"name":"array","links":[{"portIn":"array","portOut":"array","objIn":"djbr6tym4","objOut":"iijz0ye9r"}]},{"name":"length","value":16}],"objName":"Ops.Array.StringToArray_v2"},{"id":"d394u2tn6","uiAttribs":{},"portsIn":[{"name":"x","value":0.14},{"name":"y","value":-0.04},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"hm7bbicrb","objOut":"d394u2tn6"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"b4bc3876u","uiAttribs":{},"portsIn":[{"name":"easing index","value":0},{"name":"easing","value":"linear"},{"name":"duration","value":0.125},{"name":"Direction index","value":0},{"name":"Direction","value":"Both"},{"name":"value false","value":0},{"name":"value true","value":1}],"portsOut":[{"name":"value","links":[{"portIn":"value","portOut":"value","objIn":"l88qnkqyk","objOut":"b4bc3876u"}]},{"name":"finished","value":1}],"objName":"Ops.Anim.BoolAnim"},{"id":"hm7bbicrb","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":0.99},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":1},{"name":"num rows","value":1}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"dssq1axq2","uiAttribs":{},"portsIn":[{"name":"Num Values","value":15},{"name":"Mode index","value":0},{"name":"Mode","value":"A"},{"name":"Integer","value":0},{"name":"Last == First","value":0},{"name":"Min A","value":0},{"name":"Min B","value":-1},{"name":"Max B","value":1},{"name":"Min C","value":-1},{"name":"Max C","value":1},{"name":"Min D","value":-1},{"name":"Max D","value":1}],"portsOut":[{"name":"Array Out","links":[{"portIn":"Rotations","portOut":"Array Out","objIn":"l01dmydzd","objOut":"dssq1axq2"}]},{"name":"Chunks Amount","value":15},{"name":"Array length","value":15}],"objName":"Ops.Array.RandomNumbersArray_v4"},{"id":"tusq6xfh3","uiAttribs":{},"portsIn":[{"name":"number2","value":0.0001}],"portsOut":[{"name":"result","links":[{"portIn":"number1","portOut":"result","objIn":"q51297pyv","objOut":"tusq6xfh3"}]}],"objName":"Ops.Math.Compare.GreaterThan"},{"id":"q51297pyv","uiAttribs":{},"portsIn":[{"name":"number2","value":360}],"portsOut":[{"name":"result","links":[{"portIn":"Max A","portOut":"result","objIn":"dssq1axq2","objOut":"q51297pyv"}]}],"objName":"Ops.Math.Multiply"},{"id":"fm66pbek9","uiAttribs":{},"portsIn":[{"name":"Title","value":"structure"}],"objName":"Ops.Ui.Area"},{"id":"nme067fl0","uiAttribs":{},"portsIn":[{"name":"number2","value":90}],"portsOut":[{"name":"result","links":[{"portIn":"Rotate","portOut":"result","objIn":"1qwtcdiny","objOut":"nme067fl0"}]}],"objName":"Ops.Math.Multiply"},{"id":"55gbye0uh","uiAttribs":{},"portsIn":[{"name":"number2","value":4},{"name":"pingpong","value":0}],"portsOut":[{"name":"result","links":[{"portIn":"Waveform index","portOut":"result","objIn":"1qwtcdiny","objOut":"55gbye0uh"}]}],"objName":"Ops.Math.Modulo"},{"id":"qfhia7ec3","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_structure"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"nme067fl0","objOut":"qfhia7ec3"},{"portIn":"number1","portOut":"Value","objIn":"55gbye0uh","objOut":"qfhia7ec3"},{"portIn":"Offset X","portOut":"Value","objIn":"1qwtcdiny","objOut":"qfhia7ec3"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"p8itm86lw","uiAttribs":{},"portsIn":[{"name":"posX","value":-1.71},{"name":"posY","value":-0.56},{"name":"posZ","value":0},{"name":"scale","value":1.29},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"djh55ojh2","objOut":"p8itm86lw"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"ud198sc5z","uiAttribs":{},"portsOut":[{"name":"Geometry Result","links":[{"portIn":"Geometry","portOut":"Geometry Result","objIn":"djh55ojh2","objOut":"ud198sc5z"}]}],"objName":"Ops.Graphics.GeometryMergeSimple"},{"id":"djh55ojh2","uiAttribs":{},"portsIn":[{"name":"Render Mesh","value":1},{"name":"Add Vertex Numbers","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"di9yoxov9","objOut":"djh55ojh2"},{"portIn":"Render","portOut":"trigger","objIn":"eerqtlpnp","objOut":"djh55ojh2"}]}],"objName":"Ops.Gl.RenderGeometry_v2"},{"id":"absd3d4hb","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__heightMapGeometry"}],"portsOut":[{"name":"Value","links":[{"portIn":"Geometry 2","portOut":"Value","objIn":"ud198sc5z","objOut":"absd3d4hb"}]}],"objName":"Ops.Vars.VarGetObject_v2"},{"id":"vi3ol2srw","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.35},{"name":"Value 2","value":0.6}],"portsOut":[{"name":"Result","links":[{"portIn":"Amount","portOut":"Result","objIn":"tgeyutq71","objOut":"vi3ol2srw"}]}],"objName":"Ops.Math.Interpolate"},{"id":"5rr738syp","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLevel"}],"portsOut":[{"name":"Value","links":[{"portIn":"Percentage","portOut":"Value","objIn":"vi3ol2srw","objOut":"5rr738syp"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"cdrv5rrjk","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"number1","portOut":"Result","objIn":"jax75maya","objOut":"cdrv5rrjk"}]}],"objName":"Ops.Math.OneMinus"},{"id":"tj2cnloqq","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__lensFlareTexts"}],"objName":"Ops.Vars.VarGetTexture_v2"},{"id":"5dbgajlcv","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLength"}],"portsOut":[{"name":"Value","links":[{"portIn":"r","portOut":"Value","objIn":"1qwtcdiny","objOut":"5dbgajlcv"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"grj3uhv6e","uiAttribs":{},"portsIn":[{"name":"number2","value":0.25}],"portsOut":[{"name":"result","links":[{"portIn":"Line Glow","portOut":"result","objIn":"1qwtcdiny","objOut":"grj3uhv6e"}]}],"objName":"Ops.Math.Multiply"},{"id":"yaju7ahmk","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_diffusion"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"grj3uhv6e","objOut":"yaju7ahmk"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"1qwtcdiny","uiAttribs":{},"portsIn":[{"name":"Blend Mode index","value":18},{"name":"Blend Mode","value":"Math Add"},{"name":"Amount","value":1},{"name":"Alpha Mask index","value":0},{"name":"Alpha Mask","value":"Off"},{"name":"Waveform","value":"Sine"},{"name":"Amplitude","value":0.318},{"name":"Frequency","value":1.83},{"name":"Line Width","value":0},{"name":"invert color","value":0},{"name":"Solid fill","value":0},{"name":"Offset Y","value":0.5},{"name":"g","value":0.897},{"name":"b","value":1}],"objName":"Ops.Gl.ImageCompose.Waveform_v3"},{"id":"pu5boj419","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":6.22},{"name":"height","value":1.18},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":1},{"name":"num rows","value":1}],"portsOut":[{"name":"trigger","title":"Next","links":[{"portIn":"render","portOut":"trigger","objIn":"p8itm86lw","objOut":"pu5boj419"}]},{"name":"geometry","links":[{"portIn":"Geometry","portOut":"geometry","objIn":"ud198sc5z","objOut":"pu5boj419"}]}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"6t34impxr","uiAttribs":{},"portsIn":[{"name":"x","value":1.16},{"name":"y","value":2.05},{"name":"z","value":1.59}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"pvmeev0jc","objOut":"6t34impxr"}]}],"objName":"Ops.Gl.Matrix.ScaleXYZViewMatrix"},{"id":"pvmeev0jc","uiAttribs":{},"portsIn":[{"name":"posX","value":0},{"name":"posY","value":0.2},{"name":"posZ","value":-1.01},{"name":"scale","value":1},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"pu5boj419","objOut":"pvmeev0jc"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"a1dx328je","uiAttribs":{},"portsIn":[{"name":"g","value":0.8266594326686372},{"name":"b","value":0.047299581303328786},{"name":"colorizeTexture","value":0},{"name":"Vertex Colors","value":0},{"name":"Alpha Mask Source index","value":0},{"name":"Alpha Mask Source","value":"Luminance"},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":1},{"name":"diffuseRepeatX","value":1},{"name":"diffuseRepeatY","value":0.77},{"name":"Tex Offset X","value":0},{"name":"Tex Offset Y","value":0},{"name":"Crop TexCoords","value":0},{"name":"billboard","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"6t34impxr","objOut":"a1dx328je"}]}],"objName":"Ops.Gl.Shader.BasicMaterial_v3"},{"id":"o0tqxxwkq","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__lensFlareTexts"}],"objName":"Ops.Vars.VarSetTexture_v2"},{"id":"87k6oec5j","uiAttribs":{},"portsIn":[{"name":"Gradient","value":"{\"keys\":[{\"pos\":0,\"posy\":0.5,\"r\":0.5404276139068869,\"g\":0.08300776807282806,\"b\":0.7824477363187197},{\"pos\":0,\"posy\":0.5,\"r\":0.7867454383991321,\"g\":0.6452124438619704,\"b\":0.6648902767033156},{\"pos\":1,\"posy\":0.5,\"r\":0.8430269773998682,\"g\":0.336057564187761,\"b\":0.2409132404636578},{\"pos\":1,\"posy\":0.5,\"r\":0.19000391432119734,\"g\":0.9166871195855217,\"b\":0.47206933927734696}]}"},{"name":"Direction index","value":1},{"name":"Direction","value":"Y"},{"name":"Smoothstep","value":0},{"name":"Step","value":0},{"name":"Flip","value":0},{"name":"sRGB","value":0},{"name":"Oklab","value":0},{"name":"Size","value":64},{"name":"filter index","value":1},{"name":"filter","value":"linear"},{"name":"wrap index","value":1},{"name":"wrap","value":"repeat"},{"name":"Gradient Array","value":0}],"portsOut":[{"name":"Texture","links":[{"portIn":"Diffuse Texture","portOut":"Texture","objIn":"3so3f33cf","objOut":"87k6oec5j"}]}],"objName":"Ops.Gl.GradientTexture"},{"id":"di9yoxov9","uiAttribs":{},"portsIn":[{"name":"Size index","value":0},{"name":"Size","value":"Auto"},{"name":"Width","value":640},{"name":"Height","value":480},{"name":"Filter index","value":1},{"name":"Filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"R","value":0},{"name":"G","value":0},{"name":"B","value":0},{"name":"A","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"1qwtcdiny","objOut":"di9yoxov9"}]},{"name":"texture_out","links":[{"portIn":"Texture 2","portOut":"texture_out","objIn":"jc2ggn9up","objOut":"di9yoxov9"}]},{"name":"Aspect Ratio","value":1.5552486187845305},{"name":"Texture Width","value":1126},{"name":"Texture Height","value":724}],"objName":"Ops.Gl.ImageCompose.ImageCompose_v4"},{"id":"9s6v7pnlp","uiAttribs":{},"portsIn":[{"name":"Size index","value":2},{"name":"Size","value":"Manual"},{"name":"Width","value":640},{"name":"Height","value":480},{"name":"Filter index","value":1},{"name":"Filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"R","value":0},{"name":"G","value":0},{"name":"B","value":0},{"name":"A","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"jc2ggn9up","objOut":"9s6v7pnlp"}]},{"name":"texture_out","links":[{"portIn":"Base Texture","portOut":"texture_out","objIn":"51ldwg650","objOut":"9s6v7pnlp"}]},{"name":"Aspect Ratio","value":1.3333333333333333},{"name":"Texture Width","value":640},{"name":"Texture Height","value":480}],"objName":"Ops.Gl.ImageCompose.ImageCompose_v4"},{"id":"51ldwg650","uiAttribs":{},"portsIn":[{"name":"Size index","value":2},{"name":"Size","value":"Manual"},{"name":"Width","value":512},{"name":"Height","value":512},{"name":"Filter index","value":1},{"name":"Filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"R","value":0},{"name":"G","value":0},{"name":"B","value":0},{"name":"A","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"bf9v1uys8","objOut":"51ldwg650"}]},{"name":"texture_out","links":[{"portIn":"texture","portOut":"texture_out","objIn":"a1dx328je","objOut":"51ldwg650"},{"portIn":"Value","portOut":"texture_out","objIn":"3hamtvj79","objOut":"51ldwg650"}]},{"name":"Aspect Ratio","value":1},{"name":"Texture Width","value":512},{"name":"Texture Height","value":512}],"objName":"Ops.Gl.ImageCompose.ImageCompose_v4"},{"id":"ui62hd3xv","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_diffusion"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"cdrv5rrjk","objOut":"ui62hd3xv"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"nf37ruj15","uiAttribs":{},"portsIn":[{"name":"min","value":-0.1},{"name":"max","value":0.7}],"portsOut":[{"name":"result","links":[{"portIn":"Fade","portOut":"result","objIn":"jc2ggn9up","objOut":"nf37ruj15"}]}],"objName":"Ops.Math.SmoothStep_v2"},{"id":"4bj7hjqvt","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_tone"}],"portsOut":[{"name":"Value","value":0.49981}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"9902kom8s","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_diffusion"}],"portsOut":[{"name":"Value","value":0.005}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"xeu596ai6","uiAttribs":{},"portsIn":[{"name":"Blend Mode index","value":18},{"name":"Blend Mode","value":"Math Add"},{"name":"Rotate","value":0.948},{"name":"Crop","value":1},{"name":"Clear","value":1}],"objName":"Ops.Gl.ImageCompose.RotateTexture_v2"},{"id":"3hamtvj79","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_finalTextOut"}],"objName":"Ops.Vars.VarSetTexture_v2"},{"id":"r0my206wt","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_structure"}],"portsOut":[{"name":"Value","value":0.9333333333333333}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"jax75maya","uiAttribs":{},"portsIn":[{"name":"number2","value":-200}],"portsOut":[{"name":"result","links":[{"portIn":"Stretch Left","portOut":"result","objIn":"tgeyutq71","objOut":"jax75maya"}]}],"objName":"Ops.Math.Multiply"},{"id":"tgeyutq71","uiAttribs":{},"portsIn":[{"name":"Blend Mode index","value":18},{"name":"Blend Mode","value":"Math Add"},{"name":"Clamp","value":0},{"name":"Stretch Top","value":1},{"name":"Stretch Bottom","value":1},{"name":"Stretch Right","value":-6}],"objName":"Ops.Gl.ImageCompose.SkewStretchImage_v2"},{"id":"jc2ggn9up","uiAttribs":{},"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"tgeyutq71","objOut":"jc2ggn9up"}]}],"objName":"Ops.Gl.ImageCompose.Mix"},{"id":"eerqtlpnp","uiAttribs":{},"portsIn":[{"name":"Size index","value":0},{"name":"Size","value":"Auto"},{"name":"Width","value":512},{"name":"Height","value":512},{"name":"Filter index","value":1},{"name":"Filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"R","value":0},{"name":"G","value":0},{"name":"B","value":0},{"name":"A","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"xeu596ai6","objOut":"eerqtlpnp"}]},{"name":"texture_out","links":[{"portIn":"Texture 1","portOut":"texture_out","objIn":"jc2ggn9up","objOut":"eerqtlpnp"},{"portIn":"Value","portOut":"texture_out","objIn":"o0tqxxwkq","objOut":"eerqtlpnp"}]},{"name":"Aspect Ratio","value":0.78515625},{"name":"Texture Width","value":402},{"name":"Texture Height","value":512}],"objName":"Ops.Gl.ImageCompose.ImageCompose_v4"},{"id":"7afkrw4hx","uiAttribs":{},"portsIn":[{"name":"Blend Mode index","value":1},{"name":"Blend Mode","value":"lighten"},{"name":"Amount","value":0.274},{"name":"Alpha Mask index","value":0},{"name":"Alpha Mask","value":"Off"},{"name":"Offset X","value":0},{"name":"Offset Y","value":12.85},{"name":"Zoom","value":800},{"name":"Iterations","value":25},{"name":"Seed","value":1},{"name":"Spot edge","value":0},{"name":"Gamma","value":0.88}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"lsqdg33wg","objOut":"7afkrw4hx"}]}],"objName":"Ops.Gl.ImageCompose.LensDirt_v2"},{"id":"a5ao9xvu0","uiAttribs":{},"portsIn":[{"name":"Text","value":"mix"},{"name":"Font","value":"chivo"},{"name":"Scale","value":0.14},{"name":"Letter Spacing","value":0.03},{"name":"Line Height","value":1},{"name":"Align index","value":2},{"name":"Align","value":"Right"},{"name":"Vertical Align index","value":1},{"name":"Vertical Align","value":"Top"},{"name":"r","value":0.848},{"name":"g","value":0.865},{"name":"b","value":0.878},{"name":"SDF","value":1},{"name":"Smoothing","value":0.085},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.12744375000000002},{"name":"Height","value":0.08211410984848484},{"name":"Start Y","value":0.04471647727272727},{"name":"Num Chars","value":3}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"xwjvzec0g","uiAttribs":{},"portsIn":[{"name":"x","value":-1.4},{"name":"y","value":-0.77},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"a5ao9xvu0","objOut":"xwjvzec0g"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"0cmu1ry52","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLevel"}],"portsOut":[{"name":"Value","links":[{"portIn":"Amount","portOut":"Value","objIn":"xeu596ai6","objOut":"0cmu1ry52"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"tbn2qgqn9","uiAttribs":{},"portsIn":[{"name":"Gradient","value":"{\"keys\":[{\"pos\":0,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0},{\"pos\":0,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0},{\"pos\":0.494140625,\"posy\":0.56,\"r\":1,\"g\":1,\"b\":1},{\"pos\":1,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0},{\"pos\":1,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0}]}"},{"name":"Direction index","value":2},{"name":"Direction","value":"XY"},{"name":"Smoothstep","value":0},{"name":"Step","value":0},{"name":"Flip","value":0},{"name":"sRGB","value":0},{"name":"Oklab","value":0},{"name":"Size","value":16},{"name":"filter index","value":0},{"name":"filter","value":"nearest"},{"name":"wrap index","value":0},{"name":"wrap","value":"clamp to edge"},{"name":"Gradient Array","value":0}],"objName":"Ops.Gl.GradientTexture"},{"id":"kjs0gomie","uiAttribs":{},"portsIn":[{"name":"Show Info","value":0},{"name":"Visualize outside 0-1 index","value":1},{"name":"Visualize outside 0-1","value":"Anim"},{"name":"Alpha index","value":0},{"name":"Alpha","value":"A"},{"name":"Show Color","value":0},{"name":"X","value":0.5},{"name":"Y","value":0.5}],"portsOut":[{"name":"Info","value":""}],"objName":"Ops.Ui.VizTexture"},{"id":"fvg1zz75v","uiAttribs":{},"portsIn":[{"name":"Size index","value":0},{"name":"Size","value":"Canvas"},{"name":"texture width","value":1126},{"name":"texture height","value":724},{"name":"Auto Aspect","value":1},{"name":"filter index","value":0},{"name":"filter","value":"nearest"},{"name":"Wrap index","value":0},{"name":"Wrap","value":"Clamp"},{"name":"MSAA index","value":0},{"name":"MSAA","value":"none"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"Depth","value":1},{"name":"Clear","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"n9u25c6ax","objOut":"fvg1zz75v"}]},{"name":"texture","links":[{"portIn":"Base Texture","portOut":"texture","objIn":"48vrkn65x","objOut":"fvg1zz75v"}]}],"objName":"Ops.Gl.RenderToTexture_v3"},{"id":"pxbd6eh63","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_tone"}],"portsOut":[{"name":"Value","links":[{"portIn":"Percentage","portOut":"Value","objIn":"uo6mpre8c","objOut":"pxbd6eh63"},{"portIn":"Value","portOut":"Value","objIn":"5ulr7vh4p","objOut":"pxbd6eh63"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"uo6mpre8c","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.43},{"name":"Value 2","value":1}],"portsOut":[{"name":"Result","links":[{"portIn":"a","portOut":"Result","objIn":"a1dx328je","objOut":"uo6mpre8c"},{"portIn":"r","portOut":"Result","objIn":"a1dx328je","objOut":"uo6mpre8c"}]}],"objName":"Ops.Math.Interpolate"},{"id":"bf9v1uys8","uiAttribs":{},"portsIn":[{"name":"Blend Mode index","value":19},{"name":"Blend Mode","value":"Math Subtract"},{"name":"Alpha Mask index","value":0},{"name":"Alpha Mask","value":"Off"},{"name":"Strength","value":1},{"name":"Radius","value":0.208},{"name":"Sharp","value":0.539},{"name":"Aspect","value":1},{"name":"r","value":0},{"name":"g","value":0},{"name":"b","value":0},{"name":"Alpha","value":0}],"portsOut":[{"name":"Trigger","links":[{"portIn":"render","portOut":"Trigger","objIn":"7afkrw4hx","objOut":"bf9v1uys8"}]}],"objName":"Ops.Gl.ImageCompose.Vignette_v3"},{"id":"5ulr7vh4p","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Amount","portOut":"Result","objIn":"bf9v1uys8","objOut":"5ulr7vh4p"}]}],"objName":"Ops.Math.OneMinus"},{"id":"lsqdg33wg","uiAttribs":{},"portsIn":[{"name":"Clamp","value":1},{"name":"direction index","value":2},{"name":"direction","value":"horizontal"},{"name":"Mask Invert","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"9s6v7pnlp","objOut":"lsqdg33wg"}]}],"objName":"Ops.Gl.ImageCompose.FastBlur_v2"},{"id":"fogdsmdt8","uiAttribs":{},"portsIn":[{"name":"Gradient","value":"{\"keys\":[{\"pos\":0,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0},{\"pos\":0,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0},{\"pos\":0.46875,\"posy\":0.51,\"r\":0.998046875,\"g\":0.998046875,\"b\":0.998046875},{\"pos\":1,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0},{\"pos\":1,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0}]}"},{"name":"Direction index","value":1},{"name":"Direction","value":"Y"},{"name":"Smoothstep","value":0},{"name":"Step","value":1},{"name":"Flip","value":0},{"name":"sRGB","value":0},{"name":"Oklab","value":0},{"name":"Size","value":16},{"name":"filter index","value":1},{"name":"filter","value":"linear"},{"name":"wrap index","value":0},{"name":"wrap","value":"clamp to edge"},{"name":"Gradient Array","value":0}],"portsOut":[{"name":"Texture","links":[{"portIn":"Mask","portOut":"Texture","objIn":"lsqdg33wg","objOut":"fogdsmdt8"}]}],"objName":"Ops.Gl.GradientTexture"},{"id":"v9g4w5w8m","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLevel"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"qhu04l7zy","objOut":"v9g4w5w8m"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"qhu04l7zy","uiAttribs":{},"portsIn":[{"name":"number2","value":4}],"portsOut":[{"name":"result","links":[{"portIn":"Passes","portOut":"result","objIn":"lsqdg33wg","objOut":"qhu04l7zy"}]}],"objName":"Ops.Math.Multiply"},{"id":"8jbyekrb8","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"render","portOut":"Triggered","objIn":"xwjvzec0g","objOut":"8jbyekrb8"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"qkhcjgu05","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"a","portOut":"result","objIn":"a5ao9xvu0","objOut":"qkhcjgu05"},{"portIn":"number1","portOut":"result","objIn":"jq7ifli9z","objOut":"qkhcjgu05"}]}],"objName":"Ops.Ui.Routing.RouteNumber"},{"id":"gji70mzgw","uiAttribs":{},"portsIn":[{"name":"Text","value":"direction"},{"name":"Font","value":"chivo"},{"name":"Scale","value":0.13},{"name":"Letter Spacing","value":0},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":2},{"name":"Vertical Align","value":"Middle"},{"name":"r","value":1},{"name":"g","value":1},{"name":"b","value":1},{"name":"SDF","value":1},{"name":"Smoothing","value":0.154},{"name":"Border","value":0},{"name":"Border Width","value":0.085},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0.107},{"name":"Border b","value":0.196},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.299609375},{"name":"Height","value":0.07641131628787877},{"name":"Start Y","value":0.039290222537878776},{"name":"Num Chars","value":9}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"fzsniu9pe","uiAttribs":{},"portsIn":[{"name":"posX","value":-0.02},{"name":"posY","value":-0.19},{"name":"posZ","value":0},{"name":"scale","value":1.12},{"name":"rotX","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"gji70mzgw","objOut":"fzsniu9pe"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"pmu87q3eb","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.8},{"name":"Value 2","value":-1}],"portsOut":[{"name":"Result","links":[{"portIn":"innerRadius","portOut":"Result","objIn":"1u49ak691","objOut":"pmu87q3eb"}]}],"objName":"Ops.Math.Interpolate"},{"id":"z3e9usn2r","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0},{"name":"Value 2","value":180}],"portsOut":[{"name":"Result","links":[{"portIn":"rotY","portOut":"Result","objIn":"fzsniu9pe","objOut":"z3e9usn2r"}]}],"objName":"Ops.Math.Interpolate"},{"id":"bxhz7tp4k","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"blls2amps","title":"Trigger in"},{"name":"btagbs7z2","title":"Class"},{"name":"lj06d561p","value":0,"title":"Show Boundings"},{"name":"patchId","value":"bp2sub_bxhz7tp4k"}],"portsOut":[{"name":"nti406vwi","title":"Result","links":[{"portIn":"A","portOut":"nti406vwi","objIn":"lfp3xq5lr","objOut":"bxhz7tp4k"}]},{"name":"gjvx0zyv5","title":"value","links":[{"portIn":"number1","portOut":"gjvx0zyv5","objIn":"8hgomlv38","objOut":"bxhz7tp4k"}]}],"objName":"Ops.Patch.PD8qfbm.BasicSlider_v3"},{"id":"i737pryvq","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"blls2amps","portOut":"Triggered","objIn":"bxhz7tp4k","objOut":"i737pryvq"},{"portIn":"render","portOut":"Triggered","objIn":"jr8ldk0r2","objOut":"i737pryvq"},{"portIn":"render","portOut":"Triggered","objIn":"dbxqt7lqg","objOut":"i737pryvq"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"elnq8ccfz","uiAttribs":{},"portsIn":[{"name":"value","value":"slider_position"}],"portsOut":[{"name":"String","links":[{"portIn":"btagbs7z2","portOut":"String","objIn":"bxhz7tp4k","objOut":"elnq8ccfz"}]}],"objName":"Ops.String.String_v2"},{"id":"f0m25q0un","uiAttribs":{},"portsIn":[{"name":"Text","value":"position"},{"name":"Font","value":"chivo"},{"name":"Scale","value":0.12},{"name":"Letter Spacing","value":-0.02},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":2},{"name":"Vertical Align","value":"Middle"},{"name":"r","value":0.75},{"name":"g","value":0.75},{"name":"b","value":0.75},{"name":"SDF","value":1},{"name":"Smoothing","value":0.108},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.2261625},{"name":"Height","value":0.07773352272727271},{"name":"Start Y","value":0.03986789772727272},{"name":"Num Chars","value":8}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"jr8ldk0r2","uiAttribs":{},"portsIn":[{"name":"x","value":1.135},{"name":"y","value":0.76},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"f0m25q0un","objOut":"jr8ldk0r2"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"gpudotn6t","uiAttribs":{},"portsIn":[{"name":"Title","value":"position"}],"objName":"Ops.Ui.Area"},{"id":"8hgomlv38","uiAttribs":{},"portsIn":[{"name":"number2","value":0.33}],"portsOut":[{"name":"result","links":[{"portIn":"a","portOut":"result","objIn":"f0m25q0un","objOut":"8hgomlv38"}]}],"objName":"Ops.Math.Sum"},{"id":"8dujs7k4z","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_position"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"lfp3xq5lr","uiAttribs":{},"portsIn":[{"name":"B","value":1},{"name":"C","value":2},{"name":"D","value":3},{"name":"Expression","value":"a + 0.5"}],"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"8dujs7k4z","objOut":"lfp3xq5lr"}]},{"name":"Expression Valid","value":true}],"objName":"Ops.Math.MathExpression"},{"id":"ovge16avj","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":0.98},{"name":"height","value":0.08},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":2},{"name":"num rows","value":3}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"dbxqt7lqg","uiAttribs":{},"portsIn":[{"name":"x","value":1.52},{"name":"y","value":0.66},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"nubb2t6qu","objOut":"dbxqt7lqg"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"nubb2t6qu","uiAttribs":{},"portsIn":[{"name":"PointSize","value":3},{"name":"Size in Pixels","value":1},{"name":"Random Size","value":0},{"name":"Round","value":1},{"name":"Round Antialias","value":0},{"name":"Scale by Distance","value":0},{"name":"r","value":0.772},{"name":"g","value":0.15106840238933295},{"name":"b","value":0.4207414807217118},{"name":"a","value":1},{"name":"Vertex Colors","value":0},{"name":"Colorize Texture","value":0},{"name":"Mask Channel index","value":0},{"name":"Mask Channel","value":"R"},{"name":"Colorize Randomize","value":0},{"name":"Point Size Channel index","value":0},{"name":"Point Size Channel","value":"R"},{"name":"Texture Point Size Mul","value":1},{"name":"Map Size 0 index","value":0},{"name":"Map Size 0","value":"Black"},{"name":"Flip Texture","value":0},{"name":"Atlas Cross Fade","value":0},{"name":"Atlas Repeat X ","value":1},{"name":"Min Point Size","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"ovge16avj","objOut":"nubb2t6qu"}]}],"objName":"Ops.Gl.Shader.PointMaterial_v5"},{"id":"359tlq06f","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.003},{"name":"Value 2","value":0.01}],"portsOut":[{"name":"Result","links":[{"portIn":"height","portOut":"Result","objIn":"hm7bbicrb","objOut":"359tlq06f"}]}],"objName":"Ops.Math.Interpolate"},{"id":"li57o4rn2","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.8},{"name":"Value 2","value":1}],"portsOut":[{"name":"Result","links":[{"portIn":"a","portOut":"Result","objIn":"l01dmydzd","objOut":"li57o4rn2"},{"portIn":"g","portOut":"Result","objIn":"l01dmydzd","objOut":"li57o4rn2"},{"portIn":"b","portOut":"Result","objIn":"l01dmydzd","objOut":"li57o4rn2"},{"portIn":"r","portOut":"Result","objIn":"l01dmydzd","objOut":"li57o4rn2"}]}],"objName":"Ops.Math.Interpolate"},{"id":"p2z4x8iu5","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.19},{"name":"Value 2","value":0.23}],"portsOut":[{"name":"Result","links":[{"portIn":"Scale","portOut":"Result","objIn":"l01dmydzd","objOut":"p2z4x8iu5"}]}],"objName":"Ops.Math.Interpolate"},{"id":"l88qnkqyk","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"Percentage","portOut":"result","objIn":"li57o4rn2","objOut":"l88qnkqyk"},{"portIn":"Percentage","portOut":"result","objIn":"p2z4x8iu5","objOut":"l88qnkqyk"},{"portIn":"Percentage","portOut":"result","objIn":"359tlq06f","objOut":"l88qnkqyk"}]}],"objName":"Ops.Ui.Routing.RouteNumber"},{"id":"b8j12x3gl","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":2.74},{"name":"height","value":0.03},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":9},{"name":"num rows","value":3}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"6pwy0s5dx","uiAttribs":{},"portsIn":[{"name":"PointSize","value":1.27},{"name":"Size in Pixels","value":0},{"name":"Random Size","value":0},{"name":"Round","value":0},{"name":"Round Antialias","value":0},{"name":"Scale by Distance","value":0},{"name":"r","value":0.772},{"name":"g","value":0.15106840238933295},{"name":"b","value":0.4207414807217118},{"name":"Vertex Colors","value":0},{"name":"Colorize Texture","value":1},{"name":"Mask Channel index","value":0},{"name":"Mask Channel","value":"R"},{"name":"Colorize Randomize","value":0},{"name":"Point Size Channel index","value":0},{"name":"Point Size Channel","value":"R"},{"name":"Texture Point Size Mul","value":1},{"name":"Map Size 0 index","value":0},{"name":"Map Size 0","value":"Black"},{"name":"Flip Texture","value":0},{"name":"Atlas Cross Fade","value":0},{"name":"Atlas Repeat X ","value":1},{"name":"Min Point Size","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"b8j12x3gl","objOut":"6pwy0s5dx"}]}],"objName":"Ops.Gl.Shader.PointMaterial_v5"},{"id":"cdqihefdh","uiAttribs":{},"portsIn":[{"name":"x","value":0},{"name":"y","value":-0.77},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"6pwy0s5dx","objOut":"cdqihefdh"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"kzr5ui0jv","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_structure"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"tpi422xya","objOut":"kzr5ui0jv"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"tpi422xya","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Randomize Colors","portOut":"Next","objIn":"87k6oec5j","objOut":"tpi422xya"}]},{"name":"Number","value":0.9333333333333333}],"objName":"Ops.Number.TriggerOnChangeNumber"},{"id":"55jf7ng6g","uiAttribs":{},"portsIn":[{"name":"number2","value":15}],"portsOut":[{"name":"result","links":[{"portIn":"Value","portOut":"result","objIn":"pnzzc7ulm","objOut":"55jf7ng6g"}]}],"objName":"Ops.Math.Divide"},{"id":"huqpajdbd","uiAttribs":{},"portsIn":[{"name":"number2","value":15}],"portsOut":[{"name":"result","links":[{"portIn":"number","portOut":"result","objIn":"y5csdqm5k","objOut":"huqpajdbd"}]}],"objName":"Ops.Math.Multiply"},{"id":"y5csdqm5k","uiAttribs":{},"portsIn":[{"name":"Decimal Places","value":0}],"portsOut":[{"name":"result","links":[{"portIn":"index","portOut":"result","objIn":"djbr6tym4","objOut":"y5csdqm5k"}]}],"objName":"Ops.Math.Round"},{"id":"lmzv6xxhp","uiAttribs":{},"portsIn":[{"name":"Delay","value":0.1},{"name":"Clear on Change","value":0},{"name":"easing index","value":1},{"name":"easing","value":"absolute"}],"portsOut":[{"name":"Result","links":[{"portIn":"number1","portOut":"Result","objIn":"huqpajdbd","objOut":"lmzv6xxhp"}]}],"objName":"Ops.Number.DelayedNumber"},{"id":"l4gff2c89","uiAttribs":{},"portsIn":[{"name":"key code","value":49},{"name":"canvas only","value":1},{"name":"Mod Key index","value":0},{"name":"Mod Key","value":"none"},{"name":"Enabled","value":1},{"name":"Prevent Default","value":0}],"portsOut":[{"name":"on press","links":[{"portIn":"trigger","portOut":"on press","objIn":"st9zrhm6y","objOut":"l4gff2c89"}]},{"name":"Pressed","links":[{"portIn":"Default","portOut":"Pressed","objIn":"st9zrhm6y","objOut":"l4gff2c89"}]},{"name":"Key","value":"1"}],"objName":"Ops.Devices.Keyboard.KeyPressLearn"},{"id":"st9zrhm6y","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"visible","portOut":"result","objIn":"ick4g333d","objOut":"st9zrhm6y"}]}],"objName":"Ops.Boolean.ToggleBool_v2"},{"id":"ick4g333d","uiAttribs":{},"objName":"Ops.Patch.PD8qfbm.Console_v2"},{"id":"n19jursgo","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeDirection"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"rucgc73bp","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"patchId","value":"bp2sub_rucgc73bp"}],"portsOut":[{"name":"pmu87y53p","title":"result","links":[{"portIn":"Use Value 1","portOut":"pmu87y53p","objIn":"6lh7g16he","objOut":"rucgc73bp"}]},{"name":"1u3pcbd78","value":0,"title":"Number"}],"objName":"Ops.Patch.PD8qfbm.TriggerOnReverseButton_v2"},{"id":"sx7uf9s5r","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"patchId","value":"bp2sub_sx7uf9s5r"}],"portsOut":[{"name":"pmu87y53p","title":"result","links":[{"portIn":"bool","portOut":"pmu87y53p","objIn":"zy3ewhgid","objOut":"sx7uf9s5r"},{"portIn":"Percentage","portOut":"pmu87y53p","objIn":"z3e9usn2r","objOut":"sx7uf9s5r"},{"portIn":"Value","portOut":"pmu87y53p","objIn":"n19jursgo","objOut":"sx7uf9s5r"}]},{"name":"1u3pcbd78","value":0,"title":"Number"}],"objName":"Ops.Patch.PD8qfbm.TriggerOnReverseButton_v2"},{"id":"5cer7j6fh","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"patchId","value":"bp2sub_5cer7j6fh"}],"portsOut":[{"name":"pmu87y53p","value":0,"title":"result"},{"name":"1u3pcbd78","value":0,"title":"Number"}],"objName":"Ops.Patch.PD8qfbm.TriggerOnReverseButton_v2"},{"id":"l8bvvana0","uiAttribs":{},"portsIn":[{"name":"posX","value":-1.64},{"name":"posY","value":-0.65},{"name":"posZ","value":0},{"name":"scale","value":1},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":90}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"nptv5gu82","objOut":"l8bvvana0"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"jq7ifli9z","uiAttribs":{},"portsIn":[{"name":"number2","value":2}],"portsOut":[{"name":"result","links":[{"portIn":"a","portOut":"result","objIn":"6pwy0s5dx","objOut":"jq7ifli9z"}]}],"objName":"Ops.Math.Divide"},{"id":"rmigep014","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":2.7},{"name":"height","value":0.03},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":9},{"name":"num rows","value":3}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"s3jjxy67k","uiAttribs":{},"portsIn":[{"name":"PointSize","value":1.27},{"name":"Size in Pixels","value":0},{"name":"Random Size","value":0},{"name":"Round","value":0},{"name":"Round Antialias","value":0},{"name":"Scale by Distance","value":0},{"name":"r","value":0.772},{"name":"g","value":0.15106840238933295},{"name":"b","value":0.4207414807217118},{"name":"Vertex Colors","value":0},{"name":"Colorize Texture","value":1},{"name":"Mask Channel index","value":0},{"name":"Mask Channel","value":"R"},{"name":"Colorize Randomize","value":0},{"name":"Point Size Channel index","value":0},{"name":"Point Size Channel","value":"R"},{"name":"Texture Point Size Mul","value":1},{"name":"Map Size 0 index","value":0},{"name":"Map Size 0","value":"Black"},{"name":"Flip Texture","value":0},{"name":"Atlas Cross Fade","value":0},{"name":"Atlas Repeat X ","value":1},{"name":"Min Point Size","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"rmigep014","objOut":"s3jjxy67k"}]}],"objName":"Ops.Gl.Shader.PointMaterial_v5"},{"id":"ezv1vx872","uiAttribs":{},"portsIn":[{"name":"x","value":0},{"name":"y","value":-0.97},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"s3jjxy67k","objOut":"ezv1vx872"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"9cfc0k1rh","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"a","portOut":"result","objIn":"lsscrp8mo","objOut":"9cfc0k1rh"},{"portIn":"number1","portOut":"result","objIn":"brfy0oj40","objOut":"9cfc0k1rh"}]}],"objName":"Ops.Ui.Routing.RouteNumber"},{"id":"brfy0oj40","uiAttribs":{},"portsIn":[{"name":"number2","value":2}],"portsOut":[{"name":"result","links":[{"portIn":"a","portOut":"result","objIn":"s3jjxy67k","objOut":"brfy0oj40"}]}],"objName":"Ops.Math.Divide"}],"export":{"time":"2024-08-22 14:37","service":"download","exportNumber":4}};
-if(!CABLES.exportedPatch){CABLES.exportedPatch=CABLES.exportedPatches['D8qfbm']}
+if(!CABLES.exportedPatches) CABLES.exportedPatches={};CABLES.exportedPatches['uSSdim']={"_id":"66c8bba9b731425e29f47a4a","ops":[{"id":"zdo60lxbk","uiAttribs":{},"portsIn":[{"name":"FPS Limit","value":0},{"name":"Reduce FPS not focussed","value":1},{"name":"Reduce FPS loading","value":1},{"name":"Clear","value":1},{"name":"ClearAlpha","value":0},{"name":"Fullscreen Button","value":0},{"name":"Active","value":1},{"name":"Hires Displays","value":1},{"name":"Pixel Unit index","value":0},{"name":"Pixel Unit","value":"Display"}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"e0268dfa-e089-4f1f-966c-c30218792023","objOut":"zdo60lxbk"}]},{"name":"width","value":1534},{"name":"height","value":894}],"objName":"Ops.Gl.MainLoop"},{"id":"141502b6-2964-42b8-b273-c6d7f5bcf303","uiAttribs":{},"portsOut":[{"name":"trigger 0","links":[{"portIn":"Trigger","portOut":"trigger 0","objIn":"e0698285-4e6a-4339-a9ba-d9b3e441372c","objOut":"141502b6-2964-42b8-b273-c6d7f5bcf303"}]},{"name":"trigger 1","links":[{"portIn":"Increment","portOut":"trigger 1","objIn":"6hojoyomj","objOut":"141502b6-2964-42b8-b273-c6d7f5bcf303"}]},{"name":"trigger 5","links":[{"portIn":"in0 Cursor Update","portOut":"trigger 5","objIn":"cd9136e7-4c7b-4555-bf01-18381685410b","objOut":"141502b6-2964-42b8-b273-c6d7f5bcf303"}]},{"name":"trigger 8","links":[{"portIn":"Trigger","portOut":"trigger 8","objIn":"ch5u1xz0l","objOut":"141502b6-2964-42b8-b273-c6d7f5bcf303"}]},{"name":"trigger 9","links":[{"portIn":"Execute","portOut":"trigger 9","objIn":"ngzgotbds","objOut":"141502b6-2964-42b8-b273-c6d7f5bcf303"},{"portIn":"Execute","portOut":"trigger 9","objIn":"oefqiqdsy","objOut":"141502b6-2964-42b8-b273-c6d7f5bcf303"}]},{"name":"trigger 13","links":[{"portIn":"Trigger","portOut":"trigger 13","objIn":"afa40c7e-19f5-4546-911c-1e34c62f310b","objOut":"141502b6-2964-42b8-b273-c6d7f5bcf303"}]}],"objName":"Ops.Trigger.Sequence"},{"id":"4950e7c1-dcaf-47ac-9ca9-512013c4e9c9","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Coordinates index","value":0},{"name":"Coordinates","value":"-1 to 1"},{"name":"Area index","value":3},{"name":"Area","value":"Canvas Area"},{"name":"flip y","value":0},{"name":"right click prevent default","value":1},{"name":"Touch support","value":1},{"name":"Passive Events","value":0},{"name":"Active","value":1}],"portsOut":[{"name":"x","value":-1},{"name":"y","value":-0.29753914988814323},{"name":"click","links":[{"portIn":"Trigger","portOut":"click","objIn":"xz7qgpta6","objOut":"4950e7c1-dcaf-47ac-9ca9-512013c4e9c9"}]},{"name":"Button is down","value":0},{"name":"Mouse is hovering","links":[{"portIn":"Value","portOut":"Mouse is hovering","objIn":"d155f04b-ae78-473c-994b-81138389d0f0","objOut":"4950e7c1-dcaf-47ac-9ca9-512013c4e9c9"}]},{"name":"Movement X","value":0},{"name":"Movement Y","value":0.5}],"objName":"Ops.Devices.Mouse.Mouse_v3"},{"id":"d155f04b-ae78-473c-994b-81138389d0f0","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_mouseOver"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"dq71li66q","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Limit","value":1},{"name":"Min","value":0},{"name":"Max","value":1},{"name":"Rubberband","value":0}],"portsOut":[{"name":"Absolute Value","links":[{"portIn":"Value In","portOut":"Absolute Value","objIn":"csl3j7cy1","objOut":"dq71li66q"}]}],"objName":"Ops.Math.DeltaSum"},{"id":"9d85ffdc-685a-42ef-bd41-b501521a114c","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"create port","value":0}],"objName":"Ops.Ui.PatchInput"},{"id":"7bebb5f0-9d69-43ee-98be-27a13edd98db","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"create port","value":0},{"name":"out1 Ops.Devices.Mouse.Mouse_v3 x","value":0},{"name":"out2 Ops.Devices.Mouse.Mouse_v3 y","value":0},{"name":"out3 DeltaSum Absolute Value","value":0,"title":"DeltaX"}],"objName":"Ops.Ui.PatchOutput"},{"id":"cd9136e7-4c7b-4555-bf01-18381685410b","uiAttribs":{},"storage":{"subPatchVer":1},"portsIn":[{"name":"create port","value":0},{"name":"dataStr","value":"{\"ports\":[{\"name\":\"in0 Cursor Update\",\"type\":1}],\"portsOut\":[{\"name\":\"out0 DeltaSum Absolute Value\",\"type\":0},{\"name\":\"out1 Ops.Devices.Mouse.Mouse_v3 x\",\"type\":0},{\"name\":\"out2 Ops.Devices.Mouse.Mouse_v3 y\",\"type\":0},{\"name\":\"out3 DeltaSum Absolute Value\",\"type\":0,\"title\":\"DeltaX\"}]}"},{"name":"patchId","value":"66dae55a-8297-4120-81e2-d946cc6b2b60"}],"portsOut":[{"name":"create port out","value":0},{"name":"out0 DeltaSum Absolute Value","links":[{"portIn":"Value","portOut":"out0 DeltaSum Absolute Value","objIn":"9fsk0rgx7","objOut":"cd9136e7-4c7b-4555-bf01-18381685410b"}]},{"name":"out3 DeltaSum Absolute Value","title":"DeltaX"}],"objName":"Ops.Ui.SubPatch"},{"id":"c2a85325-d75f-4f01-9b5c-83a2edd8d35d","uiAttribs":{},"portsIn":[{"name":"posY","value":-0.18},{"name":"posZ","value":0},{"name":"scale","value":0.25},{"name":"rotX","value":0},{"name":"rotY","value":180},{"name":"rotZ","value":315.48}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"li365texv","objOut":"c2a85325-d75f-4f01-9b5c-83a2edd8d35d"},{"portIn":"render","portOut":"trigger","objIn":"uc9r4wu0r","objOut":"c2a85325-d75f-4f01-9b5c-83a2edd8d35d"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"e0268dfa-e089-4f1f-966c-c30218792023","uiAttribs":{},"portsIn":[{"name":"r","value":0},{"name":"g","value":0},{"name":"b","value":0},{"name":"a","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"te11ob7nw","objOut":"e0268dfa-e089-4f1f-966c-c30218792023"},{"portIn":"Trigger","portOut":"trigger","objIn":"zcc6zzw4d","objOut":"e0268dfa-e089-4f1f-966c-c30218792023"}]}],"objName":"Ops.Gl.ClearColor"},{"id":"b65ca0b8-40c9-4d0a-9e22-aba7d89f3abf","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Active","value":1},{"name":"Input Type index","value":0},{"name":"Input Type","value":"All"},{"name":"Area index","value":0},{"name":"Area","value":"Canvas Area"}],"portsOut":[{"name":"Delta X","value":-0.02},{"name":"Delta Y","links":[{"portIn":"Delta Value","portOut":"Delta Y","objIn":"dq71li66q","objOut":"b65ca0b8-40c9-4d0a-9e22-aba7d89f3abf"}]},{"name":"Is Dragging","links":[{"portIn":"Value","portOut":"Is Dragging","objIn":"ls3p3eowk","objOut":"b65ca0b8-40c9-4d0a-9e22-aba7d89f3abf"},{"portIn":"Value","portOut":"Is Dragging","objIn":"t1ryttgy8","objOut":"b65ca0b8-40c9-4d0a-9e22-aba7d89f3abf"}]}],"objName":"Ops.Patch.PuSSdim.MouseDrag"},{"id":"e0698285-4e6a-4339-a9ba-d9b3e441372c","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"mainExe"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"babe81ef-3ee9-4ed3-ba28-8b648c21dd11","uiAttribs":{},"portsIn":[{"name":"Title","value":"LOOP: Main 4"}],"objName":"Ops.Ui.Area"},{"id":"a82e74aa-f66f-47c9-a07a-2f1b0376925b","uiAttribs":{},"portsIn":[{"name":"Title","value":"Data"}],"objName":"Ops.Ui.Area"},{"id":"afa40c7e-19f5-4546-911c-1e34c62f310b","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"finalExe"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"1aaf40f7-386a-40d0-80de-4857b3f558f4","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_NormValue"}],"portsOut":[{"name":"Value","links":[{"portIn":"Number","portOut":"Value","objIn":"2cbchlduf","objOut":"1aaf40f7-386a-40d0-80de-4857b3f558f4"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"7dq6j5p5k","uiAttribs":{},"portsIn":[{"name":"Check Body Collisions","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Trigger","portOut":"Next","objIn":"9sm9dp98r","objOut":"7dq6j5p5k"}]},{"name":"Total Bodies","value":4}],"objName":"Ops.Graphics.Intersection.IntersectWorld"},{"id":"9sm9dp98r","uiAttribs":{},"portsIn":[{"name":"Coordinate Format index","value":0},{"name":"Coordinate Format","value":"-1 to 1"},{"name":"Z","value":0},{"name":"To X","value":0},{"name":"To Y","value":0},{"name":"To Z","value":0},{"name":"Active","value":1},{"name":"Change Cursor","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"mbk4m8pcr","objOut":"9sm9dp98r"},{"portIn":"render","portOut":"Next","objIn":"7qikt1vaf","objOut":"9sm9dp98r"},{"portIn":"render","portOut":"Next","objIn":"aupoduf7d","objOut":"9sm9dp98r"},{"portIn":"render","portOut":"Next","objIn":"ge3zj70cy","objOut":"9sm9dp98r"}]},{"name":"Has Hit","value":1},{"name":"Hit Body Name","links":[{"portIn":"Value","portOut":"Hit Body Name","objIn":"tg35ehmtt","objOut":"9sm9dp98r"}]},{"name":"Hit X","value":-0.43031439185142517},{"name":"Hit Y","value":-0.5276018381118774},{"name":"Hit Z","value":0}],"objName":"Ops.Graphics.Intersection.IntersectTestRaycast"},{"id":"bs0d2bloj","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"mainExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Trigger","portOut":"Triggered","objIn":"7dq6j5p5k","objOut":"bs0d2bloj"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"5me0htliz","uiAttribs":{},"portsIn":[{"name":"Shape index","value":1},{"name":"Shape","value":"BoxAA"},{"name":"Name","value":"dial.2"},{"name":"Radius","value":0.22},{"name":"Size X","value":0.55},{"name":"Size Y","value":1},{"name":"Size Z","value":0},{"name":"Positions"},{"name":"Append Index to name","value":1}],"objName":"Ops.Graphics.Intersection.IntersectBody"},{"id":"mbk4m8pcr","uiAttribs":{},"portsIn":[{"name":"x","value":-0.28},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger","portOut":"trigger","objIn":"5me0htliz","objOut":"mbk4m8pcr"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"adh054ku6","uiAttribs":{},"portsIn":[{"name":"Shape index","value":1},{"name":"Shape","value":"BoxAA"},{"name":"Name","value":"dial.3"},{"name":"Radius","value":0.23},{"name":"Size X","value":0.55},{"name":"Size Y","value":1},{"name":"Size Z","value":0},{"name":"Positions"},{"name":"Append Index to name","value":1}],"objName":"Ops.Graphics.Intersection.IntersectBody"},{"id":"yjtjh6kai","uiAttribs":{},"portsIn":[{"name":"Shape index","value":1},{"name":"Shape","value":"BoxAA"},{"name":"Name","value":"dial.4"},{"name":"Radius","value":0.23},{"name":"Size X","value":0.56},{"name":"Size Y","value":1},{"name":"Size Z","value":0},{"name":"Positions"},{"name":"Append Index to name","value":1}],"objName":"Ops.Graphics.Intersection.IntersectBody"},{"id":"sfqxroo9q","uiAttribs":{},"portsIn":[{"name":"Coordinates index","value":0},{"name":"Coordinates","value":"-1 to 1"},{"name":"Area index","value":0},{"name":"Area","value":"Canvas"},{"name":"flip y","value":1},{"name":"right click prevent default","value":1},{"name":"Touch support","value":1},{"name":"Passive Events","value":0},{"name":"Active","value":1}],"portsOut":[{"name":"x","links":[{"portIn":"X","portOut":"x","objIn":"9sm9dp98r","objOut":"sfqxroo9q"}]},{"name":"y","links":[{"portIn":"Y","portOut":"y","objIn":"9sm9dp98r","objOut":"sfqxroo9q"}]},{"name":"Button is down","links":[{"portIn":"Value","portOut":"Button is down","objIn":"er6016ry9","objOut":"sfqxroo9q"}]},{"name":"Mouse is hovering","value":0},{"name":"Movement X","value":-136.5},{"name":"Movement Y","value":-30}],"objName":"Ops.Devices.Mouse.Mouse_v3"},{"id":"124910bf-e88f-4da5-847e-888a7ac73020","uiAttribs":{},"portsIn":[{"name":"num x","value":4},{"name":"num y","value":1},{"name":"center","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"zlpf1p0f5","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"},{"portIn":"render","portOut":"trigger","objIn":"c2a85325-d75f-4f01-9b5c-83a2edd8d35d","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"}]},{"name":"x","links":[{"portIn":"posX","portOut":"x","objIn":"c2a85325-d75f-4f01-9b5c-83a2edd8d35d","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"},{"portIn":"posX","portOut":"x","objIn":"zlpf1p0f5","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"},{"portIn":"Value","portOut":"x","objIn":"6v0s7i2sf","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"}]},{"name":"y","value":0},{"name":"index","links":[{"portIn":"Value","portOut":"index","objIn":"euqza6b25","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"}]},{"name":"total iterations","value":4}],"objName":"Ops.Trigger.Repeat2d"},{"id":"7qikt1vaf","uiAttribs":{},"portsIn":[{"name":"x","value":0.27},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger","portOut":"trigger","objIn":"adh054ku6","objOut":"7qikt1vaf"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"aupoduf7d","uiAttribs":{},"portsIn":[{"name":"x","value":0.84},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger","portOut":"trigger","objIn":"yjtjh6kai","objOut":"aupoduf7d"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"32lmfrmux","uiAttribs":{},"portsIn":[{"name":"Title","value":"Intersect"}],"objName":"Ops.Ui.Area"},{"id":"tg35ehmtt","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_hitBodyName"}],"objName":"Ops.Vars.VarSetString_v2"},{"id":"gb0lraco2","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_activeDial_ID"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"kcwn0w2tu","objOut":"gb0lraco2"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"qyara3wac","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"Value","portOut":"result","objIn":"hb06uwqts","objOut":"qyara3wac"}]}],"objName":"Ops.Math.Compare.Equals"},{"id":"xz7qgpta6","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Named Trigger","value":"mouseDown"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"53603a6e-a331-41a7-9822-120aba8de4f8","uiAttribs":{},"portsIn":[{"name":"number2","value":270}],"portsOut":[{"name":"result","links":[{"portIn":"rotY","portOut":"result","objIn":"li365texv","objOut":"53603a6e-a331-41a7-9822-120aba8de4f8"}]}],"objName":"Ops.Math.Multiply"},{"id":"9fsk0rgx7","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_NormValue"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"aqjh1act1","uiAttribs":{},"portsIn":[{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"Value","portOut":"value","objIn":"j3kd0q09w","objOut":"aqjh1act1"},{"portIn":"Value","portOut":"value","objIn":"1rc15x0gs","objOut":"aqjh1act1"},{"portIn":"number1","portOut":"value","objIn":"53603a6e-a331-41a7-9822-120aba8de4f8","objOut":"aqjh1act1"},{"portIn":"A","portOut":"value","objIn":"v11enlha4","objOut":"aqjh1act1"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"x6efudpvd","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_dialValues_array"}],"objName":"Ops.Vars.VarSetArray_v2"},{"id":"i0rjtphmz","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_dialValues_array"}],"portsOut":[{"name":"Value","links":[{"portIn":"array","portOut":"Value","objIn":"aqjh1act1","objOut":"i0rjtphmz"}]}],"objName":"Ops.Vars.VarGetArray_v2"},{"id":"er6016ry9","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_buttonIsDown"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"ls3p3eowk","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_mouseIsDragging"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"kcwn0w2tu","uiAttribs":{},"portsIn":[{"name":"number2","value":1}],"portsOut":[{"name":"result","links":[{"portIn":"number1","portOut":"result","objIn":"qyara3wac","objOut":"kcwn0w2tu"}]}],"objName":"Ops.Math.Subtract"},{"id":"te11ob7nw","uiAttribs":{},"portsIn":[{"name":"projection mode index","value":0},{"name":"projection mode","value":"prespective"},{"name":"frustum near","value":0.01},{"name":"frustum far","value":5000},{"name":"fov","value":30},{"name":"Auto Aspect Ratio","value":1},{"name":"Aspect Ratio","value":1},{"name":"eye X","value":0},{"name":"eye Y","value":-0.03},{"name":"eye Z","value":0.73},{"name":"center X","value":0},{"name":"center Y","value":0},{"name":"center Z","value":0},{"name":"truck","value":0},{"name":"boom","value":0.23},{"name":"dolly","value":0},{"name":"tilt","value":0},{"name":"pan","value":0},{"name":"roll","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"exe","portOut":"trigger","objIn":"141502b6-2964-42b8-b273-c6d7f5bcf303","objOut":"te11ob7nw"},{"portIn":"Trigger","portOut":"trigger","objIn":"4pu8mr0y2","objOut":"te11ob7nw"}]},{"name":"Aspect","value":1.715883668903803}],"objName":"Ops.Gl.Matrix.Camera"},{"id":"uc9r4wu0r","uiAttribs":{},"portsIn":[{"name":"r","value":0.885},{"name":"g","value":0.8560132010421952},{"name":"b","value":0.856},{"name":"colorizeTexture","value":1},{"name":"Vertex Colors","value":0},{"name":"Alpha Mask Source index","value":4},{"name":"Alpha Mask Source","value":"A"},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":0},{"name":"diffuseRepeatX","value":1},{"name":"diffuseRepeatY","value":0},{"name":"Tex Offset X","value":0},{"name":"Tex Offset Y","value":0},{"name":"Crop TexCoords","value":0},{"name":"billboard","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"3g7cbchrs","objOut":"uc9r4wu0r"}]}],"objName":"Ops.Gl.Shader.BasicMaterial_v3"},{"id":"j3kd0q09w","uiAttribs":{},"portsIn":[{"name":"Min","value":0},{"name":"Max","value":0.9},{"name":"Easing index","value":4},{"name":"Easing","value":"Cubic In"}],"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"conrnxfgk","objOut":"j3kd0q09w"},{"portIn":"Value","portOut":"Result","objIn":"s0o3lhs2y","objOut":"j3kd0q09w"}]}],"objName":"Ops.Math.Ease"},{"id":"conrnxfgk","uiAttribs":{},"portsIn":[{"name":"Min","value":0},{"name":"Max","value":0.27},{"name":"Easing index","value":5},{"name":"Easing","value":"Cubic Out"}],"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"z5bv7gal9","objOut":"conrnxfgk"}]}],"objName":"Ops.Math.Ease"},{"id":"chztenqi0","uiAttribs":{},"portsIn":[{"name":"r","value":1},{"name":"b","value":0.645},{"name":"Opacity","value":0.956},{"name":"AO Intensity","value":0.747},{"name":"Normal Map Intensity","value":0.66},{"name":"Repeat X","value":6},{"name":"Repeat Y","value":0},{"name":"Offset X","value":0},{"name":"Offset Y","value":1.6},{"name":"Screen Space Normals","value":0},{"name":"Calc normal tangents","value":0},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":1},{"name":"Alpha Mask Source index","value":0},{"name":"Alpha Mask Source","value":"Luminance"}],"portsOut":[{"name":"Next","links":[{"portIn":"Execute","portOut":"Next","objIn":"leqa7h4pd","objOut":"chztenqi0"}]},{"name":"Shader","links":[{"portIn":"Value","portOut":"Shader","objIn":"nnu0oo0gu","objOut":"chztenqi0"}]}],"objName":"Ops.Gl.Shader.MatCapMaterial_v3"},{"id":"0oya8etuv","uiAttribs":{},"portsIn":[{"name":"File","value":"assets/6697c3b245eb5d333bae2007_NEL_SRVB.webp","display":"file"},{"name":"Filter index","value":1},{"name":"Filter","value":"linear"},{"name":"Wrap index","value":0},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Data Format index","value":3},{"name":"Data Format","value":"RGBA"},{"name":"Flip","value":0},{"name":"Pre Multiplied Alpha","value":0},{"name":"Active","value":1},{"name":"Save Memory","value":1},{"name":"Add Cachebuster","value":1}],"portsOut":[{"name":"Texture","links":[{"portIn":"MatCap","portOut":"Texture","objIn":"chztenqi0","objOut":"0oya8etuv"}]},{"name":"Width","value":256},{"name":"Height","value":256},{"name":"Aspect Ratio","value":1},{"name":"Loaded","value":1},{"name":"Loading","value":0}],"objName":"Ops.Gl.Texture_v2"},{"id":"li365texv","uiAttribs":{},"portsIn":[{"name":"posX","value":0},{"name":"posY","value":0},{"name":"posZ","value":0.49},{"name":"scale","value":1},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"ts03zao35","objOut":"li365texv"},{"portIn":"Render","portOut":"trigger","objIn":"chztenqi0","objOut":"li365texv"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"bd0mu1qkj","uiAttribs":{},"portsIn":[{"name":"Title","value":"Main"}],"objName":"Ops.Ui.Area"},{"id":"6a24jo2e0","uiAttribs":{},"portsIn":[{"name":"Title","value":"Scape"}],"objName":"Ops.Ui.Area"},{"id":"kgtq6kbqp","uiAttribs":{},"portsIn":[{"name":"Font","value":"chivo"},{"name":"Scale","value":0.8},{"name":"Letter Spacing","value":-0.02},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":2},{"name":"Vertical Align","value":"Middle"},{"name":"r","value":0.949},{"name":"g","value":0.933},{"name":"b","value":0.899},{"name":"SDF","value":1},{"name":"Smoothing","value":0.126},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":2.246875},{"name":"Height","value":0.4857234848484849},{"name":"Start Y","value":0.2529109848484849},{"name":"Num Chars","value":12}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"1rc15x0gs","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentDialValueInsideRepeat2D"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"o8zk12f1r","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentDialValueInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"number","portOut":"Value","objIn":"2lpsqzgrb","objOut":"o8zk12f1r"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"2lpsqzgrb","uiAttribs":{},"portsIn":[{"name":"Decimal Places","value":4}],"portsOut":[{"name":"result","links":[{"portIn":"Number","portOut":"result","objIn":"vib72zx3n","objOut":"2lpsqzgrb"}]}],"objName":"Ops.Math.Round"},{"id":"vib72zx3n","uiAttribs":{},"portsIn":[{"name":"Decimal Places","value":4}],"portsOut":[{"name":"Result","links":[{"portIn":"String B","portOut":"Result","objIn":"hhpgrbf2g","objOut":"vib72zx3n"}]}],"objName":"Ops.String.NumberToString_v2"},{"id":"zlpf1p0f5","uiAttribs":{},"portsIn":[{"name":"posY","value":-0.565},{"name":"posZ","value":0.22},{"name":"scale","value":0.12},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"kgtq6kbqp","objOut":"zlpf1p0f5"}]}],"objName":"Ops.Gl.Matrix.TransformView"},{"id":"f67se0kft","uiAttribs":{},"portsIn":[{"name":"Title","value":"Text"}],"objName":"Ops.Ui.Area"},{"id":"6hojoyomj","uiAttribs":{},"portsIn":[{"name":"Limit","value":1},{"name":"Length","value":10},{"name":"Mode index","value":1},{"name":"Mode","value":"Stop at Max"},{"name":"Default","value":0}],"portsOut":[{"name":"Value","links":[{"portIn":"val","portOut":"Value","objIn":"1b7ls5v00","objOut":"6hojoyomj"}]}],"objName":"Ops.Math.Incrementor"},{"id":"m4wpz0q5c","uiAttribs":{},"portsIn":[{"name":"number2","value":0.06}],"portsOut":[{"name":"result","links":[{"portIn":"mul","portOut":"result","objIn":"124910bf-e88f-4da5-847e-888a7ac73020","objOut":"m4wpz0q5c"}]}],"objName":"Ops.Math.Multiply"},{"id":"1b7ls5v00","uiAttribs":{},"portsIn":[{"name":"min","value":0},{"name":"max","value":9}],"portsOut":[{"name":"result","links":[{"portIn":"number1","portOut":"result","objIn":"m4wpz0q5c","objOut":"1b7ls5v00"}]}],"objName":"Ops.Math.SmootherStep"},{"id":"hhpgrbf2g","uiAttribs":{},"portsIn":[{"name":"Format","value":"*$a $b"},{"name":"String C","value":2},{"name":"String D","value":3},{"name":"String E","value":""},{"name":"String F","value":""}],"portsOut":[{"name":"Result","links":[{"portIn":"Text","portOut":"Result","objIn":"kgtq6kbqp","objOut":"hhpgrbf2g"}]}],"objName":"Ops.String.StringCompose_v3"},{"id":"euqza6b25","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"34zd4vl4f","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"number2","portOut":"Value","objIn":"qyara3wac","objOut":"34zd4vl4f"},{"portIn":"number1","portOut":"Value","objIn":"ai5mgf397","objOut":"34zd4vl4f"},{"portIn":"index","portOut":"Value","objIn":"aqjh1act1","objOut":"34zd4vl4f"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"mtxdae1jj","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"index","portOut":"Value","objIn":"fxd9qy0nv","objOut":"mtxdae1jj"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"ejryfn62d","uiAttribs":{},"portsIn":[{"name":"Title","value":"*"}],"objName":"Ops.Ui.Area"},{"id":"yvvnsby8j","uiAttribs":{},"portsIn":[{"name":"text","value":"level, diffuse, tone, size"},{"name":"separator","value":","},{"name":"Numbers","value":0},{"name":"Trim","value":1},{"name":"Split Lines","value":0}],"portsOut":[{"name":"array","links":[{"portIn":"array","portOut":"array","objIn":"fxd9qy0nv","objOut":"yvvnsby8j"}]},{"name":"length","value":4}],"objName":"Ops.Array.StringToArray_v2"},{"id":"fxd9qy0nv","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"String A","portOut":"result","objIn":"hhpgrbf2g","objOut":"fxd9qy0nv"}]}],"objName":"Ops.Array.ArrayGetString"},{"id":"xqowbomkj","uiAttribs":{},"portsIn":[{"name":"Title","value":"*"}],"objName":"Ops.Ui.Area"},{"id":"ch5u1xz0l","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"midExe"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"faiior48h","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"midExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Render","portOut":"Triggered","objIn":"48vrkn65x","objOut":"faiior48h"},{"portIn":"render","portOut":"Triggered","objIn":"33hdtkr51","objOut":"faiior48h"},{"portIn":"render","portOut":"Triggered","objIn":"fvg1zz75v","objOut":"faiior48h"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"smns78b6k","uiAttribs":{},"portsIn":[{"name":"Title","value":"*"}],"objName":"Ops.Ui.Area"},{"id":"piq1e64rw","uiAttribs":{},"portsIn":[{"name":"Title","value":"*"}],"objName":"Ops.Ui.Area"},{"id":"t83msa078","uiAttribs":{},"portsIn":[{"name":"Title","value":"*"}],"objName":"Ops.Ui.Area"},{"id":"4pu8mr0y2","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"preSequenceFlow"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"of6q9dm1m","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"midExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"render","portOut":"Triggered","objIn":"v2qv1ozh2","objOut":"of6q9dm1m"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"zcc6zzw4d","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"zi3u8x4zd","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_activeDial_ID"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"zhjkbd61e","objOut":"zi3u8x4zd"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"0txm5qrgs","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_dialValues_array"}],"portsOut":[{"name":"Value","links":[{"portIn":"array","portOut":"Value","objIn":"ccotjup9t","objOut":"0txm5qrgs"}]}],"objName":"Ops.Vars.VarGetArray_v2"},{"id":"ccotjup9t","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"Default Value","portOut":"value","objIn":"dq71li66q","objOut":"ccotjup9t"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"zhjkbd61e","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"number2","value":1}],"portsOut":[{"name":"result","links":[{"portIn":"index","portOut":"result","objIn":"ccotjup9t","objOut":"zhjkbd61e"}]}],"objName":"Ops.Math.Subtract"},{"id":"v2qv1ozh2","uiAttribs":{},"portsIn":[{"name":"Size index","value":1},{"name":"Size","value":"Manual"},{"name":"texture height","value":512},{"name":"Auto Aspect","value":1},{"name":"filter index","value":1},{"name":"filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"Repeat"},{"name":"MSAA index","value":1},{"name":"MSAA","value":"2x"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"Depth","value":0},{"name":"Clear","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"Execute","portOut":"trigger","objIn":"3so3f33cf","objOut":"v2qv1ozh2"}]},{"name":"texture","links":[{"portIn":"Base Texture","portOut":"texture","objIn":"eerqtlpnp","objOut":"v2qv1ozh2"}]}],"objName":"Ops.Gl.RenderToTexture_v3"},{"id":"o4q65sx2h","uiAttribs":{},"portsIn":[{"name":"x","value":-1.4},{"name":"y","value":-1.79}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"eb7wv37c6","objOut":"o4q65sx2h"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"gv2xr0zt3","uiAttribs":{},"portsIn":[{"name":"Font Name","value":"chivo"},{"name":"Font Data","value":"assets/6697c3b245eb5d333bae2007_ChivoMono-Medium-msdf.json","display":"file"},{"name":"Font Image","value":"assets/6697c3b245eb5d333bae2007_ChivoMono-Medium.png","display":"file"},{"name":"Font Image 1","value":0,"display":"file"},{"name":"Font Image 2","value":0,"display":"file"},{"name":"Font Image 3","value":0,"display":"file"}],"portsOut":[{"name":"Loaded","value":true},{"name":"Total Chars","value":66},{"name":"Chars","value":"jQgbdf03689CGOShikl12457ABDEFHIJKLMNPRTUVWXYZpqtyw+acemnorsuvxz*-."}],"objName":"Ops.Gl.FontMSDF_v2"},{"id":"kmdf8veed","uiAttribs":{},"portsIn":[{"name":"File","value":"assets/lib_matcaps_Chrome_Blue_Tint-White.png","display":"file"},{"name":"Filter index","value":2},{"name":"Filter","value":"mipmap"},{"name":"Wrap index","value":0},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Data Format index","value":3},{"name":"Data Format","value":"RGBA"},{"name":"Flip","value":0},{"name":"Pre Multiplied Alpha","value":0},{"name":"Active","value":1},{"name":"Save Memory","value":1},{"name":"Add Cachebuster","value":0}],"portsOut":[{"name":"Texture","links":[{"portIn":"Specular MatCap","portOut":"Texture","objIn":"chztenqi0","objOut":"kmdf8veed"}]},{"name":"Width","value":256},{"name":"Height","value":256},{"name":"Aspect Ratio","value":1},{"name":"Loaded","value":1},{"name":"Loading","value":0}],"objName":"Ops.Gl.Texture_v2"},{"id":"flv1jlkal","uiAttribs":{},"portsIn":[{"name":"File","value":"assets/6697c3b245eb5d333bae2007_Sterungs.webp","display":"file"},{"name":"Filter index","value":2},{"name":"Filter","value":"mipmap"},{"name":"Wrap index","value":0},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Data Format index","value":3},{"name":"Data Format","value":"RGBA"},{"name":"Flip","value":0},{"name":"Pre Multiplied Alpha","value":0},{"name":"Active","value":1},{"name":"Save Memory","value":1},{"name":"Add Cachebuster","value":0}],"portsOut":[{"name":"Texture","links":[{"portIn":"Specular Mask","portOut":"Texture","objIn":"chztenqi0","objOut":"flv1jlkal"}]},{"name":"Width","value":256},{"name":"Height","value":256},{"name":"Aspect Ratio","value":1},{"name":"Loaded","value":1},{"name":"Loading","value":0}],"objName":"Ops.Gl.Texture_v2"},{"id":"40fnzsucx","uiAttribs":{},"portsIn":[{"name":"Play","value":1},{"name":"Sync to timeline","value":0}],"portsOut":[{"name":"Time","links":[{"portIn":"Time","portOut":"Time","objIn":"lv0f0jbcs","objOut":"40fnzsucx"}]}],"objName":"Ops.Anim.Timer_v2"},{"id":"lv0f0jbcs","uiAttribs":{},"portsIn":[{"name":"Type index","value":2},{"name":"Type","value":"ramp up"},{"name":"Phase","value":0},{"name":"Range Min","value":-360},{"name":"Range Max","value":360}],"portsOut":[{"name":"Result","links":[{"portIn":"rotX","portOut":"Result","objIn":"li365texv","objOut":"lv0f0jbcs"}]}],"objName":"Ops.Anim.LFO_v2"},{"id":"ai5mgf397","uiAttribs":{},"portsIn":[{"name":"number2","value":0.01}],"portsOut":[{"name":"result","links":[{"portIn":"Frequency","portOut":"result","objIn":"lv0f0jbcs","objOut":"ai5mgf397"}]}],"objName":"Ops.Math.Multiply"},{"id":"dsy5j4yzl","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"result","links":[{"portIn":"Value","portOut":"result","objIn":"s9n3wwypa","objOut":"dsy5j4yzl"},{"portIn":"Pass Through","portOut":"result","objIn":"8lyuqd6tn","objOut":"dsy5j4yzl"},{"portIn":"Pass Through","portOut":"result","objIn":"csl3j7cy1","objOut":"dsy5j4yzl"}]}],"objName":"Ops.Boolean.And"},{"id":"hd8nl2ugk","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_buttonIsDown"}],"portsOut":[{"name":"Value","links":[{"portIn":"bool 2","portOut":"Value","objIn":"dsy5j4yzl","objOut":"hd8nl2ugk"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"yi13493pq","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_hitBodyName"}],"portsOut":[{"name":"Value","links":[{"portIn":"String","portOut":"Value","objIn":"i77gb1h2c","objOut":"yi13493pq"},{"portIn":"String In","portOut":"Value","objIn":"8lyuqd6tn","objOut":"yi13493pq"}]}],"objName":"Ops.Vars.VarGetString"},{"id":"i77gb1h2c","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"SearchValue","value":"dial"}],"portsOut":[{"name":"Found","links":[{"portIn":"bool 1","portOut":"Found","objIn":"dsy5j4yzl","objOut":"i77gb1h2c"}]},{"name":"Index","value":0}],"objName":"Ops.String.StringContains_v2"},{"id":"ozs800vz3","uiAttribs":{},"objName":"Ops.Gl.GLTF.GltfDracoCompression"},{"id":"bmau99lwf","uiAttribs":{},"portsIn":[{"name":"data","value":"{\"hiddenNodes\":{}}"},{"name":"glb File","value":"assets/66a8cc11ac4e6d02513b1fae_spherical_animation.draco.glb","display":"file"},{"name":"Draw","value":1},{"name":"Camera index","value":0},{"name":"Camera","value":"None"},{"name":"Animation","value":"Anim "},{"name":"Center index","value":0},{"name":"Center","value":"None"},{"name":"Rescale","value":1},{"name":"Rescale Size","value":1},{"name":"Sync to timeline","value":0},{"name":"Loop","value":1},{"name":"Normals Format index","value":0},{"name":"Normals Format","value":"XYZ"},{"name":"Vertices Format index","value":0},{"name":"Vertices Format","value":"XYZ"},{"name":"Calc Normals index","value":0},{"name":"Calc Normals","value":"Auto"},{"name":"Hide Nodes","value":0},{"name":"Use Material Properties","value":0},{"name":"Active","value":1}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"38w7tj78u","objOut":"bmau99lwf"}]},{"name":"Generator","value":"Sketchfab-16.17.0"},{"name":"GLTF Version","value":2},{"name":"Anim Length","value":8.333333015441895},{"name":"Anim Time","value":0.47702841480840386},{"name":"Loading","value":false}],"objName":"Ops.Gl.GLTF.GltfScene_v4"},{"id":"lb1qzrcoj","uiAttribs":{},"portsIn":[{"name":"Material Name","value":"FORGED_METAL"}],"portsOut":[{"name":"Material","links":[{"portIn":"Materials","portOut":"Material","objIn":"bmau99lwf","objOut":"lb1qzrcoj"}]}],"objName":"Ops.Gl.GLTF.GltfSetMaterial"},{"id":"fs2uw3jmy","uiAttribs":{},"portsIn":[{"name":"Material Name","value":"Side"}],"portsOut":[{"name":"Material","links":[{"portIn":"Materials","portOut":"Material","objIn":"bmau99lwf","objOut":"fs2uw3jmy"}]}],"objName":"Ops.Gl.GLTF.GltfSetMaterial"},{"id":"nnu0oo0gu","uiAttribs":{},"portsIn":[{"name":"Variable","value":"NEL_SRVB_Metals"}],"objName":"Ops.Vars.VarSetObject_v2"},{"id":"u5bcyfii0","uiAttribs":{},"portsIn":[{"name":"Variable","value":"NEL_SRVB_Metals"}],"portsOut":[{"name":"Value","links":[{"portIn":"Shader","portOut":"Value","objIn":"lb1qzrcoj","objOut":"u5bcyfii0"}]}],"objName":"Ops.Vars.VarGetObject_v2"},{"id":"leqa7h4pd","uiAttribs":{},"portsIn":[{"name":"Diffuse A","value":1},{"name":"Double Sided","value":0},{"name":"Colorize Texture","value":0}],"portsOut":[{"name":"next","links":[{"portIn":"Execute","portOut":"next","objIn":"0rcbij4av","objOut":"leqa7h4pd"}]},{"name":"Shader","links":[{"portIn":"Shader","portOut":"Shader","objIn":"fs2uw3jmy","objOut":"leqa7h4pd"}]}],"objName":"Ops.Gl.Phong.LambertMaterial_v2"},{"id":"s0o3lhs2y","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ringR"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"z5bv7gal9","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ringG"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"oa1101yyu","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ringR"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"y7uobh49q","objOut":"oa1101yyu"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"tnds1iu5y","uiAttribs":{},"portsIn":[{"name":"Material Name","value":"POINTS"}],"portsOut":[{"name":"Material","links":[{"portIn":"Materials","portOut":"Material","objIn":"bmau99lwf","objOut":"tnds1iu5y"}]}],"objName":"Ops.Gl.GLTF.GltfSetMaterial"},{"id":"0rcbij4av","uiAttribs":{},"portsIn":[{"name":"Diffuse R","value":0.919},{"name":"Diffuse G","value":0.97},{"name":"Diffuse B","value":1},{"name":"Diffuse A","value":1},{"name":"Double Sided","value":0},{"name":"Colorize Texture","value":0}],"portsOut":[{"name":"Shader","links":[{"portIn":"Shader","portOut":"Shader","objIn":"tnds1iu5y","objOut":"0rcbij4av"}]}],"objName":"Ops.Gl.Phong.LambertMaterial_v2"},{"id":"y7uobh49q","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"g","portOut":"Result","objIn":"chztenqi0","objOut":"y7uobh49q"}]}],"objName":"Ops.Math.OneMinus"},{"id":"ts03zao35","uiAttribs":{},"portsIn":[{"name":"r","value":1},{"name":"g","value":1},{"name":"b","value":1},{"name":"Opacity","value":1},{"name":"AO Intensity","value":1},{"name":"Normal Map Intensity","value":1},{"name":"Repeat X","value":1},{"name":"Repeat Y","value":1},{"name":"Offset X","value":0},{"name":"Offset Y","value":0},{"name":"Screen Space Normals","value":0},{"name":"Calc normal tangents","value":1},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":0},{"name":"Alpha Mask Source index","value":0},{"name":"Alpha Mask Source","value":"Luminance"}],"portsOut":[{"name":"Next","links":[{"portIn":"Execute","portOut":"Next","objIn":"l7fhi163a","objOut":"ts03zao35"},{"portIn":"render","portOut":"Next","objIn":"orseg18lf","objOut":"ts03zao35"}]}],"objName":"Ops.Gl.Shader.MatCapMaterial_v3"},{"id":"38w7tj78u","uiAttribs":{},"portsIn":[{"name":"Node Name","value":"c001_1"},{"name":"Translate Y","value":0},{"name":"Translate Z","value":0},{"name":"Rotation X","value":0},{"name":"Rotation Y","value":0},{"name":"Rotation Z","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"bq7dcj36g","objOut":"38w7tj78u"}]},{"name":"Found","value":true}],"objName":"Ops.Gl.GLTF.GltfTransformNode"},{"id":"5g6m8w0kd","uiAttribs":{},"portsIn":[{"name":"Node Name","value":"c003_3"},{"name":"Translate Y","value":0},{"name":"Translate Z","value":0},{"name":"Rotation X","value":0},{"name":"Rotation Y","value":0},{"name":"Rotation Z","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"br7cvag8u","objOut":"5g6m8w0kd"}]},{"name":"Found","value":true}],"objName":"Ops.Gl.GLTF.GltfTransformNode"},{"id":"bq7dcj36g","uiAttribs":{},"portsIn":[{"name":"Node Name","value":"c002_2"},{"name":"Translate Y","value":0},{"name":"Translate Z","value":0},{"name":"Rotation X","value":0},{"name":"Rotation Y","value":0},{"name":"Rotation Z","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"5g6m8w0kd","objOut":"bq7dcj36g"}]},{"name":"Found","value":true}],"objName":"Ops.Gl.GLTF.GltfTransformNode"},{"id":"br7cvag8u","uiAttribs":{},"portsIn":[{"name":"Node Name","value":"c004_4"},{"name":"Translate Y","value":0},{"name":"Translate Z","value":0},{"name":"Rotation X","value":0},{"name":"Rotation Y","value":0},{"name":"Rotation Z","value":0}],"portsOut":[{"name":"Found","value":true}],"objName":"Ops.Gl.GLTF.GltfTransformNode"},{"id":"hf23rbdfn","uiAttribs":{},"portsIn":[{"name":"number2","value":20}],"portsOut":[{"name":"result","links":[{"portIn":"Translate X","portOut":"result","objIn":"38w7tj78u","objOut":"hf23rbdfn"},{"portIn":"Translate X","portOut":"result","objIn":"bq7dcj36g","objOut":"hf23rbdfn"},{"portIn":"Translate X","portOut":"result","objIn":"5g6m8w0kd","objOut":"hf23rbdfn"},{"portIn":"Translate X","portOut":"result","objIn":"br7cvag8u","objOut":"hf23rbdfn"}]}],"objName":"Ops.Math.Multiply"},{"id":"w1vt61ydw","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_dialValues_array"}],"portsOut":[{"name":"Value","links":[{"portIn":"Array in","portOut":"Value","objIn":"z1obzd6uz","objOut":"w1vt61ydw"}]}],"objName":"Ops.Vars.VarGetArray_v2"},{"id":"9044xju7n","uiAttribs":{},"portsIn":[{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"number1","portOut":"value","objIn":"hf23rbdfn","objOut":"9044xju7n"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"z1obzd6uz","uiAttribs":{},"portsIn":[{"name":"When False index","value":0},{"name":"When False","value":"keep last array"}],"portsOut":[{"name":"Array Out","links":[{"portIn":"array","portOut":"Array Out","objIn":"9044xju7n","objOut":"z1obzd6uz"}]}],"objName":"Ops.Array.GateArray_v2"},{"id":"0lxocfgel","uiAttribs":{},"portsIn":[{"name":"Title","value":"Spatial GLTF"}],"objName":"Ops.Ui.Area"},{"id":"hb06uwqts","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentInstanceIsActive"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"9hyokghvg","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentInstanceIsActive"}],"portsOut":[{"name":"Value","links":[{"portIn":"Pass Through","portOut":"Value","objIn":"z1obzd6uz","objOut":"9hyokghvg"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"6dc9673bl","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"A","portOut":"Value","objIn":"88c0pg2n0","objOut":"6dc9673bl"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"88c0pg2n0","uiAttribs":{},"portsIn":[{"name":"B","value":1},{"name":"C","value":2},{"name":"D","value":3},{"name":"Expression","value":"(a + 1) % 4"}],"portsOut":[{"name":"Result","links":[{"portIn":"index","portOut":"Result","objIn":"9044xju7n","objOut":"88c0pg2n0"}]},{"name":"Expression Valid","value":true}],"objName":"Ops.Math.MathExpression"},{"id":"6v0s7i2sf","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_rep2d_x"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"q3siwjs06","uiAttribs":{},"portsIn":[{"name":"Frequency","value":0.002002},{"name":"Type index","value":0},{"name":"Type","value":"sine"},{"name":"Range Min","value":0},{"name":"Range Max","value":8}],"portsOut":[{"name":"Result","links":[{"portIn":"Time","portOut":"Result","objIn":"bmau99lwf","objOut":"q3siwjs06"}]}],"objName":"Ops.Anim.LFO_v2"},{"id":"l3284qrsh","uiAttribs":{},"portsOut":[{"name":"timesTriggered","links":[{"portIn":"A","portOut":"timesTriggered","objIn":"hd355ern0","objOut":"l3284qrsh"}]}],"objName":"Ops.Trigger.TriggerCounter"},{"id":"xja9p9adg","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"B","portOut":"Value","objIn":"hd355ern0","objOut":"xja9p9adg"},{"portIn":"Phase","portOut":"Value","objIn":"q3siwjs06","objOut":"xja9p9adg"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"orseg18lf","uiAttribs":{},"portsIn":[{"name":"scale","value":1.28},{"name":"x","value":1},{"name":"y","value":1},{"name":"z","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"bmau99lwf","objOut":"orseg18lf"}]}],"objName":"Ops.Gl.Matrix.Scale"},{"id":"hd355ern0","uiAttribs":{},"portsIn":[{"name":"C","value":-1},{"name":"D","value":0},{"name":"Expression","value":"a*(b * 0.01)"}],"portsOut":[{"name":"Result","links":[{"portIn":"Time","portOut":"Result","objIn":"q3siwjs06","objOut":"hd355ern0"}]},{"name":"Expression Valid","value":true}],"objName":"Ops.Math.MathExpression"},{"id":"2p7s5nsc9","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":0.005},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":2},{"name":"pivot y","value":"bottom"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":1},{"name":"num rows","value":1}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"cplq646td","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"j447574nb","objOut":"cplq646td"}]}],"objName":"Ops.Gl.Matrix.Billboard"},{"id":"j447574nb","uiAttribs":{},"portsIn":[{"name":"y","value":1.45},{"name":"z","value":6.66}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"lb4ss1de9","objOut":"j447574nb"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"l53eehg6x","uiAttribs":{},"portsIn":[{"name":"Text","value":"ScapeRVB"},{"name":"Font","value":"chivo"},{"name":"Scale","value":1.54},{"name":"Letter Spacing","value":0.02},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":1},{"name":"Vertical Align","value":"Top"},{"name":"r","value":0.179},{"name":"g","value":1},{"name":"b","value":0.692},{"name":"a","value":0.91},{"name":"SDF","value":1},{"name":"Smoothing","value":0.126},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":3.4483968750000003},{"name":"Height","value":0.9838645833333333},{"name":"Start Y","value":0.4781656249999999},{"name":"Num Chars","value":8}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"fevah6hns","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"finalExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"render","portOut":"Triggered","objIn":"bav6ydpr2","objOut":"fevah6hns"},{"portIn":"exe","portOut":"Triggered","objIn":"rw14ave8u","objOut":"fevah6hns"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"bav6ydpr2","uiAttribs":{},"portsIn":[{"name":"posX","value":0.535},{"name":"posY","value":0.435},{"name":"posZ","value":0},{"name":"scale","value":0.125},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"l53eehg6x","objOut":"bav6ydpr2"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"3g7cbchrs","uiAttribs":{},"portsIn":[{"name":"x","value":-0.6},{"name":"y","value":-0.835},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Exec","portOut":"trigger","objIn":"cplq646td","objOut":"3g7cbchrs"}]}],"objName":"Ops.Gl.Matrix.TranslateView"},{"id":"s9n3wwypa","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_mouseIsChangingDialValue"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"1a68gpjeh","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"2iozqy3i6","objOut":"1a68gpjeh"}]},{"name":"Result","links":[{"portIn":"Object","portOut":"Result","objIn":"2cbchlduf","objOut":"1a68gpjeh"}]}],"objName":"Ops.Data.Compose.Object.CompObject"},{"id":"2iozqy3i6","uiAttribs":{},"portsIn":[{"name":"Key","value":"mix"},{"name":"Number","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"42ukcss4d","objOut":"2iozqy3i6"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetNumber"},{"id":"42ukcss4d","uiAttribs":{},"portsIn":[{"name":"Key","value":"diffuse"},{"name":"Number","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"ebt09vc90","objOut":"42ukcss4d"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetNumber"},{"id":"ebt09vc90","uiAttribs":{},"portsIn":[{"name":"Key","value":"tone"},{"name":"Number","value":0.5}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"fdu5vba76","objOut":"ebt09vc90"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetNumber"},{"id":"fdu5vba76","uiAttribs":{},"portsIn":[{"name":"Key","value":"size"},{"name":"Number","value":0}],"objName":"Ops.Data.Compose.Object.CompObjectSetNumber"},{"id":"28d5nmh91","uiAttribs":{},"portsIn":[{"name":"ZoomText","value":0},{"name":"Line Numbers","value":1},{"name":"Font Size","value":10},{"name":"Scroll","value":0}],"objName":"Ops.Ui.VizObject"},{"id":"ueht75nuq","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"finalExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Exec","portOut":"Triggered","objIn":"x7p8k6vel","objOut":"ueht75nuq"},{"portIn":"Trigger","portOut":"Triggered","objIn":"2cbchlduf","objOut":"ueht75nuq"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"2k40p1ixu","uiAttribs":{},"portsOut":[{"name":"Values","links":[{"portIn":"Array","portOut":"Values","objIn":"o5k93vq6e","objOut":"2k40p1ixu"},{"portIn":"Value","portOut":"Values","objIn":"x6efudpvd","objOut":"2k40p1ixu"}]},{"name":"Num values","value":4}],"objName":"Ops.Json.ObjectValuesAsArray"},{"id":"o5k93vq6e","uiAttribs":{},"portsIn":[{"name":"Start Row","value":0}],"objName":"Ops.Ui.VizArrayTable"},{"id":"lgfxem7we","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_mouseIsChangingParamID"}],"objName":"Ops.Vars.VarSetString_v2"},{"id":"8lyuqd6tn","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"When False index","value":0},{"name":"When False","value":"keep last string"},{"name":"Custom Value","value":""}],"portsOut":[{"name":"String Out","links":[{"portIn":"Key","portOut":"String Out","objIn":"q2imefo72","objOut":"8lyuqd6tn"}]}],"objName":"Ops.String.GateString"},{"id":"8vvl2gwwz","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"el0us87h5","objOut":"8vvl2gwwz"}]},{"name":"Result","links":[{"portIn":"data","portOut":"Result","objIn":"q2imefo72","objOut":"8vvl2gwwz"}]}],"objName":"Ops.Data.Compose.Object.CompObject"},{"id":"madc5uih6","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Named Trigger","value":"mainExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Update","portOut":"Triggered","objIn":"8vvl2gwwz","objOut":"madc5uih6"},{"portIn":"Exec","portOut":"Triggered","objIn":"hf3ib8jqh","objOut":"madc5uih6"},{"portIn":"Update","portOut":"Triggered","objIn":"na2pda15t","objOut":"madc5uih6"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"el0us87h5","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Key","value":"dial.1"},{"name":"String","value":"mix"}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"lq1vvjm70","objOut":"el0us87h5"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetString"},{"id":"lq1vvjm70","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Key","value":"dial.2"},{"name":"String","value":"diffuse"}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"zuuutor70","objOut":"lq1vvjm70"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetString"},{"id":"zuuutor70","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Key","value":"dial.3"},{"name":"String","value":"tone"}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"fvxs3gsfk","objOut":"zuuutor70"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetString"},{"id":"fvxs3gsfk","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Key","value":"dial.4"},{"name":"String","value":"size"}],"objName":"Ops.Data.Compose.Object.CompObjectSetString"},{"id":"q2imefo72","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"lgfxem7we","objOut":"q2imefo72"}]}],"objName":"Ops.Json.ObjectGetString"},{"id":"5h3v4dsa0","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_mouseIsChangingParamID"}],"portsOut":[{"name":"Value","links":[{"portIn":"Key","portOut":"Value","objIn":"2cbchlduf","objOut":"5h3v4dsa0"}]}],"objName":"Ops.Vars.VarGetString"},{"id":"2cbchlduf","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Object In","portOut":"Result","objIn":"1qxuxacu8","objOut":"2cbchlduf"}]}],"objName":"Ops.Json.TriggerObjectSetNumber"},{"id":"x7p8k6vel","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"1a68gpjeh","objOut":"x7p8k6vel"},{"portIn":"Trigger","portOut":"Next","objIn":"z2nzidnng","objOut":"x7p8k6vel"}]},{"name":"Was Triggered","value":1}],"objName":"Ops.Trigger.TriggerOnce"},{"id":"bp5rcdeha","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"preSequenceFlow"}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"cconk53k8","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_dialValues_object"}],"objName":"Ops.Vars.VarSetObject_v2"},{"id":"eko3x9yfz","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_buttonIsDown"}],"portsOut":[{"name":"Value","links":[{"portIn":"bool 1","portOut":"Value","objIn":"uesg11629","objOut":"eko3x9yfz"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"h6fm96idh","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_dialValues_object"}],"portsOut":[{"name":"Value","links":[{"portIn":"Object2","portOut":"Value","objIn":"cx3uanmz2","objOut":"h6fm96idh"}]}],"objName":"Ops.Vars.VarGetObject_v2"},{"id":"1qxuxacu8","uiAttribs":{},"portsIn":[{"name":"When False index","value":0},{"name":"When False","value":"keep last object"},{"name":"Only Valid Objects","value":1}],"portsOut":[{"name":"Object Out","links":[{"portIn":"Object","portOut":"Object Out","objIn":"28d5nmh91","objOut":"1qxuxacu8"},{"portIn":"Value","portOut":"Object Out","objIn":"cconk53k8","objOut":"1qxuxacu8"},{"portIn":"Object1","portOut":"Object Out","objIn":"cx3uanmz2","objOut":"1qxuxacu8"}]}],"objName":"Ops.Json.GateObject"},{"id":"uesg11629","uiAttribs":{},"portsIn":[{"name":"bool 3","value":0},{"name":"bool 4","value":0},{"name":"bool 5","value":0},{"name":"bool 6","value":0},{"name":"bool 7","value":0},{"name":"bool 8","value":0},{"name":"bool 9","value":0},{"name":"bool 10","value":0}],"portsOut":[{"name":"result","links":[{"portIn":"Pass Through","portOut":"result","objIn":"1qxuxacu8","objOut":"uesg11629"}]}],"objName":"Ops.Boolean.Or"},{"id":"z2nzidnng","uiAttribs":{},"portsIn":[{"name":"Duration","value":0.1},{"name":"Value True","value":1},{"name":"Value False","value":0}],"portsOut":[{"name":"Result","links":[{"portIn":"bool 2","portOut":"Result","objIn":"uesg11629","objOut":"z2nzidnng"}]}],"objName":"Ops.Boolean.MonoFlop"},{"id":"tvhdy0oy7","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"key code","value":16},{"name":"canvas only","value":1},{"name":"Mod Key index","value":0},{"name":"Mod Key","value":"none"},{"name":"Enabled","value":1},{"name":"Prevent Default","value":0}],"portsOut":[{"name":"on press","links":[{"portIn":"Trigger 0","portOut":"on press","objIn":"9xrx1aiud","objOut":"tvhdy0oy7"}]},{"name":"on release","links":[{"portIn":"Trigger 1","portOut":"on release","objIn":"9xrx1aiud","objOut":"tvhdy0oy7"}]},{"name":"Pressed","value":1},{"name":"Key","value":"Shift"}],"objName":"Ops.Devices.Keyboard.KeyPressLearn"},{"id":"9xrx1aiud","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Value 0","value":0.05},{"name":"Value 1","value":0.5},{"name":"Value 2","value":0.5},{"name":"Value 3","value":0},{"name":"Value 4","value":0},{"name":"Value 5","value":0},{"name":"Value 6","value":0},{"name":"Value 7","value":0},{"name":"Default Value","value":""}],"portsOut":[{"name":"Value","links":[{"portIn":"Multiply","portOut":"Value","objIn":"dq71li66q","objOut":"9xrx1aiud"}]},{"name":"Last Value","value":0.05}],"objName":"Ops.Number.SwitchNumberOnTrigger"},{"id":"hf3ib8jqh","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"Next","links":[{"portIn":"Trigger 2","portOut":"Next","objIn":"9xrx1aiud","objOut":"hf3ib8jqh"}]},{"name":"Was Triggered","value":1}],"objName":"Ops.Trigger.TriggerOnce"},{"id":"48vrkn65x","uiAttribs":{},"portsIn":[{"name":"Size index","value":0},{"name":"Size","value":"Auto"},{"name":"Width","value":640},{"name":"Height","value":480},{"name":"Filter index","value":1},{"name":"Filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Pixel Format index","value":5},{"name":"Pixel Format","value":"SRGBA 8bit ubyte"},{"name":"R","value":0},{"name":"G","value":0},{"name":"B","value":0},{"name":"A","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"6fb2f0244","objOut":"48vrkn65x"}]},{"name":"texture_out","links":[{"portIn":"Diffuse","portOut":"texture_out","objIn":"flor1ge09","objOut":"48vrkn65x"}]},{"name":"Aspect Ratio","value":1.715883668903803},{"name":"Texture Width","value":1534},{"name":"Texture Height","value":894}],"objName":"Ops.Gl.ImageCompose.ImageCompose_v4"},{"id":"wcm52u6xo","uiAttribs":{},"portsIn":[{"name":"x","value":-1},{"name":"y","value":0.4},{"name":"z","value":-1}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"62jtojeuu","objOut":"wcm52u6xo"}]}],"objName":"Ops.Gl.Matrix.ScaleXYZViewMatrix"},{"id":"flor1ge09","uiAttribs":{},"portsIn":[{"name":"r","value":0.07},{"name":"g","value":0.06},{"name":"b","value":0.51},{"name":"AO Intensity","value":1},{"name":"Normal Map Intensity","value":1},{"name":"Repeat X","value":1},{"name":"Repeat Y","value":1},{"name":"Offset X","value":0.93},{"name":"Offset Y","value":-0.89},{"name":"Screen Space Normals","value":0},{"name":"Calc normal tangents","value":1},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":1},{"name":"Alpha Mask Source index","value":0},{"name":"Alpha Mask Source","value":"Luminance"}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"wcm52u6xo","objOut":"flor1ge09"}]}],"objName":"Ops.Gl.Shader.MatCapMaterial_v3"},{"id":"9dqwuc8l6","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":1},{"name":"height","value":1.8},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":1},{"name":"num rows","value":1}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"2zbdnj6oz","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_size"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"zpf6nadj7","objOut":"2zbdnj6oz"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"eb7wv37c6","uiAttribs":{},"portsIn":[{"name":"file","value":"assets/6697c3b245eb5d333bae2007_NEL_SRVB.webp","display":"file"},{"name":"extrude","value":4.42},{"name":"width","value":3},{"name":"height","value":3},{"name":"columns","value":21},{"name":"texCoords slice","value":1},{"name":"flat","value":1}],"portsOut":[{"name":"geometry","links":[{"portIn":"Value","portOut":"geometry","objIn":"hr05yjyy0","objOut":"eb7wv37c6"}]}],"objName":"Ops.Gl.Meshes.HeightMap"},{"id":"cx3uanmz2","uiAttribs":{},"portsOut":[{"name":"Out Object","links":[{"portIn":"Object","portOut":"Out Object","objIn":"2k40p1ixu","objOut":"cx3uanmz2"}]}],"objName":"Ops.Json.ObjectFunnel"},{"id":"j4exj9jwp","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_tone"}],"portsOut":[{"name":"Value","links":[{"portIn":"Diffuse R","portOut":"Value","objIn":"leqa7h4pd","objOut":"j4exj9jwp"},{"portIn":"Diffuse G","portOut":"Value","objIn":"leqa7h4pd","objOut":"j4exj9jwp"},{"portIn":"Diffuse B","portOut":"Value","objIn":"leqa7h4pd","objOut":"j4exj9jwp"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"c4hww7lmi","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_tone"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"3gcrjukfk","objOut":"c4hww7lmi"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"33hdtkr51","uiAttribs":{},"portsIn":[{"name":"x","value":0},{"name":"y","value":0.31},{"name":"z","value":-0.01}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"flor1ge09","objOut":"33hdtkr51"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"3gcrjukfk","uiAttribs":{},"portsIn":[{"name":"Min","value":0},{"name":"Max","value":1},{"name":"Easing index","value":11},{"name":"Easing","value":"Sin Out"}],"portsOut":[{"name":"Result","links":[{"portIn":"Opacity","portOut":"Result","objIn":"flor1ge09","objOut":"3gcrjukfk"}]}],"objName":"Ops.Math.Ease"},{"id":"62voq6obk","uiAttribs":{},"portsIn":[{"name":"Value","value":0},{"name":"Variable","value":"ui_scapeDiffusion"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"l7fhi163a","uiAttribs":{},"portsIn":[{"name":"Nth","value":2}],"portsOut":[{"name":"Next","links":[{"portIn":"exe","portOut":"Next","objIn":"l3284qrsh","objOut":"l7fhi163a"}]}],"objName":"Ops.Trigger.NthTrigger_v2"},{"id":"zpf6nadj7","uiAttribs":{},"portsOut":[{"name":"Result","value":0.5324599999999999}],"objName":"Ops.Math.OneMinus"},{"id":"oba4wt0jq","uiAttribs":{},"portsIn":[{"name":"scale","value":0.8},{"name":"x","value":1},{"name":"y","value":1},{"name":"z","value":0.86}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"o4q65sx2h","objOut":"oba4wt0jq"}]}],"objName":"Ops.Gl.Matrix.Scale"},{"id":"62jtojeuu","uiAttribs":{},"portsIn":[{"name":"posX","value":0},{"name":"posY","value":-1.15},{"name":"posZ","value":-3.52},{"name":"scale","value":3.57},{"name":"rotX","value":-83.76},{"name":"rotY","value":0},{"name":"rotZ","value":180}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"9dqwuc8l6","objOut":"62jtojeuu"}]}],"objName":"Ops.Gl.Matrix.TransformView"},{"id":"rw14ave8u","uiAttribs":{},"portsIn":[{"name":"easing index","value":8},{"name":"easing","value":"Expo Out"},{"name":"duration","value":0.75},{"name":"Direction index","value":0},{"name":"Direction","value":"Both"},{"name":"value false","value":0},{"name":"value true","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"Update","portOut":"trigger","objIn":"zpbecbb56","objOut":"rw14ave8u"}]},{"name":"value","links":[{"portIn":"Value","portOut":"value","objIn":"62fo5emt0","objOut":"rw14ave8u"},{"portIn":"Value","portOut":"value","objIn":"zpbecbb56","objOut":"rw14ave8u"}]},{"name":"finished","value":1}],"objName":"Ops.Anim.BoolAnim"},{"id":"73bb2nz0u","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_hitBodyName"}],"portsOut":[{"name":"Value","links":[{"portIn":"String","portOut":"Value","objIn":"vgzr81mxh","objOut":"73bb2nz0u"}]}],"objName":"Ops.Vars.VarGetString"},{"id":"vgzr81mxh","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"bool","portOut":"Result","objIn":"rw14ave8u","objOut":"vgzr81mxh"}]}],"objName":"Ops.String.StringLength_v2"},{"id":"n9u25c6ax","uiAttribs":{},"portsIn":[{"name":"posX","value":-0.51},{"name":"posY","value":-0.26},{"name":"posZ","value":0},{"name":"scale","value":1},{"name":"rotX","value":0},{"name":"rotY","value":180},{"name":"rotZ","value":180}],"portsOut":[{"name":"trigger","links":[{"portIn":"Execute","portOut":"trigger","objIn":"lsv3n3hs3","objOut":"n9u25c6ax"},{"portIn":"Execute","portOut":"trigger","objIn":"3n0xi3fsv","objOut":"n9u25c6ax"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"st6y5rwmi","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Speed","value":0.025},{"name":"Play","value":1},{"name":"Sync to timeline","value":0}],"portsOut":[{"name":"Time","links":[{"portIn":"Value 1","portOut":"Time","objIn":"c0ib2t71q","objOut":"st6y5rwmi"}]}],"objName":"Ops.Anim.Timer_v2"},{"id":"t1ryttgy8","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"Next","links":[{"portIn":"Reset","portOut":"Next","objIn":"st6y5rwmi","objOut":"t1ryttgy8"}]},{"name":"Number","value":false}],"objName":"Ops.Number.TriggerOnChangeNumber"},{"id":"c0ib2t71q","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Value 2","value":0.02}],"portsOut":[{"name":"result","links":[{"portIn":"number1","portOut":"result","objIn":"gl8rvk911","objOut":"c0ib2t71q"}]}],"objName":"Ops.Math.Min_v3"},{"id":"gl8rvk911","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"number2","value":-1}],"portsOut":[{"name":"result","links":[{"portIn":"Speed","portOut":"result","objIn":"b65ca0b8-40c9-4d0a-9e22-aba7d89f3abf","objOut":"gl8rvk911"}]}],"objName":"Ops.Math.Multiply"},{"id":"csl3j7cy1","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"When False index","value":0},{"name":"When False","value":"keep last number"}],"portsOut":[{"name":"Value Out","links":[{"portIn":"out0 DeltaSum Absolute Value","portOut":"Value Out","objIn":"7bebb5f0-9d69-43ee-98be-27a13edd98db","objOut":"csl3j7cy1"}]}],"objName":"Ops.Number.GateNumber"},{"id":"na2pda15t","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Separate inc/dec","value":0},{"name":"Value","value":0},{"name":"Inc factor","value":4,"title":"Inc/Dec factor"},{"name":"Dec factor","value":4}],"portsOut":[{"name":"Result","links":[{"portIn":"Custom Value","portOut":"Result","objIn":"csl3j7cy1","objOut":"na2pda15t"}]}],"objName":"Ops.Anim.Smooth"},{"id":"ge3zj70cy","uiAttribs":{},"portsIn":[{"name":"x","value":-0.83},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger","portOut":"trigger","objIn":"jrkdakvqd","objOut":"ge3zj70cy"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"jrkdakvqd","uiAttribs":{},"portsIn":[{"name":"Shape index","value":1},{"name":"Shape","value":"BoxAA"},{"name":"Name","value":"dial.1"},{"name":"Radius","value":0.25},{"name":"Size X","value":0.55},{"name":"Size Y","value":1},{"name":"Size Z","value":0},{"name":"Positions"},{"name":"Append Index to name","value":1}],"objName":"Ops.Graphics.Intersection.IntersectBody"},{"id":"lb4ss1de9","uiAttribs":{},"portsIn":[{"name":"mul","value":-0.92}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"2p7s5nsc9","objOut":"lb4ss1de9"}]}],"objName":"Ops.Gl.Matrix.TransformMul"},{"id":"9f43w7192","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"6kwkmfn9z","objOut":"9f43w7192"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"6kwkmfn9z","uiAttribs":{},"portsIn":[{"name":"number2","value":5}],"portsOut":[{"name":"result","links":[{"portIn":"x","portOut":"result","objIn":"j447574nb","objOut":"6kwkmfn9z"}]}],"objName":"Ops.Math.Multiply"},{"id":"62fo5emt0","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__labelBoolAnim"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"3zhcjuyyj","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__labelBoolAnim"}],"portsOut":[{"name":"Value","links":[{"portIn":"a","portOut":"Value","objIn":"uc9r4wu0r","objOut":"3zhcjuyyj"},{"portIn":"B","portOut":"Value","objIn":"v11enlha4","objOut":"3zhcjuyyj"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"zpbecbb56","uiAttribs":{},"portsIn":[{"name":"Delay","value":0.5},{"name":"Clear on Change","value":0},{"name":"easing index","value":2},{"name":"easing","value":"smoothstep"}],"portsOut":[{"name":"Result","links":[{"portIn":"a","portOut":"Result","objIn":"kgtq6kbqp","objOut":"zpbecbb56"}]}],"objName":"Ops.Number.DelayedNumber"},{"id":"v11enlha4","uiAttribs":{},"portsIn":[{"name":"C","value":2},{"name":"D","value":3},{"name":"Expression","value":"(a*0.15) * b"}],"portsOut":[{"name":"Result","links":[{"portIn":"height","portOut":"Result","objIn":"2p7s5nsc9","objOut":"v11enlha4"}]},{"name":"Expression Valid","value":true}],"objName":"Ops.Math.MathExpression"},{"id":"vw32ba4ay","uiAttribs":{},"portsIn":[{"name":"Maximum","value":0.1}],"portsOut":[{"name":"result","links":[{"portIn":"Value","portOut":"result","objIn":"8dnvznngh","objOut":"vw32ba4ay"}]}],"objName":"Ops.Math.Max"},{"id":"k1xasfekl","uiAttribs":{},"portsIn":[{"name":"Separate inc/dec","value":0},{"name":"Inc factor","value":4,"title":"Inc/Dec factor"},{"name":"Dec factor","value":4}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"a1dx328je","objOut":"k1xasfekl"}]},{"name":"Array Out","links":[{"portIn":"array","portOut":"Array Out","objIn":"scp4776vv","objOut":"k1xasfekl"},{"portIn":"array","portOut":"Array Out","objIn":"ffpua72y1","objOut":"k1xasfekl"},{"portIn":"array","portOut":"Array Out","objIn":"0yopgevxd","objOut":"k1xasfekl"},{"portIn":"array","portOut":"Array Out","objIn":"jj4a1wi34","objOut":"k1xasfekl"}]}],"objName":"Ops.User.cristianvogel.LofiSmoothArray"},{"id":"98iul8y9a","uiAttribs":{},"portsIn":[{"name":"Maximum","value":0.005}],"portsOut":[{"name":"result","links":[{"portIn":"Value","portOut":"result","objIn":"iwrkcxo1s","objOut":"98iul8y9a"}]}],"objName":"Ops.Math.Max"},{"id":"8dnvznngh","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_size"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"ok235i5ag","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_mix"}],"portsOut":[{"name":"Value","links":[{"portIn":"number","portOut":"Value","objIn":"nf37ruj15","objOut":"ok235i5ag"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"6xynvbmkd","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_mix"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"hlukndsg2","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_tone"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"iwrkcxo1s","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_diffusion"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"6htv77yjw","uiAttribs":{},"portsIn":[{"name":"Title","value":"Warping"}],"objName":"Ops.Ui.Area"},{"id":"scp4776vv","uiAttribs":{},"portsIn":[{"name":"index","value":0},{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"Value","portOut":"value","objIn":"6xynvbmkd","objOut":"scp4776vv"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"ffpua72y1","uiAttribs":{},"portsIn":[{"name":"index","value":3},{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"value","portOut":"value","objIn":"vw32ba4ay","objOut":"ffpua72y1"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"0yopgevxd","uiAttribs":{},"portsIn":[{"name":"index","value":2},{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"Value","portOut":"value","objIn":"hlukndsg2","objOut":"0yopgevxd"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"jj4a1wi34","uiAttribs":{},"portsIn":[{"name":"index","value":1},{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"value","portOut":"value","objIn":"98iul8y9a","objOut":"jj4a1wi34"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"34zmy4a4l","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"mainExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Execute","portOut":"Triggered","objIn":"k1xasfekl","objOut":"34zmy4a4l"},{"portIn":"Render","portOut":"Triggered","objIn":"51ldwg650","objOut":"34zmy4a4l"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"g8s0zafv1","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_dialValues_array"}],"portsOut":[{"name":"Value","links":[{"portIn":"Array In","portOut":"Value","objIn":"k1xasfekl","objOut":"g8s0zafv1"}]}],"objName":"Ops.Vars.VarGetArray_v2"},{"id":"lxdfer2oi","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__lensFlareTexts"}],"objName":"Ops.Vars.VarGetTexture_v2"},{"id":"e2dgivql3","uiAttribs":{},"portsIn":[{"name":"value","value":"slider_scapeLength"}],"portsOut":[{"name":"String","links":[{"portIn":"btagbs7z2","portOut":"String","objIn":"5jrf5b006","objOut":"e2dgivql3"}]}],"objName":"Ops.String.String_v2"},{"id":"lsscrp8mo","uiAttribs":{},"portsIn":[{"name":"Font","value":"chivo"},{"name":"Scale","value":0.12},{"name":"Letter Spacing","value":-0.02},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":2},{"name":"Vertical Align","value":"Middle"},{"name":"r","value":0.75},{"name":"g","value":0.75},{"name":"b","value":0.75},{"name":"a","value":1},{"name":"SDF","value":1},{"name":"Smoothing","value":0.108},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.2537625},{"name":"Height","value":0.07025227272727273},{"name":"Start Y","value":0.03612727272727272},{"name":"Num Chars","value":9}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"vh92hy3y9","uiAttribs":{},"portsIn":[{"name":"y","value":-0.94},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"lsscrp8mo","objOut":"vh92hy3y9"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"1kt28jybk","uiAttribs":{},"portsIn":[{"name":"Repeats","value":4},{"name":"Direction index","value":0},{"name":"Direction","value":"Forward"}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"vh92hy3y9","objOut":"1kt28jybk"}]},{"name":"index","links":[{"portIn":"number1","portOut":"index","objIn":"x156qdz90","objOut":"1kt28jybk"},{"portIn":"Index","portOut":"index","objIn":"pu033f5xy","objOut":"1kt28jybk"}]}],"objName":"Ops.Trigger.Repeat_v2"},{"id":"x156qdz90","uiAttribs":{},"portsIn":[{"name":"number2","value":0.8}],"portsOut":[{"name":"result","links":[{"portIn":"x","portOut":"result","objIn":"vh92hy3y9","objOut":"x156qdz90"}]}],"objName":"Ops.Math.Multiply"},{"id":"p3udn0kt2","uiAttribs":{},"portsIn":[{"name":"x","value":-1.2},{"name":"y","value":0.03},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Execute","portOut":"trigger","objIn":"1kt28jybk","objOut":"p3udn0kt2"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"3ph9rgnw8","uiAttribs":{},"portsIn":[{"name":"Title","value":"scape length"}],"objName":"Ops.Ui.Area"},{"id":"pu033f5xy","uiAttribs":{},"portsIn":[{"name":"String 0","value":"light"},{"name":"String 1","value":"surface"},{"name":"String 2","value":"temple"},{"name":"String 3","value":"immersion"},{"name":"String 4","value":""},{"name":"String 5","value":""},{"name":"String 6","value":""},{"name":"String 7","value":""},{"name":"String 8","value":""},{"name":"String 9","value":""}],"portsOut":[{"name":"Result","links":[{"portIn":"Text","portOut":"Result","objIn":"lsscrp8mo","objOut":"pu033f5xy"}]}],"objName":"Ops.String.SwitchString"},{"id":"kvx1qrhxt","uiAttribs":{},"portsIn":[{"name":"number2","value":0.33}],"portsOut":[{"name":"result","links":[{"portIn":"value","portOut":"result","objIn":"9cfc0k1rh","objOut":"kvx1qrhxt"}]}],"objName":"Ops.Math.Sum"},{"id":"p4a68w5bu","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Execute","portOut":"Triggered","objIn":"1qf5qizbm","objOut":"p4a68w5bu"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"2ccc5csp8","uiAttribs":{},"portsIn":[{"name":"value","value":"slider_scapeLevel"}],"portsOut":[{"name":"String","links":[{"portIn":"btagbs7z2","portOut":"String","objIn":"827hbx7y7","objOut":"2ccc5csp8"}]}],"objName":"Ops.String.String_v2"},{"id":"t6jogaz9t","uiAttribs":{},"portsIn":[{"name":"Title","value":"scape mix"}],"objName":"Ops.Ui.Area"},{"id":"xagcljatm","uiAttribs":{},"portsIn":[{"name":"number2","value":0.4}],"portsOut":[{"name":"result","links":[{"portIn":"value","portOut":"result","objIn":"qkhcjgu05","objOut":"xagcljatm"}]}],"objName":"Ops.Math.Sum"},{"id":"l0tg11bqe","uiAttribs":{},"portsIn":[{"name":"width","value":10},{"name":"height","value":0.49},{"name":"Logarithmic","value":1},{"name":"pivot x index","value":0},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":0},{"name":"pivot y","value":"center"},{"name":"num columns","value":8},{"name":"num rows","value":12},{"name":"axis index","value":0},{"name":"axis","value":"xy"}],"portsOut":[{"name":"Point Arrays","links":[{"portIn":"Points","portOut":"Point Arrays","objIn":"bjn0972ht","objOut":"l0tg11bqe"}]}],"objName":"Ops.Gl.Meshes.LinesArray"},{"id":"bjn0972ht","uiAttribs":{},"portsIn":[{"name":"Tesselate Edges","value":0},{"name":"Render Mesh","value":1}],"objName":"Ops.Gl.Meshes.SplineMesh_v2"},{"id":"yte4ra0uu","uiAttribs":{},"portsIn":[{"name":"Width","value":1.03},{"name":"Width Perspective","value":0},{"name":"Mapping index","value":1},{"name":"Mapping","value":"Face"},{"name":"Colorize Texture","value":0},{"name":"Offset","value":0},{"name":"r","value":0.179},{"name":"g","value":1},{"name":"b","value":0.692}],"portsOut":[{"name":"Trigger","links":[{"portIn":"render","portOut":"Trigger","objIn":"kom6mxww1","objOut":"yte4ra0uu"}]}],"objName":"Ops.Gl.Meshes.SplineMeshMaterial_v2"},{"id":"ertlqmhh5","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"l0tg11bqe","objOut":"ertlqmhh5"}]},{"name":"Was Triggered","value":1}],"objName":"Ops.Trigger.TriggerOnce"},{"id":"kom6mxww1","uiAttribs":{},"portsIn":[{"name":"posX","value":0},{"name":"posY","value":-0.75},{"name":"posZ","value":0.45},{"name":"scale","value":1},{"name":"rotX","value":180},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"bjn0972ht","objOut":"kom6mxww1"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"9li4kwtsh","uiAttribs":{},"portsIn":[{"name":"number1","value":1},{"name":"number2","value":0.2}],"portsOut":[{"name":"result","links":[{"portIn":"a","portOut":"result","objIn":"yte4ra0uu","objOut":"9li4kwtsh"}]}],"objName":"Ops.Math.Multiply"},{"id":"99du8h3y9","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"preSequenceFlow"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Render","portOut":"Triggered","objIn":"yte4ra0uu","objOut":"99du8h3y9"},{"portIn":"Exec","portOut":"Triggered","objIn":"ertlqmhh5","objOut":"99du8h3y9"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"0oj6cpo44","uiAttribs":{},"portsIn":[{"name":"Title","value":"LInes"}],"objName":"Ops.Ui.Area"},{"id":"0aj10qlpy","uiAttribs":{},"portsIn":[{"name":"Width","value":0.35},{"name":"Height","value":0.3},{"name":"ID","value":""},{"name":"Class","value":""},{"name":"Pivot x index","value":0},{"name":"Pivot x","value":"center"},{"name":"Pivot y index","value":0},{"name":"Pivot y","value":"center"},{"name":"Axis index","value":0},{"name":"Axis","value":"xy"},{"name":"Is Interactive","value":1},{"name":"Render Rectangle","value":0},{"name":"Show Boundings","value":0},{"name":"Cursor index","value":2},{"name":"Cursor","value":"pointer"},{"name":"Render","value":1,"title":"Active"}],"portsOut":[{"name":"Trigger out","links":[{"portIn":"exe","portOut":"Trigger out","objIn":"txw282mz1","objOut":"0aj10qlpy"}]},{"name":"Pointer Hover","links":[{"portIn":"bool","portOut":"Pointer Hover","objIn":"txw282mz1","objOut":"0aj10qlpy"},{"portIn":"Value","portOut":"Pointer Hover","objIn":"xlw1du0hx","objOut":"0aj10qlpy"}]},{"name":"Pointer Down","links":[{"portIn":"Value","portOut":"Pointer Down","objIn":"kkiqqacrp","objOut":"0aj10qlpy"}]},{"name":"Pointer X","value":0.11228778099303949},{"name":"Pointer Y","value":0.8107744060432474},{"name":"Top","value":2.2850605845451355},{"name":"Left","value":1241.76327586174},{"name":"Right","value":1381.9887015223503},{"name":"Bottom","value":122.47831481695175}],"objName":"Ops.Gl.InteractiveRectangle_v2"},{"id":"skw3mtb13","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Execute","portOut":"Triggered","objIn":"qgfcwj6li","objOut":"skw3mtb13"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"0tooxrj1w","uiAttribs":{},"portsIn":[{"name":"x","value":1.36},{"name":"y","value":0.96},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger in","portOut":"trigger","objIn":"0aj10qlpy","objOut":"0tooxrj1w"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"8jcmfxmos","uiAttribs":{},"portsIn":[{"name":"File","value":"assets/6697c3b245eb5d333bae2007_NEL_SRVB.webp","display":"file"},{"name":"Filter index","value":2},{"name":"Filter","value":"mipmap"},{"name":"Wrap index","value":0},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":3},{"name":"Anisotropic","value":"4"},{"name":"Data Format index","value":3},{"name":"Data Format","value":"RGBA"},{"name":"Flip","value":0},{"name":"Pre Multiplied Alpha","value":0},{"name":"Active","value":1},{"name":"Save Memory","value":1},{"name":"Add Cachebuster","value":0}],"portsOut":[{"name":"Texture","links":[{"portIn":"texture","portOut":"Texture","objIn":"alnrfm1xt","objOut":"8jcmfxmos"}]},{"name":"Width","value":256},{"name":"Height","value":256},{"name":"Aspect Ratio","value":1},{"name":"Loaded","value":1},{"name":"Loading","value":0}],"objName":"Ops.Gl.Texture_v2"},{"id":"k9oj9uhcw","uiAttribs":{},"portsIn":[{"name":"x","value":1.99},{"name":"y","value":1.43},{"name":"z","value":-1}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"alnrfm1xt","objOut":"k9oj9uhcw"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"alnrfm1xt","uiAttribs":{},"portsIn":[{"name":"r","value":0.9084857245945317},{"name":"g","value":0.10570856602655021},{"name":"b","value":0.6349807163120653},{"name":"a","value":1},{"name":"colorizeTexture","value":0},{"name":"Vertex Colors","value":0},{"name":"Alpha Mask Source index","value":0},{"name":"Alpha Mask Source","value":"Luminance"},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":1},{"name":"diffuseRepeatX","value":1},{"name":"diffuseRepeatY","value":1},{"name":"Tex Offset X","value":1},{"name":"Tex Offset Y","value":1},{"name":"Crop TexCoords","value":0},{"name":"billboard","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"update","portOut":"trigger","objIn":"zte2jkdci","objOut":"alnrfm1xt"}]}],"objName":"Ops.Gl.Shader.BasicMaterial_v3"},{"id":"txw282mz1","uiAttribs":{},"portsIn":[{"name":"easing index","value":9},{"name":"easing","value":"Expo In Out"},{"name":"duration","value":0.25},{"name":"Direction index","value":0},{"name":"Direction","value":"Both"},{"name":"value false","value":0},{"name":"value true","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"Execute","portOut":"trigger","objIn":"u2xal6b27","objOut":"txw282mz1"},{"portIn":"render","portOut":"trigger","objIn":"fzsniu9pe","objOut":"txw282mz1"}]},{"name":"value","links":[{"portIn":"Percentage","portOut":"value","objIn":"pmu87q3eb","objOut":"txw282mz1"},{"portIn":"a","portOut":"value","objIn":"gji70mzgw","objOut":"txw282mz1"}]},{"name":"finished","links":[{"portIn":"Boolean","portOut":"finished","objIn":"m56qbr4ki","objOut":"txw282mz1"}]}],"objName":"Ops.Anim.BoolAnim"},{"id":"1u49ak691","uiAttribs":{},"portsIn":[{"name":"radius","value":0.5},{"name":"segments","value":3},{"name":"percent","value":1},{"name":"steps","value":0},{"name":"invertSteps","value":1},{"name":"mapping index","value":1},{"name":"mapping","value":"round"},{"name":"Spline","value":0},{"name":"Draw","value":0,"title":"Render mesh"}],"portsOut":[{"name":"geometry","links":[{"portIn":"Geometry","portOut":"geometry","objIn":"ee0okj3wi","objOut":"1u49ak691"}]}],"objName":"Ops.Gl.Meshes.Circle_v3"},{"id":"kkiqqacrp","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__scapeDirectionToggle"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"6lh7g16he","uiAttribs":{},"portsIn":[{"name":"Value 0","value":0.52},{"name":"Value 1","value":-0.53}],"portsOut":[{"name":"Out Value","links":[{"portIn":"Speed","portOut":"Out Value","objIn":"40fnzsucx","objOut":"6lh7g16he"}]}],"objName":"Ops.Boolean.BoolToNumber_v2"},{"id":"6fb2f0244","uiAttribs":{},"portsIn":[{"name":"Passes","value":1},{"name":"Clamp","value":0},{"name":"direction index","value":0},{"name":"direction","value":"both"},{"name":"Mask Invert","value":0}],"objName":"Ops.Gl.ImageCompose.FastBlur_v2"},{"id":"iw9wg4r88","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_finalTextOut"}],"objName":"Ops.Vars.VarGetTexture_v2"},{"id":"k2von2tr1","uiAttribs":{},"portsIn":[{"name":"Title","value":"reverse"}],"objName":"Ops.Ui.Area"},{"id":"cr8zmkk1u","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLength"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"bwbixjrcv","uiAttribs":{},"portsIn":[{"name":"B","value":1},{"name":"C","value":2},{"name":"D","value":3},{"name":"Expression","value":"a + 0.5"}],"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"cr8zmkk1u","objOut":"bwbixjrcv"}]},{"name":"Expression Valid","value":true}],"objName":"Ops.Math.MathExpression"},{"id":"8s8geqgwx","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLevel"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"6e04u3uk4","uiAttribs":{},"portsIn":[{"name":"B","value":1},{"name":"C","value":2},{"name":"D","value":3},{"name":"Expression","value":"a + 0.5"}],"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"8s8geqgwx","objOut":"6e04u3uk4"}]},{"name":"Expression Valid","value":true}],"objName":"Ops.Math.MathExpression"},{"id":"z3hsmrlsw","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_size"}],"portsOut":[{"name":"Value","links":[{"portIn":"Percentage","portOut":"Value","objIn":"o5rkdhq2k","objOut":"z3hsmrlsw"},{"portIn":"Percentage","portOut":"Value","objIn":"4jk31qlcv","objOut":"z3hsmrlsw"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"o5rkdhq2k","uiAttribs":{},"portsIn":[{"name":"Value 1","value":9},{"name":"Value 2","value":24}],"portsOut":[{"name":"Result","links":[{"portIn":"rows","portOut":"Result","objIn":"eb7wv37c6","objOut":"o5rkdhq2k"}]}],"objName":"Ops.Math.Interpolate"},{"id":"4jk31qlcv","uiAttribs":{},"portsIn":[{"name":"Value 1","value":1},{"name":"Value 2","value":2.6}],"portsOut":[{"name":"Result","links":[{"portIn":"z","portOut":"Result","objIn":"o4q65sx2h","objOut":"4jk31qlcv"}]}],"objName":"Ops.Math.Interpolate"},{"id":"hr05yjyy0","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__heightMapGeometry"}],"objName":"Ops.Vars.VarSetObject_v2"},{"id":"w2fqrmovh","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLength"}],"portsOut":[{"name":"Value","links":[{"portIn":"Percentage","portOut":"Value","objIn":"69bvpidqa","objOut":"w2fqrmovh"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"69bvpidqa","uiAttribs":{},"portsIn":[{"name":"Value 1","value":16},{"name":"Value 2","value":512}],"portsOut":[{"name":"Result","links":[{"portIn":"Number","portOut":"Result","objIn":"7pg8sq01l","objOut":"69bvpidqa"}]}],"objName":"Ops.Math.Interpolate"},{"id":"7pg8sq01l","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"texture width","portOut":"Result","objIn":"v2qv1ozh2","objOut":"7pg8sq01l"}]}],"objName":"Ops.Math.Ceil"},{"id":"3so3f33cf","uiAttribs":{},"portsIn":[{"name":"Diffuse R","value":0.21561448295683894},{"name":"Diffuse G","value":1},{"name":"Diffuse B","value":0.666},{"name":"Diffuse A","value":1},{"name":"Double Sided","value":0},{"name":"Colorize Texture","value":0}],"portsOut":[{"name":"next","links":[{"portIn":"render","portOut":"next","objIn":"oba4wt0jq","objOut":"3so3f33cf"}]}],"objName":"Ops.Gl.Phong.LambertMaterial_v2"},{"id":"65mpod5qd","uiAttribs":{},"portsIn":[{"name":"value","value":-0.15}],"portsOut":[{"name":"result","links":[{"portIn":"y","portOut":"result","objIn":"aupoduf7d","objOut":"65mpod5qd"},{"portIn":"y","portOut":"result","objIn":"7qikt1vaf","objOut":"65mpod5qd"},{"portIn":"y","portOut":"result","objIn":"mbk4m8pcr","objOut":"65mpod5qd"},{"portIn":"y","portOut":"result","objIn":"ge3zj70cy","objOut":"65mpod5qd"}]}],"objName":"Ops.Number.Number"},{"id":"ee0okj3wi","uiAttribs":{},"portsIn":[{"name":"Translate X","value":0},{"name":"Translate Y","value":0.03},{"name":"Translate Z","value":0},{"name":"Rotation X","value":0},{"name":"Rotation Z","value":0}],"portsOut":[{"name":"Result","links":[{"portIn":"Geometry","portOut":"Result","objIn":"iaywmhxb7","objOut":"ee0okj3wi"}]}],"objName":"Ops.Graphics.Geometry.TransformGeometry"},{"id":"iaywmhxb7","uiAttribs":{},"portsIn":[{"name":"Render Mesh","value":1},{"name":"Add Vertex Numbers","value":1}],"objName":"Ops.Gl.RenderGeometry_v2"},{"id":"u2xal6b27","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"render","portOut":"Trigger out","objIn":"1u49ak691","objOut":"u2xal6b27"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"m56qbr4ki","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"bool 1","portOut":"Result","objIn":"2td6endox","objOut":"m56qbr4ki"}]}],"objName":"Ops.Boolean.Not"},{"id":"zy3ewhgid","uiAttribs":{},"portsIn":[{"name":"easing index","value":8},{"name":"easing","value":"Expo Out"},{"name":"duration","value":2},{"name":"Direction index","value":0},{"name":"Direction","value":"Both"},{"name":"value false","value":0},{"name":"value true","value":180}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"iaywmhxb7","objOut":"zy3ewhgid"}]},{"name":"value","links":[{"portIn":"Rotation Y","portOut":"value","objIn":"ee0okj3wi","objOut":"zy3ewhgid"}]},{"name":"finished","value":1}],"objName":"Ops.Anim.BoolAnim"},{"id":"14rplnqfv","uiAttribs":{},"portsIn":[{"name":"value","value":0.3}],"portsOut":[{"name":"result","links":[{"portIn":"Scale X","portOut":"result","objIn":"ee0okj3wi","objOut":"14rplnqfv"},{"portIn":"Scale Y","portOut":"result","objIn":"ee0okj3wi","objOut":"14rplnqfv"},{"portIn":"Scale Z","portOut":"result","objIn":"ee0okj3wi","objOut":"14rplnqfv"}]}],"objName":"Ops.Number.Number"},{"id":"xlw1du0hx","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__directionHover"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"zte2jkdci","uiAttribs":{},"portsIn":[{"name":"Duration","value":0.1},{"name":"Invert","value":0}],"portsOut":[{"name":"Trigger Out","links":[{"portIn":"exe","portOut":"Trigger Out","objIn":"zy3ewhgid","objOut":"zte2jkdci"}]},{"name":"Value","links":[{"portIn":"bool 2","portOut":"Value","objIn":"2td6endox","objOut":"zte2jkdci"}]}],"objName":"Ops.Anim.Bang"},{"id":"2td6endox","uiAttribs":{},"portsIn":[{"name":"bool 3","value":0},{"name":"bool 4","value":0},{"name":"bool 5","value":0},{"name":"bool 6","value":0},{"name":"bool 7","value":0},{"name":"bool 8","value":0},{"name":"bool 9","value":0},{"name":"bool 10","value":0}],"portsOut":[{"name":"result","links":[{"portIn":"Pass Through","portOut":"result","objIn":"u2xal6b27","objOut":"2td6endox"}]}],"objName":"Ops.Boolean.Or"},{"id":"3cv6rdwm5","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"mainExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Exec","portOut":"Triggered","objIn":"litlcklxl","objOut":"3cv6rdwm5"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"litlcklxl","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Bang","portOut":"Next","objIn":"zte2jkdci","objOut":"litlcklxl"}]},{"name":"Was Triggered","value":1}],"objName":"Ops.Trigger.TriggerOnce"},{"id":"5jrf5b006","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"blls2amps","title":"Trigger in"},{"name":"btagbs7z2","title":"Class"},{"name":"lj06d561p","value":0,"title":"Show Boundings"},{"name":"patchId","value":"bp2sub_5jrf5b006"}],"portsOut":[{"name":"nti406vwi","title":"Result","links":[{"portIn":"A","portOut":"nti406vwi","objIn":"bwbixjrcv","objOut":"5jrf5b006"}]},{"name":"gjvx0zyv5","title":"value","links":[{"portIn":"number1","portOut":"gjvx0zyv5","objIn":"kvx1qrhxt","objOut":"5jrf5b006"}]}],"objName":"Ops.Patch.PuSSdim.BasicSlider_v2"},{"id":"827hbx7y7","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"blls2amps","title":"Trigger in"},{"name":"btagbs7z2","title":"Class"},{"name":"lj06d561p","value":0,"title":"Show Boundings"},{"name":"patchId","value":"bp2sub_827hbx7y7"}],"portsOut":[{"name":"nti406vwi","title":"Result","links":[{"portIn":"A","portOut":"nti406vwi","objIn":"6e04u3uk4","objOut":"827hbx7y7"}]},{"name":"gjvx0zyv5","title":"value","links":[{"portIn":"number1","portOut":"gjvx0zyv5","objIn":"xagcljatm","objOut":"827hbx7y7"}]}],"objName":"Ops.Patch.PuSSdim.BasicSlider_v1"},{"id":"hvxfadyo3","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Execute","portOut":"Triggered","objIn":"41p18fvfx","objOut":"hvxfadyo3"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"vr3j7sk4c","uiAttribs":{},"portsIn":[{"name":"posX","value":0.44},{"name":"posY","value":0.9},{"name":"posZ","value":0},{"name":"scale","value":1},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"akq5o2oet","objOut":"vr3j7sk4c"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"akq5o2oet","uiAttribs":{},"portsIn":[{"name":"Text","value":"* structure"},{"name":"Font","value":"chivo"},{"name":"Scale","value":0.14},{"name":"Letter Spacing","value":-0.04},{"name":"Line Height","value":1},{"name":"Align index","value":0},{"name":"Align","value":"Left"},{"name":"Vertical Align index","value":1},{"name":"Vertical Align","value":"Top"},{"name":"r","value":0.9},{"name":"g","value":0.9},{"name":"b","value":0.9},{"name":"SDF","value":1},{"name":"Smoothing","value":0.123},{"name":"Border","value":0},{"name":"Border Width","value":0.5},{"name":"Smoothness","value":0.25},{"name":"Border r","value":1},{"name":"Border g","value":1},{"name":"Border b","value":1},{"name":"Shadow","value":1},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"utt0283xl","objOut":"akq5o2oet"},{"portIn":"Update","portOut":"Next","objIn":"lmzv6xxhp","objOut":"akq5o2oet"}]},{"name":"Num Lines","value":1},{"name":"Width","value":0.32965625},{"name":"Height","value":0.08395160984848485},{"name":"Start Y","value":0.04530710227272727},{"name":"Num Chars","value":11}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"l01dmydzd","uiAttribs":{},"portsIn":[{"name":"Font","value":"chivo"},{"name":"Letter Spacing","value":0},{"name":"Line Height","value":1},{"name":"Align index","value":0},{"name":"Align","value":"Left"},{"name":"Vertical Align index","value":1},{"name":"Vertical Align","value":"Top"},{"name":"SDF","value":1},{"name":"Smoothing","value":0.096},{"name":"Border","value":0},{"name":"Border Width","value":0.5},{"name":"Smoothness","value":0.25},{"name":"Border r","value":1},{"name":"Border g","value":1},{"name":"Border b","value":1},{"name":"Shadow","value":1},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"d394u2tn6","objOut":"l01dmydzd"}]},{"name":"Num Lines","value":1},{"name":"Width","value":0.34924375},{"name":"Height","value":0.10977807765151512},{"name":"Start Y","value":0.05899446022727271},{"name":"Num Chars","value":7}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"utt0283xl","uiAttribs":{},"portsIn":[{"name":"x","value":0.46},{"name":"y","value":0},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"l01dmydzd","objOut":"utt0283xl"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"qt0hony1d","uiAttribs":{},"portsIn":[{"name":"Width","value":0.56},{"name":"Height","value":0.12},{"name":"ID","value":"slider_structure"},{"name":"Class","value":""},{"name":"Pivot x index","value":0},{"name":"Pivot x","value":"center"},{"name":"Pivot y index","value":0},{"name":"Pivot y","value":"center"},{"name":"Axis index","value":0},{"name":"Axis","value":"xy"},{"name":"Is Interactive","value":1},{"name":"Render Rectangle","value":0},{"name":"Show Boundings","value":0},{"name":"Cursor index","value":2},{"name":"Cursor","value":"pointer"},{"name":"Render","value":1,"title":"Active"}],"portsOut":[{"name":"Trigger out","links":[{"portIn":"update","portOut":"Trigger out","objIn":"zarq8c2tv","objOut":"qt0hony1d"},{"portIn":"exe","portOut":"Trigger out","objIn":"b4bc3876u","objOut":"qt0hony1d"}]},{"name":"Pointer Hover","links":[{"portIn":"bool","portOut":"Pointer Hover","objIn":"b4bc3876u","objOut":"qt0hony1d"}]},{"name":"Pointer Down","value":0},{"name":"Pointer X","value":0.10916865925432744},{"name":"Pointer Y","value":0.017482710711775873},{"name":"Top","value":66.38811707496643},{"name":"Left","value":1007.3864635825157},{"name":"Right","value":1231.747144639492},{"name":"Bottom","value":114.46542942523956},{"name":"Left Click","links":[{"portIn":"Bang","portOut":"Left Click","objIn":"zarq8c2tv","objOut":"qt0hony1d"},{"portIn":"trigger in","portOut":"Left Click","objIn":"giylicm3u","objOut":"qt0hony1d"}]}],"objName":"Ops.Gl.InteractiveRectangle_v2"},{"id":"zcqvrg63v","uiAttribs":{},"portsIn":[{"name":"x","value":0.88},{"name":"y","value":0.89},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger in","portOut":"trigger","objIn":"qt0hony1d","objOut":"zcqvrg63v"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"zarq8c2tv","uiAttribs":{},"portsIn":[{"name":"Duration","value":0.5},{"name":"Invert","value":0}],"portsOut":[{"name":"Value","links":[{"portIn":"Random Seed ","portOut":"Value","objIn":"dssq1axq2","objOut":"zarq8c2tv"},{"portIn":"number1","portOut":"Value","objIn":"tusq6xfh3","objOut":"zarq8c2tv"}]}],"objName":"Ops.Anim.Bang"},{"id":"giylicm3u","uiAttribs":{},"portsIn":[{"name":"Loop min","value":0},{"name":"Loop max","value":15}],"portsOut":[{"name":"current count","links":[{"portIn":"number1","portOut":"current count","objIn":"55jf7ng6g","objOut":"giylicm3u"}]}],"objName":"Ops.Trigger.TriggerCounterLoop"},{"id":"djbr6tym4","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"Text","portOut":"result","objIn":"l01dmydzd","objOut":"djbr6tym4"}]}],"objName":"Ops.Array.ArrayGetString"},{"id":"pnzzc7ulm","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_structure"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"26j6rhozk","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_structure"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"lmzv6xxhp","objOut":"26j6rhozk"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"iijz0ye9r","uiAttribs":{},"portsIn":[{"name":"text","value":"A035506\nA007604\nA227413\nA000040\nA052330\nA000607\nA01401\nA064356\nA096441\nA000009\nA199535\nA000010\nA316667\nA111133\nA000124\nA005132"},{"name":"separator","value":" "},{"name":"Numbers","value":0},{"name":"Trim","value":1},{"name":"Split Lines","value":1}],"portsOut":[{"name":"array","links":[{"portIn":"array","portOut":"array","objIn":"djbr6tym4","objOut":"iijz0ye9r"}]},{"name":"length","value":16}],"objName":"Ops.Array.StringToArray_v2"},{"id":"d394u2tn6","uiAttribs":{},"portsIn":[{"name":"x","value":-0.11},{"name":"y","value":-0.05},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"hm7bbicrb","objOut":"d394u2tn6"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"b4bc3876u","uiAttribs":{},"portsIn":[{"name":"easing index","value":0},{"name":"easing","value":"linear"},{"name":"duration","value":0.125},{"name":"Direction index","value":0},{"name":"Direction","value":"Both"},{"name":"value false","value":0},{"name":"value true","value":1}],"portsOut":[{"name":"value","links":[{"portIn":"value","portOut":"value","objIn":"l88qnkqyk","objOut":"b4bc3876u"},{"portIn":"Percentage","portOut":"value","objIn":"wv9yfmhgi","objOut":"b4bc3876u"}]},{"name":"finished","value":1}],"objName":"Ops.Anim.BoolAnim"},{"id":"hm7bbicrb","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":4.91},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":1},{"name":"num rows","value":1}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"dssq1axq2","uiAttribs":{},"portsIn":[{"name":"Num Values","value":15},{"name":"Mode index","value":0},{"name":"Mode","value":"A"},{"name":"Integer","value":0},{"name":"Last == First","value":0},{"name":"Min A","value":0},{"name":"Min B","value":-1},{"name":"Max B","value":1},{"name":"Min C","value":-1},{"name":"Max C","value":1},{"name":"Min D","value":-1},{"name":"Max D","value":1}],"portsOut":[{"name":"Array Out","links":[{"portIn":"Rotations","portOut":"Array Out","objIn":"l01dmydzd","objOut":"dssq1axq2"}]},{"name":"Chunks Amount","value":15},{"name":"Array length","value":15}],"objName":"Ops.Array.RandomNumbersArray_v4"},{"id":"tusq6xfh3","uiAttribs":{},"portsIn":[{"name":"number2","value":0.0001}],"portsOut":[{"name":"result","links":[{"portIn":"number1","portOut":"result","objIn":"q51297pyv","objOut":"tusq6xfh3"}]}],"objName":"Ops.Math.Compare.GreaterThan"},{"id":"q51297pyv","uiAttribs":{},"portsIn":[{"name":"number2","value":360}],"portsOut":[{"name":"result","links":[{"portIn":"Max A","portOut":"result","objIn":"dssq1axq2","objOut":"q51297pyv"}]}],"objName":"Ops.Math.Multiply"},{"id":"fm66pbek9","uiAttribs":{},"portsIn":[{"name":"Title","value":"structure"}],"objName":"Ops.Ui.Area"},{"id":"nme067fl0","uiAttribs":{},"portsIn":[{"name":"number2","value":90}],"portsOut":[{"name":"result","links":[{"portIn":"Rotate","portOut":"result","objIn":"1qwtcdiny","objOut":"nme067fl0"}]}],"objName":"Ops.Math.Multiply"},{"id":"55gbye0uh","uiAttribs":{},"portsIn":[{"name":"number2","value":4},{"name":"pingpong","value":0}],"portsOut":[{"name":"result","links":[{"portIn":"Waveform index","portOut":"result","objIn":"1qwtcdiny","objOut":"55gbye0uh"}]}],"objName":"Ops.Math.Modulo"},{"id":"qfhia7ec3","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_structure"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"nme067fl0","objOut":"qfhia7ec3"},{"portIn":"number1","portOut":"Value","objIn":"55gbye0uh","objOut":"qfhia7ec3"},{"portIn":"Offset X","portOut":"Value","objIn":"1qwtcdiny","objOut":"qfhia7ec3"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"p8itm86lw","uiAttribs":{},"portsIn":[{"name":"posX","value":-1.71},{"name":"posY","value":-0.56},{"name":"posZ","value":0},{"name":"scale","value":1.29},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"djh55ojh2","objOut":"p8itm86lw"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"ud198sc5z","uiAttribs":{},"portsOut":[{"name":"Geometry Result","links":[{"portIn":"Geometry","portOut":"Geometry Result","objIn":"djh55ojh2","objOut":"ud198sc5z"}]}],"objName":"Ops.Graphics.GeometryMergeSimple"},{"id":"djh55ojh2","uiAttribs":{},"portsIn":[{"name":"Render Mesh","value":1},{"name":"Add Vertex Numbers","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"di9yoxov9","objOut":"djh55ojh2"},{"portIn":"Render","portOut":"trigger","objIn":"eerqtlpnp","objOut":"djh55ojh2"}]}],"objName":"Ops.Gl.RenderGeometry_v2"},{"id":"absd3d4hb","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__heightMapGeometry"}],"portsOut":[{"name":"Value","links":[{"portIn":"Geometry 2","portOut":"Value","objIn":"ud198sc5z","objOut":"absd3d4hb"}]}],"objName":"Ops.Vars.VarGetObject_v2"},{"id":"vi3ol2srw","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.35},{"name":"Value 2","value":0.6}],"portsOut":[{"name":"Result","links":[{"portIn":"Amount","portOut":"Result","objIn":"tgeyutq71","objOut":"vi3ol2srw"}]}],"objName":"Ops.Math.Interpolate"},{"id":"5rr738syp","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLevel"}],"portsOut":[{"name":"Value","links":[{"portIn":"Percentage","portOut":"Value","objIn":"vi3ol2srw","objOut":"5rr738syp"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"cdrv5rrjk","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"number1","portOut":"Result","objIn":"jax75maya","objOut":"cdrv5rrjk"}]}],"objName":"Ops.Math.OneMinus"},{"id":"tj2cnloqq","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__lensFlareTexts"}],"objName":"Ops.Vars.VarGetTexture_v2"},{"id":"5dbgajlcv","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLength"}],"portsOut":[{"name":"Value","links":[{"portIn":"r","portOut":"Value","objIn":"1qwtcdiny","objOut":"5dbgajlcv"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"grj3uhv6e","uiAttribs":{},"portsIn":[{"name":"number2","value":0.25}],"portsOut":[{"name":"result","links":[{"portIn":"Line Glow","portOut":"result","objIn":"1qwtcdiny","objOut":"grj3uhv6e"}]}],"objName":"Ops.Math.Multiply"},{"id":"yaju7ahmk","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_diffusion"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"grj3uhv6e","objOut":"yaju7ahmk"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"1qwtcdiny","uiAttribs":{},"portsIn":[{"name":"Blend Mode index","value":18},{"name":"Blend Mode","value":"Math Add"},{"name":"Amount","value":1},{"name":"Alpha Mask index","value":0},{"name":"Alpha Mask","value":"Off"},{"name":"Waveform","value":"Sine"},{"name":"Amplitude","value":0.318},{"name":"Frequency","value":1.83},{"name":"Line Width","value":0},{"name":"invert color","value":0},{"name":"Solid fill","value":0},{"name":"Offset Y","value":0.5},{"name":"g","value":0.897},{"name":"b","value":1}],"objName":"Ops.Gl.ImageCompose.Waveform_v3"},{"id":"pu5boj419","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":6.22},{"name":"height","value":1.18},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":1},{"name":"num rows","value":1}],"portsOut":[{"name":"trigger","title":"Next","links":[{"portIn":"render","portOut":"trigger","objIn":"p8itm86lw","objOut":"pu5boj419"}]},{"name":"geometry","links":[{"portIn":"Geometry","portOut":"geometry","objIn":"ud198sc5z","objOut":"pu5boj419"}]}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"6t34impxr","uiAttribs":{},"portsIn":[{"name":"x","value":1.16},{"name":"y","value":2.05},{"name":"z","value":1.59}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"pvmeev0jc","objOut":"6t34impxr"}]}],"objName":"Ops.Gl.Matrix.ScaleXYZViewMatrix"},{"id":"pvmeev0jc","uiAttribs":{},"portsIn":[{"name":"posX","value":0},{"name":"posY","value":0.2},{"name":"posZ","value":-1.01},{"name":"scale","value":1},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"pu5boj419","objOut":"pvmeev0jc"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"a1dx328je","uiAttribs":{},"portsIn":[{"name":"g","value":0.8266594326686372},{"name":"b","value":0.047299581303328786},{"name":"colorizeTexture","value":0},{"name":"Vertex Colors","value":0},{"name":"Alpha Mask Source index","value":0},{"name":"Alpha Mask Source","value":"Luminance"},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":1},{"name":"diffuseRepeatX","value":1},{"name":"diffuseRepeatY","value":0.77},{"name":"Tex Offset X","value":0},{"name":"Tex Offset Y","value":0},{"name":"Crop TexCoords","value":0},{"name":"billboard","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"6t34impxr","objOut":"a1dx328je"}]}],"objName":"Ops.Gl.Shader.BasicMaterial_v3"},{"id":"o0tqxxwkq","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__lensFlareTexts"}],"objName":"Ops.Vars.VarSetTexture_v2"},{"id":"87k6oec5j","uiAttribs":{},"portsIn":[{"name":"Gradient","value":"{\"keys\":[{\"pos\":0,\"posy\":0.5,\"r\":0.8940386199519508,\"g\":0.4775050106350145,\"b\":0.04740221181545179},{\"pos\":0,\"posy\":0.5,\"r\":0.6792710851801129,\"g\":0.9988421641509637,\"b\":0.7736429666946747},{\"pos\":1,\"posy\":0.5,\"r\":0.19605291427060512,\"g\":0.5730566263925843,\"b\":0.1913144069166861},{\"pos\":1,\"posy\":0.5,\"r\":0.814667993582419,\"g\":0.7737538993299289,\"b\":0.3448912272295479}]}"},{"name":"Direction index","value":1},{"name":"Direction","value":"Y"},{"name":"Smoothstep","value":0},{"name":"Step","value":0},{"name":"Flip","value":0},{"name":"sRGB","value":0},{"name":"Oklab","value":0},{"name":"Size","value":64},{"name":"filter index","value":1},{"name":"filter","value":"linear"},{"name":"wrap index","value":1},{"name":"wrap","value":"repeat"},{"name":"Gradient Array","value":0}],"portsOut":[{"name":"Texture","links":[{"portIn":"Diffuse Texture","portOut":"Texture","objIn":"3so3f33cf","objOut":"87k6oec5j"}]}],"objName":"Ops.Gl.GradientTexture"},{"id":"di9yoxov9","uiAttribs":{},"portsIn":[{"name":"Size index","value":0},{"name":"Size","value":"Auto"},{"name":"Width","value":640},{"name":"Height","value":480},{"name":"Filter index","value":1},{"name":"Filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"R","value":0},{"name":"G","value":0},{"name":"B","value":0},{"name":"A","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"1qwtcdiny","objOut":"di9yoxov9"}]},{"name":"texture_out","links":[{"portIn":"Texture 2","portOut":"texture_out","objIn":"jc2ggn9up","objOut":"di9yoxov9"}]},{"name":"Aspect Ratio","value":1.715883668903803},{"name":"Texture Width","value":1534},{"name":"Texture Height","value":894}],"objName":"Ops.Gl.ImageCompose.ImageCompose_v4"},{"id":"9s6v7pnlp","uiAttribs":{},"portsIn":[{"name":"Size index","value":2},{"name":"Size","value":"Manual"},{"name":"Width","value":640},{"name":"Height","value":480},{"name":"Filter index","value":1},{"name":"Filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"R","value":0},{"name":"G","value":0},{"name":"B","value":0},{"name":"A","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"jc2ggn9up","objOut":"9s6v7pnlp"}]},{"name":"texture_out","links":[{"portIn":"Base Texture","portOut":"texture_out","objIn":"51ldwg650","objOut":"9s6v7pnlp"}]},{"name":"Aspect Ratio","value":1.3333333333333333},{"name":"Texture Width","value":640},{"name":"Texture Height","value":480}],"objName":"Ops.Gl.ImageCompose.ImageCompose_v4"},{"id":"51ldwg650","uiAttribs":{},"portsIn":[{"name":"Size index","value":2},{"name":"Size","value":"Manual"},{"name":"Width","value":512},{"name":"Height","value":512},{"name":"Filter index","value":1},{"name":"Filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"R","value":0},{"name":"G","value":0},{"name":"B","value":0},{"name":"A","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"bf9v1uys8","objOut":"51ldwg650"}]},{"name":"texture_out","links":[{"portIn":"texture","portOut":"texture_out","objIn":"a1dx328je","objOut":"51ldwg650"},{"portIn":"Value","portOut":"texture_out","objIn":"3hamtvj79","objOut":"51ldwg650"}]},{"name":"Aspect Ratio","value":1},{"name":"Texture Width","value":512},{"name":"Texture Height","value":512}],"objName":"Ops.Gl.ImageCompose.ImageCompose_v4"},{"id":"ui62hd3xv","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_diffusion"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"cdrv5rrjk","objOut":"ui62hd3xv"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"nf37ruj15","uiAttribs":{},"portsIn":[{"name":"min","value":-0.1},{"name":"max","value":0.7}],"portsOut":[{"name":"result","links":[{"portIn":"Fade","portOut":"result","objIn":"jc2ggn9up","objOut":"nf37ruj15"}]}],"objName":"Ops.Math.SmoothStep_v2"},{"id":"4bj7hjqvt","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_tone"}],"portsOut":[{"name":"Value","value":0.57096}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"9902kom8s","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_diffusion"}],"portsOut":[{"name":"Value","value":1}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"xeu596ai6","uiAttribs":{},"portsIn":[{"name":"Blend Mode index","value":18},{"name":"Blend Mode","value":"Math Add"},{"name":"Rotate","value":0.948},{"name":"Crop","value":1},{"name":"Clear","value":1}],"objName":"Ops.Gl.ImageCompose.RotateTexture_v2"},{"id":"3hamtvj79","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_finalTextOut"}],"objName":"Ops.Vars.VarSetTexture_v2"},{"id":"r0my206wt","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_structure"}],"portsOut":[{"name":"Value","value":0.3333333333333333}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"jax75maya","uiAttribs":{},"portsIn":[{"name":"number2","value":-200}],"portsOut":[{"name":"result","links":[{"portIn":"Stretch Left","portOut":"result","objIn":"tgeyutq71","objOut":"jax75maya"}]}],"objName":"Ops.Math.Multiply"},{"id":"tgeyutq71","uiAttribs":{},"portsIn":[{"name":"Blend Mode index","value":18},{"name":"Blend Mode","value":"Math Add"},{"name":"Clamp","value":0},{"name":"Stretch Top","value":1},{"name":"Stretch Bottom","value":1},{"name":"Stretch Right","value":-6}],"objName":"Ops.Gl.ImageCompose.SkewStretchImage_v2"},{"id":"jc2ggn9up","uiAttribs":{},"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"tgeyutq71","objOut":"jc2ggn9up"}]}],"objName":"Ops.Gl.ImageCompose.Mix"},{"id":"eerqtlpnp","uiAttribs":{},"portsIn":[{"name":"Size index","value":0},{"name":"Size","value":"Auto"},{"name":"Width","value":512},{"name":"Height","value":512},{"name":"Filter index","value":1},{"name":"Filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"R","value":0},{"name":"G","value":0},{"name":"B","value":0},{"name":"A","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"xeu596ai6","objOut":"eerqtlpnp"}]},{"name":"texture_out","links":[{"portIn":"Texture 1","portOut":"texture_out","objIn":"jc2ggn9up","objOut":"eerqtlpnp"},{"portIn":"Value","portOut":"texture_out","objIn":"o0tqxxwkq","objOut":"eerqtlpnp"}]},{"name":"Aspect Ratio","value":0.41796875},{"name":"Texture Width","value":214},{"name":"Texture Height","value":512}],"objName":"Ops.Gl.ImageCompose.ImageCompose_v4"},{"id":"7afkrw4hx","uiAttribs":{},"portsIn":[{"name":"Blend Mode index","value":1},{"name":"Blend Mode","value":"lighten"},{"name":"Amount","value":0.274},{"name":"Alpha Mask index","value":0},{"name":"Alpha Mask","value":"Off"},{"name":"Offset X","value":0},{"name":"Offset Y","value":12.85},{"name":"Zoom","value":800},{"name":"Iterations","value":25},{"name":"Seed","value":1},{"name":"Spot edge","value":0},{"name":"Gamma","value":0.88}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"lsqdg33wg","objOut":"7afkrw4hx"}]}],"objName":"Ops.Gl.ImageCompose.LensDirt_v2"},{"id":"a5ao9xvu0","uiAttribs":{},"portsIn":[{"name":"Text","value":"Convolvers"},{"name":"Font","value":"chivo"},{"name":"Scale","value":0.14},{"name":"Letter Spacing","value":0},{"name":"Line Height","value":1},{"name":"Align index","value":2},{"name":"Align","value":"Right"},{"name":"Vertical Align index","value":1},{"name":"Vertical Align","value":"Top"},{"name":"r","value":0.848},{"name":"g","value":0.865},{"name":"b","value":0.878},{"name":"SDF","value":1},{"name":"Smoothing","value":0.085},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.359996875},{"name":"Height","value":0.08213598484848486},{"name":"Start Y","value":0.04471647727272727},{"name":"Num Chars","value":10}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"xwjvzec0g","uiAttribs":{},"portsIn":[{"name":"x","value":-1.26},{"name":"y","value":-0.71},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"a5ao9xvu0","objOut":"xwjvzec0g"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"0cmu1ry52","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLevel"}],"portsOut":[{"name":"Value","links":[{"portIn":"Amount","portOut":"Value","objIn":"xeu596ai6","objOut":"0cmu1ry52"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"tbn2qgqn9","uiAttribs":{},"portsIn":[{"name":"Gradient","value":"{\"keys\":[{\"pos\":0,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0},{\"pos\":0,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0},{\"pos\":0.494140625,\"posy\":0.56,\"r\":1,\"g\":1,\"b\":1},{\"pos\":1,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0},{\"pos\":1,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0}]}"},{"name":"Direction index","value":2},{"name":"Direction","value":"XY"},{"name":"Smoothstep","value":0},{"name":"Step","value":0},{"name":"Flip","value":0},{"name":"sRGB","value":0},{"name":"Oklab","value":0},{"name":"Size","value":16},{"name":"filter index","value":0},{"name":"filter","value":"nearest"},{"name":"wrap index","value":0},{"name":"wrap","value":"clamp to edge"},{"name":"Gradient Array","value":0}],"objName":"Ops.Gl.GradientTexture"},{"id":"kjs0gomie","uiAttribs":{},"portsIn":[{"name":"Show Info","value":0},{"name":"Visualize outside 0-1 index","value":1},{"name":"Visualize outside 0-1","value":"Anim"},{"name":"Alpha index","value":0},{"name":"Alpha","value":"A"},{"name":"Show Color","value":0},{"name":"X","value":0.5},{"name":"Y","value":0.5}],"portsOut":[{"name":"Info","value":""}],"objName":"Ops.Ui.VizTexture"},{"id":"fvg1zz75v","uiAttribs":{},"portsIn":[{"name":"Size index","value":0},{"name":"Size","value":"Canvas"},{"name":"texture width","value":1534},{"name":"texture height","value":894},{"name":"Auto Aspect","value":1},{"name":"filter index","value":0},{"name":"filter","value":"nearest"},{"name":"Wrap index","value":0},{"name":"Wrap","value":"Clamp"},{"name":"MSAA index","value":0},{"name":"MSAA","value":"none"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"Depth","value":1},{"name":"Clear","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"n9u25c6ax","objOut":"fvg1zz75v"}]},{"name":"texture","links":[{"portIn":"Base Texture","portOut":"texture","objIn":"48vrkn65x","objOut":"fvg1zz75v"}]}],"objName":"Ops.Gl.RenderToTexture_v3"},{"id":"pxbd6eh63","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_tone"}],"portsOut":[{"name":"Value","links":[{"portIn":"Percentage","portOut":"Value","objIn":"uo6mpre8c","objOut":"pxbd6eh63"},{"portIn":"Value","portOut":"Value","objIn":"5ulr7vh4p","objOut":"pxbd6eh63"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"uo6mpre8c","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.43},{"name":"Value 2","value":1}],"portsOut":[{"name":"Result","links":[{"portIn":"a","portOut":"Result","objIn":"a1dx328je","objOut":"uo6mpre8c"},{"portIn":"r","portOut":"Result","objIn":"a1dx328je","objOut":"uo6mpre8c"}]}],"objName":"Ops.Math.Interpolate"},{"id":"bf9v1uys8","uiAttribs":{},"portsIn":[{"name":"Blend Mode index","value":19},{"name":"Blend Mode","value":"Math Subtract"},{"name":"Alpha Mask index","value":0},{"name":"Alpha Mask","value":"Off"},{"name":"Strength","value":1},{"name":"Radius","value":0.208},{"name":"Sharp","value":0.539},{"name":"Aspect","value":1},{"name":"r","value":0},{"name":"g","value":0},{"name":"b","value":0},{"name":"Alpha","value":0}],"portsOut":[{"name":"Trigger","links":[{"portIn":"render","portOut":"Trigger","objIn":"7afkrw4hx","objOut":"bf9v1uys8"}]}],"objName":"Ops.Gl.ImageCompose.Vignette_v3"},{"id":"5ulr7vh4p","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Amount","portOut":"Result","objIn":"bf9v1uys8","objOut":"5ulr7vh4p"}]}],"objName":"Ops.Math.OneMinus"},{"id":"lsqdg33wg","uiAttribs":{},"portsIn":[{"name":"Clamp","value":1},{"name":"direction index","value":2},{"name":"direction","value":"horizontal"},{"name":"Mask Invert","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"9s6v7pnlp","objOut":"lsqdg33wg"}]}],"objName":"Ops.Gl.ImageCompose.FastBlur_v2"},{"id":"fogdsmdt8","uiAttribs":{},"portsIn":[{"name":"Gradient","value":"{\"keys\":[{\"pos\":0,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0},{\"pos\":0,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0},{\"pos\":0.46875,\"posy\":0.51,\"r\":0.998046875,\"g\":0.998046875,\"b\":0.998046875},{\"pos\":1,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0},{\"pos\":1,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0}]}"},{"name":"Direction index","value":1},{"name":"Direction","value":"Y"},{"name":"Smoothstep","value":0},{"name":"Step","value":1},{"name":"Flip","value":0},{"name":"sRGB","value":0},{"name":"Oklab","value":0},{"name":"Size","value":16},{"name":"filter index","value":1},{"name":"filter","value":"linear"},{"name":"wrap index","value":0},{"name":"wrap","value":"clamp to edge"},{"name":"Gradient Array","value":0}],"portsOut":[{"name":"Texture","links":[{"portIn":"Mask","portOut":"Texture","objIn":"lsqdg33wg","objOut":"fogdsmdt8"}]}],"objName":"Ops.Gl.GradientTexture"},{"id":"v9g4w5w8m","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLevel"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"qhu04l7zy","objOut":"v9g4w5w8m"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"qhu04l7zy","uiAttribs":{},"portsIn":[{"name":"number2","value":4}],"portsOut":[{"name":"result","links":[{"portIn":"Passes","portOut":"result","objIn":"lsqdg33wg","objOut":"qhu04l7zy"}]}],"objName":"Ops.Math.Multiply"},{"id":"qkhcjgu05","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"a","portOut":"result","objIn":"a5ao9xvu0","objOut":"qkhcjgu05"},{"portIn":"number1","portOut":"result","objIn":"jq7ifli9z","objOut":"qkhcjgu05"}]}],"objName":"Ops.Ui.Routing.RouteNumber"},{"id":"gji70mzgw","uiAttribs":{},"portsIn":[{"name":"Text","value":"direction"},{"name":"Font","value":"chivo"},{"name":"Scale","value":0.13},{"name":"Letter Spacing","value":0},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":2},{"name":"Vertical Align","value":"Middle"},{"name":"r","value":1},{"name":"g","value":1},{"name":"b","value":1},{"name":"SDF","value":1},{"name":"Smoothing","value":0.644},{"name":"Border","value":0},{"name":"Border Width","value":0.085},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0.107},{"name":"Border b","value":0.196},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.299609375},{"name":"Height","value":0.07641131628787877},{"name":"Start Y","value":0.039290222537878776},{"name":"Num Chars","value":9}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"fzsniu9pe","uiAttribs":{},"portsIn":[{"name":"posX","value":0.01},{"name":"posY","value":0.02},{"name":"posZ","value":0},{"name":"scale","value":1.12},{"name":"rotX","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"gji70mzgw","objOut":"fzsniu9pe"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"pmu87q3eb","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.8},{"name":"Value 2","value":-1}],"portsOut":[{"name":"Result","links":[{"portIn":"innerRadius","portOut":"Result","objIn":"1u49ak691","objOut":"pmu87q3eb"}]}],"objName":"Ops.Math.Interpolate"},{"id":"z3e9usn2r","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0},{"name":"Value 2","value":180}],"portsOut":[{"name":"Result","links":[{"portIn":"rotY","portOut":"Result","objIn":"fzsniu9pe","objOut":"z3e9usn2r"}]}],"objName":"Ops.Math.Interpolate"},{"id":"bxhz7tp4k","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"blls2amps","title":"Trigger in"},{"name":"btagbs7z2","title":"Class"},{"name":"lj06d561p","value":0,"title":"Show Boundings"},{"name":"patchId","value":"bp2sub_bxhz7tp4k"}],"portsOut":[{"name":"nti406vwi","title":"Result","links":[{"portIn":"A","portOut":"nti406vwi","objIn":"lfp3xq5lr","objOut":"bxhz7tp4k"}]},{"name":"gjvx0zyv5","title":"value","links":[{"portIn":"number1","portOut":"gjvx0zyv5","objIn":"8hgomlv38","objOut":"bxhz7tp4k"},{"portIn":"a","portOut":"gjvx0zyv5","objIn":"nubb2t6qu","objOut":"bxhz7tp4k"}]}],"objName":"Ops.Patch.PuSSdim.BasicSlider_v3"},{"id":"i737pryvq","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Execute","portOut":"Triggered","objIn":"udgixmukx","objOut":"i737pryvq"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"elnq8ccfz","uiAttribs":{},"portsIn":[{"name":"value","value":"slider_position"}],"portsOut":[{"name":"String","links":[{"portIn":"btagbs7z2","portOut":"String","objIn":"bxhz7tp4k","objOut":"elnq8ccfz"}]}],"objName":"Ops.String.String_v2"},{"id":"f0m25q0un","uiAttribs":{},"portsIn":[{"name":"Text","value":"* position"},{"name":"Font","value":"chivo"},{"name":"Scale","value":0.14},{"name":"Letter Spacing","value":-0.04},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":2},{"name":"Vertical Align","value":"Middle"},{"name":"r","value":0.75},{"name":"g","value":0.75},{"name":"b","value":0.75},{"name":"SDF","value":1},{"name":"Smoothing","value":0.108},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.299709375},{"name":"Height","value":0.09127973484848485},{"name":"Start Y","value":0.047398484848484856},{"name":"Num Chars","value":10}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"jr8ldk0r2","uiAttribs":{},"portsIn":[{"name":"x","value":-1.34},{"name":"y","value":1.05},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"f0m25q0un","objOut":"jr8ldk0r2"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"gpudotn6t","uiAttribs":{},"portsIn":[{"name":"Title","value":"position"}],"objName":"Ops.Ui.Area"},{"id":"8hgomlv38","uiAttribs":{},"portsIn":[{"name":"number2","value":0.33}],"portsOut":[{"name":"result","links":[{"portIn":"a","portOut":"result","objIn":"f0m25q0un","objOut":"8hgomlv38"}]}],"objName":"Ops.Math.Sum"},{"id":"8dujs7k4z","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_position"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"lfp3xq5lr","uiAttribs":{},"portsIn":[{"name":"B","value":1},{"name":"C","value":2},{"name":"D","value":3},{"name":"Expression","value":"a + 0.5"}],"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"8dujs7k4z","objOut":"lfp3xq5lr"}]},{"name":"Expression Valid","value":true}],"objName":"Ops.Math.MathExpression"},{"id":"ovge16avj","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":1.71},{"name":"height","value":0.08},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":2},{"name":"num rows","value":3}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"dbxqt7lqg","uiAttribs":{},"portsIn":[{"name":"x","value":-0.555},{"name":"y","value":0.935},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"nubb2t6qu","objOut":"dbxqt7lqg"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"nubb2t6qu","uiAttribs":{},"portsIn":[{"name":"PointSize","value":4},{"name":"Size in Pixels","value":1},{"name":"Random Size","value":0},{"name":"Round","value":0},{"name":"Round Antialias","value":0},{"name":"Scale by Distance","value":0},{"name":"r","value":0.772},{"name":"g","value":0.15106840238933295},{"name":"b","value":0.4207414807217118},{"name":"Vertex Colors","value":0},{"name":"Colorize Texture","value":0},{"name":"Mask Channel index","value":0},{"name":"Mask Channel","value":"R"},{"name":"Colorize Randomize","value":0},{"name":"Point Size Channel index","value":0},{"name":"Point Size Channel","value":"R"},{"name":"Texture Point Size Mul","value":1},{"name":"Map Size 0 index","value":0},{"name":"Map Size 0","value":"Black"},{"name":"Flip Texture","value":0},{"name":"Atlas Cross Fade","value":0},{"name":"Atlas Repeat X ","value":1},{"name":"Min Point Size","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"ovge16avj","objOut":"nubb2t6qu"}]}],"objName":"Ops.Gl.Shader.PointMaterial_v5"},{"id":"359tlq06f","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.003},{"name":"Value 2","value":0.01}],"portsOut":[{"name":"Result","links":[{"portIn":"height","portOut":"Result","objIn":"hm7bbicrb","objOut":"359tlq06f"}]}],"objName":"Ops.Math.Interpolate"},{"id":"li57o4rn2","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.9},{"name":"Value 2","value":1}],"portsOut":[{"name":"Result","links":[{"portIn":"a","portOut":"Result","objIn":"l01dmydzd","objOut":"li57o4rn2"},{"portIn":"g","portOut":"Result","objIn":"l01dmydzd","objOut":"li57o4rn2"},{"portIn":"b","portOut":"Result","objIn":"l01dmydzd","objOut":"li57o4rn2"},{"portIn":"r","portOut":"Result","objIn":"l01dmydzd","objOut":"li57o4rn2"}]}],"objName":"Ops.Math.Interpolate"},{"id":"p2z4x8iu5","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.19},{"name":"Value 2","value":0.23}],"portsOut":[{"name":"Result","links":[{"portIn":"Scale","portOut":"Result","objIn":"l01dmydzd","objOut":"p2z4x8iu5"}]}],"objName":"Ops.Math.Interpolate"},{"id":"l88qnkqyk","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"Percentage","portOut":"result","objIn":"li57o4rn2","objOut":"l88qnkqyk"},{"portIn":"Percentage","portOut":"result","objIn":"p2z4x8iu5","objOut":"l88qnkqyk"},{"portIn":"Percentage","portOut":"result","objIn":"359tlq06f","objOut":"l88qnkqyk"}]}],"objName":"Ops.Ui.Routing.RouteNumber"},{"id":"b8j12x3gl","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":2.74},{"name":"height","value":0.03},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":9},{"name":"num rows","value":3}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"6pwy0s5dx","uiAttribs":{},"portsIn":[{"name":"PointSize","value":3},{"name":"Size in Pixels","value":1},{"name":"Random Size","value":0},{"name":"Round","value":0},{"name":"Round Antialias","value":0},{"name":"Scale by Distance","value":0},{"name":"r","value":0.772},{"name":"g","value":0.15106840238933295},{"name":"b","value":0.4207414807217118},{"name":"Vertex Colors","value":0},{"name":"Colorize Texture","value":1},{"name":"Mask Channel index","value":0},{"name":"Mask Channel","value":"R"},{"name":"Colorize Randomize","value":0},{"name":"Point Size Channel index","value":0},{"name":"Point Size Channel","value":"R"},{"name":"Texture Point Size Mul","value":1},{"name":"Map Size 0 index","value":0},{"name":"Map Size 0","value":"Black"},{"name":"Flip Texture","value":0},{"name":"Atlas Cross Fade","value":0},{"name":"Atlas Repeat X ","value":1},{"name":"Min Point Size","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"b8j12x3gl","objOut":"6pwy0s5dx"}]}],"objName":"Ops.Gl.Shader.PointMaterial_v5"},{"id":"cdqihefdh","uiAttribs":{},"portsIn":[{"name":"x","value":0},{"name":"y","value":-0.77},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"6pwy0s5dx","objOut":"cdqihefdh"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"kzr5ui0jv","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_structure"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"tpi422xya","objOut":"kzr5ui0jv"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"tpi422xya","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Randomize Colors","portOut":"Next","objIn":"87k6oec5j","objOut":"tpi422xya"}]},{"name":"Number","value":0.3333333333333333}],"objName":"Ops.Number.TriggerOnChangeNumber"},{"id":"55jf7ng6g","uiAttribs":{},"portsIn":[{"name":"number2","value":15}],"portsOut":[{"name":"result","links":[{"portIn":"Value","portOut":"result","objIn":"pnzzc7ulm","objOut":"55jf7ng6g"}]}],"objName":"Ops.Math.Divide"},{"id":"huqpajdbd","uiAttribs":{},"portsIn":[{"name":"number2","value":15}],"portsOut":[{"name":"result","links":[{"portIn":"number","portOut":"result","objIn":"y5csdqm5k","objOut":"huqpajdbd"}]}],"objName":"Ops.Math.Multiply"},{"id":"y5csdqm5k","uiAttribs":{},"portsIn":[{"name":"Decimal Places","value":0}],"portsOut":[{"name":"result","links":[{"portIn":"index","portOut":"result","objIn":"djbr6tym4","objOut":"y5csdqm5k"}]}],"objName":"Ops.Math.Round"},{"id":"lmzv6xxhp","uiAttribs":{},"portsIn":[{"name":"Delay","value":0.1},{"name":"Clear on Change","value":0},{"name":"easing index","value":1},{"name":"easing","value":"absolute"}],"portsOut":[{"name":"Result","links":[{"portIn":"number1","portOut":"Result","objIn":"huqpajdbd","objOut":"lmzv6xxhp"}]}],"objName":"Ops.Number.DelayedNumber"},{"id":"l4gff2c89","uiAttribs":{},"portsIn":[{"name":"key code","value":49},{"name":"canvas only","value":1},{"name":"Mod Key index","value":0},{"name":"Mod Key","value":"none"},{"name":"Enabled","value":1},{"name":"Prevent Default","value":0}],"portsOut":[{"name":"on press","links":[{"portIn":"trigger","portOut":"on press","objIn":"st9zrhm6y","objOut":"l4gff2c89"}]},{"name":"Pressed","links":[{"portIn":"Default","portOut":"Pressed","objIn":"st9zrhm6y","objOut":"l4gff2c89"}]},{"name":"Key","value":"1"}],"objName":"Ops.Devices.Keyboard.KeyPressLearn"},{"id":"st9zrhm6y","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"visible","portOut":"result","objIn":"ick4g333d","objOut":"st9zrhm6y"}]}],"objName":"Ops.Boolean.ToggleBool_v2"},{"id":"ick4g333d","uiAttribs":{},"objName":"Ops.Patch.PuSSdim.Console_v2"},{"id":"n19jursgo","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeDirection"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"rucgc73bp","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"patchId","value":"bp2sub_rucgc73bp"}],"portsOut":[{"name":"pmu87y53p","title":"result","links":[{"portIn":"Use Value 1","portOut":"pmu87y53p","objIn":"6lh7g16he","objOut":"rucgc73bp"}]},{"name":"1u3pcbd78","value":0,"title":"Number"}],"objName":"Ops.Patch.PuSSdim.TriggerOnReverseButton_v2"},{"id":"sx7uf9s5r","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"patchId","value":"bp2sub_sx7uf9s5r"}],"portsOut":[{"name":"pmu87y53p","title":"result","links":[{"portIn":"bool","portOut":"pmu87y53p","objIn":"zy3ewhgid","objOut":"sx7uf9s5r"},{"portIn":"Percentage","portOut":"pmu87y53p","objIn":"z3e9usn2r","objOut":"sx7uf9s5r"},{"portIn":"Value","portOut":"pmu87y53p","objIn":"n19jursgo","objOut":"sx7uf9s5r"}]},{"name":"1u3pcbd78","value":0,"title":"Number"}],"objName":"Ops.Patch.PuSSdim.TriggerOnReverseButton_v2"},{"id":"5cer7j6fh","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"patchId","value":"bp2sub_5cer7j6fh"}],"portsOut":[{"name":"pmu87y53p","value":0,"title":"result"},{"name":"1u3pcbd78","value":0,"title":"Number"}],"objName":"Ops.Patch.PuSSdim.TriggerOnReverseButton_v2"},{"id":"jq7ifli9z","uiAttribs":{},"portsIn":[{"name":"number2","value":2}],"portsOut":[{"name":"result","links":[{"portIn":"a","portOut":"result","objIn":"6pwy0s5dx","objOut":"jq7ifli9z"}]}],"objName":"Ops.Math.Divide"},{"id":"rmigep014","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":2.7},{"name":"height","value":0.03},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":9},{"name":"num rows","value":3}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"ezv1vx872","uiAttribs":{},"portsIn":[{"name":"x","value":0},{"name":"y","value":-0.97},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"d4a8366c0","objOut":"ezv1vx872"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"9cfc0k1rh","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"number1","portOut":"result","objIn":"brfy0oj40","objOut":"9cfc0k1rh"}]}],"objName":"Ops.Ui.Routing.RouteNumber"},{"id":"brfy0oj40","uiAttribs":{},"portsIn":[{"name":"number2","value":2}],"portsOut":[{"name":"result","links":[{"portIn":"a","portOut":"result","objIn":"d4a8366c0","objOut":"brfy0oj40"}]}],"objName":"Ops.Math.Divide"},{"id":"7xrwdqmvp","uiAttribs":{},"portsOut":[{"name":"trigger 0","links":[{"portIn":"render","portOut":"trigger 0","objIn":"070by2eug","objOut":"7xrwdqmvp"}]},{"name":"trigger 1","links":[{"portIn":"Trigger in","portOut":"trigger 1","objIn":"gex9oaatc","objOut":"7xrwdqmvp"}]},{"name":"trigger 5","links":[{"portIn":"Render","portOut":"trigger 5","objIn":"e5r0bk5la","objOut":"7xrwdqmvp"}]},{"name":"trigger 7","links":[{"portIn":"exe","portOut":"trigger 7","objIn":"84hdpbwaf","objOut":"7xrwdqmvp"}]}],"objName":"Ops.Gl.LayerSequence"},{"id":"e5r0bk5la","uiAttribs":{},"portsIn":[{"name":"Width","value":1},{"name":"Height","value":1},{"name":"pivot x index","value":0},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":0},{"name":"pivot y","value":"center"},{"name":"Draw Top","value":1},{"name":"Draw Bottom","value":1},{"name":"Draw Left","value":1},{"name":"Draw Right","value":1},{"name":"Active","value":1}],"objName":"Ops.Gl.Meshes.RectangleFrame_v2"},{"id":"gex9oaatc","uiAttribs":{},"portsIn":[{"name":"Width","value":1},{"name":"Height","value":1},{"name":"ID","value":""},{"name":"Class","value":""},{"name":"Pivot x index","value":0},{"name":"Pivot x","value":"center"},{"name":"Pivot y index","value":0},{"name":"Pivot y","value":"center"},{"name":"Axis index","value":0},{"name":"Axis","value":"xy"},{"name":"Is Interactive","value":1},{"name":"Render Rectangle","value":0},{"name":"Show Boundings","value":0},{"name":"Cursor index","value":0},{"name":"Cursor","value":"auto"},{"name":"Render","value":1,"title":"Active"}],"portsOut":[{"name":"Pointer Hover","links":[{"portIn":"bool","portOut":"Pointer Hover","objIn":"84hdpbwaf","objOut":"gex9oaatc"}]},{"name":"Pointer Down","value":0},{"name":"Pointer X","value":0.18818220639624172},{"name":"Pointer Y","value":0.9036123216033479},{"name":"Top","value":179.14312809705734},{"name":"Left","value":47.720436811447144},{"name":"Right","value":84.9080058336258},{"name":"Bottom","value":215.44467186927795},{"name":"Left Click","links":[{"portIn":"trigger","portOut":"Left Click","objIn":"uy0pd5u8k","objOut":"gex9oaatc"}]}],"objName":"Ops.Gl.InteractiveRectangle_v2"},{"id":"mi1ys7y7e","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"preSequenceFlow"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"render","portOut":"Triggered","objIn":"3wwd1k6hu","objOut":"mi1ys7y7e"},{"portIn":"Execute","portOut":"Triggered","objIn":"vu7mkxcal","objOut":"mi1ys7y7e"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"3wwd1k6hu","uiAttribs":{},"portsIn":[{"name":"posX","value":-1.15},{"name":"posY","value":0.18},{"name":"posZ","value":0},{"name":"scale","value":0.06},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"exe","portOut":"trigger","objIn":"7xrwdqmvp","objOut":"3wwd1k6hu"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"070by2eug","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","title":"Render"},{"name":"width","value":0.8},{"name":"height","value":0.8},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":2},{"name":"num rows","value":2}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"uy0pd5u8k","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"Render Mesh","portOut":"result","objIn":"070by2eug","objOut":"uy0pd5u8k"},{"portIn":"Value","portOut":"result","objIn":"3vwe3ipas","objOut":"uy0pd5u8k"}]}],"objName":"Ops.Boolean.ToggleBool_v2"},{"id":"oq4iuk0t0","uiAttribs":{},"portsIn":[{"name":"Title","value":"Bypass Convolvers"}],"objName":"Ops.Ui.Area"},{"id":"x8xbm1wvq","uiAttribs":{},"portsOut":[{"name":"trigger 0","links":[{"portIn":"render","portOut":"trigger 0","objIn":"ula2gv47e","objOut":"x8xbm1wvq"}]},{"name":"trigger 5","links":[{"portIn":"Render","portOut":"trigger 5","objIn":"q4wnfj3p5","objOut":"x8xbm1wvq"}]},{"name":"trigger 6","links":[{"portIn":"Trigger in","portOut":"trigger 6","objIn":"7ed6aczdz","objOut":"x8xbm1wvq"}]},{"name":"trigger 8","links":[{"portIn":"exe","portOut":"trigger 8","objIn":"irf285bha","objOut":"x8xbm1wvq"}]}],"objName":"Ops.Gl.LayerSequence"},{"id":"q4wnfj3p5","uiAttribs":{},"portsIn":[{"name":"Width","value":1},{"name":"Height","value":1},{"name":"pivot x index","value":0},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":0},{"name":"pivot y","value":"center"},{"name":"Draw Top","value":1},{"name":"Draw Bottom","value":1},{"name":"Draw Left","value":1},{"name":"Draw Right","value":1},{"name":"Active","value":1}],"objName":"Ops.Gl.Meshes.RectangleFrame_v2"},{"id":"7ed6aczdz","uiAttribs":{},"portsIn":[{"name":"Width","value":1},{"name":"Height","value":1},{"name":"ID","value":""},{"name":"Class","value":""},{"name":"Pivot x index","value":0},{"name":"Pivot x","value":"center"},{"name":"Pivot y index","value":0},{"name":"Pivot y","value":"center"},{"name":"Axis index","value":0},{"name":"Axis","value":"xy"},{"name":"Is Interactive","value":1},{"name":"Render Rectangle","value":0},{"name":"Show Boundings","value":0},{"name":"Cursor index","value":2},{"name":"Cursor","value":"pointer"},{"name":"Render","value":1,"title":"Active"}],"portsOut":[{"name":"Pointer Hover","links":[{"portIn":"bool","portOut":"Pointer Hover","objIn":"irf285bha","objOut":"7ed6aczdz"}]},{"name":"Pointer Down","value":0},{"name":"Pointer X","value":0.8008722121768128},{"name":"Pointer Y","value":0.37178795601808445},{"name":"Top","value":124.8130384683609},{"name":"Left","value":48.69036364555359},{"name":"Right","value":85.8269584774971},{"name":"Bottom","value":161.01680141687393},{"name":"Left Click","links":[{"portIn":"trigger","portOut":"Left Click","objIn":"j12tm925v","objOut":"7ed6aczdz"}]}],"objName":"Ops.Gl.InteractiveRectangle_v2"},{"id":"ula2gv47e","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","title":"Render"},{"name":"width","value":0.8},{"name":"height","value":0.8},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":2},{"name":"num rows","value":2}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"j12tm925v","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"Render Mesh","portOut":"result","objIn":"ula2gv47e","objOut":"j12tm925v"},{"portIn":"Value","portOut":"result","objIn":"8mgrhcm7a","objOut":"j12tm925v"}]}],"objName":"Ops.Boolean.ToggleBool_v2"},{"id":"amn6xx3kk","uiAttribs":{},"portsIn":[{"name":"Title","value":"Bypass Refs"}],"objName":"Ops.Ui.Area"},{"id":"8mgrhcm7a","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_bypassSRVB"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"52bgygm7a","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_bypassSRVB"}],"portsOut":[{"name":"Value","links":[{"portIn":"Default","portOut":"Value","objIn":"j12tm925v","objOut":"52bgygm7a"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"3vwe3ipas","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_bypassConvolver"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"glkaxm7f0","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_bypassConvolver"}],"portsOut":[{"name":"Value","links":[{"portIn":"Default","portOut":"Value","objIn":"uy0pd5u8k","objOut":"glkaxm7f0"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"ngzgotbds","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"exe","portOut":"Trigger out","objIn":"124910bf-e88f-4da5-847e-888a7ac73020","objOut":"ngzgotbds"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"d4a8366c0","uiAttribs":{},"portsIn":[{"name":"PointSize","value":3},{"name":"Size in Pixels","value":1},{"name":"Random Size","value":0},{"name":"Round","value":0},{"name":"Round Antialias","value":0},{"name":"Scale by Distance","value":0},{"name":"r","value":0.772},{"name":"g","value":0.15106840238933295},{"name":"b","value":0.4207414807217118},{"name":"Vertex Colors","value":0},{"name":"Colorize Texture","value":1},{"name":"Mask Channel index","value":0},{"name":"Mask Channel","value":"R"},{"name":"Colorize Randomize","value":0},{"name":"Point Size Channel index","value":0},{"name":"Point Size Channel","value":"R"},{"name":"Texture Point Size Mul","value":1},{"name":"Map Size 0 index","value":0},{"name":"Map Size 0","value":"Black"},{"name":"Flip Texture","value":0},{"name":"Atlas Cross Fade","value":0},{"name":"Atlas Repeat X ","value":1},{"name":"Min Point Size","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"rmigep014","objOut":"d4a8366c0"}]}],"objName":"Ops.Gl.Shader.PointMaterial_v5"},{"id":"cdn66mu7a","uiAttribs":{},"portsIn":[{"name":"Text","value":"*Scape"},{"name":"Font","value":"chivo"},{"name":"Scale","value":0.24},{"name":"Letter Spacing","value":-0.02},{"name":"Line Height","value":1},{"name":"Align index","value":2},{"name":"Align","value":"Right"},{"name":"Vertical Align index","value":3},{"name":"Vertical Align","value":"Bottom"},{"name":"r","value":0.75},{"name":"g","value":0.75},{"name":"b","value":0.75},{"name":"a","value":1},{"name":"SDF","value":1},{"name":"Smoothing","value":0.085},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.341925},{"name":"Height","value":0.15647954545454545},{"name":"Start Y","value":0.15949431818181817},{"name":"Num Chars","value":6}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"kgztdjkg7","uiAttribs":{},"portsIn":[{"name":"posX","value":-1.62},{"name":"posY","value":-0.71},{"name":"posZ","value":0},{"name":"scale","value":1},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":90}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"cdn66mu7a","objOut":"kgztdjkg7"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"62p51ysxi","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":0.01},{"name":"height","value":-0.43},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":1},{"name":"num rows","value":1}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"b7lt5j2bc","uiAttribs":{},"portsIn":[{"name":"x","value":-1.61},{"name":"y","value":-0.87},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"62p51ysxi","objOut":"b7lt5j2bc"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"ajqkcp9y5","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":0.01},{"name":"height","value":2.48},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":1},{"name":"num rows","value":1}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"9yv8uo1rz","uiAttribs":{},"portsIn":[{"name":"x","value":-1.61},{"name":"y","value":0.79},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"ajqkcp9y5","objOut":"9yv8uo1rz"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"kepigt9gu","uiAttribs":{},"portsIn":[{"name":"r","value":0.179},{"name":"g","value":1},{"name":"b","value":0.692},{"name":"a","value":0.547},{"name":"colorizeTexture","value":0},{"name":"Vertex Colors","value":0},{"name":"Alpha Mask Source index","value":0},{"name":"Alpha Mask Source","value":"Luminance"},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":0},{"name":"diffuseRepeatX","value":1},{"name":"diffuseRepeatY","value":1},{"name":"Tex Offset X","value":0},{"name":"Tex Offset Y","value":0},{"name":"Crop TexCoords","value":0},{"name":"billboard","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"jtsnv54z5","objOut":"kepigt9gu"}]}],"objName":"Ops.Gl.Shader.BasicMaterial_v3"},{"id":"s9d3c0k9s","uiAttribs":{},"portsIn":[{"name":"Text","value":"*Reflectors"},{"name":"Font","value":"chivo"},{"name":"Scale","value":0.24},{"name":"Letter Spacing","value":-0.02},{"name":"Line Height","value":1},{"name":"Align index","value":2},{"name":"Align","value":"Right"},{"name":"Vertical Align index","value":3},{"name":"Vertical Align","value":"Bottom"},{"name":"r","value":0.75},{"name":"g","value":0.75},{"name":"b","value":0.75},{"name":"a","value":1},{"name":"SDF","value":1},{"name":"Smoothing","value":0.085},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.6169875},{"name":"Height","value":0.14320454545454545},{"name":"Start Y","value":0.14734431818181817},{"name":"Num Chars","value":11}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"kcwjgoqk1","uiAttribs":{},"portsIn":[{"name":"posX","value":-1.63},{"name":"posY","value":0.41},{"name":"posZ","value":0},{"name":"scale","value":1},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":90}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"s9d3c0k9s","objOut":"kcwjgoqk1"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"3wnf93z0d","uiAttribs":{},"portsIn":[{"name":"Title","value":"Left Side Panel"}],"objName":"Ops.Ui.Area"},{"id":"w1wyli4ul","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"render","portOut":"Triggered","objIn":"kepigt9gu","objOut":"w1wyli4ul"},{"portIn":"alrh6hig4","portOut":"Triggered","objIn":"n1dxl83p1","objOut":"w1wyli4ul"},{"portIn":"8dittifdh","portOut":"Triggered","objIn":"n1dxl83p1","objOut":"w1wyli4ul"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"jtsnv54z5","uiAttribs":{},"portsIn":[{"name":"x","value":-0.06},{"name":"y","value":0},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"kgztdjkg7","objOut":"jtsnv54z5"},{"portIn":"render","portOut":"trigger","objIn":"kcwjgoqk1","objOut":"jtsnv54z5"},{"portIn":"render","portOut":"trigger","objIn":"b7lt5j2bc","objOut":"jtsnv54z5"},{"portIn":"render","portOut":"trigger","objIn":"9yv8uo1rz","objOut":"jtsnv54z5"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"29wy37qy9","uiAttribs":{},"portsIn":[{"name":"posX","value":-1.15},{"name":"posY","value":0.27},{"name":"posZ","value":0},{"name":"scale","value":0.06},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"exe","portOut":"trigger","objIn":"x8xbm1wvq","objOut":"29wy37qy9"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"2dwg7w4c5","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"preSequenceFlow"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"render","portOut":"Triggered","objIn":"29wy37qy9","objOut":"2dwg7w4c5"},{"portIn":"Execute","portOut":"Triggered","objIn":"hnzd5wpdu","objOut":"2dwg7w4c5"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"8bw0l1iwj","uiAttribs":{},"portsOut":[{"name":"Number","links":[{"portIn":"number1","portOut":"Number","objIn":"dcl7z07s9","objOut":"8bw0l1iwj"},{"portIn":"Value In","portOut":"Number","objIn":"4eybed6uw","objOut":"8bw0l1iwj"}]}],"objName":"Ops.String.ParseInt_v2"},{"id":"rzoomxuz4","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_hitBodyName"}],"portsOut":[{"name":"Value","links":[{"portIn":"String","portOut":"Value","objIn":"zqsm59jgd","objOut":"rzoomxuz4"}]}],"objName":"Ops.Vars.VarGetString"},{"id":"zqsm59jgd","uiAttribs":{},"portsIn":[{"name":"Search For","value":"dial."},{"name":"Replace","value":""},{"name":"Replace What index","value":0},{"name":"Replace What","value":"All"}],"portsOut":[{"name":"Result","links":[{"portIn":"String","portOut":"Result","objIn":"8bw0l1iwj","objOut":"zqsm59jgd"}]}],"objName":"Ops.String.StringReplace"},{"id":"dcl7z07s9","uiAttribs":{},"portsIn":[{"name":"number2","value":0}],"portsOut":[{"name":"result","links":[{"portIn":"Pass Through","portOut":"result","objIn":"4eybed6uw","objOut":"dcl7z07s9"}]}],"objName":"Ops.Math.Compare.GreaterThan"},{"id":"439i0aj79","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_activeDial_ID"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"4eybed6uw","uiAttribs":{},"portsIn":[{"name":"When False index","value":0},{"name":"When False","value":"keep last number"},{"name":"Custom Value","value":0}],"portsOut":[{"name":"Value Out","links":[{"portIn":"Value","portOut":"Value Out","objIn":"439i0aj79","objOut":"4eybed6uw"}]}],"objName":"Ops.Number.GateNumber"},{"id":"cej7j59jx","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_bypassSRVB"}],"portsOut":[{"name":"Value","links":[{"portIn":"Boolean","portOut":"Value","objIn":"irxfck5m6","objOut":"cej7j59jx"},{"portIn":"Pass Through","portOut":"Value","objIn":"oefqiqdsy","objOut":"cej7j59jx"},{"portIn":"Pass Through","portOut":"Value","objIn":"3n0xi3fsv","objOut":"cej7j59jx"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"irxfck5m6","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Pass Through","portOut":"Result","objIn":"ngzgotbds","objOut":"irxfck5m6"},{"portIn":"Pass Through","portOut":"Result","objIn":"lsv3n3hs3","objOut":"irxfck5m6"}]}],"objName":"Ops.Boolean.Not"},{"id":"89jux4z6s","uiAttribs":{},"portsIn":[{"name":"Title","value":"bypass"}],"objName":"Ops.Ui.Area"},{"id":"u3dpm2y6e","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_bypassSRVB"}],"portsOut":[{"name":"Value","links":[{"portIn":"Boolean","portOut":"Value","objIn":"3c3cerstj","objOut":"u3dpm2y6e"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"3c3cerstj","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Pass Through","portOut":"Result","objIn":"41p18fvfx","objOut":"3c3cerstj"}]}],"objName":"Ops.Boolean.Not"},{"id":"r3brv3upl","uiAttribs":{},"portsIn":[{"name":"Title","value":"bypass"}],"objName":"Ops.Ui.Area"},{"id":"41p18fvfx","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"render","portOut":"Trigger out","objIn":"vr3j7sk4c","objOut":"41p18fvfx"},{"portIn":"render","portOut":"Trigger out","objIn":"zcqvrg63v","objOut":"41p18fvfx"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"mcyj3ceqx","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_bypassSRVB"}],"portsOut":[{"name":"Value","links":[{"portIn":"Boolean","portOut":"Value","objIn":"wvmky194s","objOut":"mcyj3ceqx"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"wvmky194s","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Pass Through","portOut":"Result","objIn":"udgixmukx","objOut":"wvmky194s"}]}],"objName":"Ops.Boolean.Not"},{"id":"2nwj9hk6i","uiAttribs":{},"portsIn":[{"name":"Title","value":"bypass"}],"objName":"Ops.Ui.Area"},{"id":"udgixmukx","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"blls2amps","portOut":"Trigger out","objIn":"bxhz7tp4k","objOut":"udgixmukx"},{"portIn":"render","portOut":"Trigger out","objIn":"jr8ldk0r2","objOut":"udgixmukx"},{"portIn":"render","portOut":"Trigger out","objIn":"dbxqt7lqg","objOut":"udgixmukx"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"oefqiqdsy","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"render","portOut":"Trigger out","objIn":"gd8i1910i","objOut":"oefqiqdsy"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"gd8i1910i","uiAttribs":{},"portsIn":[{"name":"posX","value":0},{"name":"posY","value":0},{"name":"posZ","value":0},{"name":"scale","value":0.73},{"name":"rotX","value":90},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"9fkoygcno","portOut":"trigger","objIn":"pa5yuiyom","objOut":"gd8i1910i"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"pa5yuiyom","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"9fkoygcno","title":"Render"},{"name":"patchId","value":"bp2sub_pa5yuiyom"}],"objName":"Ops.Patch.PuSSdim.SubPatch1"},{"id":"3n0xi3fsv","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"9fkoygcno","portOut":"Trigger out","objIn":"pa5yuiyom","objOut":"3n0xi3fsv"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"lsv3n3hs3","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"Execute","portOut":"Trigger out","objIn":"ngzgotbds","objOut":"lsv3n3hs3"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"eval6rzea","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_bypassConvolver"}],"portsOut":[{"name":"Value","links":[{"portIn":"Boolean","portOut":"Value","objIn":"qc9y0rymh","objOut":"eval6rzea"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"qc9y0rymh","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Pass Through","portOut":"Result","objIn":"1qf5qizbm","objOut":"qc9y0rymh"}]}],"objName":"Ops.Boolean.Not"},{"id":"t6ok8gofa","uiAttribs":{},"portsIn":[{"name":"Title","value":"bypass"}],"objName":"Ops.Ui.Area"},{"id":"1qf5qizbm","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"render","portOut":"Trigger out","objIn":"cdqihefdh","objOut":"1qf5qizbm"},{"portIn":"blls2amps","portOut":"Trigger out","objIn":"827hbx7y7","objOut":"1qf5qizbm"},{"portIn":"Execute","portOut":"Trigger out","objIn":"8z3433rds","objOut":"1qf5qizbm"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"8z3433rds","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"p3udn0kt2","objOut":"8z3433rds"},{"portIn":"blls2amps","portOut":"Next","objIn":"5jrf5b006","objOut":"8z3433rds"},{"portIn":"render","portOut":"Next","objIn":"ezv1vx872","objOut":"8z3433rds"},{"portIn":"render","portOut":"Next","objIn":"xwjvzec0g","objOut":"8z3433rds"}]}],"objName":"Ops.Trigger.TriggerExtender"},{"id":"6u9uljqof","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_bypassConvolver"}],"portsOut":[{"name":"Value","links":[{"portIn":"Boolean","portOut":"Value","objIn":"gydu08orr","objOut":"6u9uljqof"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"qgfcwj6li","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"render","portOut":"Trigger out","objIn":"k9oj9uhcw","objOut":"qgfcwj6li"},{"portIn":"render","portOut":"Trigger out","objIn":"0tooxrj1w","objOut":"qgfcwj6li"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"gydu08orr","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Pass Through","portOut":"Result","objIn":"qgfcwj6li","objOut":"gydu08orr"}]}],"objName":"Ops.Boolean.Not"},{"id":"84hdpbwaf","uiAttribs":{},"portsIn":[{"name":"easing index","value":2},{"name":"easing","value":"smoothstep"},{"name":"duration","value":0.25},{"name":"Direction index","value":1},{"name":"Direction","value":"Only True"},{"name":"value false","value":-0.05},{"name":"value true","value":-0.1}],"portsOut":[{"name":"value","links":[{"portIn":"Thickness","portOut":"value","objIn":"e5r0bk5la","objOut":"84hdpbwaf"},{"portIn":"number","portOut":"value","objIn":"zf4zkamma","objOut":"84hdpbwaf"}]},{"name":"finished","value":1}],"objName":"Ops.Anim.BoolAnim"},{"id":"irf285bha","uiAttribs":{},"portsIn":[{"name":"easing index","value":2},{"name":"easing","value":"smoothstep"},{"name":"duration","value":0.25},{"name":"Direction index","value":1},{"name":"Direction","value":"Only True"},{"name":"value false","value":-0.05},{"name":"value true","value":-0.1}],"portsOut":[{"name":"value","links":[{"portIn":"Thickness","portOut":"value","objIn":"q4wnfj3p5","objOut":"irf285bha"},{"portIn":"number","portOut":"value","objIn":"4sdf08lse","objOut":"irf285bha"}]},{"name":"finished","value":1}],"objName":"Ops.Anim.BoolAnim"},{"id":"xlw95x0o1","uiAttribs":{},"portsIn":[{"name":"Text","value":"Bypass Reflections"},{"name":"Font","value":"chivo"},{"name":"Scale","value":0.08},{"name":"Letter Spacing","value":-0.02},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":2},{"name":"Vertical Align","value":"Middle"},{"name":"r","value":1},{"name":"g","value":1},{"name":"b","value":1},{"name":"SDF","value":1},{"name":"Smoothing","value":0.122},{"name":"Border","value":0},{"name":"Border Width","value":0.278},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0.268},{"name":"Border g","value":0.917},{"name":"Border b","value":0.449},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.3358},{"name":"Height","value":0.053334848484848485},{"name":"Start Y","value":0.02804734848484848},{"name":"Num Chars","value":18}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"5l1ap8jif","uiAttribs":{},"portsIn":[{"name":"x","value":-0.91},{"name":"y","value":0.27},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"xlw95x0o1","objOut":"5l1ap8jif"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"hnzd5wpdu","uiAttribs":{},"portsIn":[{"name":"Pass Through","value":1}],"portsOut":[{"name":"Trigger out","links":[{"portIn":"render","portOut":"Trigger out","objIn":"5l1ap8jif","objOut":"hnzd5wpdu"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"l4l0bqldi","uiAttribs":{},"portsIn":[{"name":"Text","value":"Bypass Convolvers"},{"name":"Font","value":"chivo"},{"name":"Scale","value":0.08},{"name":"Letter Spacing","value":-0.02},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":2},{"name":"Vertical Align","value":"Middle"},{"name":"r","value":1},{"name":"g","value":1},{"name":"b","value":1},{"name":"SDF","value":1},{"name":"Smoothing","value":0.122},{"name":"Border","value":0},{"name":"Border Width","value":0.278},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0.268},{"name":"Border g","value":0.917},{"name":"Border b","value":0.449},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.3174},{"name":"Height","value":0.05262234848484848},{"name":"Start Y","value":0.02697859848484848},{"name":"Num Chars","value":17}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"tozpismyt","uiAttribs":{},"portsIn":[{"name":"x","value":-0.92},{"name":"y","value":0.18},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"l4l0bqldi","objOut":"tozpismyt"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"vu7mkxcal","uiAttribs":{},"portsIn":[{"name":"Pass Through","value":1}],"portsOut":[{"name":"Trigger out","links":[{"portIn":"render","portOut":"Trigger out","objIn":"tozpismyt","objOut":"vu7mkxcal"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"n1dxl83p1","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"alrh6hig4","title":"render"},{"name":"8dittifdh","title":"Render"},{"name":"patchId","value":"bp2sub_n1dxl83p1"}],"objName":"Ops.Patch.PuSSdim.SubPatch3"},{"id":"gxqx5ku7y","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.58},{"name":"Value 2","value":5}],"portsOut":[{"name":"Result","links":[{"portIn":"a","portOut":"Result","objIn":"xlw95x0o1","objOut":"gxqx5ku7y"}]}],"objName":"Ops.Math.Interpolate"},{"id":"4sdf08lse","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"Percentage","portOut":"result","objIn":"gxqx5ku7y","objOut":"4sdf08lse"}]}],"objName":"Ops.Math.Abs"},{"id":"tvoul885k","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.58},{"name":"Value 2","value":5}],"portsOut":[{"name":"Result","links":[{"portIn":"a","portOut":"Result","objIn":"l4l0bqldi","objOut":"tvoul885k"}]}],"objName":"Ops.Math.Interpolate"},{"id":"zf4zkamma","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"Percentage","portOut":"result","objIn":"tvoul885k","objOut":"zf4zkamma"}]}],"objName":"Ops.Math.Abs"},{"id":"membr309b","uiAttribs":{},"portsIn":[{"name":"value","value":"slider_dryMix"}],"portsOut":[{"name":"String","links":[{"portIn":"btagbs7z2","portOut":"String","objIn":"dy6sr4seg","objOut":"membr309b"}]}],"objName":"Ops.String.String_v2"},{"id":"8havouexn","uiAttribs":{},"portsIn":[{"name":"Text","value":"* dry mix"},{"name":"Font","value":"chivo"},{"name":"Scale","value":0.14},{"name":"Letter Spacing","value":-0.04},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":2},{"name":"Vertical Align","value":"Middle"},{"name":"r","value":0.75},{"name":"g","value":0.75},{"name":"b","value":0.75},{"name":"SDF","value":1},{"name":"Smoothing","value":0.108},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.271403125},{"name":"Height","value":0.09267973484848485},{"name":"Start Y","value":0.048098484848484856},{"name":"Num Chars","value":9}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"8gspnlp7e","uiAttribs":{},"portsIn":[{"name":"x","value":0.57},{"name":"y","value":0.78},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"8havouexn","objOut":"8gspnlp7e"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"2s2np29qz","uiAttribs":{},"portsIn":[{"name":"Title","value":"dry mix in"}],"objName":"Ops.Ui.Area"},{"id":"8u59uuw3y","uiAttribs":{},"portsIn":[{"name":"number2","value":0.33}],"portsOut":[{"name":"result","links":[{"portIn":"a","portOut":"result","objIn":"8havouexn","objOut":"8u59uuw3y"}]}],"objName":"Ops.Math.Sum"},{"id":"3p6mq05rl","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_dryMix"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"kuku2w9d8","uiAttribs":{},"portsIn":[{"name":"B","value":1},{"name":"C","value":2},{"name":"D","value":3},{"name":"Expression","value":"a + 0.5"}],"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"3p6mq05rl","objOut":"kuku2w9d8"}]},{"name":"Expression Valid","value":true}],"objName":"Ops.Math.MathExpression"},{"id":"5gypeqckx","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"render","portOut":"Triggered","objIn":"8gspnlp7e","objOut":"5gypeqckx"},{"portIn":"blls2amps","portOut":"Triggered","objIn":"dy6sr4seg","objOut":"5gypeqckx"},{"portIn":"render","portOut":"Triggered","objIn":"vm3f05tkh","objOut":"5gypeqckx"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"dy6sr4seg","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"blls2amps","title":"Trigger in"},{"name":"btagbs7z2","title":"Class"},{"name":"lj06d561p","value":0,"title":"Show Boundings"},{"name":"patchId","value":"bp2sub_dy6sr4seg"}],"portsOut":[{"name":"nti406vwi","title":"Result","links":[{"portIn":"A","portOut":"nti406vwi","objIn":"kuku2w9d8","objOut":"dy6sr4seg"}]},{"name":"gjvx0zyv5","title":"value","links":[{"portIn":"number1","portOut":"gjvx0zyv5","objIn":"8u59uuw3y","objOut":"dy6sr4seg"},{"portIn":"a","portOut":"gjvx0zyv5","objIn":"cusun507p","objOut":"dy6sr4seg"}]}],"objName":"Ops.Patch.PuSSdim.BasicSlider_v4"},{"id":"gwbv0asv9","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":0.65},{"name":"height","value":0.03},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":5},{"name":"num rows","value":3}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"vm3f05tkh","uiAttribs":{},"portsIn":[{"name":"x","value":1.06},{"name":"y","value":0.78},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"cusun507p","objOut":"vm3f05tkh"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"cusun507p","uiAttribs":{},"portsIn":[{"name":"PointSize","value":3},{"name":"Size in Pixels","value":1},{"name":"Random Size","value":0},{"name":"Round","value":0},{"name":"Round Antialias","value":0},{"name":"Scale by Distance","value":0},{"name":"r","value":0.772},{"name":"g","value":0.15106840238933295},{"name":"b","value":0.4207414807217118},{"name":"Vertex Colors","value":0},{"name":"Colorize Texture","value":1},{"name":"Mask Channel index","value":0},{"name":"Mask Channel","value":"R"},{"name":"Colorize Randomize","value":0},{"name":"Point Size Channel index","value":0},{"name":"Point Size Channel","value":"R"},{"name":"Texture Point Size Mul","value":1},{"name":"Map Size 0 index","value":0},{"name":"Map Size 0","value":"Black"},{"name":"Flip Texture","value":0},{"name":"Atlas Cross Fade","value":0},{"name":"Atlas Repeat X ","value":1},{"name":"Min Point Size","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"gwbv0asv9","objOut":"cusun507p"}]}],"objName":"Ops.Gl.Shader.PointMaterial_v5"},{"id":"wv9yfmhgi","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.6},{"name":"Value 2","value":1}],"portsOut":[{"name":"Result","links":[{"portIn":"a","portOut":"Result","objIn":"akq5o2oet","objOut":"wv9yfmhgi"}]}],"objName":"Ops.Math.Interpolate"}],"export":{"time":"2024-08-24 16:57","service":"download","exportNumber":1}};
+if(!CABLES.exportedPatch){CABLES.exportedPatch=CABLES.exportedPatches['uSSdim']}
 "use strict";
 
 var CABLES=CABLES||{};
@@ -19479,7 +19479,7 @@ Ops.Ui.Routing=Ops.Ui.Routing || {};
 Ops.Data.Compose=Ops.Data.Compose || {};
 Ops.Math.Compare=Ops.Math.Compare || {};
 Ops.Devices.Mouse=Ops.Devices.Mouse || {};
-Ops.Patch.PD8qfbm=Ops.Patch.PD8qfbm || {};
+Ops.Patch.PuSSdim=Ops.Patch.PuSSdim || {};
 Ops.Gl.ImageCompose=Ops.Gl.ImageCompose || {};
 Ops.Devices.Keyboard=Ops.Devices.Keyboard || {};
 Ops.Graphics.Geometry=Ops.Graphics.Geometry || {};
@@ -19491,78 +19491,15 @@ Ops.Graphics.Intersection=Ops.Graphics.Intersection || {};
 
 // **************************************************************
 // 
-// Ops.Patch.PD8qfbm.SubPatch2
+// Ops.Patch.PuSSdim.BasicSlider_v2
 // 
 // **************************************************************
 
-Ops.Patch.PD8qfbm.SubPatch2 = function()
+Ops.Patch.PuSSdim.BasicSlider_v2 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"op.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp0-0\",\"uiAttribs\":{\"subPatch\":\"6d80loy1x\"},\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"Number\",\"objIn\":\"bp0-3\",\"objOut\":\"bp0-0\"},{\"portIn\":\"Value In\",\"portOut\":\"Number\",\"objIn\":\"bp0-5\",\"objOut\":\"bp0-0\"}]}],\"storage\":{\"ref\":\"bp0-0\"},\"objName\":\"Ops.String.ParseInt_v2\"},{\"id\":\"bp0-1\",\"uiAttribs\":{\"subPatch\":\"6d80loy1x\"},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_hitBodyName\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"String\",\"portOut\":\"Value\",\"objIn\":\"bp0-2\",\"objOut\":\"bp0-1\"}]}],\"storage\":{\"ref\":\"bp0-1\"},\"objName\":\"Ops.Vars.VarGetString\"},{\"id\":\"bp0-2\",\"uiAttribs\":{\"subPatch\":\"6d80loy1x\"},\"portsIn\":[{\"name\":\"Search For\",\"value\":\"dial.\"},{\"name\":\"Replace\",\"value\":\"\"},{\"name\":\"Replace What index\",\"value\":0},{\"name\":\"Replace What\",\"value\":\"All\"}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"String\",\"portOut\":\"Result\",\"objIn\":\"bp0-0\",\"objOut\":\"bp0-2\"}]}],\"storage\":{\"ref\":\"bp0-2\"},\"objName\":\"Ops.String.StringReplace\"},{\"id\":\"bp0-3\",\"uiAttribs\":{\"subPatch\":\"6d80loy1x\"},\"portsIn\":[{\"name\":\"number2\",\"value\":0}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"bp0-5\",\"objOut\":\"bp0-3\"}]}],\"storage\":{\"ref\":\"bp0-3\"},\"objName\":\"Ops.Math.Compare.GreaterThan\"},{\"id\":\"bp0-4\",\"uiAttribs\":{\"subPatch\":\"6d80loy1x\"},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_activeDial_ID\"}],\"storage\":{\"ref\":\"bp0-4\"},\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp0-5\",\"uiAttribs\":{\"subPatch\":\"6d80loy1x\"},\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Value Out\",\"objIn\":\"bp0-4\",\"objOut\":\"bp0-5\"}]}],\"storage\":{\"ref\":\"bp0-5\"},\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"bp0-6\",\"uiAttribs\":{\"subPatch\":\"6d80loy1x\"},\"storage\":{\"ref\":\"bp0-6\"},\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp0-7\",\"uiAttribs\":{\"subPatch\":\"6d80loy1x\"},\"storage\":{\"ref\":\"bp0-7\"},\"objName\":\"Ops.Ui.SubPatchOutput\"}]}",};
-op.initInnerPorts=function(addedOps)
-{
-  for(let i=0;i<addedOps.length;i++)
-  {
-    if(addedOps[i].innerInput)
-    {
-    }
-if(addedOps[i].innerOutput)
-{
-}
-}
-};
-
-const patchId = "bp2sub_" + op.id;
-
-new CABLES.SubPatchOp(op, { "subId": patchId });
-
-initializeSubpatch();
-
-function initializeSubpatch()
-{
-    const p = JSON.parse(attachments.subpatch_json);
-
-    CABLES.Patch.replaceOpIds(p,
-        {
-            "parentSubPatchId": patchId,
-            "prefixHash": patchId,
-            "oldIdAsRef": true,
-            "doNotUnlinkLostLinks": true
-        });
-
-    for (let i = 0; i < p.ops.length; i++)
-    {
-        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
-    }
-
-    op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
-    if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
-    op.patch.emitEvent("subpatchExpose", patchId);
-    op.setStorage({ "blueprintVer": 2 });
-    op.patch.emitEvent("subpatchExpose", patchId);
-}
-
-
-};
-
-Ops.Patch.PD8qfbm.SubPatch2.prototype = new CABLES.Op();
-CABLES.OPS["bc74af64-5cc1-496d-aa2f-ec65bc6ddac2"]={f:Ops.Patch.PD8qfbm.SubPatch2,objName:"Ops.Patch.PD8qfbm.SubPatch2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Patch.PD8qfbm.BasicSlider_v2
-// 
-// **************************************************************
-
-Ops.Patch.PD8qfbm.BasicSlider_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp1-0\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"storage\":{},\"portsIn\":[{\"name\":\"Width\",\"value\":1.01},{\"name\":\"Height\",\"value\":0.45},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"bp1-3\",\"objOut\":\"bp1-0\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp1-9\",\"objOut\":\"bp1-0\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp1-7\",\"objOut\":\"bp1-0\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"bp1-7\",\"objOut\":\"bp1-0\"}]},{\"name\":\"Pointer Y\",\"value\":0.5404207922535432},{\"name\":\"Top\",\"value\":1078.555612206459},{\"name\":\"Left\",\"value\":258.63065552711487},{\"name\":\"Right\",\"value\":1747.3693444728851},{\"name\":\"Bottom\",\"value\":1230.8688561916351}],\"objName\":\"Ops.Gl.InteractiveRectangle_v2\"},{\"id\":\"bp1-1\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp1-4\",\"objOut\":\"bp1-1\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"bp1-2\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"storage\":{},\"portsIn\":[{\"name\":\"posY\",\"value\":0.08},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp1-1\",\"objOut\":\"bp1-2\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp1-3\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"storage\":{},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp1-2\",\"objOut\":\"bp1-3\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"bp1-9\",\"objOut\":\"bp1-3\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"bp1-2\",\"objOut\":\"bp1-3\"},{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"bp1-6\",\"objOut\":\"bp1-3\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"bp1-10\",\"objOut\":\"bp1-3\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"bp1-4\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"storage\":{},\"portsIn\":[{\"name\":\"width\",\"value\":0.017},{\"name\":\"height\",\"value\":0.05},{\"name\":\"Draw\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Triangle_v2\"},{\"id\":\"bp1-5\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"bp1-12\",\"objOut\":\"bp1-5\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"bp1-0\",\"objOut\":\"bp1-5\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"bp1-0\",\"objOut\":\"bp1-5\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp1-6\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"storage\":{},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp1-7\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"storage\":{},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"Value Out\",\"objIn\":\"bp1-8\",\"objOut\":\"bp1-7\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"bp1-8\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp1-3\",\"objOut\":\"bp1-8\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"bp1-9\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"storage\":{},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.49},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"bp1-1\",\"objOut\":\"bp1-9\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"bp1-6\",\"objOut\":\"bp1-9\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"bp1-10\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rotZ\",\"portOut\":\"result\",\"objIn\":\"bp1-2\",\"objOut\":\"bp1-10\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"bp1-11\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"portsIn\":[{\"name\":\"x\",\"value\":2.7},{\"name\":\"y\",\"value\":0.62},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"bp1-0\",\"objOut\":\"bp1-11\"}]}],\"storage\":{\"ref\":\"bp1-11\"},\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"},{\"id\":\"bp1-12\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"portsIn\":[{\"name\":\"x\",\"value\":0},{\"name\":\"y\",\"value\":-1.63},{\"name\":\"z\",\"value\":0.02}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp1-11\",\"objOut\":\"bp1-12\"}]}],\"storage\":{\"ref\":\"bp1-12\"},\"objName\":\"Ops.Gl.Matrix.Translate\"}]}",};
+const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp0-0\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"storage\":{},\"portsIn\":[{\"name\":\"Width\",\"value\":1.01},{\"name\":\"Height\",\"value\":0.45},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"bp0-3\",\"objOut\":\"bp0-0\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp0-9\",\"objOut\":\"bp0-0\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp0-7\",\"objOut\":\"bp0-0\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"bp0-7\",\"objOut\":\"bp0-0\"}]},{\"name\":\"Pointer Y\",\"value\":0.5404207922535432},{\"name\":\"Top\",\"value\":1078.555612206459},{\"name\":\"Left\",\"value\":258.63065552711487},{\"name\":\"Right\",\"value\":1747.3693444728851},{\"name\":\"Bottom\",\"value\":1230.8688561916351}],\"objName\":\"Ops.Gl.InteractiveRectangle_v2\"},{\"id\":\"bp0-1\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp0-4\",\"objOut\":\"bp0-1\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"bp0-2\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"storage\":{},\"portsIn\":[{\"name\":\"posY\",\"value\":0.08},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp0-1\",\"objOut\":\"bp0-2\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp0-3\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"storage\":{},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp0-2\",\"objOut\":\"bp0-3\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"bp0-9\",\"objOut\":\"bp0-3\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"bp0-2\",\"objOut\":\"bp0-3\"},{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"bp0-6\",\"objOut\":\"bp0-3\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"bp0-10\",\"objOut\":\"bp0-3\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"bp0-4\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"storage\":{},\"portsIn\":[{\"name\":\"width\",\"value\":0.017},{\"name\":\"height\",\"value\":0.05},{\"name\":\"Draw\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Triangle_v2\"},{\"id\":\"bp0-5\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"bp0-12\",\"objOut\":\"bp0-5\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"bp0-0\",\"objOut\":\"bp0-5\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"bp0-0\",\"objOut\":\"bp0-5\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp0-6\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"storage\":{},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp0-7\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"storage\":{},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"Value Out\",\"objIn\":\"bp0-8\",\"objOut\":\"bp0-7\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"bp0-8\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp0-3\",\"objOut\":\"bp0-8\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"bp0-9\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"storage\":{},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.49},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"bp0-1\",\"objOut\":\"bp0-9\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"bp0-6\",\"objOut\":\"bp0-9\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"bp0-10\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rotZ\",\"portOut\":\"result\",\"objIn\":\"bp0-2\",\"objOut\":\"bp0-10\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"bp0-11\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"portsIn\":[{\"name\":\"x\",\"value\":2.7},{\"name\":\"y\",\"value\":0.62},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"bp0-0\",\"objOut\":\"bp0-11\"}]}],\"storage\":{\"ref\":\"bp0-11\"},\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"},{\"id\":\"bp0-12\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"portsIn\":[{\"name\":\"x\",\"value\":0},{\"name\":\"y\",\"value\":-1.63},{\"name\":\"z\",\"value\":0.02}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp0-11\",\"objOut\":\"bp0-12\"}]}],\"storage\":{\"ref\":\"bp0-12\"},\"objName\":\"Ops.Gl.Matrix.Translate\"}]}",};
 const port_blls2amps=op.inTrigger("blls2amps");
 port_blls2amps.setUiAttribs({title:"Trigger in",});
 
@@ -19649,23 +19586,23 @@ function initializeSubpatch()
 
 };
 
-Ops.Patch.PD8qfbm.BasicSlider_v2.prototype = new CABLES.Op();
-CABLES.OPS["98d767d6-69cc-44bd-9118-c680afdf76ad"]={f:Ops.Patch.PD8qfbm.BasicSlider_v2,objName:"Ops.Patch.PD8qfbm.BasicSlider_v2"};
+Ops.Patch.PuSSdim.BasicSlider_v2.prototype = new CABLES.Op();
+CABLES.OPS["213bee56-c553-44a9-a58b-e0446d3a7023"]={f:Ops.Patch.PuSSdim.BasicSlider_v2,objName:"Ops.Patch.PuSSdim.BasicSlider_v2"};
 
 
 
 
 // **************************************************************
 // 
-// Ops.Patch.PD8qfbm.BasicSlider_v1
+// Ops.Patch.PuSSdim.BasicSlider_v1
 // 
 // **************************************************************
 
-Ops.Patch.PD8qfbm.BasicSlider_v1 = function()
+Ops.Patch.PuSSdim.BasicSlider_v1 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp2-0\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"storage\":{},\"portsIn\":[{\"name\":\"Width\",\"value\":1},{\"name\":\"Height\",\"value\":0.39},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"bp2-3\",\"objOut\":\"bp2-0\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp2-9\",\"objOut\":\"bp2-0\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp2-7\",\"objOut\":\"bp2-0\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"bp2-7\",\"objOut\":\"bp2-0\"}]},{\"name\":\"Pointer Y\",\"value\":0.29295171066153736},{\"name\":\"Top\",\"value\":598.941089630127},{\"name\":\"Left\",\"value\":305.80947756767273},{\"name\":\"Right\",\"value\":1234.1905224323273},{\"name\":\"Bottom\",\"value\":666.8289563059807}],\"objName\":\"Ops.Gl.InteractiveRectangle_v2\"},{\"id\":\"bp2-1\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp2-4\",\"objOut\":\"bp2-1\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"bp2-2\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"storage\":{},\"portsIn\":[{\"name\":\"posY\",\"value\":-0.01},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp2-1\",\"objOut\":\"bp2-2\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp2-3\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"storage\":{},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp2-2\",\"objOut\":\"bp2-3\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"bp2-9\",\"objOut\":\"bp2-3\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"bp2-2\",\"objOut\":\"bp2-3\"},{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"bp2-6\",\"objOut\":\"bp2-3\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"bp2-10\",\"objOut\":\"bp2-3\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"bp2-4\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"storage\":{},\"portsIn\":[{\"name\":\"width\",\"value\":0.017},{\"name\":\"height\",\"value\":0.05},{\"name\":\"Draw\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Triangle_v2\"},{\"id\":\"bp2-5\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"bp2-12\",\"objOut\":\"bp2-5\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"bp2-0\",\"objOut\":\"bp2-5\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"bp2-0\",\"objOut\":\"bp2-5\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp2-6\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"storage\":{},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp2-7\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"storage\":{},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"Value Out\",\"objIn\":\"bp2-8\",\"objOut\":\"bp2-7\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"bp2-8\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp2-3\",\"objOut\":\"bp2-8\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"bp2-9\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"storage\":{},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.49},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"bp2-1\",\"objOut\":\"bp2-9\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"bp2-6\",\"objOut\":\"bp2-9\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"bp2-10\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rotZ\",\"portOut\":\"result\",\"objIn\":\"bp2-2\",\"objOut\":\"bp2-10\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"bp2-11\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"portsIn\":[{\"name\":\"x\",\"value\":2.72},{\"name\":\"y\",\"value\":0.51},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"bp2-0\",\"objOut\":\"bp2-11\"}]}],\"storage\":{\"ref\":\"bp2-11\"},\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"},{\"id\":\"bp2-12\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"portsIn\":[{\"name\":\"x\",\"value\":0},{\"name\":\"y\",\"value\":-1.5},{\"name\":\"z\",\"value\":0.02}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp2-11\",\"objOut\":\"bp2-12\"}]}],\"storage\":{\"ref\":\"bp2-12\"},\"objName\":\"Ops.Gl.Matrix.Translate\"}]}",};
+const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp1-0\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"storage\":{},\"portsIn\":[{\"name\":\"Width\",\"value\":1},{\"name\":\"Height\",\"value\":0.39},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"bp1-3\",\"objOut\":\"bp1-0\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp1-9\",\"objOut\":\"bp1-0\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp1-7\",\"objOut\":\"bp1-0\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"bp1-7\",\"objOut\":\"bp1-0\"}]},{\"name\":\"Pointer Y\",\"value\":0.29295171066153736},{\"name\":\"Top\",\"value\":598.941089630127},{\"name\":\"Left\",\"value\":305.80947756767273},{\"name\":\"Right\",\"value\":1234.1905224323273},{\"name\":\"Bottom\",\"value\":666.8289563059807}],\"objName\":\"Ops.Gl.InteractiveRectangle_v2\"},{\"id\":\"bp1-1\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp1-4\",\"objOut\":\"bp1-1\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"bp1-2\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"storage\":{},\"portsIn\":[{\"name\":\"posY\",\"value\":-0.01},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp1-1\",\"objOut\":\"bp1-2\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp1-3\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"storage\":{},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp1-2\",\"objOut\":\"bp1-3\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"bp1-9\",\"objOut\":\"bp1-3\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"bp1-2\",\"objOut\":\"bp1-3\"},{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"bp1-6\",\"objOut\":\"bp1-3\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"bp1-10\",\"objOut\":\"bp1-3\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"bp1-4\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"storage\":{},\"portsIn\":[{\"name\":\"width\",\"value\":0.017},{\"name\":\"height\",\"value\":0.05},{\"name\":\"Draw\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Triangle_v2\"},{\"id\":\"bp1-5\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"bp1-12\",\"objOut\":\"bp1-5\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"bp1-0\",\"objOut\":\"bp1-5\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"bp1-0\",\"objOut\":\"bp1-5\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp1-6\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"storage\":{},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp1-7\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"storage\":{},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"Value Out\",\"objIn\":\"bp1-8\",\"objOut\":\"bp1-7\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"bp1-8\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp1-3\",\"objOut\":\"bp1-8\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"bp1-9\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"storage\":{},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.49},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"bp1-1\",\"objOut\":\"bp1-9\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"bp1-6\",\"objOut\":\"bp1-9\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"bp1-10\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rotZ\",\"portOut\":\"result\",\"objIn\":\"bp1-2\",\"objOut\":\"bp1-10\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"bp1-11\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"portsIn\":[{\"name\":\"x\",\"value\":2.72},{\"name\":\"y\",\"value\":0.51},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"bp1-0\",\"objOut\":\"bp1-11\"}]}],\"storage\":{\"ref\":\"bp1-11\"},\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"},{\"id\":\"bp1-12\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"portsIn\":[{\"name\":\"x\",\"value\":0},{\"name\":\"y\",\"value\":-1.5},{\"name\":\"z\",\"value\":0.02}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp1-11\",\"objOut\":\"bp1-12\"}]}],\"storage\":{\"ref\":\"bp1-12\"},\"objName\":\"Ops.Gl.Matrix.Translate\"}]}",};
 const port_blls2amps=op.inTrigger("blls2amps");
 port_blls2amps.setUiAttribs({title:"Trigger in",});
 
@@ -19752,23 +19689,23 @@ function initializeSubpatch()
 
 };
 
-Ops.Patch.PD8qfbm.BasicSlider_v1.prototype = new CABLES.Op();
-CABLES.OPS["a8fead78-e9e0-4e4a-ad80-4292b335e65d"]={f:Ops.Patch.PD8qfbm.BasicSlider_v1,objName:"Ops.Patch.PD8qfbm.BasicSlider_v1"};
+Ops.Patch.PuSSdim.BasicSlider_v1.prototype = new CABLES.Op();
+CABLES.OPS["3dd036fa-493f-4e6f-9873-7065eced1a70"]={f:Ops.Patch.PuSSdim.BasicSlider_v1,objName:"Ops.Patch.PuSSdim.BasicSlider_v1"};
 
 
 
 
 // **************************************************************
 // 
-// Ops.Patch.PD8qfbm.BasicSlider_v3
+// Ops.Patch.PuSSdim.BasicSlider_v3
 // 
 // **************************************************************
 
-Ops.Patch.PD8qfbm.BasicSlider_v3 = function()
+Ops.Patch.PuSSdim.BasicSlider_v3 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp3-0\",\"uiAttribs\":{\"subPatch\":\"a63n2a7rj\"},\"storage\":{},\"portsIn\":[{\"name\":\"Width\",\"value\":1.01},{\"name\":\"Height\",\"value\":0.16},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":0},{\"name\":\"Cursor\",\"value\":\"auto\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"bp3-3\",\"objOut\":\"bp3-0\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp3-8\",\"objOut\":\"bp3-0\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp3-6\",\"objOut\":\"bp3-0\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"bp3-6\",\"objOut\":\"bp3-0\"}]},{\"name\":\"Pointer Y\",\"value\":0.17232683234244073},{\"name\":\"Top\",\"value\":116.50235486030579},{\"name\":\"Left\",\"value\":1018.5823531150818},{\"name\":\"Right\",\"value\":1323.654489517212},{\"name\":\"Bottom\",\"value\":164.83060997724533},{\"name\":\"Dom Element\",\"links\":[{\"portIn\":\"Element\",\"portOut\":\"Dom Element\",\"objIn\":\"bp3-13\",\"objOut\":\"bp3-0\"}]}],\"objName\":\"Ops.Gl.InteractiveRectangle_v2\"},{\"id\":\"bp3-1\",\"uiAttribs\":{\"subPatch\":\"a63n2a7rj\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp3-11\",\"objOut\":\"bp3-1\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"bp3-2\",\"uiAttribs\":{\"subPatch\":\"a63n2a7rj\"},\"storage\":{},\"portsIn\":[{\"name\":\"posY\",\"value\":0.01},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Exec\",\"portOut\":\"trigger\",\"objIn\":\"bp3-15\",\"objOut\":\"bp3-2\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp3-3\",\"uiAttribs\":{\"subPatch\":\"a63n2a7rj\"},\"storage\":{},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp3-2\",\"objOut\":\"bp3-3\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"bp3-8\",\"objOut\":\"bp3-3\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"bp3-2\",\"objOut\":\"bp3-3\"},{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"bp3-5\",\"objOut\":\"bp3-3\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"bp3-9\",\"objOut\":\"bp3-3\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"bp3-4\",\"uiAttribs\":{\"subPatch\":\"a63n2a7rj\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"Exec\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"bp3-14\",\"objOut\":\"bp3-4\"},{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"bp3-10\",\"objOut\":\"bp3-4\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"bp3-0\",\"objOut\":\"bp3-4\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"bp3-0\",\"objOut\":\"bp3-4\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp3-5\",\"uiAttribs\":{\"subPatch\":\"a63n2a7rj\"},\"storage\":{},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp3-6\",\"uiAttribs\":{\"subPatch\":\"a63n2a7rj\"},\"storage\":{},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"Value Out\",\"objIn\":\"bp3-7\",\"objOut\":\"bp3-6\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"bp3-7\",\"uiAttribs\":{\"subPatch\":\"a63n2a7rj\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp3-3\",\"objOut\":\"bp3-7\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"bp3-8\",\"uiAttribs\":{\"subPatch\":\"a63n2a7rj\"},\"storage\":{},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.49},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"bp3-1\",\"objOut\":\"bp3-8\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"bp3-5\",\"objOut\":\"bp3-8\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"bp3-9\",\"uiAttribs\":{\"subPatch\":\"a63n2a7rj\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rotZ\",\"portOut\":\"result\",\"objIn\":\"bp3-2\",\"objOut\":\"bp3-9\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"bp3-10\",\"uiAttribs\":{\"subPatch\":\"a63n2a7rj\"},\"storage\":{},\"portsIn\":[{\"name\":\"x\",\"value\":1.52},{\"name\":\"y\",\"value\":0.65},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"bp3-0\",\"objOut\":\"bp3-10\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp3-11\",\"uiAttribs\":{\"subPatch\":\"a63n2a7rj\"},\"storage\":{},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":0.03},{\"name\":\"height\",\"value\":0.11},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":1},{\"name\":\"num rows\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"bp3-12\",\"uiAttribs\":{\"subPatch\":\"a63n2a7rj\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_position\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Custom Value\",\"portOut\":\"Value\",\"objIn\":\"bp3-6\",\"objOut\":\"bp3-12\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"bp3-13\",\"uiAttribs\":{\"subPatch\":\"a63n2a7rj\"},\"storage\":{},\"portsIn\":[{\"name\":\"Property\",\"value\":\"cursor\"},{\"name\":\"Value\",\"value\":\"col-resize\"}],\"objName\":\"Ops.Html.CSSPropertyString\"},{\"id\":\"bp3-14\",\"uiAttribs\":{\"subPatch\":\"a63n2a7rj\"},\"storage\":{},\"portsOut\":[{\"name\":\"Was Triggered\",\"links\":[{\"portIn\":\"Active\",\"portOut\":\"Was Triggered\",\"objIn\":\"bp3-13\",\"objOut\":\"bp3-14\"}]}],\"objName\":\"Ops.Trigger.TriggerOnce\"},{\"id\":\"bp3-15\",\"uiAttribs\":{\"subPatch\":\"a63n2a7rj\"},\"storage\":{},\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp3-1\",\"objOut\":\"bp3-15\"}]}],\"objName\":\"Ops.Gl.Matrix.Billboard\"}]}",};
+const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp2-0\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsIn\":[{\"name\":\"Width\",\"value\":1.04},{\"name\":\"Height\",\"value\":0.24},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"bp2-3\",\"objOut\":\"bp2-0\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp2-8\",\"objOut\":\"bp2-0\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp2-6\",\"objOut\":\"bp2-0\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"bp2-6\",\"objOut\":\"bp2-0\"}]},{\"name\":\"Pointer Y\",\"value\":0.32679333611665595},{\"name\":\"Top\",\"value\":39.252804696559906},{\"name\":\"Left\",\"value\":275.42424297332764},{\"name\":\"Right\",\"value\":1099.4704477190971},{\"name\":\"Bottom\",\"value\":149.17447358369827}],\"objName\":\"Ops.Gl.InteractiveRectangle_v2\"},{\"id\":\"bp2-1\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp2-11\",\"objOut\":\"bp2-1\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"bp2-2\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsIn\":[{\"name\":\"posY\",\"value\":0.025},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Exec\",\"portOut\":\"trigger\",\"objIn\":\"bp2-15\",\"objOut\":\"bp2-2\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp2-3\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp2-2\",\"objOut\":\"bp2-3\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"bp2-8\",\"objOut\":\"bp2-3\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"bp2-5\",\"objOut\":\"bp2-3\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"bp2-9\",\"objOut\":\"bp2-3\"},{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"bp2-2\",\"objOut\":\"bp2-3\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"bp2-4\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"Exec\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"bp2-14\",\"objOut\":\"bp2-4\"},{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"bp2-16\",\"objOut\":\"bp2-4\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"bp2-0\",\"objOut\":\"bp2-4\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"bp2-0\",\"objOut\":\"bp2-4\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp2-5\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp2-6\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"Value Out\",\"objIn\":\"bp2-7\",\"objOut\":\"bp2-6\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"bp2-7\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp2-3\",\"objOut\":\"bp2-7\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"bp2-8\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.6},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"bp2-1\",\"objOut\":\"bp2-8\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"bp2-5\",\"objOut\":\"bp2-8\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"bp2-9\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rotZ\",\"portOut\":\"result\",\"objIn\":\"bp2-2\",\"objOut\":\"bp2-9\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"bp2-10\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsIn\":[{\"name\":\"x\",\"value\":-0.32},{\"name\":\"y\",\"value\":0.91},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"bp2-0\",\"objOut\":\"bp2-10\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp2-11\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":0.02},{\"name\":\"height\",\"value\":0.11},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":1},{\"name\":\"num rows\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"bp2-12\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_position\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Custom Value\",\"portOut\":\"Value\",\"objIn\":\"bp2-6\",\"objOut\":\"bp2-12\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"bp2-13\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsIn\":[{\"name\":\"Property\",\"value\":\"cursor\"},{\"name\":\"Value\",\"value\":\"col-resize\"}],\"objName\":\"Ops.Html.CSSPropertyString\"},{\"id\":\"bp2-14\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsOut\":[{\"name\":\"Was Triggered\",\"links\":[{\"portIn\":\"Active\",\"portOut\":\"Was Triggered\",\"objIn\":\"bp2-13\",\"objOut\":\"bp2-14\"}]}],\"objName\":\"Ops.Trigger.TriggerOnce\"},{\"id\":\"bp2-15\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp2-1\",\"objOut\":\"bp2-15\"}]}],\"objName\":\"Ops.Gl.Matrix.Billboard\"},{\"id\":\"bp2-16\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsIn\":[{\"name\":\"x\",\"value\":1.73},{\"name\":\"y\",\"value\":1},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp2-10\",\"objOut\":\"bp2-16\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"}]}",};
 const port_blls2amps=op.inTrigger("blls2amps");
 port_blls2amps.setUiAttribs({title:"Trigger in",});
 
@@ -19855,23 +19792,23 @@ function initializeSubpatch()
 
 };
 
-Ops.Patch.PD8qfbm.BasicSlider_v3.prototype = new CABLES.Op();
-CABLES.OPS["d108e279-085d-492f-b54b-6e7873b7c6c9"]={f:Ops.Patch.PD8qfbm.BasicSlider_v3,objName:"Ops.Patch.PD8qfbm.BasicSlider_v3"};
+Ops.Patch.PuSSdim.BasicSlider_v3.prototype = new CABLES.Op();
+CABLES.OPS["8f8632c5-2085-4428-9f8c-ab5f6d0c7be2"]={f:Ops.Patch.PuSSdim.BasicSlider_v3,objName:"Ops.Patch.PuSSdim.BasicSlider_v3"};
 
 
 
 
 // **************************************************************
 // 
-// Ops.Patch.PD8qfbm.TriggerOnReverseButton_v2
+// Ops.Patch.PuSSdim.TriggerOnReverseButton_v2
 // 
 // **************************************************************
 
-Ops.Patch.PD8qfbm.TriggerOnReverseButton_v2 = function()
+Ops.Patch.PuSSdim.TriggerOnReverseButton_v2 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_pmu87y53p=op.outNumber(\"pmu87y53p\");\nport_pmu87y53p.setUiAttribs({title:\"result\",display:\"boolnum\",});\n\nconst port_1u3pcbd78=op.outNumber(\"1u3pcbd78\");\nport_1u3pcbd78.setUiAttribs({title:\"Number\",});\n\nconst port_hv192zqa4=op.outTrigger(\"hv192zqa4\");\nport_hv192zqa4.setUiAttribs({title:\"Next\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_pmu87y53p = addedOps[i].inFloat(\"innerIn_pmu87y53p\");\ninnerIn_pmu87y53p.setUiAttribs({title:\"result\"});\ninnerIn_pmu87y53p.on(\"change\", (a,v) => { port_pmu87y53p.set(a); });\n\nconst innerIn_1u3pcbd78 = addedOps[i].inFloat(\"innerIn_1u3pcbd78\");\ninnerIn_1u3pcbd78.setUiAttribs({title:\"Number\"});\ninnerIn_1u3pcbd78.on(\"change\", (a,v) => { port_1u3pcbd78.set(a); });\n\nconst innerIn_hv192zqa4 = addedOps[i].inTrigger(\"innerIn_hv192zqa4\");\ninnerIn_hv192zqa4.setUiAttribs({title:\"Next\"});\ninnerIn_hv192zqa4.onTriggered = () => { port_hv192zqa4.trigger(); };\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp4-0\",\"uiAttribs\":{\"subPatch\":\"bpisu803v\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__scapeDirectionToggle\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Value\",\"objIn\":\"bp4-4\",\"objOut\":\"bp4-0\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"bp4-1\",\"uiAttribs\":{\"subPatch\":\"bpisu803v\"},\"storage\":{},\"portsIn\":[{\"name\":\"Default\",\"value\":0}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"innerIn_hv192zqa4\",\"portOut\":\"Next\",\"objIn\":\"bp4-3\",\"objOut\":\"bp4-1\"}]},{\"name\":\"result\",\"links\":[{\"portIn\":\"innerIn_pmu87y53p\",\"portOut\":\"result\",\"objIn\":\"bp4-3\",\"objOut\":\"bp4-1\"}]}],\"objName\":\"Ops.Boolean.ToggleBool_v2\"},{\"id\":\"bp4-2\",\"uiAttribs\":{\"subPatch\":\"bpisu803v\"},\"storage\":{},\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp4-3\",\"uiAttribs\":{\"subPatch\":\"bpisu803v\"},\"storage\":{},\"portsIn\":[{\"name\":\"innerIn_pmu87y53p\",\"title\":\"result\"},{\"name\":\"innerIn_1u3pcbd78\",\"value\":0,\"title\":\"Number\"},{\"name\":\"innerIn_hv192zqa4\",\"title\":\"Next\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp4-4\",\"uiAttribs\":{\"subPatch\":\"bpisu803v\"},\"storage\":{},\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"trigger\",\"portOut\":\"Next\",\"objIn\":\"bp4-1\",\"objOut\":\"bp4-4\"}]}],\"objName\":\"Ops.Boolean.TriggerChangedTrue\"}]}",};
+const attachments=op.attachments={"inc_gen_ports_js":"const port_pmu87y53p=op.outNumber(\"pmu87y53p\");\nport_pmu87y53p.setUiAttribs({title:\"result\",display:\"boolnum\",});\n\nconst port_1u3pcbd78=op.outNumber(\"1u3pcbd78\");\nport_1u3pcbd78.setUiAttribs({title:\"Number\",});\n\nconst port_hv192zqa4=op.outTrigger(\"hv192zqa4\");\nport_hv192zqa4.setUiAttribs({title:\"Next\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_pmu87y53p = addedOps[i].inFloat(\"innerIn_pmu87y53p\");\ninnerIn_pmu87y53p.setUiAttribs({title:\"result\"});\ninnerIn_pmu87y53p.on(\"change\", (a,v) => { port_pmu87y53p.set(a); });\n\nconst innerIn_1u3pcbd78 = addedOps[i].inFloat(\"innerIn_1u3pcbd78\");\ninnerIn_1u3pcbd78.setUiAttribs({title:\"Number\"});\ninnerIn_1u3pcbd78.on(\"change\", (a,v) => { port_1u3pcbd78.set(a); });\n\nconst innerIn_hv192zqa4 = addedOps[i].inTrigger(\"innerIn_hv192zqa4\");\ninnerIn_hv192zqa4.setUiAttribs({title:\"Next\"});\ninnerIn_hv192zqa4.onTriggered = () => { port_hv192zqa4.trigger(); };\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp3-0\",\"uiAttribs\":{\"subPatch\":\"bpisu803v\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__scapeDirectionToggle\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Value\",\"objIn\":\"bp3-4\",\"objOut\":\"bp3-0\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"bp3-1\",\"uiAttribs\":{\"subPatch\":\"bpisu803v\"},\"storage\":{},\"portsIn\":[{\"name\":\"Default\",\"value\":0}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"innerIn_hv192zqa4\",\"portOut\":\"Next\",\"objIn\":\"bp3-3\",\"objOut\":\"bp3-1\"}]},{\"name\":\"result\",\"links\":[{\"portIn\":\"innerIn_pmu87y53p\",\"portOut\":\"result\",\"objIn\":\"bp3-3\",\"objOut\":\"bp3-1\"}]}],\"objName\":\"Ops.Boolean.ToggleBool_v2\"},{\"id\":\"bp3-2\",\"uiAttribs\":{\"subPatch\":\"bpisu803v\"},\"storage\":{},\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp3-3\",\"uiAttribs\":{\"subPatch\":\"bpisu803v\"},\"storage\":{},\"portsIn\":[{\"name\":\"innerIn_pmu87y53p\",\"title\":\"result\"},{\"name\":\"innerIn_1u3pcbd78\",\"value\":0,\"title\":\"Number\"},{\"name\":\"innerIn_hv192zqa4\",\"title\":\"Next\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp3-4\",\"uiAttribs\":{\"subPatch\":\"bpisu803v\"},\"storage\":{},\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"trigger\",\"portOut\":\"Next\",\"objIn\":\"bp3-1\",\"objOut\":\"bp3-4\"}]}],\"objName\":\"Ops.Boolean.TriggerChangedTrue\"}]}",};
 const port_pmu87y53p=op.outNumber("pmu87y53p");
 port_pmu87y53p.setUiAttribs({title:"result",display:"boolnum",});
 
@@ -19942,278 +19879,264 @@ function initializeSubpatch()
 
 };
 
-Ops.Patch.PD8qfbm.TriggerOnReverseButton_v2.prototype = new CABLES.Op();
-CABLES.OPS["f3ab7fe1-1ffe-44ea-8fa3-ac2013d6d454"]={f:Ops.Patch.PD8qfbm.TriggerOnReverseButton_v2,objName:"Ops.Patch.PD8qfbm.TriggerOnReverseButton_v2"};
+Ops.Patch.PuSSdim.TriggerOnReverseButton_v2.prototype = new CABLES.Op();
+CABLES.OPS["12380400-f950-4a99-b6dd-289c732311c8"]={f:Ops.Patch.PuSSdim.TriggerOnReverseButton_v2,objName:"Ops.Patch.PuSSdim.TriggerOnReverseButton_v2"};
 
 
 
 
 // **************************************************************
 // 
-// Ops.String.ParseInt_v2
+// Ops.Patch.PuSSdim.SubPatch1
 // 
 // **************************************************************
 
-Ops.String.ParseInt_v2 = function()
+Ops.Patch.PuSSdim.SubPatch1 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
-const attachments=op.attachments={};
-const
-    str = op.inString("String", 5711),
-    outNum = op.outNumber("Number");
+const attachments=op.attachments={"inc_gen_ports_js":"const port_9fkoygcno=op.inTrigger(\"9fkoygcno\");\nport_9fkoygcno.setUiAttribs({title:\"Render\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_9fkoygcno = addedOps[i].outTrigger(\"innerOut_9fkoygcno\");\ninnerOut_9fkoygcno.setUiAttribs({title:\"Render\"});\nport_9fkoygcno.onTriggered = () => { innerOut_9fkoygcno.trigger(); };\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp4-0\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"data\",\"value\":\"\"},{\"name\":\"glb File\",\"value\":\"assets/66c8bba9b731425e29f47a4a_NEL-Logo.draco.glb\",\"display\":\"file\"},{\"name\":\"Draw\",\"value\":1},{\"name\":\"Camera index\",\"value\":0},{\"name\":\"Camera\",\"value\":\"None\"},{\"name\":\"Animation\",\"value\":\"\"},{\"name\":\"Center index\",\"value\":2},{\"name\":\"Center\",\"value\":\"XZ\"},{\"name\":\"Rescale\",\"value\":1},{\"name\":\"Rescale Size\",\"value\":2},{\"name\":\"Time\",\"value\":0},{\"name\":\"Sync to timeline\",\"value\":0},{\"name\":\"Loop\",\"value\":1},{\"name\":\"Normals Format index\",\"value\":0},{\"name\":\"Normals Format\",\"value\":\"XYZ\"},{\"name\":\"Vertices Format index\",\"value\":0},{\"name\":\"Vertices Format\",\"value\":\"XYZ\"},{\"name\":\"Calc Normals index\",\"value\":0},{\"name\":\"Calc Normals\",\"value\":\"Auto\"},{\"name\":\"Hide Nodes\",\"value\":0},{\"name\":\"Use Material Properties\",\"value\":0},{\"name\":\"Active\",\"value\":1}],\"portsOut\":[{\"name\":\"Generator\",\"value\":\"Khronos glTF Blender I/O v4.2.60\"},{\"name\":\"GLTF Version\",\"value\":2},{\"name\":\"Anim Length\",\"value\":0},{\"name\":\"Anim Time\",\"value\":0},{\"name\":\"Loading\",\"value\":false}],\"objName\":\"Ops.Gl.GLTF.GltfScene_v4\"},{\"id\":\"bp4-1\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"Material Name\",\"value\":\"mat0\"}],\"portsOut\":[{\"name\":\"Material\",\"links\":[{\"portIn\":\"Materials\",\"portOut\":\"Material\",\"objIn\":\"bp4-0\",\"objOut\":\"bp4-1\"}]}],\"objName\":\"Ops.Gl.GLTF.GltfSetMaterial\"},{\"id\":\"bp4-2\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"Material Name\",\"value\":\"Material.001\"}],\"portsOut\":[{\"name\":\"Material\",\"links\":[{\"portIn\":\"Materials\",\"portOut\":\"Material\",\"objIn\":\"bp4-0\",\"objOut\":\"bp4-2\"}]}],\"objName\":\"Ops.Gl.GLTF.GltfSetMaterial\"},{\"id\":\"bp4-3\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_9fkoygcno\",\"title\":\"Render\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"innerOut_9fkoygcno\",\"objIn\":\"bp4-5\",\"objOut\":\"bp4-3\"},{\"portIn\":\"Render\",\"portOut\":\"innerOut_9fkoygcno\",\"objIn\":\"bp4-6\",\"objOut\":\"bp4-3\"},{\"portIn\":\"render\",\"portOut\":\"innerOut_9fkoygcno\",\"objIn\":\"bp4-8\",\"objOut\":\"bp4-3\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp4-4\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp4-5\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":0.514},{\"name\":\"b\",\"value\":0.262},{\"name\":\"Opacity\",\"value\":1},{\"name\":\"AO Intensity\",\"value\":1},{\"name\":\"Normal Map Intensity\",\"value\":0.812},{\"name\":\"Repeat X\",\"value\":1},{\"name\":\"Repeat Y\",\"value\":1},{\"name\":\"Offset X\",\"value\":0},{\"name\":\"Offset Y\",\"value\":0.02},{\"name\":\"Screen Space Normals\",\"value\":0},{\"name\":\"Calc normal tangents\",\"value\":1},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"}],\"portsOut\":[{\"name\":\"Shader\",\"links\":[{\"portIn\":\"Shader\",\"portOut\":\"Shader\",\"objIn\":\"bp4-2\",\"objOut\":\"bp4-5\"}]}],\"objName\":\"Ops.Gl.Shader.MatCapMaterial_v3\"},{\"id\":\"bp4-6\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":0.22},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.262},{\"name\":\"Opacity\",\"value\":1},{\"name\":\"AO Intensity\",\"value\":1},{\"name\":\"Normal Map Intensity\",\"value\":0.118},{\"name\":\"Repeat X\",\"value\":1},{\"name\":\"Repeat Y\",\"value\":1},{\"name\":\"Offset X\",\"value\":0},{\"name\":\"Offset Y\",\"value\":0},{\"name\":\"Screen Space Normals\",\"value\":0},{\"name\":\"Calc normal tangents\",\"value\":1},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"}],\"portsOut\":[{\"name\":\"Shader\",\"links\":[{\"portIn\":\"Shader\",\"portOut\":\"Shader\",\"objIn\":\"bp4-1\",\"objOut\":\"bp4-6\"}]}],\"objName\":\"Ops.Gl.Shader.MatCapMaterial_v3\"},{\"id\":\"bp4-7\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"File\",\"value\":\"assets/6697c3b245eb5d333bae2007_NEL_SRVB.webp\",\"display\":\"file\"},{\"name\":\"Filter index\",\"value\":2},{\"name\":\"Filter\",\"value\":\"mipmap\"},{\"name\":\"Wrap index\",\"value\":0},{\"name\":\"Wrap\",\"value\":\"repeat\"},{\"name\":\"Anisotropic index\",\"value\":0},{\"name\":\"Anisotropic\",\"value\":\"0\"},{\"name\":\"Data Format index\",\"value\":3},{\"name\":\"Data Format\",\"value\":\"RGBA\"},{\"name\":\"Flip\",\"value\":0},{\"name\":\"Pre Multiplied Alpha\",\"value\":0},{\"name\":\"Active\",\"value\":1},{\"name\":\"Save Memory\",\"value\":1},{\"name\":\"Add Cachebuster\",\"value\":0}],\"portsOut\":[{\"name\":\"Texture\",\"links\":[{\"portIn\":\"Normal\",\"portOut\":\"Texture\",\"objIn\":\"bp4-5\",\"objOut\":\"bp4-7\"},{\"portIn\":\"Normal\",\"portOut\":\"Texture\",\"objIn\":\"bp4-6\",\"objOut\":\"bp4-7\"}]},{\"name\":\"Width\",\"value\":256},{\"name\":\"Height\",\"value\":256},{\"name\":\"Aspect Ratio\",\"value\":1},{\"name\":\"Loaded\",\"value\":1},{\"name\":\"Loading\",\"value\":0}],\"objName\":\"Ops.Gl.Texture_v2\"},{\"id\":\"bp4-8\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"posX\",\"value\":0},{\"name\":\"posY\",\"value\":-0.56},{\"name\":\"posZ\",\"value\":0.16},{\"name\":\"scale\",\"value\":1},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"bp4-0\",\"objOut\":\"bp4-8\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"}]}",};
+const port_9fkoygcno=op.inTrigger("9fkoygcno");
+port_9fkoygcno.setUiAttribs({title:"Render",});
 
-str.onChange = function ()
+op.initInnerPorts=function(addedOps)
 {
-    let num = parseInt(str.get());
-    if (num != num) num = 0;
-    outNum.set(num);
-};
-
-
-};
-
-Ops.String.ParseInt_v2.prototype = new CABLES.Op();
-CABLES.OPS["6d208424-daf2-4a2b-874f-daac406c1f66"]={f:Ops.String.ParseInt_v2,objName:"Ops.String.ParseInt_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Vars.VarGetString
-// 
-// **************************************************************
-
-Ops.Vars.VarGetString = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-var val=op.outString("Value");
-op.varName=op.inValueSelect("Variable",[],"",true);
-
-new CABLES.VarGetOpWrapper(op,"string",op.varName,val);
-
-
-};
-
-Ops.Vars.VarGetString.prototype = new CABLES.Op();
-CABLES.OPS["3ad08cfc-bce6-4175-9746-fef2817a3b12"]={f:Ops.Vars.VarGetString,objName:"Ops.Vars.VarGetString"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.String.StringReplace
-// 
-// **************************************************************
-
-Ops.String.StringReplace = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inStr = op.inString("String"),
-    inSearch = op.inString("Search For", "foo"),
-    inRepl = op.inString("Replace", "bar"),
-    inWhat = op.inSwitch("Replace What", ["All", "First"], "All"),
-    outStr = op.outString("Result");
-
-inRepl.onChange =
-inStr.onChange =
-inWhat.onChange =
-inSearch.onChange = update;
-
-function update()
-{
-    op.setUiError("exception", null);
-
-    let str = "";
-    try
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
     {
-        if (inWhat.get() == "All") str = String(inStr.get()).replace(new RegExp(inSearch.get(), "g"), inRepl.get());
-        else str = String(inStr.get()).replace(inSearch.get(), inRepl.get());
+const innerOut_9fkoygcno = addedOps[i].outTrigger("innerOut_9fkoygcno");
+innerOut_9fkoygcno.setUiAttribs({title:"Render"});
+port_9fkoygcno.onTriggered = () => { innerOut_9fkoygcno.trigger(); };
+
     }
-    catch (e)
+if(addedOps[i].innerOutput)
+{
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
     {
-        op.setUiError("exception", "exception " + e.message);
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
     }
 
-    outStr.set(str);
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
 }
 
 
 };
 
-Ops.String.StringReplace.prototype = new CABLES.Op();
-CABLES.OPS["4a053e7a-6b00-4e71-bd51-90cdb190994c"]={f:Ops.String.StringReplace,objName:"Ops.String.StringReplace"};
+Ops.Patch.PuSSdim.SubPatch1.prototype = new CABLES.Op();
+CABLES.OPS["f998b91e-8b6d-424e-9e23-ed06e4ab2a47"]={f:Ops.Patch.PuSSdim.SubPatch1,objName:"Ops.Patch.PuSSdim.SubPatch1"};
 
 
 
 
 // **************************************************************
 // 
-// Ops.Math.Compare.GreaterThan
+// Ops.Patch.PuSSdim.SubPatch3
 // 
 // **************************************************************
 
-Ops.Math.Compare.GreaterThan = function()
+Ops.Patch.PuSSdim.SubPatch3 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
-const attachments=op.attachments={};
-const
-    number1 = op.inValueFloat("number1"),
-    number2 = op.inValueFloat("number2"),
-    result = op.outBoolNum("result");
+const attachments=op.attachments={"inc_gen_ports_js":"const port_alrh6hig4=op.inTrigger(\"alrh6hig4\");\nport_alrh6hig4.setUiAttribs({title:\"render\",});\n\nconst port_8dittifdh=op.inTrigger(\"8dittifdh\");\nport_8dittifdh.setUiAttribs({title:\"Render\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_alrh6hig4 = addedOps[i].outTrigger(\"innerOut_alrh6hig4\");\ninnerOut_alrh6hig4.setUiAttribs({title:\"render\"});\nport_alrh6hig4.onTriggered = () => { innerOut_alrh6hig4.trigger(); };\n\nconst innerOut_8dittifdh = addedOps[i].outTrigger(\"innerOut_8dittifdh\");\ninnerOut_8dittifdh.setUiAttribs({title:\"Render\"});\nport_8dittifdh.onTriggered = () => { innerOut_8dittifdh.trigger(); };\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp5-0\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"storage\":{},\"portsIn\":[{\"name\":\"data\",\"value\":\"\"},{\"name\":\"glb File\",\"value\":\"assets/66c8bba9b731425e29f47a4a_tetragram_fixed_material.draco.glb\",\"display\":\"file\"},{\"name\":\"Draw\",\"value\":1},{\"name\":\"Camera index\",\"value\":0},{\"name\":\"Camera\",\"value\":\"None\"},{\"name\":\"Animation\",\"value\":\"\"},{\"name\":\"Center index\",\"value\":1},{\"name\":\"Center\",\"value\":\"XYZ\"},{\"name\":\"Rescale\",\"value\":1},{\"name\":\"Rescale Size\",\"value\":0.15},{\"name\":\"Time\",\"value\":0},{\"name\":\"Sync to timeline\",\"value\":0},{\"name\":\"Loop\",\"value\":1},{\"name\":\"Normals Format index\",\"value\":0},{\"name\":\"Normals Format\",\"value\":\"XYZ\"},{\"name\":\"Vertices Format index\",\"value\":0},{\"name\":\"Vertices Format\",\"value\":\"XYZ\"},{\"name\":\"Calc Normals index\",\"value\":2},{\"name\":\"Calc Normals\",\"value\":\"Never\"},{\"name\":\"Hide Nodes\",\"value\":0},{\"name\":\"Use Material Properties\",\"value\":0},{\"name\":\"Active\",\"value\":1}],\"portsOut\":[{\"name\":\"Generator\",\"value\":\"Khronos glTF Blender I/O v4.2.60\"},{\"name\":\"GLTF Version\",\"value\":2},{\"name\":\"Anim Length\",\"value\":0},{\"name\":\"Anim Time\",\"value\":0},{\"name\":\"Loading\",\"value\":false}],\"objName\":\"Ops.Gl.GLTF.GltfScene_v4\"},{\"id\":\"bp5-1\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"storage\":{},\"portsIn\":[{\"name\":\"posX\",\"value\":-1.74},{\"name\":\"posY\",\"value\":0.97},{\"name\":\"posZ\",\"value\":0.05},{\"name\":\"scale\",\"value\":0.98},{\"name\":\"rotX\",\"value\":13},{\"name\":\"rotY\",\"value\":60.5},{\"name\":\"rotZ\",\"value\":-15}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp5-5\",\"objOut\":\"bp5-1\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp5-2\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Material Name\",\"value\":\"Material_0.001\"}],\"portsOut\":[{\"name\":\"Material\",\"links\":[{\"portIn\":\"Materials\",\"portOut\":\"Material\",\"objIn\":\"bp5-0\",\"objOut\":\"bp5-2\"}]}],\"objName\":\"Ops.Gl.GLTF.GltfSetMaterial\"},{\"id\":\"bp5-3\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":1},{\"name\":\"Opacity\",\"value\":1},{\"name\":\"AO Intensity\",\"value\":1},{\"name\":\"Normal Map Intensity\",\"value\":0.361},{\"name\":\"Repeat X\",\"value\":0},{\"name\":\"Repeat Y\",\"value\":0},{\"name\":\"Offset X\",\"value\":0},{\"name\":\"Offset Y\",\"value\":0},{\"name\":\"Screen Space Normals\",\"value\":0},{\"name\":\"Calc normal tangents\",\"value\":true},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"}],\"portsOut\":[{\"name\":\"Shader\",\"links\":[{\"portIn\":\"Shader\",\"portOut\":\"Shader\",\"objIn\":\"bp5-2\",\"objOut\":\"bp5-3\"}]}],\"objName\":\"Ops.Gl.Shader.MatCapMaterial_v3\"},{\"id\":\"bp5-4\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Gradient\",\"value\":\"{\\\"keys\\\":[{\\\"pos\\\":0,\\\"posy\\\":0.5,\\\"r\\\":0.19606043020884192,\\\"g\\\":0.9551041666666666,\\\"b\\\":0.30280095564822357},{\\\"pos\\\":0,\\\"posy\\\":0.5,\\\"r\\\":0.19606043020884192,\\\"g\\\":0.9551041666666666,\\\"b\\\":0.30280095564822357},{\\\"pos\\\":0.25,\\\"posy\\\":0.7,\\\"r\\\":0.24755528330802917,\\\"g\\\":0.5961175041362186,\\\"b\\\":0.6089322916666666},{\\\"pos\\\":1,\\\"posy\\\":0.5,\\\"r\\\":0.9515885416666666,\\\"g\\\":0.01916651725769043,\\\"b\\\":0.643597891729076},{\\\"pos\\\":1,\\\"posy\\\":0.5,\\\"r\\\":0.9515885416666666,\\\"g\\\":0.01916651725769043,\\\"b\\\":0.643597891729076}]}\"},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"X\"},{\"name\":\"Smoothstep\",\"value\":0},{\"name\":\"Step\",\"value\":true},{\"name\":\"Flip\",\"value\":true},{\"name\":\"sRGB\",\"value\":0},{\"name\":\"Oklab\",\"value\":0},{\"name\":\"Size\",\"value\":8},{\"name\":\"filter index\",\"value\":0},{\"name\":\"filter\",\"value\":\"nearest\"},{\"name\":\"wrap index\",\"value\":0},{\"name\":\"wrap\",\"value\":\"clamp to edge\"},{\"name\":\"Gradient Array\",\"value\":0}],\"portsOut\":[{\"name\":\"Texture\",\"links\":[{\"portIn\":\"Normal\",\"portOut\":\"Texture\",\"objIn\":\"bp5-3\",\"objOut\":\"bp5-4\"}]}],\"objName\":\"Ops.Gl.GradientTexture\"},{\"id\":\"bp5-5\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"storage\":{},\"portsIn\":[{\"name\":\"scale\",\"value\":0.76},{\"name\":\"x\",\"value\":0.99},{\"name\":\"y\",\"value\":1.79},{\"name\":\"z\",\"value\":0.47}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"bp5-0\",\"objOut\":\"bp5-5\"}]}],\"objName\":\"Ops.Gl.Matrix.Scale\"},{\"id\":\"bp5-6\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Frequency\",\"value\":1},{\"name\":\"Type index\",\"value\":0},{\"name\":\"Type\",\"value\":\"sine\"},{\"name\":\"Phase\",\"value\":0},{\"name\":\"Range Min\",\"value\":0},{\"name\":\"Range Max\",\"value\":1}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pos\",\"portOut\":\"Result\",\"objIn\":\"bp5-10\",\"objOut\":\"bp5-6\"}]}],\"objName\":\"Ops.Anim.LFO_v2\"},{\"id\":\"bp5-7\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Speed\",\"value\":0.05},{\"name\":\"Play\",\"value\":1},{\"name\":\"Sync to timeline\",\"value\":0}],\"portsOut\":[{\"name\":\"Time\",\"links\":[{\"portIn\":\"Time\",\"portOut\":\"Time\",\"objIn\":\"bp5-6\",\"objOut\":\"bp5-7\"}]}],\"objName\":\"Ops.Anim.Timer_v2\"},{\"id\":\"bp5-8\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_alrh6hig4\",\"title\":\"render\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_alrh6hig4\",\"objIn\":\"bp5-1\",\"objOut\":\"bp5-8\"}]},{\"name\":\"innerOut_8dittifdh\",\"title\":\"Render\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"innerOut_8dittifdh\",\"objIn\":\"bp5-3\",\"objOut\":\"bp5-8\"},{\"portIn\":\"Render\",\"portOut\":\"innerOut_8dittifdh\",\"objIn\":\"bp5-11\",\"objOut\":\"bp5-8\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp5-9\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"storage\":{},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp5-10\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"portsIn\":[{\"name\":\"Blend Mode index\",\"value\":18},{\"name\":\"Blend Mode\",\"value\":\"Math Add\"},{\"name\":\"Alpha Mask index\",\"value\":0},{\"name\":\"Alpha Mask\",\"value\":\"Off\"},{\"name\":\"Amount\",\"value\":1},{\"name\":\"Width\",\"value\":1},{\"name\":\"Type index\",\"value\":3},{\"name\":\"Type\",\"value\":\"Radial\"},{\"name\":\"Smoothstep\",\"value\":0},{\"name\":\"sRGB\",\"value\":0},{\"name\":\"color space index\",\"value\":0},{\"name\":\"color space\",\"value\":\"RGB\"},{\"name\":\"r\",\"value\":0.19606043020884192},{\"name\":\"g\",\"value\":0.9551},{\"name\":\"b\",\"value\":0.3028},{\"name\":\"r2\",\"value\":0.247},{\"name\":\"g2\",\"value\":0.596},{\"name\":\"b2\",\"value\":0.608},{\"name\":\"r3\",\"value\":0.951},{\"name\":\"g3\",\"value\":0.0191},{\"name\":\"b3\",\"value\":0.6436}],\"storage\":{\"ref\":\"bp5-10\"},\"objName\":\"Ops.Gl.ImageCompose.Gradient_v2\"},{\"id\":\"bp5-11\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"portsIn\":[{\"name\":\"Size index\",\"value\":0},{\"name\":\"Size\",\"value\":\"Auto\"},{\"name\":\"Width\",\"value\":640},{\"name\":\"Height\",\"value\":480},{\"name\":\"Filter index\",\"value\":1},{\"name\":\"Filter\",\"value\":\"linear\"},{\"name\":\"Wrap index\",\"value\":1},{\"name\":\"Wrap\",\"value\":\"repeat\"},{\"name\":\"Anisotropic index\",\"value\":0},{\"name\":\"Anisotropic\",\"value\":\"0\"},{\"name\":\"Pixel Format index\",\"value\":4},{\"name\":\"Pixel Format\",\"value\":\"RGBA 8bit ubyte\"},{\"name\":\"R\",\"value\":0},{\"name\":\"G\",\"value\":0},{\"name\":\"B\",\"value\":0},{\"name\":\"A\",\"value\":0}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"Next\",\"objIn\":\"bp5-10\",\"objOut\":\"bp5-11\"}]},{\"name\":\"texture_out\",\"links\":[{\"portIn\":\"MatCap\",\"portOut\":\"texture_out\",\"objIn\":\"bp5-3\",\"objOut\":\"bp5-11\"}]},{\"name\":\"Aspect Ratio\",\"value\":1.8414872798434443},{\"name\":\"Texture Width\",\"value\":1882},{\"name\":\"Texture Height\",\"value\":1022}],\"storage\":{\"ref\":\"bp5-11\"},\"objName\":\"Ops.Gl.ImageCompose.ImageCompose_v4\"}]}",};
+const port_alrh6hig4=op.inTrigger("alrh6hig4");
+port_alrh6hig4.setUiAttribs({title:"render",});
 
-op.setUiAttribs({ "mathTitle": true });
+const port_8dittifdh=op.inTrigger("8dittifdh");
+port_8dittifdh.setUiAttribs({title:"Render",});
 
-number1.onChange = number2.onChange = exec;
-
-function exec()
+op.initInnerPorts=function(addedOps)
 {
-    result.set(number1.get() > number2.get());
-}
-
-
-};
-
-Ops.Math.Compare.GreaterThan.prototype = new CABLES.Op();
-CABLES.OPS["b250d606-f7f8-44d3-b099-c29efff2608a"]={f:Ops.Math.Compare.GreaterThan,objName:"Ops.Math.Compare.GreaterThan"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Vars.VarSetNumber_v2
-// 
-// **************************************************************
-
-Ops.Vars.VarSetNumber_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const val = op.inValueFloat("Value", 0);
-op.varName = op.inDropDown("Variable", [], "", true);
-
-new CABLES.VarSetOpWrapper(op, "number", val, op.varName);
-
-
-};
-
-Ops.Vars.VarSetNumber_v2.prototype = new CABLES.Op();
-CABLES.OPS["b5249226-6095-4828-8a1c-080654e192fa"]={f:Ops.Vars.VarSetNumber_v2,objName:"Ops.Vars.VarSetNumber_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Number.GateNumber
-// 
-// **************************************************************
-
-Ops.Number.GateNumber = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    valueInPort = op.inValue("Value In", 0),
-    passThroughPort = op.inValueBool("Pass Through"),
-    inIfNot = op.inSwitch("When False", ["keep last number", "custom"], "keep last number"),
-    inCustomNot = op.inFloat("Custom Value", 0),
-    valueOutPort = op.outNumber("Value Out");
-
-valueInPort.onChange = update;
-passThroughPort.onChange = update;
-
-valueInPort.changeAlways =
-    valueOutPort.changeAlways = true;
-
-inIfNot.onChange = updateUi;
-
-function updateUi()
-{
-    inCustomNot.setUiAttribs({ "greyout": inIfNot.get() != "custom" });
-    update();
-}
-
-function update()
-{
-    if (passThroughPort.get())
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
     {
-        valueOutPort.set(valueInPort.get());
+const innerOut_alrh6hig4 = addedOps[i].outTrigger("innerOut_alrh6hig4");
+innerOut_alrh6hig4.setUiAttribs({title:"render"});
+port_alrh6hig4.onTriggered = () => { innerOut_alrh6hig4.trigger(); };
+
+const innerOut_8dittifdh = addedOps[i].outTrigger("innerOut_8dittifdh");
+innerOut_8dittifdh.setUiAttribs({title:"Render"});
+port_8dittifdh.onTriggered = () => { innerOut_8dittifdh.trigger(); };
+
     }
-    else
+if(addedOps[i].innerOutput)
+{
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
     {
-        if (inIfNot.get() == "custom") valueOutPort.set(inCustomNot.get());
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
     }
+
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
 }
 
 
 };
 
-Ops.Number.GateNumber.prototype = new CABLES.Op();
-CABLES.OPS["594105c8-1fdb-4f3c-bbd5-29b9ad6b33e0"]={f:Ops.Number.GateNumber,objName:"Ops.Number.GateNumber"};
+Ops.Patch.PuSSdim.SubPatch3.prototype = new CABLES.Op();
+CABLES.OPS["8594a7b9-d150-4c9b-97a0-0814800318c7"]={f:Ops.Patch.PuSSdim.SubPatch3,objName:"Ops.Patch.PuSSdim.SubPatch3"};
 
 
 
 
 // **************************************************************
 // 
-// Ops.Ui.SubPatchInput
+// Ops.Patch.PuSSdim.BasicSlider_v4
 // 
 // **************************************************************
 
-Ops.Ui.SubPatchInput = function()
+Ops.Patch.PuSSdim.BasicSlider_v4 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
-const attachments=op.attachments={};
-op.innerInput = true;
+const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp6-0\",\"uiAttribs\":{\"subPatch\":\"ry2b8so8q\"},\"storage\":{},\"portsIn\":[{\"name\":\"Width\",\"value\":1.05},{\"name\":\"Height\",\"value\":0.25},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"bp6-3\",\"objOut\":\"bp6-0\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp6-8\",\"objOut\":\"bp6-0\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp6-6\",\"objOut\":\"bp6-0\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"bp6-6\",\"objOut\":\"bp6-0\"}]},{\"name\":\"Pointer Y\",\"value\":0.19651887394345902},{\"name\":\"Top\",\"value\":107.95384013652802},{\"name\":\"Left\",\"value\":1268.085666924715},{\"name\":\"Right\",\"value\":1599.9117208719254},{\"name\":\"Bottom\",\"value\":222.45559632778168}],\"objName\":\"Ops.Gl.InteractiveRectangle_v2\"},{\"id\":\"bp6-1\",\"uiAttribs\":{\"subPatch\":\"ry2b8so8q\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp6-10\",\"objOut\":\"bp6-1\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"bp6-2\",\"uiAttribs\":{\"subPatch\":\"ry2b8so8q\"},\"storage\":{},\"portsIn\":[{\"name\":\"posY\",\"value\":0.03},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Exec\",\"portOut\":\"trigger\",\"objIn\":\"bp6-13\",\"objOut\":\"bp6-2\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp6-3\",\"uiAttribs\":{\"subPatch\":\"ry2b8so8q\"},\"storage\":{},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp6-2\",\"objOut\":\"bp6-3\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"bp6-8\",\"objOut\":\"bp6-3\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"bp6-5\",\"objOut\":\"bp6-3\"},{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"bp6-2\",\"objOut\":\"bp6-3\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"bp6-4\",\"uiAttribs\":{\"subPatch\":\"ry2b8so8q\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"Exec\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"bp6-12\",\"objOut\":\"bp6-4\"},{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"bp6-15\",\"objOut\":\"bp6-4\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"bp6-0\",\"objOut\":\"bp6-4\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"bp6-0\",\"objOut\":\"bp6-4\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp6-5\",\"uiAttribs\":{\"subPatch\":\"ry2b8so8q\"},\"storage\":{},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp6-6\",\"uiAttribs\":{\"subPatch\":\"ry2b8so8q\"},\"storage\":{},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"Value Out\",\"objIn\":\"bp6-7\",\"objOut\":\"bp6-6\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"bp6-7\",\"uiAttribs\":{\"subPatch\":\"ry2b8so8q\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp6-3\",\"objOut\":\"bp6-7\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"bp6-8\",\"uiAttribs\":{\"subPatch\":\"ry2b8so8q\"},\"storage\":{},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.6},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"bp6-1\",\"objOut\":\"bp6-8\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"bp6-5\",\"objOut\":\"bp6-8\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"bp6-9\",\"uiAttribs\":{\"subPatch\":\"ry2b8so8q\"},\"storage\":{},\"portsIn\":[{\"name\":\"x\",\"value\":1.56},{\"name\":\"y\",\"value\":0.75},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"bp6-0\",\"objOut\":\"bp6-9\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp6-10\",\"uiAttribs\":{\"subPatch\":\"ry2b8so8q\"},\"storage\":{},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":0.02},{\"name\":\"height\",\"value\":0.07},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":1},{\"name\":\"num rows\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"bp6-11\",\"uiAttribs\":{\"subPatch\":\"ry2b8so8q\"},\"storage\":{},\"portsIn\":[{\"name\":\"Property\",\"value\":\"cursor\"},{\"name\":\"Value\",\"value\":\"col-resize\"}],\"objName\":\"Ops.Html.CSSPropertyString\"},{\"id\":\"bp6-12\",\"uiAttribs\":{\"subPatch\":\"ry2b8so8q\"},\"storage\":{},\"portsOut\":[{\"name\":\"Was Triggered\",\"links\":[{\"portIn\":\"Active\",\"portOut\":\"Was Triggered\",\"objIn\":\"bp6-11\",\"objOut\":\"bp6-12\"}]}],\"objName\":\"Ops.Trigger.TriggerOnce\"},{\"id\":\"bp6-13\",\"uiAttribs\":{\"subPatch\":\"ry2b8so8q\"},\"storage\":{},\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp6-1\",\"objOut\":\"bp6-13\"}]}],\"objName\":\"Ops.Gl.Matrix.Billboard\"},{\"id\":\"bp6-14\",\"uiAttribs\":{\"subPatch\":\"ry2b8so8q\"},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_dryMix\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Custom Value\",\"portOut\":\"Value\",\"objIn\":\"bp6-6\",\"objOut\":\"bp6-14\"}]}],\"storage\":{\"ref\":\"bp6-14\"},\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"bp6-15\",\"uiAttribs\":{\"subPatch\":\"ry2b8so8q\"},\"portsIn\":[{\"name\":\"x\",\"value\":0.69},{\"name\":\"y\",\"value\":1},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp6-9\",\"objOut\":\"bp6-15\"}]}],\"storage\":{\"ref\":\"bp6-15\"},\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"}]}",};
+const port_blls2amps=op.inTrigger("blls2amps");
+port_blls2amps.setUiAttribs({title:"Trigger in",});
 
-const goto = op.inTriggerButton("Goto SubPatchOp");
-goto.setUiAttribs({ "hidePort": true });
-goto.onTriggered = () =>
+const port_btagbs7z2=op.inString("btagbs7z2","");
+port_btagbs7z2.setUiAttribs({title:"Class",});
+
+const port_lj06d561p=op.inFloat("lj06d561p",0);
+port_lj06d561p.setUiAttribs({title:"Show Boundings",display:"bool",});
+
+const port_nti406vwi=op.outNumber("nti406vwi");
+port_nti406vwi.setUiAttribs({title:"Result",});
+
+const port_gjvx0zyv5=op.outNumber("gjvx0zyv5");
+port_gjvx0zyv5.setUiAttribs({title:"value",});
+
+op.initInnerPorts=function(addedOps)
 {
-    const parent = op.patch.getSubPatchOuterOp(op.uiAttribs.subPatch);
-    gui.patchView.centerSelectOp(parent.id);
-};
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
+    {
+const innerOut_blls2amps = addedOps[i].outTrigger("innerOut_blls2amps");
+innerOut_blls2amps.setUiAttribs({title:"Trigger in"});
+port_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };
 
+const innerOut_btagbs7z2 = addedOps[i].outString("innerOut_btagbs7z2");
+innerOut_btagbs7z2.set(port_btagbs7z2.get() );
+innerOut_btagbs7z2.setUiAttribs({title:"Class"});
+port_btagbs7z2.on("change", (a,v) => { innerOut_btagbs7z2.set(a); });
 
-};
+const innerOut_lj06d561p = addedOps[i].outNumber("innerOut_lj06d561p");
+innerOut_lj06d561p.set(port_lj06d561p.get() );
+innerOut_lj06d561p.setUiAttribs({title:"Show Boundings"});
+port_lj06d561p.on("change", (a,v) => { innerOut_lj06d561p.set(a); });
 
-Ops.Ui.SubPatchInput.prototype = new CABLES.Op();
-CABLES.OPS["c4e4e933-136e-479e-8de8-0b35b75d9217"]={f:Ops.Ui.SubPatchInput,objName:"Ops.Ui.SubPatchInput"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Ui.SubPatchOutput
-// 
-// **************************************************************
-
-Ops.Ui.SubPatchOutput = function()
+    }
+if(addedOps[i].innerOutput)
 {
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-op.innerOutput = true;
+const innerIn_nti406vwi = addedOps[i].inFloat("innerIn_nti406vwi");
+innerIn_nti406vwi.setUiAttribs({title:"Result"});
+innerIn_nti406vwi.on("change", (a,v) => { port_nti406vwi.set(a); });
+
+const innerIn_gjvx0zyv5 = addedOps[i].inFloat("innerIn_gjvx0zyv5");
+innerIn_gjvx0zyv5.setUiAttribs({title:"value"});
+innerIn_gjvx0zyv5.on("change", (a,v) => { port_gjvx0zyv5.set(a); });
+
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
+    {
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
+    }
+
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
+}
 
 
 };
 
-Ops.Ui.SubPatchOutput.prototype = new CABLES.Op();
-CABLES.OPS["02d45073-7936-4830-81ad-59a162febf1f"]={f:Ops.Ui.SubPatchOutput,objName:"Ops.Ui.SubPatchOutput"};
+Ops.Patch.PuSSdim.BasicSlider_v4.prototype = new CABLES.Op();
+CABLES.OPS["4c1a5ec4-b3e8-4142-9146-66afc01780a0"]={f:Ops.Patch.PuSSdim.BasicSlider_v4,objName:"Ops.Patch.PuSSdim.BasicSlider_v4"};
 
 
 
@@ -21301,6 +21224,111 @@ CABLES.OPS["ef522d4a-9712-4063-8a99-c6b409f26456"]={f:Ops.Gl.Meshes.Triangle_v2,
 
 // **************************************************************
 // 
+// Ops.Ui.SubPatchInput
+// 
+// **************************************************************
+
+Ops.Ui.SubPatchInput = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+op.innerInput = true;
+
+const goto = op.inTriggerButton("Goto SubPatchOp");
+goto.setUiAttribs({ "hidePort": true });
+goto.onTriggered = () =>
+{
+    const parent = op.patch.getSubPatchOuterOp(op.uiAttribs.subPatch);
+    gui.patchView.centerSelectOp(parent.id);
+};
+
+
+};
+
+Ops.Ui.SubPatchInput.prototype = new CABLES.Op();
+CABLES.OPS["c4e4e933-136e-479e-8de8-0b35b75d9217"]={f:Ops.Ui.SubPatchInput,objName:"Ops.Ui.SubPatchInput"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Ui.SubPatchOutput
+// 
+// **************************************************************
+
+Ops.Ui.SubPatchOutput = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+op.innerOutput = true;
+
+
+};
+
+Ops.Ui.SubPatchOutput.prototype = new CABLES.Op();
+CABLES.OPS["02d45073-7936-4830-81ad-59a162febf1f"]={f:Ops.Ui.SubPatchOutput,objName:"Ops.Ui.SubPatchOutput"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Number.GateNumber
+// 
+// **************************************************************
+
+Ops.Number.GateNumber = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    valueInPort = op.inValue("Value In", 0),
+    passThroughPort = op.inValueBool("Pass Through"),
+    inIfNot = op.inSwitch("When False", ["keep last number", "custom"], "keep last number"),
+    inCustomNot = op.inFloat("Custom Value", 0),
+    valueOutPort = op.outNumber("Value Out");
+
+valueInPort.onChange = update;
+passThroughPort.onChange = update;
+
+valueInPort.changeAlways =
+    valueOutPort.changeAlways = true;
+
+inIfNot.onChange = updateUi;
+
+function updateUi()
+{
+    inCustomNot.setUiAttribs({ "greyout": inIfNot.get() != "custom" });
+    update();
+}
+
+function update()
+{
+    if (passThroughPort.get())
+    {
+        valueOutPort.set(valueInPort.get());
+    }
+    else
+    {
+        if (inIfNot.get() == "custom") valueOutPort.set(inCustomNot.get());
+    }
+}
+
+
+};
+
+Ops.Number.GateNumber.prototype = new CABLES.Op();
+CABLES.OPS["594105c8-1fdb-4f3c-bbd5-29b9ad6b33e0"]={f:Ops.Number.GateNumber,objName:"Ops.Number.GateNumber"};
+
+
+
+
+// **************************************************************
+// 
 // Ops.Math.Subtract
 // 
 // **************************************************************
@@ -22082,5417 +22110,6 @@ val.onChange = function ()
 
 Ops.Boolean.TriggerChangedTrue.prototype = new CABLES.Op();
 CABLES.OPS["385197e1-8b34-4d1c-897f-d1386d99e3b3"]={f:Ops.Boolean.TriggerChangedTrue,objName:"Ops.Boolean.TriggerChangedTrue"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.MainLoop
-// 
-// **************************************************************
-
-Ops.Gl.MainLoop = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    fpsLimit = op.inValue("FPS Limit", 0),
-    trigger = op.outTrigger("trigger"),
-    width = op.outNumber("width"),
-    height = op.outNumber("height"),
-    reduceFocusFPS = op.inValueBool("Reduce FPS not focussed", false),
-    reduceLoadingFPS = op.inValueBool("Reduce FPS loading"),
-    clear = op.inValueBool("Clear", true),
-    clearAlpha = op.inValueBool("ClearAlpha", true),
-    fullscreen = op.inValueBool("Fullscreen Button", false),
-    active = op.inValueBool("Active", true),
-    hdpi = op.inValueBool("Hires Displays", false),
-    inUnit = op.inSwitch("Pixel Unit", ["Display", "CSS"], "Display");
-
-op.onAnimFrame = render;
-hdpi.onChange = function ()
-{
-    if (hdpi.get()) op.patch.cgl.pixelDensity = window.devicePixelRatio;
-    else op.patch.cgl.pixelDensity = 1;
-
-    op.patch.cgl.updateSize();
-    if (CABLES.UI) gui.setLayout();
-};
-
-active.onChange = function ()
-{
-    op.patch.removeOnAnimFrame(op);
-
-    if (active.get())
-    {
-        op.setUiAttrib({ "extendTitle": "" });
-        op.onAnimFrame = render;
-        op.patch.addOnAnimFrame(op);
-        op.log("adding again!");
-    }
-    else
-    {
-        op.setUiAttrib({ "extendTitle": "Inactive" });
-    }
-};
-
-const cgl = op.patch.cgl;
-let rframes = 0;
-let rframeStart = 0;
-let timeOutTest = null;
-let addedListener = false;
-
-if (!op.patch.cgl) op.uiAttr({ "error": "No webgl cgl context" });
-
-const identTranslate = vec3.create();
-vec3.set(identTranslate, 0, 0, 0);
-const identTranslateView = vec3.create();
-vec3.set(identTranslateView, 0, 0, -2);
-
-fullscreen.onChange = updateFullscreenButton;
-setTimeout(updateFullscreenButton, 100);
-let fsElement = null;
-
-let winhasFocus = true;
-let winVisible = true;
-
-window.addEventListener("blur", () => { winhasFocus = false; });
-window.addEventListener("focus", () => { winhasFocus = true; });
-document.addEventListener("visibilitychange", () => { winVisible = !document.hidden; });
-testMultiMainloop();
-
-cgl.mainloopOp = this;
-
-inUnit.onChange = () =>
-{
-    width.set(0);
-    height.set(0);
-};
-
-function getFpsLimit()
-{
-    if (reduceLoadingFPS.get() && op.patch.loading.getProgress() < 1.0) return 5;
-
-    if (reduceFocusFPS.get())
-    {
-        if (!winVisible) return 10;
-        if (!winhasFocus) return 30;
-    }
-
-    return fpsLimit.get();
-}
-
-function updateFullscreenButton()
-{
-    function onMouseEnter()
-    {
-        if (fsElement)fsElement.style.display = "block";
-    }
-
-    function onMouseLeave()
-    {
-        if (fsElement)fsElement.style.display = "none";
-    }
-
-    op.patch.cgl.canvas.addEventListener("mouseleave", onMouseLeave);
-    op.patch.cgl.canvas.addEventListener("mouseenter", onMouseEnter);
-
-    if (fullscreen.get())
-    {
-        if (!fsElement)
-        {
-            fsElement = document.createElement("div");
-
-            const container = op.patch.cgl.canvas.parentElement;
-            if (container)container.appendChild(fsElement);
-
-            fsElement.addEventListener("mouseenter", onMouseEnter);
-            fsElement.addEventListener("click", function (e)
-            {
-                if (CABLES.UI && !e.shiftKey) gui.cycleFullscreen();
-                else cgl.fullScreen();
-            });
-        }
-
-        fsElement.style.padding = "10px";
-        fsElement.style.position = "absolute";
-        fsElement.style.right = "5px";
-        fsElement.style.top = "5px";
-        fsElement.style.width = "20px";
-        fsElement.style.height = "20px";
-        fsElement.style.cursor = "pointer";
-        fsElement.style["border-radius"] = "40px";
-        fsElement.style.background = "#444";
-        fsElement.style["z-index"] = "9999";
-        fsElement.style.display = "none";
-        fsElement.innerHTML = "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"1.1\" id=\"Capa_1\" x=\"0px\" y=\"0px\" viewBox=\"0 0 490 490\" style=\"width:20px;height:20px;\" xml:space=\"preserve\" width=\"512px\" height=\"512px\"><g><path d=\"M173.792,301.792L21.333,454.251v-80.917c0-5.891-4.776-10.667-10.667-10.667C4.776,362.667,0,367.442,0,373.333V480     c0,5.891,4.776,10.667,10.667,10.667h106.667c5.891,0,10.667-4.776,10.667-10.667s-4.776-10.667-10.667-10.667H36.416     l152.459-152.459c4.093-4.237,3.975-10.99-0.262-15.083C184.479,297.799,177.926,297.799,173.792,301.792z\" fill=\"#FFFFFF\"/><path d=\"M480,0H373.333c-5.891,0-10.667,4.776-10.667,10.667c0,5.891,4.776,10.667,10.667,10.667h80.917L301.792,173.792     c-4.237,4.093-4.354,10.845-0.262,15.083c4.093,4.237,10.845,4.354,15.083,0.262c0.089-0.086,0.176-0.173,0.262-0.262     L469.333,36.416v80.917c0,5.891,4.776,10.667,10.667,10.667s10.667-4.776,10.667-10.667V10.667C490.667,4.776,485.891,0,480,0z\" fill=\"#FFFFFF\"/><path d=\"M36.416,21.333h80.917c5.891,0,10.667-4.776,10.667-10.667C128,4.776,123.224,0,117.333,0H10.667     C4.776,0,0,4.776,0,10.667v106.667C0,123.224,4.776,128,10.667,128c5.891,0,10.667-4.776,10.667-10.667V36.416l152.459,152.459     c4.237,4.093,10.99,3.975,15.083-0.262c3.992-4.134,3.992-10.687,0-14.82L36.416,21.333z\" fill=\"#FFFFFF\"/><path d=\"M480,362.667c-5.891,0-10.667,4.776-10.667,10.667v80.917L316.875,301.792c-4.237-4.093-10.99-3.976-15.083,0.261     c-3.993,4.134-3.993,10.688,0,14.821l152.459,152.459h-80.917c-5.891,0-10.667,4.776-10.667,10.667s4.776,10.667,10.667,10.667     H480c5.891,0,10.667-4.776,10.667-10.667V373.333C490.667,367.442,485.891,362.667,480,362.667z\" fill=\"#FFFFFF\"/></g></svg>";
-    }
-    else
-    {
-        if (fsElement)
-        {
-            fsElement.style.display = "none";
-            fsElement.remove();
-            fsElement = null;
-        }
-    }
-}
-
-op.onDelete = function ()
-{
-    cgl.gl.clearColor(0, 0, 0, 0);
-    cgl.gl.clear(cgl.gl.COLOR_BUFFER_BIT | cgl.gl.DEPTH_BUFFER_BIT);
-};
-
-function render(time)
-{
-    if (!active.get()) return;
-    if (cgl.aborted || cgl.canvas.clientWidth === 0 || cgl.canvas.clientHeight === 0) return;
-
-    op.patch.cg = cgl;
-
-    if (hdpi.get())op.patch.cgl.pixelDensity = window.devicePixelRatio;
-
-    const startTime = performance.now();
-
-    op.patch.config.fpsLimit = getFpsLimit();
-
-    if (cgl.canvasWidth == -1)
-    {
-        cgl.setCanvas(op.patch.config.glCanvasId);
-        return;
-    }
-
-    if (cgl.canvasWidth != width.get() || cgl.canvasHeight != height.get())
-    {
-        let div = 1;
-        if (inUnit.get() == "CSS")div = op.patch.cgl.pixelDensity;
-
-        width.set(cgl.canvasWidth / div);
-        height.set(cgl.canvasHeight / div);
-    }
-
-    if (CABLES.now() - rframeStart > 1000)
-    {
-        CGL.fpsReport = CGL.fpsReport || [];
-        if (op.patch.loading.getProgress() >= 1.0 && rframeStart !== 0)CGL.fpsReport.push(rframes);
-        rframes = 0;
-        rframeStart = CABLES.now();
-    }
-    CGL.MESH.lastShader = null;
-    CGL.MESH.lastMesh = null;
-
-    cgl.renderStart(cgl, identTranslate, identTranslateView);
-
-    if (clear.get())
-    {
-        cgl.gl.clearColor(0, 0, 0, 1);
-        cgl.gl.clear(cgl.gl.COLOR_BUFFER_BIT | cgl.gl.DEPTH_BUFFER_BIT);
-    }
-
-    trigger.trigger();
-
-    if (CGL.MESH.lastMesh)CGL.MESH.lastMesh.unBind();
-
-    if (CGL.Texture.previewTexture)
-    {
-        if (!CGL.Texture.texturePreviewer) CGL.Texture.texturePreviewer = new CGL.Texture.texturePreview(cgl);
-        CGL.Texture.texturePreviewer.render(CGL.Texture.previewTexture);
-    }
-    cgl.renderEnd(cgl);
-
-    op.patch.cg = null;
-
-    if (clearAlpha.get())
-    {
-        cgl.gl.clearColor(1, 1, 1, 1);
-        cgl.gl.colorMask(false, false, false, true);
-        cgl.gl.clear(cgl.gl.COLOR_BUFFER_BIT);
-        cgl.gl.colorMask(true, true, true, true);
-    }
-
-    if (!cgl.frameStore.phong)cgl.frameStore.phong = {};
-    rframes++;
-
-    op.patch.cgl.profileData.profileMainloopMs = performance.now() - startTime;
-}
-
-function testMultiMainloop()
-{
-    clearTimeout(timeOutTest);
-    timeOutTest = setTimeout(
-        () =>
-        {
-            if (op.patch.getOpsByObjName(op.name).length > 1)
-            {
-                op.setUiError("multimainloop", "there should only be one mainloop op!");
-                if (!addedListener)addedListener = op.patch.addEventListener("onOpDelete", testMultiMainloop);
-            }
-            else op.setUiError("multimainloop", null, 1);
-        }, 500);
-}
-
-
-};
-
-Ops.Gl.MainLoop.prototype = new CABLES.Op();
-CABLES.OPS["b0472a1d-db16-4ba6-8787-f300fbdc77bb"]={f:Ops.Gl.MainLoop,objName:"Ops.Gl.MainLoop"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Trigger.Sequence
-// 
-// **************************************************************
-
-Ops.Trigger.Sequence = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    exe = op.inTrigger("exe"),
-    cleanup = op.inTriggerButton("Clean up connections");
-
-op.setUiAttrib({ "resizable": true, "resizableY": false, "stretchPorts": true });
-const
-    exes = [],
-    triggers = [],
-    num = 16;
-
-let
-    updateTimeout = null,
-    connectedOuts = [];
-
-exe.onTriggered = triggerAll;
-cleanup.onTriggered = clean;
-cleanup.setUiAttribs({ "hideParam": true, "hidePort": true });
-
-for (let i = 0; i < num; i++)
-{
-    const p = op.outTrigger("trigger " + i);
-    triggers.push(p);
-    p.onLinkChanged = updateButton;
-
-    if (i < num - 1)
-    {
-        let newExe = op.inTrigger("exe " + i);
-        newExe.onTriggered = triggerAll;
-        exes.push(newExe);
-    }
-}
-
-updateConnected();
-
-function updateConnected()
-{
-    connectedOuts.length = 0;
-    for (let i = 0; i < triggers.length; i++)
-        if (triggers[i].links.length > 0) connectedOuts.push(triggers[i]);
-}
-
-function updateButton()
-{
-    updateConnected();
-    clearTimeout(updateTimeout);
-    updateTimeout = setTimeout(() =>
-    {
-        let show = false;
-        for (let i = 0; i < triggers.length; i++)
-            if (triggers[i].links.length > 1) show = true;
-
-        cleanup.setUiAttribs({ "hideParam": !show });
-
-        if (op.isCurrentUiOp()) op.refreshParams();
-    }, 60);
-}
-
-function triggerAll()
-{
-    // for (let i = 0; i < triggers.length; i++) triggers[i].trigger();
-    for (let i = 0; i < connectedOuts.length; i++) connectedOuts[i].trigger();
-}
-
-function clean()
-{
-    let count = 0;
-    for (let i = 0; i < triggers.length; i++)
-    {
-        let removeLinks = [];
-
-        if (triggers[i].links.length > 1)
-            for (let j = 1; j < triggers[i].links.length; j++)
-            {
-                while (triggers[count].links.length > 0) count++;
-
-                removeLinks.push(triggers[i].links[j]);
-                const otherPort = triggers[i].links[j].getOtherPort(triggers[i]);
-                op.patch.link(op, "trigger " + count, otherPort.op, otherPort.name);
-                count++;
-            }
-
-        for (let j = 0; j < removeLinks.length; j++) removeLinks[j].remove();
-    }
-    updateButton();
-    updateConnected();
-}
-
-
-};
-
-Ops.Trigger.Sequence.prototype = new CABLES.Op();
-CABLES.OPS["a466bc1f-06e9-4595-8849-bffb9fe22f99"]={f:Ops.Trigger.Sequence,objName:"Ops.Trigger.Sequence"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Devices.Mouse.Mouse_v3
-// 
-// **************************************************************
-
-Ops.Devices.Mouse.Mouse_v3 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inCoords = op.inSwitch("Coordinates", ["-1 to 1", "Pixel Display", "Pixel", "0 to 1"], "-1 to 1"),
-    area = op.inValueSelect("Area", ["Canvas", "Document", "Parent Element", "Canvas Area"], "Canvas"),
-    flipY = op.inValueBool("flip y", true),
-    rightClickPrevDef = op.inBool("right click prevent default", true),
-    touchscreen = op.inValueBool("Touch support", true),
-    inPassive = op.inValueBool("Passive Events", false),
-    active = op.inValueBool("Active", true),
-    outMouseX = op.outNumber("x", 0),
-    outMouseY = op.outNumber("y", 0),
-    mouseClick = op.outTrigger("click"),
-    mouseClickRight = op.outTrigger("click right"),
-    mouseDown = op.outBoolNum("Button is down"),
-    mouseOver = op.outBoolNum("Mouse is hovering"),
-    outMovementX = op.outNumber("Movement X", 0),
-    outMovementY = op.outNumber("Movement Y", 0);
-
-const cgl = op.patch.cgl;
-let normalize = 1;
-let listenerElement = null;
-let sizeElement = null;
-
-inPassive.onChange =
-area.onChange = addListeners;
-
-inCoords.onChange = updateCoordNormalizing;
-op.onDelete = removeListeners;
-
-addListeners();
-
-op.on("loadedValueSet", onStart);
-
-function onStart()
-{
-    if (normalize == 0)
-    {
-        if (sizeElement.clientWidth === 0) setTimeout(onStart, 50);
-
-        outMouseX.set(sizeElement.clientWidth / 2);
-        outMouseY.set(sizeElement.clientHeight / 2);
-    }
-    else if (normalize == 1)
-    {
-        outMouseX.set(0);
-        outMouseY.set(0);
-    }
-    else if (normalize == 2)
-    {
-        outMouseX.set(0.5);
-        outMouseY.set(0.5);
-    }
-    else if (normalize == 3)
-    {
-        if (sizeElement.clientWidth === 0)
-        {
-            setTimeout(onStart, 50);
-        }
-
-        outMouseX.set(sizeElement.clientWidth / 2 / cgl.pixelDensity);
-        outMouseY.set(sizeElement.clientHeight / 2 / cgl.pixelDensity);
-    }
-    else console.error("unknown normalize mouse", normalize);
-}
-
-function setValue(x, y)
-{
-    x = x || 0;
-    y = y || 0;
-
-    if (normalize == 0) // pixel
-    {
-        outMouseX.set(x);
-        outMouseY.set(y);
-    }
-    else
-    if (normalize == 3) // pixel css
-    {
-        outMouseX.set(x * cgl.pixelDensity);
-        outMouseY.set(y * cgl.pixelDensity);
-    }
-    else
-    {
-        let w = sizeElement.clientWidth / cgl.pixelDensity;
-        let h = sizeElement.clientHeight / cgl.pixelDensity;
-
-        w = w || 1;
-        h = h || 1;
-
-        if (normalize == 1) // -1 to 1
-        {
-            let xx = (x / w * 2.0 - 1.0);
-            let yy = (y / h * 2.0 - 1.0);
-            xx = CABLES.clamp(xx, -1, 1);
-            yy = CABLES.clamp(yy, -1, 1);
-
-            outMouseX.set(xx);
-            outMouseY.set(yy);
-        }
-        else if (normalize == 2) // 0 to 1
-        {
-            let xx = x / w;
-            let yy = y / h;
-
-            xx = CABLES.clamp(xx, 0, 1);
-            yy = CABLES.clamp(yy, 0, 1);
-
-            outMouseX.set(xx);
-            outMouseY.set(yy);
-        }
-    }
-}
-
-function checkHovering(e)
-{
-    const r = sizeElement.getBoundingClientRect();
-
-    return (
-        e.clientX > r.left &&
-        e.clientX < r.left + r.width &&
-        e.clientY > r.top &&
-        e.clientY < r.top + r.height
-    );
-}
-
-touchscreen.onChange = function ()
-{
-    removeListeners();
-    addListeners();
-};
-
-active.onChange = function ()
-{
-    if (listenerElement)removeListeners();
-    if (active.get())addListeners();
-};
-
-function updateCoordNormalizing()
-{
-    if (inCoords.get() == "Pixel") normalize = 0;
-    else if (inCoords.get() == "-1 to 1") normalize = 1;
-    else if (inCoords.get() == "0 to 1") normalize = 2;
-    else if (inCoords.get() == "Pixel Display") normalize = 3;
-}
-
-function onMouseEnter(e)
-{
-    mouseDown.set(false);
-    mouseOver.set(checkHovering(e));
-}
-
-function onMouseDown(e)
-{
-    if (!checkHovering(e)) return;
-    mouseDown.set(true);
-}
-
-function onMouseUp(e)
-{
-    mouseDown.set(false);
-}
-
-function onClickRight(e)
-{
-    if (!checkHovering(e)) return;
-    mouseClickRight.trigger();
-    if (rightClickPrevDef.get()) e.preventDefault();
-}
-
-function onmouseclick(e)
-{
-    if (!checkHovering(e)) return;
-    mouseClick.trigger();
-}
-
-function onMouseLeave(e)
-{
-    mouseDown.set(false);
-    mouseOver.set(checkHovering(e));
-}
-
-function setCoords(e)
-{
-    let x = e.clientX;
-    let y = e.clientY;
-
-    if (area.get() != "Document")
-    {
-        x = e.offsetX;
-        y = e.offsetY;
-    }
-    if (area.get() === "Canvas Area")
-    {
-        const r = sizeElement.getBoundingClientRect();
-        x = e.clientX - r.left;
-        y = e.clientY - r.top;
-    }
-
-    if (flipY.get()) y = sizeElement.clientHeight - y;
-
-    setValue(x / cgl.pixelDensity, y / cgl.pixelDensity);
-}
-
-function onmousemove(e)
-{
-    mouseOver.set(checkHovering(e));
-    setCoords(e);
-
-    outMovementX.set(e.movementX / cgl.pixelDensity);
-    outMovementY.set(e.movementY / cgl.pixelDensity);
-}
-
-function ontouchmove(e)
-{
-    if (event.touches && event.touches.length > 0) setCoords(e.touches[0]);
-}
-
-function ontouchstart(event)
-{
-    mouseDown.set(true);
-
-    if (event.touches && event.touches.length > 0) onMouseDown(event.touches[0]);
-}
-
-function ontouchend(event)
-{
-    mouseDown.set(false);
-    onMouseUp();
-}
-
-function removeListeners()
-{
-    if (!listenerElement) return;
-    listenerElement.removeEventListener("touchend", ontouchend);
-    listenerElement.removeEventListener("touchstart", ontouchstart);
-    listenerElement.removeEventListener("touchmove", ontouchmove);
-
-    listenerElement.removeEventListener("click", onmouseclick);
-    listenerElement.removeEventListener("mousemove", onmousemove);
-    listenerElement.removeEventListener("mouseleave", onMouseLeave);
-    listenerElement.removeEventListener("mousedown", onMouseDown);
-    listenerElement.removeEventListener("mouseup", onMouseUp);
-    listenerElement.removeEventListener("mouseenter", onMouseEnter);
-    listenerElement.removeEventListener("contextmenu", onClickRight);
-    listenerElement = null;
-}
-
-function addListeners()
-{
-    if (listenerElement || !active.get())removeListeners();
-    if (!active.get()) return;
-
-    listenerElement = sizeElement = cgl.canvas;
-    if (area.get() == "Canvas Area")
-    {
-        sizeElement = cgl.canvas.parentElement;
-        listenerElement = document.body;
-    }
-    if (area.get() == "Document") sizeElement = listenerElement = document.body;
-    if (area.get() == "Parent Element") listenerElement = sizeElement = cgl.canvas.parentElement;
-
-    let passive = false;
-    if (inPassive.get())passive = { "passive": true };
-
-    if (touchscreen.get())
-    {
-        listenerElement.addEventListener("touchend", ontouchend, passive);
-        listenerElement.addEventListener("touchstart", ontouchstart, passive);
-        listenerElement.addEventListener("touchmove", ontouchmove, passive);
-    }
-
-    listenerElement.addEventListener("mousemove", onmousemove, passive);
-    listenerElement.addEventListener("mouseleave", onMouseLeave, passive);
-    listenerElement.addEventListener("mousedown", onMouseDown, passive);
-    listenerElement.addEventListener("mouseup", onMouseUp, passive);
-    listenerElement.addEventListener("mouseenter", onMouseEnter, passive);
-    listenerElement.addEventListener("contextmenu", onClickRight, passive);
-    listenerElement.addEventListener("click", onmouseclick, passive);
-}
-
-//
-
-
-};
-
-Ops.Devices.Mouse.Mouse_v3.prototype = new CABLES.Op();
-CABLES.OPS["6d1edbc0-088a-43d7-9156-918fb3d7f24b"]={f:Ops.Devices.Mouse.Mouse_v3,objName:"Ops.Devices.Mouse.Mouse_v3"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Math.DeltaSum
-// 
-// **************************************************************
-
-Ops.Math.DeltaSum = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inVal = op.inValue("Delta Value"),
-    defVal = op.inValue("Default Value", 0),
-    inMul = op.inValue("Multiply", 1),
-    inReset = op.inTriggerButton("Reset"),
-    inLimit = op.inValueBool("Limit", false),
-    inMin = op.inValue("Min", 0),
-    inMax = op.inValue("Max", 100),
-    inRubber = op.inValue("Rubberband", 0),
-    outVal = op.outNumber("Absolute Value");
-
-inVal.changeAlways = true;
-
-op.setPortGroup("Limit", [inLimit, inMin, inMax, inRubber]);
-
-let value = 0;
-let lastEvent = CABLES.now();
-let rubTimeout = null;
-
-inLimit.onChange = updateLimit;
-defVal.onChange =
-    inReset.onTriggered = resetValue;
-
-inMax.onChange =
-    inMin.onChange = updateValue;
-
-updateLimit();
-
-function resetValue()
-{
-    let v = defVal.get();
-
-    if (inLimit.get())
-    {
-        v = Math.max(inMin.get(), v);
-        v = Math.min(inMax.get(), v);
-    }
-
-    value = v;
-    outVal.set(value);
-}
-
-function updateLimit()
-{
-    inMin.setUiAttribs({ "greyout": !inLimit.get() });
-    inMax.setUiAttribs({ "greyout": !inLimit.get() });
-    inRubber.setUiAttribs({ "greyout": !inLimit.get() });
-
-    updateValue();
-}
-
-function releaseRubberband()
-{
-    const min = inMin.get();
-    const max = inMax.get();
-
-    if (value < min) value = min;
-    if (value > max) value = max;
-
-    outVal.set(value);
-}
-
-function updateValue()
-{
-    if (inLimit.get())
-    {
-        const min = inMin.get();
-        const max = inMax.get();
-        const rubber = inRubber.get();
-        const minr = inMin.get() - rubber;
-        const maxr = inMax.get() + rubber;
-
-        if (value < minr) value = minr;
-        if (value > maxr) value = maxr;
-
-        if (rubber !== 0.0)
-        {
-            clearTimeout(rubTimeout);
-            rubTimeout = setTimeout(releaseRubberband.bind(this), 300);
-        }
-    }
-
-    outVal.set(value);
-}
-
-inVal.onChange = function ()
-{
-    let v = inVal.get();
-
-    const rubber = inRubber.get();
-
-    if (rubber !== 0.0)
-    {
-        const min = inMin.get();
-        const max = inMax.get();
-        const minr = inMin.get() - rubber;
-        const maxr = inMax.get() + rubber;
-
-        if (value < min)
-        {
-            const aa = Math.abs(value - minr) / rubber;
-            v *= (aa * aa);
-        }
-        if (value > max)
-        {
-            const aa = Math.abs(maxr - value) / rubber;
-            v *= (aa * aa);
-        }
-    }
-
-    lastEvent = CABLES.now();
-    value += v * inMul.get();
-    updateValue();
-};
-
-
-};
-
-Ops.Math.DeltaSum.prototype = new CABLES.Op();
-CABLES.OPS["d9d4b3db-c24b-48da-b798-9e6230d861f7"]={f:Ops.Math.DeltaSum,objName:"Ops.Math.DeltaSum"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Ui.PatchInput
-// 
-// **************************************************************
-
-Ops.Ui.PatchInput = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const dyn = op.addOutPort(new CABLES.Port(op, "create port", CABLES.OP_PORT_TYPE_DYNAMIC));
-
-function getPatchOp()
-{
-    for (let i in op.patch.ops)
-    {
-        if (op.patch.ops[i].patchId)
-        {
-            if (op.patch.ops[i].patchId.get() == op.uiAttribs.subPatch)
-            {
-                return op.patch.ops[i];
-            }
-        }
-    }
-}
-
-dyn.onLinkChanged = () =>
-{
-    const mySubPatchOp = getPatchOp();
-
-    if (!dyn.links.length || !mySubPatchOp || !mySubPatchOp.addNewInPort) return;
-
-
-    const otherPort = dyn.links[0].getOtherPort(dyn);
-    dyn.removeLinks();
-
-    const newPortName = mySubPatchOp.addNewInPort(otherPort);
-
-    const l = gui.scene().link(
-        otherPort.parent,
-        otherPort.getName(),
-        op,
-        newPortName);
-
-    mySubPatchOp.saveData();
-};
-
-
-};
-
-Ops.Ui.PatchInput.prototype = new CABLES.Op();
-CABLES.OPS["e3f68bc3-892a-4c78-9974-aca25c27025d"]={f:Ops.Ui.PatchInput,objName:"Ops.Ui.PatchInput"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Ui.PatchOutput
-// 
-// **************************************************************
-
-Ops.Ui.PatchOutput = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const dyn = op.addInPort(new CABLES.Port(op, "create port", CABLES.OP_PORT_TYPE_DYNAMIC));
-
-function getPatchOp()
-{
-    for (let i in op.patch.ops)
-    {
-        if (op.patch.ops[i].patchId)
-        {
-            if (op.patch.ops[i].patchId.get() == op.uiAttribs.subPatch)
-            {
-                return op.patch.ops[i];
-            }
-        }
-    }
-}
-
-dyn.onLinkChanged = () =>
-{
-    const mySubPatchOp = getPatchOp();
-
-    if (!dyn.links.length) return;
-
-    const otherPort = dyn.links[0].getOtherPort(dyn);
-    dyn.removeLinks();
-
-    const newPortName = mySubPatchOp.addNewOutPort(otherPort);
-
-    const l = gui.scene().link(
-        otherPort.parent,
-        otherPort.getName(),
-        op,
-        newPortName);
-
-    mySubPatchOp.saveData();
-};
-
-
-};
-
-Ops.Ui.PatchOutput.prototype = new CABLES.Op();
-CABLES.OPS["851b44cb-5667-4140-9800-5aeb7031f1d7"]={f:Ops.Ui.PatchOutput,objName:"Ops.Ui.PatchOutput"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Ui.SubPatch
-// 
-// **************************************************************
-
-Ops.Ui.SubPatch = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-op.dyn = op.addInPort(new CABLES.Port(op, "create port", CABLES.OP_PORT_TYPE_DYNAMIC));
-op.dynOut = op.addOutPort(new CABLES.Port(op, "create port out", CABLES.OP_PORT_TYPE_DYNAMIC));
-
-const dataStr = op.addInPort(new CABLES.Port(op, "dataStr", CABLES.OP_PORT_TYPE_VALUE, { "display": "readonly" }));
-op.patchId = op.addInPort(new CABLES.Port(op, "patchId", CABLES.OP_PORT_TYPE_VALUE, { "display": "readonly" }));
-
-
-dataStr.setUiAttribs({ "hideParam": true });
-op.patchId.setUiAttribs({ "hidePort": true });
-
-let data = { "ports": [], "portsOut": [] };
-let oldPatchId = CABLES.generateUUID();
-op.patchId.set(oldPatchId);
-getSubPatchInputOp();
-getSubPatchOutputOp();
-
-let dataLoaded = false;
-
-op.saveData = saveData;
-
-op.init = () =>
-{
-    op.setStorage({ "subPatchVer": 1 });
-};
-
-op.patchId.onChange = function ()
-{
-    if (!op.patch.isEditorMode()) return;
-    const oldPatchOps = op.patch.getSubPatchOps(oldPatchId);
-    if (oldPatchOps.length === 2)
-    {
-        if (op.patch.isEditorMode() && CABLES.UI.DEFAULTOPS.isInBlueprint(op)) CABLES.UI.undo.pause();
-        for (let i = 0; i < oldPatchOps.length; i++)
-        {
-            op.patch.deleteOp(oldPatchOps[i].id);
-        }
-        if (op.patch.isEditorMode() && CABLES.UI.DEFAULTOPS.isInBlueprint(op)) CABLES.UI.undo.resume();
-    }
-};
-
-op.onLoaded = function ()
-{
-};
-
-op.onLoadedValueSet = function ()
-{
-    data = JSON.parse(dataStr.get());
-    if (!data)
-    {
-        data = { "ports": [], "portsOut": [] };
-    }
-    setupPorts();
-};
-
-function loadData()
-{
-}
-
-dataStr.onChange = function ()
-{
-    if (dataLoaded) return;
-
-    if (!dataStr.get()) return;
-    try
-    {
-        loadData();
-    }
-    catch (e)
-    {
-        op.logError("cannot load subpatch data...");
-        op.logError(e);
-    }
-};
-
-function saveData()
-{
-    try
-    {
-        dataStr.set(JSON.stringify(data));
-    }
-    catch (e)
-    {
-        op.log(e);
-    }
-}
-
-op.addPortListener = addPortListener;
-function addPortListener(newPort, newPortInPatch)
-{
-    if (!newPort.hasSubpatchLstener)
-    {
-        newPort.hasSubpatchLstener = true;
-        newPort.addEventListener("onUiAttrChange", function (attribs)
-        {
-            if (attribs.title)
-            {
-                let i = 0;
-                for (i = 0; i < data.portsOut.length; i++)
-                    if (data.portsOut[i].name == newPort.name)
-                        data.portsOut[i].title = attribs.title;
-
-                for (i = 0; i < data.ports.length; i++)
-                    if (data.ports[i].name == newPort.name)
-                        data.ports[i].title = attribs.title;
-
-                saveData();
-            }
-        });
-    }
-
-    if (newPort.direction == CABLES.PORT_DIR_IN)
-    {
-        if (newPort.type == CABLES.OP_PORT_TYPE_FUNCTION)
-        {
-            newPort.onTriggered = function ()
-            {
-                if (newPortInPatch.isLinked())
-                    newPortInPatch.trigger();
-            };
-        }
-        else
-        {
-            newPort.onChange = function ()
-            {
-                newPortInPatch.set(newPort.get());
-                if (!newPort.isLinked())
-                {
-                    for (let i = 0; i < data.ports.length; i++)
-                    {
-                        if (data.ports[i].name === newPort.name)
-                        {
-                            data.ports[i].value = newPort.get();
-                        }
-                    }
-                    saveData();
-                }
-            };
-        }
-    }
-}
-
-op.setupPorts = setupPorts;
-function setupPorts()
-{
-    if (!op.patchId.get()) return;
-    const ports = data.ports || [];
-    const portsOut = data.portsOut || [];
-    let i = 0;
-
-    for (i = 0; i < ports.length; i++)
-    {
-        if (!op.getPortByName(ports[i].name))
-        {
-            const newPort = op.addInPort(new CABLES.Port(op, ports[i].name, ports[i].type));
-
-            const patchInputOp = getSubPatchInputOp();
-            const newPortInPatch = patchInputOp.addOutPort(new CABLES.Port(patchInputOp, ports[i].name, ports[i].type));
-
-            newPort.ignoreValueSerialize = true;
-            newPort.setUiAttribs({ "editableTitle": true });
-            if (ports[i].title)
-            {
-                newPort.setUiAttribs({ "title": ports[i].title });
-                newPortInPatch.setUiAttribs({ "title": ports[i].title });
-            }
-            if (ports[i].objType)
-            {
-                newPort.setUiAttribs({ "objType": ports[i].objType });
-                newPortInPatch.setUiAttribs({ "objType": ports[i].objType });
-            }
-            if (ports[i].value)
-            {
-                newPort.set(ports[i].value);
-                newPortInPatch.set(ports[i].value);
-            }
-            addPortListener(newPort, newPortInPatch);
-        }
-    }
-
-    for (i = 0; i < portsOut.length; i++)
-    {
-        if (!op.getPortByName(portsOut[i].name))
-        {
-            const newPortOut = op.addOutPort(new CABLES.Port(op, portsOut[i].name, portsOut[i].type));
-            const patchOutputOp = getSubPatchOutputOp();
-            const newPortOutPatch = patchOutputOp.addInPort(new CABLES.Port(patchOutputOp, portsOut[i].name, portsOut[i].type));
-
-            newPortOut.ignoreValueSerialize = true;
-            newPortOut.setUiAttribs({ "editableTitle": true });
-
-            if (portsOut[i].title)
-            {
-                newPortOut.setUiAttribs({ "title": portsOut[i].title });
-                newPortOutPatch.setUiAttribs({ "title": portsOut[i].title });
-            }
-            if (portsOut[i].objType)
-            {
-                newPortOut.setUiAttribs({ "objType": portsOut[i].objType });
-                newPortOutPatch.setUiAttribs({ "objType": portsOut[i].objType });
-            }
-
-            // addPortListener(newPortOut,newPortOutPatch);
-            addPortListener(newPortOutPatch, newPortOut);
-        }
-    }
-
-    dataLoaded = true;
-}
-
-op.addNewInPort = function (otherPort, type, objType)
-{
-    const newName = "in" + data.ports.length + " " + otherPort.op.name + " " + otherPort.name;
-
-    const o = { "name": newName, "type": otherPort.type };
-    if (otherPort.uiAttribs.objType)o.objType = otherPort.uiAttribs.objType;
-
-    data.ports.push(o);
-    setupPorts();
-    return newName;
-};
-
-op.dyn.onLinkChanged = function ()
-{
-    if (op.dyn.isLinked())
-    {
-        const otherPort = op.dyn.links[0].getOtherPort(op.dyn);
-        op.dyn.removeLinks();
-        otherPort.removeLinkTo(op.dyn);
-
-        op.log("dyn link changed!!!");
-
-        // const newName = "in" + data.ports.length + " " + otherPort.op.name + " " + otherPort.name;
-
-        // const o = { "name": newName, "type": otherPort.type };
-        // if (otherPort.uiAttribs.objType)o.objType = otherPort.uiAttribs.objType;
-        // data.ports.push(o);
-
-        // setupPorts();
-
-        const newName = op.addNewInPort(otherPort);
-
-        const l = gui.scene().link(
-            otherPort.op,
-            otherPort.getName(),
-            op,
-            newName
-        );
-
-        dataLoaded = true;
-        saveData();
-    }
-    else
-    {
-        setTimeout(function ()
-        {
-            op.dyn.removeLinks();
-        }, 100);
-    }
-};
-
-op.addNewOutPort = function (otherPort, type, objType)
-{
-    const newName = "out" + data.portsOut.length + " " + otherPort.op.name + " " + otherPort.name;
-
-    const o = { "name": newName, "type": otherPort.type };
-    if (otherPort.uiAttribs.objType)o.objType = otherPort.uiAttribs.objType;
-
-    data.portsOut.push(o);
-    setupPorts();
-    return newName;
-};
-
-op.dynOut.onLinkChanged = function ()
-{
-    if (op.dynOut.isLinked())
-    {
-        const otherPort = op.dynOut.links[0].getOtherPort(op.dynOut);
-        op.dynOut.removeLinks();
-        if (otherPort)
-        {
-            otherPort.removeLinkTo(op.dynOut);
-
-            const newName = op.addNewOutPort(otherPort);
-
-            gui.scene().link(
-                otherPort.op,
-                otherPort.getName(),
-                op,
-                newName
-            );
-        }
-
-        dataLoaded = true;
-        saveData();
-    }
-    else
-    {
-        setTimeout(function ()
-        {
-            op.dynOut.removeLinks();
-        }, 100);
-
-        op.log("dynOut unlinked...");
-    }
-};
-
-function getSubPatchOutputOp()
-{
-    let patchOutputOP = op.patch.getSubPatchOp(op.patchId.get(), "Ops.Ui.PatchOutput");
-
-    if (!patchOutputOP)
-    {
-        op.patch.addOp("Ops.Ui.PatchOutput", { "subPatch": op.patchId.get(), "translate": { "x": 0, "y": 0 } });
-        patchOutputOP = op.patch.getSubPatchOp(op.patchId.get(), "Ops.Ui.PatchOutput");
-        if (!patchOutputOP) op.warn("no patchoutput!");
-    }
-    return patchOutputOP;
-}
-
-function getSubPatchInputOp()
-{
-    let patchInputOP = op.patch.getSubPatchOp(op.patchId.get(), "Ops.Ui.PatchInput");
-
-    if (!patchInputOP)
-    {
-        op.patch.addOp("Ops.Ui.PatchInput", { "subPatch": op.patchId.get(), "translate": { "x": 0, "y": 0 } });
-        patchInputOP = op.patch.getSubPatchOp(op.patchId.get(), "Ops.Ui.PatchInput");
-        if (!patchInputOP) op.warn("no patchinput2!");
-    }
-
-    return patchInputOP;
-}
-
-op.addSubLink = function (p, p2)
-{
-    const num = data.ports.length;
-    const sublPortname = "in" + (num - 1) + " " + p2.op.name + " " + p2.name;
-
-    if (p.direction == CABLES.PORT_DIR_IN)
-    {
-        gui.scene().link(
-            p.op,
-            p.getName(),
-            getSubPatchInputOp(),
-            sublPortname
-        );
-    }
-    else
-    {
-        const numOut = data.portsOut.length;
-        gui.scene().link(
-            p.op,
-            p.getName(),
-            getSubPatchOutputOp(),
-            "out" + (numOut - 1) + " " + p2.op.name + " " + p2.name
-        );
-    }
-
-    const bounds = gui.patchView.getSubPatchBounds(op.patchId.get());
-
-    getSubPatchInputOp().uiAttr(
-        {
-            "translate":
-            {
-                "x": bounds.minx,
-                "y": bounds.miny - 100
-            }
-        });
-
-    getSubPatchOutputOp().uiAttr(
-        {
-            "translate":
-            {
-                "x": bounds.minx,
-                "y": bounds.maxy + 100
-            }
-        });
-    saveData();
-    return sublPortname;
-};
-
-op.onDelete = function ()
-{
-    for (let i = op.patch.ops.length - 1; i >= 0; i--)
-    {
-        if (op.patch.ops[i] && op.patch.ops[i].uiAttribs && op.patch.ops[i].uiAttribs.subPatch == op.patchId.get())
-        {
-            op.patch.deleteOp(op.patch.ops[i].id);
-        }
-    }
-};
-
-// function makeBlueprint()
-// {
-//     let attribs = {
-//         "pasted": true,
-//         "translate": {
-//             "x": op.uiAttribs.translate.x - 150,
-//             "y": op.uiAttribs.translate.y
-//         }
-//     };
-
-//     if (CABLES.UI) attribs.subPatch = gui.patchView.getCurrentSubPatch();
-
-//     const bpOp = op.patch.addOp(CABLES.UI.DEFAULTOPNAMES.blueprint, attribs);
-//     bpOp.createBlueprint(gui.patchId, op.patchId.get(), true);
-// }
-
-op.rebuildListeners = () =>
-{
-    op.log("rebuild listeners...");
-
-    const outop = getSubPatchOutputOp();
-    for (let i = 0; i < outop.portsIn.length; i++)
-    {
-        if (outop.portsIn[i].isLinked())
-        {
-            addPortListener(outop.portsIn[i], this.portsOut[i]);
-        }
-    }
-};
-
-
-};
-
-Ops.Ui.SubPatch.prototype = new CABLES.Op();
-CABLES.OPS["84d9a6f0-ed7a-466d-b386-225ed9e89c60"]={f:Ops.Ui.SubPatch,objName:"Ops.Ui.SubPatch"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.ClearColor
-// 
-// **************************************************************
-
-Ops.Gl.ClearColor = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    render = op.inTrigger("render"),
-    trigger = op.outTrigger("trigger"),
-    r = op.inFloatSlider("r", 0.1),
-    g = op.inFloatSlider("g", 0.1),
-    b = op.inFloatSlider("b", 0.1),
-    a = op.inFloatSlider("a", 1);
-
-r.setUiAttribs({ "colorPick": true });
-
-const cgl = op.patch.cgl;
-
-render.onTriggered = function ()
-{
-    cgl.gl.clearColor(r.get(), g.get(), b.get(), a.get());
-    cgl.gl.clear(cgl.gl.COLOR_BUFFER_BIT | cgl.gl.DEPTH_BUFFER_BIT);
-    trigger.trigger();
-};
-
-
-};
-
-Ops.Gl.ClearColor.prototype = new CABLES.Op();
-CABLES.OPS["19b441eb-9f63-4f35-ba08-b87841517c4d"]={f:Ops.Gl.ClearColor,objName:"Ops.Gl.ClearColor"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Patch.PD8qfbm.MouseDrag
-// 
-// **************************************************************
-
-Ops.Patch.PD8qfbm.MouseDrag = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    active = op.inValueBool("Active", true),
-    speed = op.inValue("Speed", 0.01),
-    inputType = op.inSwitch("Input Type", ["All", "Mouse", "Touch"], "All"),
-    area = op.inSwitch("Area", ["Canvas Area", "Canvas", "Document"], "Canvas Area"),
-    outDeltaX = op.outNumber("Delta X"),
-    outDeltaY = op.outNumber("Delta Y"),
-    outDragging = op.outNumber("Is Dragging");
-
-let listenerElement = null;
-let sizeElement = null;
-const absoluteX = 0;
-const absoluteY = 0;
-let pressed = false;
-let lastX = 0;
-let lastY = 0;
-let firstMove = true;
-
-inputType.onChange =
-area.onChange = updateArea;
-
-updateArea();
-
-function isHovering(e)
-{
-    if (area.get() === "Canvas Area")
-    {
-        const r = sizeElement.getBoundingClientRect();
-
-        return (
-            e.clientX > r.left &&
-            e.clientX < r.left + r.width &&
-            e.clientY > r.top &&
-            e.clientY < r.top + r.height
-        );
-    }
-    return true;
-}
-
-function onMouseMove(e)
-{
-    if (e.touches) e = e.touches[0];
-
-    if (pressed && e && isHovering(e))
-    {
-        if (!firstMove)
-        {
-            outDragging.set(true);
-            const deltaX = (e.clientX - lastX) * speed.get();
-            const deltaY = (e.clientY - lastY) * speed.get();
-
-            outDeltaX.set(0);
-            outDeltaY.set(0);
-            outDeltaX.set(deltaX);
-            outDeltaY.set(deltaY);
-        }
-
-        firstMove = false;
-
-        lastX = e.clientX;
-        lastY = e.clientY;
-    }
-}
-
-function onMouseDown(e)
-{
-    try { listenerElement.setPointerCapture(e.pointerId); }
-    catch (_e)
-    {
-    }
-
-    pressed = true;
-}
-
-function onMouseUp(e)
-{
-    try { listenerElement.releasePointerCapture(e.pointerId); }
-    catch (e) {}
-
-    pressed = false;
-    outDragging.set(false);
-    lastX = 0;
-    lastY = 0;
-    firstMove = true;
-}
-
-/// ////////
-
-function lockChange()
-{
-    const el = op.patch.cg.canvas;
-
-    if (document.pointerLockElement === el || document.mozPointerLockElement === el || document.webkitPointerLockElement === el)
-    {
-        document.addEventListener("mousemove", onmousemove, false);
-    }
-}
-
-/// ////////
-
-function updateArea()
-{
-    removeListener();
-
-    if (area.get() == "Canvas Area")
-    {
-        listenerElement = document;
-        sizeElement = op.patch.cgl.canvas;
-    }
-    else if (area.get() == "Document") listenerElement = sizeElement = document;
-    else listenerElement = sizeElement = op.patch.cgl.canvas;
-
-    if (active.get())addListener();
-}
-
-function addListener()
-{
-    if (!listenerElement)updateArea();
-
-    if (inputType.get() == "All" || inputType.get() == "Mouse")
-    {
-        listenerElement.addEventListener("mousemove", onMouseMove);
-        listenerElement.addEventListener("mousedown", onMouseDown);
-        listenerElement.addEventListener("mouseup", onMouseUp);
-        listenerElement.addEventListener("mouseenter", onMouseUp);
-        listenerElement.addEventListener("mouseleave", onMouseUp);
-    }
-
-    if (inputType.get() == "All" || inputType.get() == "Touch")
-    {
-        listenerElement.addEventListener("touchmove", onMouseMove);
-        listenerElement.addEventListener("touchend", onMouseUp);
-        listenerElement.addEventListener("touchstart", onMouseDown);
-    }
-}
-
-function removeListener()
-{
-    if (!listenerElement) return;
-    listenerElement.removeEventListener("mousemove", onMouseMove);
-    listenerElement.removeEventListener("mousedown", onMouseDown);
-    listenerElement.removeEventListener("mouseup", onMouseUp);
-    listenerElement.removeEventListener("mouseenter", onMouseUp);
-    listenerElement.removeEventListener("mouseleave", onMouseUp);
-
-    listenerElement.removeEventListener("touchmove", onMouseMove);
-    listenerElement.removeEventListener("touchend", onMouseUp);
-    listenerElement.removeEventListener("touchstart", onMouseDown);
-}
-
-active.onChange = function ()
-{
-    if (active.get())addListener();
-    else removeListener();
-};
-
-op.onDelete = function ()
-{
-    removeListener();
-};
-
-
-};
-
-Ops.Patch.PD8qfbm.MouseDrag.prototype = new CABLES.Op();
-CABLES.OPS["f270a0f7-1386-48cc-9666-2efa16b7a35e"]={f:Ops.Patch.PD8qfbm.MouseDrag,objName:"Ops.Patch.PD8qfbm.MouseDrag"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Trigger.TriggerSend
-// 
-// **************************************************************
-
-Ops.Trigger.TriggerSend = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const trigger = op.inTriggerButton("Trigger");
-op.varName = op.inValueSelect("Named Trigger", [], "", true);
-
-op.varName.onChange = updateName;
-
-trigger.onTriggered = doTrigger;
-
-op.patch.addEventListener("namedTriggersChanged", updateVarNamesDropdown);
-
-updateVarNamesDropdown();
-
-function updateVarNamesDropdown()
-{
-    if (CABLES.UI)
-    {
-        const varnames = [];
-        const vars = op.patch.namedTriggers;
-        varnames.push("+ create new one");
-        for (const i in vars) varnames.push(i);
-        op.varName.uiAttribs.values = varnames;
-    }
-}
-
-function updateName()
-{
-    if (CABLES.UI)
-    {
-        if (op.varName.get() == "+ create new one")
-        {
-            new CABLES.UI.ModalDialog({
-                "prompt": true,
-                "title": "New Trigger",
-                "text": "Enter a name for the new trigger",
-                "promptValue": "",
-                "promptOk": (str) =>
-                {
-                    op.varName.set(str);
-                    op.patch.namedTriggers[str] = op.patch.namedTriggers[str] || [];
-                    updateVarNamesDropdown();
-                }
-            });
-            return;
-        }
-
-        op.refreshParams();
-    }
-
-    if (!op.patch.namedTriggers[op.varName.get()])
-    {
-        op.patch.namedTriggers[op.varName.get()] = op.patch.namedTriggers[op.varName.get()] || [];
-        op.patch.emitEvent("namedTriggersChanged");
-    }
-
-    op.setTitle(">" + op.varName.get());
-
-    op.refreshParams();
-    op.patch.emitEvent("opTriggerNameChanged", op, op.varName.get());
-}
-
-function doTrigger()
-{
-    const arr = op.patch.namedTriggers[op.varName.get()];
-    // fire an event even if noone is receiving this trigger
-    // this way TriggerReceiveFilter can still handle it
-    op.patch.emitEvent("namedTriggerSent", op.varName.get());
-
-    if (!arr)
-    {
-        op.setUiError("unknowntrigger", "unknown trigger");
-        return;
-    }
-    else op.setUiError("unknowntrigger", null);
-
-    for (let i = 0; i < arr.length; i++)
-    {
-        arr[i]();
-    }
-}
-
-
-};
-
-Ops.Trigger.TriggerSend.prototype = new CABLES.Op();
-CABLES.OPS["ce1eaf2b-943b-4dc0-ab5e-ee11b63c9ed0"]={f:Ops.Trigger.TriggerSend,objName:"Ops.Trigger.TriggerSend"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Ui.Area
-// 
-// **************************************************************
-
-Ops.Ui.Area = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const inTitle = op.inString("Title", "");
-
-inTitle.setUiAttribs({ "hidePort": true });
-
-op.setUiAttrib({ "hasArea": true });
-
-op.init =
-    inTitle.onChange =
-    op.onLoaded = update;
-
-update();
-
-function update()
-{
-    if (CABLES.UI)
-    {
-        gui.savedState.setUnSaved("areaOp");
-        op.uiAttr(
-            {
-                "comment_title": inTitle.get() || " "
-            });
-
-        op.name = inTitle.get();
-    }
-}
-
-
-};
-
-Ops.Ui.Area.prototype = new CABLES.Op();
-CABLES.OPS["38f79614-b0de-4960-8da5-2827e7f43415"]={f:Ops.Ui.Area,objName:"Ops.Ui.Area"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Graphics.Intersection.IntersectWorld
-// 
-// **************************************************************
-
-Ops.Graphics.Intersection.IntersectWorld = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    trigger = op.inTrigger("Trigger"),
-    inTextCol = op.inBool("Check Body Collisions", false),
-    next = op.outTrigger("Next"),
-    outNum = op.outNumber("Total Bodies"),
-    outCollisions = op.outArray("Collisions", []);
-
-trigger.onTriggered = doRender;
-
-const SHAPE_SPHERE = 1;
-const SHAPE_AABB = 2;
-const SHAPE_POINT = 3;
-
-const cgl = op.patch.cgl;
-
-function doRender()
-{
-    cgl.frameStore.collisionWorld = { "bodies": [], "testCollision": testCollision };
-    next.trigger();
-
-    outNum.set(cgl.frameStore.collisionWorld.bodies.length);
-
-    if (inTextCol.get()) checkCollisions();
-
-    // if (render.get())renderBodies();
-}
-
-function testCollision(bodyA, bodyB)
-{
-    if (bodyA.type === SHAPE_SPHERE && bodyB.type === SHAPE_SPHERE)
-    {
-        const dist = vec3.distance(bodyA.pos, bodyB.pos);
-
-        if (dist < bodyA.radius + bodyB.radius)
-        {
-            return {
-                "body0": bodyA,
-                "name0": bodyA.name,
-                "body1": bodyB,
-                "name1": bodyB.name
-            };
-        }
-    }
-    else
-    if (bodyA.type === SHAPE_POINT && bodyB.type === SHAPE_POINT)
-    {
-        if (bodyA.pos[0] === bodyB.pos[0] && bodyA.pos[1] === bodyB.pos[1] && bodyA.pos[2] === bodyB.pos[2])
-        {
-            return {
-                "body0": bodyA,
-                "name0": bodyA.name,
-                "body1": bodyB,
-                "name1": bodyB.name
-            };
-        }
-    }
-    else
-    if (
-        (bodyB.type === SHAPE_SPHERE && bodyA.type === SHAPE_POINT) ||
-                    (bodyA.type === SHAPE_SPHERE && bodyB.type === SHAPE_POINT)
-    )
-    {
-        let bodyPoint = bodyA;
-        let bodySphere = bodyB;
-
-        if (bodyA.type === SHAPE_SPHERE)
-        {
-            bodyPoint = bodyB;
-            bodySphere = bodyA;
-        }
-
-        const xd = Math.abs(bodyPoint.pos[0] - bodySphere.pos[0]);
-        const yd = Math.abs(bodyPoint.pos[1] - bodySphere.pos[1]);
-        const zd = Math.abs(bodyPoint.pos[2] - bodySphere.pos[2]);
-        const dist = Math.sqrt(xd * xd + yd * yd + zd * zd);
-
-        if (dist < bodySphere.radius)
-        {
-            return {
-                "body0": bodyA,
-                "name0": bodyA.name,
-                "body1": bodyB,
-                "name1": bodyB.name };
-        }
-    }
-    else
-    if (
-        (bodyB.type === SHAPE_AABB && bodyA.type === SHAPE_POINT) ||
-                    (bodyA.type === SHAPE_AABB && bodyB.type === SHAPE_POINT)
-    )
-    {
-        let bodyPoint = bodyA;
-        let bodyBox = bodyB;
-
-        if (bodyA.type === SHAPE_AABB)
-        {
-            bodyPoint = bodyB;
-            bodyBox = bodyA;
-        }
-
-        if (
-            (bodyPoint.pos[0] > bodyBox.minX && bodyPoint.pos[0] < bodyBox.maxX) &&
-            (bodyPoint.pos[1] > bodyBox.minY && bodyPoint.pos[1] < bodyBox.maxY) &&
-            (bodyPoint.pos[2] > bodyBox.minZ && bodyPoint.pos[2] < bodyBox.maxZ)
-        )
-        {
-            return {
-                "body0": bodyA,
-                "name0": bodyA.name,
-                "body1": bodyB,
-                "name1": bodyB.name };
-        }
-    }
-    else
-    if ((bodyA.type === SHAPE_SPHERE && bodyB.type === SHAPE_AABB) || (bodyA.type === SHAPE_AABB && bodyB.type === SHAPE_SPHERE))
-    {
-        let bBox = bodyA;
-        let bSphere = bodyB;
-        if (bodyB.type === SHAPE_AABB)
-        {
-            bBox = bodyB;
-            bSphere = bodyA;
-        }
-
-        let r2 = bSphere.radius * bSphere.radius;
-        let dmin = 0;
-
-        let dist_squared = bSphere.radius * bSphere.radius;
-        /* assume bBox.minand C2 are element-wise sorted, if not, do that now */
-        if (bSphere.pos[0] < bBox.minX) dist_squared -= (bSphere.pos[0] - bBox.minX) ** 2;
-        else if (bSphere.pos[0] > bBox.maxX) dist_squared -= (bSphere.pos[0] - bBox.maxX) ** 2;
-        if (bSphere.pos[1] < bBox.minY) dist_squared -= (bSphere.pos[1] - bBox.minY) ** 2;
-        else if (bSphere.pos[1] > bBox.maxY) dist_squared -= (bSphere.pos[1] - bBox.maxY) ** 2;
-        if (bSphere.pos[2] < bBox.minZ) dist_squared -= (bSphere.pos[2] - bBox.minZ) ** 2;
-        else if (bSphere.pos[2] > bBox.maxZ) dist_squared -= (bSphere.pos[2] - bBox.maxZ) ** 2;
-
-        if (dist_squared > 0)
-        {
-            return {
-                "body0": bodyA,
-                "name0": bodyA.name,
-                "body1": bodyB,
-                "name1": bodyB.name
-            };
-        }
-    }
-    else
-    {
-        console.warn("unknown collision pair...", bodyA.type, bodyB.type);
-    }
-}
-
-function checkCollisions()
-{
-    const collisions = [];
-    const bodies = cgl.frameStore.collisionWorld.bodies;
-
-    for (let j = 0; j < bodies.length; j++)
-    {
-        for (let i = j + 1; i < bodies.length; i++)
-        {
-            if (i != j)
-            {
-                const c = testCollision(bodies[i], bodies[j]);
-                if (c)collisions.push(c);
-            }
-        }
-    }
-    outCollisions.setRef(collisions, []);
-}
-
-
-};
-
-Ops.Graphics.Intersection.IntersectWorld.prototype = new CABLES.Op();
-CABLES.OPS["6ebdec23-6e10-48c9-87cf-43d488e4290f"]={f:Ops.Graphics.Intersection.IntersectWorld,objName:"Ops.Graphics.Intersection.IntersectWorld"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Graphics.Intersection.IntersectTestRaycast
-// 
-// **************************************************************
-
-Ops.Graphics.Intersection.IntersectTestRaycast = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    trigger = op.inTrigger("Trigger"),
-    inCoords = op.inSwitch("Coordinate Format", ["-1 to 1", "XYZ-XYZ"], "-1 to 1"),
-    inX = op.inValueFloat("X"),
-    inY = op.inValueFloat("Y"),
-
-    inZ = op.inValueFloat("Z"),
-
-    inToX = op.inValueFloat("To X"),
-    inToY = op.inValueFloat("To Y"),
-    inToZ = op.inValueFloat("To Z"),
-
-    active = op.inBool("Active", true),
-    inCursor = op.inBool("Change Cursor", true),
-    next = op.outTrigger("Next"),
-    outHasHit = op.outBoolNum("Has Hit", false),
-    outName = op.outString("Hit Body Name", ""),
-    outX = op.outNumber("Hit X"),
-    outY = op.outNumber("Hit Y"),
-    outZ = op.outNumber("Hit Z");
-
-const cgl = op.patch.cgl;
-const oc = vec3.create();
-const mat = mat4.create();
-const dir = vec3.create();
-let didsetCursor = false;
-let isScreenCoords = true;
-
-op.toWorkPortsNeedToBeLinked(trigger);
-
-trigger.onTriggered = doRender;
-
-inCoords.onChange = updateUi;
-updateUi();
-
-function updateUi()
-{
-    inZ.setUiAttribs({ "greyout": inCoords.get() != "XYZ-XYZ" });
-
-    inToX.setUiAttribs({ "greyout": inCoords.get() != "XYZ-XYZ" });
-    inToY.setUiAttribs({ "greyout": inCoords.get() != "XYZ-XYZ" });
-    inToZ.setUiAttribs({ "greyout": inCoords.get() != "XYZ-XYZ" });
-}
-
-function doRender()
-{
-    next.trigger();
-
-    if (cgl.frameStore.collisionWorld)
-    {
-        let origin = vec3.create();
-
-        if (inCoords.get() == "-1 to 1")
-        {
-            origin = vec3.fromValues(inX.get(), inY.get(), -1);
-            mat4.mul(mat, cgl.pMatrix, cgl.vMatrix);
-            mat4.invert(mat, mat);
-            vec3.transformMat4(origin, origin, mat);
-        }
-
-        if (inCoords.get() == "XYZ-XYZ")
-        {
-            origin = vec3.fromValues(inX.get(), inY.get(), inZ.get());
-        }
-
-        // -----------
-
-        let to = vec3.create();
-
-        if (inCoords.get() == "-1 to 1")
-        {
-            to = vec3.fromValues(inX.get(), inY.get(), 1);
-            mat4.mul(mat, cgl.pMatrix, cgl.vMatrix);
-            mat4.invert(mat, mat);
-            vec3.transformMat4(to, to, mat);
-        }
-
-        if (inCoords.get() == "XYZ-XYZ")
-        {
-            to = vec3.fromValues(inToX.get(), inToY.get(), inToZ.get());
-        }
-
-        vec3.sub(dir, to, origin);
-        vec3.normalize(dir, dir);
-        const a = vec3.dot(dir, dir);
-
-        let foundDist = 9999999;
-
-        let found = false;
-        const bodies = cgl.frameStore.collisionWorld.bodies;
-        for (let i = 0; i < bodies.length; i++)
-        {
-            // if (found) break;
-
-            const body = bodies[i];
-            if (body.type == 1) // sphere
-            {
-                vec3.sub(oc, origin, body.pos);
-                const b = 2 * vec3.dot(oc, dir);
-                const c = vec3.dot(oc, oc) - (body.radius * body.radius);
-                const discriminant = b * b - 4 * a * c;
-
-                if (discriminant > 0)
-                {
-                    const dist = (-b - Math.sqrt(discriminant)) / (2 + a);
-                    if (dist < foundDist)
-                    {
-                        found = true;
-                        outName.set(body.name);
-                        outHasHit.set(true);
-
-                        foundDist = dist;
-
-                        vec3.mul(oc, dir, [dist, dist, dist]);
-                        vec3.add(oc, oc, origin);
-
-                        outX.set(oc[0]);
-                        outY.set(oc[1]);
-                        outZ.set(oc[2]);
-                    }
-                }
-            }
-            else if (body.type == 2) // aabb
-            {
-                const t1 = (body.minX - origin[0]) / dir[0];
-                const t2 = (body.maxX - origin[0]) / dir[0];
-
-                const t3 = (body.minY - origin[1]) / dir[1];
-                const t4 = (body.maxY - origin[1]) / dir[1];
-
-                const t5 = (body.minZ - origin[2]) / dir[2];
-                const t6 = (body.maxZ - origin[2]) / dir[2];
-
-                const tmin = Math.max(Math.max(Math.min(t1, t2), Math.min(t3, t4)), Math.min(t5, t6));
-                const tmax = Math.min(Math.min(Math.max(t1, t2), Math.max(t3, t4)), Math.max(t5, t6));
-
-                // // if tmax < 0, ray (line) is intersecting AABB, but whole AABB is behing us
-                if (tmax < 0) continue;
-
-                // if tmin > tmax, ray doesn't intersect AABB
-                if (tmin > tmax) continue;
-
-                found = true;
-                outName.set(body.name);
-                outHasHit.set(true);
-
-                vec3.mul(oc, dir, [tmin, tmin, tmin]);
-                vec3.add(oc, oc, origin);
-
-                outX.set(oc[0]);
-                outY.set(oc[1]);
-                outZ.set(oc[2]);
-            }
-        }
-
-        if (!found)
-        {
-            outName.set("");
-            outHasHit.set(false);
-            outX.set(0);
-            outY.set(0);
-            outZ.set(0);
-        }
-    }
-}
-
-
-};
-
-Ops.Graphics.Intersection.IntersectTestRaycast.prototype = new CABLES.Op();
-CABLES.OPS["dd5d9b39-75c2-40b1-98a4-7a0fdafdb5cb"]={f:Ops.Graphics.Intersection.IntersectTestRaycast,objName:"Ops.Graphics.Intersection.IntersectTestRaycast"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Trigger.TriggerReceive
-// 
-// **************************************************************
-
-Ops.Trigger.TriggerReceive = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const next = op.outTrigger("Triggered");
-op.varName = op.inValueSelect("Named Trigger", [], "", true);
-
-updateVarNamesDropdown();
-op.patch.addEventListener("namedTriggersChanged", updateVarNamesDropdown);
-
-let oldName = null;
-
-function doTrigger()
-{
-    next.trigger();
-}
-
-function updateVarNamesDropdown()
-{
-    if (CABLES.UI)
-    {
-        let varnames = [];
-        let vars = op.patch.namedTriggers;
-        // varnames.push('+ create new one');
-        for (let i in vars) varnames.push(i);
-        op.varName.uiAttribs.values = varnames;
-    }
-}
-
-op.varName.onChange = function ()
-{
-    if (oldName)
-    {
-        let oldCbs = op.patch.namedTriggers[oldName];
-        let a = oldCbs.indexOf(doTrigger);
-        if (a != -1) oldCbs.splice(a, 1);
-    }
-
-    op.setTitle(">" + op.varName.get());
-    op.patch.namedTriggers[op.varName.get()] = op.patch.namedTriggers[op.varName.get()] || [];
-    let cbs = op.patch.namedTriggers[op.varName.get()];
-
-    cbs.push(doTrigger);
-    oldName = op.varName.get();
-    updateError();
-    op.patch.emitEvent("opTriggerNameChanged", op, op.varName.get());
-};
-
-op.on("uiParamPanel", updateError);
-
-function updateError()
-{
-    if (!op.varName.get())
-    {
-        op.setUiError("unknowntrigger", "unknown trigger");
-    }
-    else op.setUiError("unknowntrigger", null);
-}
-
-
-};
-
-Ops.Trigger.TriggerReceive.prototype = new CABLES.Op();
-CABLES.OPS["0816c999-f2db-466b-9777-2814573574c5"]={f:Ops.Trigger.TriggerReceive,objName:"Ops.Trigger.TriggerReceive"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Graphics.Intersection.IntersectBody
-// 
-// **************************************************************
-
-Ops.Graphics.Intersection.IntersectBody = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    shapes = ["Sphere", "BoxAA", "Point"],
-    trigger = op.inTrigger("Trigger"),
-    inArea = op.inSwitch("Shape", shapes, "Sphere"),
-    inName = op.inString("Name", ""),
-    inRadius = op.inFloat("Radius", 0.5),
-    inSizeX = op.inFloat("Size X", 1),
-    inSizeY = op.inFloat("Size Y", 1),
-    inSizeZ = op.inFloat("Size Z", 1),
-    inPositions = op.inArray("Positions", null, 3),
-    inPosIndex = op.inBool("Append Index to name", true),
-    next = op.outTrigger("Next");
-
-op.setPortGroup("Array", [inPositions, inPosIndex]);
-
-const cgl = op.patch.cgl;
-const pos = vec3.create();
-const empty = vec3.create();
-
-updateUi();
-
-let objs = [];
-let obj =
-{
-    "name": "???",
-    "type": 1,
-};
-
-trigger.onTriggered = render;
-
-function getCopyObj()
-{
-    return { "name": obj.name, "type": obj.type };
-}
-
-inArea.onChange = () =>
-{
-    obj.type = shapes.indexOf(inArea.get()) + 1;
-    updateUi();
-};
-
-function updateUi()
-{
-    inRadius.setUiAttribs({ "greyout": inArea.get() != "Sphere" });
-    inSizeX.setUiAttribs({ "greyout": inArea.get() != "BoxAA" });
-    inSizeY.setUiAttribs({ "greyout": inArea.get() != "BoxAA" });
-    inSizeZ.setUiAttribs({ "greyout": inArea.get() != "BoxAA" });
-}
-
-function setBox(o)
-{
-    o.minX = o.pos[0] - o.size[0] / 2;
-    o.maxX = o.pos[0] + o.size[0] / 2;
-
-    o.minY = o.pos[1] - o.size[1] / 2;
-    o.maxY = o.pos[1] + o.size[1] / 2;
-
-    o.minZ = o.pos[2] - o.size[2] / 2;
-    o.maxZ = o.pos[2] + o.size[2] / 2;
-}
-
-const SHAPE_SPHERE = 1;
-const SHAPE_AABB = 2;
-const SHAPE_POINT = 3;
-
-function renderOverlay(body)
-{
-    if (!CABLES.UI) return;
-    if (!cgl.shouldDrawHelpers(op)) return;
-    // const collisions = [];
-    // const bodies = cgl.frameStore.collisionWorld.bodies;
-
-    // for (let i = 0; i < bodies.length; i++)
-    // {
-    // const body = bodies[i];
-
-    if (body.type === SHAPE_SPHERE) // sphere
-    {
-        // console.log("sphere")
-        cgl.pushModelMatrix();
-        // mat4.translate(cgl.mMatrix, cgl.mMatrix, body.pos);
-        CABLES.UI.OverlayMeshes.drawSphere(op, body.radius, true);
-        cgl.popModelMatrix();
-    }
-    else if (body.type === SHAPE_AABB) // AABB
-    {
-        cgl.pushModelMatrix();
-        // mat4.translate(cgl.mMatrix, cgl.mMatrix, body.pos);
-        CABLES.UI.OverlayMeshes.drawCube(op, body.size[0] / 2, body.size[1] / 2, body.size[2] / 2);
-        cgl.popModelMatrix();
-    }
-    else if (body.type === SHAPE_POINT) // point
-    {
-        cgl.pushModelMatrix();
-        // mat4.translate(cgl.mMatrix, cgl.mMatrix, body.pos);
-        CABLES.UI.OverlayMeshes.drawAxisMarker(op, 0.05);
-        cgl.popModelMatrix();
-    }
-    else console.warn("[intersectWorld] unknown col shape");
-
-    // }
-}
-
-function render()
-{
-    if (!cgl.frameStore || !cgl.frameStore.collisionWorld) return;
-    const cg = op.patch.cgl;
-
-    // vec3.transformMat4(pos, empty, cg.mMatrix);
-    // mat4.getScaling(scale, cg.mMatrix);
-
-    const posArr = inPositions.get();
-    const radius = inRadius.get();
-
-    if (posArr && posArr.length > 0 && posArr.length % 3 == 0)
-    {
-        objs.length = posArr.length / 3;
-        for (let i = 0; i < posArr.length; i += 3)
-        {
-            const o = objs[i / 3] || {};
-            if (inPosIndex.get()) o.name = inName.get() + "." + i / 3;
-            else o.name = inName.get();
-
-            o.pos = [posArr[i + 0], posArr[i + 1], posArr[i + 2]];
-            vec3.transformMat4(o.pos, o.pos, cg.mMatrix);
-
-            // vec3.mul(o.pos, o.pos, scale);
-            o.type = obj.type;
-            o.size = [inSizeX.get(), inSizeY.get(), inSizeZ.get()];
-
-            if (o.type == 2)setBox(o);
-            if (o.type == 1)o.radius = radius;
-
-            cgl.frameStore.collisionWorld.bodies.push(o);
-            renderOverlay(o);
-        }
-    }
-    else
-    {
-        const objCopy = getCopyObj();
-        cgl.frameStore.collisionWorld.bodies.push(objCopy);
-        objCopy.name = inName.get();
-        objCopy.pos = [0, 0, 0];
-
-        vec3.transformMat4(objCopy.pos, objCopy.pos, cg.mMatrix);
-
-        objCopy.size = [inSizeX.get(), inSizeY.get(), inSizeZ.get()];
-
-        if (objCopy.type == 2)setBox(objCopy);
-        if (objCopy.type == 1)objCopy.radius = radius;
-        renderOverlay(objCopy);
-    }
-
-    next.trigger();
-}
-
-
-};
-
-Ops.Graphics.Intersection.IntersectBody.prototype = new CABLES.Op();
-CABLES.OPS["b2e39096-8a02-4a50-b2f5-3e68f2c16ad7"]={f:Ops.Graphics.Intersection.IntersectBody,objName:"Ops.Graphics.Intersection.IntersectBody"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Trigger.Repeat2d
-// 
-// **************************************************************
-
-Ops.Trigger.Repeat2d = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    exe = op.inTrigger("exe"),
-    numx = op.inValueInt("num x", 5),
-    numy = op.inValueInt("num y", 5),
-    mul = op.inValueFloat("mul", 1),
-    center = op.inValueBool("center"),
-    trigger = op.outTrigger("trigger"),
-    outX = op.outNumber("x"),
-    outY = op.outNumber("y"),
-    idx = op.outNumber("index"),
-    total = op.outNumber("total iterations");
-
-exe.onTriggered = function ()
-{
-    let subX = 0;
-    let subY = 0;
-    const m = mul.get();
-    const nx = numx.get();
-    const ny = numy.get();
-
-    if (center.get())
-    {
-        subX = ((nx - 1) * m) / 2.0;
-        subY = ((ny - 1) * m) / 2.0;
-    }
-
-    for (let y = 0; y < ny; y++)
-    {
-        outY.set((y * m) - subY);
-        for (let x = 0; x < nx; x++)
-        {
-            outX.set((x * m) - subX);
-            idx.set(x + y * nx);
-            trigger.trigger();
-        }
-    }
-    total.set(numx.get() * numy.get());
-};
-
-
-};
-
-Ops.Trigger.Repeat2d.prototype = new CABLES.Op();
-CABLES.OPS["79934693-5887-4173-8b48-3e3a18fcf225"]={f:Ops.Trigger.Repeat2d,objName:"Ops.Trigger.Repeat2d"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Vars.VarSetString_v2
-// 
-// **************************************************************
-
-Ops.Vars.VarSetString_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const val=op.inString("Value","New String");
-op.varName=op.inDropDown("Variable",[],"",true);
-
-new CABLES.VarSetOpWrapper(op,"string",val,op.varName);
-
-
-
-
-};
-
-Ops.Vars.VarSetString_v2.prototype = new CABLES.Op();
-CABLES.OPS["0b4d9229-8024-4a30-9cc0-f6653942c2e4"]={f:Ops.Vars.VarSetString_v2,objName:"Ops.Vars.VarSetString_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Math.Compare.Equals
-// 
-// **************************************************************
-
-Ops.Math.Compare.Equals = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    number1 = op.inValue("number1", 1),
-    number2 = op.inValue("number2", 1),
-    result = op.outBoolNum("result");
-
-number1.onChange =
-    number2.onChange = exec;
-exec();
-
-function exec()
-{
-    result.set(number1.get() == number2.get());
-}
-
-
-};
-
-Ops.Math.Compare.Equals.prototype = new CABLES.Op();
-CABLES.OPS["4dd3cc55-eebc-4187-9d4e-2e053a956fab"]={f:Ops.Math.Compare.Equals,objName:"Ops.Math.Compare.Equals"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Array.ArrayGetNumber
-// 
-// **************************************************************
-
-Ops.Array.ArrayGetNumber = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    array = op.inArray("array"),
-    index = op.inValueInt("index"),
-    valueInvalid = op.inFloat("Value Invalid Index", 0),
-    value = op.outNumber("value"),
-    outValidIndex = op.outBoolNum("Valid Index", true);
-
-array.ignoreValueSerialize = true;
-
-index.onChange = array.onChange = update;
-
-function update()
-{
-    if (array.get())
-    {
-        const input = array.get()[index.get()];
-        if (isNaN(input))
-        {
-            value.set(valueInvalid.get());
-            outValidIndex.set(false);
-        }
-        else
-        {
-            outValidIndex.set(true);
-            value.set(parseFloat(input));
-        }
-    }
-}
-
-
-};
-
-Ops.Array.ArrayGetNumber.prototype = new CABLES.Op();
-CABLES.OPS["d1189078-70cf-437d-9a37-b2ebe89acdaf"]={f:Ops.Array.ArrayGetNumber,objName:"Ops.Array.ArrayGetNumber"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Vars.VarSetArray_v2
-// 
-// **************************************************************
-
-Ops.Vars.VarSetArray_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const val = op.inArray("Value", null);
-op.varName = op.inDropDown("Variable", [], "", true);
-
-new CABLES.VarSetOpWrapper(op, "array", val, op.varName);
-
-
-};
-
-Ops.Vars.VarSetArray_v2.prototype = new CABLES.Op();
-CABLES.OPS["8088290f-45d4-4312-b4ca-184d34ca4667"]={f:Ops.Vars.VarSetArray_v2,objName:"Ops.Vars.VarSetArray_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Vars.VarGetArray_v2
-// 
-// **************************************************************
-
-Ops.Vars.VarGetArray_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const val = op.outArray("Value");
-op.varName = op.inValueSelect("Variable", [], "", true);
-
-new CABLES.VarGetOpWrapper(op, "array", op.varName, val);
-
-
-};
-
-Ops.Vars.VarGetArray_v2.prototype = new CABLES.Op();
-CABLES.OPS["afa79294-aa9c-43bc-a49a-cade000a1de5"]={f:Ops.Vars.VarGetArray_v2,objName:"Ops.Vars.VarGetArray_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.Matrix.Camera
-// 
-// **************************************************************
-
-Ops.Gl.Matrix.Camera = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const render = op.inTrigger("render");
-const trigger = op.outTrigger("trigger");
-
-/* Inputs */
-// projection | prespective & ortogonal
-const projectionMode = op.inValueSelect("projection mode", ["prespective", "ortogonal"], "prespective");
-const zNear = op.inValue("frustum near", 0.01);
-const zFar = op.inValue("frustum far", 5000.0);
-
-const fov = op.inValue("fov", 45);
-const autoAspect = op.inValueBool("Auto Aspect Ratio", true);
-const aspect = op.inValue("Aspect Ratio", 1);
-
-// look at camera
-const eyeX = op.inValue("eye X", 0);
-const eyeY = op.inValue("eye Y", 0);
-const eyeZ = op.inValue("eye Z", 5);
-
-const centerX = op.inValue("center X", 0);
-const centerY = op.inValue("center Y", 0);
-const centerZ = op.inValue("center Z", 0);
-
-// camera transform and movements
-const posX = op.inValue("truck", 0);
-const posY = op.inValue("boom", 0);
-const posZ = op.inValue("dolly", 0);
-
-const rotX = op.inValue("tilt", 0);
-const rotY = op.inValue("pan", 0);
-const rotZ = op.inValue("roll", 0);
-
-/* Outputs */
-const outAsp = op.outNumber("Aspect");
-const outArr = op.outArray("Look At Array");
-
-/* logic */
-const cgl = op.patch.cgl;
-
-let asp = 0;
-
-const vUp = vec3.create();
-const vEye = vec3.create();
-const vCenter = vec3.create();
-const transMatrix = mat4.create();
-mat4.identity(transMatrix);
-
-const arr = [];
-
-// Transform and move
-const vPos = vec3.create();
-const transMatrixMove = mat4.create();
-mat4.identity(transMatrixMove);
-
-let updateCameraMovementMatrix = true;
-
-render.onTriggered = function ()
-{
-    if (cgl.frameStore.shadowPass) return trigger.trigger();
-
-    // Aspect ration
-    if (!autoAspect.get()) asp = aspect.get();
-    else asp = cgl.getViewPort()[2] / cgl.getViewPort()[3];
-    outAsp.set(asp);
-
-    // translation (truck, boom, dolly)
-    cgl.pushViewMatrix();
-
-    if (updateCameraMovementMatrix)
-    {
-        mat4.identity(transMatrixMove);
-
-        vec3.set(vPos, posX.get(), posY.get(), posZ.get());
-        if (posX.get() !== 0.0 || posY.get() !== 0.0 || posZ.get() !== 0.0)
-            mat4.translate(transMatrixMove, transMatrixMove, vPos);
-
-        if (rotX.get() !== 0)
-            mat4.rotateX(transMatrixMove, transMatrixMove, rotX.get() * CGL.DEG2RAD);
-        if (rotY.get() !== 0)
-            mat4.rotateY(transMatrixMove, transMatrixMove, rotY.get() * CGL.DEG2RAD);
-        if (rotZ.get() !== 0)
-            mat4.rotateZ(transMatrixMove, transMatrixMove, rotZ.get() * CGL.DEG2RAD);
-
-        updateCameraMovementMatrix = false;
-    }
-
-    mat4.multiply(cgl.vMatrix, cgl.vMatrix, transMatrixMove);
-
-    // projection (prespective / ortogonal)
-    cgl.pushPMatrix();
-
-    // look at
-    cgl.pushViewMatrix();
-
-    if (projectionMode.get() == "prespective")
-    {
-        mat4.perspective(
-            cgl.pMatrix,
-            fov.get() * 0.0174533,
-            asp,
-            zNear.get(),
-            zFar.get()
-        );
-    }
-    else if (projectionMode.get() == "ortogonal")
-    {
-        mat4.ortho(
-            cgl.pMatrix,
-            -1 * (fov.get() / 14),
-            1 * (fov.get() / 14),
-            -1 * (fov.get() / 14) / asp,
-            1 * (fov.get() / 14) / asp,
-            zNear.get(),
-            zFar.get()
-        );
-    }
-
-    arr[0] = eyeX.get();
-    arr[1] = eyeY.get();
-    arr[2] = eyeZ.get();
-
-    arr[3] = centerX.get();
-    arr[4] = centerY.get();
-    arr[5] = centerZ.get();
-
-    arr[6] = 0;
-    arr[7] = 1;
-    arr[8] = 0;
-
-    outArr.setRef(arr);
-
-    vec3.set(vUp, 0, 1, 0);
-    vec3.set(vEye, eyeX.get(), eyeY.get(), eyeZ.get());
-    vec3.set(vCenter, centerX.get(), centerY.get(), centerZ.get());
-
-    mat4.lookAt(transMatrix, vEye, vCenter, vUp);
-
-    mat4.multiply(cgl.vMatrix, cgl.vMatrix, transMatrix);
-
-    trigger.trigger();
-
-    cgl.popViewMatrix();
-    cgl.popPMatrix();
-
-    cgl.popViewMatrix();
-
-    // GUI for dolly, boom and truck
-    if (op.isCurrentUiOp())
-        gui.setTransformGizmo({
-            "posX": posX,
-            "posY": posY,
-            "posZ": posZ
-        });
-};
-
-const updateUI = function ()
-{
-    if (!autoAspect.get())
-    {
-        aspect.setUiAttribs({ "greyout": false });
-    }
-    else
-    {
-        aspect.setUiAttribs({ "greyout": true });
-    }
-};
-
-const cameraMovementChanged = function ()
-{
-    updateCameraMovementMatrix = true;
-};
-
-// listeners
-posX.onChange = cameraMovementChanged;
-posY.onChange = cameraMovementChanged;
-posZ.onChange = cameraMovementChanged;
-
-rotX.onChange = cameraMovementChanged;
-rotY.onChange = cameraMovementChanged;
-rotZ.onChange = cameraMovementChanged;
-
-autoAspect.onChange = updateUI;
-updateUI();
-
-
-};
-
-Ops.Gl.Matrix.Camera.prototype = new CABLES.Op();
-CABLES.OPS["b24dbfdc-485c-49d2-92a1-7258efd9239a"]={f:Ops.Gl.Matrix.Camera,objName:"Ops.Gl.Matrix.Camera"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Math.Ease
-// 
-// **************************************************************
-
-Ops.Math.Ease = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inVal = op.inValue("Value"),
-    inMin = op.inValue("Min", 0),
-    inMax = op.inValue("Max", 1),
-    result = op.outNumber("Result"),
-    anim = new CABLES.Anim();
-
-anim.createPort(op, "Easing", updateAnimEasing);
-anim.setValue(0, 0);
-anim.setValue(1, 1);
-
-op.onLoaded = inMin.onChange = inMax.onChange = updateMinMax;
-
-function updateMinMax()
-{
-    anim.keys[0].time = anim.keys[0].value = Math.min(inMin.get(), inMax.get());
-    anim.keys[1].time = anim.keys[1].value = Math.max(inMin.get(), inMax.get());
-}
-
-function updateAnimEasing()
-{
-    anim.keys[0].setEasing(anim.defaultEasing);
-}
-
-inVal.onChange = function ()
-{
-    const r = anim.getValue(inVal.get());
-    result.set(r);
-};
-
-
-};
-
-Ops.Math.Ease.prototype = new CABLES.Op();
-CABLES.OPS["8f6e4a08-33e6-408f-ac4a-198bd03b417b"]={f:Ops.Math.Ease,objName:"Ops.Math.Ease"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.Shader.MatCapMaterial_v3
-// 
-// **************************************************************
-
-Ops.Gl.Shader.MatCapMaterial_v3 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={"matcap_frag":"{{MODULES_HEAD}}\n\n#ifdef HAS_TEXTURES\n    IN vec2 texCoord;\n#endif\n\nIN vec3 transformedNormal;\nIN vec3 viewSpacePosition;\n\nUNI vec4 inColor;\n\nUNI sampler2D texMatcap;\n\n#ifdef HAS_DIFFUSE_TEXTURE\n   UNI sampler2D texDiffuse;\n#endif\n\n#ifdef USE_SPECULAR_TEXTURE\n   UNI sampler2D texSpec;\n   UNI sampler2D texSpecMatCap;\n#endif\n\n#ifdef HAS_AO_TEXTURE\n    UNI sampler2D texAo;\n    UNI float aoIntensity;\n#endif\n\n#ifdef HAS_NORMAL_TEXTURE\n    IN vec3 vBiTangent;\n    IN vec3 vTangent;\n    IN mat3 normalMatrix;\n\n    UNI sampler2D texNormal;\n    UNI float normalMapIntensity;\n#endif\n\n#ifdef HAS_TEXTURE_OPACITY\n    UNI sampler2D texOpacity;\n#endif\n\n#ifdef CALC_SSNORMALS\n    IN vec3 eye_relative_pos;\n\n    // from https://www.enkisoftware.com/devlogpost-20150131-1-Normal_generation_in_the_pixel_shader\n    vec3 CalculateScreenSpaceNormals() {\n    \tvec3 dFdxPos = dFdx(eye_relative_pos);\n    \tvec3 dFdyPos = dFdy(eye_relative_pos);\n    \tvec3 screenSpaceNormal = normalize( cross(dFdxPos, dFdyPos));\n        return normalize(screenSpaceNormal);\n    }\n#endif\n\n// * taken & modified from https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderLib/meshmatcap_frag.glsl.js\nvec2 getMatCapUV(vec3 viewSpacePosition, vec3 normal) {\n    vec3 viewDir = normalize(-viewSpacePosition);\n\tvec3 x = normalize(vec3(viewDir.z, 0.0, - viewDir.x));\n\tvec3 y = normalize(cross(viewDir, x));\n\tvec2 uv = vec2(dot(x, normal), dot(y, normal)) * 0.495 + 0.5; // 0.495 to remove artifacts caused by undersized matcap disks\n\treturn uv;\n}\n\nvoid main()\n{\n    vec3 viewSpaceNormal = normalize(transformedNormal);\n\n    #ifdef HAS_TEXTURES\n        vec2 texCoords = texCoord;\n        {{MODULE_BEGIN_FRAG}}\n    #endif\n\n\n    #ifdef CALC_SSNORMALS\n        viewSpaceNormal = CalculateScreenSpaceNormals();\n    #endif\n\n\n   #ifdef HAS_NORMAL_TEXTURE\n        vec3 normalFromMap = texture( texNormal, texCoord ).xyz * 2.0 - 1.0;\n        normalFromMap = normalize(normalFromMap);\n\n        vec3 tangent;\n        vec3 binormal;\n\n        #ifdef CALC_TANGENT\n            vec3 c1 = cross(normalFromMap, vec3(0.0, 0.0, 1.0));\n            vec3 c2 = cross(normalFromMap, vec3(0.0, 1.0, 0.0));\n\n            tangent = c1;\n            tangent = normalize(tangent);\n            binormal = cross(viewSpaceNormal, tangent);\n            binormal = normalize(binormal);\n        #endif\n\n        #ifndef CALC_TANGENT\n            tangent = normalize(normalMatrix * vTangent);\n            vec3 bitangent = normalize(normalMatrix * vBiTangent);\n            binormal = normalize(cross(viewSpaceNormal, bitangent));\n        #endif\n\n        normalFromMap = normalize(\n            tangent * normalFromMap.x\n            + binormal * normalFromMap.y\n            + viewSpaceNormal * normalFromMap.z\n        );\n\n        vec3 mixedNormal = normalize(viewSpaceNormal + normalFromMap * normalMapIntensity);\n\n        viewSpaceNormal = mixedNormal;\n    #endif\n\n    vec4 col = texture(texMatcap, getMatCapUV(viewSpacePosition, viewSpaceNormal));\n\n    #ifdef HAS_DIFFUSE_TEXTURE\n        col = col*texture(texDiffuse, texCoords);\n    #endif\n\n    col.rgb *= inColor.rgb;\n\n\n    #ifdef HAS_AO_TEXTURE\n        col = col\n            * mix(\n                vec4(1.0,1.0,1.0,1.0),\n                texture(texAo, texCoords),\n                aoIntensity\n            );\n    #endif\n\n    #ifdef USE_SPECULAR_TEXTURE\n        vec4 spec = texture(texSpecMatCap, getMatCapUV(viewSpacePosition, viewSpaceNormal));\n        spec *= texture(texSpec, texCoords);\n        col += spec;\n    #endif\n\n    col.a *= inColor.a;\n\n    #ifdef HAS_TEXTURE_OPACITY\n        #ifdef TRANSFORMALPHATEXCOORDS\n            texCoords=vec2(texCoord.s,1.0-texCoord.t);\n            texCoords.y = 1. - texCoords.y;\n        #endif\n        #ifdef ALPHA_MASK_ALPHA\n            col.a*=texture(texOpacity,texCoords).a;\n        #endif\n        #ifdef ALPHA_MASK_LUMI\n            col.a*=dot(vec3(0.2126,0.7152,0.0722), texture(texOpacity,texCoords).rgb);\n        #endif\n        #ifdef ALPHA_MASK_R\n            col.a*=texture(texOpacity,texCoords).r;\n        #endif\n        #ifdef ALPHA_MASK_G\n            col.a*=texture(texOpacity,texCoords).g;\n        #endif\n        #ifdef ALPHA_MASK_B\n            col.a*=texture(texOpacity,texCoords).b;\n        #endif\n\n        #ifdef DISCARDTRANS\n            if(col.a < 0.2) discard;\n        #endif\n    #endif\n\n    {{MODULE_COLOR}}\n\n    outColor = col;\n}","matcap_vert":"IN vec3 vPosition;\n\n#ifdef HAS_TEXTURES\n    IN vec2 attrTexCoord;\n#endif\n\nIN vec3 attrVertNormal;\nIN float attrVertIndex;\n\n#ifdef HAS_NORMAL_TEXTURE\n    IN vec3 attrTangent;\n    IN vec3 attrBiTangent;\n    OUT vec3 vBiTangent;\n    OUT vec3 vTangent;\n#endif\n\nUNI mat4 projMatrix;\nUNI mat4 modelMatrix;\nUNI mat4 viewMatrix;\nUNI vec3 camPos;\n\n#ifdef HAS_TEXTURES\n    UNI vec2 texOffset;\n    UNI vec2 texRepeat;\n    OUT vec2 texCoord;\n#endif\n\nOUT mat3 normalMatrix;\nOUT vec3 viewSpacePosition;\nOUT vec3 transformedNormal;\n\n{{MODULES_HEAD}}\n\n#ifdef CALC_SSNORMALS\n    // from https://www.enkisoftware.com/devlogpost-20150131-1-Normal_generation_in_the_pixel_shader\n    OUT vec3 eye_relative_pos;\n#endif\n\nmat3 transposeMat3(mat3 m) {\n    return mat3(m[0][0], m[1][0], m[2][0],\n        m[0][1], m[1][1], m[2][1],\n        m[0][2], m[1][2], m[2][2]);\n}\n\n mat3 inverseMat3(mat3 m) {\n    float a00 = m[0][0], a01 = m[0][1], a02 = m[0][2];\n    float a10 = m[1][0], a11 = m[1][1], a12 = m[1][2];\n    float a20 = m[2][0], a21 = m[2][1], a22 = m[2][2];\n\n    float b01 = a22 * a11 - a12 * a21;\n    float b11 = -a22 * a10 + a12 * a20;\n    float b21 = a21 * a10 - a11 * a20;\n\n    float det = a00 * b01 + a01 * b11 + a02 * b21;\n\n    return mat3(b01, (-a22 * a01 + a02 * a21), (a12 * a01 - a02 * a11),\n        b11, (a22 * a00 - a02 * a20), (-a12 * a00 + a02 * a10),\n        b21, (-a21 * a00 + a01 * a20), (a11 * a00 - a01 * a10)) / det;\n}\n\nvoid main()\n{\n    #ifdef HAS_TEXTURES\n        texCoord = texRepeat * vec2(attrTexCoord.x, attrTexCoord.y) + texOffset;\n        texCoord.y = 1. - texCoord.y;\n    #endif\n\n    mat4 mMatrix = modelMatrix;\n    mat4 mvMatrix;\n\n    #ifdef HAS_NORMAL_TEXTURE\n        vec3 tangent = attrTangent;\n        vec3 bitangent = attrBiTangent;\n        vTangent = attrTangent;\n        vBiTangent = attrBiTangent;\n    #endif\n\n    vec4 pos = vec4(vPosition, 1.);\n    vec3 norm = attrVertNormal;\n\n    {{MODULE_VERTEX_POSITION}}\n\n    mvMatrix = viewMatrix * mMatrix;\n    vec3 normal = norm;\n\n    normalMatrix = transposeMat3(inverseMat3(mat3(mvMatrix)));\n\n    vec3 fragPos = vec3((mvMatrix) * pos);\n    viewSpacePosition = normalize(fragPos);\n\n    #ifdef CALC_SSNORMALS\n        eye_relative_pos = -(vec3(viewMatrix * vec4(camPos, 1.)) - fragPos);\n    #endif\n\n    transformedNormal = normalize(mat3(normalMatrix) * normal);\n\n    mat4 modelViewMatrix=mvMatrix;\n    {{MODULE_VERTEX_MOVELVIEW}}\n\n    gl_Position = projMatrix * modelViewMatrix * pos;\n\n}",};
-const cgl = op.patch.cgl;
-
-const
-    render = op.inTrigger("Render"),
-    textureMatcap = op.inTexture("MatCap"),
-    textureDiffuse = op.inTexture("Diffuse"),
-    textureNormal = op.inTexture("Normal"),
-    textureSpec = op.inTexture("Specular Mask"),
-    textureSpecMatCap = op.inTexture("Specular MatCap"),
-    textureAo = op.inTexture("AO Texture"),
-    textureOpacity = op.inTexture("Opacity Texture"),
-    r = op.inValueSlider("r", 1),
-    g = op.inValueSlider("g", 1),
-    b = op.inValueSlider("b", 1),
-    pOpacity = op.inValueSlider("Opacity", 1),
-    aoIntensity = op.inValueSlider("AO Intensity", 1.0),
-    normalMapIntensity = op.inFloatSlider("Normal Map Intensity", 1),
-    repeatX = op.inValue("Repeat X", 1),
-    repeatY = op.inValue("Repeat Y", 1),
-    offsetX = op.inValue("Offset X", 0),
-    offsetY = op.inValue("Offset Y", 0),
-    ssNormals = op.inValueBool("Screen Space Normals"),
-    calcTangents = op.inValueBool("Calc normal tangents", true),
-    texCoordAlpha = op.inValueBool("Opacity TexCoords Transform", false),
-    discardTransPxl = op.inValueBool("Discard Transparent Pixels"),
-
-    next = op.outTrigger("Next"),
-    shaderOut = op.outObject("Shader");
-
-r.setUiAttribs({ "colorPick": true });
-
-const alphaMaskSource = op.inSwitch("Alpha Mask Source", ["Luminance", "R", "G", "B", "A"], "Luminance");
-alphaMaskSource.setUiAttribs({ "greyout": true });
-
-op.setPortGroup("Texture Opacity", [alphaMaskSource, texCoordAlpha, discardTransPxl]);
-op.setPortGroup("Texture Transforms", [aoIntensity, normalMapIntensity, repeatX, repeatY, offsetX, offsetY, calcTangents, ssNormals]);
-op.setPortGroup("Texture Maps", [textureDiffuse, textureNormal, textureSpec, textureSpecMatCap, textureAo, textureOpacity]);
-op.setPortGroup("Color", [r, g, b, pOpacity]);
-
-const shader = new CGL.Shader(cgl, "MatCapMaterialNew3");
-const uniOpacity = new CGL.Uniform(shader, "f", "opacity", pOpacity);
-
-shader.setModules(["MODULE_VERTEX_POSITION", "MODULE_COLOR", "MODULE_BEGIN_FRAG", "MODULE_VERTEX_MOVELVIEW"]);
-shader.setSource(attachments.matcap_vert, attachments.matcap_frag);
-shaderOut.set(shader);
-
-const textureMatcapUniform = new CGL.Uniform(shader, "t", "texMatcap");
-let textureDiffuseUniform = null;
-let textureNormalUniform = null;
-let normalMapIntensityUniform = null;
-let textureSpecUniform = null;
-let textureSpecMatCapUniform = null;
-let textureAoUniform = null;
-const offsetUniform = new CGL.Uniform(shader, "2f", "texOffset", offsetX, offsetY);
-const repeatUniform = new CGL.Uniform(shader, "2f", "texRepeat", repeatX, repeatY);
-
-const aoIntensityUniform = new CGL.Uniform(shader, "f", "aoIntensity", aoIntensity);
-const colorUniform = new CGL.Uniform(shader, "4f", "inColor", r, g, b, pOpacity);
-
-calcTangents.onChange = updateDefines;
-updateDefines();
-
-function updateDefines()
-{
-    if (calcTangents.get()) shader.define("CALC_TANGENT");
-    else shader.removeDefine("CALC_TANGENT");
-}
-
-ssNormals.onChange = function ()
-{
-    if (ssNormals.get())
-    {
-        if (cgl.glVersion < 2)
-        {
-            cgl.gl.getExtension("OES_standard_derivatives");
-            shader.enableExtension("GL_OES_standard_derivatives");
-        }
-
-        shader.define("CALC_SSNORMALS");
-    }
-    else shader.removeDefine("CALC_SSNORMALS");
-};
-
-textureMatcap.onChange = updateMatcap;
-
-function updateMatcap()
-{
-    if (!cgl.defaultMatcapTex3)
-    {
-        const pixels = new Uint8Array(256 * 4);
-        for (let x = 0; x < 16; x++)
-        {
-            for (let y = 0; y < 16; y++)
-            {
-                let c = y * 16;
-                c *= Math.min(1, (x + y / 3) / 8);
-                pixels[(x + y * 16) * 4 + 0] = pixels[(x + y * 16) * 4 + 1] = pixels[(x + y * 16) * 4 + 2] = c;
-                pixels[(x + y * 16) * 4 + 3] = 255;
-            }
-        }
-
-        cgl.defaultMatcapTex3 = new CGL.Texture(cgl);
-        cgl.defaultMatcapTex3.initFromData(pixels, 16, 16, CGL.Texture.FILTER_LINEAR, CGL.Texture.WRAP_REPEAT);
-    }
-}
-
-textureDiffuse.onChange = function ()
-{
-    if (textureDiffuse.get())
-    {
-        if (textureDiffuseUniform !== null) return;
-        shader.define("HAS_DIFFUSE_TEXTURE");
-        shader.removeUniform("texDiffuse");
-        textureDiffuseUniform = new CGL.Uniform(shader, "t", "texDiffuse");
-    }
-    else
-    {
-        shader.removeDefine("HAS_DIFFUSE_TEXTURE");
-        shader.removeUniform("texDiffuse");
-        textureDiffuseUniform = null;
-    }
-};
-
-textureNormal.onChange = function ()
-{
-    if (textureNormal.get())
-    {
-        if (textureNormalUniform !== null) return;
-        shader.define("HAS_NORMAL_TEXTURE");
-        shader.removeUniform("texNormal");
-        textureNormalUniform = new CGL.Uniform(shader, "t", "texNormal");
-        if (!normalMapIntensityUniform) normalMapIntensityUniform = new CGL.Uniform(shader, "f", "normalMapIntensity", normalMapIntensity);
-    }
-    else
-    {
-        shader.removeDefine("HAS_NORMAL_TEXTURE");
-        shader.removeUniform("texNormal");
-        textureNormalUniform = null;
-    }
-};
-
-textureAo.onChange = function ()
-{
-    if (textureAo.get())
-    {
-        if (textureAoUniform !== null) return;
-        shader.define("HAS_AO_TEXTURE");
-        shader.removeUniform("texAo");
-        textureAoUniform = new CGL.Uniform(shader, "t", "texAo");
-    }
-    else
-    {
-        shader.removeDefine("HAS_AO_TEXTURE");
-        shader.removeUniform("texAo");
-        textureAoUniform = null;
-    }
-};
-
-textureSpec.onChange = textureSpecMatCap.onChange = function ()
-{
-    if (textureSpec.get() && textureSpecMatCap.get())
-    {
-        if (textureSpecUniform !== null) return;
-        shader.define("USE_SPECULAR_TEXTURE");
-        shader.removeUniform("texSpec");
-        shader.removeUniform("texSpecMatCap");
-        textureSpecUniform = new CGL.Uniform(shader, "t", "texSpec");
-        textureSpecMatCapUniform = new CGL.Uniform(shader, "t", "texSpecMatCap");
-    }
-    else
-    {
-        shader.removeDefine("USE_SPECULAR_TEXTURE");
-        shader.removeUniform("texSpec");
-        shader.removeUniform("texSpecMatCap");
-        textureSpecUniform = null;
-        textureSpecMatCapUniform = null;
-    }
-};
-
-// TEX OPACITY
-
-function updateAlphaMaskMethod()
-{
-    if (alphaMaskSource.get() == "Alpha Channel") shader.define("ALPHA_MASK_ALPHA");
-    else shader.removeDefine("ALPHA_MASK_ALPHA");
-
-    if (alphaMaskSource.get() == "Luminance") shader.define("ALPHA_MASK_LUMI");
-    else shader.removeDefine("ALPHA_MASK_LUMI");
-
-    if (alphaMaskSource.get() == "R") shader.define("ALPHA_MASK_R");
-    else shader.removeDefine("ALPHA_MASK_R");
-
-    if (alphaMaskSource.get() == "G") shader.define("ALPHA_MASK_G");
-    else shader.removeDefine("ALPHA_MASK_G");
-
-    if (alphaMaskSource.get() == "B") shader.define("ALPHA_MASK_B");
-    else shader.removeDefine("ALPHA_MASK_B");
-}
-
-alphaMaskSource.onChange = updateAlphaMaskMethod;
-textureOpacity.onChange = updateOpacity;
-
-let textureOpacityUniform = null;
-
-function updateOpacity()
-{
-    if (textureOpacity.get())
-    {
-        if (textureOpacityUniform !== null) return;
-        shader.removeUniform("texOpacity");
-        shader.define("HAS_TEXTURE_OPACITY");
-        if (!textureOpacityUniform) textureOpacityUniform = new CGL.Uniform(shader, "t", "texOpacity");
-
-        alphaMaskSource.setUiAttribs({ "greyout": false });
-        discardTransPxl.setUiAttribs({ "greyout": false });
-        texCoordAlpha.setUiAttribs({ "greyout": false });
-    }
-    else
-    {
-        shader.removeUniform("texOpacity");
-        shader.removeDefine("HAS_TEXTURE_OPACITY");
-        textureOpacityUniform = null;
-
-        alphaMaskSource.setUiAttribs({ "greyout": true });
-        discardTransPxl.setUiAttribs({ "greyout": true });
-        texCoordAlpha.setUiAttribs({ "greyout": true });
-    }
-    updateAlphaMaskMethod();
-}
-
-discardTransPxl.onChange = function ()
-{
-    if (discardTransPxl.get()) shader.define("DISCARDTRANS");
-    else shader.removeDefine("DISCARDTRANS");
-};
-
-texCoordAlpha.onChange = function ()
-{
-    if (texCoordAlpha.get()) shader.define("TRANSFORMALPHATEXCOORDS");
-    else shader.removeDefine("TRANSFORMALPHATEXCOORDS");
-};
-
-function checkUiErrors()
-{
-    if (textureSpec.get() && !textureSpecMatCap.get())
-    {
-        op.setUiError("specNoMatCapSpec", "You connected a specular texture but have not connected a specular matcap texture. You need to connect both texture inputs for the specular input to work.", 1);
-        op.setUiError("noSpecMatCapSpec", null);
-    }
-    else if (!textureSpec.get() && textureSpecMatCap.get())
-    {
-        op.setUiError("noSpecMatCapSpec", "You connected a specular matcap texture but have not connected a specular texture. You need to connect both texture inputs for the specular input to work.", 1);
-        op.setUiError("specNoMatCapSpec", null);
-    }
-    else if (textureSpec.get() && textureSpecMatCap.get())
-    {
-        op.setUiError("specNoMatCapSpec", null);
-        op.setUiError("noSpecMatCapSpec", null);
-    }
-    else
-    {
-        op.setUiError("specNoMatCapSpec", null);
-        op.setUiError("noSpecMatCapSpec", null);
-    }
-}
-
-render.onTriggered = function ()
-{
-    checkUiErrors();
-
-    if (!cgl.defaultMatcapTex3) updateMatcap();
-    shader.popTextures();
-
-    const tex = textureMatcap.get() || cgl.defaultMatcapTex3;
-    shader.pushTexture(textureMatcapUniform, tex.tex);
-
-    if (textureDiffuse.get() && textureDiffuseUniform) shader.pushTexture(textureDiffuseUniform, textureDiffuse.get().tex);
-    if (textureNormal.get() && textureNormalUniform) shader.pushTexture(textureNormalUniform, textureNormal.get().tex);
-    if (textureSpec.get() && textureSpecUniform) shader.pushTexture(textureSpecUniform, textureSpec.get().tex);
-    if (textureSpecMatCap.get() && textureSpecMatCapUniform) shader.pushTexture(textureSpecMatCapUniform, textureSpecMatCap.get().tex);
-    if (textureAo.get() && textureAoUniform) shader.pushTexture(textureAoUniform, textureAo.get().tex);
-    if (textureOpacity.get() && textureOpacityUniform) shader.pushTexture(textureOpacityUniform, textureOpacity.get().tex);
-
-    cgl.pushShader(shader);
-    next.trigger();
-    cgl.popShader();
-};
-
-
-};
-
-Ops.Gl.Shader.MatCapMaterial_v3.prototype = new CABLES.Op();
-CABLES.OPS["c1dd6e76-61b4-471a-b8d1-f550a5a9a4f4"]={f:Ops.Gl.Shader.MatCapMaterial_v3,objName:"Ops.Gl.Shader.MatCapMaterial_v3"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.Texture_v2
-// 
-// **************************************************************
-
-Ops.Gl.Texture_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    filename = op.inUrl("File", [".jpg", ".png", ".webp", ".jpeg", ".avif"]),
-    tfilter = op.inSwitch("Filter", ["nearest", "linear", "mipmap"]),
-    wrap = op.inValueSelect("Wrap", ["repeat", "mirrored repeat", "clamp to edge"], "clamp to edge"),
-    aniso = op.inSwitch("Anisotropic", ["0", "1", "2", "4", "8", "16"], "0"),
-    dataFrmt = op.inSwitch("Data Format", ["R", "RG", "RGB", "RGBA", "SRGBA"], "RGBA"),
-    flip = op.inValueBool("Flip", false),
-    unpackAlpha = op.inValueBool("Pre Multiplied Alpha", false),
-    active = op.inValueBool("Active", true),
-    inFreeMemory = op.inBool("Save Memory", true),
-    textureOut = op.outTexture("Texture"),
-    addCacheBust = op.inBool("Add Cachebuster", false),
-    inReload = op.inTriggerButton("Reload"),
-    width = op.outNumber("Width"),
-    height = op.outNumber("Height"),
-    ratio = op.outNumber("Aspect Ratio"),
-    loaded = op.outBoolNum("Loaded", 0),
-    loading = op.outBoolNum("Loading", 0);
-
-const cgl = op.patch.cgl;
-
-op.toWorkPortsNeedToBeLinked(textureOut);
-op.setPortGroup("Size", [width, height]);
-
-let loadedFilename = null;
-let loadingId = null;
-let tex = null;
-let cgl_filter = CGL.Texture.FILTER_MIPMAP;
-let cgl_wrap = CGL.Texture.WRAP_REPEAT;
-let cgl_aniso = 0;
-let timedLoader = 0;
-
-unpackAlpha.setUiAttribs({ "hidePort": true });
-unpackAlpha.onChange =
-    filename.onChange =
-    dataFrmt.onChange =
-    addCacheBust.onChange =
-    flip.onChange = reloadSoon;
-aniso.onChange = tfilter.onChange = onFilterChange;
-wrap.onChange = onWrapChange;
-
-tfilter.set("mipmap");
-wrap.set("repeat");
-
-textureOut.set(CGL.Texture.getEmptyTexture(cgl));
-
-inReload.onTriggered = reloadSoon;
-
-active.onChange = function ()
-{
-    if (active.get())
-    {
-        if (loadedFilename != filename.get() || !tex) reloadSoon();
-        else textureOut.set(tex);
-    }
-    else
-    {
-        textureOut.set(CGL.Texture.getEmptyTexture(cgl));
-        width.set(CGL.Texture.getEmptyTexture(cgl).width);
-        height.set(CGL.Texture.getEmptyTexture(cgl).height);
-        if (tex)tex.delete();
-        op.setUiAttrib({ "extendTitle": "" });
-        tex = null;
-    }
-};
-
-const setTempTexture = function ()
-{
-    const t = CGL.Texture.getTempTexture(cgl);
-    textureOut.set(t);
-};
-
-function reloadSoon(nocache)
-{
-    clearTimeout(timedLoader);
-    timedLoader = setTimeout(function ()
-    {
-        realReload(nocache);
-    }, 1);
-}
-
-function getPixelFormat()
-{
-    if (dataFrmt.get() == "R") return CGL.Texture.PFORMATSTR_R8UB;
-    if (dataFrmt.get() == "RG") return CGL.Texture.PFORMATSTR_RG8UB;
-    if (dataFrmt.get() == "RGB") return CGL.Texture.PFORMATSTR_RGB8UB;
-    if (dataFrmt.get() == "SRGBA") return CGL.Texture.PFORMATSTR_SRGBA8;
-
-    return CGL.Texture.PFORMATSTR_RGBA8UB;
-}
-
-function realReload(nocache)
-{
-    op.checkMainloopExists();
-    if (!active.get()) return;
-    if (loadingId)loadingId = cgl.patch.loading.finished(loadingId);
-
-    loadingId = cgl.patch.loading.start(op.objName, filename.get(), op);
-
-    let url = op.patch.getFilePath(String(filename.get()));
-
-    if (addCacheBust.get() || nocache === true) url = CABLES.cacheBust(url);
-
-    if (String(filename.get()).indexOf("data:") == 0) url = filename.get();
-
-    let needsRefresh = false;
-    loadedFilename = filename.get();
-
-    if ((filename.get() && filename.get().length > 1))
-    {
-        loaded.set(false);
-        loading.set(true);
-
-        const fileToLoad = filename.get();
-
-        op.setUiAttrib({ "extendTitle": CABLES.basename(url) });
-        if (needsRefresh) op.refreshParams();
-
-        cgl.patch.loading.addAssetLoadingTask(() =>
-        {
-            op.setUiError("urlerror", null);
-            CGL.Texture.load(cgl, url, function (err, newTex)
-            {
-                cgl.checkFrameStarted("texture inittexture");
-
-                if (filename.get() != fileToLoad)
-                {
-                    loadingId = cgl.patch.loading.finished(loadingId);
-                    return;
-                }
-
-                if (tex)tex.delete();
-
-                if (err)
-                {
-                    const t = CGL.Texture.getErrorTexture(cgl);
-                    textureOut.setRef(t);
-
-                    op.setUiError("urlerror", "could not load texture: \"" + filename.get() + "\"", 2);
-                    loadingId = cgl.patch.loading.finished(loadingId);
-                    return;
-                }
-
-                // textureOut.setRef(newTex);
-
-                width.set(newTex.width);
-                height.set(newTex.height);
-                ratio.set(newTex.width / newTex.height);
-
-                // if (!newTex.isPowerOfTwo()) op.setUiError("npot", "Texture dimensions not power of two! - Texture filtering will not work in WebGL 1.", 0);
-                // else op.setUiError("npot", null);
-
-                tex = newTex;
-                // textureOut.set(null);
-                textureOut.setRef(tex);
-
-                loading.set(false);
-                loaded.set(true);
-
-                if (inFreeMemory.get()) tex.image = null;
-
-                if (loadingId)
-                {
-                    loadingId = cgl.patch.loading.finished(loadingId);
-                }
-                op.checkMainloopExists();
-            }, {
-                "anisotropic": cgl_aniso,
-                "wrap": cgl_wrap,
-                "flip": flip.get(),
-                "unpackAlpha": unpackAlpha.get(),
-                "pixelFormat": getPixelFormat(),
-                "filter": cgl_filter
-            });
-
-            op.checkMainloopExists();
-        });
-    }
-    else
-    {
-        setTempTexture();
-        loadingId = cgl.patch.loading.finished(loadingId);
-    }
-}
-
-function onFilterChange()
-{
-    if (tfilter.get() == "nearest") cgl_filter = CGL.Texture.FILTER_NEAREST;
-    else if (tfilter.get() == "linear") cgl_filter = CGL.Texture.FILTER_LINEAR;
-    else if (tfilter.get() == "mipmap") cgl_filter = CGL.Texture.FILTER_MIPMAP;
-    else if (tfilter.get() == "Anisotropic") cgl_filter = CGL.Texture.FILTER_ANISOTROPIC;
-    aniso.setUiAttribs({ "greyout": cgl_filter != CGL.Texture.FILTER_MIPMAP });
-
-    cgl_aniso = parseFloat(aniso.get());
-
-    reloadSoon();
-}
-
-function onWrapChange()
-{
-    if (wrap.get() == "repeat") cgl_wrap = CGL.Texture.WRAP_REPEAT;
-    if (wrap.get() == "mirrored repeat") cgl_wrap = CGL.Texture.WRAP_MIRRORED_REPEAT;
-    if (wrap.get() == "clamp to edge") cgl_wrap = CGL.Texture.WRAP_CLAMP_TO_EDGE;
-
-    reloadSoon();
-}
-
-op.onFileChanged = function (fn)
-{
-    if (filename.get() && filename.get().indexOf(fn) > -1)
-    {
-        textureOut.set(CGL.Texture.getEmptyTexture(op.patch.cgl));
-        textureOut.set(CGL.Texture.getTempTexture(cgl));
-        realReload(true);
-    }
-};
-
-
-};
-
-Ops.Gl.Texture_v2.prototype = new CABLES.Op();
-CABLES.OPS["790f3702-9833-464e-8e37-6f0f813f7e16"]={f:Ops.Gl.Texture_v2,objName:"Ops.Gl.Texture_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.TextMeshMSDF_v2
-// 
-// **************************************************************
-
-Ops.Gl.TextMeshMSDF_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={"textmeshsdf_frag":"\nUNI sampler2D tex0;\nUNI sampler2D tex1;\nUNI sampler2D tex2;\nUNI sampler2D tex3;\n\nIN vec2 texCoord;\nIN vec4 fragAttrColors;\n\nUNI vec4 color;\nUNI vec2 texSize;\n\n#ifdef BORDER\n    UNI float borderWidth;\n    UNI float borderSmooth;\n    UNI vec3 colorBorder;\n#endif\n\n#ifdef TEXTURE_COLOR\nUNI sampler2D texMulColor;\n#endif\n#ifdef TEXTURE_MASK\nUNI sampler2D texMulMask;\n#endif\n\nUNI float smoothing;\nIN float texIndex;\n\n#ifdef SHADOW\n    UNI float shadowWidth;\n#endif\n\n\nfloat median(float r, float g, float b)\n{\n    return max(min(r, g), min(max(r, g), b));\n}\n\nvoid main()\n{\n    vec4 bgColor=vec4(0.0,0.0,0.0,0.0);\n    vec4 fgColor=color;\n    float opacity=1.0;\n\n    #ifndef SDF\n        if(int(texIndex)==0) outColor = texture(tex0, texCoord);\n        if(int(texIndex)==1) outColor = texture(tex1, texCoord);\n        if(int(texIndex)==2) outColor = texture(tex2, texCoord);\n        if(int(texIndex)==3) outColor = texture(tex3, texCoord);\n\n        return;\n    #endif\n\n\n    #ifdef TEXTURE_COLOR\n        fgColor.rgb *= texture(texMulColor, vec2(0.0,0.0)).rgb; //todo texcoords from char positioning\n    #endif\n    #ifdef TEXTURE_MASK\n        opacity *= texture(texMulMask, vec2(0.0,0.0)).r; //todo texcoords from char positioning\n    #endif\n\n\n    #ifdef SHADOW\n        vec2 msdfUnit1 = texSize;\n        vec2 tcv=vec2(texCoord.x-0.002,texCoord.y-0.002);\n        vec3 smpl1;\n        if(int(texIndex)==0) smpl1 = texture(tex0, tcv).rgb;\n        if(int(texIndex)==1) smpl1 = texture(tex1, tcv).rgb;\n        if(int(texIndex)==2) smpl1 = texture(tex2, tcv).rgb;\n        if(int(texIndex)==3) smpl1 = texture(tex3, tcv).rgb;\n\n        float sigDist1 = median(smpl1.r, smpl1.g, smpl1.b) - 0.001;\n        float opacity1 = smoothstep(0.0,0.9,sigDist1*sigDist1);\n        outColor = mix(bgColor, vec4(0.0,0.0,0.0,1.0), opacity1);\n    #endif\n\n    vec2 msdfUnit = 8.0/texSize;\n    vec3 smpl;\n\n    if(int(texIndex)==0) smpl = texture(tex0, texCoord).rgb;\n    if(int(texIndex)==1) smpl = texture(tex1, texCoord).rgb;\n    if(int(texIndex)==2) smpl = texture(tex2, texCoord).rgb;\n    if(int(texIndex)==3) smpl = texture(tex3, texCoord).rgb;\n\n\n    float sigDist = median(smpl.r, smpl.g, smpl.b) - 0.5;\n    sigDist *= dot(msdfUnit, (0.5+(smoothing-0.5))/fwidth(texCoord));\n    opacity *= clamp(sigDist + 0.5, 0.0, 1.0);\n\n    #ifdef BORDER\n        float sigDist2 = median(smpl.r, smpl.g, smpl.b) - 0.01;\n        float bw=borderWidth*0.6+0.24;\n        float opacity2 = smoothstep(bw-borderSmooth,bw+borderSmooth,sigDist2*sigDist2);\n        fgColor=mix(fgColor,vec4(colorBorder,1.0),1.0-opacity2);\n    #endif\n\n    if(color.a==0.0)discard;\n\n    outColor = mix(outColor, fgColor, opacity*color.a);\n\n#ifdef HAS_ATTR_COLORS\n    outColor*=fragAttrColors;\n#endif\n}\n\n","textmeshsdf_vert":"UNI sampler2D tex1;\nUNI sampler2D tex2;\nUNI sampler2D tex3;\nUNI sampler2D tex4;\n\nUNI mat4 projMatrix;\nUNI mat4 modelMatrix;\nUNI mat4 viewMatrix;\n\nIN vec3 vPosition;\nIN vec2 attrTexCoord;\nIN mat4 instMat;\nIN vec2 attrTexOffsets;\nIN vec2 attrSize;\nIN vec2 attrTcSize;\nIN float attrPage;\nIN vec4 attrColors;\n\nOUT vec2 texCoord;\nOUT float texIndex;\nOUT vec4 fragAttrColors;\n\n\n\n\nconst float mulSize=0.01;\n\nvoid main()\n{\n    texCoord=(attrTexOffsets+attrTexCoord*attrTcSize);\n    texCoord.y=1.0-texCoord.y;\n\n    mat4 instMVMat=instMat;\n    vec4 vert=vec4( vPosition, 1. );\n    vert.x*=attrSize.x*mulSize;\n    vert.y*=attrSize.y*mulSize;\n\n    fragAttrColors=attrColors;\n\n    texIndex=attrPage+0.4; // strange ios rounding errors?!\n\n    mat4 mvMatrix=viewMatrix * modelMatrix * instMVMat;\n\n    gl_Position = projMatrix * mvMatrix * vert;\n}\n",};
-// https://soimy.github.io/msdf-bmfont-xml/
-
-// antialiasing:
-// https://github.com/Chlumsky/msdfgen/issues/22
-
-const
-    render = op.inTrigger("Render"),
-    str = op.inString("Text", "cables"),
-    inFont = op.inDropDown("Font", [], "", true),
-    scale = op.inFloat("Scale", 0.25),
-
-    letterSpace = op.inFloat("Letter Spacing", 0),
-    lineHeight = op.inFloat("Line Height", 1),
-
-    align = op.inSwitch("Align", ["Left", "Center", "Right"], "Center"),
-    valign = op.inSwitch("Vertical Align", ["Zero", "Top", "Middle", "Bottom"], "Middle"),
-
-    r = op.inValueSlider("r", 1),
-    g = op.inValueSlider("g", 1),
-    b = op.inValueSlider("b", 1),
-    a = op.inValueSlider("a", 1),
-    doSDF = op.inBool("SDF", true),
-
-    smoothing = op.inValueSlider("Smoothing", 0.3),
-
-    inBorder = op.inBool("Border", false),
-    inBorderWidth = op.inFloatSlider("Border Width", 0.5),
-    inBorderSmooth = op.inFloatSlider("Smoothness", 0.25),
-    br = op.inValueSlider("Border r", 1),
-    bg = op.inValueSlider("Border g", 1),
-    bb = op.inValueSlider("Border b", 1),
-
-    inShadow = op.inBool("Shadow", false),
-
-    inTexColor = op.inTexture("Texture Color"),
-    inTexMask = op.inTexture("Texture Mask"),
-
-    inPosArr = op.inArray("Positions"),
-    inScaleArr = op.inArray("Scalings"),
-    inRotArr = op.inArray("Rotations"),
-    inColors = op.inArray("Colors"),
-
-    next = op.outTrigger("Next"),
-    outArr = op.outArray("Positions Original", null, 3),
-
-    outScales = op.outArray("Scales", null, 2),
-    outLines = op.outNumber("Num Lines"),
-
-    outWidth = op.outNumber("Width"),
-    outHeight = op.outNumber("Height"),
-    outStartY = op.outNumber("Start Y"),
-    outNumChars = op.outNumber("Num Chars");
-
-op.setPortGroup("Size", [letterSpace, lineHeight, scale]);
-op.setPortGroup("Character Transformations", [inScaleArr, inRotArr, inPosArr]);
-op.setPortGroup("Alignment", [align, valign]);
-op.setPortGroup("Color", [r, g, b, a, doSDF]);
-op.setPortGroup("Border", [br, bg, bb, inBorderSmooth, inBorderWidth, inBorder]);
-
-r.setUiAttribs({ "colorPick": true });
-br.setUiAttribs({ "colorPick": true });
-
-const cgl = op.patch.cgl;
-const fontDataVarPrefix = "font_data_";
-const substrLength = fontDataVarPrefix.length;
-const alignVec = vec3.create();
-const vScale = vec3.create();
-const shader = new CGL.Shader(cgl, "TextMeshSDF");
-shader.define("INSTANCING");
-
-let fontTexs = null;
-let fontData = null;
-let fontChars = null;
-let needUpdate = true;
-let geom = null;
-let mesh = null;
-let disabled = false;
-let valignMode = 1;
-let heightAll = 0, widthAll = 0;
-let avgHeight = 0;
-let minY, maxY, minX, maxX;
-let needsUpdateTransmats = true;
-let transMats = null;
-let offY = 0;
-
-if (cgl.glVersion == 1)
-{
-    cgl.gl.getExtension("OES_standard_derivatives");
-    shader.enableExtension("GL_OES_standard_derivatives");
-}
-
-shader.setSource(attachments.textmeshsdf_vert, attachments.textmeshsdf_frag);
-
-const
-    uniTex = new CGL.Uniform(shader, "t", "tex0", 0),
-    uniTex1 = new CGL.Uniform(shader, "t", "tex1", 1),
-    uniTex2 = new CGL.Uniform(shader, "t", "tex2", 2),
-    uniTex3 = new CGL.Uniform(shader, "t", "tex3", 3),
-    uniTexMul = new CGL.Uniform(shader, "t", "texMulColor", 4),
-    uniTexMulMask = new CGL.Uniform(shader, "t", "texMulMask", 5),
-    uniColor = new CGL.Uniform(shader, "4f", "color", r, g, b, a),
-    uniColorBorder = new CGL.Uniform(shader, "3f", "colorBorder", br, bg, bb),
-
-    uniTexSize = new CGL.Uniform(shader, "2f", "texSize", 0, 0),
-
-    uniSmoothing = new CGL.Uniform(shader, "f", "smoothing", smoothing),
-    uniborderSmooth = new CGL.Uniform(shader, "f", "borderSmooth", inBorderSmooth),
-    uniborderWidth = new CGL.Uniform(shader, "f", "borderWidth", inBorderWidth);
-
-scale.onChange = updateScale;
-
-inRotArr.onChange =
-    inPosArr.onChange =
-    inScaleArr.onChange = function () { needsUpdateTransmats = true; };
-
-inTexColor.onChange =
-inTexMask.onChange =
-inShadow.onChange =
-inBorder.onChange =
-doSDF.onChange =
-    updateDefines;
-
-inColors.onLinkChanged = () =>
-{
-    updateDefines();
-    needsUpdateTransmats = true;
-    needUpdate = true;
-};
-
-inColors.onChange = () =>
-{
-    needUpdate = true;
-    if (mesh && inColors.get() && inColors.isLinked())
-        mesh.setAttribute("attrColors", new Float32Array(inColors.get()), 4, { "instanced": true });
-};
-
-align.onChange =
-    str.onChange =
-    letterSpace.onChange =
-    lineHeight.onChange =
-    function ()
-    {
-        needUpdate = true;
-    };
-
-valign.onChange = updateAlign;
-
-op.patch.addEventListener("variablesChanged", updateFontList);
-op.patch.addEventListener("FontLoadedMSDF", updateFontList);
-
-inFont.onChange = updateFontData;
-
-updateDefines();
-updateScale();
-updateFontList();
-
-function updateDefines()
-{
-    shader.toggleDefine("SDF", doSDF.get());
-    shader.toggleDefine("SHADOW", inShadow.get());
-    shader.toggleDefine("BORDER", inBorder.get());
-    shader.toggleDefine("TEXTURE_COLOR", inTexColor.isLinked());
-    shader.toggleDefine("TEXTURE_MASK", inTexMask.isLinked());
-    shader.toggleDefine("HAS_ATTR_COLORS", inColors.isLinked());
-
-    br.setUiAttribs({ "greyout": !inBorder.get() });
-    bg.setUiAttribs({ "greyout": !inBorder.get() });
-    bb.setUiAttribs({ "greyout": !inBorder.get() });
-    inBorderSmooth.setUiAttribs({ "greyout": !inBorder.get() });
-    inBorderWidth.setUiAttribs({ "greyout": !inBorder.get() });
-}
-
-function updateFontData()
-{
-    updateFontList();
-    const varname = fontDataVarPrefix + inFont.get();
-
-    fontData = null;
-    fontTexs = null;
-    fontChars = {};
-
-    const dataVar = op.patch.getVar(varname);
-
-    if (!dataVar || !dataVar.getValue())
-    {
-        fontData = null;
-
-        op.warn("no varname", varname);
-        return;
-    }
-
-    fontData = dataVar.getValue().data;
-
-    if (!fontData)
-    {
-        return;
-    }
-
-    const basename = dataVar.getValue().basename;
-
-    const textVar = op.patch.getVar("font_tex_" + basename);
-    if (!textVar)
-    {
-        fontTexs = null;
-        fontData = null;
-        return;
-    }
-
-    fontTexs = textVar.getValue();
-
-    for (let i = 0; i < fontData.chars.length; i++) fontChars[fontData.chars[i].char] = fontData.chars[i];
-    needUpdate = true;
-}
-
-function updateFontList()
-{
-    const vars = op.patch.getVars();
-    const names = ["..."];
-
-    for (const i in vars)
-        if (vars[i].type == "fontData")
-            names.push(i.substr(substrLength));
-
-    inFont.uiAttribs.values = names;
-}
-
-function updateScale()
-{
-    const s = scale.get();
-    vec3.set(vScale, s, s, s);
-    vec3.set(alignVec, 0, offY * s, 0);
-
-    outWidth.set(widthAll * s);
-    outHeight.set(heightAll * s);
-
-    outStartY.set((maxY + offY) * s);
-}
-
-function updateAlign()
-{
-    if (minX == undefined) return;
-    if (valign.get() == "Top") valignMode = 0;
-    else if (valign.get() == "Middle") valignMode = 1;
-    else if (valign.get() == "Bottom") valignMode = 2;
-    else if (valign.get() == "Zero") valignMode = 3;
-
-    offY = 0;
-    widthAll = (Math.abs(minX - maxX));
-    heightAll = (Math.abs(minY - maxY));
-
-    if (valignMode === 1) offY = heightAll / 2;
-    else if (valignMode === 2) offY = heightAll;
-
-    if (valignMode != 0)offY -= avgHeight;
-
-    updateScale();
-}
-
-function buildTransMats()
-{
-    needsUpdateTransmats = false;
-
-    // if(!( inPosArr.get() || inScaleArr.get() || inRotArr.get()))
-    // {
-    //     transMats=null;
-    //     return;
-    // }
-
-    const transformations = [];
-    const translates = inPosArr.get() || outArr.get();
-    const scales = inScaleArr.get();
-    const rots = inRotArr.get();
-
-    for (let i = 0; i < mesh.numInstances; i++)
-    {
-        const m = mat4.create();
-        mat4.translate(m, m, [translates[i * 3 + 0], translates[i * 3 + 1], translates[i * 3 + 2]]);
-
-        if (scales) mat4.scale(m, m, [scales[i * 3 + 0], scales[i * 3 + 1], scales[i * 3 + 2]]);
-
-        if (rots)
-        {
-            mat4.rotateX(m, m, rots[i * 3 + 0] * CGL.DEG2RAD);
-            mat4.rotateY(m, m, rots[i * 3 + 1] * CGL.DEG2RAD);
-            mat4.rotateZ(m, m, rots[i * 3 + 2] * CGL.DEG2RAD);
-        }
-
-        transformations.push(Array.prototype.slice.call(m));
-    }
-
-    transMats = [].concat.apply([], transformations);
-}
-
-render.onTriggered = function ()
-{
-    if (!fontData || !fontTexs)
-    {
-        updateFontData();
-    }
-
-    if (!fontData)
-    {
-        op.setUiError("nodata", "No font data!");
-        op.setUiError("msdfhint", "Use the FontMSDF op to create font and texture.", 0);
-    }
-    if (!fontTexs)
-    {
-        op.setUiError("nodata", "No font texture");
-        op.setUiError("msdfhint", "Use the FontMSDF op to create font and texture.", 0);
-    }
-    if (fontTexs && fontData)
-    {
-        op.setUiError("nodata", null);
-        op.setUiError("msdfhint", null);
-    }
-
-    if (needUpdate)
-    {
-        generateMesh();
-        needUpdate = false;
-    }
-
-    if (mesh && mesh.numInstances > 0)
-    {
-        cgl.pushShader(shader);
-
-        cgl.setTexture(0, CGL.Texture.getEmptyTexture(cgl).tex);
-
-        if (fontTexs[0]) uniTexSize.setValue([fontTexs[0].width, fontTexs[0].height]);
-
-        if (fontTexs[0]) cgl.setTexture(0, fontTexs[0].tex);
-        else cgl.setTexture(0, CGL.Texture.getEmptyTexture(cgl).tex);
-
-        if (fontTexs[1])cgl.setTexture(1, fontTexs[1].tex);
-        else cgl.setTexture(1, CGL.Texture.getEmptyTexture(cgl).tex);
-
-        if (fontTexs[2])cgl.setTexture(2, fontTexs[2].tex);
-        else cgl.setTexture(2, CGL.Texture.getEmptyTexture(cgl).tex);
-
-        if (fontTexs[3])cgl.setTexture(3, fontTexs[3].tex);
-        else cgl.setTexture(3, CGL.Texture.getEmptyTexture(cgl).tex);
-
-        if (inTexColor.get()) cgl.setTexture(4, inTexColor.get().tex);
-        if (inTexMask.get()) cgl.setTexture(5, inTexMask.get().tex);
-
-        cgl.pushModelMatrix();
-        mat4.translate(cgl.mMatrix, cgl.mMatrix, alignVec);
-
-        if (needsUpdateTransmats) buildTransMats();
-        if (transMats) mesh.setAttribute("instMat", new Float32Array(transMats), 16, { "instanced": true });
-
-        if (!disabled)
-        {
-            mat4.scale(cgl.mMatrix, cgl.mMatrix, vScale);
-
-            mesh.render(cgl.getShader());
-        }
-
-        cgl.popModelMatrix();
-
-        // cgl.setTexture(0, null);
-        cgl.popShader();
-        // cgl.popBlendMode();
-    }
-
-    next.trigger();
-};
-
-function getChar(chStr)
-{
-    return fontChars[String(chStr)] || fontChars["?"] || fontChars._ || fontChars.X;
-}
-
-function generateMesh()
-{
-    if (!fontData || !fontChars)
-    {
-        outNumChars.set(0);
-        return;
-    }
-
-    const theString = String(str.get() + "");
-
-    if (!geom)
-    {
-        geom = new CGL.Geometry("textmesh");
-
-        geom.vertices = [
-            0.5, 0.5, 0.0,
-            -0.5, 0.5, 0.0,
-            0.5, -0.5, 0.0,
-            -0.5, -0.5, 0.0
-        ];
-
-        geom.normals = [
-            0.0, 0.0, 0.0,
-            0.0, 0.0, 0.0,
-            0.0, 0.0, 0.0,
-            0.0, 0.0, 0.0
-        ];
-
-        geom.texCoords = new Float32Array([
-            1.0, 0.0,
-            0.0, 0.0,
-            1.0, 1.0,
-            0.0, 1.0
-        ]);
-
-        geom.verticesIndices = [
-            0, 1, 2,
-            2, 1, 3
-        ];
-    }
-
-    if (mesh)mesh.dispose();
-    mesh = new CGL.Mesh(cgl, geom);
-
-    const strings = (theString).split("\n");
-    const transformations = [];
-    const tcOffsets = [];
-    const sizes = [];
-    const texPos = [];
-    const tcSizes = [];
-    const pages = [];
-    let charCounter = 0;
-    const arrPositions = [];
-
-    const mulSize = 0.01;
-
-    outLines.set(strings.length);
-    minY = 99999;
-    maxY = -99999;
-    minX = 99999;
-    maxX = -99999;
-
-    avgHeight = 0;
-
-    for (let i = 0; i < fontData.chars.length; i++)
-    {
-        if (fontData.chars[i].height) avgHeight += fontData.chars[i].height;
-    }
-    avgHeight /= fontData.chars.length;
-    avgHeight *= mulSize;
-
-    for (let s = 0; s < strings.length; s++)
-    {
-        const txt = strings[s];
-        const numChars = txt.length;
-        let lineWidth = 0;
-
-        for (let i = 0; i < numChars; i++)
-        {
-            const chStr = txt.substring(i, i + 1);
-            const char = getChar(chStr);
-            if (char) lineWidth += char.xadvance * mulSize + letterSpace.get();
-        }
-
-        let pos = 0;
-        if (align.get() == "Right") pos -= lineWidth;
-        else if (align.get() == "Center") pos -= lineWidth / 2;
-
-        for (let i = 0; i < numChars; i++)
-        {
-            const m = mat4.create();
-
-            const chStr = txt.substring(i, i + 1);
-            const char = getChar(chStr);
-
-            if (!char) continue;
-
-            pages.push(char.page || 0);
-            sizes.push(char.width, char.height);
-
-            tcOffsets.push(char.x / fontData.common.scaleW, (char.y / fontData.common.scaleH));
-
-            const charWidth = char.width / fontData.common.scaleW;
-            const charHeight = char.height / fontData.common.scaleH;
-            const charOffsetY = (char.yoffset / fontData.common.scaleH);
-            const charOffsetX = char.xoffset / fontData.common.scaleW;
-
-            if (chStr == " ") tcSizes.push(0, 0);
-            else tcSizes.push(charWidth, charHeight);
-
-            mat4.identity(m);
-
-            let adv = (char.xadvance / 2) * mulSize;
-            pos += adv;
-
-            const x = pos + (char.xoffset / 2) * mulSize;
-            const y = (s * -lineHeight.get()) + (avgHeight) - (mulSize * (char.yoffset + char.height / 2));
-
-            minX = Math.min(x - charWidth, minX);
-            maxX = Math.max(x + charWidth, maxX);
-            minY = Math.min(y - charHeight - avgHeight / 2, minY);
-            maxY = Math.max(y + charHeight + avgHeight / 2, maxY);
-
-            mat4.translate(m, m, [x, y, 0]);
-            arrPositions.push(x, y, 0);
-
-            adv = (char.xadvance / 2) * mulSize + letterSpace.get();
-
-            pos += adv;
-
-            minX = Math.min(pos - charWidth, minX);
-            maxX = Math.max(pos + charWidth, maxX);
-
-            transformations.push(Array.prototype.slice.call(m));
-
-            charCounter++;
-        }
-    }
-
-    transMats = [].concat.apply([], transformations);
-
-    disabled = false;
-    if (transMats.length == 0) disabled = true;
-
-    mesh.numInstances = transMats.length / 16;
-    outNumChars.set(mesh.numInstances);
-
-    if (mesh.numInstances == 0)
-    {
-        disabled = true;
-        return;
-    }
-
-    mesh.setAttribute("instMat", new Float32Array(transMats), 16, { "instanced": true });
-    mesh.setAttribute("attrTexOffsets", new Float32Array(tcOffsets), 2, { "instanced": true });
-    mesh.setAttribute("attrTcSize", new Float32Array(tcSizes), 2, { "instanced": true });
-    mesh.setAttribute("attrSize", new Float32Array(sizes), 2, { "instanced": true });
-    mesh.setAttribute("attrPage", new Float32Array(pages), 1, { "instanced": true });
-
-    if (inColors.isLinked())
-        mesh.setAttribute("attrColors", new Float32Array(inColors.get()), 4, { "instanced": true });
-
-    outScales.set(sizes);
-    updateAlign();
-    needsUpdateTransmats = true;
-    outArr.setRef(arrPositions);
-}
-
-
-};
-
-Ops.Gl.TextMeshMSDF_v2.prototype = new CABLES.Op();
-CABLES.OPS["b5c99363-a749-4040-884b-66f91294bcad"]={f:Ops.Gl.TextMeshMSDF_v2,objName:"Ops.Gl.TextMeshMSDF_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Math.Round
-// 
-// **************************************************************
-
-Ops.Math.Round = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    number1 = op.inValueFloat("number"),
-    decPlaces = op.inInt("Decimal Places", 0),
-    result = op.outNumber("result");
-
-let decm = 0;
-
-number1.onChange = exec;
-decPlaces.onChange = updateDecm;
-
-updateDecm();
-
-function updateDecm()
-{
-    decm = Math.pow(10, decPlaces.get());
-    exec();
-}
-
-function exec()
-{
-    result.set(Math.round(number1.get() * decm) / decm);
-}
-
-
-};
-
-Ops.Math.Round.prototype = new CABLES.Op();
-CABLES.OPS["1a1ef636-6d02-42ba-ae1e-627b917d0d2b"]={f:Ops.Math.Round,objName:"Ops.Math.Round"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.String.NumberToString_v2
-// 
-// **************************************************************
-
-Ops.String.NumberToString_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    val = op.inValue("Number"),
-    decPlaces = op.inInt("Decimal Places", 4),
-    result = op.outString("Result");
-
-let doDec = false;
-let decm = 1;
-decPlaces.onChange = updateDecm;
-val.onChange = update;
-updateDecm();
-update();
-
-function updateDecm()
-{
-    doDec = decPlaces.get() < 100;
-    decm = Math.pow(10, decPlaces.get());
-    update();
-}
-
-function update()
-{
-    if (doDec)
-        result.set(String(Math.round(val.get() * decm) / decm));
-    else
-        result.set(String(val.get() || 0));
-}
-
-
-};
-
-Ops.String.NumberToString_v2.prototype = new CABLES.Op();
-CABLES.OPS["5c6d375a-82db-4366-8013-93f56b4061a9"]={f:Ops.String.NumberToString_v2,objName:"Ops.String.NumberToString_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.Matrix.TransformView
-// 
-// **************************************************************
-
-Ops.Gl.Matrix.TransformView = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    render = op.inTrigger("render"),
-    posX = op.inValueFloat("posX"),
-    posY = op.inValueFloat("posY"),
-    posZ = op.inValueFloat("posZ"),
-    scale = op.inValueFloat("scale"),
-    rotX = op.inValueFloat("rotX"),
-    rotY = op.inValueFloat("rotY"),
-    rotZ = op.inValueFloat("rotZ"),
-    trigger = op.outTrigger("trigger");
-
-op.setPortGroup("Position", [posX, posY, posZ]);
-op.setPortGroup("Scale", [scale]);
-op.setPortGroup("Rotation", [rotX, rotZ, rotY]);
-
-const vPos = vec3.create();
-const vScale = vec3.create();
-const transMatrix = mat4.create();
-mat4.identity(transMatrix);
-
-let doScale = false;
-let doTranslate = false;
-
-let translationChanged = true;
-let didScaleChanged = true;
-let didRotChanged = true;
-
-render.onTriggered = function ()
-{
-    const cg = op.patch.cgl;
-
-    let updateMatrix = false;
-    if (translationChanged)
-    {
-        updateTranslation();
-        updateMatrix = true;
-    }
-    if (didScaleChanged)
-    {
-        updateScale();
-        updateMatrix = true;
-    }
-    if (didRotChanged)
-    {
-        updateMatrix = true;
-    }
-    if (updateMatrix)doUpdateMatrix();
-
-    cg.pushViewMatrix();
-    mat4.multiply(cg.vMatrix, cg.vMatrix, transMatrix);
-
-    trigger.trigger();
-    cg.popViewMatrix();
-
-    if (op.isCurrentUiOp())
-        gui.setTransformGizmo(
-            {
-                "posX": posX,
-                "posY": posY,
-                "posZ": posZ,
-            });
-};
-
-op.transform3d = function ()
-{
-    return {
-        "pos": [posX, posY, posZ]
-    };
-};
-
-function doUpdateMatrix()
-{
-    mat4.identity(transMatrix);
-    if (doTranslate)mat4.translate(transMatrix, transMatrix, vPos);
-
-    if (rotX.get() !== 0)mat4.rotateX(transMatrix, transMatrix, rotX.get() * CGL.DEG2RAD);
-    if (rotY.get() !== 0)mat4.rotateY(transMatrix, transMatrix, rotY.get() * CGL.DEG2RAD);
-    if (rotZ.get() !== 0)mat4.rotateZ(transMatrix, transMatrix, rotZ.get() * CGL.DEG2RAD);
-
-    if (doScale)mat4.scale(transMatrix, transMatrix, vScale);
-    rotChanged = false;
-}
-
-function updateTranslation()
-{
-    doTranslate = false;
-    if (posX.get() !== 0.0 || posY.get() !== 0.0 || posZ.get() !== 0.0) doTranslate = true;
-    vec3.set(vPos, posX.get(), posY.get(), posZ.get());
-    translationChanged = false;
-}
-
-function updateScale()
-{
-    doScale = false;
-    if (scale.get() !== 0.0)doScale = true;
-    vec3.set(vScale, scale.get(), scale.get(), scale.get());
-    scaleChanged = false;
-}
-
-function translateChanged()
-{
-    translationChanged = true;
-}
-
-function scaleChanged()
-{
-    didScaleChanged = true;
-}
-
-function rotChanged()
-{
-    didRotChanged = true;
-}
-
-rotX.onChange =
-rotY.onChange =
-rotZ.onChange = rotChanged;
-
-scale.onChange = scaleChanged;
-
-posX.onChange =
-posY.onChange =
-posZ.onChange = translateChanged;
-
-rotX.set(0.0);
-rotY.set(0.0);
-rotZ.set(0.0);
-
-scale.set(1.0);
-
-posX.set(0.0);
-posY.set(0.0);
-posZ.set(0.0);
-
-doUpdateMatrix();
-
-
-};
-
-Ops.Gl.Matrix.TransformView.prototype = new CABLES.Op();
-CABLES.OPS["0b3e04f7-323e-4ac8-8a22-a21e2f36e0e9"]={f:Ops.Gl.Matrix.TransformView,objName:"Ops.Gl.Matrix.TransformView"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Math.Incrementor
-// 
-// **************************************************************
-
-Ops.Math.Incrementor = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    increment = op.inTriggerButton("Increment"),
-    decrement = op.inTriggerButton("Decrement"),
-    inLimit = op.inBool("Limit", false),
-    inLength = op.inValueInt("Length"),
-    inMode = op.inSwitch("Mode", ["Rewind", "Stop at Max"], "Rewind"),
-    inDefault = op.inValueInt("Default", 0),
-    reset = op.inTriggerButton("Reset"),
-    outChanged = op.outTrigger("Changed"),
-    value = op.outNumber("Value"),
-    outRestarted = op.outTrigger("Restarted");
-
-const MODE_REWIND = 0;
-const MODE_STOP = 1;
-value.ignoreValueSerialize = true;
-inLength.set(10);
-let val = 0;
-let mode = MODE_REWIND;
-value.set(0);
-
-inLength.onTriggered = reset;
-inDefault.onChange = doReset;
-reset.onTriggered = doReset;
-inLimit.onChange = updateUi;
-
-updateUi();
-
-inMode.onChange = () =>
-{
-    if (inMode.get() == "Rewind")
-    {
-        mode = MODE_REWIND;
-    }
-    if (inMode.get() == "Stop at Max")
-    {
-        mode = MODE_STOP;
-    }
-};
-
-function updateUi()
-{
-    inLength.setUiAttribs({ "greyout": !inLimit.get() });
-    inMode.setUiAttribs({ "greyout": !inLimit.get() });
-}
-
-function doReset()
-{
-    value.set(null);
-    val = inDefault.get();
-    value.set(val);
-    outRestarted.trigger();
-}
-
-decrement.onTriggered = function ()
-{
-    val--;
-    if (inLimit.get())
-    {
-        if (mode == MODE_REWIND && val < 0)val = inLength.get() - 1;
-        if (mode == MODE_STOP && val < 0)val = 0;
-    }
-    value.set(val);
-
-    outChanged.trigger();
-};
-
-increment.onTriggered = function ()
-{
-    val++;
-    if (inLimit.get())
-    {
-        if (mode == MODE_REWIND && val >= inLength.get())
-        {
-            val = 0;
-            outRestarted.trigger();
-        }
-        if (mode == MODE_STOP && val >= inLength.get())val = inLength.get() - 1;
-    }
-
-    value.set(val);
-
-    outChanged.trigger();
-};
-
-
-};
-
-Ops.Math.Incrementor.prototype = new CABLES.Op();
-CABLES.OPS["45cc0011-ada8-4423-8f5b-39a3810b8389"]={f:Ops.Math.Incrementor,objName:"Ops.Math.Incrementor"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Math.SmootherStep
-// 
-// **************************************************************
-
-Ops.Math.SmootherStep = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    val = op.inValueFloat("val", 0),
-    min = op.inValueFloat("min", 0),
-    max = op.inValueFloat("max", 1),
-    result = op.outNumber("result");
-
-val.onChange = max.onChange = min.onChange = exec;
-exec();
-
-function exec()
-{
-    let x = Math.max(0, Math.min(1, (val.get() - min.get()) / (max.get() - min.get())));
-    result.set(x * x * x * (x * (x * 6 - 15) + 10) * (max.get() - min.get())); // smootherstep
-}
-
-
-};
-
-Ops.Math.SmootherStep.prototype = new CABLES.Op();
-CABLES.OPS["c66da84f-ff2f-45de-b3c2-557bdf1cb946"]={f:Ops.Math.SmootherStep,objName:"Ops.Math.SmootherStep"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.String.StringCompose_v3
-// 
-// **************************************************************
-
-Ops.String.StringCompose_v3 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    format=op.inString('Format',"hello $a, $b $c und $d"),
-    a=op.inString('String A','world'),
-    b=op.inString('String B',1),
-    c=op.inString('String C',2),
-    d=op.inString('String D',3),
-    e=op.inString('String E'),
-    f=op.inString('String F'),
-    result=op.outString("Result");
-
-format.onChange=
-    a.onChange=
-    b.onChange=
-    c.onChange=
-    d.onChange=
-    e.onChange=
-    f.onChange=update;
-
-update();
-
-function update()
-{
-    var str=format.get()||'';
-    if(typeof str!='string')
-        str='';
-
-    str = str.replace(/\$a/g, a.get());
-    str = str.replace(/\$b/g, b.get());
-    str = str.replace(/\$c/g, c.get());
-    str = str.replace(/\$d/g, d.get());
-    str = str.replace(/\$e/g, e.get());
-    str = str.replace(/\$f/g, f.get());
-
-    result.set(str);
-}
-
-};
-
-Ops.String.StringCompose_v3.prototype = new CABLES.Op();
-CABLES.OPS["6afea9f4-728d-4f3c-9e75-62ddc1448bf0"]={f:Ops.String.StringCompose_v3,objName:"Ops.String.StringCompose_v3"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Array.StringToArray_v2
-// 
-// **************************************************************
-
-Ops.Array.StringToArray_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const text = op.inStringEditor("text", "1,2,3"),
-    separator = op.inString("separator", ","),
-    toNumber = op.inValueBool("Numbers", true),
-    trim = op.inValueBool("Trim", true),
-    splitNewLines = op.inBool("Split Lines", false),
-    arr = op.outArray("array"),
-    parsed = op.outTrigger("Parsed"),
-    len = op.outNumber("length");
-
-text.setUiAttribs({ "ignoreBigPort": true });
-
-text.onChange = separator.onChange = toNumber.onChange = trim.onChange = parse;
-
-splitNewLines.onChange = () =>
-{
-    separator.setUiAttribs({ "greyout": splitNewLines.get() });
-    parse();
-};
-
-parse();
-
-function parse()
-{
-    if (!text.get())
-    {
-        arr.set(null);
-        arr.set([]);
-        len.set(0);
-        return;
-    }
-
-    let textInput = text.get();
-    if (trim.get() && textInput)
-    {
-        textInput = textInput.replace(/^\s+|\s+$/g, "");
-        textInput = textInput.trim();
-    }
-
-    let r;
-    let sep = separator.get();
-    if (separator.get() === "\\n") sep = "\n";
-    if (splitNewLines.get()) r = textInput.split("\n");
-    else r = textInput.split(sep);
-
-    if (r[r.length - 1] === "") r.length -= 1;
-
-    len.set(r.length);
-
-    if (trim.get())
-    {
-        for (let i = 0; i < r.length; i++)
-        {
-            r[i] = r[i].replace(/^\s+|\s+$/g, "");
-            r[i] = r[i].trim();
-        }
-    }
-
-    op.setUiError("notnum", null);
-    if (toNumber.get())
-    {
-        let hasStrings = false;
-        for (let i = 0; i < r.length; i++)
-        {
-            r[i] = Number(r[i]);
-            if (!CABLES.UTILS.isNumeric(r[i]))
-            {
-                hasStrings = true;
-            }
-        }
-        if (hasStrings)
-        {
-            op.setUiError("notnum", "Parse Error / Not all values numerical!", 1);
-        }
-    }
-
-    arr.setRef(r);
-    parsed.trigger();
-}
-
-
-};
-
-Ops.Array.StringToArray_v2.prototype = new CABLES.Op();
-CABLES.OPS["c974de41-4ce4-4432-b94d-724741109c71"]={f:Ops.Array.StringToArray_v2,objName:"Ops.Array.StringToArray_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Array.ArrayGetString
-// 
-// **************************************************************
-
-Ops.Array.ArrayGetString = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    array = op.inArray("array"),
-    index = op.inValueInt("index"),
-    result = op.outString("result");
-
-array.ignoreValueSerialize = true;
-
-index.onChange = update;
-
-array.onChange = function ()
-{
-    update();
-};
-
-function update()
-{
-    const arr = array.get();
-    if (arr) result.set(arr[index.get()]);
-}
-
-
-};
-
-Ops.Array.ArrayGetString.prototype = new CABLES.Op();
-CABLES.OPS["be8f16c0-0c8a-48a2-a92b-45dbf88c76c1"]={f:Ops.Array.ArrayGetString,objName:"Ops.Array.ArrayGetString"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.RenderToTexture_v3
-// 
-// **************************************************************
-
-Ops.Gl.RenderToTexture_v3 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    render = op.inTrigger("render"),
-    inSize = op.inSwitch("Size", ["Canvas", "Manual"], "Canvas"),
-    width = op.inValueInt("texture width", 512),
-    height = op.inValueInt("texture height", 512),
-    aspect = op.inBool("Auto Aspect", true),
-    tfilter = op.inSwitch("filter", ["nearest", "linear", "mipmap"], "linear"),
-    twrap = op.inSwitch("Wrap", ["Clamp", "Repeat", "Mirror"], "Repeat"),
-    msaa = op.inSwitch("MSAA", ["none", "2x", "4x", "8x"], "none"),
-    trigger = op.outTrigger("trigger"),
-    tex = op.outTexture("texture"),
-    texDepth = op.outTexture("textureDepth"),
-    inPixelFormat = op.inDropDown("Pixel Format", CGL.Texture.PIXELFORMATS, CGL.Texture.PFORMATSTR_RGBA8UB),
-    depth = op.inValueBool("Depth", true),
-    clear = op.inValueBool("Clear", true);
-
-const cgl = op.patch.cgl;
-let fb = null;
-let reInitFb = true;
-
-op.setPortGroup("Size", [inSize, width, height, aspect]);
-
-inPixelFormat.onChange =
-    depth.onChange =
-    clear.onChange =
-    tfilter.onChange =
-    twrap.onChange =
-    msaa.onChange = initFbLater;
-
-inSize.onChange = updateUi;
-
-render.onTriggered =
-    op.preRender = doRender;
-
-updateUi();
-
-function updateUi()
-{
-    width.setUiAttribs({ "greyout": inSize.get() != "Manual" });
-    height.setUiAttribs({ "greyout": inSize.get() != "Manual" });
-    aspect.setUiAttribs({ "greyout": inSize.get() != "Manual" });
-}
-
-function initFbLater()
-{
-    reInitFb = true;
-}
-
-function doRender()
-{
-    CGL.TextureEffect.checkOpNotInTextureEffect(op);
-
-    if (!fb || reInitFb)
-    {
-        if (fb) fb.delete();
-
-        let selectedWrap = CGL.Texture.WRAP_REPEAT;
-        if (twrap.get() == "Clamp") selectedWrap = CGL.Texture.WRAP_CLAMP_TO_EDGE;
-        else if (twrap.get() == "Mirror") selectedWrap = CGL.Texture.WRAP_MIRRORED_REPEAT;
-
-        let selectFilter = CGL.Texture.FILTER_NEAREST;
-        if (tfilter.get() == "nearest") selectFilter = CGL.Texture.FILTER_NEAREST;
-        else if (tfilter.get() == "linear") selectFilter = CGL.Texture.FILTER_LINEAR;
-        else if (tfilter.get() == "mipmap") selectFilter = CGL.Texture.FILTER_MIPMAP;
-
-        if (inPixelFormat.get().indexOf("loat") && tfilter.get() == "mipmap") op.setUiError("fpmipmap", "Can't use mipmap and float texture at the same time");
-        else op.setUiError("fpmipmap", null);
-
-        if (cgl.glVersion >= 2)
-        {
-            let ms = true;
-            let msSamples = 4;
-
-            if (msaa.get() == "none")
-            {
-                msSamples = 0;
-                ms = false;
-            }
-            if (msaa.get() == "2x") msSamples = 2;
-            if (msaa.get() == "4x") msSamples = 4;
-            if (msaa.get() == "8x") msSamples = 8;
-
-            fb = new CGL.Framebuffer2(cgl, 8, 8,
-                {
-                    "name": "render2texture " + op.id,
-                    "pixelFormat": inPixelFormat.get(),
-                    "multisampling": ms,
-                    "multisamplingSamples": msSamples,
-                    "wrap": selectedWrap,
-                    "filter": selectFilter,
-                    "depth": depth.get(),
-                    "clear": clear.get()
-                });
-        }
-        else
-        {
-            fb = new CGL.Framebuffer(cgl, 8, 8, { "isFloatingPointTexture": false, "clear": clear.get() });
-        }
-
-        if (fb && fb.valid)
-        {
-            texDepth.set(fb.getTextureDepth());
-            reInitFb = false;
-        }
-        else
-        {
-            fb = null;
-            reInitFb = true;
-        }
-    }
-
-    let setAspect = aspect.get();
-
-    if (inSize.get() == "Canvas")
-    {
-        setAspect = true;
-        width.set(op.patch.cgl.checkTextureSize(cgl.canvasWidth));
-        height.set(op.patch.cgl.checkTextureSize(cgl.canvasHeight));
-    }
-
-    if (fb.getWidth() != op.patch.cgl.checkTextureSize(width.get()) || fb.getHeight() != op.patch.cgl.checkTextureSize(height.get()))
-    {
-        fb.setSize(
-            op.patch.cgl.checkTextureSize(width.get()),
-            op.patch.cgl.checkTextureSize(height.get()));
-    }
-
-    fb.renderStart(cgl);
-
-    cgl.pushViewPort(0, 0, width.get(), height.get());
-
-    if (setAspect) mat4.perspective(cgl.pMatrix, 45, width.get() / height.get(), 0.1, 1000.0);
-
-    trigger.trigger();
-    fb.renderEnd(cgl);
-
-    cgl.popViewPort();
-
-    texDepth.setRef(fb.getTextureDepth());
-    tex.setRef(fb.getTextureColor());
-}
-
-//
-
-
-};
-
-Ops.Gl.RenderToTexture_v3.prototype = new CABLES.Op();
-CABLES.OPS["41eec5c7-c480-477a-be81-04c3efac8357"]={f:Ops.Gl.RenderToTexture_v3,objName:"Ops.Gl.RenderToTexture_v3"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.FontMSDF_v2
-// 
-// **************************************************************
-
-Ops.Gl.FontMSDF_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inUUID = op.inString("Font Name", CABLES.uuid()),
-    urlData = op.inUrl("Font Data", "/assets/library/fonts_msdf/worksans-regular_int.json"),
-    urlTex = op.inUrl("Font Image", "/assets/library/fonts_msdf/worksans-regular_int.png"),
-    urlTex1 = op.inUrl("Font Image 1"),
-    urlTex2 = op.inUrl("Font Image 2"),
-    urlTex3 = op.inUrl("Font Image 3"),
-    outLoaded = op.outBool("Loaded"),
-    outNumChars = op.outNumber("Total Chars"),
-    outChars = op.outString("Chars"),
-    cgl = op.patch.cgl;
-
-let
-    loadedData = false,
-    loadedTex = false,
-    loadingId = 0;
-
-inUUID.onChange =
-urlData.onChange =
-    urlTex.onChange =
-    urlTex1.onChange =
-    urlTex2.onChange =
-    urlTex3.onChange = load;
-
-const textures = [];
-
-function updateLoaded()
-{
-    const l = loadedData && loadedTex;
-    if (!outLoaded.get() && l) op.patch.emitEvent("FontLoadedMSDF");
-    outLoaded.set(l);
-}
-
-op.onFileChanged = function (fn)
-{
-    if (
-        (urlTex.get() && urlTex.get().indexOf(fn) > -1) ||
-        (urlTex1.get() && urlTex1.get().indexOf(fn) > -1) ||
-        (urlTex2.get() && urlTex2.get().indexOf(fn) > -1) ||
-        (urlTex3.get() && urlTex3.get().indexOf(fn) > -1))
-    {
-        load();
-    }
-};
-
-let oldUUID = "";
-
-function load()
-{
-    if (!urlData.get() || !urlTex.get()) return;
-
-    textures.length = 0;
-    op.patch.deleteVar("font_data_" + oldUUID);
-    op.patch.deleteVar("font_tex_" + oldUUID);
-    oldUUID = inUUID.get();
-
-    const varNameData = "font_data_" + inUUID.get();
-    const varNameTex = "font_tex_" + inUUID.get();
-
-    op.patch.setVarValue(varNameData, {});
-    op.patch.setVarValue(varNameTex, textures);
-
-    op.patch.getVar(varNameData).type = "fontData";
-    op.patch.getVar(varNameTex).type = "fontTexture";
-
-    loadedData = loadedTex = false;
-    updateLoaded();
-
-    op.patch.loading.finished(loadingId);
-    loadingId = op.patch.loading.start("jsonFile", "" + urlData.get(), op);
-
-    op.setUiError("invaliddata", null);
-    op.setUiError("jsonerr", null);
-    op.setUiError("texurlerror", null);
-
-    const urlDatastr = op.patch.getFilePath(String(urlData.get()));
-
-    // load font data json
-    cgl.patch.loading.addAssetLoadingTask(() =>
-    {
-        CABLES.ajax(urlDatastr, (err, _data, xhr) =>
-        {
-            if (err)
-            {
-                op.logError(err);
-                return;
-            }
-            try
-            {
-                let data = _data;
-                if (typeof data === "string") data = JSON.parse(_data);
-                if (!data.chars || !data.info || !data.info.face)
-                {
-                    op.setUiError("invaliddata", "data file is invalid");
-                    return;
-                }
-
-                outNumChars.set(data.chars.length);
-                let allChars = "";
-                for (let i = 0; i < data.chars.length; i++)allChars += data.chars[i].char;
-                outChars.set(allChars);
-
-                op.setUiAttrib({ "extendTitle": data.info.face });
-                op.patch.setVarValue(varNameData, null);
-                op.patch.setVarValue(varNameData,
-                    {
-                        "name": CABLES.basename(urlData.get()),
-                        "basename": inUUID.get(),
-                        "data": data
-                    });
-
-                op.patch.loading.finished(loadingId);
-                loadedData = true;
-                updateLoaded();
-            }
-            catch (e)
-            {
-                op.patch.setVarValue(varNameData, null);
-                op.patch.setVarValue(varNameTex, null);
-
-                op.logError(e);
-                op.setUiError("jsonerr", "Problem while loading json:<br/>" + e);
-                op.patch.loading.finished(loadingId);
-                updateLoaded();
-                outLoaded.set(false);
-            }
-        });
-    });
-
-    // load font texture
-
-    for (let i = 0; i < 4; i++)
-    {
-        const num = i;
-
-        let texPort = urlTex;
-        if (i == 1)texPort = urlTex1;
-        if (i == 2)texPort = urlTex2;
-        if (i == 3)texPort = urlTex3;
-
-        if (!texPort.get()) continue;
-
-        const loadingIdTex = cgl.patch.loading.start(op.objName, texPort.get(), op);
-        const urlTexstr = op.patch.getFilePath(String(texPort.get()));
-
-        CGL.Texture.load(cgl, urlTexstr, function (err, tex)
-        {
-            if (err)
-            {
-                op.setUiError("texurlerror", "could not load texture");
-                cgl.patch.loading.finished(loadingIdTex);
-                loadedTex = false;
-                return;
-            }
-            textures[num] = tex;
-            op.patch.setVarValue(varNameTex, null);
-            op.patch.setVarValue(varNameTex, textures);
-
-            loadedTex = true;
-            cgl.patch.loading.finished(loadingIdTex);
-            updateLoaded();
-        }, {
-            "filter": CGL.Texture.FILTER_LINEAR,
-            "flip": false
-        });
-    }
-}
-
-
-};
-
-Ops.Gl.FontMSDF_v2.prototype = new CABLES.Op();
-CABLES.OPS["6cbd5d67-25d5-4936-a2ad-3ee8ed478570"]={f:Ops.Gl.FontMSDF_v2,objName:"Ops.Gl.FontMSDF_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Anim.Timer_v2
-// 
-// **************************************************************
-
-Ops.Anim.Timer_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inSpeed = op.inValue("Speed", 1),
-    playPause = op.inValueBool("Play", true),
-    reset = op.inTriggerButton("Reset"),
-    inSyncTimeline = op.inValueBool("Sync to timeline", false),
-    outTime = op.outNumber("Time");
-
-op.setPortGroup("Controls", [playPause, reset, inSpeed]);
-
-const timer = new CABLES.Timer();
-let lastTime = null;
-let time = 0;
-let syncTimeline = false;
-
-playPause.onChange = setState;
-setState();
-
-function setState()
-{
-    if (playPause.get())
-    {
-        timer.play();
-        op.patch.addOnAnimFrame(op);
-    }
-    else
-    {
-        timer.pause();
-        op.patch.removeOnAnimFrame(op);
-    }
-}
-
-reset.onTriggered = doReset;
-
-function doReset()
-{
-    time = 0;
-    lastTime = null;
-    timer.setTime(0);
-    outTime.set(0);
-}
-
-inSyncTimeline.onChange = function ()
-{
-    syncTimeline = inSyncTimeline.get();
-    playPause.setUiAttribs({ "greyout": syncTimeline });
-    reset.setUiAttribs({ "greyout": syncTimeline });
-};
-
-op.onAnimFrame = function (tt, frameNum, deltaMs)
-{
-    if (timer.isPlaying())
-    {
-        if (CABLES.overwriteTime !== undefined)
-        {
-            outTime.set(CABLES.overwriteTime * inSpeed.get());
-        }
-        else
-
-        if (syncTimeline)
-        {
-            outTime.set(tt * inSpeed.get());
-        }
-        else
-        {
-            timer.update();
-
-            const timerVal = timer.get();
-
-            if (lastTime === null)
-            {
-                lastTime = timerVal;
-                return;
-            }
-
-            const t = Math.abs(timerVal - lastTime);
-            lastTime = timerVal;
-
-            time += t * inSpeed.get();
-            if (time != time)time = 0;
-            outTime.set(time);
-        }
-    }
-};
-
-
-};
-
-Ops.Anim.Timer_v2.prototype = new CABLES.Op();
-CABLES.OPS["aac7f721-208f-411a-adb3-79adae2e471a"]={f:Ops.Anim.Timer_v2,objName:"Ops.Anim.Timer_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Anim.LFO_v2
-// 
-// **************************************************************
-
-Ops.Anim.LFO_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    time = op.inValue("Time"),
-    speed = op.inFloat("Frequency", 1),
-    type = op.inValueSelect("Type", ["sine", "triangle", "ramp up", "ramp down", "square"], "sine"),
-    phase = op.inValue("Phase", 0),
-    rangeMin = op.inValue("Range Min", -1),
-    rangeMax = op.inValue("Range Max", 1),
-    result = op.outNumber("Result");
-
-let v = 0;
-type.onChange = updateType;
-
-updateType();
-
-const PI2 = Math.PI / 2;
-
-function updateType()
-{
-    if (type.get() == "sine") time.onChange = sine;
-    if (type.get() == "ramp up") time.onChange = rampUp;
-    if (type.get() == "ramp down") time.onChange = rampDown;
-    if (type.get() == "square") time.onChange = square;
-    if (type.get() == "triangle") time.onChange = triangle;
-}
-
-function updateTime()
-{
-    return (time.get() * speed.get()) + phase.get();
-}
-
-function square()
-{
-    let t = updateTime() + 0.5;
-    v = t % 2.0;
-    if (v <= 1.0)v = -1;
-    else v = 1;
-    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
-    result.set(v);
-}
-
-function rampUp()
-{
-    let t = (updateTime() + 1);
-    t *= 0.5;
-    v = t % 1.0;
-    v -= 0.5;
-    v *= 2.0;
-    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
-    result.set(v);
-}
-
-function rampDown()
-{
-    let t = updateTime();
-    v = t % 1.0;
-    v -= 0.5;
-    v *= -2.0;
-    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
-    result.set(v);
-}
-
-function triangle()
-{
-    let t = updateTime();
-    v = t % 2.0;
-    if (v > 1) v = 2.0 - v;
-    v -= 0.5;
-    v *= 2.0;
-    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
-    result.set(v);
-}
-
-function sine()
-{
-    let t = updateTime() * Math.PI - (PI2);
-    v = Math.sin((t));
-    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
-    result.set(v);
-}
-
-
-};
-
-Ops.Anim.LFO_v2.prototype = new CABLES.Op();
-CABLES.OPS["621f3334-f428-4310-b0da-66eb8259df33"]={f:Ops.Anim.LFO_v2,objName:"Ops.Anim.LFO_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Boolean.And
-// 
-// **************************************************************
-
-Ops.Boolean.And = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    bool0 = op.inValueBool("bool 1"),
-    bool1 = op.inValueBool("bool 2"),
-    result = op.outBoolNum("result");
-
-bool0.onChange =
-bool1.onChange = exec;
-
-function exec()
-{
-    result.set(bool1.get() && bool0.get());
-}
-
-
-};
-
-Ops.Boolean.And.prototype = new CABLES.Op();
-CABLES.OPS["c26e6ce0-8047-44bb-9bc8-5a4f911ed8ad"]={f:Ops.Boolean.And,objName:"Ops.Boolean.And"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.String.StringContains_v2
-// 
-// **************************************************************
-
-Ops.String.StringContains_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inStr = op.inString("String"),
-    inValue = op.inString("SearchValue"),
-    outFound = op.outBoolNum("Found", false),
-    outIndex = op.outNumber("Index", -1);
-
-inValue.onChange =
-    inStr.onChange = exec;
-
-exec();
-
-function exec()
-{
-    if (inStr.get() && inValue.get() && inValue.get().length > 0)
-    {
-        const index = inStr.get().indexOf(inValue.get());
-        outIndex.set(index);
-        outFound.set(index > -1);
-    }
-    else
-    {
-        outIndex.set(-1);
-        outFound.set(false);
-    }
-}
-
-
-};
-
-Ops.String.StringContains_v2.prototype = new CABLES.Op();
-CABLES.OPS["2ca3e5d7-e6b4-46a7-8381-3fe1ad8b6879"]={f:Ops.String.StringContains_v2,objName:"Ops.String.StringContains_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.GLTF.GltfDracoCompression
-// 
-// **************************************************************
-
-Ops.Gl.GLTF.GltfDracoCompression = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-class DracoDecoderClass
-{
-    constructor()
-    {
-        this.workerLimit = 4;
-        this.workerPool = [];
-        this.workerNextTaskID = 1;
-        this.workerSourceURL = "";
-
-        this.config = {
-            "wasm": Uint8Array.from(atob(DracoDecoderWASM), (c) => { return c.charCodeAt(0); }),
-            "wrapper": DracoWASMWrapperCode,
-            "decoderSettings": {},
-        };
-
-        const dracoWorker = this._DracoWorker.toString();
-        const workerCode = dracoWorker.substring(dracoWorker.indexOf("{") + 1, dracoWorker.lastIndexOf("}"));
-
-        const jsContent = this.config.wrapper;
-        const body = [
-            "/* draco decoder */",
-            jsContent,
-            "",
-            "/* worker */",
-            workerCode
-        ].join("\n");
-
-        this.workerSourceURL = URL.createObjectURL(new Blob([body]));
-    }
-
-    _getWorker(taskID, taskCost)
-    {
-        if (this.workerPool.length < this.workerLimit)
-        {
-            const worker = new Worker(this.workerSourceURL);
-            worker._callbacks = {};
-            worker._taskCosts = {};
-            worker._taskLoad = 0;
-            worker.postMessage({ "type": "init", "decoderConfig": this.config });
-            worker.onmessage = (e) =>
-            {
-                const message = e.data;
-
-                switch (message.type)
-                {
-                case "done":
-                    worker._callbacks[message.taskID].finishedCallback(message.geometry);
-                    break;
-
-                case "error":
-                    worker._callbacks[message.taskID].errorCallback(message);
-                    break;
-
-                default:
-                    op.error("THREE.DRACOLoader: Unexpected message, \"" + message.type + "\"");
-                }
-                this._releaseTask(worker, message.taskID);
-            };
-            this.workerPool.push(worker);
-        }
-        else
-        {
-            this.workerPool.sort(function (a, b)
-            {
-                return a._taskLoad > b._taskLoad ? -1 : 1;
-            });
-        }
-
-        const worker = this.workerPool[this.workerPool.length - 1];
-        worker._taskCosts[taskID] = taskCost;
-        worker._taskLoad += taskCost;
-        return worker;
-    }
-
-    decodeGeometry(buffer, finishedCallback, errorCallback = null)
-    {
-        const taskID = this.workerNextTaskID++;
-        const taskCost = buffer.byteLength;
-
-        const worker = this._getWorker(taskID, taskCost);
-        worker._callbacks[taskID] = { finishedCallback, errorCallback };
-        worker.postMessage({ "type": "decode", "taskID": taskID, buffer }, [buffer]);
-    }
-
-    _releaseTask(worker, taskID)
-    {
-        worker._taskLoad -= worker._taskCosts[taskID];
-        delete worker._callbacks[taskID];
-        delete worker._taskCosts[taskID];
-    }
-
-    _DracoWorker()
-    {
-        let pendingDecoder;
-
-        onmessage = function (e)
-        {
-            const message = e.data;
-            switch (message.type)
-            {
-            case "init":
-                const decoderConfig = message.decoderConfig;
-                const moduleConfig = decoderConfig.decoderSettings;
-                pendingDecoder = new Promise(function (resolve)
-                {
-                    moduleConfig.onModuleLoaded = function (draco)
-                    {
-                        // Module is Promise-like. Wrap before resolving to avoid loop.
-                        resolve({ "draco": draco });
-                    };
-                    moduleConfig.wasmBinary = decoderConfig.wasm;
-                    DracoDecoderModule(moduleConfig); // eslint-disable-line no-undef
-                });
-                break;
-            case "decode":
-                pendingDecoder.then((module) =>
-                {
-                    const draco = module.draco;
-
-                    const f = new draco.Decoder();
-                    const dataBuff = new Int8Array(message.buffer);
-
-                    const geometryType = f.GetEncodedGeometryType(dataBuff);
-                    const buffer = new draco.DecoderBuffer();
-                    buffer.Init(dataBuff, dataBuff.byteLength);
-
-                    let outputGeometry = new draco.Mesh();
-                    const status = f.DecodeBufferToMesh(buffer, outputGeometry);
-                    const attribute = f.GetAttributeByUniqueId(outputGeometry, 1);
-                    const geometry = dracoAttributes(draco, f, outputGeometry, geometryType, name);
-
-                    this.postMessage({ "type": "done", "taskID": message.taskID, "geometry": geometry });
-
-                    draco.destroy(f);
-                    draco.destroy(buffer);
-                });
-                break;
-            }
-        };
-
-        let dracoAttributes = function (draco, decoder, dracoGeometry, geometryType, name)
-        {
-            const attributeIDs = {
-                "position": draco.POSITION,
-                "normal": draco.NORMAL,
-                "color": draco.COLOR,
-                "uv": draco.TEX_COORD,
-                "joints": draco.GENERIC,
-                "weights": draco.GENERIC,
-            };
-            const attributeTypes = {
-                "position": "Float32Array",
-                "normal": "Float32Array",
-                "color": "Float32Array",
-                "weights": "Float32Array",
-                "joints": "Uint8Array",
-                "uv": "Float32Array"
-            };
-
-            const geometry = {
-                "index": null,
-                "attributes": []
-            };
-
-            let count = 0;
-            for (const attributeName in attributeIDs)
-            {
-                const attributeType = attributeTypes[attributeName];
-                let attributeID = decoder.GetAttributeId(dracoGeometry, attributeIDs[attributeName]);
-
-                count++;
-                if (attributeID != -1)
-                {
-                    let attribute = decoder.GetAttribute(dracoGeometry, attributeID);
-                    geometry.attributes.push(decodeAttribute(draco, decoder, dracoGeometry, attributeName, attributeType, attribute));
-                }
-            }
-
-            if (geometryType === draco.TRIANGULAR_MESH) geometry.index = decodeIndex(draco, decoder, dracoGeometry);
-            else op.warn("unknown draco geometryType", geometryType);
-
-            draco.destroy(dracoGeometry);
-            return geometry;
-        };
-
-        let decodeIndex = function (draco, decoder, dracoGeometry)
-        {
-            const numFaces = dracoGeometry.num_faces();
-            const numIndices = numFaces * 3;
-            const byteLength = numIndices * 4;
-            const ptr = draco._malloc(byteLength);
-
-            decoder.GetTrianglesUInt32Array(dracoGeometry, byteLength, ptr);
-            const index = new Uint32Array(draco.HEAPF32.buffer, ptr, numIndices).slice();
-
-            draco._free(ptr);
-
-            return {
-                "array": index,
-                "itemSize": 1
-            };
-        };
-
-        let decodeAttribute = function (draco, decoder, dracoGeometry, attributeName, attributeType, attribute)
-        {
-            let bytesPerElement = 4;
-            if (attributeType === "Float32Array") bytesPerElement = 4;
-            else if (attributeType === "Uint8Array") bytesPerElement = 1;
-            else op.warn("unknown attrtype bytesPerElement", attributeType);
-
-            const numComponents = attribute.num_components();
-            const numPoints = dracoGeometry.num_points();
-            const numValues = numPoints * numComponents;
-            const byteLength = numValues * bytesPerElement;
-            const dataType = getDracoDataType(draco, attributeType);
-            const ptr = draco._malloc(byteLength);
-            let array = null;
-
-            decoder.GetAttributeDataArrayForAllPoints(dracoGeometry, attribute, dataType, byteLength, ptr);
-
-            if (attributeType === "Float32Array") array = new Float32Array(draco.HEAPF32.buffer, ptr, numValues).slice();
-            else if (attributeType === "Uint8Array") array = new Uint8Array(draco.HEAPF32.buffer, ptr, numValues).slice();
-            else op.warn("unknown attrtype", attributeType);
-
-            draco._free(ptr);
-
-            return {
-                "name": attributeName,
-                "array": array,
-                "itemSize": numComponents
-            };
-        };
-
-        let getDracoDataType = function (draco, attributeType)
-        {
-            switch (attributeType)
-            {
-            case "Float32Array": return draco.DT_FLOAT32;
-            case "Int8Array": return draco.DT_INT8;
-            case "Int16Array": return draco.DT_INT16;
-            case "Int32Array": return draco.DT_INT32;
-            case "Uint8Array": return draco.DT_UINT8;
-            case "Uint16Array": return draco.DT_UINT16;
-            case "Uint32Array": return draco.DT_UINT32;
-            }
-        };
-    }
-}
-
-window.DracoDecoder = new DracoDecoderClass();
-
-
-};
-
-Ops.Gl.GLTF.GltfDracoCompression.prototype = new CABLES.Op();
-CABLES.OPS["4ecdc2ef-a242-4548-ad74-13f617119a64"]={f:Ops.Gl.GLTF.GltfDracoCompression,objName:"Ops.Gl.GLTF.GltfDracoCompression"};
 
 
 
@@ -30521,6 +25138,6288 @@ CABLES.OPS["baf968ea-e4df-4fca-9cda-e6ddd38a4200"]={f:Ops.Gl.GLTF.GltfSetMateria
 
 // **************************************************************
 // 
+// Ops.Gl.Shader.MatCapMaterial_v3
+// 
+// **************************************************************
+
+Ops.Gl.Shader.MatCapMaterial_v3 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"matcap_frag":"{{MODULES_HEAD}}\n\n#ifdef HAS_TEXTURES\n    IN vec2 texCoord;\n#endif\n\nIN vec3 transformedNormal;\nIN vec3 viewSpacePosition;\n\nUNI vec4 inColor;\n\nUNI sampler2D texMatcap;\n\n#ifdef HAS_DIFFUSE_TEXTURE\n   UNI sampler2D texDiffuse;\n#endif\n\n#ifdef USE_SPECULAR_TEXTURE\n   UNI sampler2D texSpec;\n   UNI sampler2D texSpecMatCap;\n#endif\n\n#ifdef HAS_AO_TEXTURE\n    UNI sampler2D texAo;\n    UNI float aoIntensity;\n#endif\n\n#ifdef HAS_NORMAL_TEXTURE\n    IN vec3 vBiTangent;\n    IN vec3 vTangent;\n    IN mat3 normalMatrix;\n\n    UNI sampler2D texNormal;\n    UNI float normalMapIntensity;\n#endif\n\n#ifdef HAS_TEXTURE_OPACITY\n    UNI sampler2D texOpacity;\n#endif\n\n#ifdef CALC_SSNORMALS\n    IN vec3 eye_relative_pos;\n\n    // from https://www.enkisoftware.com/devlogpost-20150131-1-Normal_generation_in_the_pixel_shader\n    vec3 CalculateScreenSpaceNormals() {\n    \tvec3 dFdxPos = dFdx(eye_relative_pos);\n    \tvec3 dFdyPos = dFdy(eye_relative_pos);\n    \tvec3 screenSpaceNormal = normalize( cross(dFdxPos, dFdyPos));\n        return normalize(screenSpaceNormal);\n    }\n#endif\n\n// * taken & modified from https://github.com/mrdoob/three.js/blob/dev/src/renderers/shaders/ShaderLib/meshmatcap_frag.glsl.js\nvec2 getMatCapUV(vec3 viewSpacePosition, vec3 normal) {\n    vec3 viewDir = normalize(-viewSpacePosition);\n\tvec3 x = normalize(vec3(viewDir.z, 0.0, - viewDir.x));\n\tvec3 y = normalize(cross(viewDir, x));\n\tvec2 uv = vec2(dot(x, normal), dot(y, normal)) * 0.495 + 0.5; // 0.495 to remove artifacts caused by undersized matcap disks\n\treturn uv;\n}\n\nvoid main()\n{\n    vec3 viewSpaceNormal = normalize(transformedNormal);\n\n    #ifdef HAS_TEXTURES\n        vec2 texCoords = texCoord;\n        {{MODULE_BEGIN_FRAG}}\n    #endif\n\n\n    #ifdef CALC_SSNORMALS\n        viewSpaceNormal = CalculateScreenSpaceNormals();\n    #endif\n\n\n   #ifdef HAS_NORMAL_TEXTURE\n        vec3 normalFromMap = texture( texNormal, texCoord ).xyz * 2.0 - 1.0;\n        normalFromMap = normalize(normalFromMap);\n\n        vec3 tangent;\n        vec3 binormal;\n\n        #ifdef CALC_TANGENT\n            vec3 c1 = cross(normalFromMap, vec3(0.0, 0.0, 1.0));\n            vec3 c2 = cross(normalFromMap, vec3(0.0, 1.0, 0.0));\n\n            tangent = c1;\n            tangent = normalize(tangent);\n            binormal = cross(viewSpaceNormal, tangent);\n            binormal = normalize(binormal);\n        #endif\n\n        #ifndef CALC_TANGENT\n            tangent = normalize(normalMatrix * vTangent);\n            vec3 bitangent = normalize(normalMatrix * vBiTangent);\n            binormal = normalize(cross(viewSpaceNormal, bitangent));\n        #endif\n\n        normalFromMap = normalize(\n            tangent * normalFromMap.x\n            + binormal * normalFromMap.y\n            + viewSpaceNormal * normalFromMap.z\n        );\n\n        vec3 mixedNormal = normalize(viewSpaceNormal + normalFromMap * normalMapIntensity);\n\n        viewSpaceNormal = mixedNormal;\n    #endif\n\n    vec4 col = texture(texMatcap, getMatCapUV(viewSpacePosition, viewSpaceNormal));\n\n    #ifdef HAS_DIFFUSE_TEXTURE\n        col = col*texture(texDiffuse, texCoords);\n    #endif\n\n    col.rgb *= inColor.rgb;\n\n\n    #ifdef HAS_AO_TEXTURE\n        col = col\n            * mix(\n                vec4(1.0,1.0,1.0,1.0),\n                texture(texAo, texCoords),\n                aoIntensity\n            );\n    #endif\n\n    #ifdef USE_SPECULAR_TEXTURE\n        vec4 spec = texture(texSpecMatCap, getMatCapUV(viewSpacePosition, viewSpaceNormal));\n        spec *= texture(texSpec, texCoords);\n        col += spec;\n    #endif\n\n    col.a *= inColor.a;\n\n    #ifdef HAS_TEXTURE_OPACITY\n        #ifdef TRANSFORMALPHATEXCOORDS\n            texCoords=vec2(texCoord.s,1.0-texCoord.t);\n            texCoords.y = 1. - texCoords.y;\n        #endif\n        #ifdef ALPHA_MASK_ALPHA\n            col.a*=texture(texOpacity,texCoords).a;\n        #endif\n        #ifdef ALPHA_MASK_LUMI\n            col.a*=dot(vec3(0.2126,0.7152,0.0722), texture(texOpacity,texCoords).rgb);\n        #endif\n        #ifdef ALPHA_MASK_R\n            col.a*=texture(texOpacity,texCoords).r;\n        #endif\n        #ifdef ALPHA_MASK_G\n            col.a*=texture(texOpacity,texCoords).g;\n        #endif\n        #ifdef ALPHA_MASK_B\n            col.a*=texture(texOpacity,texCoords).b;\n        #endif\n\n        #ifdef DISCARDTRANS\n            if(col.a < 0.2) discard;\n        #endif\n    #endif\n\n    {{MODULE_COLOR}}\n\n    outColor = col;\n}","matcap_vert":"IN vec3 vPosition;\n\n#ifdef HAS_TEXTURES\n    IN vec2 attrTexCoord;\n#endif\n\nIN vec3 attrVertNormal;\nIN float attrVertIndex;\n\n#ifdef HAS_NORMAL_TEXTURE\n    IN vec3 attrTangent;\n    IN vec3 attrBiTangent;\n    OUT vec3 vBiTangent;\n    OUT vec3 vTangent;\n#endif\n\nUNI mat4 projMatrix;\nUNI mat4 modelMatrix;\nUNI mat4 viewMatrix;\nUNI vec3 camPos;\n\n#ifdef HAS_TEXTURES\n    UNI vec2 texOffset;\n    UNI vec2 texRepeat;\n    OUT vec2 texCoord;\n#endif\n\nOUT mat3 normalMatrix;\nOUT vec3 viewSpacePosition;\nOUT vec3 transformedNormal;\n\n{{MODULES_HEAD}}\n\n#ifdef CALC_SSNORMALS\n    // from https://www.enkisoftware.com/devlogpost-20150131-1-Normal_generation_in_the_pixel_shader\n    OUT vec3 eye_relative_pos;\n#endif\n\nmat3 transposeMat3(mat3 m) {\n    return mat3(m[0][0], m[1][0], m[2][0],\n        m[0][1], m[1][1], m[2][1],\n        m[0][2], m[1][2], m[2][2]);\n}\n\n mat3 inverseMat3(mat3 m) {\n    float a00 = m[0][0], a01 = m[0][1], a02 = m[0][2];\n    float a10 = m[1][0], a11 = m[1][1], a12 = m[1][2];\n    float a20 = m[2][0], a21 = m[2][1], a22 = m[2][2];\n\n    float b01 = a22 * a11 - a12 * a21;\n    float b11 = -a22 * a10 + a12 * a20;\n    float b21 = a21 * a10 - a11 * a20;\n\n    float det = a00 * b01 + a01 * b11 + a02 * b21;\n\n    return mat3(b01, (-a22 * a01 + a02 * a21), (a12 * a01 - a02 * a11),\n        b11, (a22 * a00 - a02 * a20), (-a12 * a00 + a02 * a10),\n        b21, (-a21 * a00 + a01 * a20), (a11 * a00 - a01 * a10)) / det;\n}\n\nvoid main()\n{\n    #ifdef HAS_TEXTURES\n        texCoord = texRepeat * vec2(attrTexCoord.x, attrTexCoord.y) + texOffset;\n        texCoord.y = 1. - texCoord.y;\n    #endif\n\n    mat4 mMatrix = modelMatrix;\n    mat4 mvMatrix;\n\n    #ifdef HAS_NORMAL_TEXTURE\n        vec3 tangent = attrTangent;\n        vec3 bitangent = attrBiTangent;\n        vTangent = attrTangent;\n        vBiTangent = attrBiTangent;\n    #endif\n\n    vec4 pos = vec4(vPosition, 1.);\n    vec3 norm = attrVertNormal;\n\n    {{MODULE_VERTEX_POSITION}}\n\n    mvMatrix = viewMatrix * mMatrix;\n    vec3 normal = norm;\n\n    normalMatrix = transposeMat3(inverseMat3(mat3(mvMatrix)));\n\n    vec3 fragPos = vec3((mvMatrix) * pos);\n    viewSpacePosition = normalize(fragPos);\n\n    #ifdef CALC_SSNORMALS\n        eye_relative_pos = -(vec3(viewMatrix * vec4(camPos, 1.)) - fragPos);\n    #endif\n\n    transformedNormal = normalize(mat3(normalMatrix) * normal);\n\n    mat4 modelViewMatrix=mvMatrix;\n    {{MODULE_VERTEX_MOVELVIEW}}\n\n    gl_Position = projMatrix * modelViewMatrix * pos;\n\n}",};
+const cgl = op.patch.cgl;
+
+const
+    render = op.inTrigger("Render"),
+    textureMatcap = op.inTexture("MatCap"),
+    textureDiffuse = op.inTexture("Diffuse"),
+    textureNormal = op.inTexture("Normal"),
+    textureSpec = op.inTexture("Specular Mask"),
+    textureSpecMatCap = op.inTexture("Specular MatCap"),
+    textureAo = op.inTexture("AO Texture"),
+    textureOpacity = op.inTexture("Opacity Texture"),
+    r = op.inValueSlider("r", 1),
+    g = op.inValueSlider("g", 1),
+    b = op.inValueSlider("b", 1),
+    pOpacity = op.inValueSlider("Opacity", 1),
+    aoIntensity = op.inValueSlider("AO Intensity", 1.0),
+    normalMapIntensity = op.inFloatSlider("Normal Map Intensity", 1),
+    repeatX = op.inValue("Repeat X", 1),
+    repeatY = op.inValue("Repeat Y", 1),
+    offsetX = op.inValue("Offset X", 0),
+    offsetY = op.inValue("Offset Y", 0),
+    ssNormals = op.inValueBool("Screen Space Normals"),
+    calcTangents = op.inValueBool("Calc normal tangents", true),
+    texCoordAlpha = op.inValueBool("Opacity TexCoords Transform", false),
+    discardTransPxl = op.inValueBool("Discard Transparent Pixels"),
+
+    next = op.outTrigger("Next"),
+    shaderOut = op.outObject("Shader");
+
+r.setUiAttribs({ "colorPick": true });
+
+const alphaMaskSource = op.inSwitch("Alpha Mask Source", ["Luminance", "R", "G", "B", "A"], "Luminance");
+alphaMaskSource.setUiAttribs({ "greyout": true });
+
+op.setPortGroup("Texture Opacity", [alphaMaskSource, texCoordAlpha, discardTransPxl]);
+op.setPortGroup("Texture Transforms", [aoIntensity, normalMapIntensity, repeatX, repeatY, offsetX, offsetY, calcTangents, ssNormals]);
+op.setPortGroup("Texture Maps", [textureDiffuse, textureNormal, textureSpec, textureSpecMatCap, textureAo, textureOpacity]);
+op.setPortGroup("Color", [r, g, b, pOpacity]);
+
+const shader = new CGL.Shader(cgl, "MatCapMaterialNew3");
+const uniOpacity = new CGL.Uniform(shader, "f", "opacity", pOpacity);
+
+shader.setModules(["MODULE_VERTEX_POSITION", "MODULE_COLOR", "MODULE_BEGIN_FRAG", "MODULE_VERTEX_MOVELVIEW"]);
+shader.setSource(attachments.matcap_vert, attachments.matcap_frag);
+shaderOut.set(shader);
+
+const textureMatcapUniform = new CGL.Uniform(shader, "t", "texMatcap");
+let textureDiffuseUniform = null;
+let textureNormalUniform = null;
+let normalMapIntensityUniform = null;
+let textureSpecUniform = null;
+let textureSpecMatCapUniform = null;
+let textureAoUniform = null;
+const offsetUniform = new CGL.Uniform(shader, "2f", "texOffset", offsetX, offsetY);
+const repeatUniform = new CGL.Uniform(shader, "2f", "texRepeat", repeatX, repeatY);
+
+const aoIntensityUniform = new CGL.Uniform(shader, "f", "aoIntensity", aoIntensity);
+const colorUniform = new CGL.Uniform(shader, "4f", "inColor", r, g, b, pOpacity);
+
+calcTangents.onChange = updateDefines;
+updateDefines();
+
+function updateDefines()
+{
+    if (calcTangents.get()) shader.define("CALC_TANGENT");
+    else shader.removeDefine("CALC_TANGENT");
+}
+
+ssNormals.onChange = function ()
+{
+    if (ssNormals.get())
+    {
+        if (cgl.glVersion < 2)
+        {
+            cgl.gl.getExtension("OES_standard_derivatives");
+            shader.enableExtension("GL_OES_standard_derivatives");
+        }
+
+        shader.define("CALC_SSNORMALS");
+    }
+    else shader.removeDefine("CALC_SSNORMALS");
+};
+
+textureMatcap.onChange = updateMatcap;
+
+function updateMatcap()
+{
+    if (!cgl.defaultMatcapTex3)
+    {
+        const pixels = new Uint8Array(256 * 4);
+        for (let x = 0; x < 16; x++)
+        {
+            for (let y = 0; y < 16; y++)
+            {
+                let c = y * 16;
+                c *= Math.min(1, (x + y / 3) / 8);
+                pixels[(x + y * 16) * 4 + 0] = pixels[(x + y * 16) * 4 + 1] = pixels[(x + y * 16) * 4 + 2] = c;
+                pixels[(x + y * 16) * 4 + 3] = 255;
+            }
+        }
+
+        cgl.defaultMatcapTex3 = new CGL.Texture(cgl);
+        cgl.defaultMatcapTex3.initFromData(pixels, 16, 16, CGL.Texture.FILTER_LINEAR, CGL.Texture.WRAP_REPEAT);
+    }
+}
+
+textureDiffuse.onChange = function ()
+{
+    if (textureDiffuse.get())
+    {
+        if (textureDiffuseUniform !== null) return;
+        shader.define("HAS_DIFFUSE_TEXTURE");
+        shader.removeUniform("texDiffuse");
+        textureDiffuseUniform = new CGL.Uniform(shader, "t", "texDiffuse");
+    }
+    else
+    {
+        shader.removeDefine("HAS_DIFFUSE_TEXTURE");
+        shader.removeUniform("texDiffuse");
+        textureDiffuseUniform = null;
+    }
+};
+
+textureNormal.onChange = function ()
+{
+    if (textureNormal.get())
+    {
+        if (textureNormalUniform !== null) return;
+        shader.define("HAS_NORMAL_TEXTURE");
+        shader.removeUniform("texNormal");
+        textureNormalUniform = new CGL.Uniform(shader, "t", "texNormal");
+        if (!normalMapIntensityUniform) normalMapIntensityUniform = new CGL.Uniform(shader, "f", "normalMapIntensity", normalMapIntensity);
+    }
+    else
+    {
+        shader.removeDefine("HAS_NORMAL_TEXTURE");
+        shader.removeUniform("texNormal");
+        textureNormalUniform = null;
+    }
+};
+
+textureAo.onChange = function ()
+{
+    if (textureAo.get())
+    {
+        if (textureAoUniform !== null) return;
+        shader.define("HAS_AO_TEXTURE");
+        shader.removeUniform("texAo");
+        textureAoUniform = new CGL.Uniform(shader, "t", "texAo");
+    }
+    else
+    {
+        shader.removeDefine("HAS_AO_TEXTURE");
+        shader.removeUniform("texAo");
+        textureAoUniform = null;
+    }
+};
+
+textureSpec.onChange = textureSpecMatCap.onChange = function ()
+{
+    if (textureSpec.get() && textureSpecMatCap.get())
+    {
+        if (textureSpecUniform !== null) return;
+        shader.define("USE_SPECULAR_TEXTURE");
+        shader.removeUniform("texSpec");
+        shader.removeUniform("texSpecMatCap");
+        textureSpecUniform = new CGL.Uniform(shader, "t", "texSpec");
+        textureSpecMatCapUniform = new CGL.Uniform(shader, "t", "texSpecMatCap");
+    }
+    else
+    {
+        shader.removeDefine("USE_SPECULAR_TEXTURE");
+        shader.removeUniform("texSpec");
+        shader.removeUniform("texSpecMatCap");
+        textureSpecUniform = null;
+        textureSpecMatCapUniform = null;
+    }
+};
+
+// TEX OPACITY
+
+function updateAlphaMaskMethod()
+{
+    if (alphaMaskSource.get() == "Alpha Channel") shader.define("ALPHA_MASK_ALPHA");
+    else shader.removeDefine("ALPHA_MASK_ALPHA");
+
+    if (alphaMaskSource.get() == "Luminance") shader.define("ALPHA_MASK_LUMI");
+    else shader.removeDefine("ALPHA_MASK_LUMI");
+
+    if (alphaMaskSource.get() == "R") shader.define("ALPHA_MASK_R");
+    else shader.removeDefine("ALPHA_MASK_R");
+
+    if (alphaMaskSource.get() == "G") shader.define("ALPHA_MASK_G");
+    else shader.removeDefine("ALPHA_MASK_G");
+
+    if (alphaMaskSource.get() == "B") shader.define("ALPHA_MASK_B");
+    else shader.removeDefine("ALPHA_MASK_B");
+}
+
+alphaMaskSource.onChange = updateAlphaMaskMethod;
+textureOpacity.onChange = updateOpacity;
+
+let textureOpacityUniform = null;
+
+function updateOpacity()
+{
+    if (textureOpacity.get())
+    {
+        if (textureOpacityUniform !== null) return;
+        shader.removeUniform("texOpacity");
+        shader.define("HAS_TEXTURE_OPACITY");
+        if (!textureOpacityUniform) textureOpacityUniform = new CGL.Uniform(shader, "t", "texOpacity");
+
+        alphaMaskSource.setUiAttribs({ "greyout": false });
+        discardTransPxl.setUiAttribs({ "greyout": false });
+        texCoordAlpha.setUiAttribs({ "greyout": false });
+    }
+    else
+    {
+        shader.removeUniform("texOpacity");
+        shader.removeDefine("HAS_TEXTURE_OPACITY");
+        textureOpacityUniform = null;
+
+        alphaMaskSource.setUiAttribs({ "greyout": true });
+        discardTransPxl.setUiAttribs({ "greyout": true });
+        texCoordAlpha.setUiAttribs({ "greyout": true });
+    }
+    updateAlphaMaskMethod();
+}
+
+discardTransPxl.onChange = function ()
+{
+    if (discardTransPxl.get()) shader.define("DISCARDTRANS");
+    else shader.removeDefine("DISCARDTRANS");
+};
+
+texCoordAlpha.onChange = function ()
+{
+    if (texCoordAlpha.get()) shader.define("TRANSFORMALPHATEXCOORDS");
+    else shader.removeDefine("TRANSFORMALPHATEXCOORDS");
+};
+
+function checkUiErrors()
+{
+    if (textureSpec.get() && !textureSpecMatCap.get())
+    {
+        op.setUiError("specNoMatCapSpec", "You connected a specular texture but have not connected a specular matcap texture. You need to connect both texture inputs for the specular input to work.", 1);
+        op.setUiError("noSpecMatCapSpec", null);
+    }
+    else if (!textureSpec.get() && textureSpecMatCap.get())
+    {
+        op.setUiError("noSpecMatCapSpec", "You connected a specular matcap texture but have not connected a specular texture. You need to connect both texture inputs for the specular input to work.", 1);
+        op.setUiError("specNoMatCapSpec", null);
+    }
+    else if (textureSpec.get() && textureSpecMatCap.get())
+    {
+        op.setUiError("specNoMatCapSpec", null);
+        op.setUiError("noSpecMatCapSpec", null);
+    }
+    else
+    {
+        op.setUiError("specNoMatCapSpec", null);
+        op.setUiError("noSpecMatCapSpec", null);
+    }
+}
+
+render.onTriggered = function ()
+{
+    checkUiErrors();
+
+    if (!cgl.defaultMatcapTex3) updateMatcap();
+    shader.popTextures();
+
+    const tex = textureMatcap.get() || cgl.defaultMatcapTex3;
+    shader.pushTexture(textureMatcapUniform, tex.tex);
+
+    if (textureDiffuse.get() && textureDiffuseUniform) shader.pushTexture(textureDiffuseUniform, textureDiffuse.get().tex);
+    if (textureNormal.get() && textureNormalUniform) shader.pushTexture(textureNormalUniform, textureNormal.get().tex);
+    if (textureSpec.get() && textureSpecUniform) shader.pushTexture(textureSpecUniform, textureSpec.get().tex);
+    if (textureSpecMatCap.get() && textureSpecMatCapUniform) shader.pushTexture(textureSpecMatCapUniform, textureSpecMatCap.get().tex);
+    if (textureAo.get() && textureAoUniform) shader.pushTexture(textureAoUniform, textureAo.get().tex);
+    if (textureOpacity.get() && textureOpacityUniform) shader.pushTexture(textureOpacityUniform, textureOpacity.get().tex);
+
+    cgl.pushShader(shader);
+    next.trigger();
+    cgl.popShader();
+};
+
+
+};
+
+Ops.Gl.Shader.MatCapMaterial_v3.prototype = new CABLES.Op();
+CABLES.OPS["c1dd6e76-61b4-471a-b8d1-f550a5a9a4f4"]={f:Ops.Gl.Shader.MatCapMaterial_v3,objName:"Ops.Gl.Shader.MatCapMaterial_v3"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.Texture_v2
+// 
+// **************************************************************
+
+Ops.Gl.Texture_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    filename = op.inUrl("File", [".jpg", ".png", ".webp", ".jpeg", ".avif"]),
+    tfilter = op.inSwitch("Filter", ["nearest", "linear", "mipmap"]),
+    wrap = op.inValueSelect("Wrap", ["repeat", "mirrored repeat", "clamp to edge"], "clamp to edge"),
+    aniso = op.inSwitch("Anisotropic", ["0", "1", "2", "4", "8", "16"], "0"),
+    dataFrmt = op.inSwitch("Data Format", ["R", "RG", "RGB", "RGBA", "SRGBA"], "RGBA"),
+    flip = op.inValueBool("Flip", false),
+    unpackAlpha = op.inValueBool("Pre Multiplied Alpha", false),
+    active = op.inValueBool("Active", true),
+    inFreeMemory = op.inBool("Save Memory", true),
+    textureOut = op.outTexture("Texture"),
+    addCacheBust = op.inBool("Add Cachebuster", false),
+    inReload = op.inTriggerButton("Reload"),
+    width = op.outNumber("Width"),
+    height = op.outNumber("Height"),
+    ratio = op.outNumber("Aspect Ratio"),
+    loaded = op.outBoolNum("Loaded", 0),
+    loading = op.outBoolNum("Loading", 0);
+
+const cgl = op.patch.cgl;
+
+op.toWorkPortsNeedToBeLinked(textureOut);
+op.setPortGroup("Size", [width, height]);
+
+let loadedFilename = null;
+let loadingId = null;
+let tex = null;
+let cgl_filter = CGL.Texture.FILTER_MIPMAP;
+let cgl_wrap = CGL.Texture.WRAP_REPEAT;
+let cgl_aniso = 0;
+let timedLoader = 0;
+
+unpackAlpha.setUiAttribs({ "hidePort": true });
+unpackAlpha.onChange =
+    filename.onChange =
+    dataFrmt.onChange =
+    addCacheBust.onChange =
+    flip.onChange = reloadSoon;
+aniso.onChange = tfilter.onChange = onFilterChange;
+wrap.onChange = onWrapChange;
+
+tfilter.set("mipmap");
+wrap.set("repeat");
+
+textureOut.set(CGL.Texture.getEmptyTexture(cgl));
+
+inReload.onTriggered = reloadSoon;
+
+active.onChange = function ()
+{
+    if (active.get())
+    {
+        if (loadedFilename != filename.get() || !tex) reloadSoon();
+        else textureOut.set(tex);
+    }
+    else
+    {
+        textureOut.set(CGL.Texture.getEmptyTexture(cgl));
+        width.set(CGL.Texture.getEmptyTexture(cgl).width);
+        height.set(CGL.Texture.getEmptyTexture(cgl).height);
+        if (tex)tex.delete();
+        op.setUiAttrib({ "extendTitle": "" });
+        tex = null;
+    }
+};
+
+const setTempTexture = function ()
+{
+    const t = CGL.Texture.getTempTexture(cgl);
+    textureOut.set(t);
+};
+
+function reloadSoon(nocache)
+{
+    clearTimeout(timedLoader);
+    timedLoader = setTimeout(function ()
+    {
+        realReload(nocache);
+    }, 1);
+}
+
+function getPixelFormat()
+{
+    if (dataFrmt.get() == "R") return CGL.Texture.PFORMATSTR_R8UB;
+    if (dataFrmt.get() == "RG") return CGL.Texture.PFORMATSTR_RG8UB;
+    if (dataFrmt.get() == "RGB") return CGL.Texture.PFORMATSTR_RGB8UB;
+    if (dataFrmt.get() == "SRGBA") return CGL.Texture.PFORMATSTR_SRGBA8;
+
+    return CGL.Texture.PFORMATSTR_RGBA8UB;
+}
+
+function realReload(nocache)
+{
+    op.checkMainloopExists();
+    if (!active.get()) return;
+    if (loadingId)loadingId = cgl.patch.loading.finished(loadingId);
+
+    loadingId = cgl.patch.loading.start(op.objName, filename.get(), op);
+
+    let url = op.patch.getFilePath(String(filename.get()));
+
+    if (addCacheBust.get() || nocache === true) url = CABLES.cacheBust(url);
+
+    if (String(filename.get()).indexOf("data:") == 0) url = filename.get();
+
+    let needsRefresh = false;
+    loadedFilename = filename.get();
+
+    if ((filename.get() && filename.get().length > 1))
+    {
+        loaded.set(false);
+        loading.set(true);
+
+        const fileToLoad = filename.get();
+
+        op.setUiAttrib({ "extendTitle": CABLES.basename(url) });
+        if (needsRefresh) op.refreshParams();
+
+        cgl.patch.loading.addAssetLoadingTask(() =>
+        {
+            op.setUiError("urlerror", null);
+            CGL.Texture.load(cgl, url, function (err, newTex)
+            {
+                cgl.checkFrameStarted("texture inittexture");
+
+                if (filename.get() != fileToLoad)
+                {
+                    loadingId = cgl.patch.loading.finished(loadingId);
+                    return;
+                }
+
+                if (tex)tex.delete();
+
+                if (err)
+                {
+                    const t = CGL.Texture.getErrorTexture(cgl);
+                    textureOut.setRef(t);
+
+                    op.setUiError("urlerror", "could not load texture: \"" + filename.get() + "\"", 2);
+                    loadingId = cgl.patch.loading.finished(loadingId);
+                    return;
+                }
+
+                // textureOut.setRef(newTex);
+
+                width.set(newTex.width);
+                height.set(newTex.height);
+                ratio.set(newTex.width / newTex.height);
+
+                // if (!newTex.isPowerOfTwo()) op.setUiError("npot", "Texture dimensions not power of two! - Texture filtering will not work in WebGL 1.", 0);
+                // else op.setUiError("npot", null);
+
+                tex = newTex;
+                // textureOut.set(null);
+                textureOut.setRef(tex);
+
+                loading.set(false);
+                loaded.set(true);
+
+                if (inFreeMemory.get()) tex.image = null;
+
+                if (loadingId)
+                {
+                    loadingId = cgl.patch.loading.finished(loadingId);
+                }
+                op.checkMainloopExists();
+            }, {
+                "anisotropic": cgl_aniso,
+                "wrap": cgl_wrap,
+                "flip": flip.get(),
+                "unpackAlpha": unpackAlpha.get(),
+                "pixelFormat": getPixelFormat(),
+                "filter": cgl_filter
+            });
+
+            op.checkMainloopExists();
+        });
+    }
+    else
+    {
+        setTempTexture();
+        loadingId = cgl.patch.loading.finished(loadingId);
+    }
+}
+
+function onFilterChange()
+{
+    if (tfilter.get() == "nearest") cgl_filter = CGL.Texture.FILTER_NEAREST;
+    else if (tfilter.get() == "linear") cgl_filter = CGL.Texture.FILTER_LINEAR;
+    else if (tfilter.get() == "mipmap") cgl_filter = CGL.Texture.FILTER_MIPMAP;
+    else if (tfilter.get() == "Anisotropic") cgl_filter = CGL.Texture.FILTER_ANISOTROPIC;
+    aniso.setUiAttribs({ "greyout": cgl_filter != CGL.Texture.FILTER_MIPMAP });
+
+    cgl_aniso = parseFloat(aniso.get());
+
+    reloadSoon();
+}
+
+function onWrapChange()
+{
+    if (wrap.get() == "repeat") cgl_wrap = CGL.Texture.WRAP_REPEAT;
+    if (wrap.get() == "mirrored repeat") cgl_wrap = CGL.Texture.WRAP_MIRRORED_REPEAT;
+    if (wrap.get() == "clamp to edge") cgl_wrap = CGL.Texture.WRAP_CLAMP_TO_EDGE;
+
+    reloadSoon();
+}
+
+op.onFileChanged = function (fn)
+{
+    if (filename.get() && filename.get().indexOf(fn) > -1)
+    {
+        textureOut.set(CGL.Texture.getEmptyTexture(op.patch.cgl));
+        textureOut.set(CGL.Texture.getTempTexture(cgl));
+        realReload(true);
+    }
+};
+
+
+};
+
+Ops.Gl.Texture_v2.prototype = new CABLES.Op();
+CABLES.OPS["790f3702-9833-464e-8e37-6f0f813f7e16"]={f:Ops.Gl.Texture_v2,objName:"Ops.Gl.Texture_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.GradientTexture
+// 
+// **************************************************************
+
+Ops.Gl.GradientTexture = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const inGrad = op.inGradient("Gradient"),
+    inDir = op.inValueSelect("Direction", ["X", "Y", "XY", "YX", "Radial"], "X"),
+    inSmoothstep = op.inValueBool("Smoothstep", false),
+    inStep = op.inBool("Step", false),
+    inFlip = op.inBool("Flip", false),
+    inSRGB = op.inBool("sRGB", false),
+    inOklab = op.inBool("Oklab", false),
+    inSize = op.inValueInt("Size", 256),
+    tfilter = op.inSwitch("filter", ["nearest", "linear", "mipmap"], "linear"),
+    twrap = op.inValueSelect("wrap", ["clamp to edge", "repeat", "mirrored repeat"], "clamp to edge"),
+    inGradArray = op.inArray("Gradient Array"),
+    inRandom = op.inTriggerButton("Randomize Colors"),
+    outTex = op.outTexture("Texture"),
+    outColors = op.outArray("Colors", null, 3),
+    outColorPos = op.outArray("Colors Pos", null, 1);
+
+const cgl = op.patch.cgl;
+let timeout = null;
+inGrad.setUiAttribs({ "editShortcut": true });
+
+twrap.onChange =
+    tfilter.onChange =
+    inStep.onChange =
+    inFlip.onChange =
+    inSRGB.onChange =
+    inOklab.onChange =
+    inSize.onChange =
+    inGrad.onChange =
+    inSmoothstep.onChange =
+    inDir.onChange =
+    inGradArray.onChange = update;
+
+inGrad.set("{\"keys\" : [{\"pos\":0,\"r\":0,\"g\":0,\"b\":0},{\"pos\":1,\"r\":1,\"g\":1,\"b\":1}]}");
+
+op.onLoaded = update;
+
+inRandom.onTriggered = () =>
+{
+    const keys = parseKeys();
+    if (keys)
+    {
+        keys.forEach((key) =>
+        {
+            key.r = Math.random();
+            key.g = Math.random();
+            key.b = Math.random();
+        });
+        const newKeys = JSON.stringify({ "keys": keys });
+        inGrad.set(newKeys);
+    }
+};
+
+function rgbToOklab(r, g, b)
+{
+    let l = 0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b;
+    let m = 0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b;
+    let s = 0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b;
+    l = Math.cbrt(l); m = Math.cbrt(m); s = Math.cbrt(s);
+    return [
+        l * +0.2104542553 + m * +0.7936177850 + s * -0.0040720468,
+        l * +1.9779984951 + m * -2.4285922050 + s * +0.4505937099,
+        l * +0.0259040371 + m * +0.7827717662 + s * -0.8086757660
+    ];
+}
+
+function oklabToRGB(L, a, b)
+{
+    let l = L + a * +0.3963377774 + b * +0.2158037573;
+    let m = L + a * -0.1055613458 + b * -0.0638541728;
+    let s = L + a * -0.0894841775 + b * -1.2914855480;
+    l **= 3; m **= 3; s **= 3;
+    let rgb_r = l * +4.0767416621 + m * -3.3077115913 + s * +0.2309699292;
+    let rgb_g = l * -1.2684380046 + m * +2.6097574011 + s * -0.3413193965;
+    let rgb_b = l * -0.0041960863 + m * -0.7034186147 + s * +1.7076147010;
+    rgb_r = CABLES.clamp(rgb_r, 0, 1); rgb_g = CABLES.clamp(rgb_g, 0, 1); rgb_b = CABLES.clamp(rgb_b, 0, 1);
+    return [rgb_r, rgb_g, rgb_b];
+}
+
+function lin2srgb(r, g, b)
+{
+    r /= 255;
+    const thr = 0.0031308;
+    let c_loR = 12.92 * r;
+    let c_hiR = 1.055 * Math.pow(r, 0.41666) - 0.055;
+    return ((r < thr) ? c_loR : c_hiR) * 255;
+}
+
+function update()
+{
+    cgl.addNextFrameOnceCallback(doUpdate);
+}
+
+function doUpdate()
+{
+    const keys = parseKeys();
+    if (keys) updateGradient(keys);
+}
+
+function parseKeys()
+{
+    let keys = null;
+    op.setUiError("nodata", null);
+    op.setUiError("parse", null);
+
+    if (Array.isArray(inGradArray.get()))
+    {
+        keys = inGradArray.get();
+    }
+    else
+    {
+        let grad = null;
+        if (!inGrad.get() || inGrad.get() === "")
+        {
+            // op.setUiError("nodata", "gradient no data");
+            return null;
+        }
+
+        try
+        {
+            grad = JSON.parse(inGrad.get());
+        }
+        catch (e)
+        {
+            op.setUiError("parse", "could not parse gradient data");
+        }
+
+        if (!grad || !grad.keys)
+        {
+            op.setUiError("nodata", "gradient no data");
+            return null;
+        }
+        keys = grad.keys;
+    }
+    return keys;
+}
+
+function updateGradient(keys)
+{
+    let width = Math.round(inSize.get());
+    if (width < 4) width = 4;
+
+    inGrad.setUiAttribs(
+        {
+            "editShortcut": true,
+            "gradEditSmoothstep": inSmoothstep.get(),
+            "gradEditStep": inStep.get(),
+            "gradOklab": inOklab.get(),
+        });
+
+    let selectedWrap = 0;
+    let selectedFilter = 0;
+    if (twrap.get() == "repeat") selectedWrap = CGL.Texture.WRAP_REPEAT;
+    else if (twrap.get() == "mirrored repeat") selectedWrap = CGL.Texture.WRAP_MIRRORED_REPEAT;
+    else if (twrap.get() == "clamp to edge") selectedWrap = CGL.Texture.WRAP_CLAMP_TO_EDGE;
+
+    if (tfilter.get() == "nearest") selectedFilter = CGL.Texture.FILTER_NEAREST;
+    else if (tfilter.get() == "linear") selectedFilter = CGL.Texture.FILTER_LINEAR;
+    else if (tfilter.get() == "mipmap") selectedFilter = CGL.Texture.FILTER_MIPMAP;
+
+    const tex = new CGL.Texture(cgl);
+
+    let pixels = new Uint8Array(width * 4);
+
+    for (let i = 0; i < keys.length - 1; i++)
+    {
+        const keyA = keys[i];
+        const keyB = keys[i + 1];
+
+        for (let x = keyA.pos * width; x < keyB.pos * width; x++)
+        {
+            let p = CABLES.map(x, keyA.pos * width, keyB.pos * width, 0, 1);
+            if (inStep.get())p = Math.round(p);
+            if (inSmoothstep.get()) p = CABLES.smoothStep(p);
+            x = Math.round(x);
+
+            let xx = x;
+            if (inFlip.get())xx = width - x - 1;
+
+            if (inOklab.get())
+            {
+                const klabA = rgbToOklab(keyA.r, keyA.g, keyA.b);
+                const labA_r = klabA[0];
+                const labA_g = klabA[1];
+                const labA_b = klabA[2];
+
+                const klabB = rgbToOklab(keyB.r, keyB.g, keyB.b);
+                const labB_r = klabB[0];
+                const labB_g = klabB[1];
+                const labB_b = klabB[2];
+
+                const l = ((p * labB_r + (1.0 - p) * labA_r));
+                const a = ((p * labB_g + (1.0 - p) * labA_g));
+                const b = ((p * labB_b + (1.0 - p) * labA_b));
+
+                const pixCol = oklabToRGB(l, a, b);
+                pixels[xx * 4 + 0] = Math.round(pixCol[0] * 255);
+                pixels[xx * 4 + 1] = Math.round(pixCol[1] * 255);
+                pixels[xx * 4 + 2] = Math.round(pixCol[2] * 255);
+            }
+            else
+            {
+                pixels[xx * 4 + 0] = Math.round((p * keyB.r + (1.0 - p) * keyA.r) * 255);
+                pixels[xx * 4 + 1] = Math.round((p * keyB.g + (1.0 - p) * keyA.g) * 255);
+                pixels[xx * 4 + 2] = Math.round((p * keyB.b + (1.0 - p) * keyA.b) * 255);
+            }
+
+            if (typeof keyA.a !== "undefined" && typeof keyB.a !== "undefined")
+            {
+                const alpha = Math.round((p * keyB.a + (1.0 - p) * keyA.a) * 255);
+                pixels[xx * 4 + 3] = alpha;
+            }
+            else
+            {
+                pixels[xx * 4 + 3] = Math.round(255);
+            }
+        }
+    }
+    if (inSRGB.get())
+        for (let i = 0; i < pixels.length; i += 4)
+        {
+            pixels[i + 0] = lin2srgb(pixels[i + 0]);
+            pixels[i + 1] = lin2srgb(pixels[i + 1]);
+            pixels[i + 2] = lin2srgb(pixels[i + 2]);
+        }
+
+    if (inDir.get() == "X") tex.initFromData(pixels, width, 1, selectedFilter, selectedWrap);
+    if (inDir.get() == "Y") tex.initFromData(pixels, 1, width, selectedFilter, selectedWrap);
+
+    if (inDir.get() == "Radial")
+    {
+        const rpixels = new Uint8Array(width * width * 4);
+
+        for (let x = 0; x < width; x++)
+        {
+            for (let y = 0; y < width; y++)
+            {
+                const dx = x - (width - 1) / 2;
+                const dy = y - (width - 1) / 2;
+                let pos = Math.sqrt(dx * dx + dy * dy) / (width) * 2;
+
+                if (inSmoothstep.get()) pos = CABLES.smoothStep(pos);
+
+                let aa = Math.round(pos * width) * 4;
+                if (aa >= width * 4)aa = width * 4 - 4;
+
+                rpixels[(x * 4) + (y * 4 * width) + 0] = pixels[aa + 0];
+                rpixels[(x * 4) + (y * 4 * width) + 1] = pixels[aa + 1];
+                rpixels[(x * 4) + (y * 4 * width) + 2] = pixels[aa + 2];
+                rpixels[(x * 4) + (y * 4 * width) + 3] = Math.round(255);
+            }
+        }
+
+        pixels = rpixels;
+
+        tex.initFromData(pixels, width, width, selectedFilter, selectedWrap);
+    }
+
+    if (inDir.get() == "XY" || inDir.get() == "YX")
+    {
+        const rpixels = new Uint8Array(width * width * 4);
+
+        for (let x = 0; x < width; x++)
+        {
+            let xx = x;
+            if (inDir.get() == "YX")xx = width - x - 1;
+
+            for (let y = 0; y < width; y++)
+            {
+                let aa = Math.round(((xx) + y) / 2) * 4;
+
+                rpixels[(x * 4) + (y * 4 * width) + 0] = pixels[aa + 0];
+                rpixels[(x * 4) + (y * 4 * width) + 1] = pixels[aa + 1];
+                rpixels[(x * 4) + (y * 4 * width) + 2] = pixels[aa + 2];
+                rpixels[(x * 4) + (y * 4 * width) + 3] = Math.round(255);
+            }
+        }
+
+        pixels = rpixels;
+
+        tex.initFromData(pixels, width, width, selectedFilter, selectedWrap);
+    }
+
+    const colorArr = [];
+    for (let i = 0; i < keys.length - 1; i++)
+    {
+        colorArr.push(keys[i].r, keys[i].g, keys[i].b);
+    }
+
+    const colorPosArr = [];
+    for (let i = 0; i < keys.length - 1; i++)
+    {
+        colorPosArr.push(keys[i].pos);
+    }
+
+    outColors.set(colorArr);
+    outColorPos.set(colorPosArr);
+
+    // outTex.set(null);
+    outTex.setRef(tex);
+}
+
+
+};
+
+Ops.Gl.GradientTexture.prototype = new CABLES.Op();
+CABLES.OPS["01380a50-2dbb-4465-ae80-86349b0b717a"]={f:Ops.Gl.GradientTexture,objName:"Ops.Gl.GradientTexture"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.Matrix.Scale
+// 
+// **************************************************************
+
+Ops.Gl.Matrix.Scale = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("render"),
+    scale = op.inValueFloat("scale", 1.0),
+    scaleX = op.inValueFloat("x", 1),
+    scaleY = op.inValueFloat("y", 1),
+    scaleZ = op.inValueFloat("z", 1),
+    trigger = op.outTrigger("trigger");
+
+op.setPortGroup("Axis", [scaleX, scaleY, scaleZ]);
+
+const vScale = vec3.create();
+
+scaleX.onChange =
+    scaleY.onChange =
+    scaleZ.onChange =
+    scale.onChange = scaleChanged;
+
+scaleChanged();
+
+render.onTriggered = function ()
+{
+    const cgl = op.patch.cgl;
+    cgl.pushModelMatrix();
+    mat4.scale(cgl.mMatrix, cgl.mMatrix, vScale);
+    trigger.trigger();
+    cgl.popModelMatrix();
+};
+
+function scaleChanged()
+{
+    const s = scale.get();
+    vec3.set(vScale, s * scaleX.get(), s * scaleY.get(), s * scaleZ.get());
+}
+
+
+};
+
+Ops.Gl.Matrix.Scale.prototype = new CABLES.Op();
+CABLES.OPS["50e7f565-0cdb-47ca-912b-87c04e2f00e3"]={f:Ops.Gl.Matrix.Scale,objName:"Ops.Gl.Matrix.Scale"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Anim.LFO_v2
+// 
+// **************************************************************
+
+Ops.Anim.LFO_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    time = op.inValue("Time"),
+    speed = op.inFloat("Frequency", 1),
+    type = op.inValueSelect("Type", ["sine", "triangle", "ramp up", "ramp down", "square"], "sine"),
+    phase = op.inValue("Phase", 0),
+    rangeMin = op.inValue("Range Min", -1),
+    rangeMax = op.inValue("Range Max", 1),
+    result = op.outNumber("Result");
+
+let v = 0;
+type.onChange = updateType;
+
+updateType();
+
+const PI2 = Math.PI / 2;
+
+function updateType()
+{
+    if (type.get() == "sine") time.onChange = sine;
+    if (type.get() == "ramp up") time.onChange = rampUp;
+    if (type.get() == "ramp down") time.onChange = rampDown;
+    if (type.get() == "square") time.onChange = square;
+    if (type.get() == "triangle") time.onChange = triangle;
+}
+
+function updateTime()
+{
+    return (time.get() * speed.get()) + phase.get();
+}
+
+function square()
+{
+    let t = updateTime() + 0.5;
+    v = t % 2.0;
+    if (v <= 1.0)v = -1;
+    else v = 1;
+    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
+    result.set(v);
+}
+
+function rampUp()
+{
+    let t = (updateTime() + 1);
+    t *= 0.5;
+    v = t % 1.0;
+    v -= 0.5;
+    v *= 2.0;
+    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
+    result.set(v);
+}
+
+function rampDown()
+{
+    let t = updateTime();
+    v = t % 1.0;
+    v -= 0.5;
+    v *= -2.0;
+    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
+    result.set(v);
+}
+
+function triangle()
+{
+    let t = updateTime();
+    v = t % 2.0;
+    if (v > 1) v = 2.0 - v;
+    v -= 0.5;
+    v *= 2.0;
+    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
+    result.set(v);
+}
+
+function sine()
+{
+    let t = updateTime() * Math.PI - (PI2);
+    v = Math.sin((t));
+    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
+    result.set(v);
+}
+
+
+};
+
+Ops.Anim.LFO_v2.prototype = new CABLES.Op();
+CABLES.OPS["621f3334-f428-4310-b0da-66eb8259df33"]={f:Ops.Anim.LFO_v2,objName:"Ops.Anim.LFO_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Anim.Timer_v2
+// 
+// **************************************************************
+
+Ops.Anim.Timer_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inSpeed = op.inValue("Speed", 1),
+    playPause = op.inValueBool("Play", true),
+    reset = op.inTriggerButton("Reset"),
+    inSyncTimeline = op.inValueBool("Sync to timeline", false),
+    outTime = op.outNumber("Time");
+
+op.setPortGroup("Controls", [playPause, reset, inSpeed]);
+
+const timer = new CABLES.Timer();
+let lastTime = null;
+let time = 0;
+let syncTimeline = false;
+
+playPause.onChange = setState;
+setState();
+
+function setState()
+{
+    if (playPause.get())
+    {
+        timer.play();
+        op.patch.addOnAnimFrame(op);
+    }
+    else
+    {
+        timer.pause();
+        op.patch.removeOnAnimFrame(op);
+    }
+}
+
+reset.onTriggered = doReset;
+
+function doReset()
+{
+    time = 0;
+    lastTime = null;
+    timer.setTime(0);
+    outTime.set(0);
+}
+
+inSyncTimeline.onChange = function ()
+{
+    syncTimeline = inSyncTimeline.get();
+    playPause.setUiAttribs({ "greyout": syncTimeline });
+    reset.setUiAttribs({ "greyout": syncTimeline });
+};
+
+op.onAnimFrame = function (tt, frameNum, deltaMs)
+{
+    if (timer.isPlaying())
+    {
+        if (CABLES.overwriteTime !== undefined)
+        {
+            outTime.set(CABLES.overwriteTime * inSpeed.get());
+        }
+        else
+
+        if (syncTimeline)
+        {
+            outTime.set(tt * inSpeed.get());
+        }
+        else
+        {
+            timer.update();
+
+            const timerVal = timer.get();
+
+            if (lastTime === null)
+            {
+                lastTime = timerVal;
+                return;
+            }
+
+            const t = Math.abs(timerVal - lastTime);
+            lastTime = timerVal;
+
+            time += t * inSpeed.get();
+            if (time != time)time = 0;
+            outTime.set(time);
+        }
+    }
+};
+
+
+};
+
+Ops.Anim.Timer_v2.prototype = new CABLES.Op();
+CABLES.OPS["aac7f721-208f-411a-adb3-79adae2e471a"]={f:Ops.Anim.Timer_v2,objName:"Ops.Anim.Timer_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.ImageCompose.Gradient_v2
+// 
+// **************************************************************
+
+Ops.Gl.ImageCompose.Gradient_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"gradient_frag":"IN vec2 texCoord;\nUNI float amount;\nUNI float pos;\nUNI float width;\n\nUNI vec3 colA;\nUNI vec3 colB;\nUNI vec3 colC;\nUNI sampler2D tex;\n\n{{CGL.BLENDMODES3}}\n\n\n\n\nvec3 lin2srgb( vec3 cl )\n{\n\tcl = clamp( cl, 0.0, 1.0 );\n\tvec3 c_lo = 12.92 * cl;\n\tvec3 c_hi = 1.055 * pow(cl,vec3(0.41666,0.41666,0.41666)) - 0.055;\n\treturn vec3( (cl.r<0.0031308) ? c_lo.r : c_hi.r,\n                (cl.g<0.0031308) ? c_lo.g : c_hi.g,\n                (cl.b<0.0031308) ? c_lo.b : c_hi.b );\n}\n\nvec3 oklab_mix( vec3 colA, vec3 colB, float h )\n{\n    // https://www.shadertoy.com/view/ttcyRS\n    // https://bottosson.github.io/posts/oklab\n    const mat3 kCONEtoLMS = mat3(\n         0.4121656120,  0.2118591070,  0.0883097947,\n         0.5362752080,  0.6807189584,  0.2818474174,\n         0.0514575653,  0.1074065790,  0.6302613616);\n    const mat3 kLMStoCONE = mat3(\n         4.0767245293, -1.2681437731, -0.0041119885,\n        -3.3072168827,  2.6093323231, -0.7034763098,\n         0.2307590544, -0.3411344290,  1.7068625689);\n\n    // rgb to cone (arg of pow can't be negative)\n    vec3 lmsA = pow( kCONEtoLMS*colA, vec3(1.0/3.0) );\n    vec3 lmsB = pow( kCONEtoLMS*colB, vec3(1.0/3.0) );\n    // lerp\n    vec3 lms = mix( lmsA, lmsB, h );\n    // gain in the middle (no oaklab anymore, but looks better?)\n    #ifdef OKLABGAIN\n  lms *= 1.0+0.2*h*(1.0-h);\n  #endif\n    // cone to rgb\n    return kLMStoCONE*(lms*lms*lms);\n}\n\n\nvoid main()\n{\n    vec4 base=texture(tex,texCoord);\n    vec4 col;\n    float ax=texCoord.x;\n\n    #ifdef GRAD_Y\n        ax=texCoord.y;\n    #endif\n    #ifdef GRAD_XY\n        ax=(texCoord.x+texCoord.y)/2.0;\n    #endif\n    #ifdef GRAD_RADIAL\n        ax=distance(texCoord,vec2(0.5,0.5))*2.0;\n    #endif\n\n    ax=((ax-0.5)*width)+0.5;\nax=clamp(ax,0.0,1.0);\n\n    #ifndef GRAD_SMOOTHSTEP\n        if(ax<=pos) col = vec4(MIXER(colA, colB, ax*1.0/pos),1.0);\n        else col = vec4(MIXER(colB, colC, min(1.0,(ax-pos)*1.0/(1.0-pos))),1.0);\n    #endif\n\n    #ifdef GRAD_SMOOTHSTEP\n        if(ax<=pos) col = vec4(MIXER(colA, colB, smoothstep(0.0,1.0,ax*1.0/pos)),1.0);\n        else col = vec4(MIXER(colB, colC, smoothstep(0.0,1.0,min(1.0,(ax-pos)*1.0/(1.0-pos)))),1.0);\n    #endif\n\n    #ifdef SRGB\n        col.rgb=lin2srgb(col.rgb);\n    #endif\n\n    outColor=cgl_blendPixel(base,col,amount);\n}",};
+const
+    render = op.inTrigger("Render"),
+    blendMode = CGL.TextureEffect.AddBlendSelect(op, "Blend Mode", "normal"),
+    maskAlpha = CGL.TextureEffect.AddBlendAlphaMask(op),
+    amount = op.inValueSlider("Amount", 1),
+    width = op.inValue("Width", 1),
+    gType = op.inSwitch("Type", ["X", "Y", "XY", "Radial"], "X"),
+    pos1 = op.inValueSlider("Pos", 0.5),
+    smoothStep = op.inValueBool("Smoothstep", true),
+    inSrgb = op.inValueBool("sRGB", false),
+    inColSpace = op.inSwitch("color space", ["RGB", "Oklab", "OklabG"], "RGB"),
+
+    r = op.inValueSlider("r", Math.random()),
+    g = op.inValueSlider("g", Math.random()),
+    b = op.inValueSlider("b", Math.random()),
+
+    r2 = op.inValueSlider("r2", Math.random()),
+    g2 = op.inValueSlider("g2", Math.random()),
+    b2 = op.inValueSlider("b2", Math.random()),
+
+    r3 = op.inValueSlider("r3", Math.random()),
+    g3 = op.inValueSlider("g3", Math.random()),
+    b3 = op.inValueSlider("b3", Math.random()),
+
+    randomize = op.inTriggerButton("Randomize"),
+    next = op.outTrigger("Next");
+
+r.setUiAttribs({ "colorPick": true });
+r2.setUiAttribs({ "colorPick": true });
+r3.setUiAttribs({ "colorPick": true });
+
+op.setPortGroup("Blending", [blendMode, amount]);
+op.setPortGroup("Color A", [r, g, b]);
+op.setPortGroup("Color B", [r2, g2, b2]);
+op.setPortGroup("Color C", [r3, g3, b3]);
+
+const cgl = op.patch.cgl;
+const shader = new CGL.Shader(cgl, "gradient");
+
+shader.setSource(shader.getDefaultVertexShader(), attachments.gradient_frag);
+const amountUniform = new CGL.Uniform(shader, "f", "amount", amount);
+const uniPos = new CGL.Uniform(shader, "f", "pos", pos1);
+const uniWidth = new CGL.Uniform(shader, "f", "width", width);
+const textureUniform = new CGL.Uniform(shader, "t", "tex", 0);
+let r3uniform, r2uniform, runiform;
+
+r2.onChange = g2.onChange = b2.onChange = updateCol2;
+r3.onChange = g3.onChange = b3.onChange = updateCol3;
+r.onChange = g.onChange = b.onChange = updateCol;
+
+r2.onLinkChanged = g2.onLinkChanged = b2.onLinkChanged =
+r3.onLinkChanged = g3.onLinkChanged = b3.onLinkChanged =
+r.onLinkChanged = g.onLinkChanged = b.onLinkChanged = updateUi;
+
+updateCol();
+updateCol2();
+updateCol3();
+updateDefines();
+
+inSrgb.onChange =
+inColSpace.onChange =
+smoothStep.onChange =
+    gType.onChange = updateDefines;
+
+function updateUi()
+{
+    randomize.setUiAttribs({ "greyout": r2.isLinked() || g2.isLinked() || b2.isLinked() || r3.isLinked() || g3.isLinked() || b3.isLinked() || r.isLinked() || g.isLinked() || b.isLinked() });
+}
+
+function updateDefines()
+{
+    // shader.toggleDefine("OKLABGAIN", inoklabGain.get());
+    shader.toggleDefine("SRGB", inSrgb.get());
+
+    shader.define("MIXER", (inColSpace.get() + "").indexOf("Oklab") > -1 ? "oklab_mix" : "mix");
+    shader.toggleDefine("OKLABGAIN", (inColSpace.get() + "").indexOf("OklabG") > -1);
+
+    shader.toggleDefine("GRAD_SMOOTHSTEP", smoothStep.get());
+    shader.toggleDefine("GRAD_X", gType.get() == "X");
+    shader.toggleDefine("GRAD_XY", gType.get() == "XY");
+    shader.toggleDefine("GRAD_Y", gType.get() == "Y");
+    shader.toggleDefine("GRAD_RADIAL", gType.get() == "Radial");
+}
+
+CGL.TextureEffect.setupBlending(op, shader, blendMode, amount, maskAlpha);
+
+randomize.onTriggered = function ()
+{
+    r.set(Math.random());
+    g.set(Math.random());
+    b.set(Math.random());
+
+    r2.set(Math.random());
+    g2.set(Math.random());
+    b2.set(Math.random());
+
+    r3.set(Math.random());
+    g3.set(Math.random());
+    b3.set(Math.random());
+
+    op.refreshParams();
+};
+
+function updateCol()
+{
+    const colA = [r.get(), g.get(), b.get()];
+    if (!runiform) runiform = new CGL.Uniform(shader, "3f", "colA", colA);
+    else runiform.setValue(colA);
+}
+
+function updateCol2()
+{
+    const colB = [r2.get(), g2.get(), b2.get()];
+    if (!r2uniform) r2uniform = new CGL.Uniform(shader, "3f", "colB", colB);
+    else r2uniform.setValue(colB);
+}
+
+function updateCol3()
+{
+    const colC = [r3.get(), g3.get(), b3.get()];
+    if (!r3uniform) r3uniform = new CGL.Uniform(shader, "3f", "colC", colC);
+    else r3uniform.setValue(colC);
+}
+
+render.onTriggered = function ()
+{
+    if (!CGL.TextureEffect.checkOpInEffect(op)) return;
+
+    cgl.pushShader(shader);
+    cgl.currentTextureEffect.bind();
+    cgl.setTexture(0, cgl.currentTextureEffect.getCurrentSourceTexture().tex);
+    cgl.currentTextureEffect.finish();
+    cgl.popShader();
+
+    next.trigger();
+};
+
+
+};
+
+Ops.Gl.ImageCompose.Gradient_v2.prototype = new CABLES.Op();
+CABLES.OPS["c8a9408a-75e5-481f-99a7-6aa7ca88bebc"]={f:Ops.Gl.ImageCompose.Gradient_v2,objName:"Ops.Gl.ImageCompose.Gradient_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.ImageCompose.ImageCompose_v4
+// 
+// **************************************************************
+
+Ops.Gl.ImageCompose.ImageCompose_v4 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"imgcomp_frag":"IN vec2 texCoord;\nUNI vec4 bgColor;\nUNI sampler2D tex;\n#ifdef USE_UVTEX\nUNI sampler2D UVTex;\n#endif\n\nvoid main()\n{\n\n    #ifndef USE_TEX\n        outColor=bgColor;\n    #endif\n    #ifdef USE_TEX\n        #ifndef USE_UVTEX\n        outColor=texture(tex,texCoord);\n        #else\n        outColor=texture(tex,texture(UVTex,texCoord).xy);\n        #endif\n    #endif\n\n\n\n}\n",};
+const
+    cgl = op.patch.cgl,
+    render = op.inTrigger("Render"),
+    inTex = op.inTexture("Base Texture"),
+    inUVTex = op.inTexture("UV Texture"),
+    inSize = op.inSwitch("Size", ["Auto", "Canvas", "Manual"], "Auto"),
+    width = op.inValueInt("Width", 640),
+    height = op.inValueInt("Height", 480),
+    inFilter = op.inSwitch("Filter", ["nearest", "linear", "mipmap"], "linear"),
+    inWrap = op.inValueSelect("Wrap", ["clamp to edge", "repeat", "mirrored repeat"], "repeat"),
+    aniso = op.inSwitch("Anisotropic", ["0", "1", "2", "4", "8", "16"], "0"),
+
+    inPixelFormat = op.inDropDown("Pixel Format", CGL.Texture.PIXELFORMATS, CGL.Texture.PFORMATSTR_RGBA8UB),
+
+    r = op.inValueSlider("R", 0),
+    g = op.inValueSlider("G", 0),
+    b = op.inValueSlider("B", 0),
+    a = op.inValueSlider("A", 0),
+
+    trigger = op.outTrigger("Next"),
+    texOut = op.outTexture("texture_out", CGL.Texture.getEmptyTexture(cgl)),
+    outRatio = op.outNumber("Aspect Ratio"),
+    outWidth = op.outNumber("Texture Width"),
+    outHeight = op.outNumber("Texture Height");
+
+op.setPortGroup("Texture Size", [inSize, width, height]);
+op.setPortGroup("Texture Parameters", [inWrap, aniso, inFilter, inPixelFormat]);
+
+r.setUiAttribs({ "colorPick": true });
+op.setPortGroup("Color", [r, g, b, a]);
+
+op.toWorkPortsNeedToBeLinked(render);
+
+const prevViewPort = [0, 0, 0, 0];
+let effect = null;
+let tex = null;
+let reInitEffect = true;
+let isFloatTex = false;
+let copyShader = null;
+let copyShaderTexUni = null;
+let copyShaderUVTexUni = null;
+let copyShaderRGBAUni = null;
+
+inWrap.onChange =
+inFilter.onChange =
+aniso.onChange =
+inPixelFormat.onChange = reInitLater;
+
+inTex.onLinkChanged =
+inSize.onChange =
+inUVTex.onChange = updateUi;
+
+render.onTriggered =
+    op.preRender = doRender;
+
+updateUi();
+
+function initEffect()
+{
+    if (effect)effect.delete();
+    if (tex)tex.delete();
+    tex = null;
+    effect = new CGL.TextureEffect(cgl, { "isFloatingPointTexture": CGL.Texture.isPixelFormatFloat(inPixelFormat.get()), "name": op.name });
+
+    const cgl_aniso = Math.min(cgl.maxAnisotropic, parseFloat(aniso.get()));
+
+    tex = new CGL.Texture(cgl,
+        {
+            "anisotropic": cgl_aniso,
+            "name": "image_compose_v2_" + op.id,
+            "pixelFormat": inPixelFormat.get(),
+            "filter": getFilter(),
+            "wrap": getWrap(),
+            "width": getWidth(),
+            "height": getHeight()
+        });
+
+    effect.setSourceTexture(tex);
+
+    outWidth.set(getWidth());
+    outHeight.set(getHeight());
+    outRatio.set(getWidth() / getHeight());
+
+    texOut.set(CGL.Texture.getEmptyTexture(cgl));
+
+    reInitEffect = false;
+    updateUi();
+}
+
+function getFilter()
+{
+    if (inFilter.get() == "nearest") return CGL.Texture.FILTER_NEAREST;
+    else if (inFilter.get() == "linear") return CGL.Texture.FILTER_LINEAR;
+    else if (inFilter.get() == "mipmap") return CGL.Texture.FILTER_MIPMAP;
+}
+
+function getWrap()
+{
+    if (inWrap.get() == "repeat") return CGL.Texture.WRAP_REPEAT;
+    else if (inWrap.get() == "mirrored repeat") return CGL.Texture.WRAP_MIRRORED_REPEAT;
+    else if (inWrap.get() == "clamp to edge") return CGL.Texture.WRAP_CLAMP_TO_EDGE;
+}
+
+function getWidth()
+{
+    let x = 0;
+    if (inTex.get() && inSize.get() == "Auto") x = inTex.get().width;
+    else if (inSize.get() == "Auto" || inSize.get() == "Canvas") x = cgl.canvasWidth;
+    else if (inSize.get() == "ViewPort") x = cgl.getViewPort()[2];
+    else x = Math.ceil(width.get());
+    return op.patch.cgl.checkTextureSize(x);
+}
+
+function getHeight()
+{
+    let x = 0;
+
+    if (inTex.get() && inSize.get() == "Auto") x = inTex.get().height;
+    else if (inSize.get() == "Auto" || inSize.get() == "Canvas") x = cgl.canvasHeight;
+    else if (inSize.get() == "ViewPort") x = cgl.getViewPort()[3];
+    else x = Math.ceil(height.get());
+    return op.patch.cgl.checkTextureSize(x);
+}
+
+function reInitLater()
+{
+    reInitEffect = true;
+}
+
+function updateResolution()
+{
+    if ((
+        getWidth() != tex.width ||
+        getHeight() != tex.height ||
+        // tex.anisotropic != parseFloat(aniso.get()) ||
+        // tex.isFloatingPoint() != CGL.Texture.isPixelFormatFloat(inPixelFormat.get()) ||
+        tex.pixelFormat != inPixelFormat.get() ||
+        tex.filter != getFilter() ||
+        tex.wrap != getWrap()
+    ) && (getWidth() !== 0 && getHeight() !== 0))
+    {
+        initEffect();
+        effect.setSourceTexture(tex);
+        texOut.set(CGL.Texture.getEmptyTexture(cgl));
+        texOut.set(tex);
+        updateResolutionInfo();
+        checkTypes();
+    }
+}
+
+function updateResolutionInfo()
+{
+    let info = null;
+
+    if (inSize.get() == "Manual")
+    {
+        info = null;
+    }
+    else if (inSize.get() == "Auto")
+    {
+        if (inTex.get()) info = "Input Texture";
+        else info = "Canvas Size";
+
+        info += ": " + getWidth() + " x " + getHeight();
+    }
+
+    let changed = false;
+    changed = inSize.uiAttribs.info != info;
+    inSize.setUiAttribs({ "info": info });
+    if (changed)op.refreshParams();
+}
+
+function updateDefines()
+{
+    if (copyShader)copyShader.toggleDefine("USE_TEX", inTex.isLinked());
+    if (copyShader)copyShader.toggleDefine("USE_UVTEX", inUVTex.isLinked());
+}
+
+function updateUi()
+{
+    aniso.setUiAttribs({ "greyout": getFilter() != CGL.Texture.FILTER_MIPMAP });
+
+    r.setUiAttribs({ "greyout": inTex.isLinked() });
+    b.setUiAttribs({ "greyout": inTex.isLinked() });
+    g.setUiAttribs({ "greyout": inTex.isLinked() });
+    a.setUiAttribs({ "greyout": inTex.isLinked() });
+
+    width.setUiAttribs({ "greyout": inSize.get() != "Manual" });
+    height.setUiAttribs({ "greyout": inSize.get() != "Manual" });
+
+    // width.setUiAttribs({ "hideParam": inSize.get() != "Manual" });
+    // height.setUiAttribs({ "hideParam": inSize.get() != "Manual" });
+
+    if (tex)
+        if (CGL.Texture.isPixelFormatFloat(inPixelFormat.get()) && getFilter() == CGL.Texture.FILTER_MIPMAP) op.setUiError("fpmipmap", "Don't use mipmap and 32bit at the same time, many systems do not support this.");
+        else op.setUiError("fpmipmap", null);
+
+    updateResolutionInfo();
+    updateDefines();
+    checkTypes();
+}
+
+function checkTypes()
+{
+    if (tex)
+        if (inTex.isLinked() && inTex.get() && (tex.isFloatingPoint() != inTex.get().isFloatingPoint()))
+            op.setUiError("textypediff", "Warning: Mixing floating point and non floating point texture can result in data/precision loss", 1);
+        else
+            op.setUiError("textypediff", null);
+}
+
+op.preRender = () =>
+{
+    doRender();
+};
+
+function copyTexture()
+{
+    if (!copyShader)
+    {
+        copyShader = new CGL.Shader(cgl, "copytextureshader");
+        copyShader.setSource(copyShader.getDefaultVertexShader(), attachments.imgcomp_frag);
+        copyShaderTexUni = new CGL.Uniform(copyShader, "t", "tex", 0);
+        copyShaderUVTexUni = new CGL.Uniform(copyShader, "t", "UVTex", 1);
+        copyShaderRGBAUni = new CGL.Uniform(copyShader, "4f", "bgColor", r, g, b, a);
+        updateDefines();
+    }
+
+    cgl.pushShader(copyShader);
+    cgl.currentTextureEffect.bind();
+
+    if (inTex.get()) cgl.setTexture(0, inTex.get().tex);
+    if (inUVTex.get()) cgl.setTexture(1, inUVTex.get().tex);
+
+    cgl.currentTextureEffect.finish();
+    cgl.popShader();
+}
+
+function doRender()
+{
+    if (!effect || reInitEffect) initEffect();
+
+    cgl.pushBlend(false);
+
+    updateResolution();
+
+    const oldEffect = cgl.currentTextureEffect;
+    cgl.currentTextureEffect = effect;
+    cgl.currentTextureEffect.imgCompVer = 3;
+    cgl.currentTextureEffect.width = width.get();
+    cgl.currentTextureEffect.height = height.get();
+    effect.setSourceTexture(tex);
+
+    effect.startEffect(inTex.get() || CGL.Texture.getEmptyTexture(cgl, isFloatTex), true);
+    copyTexture();
+
+    trigger.trigger();
+
+    cgl.pushViewPort(0, 0, width.get(), height.get());
+
+    effect.endEffect();
+    texOut.setRef(effect.getCurrentSourceTexture());
+
+    cgl.popViewPort();
+
+    cgl.popBlend();
+    cgl.currentTextureEffect = oldEffect;
+}
+
+
+};
+
+Ops.Gl.ImageCompose.ImageCompose_v4.prototype = new CABLES.Op();
+CABLES.OPS["17212e2b-d692-464c-8f8d-2d511dd3410a"]={f:Ops.Gl.ImageCompose.ImageCompose_v4,objName:"Ops.Gl.ImageCompose.ImageCompose_v4"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.MainLoop
+// 
+// **************************************************************
+
+Ops.Gl.MainLoop = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    fpsLimit = op.inValue("FPS Limit", 0),
+    trigger = op.outTrigger("trigger"),
+    width = op.outNumber("width"),
+    height = op.outNumber("height"),
+    reduceFocusFPS = op.inValueBool("Reduce FPS not focussed", false),
+    reduceLoadingFPS = op.inValueBool("Reduce FPS loading"),
+    clear = op.inValueBool("Clear", true),
+    clearAlpha = op.inValueBool("ClearAlpha", true),
+    fullscreen = op.inValueBool("Fullscreen Button", false),
+    active = op.inValueBool("Active", true),
+    hdpi = op.inValueBool("Hires Displays", false),
+    inUnit = op.inSwitch("Pixel Unit", ["Display", "CSS"], "Display");
+
+op.onAnimFrame = render;
+hdpi.onChange = function ()
+{
+    if (hdpi.get()) op.patch.cgl.pixelDensity = window.devicePixelRatio;
+    else op.patch.cgl.pixelDensity = 1;
+
+    op.patch.cgl.updateSize();
+    if (CABLES.UI) gui.setLayout();
+};
+
+active.onChange = function ()
+{
+    op.patch.removeOnAnimFrame(op);
+
+    if (active.get())
+    {
+        op.setUiAttrib({ "extendTitle": "" });
+        op.onAnimFrame = render;
+        op.patch.addOnAnimFrame(op);
+        op.log("adding again!");
+    }
+    else
+    {
+        op.setUiAttrib({ "extendTitle": "Inactive" });
+    }
+};
+
+const cgl = op.patch.cgl;
+let rframes = 0;
+let rframeStart = 0;
+let timeOutTest = null;
+let addedListener = false;
+
+if (!op.patch.cgl) op.uiAttr({ "error": "No webgl cgl context" });
+
+const identTranslate = vec3.create();
+vec3.set(identTranslate, 0, 0, 0);
+const identTranslateView = vec3.create();
+vec3.set(identTranslateView, 0, 0, -2);
+
+fullscreen.onChange = updateFullscreenButton;
+setTimeout(updateFullscreenButton, 100);
+let fsElement = null;
+
+let winhasFocus = true;
+let winVisible = true;
+
+window.addEventListener("blur", () => { winhasFocus = false; });
+window.addEventListener("focus", () => { winhasFocus = true; });
+document.addEventListener("visibilitychange", () => { winVisible = !document.hidden; });
+testMultiMainloop();
+
+cgl.mainloopOp = this;
+
+inUnit.onChange = () =>
+{
+    width.set(0);
+    height.set(0);
+};
+
+function getFpsLimit()
+{
+    if (reduceLoadingFPS.get() && op.patch.loading.getProgress() < 1.0) return 5;
+
+    if (reduceFocusFPS.get())
+    {
+        if (!winVisible) return 10;
+        if (!winhasFocus) return 30;
+    }
+
+    return fpsLimit.get();
+}
+
+function updateFullscreenButton()
+{
+    function onMouseEnter()
+    {
+        if (fsElement)fsElement.style.display = "block";
+    }
+
+    function onMouseLeave()
+    {
+        if (fsElement)fsElement.style.display = "none";
+    }
+
+    op.patch.cgl.canvas.addEventListener("mouseleave", onMouseLeave);
+    op.patch.cgl.canvas.addEventListener("mouseenter", onMouseEnter);
+
+    if (fullscreen.get())
+    {
+        if (!fsElement)
+        {
+            fsElement = document.createElement("div");
+
+            const container = op.patch.cgl.canvas.parentElement;
+            if (container)container.appendChild(fsElement);
+
+            fsElement.addEventListener("mouseenter", onMouseEnter);
+            fsElement.addEventListener("click", function (e)
+            {
+                if (CABLES.UI && !e.shiftKey) gui.cycleFullscreen();
+                else cgl.fullScreen();
+            });
+        }
+
+        fsElement.style.padding = "10px";
+        fsElement.style.position = "absolute";
+        fsElement.style.right = "5px";
+        fsElement.style.top = "5px";
+        fsElement.style.width = "20px";
+        fsElement.style.height = "20px";
+        fsElement.style.cursor = "pointer";
+        fsElement.style["border-radius"] = "40px";
+        fsElement.style.background = "#444";
+        fsElement.style["z-index"] = "9999";
+        fsElement.style.display = "none";
+        fsElement.innerHTML = "<svg xmlns=\"http://www.w3.org/2000/svg\" xmlns:xlink=\"http://www.w3.org/1999/xlink\" version=\"1.1\" id=\"Capa_1\" x=\"0px\" y=\"0px\" viewBox=\"0 0 490 490\" style=\"width:20px;height:20px;\" xml:space=\"preserve\" width=\"512px\" height=\"512px\"><g><path d=\"M173.792,301.792L21.333,454.251v-80.917c0-5.891-4.776-10.667-10.667-10.667C4.776,362.667,0,367.442,0,373.333V480     c0,5.891,4.776,10.667,10.667,10.667h106.667c5.891,0,10.667-4.776,10.667-10.667s-4.776-10.667-10.667-10.667H36.416     l152.459-152.459c4.093-4.237,3.975-10.99-0.262-15.083C184.479,297.799,177.926,297.799,173.792,301.792z\" fill=\"#FFFFFF\"/><path d=\"M480,0H373.333c-5.891,0-10.667,4.776-10.667,10.667c0,5.891,4.776,10.667,10.667,10.667h80.917L301.792,173.792     c-4.237,4.093-4.354,10.845-0.262,15.083c4.093,4.237,10.845,4.354,15.083,0.262c0.089-0.086,0.176-0.173,0.262-0.262     L469.333,36.416v80.917c0,5.891,4.776,10.667,10.667,10.667s10.667-4.776,10.667-10.667V10.667C490.667,4.776,485.891,0,480,0z\" fill=\"#FFFFFF\"/><path d=\"M36.416,21.333h80.917c5.891,0,10.667-4.776,10.667-10.667C128,4.776,123.224,0,117.333,0H10.667     C4.776,0,0,4.776,0,10.667v106.667C0,123.224,4.776,128,10.667,128c5.891,0,10.667-4.776,10.667-10.667V36.416l152.459,152.459     c4.237,4.093,10.99,3.975,15.083-0.262c3.992-4.134,3.992-10.687,0-14.82L36.416,21.333z\" fill=\"#FFFFFF\"/><path d=\"M480,362.667c-5.891,0-10.667,4.776-10.667,10.667v80.917L316.875,301.792c-4.237-4.093-10.99-3.976-15.083,0.261     c-3.993,4.134-3.993,10.688,0,14.821l152.459,152.459h-80.917c-5.891,0-10.667,4.776-10.667,10.667s4.776,10.667,10.667,10.667     H480c5.891,0,10.667-4.776,10.667-10.667V373.333C490.667,367.442,485.891,362.667,480,362.667z\" fill=\"#FFFFFF\"/></g></svg>";
+    }
+    else
+    {
+        if (fsElement)
+        {
+            fsElement.style.display = "none";
+            fsElement.remove();
+            fsElement = null;
+        }
+    }
+}
+
+op.onDelete = function ()
+{
+    cgl.gl.clearColor(0, 0, 0, 0);
+    cgl.gl.clear(cgl.gl.COLOR_BUFFER_BIT | cgl.gl.DEPTH_BUFFER_BIT);
+};
+
+function render(time)
+{
+    if (!active.get()) return;
+    if (cgl.aborted || cgl.canvas.clientWidth === 0 || cgl.canvas.clientHeight === 0) return;
+
+    op.patch.cg = cgl;
+
+    if (hdpi.get())op.patch.cgl.pixelDensity = window.devicePixelRatio;
+
+    const startTime = performance.now();
+
+    op.patch.config.fpsLimit = getFpsLimit();
+
+    if (cgl.canvasWidth == -1)
+    {
+        cgl.setCanvas(op.patch.config.glCanvasId);
+        return;
+    }
+
+    if (cgl.canvasWidth != width.get() || cgl.canvasHeight != height.get())
+    {
+        let div = 1;
+        if (inUnit.get() == "CSS")div = op.patch.cgl.pixelDensity;
+
+        width.set(cgl.canvasWidth / div);
+        height.set(cgl.canvasHeight / div);
+    }
+
+    if (CABLES.now() - rframeStart > 1000)
+    {
+        CGL.fpsReport = CGL.fpsReport || [];
+        if (op.patch.loading.getProgress() >= 1.0 && rframeStart !== 0)CGL.fpsReport.push(rframes);
+        rframes = 0;
+        rframeStart = CABLES.now();
+    }
+    CGL.MESH.lastShader = null;
+    CGL.MESH.lastMesh = null;
+
+    cgl.renderStart(cgl, identTranslate, identTranslateView);
+
+    if (clear.get())
+    {
+        cgl.gl.clearColor(0, 0, 0, 1);
+        cgl.gl.clear(cgl.gl.COLOR_BUFFER_BIT | cgl.gl.DEPTH_BUFFER_BIT);
+    }
+
+    trigger.trigger();
+
+    if (CGL.MESH.lastMesh)CGL.MESH.lastMesh.unBind();
+
+    if (CGL.Texture.previewTexture)
+    {
+        if (!CGL.Texture.texturePreviewer) CGL.Texture.texturePreviewer = new CGL.Texture.texturePreview(cgl);
+        CGL.Texture.texturePreviewer.render(CGL.Texture.previewTexture);
+    }
+    cgl.renderEnd(cgl);
+
+    op.patch.cg = null;
+
+    if (clearAlpha.get())
+    {
+        cgl.gl.clearColor(1, 1, 1, 1);
+        cgl.gl.colorMask(false, false, false, true);
+        cgl.gl.clear(cgl.gl.COLOR_BUFFER_BIT);
+        cgl.gl.colorMask(true, true, true, true);
+    }
+
+    if (!cgl.frameStore.phong)cgl.frameStore.phong = {};
+    rframes++;
+
+    op.patch.cgl.profileData.profileMainloopMs = performance.now() - startTime;
+}
+
+function testMultiMainloop()
+{
+    clearTimeout(timeOutTest);
+    timeOutTest = setTimeout(
+        () =>
+        {
+            if (op.patch.getOpsByObjName(op.name).length > 1)
+            {
+                op.setUiError("multimainloop", "there should only be one mainloop op!");
+                if (!addedListener)addedListener = op.patch.addEventListener("onOpDelete", testMultiMainloop);
+            }
+            else op.setUiError("multimainloop", null, 1);
+        }, 500);
+}
+
+
+};
+
+Ops.Gl.MainLoop.prototype = new CABLES.Op();
+CABLES.OPS["b0472a1d-db16-4ba6-8787-f300fbdc77bb"]={f:Ops.Gl.MainLoop,objName:"Ops.Gl.MainLoop"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Trigger.Sequence
+// 
+// **************************************************************
+
+Ops.Trigger.Sequence = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    exe = op.inTrigger("exe"),
+    cleanup = op.inTriggerButton("Clean up connections");
+
+op.setUiAttrib({ "resizable": true, "resizableY": false, "stretchPorts": true });
+const
+    exes = [],
+    triggers = [],
+    num = 16;
+
+let
+    updateTimeout = null,
+    connectedOuts = [];
+
+exe.onTriggered = triggerAll;
+cleanup.onTriggered = clean;
+cleanup.setUiAttribs({ "hideParam": true, "hidePort": true });
+
+for (let i = 0; i < num; i++)
+{
+    const p = op.outTrigger("trigger " + i);
+    triggers.push(p);
+    p.onLinkChanged = updateButton;
+
+    if (i < num - 1)
+    {
+        let newExe = op.inTrigger("exe " + i);
+        newExe.onTriggered = triggerAll;
+        exes.push(newExe);
+    }
+}
+
+updateConnected();
+
+function updateConnected()
+{
+    connectedOuts.length = 0;
+    for (let i = 0; i < triggers.length; i++)
+        if (triggers[i].links.length > 0) connectedOuts.push(triggers[i]);
+}
+
+function updateButton()
+{
+    updateConnected();
+    clearTimeout(updateTimeout);
+    updateTimeout = setTimeout(() =>
+    {
+        let show = false;
+        for (let i = 0; i < triggers.length; i++)
+            if (triggers[i].links.length > 1) show = true;
+
+        cleanup.setUiAttribs({ "hideParam": !show });
+
+        if (op.isCurrentUiOp()) op.refreshParams();
+    }, 60);
+}
+
+function triggerAll()
+{
+    // for (let i = 0; i < triggers.length; i++) triggers[i].trigger();
+    for (let i = 0; i < connectedOuts.length; i++) connectedOuts[i].trigger();
+}
+
+function clean()
+{
+    let count = 0;
+    for (let i = 0; i < triggers.length; i++)
+    {
+        let removeLinks = [];
+
+        if (triggers[i].links.length > 1)
+            for (let j = 1; j < triggers[i].links.length; j++)
+            {
+                while (triggers[count].links.length > 0) count++;
+
+                removeLinks.push(triggers[i].links[j]);
+                const otherPort = triggers[i].links[j].getOtherPort(triggers[i]);
+                op.patch.link(op, "trigger " + count, otherPort.op, otherPort.name);
+                count++;
+            }
+
+        for (let j = 0; j < removeLinks.length; j++) removeLinks[j].remove();
+    }
+    updateButton();
+    updateConnected();
+}
+
+
+};
+
+Ops.Trigger.Sequence.prototype = new CABLES.Op();
+CABLES.OPS["a466bc1f-06e9-4595-8849-bffb9fe22f99"]={f:Ops.Trigger.Sequence,objName:"Ops.Trigger.Sequence"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Devices.Mouse.Mouse_v3
+// 
+// **************************************************************
+
+Ops.Devices.Mouse.Mouse_v3 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inCoords = op.inSwitch("Coordinates", ["-1 to 1", "Pixel Display", "Pixel", "0 to 1"], "-1 to 1"),
+    area = op.inValueSelect("Area", ["Canvas", "Document", "Parent Element", "Canvas Area"], "Canvas"),
+    flipY = op.inValueBool("flip y", true),
+    rightClickPrevDef = op.inBool("right click prevent default", true),
+    touchscreen = op.inValueBool("Touch support", true),
+    inPassive = op.inValueBool("Passive Events", false),
+    active = op.inValueBool("Active", true),
+    outMouseX = op.outNumber("x", 0),
+    outMouseY = op.outNumber("y", 0),
+    mouseClick = op.outTrigger("click"),
+    mouseClickRight = op.outTrigger("click right"),
+    mouseDown = op.outBoolNum("Button is down"),
+    mouseOver = op.outBoolNum("Mouse is hovering"),
+    outMovementX = op.outNumber("Movement X", 0),
+    outMovementY = op.outNumber("Movement Y", 0);
+
+const cgl = op.patch.cgl;
+let normalize = 1;
+let listenerElement = null;
+let sizeElement = null;
+
+inPassive.onChange =
+area.onChange = addListeners;
+
+inCoords.onChange = updateCoordNormalizing;
+op.onDelete = removeListeners;
+
+addListeners();
+
+op.on("loadedValueSet", onStart);
+
+function onStart()
+{
+    if (normalize == 0)
+    {
+        if (sizeElement.clientWidth === 0) setTimeout(onStart, 50);
+
+        outMouseX.set(sizeElement.clientWidth / 2);
+        outMouseY.set(sizeElement.clientHeight / 2);
+    }
+    else if (normalize == 1)
+    {
+        outMouseX.set(0);
+        outMouseY.set(0);
+    }
+    else if (normalize == 2)
+    {
+        outMouseX.set(0.5);
+        outMouseY.set(0.5);
+    }
+    else if (normalize == 3)
+    {
+        if (sizeElement.clientWidth === 0)
+        {
+            setTimeout(onStart, 50);
+        }
+
+        outMouseX.set(sizeElement.clientWidth / 2 / cgl.pixelDensity);
+        outMouseY.set(sizeElement.clientHeight / 2 / cgl.pixelDensity);
+    }
+    else console.error("unknown normalize mouse", normalize);
+}
+
+function setValue(x, y)
+{
+    x = x || 0;
+    y = y || 0;
+
+    if (normalize == 0) // pixel
+    {
+        outMouseX.set(x);
+        outMouseY.set(y);
+    }
+    else
+    if (normalize == 3) // pixel css
+    {
+        outMouseX.set(x * cgl.pixelDensity);
+        outMouseY.set(y * cgl.pixelDensity);
+    }
+    else
+    {
+        let w = sizeElement.clientWidth / cgl.pixelDensity;
+        let h = sizeElement.clientHeight / cgl.pixelDensity;
+
+        w = w || 1;
+        h = h || 1;
+
+        if (normalize == 1) // -1 to 1
+        {
+            let xx = (x / w * 2.0 - 1.0);
+            let yy = (y / h * 2.0 - 1.0);
+            xx = CABLES.clamp(xx, -1, 1);
+            yy = CABLES.clamp(yy, -1, 1);
+
+            outMouseX.set(xx);
+            outMouseY.set(yy);
+        }
+        else if (normalize == 2) // 0 to 1
+        {
+            let xx = x / w;
+            let yy = y / h;
+
+            xx = CABLES.clamp(xx, 0, 1);
+            yy = CABLES.clamp(yy, 0, 1);
+
+            outMouseX.set(xx);
+            outMouseY.set(yy);
+        }
+    }
+}
+
+function checkHovering(e)
+{
+    const r = sizeElement.getBoundingClientRect();
+
+    return (
+        e.clientX > r.left &&
+        e.clientX < r.left + r.width &&
+        e.clientY > r.top &&
+        e.clientY < r.top + r.height
+    );
+}
+
+touchscreen.onChange = function ()
+{
+    removeListeners();
+    addListeners();
+};
+
+active.onChange = function ()
+{
+    if (listenerElement)removeListeners();
+    if (active.get())addListeners();
+};
+
+function updateCoordNormalizing()
+{
+    if (inCoords.get() == "Pixel") normalize = 0;
+    else if (inCoords.get() == "-1 to 1") normalize = 1;
+    else if (inCoords.get() == "0 to 1") normalize = 2;
+    else if (inCoords.get() == "Pixel Display") normalize = 3;
+}
+
+function onMouseEnter(e)
+{
+    mouseDown.set(false);
+    mouseOver.set(checkHovering(e));
+}
+
+function onMouseDown(e)
+{
+    if (!checkHovering(e)) return;
+    mouseDown.set(true);
+}
+
+function onMouseUp(e)
+{
+    mouseDown.set(false);
+}
+
+function onClickRight(e)
+{
+    if (!checkHovering(e)) return;
+    mouseClickRight.trigger();
+    if (rightClickPrevDef.get()) e.preventDefault();
+}
+
+function onmouseclick(e)
+{
+    if (!checkHovering(e)) return;
+    mouseClick.trigger();
+}
+
+function onMouseLeave(e)
+{
+    mouseDown.set(false);
+    mouseOver.set(checkHovering(e));
+}
+
+function setCoords(e)
+{
+    let x = e.clientX;
+    let y = e.clientY;
+
+    if (area.get() != "Document")
+    {
+        x = e.offsetX;
+        y = e.offsetY;
+    }
+    if (area.get() === "Canvas Area")
+    {
+        const r = sizeElement.getBoundingClientRect();
+        x = e.clientX - r.left;
+        y = e.clientY - r.top;
+    }
+
+    if (flipY.get()) y = sizeElement.clientHeight - y;
+
+    setValue(x / cgl.pixelDensity, y / cgl.pixelDensity);
+}
+
+function onmousemove(e)
+{
+    mouseOver.set(checkHovering(e));
+    setCoords(e);
+
+    outMovementX.set(e.movementX / cgl.pixelDensity);
+    outMovementY.set(e.movementY / cgl.pixelDensity);
+}
+
+function ontouchmove(e)
+{
+    if (event.touches && event.touches.length > 0) setCoords(e.touches[0]);
+}
+
+function ontouchstart(event)
+{
+    mouseDown.set(true);
+
+    if (event.touches && event.touches.length > 0) onMouseDown(event.touches[0]);
+}
+
+function ontouchend(event)
+{
+    mouseDown.set(false);
+    onMouseUp();
+}
+
+function removeListeners()
+{
+    if (!listenerElement) return;
+    listenerElement.removeEventListener("touchend", ontouchend);
+    listenerElement.removeEventListener("touchstart", ontouchstart);
+    listenerElement.removeEventListener("touchmove", ontouchmove);
+
+    listenerElement.removeEventListener("click", onmouseclick);
+    listenerElement.removeEventListener("mousemove", onmousemove);
+    listenerElement.removeEventListener("mouseleave", onMouseLeave);
+    listenerElement.removeEventListener("mousedown", onMouseDown);
+    listenerElement.removeEventListener("mouseup", onMouseUp);
+    listenerElement.removeEventListener("mouseenter", onMouseEnter);
+    listenerElement.removeEventListener("contextmenu", onClickRight);
+    listenerElement = null;
+}
+
+function addListeners()
+{
+    if (listenerElement || !active.get())removeListeners();
+    if (!active.get()) return;
+
+    listenerElement = sizeElement = cgl.canvas;
+    if (area.get() == "Canvas Area")
+    {
+        sizeElement = cgl.canvas.parentElement;
+        listenerElement = document.body;
+    }
+    if (area.get() == "Document") sizeElement = listenerElement = document.body;
+    if (area.get() == "Parent Element") listenerElement = sizeElement = cgl.canvas.parentElement;
+
+    let passive = false;
+    if (inPassive.get())passive = { "passive": true };
+
+    if (touchscreen.get())
+    {
+        listenerElement.addEventListener("touchend", ontouchend, passive);
+        listenerElement.addEventListener("touchstart", ontouchstart, passive);
+        listenerElement.addEventListener("touchmove", ontouchmove, passive);
+    }
+
+    listenerElement.addEventListener("mousemove", onmousemove, passive);
+    listenerElement.addEventListener("mouseleave", onMouseLeave, passive);
+    listenerElement.addEventListener("mousedown", onMouseDown, passive);
+    listenerElement.addEventListener("mouseup", onMouseUp, passive);
+    listenerElement.addEventListener("mouseenter", onMouseEnter, passive);
+    listenerElement.addEventListener("contextmenu", onClickRight, passive);
+    listenerElement.addEventListener("click", onmouseclick, passive);
+}
+
+//
+
+
+};
+
+Ops.Devices.Mouse.Mouse_v3.prototype = new CABLES.Op();
+CABLES.OPS["6d1edbc0-088a-43d7-9156-918fb3d7f24b"]={f:Ops.Devices.Mouse.Mouse_v3,objName:"Ops.Devices.Mouse.Mouse_v3"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Vars.VarSetNumber_v2
+// 
+// **************************************************************
+
+Ops.Vars.VarSetNumber_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const val = op.inValueFloat("Value", 0);
+op.varName = op.inDropDown("Variable", [], "", true);
+
+new CABLES.VarSetOpWrapper(op, "number", val, op.varName);
+
+
+};
+
+Ops.Vars.VarSetNumber_v2.prototype = new CABLES.Op();
+CABLES.OPS["b5249226-6095-4828-8a1c-080654e192fa"]={f:Ops.Vars.VarSetNumber_v2,objName:"Ops.Vars.VarSetNumber_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.DeltaSum
+// 
+// **************************************************************
+
+Ops.Math.DeltaSum = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inVal = op.inValue("Delta Value"),
+    defVal = op.inValue("Default Value", 0),
+    inMul = op.inValue("Multiply", 1),
+    inReset = op.inTriggerButton("Reset"),
+    inLimit = op.inValueBool("Limit", false),
+    inMin = op.inValue("Min", 0),
+    inMax = op.inValue("Max", 100),
+    inRubber = op.inValue("Rubberband", 0),
+    outVal = op.outNumber("Absolute Value");
+
+inVal.changeAlways = true;
+
+op.setPortGroup("Limit", [inLimit, inMin, inMax, inRubber]);
+
+let value = 0;
+let lastEvent = CABLES.now();
+let rubTimeout = null;
+
+inLimit.onChange = updateLimit;
+defVal.onChange =
+    inReset.onTriggered = resetValue;
+
+inMax.onChange =
+    inMin.onChange = updateValue;
+
+updateLimit();
+
+function resetValue()
+{
+    let v = defVal.get();
+
+    if (inLimit.get())
+    {
+        v = Math.max(inMin.get(), v);
+        v = Math.min(inMax.get(), v);
+    }
+
+    value = v;
+    outVal.set(value);
+}
+
+function updateLimit()
+{
+    inMin.setUiAttribs({ "greyout": !inLimit.get() });
+    inMax.setUiAttribs({ "greyout": !inLimit.get() });
+    inRubber.setUiAttribs({ "greyout": !inLimit.get() });
+
+    updateValue();
+}
+
+function releaseRubberband()
+{
+    const min = inMin.get();
+    const max = inMax.get();
+
+    if (value < min) value = min;
+    if (value > max) value = max;
+
+    outVal.set(value);
+}
+
+function updateValue()
+{
+    if (inLimit.get())
+    {
+        const min = inMin.get();
+        const max = inMax.get();
+        const rubber = inRubber.get();
+        const minr = inMin.get() - rubber;
+        const maxr = inMax.get() + rubber;
+
+        if (value < minr) value = minr;
+        if (value > maxr) value = maxr;
+
+        if (rubber !== 0.0)
+        {
+            clearTimeout(rubTimeout);
+            rubTimeout = setTimeout(releaseRubberband.bind(this), 300);
+        }
+    }
+
+    outVal.set(value);
+}
+
+inVal.onChange = function ()
+{
+    let v = inVal.get();
+
+    const rubber = inRubber.get();
+
+    if (rubber !== 0.0)
+    {
+        const min = inMin.get();
+        const max = inMax.get();
+        const minr = inMin.get() - rubber;
+        const maxr = inMax.get() + rubber;
+
+        if (value < min)
+        {
+            const aa = Math.abs(value - minr) / rubber;
+            v *= (aa * aa);
+        }
+        if (value > max)
+        {
+            const aa = Math.abs(maxr - value) / rubber;
+            v *= (aa * aa);
+        }
+    }
+
+    lastEvent = CABLES.now();
+    value += v * inMul.get();
+    updateValue();
+};
+
+
+};
+
+Ops.Math.DeltaSum.prototype = new CABLES.Op();
+CABLES.OPS["d9d4b3db-c24b-48da-b798-9e6230d861f7"]={f:Ops.Math.DeltaSum,objName:"Ops.Math.DeltaSum"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Ui.PatchInput
+// 
+// **************************************************************
+
+Ops.Ui.PatchInput = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const dyn = op.addOutPort(new CABLES.Port(op, "create port", CABLES.OP_PORT_TYPE_DYNAMIC));
+
+function getPatchOp()
+{
+    for (let i in op.patch.ops)
+    {
+        if (op.patch.ops[i].patchId)
+        {
+            if (op.patch.ops[i].patchId.get() == op.uiAttribs.subPatch)
+            {
+                return op.patch.ops[i];
+            }
+        }
+    }
+}
+
+dyn.onLinkChanged = () =>
+{
+    const mySubPatchOp = getPatchOp();
+
+    if (!dyn.links.length || !mySubPatchOp || !mySubPatchOp.addNewInPort) return;
+
+
+    const otherPort = dyn.links[0].getOtherPort(dyn);
+    dyn.removeLinks();
+
+    const newPortName = mySubPatchOp.addNewInPort(otherPort);
+
+    const l = gui.scene().link(
+        otherPort.parent,
+        otherPort.getName(),
+        op,
+        newPortName);
+
+    mySubPatchOp.saveData();
+};
+
+
+};
+
+Ops.Ui.PatchInput.prototype = new CABLES.Op();
+CABLES.OPS["e3f68bc3-892a-4c78-9974-aca25c27025d"]={f:Ops.Ui.PatchInput,objName:"Ops.Ui.PatchInput"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Ui.PatchOutput
+// 
+// **************************************************************
+
+Ops.Ui.PatchOutput = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const dyn = op.addInPort(new CABLES.Port(op, "create port", CABLES.OP_PORT_TYPE_DYNAMIC));
+
+function getPatchOp()
+{
+    for (let i in op.patch.ops)
+    {
+        if (op.patch.ops[i].patchId)
+        {
+            if (op.patch.ops[i].patchId.get() == op.uiAttribs.subPatch)
+            {
+                return op.patch.ops[i];
+            }
+        }
+    }
+}
+
+dyn.onLinkChanged = () =>
+{
+    const mySubPatchOp = getPatchOp();
+
+    if (!dyn.links.length) return;
+
+    const otherPort = dyn.links[0].getOtherPort(dyn);
+    dyn.removeLinks();
+
+    const newPortName = mySubPatchOp.addNewOutPort(otherPort);
+
+    const l = gui.scene().link(
+        otherPort.parent,
+        otherPort.getName(),
+        op,
+        newPortName);
+
+    mySubPatchOp.saveData();
+};
+
+
+};
+
+Ops.Ui.PatchOutput.prototype = new CABLES.Op();
+CABLES.OPS["851b44cb-5667-4140-9800-5aeb7031f1d7"]={f:Ops.Ui.PatchOutput,objName:"Ops.Ui.PatchOutput"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Ui.SubPatch
+// 
+// **************************************************************
+
+Ops.Ui.SubPatch = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+op.dyn = op.addInPort(new CABLES.Port(op, "create port", CABLES.OP_PORT_TYPE_DYNAMIC));
+op.dynOut = op.addOutPort(new CABLES.Port(op, "create port out", CABLES.OP_PORT_TYPE_DYNAMIC));
+
+const dataStr = op.addInPort(new CABLES.Port(op, "dataStr", CABLES.OP_PORT_TYPE_VALUE, { "display": "readonly" }));
+op.patchId = op.addInPort(new CABLES.Port(op, "patchId", CABLES.OP_PORT_TYPE_VALUE, { "display": "readonly" }));
+
+
+dataStr.setUiAttribs({ "hideParam": true });
+op.patchId.setUiAttribs({ "hidePort": true });
+
+let data = { "ports": [], "portsOut": [] };
+let oldPatchId = CABLES.generateUUID();
+op.patchId.set(oldPatchId);
+getSubPatchInputOp();
+getSubPatchOutputOp();
+
+let dataLoaded = false;
+
+op.saveData = saveData;
+
+op.init = () =>
+{
+    op.setStorage({ "subPatchVer": 1 });
+};
+
+op.patchId.onChange = function ()
+{
+    if (!op.patch.isEditorMode()) return;
+    const oldPatchOps = op.patch.getSubPatchOps(oldPatchId);
+    if (oldPatchOps.length === 2)
+    {
+        if (op.patch.isEditorMode() && CABLES.UI.DEFAULTOPS.isInBlueprint(op)) CABLES.UI.undo.pause();
+        for (let i = 0; i < oldPatchOps.length; i++)
+        {
+            op.patch.deleteOp(oldPatchOps[i].id);
+        }
+        if (op.patch.isEditorMode() && CABLES.UI.DEFAULTOPS.isInBlueprint(op)) CABLES.UI.undo.resume();
+    }
+};
+
+op.onLoaded = function ()
+{
+};
+
+op.onLoadedValueSet = function ()
+{
+    data = JSON.parse(dataStr.get());
+    if (!data)
+    {
+        data = { "ports": [], "portsOut": [] };
+    }
+    setupPorts();
+};
+
+function loadData()
+{
+}
+
+dataStr.onChange = function ()
+{
+    if (dataLoaded) return;
+
+    if (!dataStr.get()) return;
+    try
+    {
+        loadData();
+    }
+    catch (e)
+    {
+        op.logError("cannot load subpatch data...");
+        op.logError(e);
+    }
+};
+
+function saveData()
+{
+    try
+    {
+        dataStr.set(JSON.stringify(data));
+    }
+    catch (e)
+    {
+        op.log(e);
+    }
+}
+
+op.addPortListener = addPortListener;
+function addPortListener(newPort, newPortInPatch)
+{
+    if (!newPort.hasSubpatchLstener)
+    {
+        newPort.hasSubpatchLstener = true;
+        newPort.addEventListener("onUiAttrChange", function (attribs)
+        {
+            if (attribs.title)
+            {
+                let i = 0;
+                for (i = 0; i < data.portsOut.length; i++)
+                    if (data.portsOut[i].name == newPort.name)
+                        data.portsOut[i].title = attribs.title;
+
+                for (i = 0; i < data.ports.length; i++)
+                    if (data.ports[i].name == newPort.name)
+                        data.ports[i].title = attribs.title;
+
+                saveData();
+            }
+        });
+    }
+
+    if (newPort.direction == CABLES.PORT_DIR_IN)
+    {
+        if (newPort.type == CABLES.OP_PORT_TYPE_FUNCTION)
+        {
+            newPort.onTriggered = function ()
+            {
+                if (newPortInPatch.isLinked())
+                    newPortInPatch.trigger();
+            };
+        }
+        else
+        {
+            newPort.onChange = function ()
+            {
+                newPortInPatch.set(newPort.get());
+                if (!newPort.isLinked())
+                {
+                    for (let i = 0; i < data.ports.length; i++)
+                    {
+                        if (data.ports[i].name === newPort.name)
+                        {
+                            data.ports[i].value = newPort.get();
+                        }
+                    }
+                    saveData();
+                }
+            };
+        }
+    }
+}
+
+op.setupPorts = setupPorts;
+function setupPorts()
+{
+    if (!op.patchId.get()) return;
+    const ports = data.ports || [];
+    const portsOut = data.portsOut || [];
+    let i = 0;
+
+    for (i = 0; i < ports.length; i++)
+    {
+        if (!op.getPortByName(ports[i].name))
+        {
+            const newPort = op.addInPort(new CABLES.Port(op, ports[i].name, ports[i].type));
+
+            const patchInputOp = getSubPatchInputOp();
+            const newPortInPatch = patchInputOp.addOutPort(new CABLES.Port(patchInputOp, ports[i].name, ports[i].type));
+
+            newPort.ignoreValueSerialize = true;
+            newPort.setUiAttribs({ "editableTitle": true });
+            if (ports[i].title)
+            {
+                newPort.setUiAttribs({ "title": ports[i].title });
+                newPortInPatch.setUiAttribs({ "title": ports[i].title });
+            }
+            if (ports[i].objType)
+            {
+                newPort.setUiAttribs({ "objType": ports[i].objType });
+                newPortInPatch.setUiAttribs({ "objType": ports[i].objType });
+            }
+            if (ports[i].value)
+            {
+                newPort.set(ports[i].value);
+                newPortInPatch.set(ports[i].value);
+            }
+            addPortListener(newPort, newPortInPatch);
+        }
+    }
+
+    for (i = 0; i < portsOut.length; i++)
+    {
+        if (!op.getPortByName(portsOut[i].name))
+        {
+            const newPortOut = op.addOutPort(new CABLES.Port(op, portsOut[i].name, portsOut[i].type));
+            const patchOutputOp = getSubPatchOutputOp();
+            const newPortOutPatch = patchOutputOp.addInPort(new CABLES.Port(patchOutputOp, portsOut[i].name, portsOut[i].type));
+
+            newPortOut.ignoreValueSerialize = true;
+            newPortOut.setUiAttribs({ "editableTitle": true });
+
+            if (portsOut[i].title)
+            {
+                newPortOut.setUiAttribs({ "title": portsOut[i].title });
+                newPortOutPatch.setUiAttribs({ "title": portsOut[i].title });
+            }
+            if (portsOut[i].objType)
+            {
+                newPortOut.setUiAttribs({ "objType": portsOut[i].objType });
+                newPortOutPatch.setUiAttribs({ "objType": portsOut[i].objType });
+            }
+
+            // addPortListener(newPortOut,newPortOutPatch);
+            addPortListener(newPortOutPatch, newPortOut);
+        }
+    }
+
+    dataLoaded = true;
+}
+
+op.addNewInPort = function (otherPort, type, objType)
+{
+    const newName = "in" + data.ports.length + " " + otherPort.op.name + " " + otherPort.name;
+
+    const o = { "name": newName, "type": otherPort.type };
+    if (otherPort.uiAttribs.objType)o.objType = otherPort.uiAttribs.objType;
+
+    data.ports.push(o);
+    setupPorts();
+    return newName;
+};
+
+op.dyn.onLinkChanged = function ()
+{
+    if (op.dyn.isLinked())
+    {
+        const otherPort = op.dyn.links[0].getOtherPort(op.dyn);
+        op.dyn.removeLinks();
+        otherPort.removeLinkTo(op.dyn);
+
+        op.log("dyn link changed!!!");
+
+        // const newName = "in" + data.ports.length + " " + otherPort.op.name + " " + otherPort.name;
+
+        // const o = { "name": newName, "type": otherPort.type };
+        // if (otherPort.uiAttribs.objType)o.objType = otherPort.uiAttribs.objType;
+        // data.ports.push(o);
+
+        // setupPorts();
+
+        const newName = op.addNewInPort(otherPort);
+
+        const l = gui.scene().link(
+            otherPort.op,
+            otherPort.getName(),
+            op,
+            newName
+        );
+
+        dataLoaded = true;
+        saveData();
+    }
+    else
+    {
+        setTimeout(function ()
+        {
+            op.dyn.removeLinks();
+        }, 100);
+    }
+};
+
+op.addNewOutPort = function (otherPort, type, objType)
+{
+    const newName = "out" + data.portsOut.length + " " + otherPort.op.name + " " + otherPort.name;
+
+    const o = { "name": newName, "type": otherPort.type };
+    if (otherPort.uiAttribs.objType)o.objType = otherPort.uiAttribs.objType;
+
+    data.portsOut.push(o);
+    setupPorts();
+    return newName;
+};
+
+op.dynOut.onLinkChanged = function ()
+{
+    if (op.dynOut.isLinked())
+    {
+        const otherPort = op.dynOut.links[0].getOtherPort(op.dynOut);
+        op.dynOut.removeLinks();
+        if (otherPort)
+        {
+            otherPort.removeLinkTo(op.dynOut);
+
+            const newName = op.addNewOutPort(otherPort);
+
+            gui.scene().link(
+                otherPort.op,
+                otherPort.getName(),
+                op,
+                newName
+            );
+        }
+
+        dataLoaded = true;
+        saveData();
+    }
+    else
+    {
+        setTimeout(function ()
+        {
+            op.dynOut.removeLinks();
+        }, 100);
+
+        op.log("dynOut unlinked...");
+    }
+};
+
+function getSubPatchOutputOp()
+{
+    let patchOutputOP = op.patch.getSubPatchOp(op.patchId.get(), "Ops.Ui.PatchOutput");
+
+    if (!patchOutputOP)
+    {
+        op.patch.addOp("Ops.Ui.PatchOutput", { "subPatch": op.patchId.get(), "translate": { "x": 0, "y": 0 } });
+        patchOutputOP = op.patch.getSubPatchOp(op.patchId.get(), "Ops.Ui.PatchOutput");
+        if (!patchOutputOP) op.warn("no patchoutput!");
+    }
+    return patchOutputOP;
+}
+
+function getSubPatchInputOp()
+{
+    let patchInputOP = op.patch.getSubPatchOp(op.patchId.get(), "Ops.Ui.PatchInput");
+
+    if (!patchInputOP)
+    {
+        op.patch.addOp("Ops.Ui.PatchInput", { "subPatch": op.patchId.get(), "translate": { "x": 0, "y": 0 } });
+        patchInputOP = op.patch.getSubPatchOp(op.patchId.get(), "Ops.Ui.PatchInput");
+        if (!patchInputOP) op.warn("no patchinput2!");
+    }
+
+    return patchInputOP;
+}
+
+op.addSubLink = function (p, p2)
+{
+    const num = data.ports.length;
+    const sublPortname = "in" + (num - 1) + " " + p2.op.name + " " + p2.name;
+
+    if (p.direction == CABLES.PORT_DIR_IN)
+    {
+        gui.scene().link(
+            p.op,
+            p.getName(),
+            getSubPatchInputOp(),
+            sublPortname
+        );
+    }
+    else
+    {
+        const numOut = data.portsOut.length;
+        gui.scene().link(
+            p.op,
+            p.getName(),
+            getSubPatchOutputOp(),
+            "out" + (numOut - 1) + " " + p2.op.name + " " + p2.name
+        );
+    }
+
+    const bounds = gui.patchView.getSubPatchBounds(op.patchId.get());
+
+    getSubPatchInputOp().uiAttr(
+        {
+            "translate":
+            {
+                "x": bounds.minx,
+                "y": bounds.miny - 100
+            }
+        });
+
+    getSubPatchOutputOp().uiAttr(
+        {
+            "translate":
+            {
+                "x": bounds.minx,
+                "y": bounds.maxy + 100
+            }
+        });
+    saveData();
+    return sublPortname;
+};
+
+op.onDelete = function ()
+{
+    for (let i = op.patch.ops.length - 1; i >= 0; i--)
+    {
+        if (op.patch.ops[i] && op.patch.ops[i].uiAttribs && op.patch.ops[i].uiAttribs.subPatch == op.patchId.get())
+        {
+            op.patch.deleteOp(op.patch.ops[i].id);
+        }
+    }
+};
+
+// function makeBlueprint()
+// {
+//     let attribs = {
+//         "pasted": true,
+//         "translate": {
+//             "x": op.uiAttribs.translate.x - 150,
+//             "y": op.uiAttribs.translate.y
+//         }
+//     };
+
+//     if (CABLES.UI) attribs.subPatch = gui.patchView.getCurrentSubPatch();
+
+//     const bpOp = op.patch.addOp(CABLES.UI.DEFAULTOPNAMES.blueprint, attribs);
+//     bpOp.createBlueprint(gui.patchId, op.patchId.get(), true);
+// }
+
+op.rebuildListeners = () =>
+{
+    op.log("rebuild listeners...");
+
+    const outop = getSubPatchOutputOp();
+    for (let i = 0; i < outop.portsIn.length; i++)
+    {
+        if (outop.portsIn[i].isLinked())
+        {
+            addPortListener(outop.portsIn[i], this.portsOut[i]);
+        }
+    }
+};
+
+
+};
+
+Ops.Ui.SubPatch.prototype = new CABLES.Op();
+CABLES.OPS["84d9a6f0-ed7a-466d-b386-225ed9e89c60"]={f:Ops.Ui.SubPatch,objName:"Ops.Ui.SubPatch"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.ClearColor
+// 
+// **************************************************************
+
+Ops.Gl.ClearColor = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("render"),
+    trigger = op.outTrigger("trigger"),
+    r = op.inFloatSlider("r", 0.1),
+    g = op.inFloatSlider("g", 0.1),
+    b = op.inFloatSlider("b", 0.1),
+    a = op.inFloatSlider("a", 1);
+
+r.setUiAttribs({ "colorPick": true });
+
+const cgl = op.patch.cgl;
+
+render.onTriggered = function ()
+{
+    cgl.gl.clearColor(r.get(), g.get(), b.get(), a.get());
+    cgl.gl.clear(cgl.gl.COLOR_BUFFER_BIT | cgl.gl.DEPTH_BUFFER_BIT);
+    trigger.trigger();
+};
+
+
+};
+
+Ops.Gl.ClearColor.prototype = new CABLES.Op();
+CABLES.OPS["19b441eb-9f63-4f35-ba08-b87841517c4d"]={f:Ops.Gl.ClearColor,objName:"Ops.Gl.ClearColor"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PuSSdim.MouseDrag
+// 
+// **************************************************************
+
+Ops.Patch.PuSSdim.MouseDrag = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    active = op.inValueBool("Active", true),
+    speed = op.inValue("Speed", 0.01),
+    inputType = op.inSwitch("Input Type", ["All", "Mouse", "Touch"], "All"),
+    area = op.inSwitch("Area", ["Canvas Area", "Canvas", "Document"], "Canvas Area"),
+    outDeltaX = op.outNumber("Delta X"),
+    outDeltaY = op.outNumber("Delta Y"),
+    outDragging = op.outNumber("Is Dragging");
+
+let listenerElement = null;
+let sizeElement = null;
+const absoluteX = 0;
+const absoluteY = 0;
+let pressed = false;
+let lastX = 0;
+let lastY = 0;
+let firstMove = true;
+
+inputType.onChange =
+area.onChange = updateArea;
+
+updateArea();
+
+function isHovering(e)
+{
+    if (area.get() === "Canvas Area")
+    {
+        const r = sizeElement.getBoundingClientRect();
+
+        return (
+            e.clientX > r.left &&
+            e.clientX < r.left + r.width &&
+            e.clientY > r.top &&
+            e.clientY < r.top + r.height
+        );
+    }
+    return true;
+}
+
+function onMouseMove(e)
+{
+    if (e.touches) e = e.touches[0];
+
+    if (pressed && e && isHovering(e))
+    {
+        if (!firstMove)
+        {
+            outDragging.set(true);
+            const deltaX = (e.clientX - lastX) * speed.get();
+            const deltaY = (e.clientY - lastY) * speed.get();
+
+            outDeltaX.set(0);
+            outDeltaY.set(0);
+            outDeltaX.set(deltaX);
+            outDeltaY.set(deltaY);
+        }
+
+        firstMove = false;
+
+        lastX = e.clientX;
+        lastY = e.clientY;
+    }
+}
+
+function onMouseDown(e)
+{
+    try { listenerElement.setPointerCapture(e.pointerId); }
+    catch (_e)
+    {
+    }
+
+    pressed = true;
+}
+
+function onMouseUp(e)
+{
+    try { listenerElement.releasePointerCapture(e.pointerId); }
+    catch (e) {}
+
+    pressed = false;
+    outDragging.set(false);
+    lastX = 0;
+    lastY = 0;
+    firstMove = true;
+}
+
+/// ////////
+
+function lockChange()
+{
+    const el = op.patch.cg.canvas;
+
+    if (document.pointerLockElement === el || document.mozPointerLockElement === el || document.webkitPointerLockElement === el)
+    {
+        document.addEventListener("mousemove", onmousemove, false);
+    }
+}
+
+/// ////////
+
+function updateArea()
+{
+    removeListener();
+
+    if (area.get() == "Canvas Area")
+    {
+        listenerElement = document;
+        sizeElement = op.patch.cgl.canvas;
+    }
+    else if (area.get() == "Document") listenerElement = sizeElement = document;
+    else listenerElement = sizeElement = op.patch.cgl.canvas;
+
+    if (active.get())addListener();
+}
+
+function addListener()
+{
+    if (!listenerElement)updateArea();
+
+    if (inputType.get() == "All" || inputType.get() == "Mouse")
+    {
+        listenerElement.addEventListener("mousemove", onMouseMove);
+        listenerElement.addEventListener("mousedown", onMouseDown);
+        listenerElement.addEventListener("mouseup", onMouseUp);
+        listenerElement.addEventListener("mouseenter", onMouseUp);
+        listenerElement.addEventListener("mouseleave", onMouseUp);
+    }
+
+    if (inputType.get() == "All" || inputType.get() == "Touch")
+    {
+        listenerElement.addEventListener("touchmove", onMouseMove);
+        listenerElement.addEventListener("touchend", onMouseUp);
+        listenerElement.addEventListener("touchstart", onMouseDown);
+    }
+}
+
+function removeListener()
+{
+    if (!listenerElement) return;
+    listenerElement.removeEventListener("mousemove", onMouseMove);
+    listenerElement.removeEventListener("mousedown", onMouseDown);
+    listenerElement.removeEventListener("mouseup", onMouseUp);
+    listenerElement.removeEventListener("mouseenter", onMouseUp);
+    listenerElement.removeEventListener("mouseleave", onMouseUp);
+
+    listenerElement.removeEventListener("touchmove", onMouseMove);
+    listenerElement.removeEventListener("touchend", onMouseUp);
+    listenerElement.removeEventListener("touchstart", onMouseDown);
+}
+
+active.onChange = function ()
+{
+    if (active.get())addListener();
+    else removeListener();
+};
+
+op.onDelete = function ()
+{
+    removeListener();
+};
+
+
+};
+
+Ops.Patch.PuSSdim.MouseDrag.prototype = new CABLES.Op();
+CABLES.OPS["9076ec81-46db-4de1-aa09-c6e82e060ad8"]={f:Ops.Patch.PuSSdim.MouseDrag,objName:"Ops.Patch.PuSSdim.MouseDrag"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Trigger.TriggerSend
+// 
+// **************************************************************
+
+Ops.Trigger.TriggerSend = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const trigger = op.inTriggerButton("Trigger");
+op.varName = op.inValueSelect("Named Trigger", [], "", true);
+
+op.varName.onChange = updateName;
+
+trigger.onTriggered = doTrigger;
+
+op.patch.addEventListener("namedTriggersChanged", updateVarNamesDropdown);
+
+updateVarNamesDropdown();
+
+function updateVarNamesDropdown()
+{
+    if (CABLES.UI)
+    {
+        const varnames = [];
+        const vars = op.patch.namedTriggers;
+        varnames.push("+ create new one");
+        for (const i in vars) varnames.push(i);
+        op.varName.uiAttribs.values = varnames;
+    }
+}
+
+function updateName()
+{
+    if (CABLES.UI)
+    {
+        if (op.varName.get() == "+ create new one")
+        {
+            new CABLES.UI.ModalDialog({
+                "prompt": true,
+                "title": "New Trigger",
+                "text": "Enter a name for the new trigger",
+                "promptValue": "",
+                "promptOk": (str) =>
+                {
+                    op.varName.set(str);
+                    op.patch.namedTriggers[str] = op.patch.namedTriggers[str] || [];
+                    updateVarNamesDropdown();
+                }
+            });
+            return;
+        }
+
+        op.refreshParams();
+    }
+
+    if (!op.patch.namedTriggers[op.varName.get()])
+    {
+        op.patch.namedTriggers[op.varName.get()] = op.patch.namedTriggers[op.varName.get()] || [];
+        op.patch.emitEvent("namedTriggersChanged");
+    }
+
+    op.setTitle(">" + op.varName.get());
+
+    op.refreshParams();
+    op.patch.emitEvent("opTriggerNameChanged", op, op.varName.get());
+}
+
+function doTrigger()
+{
+    const arr = op.patch.namedTriggers[op.varName.get()];
+    // fire an event even if noone is receiving this trigger
+    // this way TriggerReceiveFilter can still handle it
+    op.patch.emitEvent("namedTriggerSent", op.varName.get());
+
+    if (!arr)
+    {
+        op.setUiError("unknowntrigger", "unknown trigger");
+        return;
+    }
+    else op.setUiError("unknowntrigger", null);
+
+    for (let i = 0; i < arr.length; i++)
+    {
+        arr[i]();
+    }
+}
+
+
+};
+
+Ops.Trigger.TriggerSend.prototype = new CABLES.Op();
+CABLES.OPS["ce1eaf2b-943b-4dc0-ab5e-ee11b63c9ed0"]={f:Ops.Trigger.TriggerSend,objName:"Ops.Trigger.TriggerSend"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Ui.Area
+// 
+// **************************************************************
+
+Ops.Ui.Area = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const inTitle = op.inString("Title", "");
+
+inTitle.setUiAttribs({ "hidePort": true });
+
+op.setUiAttrib({ "hasArea": true });
+
+op.init =
+    inTitle.onChange =
+    op.onLoaded = update;
+
+update();
+
+function update()
+{
+    if (CABLES.UI)
+    {
+        gui.savedState.setUnSaved("areaOp");
+        op.uiAttr(
+            {
+                "comment_title": inTitle.get() || " "
+            });
+
+        op.name = inTitle.get();
+    }
+}
+
+
+};
+
+Ops.Ui.Area.prototype = new CABLES.Op();
+CABLES.OPS["38f79614-b0de-4960-8da5-2827e7f43415"]={f:Ops.Ui.Area,objName:"Ops.Ui.Area"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Graphics.Intersection.IntersectWorld
+// 
+// **************************************************************
+
+Ops.Graphics.Intersection.IntersectWorld = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    trigger = op.inTrigger("Trigger"),
+    inTextCol = op.inBool("Check Body Collisions", false),
+    next = op.outTrigger("Next"),
+    outNum = op.outNumber("Total Bodies"),
+    outCollisions = op.outArray("Collisions", []);
+
+trigger.onTriggered = doRender;
+
+const SHAPE_SPHERE = 1;
+const SHAPE_AABB = 2;
+const SHAPE_POINT = 3;
+
+const cgl = op.patch.cgl;
+
+function doRender()
+{
+    cgl.frameStore.collisionWorld = { "bodies": [], "testCollision": testCollision };
+    next.trigger();
+
+    outNum.set(cgl.frameStore.collisionWorld.bodies.length);
+
+    if (inTextCol.get()) checkCollisions();
+
+    // if (render.get())renderBodies();
+}
+
+function testCollision(bodyA, bodyB)
+{
+    if (bodyA.type === SHAPE_SPHERE && bodyB.type === SHAPE_SPHERE)
+    {
+        const dist = vec3.distance(bodyA.pos, bodyB.pos);
+
+        if (dist < bodyA.radius + bodyB.radius)
+        {
+            return {
+                "body0": bodyA,
+                "name0": bodyA.name,
+                "body1": bodyB,
+                "name1": bodyB.name
+            };
+        }
+    }
+    else
+    if (bodyA.type === SHAPE_POINT && bodyB.type === SHAPE_POINT)
+    {
+        if (bodyA.pos[0] === bodyB.pos[0] && bodyA.pos[1] === bodyB.pos[1] && bodyA.pos[2] === bodyB.pos[2])
+        {
+            return {
+                "body0": bodyA,
+                "name0": bodyA.name,
+                "body1": bodyB,
+                "name1": bodyB.name
+            };
+        }
+    }
+    else
+    if (
+        (bodyB.type === SHAPE_SPHERE && bodyA.type === SHAPE_POINT) ||
+                    (bodyA.type === SHAPE_SPHERE && bodyB.type === SHAPE_POINT)
+    )
+    {
+        let bodyPoint = bodyA;
+        let bodySphere = bodyB;
+
+        if (bodyA.type === SHAPE_SPHERE)
+        {
+            bodyPoint = bodyB;
+            bodySphere = bodyA;
+        }
+
+        const xd = Math.abs(bodyPoint.pos[0] - bodySphere.pos[0]);
+        const yd = Math.abs(bodyPoint.pos[1] - bodySphere.pos[1]);
+        const zd = Math.abs(bodyPoint.pos[2] - bodySphere.pos[2]);
+        const dist = Math.sqrt(xd * xd + yd * yd + zd * zd);
+
+        if (dist < bodySphere.radius)
+        {
+            return {
+                "body0": bodyA,
+                "name0": bodyA.name,
+                "body1": bodyB,
+                "name1": bodyB.name };
+        }
+    }
+    else
+    if (
+        (bodyB.type === SHAPE_AABB && bodyA.type === SHAPE_POINT) ||
+                    (bodyA.type === SHAPE_AABB && bodyB.type === SHAPE_POINT)
+    )
+    {
+        let bodyPoint = bodyA;
+        let bodyBox = bodyB;
+
+        if (bodyA.type === SHAPE_AABB)
+        {
+            bodyPoint = bodyB;
+            bodyBox = bodyA;
+        }
+
+        if (
+            (bodyPoint.pos[0] > bodyBox.minX && bodyPoint.pos[0] < bodyBox.maxX) &&
+            (bodyPoint.pos[1] > bodyBox.minY && bodyPoint.pos[1] < bodyBox.maxY) &&
+            (bodyPoint.pos[2] > bodyBox.minZ && bodyPoint.pos[2] < bodyBox.maxZ)
+        )
+        {
+            return {
+                "body0": bodyA,
+                "name0": bodyA.name,
+                "body1": bodyB,
+                "name1": bodyB.name };
+        }
+    }
+    else
+    if ((bodyA.type === SHAPE_SPHERE && bodyB.type === SHAPE_AABB) || (bodyA.type === SHAPE_AABB && bodyB.type === SHAPE_SPHERE))
+    {
+        let bBox = bodyA;
+        let bSphere = bodyB;
+        if (bodyB.type === SHAPE_AABB)
+        {
+            bBox = bodyB;
+            bSphere = bodyA;
+        }
+
+        let r2 = bSphere.radius * bSphere.radius;
+        let dmin = 0;
+
+        let dist_squared = bSphere.radius * bSphere.radius;
+        /* assume bBox.minand C2 are element-wise sorted, if not, do that now */
+        if (bSphere.pos[0] < bBox.minX) dist_squared -= (bSphere.pos[0] - bBox.minX) ** 2;
+        else if (bSphere.pos[0] > bBox.maxX) dist_squared -= (bSphere.pos[0] - bBox.maxX) ** 2;
+        if (bSphere.pos[1] < bBox.minY) dist_squared -= (bSphere.pos[1] - bBox.minY) ** 2;
+        else if (bSphere.pos[1] > bBox.maxY) dist_squared -= (bSphere.pos[1] - bBox.maxY) ** 2;
+        if (bSphere.pos[2] < bBox.minZ) dist_squared -= (bSphere.pos[2] - bBox.minZ) ** 2;
+        else if (bSphere.pos[2] > bBox.maxZ) dist_squared -= (bSphere.pos[2] - bBox.maxZ) ** 2;
+
+        if (dist_squared > 0)
+        {
+            return {
+                "body0": bodyA,
+                "name0": bodyA.name,
+                "body1": bodyB,
+                "name1": bodyB.name
+            };
+        }
+    }
+    else
+    {
+        console.warn("unknown collision pair...", bodyA.type, bodyB.type);
+    }
+}
+
+function checkCollisions()
+{
+    const collisions = [];
+    const bodies = cgl.frameStore.collisionWorld.bodies;
+
+    for (let j = 0; j < bodies.length; j++)
+    {
+        for (let i = j + 1; i < bodies.length; i++)
+        {
+            if (i != j)
+            {
+                const c = testCollision(bodies[i], bodies[j]);
+                if (c)collisions.push(c);
+            }
+        }
+    }
+    outCollisions.setRef(collisions, []);
+}
+
+
+};
+
+Ops.Graphics.Intersection.IntersectWorld.prototype = new CABLES.Op();
+CABLES.OPS["6ebdec23-6e10-48c9-87cf-43d488e4290f"]={f:Ops.Graphics.Intersection.IntersectWorld,objName:"Ops.Graphics.Intersection.IntersectWorld"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Graphics.Intersection.IntersectTestRaycast
+// 
+// **************************************************************
+
+Ops.Graphics.Intersection.IntersectTestRaycast = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    trigger = op.inTrigger("Trigger"),
+    inCoords = op.inSwitch("Coordinate Format", ["-1 to 1", "XYZ-XYZ"], "-1 to 1"),
+    inX = op.inValueFloat("X"),
+    inY = op.inValueFloat("Y"),
+
+    inZ = op.inValueFloat("Z"),
+
+    inToX = op.inValueFloat("To X"),
+    inToY = op.inValueFloat("To Y"),
+    inToZ = op.inValueFloat("To Z"),
+
+    active = op.inBool("Active", true),
+    inCursor = op.inBool("Change Cursor", true),
+    next = op.outTrigger("Next"),
+    outHasHit = op.outBoolNum("Has Hit", false),
+    outName = op.outString("Hit Body Name", ""),
+    outX = op.outNumber("Hit X"),
+    outY = op.outNumber("Hit Y"),
+    outZ = op.outNumber("Hit Z");
+
+const cgl = op.patch.cgl;
+const oc = vec3.create();
+const mat = mat4.create();
+const dir = vec3.create();
+let didsetCursor = false;
+let isScreenCoords = true;
+
+op.toWorkPortsNeedToBeLinked(trigger);
+
+trigger.onTriggered = doRender;
+
+inCoords.onChange = updateUi;
+updateUi();
+
+function updateUi()
+{
+    inZ.setUiAttribs({ "greyout": inCoords.get() != "XYZ-XYZ" });
+
+    inToX.setUiAttribs({ "greyout": inCoords.get() != "XYZ-XYZ" });
+    inToY.setUiAttribs({ "greyout": inCoords.get() != "XYZ-XYZ" });
+    inToZ.setUiAttribs({ "greyout": inCoords.get() != "XYZ-XYZ" });
+}
+
+function doRender()
+{
+    next.trigger();
+
+    if (cgl.frameStore.collisionWorld)
+    {
+        let origin = vec3.create();
+
+        if (inCoords.get() == "-1 to 1")
+        {
+            origin = vec3.fromValues(inX.get(), inY.get(), -1);
+            mat4.mul(mat, cgl.pMatrix, cgl.vMatrix);
+            mat4.invert(mat, mat);
+            vec3.transformMat4(origin, origin, mat);
+        }
+
+        if (inCoords.get() == "XYZ-XYZ")
+        {
+            origin = vec3.fromValues(inX.get(), inY.get(), inZ.get());
+        }
+
+        // -----------
+
+        let to = vec3.create();
+
+        if (inCoords.get() == "-1 to 1")
+        {
+            to = vec3.fromValues(inX.get(), inY.get(), 1);
+            mat4.mul(mat, cgl.pMatrix, cgl.vMatrix);
+            mat4.invert(mat, mat);
+            vec3.transformMat4(to, to, mat);
+        }
+
+        if (inCoords.get() == "XYZ-XYZ")
+        {
+            to = vec3.fromValues(inToX.get(), inToY.get(), inToZ.get());
+        }
+
+        vec3.sub(dir, to, origin);
+        vec3.normalize(dir, dir);
+        const a = vec3.dot(dir, dir);
+
+        let foundDist = 9999999;
+
+        let found = false;
+        const bodies = cgl.frameStore.collisionWorld.bodies;
+        for (let i = 0; i < bodies.length; i++)
+        {
+            // if (found) break;
+
+            const body = bodies[i];
+            if (body.type == 1) // sphere
+            {
+                vec3.sub(oc, origin, body.pos);
+                const b = 2 * vec3.dot(oc, dir);
+                const c = vec3.dot(oc, oc) - (body.radius * body.radius);
+                const discriminant = b * b - 4 * a * c;
+
+                if (discriminant > 0)
+                {
+                    const dist = (-b - Math.sqrt(discriminant)) / (2 + a);
+                    if (dist < foundDist)
+                    {
+                        found = true;
+                        outName.set(body.name);
+                        outHasHit.set(true);
+
+                        foundDist = dist;
+
+                        vec3.mul(oc, dir, [dist, dist, dist]);
+                        vec3.add(oc, oc, origin);
+
+                        outX.set(oc[0]);
+                        outY.set(oc[1]);
+                        outZ.set(oc[2]);
+                    }
+                }
+            }
+            else if (body.type == 2) // aabb
+            {
+                const t1 = (body.minX - origin[0]) / dir[0];
+                const t2 = (body.maxX - origin[0]) / dir[0];
+
+                const t3 = (body.minY - origin[1]) / dir[1];
+                const t4 = (body.maxY - origin[1]) / dir[1];
+
+                const t5 = (body.minZ - origin[2]) / dir[2];
+                const t6 = (body.maxZ - origin[2]) / dir[2];
+
+                const tmin = Math.max(Math.max(Math.min(t1, t2), Math.min(t3, t4)), Math.min(t5, t6));
+                const tmax = Math.min(Math.min(Math.max(t1, t2), Math.max(t3, t4)), Math.max(t5, t6));
+
+                // // if tmax < 0, ray (line) is intersecting AABB, but whole AABB is behing us
+                if (tmax < 0) continue;
+
+                // if tmin > tmax, ray doesn't intersect AABB
+                if (tmin > tmax) continue;
+
+                found = true;
+                outName.set(body.name);
+                outHasHit.set(true);
+
+                vec3.mul(oc, dir, [tmin, tmin, tmin]);
+                vec3.add(oc, oc, origin);
+
+                outX.set(oc[0]);
+                outY.set(oc[1]);
+                outZ.set(oc[2]);
+            }
+        }
+
+        if (!found)
+        {
+            outName.set("");
+            outHasHit.set(false);
+            outX.set(0);
+            outY.set(0);
+            outZ.set(0);
+        }
+    }
+}
+
+
+};
+
+Ops.Graphics.Intersection.IntersectTestRaycast.prototype = new CABLES.Op();
+CABLES.OPS["dd5d9b39-75c2-40b1-98a4-7a0fdafdb5cb"]={f:Ops.Graphics.Intersection.IntersectTestRaycast,objName:"Ops.Graphics.Intersection.IntersectTestRaycast"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Trigger.TriggerReceive
+// 
+// **************************************************************
+
+Ops.Trigger.TriggerReceive = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const next = op.outTrigger("Triggered");
+op.varName = op.inValueSelect("Named Trigger", [], "", true);
+
+updateVarNamesDropdown();
+op.patch.addEventListener("namedTriggersChanged", updateVarNamesDropdown);
+
+let oldName = null;
+
+function doTrigger()
+{
+    next.trigger();
+}
+
+function updateVarNamesDropdown()
+{
+    if (CABLES.UI)
+    {
+        let varnames = [];
+        let vars = op.patch.namedTriggers;
+        // varnames.push('+ create new one');
+        for (let i in vars) varnames.push(i);
+        op.varName.uiAttribs.values = varnames;
+    }
+}
+
+op.varName.onChange = function ()
+{
+    if (oldName)
+    {
+        let oldCbs = op.patch.namedTriggers[oldName];
+        let a = oldCbs.indexOf(doTrigger);
+        if (a != -1) oldCbs.splice(a, 1);
+    }
+
+    op.setTitle(">" + op.varName.get());
+    op.patch.namedTriggers[op.varName.get()] = op.patch.namedTriggers[op.varName.get()] || [];
+    let cbs = op.patch.namedTriggers[op.varName.get()];
+
+    cbs.push(doTrigger);
+    oldName = op.varName.get();
+    updateError();
+    op.patch.emitEvent("opTriggerNameChanged", op, op.varName.get());
+};
+
+op.on("uiParamPanel", updateError);
+
+function updateError()
+{
+    if (!op.varName.get())
+    {
+        op.setUiError("unknowntrigger", "unknown trigger");
+    }
+    else op.setUiError("unknowntrigger", null);
+}
+
+
+};
+
+Ops.Trigger.TriggerReceive.prototype = new CABLES.Op();
+CABLES.OPS["0816c999-f2db-466b-9777-2814573574c5"]={f:Ops.Trigger.TriggerReceive,objName:"Ops.Trigger.TriggerReceive"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Graphics.Intersection.IntersectBody
+// 
+// **************************************************************
+
+Ops.Graphics.Intersection.IntersectBody = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    shapes = ["Sphere", "BoxAA", "Point"],
+    trigger = op.inTrigger("Trigger"),
+    inArea = op.inSwitch("Shape", shapes, "Sphere"),
+    inName = op.inString("Name", ""),
+    inRadius = op.inFloat("Radius", 0.5),
+    inSizeX = op.inFloat("Size X", 1),
+    inSizeY = op.inFloat("Size Y", 1),
+    inSizeZ = op.inFloat("Size Z", 1),
+    inPositions = op.inArray("Positions", null, 3),
+    inPosIndex = op.inBool("Append Index to name", true),
+    next = op.outTrigger("Next");
+
+op.setPortGroup("Array", [inPositions, inPosIndex]);
+
+const cgl = op.patch.cgl;
+const pos = vec3.create();
+const empty = vec3.create();
+
+updateUi();
+
+let objs = [];
+let obj =
+{
+    "name": "???",
+    "type": 1,
+};
+
+trigger.onTriggered = render;
+
+function getCopyObj()
+{
+    return { "name": obj.name, "type": obj.type };
+}
+
+inArea.onChange = () =>
+{
+    obj.type = shapes.indexOf(inArea.get()) + 1;
+    updateUi();
+};
+
+function updateUi()
+{
+    inRadius.setUiAttribs({ "greyout": inArea.get() != "Sphere" });
+    inSizeX.setUiAttribs({ "greyout": inArea.get() != "BoxAA" });
+    inSizeY.setUiAttribs({ "greyout": inArea.get() != "BoxAA" });
+    inSizeZ.setUiAttribs({ "greyout": inArea.get() != "BoxAA" });
+}
+
+function setBox(o)
+{
+    o.minX = o.pos[0] - o.size[0] / 2;
+    o.maxX = o.pos[0] + o.size[0] / 2;
+
+    o.minY = o.pos[1] - o.size[1] / 2;
+    o.maxY = o.pos[1] + o.size[1] / 2;
+
+    o.minZ = o.pos[2] - o.size[2] / 2;
+    o.maxZ = o.pos[2] + o.size[2] / 2;
+}
+
+const SHAPE_SPHERE = 1;
+const SHAPE_AABB = 2;
+const SHAPE_POINT = 3;
+
+function renderOverlay(body)
+{
+    if (!CABLES.UI) return;
+    if (!cgl.shouldDrawHelpers(op)) return;
+    // const collisions = [];
+    // const bodies = cgl.frameStore.collisionWorld.bodies;
+
+    // for (let i = 0; i < bodies.length; i++)
+    // {
+    // const body = bodies[i];
+
+    if (body.type === SHAPE_SPHERE) // sphere
+    {
+        // console.log("sphere")
+        cgl.pushModelMatrix();
+        // mat4.translate(cgl.mMatrix, cgl.mMatrix, body.pos);
+        CABLES.UI.OverlayMeshes.drawSphere(op, body.radius, true);
+        cgl.popModelMatrix();
+    }
+    else if (body.type === SHAPE_AABB) // AABB
+    {
+        cgl.pushModelMatrix();
+        // mat4.translate(cgl.mMatrix, cgl.mMatrix, body.pos);
+        CABLES.UI.OverlayMeshes.drawCube(op, body.size[0] / 2, body.size[1] / 2, body.size[2] / 2);
+        cgl.popModelMatrix();
+    }
+    else if (body.type === SHAPE_POINT) // point
+    {
+        cgl.pushModelMatrix();
+        // mat4.translate(cgl.mMatrix, cgl.mMatrix, body.pos);
+        CABLES.UI.OverlayMeshes.drawAxisMarker(op, 0.05);
+        cgl.popModelMatrix();
+    }
+    else console.warn("[intersectWorld] unknown col shape");
+
+    // }
+}
+
+function render()
+{
+    if (!cgl.frameStore || !cgl.frameStore.collisionWorld) return;
+    const cg = op.patch.cgl;
+
+    // vec3.transformMat4(pos, empty, cg.mMatrix);
+    // mat4.getScaling(scale, cg.mMatrix);
+
+    const posArr = inPositions.get();
+    const radius = inRadius.get();
+
+    if (posArr && posArr.length > 0 && posArr.length % 3 == 0)
+    {
+        objs.length = posArr.length / 3;
+        for (let i = 0; i < posArr.length; i += 3)
+        {
+            const o = objs[i / 3] || {};
+            if (inPosIndex.get()) o.name = inName.get() + "." + i / 3;
+            else o.name = inName.get();
+
+            o.pos = [posArr[i + 0], posArr[i + 1], posArr[i + 2]];
+            vec3.transformMat4(o.pos, o.pos, cg.mMatrix);
+
+            // vec3.mul(o.pos, o.pos, scale);
+            o.type = obj.type;
+            o.size = [inSizeX.get(), inSizeY.get(), inSizeZ.get()];
+
+            if (o.type == 2)setBox(o);
+            if (o.type == 1)o.radius = radius;
+
+            cgl.frameStore.collisionWorld.bodies.push(o);
+            renderOverlay(o);
+        }
+    }
+    else
+    {
+        const objCopy = getCopyObj();
+        cgl.frameStore.collisionWorld.bodies.push(objCopy);
+        objCopy.name = inName.get();
+        objCopy.pos = [0, 0, 0];
+
+        vec3.transformMat4(objCopy.pos, objCopy.pos, cg.mMatrix);
+
+        objCopy.size = [inSizeX.get(), inSizeY.get(), inSizeZ.get()];
+
+        if (objCopy.type == 2)setBox(objCopy);
+        if (objCopy.type == 1)objCopy.radius = radius;
+        renderOverlay(objCopy);
+    }
+
+    next.trigger();
+}
+
+
+};
+
+Ops.Graphics.Intersection.IntersectBody.prototype = new CABLES.Op();
+CABLES.OPS["b2e39096-8a02-4a50-b2f5-3e68f2c16ad7"]={f:Ops.Graphics.Intersection.IntersectBody,objName:"Ops.Graphics.Intersection.IntersectBody"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Trigger.Repeat2d
+// 
+// **************************************************************
+
+Ops.Trigger.Repeat2d = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    exe = op.inTrigger("exe"),
+    numx = op.inValueInt("num x", 5),
+    numy = op.inValueInt("num y", 5),
+    mul = op.inValueFloat("mul", 1),
+    center = op.inValueBool("center"),
+    trigger = op.outTrigger("trigger"),
+    outX = op.outNumber("x"),
+    outY = op.outNumber("y"),
+    idx = op.outNumber("index"),
+    total = op.outNumber("total iterations");
+
+exe.onTriggered = function ()
+{
+    let subX = 0;
+    let subY = 0;
+    const m = mul.get();
+    const nx = numx.get();
+    const ny = numy.get();
+
+    if (center.get())
+    {
+        subX = ((nx - 1) * m) / 2.0;
+        subY = ((ny - 1) * m) / 2.0;
+    }
+
+    for (let y = 0; y < ny; y++)
+    {
+        outY.set((y * m) - subY);
+        for (let x = 0; x < nx; x++)
+        {
+            outX.set((x * m) - subX);
+            idx.set(x + y * nx);
+            trigger.trigger();
+        }
+    }
+    total.set(numx.get() * numy.get());
+};
+
+
+};
+
+Ops.Trigger.Repeat2d.prototype = new CABLES.Op();
+CABLES.OPS["79934693-5887-4173-8b48-3e3a18fcf225"]={f:Ops.Trigger.Repeat2d,objName:"Ops.Trigger.Repeat2d"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Vars.VarSetString_v2
+// 
+// **************************************************************
+
+Ops.Vars.VarSetString_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const val=op.inString("Value","New String");
+op.varName=op.inDropDown("Variable",[],"",true);
+
+new CABLES.VarSetOpWrapper(op,"string",val,op.varName);
+
+
+
+
+};
+
+Ops.Vars.VarSetString_v2.prototype = new CABLES.Op();
+CABLES.OPS["0b4d9229-8024-4a30-9cc0-f6653942c2e4"]={f:Ops.Vars.VarSetString_v2,objName:"Ops.Vars.VarSetString_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.Compare.Equals
+// 
+// **************************************************************
+
+Ops.Math.Compare.Equals = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    number1 = op.inValue("number1", 1),
+    number2 = op.inValue("number2", 1),
+    result = op.outBoolNum("result");
+
+number1.onChange =
+    number2.onChange = exec;
+exec();
+
+function exec()
+{
+    result.set(number1.get() == number2.get());
+}
+
+
+};
+
+Ops.Math.Compare.Equals.prototype = new CABLES.Op();
+CABLES.OPS["4dd3cc55-eebc-4187-9d4e-2e053a956fab"]={f:Ops.Math.Compare.Equals,objName:"Ops.Math.Compare.Equals"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Array.ArrayGetNumber
+// 
+// **************************************************************
+
+Ops.Array.ArrayGetNumber = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    array = op.inArray("array"),
+    index = op.inValueInt("index"),
+    valueInvalid = op.inFloat("Value Invalid Index", 0),
+    value = op.outNumber("value"),
+    outValidIndex = op.outBoolNum("Valid Index", true);
+
+array.ignoreValueSerialize = true;
+
+index.onChange = array.onChange = update;
+
+function update()
+{
+    if (array.get())
+    {
+        const input = array.get()[index.get()];
+        if (isNaN(input))
+        {
+            value.set(valueInvalid.get());
+            outValidIndex.set(false);
+        }
+        else
+        {
+            outValidIndex.set(true);
+            value.set(parseFloat(input));
+        }
+    }
+}
+
+
+};
+
+Ops.Array.ArrayGetNumber.prototype = new CABLES.Op();
+CABLES.OPS["d1189078-70cf-437d-9a37-b2ebe89acdaf"]={f:Ops.Array.ArrayGetNumber,objName:"Ops.Array.ArrayGetNumber"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Vars.VarSetArray_v2
+// 
+// **************************************************************
+
+Ops.Vars.VarSetArray_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const val = op.inArray("Value", null);
+op.varName = op.inDropDown("Variable", [], "", true);
+
+new CABLES.VarSetOpWrapper(op, "array", val, op.varName);
+
+
+};
+
+Ops.Vars.VarSetArray_v2.prototype = new CABLES.Op();
+CABLES.OPS["8088290f-45d4-4312-b4ca-184d34ca4667"]={f:Ops.Vars.VarSetArray_v2,objName:"Ops.Vars.VarSetArray_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Vars.VarGetArray_v2
+// 
+// **************************************************************
+
+Ops.Vars.VarGetArray_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const val = op.outArray("Value");
+op.varName = op.inValueSelect("Variable", [], "", true);
+
+new CABLES.VarGetOpWrapper(op, "array", op.varName, val);
+
+
+};
+
+Ops.Vars.VarGetArray_v2.prototype = new CABLES.Op();
+CABLES.OPS["afa79294-aa9c-43bc-a49a-cade000a1de5"]={f:Ops.Vars.VarGetArray_v2,objName:"Ops.Vars.VarGetArray_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.Matrix.Camera
+// 
+// **************************************************************
+
+Ops.Gl.Matrix.Camera = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const render = op.inTrigger("render");
+const trigger = op.outTrigger("trigger");
+
+/* Inputs */
+// projection | prespective & ortogonal
+const projectionMode = op.inValueSelect("projection mode", ["prespective", "ortogonal"], "prespective");
+const zNear = op.inValue("frustum near", 0.01);
+const zFar = op.inValue("frustum far", 5000.0);
+
+const fov = op.inValue("fov", 45);
+const autoAspect = op.inValueBool("Auto Aspect Ratio", true);
+const aspect = op.inValue("Aspect Ratio", 1);
+
+// look at camera
+const eyeX = op.inValue("eye X", 0);
+const eyeY = op.inValue("eye Y", 0);
+const eyeZ = op.inValue("eye Z", 5);
+
+const centerX = op.inValue("center X", 0);
+const centerY = op.inValue("center Y", 0);
+const centerZ = op.inValue("center Z", 0);
+
+// camera transform and movements
+const posX = op.inValue("truck", 0);
+const posY = op.inValue("boom", 0);
+const posZ = op.inValue("dolly", 0);
+
+const rotX = op.inValue("tilt", 0);
+const rotY = op.inValue("pan", 0);
+const rotZ = op.inValue("roll", 0);
+
+/* Outputs */
+const outAsp = op.outNumber("Aspect");
+const outArr = op.outArray("Look At Array");
+
+/* logic */
+const cgl = op.patch.cgl;
+
+let asp = 0;
+
+const vUp = vec3.create();
+const vEye = vec3.create();
+const vCenter = vec3.create();
+const transMatrix = mat4.create();
+mat4.identity(transMatrix);
+
+const arr = [];
+
+// Transform and move
+const vPos = vec3.create();
+const transMatrixMove = mat4.create();
+mat4.identity(transMatrixMove);
+
+let updateCameraMovementMatrix = true;
+
+render.onTriggered = function ()
+{
+    if (cgl.frameStore.shadowPass) return trigger.trigger();
+
+    // Aspect ration
+    if (!autoAspect.get()) asp = aspect.get();
+    else asp = cgl.getViewPort()[2] / cgl.getViewPort()[3];
+    outAsp.set(asp);
+
+    // translation (truck, boom, dolly)
+    cgl.pushViewMatrix();
+
+    if (updateCameraMovementMatrix)
+    {
+        mat4.identity(transMatrixMove);
+
+        vec3.set(vPos, posX.get(), posY.get(), posZ.get());
+        if (posX.get() !== 0.0 || posY.get() !== 0.0 || posZ.get() !== 0.0)
+            mat4.translate(transMatrixMove, transMatrixMove, vPos);
+
+        if (rotX.get() !== 0)
+            mat4.rotateX(transMatrixMove, transMatrixMove, rotX.get() * CGL.DEG2RAD);
+        if (rotY.get() !== 0)
+            mat4.rotateY(transMatrixMove, transMatrixMove, rotY.get() * CGL.DEG2RAD);
+        if (rotZ.get() !== 0)
+            mat4.rotateZ(transMatrixMove, transMatrixMove, rotZ.get() * CGL.DEG2RAD);
+
+        updateCameraMovementMatrix = false;
+    }
+
+    mat4.multiply(cgl.vMatrix, cgl.vMatrix, transMatrixMove);
+
+    // projection (prespective / ortogonal)
+    cgl.pushPMatrix();
+
+    // look at
+    cgl.pushViewMatrix();
+
+    if (projectionMode.get() == "prespective")
+    {
+        mat4.perspective(
+            cgl.pMatrix,
+            fov.get() * 0.0174533,
+            asp,
+            zNear.get(),
+            zFar.get()
+        );
+    }
+    else if (projectionMode.get() == "ortogonal")
+    {
+        mat4.ortho(
+            cgl.pMatrix,
+            -1 * (fov.get() / 14),
+            1 * (fov.get() / 14),
+            -1 * (fov.get() / 14) / asp,
+            1 * (fov.get() / 14) / asp,
+            zNear.get(),
+            zFar.get()
+        );
+    }
+
+    arr[0] = eyeX.get();
+    arr[1] = eyeY.get();
+    arr[2] = eyeZ.get();
+
+    arr[3] = centerX.get();
+    arr[4] = centerY.get();
+    arr[5] = centerZ.get();
+
+    arr[6] = 0;
+    arr[7] = 1;
+    arr[8] = 0;
+
+    outArr.setRef(arr);
+
+    vec3.set(vUp, 0, 1, 0);
+    vec3.set(vEye, eyeX.get(), eyeY.get(), eyeZ.get());
+    vec3.set(vCenter, centerX.get(), centerY.get(), centerZ.get());
+
+    mat4.lookAt(transMatrix, vEye, vCenter, vUp);
+
+    mat4.multiply(cgl.vMatrix, cgl.vMatrix, transMatrix);
+
+    trigger.trigger();
+
+    cgl.popViewMatrix();
+    cgl.popPMatrix();
+
+    cgl.popViewMatrix();
+
+    // GUI for dolly, boom and truck
+    if (op.isCurrentUiOp())
+        gui.setTransformGizmo({
+            "posX": posX,
+            "posY": posY,
+            "posZ": posZ
+        });
+};
+
+const updateUI = function ()
+{
+    if (!autoAspect.get())
+    {
+        aspect.setUiAttribs({ "greyout": false });
+    }
+    else
+    {
+        aspect.setUiAttribs({ "greyout": true });
+    }
+};
+
+const cameraMovementChanged = function ()
+{
+    updateCameraMovementMatrix = true;
+};
+
+// listeners
+posX.onChange = cameraMovementChanged;
+posY.onChange = cameraMovementChanged;
+posZ.onChange = cameraMovementChanged;
+
+rotX.onChange = cameraMovementChanged;
+rotY.onChange = cameraMovementChanged;
+rotZ.onChange = cameraMovementChanged;
+
+autoAspect.onChange = updateUI;
+updateUI();
+
+
+};
+
+Ops.Gl.Matrix.Camera.prototype = new CABLES.Op();
+CABLES.OPS["b24dbfdc-485c-49d2-92a1-7258efd9239a"]={f:Ops.Gl.Matrix.Camera,objName:"Ops.Gl.Matrix.Camera"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.Ease
+// 
+// **************************************************************
+
+Ops.Math.Ease = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inVal = op.inValue("Value"),
+    inMin = op.inValue("Min", 0),
+    inMax = op.inValue("Max", 1),
+    result = op.outNumber("Result"),
+    anim = new CABLES.Anim();
+
+anim.createPort(op, "Easing", updateAnimEasing);
+anim.setValue(0, 0);
+anim.setValue(1, 1);
+
+op.onLoaded = inMin.onChange = inMax.onChange = updateMinMax;
+
+function updateMinMax()
+{
+    anim.keys[0].time = anim.keys[0].value = Math.min(inMin.get(), inMax.get());
+    anim.keys[1].time = anim.keys[1].value = Math.max(inMin.get(), inMax.get());
+}
+
+function updateAnimEasing()
+{
+    anim.keys[0].setEasing(anim.defaultEasing);
+}
+
+inVal.onChange = function ()
+{
+    const r = anim.getValue(inVal.get());
+    result.set(r);
+};
+
+
+};
+
+Ops.Math.Ease.prototype = new CABLES.Op();
+CABLES.OPS["8f6e4a08-33e6-408f-ac4a-198bd03b417b"]={f:Ops.Math.Ease,objName:"Ops.Math.Ease"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.TextMeshMSDF_v2
+// 
+// **************************************************************
+
+Ops.Gl.TextMeshMSDF_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"textmeshsdf_frag":"\nUNI sampler2D tex0;\nUNI sampler2D tex1;\nUNI sampler2D tex2;\nUNI sampler2D tex3;\n\nIN vec2 texCoord;\nIN vec4 fragAttrColors;\n\nUNI vec4 color;\nUNI vec2 texSize;\n\n#ifdef BORDER\n    UNI float borderWidth;\n    UNI float borderSmooth;\n    UNI vec3 colorBorder;\n#endif\n\n#ifdef TEXTURE_COLOR\nUNI sampler2D texMulColor;\n#endif\n#ifdef TEXTURE_MASK\nUNI sampler2D texMulMask;\n#endif\n\nUNI float smoothing;\nIN float texIndex;\n\n#ifdef SHADOW\n    UNI float shadowWidth;\n#endif\n\n\nfloat median(float r, float g, float b)\n{\n    return max(min(r, g), min(max(r, g), b));\n}\n\nvoid main()\n{\n    vec4 bgColor=vec4(0.0,0.0,0.0,0.0);\n    vec4 fgColor=color;\n    float opacity=1.0;\n\n    #ifndef SDF\n        if(int(texIndex)==0) outColor = texture(tex0, texCoord);\n        if(int(texIndex)==1) outColor = texture(tex1, texCoord);\n        if(int(texIndex)==2) outColor = texture(tex2, texCoord);\n        if(int(texIndex)==3) outColor = texture(tex3, texCoord);\n\n        return;\n    #endif\n\n\n    #ifdef TEXTURE_COLOR\n        fgColor.rgb *= texture(texMulColor, vec2(0.0,0.0)).rgb; //todo texcoords from char positioning\n    #endif\n    #ifdef TEXTURE_MASK\n        opacity *= texture(texMulMask, vec2(0.0,0.0)).r; //todo texcoords from char positioning\n    #endif\n\n\n    #ifdef SHADOW\n        vec2 msdfUnit1 = texSize;\n        vec2 tcv=vec2(texCoord.x-0.002,texCoord.y-0.002);\n        vec3 smpl1;\n        if(int(texIndex)==0) smpl1 = texture(tex0, tcv).rgb;\n        if(int(texIndex)==1) smpl1 = texture(tex1, tcv).rgb;\n        if(int(texIndex)==2) smpl1 = texture(tex2, tcv).rgb;\n        if(int(texIndex)==3) smpl1 = texture(tex3, tcv).rgb;\n\n        float sigDist1 = median(smpl1.r, smpl1.g, smpl1.b) - 0.001;\n        float opacity1 = smoothstep(0.0,0.9,sigDist1*sigDist1);\n        outColor = mix(bgColor, vec4(0.0,0.0,0.0,1.0), opacity1);\n    #endif\n\n    vec2 msdfUnit = 8.0/texSize;\n    vec3 smpl;\n\n    if(int(texIndex)==0) smpl = texture(tex0, texCoord).rgb;\n    if(int(texIndex)==1) smpl = texture(tex1, texCoord).rgb;\n    if(int(texIndex)==2) smpl = texture(tex2, texCoord).rgb;\n    if(int(texIndex)==3) smpl = texture(tex3, texCoord).rgb;\n\n\n    float sigDist = median(smpl.r, smpl.g, smpl.b) - 0.5;\n    sigDist *= dot(msdfUnit, (0.5+(smoothing-0.5))/fwidth(texCoord));\n    opacity *= clamp(sigDist + 0.5, 0.0, 1.0);\n\n    #ifdef BORDER\n        float sigDist2 = median(smpl.r, smpl.g, smpl.b) - 0.01;\n        float bw=borderWidth*0.6+0.24;\n        float opacity2 = smoothstep(bw-borderSmooth,bw+borderSmooth,sigDist2*sigDist2);\n        fgColor=mix(fgColor,vec4(colorBorder,1.0),1.0-opacity2);\n    #endif\n\n    if(color.a==0.0)discard;\n\n    outColor = mix(outColor, fgColor, opacity*color.a);\n\n#ifdef HAS_ATTR_COLORS\n    outColor*=fragAttrColors;\n#endif\n}\n\n","textmeshsdf_vert":"UNI sampler2D tex1;\nUNI sampler2D tex2;\nUNI sampler2D tex3;\nUNI sampler2D tex4;\n\nUNI mat4 projMatrix;\nUNI mat4 modelMatrix;\nUNI mat4 viewMatrix;\n\nIN vec3 vPosition;\nIN vec2 attrTexCoord;\nIN mat4 instMat;\nIN vec2 attrTexOffsets;\nIN vec2 attrSize;\nIN vec2 attrTcSize;\nIN float attrPage;\nIN vec4 attrColors;\n\nOUT vec2 texCoord;\nOUT float texIndex;\nOUT vec4 fragAttrColors;\n\n\n\n\nconst float mulSize=0.01;\n\nvoid main()\n{\n    texCoord=(attrTexOffsets+attrTexCoord*attrTcSize);\n    texCoord.y=1.0-texCoord.y;\n\n    mat4 instMVMat=instMat;\n    vec4 vert=vec4( vPosition, 1. );\n    vert.x*=attrSize.x*mulSize;\n    vert.y*=attrSize.y*mulSize;\n\n    fragAttrColors=attrColors;\n\n    texIndex=attrPage+0.4; // strange ios rounding errors?!\n\n    mat4 mvMatrix=viewMatrix * modelMatrix * instMVMat;\n\n    gl_Position = projMatrix * mvMatrix * vert;\n}\n",};
+// https://soimy.github.io/msdf-bmfont-xml/
+
+// antialiasing:
+// https://github.com/Chlumsky/msdfgen/issues/22
+
+const
+    render = op.inTrigger("Render"),
+    str = op.inString("Text", "cables"),
+    inFont = op.inDropDown("Font", [], "", true),
+    scale = op.inFloat("Scale", 0.25),
+
+    letterSpace = op.inFloat("Letter Spacing", 0),
+    lineHeight = op.inFloat("Line Height", 1),
+
+    align = op.inSwitch("Align", ["Left", "Center", "Right"], "Center"),
+    valign = op.inSwitch("Vertical Align", ["Zero", "Top", "Middle", "Bottom"], "Middle"),
+
+    r = op.inValueSlider("r", 1),
+    g = op.inValueSlider("g", 1),
+    b = op.inValueSlider("b", 1),
+    a = op.inValueSlider("a", 1),
+    doSDF = op.inBool("SDF", true),
+
+    smoothing = op.inValueSlider("Smoothing", 0.3),
+
+    inBorder = op.inBool("Border", false),
+    inBorderWidth = op.inFloatSlider("Border Width", 0.5),
+    inBorderSmooth = op.inFloatSlider("Smoothness", 0.25),
+    br = op.inValueSlider("Border r", 1),
+    bg = op.inValueSlider("Border g", 1),
+    bb = op.inValueSlider("Border b", 1),
+
+    inShadow = op.inBool("Shadow", false),
+
+    inTexColor = op.inTexture("Texture Color"),
+    inTexMask = op.inTexture("Texture Mask"),
+
+    inPosArr = op.inArray("Positions"),
+    inScaleArr = op.inArray("Scalings"),
+    inRotArr = op.inArray("Rotations"),
+    inColors = op.inArray("Colors"),
+
+    next = op.outTrigger("Next"),
+    outArr = op.outArray("Positions Original", null, 3),
+
+    outScales = op.outArray("Scales", null, 2),
+    outLines = op.outNumber("Num Lines"),
+
+    outWidth = op.outNumber("Width"),
+    outHeight = op.outNumber("Height"),
+    outStartY = op.outNumber("Start Y"),
+    outNumChars = op.outNumber("Num Chars");
+
+op.setPortGroup("Size", [letterSpace, lineHeight, scale]);
+op.setPortGroup("Character Transformations", [inScaleArr, inRotArr, inPosArr]);
+op.setPortGroup("Alignment", [align, valign]);
+op.setPortGroup("Color", [r, g, b, a, doSDF]);
+op.setPortGroup("Border", [br, bg, bb, inBorderSmooth, inBorderWidth, inBorder]);
+
+r.setUiAttribs({ "colorPick": true });
+br.setUiAttribs({ "colorPick": true });
+
+const cgl = op.patch.cgl;
+const fontDataVarPrefix = "font_data_";
+const substrLength = fontDataVarPrefix.length;
+const alignVec = vec3.create();
+const vScale = vec3.create();
+const shader = new CGL.Shader(cgl, "TextMeshSDF");
+shader.define("INSTANCING");
+
+let fontTexs = null;
+let fontData = null;
+let fontChars = null;
+let needUpdate = true;
+let geom = null;
+let mesh = null;
+let disabled = false;
+let valignMode = 1;
+let heightAll = 0, widthAll = 0;
+let avgHeight = 0;
+let minY, maxY, minX, maxX;
+let needsUpdateTransmats = true;
+let transMats = null;
+let offY = 0;
+
+if (cgl.glVersion == 1)
+{
+    cgl.gl.getExtension("OES_standard_derivatives");
+    shader.enableExtension("GL_OES_standard_derivatives");
+}
+
+shader.setSource(attachments.textmeshsdf_vert, attachments.textmeshsdf_frag);
+
+const
+    uniTex = new CGL.Uniform(shader, "t", "tex0", 0),
+    uniTex1 = new CGL.Uniform(shader, "t", "tex1", 1),
+    uniTex2 = new CGL.Uniform(shader, "t", "tex2", 2),
+    uniTex3 = new CGL.Uniform(shader, "t", "tex3", 3),
+    uniTexMul = new CGL.Uniform(shader, "t", "texMulColor", 4),
+    uniTexMulMask = new CGL.Uniform(shader, "t", "texMulMask", 5),
+    uniColor = new CGL.Uniform(shader, "4f", "color", r, g, b, a),
+    uniColorBorder = new CGL.Uniform(shader, "3f", "colorBorder", br, bg, bb),
+
+    uniTexSize = new CGL.Uniform(shader, "2f", "texSize", 0, 0),
+
+    uniSmoothing = new CGL.Uniform(shader, "f", "smoothing", smoothing),
+    uniborderSmooth = new CGL.Uniform(shader, "f", "borderSmooth", inBorderSmooth),
+    uniborderWidth = new CGL.Uniform(shader, "f", "borderWidth", inBorderWidth);
+
+scale.onChange = updateScale;
+
+inRotArr.onChange =
+    inPosArr.onChange =
+    inScaleArr.onChange = function () { needsUpdateTransmats = true; };
+
+inTexColor.onChange =
+inTexMask.onChange =
+inShadow.onChange =
+inBorder.onChange =
+doSDF.onChange =
+    updateDefines;
+
+inColors.onLinkChanged = () =>
+{
+    updateDefines();
+    needsUpdateTransmats = true;
+    needUpdate = true;
+};
+
+inColors.onChange = () =>
+{
+    needUpdate = true;
+    if (mesh && inColors.get() && inColors.isLinked())
+        mesh.setAttribute("attrColors", new Float32Array(inColors.get()), 4, { "instanced": true });
+};
+
+align.onChange =
+    str.onChange =
+    letterSpace.onChange =
+    lineHeight.onChange =
+    function ()
+    {
+        needUpdate = true;
+    };
+
+valign.onChange = updateAlign;
+
+op.patch.addEventListener("variablesChanged", updateFontList);
+op.patch.addEventListener("FontLoadedMSDF", updateFontList);
+
+inFont.onChange = updateFontData;
+
+updateDefines();
+updateScale();
+updateFontList();
+
+function updateDefines()
+{
+    shader.toggleDefine("SDF", doSDF.get());
+    shader.toggleDefine("SHADOW", inShadow.get());
+    shader.toggleDefine("BORDER", inBorder.get());
+    shader.toggleDefine("TEXTURE_COLOR", inTexColor.isLinked());
+    shader.toggleDefine("TEXTURE_MASK", inTexMask.isLinked());
+    shader.toggleDefine("HAS_ATTR_COLORS", inColors.isLinked());
+
+    br.setUiAttribs({ "greyout": !inBorder.get() });
+    bg.setUiAttribs({ "greyout": !inBorder.get() });
+    bb.setUiAttribs({ "greyout": !inBorder.get() });
+    inBorderSmooth.setUiAttribs({ "greyout": !inBorder.get() });
+    inBorderWidth.setUiAttribs({ "greyout": !inBorder.get() });
+}
+
+function updateFontData()
+{
+    updateFontList();
+    const varname = fontDataVarPrefix + inFont.get();
+
+    fontData = null;
+    fontTexs = null;
+    fontChars = {};
+
+    const dataVar = op.patch.getVar(varname);
+
+    if (!dataVar || !dataVar.getValue())
+    {
+        fontData = null;
+
+        op.warn("no varname", varname);
+        return;
+    }
+
+    fontData = dataVar.getValue().data;
+
+    if (!fontData)
+    {
+        return;
+    }
+
+    const basename = dataVar.getValue().basename;
+
+    const textVar = op.patch.getVar("font_tex_" + basename);
+    if (!textVar)
+    {
+        fontTexs = null;
+        fontData = null;
+        return;
+    }
+
+    fontTexs = textVar.getValue();
+
+    for (let i = 0; i < fontData.chars.length; i++) fontChars[fontData.chars[i].char] = fontData.chars[i];
+    needUpdate = true;
+}
+
+function updateFontList()
+{
+    const vars = op.patch.getVars();
+    const names = ["..."];
+
+    for (const i in vars)
+        if (vars[i].type == "fontData")
+            names.push(i.substr(substrLength));
+
+    inFont.uiAttribs.values = names;
+}
+
+function updateScale()
+{
+    const s = scale.get();
+    vec3.set(vScale, s, s, s);
+    vec3.set(alignVec, 0, offY * s, 0);
+
+    outWidth.set(widthAll * s);
+    outHeight.set(heightAll * s);
+
+    outStartY.set((maxY + offY) * s);
+}
+
+function updateAlign()
+{
+    if (minX == undefined) return;
+    if (valign.get() == "Top") valignMode = 0;
+    else if (valign.get() == "Middle") valignMode = 1;
+    else if (valign.get() == "Bottom") valignMode = 2;
+    else if (valign.get() == "Zero") valignMode = 3;
+
+    offY = 0;
+    widthAll = (Math.abs(minX - maxX));
+    heightAll = (Math.abs(minY - maxY));
+
+    if (valignMode === 1) offY = heightAll / 2;
+    else if (valignMode === 2) offY = heightAll;
+
+    if (valignMode != 0)offY -= avgHeight;
+
+    updateScale();
+}
+
+function buildTransMats()
+{
+    needsUpdateTransmats = false;
+
+    // if(!( inPosArr.get() || inScaleArr.get() || inRotArr.get()))
+    // {
+    //     transMats=null;
+    //     return;
+    // }
+
+    const transformations = [];
+    const translates = inPosArr.get() || outArr.get();
+    const scales = inScaleArr.get();
+    const rots = inRotArr.get();
+
+    for (let i = 0; i < mesh.numInstances; i++)
+    {
+        const m = mat4.create();
+        mat4.translate(m, m, [translates[i * 3 + 0], translates[i * 3 + 1], translates[i * 3 + 2]]);
+
+        if (scales) mat4.scale(m, m, [scales[i * 3 + 0], scales[i * 3 + 1], scales[i * 3 + 2]]);
+
+        if (rots)
+        {
+            mat4.rotateX(m, m, rots[i * 3 + 0] * CGL.DEG2RAD);
+            mat4.rotateY(m, m, rots[i * 3 + 1] * CGL.DEG2RAD);
+            mat4.rotateZ(m, m, rots[i * 3 + 2] * CGL.DEG2RAD);
+        }
+
+        transformations.push(Array.prototype.slice.call(m));
+    }
+
+    transMats = [].concat.apply([], transformations);
+}
+
+render.onTriggered = function ()
+{
+    if (!fontData || !fontTexs)
+    {
+        updateFontData();
+    }
+
+    if (!fontData)
+    {
+        op.setUiError("nodata", "No font data!");
+        op.setUiError("msdfhint", "Use the FontMSDF op to create font and texture.", 0);
+    }
+    if (!fontTexs)
+    {
+        op.setUiError("nodata", "No font texture");
+        op.setUiError("msdfhint", "Use the FontMSDF op to create font and texture.", 0);
+    }
+    if (fontTexs && fontData)
+    {
+        op.setUiError("nodata", null);
+        op.setUiError("msdfhint", null);
+    }
+
+    if (needUpdate)
+    {
+        generateMesh();
+        needUpdate = false;
+    }
+
+    if (mesh && mesh.numInstances > 0)
+    {
+        cgl.pushShader(shader);
+
+        cgl.setTexture(0, CGL.Texture.getEmptyTexture(cgl).tex);
+
+        if (fontTexs[0]) uniTexSize.setValue([fontTexs[0].width, fontTexs[0].height]);
+
+        if (fontTexs[0]) cgl.setTexture(0, fontTexs[0].tex);
+        else cgl.setTexture(0, CGL.Texture.getEmptyTexture(cgl).tex);
+
+        if (fontTexs[1])cgl.setTexture(1, fontTexs[1].tex);
+        else cgl.setTexture(1, CGL.Texture.getEmptyTexture(cgl).tex);
+
+        if (fontTexs[2])cgl.setTexture(2, fontTexs[2].tex);
+        else cgl.setTexture(2, CGL.Texture.getEmptyTexture(cgl).tex);
+
+        if (fontTexs[3])cgl.setTexture(3, fontTexs[3].tex);
+        else cgl.setTexture(3, CGL.Texture.getEmptyTexture(cgl).tex);
+
+        if (inTexColor.get()) cgl.setTexture(4, inTexColor.get().tex);
+        if (inTexMask.get()) cgl.setTexture(5, inTexMask.get().tex);
+
+        cgl.pushModelMatrix();
+        mat4.translate(cgl.mMatrix, cgl.mMatrix, alignVec);
+
+        if (needsUpdateTransmats) buildTransMats();
+        if (transMats) mesh.setAttribute("instMat", new Float32Array(transMats), 16, { "instanced": true });
+
+        if (!disabled)
+        {
+            mat4.scale(cgl.mMatrix, cgl.mMatrix, vScale);
+
+            mesh.render(cgl.getShader());
+        }
+
+        cgl.popModelMatrix();
+
+        // cgl.setTexture(0, null);
+        cgl.popShader();
+        // cgl.popBlendMode();
+    }
+
+    next.trigger();
+};
+
+function getChar(chStr)
+{
+    return fontChars[String(chStr)] || fontChars["?"] || fontChars._ || fontChars.X;
+}
+
+function generateMesh()
+{
+    if (!fontData || !fontChars)
+    {
+        outNumChars.set(0);
+        return;
+    }
+
+    const theString = String(str.get() + "");
+
+    if (!geom)
+    {
+        geom = new CGL.Geometry("textmesh");
+
+        geom.vertices = [
+            0.5, 0.5, 0.0,
+            -0.5, 0.5, 0.0,
+            0.5, -0.5, 0.0,
+            -0.5, -0.5, 0.0
+        ];
+
+        geom.normals = [
+            0.0, 0.0, 0.0,
+            0.0, 0.0, 0.0,
+            0.0, 0.0, 0.0,
+            0.0, 0.0, 0.0
+        ];
+
+        geom.texCoords = new Float32Array([
+            1.0, 0.0,
+            0.0, 0.0,
+            1.0, 1.0,
+            0.0, 1.0
+        ]);
+
+        geom.verticesIndices = [
+            0, 1, 2,
+            2, 1, 3
+        ];
+    }
+
+    if (mesh)mesh.dispose();
+    mesh = new CGL.Mesh(cgl, geom);
+
+    const strings = (theString).split("\n");
+    const transformations = [];
+    const tcOffsets = [];
+    const sizes = [];
+    const texPos = [];
+    const tcSizes = [];
+    const pages = [];
+    let charCounter = 0;
+    const arrPositions = [];
+
+    const mulSize = 0.01;
+
+    outLines.set(strings.length);
+    minY = 99999;
+    maxY = -99999;
+    minX = 99999;
+    maxX = -99999;
+
+    avgHeight = 0;
+
+    for (let i = 0; i < fontData.chars.length; i++)
+    {
+        if (fontData.chars[i].height) avgHeight += fontData.chars[i].height;
+    }
+    avgHeight /= fontData.chars.length;
+    avgHeight *= mulSize;
+
+    for (let s = 0; s < strings.length; s++)
+    {
+        const txt = strings[s];
+        const numChars = txt.length;
+        let lineWidth = 0;
+
+        for (let i = 0; i < numChars; i++)
+        {
+            const chStr = txt.substring(i, i + 1);
+            const char = getChar(chStr);
+            if (char) lineWidth += char.xadvance * mulSize + letterSpace.get();
+        }
+
+        let pos = 0;
+        if (align.get() == "Right") pos -= lineWidth;
+        else if (align.get() == "Center") pos -= lineWidth / 2;
+
+        for (let i = 0; i < numChars; i++)
+        {
+            const m = mat4.create();
+
+            const chStr = txt.substring(i, i + 1);
+            const char = getChar(chStr);
+
+            if (!char) continue;
+
+            pages.push(char.page || 0);
+            sizes.push(char.width, char.height);
+
+            tcOffsets.push(char.x / fontData.common.scaleW, (char.y / fontData.common.scaleH));
+
+            const charWidth = char.width / fontData.common.scaleW;
+            const charHeight = char.height / fontData.common.scaleH;
+            const charOffsetY = (char.yoffset / fontData.common.scaleH);
+            const charOffsetX = char.xoffset / fontData.common.scaleW;
+
+            if (chStr == " ") tcSizes.push(0, 0);
+            else tcSizes.push(charWidth, charHeight);
+
+            mat4.identity(m);
+
+            let adv = (char.xadvance / 2) * mulSize;
+            pos += adv;
+
+            const x = pos + (char.xoffset / 2) * mulSize;
+            const y = (s * -lineHeight.get()) + (avgHeight) - (mulSize * (char.yoffset + char.height / 2));
+
+            minX = Math.min(x - charWidth, minX);
+            maxX = Math.max(x + charWidth, maxX);
+            minY = Math.min(y - charHeight - avgHeight / 2, minY);
+            maxY = Math.max(y + charHeight + avgHeight / 2, maxY);
+
+            mat4.translate(m, m, [x, y, 0]);
+            arrPositions.push(x, y, 0);
+
+            adv = (char.xadvance / 2) * mulSize + letterSpace.get();
+
+            pos += adv;
+
+            minX = Math.min(pos - charWidth, minX);
+            maxX = Math.max(pos + charWidth, maxX);
+
+            transformations.push(Array.prototype.slice.call(m));
+
+            charCounter++;
+        }
+    }
+
+    transMats = [].concat.apply([], transformations);
+
+    disabled = false;
+    if (transMats.length == 0) disabled = true;
+
+    mesh.numInstances = transMats.length / 16;
+    outNumChars.set(mesh.numInstances);
+
+    if (mesh.numInstances == 0)
+    {
+        disabled = true;
+        return;
+    }
+
+    mesh.setAttribute("instMat", new Float32Array(transMats), 16, { "instanced": true });
+    mesh.setAttribute("attrTexOffsets", new Float32Array(tcOffsets), 2, { "instanced": true });
+    mesh.setAttribute("attrTcSize", new Float32Array(tcSizes), 2, { "instanced": true });
+    mesh.setAttribute("attrSize", new Float32Array(sizes), 2, { "instanced": true });
+    mesh.setAttribute("attrPage", new Float32Array(pages), 1, { "instanced": true });
+
+    if (inColors.isLinked())
+        mesh.setAttribute("attrColors", new Float32Array(inColors.get()), 4, { "instanced": true });
+
+    outScales.set(sizes);
+    updateAlign();
+    needsUpdateTransmats = true;
+    outArr.setRef(arrPositions);
+}
+
+
+};
+
+Ops.Gl.TextMeshMSDF_v2.prototype = new CABLES.Op();
+CABLES.OPS["b5c99363-a749-4040-884b-66f91294bcad"]={f:Ops.Gl.TextMeshMSDF_v2,objName:"Ops.Gl.TextMeshMSDF_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.Round
+// 
+// **************************************************************
+
+Ops.Math.Round = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    number1 = op.inValueFloat("number"),
+    decPlaces = op.inInt("Decimal Places", 0),
+    result = op.outNumber("result");
+
+let decm = 0;
+
+number1.onChange = exec;
+decPlaces.onChange = updateDecm;
+
+updateDecm();
+
+function updateDecm()
+{
+    decm = Math.pow(10, decPlaces.get());
+    exec();
+}
+
+function exec()
+{
+    result.set(Math.round(number1.get() * decm) / decm);
+}
+
+
+};
+
+Ops.Math.Round.prototype = new CABLES.Op();
+CABLES.OPS["1a1ef636-6d02-42ba-ae1e-627b917d0d2b"]={f:Ops.Math.Round,objName:"Ops.Math.Round"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.String.NumberToString_v2
+// 
+// **************************************************************
+
+Ops.String.NumberToString_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    val = op.inValue("Number"),
+    decPlaces = op.inInt("Decimal Places", 4),
+    result = op.outString("Result");
+
+let doDec = false;
+let decm = 1;
+decPlaces.onChange = updateDecm;
+val.onChange = update;
+updateDecm();
+update();
+
+function updateDecm()
+{
+    doDec = decPlaces.get() < 100;
+    decm = Math.pow(10, decPlaces.get());
+    update();
+}
+
+function update()
+{
+    if (doDec)
+        result.set(String(Math.round(val.get() * decm) / decm));
+    else
+        result.set(String(val.get() || 0));
+}
+
+
+};
+
+Ops.String.NumberToString_v2.prototype = new CABLES.Op();
+CABLES.OPS["5c6d375a-82db-4366-8013-93f56b4061a9"]={f:Ops.String.NumberToString_v2,objName:"Ops.String.NumberToString_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.Matrix.TransformView
+// 
+// **************************************************************
+
+Ops.Gl.Matrix.TransformView = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("render"),
+    posX = op.inValueFloat("posX"),
+    posY = op.inValueFloat("posY"),
+    posZ = op.inValueFloat("posZ"),
+    scale = op.inValueFloat("scale"),
+    rotX = op.inValueFloat("rotX"),
+    rotY = op.inValueFloat("rotY"),
+    rotZ = op.inValueFloat("rotZ"),
+    trigger = op.outTrigger("trigger");
+
+op.setPortGroup("Position", [posX, posY, posZ]);
+op.setPortGroup("Scale", [scale]);
+op.setPortGroup("Rotation", [rotX, rotZ, rotY]);
+
+const vPos = vec3.create();
+const vScale = vec3.create();
+const transMatrix = mat4.create();
+mat4.identity(transMatrix);
+
+let doScale = false;
+let doTranslate = false;
+
+let translationChanged = true;
+let didScaleChanged = true;
+let didRotChanged = true;
+
+render.onTriggered = function ()
+{
+    const cg = op.patch.cgl;
+
+    let updateMatrix = false;
+    if (translationChanged)
+    {
+        updateTranslation();
+        updateMatrix = true;
+    }
+    if (didScaleChanged)
+    {
+        updateScale();
+        updateMatrix = true;
+    }
+    if (didRotChanged)
+    {
+        updateMatrix = true;
+    }
+    if (updateMatrix)doUpdateMatrix();
+
+    cg.pushViewMatrix();
+    mat4.multiply(cg.vMatrix, cg.vMatrix, transMatrix);
+
+    trigger.trigger();
+    cg.popViewMatrix();
+
+    if (op.isCurrentUiOp())
+        gui.setTransformGizmo(
+            {
+                "posX": posX,
+                "posY": posY,
+                "posZ": posZ,
+            });
+};
+
+op.transform3d = function ()
+{
+    return {
+        "pos": [posX, posY, posZ]
+    };
+};
+
+function doUpdateMatrix()
+{
+    mat4.identity(transMatrix);
+    if (doTranslate)mat4.translate(transMatrix, transMatrix, vPos);
+
+    if (rotX.get() !== 0)mat4.rotateX(transMatrix, transMatrix, rotX.get() * CGL.DEG2RAD);
+    if (rotY.get() !== 0)mat4.rotateY(transMatrix, transMatrix, rotY.get() * CGL.DEG2RAD);
+    if (rotZ.get() !== 0)mat4.rotateZ(transMatrix, transMatrix, rotZ.get() * CGL.DEG2RAD);
+
+    if (doScale)mat4.scale(transMatrix, transMatrix, vScale);
+    rotChanged = false;
+}
+
+function updateTranslation()
+{
+    doTranslate = false;
+    if (posX.get() !== 0.0 || posY.get() !== 0.0 || posZ.get() !== 0.0) doTranslate = true;
+    vec3.set(vPos, posX.get(), posY.get(), posZ.get());
+    translationChanged = false;
+}
+
+function updateScale()
+{
+    doScale = false;
+    if (scale.get() !== 0.0)doScale = true;
+    vec3.set(vScale, scale.get(), scale.get(), scale.get());
+    scaleChanged = false;
+}
+
+function translateChanged()
+{
+    translationChanged = true;
+}
+
+function scaleChanged()
+{
+    didScaleChanged = true;
+}
+
+function rotChanged()
+{
+    didRotChanged = true;
+}
+
+rotX.onChange =
+rotY.onChange =
+rotZ.onChange = rotChanged;
+
+scale.onChange = scaleChanged;
+
+posX.onChange =
+posY.onChange =
+posZ.onChange = translateChanged;
+
+rotX.set(0.0);
+rotY.set(0.0);
+rotZ.set(0.0);
+
+scale.set(1.0);
+
+posX.set(0.0);
+posY.set(0.0);
+posZ.set(0.0);
+
+doUpdateMatrix();
+
+
+};
+
+Ops.Gl.Matrix.TransformView.prototype = new CABLES.Op();
+CABLES.OPS["0b3e04f7-323e-4ac8-8a22-a21e2f36e0e9"]={f:Ops.Gl.Matrix.TransformView,objName:"Ops.Gl.Matrix.TransformView"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.Incrementor
+// 
+// **************************************************************
+
+Ops.Math.Incrementor = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    increment = op.inTriggerButton("Increment"),
+    decrement = op.inTriggerButton("Decrement"),
+    inLimit = op.inBool("Limit", false),
+    inLength = op.inValueInt("Length"),
+    inMode = op.inSwitch("Mode", ["Rewind", "Stop at Max"], "Rewind"),
+    inDefault = op.inValueInt("Default", 0),
+    reset = op.inTriggerButton("Reset"),
+    outChanged = op.outTrigger("Changed"),
+    value = op.outNumber("Value"),
+    outRestarted = op.outTrigger("Restarted");
+
+const MODE_REWIND = 0;
+const MODE_STOP = 1;
+value.ignoreValueSerialize = true;
+inLength.set(10);
+let val = 0;
+let mode = MODE_REWIND;
+value.set(0);
+
+inLength.onTriggered = reset;
+inDefault.onChange = doReset;
+reset.onTriggered = doReset;
+inLimit.onChange = updateUi;
+
+updateUi();
+
+inMode.onChange = () =>
+{
+    if (inMode.get() == "Rewind")
+    {
+        mode = MODE_REWIND;
+    }
+    if (inMode.get() == "Stop at Max")
+    {
+        mode = MODE_STOP;
+    }
+};
+
+function updateUi()
+{
+    inLength.setUiAttribs({ "greyout": !inLimit.get() });
+    inMode.setUiAttribs({ "greyout": !inLimit.get() });
+}
+
+function doReset()
+{
+    value.set(null);
+    val = inDefault.get();
+    value.set(val);
+    outRestarted.trigger();
+}
+
+decrement.onTriggered = function ()
+{
+    val--;
+    if (inLimit.get())
+    {
+        if (mode == MODE_REWIND && val < 0)val = inLength.get() - 1;
+        if (mode == MODE_STOP && val < 0)val = 0;
+    }
+    value.set(val);
+
+    outChanged.trigger();
+};
+
+increment.onTriggered = function ()
+{
+    val++;
+    if (inLimit.get())
+    {
+        if (mode == MODE_REWIND && val >= inLength.get())
+        {
+            val = 0;
+            outRestarted.trigger();
+        }
+        if (mode == MODE_STOP && val >= inLength.get())val = inLength.get() - 1;
+    }
+
+    value.set(val);
+
+    outChanged.trigger();
+};
+
+
+};
+
+Ops.Math.Incrementor.prototype = new CABLES.Op();
+CABLES.OPS["45cc0011-ada8-4423-8f5b-39a3810b8389"]={f:Ops.Math.Incrementor,objName:"Ops.Math.Incrementor"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.SmootherStep
+// 
+// **************************************************************
+
+Ops.Math.SmootherStep = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    val = op.inValueFloat("val", 0),
+    min = op.inValueFloat("min", 0),
+    max = op.inValueFloat("max", 1),
+    result = op.outNumber("result");
+
+val.onChange = max.onChange = min.onChange = exec;
+exec();
+
+function exec()
+{
+    let x = Math.max(0, Math.min(1, (val.get() - min.get()) / (max.get() - min.get())));
+    result.set(x * x * x * (x * (x * 6 - 15) + 10) * (max.get() - min.get())); // smootherstep
+}
+
+
+};
+
+Ops.Math.SmootherStep.prototype = new CABLES.Op();
+CABLES.OPS["c66da84f-ff2f-45de-b3c2-557bdf1cb946"]={f:Ops.Math.SmootherStep,objName:"Ops.Math.SmootherStep"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.String.StringCompose_v3
+// 
+// **************************************************************
+
+Ops.String.StringCompose_v3 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    format=op.inString('Format',"hello $a, $b $c und $d"),
+    a=op.inString('String A','world'),
+    b=op.inString('String B',1),
+    c=op.inString('String C',2),
+    d=op.inString('String D',3),
+    e=op.inString('String E'),
+    f=op.inString('String F'),
+    result=op.outString("Result");
+
+format.onChange=
+    a.onChange=
+    b.onChange=
+    c.onChange=
+    d.onChange=
+    e.onChange=
+    f.onChange=update;
+
+update();
+
+function update()
+{
+    var str=format.get()||'';
+    if(typeof str!='string')
+        str='';
+
+    str = str.replace(/\$a/g, a.get());
+    str = str.replace(/\$b/g, b.get());
+    str = str.replace(/\$c/g, c.get());
+    str = str.replace(/\$d/g, d.get());
+    str = str.replace(/\$e/g, e.get());
+    str = str.replace(/\$f/g, f.get());
+
+    result.set(str);
+}
+
+};
+
+Ops.String.StringCompose_v3.prototype = new CABLES.Op();
+CABLES.OPS["6afea9f4-728d-4f3c-9e75-62ddc1448bf0"]={f:Ops.String.StringCompose_v3,objName:"Ops.String.StringCompose_v3"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Array.StringToArray_v2
+// 
+// **************************************************************
+
+Ops.Array.StringToArray_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const text = op.inStringEditor("text", "1,2,3"),
+    separator = op.inString("separator", ","),
+    toNumber = op.inValueBool("Numbers", true),
+    trim = op.inValueBool("Trim", true),
+    splitNewLines = op.inBool("Split Lines", false),
+    arr = op.outArray("array"),
+    parsed = op.outTrigger("Parsed"),
+    len = op.outNumber("length");
+
+text.setUiAttribs({ "ignoreBigPort": true });
+
+text.onChange = separator.onChange = toNumber.onChange = trim.onChange = parse;
+
+splitNewLines.onChange = () =>
+{
+    separator.setUiAttribs({ "greyout": splitNewLines.get() });
+    parse();
+};
+
+parse();
+
+function parse()
+{
+    if (!text.get())
+    {
+        arr.set(null);
+        arr.set([]);
+        len.set(0);
+        return;
+    }
+
+    let textInput = text.get();
+    if (trim.get() && textInput)
+    {
+        textInput = textInput.replace(/^\s+|\s+$/g, "");
+        textInput = textInput.trim();
+    }
+
+    let r;
+    let sep = separator.get();
+    if (separator.get() === "\\n") sep = "\n";
+    if (splitNewLines.get()) r = textInput.split("\n");
+    else r = textInput.split(sep);
+
+    if (r[r.length - 1] === "") r.length -= 1;
+
+    len.set(r.length);
+
+    if (trim.get())
+    {
+        for (let i = 0; i < r.length; i++)
+        {
+            r[i] = r[i].replace(/^\s+|\s+$/g, "");
+            r[i] = r[i].trim();
+        }
+    }
+
+    op.setUiError("notnum", null);
+    if (toNumber.get())
+    {
+        let hasStrings = false;
+        for (let i = 0; i < r.length; i++)
+        {
+            r[i] = Number(r[i]);
+            if (!CABLES.UTILS.isNumeric(r[i]))
+            {
+                hasStrings = true;
+            }
+        }
+        if (hasStrings)
+        {
+            op.setUiError("notnum", "Parse Error / Not all values numerical!", 1);
+        }
+    }
+
+    arr.setRef(r);
+    parsed.trigger();
+}
+
+
+};
+
+Ops.Array.StringToArray_v2.prototype = new CABLES.Op();
+CABLES.OPS["c974de41-4ce4-4432-b94d-724741109c71"]={f:Ops.Array.StringToArray_v2,objName:"Ops.Array.StringToArray_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Array.ArrayGetString
+// 
+// **************************************************************
+
+Ops.Array.ArrayGetString = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    array = op.inArray("array"),
+    index = op.inValueInt("index"),
+    result = op.outString("result");
+
+array.ignoreValueSerialize = true;
+
+index.onChange = update;
+
+array.onChange = function ()
+{
+    update();
+};
+
+function update()
+{
+    const arr = array.get();
+    if (arr) result.set(arr[index.get()]);
+}
+
+
+};
+
+Ops.Array.ArrayGetString.prototype = new CABLES.Op();
+CABLES.OPS["be8f16c0-0c8a-48a2-a92b-45dbf88c76c1"]={f:Ops.Array.ArrayGetString,objName:"Ops.Array.ArrayGetString"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.RenderToTexture_v3
+// 
+// **************************************************************
+
+Ops.Gl.RenderToTexture_v3 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("render"),
+    inSize = op.inSwitch("Size", ["Canvas", "Manual"], "Canvas"),
+    width = op.inValueInt("texture width", 512),
+    height = op.inValueInt("texture height", 512),
+    aspect = op.inBool("Auto Aspect", true),
+    tfilter = op.inSwitch("filter", ["nearest", "linear", "mipmap"], "linear"),
+    twrap = op.inSwitch("Wrap", ["Clamp", "Repeat", "Mirror"], "Repeat"),
+    msaa = op.inSwitch("MSAA", ["none", "2x", "4x", "8x"], "none"),
+    trigger = op.outTrigger("trigger"),
+    tex = op.outTexture("texture"),
+    texDepth = op.outTexture("textureDepth"),
+    inPixelFormat = op.inDropDown("Pixel Format", CGL.Texture.PIXELFORMATS, CGL.Texture.PFORMATSTR_RGBA8UB),
+    depth = op.inValueBool("Depth", true),
+    clear = op.inValueBool("Clear", true);
+
+const cgl = op.patch.cgl;
+let fb = null;
+let reInitFb = true;
+
+op.setPortGroup("Size", [inSize, width, height, aspect]);
+
+inPixelFormat.onChange =
+    depth.onChange =
+    clear.onChange =
+    tfilter.onChange =
+    twrap.onChange =
+    msaa.onChange = initFbLater;
+
+inSize.onChange = updateUi;
+
+render.onTriggered =
+    op.preRender = doRender;
+
+updateUi();
+
+function updateUi()
+{
+    width.setUiAttribs({ "greyout": inSize.get() != "Manual" });
+    height.setUiAttribs({ "greyout": inSize.get() != "Manual" });
+    aspect.setUiAttribs({ "greyout": inSize.get() != "Manual" });
+}
+
+function initFbLater()
+{
+    reInitFb = true;
+}
+
+function doRender()
+{
+    CGL.TextureEffect.checkOpNotInTextureEffect(op);
+
+    if (!fb || reInitFb)
+    {
+        if (fb) fb.delete();
+
+        let selectedWrap = CGL.Texture.WRAP_REPEAT;
+        if (twrap.get() == "Clamp") selectedWrap = CGL.Texture.WRAP_CLAMP_TO_EDGE;
+        else if (twrap.get() == "Mirror") selectedWrap = CGL.Texture.WRAP_MIRRORED_REPEAT;
+
+        let selectFilter = CGL.Texture.FILTER_NEAREST;
+        if (tfilter.get() == "nearest") selectFilter = CGL.Texture.FILTER_NEAREST;
+        else if (tfilter.get() == "linear") selectFilter = CGL.Texture.FILTER_LINEAR;
+        else if (tfilter.get() == "mipmap") selectFilter = CGL.Texture.FILTER_MIPMAP;
+
+        if (inPixelFormat.get().indexOf("loat") && tfilter.get() == "mipmap") op.setUiError("fpmipmap", "Can't use mipmap and float texture at the same time");
+        else op.setUiError("fpmipmap", null);
+
+        if (cgl.glVersion >= 2)
+        {
+            let ms = true;
+            let msSamples = 4;
+
+            if (msaa.get() == "none")
+            {
+                msSamples = 0;
+                ms = false;
+            }
+            if (msaa.get() == "2x") msSamples = 2;
+            if (msaa.get() == "4x") msSamples = 4;
+            if (msaa.get() == "8x") msSamples = 8;
+
+            fb = new CGL.Framebuffer2(cgl, 8, 8,
+                {
+                    "name": "render2texture " + op.id,
+                    "pixelFormat": inPixelFormat.get(),
+                    "multisampling": ms,
+                    "multisamplingSamples": msSamples,
+                    "wrap": selectedWrap,
+                    "filter": selectFilter,
+                    "depth": depth.get(),
+                    "clear": clear.get()
+                });
+        }
+        else
+        {
+            fb = new CGL.Framebuffer(cgl, 8, 8, { "isFloatingPointTexture": false, "clear": clear.get() });
+        }
+
+        if (fb && fb.valid)
+        {
+            texDepth.set(fb.getTextureDepth());
+            reInitFb = false;
+        }
+        else
+        {
+            fb = null;
+            reInitFb = true;
+        }
+    }
+
+    let setAspect = aspect.get();
+
+    if (inSize.get() == "Canvas")
+    {
+        setAspect = true;
+        width.set(op.patch.cgl.checkTextureSize(cgl.canvasWidth));
+        height.set(op.patch.cgl.checkTextureSize(cgl.canvasHeight));
+    }
+
+    if (fb.getWidth() != op.patch.cgl.checkTextureSize(width.get()) || fb.getHeight() != op.patch.cgl.checkTextureSize(height.get()))
+    {
+        fb.setSize(
+            op.patch.cgl.checkTextureSize(width.get()),
+            op.patch.cgl.checkTextureSize(height.get()));
+    }
+
+    fb.renderStart(cgl);
+
+    cgl.pushViewPort(0, 0, width.get(), height.get());
+
+    if (setAspect) mat4.perspective(cgl.pMatrix, 45, width.get() / height.get(), 0.1, 1000.0);
+
+    trigger.trigger();
+    fb.renderEnd(cgl);
+
+    cgl.popViewPort();
+
+    texDepth.setRef(fb.getTextureDepth());
+    tex.setRef(fb.getTextureColor());
+}
+
+//
+
+
+};
+
+Ops.Gl.RenderToTexture_v3.prototype = new CABLES.Op();
+CABLES.OPS["41eec5c7-c480-477a-be81-04c3efac8357"]={f:Ops.Gl.RenderToTexture_v3,objName:"Ops.Gl.RenderToTexture_v3"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.FontMSDF_v2
+// 
+// **************************************************************
+
+Ops.Gl.FontMSDF_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inUUID = op.inString("Font Name", CABLES.uuid()),
+    urlData = op.inUrl("Font Data", "/assets/library/fonts_msdf/worksans-regular_int.json"),
+    urlTex = op.inUrl("Font Image", "/assets/library/fonts_msdf/worksans-regular_int.png"),
+    urlTex1 = op.inUrl("Font Image 1"),
+    urlTex2 = op.inUrl("Font Image 2"),
+    urlTex3 = op.inUrl("Font Image 3"),
+    outLoaded = op.outBool("Loaded"),
+    outNumChars = op.outNumber("Total Chars"),
+    outChars = op.outString("Chars"),
+    cgl = op.patch.cgl;
+
+let
+    loadedData = false,
+    loadedTex = false,
+    loadingId = 0;
+
+inUUID.onChange =
+urlData.onChange =
+    urlTex.onChange =
+    urlTex1.onChange =
+    urlTex2.onChange =
+    urlTex3.onChange = load;
+
+const textures = [];
+
+function updateLoaded()
+{
+    const l = loadedData && loadedTex;
+    if (!outLoaded.get() && l) op.patch.emitEvent("FontLoadedMSDF");
+    outLoaded.set(l);
+}
+
+op.onFileChanged = function (fn)
+{
+    if (
+        (urlTex.get() && urlTex.get().indexOf(fn) > -1) ||
+        (urlTex1.get() && urlTex1.get().indexOf(fn) > -1) ||
+        (urlTex2.get() && urlTex2.get().indexOf(fn) > -1) ||
+        (urlTex3.get() && urlTex3.get().indexOf(fn) > -1))
+    {
+        load();
+    }
+};
+
+let oldUUID = "";
+
+function load()
+{
+    if (!urlData.get() || !urlTex.get()) return;
+
+    textures.length = 0;
+    op.patch.deleteVar("font_data_" + oldUUID);
+    op.patch.deleteVar("font_tex_" + oldUUID);
+    oldUUID = inUUID.get();
+
+    const varNameData = "font_data_" + inUUID.get();
+    const varNameTex = "font_tex_" + inUUID.get();
+
+    op.patch.setVarValue(varNameData, {});
+    op.patch.setVarValue(varNameTex, textures);
+
+    op.patch.getVar(varNameData).type = "fontData";
+    op.patch.getVar(varNameTex).type = "fontTexture";
+
+    loadedData = loadedTex = false;
+    updateLoaded();
+
+    op.patch.loading.finished(loadingId);
+    loadingId = op.patch.loading.start("jsonFile", "" + urlData.get(), op);
+
+    op.setUiError("invaliddata", null);
+    op.setUiError("jsonerr", null);
+    op.setUiError("texurlerror", null);
+
+    const urlDatastr = op.patch.getFilePath(String(urlData.get()));
+
+    // load font data json
+    cgl.patch.loading.addAssetLoadingTask(() =>
+    {
+        CABLES.ajax(urlDatastr, (err, _data, xhr) =>
+        {
+            if (err)
+            {
+                op.logError(err);
+                return;
+            }
+            try
+            {
+                let data = _data;
+                if (typeof data === "string") data = JSON.parse(_data);
+                if (!data.chars || !data.info || !data.info.face)
+                {
+                    op.setUiError("invaliddata", "data file is invalid");
+                    return;
+                }
+
+                outNumChars.set(data.chars.length);
+                let allChars = "";
+                for (let i = 0; i < data.chars.length; i++)allChars += data.chars[i].char;
+                outChars.set(allChars);
+
+                op.setUiAttrib({ "extendTitle": data.info.face });
+                op.patch.setVarValue(varNameData, null);
+                op.patch.setVarValue(varNameData,
+                    {
+                        "name": CABLES.basename(urlData.get()),
+                        "basename": inUUID.get(),
+                        "data": data
+                    });
+
+                op.patch.loading.finished(loadingId);
+                loadedData = true;
+                updateLoaded();
+            }
+            catch (e)
+            {
+                op.patch.setVarValue(varNameData, null);
+                op.patch.setVarValue(varNameTex, null);
+
+                op.logError(e);
+                op.setUiError("jsonerr", "Problem while loading json:<br/>" + e);
+                op.patch.loading.finished(loadingId);
+                updateLoaded();
+                outLoaded.set(false);
+            }
+        });
+    });
+
+    // load font texture
+
+    for (let i = 0; i < 4; i++)
+    {
+        const num = i;
+
+        let texPort = urlTex;
+        if (i == 1)texPort = urlTex1;
+        if (i == 2)texPort = urlTex2;
+        if (i == 3)texPort = urlTex3;
+
+        if (!texPort.get()) continue;
+
+        const loadingIdTex = cgl.patch.loading.start(op.objName, texPort.get(), op);
+        const urlTexstr = op.patch.getFilePath(String(texPort.get()));
+
+        CGL.Texture.load(cgl, urlTexstr, function (err, tex)
+        {
+            if (err)
+            {
+                op.setUiError("texurlerror", "could not load texture");
+                cgl.patch.loading.finished(loadingIdTex);
+                loadedTex = false;
+                return;
+            }
+            textures[num] = tex;
+            op.patch.setVarValue(varNameTex, null);
+            op.patch.setVarValue(varNameTex, textures);
+
+            loadedTex = true;
+            cgl.patch.loading.finished(loadingIdTex);
+            updateLoaded();
+        }, {
+            "filter": CGL.Texture.FILTER_LINEAR,
+            "flip": false
+        });
+    }
+}
+
+
+};
+
+Ops.Gl.FontMSDF_v2.prototype = new CABLES.Op();
+CABLES.OPS["6cbd5d67-25d5-4936-a2ad-3ee8ed478570"]={f:Ops.Gl.FontMSDF_v2,objName:"Ops.Gl.FontMSDF_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Boolean.And
+// 
+// **************************************************************
+
+Ops.Boolean.And = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    bool0 = op.inValueBool("bool 1"),
+    bool1 = op.inValueBool("bool 2"),
+    result = op.outBoolNum("result");
+
+bool0.onChange =
+bool1.onChange = exec;
+
+function exec()
+{
+    result.set(bool1.get() && bool0.get());
+}
+
+
+};
+
+Ops.Boolean.And.prototype = new CABLES.Op();
+CABLES.OPS["c26e6ce0-8047-44bb-9bc8-5a4f911ed8ad"]={f:Ops.Boolean.And,objName:"Ops.Boolean.And"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Vars.VarGetString
+// 
+// **************************************************************
+
+Ops.Vars.VarGetString = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+var val=op.outString("Value");
+op.varName=op.inValueSelect("Variable",[],"",true);
+
+new CABLES.VarGetOpWrapper(op,"string",op.varName,val);
+
+
+};
+
+Ops.Vars.VarGetString.prototype = new CABLES.Op();
+CABLES.OPS["3ad08cfc-bce6-4175-9746-fef2817a3b12"]={f:Ops.Vars.VarGetString,objName:"Ops.Vars.VarGetString"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.String.StringContains_v2
+// 
+// **************************************************************
+
+Ops.String.StringContains_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inStr = op.inString("String"),
+    inValue = op.inString("SearchValue"),
+    outFound = op.outBoolNum("Found", false),
+    outIndex = op.outNumber("Index", -1);
+
+inValue.onChange =
+    inStr.onChange = exec;
+
+exec();
+
+function exec()
+{
+    if (inStr.get() && inValue.get() && inValue.get().length > 0)
+    {
+        const index = inStr.get().indexOf(inValue.get());
+        outIndex.set(index);
+        outFound.set(index > -1);
+    }
+    else
+    {
+        outIndex.set(-1);
+        outFound.set(false);
+    }
+}
+
+
+};
+
+Ops.String.StringContains_v2.prototype = new CABLES.Op();
+CABLES.OPS["2ca3e5d7-e6b4-46a7-8381-3fe1ad8b6879"]={f:Ops.String.StringContains_v2,objName:"Ops.String.StringContains_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.GLTF.GltfDracoCompression
+// 
+// **************************************************************
+
+Ops.Gl.GLTF.GltfDracoCompression = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+class DracoDecoderClass
+{
+    constructor()
+    {
+        this.workerLimit = 4;
+        this.workerPool = [];
+        this.workerNextTaskID = 1;
+        this.workerSourceURL = "";
+
+        this.config = {
+            "wasm": Uint8Array.from(atob(DracoDecoderWASM), (c) => { return c.charCodeAt(0); }),
+            "wrapper": DracoWASMWrapperCode,
+            "decoderSettings": {},
+        };
+
+        const dracoWorker = this._DracoWorker.toString();
+        const workerCode = dracoWorker.substring(dracoWorker.indexOf("{") + 1, dracoWorker.lastIndexOf("}"));
+
+        const jsContent = this.config.wrapper;
+        const body = [
+            "/* draco decoder */",
+            jsContent,
+            "",
+            "/* worker */",
+            workerCode
+        ].join("\n");
+
+        this.workerSourceURL = URL.createObjectURL(new Blob([body]));
+    }
+
+    _getWorker(taskID, taskCost)
+    {
+        if (this.workerPool.length < this.workerLimit)
+        {
+            const worker = new Worker(this.workerSourceURL);
+            worker._callbacks = {};
+            worker._taskCosts = {};
+            worker._taskLoad = 0;
+            worker.postMessage({ "type": "init", "decoderConfig": this.config });
+            worker.onmessage = (e) =>
+            {
+                const message = e.data;
+
+                switch (message.type)
+                {
+                case "done":
+                    worker._callbacks[message.taskID].finishedCallback(message.geometry);
+                    break;
+
+                case "error":
+                    worker._callbacks[message.taskID].errorCallback(message);
+                    break;
+
+                default:
+                    op.error("THREE.DRACOLoader: Unexpected message, \"" + message.type + "\"");
+                }
+                this._releaseTask(worker, message.taskID);
+            };
+            this.workerPool.push(worker);
+        }
+        else
+        {
+            this.workerPool.sort(function (a, b)
+            {
+                return a._taskLoad > b._taskLoad ? -1 : 1;
+            });
+        }
+
+        const worker = this.workerPool[this.workerPool.length - 1];
+        worker._taskCosts[taskID] = taskCost;
+        worker._taskLoad += taskCost;
+        return worker;
+    }
+
+    decodeGeometry(buffer, finishedCallback, errorCallback = null)
+    {
+        const taskID = this.workerNextTaskID++;
+        const taskCost = buffer.byteLength;
+
+        const worker = this._getWorker(taskID, taskCost);
+        worker._callbacks[taskID] = { finishedCallback, errorCallback };
+        worker.postMessage({ "type": "decode", "taskID": taskID, buffer }, [buffer]);
+    }
+
+    _releaseTask(worker, taskID)
+    {
+        worker._taskLoad -= worker._taskCosts[taskID];
+        delete worker._callbacks[taskID];
+        delete worker._taskCosts[taskID];
+    }
+
+    _DracoWorker()
+    {
+        let pendingDecoder;
+
+        onmessage = function (e)
+        {
+            const message = e.data;
+            switch (message.type)
+            {
+            case "init":
+                const decoderConfig = message.decoderConfig;
+                const moduleConfig = decoderConfig.decoderSettings;
+                pendingDecoder = new Promise(function (resolve)
+                {
+                    moduleConfig.onModuleLoaded = function (draco)
+                    {
+                        // Module is Promise-like. Wrap before resolving to avoid loop.
+                        resolve({ "draco": draco });
+                    };
+                    moduleConfig.wasmBinary = decoderConfig.wasm;
+                    DracoDecoderModule(moduleConfig); // eslint-disable-line no-undef
+                });
+                break;
+            case "decode":
+                pendingDecoder.then((module) =>
+                {
+                    const draco = module.draco;
+
+                    const f = new draco.Decoder();
+                    const dataBuff = new Int8Array(message.buffer);
+
+                    const geometryType = f.GetEncodedGeometryType(dataBuff);
+                    const buffer = new draco.DecoderBuffer();
+                    buffer.Init(dataBuff, dataBuff.byteLength);
+
+                    let outputGeometry = new draco.Mesh();
+                    const status = f.DecodeBufferToMesh(buffer, outputGeometry);
+                    const attribute = f.GetAttributeByUniqueId(outputGeometry, 1);
+                    const geometry = dracoAttributes(draco, f, outputGeometry, geometryType, name);
+
+                    this.postMessage({ "type": "done", "taskID": message.taskID, "geometry": geometry });
+
+                    draco.destroy(f);
+                    draco.destroy(buffer);
+                });
+                break;
+            }
+        };
+
+        let dracoAttributes = function (draco, decoder, dracoGeometry, geometryType, name)
+        {
+            const attributeIDs = {
+                "position": draco.POSITION,
+                "normal": draco.NORMAL,
+                "color": draco.COLOR,
+                "uv": draco.TEX_COORD,
+                "joints": draco.GENERIC,
+                "weights": draco.GENERIC,
+            };
+            const attributeTypes = {
+                "position": "Float32Array",
+                "normal": "Float32Array",
+                "color": "Float32Array",
+                "weights": "Float32Array",
+                "joints": "Uint8Array",
+                "uv": "Float32Array"
+            };
+
+            const geometry = {
+                "index": null,
+                "attributes": []
+            };
+
+            let count = 0;
+            for (const attributeName in attributeIDs)
+            {
+                const attributeType = attributeTypes[attributeName];
+                let attributeID = decoder.GetAttributeId(dracoGeometry, attributeIDs[attributeName]);
+
+                count++;
+                if (attributeID != -1)
+                {
+                    let attribute = decoder.GetAttribute(dracoGeometry, attributeID);
+                    geometry.attributes.push(decodeAttribute(draco, decoder, dracoGeometry, attributeName, attributeType, attribute));
+                }
+            }
+
+            if (geometryType === draco.TRIANGULAR_MESH) geometry.index = decodeIndex(draco, decoder, dracoGeometry);
+            else op.warn("unknown draco geometryType", geometryType);
+
+            draco.destroy(dracoGeometry);
+            return geometry;
+        };
+
+        let decodeIndex = function (draco, decoder, dracoGeometry)
+        {
+            const numFaces = dracoGeometry.num_faces();
+            const numIndices = numFaces * 3;
+            const byteLength = numIndices * 4;
+            const ptr = draco._malloc(byteLength);
+
+            decoder.GetTrianglesUInt32Array(dracoGeometry, byteLength, ptr);
+            const index = new Uint32Array(draco.HEAPF32.buffer, ptr, numIndices).slice();
+
+            draco._free(ptr);
+
+            return {
+                "array": index,
+                "itemSize": 1
+            };
+        };
+
+        let decodeAttribute = function (draco, decoder, dracoGeometry, attributeName, attributeType, attribute)
+        {
+            let bytesPerElement = 4;
+            if (attributeType === "Float32Array") bytesPerElement = 4;
+            else if (attributeType === "Uint8Array") bytesPerElement = 1;
+            else op.warn("unknown attrtype bytesPerElement", attributeType);
+
+            const numComponents = attribute.num_components();
+            const numPoints = dracoGeometry.num_points();
+            const numValues = numPoints * numComponents;
+            const byteLength = numValues * bytesPerElement;
+            const dataType = getDracoDataType(draco, attributeType);
+            const ptr = draco._malloc(byteLength);
+            let array = null;
+
+            decoder.GetAttributeDataArrayForAllPoints(dracoGeometry, attribute, dataType, byteLength, ptr);
+
+            if (attributeType === "Float32Array") array = new Float32Array(draco.HEAPF32.buffer, ptr, numValues).slice();
+            else if (attributeType === "Uint8Array") array = new Uint8Array(draco.HEAPF32.buffer, ptr, numValues).slice();
+            else op.warn("unknown attrtype", attributeType);
+
+            draco._free(ptr);
+
+            return {
+                "name": attributeName,
+                "array": array,
+                "itemSize": numComponents
+            };
+        };
+
+        let getDracoDataType = function (draco, attributeType)
+        {
+            switch (attributeType)
+            {
+            case "Float32Array": return draco.DT_FLOAT32;
+            case "Int8Array": return draco.DT_INT8;
+            case "Int16Array": return draco.DT_INT16;
+            case "Int32Array": return draco.DT_INT32;
+            case "Uint8Array": return draco.DT_UINT8;
+            case "Uint16Array": return draco.DT_UINT16;
+            case "Uint32Array": return draco.DT_UINT32;
+            }
+        };
+    }
+}
+
+window.DracoDecoder = new DracoDecoderClass();
+
+
+};
+
+Ops.Gl.GLTF.GltfDracoCompression.prototype = new CABLES.Op();
+CABLES.OPS["4ecdc2ef-a242-4548-ad74-13f617119a64"]={f:Ops.Gl.GLTF.GltfDracoCompression,objName:"Ops.Gl.GLTF.GltfDracoCompression"};
+
+
+
+
+// **************************************************************
+// 
 // Ops.Vars.VarSetObject_v2
 // 
 // **************************************************************
@@ -31195,60 +32094,6 @@ function doReset()
 
 Ops.Trigger.TriggerCounter.prototype = new CABLES.Op();
 CABLES.OPS["e640619f-235c-4543-bbf8-b358e0283180"]={f:Ops.Trigger.TriggerCounter,objName:"Ops.Trigger.TriggerCounter"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.Matrix.Scale
-// 
-// **************************************************************
-
-Ops.Gl.Matrix.Scale = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    render = op.inTrigger("render"),
-    scale = op.inValueFloat("scale", 1.0),
-    scaleX = op.inValueFloat("x", 1),
-    scaleY = op.inValueFloat("y", 1),
-    scaleZ = op.inValueFloat("z", 1),
-    trigger = op.outTrigger("trigger");
-
-op.setPortGroup("Axis", [scaleX, scaleY, scaleZ]);
-
-const vScale = vec3.create();
-
-scaleX.onChange =
-    scaleY.onChange =
-    scaleZ.onChange =
-    scale.onChange = scaleChanged;
-
-scaleChanged();
-
-render.onTriggered = function ()
-{
-    const cgl = op.patch.cgl;
-    cgl.pushModelMatrix();
-    mat4.scale(cgl.mMatrix, cgl.mMatrix, vScale);
-    trigger.trigger();
-    cgl.popModelMatrix();
-};
-
-function scaleChanged()
-{
-    const s = scale.get();
-    vec3.set(vScale, s * scaleX.get(), s * scaleY.get(), s * scaleZ.get());
-}
-
-
-};
-
-Ops.Gl.Matrix.Scale.prototype = new CABLES.Op();
-CABLES.OPS["50e7f565-0cdb-47ca-912b-87c04e2f00e3"]={f:Ops.Gl.Matrix.Scale,objName:"Ops.Gl.Matrix.Scale"};
 
 
 
@@ -32270,295 +33115,6 @@ CABLES.OPS["338032c5-bf47-454b-8ae1-cd91f17e5c5b"]={f:Ops.Number.SwitchNumberOnT
 
 // **************************************************************
 // 
-// Ops.Gl.ImageCompose.ImageCompose_v4
-// 
-// **************************************************************
-
-Ops.Gl.ImageCompose.ImageCompose_v4 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={"imgcomp_frag":"IN vec2 texCoord;\nUNI vec4 bgColor;\nUNI sampler2D tex;\n#ifdef USE_UVTEX\nUNI sampler2D UVTex;\n#endif\n\nvoid main()\n{\n\n    #ifndef USE_TEX\n        outColor=bgColor;\n    #endif\n    #ifdef USE_TEX\n        #ifndef USE_UVTEX\n        outColor=texture(tex,texCoord);\n        #else\n        outColor=texture(tex,texture(UVTex,texCoord).xy);\n        #endif\n    #endif\n\n\n\n}\n",};
-const
-    cgl = op.patch.cgl,
-    render = op.inTrigger("Render"),
-    inTex = op.inTexture("Base Texture"),
-    inUVTex = op.inTexture("UV Texture"),
-    inSize = op.inSwitch("Size", ["Auto", "Canvas", "Manual"], "Auto"),
-    width = op.inValueInt("Width", 640),
-    height = op.inValueInt("Height", 480),
-    inFilter = op.inSwitch("Filter", ["nearest", "linear", "mipmap"], "linear"),
-    inWrap = op.inValueSelect("Wrap", ["clamp to edge", "repeat", "mirrored repeat"], "repeat"),
-    aniso = op.inSwitch("Anisotropic", ["0", "1", "2", "4", "8", "16"], "0"),
-
-    inPixelFormat = op.inDropDown("Pixel Format", CGL.Texture.PIXELFORMATS, CGL.Texture.PFORMATSTR_RGBA8UB),
-
-    r = op.inValueSlider("R", 0),
-    g = op.inValueSlider("G", 0),
-    b = op.inValueSlider("B", 0),
-    a = op.inValueSlider("A", 0),
-
-    trigger = op.outTrigger("Next"),
-    texOut = op.outTexture("texture_out", CGL.Texture.getEmptyTexture(cgl)),
-    outRatio = op.outNumber("Aspect Ratio"),
-    outWidth = op.outNumber("Texture Width"),
-    outHeight = op.outNumber("Texture Height");
-
-op.setPortGroup("Texture Size", [inSize, width, height]);
-op.setPortGroup("Texture Parameters", [inWrap, aniso, inFilter, inPixelFormat]);
-
-r.setUiAttribs({ "colorPick": true });
-op.setPortGroup("Color", [r, g, b, a]);
-
-op.toWorkPortsNeedToBeLinked(render);
-
-const prevViewPort = [0, 0, 0, 0];
-let effect = null;
-let tex = null;
-let reInitEffect = true;
-let isFloatTex = false;
-let copyShader = null;
-let copyShaderTexUni = null;
-let copyShaderUVTexUni = null;
-let copyShaderRGBAUni = null;
-
-inWrap.onChange =
-inFilter.onChange =
-aniso.onChange =
-inPixelFormat.onChange = reInitLater;
-
-inTex.onLinkChanged =
-inSize.onChange =
-inUVTex.onChange = updateUi;
-
-render.onTriggered =
-    op.preRender = doRender;
-
-updateUi();
-
-function initEffect()
-{
-    if (effect)effect.delete();
-    if (tex)tex.delete();
-    tex = null;
-    effect = new CGL.TextureEffect(cgl, { "isFloatingPointTexture": CGL.Texture.isPixelFormatFloat(inPixelFormat.get()), "name": op.name });
-
-    const cgl_aniso = Math.min(cgl.maxAnisotropic, parseFloat(aniso.get()));
-
-    tex = new CGL.Texture(cgl,
-        {
-            "anisotropic": cgl_aniso,
-            "name": "image_compose_v2_" + op.id,
-            "pixelFormat": inPixelFormat.get(),
-            "filter": getFilter(),
-            "wrap": getWrap(),
-            "width": getWidth(),
-            "height": getHeight()
-        });
-
-    effect.setSourceTexture(tex);
-
-    outWidth.set(getWidth());
-    outHeight.set(getHeight());
-    outRatio.set(getWidth() / getHeight());
-
-    texOut.set(CGL.Texture.getEmptyTexture(cgl));
-
-    reInitEffect = false;
-    updateUi();
-}
-
-function getFilter()
-{
-    if (inFilter.get() == "nearest") return CGL.Texture.FILTER_NEAREST;
-    else if (inFilter.get() == "linear") return CGL.Texture.FILTER_LINEAR;
-    else if (inFilter.get() == "mipmap") return CGL.Texture.FILTER_MIPMAP;
-}
-
-function getWrap()
-{
-    if (inWrap.get() == "repeat") return CGL.Texture.WRAP_REPEAT;
-    else if (inWrap.get() == "mirrored repeat") return CGL.Texture.WRAP_MIRRORED_REPEAT;
-    else if (inWrap.get() == "clamp to edge") return CGL.Texture.WRAP_CLAMP_TO_EDGE;
-}
-
-function getWidth()
-{
-    let x = 0;
-    if (inTex.get() && inSize.get() == "Auto") x = inTex.get().width;
-    else if (inSize.get() == "Auto" || inSize.get() == "Canvas") x = cgl.canvasWidth;
-    else if (inSize.get() == "ViewPort") x = cgl.getViewPort()[2];
-    else x = Math.ceil(width.get());
-    return op.patch.cgl.checkTextureSize(x);
-}
-
-function getHeight()
-{
-    let x = 0;
-
-    if (inTex.get() && inSize.get() == "Auto") x = inTex.get().height;
-    else if (inSize.get() == "Auto" || inSize.get() == "Canvas") x = cgl.canvasHeight;
-    else if (inSize.get() == "ViewPort") x = cgl.getViewPort()[3];
-    else x = Math.ceil(height.get());
-    return op.patch.cgl.checkTextureSize(x);
-}
-
-function reInitLater()
-{
-    reInitEffect = true;
-}
-
-function updateResolution()
-{
-    if ((
-        getWidth() != tex.width ||
-        getHeight() != tex.height ||
-        // tex.anisotropic != parseFloat(aniso.get()) ||
-        // tex.isFloatingPoint() != CGL.Texture.isPixelFormatFloat(inPixelFormat.get()) ||
-        tex.pixelFormat != inPixelFormat.get() ||
-        tex.filter != getFilter() ||
-        tex.wrap != getWrap()
-    ) && (getWidth() !== 0 && getHeight() !== 0))
-    {
-        initEffect();
-        effect.setSourceTexture(tex);
-        texOut.set(CGL.Texture.getEmptyTexture(cgl));
-        texOut.set(tex);
-        updateResolutionInfo();
-        checkTypes();
-    }
-}
-
-function updateResolutionInfo()
-{
-    let info = null;
-
-    if (inSize.get() == "Manual")
-    {
-        info = null;
-    }
-    else if (inSize.get() == "Auto")
-    {
-        if (inTex.get()) info = "Input Texture";
-        else info = "Canvas Size";
-
-        info += ": " + getWidth() + " x " + getHeight();
-    }
-
-    let changed = false;
-    changed = inSize.uiAttribs.info != info;
-    inSize.setUiAttribs({ "info": info });
-    if (changed)op.refreshParams();
-}
-
-function updateDefines()
-{
-    if (copyShader)copyShader.toggleDefine("USE_TEX", inTex.isLinked());
-    if (copyShader)copyShader.toggleDefine("USE_UVTEX", inUVTex.isLinked());
-}
-
-function updateUi()
-{
-    aniso.setUiAttribs({ "greyout": getFilter() != CGL.Texture.FILTER_MIPMAP });
-
-    r.setUiAttribs({ "greyout": inTex.isLinked() });
-    b.setUiAttribs({ "greyout": inTex.isLinked() });
-    g.setUiAttribs({ "greyout": inTex.isLinked() });
-    a.setUiAttribs({ "greyout": inTex.isLinked() });
-
-    width.setUiAttribs({ "greyout": inSize.get() != "Manual" });
-    height.setUiAttribs({ "greyout": inSize.get() != "Manual" });
-
-    // width.setUiAttribs({ "hideParam": inSize.get() != "Manual" });
-    // height.setUiAttribs({ "hideParam": inSize.get() != "Manual" });
-
-    if (tex)
-        if (CGL.Texture.isPixelFormatFloat(inPixelFormat.get()) && getFilter() == CGL.Texture.FILTER_MIPMAP) op.setUiError("fpmipmap", "Don't use mipmap and 32bit at the same time, many systems do not support this.");
-        else op.setUiError("fpmipmap", null);
-
-    updateResolutionInfo();
-    updateDefines();
-    checkTypes();
-}
-
-function checkTypes()
-{
-    if (tex)
-        if (inTex.isLinked() && inTex.get() && (tex.isFloatingPoint() != inTex.get().isFloatingPoint()))
-            op.setUiError("textypediff", "Warning: Mixing floating point and non floating point texture can result in data/precision loss", 1);
-        else
-            op.setUiError("textypediff", null);
-}
-
-op.preRender = () =>
-{
-    doRender();
-};
-
-function copyTexture()
-{
-    if (!copyShader)
-    {
-        copyShader = new CGL.Shader(cgl, "copytextureshader");
-        copyShader.setSource(copyShader.getDefaultVertexShader(), attachments.imgcomp_frag);
-        copyShaderTexUni = new CGL.Uniform(copyShader, "t", "tex", 0);
-        copyShaderUVTexUni = new CGL.Uniform(copyShader, "t", "UVTex", 1);
-        copyShaderRGBAUni = new CGL.Uniform(copyShader, "4f", "bgColor", r, g, b, a);
-        updateDefines();
-    }
-
-    cgl.pushShader(copyShader);
-    cgl.currentTextureEffect.bind();
-
-    if (inTex.get()) cgl.setTexture(0, inTex.get().tex);
-    if (inUVTex.get()) cgl.setTexture(1, inUVTex.get().tex);
-
-    cgl.currentTextureEffect.finish();
-    cgl.popShader();
-}
-
-function doRender()
-{
-    if (!effect || reInitEffect) initEffect();
-
-    cgl.pushBlend(false);
-
-    updateResolution();
-
-    const oldEffect = cgl.currentTextureEffect;
-    cgl.currentTextureEffect = effect;
-    cgl.currentTextureEffect.imgCompVer = 3;
-    cgl.currentTextureEffect.width = width.get();
-    cgl.currentTextureEffect.height = height.get();
-    effect.setSourceTexture(tex);
-
-    effect.startEffect(inTex.get() || CGL.Texture.getEmptyTexture(cgl, isFloatTex), true);
-    copyTexture();
-
-    trigger.trigger();
-
-    cgl.pushViewPort(0, 0, width.get(), height.get());
-
-    effect.endEffect();
-    texOut.setRef(effect.getCurrentSourceTexture());
-
-    cgl.popViewPort();
-
-    cgl.popBlend();
-    cgl.currentTextureEffect = oldEffect;
-}
-
-
-};
-
-Ops.Gl.ImageCompose.ImageCompose_v4.prototype = new CABLES.Op();
-CABLES.OPS["17212e2b-d692-464c-8f8d-2d511dd3410a"]={f:Ops.Gl.ImageCompose.ImageCompose_v4,objName:"Ops.Gl.ImageCompose.ImageCompose_v4"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Gl.Meshes.HeightMap
 // 
 // **************************************************************
@@ -32784,31 +33340,6 @@ inObj5.onChange = function ()
 
 Ops.Json.ObjectFunnel.prototype = new CABLES.Op();
 CABLES.OPS["ff67d867-098e-4eb1-8b37-00ec0863ce5e"]={f:Ops.Json.ObjectFunnel,objName:"Ops.Json.ObjectFunnel"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Vars.VarGetTexture_v2
-// 
-// **************************************************************
-
-Ops.Vars.VarGetTexture_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const val = op.outTexture("Value");
-op.varName = op.inValueSelect("Variable", [], "", true);
-
-new CABLES.VarGetOpWrapper(op, "object", op.varName, val);
-
-
-};
-
-Ops.Vars.VarGetTexture_v2.prototype = new CABLES.Op();
-CABLES.OPS["5f8ce5fc-9787-45c9-9a83-0eebd2c6de15"]={f:Ops.Vars.VarGetTexture_v2,objName:"Ops.Vars.VarGetTexture_v2"};
 
 
 
@@ -33237,6 +33768,31 @@ update();
 
 Ops.User.cristianvogel.LofiSmoothArray.prototype = new CABLES.Op();
 CABLES.OPS["1823f416-5296-44c1-8caa-2f435da23cd6"]={f:Ops.User.cristianvogel.LofiSmoothArray,objName:"Ops.User.cristianvogel.LofiSmoothArray"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Vars.VarGetTexture_v2
+// 
+// **************************************************************
+
+Ops.Vars.VarGetTexture_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const val = op.outTexture("Value");
+op.varName = op.inValueSelect("Variable", [], "", true);
+
+new CABLES.VarGetOpWrapper(op, "object", op.varName, val);
+
+
+};
+
+Ops.Vars.VarGetTexture_v2.prototype = new CABLES.Op();
+CABLES.OPS["5f8ce5fc-9787-45c9-9a83-0eebd2c6de15"]={f:Ops.Vars.VarGetTexture_v2,objName:"Ops.Vars.VarGetTexture_v2"};
 
 
 
@@ -35029,6 +35585,40 @@ CABLES.OPS["8a9fa2c6-c229-49a9-9dc8-247001539217"]={f:Ops.Array.RandomNumbersArr
 
 // **************************************************************
 // 
+// Ops.Math.Compare.GreaterThan
+// 
+// **************************************************************
+
+Ops.Math.Compare.GreaterThan = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    number1 = op.inValueFloat("number1"),
+    number2 = op.inValueFloat("number2"),
+    result = op.outBoolNum("result");
+
+op.setUiAttribs({ "mathTitle": true });
+
+number1.onChange = number2.onChange = exec;
+
+function exec()
+{
+    result.set(number1.get() > number2.get());
+}
+
+
+};
+
+Ops.Math.Compare.GreaterThan.prototype = new CABLES.Op();
+CABLES.OPS["b250d606-f7f8-44d3-b099-c29efff2608a"]={f:Ops.Math.Compare.GreaterThan,objName:"Ops.Math.Compare.GreaterThan"};
+
+
+
+
+// **************************************************************
+// 
 // Ops.Math.Modulo
 // 
 // **************************************************************
@@ -35252,327 +35842,6 @@ new CABLES.VarSetOpWrapper(op, "object", val, op.varName);
 
 Ops.Vars.VarSetTexture_v2.prototype = new CABLES.Op();
 CABLES.OPS["4fbfc71e-1429-439f-8591-ad35961252ed"]={f:Ops.Vars.VarSetTexture_v2,objName:"Ops.Vars.VarSetTexture_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.GradientTexture
-// 
-// **************************************************************
-
-Ops.Gl.GradientTexture = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const inGrad = op.inGradient("Gradient"),
-    inDir = op.inValueSelect("Direction", ["X", "Y", "XY", "YX", "Radial"], "X"),
-    inSmoothstep = op.inValueBool("Smoothstep", false),
-    inStep = op.inBool("Step", false),
-    inFlip = op.inBool("Flip", false),
-    inSRGB = op.inBool("sRGB", false),
-    inOklab = op.inBool("Oklab", false),
-    inSize = op.inValueInt("Size", 256),
-    tfilter = op.inSwitch("filter", ["nearest", "linear", "mipmap"], "linear"),
-    twrap = op.inValueSelect("wrap", ["clamp to edge", "repeat", "mirrored repeat"], "clamp to edge"),
-    inGradArray = op.inArray("Gradient Array"),
-    inRandom = op.inTriggerButton("Randomize Colors"),
-    outTex = op.outTexture("Texture"),
-    outColors = op.outArray("Colors", null, 3),
-    outColorPos = op.outArray("Colors Pos", null, 1);
-
-const cgl = op.patch.cgl;
-let timeout = null;
-inGrad.setUiAttribs({ "editShortcut": true });
-
-twrap.onChange =
-    tfilter.onChange =
-    inStep.onChange =
-    inFlip.onChange =
-    inSRGB.onChange =
-    inOklab.onChange =
-    inSize.onChange =
-    inGrad.onChange =
-    inSmoothstep.onChange =
-    inDir.onChange =
-    inGradArray.onChange = update;
-
-inGrad.set("{\"keys\" : [{\"pos\":0,\"r\":0,\"g\":0,\"b\":0},{\"pos\":1,\"r\":1,\"g\":1,\"b\":1}]}");
-
-op.onLoaded = update;
-
-inRandom.onTriggered = () =>
-{
-    const keys = parseKeys();
-    if (keys)
-    {
-        keys.forEach((key) =>
-        {
-            key.r = Math.random();
-            key.g = Math.random();
-            key.b = Math.random();
-        });
-        const newKeys = JSON.stringify({ "keys": keys });
-        inGrad.set(newKeys);
-    }
-};
-
-function rgbToOklab(r, g, b)
-{
-    let l = 0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b;
-    let m = 0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b;
-    let s = 0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b;
-    l = Math.cbrt(l); m = Math.cbrt(m); s = Math.cbrt(s);
-    return [
-        l * +0.2104542553 + m * +0.7936177850 + s * -0.0040720468,
-        l * +1.9779984951 + m * -2.4285922050 + s * +0.4505937099,
-        l * +0.0259040371 + m * +0.7827717662 + s * -0.8086757660
-    ];
-}
-
-function oklabToRGB(L, a, b)
-{
-    let l = L + a * +0.3963377774 + b * +0.2158037573;
-    let m = L + a * -0.1055613458 + b * -0.0638541728;
-    let s = L + a * -0.0894841775 + b * -1.2914855480;
-    l **= 3; m **= 3; s **= 3;
-    let rgb_r = l * +4.0767416621 + m * -3.3077115913 + s * +0.2309699292;
-    let rgb_g = l * -1.2684380046 + m * +2.6097574011 + s * -0.3413193965;
-    let rgb_b = l * -0.0041960863 + m * -0.7034186147 + s * +1.7076147010;
-    rgb_r = CABLES.clamp(rgb_r, 0, 1); rgb_g = CABLES.clamp(rgb_g, 0, 1); rgb_b = CABLES.clamp(rgb_b, 0, 1);
-    return [rgb_r, rgb_g, rgb_b];
-}
-
-function lin2srgb(r, g, b)
-{
-    r /= 255;
-    const thr = 0.0031308;
-    let c_loR = 12.92 * r;
-    let c_hiR = 1.055 * Math.pow(r, 0.41666) - 0.055;
-    return ((r < thr) ? c_loR : c_hiR) * 255;
-}
-
-function update()
-{
-    cgl.addNextFrameOnceCallback(doUpdate);
-}
-
-function doUpdate()
-{
-    const keys = parseKeys();
-    if (keys) updateGradient(keys);
-}
-
-function parseKeys()
-{
-    let keys = null;
-    op.setUiError("nodata", null);
-    op.setUiError("parse", null);
-
-    if (Array.isArray(inGradArray.get()))
-    {
-        keys = inGradArray.get();
-    }
-    else
-    {
-        let grad = null;
-        if (!inGrad.get() || inGrad.get() === "")
-        {
-            // op.setUiError("nodata", "gradient no data");
-            return null;
-        }
-
-        try
-        {
-            grad = JSON.parse(inGrad.get());
-        }
-        catch (e)
-        {
-            op.setUiError("parse", "could not parse gradient data");
-        }
-
-        if (!grad || !grad.keys)
-        {
-            op.setUiError("nodata", "gradient no data");
-            return null;
-        }
-        keys = grad.keys;
-    }
-    return keys;
-}
-
-function updateGradient(keys)
-{
-    let width = Math.round(inSize.get());
-    if (width < 4) width = 4;
-
-    inGrad.setUiAttribs(
-        {
-            "editShortcut": true,
-            "gradEditSmoothstep": inSmoothstep.get(),
-            "gradEditStep": inStep.get(),
-            "gradOklab": inOklab.get(),
-        });
-
-    let selectedWrap = 0;
-    let selectedFilter = 0;
-    if (twrap.get() == "repeat") selectedWrap = CGL.Texture.WRAP_REPEAT;
-    else if (twrap.get() == "mirrored repeat") selectedWrap = CGL.Texture.WRAP_MIRRORED_REPEAT;
-    else if (twrap.get() == "clamp to edge") selectedWrap = CGL.Texture.WRAP_CLAMP_TO_EDGE;
-
-    if (tfilter.get() == "nearest") selectedFilter = CGL.Texture.FILTER_NEAREST;
-    else if (tfilter.get() == "linear") selectedFilter = CGL.Texture.FILTER_LINEAR;
-    else if (tfilter.get() == "mipmap") selectedFilter = CGL.Texture.FILTER_MIPMAP;
-
-    const tex = new CGL.Texture(cgl);
-
-    let pixels = new Uint8Array(width * 4);
-
-    for (let i = 0; i < keys.length - 1; i++)
-    {
-        const keyA = keys[i];
-        const keyB = keys[i + 1];
-
-        for (let x = keyA.pos * width; x < keyB.pos * width; x++)
-        {
-            let p = CABLES.map(x, keyA.pos * width, keyB.pos * width, 0, 1);
-            if (inStep.get())p = Math.round(p);
-            if (inSmoothstep.get()) p = CABLES.smoothStep(p);
-            x = Math.round(x);
-
-            let xx = x;
-            if (inFlip.get())xx = width - x - 1;
-
-            if (inOklab.get())
-            {
-                const klabA = rgbToOklab(keyA.r, keyA.g, keyA.b);
-                const labA_r = klabA[0];
-                const labA_g = klabA[1];
-                const labA_b = klabA[2];
-
-                const klabB = rgbToOklab(keyB.r, keyB.g, keyB.b);
-                const labB_r = klabB[0];
-                const labB_g = klabB[1];
-                const labB_b = klabB[2];
-
-                const l = ((p * labB_r + (1.0 - p) * labA_r));
-                const a = ((p * labB_g + (1.0 - p) * labA_g));
-                const b = ((p * labB_b + (1.0 - p) * labA_b));
-
-                const pixCol = oklabToRGB(l, a, b);
-                pixels[xx * 4 + 0] = Math.round(pixCol[0] * 255);
-                pixels[xx * 4 + 1] = Math.round(pixCol[1] * 255);
-                pixels[xx * 4 + 2] = Math.round(pixCol[2] * 255);
-            }
-            else
-            {
-                pixels[xx * 4 + 0] = Math.round((p * keyB.r + (1.0 - p) * keyA.r) * 255);
-                pixels[xx * 4 + 1] = Math.round((p * keyB.g + (1.0 - p) * keyA.g) * 255);
-                pixels[xx * 4 + 2] = Math.round((p * keyB.b + (1.0 - p) * keyA.b) * 255);
-            }
-
-            if (typeof keyA.a !== "undefined" && typeof keyB.a !== "undefined")
-            {
-                const alpha = Math.round((p * keyB.a + (1.0 - p) * keyA.a) * 255);
-                pixels[xx * 4 + 3] = alpha;
-            }
-            else
-            {
-                pixels[xx * 4 + 3] = Math.round(255);
-            }
-        }
-    }
-    if (inSRGB.get())
-        for (let i = 0; i < pixels.length; i += 4)
-        {
-            pixels[i + 0] = lin2srgb(pixels[i + 0]);
-            pixels[i + 1] = lin2srgb(pixels[i + 1]);
-            pixels[i + 2] = lin2srgb(pixels[i + 2]);
-        }
-
-    if (inDir.get() == "X") tex.initFromData(pixels, width, 1, selectedFilter, selectedWrap);
-    if (inDir.get() == "Y") tex.initFromData(pixels, 1, width, selectedFilter, selectedWrap);
-
-    if (inDir.get() == "Radial")
-    {
-        const rpixels = new Uint8Array(width * width * 4);
-
-        for (let x = 0; x < width; x++)
-        {
-            for (let y = 0; y < width; y++)
-            {
-                const dx = x - (width - 1) / 2;
-                const dy = y - (width - 1) / 2;
-                let pos = Math.sqrt(dx * dx + dy * dy) / (width) * 2;
-
-                if (inSmoothstep.get()) pos = CABLES.smoothStep(pos);
-
-                let aa = Math.round(pos * width) * 4;
-                if (aa >= width * 4)aa = width * 4 - 4;
-
-                rpixels[(x * 4) + (y * 4 * width) + 0] = pixels[aa + 0];
-                rpixels[(x * 4) + (y * 4 * width) + 1] = pixels[aa + 1];
-                rpixels[(x * 4) + (y * 4 * width) + 2] = pixels[aa + 2];
-                rpixels[(x * 4) + (y * 4 * width) + 3] = Math.round(255);
-            }
-        }
-
-        pixels = rpixels;
-
-        tex.initFromData(pixels, width, width, selectedFilter, selectedWrap);
-    }
-
-    if (inDir.get() == "XY" || inDir.get() == "YX")
-    {
-        const rpixels = new Uint8Array(width * width * 4);
-
-        for (let x = 0; x < width; x++)
-        {
-            let xx = x;
-            if (inDir.get() == "YX")xx = width - x - 1;
-
-            for (let y = 0; y < width; y++)
-            {
-                let aa = Math.round(((xx) + y) / 2) * 4;
-
-                rpixels[(x * 4) + (y * 4 * width) + 0] = pixels[aa + 0];
-                rpixels[(x * 4) + (y * 4 * width) + 1] = pixels[aa + 1];
-                rpixels[(x * 4) + (y * 4 * width) + 2] = pixels[aa + 2];
-                rpixels[(x * 4) + (y * 4 * width) + 3] = Math.round(255);
-            }
-        }
-
-        pixels = rpixels;
-
-        tex.initFromData(pixels, width, width, selectedFilter, selectedWrap);
-    }
-
-    const colorArr = [];
-    for (let i = 0; i < keys.length - 1; i++)
-    {
-        colorArr.push(keys[i].r, keys[i].g, keys[i].b);
-    }
-
-    const colorPosArr = [];
-    for (let i = 0; i < keys.length - 1; i++)
-    {
-        colorPosArr.push(keys[i].pos);
-    }
-
-    outColors.set(colorArr);
-    outColorPos.set(colorPosArr);
-
-    // outTex.set(null);
-    outTex.setRef(tex);
-}
-
-
-};
-
-Ops.Gl.GradientTexture.prototype = new CABLES.Op();
-CABLES.OPS["01380a50-2dbb-4465-ae80-86349b0b717a"]={f:Ops.Gl.GradientTexture,objName:"Ops.Gl.GradientTexture"};
 
 
 
@@ -36697,11 +36966,11 @@ CABLES.OPS["86fcfd8c-038d-4b91-9820-a08114f6b7eb"]={f:Ops.Math.Divide,objName:"O
 
 // **************************************************************
 // 
-// Ops.Patch.PD8qfbm.Console_v2
+// Ops.Patch.PuSSdim.Console_v2
 // 
 // **************************************************************
 
-Ops.Patch.PD8qfbm.Console_v2 = function()
+Ops.Patch.PuSSdim.Console_v2 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
@@ -36797,8 +37066,367 @@ inClear.onTriggered = () =>
 
 };
 
-Ops.Patch.PD8qfbm.Console_v2.prototype = new CABLES.Op();
-CABLES.OPS["2003897d-a33c-4566-a038-2552782cef89"]={f:Ops.Patch.PD8qfbm.Console_v2,objName:"Ops.Patch.PD8qfbm.Console_v2"};
+Ops.Patch.PuSSdim.Console_v2.prototype = new CABLES.Op();
+CABLES.OPS["41feeadb-b63f-481e-8818-98fcc6466aa9"]={f:Ops.Patch.PuSSdim.Console_v2,objName:"Ops.Patch.PuSSdim.Console_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.LayerSequence
+// 
+// **************************************************************
+
+Ops.Gl.LayerSequence = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    exe = op.inTrigger("exe"),
+    cleanup = op.inTriggerButton("Clean up connections");
+
+const
+    cgl = op.patch.cgl,
+    triggers = [],
+    num = 16;
+
+let updateTimeout = null;
+
+exe.onTriggered = triggerAll;
+cleanup.onTriggered = clean;
+cleanup.setUiAttribs({ "hidePort": true });
+cleanup.setUiAttribs({ "hideParam": true });
+
+for (let i = 0; i < num; i++)
+{
+    const p = op.outTrigger("trigger " + i);
+    triggers.push(p);
+    p.onLinkChanged = updateButton;
+}
+
+function updateButton()
+{
+    clearTimeout(updateTimeout);
+    updateTimeout = setTimeout(() =>
+    {
+        let show = false;
+        for (let i = 0; i < triggers.length; i++)
+            if (triggers[i].links.length > 1) show = true;
+
+        cleanup.setUiAttribs({ "hideParam": !show });
+
+        if (op.isCurrentUiOp()) op.refreshParams();
+    }, 60);
+}
+
+function triggerAll()
+{
+    for (let i = 0; i < triggers.length; i++)
+    {
+        if (triggers[i].isLinked())
+        {
+            cgl.gl.clear(cgl.gl.DEPTH_BUFFER_BIT);
+
+            triggers[i].trigger();
+        }
+    }
+}
+
+function clean()
+{
+    let count = 0;
+    for (let i = 0; i < triggers.length; i++)
+    {
+        let removeLinks = [];
+
+        if (triggers[i].links.length > 1)
+            for (let j = 1; j < triggers[i].links.length; j++)
+            {
+                while (triggers[count].links.length > 0) count++;
+
+                removeLinks.push(triggers[i].links[j]);
+                const otherPort = triggers[i].links[j].getOtherPort(triggers[i]);
+                op.patch.link(op, "trigger " + count, otherPort.op, otherPort.name);
+                count++;
+            }
+
+        for (let j = 0; j < removeLinks.length; j++) removeLinks[j].remove();
+    }
+    updateButton();
+}
+
+
+};
+
+Ops.Gl.LayerSequence.prototype = new CABLES.Op();
+CABLES.OPS["09c33c7e-e282-468d-93e1-b8a7a0a4c4d2"]={f:Ops.Gl.LayerSequence,objName:"Ops.Gl.LayerSequence"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.Meshes.RectangleFrame_v2
+// 
+// **************************************************************
+
+Ops.Gl.Meshes.RectangleFrame_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("Render"),
+    width = op.inValueFloat("Width", 1),
+    height = op.inValueFloat("Height", 1),
+    thickness = op.inValueFloat("Thickness", -0.1),
+    pivotX = op.inSwitch("pivot x", ["center", "left", "right"], "center"),
+    pivotY = op.inSwitch("pivot y", ["center", "top", "bottom"], "center"),
+
+    trigger = op.outTrigger("trigger"),
+    geomOut = op.outObject("Geometry"),
+
+    drawTop = op.inValueBool("Draw Top", true),
+    drawBottom = op.inValueBool("Draw Bottom", true),
+    drawLeft = op.inValueBool("Draw Left", true),
+    drawRight = op.inValueBool("Draw Right", true),
+    active = op.inValueBool("Active", true);
+
+op.toWorkPortsNeedToBeLinked(render);
+op.setPortGroup("Geometry", [width, height, thickness]);
+op.setPortGroup("Transform", [pivotX, pivotY]);
+op.setPortGroup("Sections", [drawTop, drawBottom, drawLeft, drawRight]);
+
+const cgl = op.patch.cgl;
+let mesh = null;
+const geom = new CGL.Geometry(op.name);
+geom.tangents = [];
+geom.biTangents = [];
+
+geomOut.ignoreValueSerialize = true;
+
+width.onChange =
+    pivotX.onChange =
+    pivotY.onChange =
+    height.onChange =
+    thickness.onChange =
+    drawTop.onChange =
+    drawBottom.onChange =
+    drawLeft.onChange =
+    drawRight.onChange = () => { mesh = null; };
+
+render.onTriggered = function ()
+{
+    if (!mesh) create();
+    if (active.get() && mesh) mesh.render(cgl.getShader());
+
+    trigger.trigger();
+};
+
+function create()
+{
+    const w = width.get();
+    const h = height.get();
+    let x = -w / 2;
+    let y = -h / 2;
+    const th = thickness.get();//* Math.min(height.get(),width.get())*-0.5;
+
+    if (pivotX.get() == "right") x = -w;
+    else if (pivotX.get() == "left") x = 0;
+
+    if (pivotY.get() == "top") y = -h;
+    else if (pivotY.get() == "bottom") y = 0;
+
+    geom.vertices.length = 0;
+    geom.vertices.push(
+        x, y, 0,
+        x + w, y, 0,
+        x + w, y + h, 0,
+        x, y + h, 0,
+        x - th, y - th, 0,
+        x + w + th, y - th, 0,
+        x + w + th, y + h + th, 0,
+        x - th, y + h + th, 0
+    );
+
+    if (geom.vertexNormals.length === 0) geom.vertexNormals = [0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1];
+    if (geom.tangents.length === 0) geom.tangents = [1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0];
+    if (geom.biTangents.length === 0) geom.biTangents = [0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0];
+
+    if (geom.verticesIndices)geom.verticesIndices.length = 0;
+    else geom.verticesIndices = [];
+
+    const vertInd = [];
+    if (drawBottom.get()) vertInd.push(0, 1, 4, 1, 5, 4);
+    if (drawRight.get()) vertInd.push(1, 2, 5, 5, 2, 6);
+    if (drawTop.get()) vertInd.push(7, 6, 3, 6, 2, 3);
+    if (drawLeft.get()) vertInd.push(0, 4, 3, 4, 7, 3);
+    geom.verticesIndices = vertInd;
+
+    if (geom.texCoords.length === 0)
+    {
+        const tc = [];
+        for (let i = 0, j = 0; i < geom.vertices.length; i += 3, j += 2)
+        {
+            tc[j] = geom.vertices[i + 0] / w - 0.5;
+            tc[j + 1] = geom.vertices[i + 1] / h - 0.5;
+        }
+        geom.texCoords = tc;
+    }
+
+    if (!mesh) mesh = new CGL.Mesh(cgl, geom);
+    else mesh.setGeom(geom);
+
+    geomOut.set(null);
+    geomOut.set(geom);
+}
+
+
+};
+
+Ops.Gl.Meshes.RectangleFrame_v2.prototype = new CABLES.Op();
+CABLES.OPS["34e4535e-a784-4474-9b6f-a7e54e26f09e"]={f:Ops.Gl.Meshes.RectangleFrame_v2,objName:"Ops.Gl.Meshes.RectangleFrame_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.String.ParseInt_v2
+// 
+// **************************************************************
+
+Ops.String.ParseInt_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    str = op.inString("String", 5711),
+    outNum = op.outNumber("Number");
+
+str.onChange = function ()
+{
+    let num = parseInt(str.get());
+    if (num != num) num = 0;
+    outNum.set(num);
+};
+
+
+};
+
+Ops.String.ParseInt_v2.prototype = new CABLES.Op();
+CABLES.OPS["6d208424-daf2-4a2b-874f-daac406c1f66"]={f:Ops.String.ParseInt_v2,objName:"Ops.String.ParseInt_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.String.StringReplace
+// 
+// **************************************************************
+
+Ops.String.StringReplace = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inStr = op.inString("String"),
+    inSearch = op.inString("Search For", "foo"),
+    inRepl = op.inString("Replace", "bar"),
+    inWhat = op.inSwitch("Replace What", ["All", "First"], "All"),
+    outStr = op.outString("Result");
+
+inRepl.onChange =
+inStr.onChange =
+inWhat.onChange =
+inSearch.onChange = update;
+
+function update()
+{
+    op.setUiError("exception", null);
+
+    let str = "";
+    try
+    {
+        if (inWhat.get() == "All") str = String(inStr.get()).replace(new RegExp(inSearch.get(), "g"), inRepl.get());
+        else str = String(inStr.get()).replace(inSearch.get(), inRepl.get());
+    }
+    catch (e)
+    {
+        op.setUiError("exception", "exception " + e.message);
+    }
+
+    outStr.set(str);
+}
+
+
+};
+
+Ops.String.StringReplace.prototype = new CABLES.Op();
+CABLES.OPS["4a053e7a-6b00-4e71-bd51-90cdb190994c"]={f:Ops.String.StringReplace,objName:"Ops.String.StringReplace"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Trigger.TriggerExtender
+// 
+// **************************************************************
+
+Ops.Trigger.TriggerExtender = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inTriggerPort = op.inTriggerButton("Execute"),
+    outTriggerPort = op.outTrigger("Next");
+
+inTriggerPort.onTriggered = function ()
+{
+    outTriggerPort.trigger();
+};
+
+
+};
+
+Ops.Trigger.TriggerExtender.prototype = new CABLES.Op();
+CABLES.OPS["7ef594f3-4907-47b0-a2d3-9854eda1679d"]={f:Ops.Trigger.TriggerExtender,objName:"Ops.Trigger.TriggerExtender"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.Abs
+// 
+// **************************************************************
+
+Ops.Math.Abs = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    number = op.inValue("number"),
+    result = op.outNumber("result");
+
+number.onChange = function ()
+{
+    result.set(Math.abs(number.get()));
+};
+
+
+};
+
+Ops.Math.Abs.prototype = new CABLES.Op();
+CABLES.OPS["6b5af21d-065f-44d2-9442-8b7a254753f6"]={f:Ops.Math.Abs,objName:"Ops.Math.Abs"};
 
 
 
@@ -37221,105 +37849,6 @@ CABLES.VarGetOpWrapper = VarGetOpWrapper;
 ((this.CABLES = this.CABLES || {}).COREMODULES = this.CABLES.COREMODULES || {}).Vargetset = __webpack_exports__.Cables;
 /******/ })()
 ;// end js/vargetset.js
-// start js/subpatchop.js
-/******/ (() => { // webpackBootstrap
-/******/ 	"use strict";
-var __webpack_exports__ = {};
-
-const subpatchInputOpName = "Ops.Ui.SubPatchInput";
-const subpatchOutputOpName = "Ops.Ui.SubPatchOutput";
-
-const SubPatchOp = class
-{
-    constructor(op, options)
-    {
-        options = options || {};
-        this._op = op;
-
-        op.patchId = op.addInPort(new CABLES.Port(op, "patchId", CABLES.OP_PORT_TYPE_STRING, { "display": "readonly", "hidePort": true }));
-
-        op.setUiAttribs({ "subPatchOp": { "version": 2 } });
-
-        if (op.uiAttribs.parentOfSubpatch)
-        {
-            op.patchId.set(op.uiAttribs.parentOfSubpatch);
-        }
-        else
-        {
-            if (options.subId) op.patchId.set(options.subId);
-            else op.patchId.set(CABLES.generateUUID());
-        }
-
-        op.patchId.onChange = () =>
-        {
-            if (options.subId) op.patchId.value = options.subId;
-            // else op.patchId.value=CABLES.uuid();
-        };
-
-        op.patch.on("subpatchCreated", () => { this.createInOutOps(); });
-        op.on("loadedValueSet", () => { this.createInOutOps(); });
-
-
-        op.init = () =>
-        {
-            op.setStorage({ "subPatchVer": 2 });
-        };
-
-        op.loadDependencies = (p, next) =>
-        {
-            if (CABLES.UI)
-            {
-                gui.serverOps.loadProjectDependencies(p, () =>
-                {
-                    if (next)next();
-                });
-            }
-            else
-            if (next)next();
-        };
-
-
-
-        op.on("delete", () =>
-        {
-            if (op.patch.clearSubPatchCache)op.patch.clearSubPatchCache(this.patchId);
-            const ops = op.patch.ops;
-            for (let i = ops.length - 1; i >= 0; i--)
-                if (ops[i] && ops[i].uiAttribs && ops[i].uiAttribs.subPatch == op.patchId.get())
-                    op.patch.deleteOp(ops[i].id);
-        });
-
-        this._op.isExposableSubpatchOp = () =>
-        {
-            return true;
-        };
-    }
-
-    get patchId()
-    {
-        return this._op.patchId.get();
-    }
-
-
-    createInOutOps()
-    {
-        if (this._op.patch.clearSubPatchCache) this._op.patch.clearSubPatchCache(this.patchId);
-
-        let patchInputOP = this._op.patch.getSubPatchOp(this.patchId, subpatchInputOpName);
-        let patchOutputOP = this._op.patch.getSubPatchOp(this.patchId, subpatchOutputOpName);
-
-        if (!patchInputOP) this._op.patch.addOp(subpatchInputOpName, { "subPatch": this.patchId, "translate": { "x": 0, "y": 0 } });
-        if (!patchOutputOP) this._op.patch.addOp(subpatchOutputOpName, { "subPatch": this.patchId, "translate": { "x": 0, "y": 0 } });
-
-        // todo: move to correct positions...
-    }
-};
-
-CABLES.SubPatchOp = SubPatchOp;
-
-((this.CABLES = this.CABLES || {}).COREMODULES = this.CABLES.COREMODULES || {}).Subpatchop = __webpack_exports__.Cables;
-/******/ })()
-;// end js/subpatchop.js
 // start js/cgl_shadermodifier.js
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";
@@ -44090,6 +44619,105 @@ CGL.CopyTexture = CopyTexture;
 ((this.CGL = this.CGL || {}).COREMODULES = this.CGL.COREMODULES || {}).Copytexture = __webpack_exports__.Copytexture;
 /******/ })()
 ;// end js/cgl_copytexture.js
+// start js/subpatchop.js
+/******/ (() => { // webpackBootstrap
+/******/ 	"use strict";
+var __webpack_exports__ = {};
+
+const subpatchInputOpName = "Ops.Ui.SubPatchInput";
+const subpatchOutputOpName = "Ops.Ui.SubPatchOutput";
+
+const SubPatchOp = class
+{
+    constructor(op, options)
+    {
+        options = options || {};
+        this._op = op;
+
+        op.patchId = op.addInPort(new CABLES.Port(op, "patchId", CABLES.OP_PORT_TYPE_STRING, { "display": "readonly", "hidePort": true }));
+
+        op.setUiAttribs({ "subPatchOp": { "version": 2 } });
+
+        if (op.uiAttribs.parentOfSubpatch)
+        {
+            op.patchId.set(op.uiAttribs.parentOfSubpatch);
+        }
+        else
+        {
+            if (options.subId) op.patchId.set(options.subId);
+            else op.patchId.set(CABLES.generateUUID());
+        }
+
+        op.patchId.onChange = () =>
+        {
+            if (options.subId) op.patchId.value = options.subId;
+            // else op.patchId.value=CABLES.uuid();
+        };
+
+        op.patch.on("subpatchCreated", () => { this.createInOutOps(); });
+        op.on("loadedValueSet", () => { this.createInOutOps(); });
+
+
+        op.init = () =>
+        {
+            op.setStorage({ "subPatchVer": 2 });
+        };
+
+        op.loadDependencies = (p, next) =>
+        {
+            if (CABLES.UI)
+            {
+                gui.serverOps.loadProjectDependencies(p, () =>
+                {
+                    if (next)next();
+                });
+            }
+            else
+            if (next)next();
+        };
+
+
+
+        op.on("delete", () =>
+        {
+            if (op.patch.clearSubPatchCache)op.patch.clearSubPatchCache(this.patchId);
+            const ops = op.patch.ops;
+            for (let i = ops.length - 1; i >= 0; i--)
+                if (ops[i] && ops[i].uiAttribs && ops[i].uiAttribs.subPatch == op.patchId.get())
+                    op.patch.deleteOp(ops[i].id);
+        });
+
+        this._op.isExposableSubpatchOp = () =>
+        {
+            return true;
+        };
+    }
+
+    get patchId()
+    {
+        return this._op.patchId.get();
+    }
+
+
+    createInOutOps()
+    {
+        if (this._op.patch.clearSubPatchCache) this._op.patch.clearSubPatchCache(this.patchId);
+
+        let patchInputOP = this._op.patch.getSubPatchOp(this.patchId, subpatchInputOpName);
+        let patchOutputOP = this._op.patch.getSubPatchOp(this.patchId, subpatchOutputOpName);
+
+        if (!patchInputOP) this._op.patch.addOp(subpatchInputOpName, { "subPatch": this.patchId, "translate": { "x": 0, "y": 0 } });
+        if (!patchOutputOP) this._op.patch.addOp(subpatchOutputOpName, { "subPatch": this.patchId, "translate": { "x": 0, "y": 0 } });
+
+        // todo: move to correct positions...
+    }
+};
+
+CABLES.SubPatchOp = SubPatchOp;
+
+((this.CABLES = this.CABLES || {}).COREMODULES = this.CABLES.COREMODULES || {}).Subpatchop = __webpack_exports__.Cables;
+/******/ })()
+;// end js/subpatchop.js
 // start js/cgl_pixelreader.js
 /******/ (() => { // webpackBootstrap
 /******/ 	"use strict";

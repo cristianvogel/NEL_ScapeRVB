@@ -145,12 +145,13 @@ function dampFDN(props: FDNProps, ...ins) {
   // of killing the decay time too quickly. Towards the bottom, not much damping.
   const dels = ins.map( function (input, i) {
     return el.add(
-      toneDial(input, structure[i]),
-      el.mul(
-        1 + EPS,
-        decay,
-        el.smooth(0.0025, el.tapIn({ name: `srvb:fdn${i}` }))
-      )
+                  // toneDial(input, structure[i]),
+                  input,
+                  el.mul(
+                    1 + EPS,
+                    decay,
+                    el.smooth(0.0025, el.tapIn({ name: `srvb:fdn${i}` }))
+                  )
     );
   });
 

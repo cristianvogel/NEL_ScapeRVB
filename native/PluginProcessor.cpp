@@ -169,7 +169,7 @@ void EffectsPluginProcessor::createParameters(const std::vector<elem::js::Value>
 
 juce::AudioProcessorEditor *EffectsPluginProcessor::createEditor()
 {
-    const auto editor = new WebViewEditor(this, getAssetsDirectory(), 1090, 625);
+    const auto editor = new WebViewEditor(this, getAssetsDirectory(), 712, 432);
 
   
 
