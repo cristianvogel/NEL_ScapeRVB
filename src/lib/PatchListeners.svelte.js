@@ -33,6 +33,9 @@ ui_scapeParams.forEach((variable, param) => {
 const ui_additionalParams = new Map([
   ["structure", patch.getVar("ui_structure")],
   ["position", patch.getVar("ui_position")],
+  ["scapeBypass", patch.getVar("ui_bypassConvolver")],
+  ["srvbBypass", patch.getVar("ui_bypassSRVB")],
+  ["dryMix", patch.getVar("ui_dryMix")],
 ]);
 
 ui_additionalParams.forEach((variable, param) => {

@@ -31,8 +31,9 @@ interface SRVBProps {
   sampleRate: number;
   structure: number;
   key: string;
-  srvbBypass: boolean;
+  srvbBypass: number;
   IRs: Array<IRData>;
+  dryMix: ElemNode;
 }
 
 type DiffuseProps = {

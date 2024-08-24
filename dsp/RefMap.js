@@ -16,6 +16,11 @@ export class RefMap {
     return this._map.get(name)[0];
   }
 
+  get(name) {
+    invariant(this._map.has(name), `Ref ${name} not found`);
+    return this._map.get(name)[0];
+  }
+
   update(name, props) {
     invariant(this._map.has(name), `Trying to update a ref to ${name} that doesn't exist`);
     let [node, setter] = this._map.get(name);

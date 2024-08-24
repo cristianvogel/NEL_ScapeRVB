@@ -1,7 +1,6 @@
 <script lang="ts">
   import { UI_DialParams, ConsoleText, UI_ScapeParams, UI_AdditionalParams } from "../stores/stores.svelte";
   import { MessageToHost } from "./NativeMessage.svelte";
-  import { equiv } from "@thi.ng/equiv";
 
   let dialValuesMemo = {};
   let scapeValuesMemo = {};
@@ -47,7 +46,7 @@
 
 </script>
 
-<div class="console-text"><pre>{ConsoleText.current}</pre></div>
+
 
 <style>
   .console-text {

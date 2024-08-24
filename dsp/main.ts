@@ -90,6 +90,9 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
   const { state, srvb, shared, scape } = parseNewState(stateReceivedFromNative);
 
   const blockSizes = [512, 4096];
+
+  refs.getOrCreate("dryMix", "const", {value: shared.dryMix } , []);
+
   // prettier-ignore
   const srvbProps = () => { 
     const props =  
@@ -97,6 +100,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
       key: "srvb",
       IRs ,
       srvbBypass: srvb.bypass,
+      dryMix: shared.dryMix,
       sampleRate: shared.sampleRate,
       size: refs.getOrCreate("size", "const", { value: srvb.size }, []),
       decay: refs.getOrCreate("diffuse", "const", { value: srvb.diffuse }, []),
@@ -153,12 +157,12 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     // first, build structure const refs
     structureData = buildStructures(refs, srvb.structure);
 
-    const graph = core.render(
+    const graph = core.render( 
       ...SCAPE(
         scapeProps(),
         shared.dryInputs,
         ...SRVB( srvbProps(), shared.dryInputs, ...structureData.consts )
-      )
+      ).map( (node, i) => el.add( el.mul( refs.get( "dryMix" ), shared.dryInputs[i] ), node  ) ) 
     );
   } else {
     // update the structure consts, should match the refs names set up by handleStructureChange
@@ -181,6 +185,8 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     refs.update("v3", { value: scape.vectorData[2] });
     refs.update("v4", { value: scape.vectorData[3] });
     refs.update("scapePosition", { value: shared.position });
+
+    refs.update("dryMix", { value: shared.dryMix });
 
     // update the convolvers
     IRs.forEach((item, index) => {
