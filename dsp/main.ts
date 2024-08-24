@@ -70,7 +70,9 @@ function shouldRender(_mem, _curr) {
     _mem === null ||
     _curr === null ||
     refs._map.size === 0 ||
-    _curr.sampleRate !== _mem?.sampleRate;
+    _curr.sampleRate !== _mem?.sampleRate ||
+    Math.round( _curr.scapeBypass )!== _mem?.scapeBypass ||
+    Math.round( _curr.srvbBypass ) !== _mem?.srvbBypass;
 
   return result;
 }
@@ -205,6 +207,8 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     structureMax: srvb.structureMax,
     reverse: scape.reverse,
     vectorData: scape.vectorData,
+    scapeBypass: scape.bypass,
+    srvbBypass: srvb.bypass,
   };
 
   function parseNewState(stateReceivedFromNative) {
@@ -214,6 +218,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     const shared = {
       sampleRate: state.sampleRate,
       dryInputs: [el.in({ channel: 0 }), el.in({ channel: 1 })],
+      dryMix: state.dryMix,
       position: clamp(state.position, EPS, 1),
     };
     const srvb = {
@@ -223,14 +228,14 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
       tone: clamp(state.tone * 2 - 1, -0.99, 1),
       level: state.mix,
       structureMax: Math.round(state.structureMax) || 137, // handle the case where the max was not computed
-      bypass: state.srvbBypass || false,
+      bypass: Math.round( state.srvbBypass  ),
     };
     const scape = {
       reverse: Math.round(state.scapeReverse),
       level: state.scapeLevel,
       ir: state.scapeLength,
       vectorData: HERMITE.at(state.scapeLength),
-      bypass: state.scapeBypass || false
+      bypass: Math.round( state.scapeBypass )
     };
     return { state, srvb, shared, scape };
   }

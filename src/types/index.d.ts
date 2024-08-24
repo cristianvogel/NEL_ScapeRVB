@@ -14,6 +14,11 @@ type StructureData = {
   max: number;
 };
 
+type IRData = {
+  name: string;
+  index: number;
+  att: number;
+};
 ////////// DSP
 interface SRVBProps {
   size: ElemNode;
@@ -27,7 +32,7 @@ interface SRVBProps {
   structure: number;
   key: string;
   srvbBypass: boolean;
-  IRs: { name: string, index: string, att: number }[];
+  IRs: Array<IRData>;
 }
 
 type DiffuseProps = {

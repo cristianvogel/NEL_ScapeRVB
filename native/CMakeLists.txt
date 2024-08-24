@@ -3,7 +3,7 @@ project(NEL_ShifterMesh VERSION 1.01)
 
 set(TARGET_NAME "NEL_ScapeRVB")
 set(ASSETS_DIR ${CMAKE_SOURCE_DIR}/../dist/)
-set(BUILD_VERSION "v0.1.x")
+set(BUILD_VERSION "v0.1.2")
 
 option(JUCE_ENABLE_MODULE_SOURCE_GROUPS "Enable Module Source Groups" ON)
 option(JUCE_BUILD_EXTRAS "Build JUCE Extras" OFF)

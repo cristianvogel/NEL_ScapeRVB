@@ -1,18 +1,21 @@
 {
   "window": {
-    "width": 712,
-    "height": 432
+    "width": 800,
+    "height": 440
   },
   "REVERSE-BUFFER-PREFIX": "REVERSED_",
   "parameters": [
     { "paramId": "size", "name": "Size", "min": 0.0, "max": 1.0, "defaultValue": 0.15 },
-    { "paramId": "diffuse", "name": "Diffuse", "min": 0.0, "max": 1, "defaultValue": 0.25 },
-    { "paramId": "mix", "name": "Early Blend", "min": 0.0, "max": 1, "defaultValue": 1 },
-    { "paramId": "position", "name": "Position", "min": 0.0, "max": 1.0, "defaultValue": 0.25 },
+    { "paramId": "diffuse", "name": "Diffuser", "min": 0.0, "max": 1, "defaultValue": 0.25 },
+    { "paramId": "mix", "name": "Reflectors", "min": 0.0, "max": 1, "defaultValue": 1 },
+    { "paramId": "position", "name": "Position", "min": 0.0, "max": 1.0, "defaultValue": 0.5 },
     { "paramId": "tone", "name": "Tone", "min": -1, "max": 1, "defaultValue": 0 },
     { "paramId": "structure", "name": "Structure", "min": 0, "max": 15, "defaultValue": 0, "step": 1 },
-    { "paramId": "scapeLevel", "name": "Scape Blend", "min": 0, "max": 1, "defaultValue": 0 },
-    { "paramId": "scapeLength", "name": "Scape Length", "min": 0, "max": 1, "defaultValue": 0 },
-    { "paramId": "scapeReverse", "name": "Scape Reverse", "min": 0, "max": 1, "defaultValue": 0, "step": 1 }
+    { "paramId": "scapeLevel", "name": "Convolvers", "min": 0, "max": 1, "defaultValue": 0 },
+    { "paramId": "scapeLength", "name": "Scape IR", "min": 0, "max": 1, "defaultValue": 0 },
+    { "paramId": "scapeReverse", "name": "Scape Reverse", "min": 0, "max": 1, "defaultValue": 0.00, "step": 1 },
+    { "paramId": "scapeBypass", "name": "Bypass Convolvers", "min": 0, "max": 1, "defaultValue": 0.00, "step": 1 },
+    { "paramId": "srvbBypass", "name": "Bypass Reflectors", "min": 0, "max": 1, "defaultValue": 0.00, "step": 1 },
+    { "paramId": "dryMix", "name" : "Dry Mix", "min": 0, "max": 1, "defaultValue": 0.0 }
   ]
 }
