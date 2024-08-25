@@ -119,10 +119,10 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
    {
     IRs,
     sampleRate: shared.sampleRate,
-    scapeBypass: scape.bypass,    
+    scapeBypass: scape.bypass || 0,    
     vectorData: scape.vectorData,    
     // RefNodes from now on
-    srvbBypass: refs.getOrCreate( "srvbBypass", "const", { value: srvb.bypass }, [] ),
+   // srvbBypass: refs.getOrCreate( "srvbBypass", "const", { value: srvb.bypass }, [] ),
     scapeLevel: refs.getOrCreate("scapeLevel", "const", { value: scape.level }, []),
     scapePosition: refs.getOrCreate("scapePosition", "const", { value: shared.position }, []),
     // the Hermite vector interpolation values as signals
@@ -168,19 +168,24 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
       ).map( (node, i) => el.add( el.mul( refs.get( "dryMix" ), shared.dryInputs[i] ), node  ) ) 
     );
   } else {
-    // update the structure consts, should match the refs names set up by handleStructureChange
+   
+
+    // then the rest of the refs for SRVB
+    if ( !srvb.bypass  ) {
+       // update the structure consts, should match the refs names set up by handleStructureChange
     OEIS_SEQUENCES[srvb.structure].forEach((value, i) => {
       if (value !== undefined)
         refs.update(`node:structureConst:${i}`, { value });
     });
-
-    // then the rest of the refs for SRVB
     refs.update("size", { value: srvb.size });
     refs.update("diffuse", { value: srvb.diffuse });
     refs.update("mix", { value: srvb.level });
     refs.update("tone", { value: srvb.tone });
     refs.update("position", { value: shared.position });
     refs.update("structureMax", { value: srvb.structureMax });
+    }
+
+    if (!scape.bypass) {
     // and the scape refs
     refs.update("scapeLevel", { value: scape.level });
     refs.update("v1", { value: scape.vectorData[0] });
@@ -188,9 +193,10 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     refs.update("v3", { value: scape.vectorData[2] });
     refs.update("v4", { value: scape.vectorData[3] });
     refs.update("scapePosition", { value: shared.position });
-
+    }
+    
     refs.update("dryMix", { value: shared.dryMix });
-    refs.update("srvbBypass", { value: srvb.bypass });
+   // refs.update("srvbBypass", { value: srvb.bypass }); // needed to bypass empty input when srvb is bypassed
 
     // update the convolvers
     IRs.forEach((item, index) => {
@@ -227,7 +233,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     // any adjustments should be done here before rendering to the graph
     const shared = {
       sampleRate: state.sampleRate,
-      dryInputs: [el.in({ channel: 0 }), el.in({ channel: 1 })],
+      dryInputs: [ el.in({ channel: 0 }), el.in({ channel: 1 }) ],
       dryMix: state.dryMix,
       position: clamp(state.position, EPS, 1),
     };

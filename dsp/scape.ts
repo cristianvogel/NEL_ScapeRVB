@@ -3,8 +3,8 @@ import { el, ElemNode } from "@elemaudio/core";
 
 
 export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
-  if (props.scapeBypass ) return [ el.const( {value: 0} ), el.const( {value: 0} ) ];
-  const srvbBypass: ElemNode = el.sm(props.srvbBypass); 
+
+ // const srvbBypass: ElemNode = el.sm(props.srvbBypass); 
 
   ///////////////////////////////////////////
   // SCAPE DSP setup
@@ -58,7 +58,7 @@ export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
 
   // this all got a bit tricky, because I started working with pairs of inputs
   const getSourcePair = (  ): ElemNode[] => {
-    return [ el.select( srvbBypass, el.in( {channel: 0} )  , outputFromSRVB[0] ), el.select( srvbBypass, el.in( {channel: 1} )  , outputFromSRVB[1] ) ];
+    return [  outputFromSRVB[0] , outputFromSRVB[1]  ];
   }
 
   let yL = el.add(
@@ -70,5 +70,8 @@ export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
     getSourcePair()[1]
   ); // crossfaded blend
   
+ if ( props.scapeBypass ) 
+  return [ ...outputFromSRVB ];
+else
   return [yL, yR];
 }

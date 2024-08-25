@@ -158,9 +158,12 @@ function dampFDN(props: FDNProps, ...ins) {
  **/
 
 export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureArray: ElemNode[]) {
-  
- 
 
+  const { sampleRate, key, structureMax, mix, tone } = props;
+  const position = el.sm( props.position) 
+  const ms2samps = (ms) => sampleRate * (ms / 1000.0);
+
+  // Higher level DSP functions
   const toneDial = (input, offset: ElemNode) => {
     const dial = el.smooth(el.tau2pole(0.5), el.le(tone, 0));
     const fcLPF = el.add(
@@ -186,33 +189,22 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
     );
   };
 
-
-  const { sampleRate, key, structureMax, mix, tone } = props;
-  const position = el.sm( props.position) 
-
-
-
-
-// xl , xr -- unprocessed inputs
+// xl , xr -- bypass to unprocessed inputs
   const [xl, xr] = inputs;
-  // zero when bypassed
-  if (props.srvbBypass) return [ el.mul( 0, xl) , el.mul( 0, xr)];
+  const feedforward = ( channel, _x ) => el.tapOut({ name: "srvbOut:" + channel }, _x );
+  const zero = el.const({ value: 0 , key: "mute::srvb" });
+
 
   // input attenuation
-  // const _xl = el.dcblock( el.mul( xl, el.select( position, el.db2gain(-1.5), 1 ) ) );
-  // const _xr = el.dcblock( el.mul( xr, el.select( position, 1, el.db2gain(-1.5) ) ) );
   const _xl = el.dcblock( xl );
   const _xr = el.dcblock( xr );
+  // Build Matrix inputs...
   // Upmix to eight channels
   const mid = el.mul(  0.5, el.add( _xl, _xr ));
   const side = el.mul( 0.5, el.sub( _xl, _xr) );
   const four = [_xl, _xr, mid, side].map( (x, i ) => toneDial( x, structureArray[ (i * 2) % structureArray.length ] ) );
   const eight = [...four, ...four.map((x, i ) =>  el.mul( 1, x) )];   // THIS WAS -1 FOR MONTHS...
-  // Diffusion over 8 channels using core sequence for coefficients
-  const ms2samps = (ms) => sampleRate * (ms / 1000.0);
-
-
-
+  // Diffusion over 8 channels using 'structure' sequence for timing coefficients
   const d1 =  diffuse(
     { structure: structureArray, structureMax , maxLengthSamp: ms2samps(43) },
     ...eight
@@ -264,11 +256,14 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
      const asLeftPan =  ( x: ElemNode): ElemNode => { return   el.select( position, x, el.mul(x, el.db2gain( 3 ) ) )  };
      const asRightPan =   ( x: ElemNode): ElemNode => { return el.select( position, el.mul( x, el.db2gain( 3 ) ) , x )  };
   
-    let yl = el.tapOut({ name: "srvbOut:0" },  asLeftPan( el.add(positioning(0, r0[0]), r0[2],                  positioning(4, r0[4]), r0[6] ) ) );
-    let yr = el.tapOut({ name: "srvbOut:1" },  asRightPan( el.add(               r0[1], positioning(3, r0[3]),   r0[5],                 positioning(7, r0[7]) ) ) );
+    let yl = feedforward( 0,  asLeftPan( el.add(positioning(0, r0[0]), r0[2],                  positioning(4, r0[4]), r0[6] ) ) ) ;
+    let yr = feedforward( 1,  asRightPan( el.add(               r0[1], positioning(3, r0[3]),   r0[5],                 positioning(7, r0[7]) ) ) );
   
 
   // reflections
-  return [  el.mul( mix, yl ), el.mul( mix, yr ) ];
+  if (props.srvbBypass) 
+    return [ feedforward(0, xl) , feedforward(1, xr)  ]
+  else
+    return [  el.mul( mix, yl ), el.mul( mix, yr ) ];
 }
   
