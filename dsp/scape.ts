@@ -16,10 +16,10 @@ export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
     (n) => el.sm(n)
   ); // Hermite mixer as nodes
   const convolverNodes: Map<string, ElemNode[]> = new Map();
-  convolverNodes.set("GLASS", [props.GLASS_0, props.GLASS_1]);
   convolverNodes.set("SURFACE", [props.SURFACE_0, props.SURFACE_1]);
-  convolverNodes.set("AMBIENZ", [props.AMBIENZ_0, props.AMBIENZ_1]);
-  convolverNodes.set("EUROPA", [props.EUROPA_0, props.EUROPA_1]);
+  convolverNodes.set("TEMPLE", [props.TEMPLE_0, props.TEMPLE_1]);
+  convolverNodes.set("LIGHT", [props.LIGHT_0, props.LIGHT_1]);
+  convolverNodes.set("IMMERSION", [props.IMMERSION_0, props.IMMERSION_1]);
 
   ////////////////////////////////////////////
   // SCAPE DSP functions

@@ -25,10 +25,10 @@ let convolver = (_props, ...childs) => createNode("convolver", _props, childs);
 
 const IRs = [ // SHOULD MATCH FILE NAMES IN THE PUBLIC IR FOLDER
 
-  { name: "AMBIENZ", index: 0, att: 0.65 },
-  { name: "GLASS", index: 1, att: 0.475 },
-  { name: "SURFACE", index: 2, att: 0.475 },
-  { name: "EUROPA", index: 3, att: 0.25},
+  { name: "LIGHT", index: 0, att: 0.65 },
+  { name: "SURFACE", index: 1, att: 0.475 },
+  { name: "TEMPLE", index: 2, att: 0.475 },
+  { name: "IMMERSION", index: 3, att: 0.25},
 ];
 
 // create the vector interpolation ramp, used to crossfade between 4 IRs
@@ -131,22 +131,22 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     v3: refs.getOrCreate("v3", "const", { value: scape.vectorData[2] }, [ ]),
     v4: refs.getOrCreate("v4", "const", { value: scape.vectorData[3] }, [ ]),
     // render the convolvers
-    GLASS_0: refs.getOrCreate("GLASS_0", "convolver", 
-      { path: "GLASS_0", process: scape.vectorData[0], scale: ir_inputAtt[0],    blockSizes }, [ el.tapIn( { name: "srvbOut:0" }) ] ),
-    GLASS_1: refs.getOrCreate("GLASS_1", "convolver", 
-      { path: "GLASS_1" , process: scape.vectorData[0], scale: ir_inputAtt[0],   blockSizes }, [ el.tapIn( { name: "srvbOut:1" }) ]),
     SURFACE_0: refs.getOrCreate("SURFACE_0", "convolver", 
-      { path: "SURFACE_0", process: scape.vectorData[1], scale: ir_inputAtt[1] , blockSizes }, [ el.tapIn( { name: "srvbOut:0" }) ] ),
+      { path: "SURFACE_0", process: scape.vectorData[1], scale: ir_inputAtt[1],    blockSizes }, [ el.tapIn( { name: "srvbOut:0" }) ] ),
     SURFACE_1: refs.getOrCreate("SURFACE_1", "convolver", 
-      { path: "SURFACE_1", process: scape.vectorData[1], scale: ir_inputAtt[1] , blockSizes }, [ el.tapIn( { name: "srvbOut:1" }) ] ),
-    AMBIENZ_0: refs.getOrCreate("AMBIENZ_0", "convolver", 
-      { path: "AMBIENZ_0", process: scape.vectorData[2], scale: ir_inputAtt[2] , blockSizes }, [ el.tapIn( { name: "srvbOut:0" }) ] ),
-    AMBIENZ_1: refs.getOrCreate("AMBIENZ_1", "convolver", 
-      { path: "AMBIENZ_1", process: scape.vectorData[2], scale: ir_inputAtt[2] , blockSizes }, [ el.tapIn( { name: "srvbOut:1" }) ] ),
-    EUROPA_0: refs.getOrCreate("EUROPA_0", "convolver", 
-      { path: "EUROPA_0", process: scape.vectorData[3], scale: ir_inputAtt[3] ,  blockSizes }, [ el.tapIn( { name: "srvbOut:0" }) ] ),
-    EUROPA_1: refs.getOrCreate("EUROPA_1", "convolver", 
-      { path: "EUROPA_1", process: scape.vectorData[3], scale: ir_inputAtt[3]  , blockSizes }, [ el.tapIn( { name: "srvbOut:1" }) ] ),
+      { path: "SURFACE_1" , process: scape.vectorData[1], scale: ir_inputAtt[1],   blockSizes }, [ el.tapIn( { name: "srvbOut:1" }) ]),
+    TEMPLE_0: refs.getOrCreate("TEMPLE_0", "convolver", 
+      { path: "TEMPLE_0", process: scape.vectorData[2], scale: ir_inputAtt[2] , blockSizes }, [ el.tapIn( { name: "srvbOut:0" }) ] ),
+    TEMPLE_1: refs.getOrCreate("TEMPLE_1", "convolver", 
+      { path: "TEMPLE_1", process: scape.vectorData[2], scale: ir_inputAtt[2] , blockSizes }, [ el.tapIn( { name: "srvbOut:1" }) ] ),
+    LIGHT_0: refs.getOrCreate("LIGHT_0", "convolver", 
+      { path: "LIGHT_0", process: scape.vectorData[0], scale: ir_inputAtt[0] , blockSizes }, [ el.tapIn( { name: "srvbOut:0" }) ] ),
+    LIGHT_1: refs.getOrCreate("LIGHT_1", "convolver", 
+      { path: "LIGHT_1", process: scape.vectorData[0], scale: ir_inputAtt[0] , blockSizes }, [ el.tapIn( { name: "srvbOut:1" }) ] ),
+    IMMERSION_0: refs.getOrCreate("IMMERSION_0", "convolver", 
+      { path: "IMMERSION_0", process: scape.vectorData[3], scale: ir_inputAtt[3] ,  blockSizes }, [ el.tapIn( { name: "srvbOut:0" }) ] ),
+    IMMERSION_1: refs.getOrCreate("IMMERSION_1", "convolver", 
+      { path: "IMMERSION_1", process: scape.vectorData[3], scale: ir_inputAtt[3]  , blockSizes }, [ el.tapIn( { name: "srvbOut:1" }) ] ),
   };
   return props;
   }
@@ -213,7 +213,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     });
   }
 
-  // console.log( Object.keys( refs._map.get("EUROPA_0")[0].children  ) );
+  // console.log( Object.keys( refs._map.get("IMMERSION_0")[0].children  ) );
 
   // memoisation of nodes and non-node state
   memoized = {
