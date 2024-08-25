@@ -122,7 +122,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     scapeBypass: scape.bypass || 0,    
     vectorData: scape.vectorData,    
     // RefNodes from now on
-   // srvbBypass: refs.getOrCreate( "srvbBypass", "const", { value: srvb.bypass }, [] ),
+    srvbBypass: refs.getOrCreate( "srvbBypass", "const", { value: srvb.bypass }, [] ),
     scapeLevel: refs.getOrCreate("scapeLevel", "const", { value: scape.level }, []),
     scapePosition: refs.getOrCreate("scapePosition", "const", { value: shared.position }, []),
     // the Hermite vector interpolation values as signals
@@ -194,9 +194,9 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     refs.update("v4", { value: scape.vectorData[3] });
     refs.update("scapePosition", { value: shared.position });
     }
-    
+
     refs.update("dryMix", { value: shared.dryMix });
-   // refs.update("srvbBypass", { value: srvb.bypass }); // needed to bypass empty input when srvb is bypassed
+    refs.update("srvbBypass", { value: srvb.bypass }); // needed to bypass empty input when srvb is bypassed
 
     // update the convolvers
     IRs.forEach((item, index) => {

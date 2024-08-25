@@ -1,10 +1,11 @@
 import { el, ElemNode } from "@elemaudio/core";
+import { zero } from "@thi.ng/vectors";
 
 
 
 export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
 
- // const srvbBypass: ElemNode = el.sm(props.srvbBypass); 
+  const srvbBypass: ElemNode = el.sm(props.srvbBypass); 
 
   ///////////////////////////////////////////
   // SCAPE DSP setup
@@ -23,6 +24,7 @@ export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
   ////////////////////////////////////////////
   // SCAPE DSP functions
 
+  const zero = el.const( {value: 0, key: 'srvb::mute' } );
   // HERMITE vector cross fader
   function HermiteVecInterp(
     channel: number,
@@ -56,22 +58,19 @@ export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
     return el.select(position, el.mul(x, el.db2gain(3)), x);
   };
 
-  // this all got a bit tricky, because I started working with pairs of inputs
-  const getSourcePair = (  ): ElemNode[] => {
-    return [  outputFromSRVB[0] , outputFromSRVB[1]  ];
-  }
-
+  const getDrySource = ( channel: number ): ElemNode=> el.select( srvbBypass, zero, outputFromSRVB[channel] ) ;
+  
   let yL = el.add(
-    el.mul(scapeLevel, asLeftPan( vectorProcessorPair( getSourcePair() )[1])),    // crossed over
-    getSourcePair()[0]
+    el.mul(scapeLevel, asLeftPan( vectorProcessorPair( outputFromSRVB )[1])),    // crossed over
+    getDrySource(0)
   ); // crossfaded blend
   let yR = el.add(
-    el.mul(scapeLevel, asRightPan( vectorProcessorPair( getSourcePair() )[0])), // crossed over
-    getSourcePair()[1]
+    el.mul(scapeLevel, asRightPan( vectorProcessorPair( outputFromSRVB )[0])), // crossed over
+    getDrySource(1) 
   ); // crossfaded blend
   
  if ( props.scapeBypass ) 
-  return [ ...outputFromSRVB ];
+  return [ getDrySource(0), getDrySource(1) ]; // bypass  
 else
   return [yL, yR];
 }
