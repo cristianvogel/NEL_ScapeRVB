@@ -158,9 +158,8 @@ function dampFDN(props: FDNProps, ...ins) {
  **/
 
 export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureArray: ElemNode[]) {
-  // xl , xr -- unprocessed inputs
-  if (props.srvbBypass) return inputs;
-
+  
+ 
 
   const toneDial = (input, offset: ElemNode) => {
     const dial = el.smooth(el.tau2pole(0.5), el.le(tone, 0));
@@ -194,8 +193,11 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
 
 
 
-
+// xl , xr -- unprocessed inputs
   const [xl, xr] = inputs;
+  // zero when bypassed
+  if (props.srvbBypass) return [ el.mul( 0, xl) , el.mul( 0, xr)];
+
   // input attenuation
   // const _xl = el.dcblock( el.mul( xl, el.select( position, el.db2gain(-1.5), 1 ) ) );
   // const _xr = el.dcblock( el.mul( xr, el.select( position, 1, el.db2gain(-1.5) ) ) );

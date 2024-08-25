@@ -3,7 +3,9 @@ import { el, ElemNode } from "@elemaudio/core";
 
 
 export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
-  if (props.scapeBypass)  return outputFromSRVB;
+  if (props.scapeBypass ) return [ el.const( {value: 0} ), el.const( {value: 0} ) ];
+  const srvbBypass: ElemNode = el.sm(props.srvbBypass); 
+
   ///////////////////////////////////////////
   // SCAPE DSP setup
   const responses = props.IRs;
@@ -42,7 +44,7 @@ export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
     return selectConvolverRef;
   };
 
-  let crossFadeN_LR = (_inputs: ElemNode[]) => [
+  let vectorProcessorPair = (_inputs: ElemNode[]) => [
     HermiteVecInterp(0, hermiteNodes, _inputs[0]),
     HermiteVecInterp(1, hermiteNodes, _inputs[1]),
   ];
@@ -54,14 +56,19 @@ export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
     return el.select(position, el.mul(x, el.db2gain(3)), x);
   };
 
+  // this all got a bit tricky, because I started working with pairs of inputs
+  const getSourcePair = (  ): ElemNode[] => {
+    return [ el.select( srvbBypass, el.in( {channel: 0} )  , outputFromSRVB[0] ), el.select( srvbBypass, el.in( {channel: 1} )  , outputFromSRVB[1] ) ];
+  }
+
   let yL = el.add(
-    el.mul(scapeLevel, asLeftPan(crossFadeN_LR(outputFromSRVB)[1])),    // crossed over
-    outputFromSRVB[0]
+    el.mul(scapeLevel, asLeftPan( vectorProcessorPair( getSourcePair() )[1])),    // crossed over
+    getSourcePair()[0]
   ); // crossfaded blend
   let yR = el.add(
-    el.mul(scapeLevel, asRightPan(crossFadeN_LR(outputFromSRVB)[0])), // crossed over
-    outputFromSRVB[1]
+    el.mul(scapeLevel, asRightPan( vectorProcessorPair( getSourcePair() )[0])), // crossed over
+    getSourcePair()[1]
   ); // crossfaded blend
-
+  
   return [yL, yR];
 }

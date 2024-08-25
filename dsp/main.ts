@@ -93,6 +93,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
 
   refs.getOrCreate("dryMix", "const", {value: shared.dryMix } , []);
 
+
   // prettier-ignore
   const srvbProps = () => { 
     const props =  
@@ -118,8 +119,10 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
    {
     IRs,
     sampleRate: shared.sampleRate,
-    scapeBypass: scape.bypass,
-    vectorData: scape.vectorData,
+    scapeBypass: scape.bypass,    
+    vectorData: scape.vectorData,    
+    // RefNodes from now on
+    srvbBypass: refs.getOrCreate( "srvbBypass", "const", { value: srvb.bypass }, [] ),
     scapeLevel: refs.getOrCreate("scapeLevel", "const", { value: scape.level }, []),
     scapePosition: refs.getOrCreate("scapePosition", "const", { value: shared.position }, []),
     // the Hermite vector interpolation values as signals
@@ -187,6 +190,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     refs.update("scapePosition", { value: shared.position });
 
     refs.update("dryMix", { value: shared.dryMix });
+    refs.update("srvbBypass", { value: srvb.bypass });
 
     // update the convolvers
     IRs.forEach((item, index) => {
@@ -234,14 +238,14 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
       tone: clamp(state.tone * 2 - 1, -0.99, 1),
       level: state.mix,
       structureMax: Math.round(state.structureMax) || 137, // handle the case where the max was not computed
-      bypass: Math.round( state.srvbBypass  ),
+      bypass: Math.round( state.srvbBypass  ) || 0,
     };
     const scape = {
       reverse: Math.round(state.scapeReverse),
       level: state.scapeLevel,
       ir: state.scapeLength,
       vectorData: HERMITE.at(state.scapeLength),
-      bypass: Math.round( state.scapeBypass )
+      bypass: Math.round( state.scapeBypass ) || 0
     };
     return { state, srvb, shared, scape };
   }
