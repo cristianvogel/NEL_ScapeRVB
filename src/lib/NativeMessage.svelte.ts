@@ -1,15 +1,11 @@
 import { ConsoleText, HostState } from "../stores/stores.svelte";
-import { roundTo } from "@thi.ng/math"
+import { REGISTERED_PARAM_NAMES } from "../stores/constants";
+import { equiv } from "@thi.ng/equiv";
 //@ts-nocheck
 export declare var globalThis: any;
+declare var CABLES: any;
 
-
-
-/** ━━━━━━━
- * Main method for processing and denormalizing parameter values sent from the host
- * received via the `__receiveStateChange__` global function.
- * @param state - The state object received from the host.
- */
+let hostStateMemo = {};
 
 function processHostState(state: any) {
   // ━━━━━━━
@@ -20,20 +16,29 @@ function processHostState(state: any) {
   } catch (e) {
     console.warn("Bad state received", parsedEntries);
   }
- 
-  HostState.update(parsedEntries);
+  const current = parsedEntries;
+  Object.keys(current).forEach((param) => {
+    if (equiv(current[param], hostStateMemo[param])) return;
+     if (REGISTERED_PARAM_NAMES.includes(param)) {
+       updateRegisteredParams(param, current[param] || 0);
+       hostStateMemo[param] = current[param];
+     }
+     
+   });
+
+
 }
 
-/** ━━━━━━━
- * Callable functions for interfacing with the Host code.
- **/
+
+function updateRegisteredParams(param, value) {
+  let targetVar = CABLES.patch.getVar("ui_dialValues_object");
+  if (!targetVar) return;
+      let currentValue = targetVar.getValue();
+      targetVar.setValue( {...currentValue, [param]: value} );
+}
+
 export const MessageToHost = {
-  /** ━━━━━━━
-   * Manually get the current state key of each storage slot and serialize for
-   * persistentState storage in the host plugin. We need to stash and retrieve the view state
-   * as the WebView is destroyed when the user closes the plugin window.
-   * The solution must also work for preset store/recall originating from DAW Host.
-   **/
+ 
   stashMeshState: function () {
     let dataToPersist = {
        presets: {},
@@ -49,13 +54,10 @@ export const MessageToHost = {
    */
   requestParamValueUpdate: function (paramId: string, _value: number) {
 
-    let value = _value;
-
     if (typeof globalThis.__postNativeMessage__ === "function") {
-     // ConsoleText.update( paramId + " ► " + value);
       globalThis.__postNativeMessage__("setParameterValue", {
         paramId,
-        value,
+        _value,
       });
     }
   },

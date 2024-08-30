@@ -12,6 +12,9 @@ function dialValues(initial) {
     update(newValues) {
       current = newValues;
     },
+    snapshot() {
+      return $state.snapshot(current);
+    }
   };
 }
 
@@ -25,6 +28,9 @@ function scapeParams(initial) {
     update(newValues) {
       current = newValues;
     },
+    snapshot() {
+      return $state.snapshot(current);
+    }
   };
 }
 
@@ -38,6 +44,9 @@ function additionalParams(initial) {
     update(newValues) {
       current = newValues;
     },
+    snapshot() {
+      return $state.snapshot(current);
+    }
   };
 }
 //////////////////////
@@ -67,7 +76,7 @@ function cablesPatch(initial) {
   };
 }
 //////////////////////
-export const HostState = hostState(new Map<string, number | number[]>());
+export const HostState = hostState();
 function hostState(initial) {
   let current = $state(initial);
   return {
@@ -77,5 +86,8 @@ function hostState(initial) {
     update(newValues) {
       current = newValues;
     },
+    snapshot() {
+      return $state.snapshot(current);
+    }
   };
 }

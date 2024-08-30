@@ -1,6 +1,7 @@
 import { UI_DialParams, UI_ScapeParams, UI_AdditionalParams } from "../stores/stores.svelte";
 import { equiv } from "@thi.ng/equiv";
 import { roundTo } from "@thi.ng/math"
+import { eq } from "@thi.ng/vectors";
 
 // Function to initialize listeners for vars coming
 // via the Cables patch
@@ -11,7 +12,8 @@ const ui_dialValues = patch.getVar("ui_dialValues_object");
     ui_dialValues.on("change", (newValues) => {
       // CablesUI always seems to send a null then an updated object...
       // Handle it here for now
-     UI_DialParams.update( {...newValues} )
+      if (equiv(newValues, UI_DialParams.snapshot())) return;
+      if (newValues !== null )  UI_DialParams.update( {...newValues} )
     });
   };
 
@@ -24,8 +26,8 @@ const ui_scapeParams = new Map([
 ui_scapeParams.forEach((variable, param) => {
   if (variable) {
     variable.on("change", (newValue) => {
-      if (equiv(newValue, UI_ScapeParams.current[param])) return;
-      UI_ScapeParams.update({ ...UI_ScapeParams.current, [param]: newValue });
+     if (equiv(newValue, UI_ScapeParams.current[param])) return;
+     if (newValue !== null) UI_ScapeParams.update({ ...UI_ScapeParams.current, [param]: newValue });
     });
   }
 });
@@ -44,7 +46,7 @@ ui_additionalParams.forEach((variable, param) => {
     variable.on("change", ( _newValue) => {
       if (equiv( _newValue, UI_AdditionalParams.current[param] ) ) return;
       let newValue = _newValue;
-      UI_AdditionalParams.update({ ...UI_AdditionalParams.current, [param]: newValue });
+      if ( newValue !== null ) UI_AdditionalParams.update({ ...UI_AdditionalParams.current, [param]: newValue });
     });
   }
 });

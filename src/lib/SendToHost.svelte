@@ -8,17 +8,11 @@
 
   $effect(() => {
     const current = UI_DialParams.current; 
-     // iterate over the keys and values, send MessageToHost
     Object.keys(current).forEach((param) => {
       if (current[param] === dialValuesMemo[param]) return;
         MessageToHost.requestParamValueUpdate(param, current[param] || 0);   
         dialValuesMemo = current;
     });
-    return () => {
-      // if a callback is provided, it will run
-      // a) immediately before the effect re-runs
-      // b) when the component is destroyed
-    }
   });
 
   $effect(() => {
