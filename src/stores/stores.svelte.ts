@@ -18,6 +18,17 @@ function ui_srvbParams(initial) {
   };
 }
 
+export const ControlSource = controlSource('');
+function controlSource( initial ) {
+  let current = $derived( UI_SrvbParams.current.source )
+  return { 
+    get current() {
+     const cs = current !== null ? current : 'none';
+     return cs;
+    }   
+  }
+}
+
 export const UI_ScapeParams = scapeParams({});
 function scapeParams(initial) {
   let current = $state(initial);

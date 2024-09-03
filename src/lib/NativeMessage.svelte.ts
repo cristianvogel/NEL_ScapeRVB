@@ -1,4 +1,4 @@
-import { ConsoleText, HostState } from "../stores/stores.svelte";
+import { ConsoleText, ControlSource, HostState } from "../stores/stores.svelte";
 import { REGISTERED_PARAM_NAMES } from "../stores/constants";
 import { equiv } from "@thi.ng/equiv";
 //@ts-nocheck
@@ -18,7 +18,9 @@ function processHostState(state: any) {
   }
   const current = parsedEntries;
   Object.keys(current).forEach((param) => {
-    if (equiv(current[param], hostStateMemo[param])) return;
+
+    if (equiv(current[param], hostStateMemo[param]) ) return;
+
      if (REGISTERED_PARAM_NAMES.includes(param)) {
        updateRegisteredParams(param, current[param] || 0);
        hostStateMemo[param] = current[param];
@@ -31,8 +33,8 @@ function processHostState(state: any) {
 
 
 function updateRegisteredParams(param, value) {
+  if (!CABLES) return;
   let targetVar = CABLES.patch.getVar("ext_srvbParams_object");
-  if (!targetVar) return;
       let currentValue = targetVar.getValue();
       targetVar.setValue( {...currentValue, [param]: value, source: "host"} );
 }
@@ -52,13 +54,11 @@ export const MessageToHost = {
    * @param paramId - The ID of the parameter to update.
    * @param value - The new value of the parameter.
    */
-  requestParamValueUpdate: function (paramId: string, _value: number | string) {
-
-    if (typeof globalThis.__postNativeMessage__ === "function" 
-      && ( typeof paramId === "string" && _value !== "ui")  ) {
+  requestParamValueUpdate: function (paramId: string, value: number ) {
+    if (typeof globalThis.__postNativeMessage__ === "function" )   {
       globalThis.__postNativeMessage__("setParameterValue", {
         paramId,
-        _value,
+        value,
       });
     }
   },

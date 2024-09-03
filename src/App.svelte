@@ -1,7 +1,7 @@
 <script>
   import { onMount } from "svelte";
   import { SimpleTimer } from "./lib/Timer";
-  import { CablesPatch } from "./stores/stores.svelte";
+  import { CablesPatch, ConsoleText } from "./stores/stores.svelte";
   import { fade } from "svelte/transition";
   import SendToHost from "./lib/SendToHost.svelte";
   import SendToUi from "./lib/SendToUI.svelte";
@@ -31,22 +31,22 @@
         glCanvasResizeToWindow: true,
         onError: (e) => console.error(e),
         onPatchLoaded: () => (cablesLoaded = true),
-        onFinishedLoading: initPatchListeners,
-        canvas: { alpha: true, premultipliedAlpha: true }, // make canvas transparent
+        onFinishedLoading: ()=>{},
+        canvas: { willReadFrequently: true, alpha: true, premultipliedAlpha: true }, // make canvas transparent
       });
       // update stores related to Cables patch
       console.log("Patch vars ->", CABLES.patch.getVars());
-
-      CablesPatch.update(CABLES.patch);
+      initPatchListeners( CABLES.patch );
     });
   });
 </script>
 
-<canvas id="glcanvas" width="100vw" height="100vh"></canvas>
+<canvas id="glcanvas" width="100vw" height="100vh" willReadFrequently="true"></canvas>
 
 {#if cablesLoaded}
   <SendToHost />
   <SendToUi />
+  <pre class="console-text">{ConsoleText.current}</pre>
 {:else}
   <pre class="console-text" in:fade>Loading...</pre>
 {/if}
@@ -55,7 +55,7 @@
   .console-text {
     position: absolute;
     left: 1rem;
-    top: 1rem;
+    bottom: 1rem;
     color: chartreuse;
   }
 </style>
