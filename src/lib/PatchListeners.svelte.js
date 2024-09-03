@@ -1,4 +1,4 @@
-import { UI_DialParams, UI_ScapeParams, UI_AdditionalParams } from "../stores/stores.svelte";
+import { UI_SrvbParams, UI_ScapeParams, UI_AdditionalParams } from "../stores/stores.svelte";
 import { equiv } from "@thi.ng/equiv";
 import { roundTo } from "@thi.ng/math"
 import { eq } from "@thi.ng/vectors";
@@ -7,13 +7,13 @@ import { eq } from "@thi.ng/vectors";
 // via the Cables patch
 export function initPatchListeners(patch) {
 
-const ui_dialValues = patch.getVar("ui_dialValues_object");
+const ui_dialValues = patch.getVar("ext_srvbParams_object");
   if (ui_dialValues) {
     ui_dialValues.on("change", (newValues) => {
       // CablesUI always seems to send a null then an updated object...
       // Handle it here for now
-      if (equiv(newValues, UI_DialParams.snapshot())) return;
-      if (newValues !== null )  UI_DialParams.update( {...newValues} )
+      //if (equiv(newValues, UI_DialParams.snapshot())) return;
+      if (newValues !== null )  UI_SrvbParams.update( {...newValues, source: "ui"} )
     });
   };
 

@@ -631,7 +631,13 @@ String.prototype.endl = function ()
  */
 String.prototype.startsWith = function (prefix)
 {
-    return this.indexOf(prefix) === 0;
+    if (!this || !prefix) return false;
+    if (this.length >= prefix.length)
+    {
+        if (this.substring(0, prefix.length) == prefix) return true;
+    }
+    return false;
+    // return this.indexOf(prefix) === 0;
 };
 
 /**
@@ -2399,14 +2405,14 @@ const Port = function (___op, name, type, uiAttribs)
     Object.defineProperty(this, "val", {
         get()
         {
-            this._log.warn("val getter deprecated!", this);
-            this._log.stack("val getter deprecated");
+            // this._log.warn("val getter deprecated!", this);
+            // this._log.stack("val getter deprecated");
             return this.get();
         },
         set(v)
         {
-            this._log.warn("val setter deprecated!", this);
-            this._log.stack("val setter deprecated");
+            // this._log.warn("val setter deprecated!", this);
+            // this._log.stack("val setter deprecated");
             this.setValue(v);
         }
     });
@@ -2593,10 +2599,15 @@ Port.prototype.get = function ()
     if (this._animated && this._lastAnimFrame != this._op.patch.getFrameNum())
     {
         this._lastAnimFrame = this._op.patch.getFrameNum();
-        this.value = this.anim.getValue(this._op.patch.timer.getTime());
 
-        this._oldAnimVal = this.value;
-        this.forceChange();
+        let animval = this.anim.getValue(this._op.patch.timer.getTime());
+
+        if (this.value != animval)
+        {
+            this.value = animval;
+            this._oldAnimVal = this.value;
+            this.forceChange();
+        }
     }
 
     return this.value;
@@ -3521,7 +3532,7 @@ class MultiPort extends Port
 
                     if (!po || !otherPort)
                     {
-                        this._log.warn("no port found?", po.name);
+                        this._log.warn("no port found?");
                     }
                     else
                     {
@@ -3848,6 +3859,15 @@ const Op = function ()
         // obj.name = null;
         this.uiAttrib(obj);
     };
+
+    Op.prototype.require = function (name)
+    {
+        if (CABLES.platform && CABLES.StandaloneElectron && !CABLES.platform.frontendOptions.isStandalone)
+            this.setUiError("notstandalone", "This op will only work in cables standalone version", 3);
+
+        return null;
+    };
+
 
     Op.prototype.checkMainloopExists = function ()
     {
@@ -15056,7 +15076,7 @@ const Patch = function (cfg)
             "onFinishedLoading": null,
             "onFirstFrameRendered": null,
             "onPatchLoaded": null,
-            "fpsLimit": 0,
+            "fpsLimit": 0
         };
     this.timer = new Timer();
     this.freeTimer = new Timer();
@@ -15256,7 +15276,11 @@ Patch.prototype.setVolume = function (v)
  */
 Patch.prototype.getAssetPath = function (patchId = null)
 {
-    if (this.isEditorMode())
+    if (this.config.hasOwnProperty("assetPath"))
+    {
+        return this.config.assetPath;
+    }
+    else if (this.isEditorMode())
     {
         let id = patchId || gui.project()._id;
         return "/assets/" + id + "/";
@@ -15266,10 +15290,6 @@ Patch.prototype.getAssetPath = function (patchId = null)
         const parts = document.location.pathname.split("/");
         let id = patchId || parts[parts.length - 1];
         return "/assets/" + id + "/";
-    }
-    else if (this.config.hasOwnProperty("assetPath"))
-    {
-        return this.config.assetPath;
     }
     else
     {
@@ -15821,7 +15841,19 @@ Patch.prototype.loadLib = function (which)
 };
 
 
-Patch.prototype.getSubPatchOp = function (patchId, objName)
+
+Patch.prototype.getSubPatchOpsByName = function (patchId, objName)
+{
+    const arr = [];
+    for (const i in this.ops)
+        if (this.ops[i].uiAttribs && this.ops[i].uiAttribs.subPatch == patchId && this.ops[i].objName == objName)
+            arr.push(this.ops[i]);
+
+    return arr;
+};
+
+Patch.prototype.getSubPatchOp =
+Patch.prototype.getFirstSubPatchOpByName = function (patchId, objName)
 {
     for (const i in this.ops)
         if (this.ops[i].uiAttribs && this.ops[i].uiAttribs.subPatch == patchId && this.ops[i].objName == objName)
@@ -19441,12 +19473,12 @@ CABLES = __webpack_exports__["default"];
 ;
 
 
-var CABLES = CABLES || {}; CABLES.build = {"timestamp":1723710716430,"created":"2024-08-15T08:31:56.430Z","git":{"branch":"master","commit":"22a0542307b9bba8a1e76e6acb27443d5e25af98","date":"1723443356","message":"better log"}};
+var CABLES = CABLES || {}; CABLES.build = {"timestamp":1725284086204,"created":"2024-09-02T13:34:46.204Z","git":{"branch":"master","commit":"990a252ddeb705edca61445a2c087efe33f7649b","date":"1724836961","message":"rename/deprecate"}};
 (()=>{"use strict";var t={d:(n,a)=>{for(var r in a)t.o(a,r)&&!t.o(n,r)&&Object.defineProperty(n,r,{enumerable:!0,get:a[r]})},o:(t,n)=>Object.prototype.hasOwnProperty.call(t,n),r:t=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})}},n={};t.r(n),t.d(n,{ARRAY_TYPE:()=>f,EPSILON:()=>M,RANDOM:()=>l,equals:()=>d,setMatrixArrayType:()=>v,toRadian:()=>m});var a={};t.r(a),t.d(a,{LDU:()=>j,add:()=>z,adjoint:()=>S,clone:()=>y,copy:()=>p,create:()=>x,determinant:()=>R,equals:()=>Y,exactEquals:()=>Q,frob:()=>V,fromRotation:()=>D,fromScaling:()=>F,fromValues:()=>w,identity:()=>q,invert:()=>P,mul:()=>_,multiply:()=>T,multiplyScalar:()=>X,multiplyScalarAndAdd:()=>Z,rotate:()=>I,scale:()=>E,set:()=>g,str:()=>L,sub:()=>B,subtract:()=>O,transpose:()=>A});var r={};t.r(r),t.d(r,{add:()=>it,clone:()=>k,copy:()=>U,create:()=>N,determinant:()=>J,equals:()=>ft,exactEquals:()=>Mt,frob:()=>ot,fromRotation:()=>at,fromScaling:()=>rt,fromTranslation:()=>ut,fromValues:()=>C,identity:()=>W,invert:()=>H,mul:()=>lt,multiply:()=>K,multiplyScalar:()=>ct,multiplyScalarAndAdd:()=>st,rotate:()=>$,scale:()=>tt,set:()=>G,str:()=>et,sub:()=>vt,subtract:()=>ht,translate:()=>nt});var u={};t.r(u),t.d(u,{add:()=>Yt,adjoint:()=>At,clone:()=>dt,copy:()=>xt,create:()=>bt,determinant:()=>Pt,equals:()=>Nt,exactEquals:()=>Bt,frob:()=>Qt,fromMat2d:()=>Lt,fromMat4:()=>mt,fromQuat:()=>Vt,fromRotation:()=>Dt,fromScaling:()=>Ft,fromTranslation:()=>Et,fromValues:()=>yt,identity:()=>qt,invert:()=>gt,mul:()=>kt,multiply:()=>St,multiplyScalar:()=>Zt,multiplyScalarAndAdd:()=>_t,normalFromMat4:()=>jt,projection:()=>zt,rotate:()=>Tt,scale:()=>It,set:()=>pt,str:()=>Ot,sub:()=>Ut,subtract:()=>Xt,translate:()=>Rt,transpose:()=>wt});var e={};t.r(e),t.d(e,{add:()=>Ln,adjoint:()=>nn,clone:()=>Ct,copy:()=>Gt,create:()=>Wt,determinant:()=>an,equals:()=>Qn,exactEquals:()=>On,frob:()=>Fn,fromQuat:()=>An,fromQuat2:()=>xn,fromRotation:()=>ln,fromRotationTranslation:()=>dn,fromRotationTranslationScale:()=>wn,fromRotationTranslationScaleOrigin:()=>gn,fromScaling:()=>fn,fromTranslation:()=>Mn,fromValues:()=>Ht,fromXRotation:()=>vn,fromYRotation:()=>bn,fromZRotation:()=>mn,frustum:()=>Pn,getRotation:()=>qn,getScaling:()=>pn,getTranslation:()=>yn,identity:()=>Kt,invert:()=>tn,lookAt:()=>In,mul:()=>Yn,multiply:()=>rn,multiplyScalar:()=>jn,multiplyScalarAndAdd:()=>zn,ortho:()=>Tn,perspective:()=>Sn,perspectiveFromFieldOfView:()=>Rn,rotate:()=>on,rotateX:()=>hn,rotateY:()=>cn,rotateZ:()=>sn,scale:()=>en,set:()=>Jt,str:()=>Dn,sub:()=>Xn,subtract:()=>Vn,targetTo:()=>En,translate:()=>un,transpose:()=>$t});var o={};t.r(o),t.d(o,{add:()=>Wn,angle:()=>wa,bezier:()=>va,ceil:()=>Jn,clone:()=>_n,copy:()=>kn,create:()=>Zn,cross:()=>Ma,dist:()=>Da,distance:()=>ua,div:()=>Ea,divide:()=>Hn,dot:()=>sa,equals:()=>Sa,exactEquals:()=>Pa,floor:()=>Kn,forEach:()=>ja,fromValues:()=>Nn,hermite:()=>la,inverse:()=>ha,len:()=>La,length:()=>Bn,lerp:()=>fa,max:()=>ta,min:()=>$n,mul:()=>Ia,multiply:()=>Gn,negate:()=>ia,normalize:()=>ca,random:()=>ba,rotateX:()=>ya,rotateY:()=>pa,rotateZ:()=>qa,round:()=>na,scale:()=>aa,scaleAndAdd:()=>ra,set:()=>Un,sqrDist:()=>Fa,sqrLen:()=>Va,squaredDistance:()=>ea,squaredLength:()=>oa,str:()=>Aa,sub:()=>Ta,subtract:()=>Cn,transformMat3:()=>da,transformMat4:()=>ma,transformQuat:()=>xa,zero:()=>ga});var i={};t.r(i),t.d(i,{add:()=>Za,ceil:()=>ka,clone:()=>Oa,copy:()=>Ya,create:()=>za,cross:()=>or,dist:()=>xr,distance:()=>Ka,div:()=>dr,divide:()=>Na,dot:()=>er,equals:()=>vr,exactEquals:()=>lr,floor:()=>Ua,forEach:()=>wr,fromValues:()=>Qa,inverse:()=>rr,len:()=>pr,length:()=>tr,lerp:()=>ir,max:()=>Ca,min:()=>Wa,mul:()=>mr,multiply:()=>Ba,negate:()=>ar,normalize:()=>ur,random:()=>hr,round:()=>Ga,scale:()=>Ha,scaleAndAdd:()=>Ja,set:()=>Xa,sqrDist:()=>yr,sqrLen:()=>qr,squaredDistance:()=>$a,squaredLength:()=>nr,str:()=>fr,sub:()=>br,subtract:()=>_a,transformMat4:()=>cr,transformQuat:()=>sr,zero:()=>Mr});var h={};t.r(h),t.d(h,{add:()=>$r,calculateW:()=>Fr,clone:()=>Gr,conjugate:()=>Yr,copy:()=>Jr,create:()=>gr,dot:()=>au,equals:()=>su,exactEquals:()=>cu,exp:()=>Lr,fromEuler:()=>Zr,fromMat3:()=>Xr,fromValues:()=>Hr,getAngle:()=>Rr,getAxisAngle:()=>Sr,identity:()=>Ar,invert:()=>Qr,len:()=>eu,length:()=>uu,lerp:()=>ru,ln:()=>Vr,mul:()=>tu,multiply:()=>Tr,normalize:()=>hu,pow:()=>jr,random:()=>Or,rotateX:()=>Ir,rotateY:()=>Er,rotateZ:()=>Dr,rotationTo:()=>Mu,scale:()=>nu,set:()=>Kr,setAxes:()=>lu,setAxisAngle:()=>Pr,slerp:()=>zr,sqlerp:()=>fu,sqrLen:()=>iu,squaredLength:()=>ou,str:()=>_r});var c={};t.r(c),t.d(c,{add:()=>Ou,clone:()=>bu,conjugate:()=>Nu,copy:()=>wu,create:()=>vu,dot:()=>Zu,equals:()=>Ku,exactEquals:()=>Ju,fromMat4:()=>qu,fromRotation:()=>pu,fromRotationTranslation:()=>xu,fromRotationTranslationValues:()=>du,fromTranslation:()=>yu,fromValues:()=>mu,getDual:()=>Su,getReal:()=>Pu,getTranslation:()=>Iu,identity:()=>gu,invert:()=>Bu,len:()=>Uu,length:()=>ku,lerp:()=>_u,mul:()=>Yu,multiply:()=>Qu,normalize:()=>Gu,rotateAroundAxis:()=>zu,rotateByQuatAppend:()=>Vu,rotateByQuatPrepend:()=>ju,rotateX:()=>Du,rotateY:()=>Fu,rotateZ:()=>Lu,scale:()=>Xu,set:()=>Au,setDual:()=>Tu,setReal:()=>Ru,sqrLen:()=>Cu,squaredLength:()=>Wu,str:()=>Hu,translate:()=>Eu});var s={};t.r(s),t.d(s,{add:()=>ue,angle:()=>De,ceil:()=>he,clone:()=>te,copy:()=>ae,create:()=>$u,cross:()=>ge,dist:()=>Xe,distance:()=>be,div:()=>Ye,divide:()=>ie,dot:()=>we,equals:()=>je,exactEquals:()=>Ve,floor:()=>ce,forEach:()=>Be,fromValues:()=>ne,inverse:()=>pe,len:()=>ze,length:()=>de,lerp:()=>Ae,max:()=>Me,min:()=>se,mul:()=>Qe,multiply:()=>oe,negate:()=>ye,normalize:()=>qe,random:()=>Pe,rotate:()=>Ee,round:()=>fe,scale:()=>le,scaleAndAdd:()=>ve,set:()=>re,sqrDist:()=>Ze,sqrLen:()=>_e,squaredDistance:()=>me,squaredLength:()=>xe,str:()=>Le,sub:()=>Oe,subtract:()=>ee,transformMat2:()=>Se,transformMat2d:()=>Re,transformMat3:()=>Te,transformMat4:()=>Ie,zero:()=>Fe});var M=1e-6,f="undefined"!=typeof Float32Array?Float32Array:Array,l=Math.random;function v(t){f=t}var b=Math.PI/180;function m(t){return t*b}function d(t,n){return Math.abs(t-n)<=M*Math.max(1,Math.abs(t),Math.abs(n))}function x(){var t=new f(4);return f!=Float32Array&&(t[1]=0,t[2]=0),t[0]=1,t[3]=1,t}function y(t){var n=new f(4);return n[0]=t[0],n[1]=t[1],n[2]=t[2],n[3]=t[3],n}function p(t,n){return t[0]=n[0],t[1]=n[1],t[2]=n[2],t[3]=n[3],t}function q(t){return t[0]=1,t[1]=0,t[2]=0,t[3]=1,t}function w(t,n,a,r){var u=new f(4);return u[0]=t,u[1]=n,u[2]=a,u[3]=r,u}function g(t,n,a,r,u){return t[0]=n,t[1]=a,t[2]=r,t[3]=u,t}function A(t,n){if(t===n){var a=n[1];t[1]=n[2],t[2]=a}else t[0]=n[0],t[1]=n[2],t[2]=n[1],t[3]=n[3];return t}function P(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=a*e-u*r;return o?(o=1/o,t[0]=e*o,t[1]=-r*o,t[2]=-u*o,t[3]=a*o,t):null}function S(t,n){var a=n[0];return t[0]=n[3],t[1]=-n[1],t[2]=-n[2],t[3]=a,t}function R(t){return t[0]*t[3]-t[2]*t[1]}function T(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=a[0],h=a[1],c=a[2],s=a[3];return t[0]=r*i+e*h,t[1]=u*i+o*h,t[2]=r*c+e*s,t[3]=u*c+o*s,t}function I(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=Math.sin(a),h=Math.cos(a);return t[0]=r*h+e*i,t[1]=u*h+o*i,t[2]=r*-i+e*h,t[3]=u*-i+o*h,t}function E(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=a[0],h=a[1];return t[0]=r*i,t[1]=u*i,t[2]=e*h,t[3]=o*h,t}function D(t,n){var a=Math.sin(n),r=Math.cos(n);return t[0]=r,t[1]=a,t[2]=-a,t[3]=r,t}function F(t,n){return t[0]=n[0],t[1]=0,t[2]=0,t[3]=n[1],t}function L(t){return"mat2("+t[0]+", "+t[1]+", "+t[2]+", "+t[3]+")"}function V(t){return Math.hypot(t[0],t[1],t[2],t[3])}function j(t,n,a,r){return t[2]=r[2]/r[0],a[0]=r[0],a[1]=r[1],a[3]=r[3]-t[2]*a[1],[t,n,a]}function z(t,n,a){return t[0]=n[0]+a[0],t[1]=n[1]+a[1],t[2]=n[2]+a[2],t[3]=n[3]+a[3],t}function O(t,n,a){return t[0]=n[0]-a[0],t[1]=n[1]-a[1],t[2]=n[2]-a[2],t[3]=n[3]-a[3],t}function Q(t,n){return t[0]===n[0]&&t[1]===n[1]&&t[2]===n[2]&&t[3]===n[3]}function Y(t,n){var a=t[0],r=t[1],u=t[2],e=t[3],o=n[0],i=n[1],h=n[2],c=n[3];return Math.abs(a-o)<=M*Math.max(1,Math.abs(a),Math.abs(o))&&Math.abs(r-i)<=M*Math.max(1,Math.abs(r),Math.abs(i))&&Math.abs(u-h)<=M*Math.max(1,Math.abs(u),Math.abs(h))&&Math.abs(e-c)<=M*Math.max(1,Math.abs(e),Math.abs(c))}function X(t,n,a){return t[0]=n[0]*a,t[1]=n[1]*a,t[2]=n[2]*a,t[3]=n[3]*a,t}function Z(t,n,a,r){return t[0]=n[0]+a[0]*r,t[1]=n[1]+a[1]*r,t[2]=n[2]+a[2]*r,t[3]=n[3]+a[3]*r,t}Math.hypot||(Math.hypot=function(){for(var t=0,n=arguments.length;n--;)t+=arguments[n]*arguments[n];return Math.sqrt(t)});var _=T,B=O;function N(){var t=new f(6);return f!=Float32Array&&(t[1]=0,t[2]=0,t[4]=0,t[5]=0),t[0]=1,t[3]=1,t}function k(t){var n=new f(6);return n[0]=t[0],n[1]=t[1],n[2]=t[2],n[3]=t[3],n[4]=t[4],n[5]=t[5],n}function U(t,n){return t[0]=n[0],t[1]=n[1],t[2]=n[2],t[3]=n[3],t[4]=n[4],t[5]=n[5],t}function W(t){return t[0]=1,t[1]=0,t[2]=0,t[3]=1,t[4]=0,t[5]=0,t}function C(t,n,a,r,u,e){var o=new f(6);return o[0]=t,o[1]=n,o[2]=a,o[3]=r,o[4]=u,o[5]=e,o}function G(t,n,a,r,u,e,o){return t[0]=n,t[1]=a,t[2]=r,t[3]=u,t[4]=e,t[5]=o,t}function H(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=n[4],i=n[5],h=a*e-r*u;return h?(h=1/h,t[0]=e*h,t[1]=-r*h,t[2]=-u*h,t[3]=a*h,t[4]=(u*i-e*o)*h,t[5]=(r*o-a*i)*h,t):null}function J(t){return t[0]*t[3]-t[1]*t[2]}function K(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=n[4],h=n[5],c=a[0],s=a[1],M=a[2],f=a[3],l=a[4],v=a[5];return t[0]=r*c+e*s,t[1]=u*c+o*s,t[2]=r*M+e*f,t[3]=u*M+o*f,t[4]=r*l+e*v+i,t[5]=u*l+o*v+h,t}function $(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=n[4],h=n[5],c=Math.sin(a),s=Math.cos(a);return t[0]=r*s+e*c,t[1]=u*s+o*c,t[2]=r*-c+e*s,t[3]=u*-c+o*s,t[4]=i,t[5]=h,t}function tt(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=n[4],h=n[5],c=a[0],s=a[1];return t[0]=r*c,t[1]=u*c,t[2]=e*s,t[3]=o*s,t[4]=i,t[5]=h,t}function nt(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=n[4],h=n[5],c=a[0],s=a[1];return t[0]=r,t[1]=u,t[2]=e,t[3]=o,t[4]=r*c+e*s+i,t[5]=u*c+o*s+h,t}function at(t,n){var a=Math.sin(n),r=Math.cos(n);return t[0]=r,t[1]=a,t[2]=-a,t[3]=r,t[4]=0,t[5]=0,t}function rt(t,n){return t[0]=n[0],t[1]=0,t[2]=0,t[3]=n[1],t[4]=0,t[5]=0,t}function ut(t,n){return t[0]=1,t[1]=0,t[2]=0,t[3]=1,t[4]=n[0],t[5]=n[1],t}function et(t){return"mat2d("+t[0]+", "+t[1]+", "+t[2]+", "+t[3]+", "+t[4]+", "+t[5]+")"}function ot(t){return Math.hypot(t[0],t[1],t[2],t[3],t[4],t[5],1)}function it(t,n,a){return t[0]=n[0]+a[0],t[1]=n[1]+a[1],t[2]=n[2]+a[2],t[3]=n[3]+a[3],t[4]=n[4]+a[4],t[5]=n[5]+a[5],t}function ht(t,n,a){return t[0]=n[0]-a[0],t[1]=n[1]-a[1],t[2]=n[2]-a[2],t[3]=n[3]-a[3],t[4]=n[4]-a[4],t[5]=n[5]-a[5],t}function ct(t,n,a){return t[0]=n[0]*a,t[1]=n[1]*a,t[2]=n[2]*a,t[3]=n[3]*a,t[4]=n[4]*a,t[5]=n[5]*a,t}function st(t,n,a,r){return t[0]=n[0]+a[0]*r,t[1]=n[1]+a[1]*r,t[2]=n[2]+a[2]*r,t[3]=n[3]+a[3]*r,t[4]=n[4]+a[4]*r,t[5]=n[5]+a[5]*r,t}function Mt(t,n){return t[0]===n[0]&&t[1]===n[1]&&t[2]===n[2]&&t[3]===n[3]&&t[4]===n[4]&&t[5]===n[5]}function ft(t,n){var a=t[0],r=t[1],u=t[2],e=t[3],o=t[4],i=t[5],h=n[0],c=n[1],s=n[2],f=n[3],l=n[4],v=n[5];return Math.abs(a-h)<=M*Math.max(1,Math.abs(a),Math.abs(h))&&Math.abs(r-c)<=M*Math.max(1,Math.abs(r),Math.abs(c))&&Math.abs(u-s)<=M*Math.max(1,Math.abs(u),Math.abs(s))&&Math.abs(e-f)<=M*Math.max(1,Math.abs(e),Math.abs(f))&&Math.abs(o-l)<=M*Math.max(1,Math.abs(o),Math.abs(l))&&Math.abs(i-v)<=M*Math.max(1,Math.abs(i),Math.abs(v))}var lt=K,vt=ht;function bt(){var t=new f(9);return f!=Float32Array&&(t[1]=0,t[2]=0,t[3]=0,t[5]=0,t[6]=0,t[7]=0),t[0]=1,t[4]=1,t[8]=1,t}function mt(t,n){return t[0]=n[0],t[1]=n[1],t[2]=n[2],t[3]=n[4],t[4]=n[5],t[5]=n[6],t[6]=n[8],t[7]=n[9],t[8]=n[10],t}function dt(t){var n=new f(9);return n[0]=t[0],n[1]=t[1],n[2]=t[2],n[3]=t[3],n[4]=t[4],n[5]=t[5],n[6]=t[6],n[7]=t[7],n[8]=t[8],n}function xt(t,n){return t[0]=n[0],t[1]=n[1],t[2]=n[2],t[3]=n[3],t[4]=n[4],t[5]=n[5],t[6]=n[6],t[7]=n[7],t[8]=n[8],t}function yt(t,n,a,r,u,e,o,i,h){var c=new f(9);return c[0]=t,c[1]=n,c[2]=a,c[3]=r,c[4]=u,c[5]=e,c[6]=o,c[7]=i,c[8]=h,c}function pt(t,n,a,r,u,e,o,i,h,c){return t[0]=n,t[1]=a,t[2]=r,t[3]=u,t[4]=e,t[5]=o,t[6]=i,t[7]=h,t[8]=c,t}function qt(t){return t[0]=1,t[1]=0,t[2]=0,t[3]=0,t[4]=1,t[5]=0,t[6]=0,t[7]=0,t[8]=1,t}function wt(t,n){if(t===n){var a=n[1],r=n[2],u=n[5];t[1]=n[3],t[2]=n[6],t[3]=a,t[5]=n[7],t[6]=r,t[7]=u}else t[0]=n[0],t[1]=n[3],t[2]=n[6],t[3]=n[1],t[4]=n[4],t[5]=n[7],t[6]=n[2],t[7]=n[5],t[8]=n[8];return t}function gt(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=n[4],i=n[5],h=n[6],c=n[7],s=n[8],M=s*o-i*c,f=-s*e+i*h,l=c*e-o*h,v=a*M+r*f+u*l;return v?(v=1/v,t[0]=M*v,t[1]=(-s*r+u*c)*v,t[2]=(i*r-u*o)*v,t[3]=f*v,t[4]=(s*a-u*h)*v,t[5]=(-i*a+u*e)*v,t[6]=l*v,t[7]=(-c*a+r*h)*v,t[8]=(o*a-r*e)*v,t):null}function At(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=n[4],i=n[5],h=n[6],c=n[7],s=n[8];return t[0]=o*s-i*c,t[1]=u*c-r*s,t[2]=r*i-u*o,t[3]=i*h-e*s,t[4]=a*s-u*h,t[5]=u*e-a*i,t[6]=e*c-o*h,t[7]=r*h-a*c,t[8]=a*o-r*e,t}function Pt(t){var n=t[0],a=t[1],r=t[2],u=t[3],e=t[4],o=t[5],i=t[6],h=t[7],c=t[8];return n*(c*e-o*h)+a*(-c*u+o*i)+r*(h*u-e*i)}function St(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=n[4],h=n[5],c=n[6],s=n[7],M=n[8],f=a[0],l=a[1],v=a[2],b=a[3],m=a[4],d=a[5],x=a[6],y=a[7],p=a[8];return t[0]=f*r+l*o+v*c,t[1]=f*u+l*i+v*s,t[2]=f*e+l*h+v*M,t[3]=b*r+m*o+d*c,t[4]=b*u+m*i+d*s,t[5]=b*e+m*h+d*M,t[6]=x*r+y*o+p*c,t[7]=x*u+y*i+p*s,t[8]=x*e+y*h+p*M,t}function Rt(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=n[4],h=n[5],c=n[6],s=n[7],M=n[8],f=a[0],l=a[1];return t[0]=r,t[1]=u,t[2]=e,t[3]=o,t[4]=i,t[5]=h,t[6]=f*r+l*o+c,t[7]=f*u+l*i+s,t[8]=f*e+l*h+M,t}function Tt(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=n[4],h=n[5],c=n[6],s=n[7],M=n[8],f=Math.sin(a),l=Math.cos(a);return t[0]=l*r+f*o,t[1]=l*u+f*i,t[2]=l*e+f*h,t[3]=l*o-f*r,t[4]=l*i-f*u,t[5]=l*h-f*e,t[6]=c,t[7]=s,t[8]=M,t}function It(t,n,a){var r=a[0],u=a[1];return t[0]=r*n[0],t[1]=r*n[1],t[2]=r*n[2],t[3]=u*n[3],t[4]=u*n[4],t[5]=u*n[5],t[6]=n[6],t[7]=n[7],t[8]=n[8],t}function Et(t,n){return t[0]=1,t[1]=0,t[2]=0,t[3]=0,t[4]=1,t[5]=0,t[6]=n[0],t[7]=n[1],t[8]=1,t}function Dt(t,n){var a=Math.sin(n),r=Math.cos(n);return t[0]=r,t[1]=a,t[2]=0,t[3]=-a,t[4]=r,t[5]=0,t[6]=0,t[7]=0,t[8]=1,t}function Ft(t,n){return t[0]=n[0],t[1]=0,t[2]=0,t[3]=0,t[4]=n[1],t[5]=0,t[6]=0,t[7]=0,t[8]=1,t}function Lt(t,n){return t[0]=n[0],t[1]=n[1],t[2]=0,t[3]=n[2],t[4]=n[3],t[5]=0,t[6]=n[4],t[7]=n[5],t[8]=1,t}function Vt(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=a+a,i=r+r,h=u+u,c=a*o,s=r*o,M=r*i,f=u*o,l=u*i,v=u*h,b=e*o,m=e*i,d=e*h;return t[0]=1-M-v,t[3]=s-d,t[6]=f+m,t[1]=s+d,t[4]=1-c-v,t[7]=l-b,t[2]=f-m,t[5]=l+b,t[8]=1-c-M,t}function jt(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=n[4],i=n[5],h=n[6],c=n[7],s=n[8],M=n[9],f=n[10],l=n[11],v=n[12],b=n[13],m=n[14],d=n[15],x=a*i-r*o,y=a*h-u*o,p=a*c-e*o,q=r*h-u*i,w=r*c-e*i,g=u*c-e*h,A=s*b-M*v,P=s*m-f*v,S=s*d-l*v,R=M*m-f*b,T=M*d-l*b,I=f*d-l*m,E=x*I-y*T+p*R+q*S-w*P+g*A;return E?(E=1/E,t[0]=(i*I-h*T+c*R)*E,t[1]=(h*S-o*I-c*P)*E,t[2]=(o*T-i*S+c*A)*E,t[3]=(u*T-r*I-e*R)*E,t[4]=(a*I-u*S+e*P)*E,t[5]=(r*S-a*T-e*A)*E,t[6]=(b*g-m*w+d*q)*E,t[7]=(m*p-v*g-d*y)*E,t[8]=(v*w-b*p+d*x)*E,t):null}function zt(t,n,a){return t[0]=2/n,t[1]=0,t[2]=0,t[3]=0,t[4]=-2/a,t[5]=0,t[6]=-1,t[7]=1,t[8]=1,t}function Ot(t){return"mat3("+t[0]+", "+t[1]+", "+t[2]+", "+t[3]+", "+t[4]+", "+t[5]+", "+t[6]+", "+t[7]+", "+t[8]+")"}function Qt(t){return Math.hypot(t[0],t[1],t[2],t[3],t[4],t[5],t[6],t[7],t[8])}function Yt(t,n,a){return t[0]=n[0]+a[0],t[1]=n[1]+a[1],t[2]=n[2]+a[2],t[3]=n[3]+a[3],t[4]=n[4]+a[4],t[5]=n[5]+a[5],t[6]=n[6]+a[6],t[7]=n[7]+a[7],t[8]=n[8]+a[8],t}function Xt(t,n,a){return t[0]=n[0]-a[0],t[1]=n[1]-a[1],t[2]=n[2]-a[2],t[3]=n[3]-a[3],t[4]=n[4]-a[4],t[5]=n[5]-a[5],t[6]=n[6]-a[6],t[7]=n[7]-a[7],t[8]=n[8]-a[8],t}function Zt(t,n,a){return t[0]=n[0]*a,t[1]=n[1]*a,t[2]=n[2]*a,t[3]=n[3]*a,t[4]=n[4]*a,t[5]=n[5]*a,t[6]=n[6]*a,t[7]=n[7]*a,t[8]=n[8]*a,t}function _t(t,n,a,r){return t[0]=n[0]+a[0]*r,t[1]=n[1]+a[1]*r,t[2]=n[2]+a[2]*r,t[3]=n[3]+a[3]*r,t[4]=n[4]+a[4]*r,t[5]=n[5]+a[5]*r,t[6]=n[6]+a[6]*r,t[7]=n[7]+a[7]*r,t[8]=n[8]+a[8]*r,t}function Bt(t,n){return t[0]===n[0]&&t[1]===n[1]&&t[2]===n[2]&&t[3]===n[3]&&t[4]===n[4]&&t[5]===n[5]&&t[6]===n[6]&&t[7]===n[7]&&t[8]===n[8]}function Nt(t,n){var a=t[0],r=t[1],u=t[2],e=t[3],o=t[4],i=t[5],h=t[6],c=t[7],s=t[8],f=n[0],l=n[1],v=n[2],b=n[3],m=n[4],d=n[5],x=n[6],y=n[7],p=n[8];return Math.abs(a-f)<=M*Math.max(1,Math.abs(a),Math.abs(f))&&Math.abs(r-l)<=M*Math.max(1,Math.abs(r),Math.abs(l))&&Math.abs(u-v)<=M*Math.max(1,Math.abs(u),Math.abs(v))&&Math.abs(e-b)<=M*Math.max(1,Math.abs(e),Math.abs(b))&&Math.abs(o-m)<=M*Math.max(1,Math.abs(o),Math.abs(m))&&Math.abs(i-d)<=M*Math.max(1,Math.abs(i),Math.abs(d))&&Math.abs(h-x)<=M*Math.max(1,Math.abs(h),Math.abs(x))&&Math.abs(c-y)<=M*Math.max(1,Math.abs(c),Math.abs(y))&&Math.abs(s-p)<=M*Math.max(1,Math.abs(s),Math.abs(p))}var kt=St,Ut=Xt;function Wt(){var t=new f(16);return f!=Float32Array&&(t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[6]=0,t[7]=0,t[8]=0,t[9]=0,t[11]=0,t[12]=0,t[13]=0,t[14]=0),t[0]=1,t[5]=1,t[10]=1,t[15]=1,t}function Ct(t){var n=new f(16);return n[0]=t[0],n[1]=t[1],n[2]=t[2],n[3]=t[3],n[4]=t[4],n[5]=t[5],n[6]=t[6],n[7]=t[7],n[8]=t[8],n[9]=t[9],n[10]=t[10],n[11]=t[11],n[12]=t[12],n[13]=t[13],n[14]=t[14],n[15]=t[15],n}function Gt(t,n){return t[0]=n[0],t[1]=n[1],t[2]=n[2],t[3]=n[3],t[4]=n[4],t[5]=n[5],t[6]=n[6],t[7]=n[7],t[8]=n[8],t[9]=n[9],t[10]=n[10],t[11]=n[11],t[12]=n[12],t[13]=n[13],t[14]=n[14],t[15]=n[15],t}function Ht(t,n,a,r,u,e,o,i,h,c,s,M,l,v,b,m){var d=new f(16);return d[0]=t,d[1]=n,d[2]=a,d[3]=r,d[4]=u,d[5]=e,d[6]=o,d[7]=i,d[8]=h,d[9]=c,d[10]=s,d[11]=M,d[12]=l,d[13]=v,d[14]=b,d[15]=m,d}function Jt(t,n,a,r,u,e,o,i,h,c,s,M,f,l,v,b,m){return t[0]=n,t[1]=a,t[2]=r,t[3]=u,t[4]=e,t[5]=o,t[6]=i,t[7]=h,t[8]=c,t[9]=s,t[10]=M,t[11]=f,t[12]=l,t[13]=v,t[14]=b,t[15]=m,t}function Kt(t){return t[0]=1,t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[5]=1,t[6]=0,t[7]=0,t[8]=0,t[9]=0,t[10]=1,t[11]=0,t[12]=0,t[13]=0,t[14]=0,t[15]=1,t}function $t(t,n){if(t===n){var a=n[1],r=n[2],u=n[3],e=n[6],o=n[7],i=n[11];t[1]=n[4],t[2]=n[8],t[3]=n[12],t[4]=a,t[6]=n[9],t[7]=n[13],t[8]=r,t[9]=e,t[11]=n[14],t[12]=u,t[13]=o,t[14]=i}else t[0]=n[0],t[1]=n[4],t[2]=n[8],t[3]=n[12],t[4]=n[1],t[5]=n[5],t[6]=n[9],t[7]=n[13],t[8]=n[2],t[9]=n[6],t[10]=n[10],t[11]=n[14],t[12]=n[3],t[13]=n[7],t[14]=n[11],t[15]=n[15];return t}function tn(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=n[4],i=n[5],h=n[6],c=n[7],s=n[8],M=n[9],f=n[10],l=n[11],v=n[12],b=n[13],m=n[14],d=n[15],x=a*i-r*o,y=a*h-u*o,p=a*c-e*o,q=r*h-u*i,w=r*c-e*i,g=u*c-e*h,A=s*b-M*v,P=s*m-f*v,S=s*d-l*v,R=M*m-f*b,T=M*d-l*b,I=f*d-l*m,E=x*I-y*T+p*R+q*S-w*P+g*A;return E?(E=1/E,t[0]=(i*I-h*T+c*R)*E,t[1]=(u*T-r*I-e*R)*E,t[2]=(b*g-m*w+d*q)*E,t[3]=(f*w-M*g-l*q)*E,t[4]=(h*S-o*I-c*P)*E,t[5]=(a*I-u*S+e*P)*E,t[6]=(m*p-v*g-d*y)*E,t[7]=(s*g-f*p+l*y)*E,t[8]=(o*T-i*S+c*A)*E,t[9]=(r*S-a*T-e*A)*E,t[10]=(v*w-b*p+d*x)*E,t[11]=(M*p-s*w-l*x)*E,t[12]=(i*P-o*R-h*A)*E,t[13]=(a*R-r*P+u*A)*E,t[14]=(b*y-v*q-m*x)*E,t[15]=(s*q-M*y+f*x)*E,t):null}function nn(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=n[4],i=n[5],h=n[6],c=n[7],s=n[8],M=n[9],f=n[10],l=n[11],v=n[12],b=n[13],m=n[14],d=n[15];return t[0]=i*(f*d-l*m)-M*(h*d-c*m)+b*(h*l-c*f),t[1]=-(r*(f*d-l*m)-M*(u*d-e*m)+b*(u*l-e*f)),t[2]=r*(h*d-c*m)-i*(u*d-e*m)+b*(u*c-e*h),t[3]=-(r*(h*l-c*f)-i*(u*l-e*f)+M*(u*c-e*h)),t[4]=-(o*(f*d-l*m)-s*(h*d-c*m)+v*(h*l-c*f)),t[5]=a*(f*d-l*m)-s*(u*d-e*m)+v*(u*l-e*f),t[6]=-(a*(h*d-c*m)-o*(u*d-e*m)+v*(u*c-e*h)),t[7]=a*(h*l-c*f)-o*(u*l-e*f)+s*(u*c-e*h),t[8]=o*(M*d-l*b)-s*(i*d-c*b)+v*(i*l-c*M),t[9]=-(a*(M*d-l*b)-s*(r*d-e*b)+v*(r*l-e*M)),t[10]=a*(i*d-c*b)-o*(r*d-e*b)+v*(r*c-e*i),t[11]=-(a*(i*l-c*M)-o*(r*l-e*M)+s*(r*c-e*i)),t[12]=-(o*(M*m-f*b)-s*(i*m-h*b)+v*(i*f-h*M)),t[13]=a*(M*m-f*b)-s*(r*m-u*b)+v*(r*f-u*M),t[14]=-(a*(i*m-h*b)-o*(r*m-u*b)+v*(r*h-u*i)),t[15]=a*(i*f-h*M)-o*(r*f-u*M)+s*(r*h-u*i),t}function an(t){var n=t[0],a=t[1],r=t[2],u=t[3],e=t[4],o=t[5],i=t[6],h=t[7],c=t[8],s=t[9],M=t[10],f=t[11],l=t[12],v=t[13],b=t[14],m=t[15];return(n*o-a*e)*(M*m-f*b)-(n*i-r*e)*(s*m-f*v)+(n*h-u*e)*(s*b-M*v)+(a*i-r*o)*(c*m-f*l)-(a*h-u*o)*(c*b-M*l)+(r*h-u*i)*(c*v-s*l)}function rn(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=n[4],h=n[5],c=n[6],s=n[7],M=n[8],f=n[9],l=n[10],v=n[11],b=n[12],m=n[13],d=n[14],x=n[15],y=a[0],p=a[1],q=a[2],w=a[3];return t[0]=y*r+p*i+q*M+w*b,t[1]=y*u+p*h+q*f+w*m,t[2]=y*e+p*c+q*l+w*d,t[3]=y*o+p*s+q*v+w*x,y=a[4],p=a[5],q=a[6],w=a[7],t[4]=y*r+p*i+q*M+w*b,t[5]=y*u+p*h+q*f+w*m,t[6]=y*e+p*c+q*l+w*d,t[7]=y*o+p*s+q*v+w*x,y=a[8],p=a[9],q=a[10],w=a[11],t[8]=y*r+p*i+q*M+w*b,t[9]=y*u+p*h+q*f+w*m,t[10]=y*e+p*c+q*l+w*d,t[11]=y*o+p*s+q*v+w*x,y=a[12],p=a[13],q=a[14],w=a[15],t[12]=y*r+p*i+q*M+w*b,t[13]=y*u+p*h+q*f+w*m,t[14]=y*e+p*c+q*l+w*d,t[15]=y*o+p*s+q*v+w*x,t}function un(t,n,a){var r,u,e,o,i,h,c,s,M,f,l,v,b=a[0],m=a[1],d=a[2];return n===t?(t[12]=n[0]*b+n[4]*m+n[8]*d+n[12],t[13]=n[1]*b+n[5]*m+n[9]*d+n[13],t[14]=n[2]*b+n[6]*m+n[10]*d+n[14],t[15]=n[3]*b+n[7]*m+n[11]*d+n[15]):(r=n[0],u=n[1],e=n[2],o=n[3],i=n[4],h=n[5],c=n[6],s=n[7],M=n[8],f=n[9],l=n[10],v=n[11],t[0]=r,t[1]=u,t[2]=e,t[3]=o,t[4]=i,t[5]=h,t[6]=c,t[7]=s,t[8]=M,t[9]=f,t[10]=l,t[11]=v,t[12]=r*b+i*m+M*d+n[12],t[13]=u*b+h*m+f*d+n[13],t[14]=e*b+c*m+l*d+n[14],t[15]=o*b+s*m+v*d+n[15]),t}function en(t,n,a){var r=a[0],u=a[1],e=a[2];return t[0]=n[0]*r,t[1]=n[1]*r,t[2]=n[2]*r,t[3]=n[3]*r,t[4]=n[4]*u,t[5]=n[5]*u,t[6]=n[6]*u,t[7]=n[7]*u,t[8]=n[8]*e,t[9]=n[9]*e,t[10]=n[10]*e,t[11]=n[11]*e,t[12]=n[12],t[13]=n[13],t[14]=n[14],t[15]=n[15],t}function on(t,n,a,r){var u,e,o,i,h,c,s,f,l,v,b,m,d,x,y,p,q,w,g,A,P,S,R,T,I=r[0],E=r[1],D=r[2],F=Math.hypot(I,E,D);return F<M?null:(I*=F=1/F,E*=F,D*=F,u=Math.sin(a),o=1-(e=Math.cos(a)),i=n[0],h=n[1],c=n[2],s=n[3],f=n[4],l=n[5],v=n[6],b=n[7],m=n[8],d=n[9],x=n[10],y=n[11],p=I*I*o+e,q=E*I*o+D*u,w=D*I*o-E*u,g=I*E*o-D*u,A=E*E*o+e,P=D*E*o+I*u,S=I*D*o+E*u,R=E*D*o-I*u,T=D*D*o+e,t[0]=i*p+f*q+m*w,t[1]=h*p+l*q+d*w,t[2]=c*p+v*q+x*w,t[3]=s*p+b*q+y*w,t[4]=i*g+f*A+m*P,t[5]=h*g+l*A+d*P,t[6]=c*g+v*A+x*P,t[7]=s*g+b*A+y*P,t[8]=i*S+f*R+m*T,t[9]=h*S+l*R+d*T,t[10]=c*S+v*R+x*T,t[11]=s*S+b*R+y*T,n!==t&&(t[12]=n[12],t[13]=n[13],t[14]=n[14],t[15]=n[15]),t)}function hn(t,n,a){var r=Math.sin(a),u=Math.cos(a),e=n[4],o=n[5],i=n[6],h=n[7],c=n[8],s=n[9],M=n[10],f=n[11];return n!==t&&(t[0]=n[0],t[1]=n[1],t[2]=n[2],t[3]=n[3],t[12]=n[12],t[13]=n[13],t[14]=n[14],t[15]=n[15]),t[4]=e*u+c*r,t[5]=o*u+s*r,t[6]=i*u+M*r,t[7]=h*u+f*r,t[8]=c*u-e*r,t[9]=s*u-o*r,t[10]=M*u-i*r,t[11]=f*u-h*r,t}function cn(t,n,a){var r=Math.sin(a),u=Math.cos(a),e=n[0],o=n[1],i=n[2],h=n[3],c=n[8],s=n[9],M=n[10],f=n[11];return n!==t&&(t[4]=n[4],t[5]=n[5],t[6]=n[6],t[7]=n[7],t[12]=n[12],t[13]=n[13],t[14]=n[14],t[15]=n[15]),t[0]=e*u-c*r,t[1]=o*u-s*r,t[2]=i*u-M*r,t[3]=h*u-f*r,t[8]=e*r+c*u,t[9]=o*r+s*u,t[10]=i*r+M*u,t[11]=h*r+f*u,t}function sn(t,n,a){var r=Math.sin(a),u=Math.cos(a),e=n[0],o=n[1],i=n[2],h=n[3],c=n[4],s=n[5],M=n[6],f=n[7];return n!==t&&(t[8]=n[8],t[9]=n[9],t[10]=n[10],t[11]=n[11],t[12]=n[12],t[13]=n[13],t[14]=n[14],t[15]=n[15]),t[0]=e*u+c*r,t[1]=o*u+s*r,t[2]=i*u+M*r,t[3]=h*u+f*r,t[4]=c*u-e*r,t[5]=s*u-o*r,t[6]=M*u-i*r,t[7]=f*u-h*r,t}function Mn(t,n){return t[0]=1,t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[5]=1,t[6]=0,t[7]=0,t[8]=0,t[9]=0,t[10]=1,t[11]=0,t[12]=n[0],t[13]=n[1],t[14]=n[2],t[15]=1,t}function fn(t,n){return t[0]=n[0],t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[5]=n[1],t[6]=0,t[7]=0,t[8]=0,t[9]=0,t[10]=n[2],t[11]=0,t[12]=0,t[13]=0,t[14]=0,t[15]=1,t}function ln(t,n,a){var r,u,e,o=a[0],i=a[1],h=a[2],c=Math.hypot(o,i,h);return c<M?null:(o*=c=1/c,i*=c,h*=c,r=Math.sin(n),e=1-(u=Math.cos(n)),t[0]=o*o*e+u,t[1]=i*o*e+h*r,t[2]=h*o*e-i*r,t[3]=0,t[4]=o*i*e-h*r,t[5]=i*i*e+u,t[6]=h*i*e+o*r,t[7]=0,t[8]=o*h*e+i*r,t[9]=i*h*e-o*r,t[10]=h*h*e+u,t[11]=0,t[12]=0,t[13]=0,t[14]=0,t[15]=1,t)}function vn(t,n){var a=Math.sin(n),r=Math.cos(n);return t[0]=1,t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[5]=r,t[6]=a,t[7]=0,t[8]=0,t[9]=-a,t[10]=r,t[11]=0,t[12]=0,t[13]=0,t[14]=0,t[15]=1,t}function bn(t,n){var a=Math.sin(n),r=Math.cos(n);return t[0]=r,t[1]=0,t[2]=-a,t[3]=0,t[4]=0,t[5]=1,t[6]=0,t[7]=0,t[8]=a,t[9]=0,t[10]=r,t[11]=0,t[12]=0,t[13]=0,t[14]=0,t[15]=1,t}function mn(t,n){var a=Math.sin(n),r=Math.cos(n);return t[0]=r,t[1]=a,t[2]=0,t[3]=0,t[4]=-a,t[5]=r,t[6]=0,t[7]=0,t[8]=0,t[9]=0,t[10]=1,t[11]=0,t[12]=0,t[13]=0,t[14]=0,t[15]=1,t}function dn(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=r+r,h=u+u,c=e+e,s=r*i,M=r*h,f=r*c,l=u*h,v=u*c,b=e*c,m=o*i,d=o*h,x=o*c;return t[0]=1-(l+b),t[1]=M+x,t[2]=f-d,t[3]=0,t[4]=M-x,t[5]=1-(s+b),t[6]=v+m,t[7]=0,t[8]=f+d,t[9]=v-m,t[10]=1-(s+l),t[11]=0,t[12]=a[0],t[13]=a[1],t[14]=a[2],t[15]=1,t}function xn(t,n){var a=new f(3),r=-n[0],u=-n[1],e=-n[2],o=n[3],i=n[4],h=n[5],c=n[6],s=n[7],M=r*r+u*u+e*e+o*o;return M>0?(a[0]=2*(i*o+s*r+h*e-c*u)/M,a[1]=2*(h*o+s*u+c*r-i*e)/M,a[2]=2*(c*o+s*e+i*u-h*r)/M):(a[0]=2*(i*o+s*r+h*e-c*u),a[1]=2*(h*o+s*u+c*r-i*e),a[2]=2*(c*o+s*e+i*u-h*r)),dn(t,n,a),t}function yn(t,n){return t[0]=n[12],t[1]=n[13],t[2]=n[14],t}function pn(t,n){var a=n[0],r=n[1],u=n[2],e=n[4],o=n[5],i=n[6],h=n[8],c=n[9],s=n[10];return t[0]=Math.hypot(a,r,u),t[1]=Math.hypot(e,o,i),t[2]=Math.hypot(h,c,s),t}function qn(t,n){var a=new f(3);pn(a,n);var r=1/a[0],u=1/a[1],e=1/a[2],o=n[0]*r,i=n[1]*u,h=n[2]*e,c=n[4]*r,s=n[5]*u,M=n[6]*e,l=n[8]*r,v=n[9]*u,b=n[10]*e,m=o+s+b,d=0;return m>0?(d=2*Math.sqrt(m+1),t[3]=.25*d,t[0]=(M-v)/d,t[1]=(l-h)/d,t[2]=(i-c)/d):o>s&&o>b?(d=2*Math.sqrt(1+o-s-b),t[3]=(M-v)/d,t[0]=.25*d,t[1]=(i+c)/d,t[2]=(l+h)/d):s>b?(d=2*Math.sqrt(1+s-o-b),t[3]=(l-h)/d,t[0]=(i+c)/d,t[1]=.25*d,t[2]=(M+v)/d):(d=2*Math.sqrt(1+b-o-s),t[3]=(i-c)/d,t[0]=(l+h)/d,t[1]=(M+v)/d,t[2]=.25*d),t}function wn(t,n,a,r){var u=n[0],e=n[1],o=n[2],i=n[3],h=u+u,c=e+e,s=o+o,M=u*h,f=u*c,l=u*s,v=e*c,b=e*s,m=o*s,d=i*h,x=i*c,y=i*s,p=r[0],q=r[1],w=r[2];return t[0]=(1-(v+m))*p,t[1]=(f+y)*p,t[2]=(l-x)*p,t[3]=0,t[4]=(f-y)*q,t[5]=(1-(M+m))*q,t[6]=(b+d)*q,t[7]=0,t[8]=(l+x)*w,t[9]=(b-d)*w,t[10]=(1-(M+v))*w,t[11]=0,t[12]=a[0],t[13]=a[1],t[14]=a[2],t[15]=1,t}function gn(t,n,a,r,u){var e=n[0],o=n[1],i=n[2],h=n[3],c=e+e,s=o+o,M=i+i,f=e*c,l=e*s,v=e*M,b=o*s,m=o*M,d=i*M,x=h*c,y=h*s,p=h*M,q=r[0],w=r[1],g=r[2],A=u[0],P=u[1],S=u[2],R=(1-(b+d))*q,T=(l+p)*q,I=(v-y)*q,E=(l-p)*w,D=(1-(f+d))*w,F=(m+x)*w,L=(v+y)*g,V=(m-x)*g,j=(1-(f+b))*g;return t[0]=R,t[1]=T,t[2]=I,t[3]=0,t[4]=E,t[5]=D,t[6]=F,t[7]=0,t[8]=L,t[9]=V,t[10]=j,t[11]=0,t[12]=a[0]+A-(R*A+E*P+L*S),t[13]=a[1]+P-(T*A+D*P+V*S),t[14]=a[2]+S-(I*A+F*P+j*S),t[15]=1,t}function An(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=a+a,i=r+r,h=u+u,c=a*o,s=r*o,M=r*i,f=u*o,l=u*i,v=u*h,b=e*o,m=e*i,d=e*h;return t[0]=1-M-v,t[1]=s+d,t[2]=f-m,t[3]=0,t[4]=s-d,t[5]=1-c-v,t[6]=l+b,t[7]=0,t[8]=f+m,t[9]=l-b,t[10]=1-c-M,t[11]=0,t[12]=0,t[13]=0,t[14]=0,t[15]=1,t}function Pn(t,n,a,r,u,e,o){var i=1/(a-n),h=1/(u-r),c=1/(e-o);return t[0]=2*e*i,t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[5]=2*e*h,t[6]=0,t[7]=0,t[8]=(a+n)*i,t[9]=(u+r)*h,t[10]=(o+e)*c,t[11]=-1,t[12]=0,t[13]=0,t[14]=o*e*2*c,t[15]=0,t}function Sn(t,n,a,r,u){var e,o=1/Math.tan(n/2);return t[0]=o/a,t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[5]=o,t[6]=0,t[7]=0,t[8]=0,t[9]=0,t[11]=-1,t[12]=0,t[13]=0,t[15]=0,null!=u&&u!==1/0?(e=1/(r-u),t[10]=(u+r)*e,t[14]=2*u*r*e):(t[10]=-1,t[14]=-2*r),t}function Rn(t,n,a,r){var u=Math.tan(n.upDegrees*Math.PI/180),e=Math.tan(n.downDegrees*Math.PI/180),o=Math.tan(n.leftDegrees*Math.PI/180),i=Math.tan(n.rightDegrees*Math.PI/180),h=2/(o+i),c=2/(u+e);return t[0]=h,t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[5]=c,t[6]=0,t[7]=0,t[8]=-(o-i)*h*.5,t[9]=(u-e)*c*.5,t[10]=r/(a-r),t[11]=-1,t[12]=0,t[13]=0,t[14]=r*a/(a-r),t[15]=0,t}function Tn(t,n,a,r,u,e,o){var i=1/(n-a),h=1/(r-u),c=1/(e-o);return t[0]=-2*i,t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[5]=-2*h,t[6]=0,t[7]=0,t[8]=0,t[9]=0,t[10]=2*c,t[11]=0,t[12]=(n+a)*i,t[13]=(u+r)*h,t[14]=(o+e)*c,t[15]=1,t}function In(t,n,a,r){var u,e,o,i,h,c,s,f,l,v,b=n[0],m=n[1],d=n[2],x=r[0],y=r[1],p=r[2],q=a[0],w=a[1],g=a[2];return Math.abs(b-q)<M&&Math.abs(m-w)<M&&Math.abs(d-g)<M?Kt(t):(s=b-q,f=m-w,l=d-g,u=y*(l*=v=1/Math.hypot(s,f,l))-p*(f*=v),e=p*(s*=v)-x*l,o=x*f-y*s,(v=Math.hypot(u,e,o))?(u*=v=1/v,e*=v,o*=v):(u=0,e=0,o=0),i=f*o-l*e,h=l*u-s*o,c=s*e-f*u,(v=Math.hypot(i,h,c))?(i*=v=1/v,h*=v,c*=v):(i=0,h=0,c=0),t[0]=u,t[1]=i,t[2]=s,t[3]=0,t[4]=e,t[5]=h,t[6]=f,t[7]=0,t[8]=o,t[9]=c,t[10]=l,t[11]=0,t[12]=-(u*b+e*m+o*d),t[13]=-(i*b+h*m+c*d),t[14]=-(s*b+f*m+l*d),t[15]=1,t)}function En(t,n,a,r){var u=n[0],e=n[1],o=n[2],i=r[0],h=r[1],c=r[2],s=u-a[0],M=e-a[1],f=o-a[2],l=s*s+M*M+f*f;l>0&&(s*=l=1/Math.sqrt(l),M*=l,f*=l);var v=h*f-c*M,b=c*s-i*f,m=i*M-h*s;return(l=v*v+b*b+m*m)>0&&(v*=l=1/Math.sqrt(l),b*=l,m*=l),t[0]=v,t[1]=b,t[2]=m,t[3]=0,t[4]=M*m-f*b,t[5]=f*v-s*m,t[6]=s*b-M*v,t[7]=0,t[8]=s,t[9]=M,t[10]=f,t[11]=0,t[12]=u,t[13]=e,t[14]=o,t[15]=1,t}function Dn(t){return"mat4("+t[0]+", "+t[1]+", "+t[2]+", "+t[3]+", "+t[4]+", "+t[5]+", "+t[6]+", "+t[7]+", "+t[8]+", "+t[9]+", "+t[10]+", "+t[11]+", "+t[12]+", "+t[13]+", "+t[14]+", "+t[15]+")"}function Fn(t){return Math.hypot(t[0],t[1],t[3],t[4],t[5],t[6],t[7],t[8],t[9],t[10],t[11],t[12],t[13],t[14],t[15])}function Ln(t,n,a){return t[0]=n[0]+a[0],t[1]=n[1]+a[1],t[2]=n[2]+a[2],t[3]=n[3]+a[3],t[4]=n[4]+a[4],t[5]=n[5]+a[5],t[6]=n[6]+a[6],t[7]=n[7]+a[7],t[8]=n[8]+a[8],t[9]=n[9]+a[9],t[10]=n[10]+a[10],t[11]=n[11]+a[11],t[12]=n[12]+a[12],t[13]=n[13]+a[13],t[14]=n[14]+a[14],t[15]=n[15]+a[15],t}function Vn(t,n,a){return t[0]=n[0]-a[0],t[1]=n[1]-a[1],t[2]=n[2]-a[2],t[3]=n[3]-a[3],t[4]=n[4]-a[4],t[5]=n[5]-a[5],t[6]=n[6]-a[6],t[7]=n[7]-a[7],t[8]=n[8]-a[8],t[9]=n[9]-a[9],t[10]=n[10]-a[10],t[11]=n[11]-a[11],t[12]=n[12]-a[12],t[13]=n[13]-a[13],t[14]=n[14]-a[14],t[15]=n[15]-a[15],t}function jn(t,n,a){return t[0]=n[0]*a,t[1]=n[1]*a,t[2]=n[2]*a,t[3]=n[3]*a,t[4]=n[4]*a,t[5]=n[5]*a,t[6]=n[6]*a,t[7]=n[7]*a,t[8]=n[8]*a,t[9]=n[9]*a,t[10]=n[10]*a,t[11]=n[11]*a,t[12]=n[12]*a,t[13]=n[13]*a,t[14]=n[14]*a,t[15]=n[15]*a,t}function zn(t,n,a,r){return t[0]=n[0]+a[0]*r,t[1]=n[1]+a[1]*r,t[2]=n[2]+a[2]*r,t[3]=n[3]+a[3]*r,t[4]=n[4]+a[4]*r,t[5]=n[5]+a[5]*r,t[6]=n[6]+a[6]*r,t[7]=n[7]+a[7]*r,t[8]=n[8]+a[8]*r,t[9]=n[9]+a[9]*r,t[10]=n[10]+a[10]*r,t[11]=n[11]+a[11]*r,t[12]=n[12]+a[12]*r,t[13]=n[13]+a[13]*r,t[14]=n[14]+a[14]*r,t[15]=n[15]+a[15]*r,t}function On(t,n){return t[0]===n[0]&&t[1]===n[1]&&t[2]===n[2]&&t[3]===n[3]&&t[4]===n[4]&&t[5]===n[5]&&t[6]===n[6]&&t[7]===n[7]&&t[8]===n[8]&&t[9]===n[9]&&t[10]===n[10]&&t[11]===n[11]&&t[12]===n[12]&&t[13]===n[13]&&t[14]===n[14]&&t[15]===n[15]}function Qn(t,n){var a=t[0],r=t[1],u=t[2],e=t[3],o=t[4],i=t[5],h=t[6],c=t[7],s=t[8],f=t[9],l=t[10],v=t[11],b=t[12],m=t[13],d=t[14],x=t[15],y=n[0],p=n[1],q=n[2],w=n[3],g=n[4],A=n[5],P=n[6],S=n[7],R=n[8],T=n[9],I=n[10],E=n[11],D=n[12],F=n[13],L=n[14],V=n[15];return Math.abs(a-y)<=M*Math.max(1,Math.abs(a),Math.abs(y))&&Math.abs(r-p)<=M*Math.max(1,Math.abs(r),Math.abs(p))&&Math.abs(u-q)<=M*Math.max(1,Math.abs(u),Math.abs(q))&&Math.abs(e-w)<=M*Math.max(1,Math.abs(e),Math.abs(w))&&Math.abs(o-g)<=M*Math.max(1,Math.abs(o),Math.abs(g))&&Math.abs(i-A)<=M*Math.max(1,Math.abs(i),Math.abs(A))&&Math.abs(h-P)<=M*Math.max(1,Math.abs(h),Math.abs(P))&&Math.abs(c-S)<=M*Math.max(1,Math.abs(c),Math.abs(S))&&Math.abs(s-R)<=M*Math.max(1,Math.abs(s),Math.abs(R))&&Math.abs(f-T)<=M*Math.max(1,Math.abs(f),Math.abs(T))&&Math.abs(l-I)<=M*Math.max(1,Math.abs(l),Math.abs(I))&&Math.abs(v-E)<=M*Math.max(1,Math.abs(v),Math.abs(E))&&Math.abs(b-D)<=M*Math.max(1,Math.abs(b),Math.abs(D))&&Math.abs(m-F)<=M*Math.max(1,Math.abs(m),Math.abs(F))&&Math.abs(d-L)<=M*Math.max(1,Math.abs(d),Math.abs(L))&&Math.abs(x-V)<=M*Math.max(1,Math.abs(x),Math.abs(V))}var Yn=rn,Xn=Vn;function Zn(){var t=new f(3);return f!=Float32Array&&(t[0]=0,t[1]=0,t[2]=0),t}function _n(t){var n=new f(3);return n[0]=t[0],n[1]=t[1],n[2]=t[2],n}function Bn(t){var n=t[0],a=t[1],r=t[2];return Math.hypot(n,a,r)}function Nn(t,n,a){var r=new f(3);return r[0]=t,r[1]=n,r[2]=a,r}function kn(t,n){return t[0]=n[0],t[1]=n[1],t[2]=n[2],t}function Un(t,n,a,r){return t[0]=n,t[1]=a,t[2]=r,t}function Wn(t,n,a){return t[0]=n[0]+a[0],t[1]=n[1]+a[1],t[2]=n[2]+a[2],t}function Cn(t,n,a){return t[0]=n[0]-a[0],t[1]=n[1]-a[1],t[2]=n[2]-a[2],t}function Gn(t,n,a){return t[0]=n[0]*a[0],t[1]=n[1]*a[1],t[2]=n[2]*a[2],t}function Hn(t,n,a){return t[0]=n[0]/a[0],t[1]=n[1]/a[1],t[2]=n[2]/a[2],t}function Jn(t,n){return t[0]=Math.ceil(n[0]),t[1]=Math.ceil(n[1]),t[2]=Math.ceil(n[2]),t}function Kn(t,n){return t[0]=Math.floor(n[0]),t[1]=Math.floor(n[1]),t[2]=Math.floor(n[2]),t}function $n(t,n,a){return t[0]=Math.min(n[0],a[0]),t[1]=Math.min(n[1],a[1]),t[2]=Math.min(n[2],a[2]),t}function ta(t,n,a){return t[0]=Math.max(n[0],a[0]),t[1]=Math.max(n[1],a[1]),t[2]=Math.max(n[2],a[2]),t}function na(t,n){return t[0]=Math.round(n[0]),t[1]=Math.round(n[1]),t[2]=Math.round(n[2]),t}function aa(t,n,a){return t[0]=n[0]*a,t[1]=n[1]*a,t[2]=n[2]*a,t}function ra(t,n,a,r){return t[0]=n[0]+a[0]*r,t[1]=n[1]+a[1]*r,t[2]=n[2]+a[2]*r,t}function ua(t,n){var a=n[0]-t[0],r=n[1]-t[1],u=n[2]-t[2];return Math.hypot(a,r,u)}function ea(t,n){var a=n[0]-t[0],r=n[1]-t[1],u=n[2]-t[2];return a*a+r*r+u*u}function oa(t){var n=t[0],a=t[1],r=t[2];return n*n+a*a+r*r}function ia(t,n){return t[0]=-n[0],t[1]=-n[1],t[2]=-n[2],t}function ha(t,n){return t[0]=1/n[0],t[1]=1/n[1],t[2]=1/n[2],t}function ca(t,n){var a=n[0],r=n[1],u=n[2],e=a*a+r*r+u*u;return e>0&&(e=1/Math.sqrt(e)),t[0]=n[0]*e,t[1]=n[1]*e,t[2]=n[2]*e,t}function sa(t,n){return t[0]*n[0]+t[1]*n[1]+t[2]*n[2]}function Ma(t,n,a){var r=n[0],u=n[1],e=n[2],o=a[0],i=a[1],h=a[2];return t[0]=u*h-e*i,t[1]=e*o-r*h,t[2]=r*i-u*o,t}function fa(t,n,a,r){var u=n[0],e=n[1],o=n[2];return t[0]=u+r*(a[0]-u),t[1]=e+r*(a[1]-e),t[2]=o+r*(a[2]-o),t}function la(t,n,a,r,u,e){var o=e*e,i=o*(2*e-3)+1,h=o*(e-2)+e,c=o*(e-1),s=o*(3-2*e);return t[0]=n[0]*i+a[0]*h+r[0]*c+u[0]*s,t[1]=n[1]*i+a[1]*h+r[1]*c+u[1]*s,t[2]=n[2]*i+a[2]*h+r[2]*c+u[2]*s,t}function va(t,n,a,r,u,e){var o=1-e,i=o*o,h=e*e,c=i*o,s=3*e*i,M=3*h*o,f=h*e;return t[0]=n[0]*c+a[0]*s+r[0]*M+u[0]*f,t[1]=n[1]*c+a[1]*s+r[1]*M+u[1]*f,t[2]=n[2]*c+a[2]*s+r[2]*M+u[2]*f,t}function ba(t,n){n=n||1;var a=2*l()*Math.PI,r=2*l()-1,u=Math.sqrt(1-r*r)*n;return t[0]=Math.cos(a)*u,t[1]=Math.sin(a)*u,t[2]=r*n,t}function ma(t,n,a){var r=n[0],u=n[1],e=n[2],o=a[3]*r+a[7]*u+a[11]*e+a[15];return o=o||1,t[0]=(a[0]*r+a[4]*u+a[8]*e+a[12])/o,t[1]=(a[1]*r+a[5]*u+a[9]*e+a[13])/o,t[2]=(a[2]*r+a[6]*u+a[10]*e+a[14])/o,t}function da(t,n,a){var r=n[0],u=n[1],e=n[2];return t[0]=r*a[0]+u*a[3]+e*a[6],t[1]=r*a[1]+u*a[4]+e*a[7],t[2]=r*a[2]+u*a[5]+e*a[8],t}function xa(t,n,a){var r=a[0],u=a[1],e=a[2],o=a[3],i=n[0],h=n[1],c=n[2],s=u*c-e*h,M=e*i-r*c,f=r*h-u*i,l=u*f-e*M,v=e*s-r*f,b=r*M-u*s,m=2*o;return s*=m,M*=m,f*=m,l*=2,v*=2,b*=2,t[0]=i+s+l,t[1]=h+M+v,t[2]=c+f+b,t}function ya(t,n,a,r){var u=[],e=[];return u[0]=n[0]-a[0],u[1]=n[1]-a[1],u[2]=n[2]-a[2],e[0]=u[0],e[1]=u[1]*Math.cos(r)-u[2]*Math.sin(r),e[2]=u[1]*Math.sin(r)+u[2]*Math.cos(r),t[0]=e[0]+a[0],t[1]=e[1]+a[1],t[2]=e[2]+a[2],t}function pa(t,n,a,r){var u=[],e=[];return u[0]=n[0]-a[0],u[1]=n[1]-a[1],u[2]=n[2]-a[2],e[0]=u[2]*Math.sin(r)+u[0]*Math.cos(r),e[1]=u[1],e[2]=u[2]*Math.cos(r)-u[0]*Math.sin(r),t[0]=e[0]+a[0],t[1]=e[1]+a[1],t[2]=e[2]+a[2],t}function qa(t,n,a,r){var u=[],e=[];return u[0]=n[0]-a[0],u[1]=n[1]-a[1],u[2]=n[2]-a[2],e[0]=u[0]*Math.cos(r)-u[1]*Math.sin(r),e[1]=u[0]*Math.sin(r)+u[1]*Math.cos(r),e[2]=u[2],t[0]=e[0]+a[0],t[1]=e[1]+a[1],t[2]=e[2]+a[2],t}function wa(t,n){var a=Nn(t[0],t[1],t[2]),r=Nn(n[0],n[1],n[2]);ca(a,a),ca(r,r);var u=sa(a,r);return u>1?0:u<-1?Math.PI:Math.acos(u)}function ga(t){return t[0]=0,t[1]=0,t[2]=0,t}function Aa(t){return"vec3("+t[0]+", "+t[1]+", "+t[2]+")"}function Pa(t,n){return t[0]===n[0]&&t[1]===n[1]&&t[2]===n[2]}function Sa(t,n){var a=t[0],r=t[1],u=t[2],e=n[0],o=n[1],i=n[2];return Math.abs(a-e)<=M*Math.max(1,Math.abs(a),Math.abs(e))&&Math.abs(r-o)<=M*Math.max(1,Math.abs(r),Math.abs(o))&&Math.abs(u-i)<=M*Math.max(1,Math.abs(u),Math.abs(i))}var Ra,Ta=Cn,Ia=Gn,Ea=Hn,Da=ua,Fa=ea,La=Bn,Va=oa,ja=(Ra=Zn(),function(t,n,a,r,u,e){var o,i;for(n||(n=3),a||(a=0),i=r?Math.min(r*n+a,t.length):t.length,o=a;o<i;o+=n)Ra[0]=t[o],Ra[1]=t[o+1],Ra[2]=t[o+2],u(Ra,Ra,e),t[o]=Ra[0],t[o+1]=Ra[1],t[o+2]=Ra[2];return t});function za(){var t=new f(4);return f!=Float32Array&&(t[0]=0,t[1]=0,t[2]=0,t[3]=0),t}function Oa(t){var n=new f(4);return n[0]=t[0],n[1]=t[1],n[2]=t[2],n[3]=t[3],n}function Qa(t,n,a,r){var u=new f(4);return u[0]=t,u[1]=n,u[2]=a,u[3]=r,u}function Ya(t,n){return t[0]=n[0],t[1]=n[1],t[2]=n[2],t[3]=n[3],t}function Xa(t,n,a,r,u){return t[0]=n,t[1]=a,t[2]=r,t[3]=u,t}function Za(t,n,a){return t[0]=n[0]+a[0],t[1]=n[1]+a[1],t[2]=n[2]+a[2],t[3]=n[3]+a[3],t}function _a(t,n,a){return t[0]=n[0]-a[0],t[1]=n[1]-a[1],t[2]=n[2]-a[2],t[3]=n[3]-a[3],t}function Ba(t,n,a){return t[0]=n[0]*a[0],t[1]=n[1]*a[1],t[2]=n[2]*a[2],t[3]=n[3]*a[3],t}function Na(t,n,a){return t[0]=n[0]/a[0],t[1]=n[1]/a[1],t[2]=n[2]/a[2],t[3]=n[3]/a[3],t}function ka(t,n){return t[0]=Math.ceil(n[0]),t[1]=Math.ceil(n[1]),t[2]=Math.ceil(n[2]),t[3]=Math.ceil(n[3]),t}function Ua(t,n){return t[0]=Math.floor(n[0]),t[1]=Math.floor(n[1]),t[2]=Math.floor(n[2]),t[3]=Math.floor(n[3]),t}function Wa(t,n,a){return t[0]=Math.min(n[0],a[0]),t[1]=Math.min(n[1],a[1]),t[2]=Math.min(n[2],a[2]),t[3]=Math.min(n[3],a[3]),t}function Ca(t,n,a){return t[0]=Math.max(n[0],a[0]),t[1]=Math.max(n[1],a[1]),t[2]=Math.max(n[2],a[2]),t[3]=Math.max(n[3],a[3]),t}function Ga(t,n){return t[0]=Math.round(n[0]),t[1]=Math.round(n[1]),t[2]=Math.round(n[2]),t[3]=Math.round(n[3]),t}function Ha(t,n,a){return t[0]=n[0]*a,t[1]=n[1]*a,t[2]=n[2]*a,t[3]=n[3]*a,t}function Ja(t,n,a,r){return t[0]=n[0]+a[0]*r,t[1]=n[1]+a[1]*r,t[2]=n[2]+a[2]*r,t[3]=n[3]+a[3]*r,t}function Ka(t,n){var a=n[0]-t[0],r=n[1]-t[1],u=n[2]-t[2],e=n[3]-t[3];return Math.hypot(a,r,u,e)}function $a(t,n){var a=n[0]-t[0],r=n[1]-t[1],u=n[2]-t[2],e=n[3]-t[3];return a*a+r*r+u*u+e*e}function tr(t){var n=t[0],a=t[1],r=t[2],u=t[3];return Math.hypot(n,a,r,u)}function nr(t){var n=t[0],a=t[1],r=t[2],u=t[3];return n*n+a*a+r*r+u*u}function ar(t,n){return t[0]=-n[0],t[1]=-n[1],t[2]=-n[2],t[3]=-n[3],t}function rr(t,n){return t[0]=1/n[0],t[1]=1/n[1],t[2]=1/n[2],t[3]=1/n[3],t}function ur(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=a*a+r*r+u*u+e*e;return o>0&&(o=1/Math.sqrt(o)),t[0]=a*o,t[1]=r*o,t[2]=u*o,t[3]=e*o,t}function er(t,n){return t[0]*n[0]+t[1]*n[1]+t[2]*n[2]+t[3]*n[3]}function or(t,n,a,r){var u=a[0]*r[1]-a[1]*r[0],e=a[0]*r[2]-a[2]*r[0],o=a[0]*r[3]-a[3]*r[0],i=a[1]*r[2]-a[2]*r[1],h=a[1]*r[3]-a[3]*r[1],c=a[2]*r[3]-a[3]*r[2],s=n[0],M=n[1],f=n[2],l=n[3];return t[0]=M*c-f*h+l*i,t[1]=-s*c+f*o-l*e,t[2]=s*h-M*o+l*u,t[3]=-s*i+M*e-f*u,t}function ir(t,n,a,r){var u=n[0],e=n[1],o=n[2],i=n[3];return t[0]=u+r*(a[0]-u),t[1]=e+r*(a[1]-e),t[2]=o+r*(a[2]-o),t[3]=i+r*(a[3]-i),t}function hr(t,n){var a,r,u,e,o,i;n=n||1;do{o=(a=2*l()-1)*a+(r=2*l()-1)*r}while(o>=1);do{i=(u=2*l()-1)*u+(e=2*l()-1)*e}while(i>=1);var h=Math.sqrt((1-o)/i);return t[0]=n*a,t[1]=n*r,t[2]=n*u*h,t[3]=n*e*h,t}function cr(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3];return t[0]=a[0]*r+a[4]*u+a[8]*e+a[12]*o,t[1]=a[1]*r+a[5]*u+a[9]*e+a[13]*o,t[2]=a[2]*r+a[6]*u+a[10]*e+a[14]*o,t[3]=a[3]*r+a[7]*u+a[11]*e+a[15]*o,t}function sr(t,n,a){var r=n[0],u=n[1],e=n[2],o=a[0],i=a[1],h=a[2],c=a[3],s=c*r+i*e-h*u,M=c*u+h*r-o*e,f=c*e+o*u-i*r,l=-o*r-i*u-h*e;return t[0]=s*c+l*-o+M*-h-f*-i,t[1]=M*c+l*-i+f*-o-s*-h,t[2]=f*c+l*-h+s*-i-M*-o,t[3]=n[3],t}function Mr(t){return t[0]=0,t[1]=0,t[2]=0,t[3]=0,t}function fr(t){return"vec4("+t[0]+", "+t[1]+", "+t[2]+", "+t[3]+")"}function lr(t,n){return t[0]===n[0]&&t[1]===n[1]&&t[2]===n[2]&&t[3]===n[3]}function vr(t,n){var a=t[0],r=t[1],u=t[2],e=t[3],o=n[0],i=n[1],h=n[2],c=n[3];return Math.abs(a-o)<=M*Math.max(1,Math.abs(a),Math.abs(o))&&Math.abs(r-i)<=M*Math.max(1,Math.abs(r),Math.abs(i))&&Math.abs(u-h)<=M*Math.max(1,Math.abs(u),Math.abs(h))&&Math.abs(e-c)<=M*Math.max(1,Math.abs(e),Math.abs(c))}var br=_a,mr=Ba,dr=Na,xr=Ka,yr=$a,pr=tr,qr=nr,wr=function(){var t=za();return function(n,a,r,u,e,o){var i,h;for(a||(a=4),r||(r=0),h=u?Math.min(u*a+r,n.length):n.length,i=r;i<h;i+=a)t[0]=n[i],t[1]=n[i+1],t[2]=n[i+2],t[3]=n[i+3],e(t,t,o),n[i]=t[0],n[i+1]=t[1],n[i+2]=t[2],n[i+3]=t[3];return n}}();function gr(){var t=new f(4);return f!=Float32Array&&(t[0]=0,t[1]=0,t[2]=0),t[3]=1,t}function Ar(t){return t[0]=0,t[1]=0,t[2]=0,t[3]=1,t}function Pr(t,n,a){a*=.5;var r=Math.sin(a);return t[0]=r*n[0],t[1]=r*n[1],t[2]=r*n[2],t[3]=Math.cos(a),t}function Sr(t,n){var a=2*Math.acos(n[3]),r=Math.sin(a/2);return r>M?(t[0]=n[0]/r,t[1]=n[1]/r,t[2]=n[2]/r):(t[0]=1,t[1]=0,t[2]=0),a}function Rr(t,n){var a=au(t,n);return Math.acos(2*a*a-1)}function Tr(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=a[0],h=a[1],c=a[2],s=a[3];return t[0]=r*s+o*i+u*c-e*h,t[1]=u*s+o*h+e*i-r*c,t[2]=e*s+o*c+r*h-u*i,t[3]=o*s-r*i-u*h-e*c,t}function Ir(t,n,a){a*=.5;var r=n[0],u=n[1],e=n[2],o=n[3],i=Math.sin(a),h=Math.cos(a);return t[0]=r*h+o*i,t[1]=u*h+e*i,t[2]=e*h-u*i,t[3]=o*h-r*i,t}function Er(t,n,a){a*=.5;var r=n[0],u=n[1],e=n[2],o=n[3],i=Math.sin(a),h=Math.cos(a);return t[0]=r*h-e*i,t[1]=u*h+o*i,t[2]=e*h+r*i,t[3]=o*h-u*i,t}function Dr(t,n,a){a*=.5;var r=n[0],u=n[1],e=n[2],o=n[3],i=Math.sin(a),h=Math.cos(a);return t[0]=r*h+u*i,t[1]=u*h-r*i,t[2]=e*h+o*i,t[3]=o*h-e*i,t}function Fr(t,n){var a=n[0],r=n[1],u=n[2];return t[0]=a,t[1]=r,t[2]=u,t[3]=Math.sqrt(Math.abs(1-a*a-r*r-u*u)),t}function Lr(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=Math.sqrt(a*a+r*r+u*u),i=Math.exp(e),h=o>0?i*Math.sin(o)/o:0;return t[0]=a*h,t[1]=r*h,t[2]=u*h,t[3]=i*Math.cos(o),t}function Vr(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=Math.sqrt(a*a+r*r+u*u),i=o>0?Math.atan2(o,e)/o:0;return t[0]=a*i,t[1]=r*i,t[2]=u*i,t[3]=.5*Math.log(a*a+r*r+u*u+e*e),t}function jr(t,n,a){return Vr(t,n),nu(t,t,a),Lr(t,t),t}function zr(t,n,a,r){var u,e,o,i,h,c=n[0],s=n[1],f=n[2],l=n[3],v=a[0],b=a[1],m=a[2],d=a[3];return(e=c*v+s*b+f*m+l*d)<0&&(e=-e,v=-v,b=-b,m=-m,d=-d),1-e>M?(u=Math.acos(e),o=Math.sin(u),i=Math.sin((1-r)*u)/o,h=Math.sin(r*u)/o):(i=1-r,h=r),t[0]=i*c+h*v,t[1]=i*s+h*b,t[2]=i*f+h*m,t[3]=i*l+h*d,t}function Or(t){var n=l(),a=l(),r=l(),u=Math.sqrt(1-n),e=Math.sqrt(n);return t[0]=u*Math.sin(2*Math.PI*a),t[1]=u*Math.cos(2*Math.PI*a),t[2]=e*Math.sin(2*Math.PI*r),t[3]=e*Math.cos(2*Math.PI*r),t}function Qr(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=a*a+r*r+u*u+e*e,i=o?1/o:0;return t[0]=-a*i,t[1]=-r*i,t[2]=-u*i,t[3]=e*i,t}function Yr(t,n){return t[0]=-n[0],t[1]=-n[1],t[2]=-n[2],t[3]=n[3],t}function Xr(t,n){var a,r=n[0]+n[4]+n[8];if(r>0)a=Math.sqrt(r+1),t[3]=.5*a,a=.5/a,t[0]=(n[5]-n[7])*a,t[1]=(n[6]-n[2])*a,t[2]=(n[1]-n[3])*a;else{var u=0;n[4]>n[0]&&(u=1),n[8]>n[3*u+u]&&(u=2);var e=(u+1)%3,o=(u+2)%3;a=Math.sqrt(n[3*u+u]-n[3*e+e]-n[3*o+o]+1),t[u]=.5*a,a=.5/a,t[3]=(n[3*e+o]-n[3*o+e])*a,t[e]=(n[3*e+u]+n[3*u+e])*a,t[o]=(n[3*o+u]+n[3*u+o])*a}return t}function Zr(t,n,a,r){var u=.5*Math.PI/180;n*=u,a*=u,r*=u;var e=Math.sin(n),o=Math.cos(n),i=Math.sin(a),h=Math.cos(a),c=Math.sin(r),s=Math.cos(r);return t[0]=e*h*s-o*i*c,t[1]=o*i*s+e*h*c,t[2]=o*h*c-e*i*s,t[3]=o*h*s+e*i*c,t}function _r(t){return"quat("+t[0]+", "+t[1]+", "+t[2]+", "+t[3]+")"}var Br,Nr,kr,Ur,Wr,Cr,Gr=Oa,Hr=Qa,Jr=Ya,Kr=Xa,$r=Za,tu=Tr,nu=Ha,au=er,ru=ir,uu=tr,eu=uu,ou=nr,iu=ou,hu=ur,cu=lr,su=vr,Mu=(Br=Zn(),Nr=Nn(1,0,0),kr=Nn(0,1,0),function(t,n,a){var r=sa(n,a);return r<-.999999?(Ma(Br,Nr,n),La(Br)<1e-6&&Ma(Br,kr,n),ca(Br,Br),Pr(t,Br,Math.PI),t):r>.999999?(t[0]=0,t[1]=0,t[2]=0,t[3]=1,t):(Ma(Br,n,a),t[0]=Br[0],t[1]=Br[1],t[2]=Br[2],t[3]=1+r,hu(t,t))}),fu=(Ur=gr(),Wr=gr(),function(t,n,a,r,u,e){return zr(Ur,n,u,e),zr(Wr,a,r,e),zr(t,Ur,Wr,2*e*(1-e)),t}),lu=(Cr=bt(),function(t,n,a,r){return Cr[0]=a[0],Cr[3]=a[1],Cr[6]=a[2],Cr[1]=r[0],Cr[4]=r[1],Cr[7]=r[2],Cr[2]=-n[0],Cr[5]=-n[1],Cr[8]=-n[2],hu(t,Xr(t,Cr))});function vu(){var t=new f(8);return f!=Float32Array&&(t[0]=0,t[1]=0,t[2]=0,t[4]=0,t[5]=0,t[6]=0,t[7]=0),t[3]=1,t}function bu(t){var n=new f(8);return n[0]=t[0],n[1]=t[1],n[2]=t[2],n[3]=t[3],n[4]=t[4],n[5]=t[5],n[6]=t[6],n[7]=t[7],n}function mu(t,n,a,r,u,e,o,i){var h=new f(8);return h[0]=t,h[1]=n,h[2]=a,h[3]=r,h[4]=u,h[5]=e,h[6]=o,h[7]=i,h}function du(t,n,a,r,u,e,o){var i=new f(8);i[0]=t,i[1]=n,i[2]=a,i[3]=r;var h=.5*u,c=.5*e,s=.5*o;return i[4]=h*r+c*a-s*n,i[5]=c*r+s*t-h*a,i[6]=s*r+h*n-c*t,i[7]=-h*t-c*n-s*a,i}function xu(t,n,a){var r=.5*a[0],u=.5*a[1],e=.5*a[2],o=n[0],i=n[1],h=n[2],c=n[3];return t[0]=o,t[1]=i,t[2]=h,t[3]=c,t[4]=r*c+u*h-e*i,t[5]=u*c+e*o-r*h,t[6]=e*c+r*i-u*o,t[7]=-r*o-u*i-e*h,t}function yu(t,n){return t[0]=0,t[1]=0,t[2]=0,t[3]=1,t[4]=.5*n[0],t[5]=.5*n[1],t[6]=.5*n[2],t[7]=0,t}function pu(t,n){return t[0]=n[0],t[1]=n[1],t[2]=n[2],t[3]=n[3],t[4]=0,t[5]=0,t[6]=0,t[7]=0,t}function qu(t,n){var a=gr();qn(a,n);var r=new f(3);return yn(r,n),xu(t,a,r),t}function wu(t,n){return t[0]=n[0],t[1]=n[1],t[2]=n[2],t[3]=n[3],t[4]=n[4],t[5]=n[5],t[6]=n[6],t[7]=n[7],t}function gu(t){return t[0]=0,t[1]=0,t[2]=0,t[3]=1,t[4]=0,t[5]=0,t[6]=0,t[7]=0,t}function Au(t,n,a,r,u,e,o,i,h){return t[0]=n,t[1]=a,t[2]=r,t[3]=u,t[4]=e,t[5]=o,t[6]=i,t[7]=h,t}var Pu=Jr;function Su(t,n){return t[0]=n[4],t[1]=n[5],t[2]=n[6],t[3]=n[7],t}var Ru=Jr;function Tu(t,n){return t[4]=n[0],t[5]=n[1],t[6]=n[2],t[7]=n[3],t}function Iu(t,n){var a=n[4],r=n[5],u=n[6],e=n[7],o=-n[0],i=-n[1],h=-n[2],c=n[3];return t[0]=2*(a*c+e*o+r*h-u*i),t[1]=2*(r*c+e*i+u*o-a*h),t[2]=2*(u*c+e*h+a*i-r*o),t}function Eu(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=.5*a[0],h=.5*a[1],c=.5*a[2],s=n[4],M=n[5],f=n[6],l=n[7];return t[0]=r,t[1]=u,t[2]=e,t[3]=o,t[4]=o*i+u*c-e*h+s,t[5]=o*h+e*i-r*c+M,t[6]=o*c+r*h-u*i+f,t[7]=-r*i-u*h-e*c+l,t}function Du(t,n,a){var r=-n[0],u=-n[1],e=-n[2],o=n[3],i=n[4],h=n[5],c=n[6],s=n[7],M=i*o+s*r+h*e-c*u,f=h*o+s*u+c*r-i*e,l=c*o+s*e+i*u-h*r,v=s*o-i*r-h*u-c*e;return Ir(t,n,a),r=t[0],u=t[1],e=t[2],o=t[3],t[4]=M*o+v*r+f*e-l*u,t[5]=f*o+v*u+l*r-M*e,t[6]=l*o+v*e+M*u-f*r,t[7]=v*o-M*r-f*u-l*e,t}function Fu(t,n,a){var r=-n[0],u=-n[1],e=-n[2],o=n[3],i=n[4],h=n[5],c=n[6],s=n[7],M=i*o+s*r+h*e-c*u,f=h*o+s*u+c*r-i*e,l=c*o+s*e+i*u-h*r,v=s*o-i*r-h*u-c*e;return Er(t,n,a),r=t[0],u=t[1],e=t[2],o=t[3],t[4]=M*o+v*r+f*e-l*u,t[5]=f*o+v*u+l*r-M*e,t[6]=l*o+v*e+M*u-f*r,t[7]=v*o-M*r-f*u-l*e,t}function Lu(t,n,a){var r=-n[0],u=-n[1],e=-n[2],o=n[3],i=n[4],h=n[5],c=n[6],s=n[7],M=i*o+s*r+h*e-c*u,f=h*o+s*u+c*r-i*e,l=c*o+s*e+i*u-h*r,v=s*o-i*r-h*u-c*e;return Dr(t,n,a),r=t[0],u=t[1],e=t[2],o=t[3],t[4]=M*o+v*r+f*e-l*u,t[5]=f*o+v*u+l*r-M*e,t[6]=l*o+v*e+M*u-f*r,t[7]=v*o-M*r-f*u-l*e,t}function Vu(t,n,a){var r=a[0],u=a[1],e=a[2],o=a[3],i=n[0],h=n[1],c=n[2],s=n[3];return t[0]=i*o+s*r+h*e-c*u,t[1]=h*o+s*u+c*r-i*e,t[2]=c*o+s*e+i*u-h*r,t[3]=s*o-i*r-h*u-c*e,i=n[4],h=n[5],c=n[6],s=n[7],t[4]=i*o+s*r+h*e-c*u,t[5]=h*o+s*u+c*r-i*e,t[6]=c*o+s*e+i*u-h*r,t[7]=s*o-i*r-h*u-c*e,t}function ju(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=a[0],h=a[1],c=a[2],s=a[3];return t[0]=r*s+o*i+u*c-e*h,t[1]=u*s+o*h+e*i-r*c,t[2]=e*s+o*c+r*h-u*i,t[3]=o*s-r*i-u*h-e*c,i=a[4],h=a[5],c=a[6],s=a[7],t[4]=r*s+o*i+u*c-e*h,t[5]=u*s+o*h+e*i-r*c,t[6]=e*s+o*c+r*h-u*i,t[7]=o*s-r*i-u*h-e*c,t}function zu(t,n,a,r){if(Math.abs(r)<M)return wu(t,n);var u=Math.hypot(a[0],a[1],a[2]);r*=.5;var e=Math.sin(r),o=e*a[0]/u,i=e*a[1]/u,h=e*a[2]/u,c=Math.cos(r),s=n[0],f=n[1],l=n[2],v=n[3];t[0]=s*c+v*o+f*h-l*i,t[1]=f*c+v*i+l*o-s*h,t[2]=l*c+v*h+s*i-f*o,t[3]=v*c-s*o-f*i-l*h;var b=n[4],m=n[5],d=n[6],x=n[7];return t[4]=b*c+x*o+m*h-d*i,t[5]=m*c+x*i+d*o-b*h,t[6]=d*c+x*h+b*i-m*o,t[7]=x*c-b*o-m*i-d*h,t}function Ou(t,n,a){return t[0]=n[0]+a[0],t[1]=n[1]+a[1],t[2]=n[2]+a[2],t[3]=n[3]+a[3],t[4]=n[4]+a[4],t[5]=n[5]+a[5],t[6]=n[6]+a[6],t[7]=n[7]+a[7],t}function Qu(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=a[4],h=a[5],c=a[6],s=a[7],M=n[4],f=n[5],l=n[6],v=n[7],b=a[0],m=a[1],d=a[2],x=a[3];return t[0]=r*x+o*b+u*d-e*m,t[1]=u*x+o*m+e*b-r*d,t[2]=e*x+o*d+r*m-u*b,t[3]=o*x-r*b-u*m-e*d,t[4]=r*s+o*i+u*c-e*h+M*x+v*b+f*d-l*m,t[5]=u*s+o*h+e*i-r*c+f*x+v*m+l*b-M*d,t[6]=e*s+o*c+r*h-u*i+l*x+v*d+M*m-f*b,t[7]=o*s-r*i-u*h-e*c+v*x-M*b-f*m-l*d,t}var Yu=Qu;function Xu(t,n,a){return t[0]=n[0]*a,t[1]=n[1]*a,t[2]=n[2]*a,t[3]=n[3]*a,t[4]=n[4]*a,t[5]=n[5]*a,t[6]=n[6]*a,t[7]=n[7]*a,t}var Zu=au;function _u(t,n,a,r){var u=1-r;return Zu(n,a)<0&&(r=-r),t[0]=n[0]*u+a[0]*r,t[1]=n[1]*u+a[1]*r,t[2]=n[2]*u+a[2]*r,t[3]=n[3]*u+a[3]*r,t[4]=n[4]*u+a[4]*r,t[5]=n[5]*u+a[5]*r,t[6]=n[6]*u+a[6]*r,t[7]=n[7]*u+a[7]*r,t}function Bu(t,n){var a=Wu(n);return t[0]=-n[0]/a,t[1]=-n[1]/a,t[2]=-n[2]/a,t[3]=n[3]/a,t[4]=-n[4]/a,t[5]=-n[5]/a,t[6]=-n[6]/a,t[7]=n[7]/a,t}function Nu(t,n){return t[0]=-n[0],t[1]=-n[1],t[2]=-n[2],t[3]=n[3],t[4]=-n[4],t[5]=-n[5],t[6]=-n[6],t[7]=n[7],t}var ku=uu,Uu=ku,Wu=ou,Cu=Wu;function Gu(t,n){var a=Wu(n);if(a>0){a=Math.sqrt(a);var r=n[0]/a,u=n[1]/a,e=n[2]/a,o=n[3]/a,i=n[4],h=n[5],c=n[6],s=n[7],M=r*i+u*h+e*c+o*s;t[0]=r,t[1]=u,t[2]=e,t[3]=o,t[4]=(i-r*M)/a,t[5]=(h-u*M)/a,t[6]=(c-e*M)/a,t[7]=(s-o*M)/a}return t}function Hu(t){return"quat2("+t[0]+", "+t[1]+", "+t[2]+", "+t[3]+", "+t[4]+", "+t[5]+", "+t[6]+", "+t[7]+")"}function Ju(t,n){return t[0]===n[0]&&t[1]===n[1]&&t[2]===n[2]&&t[3]===n[3]&&t[4]===n[4]&&t[5]===n[5]&&t[6]===n[6]&&t[7]===n[7]}function Ku(t,n){var a=t[0],r=t[1],u=t[2],e=t[3],o=t[4],i=t[5],h=t[6],c=t[7],s=n[0],f=n[1],l=n[2],v=n[3],b=n[4],m=n[5],d=n[6],x=n[7];return Math.abs(a-s)<=M*Math.max(1,Math.abs(a),Math.abs(s))&&Math.abs(r-f)<=M*Math.max(1,Math.abs(r),Math.abs(f))&&Math.abs(u-l)<=M*Math.max(1,Math.abs(u),Math.abs(l))&&Math.abs(e-v)<=M*Math.max(1,Math.abs(e),Math.abs(v))&&Math.abs(o-b)<=M*Math.max(1,Math.abs(o),Math.abs(b))&&Math.abs(i-m)<=M*Math.max(1,Math.abs(i),Math.abs(m))&&Math.abs(h-d)<=M*Math.max(1,Math.abs(h),Math.abs(d))&&Math.abs(c-x)<=M*Math.max(1,Math.abs(c),Math.abs(x))}function $u(){var t=new f(2);return f!=Float32Array&&(t[0]=0,t[1]=0),t}function te(t){var n=new f(2);return n[0]=t[0],n[1]=t[1],n}function ne(t,n){var a=new f(2);return a[0]=t,a[1]=n,a}function ae(t,n){return t[0]=n[0],t[1]=n[1],t}function re(t,n,a){return t[0]=n,t[1]=a,t}function ue(t,n,a){return t[0]=n[0]+a[0],t[1]=n[1]+a[1],t}function ee(t,n,a){return t[0]=n[0]-a[0],t[1]=n[1]-a[1],t}function oe(t,n,a){return t[0]=n[0]*a[0],t[1]=n[1]*a[1],t}function ie(t,n,a){return t[0]=n[0]/a[0],t[1]=n[1]/a[1],t}function he(t,n){return t[0]=Math.ceil(n[0]),t[1]=Math.ceil(n[1]),t}function ce(t,n){return t[0]=Math.floor(n[0]),t[1]=Math.floor(n[1]),t}function se(t,n,a){return t[0]=Math.min(n[0],a[0]),t[1]=Math.min(n[1],a[1]),t}function Me(t,n,a){return t[0]=Math.max(n[0],a[0]),t[1]=Math.max(n[1],a[1]),t}function fe(t,n){return t[0]=Math.round(n[0]),t[1]=Math.round(n[1]),t}function le(t,n,a){return t[0]=n[0]*a,t[1]=n[1]*a,t}function ve(t,n,a,r){return t[0]=n[0]+a[0]*r,t[1]=n[1]+a[1]*r,t}function be(t,n){var a=n[0]-t[0],r=n[1]-t[1];return Math.hypot(a,r)}function me(t,n){var a=n[0]-t[0],r=n[1]-t[1];return a*a+r*r}function de(t){var n=t[0],a=t[1];return Math.hypot(n,a)}function xe(t){var n=t[0],a=t[1];return n*n+a*a}function ye(t,n){return t[0]=-n[0],t[1]=-n[1],t}function pe(t,n){return t[0]=1/n[0],t[1]=1/n[1],t}function qe(t,n){var a=n[0],r=n[1],u=a*a+r*r;return u>0&&(u=1/Math.sqrt(u)),t[0]=n[0]*u,t[1]=n[1]*u,t}function we(t,n){return t[0]*n[0]+t[1]*n[1]}function ge(t,n,a){var r=n[0]*a[1]-n[1]*a[0];return t[0]=t[1]=0,t[2]=r,t}function Ae(t,n,a,r){var u=n[0],e=n[1];return t[0]=u+r*(a[0]-u),t[1]=e+r*(a[1]-e),t}function Pe(t,n){n=n||1;var a=2*l()*Math.PI;return t[0]=Math.cos(a)*n,t[1]=Math.sin(a)*n,t}function Se(t,n,a){var r=n[0],u=n[1];return t[0]=a[0]*r+a[2]*u,t[1]=a[1]*r+a[3]*u,t}function Re(t,n,a){var r=n[0],u=n[1];return t[0]=a[0]*r+a[2]*u+a[4],t[1]=a[1]*r+a[3]*u+a[5],t}function Te(t,n,a){var r=n[0],u=n[1];return t[0]=a[0]*r+a[3]*u+a[6],t[1]=a[1]*r+a[4]*u+a[7],t}function Ie(t,n,a){var r=n[0],u=n[1];return t[0]=a[0]*r+a[4]*u+a[12],t[1]=a[1]*r+a[5]*u+a[13],t}function Ee(t,n,a,r){var u=n[0]-a[0],e=n[1]-a[1],o=Math.sin(r),i=Math.cos(r);return t[0]=u*i-e*o+a[0],t[1]=u*o+e*i+a[1],t}function De(t,n){var a=t[0],r=t[1],u=n[0],e=n[1],o=a*a+r*r;o>0&&(o=1/Math.sqrt(o));var i=u*u+e*e;i>0&&(i=1/Math.sqrt(i));var h=(a*u+r*e)*o*i;return h>1?0:h<-1?Math.PI:Math.acos(h)}function Fe(t){return t[0]=0,t[1]=0,t}function Le(t){return"vec2("+t[0]+", "+t[1]+")"}function Ve(t,n){return t[0]===n[0]&&t[1]===n[1]}function je(t,n){var a=t[0],r=t[1],u=n[0],e=n[1];return Math.abs(a-u)<=M*Math.max(1,Math.abs(a),Math.abs(u))&&Math.abs(r-e)<=M*Math.max(1,Math.abs(r),Math.abs(e))}var ze=de,Oe=ee,Qe=oe,Ye=ie,Xe=be,Ze=me,_e=xe,Be=function(){var t=$u();return function(n,a,r,u,e,o){var i,h;for(a||(a=2),r||(r=0),h=u?Math.min(u*a+r,n.length):n.length,i=r;i<h;i+=a)t[0]=n[i],t[1]=n[i+1],e(t,t,o),n[i]=t[0],n[i+1]=t[1];return n}}();window.glMatrix=n,window.mat2=a,window.mat2d=r,window.mat3=u,window.mat4=e,window.quat=h,window.quat2=c,window.vec2=s,window.vec3=o,window.vec4=i})();
 //# sourceMappingURL=libs.core.js.map
 
-if(!CABLES.exportedPatches) CABLES.exportedPatches={};CABLES.exportedPatches['uSSdim']={"_id":"66c8bba9b731425e29f47a4a","ops":[{"id":"zdo60lxbk","uiAttribs":{},"portsIn":[{"name":"FPS Limit","value":0},{"name":"Reduce FPS not focussed","value":1},{"name":"Reduce FPS loading","value":1},{"name":"Clear","value":1},{"name":"ClearAlpha","value":0},{"name":"Fullscreen Button","value":0},{"name":"Active","value":1},{"name":"Hires Displays","value":1},{"name":"Pixel Unit index","value":0},{"name":"Pixel Unit","value":"Display"}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"e0268dfa-e089-4f1f-966c-c30218792023","objOut":"zdo60lxbk"}]},{"name":"width","value":1534},{"name":"height","value":894}],"objName":"Ops.Gl.MainLoop"},{"id":"141502b6-2964-42b8-b273-c6d7f5bcf303","uiAttribs":{},"portsOut":[{"name":"trigger 0","links":[{"portIn":"Trigger","portOut":"trigger 0","objIn":"e0698285-4e6a-4339-a9ba-d9b3e441372c","objOut":"141502b6-2964-42b8-b273-c6d7f5bcf303"}]},{"name":"trigger 1","links":[{"portIn":"Increment","portOut":"trigger 1","objIn":"6hojoyomj","objOut":"141502b6-2964-42b8-b273-c6d7f5bcf303"}]},{"name":"trigger 5","links":[{"portIn":"in0 Cursor Update","portOut":"trigger 5","objIn":"cd9136e7-4c7b-4555-bf01-18381685410b","objOut":"141502b6-2964-42b8-b273-c6d7f5bcf303"}]},{"name":"trigger 8","links":[{"portIn":"Trigger","portOut":"trigger 8","objIn":"ch5u1xz0l","objOut":"141502b6-2964-42b8-b273-c6d7f5bcf303"}]},{"name":"trigger 9","links":[{"portIn":"Execute","portOut":"trigger 9","objIn":"ngzgotbds","objOut":"141502b6-2964-42b8-b273-c6d7f5bcf303"},{"portIn":"Execute","portOut":"trigger 9","objIn":"oefqiqdsy","objOut":"141502b6-2964-42b8-b273-c6d7f5bcf303"}]},{"name":"trigger 13","links":[{"portIn":"Trigger","portOut":"trigger 13","objIn":"afa40c7e-19f5-4546-911c-1e34c62f310b","objOut":"141502b6-2964-42b8-b273-c6d7f5bcf303"}]}],"objName":"Ops.Trigger.Sequence"},{"id":"4950e7c1-dcaf-47ac-9ca9-512013c4e9c9","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Coordinates index","value":0},{"name":"Coordinates","value":"-1 to 1"},{"name":"Area index","value":3},{"name":"Area","value":"Canvas Area"},{"name":"flip y","value":0},{"name":"right click prevent default","value":1},{"name":"Touch support","value":1},{"name":"Passive Events","value":0},{"name":"Active","value":1}],"portsOut":[{"name":"x","value":-1},{"name":"y","value":-0.29753914988814323},{"name":"click","links":[{"portIn":"Trigger","portOut":"click","objIn":"xz7qgpta6","objOut":"4950e7c1-dcaf-47ac-9ca9-512013c4e9c9"}]},{"name":"Button is down","value":0},{"name":"Mouse is hovering","links":[{"portIn":"Value","portOut":"Mouse is hovering","objIn":"d155f04b-ae78-473c-994b-81138389d0f0","objOut":"4950e7c1-dcaf-47ac-9ca9-512013c4e9c9"}]},{"name":"Movement X","value":0},{"name":"Movement Y","value":0.5}],"objName":"Ops.Devices.Mouse.Mouse_v3"},{"id":"d155f04b-ae78-473c-994b-81138389d0f0","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_mouseOver"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"dq71li66q","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Limit","value":1},{"name":"Min","value":0},{"name":"Max","value":1},{"name":"Rubberband","value":0}],"portsOut":[{"name":"Absolute Value","links":[{"portIn":"Value In","portOut":"Absolute Value","objIn":"csl3j7cy1","objOut":"dq71li66q"}]}],"objName":"Ops.Math.DeltaSum"},{"id":"9d85ffdc-685a-42ef-bd41-b501521a114c","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"create port","value":0}],"objName":"Ops.Ui.PatchInput"},{"id":"7bebb5f0-9d69-43ee-98be-27a13edd98db","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"create port","value":0},{"name":"out1 Ops.Devices.Mouse.Mouse_v3 x","value":0},{"name":"out2 Ops.Devices.Mouse.Mouse_v3 y","value":0},{"name":"out3 DeltaSum Absolute Value","value":0,"title":"DeltaX"}],"objName":"Ops.Ui.PatchOutput"},{"id":"cd9136e7-4c7b-4555-bf01-18381685410b","uiAttribs":{},"storage":{"subPatchVer":1},"portsIn":[{"name":"create port","value":0},{"name":"dataStr","value":"{\"ports\":[{\"name\":\"in0 Cursor Update\",\"type\":1}],\"portsOut\":[{\"name\":\"out0 DeltaSum Absolute Value\",\"type\":0},{\"name\":\"out1 Ops.Devices.Mouse.Mouse_v3 x\",\"type\":0},{\"name\":\"out2 Ops.Devices.Mouse.Mouse_v3 y\",\"type\":0},{\"name\":\"out3 DeltaSum Absolute Value\",\"type\":0,\"title\":\"DeltaX\"}]}"},{"name":"patchId","value":"66dae55a-8297-4120-81e2-d946cc6b2b60"}],"portsOut":[{"name":"create port out","value":0},{"name":"out0 DeltaSum Absolute Value","links":[{"portIn":"Value","portOut":"out0 DeltaSum Absolute Value","objIn":"9fsk0rgx7","objOut":"cd9136e7-4c7b-4555-bf01-18381685410b"}]},{"name":"out3 DeltaSum Absolute Value","title":"DeltaX"}],"objName":"Ops.Ui.SubPatch"},{"id":"c2a85325-d75f-4f01-9b5c-83a2edd8d35d","uiAttribs":{},"portsIn":[{"name":"posY","value":-0.18},{"name":"posZ","value":0},{"name":"scale","value":0.25},{"name":"rotX","value":0},{"name":"rotY","value":180},{"name":"rotZ","value":315.48}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"li365texv","objOut":"c2a85325-d75f-4f01-9b5c-83a2edd8d35d"},{"portIn":"render","portOut":"trigger","objIn":"uc9r4wu0r","objOut":"c2a85325-d75f-4f01-9b5c-83a2edd8d35d"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"e0268dfa-e089-4f1f-966c-c30218792023","uiAttribs":{},"portsIn":[{"name":"r","value":0},{"name":"g","value":0},{"name":"b","value":0},{"name":"a","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"te11ob7nw","objOut":"e0268dfa-e089-4f1f-966c-c30218792023"},{"portIn":"Trigger","portOut":"trigger","objIn":"zcc6zzw4d","objOut":"e0268dfa-e089-4f1f-966c-c30218792023"}]}],"objName":"Ops.Gl.ClearColor"},{"id":"b65ca0b8-40c9-4d0a-9e22-aba7d89f3abf","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Active","value":1},{"name":"Input Type index","value":0},{"name":"Input Type","value":"All"},{"name":"Area index","value":0},{"name":"Area","value":"Canvas Area"}],"portsOut":[{"name":"Delta X","value":-0.02},{"name":"Delta Y","links":[{"portIn":"Delta Value","portOut":"Delta Y","objIn":"dq71li66q","objOut":"b65ca0b8-40c9-4d0a-9e22-aba7d89f3abf"}]},{"name":"Is Dragging","links":[{"portIn":"Value","portOut":"Is Dragging","objIn":"ls3p3eowk","objOut":"b65ca0b8-40c9-4d0a-9e22-aba7d89f3abf"},{"portIn":"Value","portOut":"Is Dragging","objIn":"t1ryttgy8","objOut":"b65ca0b8-40c9-4d0a-9e22-aba7d89f3abf"}]}],"objName":"Ops.Patch.PuSSdim.MouseDrag"},{"id":"e0698285-4e6a-4339-a9ba-d9b3e441372c","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"mainExe"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"babe81ef-3ee9-4ed3-ba28-8b648c21dd11","uiAttribs":{},"portsIn":[{"name":"Title","value":"LOOP: Main 4"}],"objName":"Ops.Ui.Area"},{"id":"a82e74aa-f66f-47c9-a07a-2f1b0376925b","uiAttribs":{},"portsIn":[{"name":"Title","value":"Data"}],"objName":"Ops.Ui.Area"},{"id":"afa40c7e-19f5-4546-911c-1e34c62f310b","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"finalExe"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"1aaf40f7-386a-40d0-80de-4857b3f558f4","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_NormValue"}],"portsOut":[{"name":"Value","links":[{"portIn":"Number","portOut":"Value","objIn":"2cbchlduf","objOut":"1aaf40f7-386a-40d0-80de-4857b3f558f4"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"7dq6j5p5k","uiAttribs":{},"portsIn":[{"name":"Check Body Collisions","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Trigger","portOut":"Next","objIn":"9sm9dp98r","objOut":"7dq6j5p5k"}]},{"name":"Total Bodies","value":4}],"objName":"Ops.Graphics.Intersection.IntersectWorld"},{"id":"9sm9dp98r","uiAttribs":{},"portsIn":[{"name":"Coordinate Format index","value":0},{"name":"Coordinate Format","value":"-1 to 1"},{"name":"Z","value":0},{"name":"To X","value":0},{"name":"To Y","value":0},{"name":"To Z","value":0},{"name":"Active","value":1},{"name":"Change Cursor","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"mbk4m8pcr","objOut":"9sm9dp98r"},{"portIn":"render","portOut":"Next","objIn":"7qikt1vaf","objOut":"9sm9dp98r"},{"portIn":"render","portOut":"Next","objIn":"aupoduf7d","objOut":"9sm9dp98r"},{"portIn":"render","portOut":"Next","objIn":"ge3zj70cy","objOut":"9sm9dp98r"}]},{"name":"Has Hit","value":1},{"name":"Hit Body Name","links":[{"portIn":"Value","portOut":"Hit Body Name","objIn":"tg35ehmtt","objOut":"9sm9dp98r"}]},{"name":"Hit X","value":-0.43031439185142517},{"name":"Hit Y","value":-0.5276018381118774},{"name":"Hit Z","value":0}],"objName":"Ops.Graphics.Intersection.IntersectTestRaycast"},{"id":"bs0d2bloj","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"mainExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Trigger","portOut":"Triggered","objIn":"7dq6j5p5k","objOut":"bs0d2bloj"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"5me0htliz","uiAttribs":{},"portsIn":[{"name":"Shape index","value":1},{"name":"Shape","value":"BoxAA"},{"name":"Name","value":"dial.2"},{"name":"Radius","value":0.22},{"name":"Size X","value":0.55},{"name":"Size Y","value":1},{"name":"Size Z","value":0},{"name":"Positions"},{"name":"Append Index to name","value":1}],"objName":"Ops.Graphics.Intersection.IntersectBody"},{"id":"mbk4m8pcr","uiAttribs":{},"portsIn":[{"name":"x","value":-0.28},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger","portOut":"trigger","objIn":"5me0htliz","objOut":"mbk4m8pcr"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"adh054ku6","uiAttribs":{},"portsIn":[{"name":"Shape index","value":1},{"name":"Shape","value":"BoxAA"},{"name":"Name","value":"dial.3"},{"name":"Radius","value":0.23},{"name":"Size X","value":0.55},{"name":"Size Y","value":1},{"name":"Size Z","value":0},{"name":"Positions"},{"name":"Append Index to name","value":1}],"objName":"Ops.Graphics.Intersection.IntersectBody"},{"id":"yjtjh6kai","uiAttribs":{},"portsIn":[{"name":"Shape index","value":1},{"name":"Shape","value":"BoxAA"},{"name":"Name","value":"dial.4"},{"name":"Radius","value":0.23},{"name":"Size X","value":0.56},{"name":"Size Y","value":1},{"name":"Size Z","value":0},{"name":"Positions"},{"name":"Append Index to name","value":1}],"objName":"Ops.Graphics.Intersection.IntersectBody"},{"id":"sfqxroo9q","uiAttribs":{},"portsIn":[{"name":"Coordinates index","value":0},{"name":"Coordinates","value":"-1 to 1"},{"name":"Area index","value":0},{"name":"Area","value":"Canvas"},{"name":"flip y","value":1},{"name":"right click prevent default","value":1},{"name":"Touch support","value":1},{"name":"Passive Events","value":0},{"name":"Active","value":1}],"portsOut":[{"name":"x","links":[{"portIn":"X","portOut":"x","objIn":"9sm9dp98r","objOut":"sfqxroo9q"}]},{"name":"y","links":[{"portIn":"Y","portOut":"y","objIn":"9sm9dp98r","objOut":"sfqxroo9q"}]},{"name":"Button is down","links":[{"portIn":"Value","portOut":"Button is down","objIn":"er6016ry9","objOut":"sfqxroo9q"}]},{"name":"Mouse is hovering","value":0},{"name":"Movement X","value":-136.5},{"name":"Movement Y","value":-30}],"objName":"Ops.Devices.Mouse.Mouse_v3"},{"id":"124910bf-e88f-4da5-847e-888a7ac73020","uiAttribs":{},"portsIn":[{"name":"num x","value":4},{"name":"num y","value":1},{"name":"center","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"zlpf1p0f5","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"},{"portIn":"render","portOut":"trigger","objIn":"c2a85325-d75f-4f01-9b5c-83a2edd8d35d","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"}]},{"name":"x","links":[{"portIn":"posX","portOut":"x","objIn":"c2a85325-d75f-4f01-9b5c-83a2edd8d35d","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"},{"portIn":"posX","portOut":"x","objIn":"zlpf1p0f5","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"},{"portIn":"Value","portOut":"x","objIn":"6v0s7i2sf","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"}]},{"name":"y","value":0},{"name":"index","links":[{"portIn":"Value","portOut":"index","objIn":"euqza6b25","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"}]},{"name":"total iterations","value":4}],"objName":"Ops.Trigger.Repeat2d"},{"id":"7qikt1vaf","uiAttribs":{},"portsIn":[{"name":"x","value":0.27},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger","portOut":"trigger","objIn":"adh054ku6","objOut":"7qikt1vaf"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"aupoduf7d","uiAttribs":{},"portsIn":[{"name":"x","value":0.84},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger","portOut":"trigger","objIn":"yjtjh6kai","objOut":"aupoduf7d"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"32lmfrmux","uiAttribs":{},"portsIn":[{"name":"Title","value":"Intersect"}],"objName":"Ops.Ui.Area"},{"id":"tg35ehmtt","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_hitBodyName"}],"objName":"Ops.Vars.VarSetString_v2"},{"id":"gb0lraco2","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_activeDial_ID"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"kcwn0w2tu","objOut":"gb0lraco2"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"qyara3wac","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"Value","portOut":"result","objIn":"hb06uwqts","objOut":"qyara3wac"}]}],"objName":"Ops.Math.Compare.Equals"},{"id":"xz7qgpta6","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Named Trigger","value":"mouseDown"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"53603a6e-a331-41a7-9822-120aba8de4f8","uiAttribs":{},"portsIn":[{"name":"number2","value":270}],"portsOut":[{"name":"result","links":[{"portIn":"rotY","portOut":"result","objIn":"li365texv","objOut":"53603a6e-a331-41a7-9822-120aba8de4f8"}]}],"objName":"Ops.Math.Multiply"},{"id":"9fsk0rgx7","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_NormValue"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"aqjh1act1","uiAttribs":{},"portsIn":[{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"Value","portOut":"value","objIn":"j3kd0q09w","objOut":"aqjh1act1"},{"portIn":"Value","portOut":"value","objIn":"1rc15x0gs","objOut":"aqjh1act1"},{"portIn":"number1","portOut":"value","objIn":"53603a6e-a331-41a7-9822-120aba8de4f8","objOut":"aqjh1act1"},{"portIn":"A","portOut":"value","objIn":"v11enlha4","objOut":"aqjh1act1"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"x6efudpvd","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_dialValues_array"}],"objName":"Ops.Vars.VarSetArray_v2"},{"id":"i0rjtphmz","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_dialValues_array"}],"portsOut":[{"name":"Value","links":[{"portIn":"array","portOut":"Value","objIn":"aqjh1act1","objOut":"i0rjtphmz"}]}],"objName":"Ops.Vars.VarGetArray_v2"},{"id":"er6016ry9","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_buttonIsDown"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"ls3p3eowk","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_mouseIsDragging"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"kcwn0w2tu","uiAttribs":{},"portsIn":[{"name":"number2","value":1}],"portsOut":[{"name":"result","links":[{"portIn":"number1","portOut":"result","objIn":"qyara3wac","objOut":"kcwn0w2tu"}]}],"objName":"Ops.Math.Subtract"},{"id":"te11ob7nw","uiAttribs":{},"portsIn":[{"name":"projection mode index","value":0},{"name":"projection mode","value":"prespective"},{"name":"frustum near","value":0.01},{"name":"frustum far","value":5000},{"name":"fov","value":30},{"name":"Auto Aspect Ratio","value":1},{"name":"Aspect Ratio","value":1},{"name":"eye X","value":0},{"name":"eye Y","value":-0.03},{"name":"eye Z","value":0.73},{"name":"center X","value":0},{"name":"center Y","value":0},{"name":"center Z","value":0},{"name":"truck","value":0},{"name":"boom","value":0.23},{"name":"dolly","value":0},{"name":"tilt","value":0},{"name":"pan","value":0},{"name":"roll","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"exe","portOut":"trigger","objIn":"141502b6-2964-42b8-b273-c6d7f5bcf303","objOut":"te11ob7nw"},{"portIn":"Trigger","portOut":"trigger","objIn":"4pu8mr0y2","objOut":"te11ob7nw"}]},{"name":"Aspect","value":1.715883668903803}],"objName":"Ops.Gl.Matrix.Camera"},{"id":"uc9r4wu0r","uiAttribs":{},"portsIn":[{"name":"r","value":0.885},{"name":"g","value":0.8560132010421952},{"name":"b","value":0.856},{"name":"colorizeTexture","value":1},{"name":"Vertex Colors","value":0},{"name":"Alpha Mask Source index","value":4},{"name":"Alpha Mask Source","value":"A"},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":0},{"name":"diffuseRepeatX","value":1},{"name":"diffuseRepeatY","value":0},{"name":"Tex Offset X","value":0},{"name":"Tex Offset Y","value":0},{"name":"Crop TexCoords","value":0},{"name":"billboard","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"3g7cbchrs","objOut":"uc9r4wu0r"}]}],"objName":"Ops.Gl.Shader.BasicMaterial_v3"},{"id":"j3kd0q09w","uiAttribs":{},"portsIn":[{"name":"Min","value":0},{"name":"Max","value":0.9},{"name":"Easing index","value":4},{"name":"Easing","value":"Cubic In"}],"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"conrnxfgk","objOut":"j3kd0q09w"},{"portIn":"Value","portOut":"Result","objIn":"s0o3lhs2y","objOut":"j3kd0q09w"}]}],"objName":"Ops.Math.Ease"},{"id":"conrnxfgk","uiAttribs":{},"portsIn":[{"name":"Min","value":0},{"name":"Max","value":0.27},{"name":"Easing index","value":5},{"name":"Easing","value":"Cubic Out"}],"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"z5bv7gal9","objOut":"conrnxfgk"}]}],"objName":"Ops.Math.Ease"},{"id":"chztenqi0","uiAttribs":{},"portsIn":[{"name":"r","value":1},{"name":"b","value":0.645},{"name":"Opacity","value":0.956},{"name":"AO Intensity","value":0.747},{"name":"Normal Map Intensity","value":0.66},{"name":"Repeat X","value":6},{"name":"Repeat Y","value":0},{"name":"Offset X","value":0},{"name":"Offset Y","value":1.6},{"name":"Screen Space Normals","value":0},{"name":"Calc normal tangents","value":0},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":1},{"name":"Alpha Mask Source index","value":0},{"name":"Alpha Mask Source","value":"Luminance"}],"portsOut":[{"name":"Next","links":[{"portIn":"Execute","portOut":"Next","objIn":"leqa7h4pd","objOut":"chztenqi0"}]},{"name":"Shader","links":[{"portIn":"Value","portOut":"Shader","objIn":"nnu0oo0gu","objOut":"chztenqi0"}]}],"objName":"Ops.Gl.Shader.MatCapMaterial_v3"},{"id":"0oya8etuv","uiAttribs":{},"portsIn":[{"name":"File","value":"assets/6697c3b245eb5d333bae2007_NEL_SRVB.webp","display":"file"},{"name":"Filter index","value":1},{"name":"Filter","value":"linear"},{"name":"Wrap index","value":0},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Data Format index","value":3},{"name":"Data Format","value":"RGBA"},{"name":"Flip","value":0},{"name":"Pre Multiplied Alpha","value":0},{"name":"Active","value":1},{"name":"Save Memory","value":1},{"name":"Add Cachebuster","value":1}],"portsOut":[{"name":"Texture","links":[{"portIn":"MatCap","portOut":"Texture","objIn":"chztenqi0","objOut":"0oya8etuv"}]},{"name":"Width","value":256},{"name":"Height","value":256},{"name":"Aspect Ratio","value":1},{"name":"Loaded","value":1},{"name":"Loading","value":0}],"objName":"Ops.Gl.Texture_v2"},{"id":"li365texv","uiAttribs":{},"portsIn":[{"name":"posX","value":0},{"name":"posY","value":0},{"name":"posZ","value":0.49},{"name":"scale","value":1},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"ts03zao35","objOut":"li365texv"},{"portIn":"Render","portOut":"trigger","objIn":"chztenqi0","objOut":"li365texv"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"bd0mu1qkj","uiAttribs":{},"portsIn":[{"name":"Title","value":"Main"}],"objName":"Ops.Ui.Area"},{"id":"6a24jo2e0","uiAttribs":{},"portsIn":[{"name":"Title","value":"Scape"}],"objName":"Ops.Ui.Area"},{"id":"kgtq6kbqp","uiAttribs":{},"portsIn":[{"name":"Font","value":"chivo"},{"name":"Scale","value":0.8},{"name":"Letter Spacing","value":-0.02},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":2},{"name":"Vertical Align","value":"Middle"},{"name":"r","value":0.949},{"name":"g","value":0.933},{"name":"b","value":0.899},{"name":"SDF","value":1},{"name":"Smoothing","value":0.126},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":2.246875},{"name":"Height","value":0.4857234848484849},{"name":"Start Y","value":0.2529109848484849},{"name":"Num Chars","value":12}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"1rc15x0gs","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentDialValueInsideRepeat2D"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"o8zk12f1r","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentDialValueInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"number","portOut":"Value","objIn":"2lpsqzgrb","objOut":"o8zk12f1r"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"2lpsqzgrb","uiAttribs":{},"portsIn":[{"name":"Decimal Places","value":4}],"portsOut":[{"name":"result","links":[{"portIn":"Number","portOut":"result","objIn":"vib72zx3n","objOut":"2lpsqzgrb"}]}],"objName":"Ops.Math.Round"},{"id":"vib72zx3n","uiAttribs":{},"portsIn":[{"name":"Decimal Places","value":4}],"portsOut":[{"name":"Result","links":[{"portIn":"String B","portOut":"Result","objIn":"hhpgrbf2g","objOut":"vib72zx3n"}]}],"objName":"Ops.String.NumberToString_v2"},{"id":"zlpf1p0f5","uiAttribs":{},"portsIn":[{"name":"posY","value":-0.565},{"name":"posZ","value":0.22},{"name":"scale","value":0.12},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"kgtq6kbqp","objOut":"zlpf1p0f5"}]}],"objName":"Ops.Gl.Matrix.TransformView"},{"id":"f67se0kft","uiAttribs":{},"portsIn":[{"name":"Title","value":"Text"}],"objName":"Ops.Ui.Area"},{"id":"6hojoyomj","uiAttribs":{},"portsIn":[{"name":"Limit","value":1},{"name":"Length","value":10},{"name":"Mode index","value":1},{"name":"Mode","value":"Stop at Max"},{"name":"Default","value":0}],"portsOut":[{"name":"Value","links":[{"portIn":"val","portOut":"Value","objIn":"1b7ls5v00","objOut":"6hojoyomj"}]}],"objName":"Ops.Math.Incrementor"},{"id":"m4wpz0q5c","uiAttribs":{},"portsIn":[{"name":"number2","value":0.06}],"portsOut":[{"name":"result","links":[{"portIn":"mul","portOut":"result","objIn":"124910bf-e88f-4da5-847e-888a7ac73020","objOut":"m4wpz0q5c"}]}],"objName":"Ops.Math.Multiply"},{"id":"1b7ls5v00","uiAttribs":{},"portsIn":[{"name":"min","value":0},{"name":"max","value":9}],"portsOut":[{"name":"result","links":[{"portIn":"number1","portOut":"result","objIn":"m4wpz0q5c","objOut":"1b7ls5v00"}]}],"objName":"Ops.Math.SmootherStep"},{"id":"hhpgrbf2g","uiAttribs":{},"portsIn":[{"name":"Format","value":"*$a $b"},{"name":"String C","value":2},{"name":"String D","value":3},{"name":"String E","value":""},{"name":"String F","value":""}],"portsOut":[{"name":"Result","links":[{"portIn":"Text","portOut":"Result","objIn":"kgtq6kbqp","objOut":"hhpgrbf2g"}]}],"objName":"Ops.String.StringCompose_v3"},{"id":"euqza6b25","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"34zd4vl4f","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"number2","portOut":"Value","objIn":"qyara3wac","objOut":"34zd4vl4f"},{"portIn":"number1","portOut":"Value","objIn":"ai5mgf397","objOut":"34zd4vl4f"},{"portIn":"index","portOut":"Value","objIn":"aqjh1act1","objOut":"34zd4vl4f"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"mtxdae1jj","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"index","portOut":"Value","objIn":"fxd9qy0nv","objOut":"mtxdae1jj"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"ejryfn62d","uiAttribs":{},"portsIn":[{"name":"Title","value":"*"}],"objName":"Ops.Ui.Area"},{"id":"yvvnsby8j","uiAttribs":{},"portsIn":[{"name":"text","value":"level, diffuse, tone, size"},{"name":"separator","value":","},{"name":"Numbers","value":0},{"name":"Trim","value":1},{"name":"Split Lines","value":0}],"portsOut":[{"name":"array","links":[{"portIn":"array","portOut":"array","objIn":"fxd9qy0nv","objOut":"yvvnsby8j"}]},{"name":"length","value":4}],"objName":"Ops.Array.StringToArray_v2"},{"id":"fxd9qy0nv","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"String A","portOut":"result","objIn":"hhpgrbf2g","objOut":"fxd9qy0nv"}]}],"objName":"Ops.Array.ArrayGetString"},{"id":"xqowbomkj","uiAttribs":{},"portsIn":[{"name":"Title","value":"*"}],"objName":"Ops.Ui.Area"},{"id":"ch5u1xz0l","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"midExe"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"faiior48h","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"midExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Render","portOut":"Triggered","objIn":"48vrkn65x","objOut":"faiior48h"},{"portIn":"render","portOut":"Triggered","objIn":"33hdtkr51","objOut":"faiior48h"},{"portIn":"render","portOut":"Triggered","objIn":"fvg1zz75v","objOut":"faiior48h"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"smns78b6k","uiAttribs":{},"portsIn":[{"name":"Title","value":"*"}],"objName":"Ops.Ui.Area"},{"id":"piq1e64rw","uiAttribs":{},"portsIn":[{"name":"Title","value":"*"}],"objName":"Ops.Ui.Area"},{"id":"t83msa078","uiAttribs":{},"portsIn":[{"name":"Title","value":"*"}],"objName":"Ops.Ui.Area"},{"id":"4pu8mr0y2","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"preSequenceFlow"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"of6q9dm1m","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"midExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"render","portOut":"Triggered","objIn":"v2qv1ozh2","objOut":"of6q9dm1m"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"zcc6zzw4d","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"zi3u8x4zd","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_activeDial_ID"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"zhjkbd61e","objOut":"zi3u8x4zd"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"0txm5qrgs","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_dialValues_array"}],"portsOut":[{"name":"Value","links":[{"portIn":"array","portOut":"Value","objIn":"ccotjup9t","objOut":"0txm5qrgs"}]}],"objName":"Ops.Vars.VarGetArray_v2"},{"id":"ccotjup9t","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"Default Value","portOut":"value","objIn":"dq71li66q","objOut":"ccotjup9t"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"zhjkbd61e","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"number2","value":1}],"portsOut":[{"name":"result","links":[{"portIn":"index","portOut":"result","objIn":"ccotjup9t","objOut":"zhjkbd61e"}]}],"objName":"Ops.Math.Subtract"},{"id":"v2qv1ozh2","uiAttribs":{},"portsIn":[{"name":"Size index","value":1},{"name":"Size","value":"Manual"},{"name":"texture height","value":512},{"name":"Auto Aspect","value":1},{"name":"filter index","value":1},{"name":"filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"Repeat"},{"name":"MSAA index","value":1},{"name":"MSAA","value":"2x"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"Depth","value":0},{"name":"Clear","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"Execute","portOut":"trigger","objIn":"3so3f33cf","objOut":"v2qv1ozh2"}]},{"name":"texture","links":[{"portIn":"Base Texture","portOut":"texture","objIn":"eerqtlpnp","objOut":"v2qv1ozh2"}]}],"objName":"Ops.Gl.RenderToTexture_v3"},{"id":"o4q65sx2h","uiAttribs":{},"portsIn":[{"name":"x","value":-1.4},{"name":"y","value":-1.79}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"eb7wv37c6","objOut":"o4q65sx2h"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"gv2xr0zt3","uiAttribs":{},"portsIn":[{"name":"Font Name","value":"chivo"},{"name":"Font Data","value":"assets/6697c3b245eb5d333bae2007_ChivoMono-Medium-msdf.json","display":"file"},{"name":"Font Image","value":"assets/6697c3b245eb5d333bae2007_ChivoMono-Medium.png","display":"file"},{"name":"Font Image 1","value":0,"display":"file"},{"name":"Font Image 2","value":0,"display":"file"},{"name":"Font Image 3","value":0,"display":"file"}],"portsOut":[{"name":"Loaded","value":true},{"name":"Total Chars","value":66},{"name":"Chars","value":"jQgbdf03689CGOShikl12457ABDEFHIJKLMNPRTUVWXYZpqtyw+acemnorsuvxz*-."}],"objName":"Ops.Gl.FontMSDF_v2"},{"id":"kmdf8veed","uiAttribs":{},"portsIn":[{"name":"File","value":"assets/lib_matcaps_Chrome_Blue_Tint-White.png","display":"file"},{"name":"Filter index","value":2},{"name":"Filter","value":"mipmap"},{"name":"Wrap index","value":0},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Data Format index","value":3},{"name":"Data Format","value":"RGBA"},{"name":"Flip","value":0},{"name":"Pre Multiplied Alpha","value":0},{"name":"Active","value":1},{"name":"Save Memory","value":1},{"name":"Add Cachebuster","value":0}],"portsOut":[{"name":"Texture","links":[{"portIn":"Specular MatCap","portOut":"Texture","objIn":"chztenqi0","objOut":"kmdf8veed"}]},{"name":"Width","value":256},{"name":"Height","value":256},{"name":"Aspect Ratio","value":1},{"name":"Loaded","value":1},{"name":"Loading","value":0}],"objName":"Ops.Gl.Texture_v2"},{"id":"flv1jlkal","uiAttribs":{},"portsIn":[{"name":"File","value":"assets/6697c3b245eb5d333bae2007_Sterungs.webp","display":"file"},{"name":"Filter index","value":2},{"name":"Filter","value":"mipmap"},{"name":"Wrap index","value":0},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Data Format index","value":3},{"name":"Data Format","value":"RGBA"},{"name":"Flip","value":0},{"name":"Pre Multiplied Alpha","value":0},{"name":"Active","value":1},{"name":"Save Memory","value":1},{"name":"Add Cachebuster","value":0}],"portsOut":[{"name":"Texture","links":[{"portIn":"Specular Mask","portOut":"Texture","objIn":"chztenqi0","objOut":"flv1jlkal"}]},{"name":"Width","value":256},{"name":"Height","value":256},{"name":"Aspect Ratio","value":1},{"name":"Loaded","value":1},{"name":"Loading","value":0}],"objName":"Ops.Gl.Texture_v2"},{"id":"40fnzsucx","uiAttribs":{},"portsIn":[{"name":"Play","value":1},{"name":"Sync to timeline","value":0}],"portsOut":[{"name":"Time","links":[{"portIn":"Time","portOut":"Time","objIn":"lv0f0jbcs","objOut":"40fnzsucx"}]}],"objName":"Ops.Anim.Timer_v2"},{"id":"lv0f0jbcs","uiAttribs":{},"portsIn":[{"name":"Type index","value":2},{"name":"Type","value":"ramp up"},{"name":"Phase","value":0},{"name":"Range Min","value":-360},{"name":"Range Max","value":360}],"portsOut":[{"name":"Result","links":[{"portIn":"rotX","portOut":"Result","objIn":"li365texv","objOut":"lv0f0jbcs"}]}],"objName":"Ops.Anim.LFO_v2"},{"id":"ai5mgf397","uiAttribs":{},"portsIn":[{"name":"number2","value":0.01}],"portsOut":[{"name":"result","links":[{"portIn":"Frequency","portOut":"result","objIn":"lv0f0jbcs","objOut":"ai5mgf397"}]}],"objName":"Ops.Math.Multiply"},{"id":"dsy5j4yzl","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"result","links":[{"portIn":"Value","portOut":"result","objIn":"s9n3wwypa","objOut":"dsy5j4yzl"},{"portIn":"Pass Through","portOut":"result","objIn":"8lyuqd6tn","objOut":"dsy5j4yzl"},{"portIn":"Pass Through","portOut":"result","objIn":"csl3j7cy1","objOut":"dsy5j4yzl"}]}],"objName":"Ops.Boolean.And"},{"id":"hd8nl2ugk","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_buttonIsDown"}],"portsOut":[{"name":"Value","links":[{"portIn":"bool 2","portOut":"Value","objIn":"dsy5j4yzl","objOut":"hd8nl2ugk"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"yi13493pq","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_hitBodyName"}],"portsOut":[{"name":"Value","links":[{"portIn":"String","portOut":"Value","objIn":"i77gb1h2c","objOut":"yi13493pq"},{"portIn":"String In","portOut":"Value","objIn":"8lyuqd6tn","objOut":"yi13493pq"}]}],"objName":"Ops.Vars.VarGetString"},{"id":"i77gb1h2c","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"SearchValue","value":"dial"}],"portsOut":[{"name":"Found","links":[{"portIn":"bool 1","portOut":"Found","objIn":"dsy5j4yzl","objOut":"i77gb1h2c"}]},{"name":"Index","value":0}],"objName":"Ops.String.StringContains_v2"},{"id":"ozs800vz3","uiAttribs":{},"objName":"Ops.Gl.GLTF.GltfDracoCompression"},{"id":"bmau99lwf","uiAttribs":{},"portsIn":[{"name":"data","value":"{\"hiddenNodes\":{}}"},{"name":"glb File","value":"assets/66a8cc11ac4e6d02513b1fae_spherical_animation.draco.glb","display":"file"},{"name":"Draw","value":1},{"name":"Camera index","value":0},{"name":"Camera","value":"None"},{"name":"Animation","value":"Anim "},{"name":"Center index","value":0},{"name":"Center","value":"None"},{"name":"Rescale","value":1},{"name":"Rescale Size","value":1},{"name":"Sync to timeline","value":0},{"name":"Loop","value":1},{"name":"Normals Format index","value":0},{"name":"Normals Format","value":"XYZ"},{"name":"Vertices Format index","value":0},{"name":"Vertices Format","value":"XYZ"},{"name":"Calc Normals index","value":0},{"name":"Calc Normals","value":"Auto"},{"name":"Hide Nodes","value":0},{"name":"Use Material Properties","value":0},{"name":"Active","value":1}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"38w7tj78u","objOut":"bmau99lwf"}]},{"name":"Generator","value":"Sketchfab-16.17.0"},{"name":"GLTF Version","value":2},{"name":"Anim Length","value":8.333333015441895},{"name":"Anim Time","value":0.47702841480840386},{"name":"Loading","value":false}],"objName":"Ops.Gl.GLTF.GltfScene_v4"},{"id":"lb1qzrcoj","uiAttribs":{},"portsIn":[{"name":"Material Name","value":"FORGED_METAL"}],"portsOut":[{"name":"Material","links":[{"portIn":"Materials","portOut":"Material","objIn":"bmau99lwf","objOut":"lb1qzrcoj"}]}],"objName":"Ops.Gl.GLTF.GltfSetMaterial"},{"id":"fs2uw3jmy","uiAttribs":{},"portsIn":[{"name":"Material Name","value":"Side"}],"portsOut":[{"name":"Material","links":[{"portIn":"Materials","portOut":"Material","objIn":"bmau99lwf","objOut":"fs2uw3jmy"}]}],"objName":"Ops.Gl.GLTF.GltfSetMaterial"},{"id":"nnu0oo0gu","uiAttribs":{},"portsIn":[{"name":"Variable","value":"NEL_SRVB_Metals"}],"objName":"Ops.Vars.VarSetObject_v2"},{"id":"u5bcyfii0","uiAttribs":{},"portsIn":[{"name":"Variable","value":"NEL_SRVB_Metals"}],"portsOut":[{"name":"Value","links":[{"portIn":"Shader","portOut":"Value","objIn":"lb1qzrcoj","objOut":"u5bcyfii0"}]}],"objName":"Ops.Vars.VarGetObject_v2"},{"id":"leqa7h4pd","uiAttribs":{},"portsIn":[{"name":"Diffuse A","value":1},{"name":"Double Sided","value":0},{"name":"Colorize Texture","value":0}],"portsOut":[{"name":"next","links":[{"portIn":"Execute","portOut":"next","objIn":"0rcbij4av","objOut":"leqa7h4pd"}]},{"name":"Shader","links":[{"portIn":"Shader","portOut":"Shader","objIn":"fs2uw3jmy","objOut":"leqa7h4pd"}]}],"objName":"Ops.Gl.Phong.LambertMaterial_v2"},{"id":"s0o3lhs2y","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ringR"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"z5bv7gal9","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ringG"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"oa1101yyu","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ringR"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"y7uobh49q","objOut":"oa1101yyu"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"tnds1iu5y","uiAttribs":{},"portsIn":[{"name":"Material Name","value":"POINTS"}],"portsOut":[{"name":"Material","links":[{"portIn":"Materials","portOut":"Material","objIn":"bmau99lwf","objOut":"tnds1iu5y"}]}],"objName":"Ops.Gl.GLTF.GltfSetMaterial"},{"id":"0rcbij4av","uiAttribs":{},"portsIn":[{"name":"Diffuse R","value":0.919},{"name":"Diffuse G","value":0.97},{"name":"Diffuse B","value":1},{"name":"Diffuse A","value":1},{"name":"Double Sided","value":0},{"name":"Colorize Texture","value":0}],"portsOut":[{"name":"Shader","links":[{"portIn":"Shader","portOut":"Shader","objIn":"tnds1iu5y","objOut":"0rcbij4av"}]}],"objName":"Ops.Gl.Phong.LambertMaterial_v2"},{"id":"y7uobh49q","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"g","portOut":"Result","objIn":"chztenqi0","objOut":"y7uobh49q"}]}],"objName":"Ops.Math.OneMinus"},{"id":"ts03zao35","uiAttribs":{},"portsIn":[{"name":"r","value":1},{"name":"g","value":1},{"name":"b","value":1},{"name":"Opacity","value":1},{"name":"AO Intensity","value":1},{"name":"Normal Map Intensity","value":1},{"name":"Repeat X","value":1},{"name":"Repeat Y","value":1},{"name":"Offset X","value":0},{"name":"Offset Y","value":0},{"name":"Screen Space Normals","value":0},{"name":"Calc normal tangents","value":1},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":0},{"name":"Alpha Mask Source index","value":0},{"name":"Alpha Mask Source","value":"Luminance"}],"portsOut":[{"name":"Next","links":[{"portIn":"Execute","portOut":"Next","objIn":"l7fhi163a","objOut":"ts03zao35"},{"portIn":"render","portOut":"Next","objIn":"orseg18lf","objOut":"ts03zao35"}]}],"objName":"Ops.Gl.Shader.MatCapMaterial_v3"},{"id":"38w7tj78u","uiAttribs":{},"portsIn":[{"name":"Node Name","value":"c001_1"},{"name":"Translate Y","value":0},{"name":"Translate Z","value":0},{"name":"Rotation X","value":0},{"name":"Rotation Y","value":0},{"name":"Rotation Z","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"bq7dcj36g","objOut":"38w7tj78u"}]},{"name":"Found","value":true}],"objName":"Ops.Gl.GLTF.GltfTransformNode"},{"id":"5g6m8w0kd","uiAttribs":{},"portsIn":[{"name":"Node Name","value":"c003_3"},{"name":"Translate Y","value":0},{"name":"Translate Z","value":0},{"name":"Rotation X","value":0},{"name":"Rotation Y","value":0},{"name":"Rotation Z","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"br7cvag8u","objOut":"5g6m8w0kd"}]},{"name":"Found","value":true}],"objName":"Ops.Gl.GLTF.GltfTransformNode"},{"id":"bq7dcj36g","uiAttribs":{},"portsIn":[{"name":"Node Name","value":"c002_2"},{"name":"Translate Y","value":0},{"name":"Translate Z","value":0},{"name":"Rotation X","value":0},{"name":"Rotation Y","value":0},{"name":"Rotation Z","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"5g6m8w0kd","objOut":"bq7dcj36g"}]},{"name":"Found","value":true}],"objName":"Ops.Gl.GLTF.GltfTransformNode"},{"id":"br7cvag8u","uiAttribs":{},"portsIn":[{"name":"Node Name","value":"c004_4"},{"name":"Translate Y","value":0},{"name":"Translate Z","value":0},{"name":"Rotation X","value":0},{"name":"Rotation Y","value":0},{"name":"Rotation Z","value":0}],"portsOut":[{"name":"Found","value":true}],"objName":"Ops.Gl.GLTF.GltfTransformNode"},{"id":"hf23rbdfn","uiAttribs":{},"portsIn":[{"name":"number2","value":20}],"portsOut":[{"name":"result","links":[{"portIn":"Translate X","portOut":"result","objIn":"38w7tj78u","objOut":"hf23rbdfn"},{"portIn":"Translate X","portOut":"result","objIn":"bq7dcj36g","objOut":"hf23rbdfn"},{"portIn":"Translate X","portOut":"result","objIn":"5g6m8w0kd","objOut":"hf23rbdfn"},{"portIn":"Translate X","portOut":"result","objIn":"br7cvag8u","objOut":"hf23rbdfn"}]}],"objName":"Ops.Math.Multiply"},{"id":"w1vt61ydw","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_dialValues_array"}],"portsOut":[{"name":"Value","links":[{"portIn":"Array in","portOut":"Value","objIn":"z1obzd6uz","objOut":"w1vt61ydw"}]}],"objName":"Ops.Vars.VarGetArray_v2"},{"id":"9044xju7n","uiAttribs":{},"portsIn":[{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"number1","portOut":"value","objIn":"hf23rbdfn","objOut":"9044xju7n"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"z1obzd6uz","uiAttribs":{},"portsIn":[{"name":"When False index","value":0},{"name":"When False","value":"keep last array"}],"portsOut":[{"name":"Array Out","links":[{"portIn":"array","portOut":"Array Out","objIn":"9044xju7n","objOut":"z1obzd6uz"}]}],"objName":"Ops.Array.GateArray_v2"},{"id":"0lxocfgel","uiAttribs":{},"portsIn":[{"name":"Title","value":"Spatial GLTF"}],"objName":"Ops.Ui.Area"},{"id":"hb06uwqts","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentInstanceIsActive"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"9hyokghvg","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentInstanceIsActive"}],"portsOut":[{"name":"Value","links":[{"portIn":"Pass Through","portOut":"Value","objIn":"z1obzd6uz","objOut":"9hyokghvg"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"6dc9673bl","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"A","portOut":"Value","objIn":"88c0pg2n0","objOut":"6dc9673bl"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"88c0pg2n0","uiAttribs":{},"portsIn":[{"name":"B","value":1},{"name":"C","value":2},{"name":"D","value":3},{"name":"Expression","value":"(a + 1) % 4"}],"portsOut":[{"name":"Result","links":[{"portIn":"index","portOut":"Result","objIn":"9044xju7n","objOut":"88c0pg2n0"}]},{"name":"Expression Valid","value":true}],"objName":"Ops.Math.MathExpression"},{"id":"6v0s7i2sf","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_rep2d_x"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"q3siwjs06","uiAttribs":{},"portsIn":[{"name":"Frequency","value":0.002002},{"name":"Type index","value":0},{"name":"Type","value":"sine"},{"name":"Range Min","value":0},{"name":"Range Max","value":8}],"portsOut":[{"name":"Result","links":[{"portIn":"Time","portOut":"Result","objIn":"bmau99lwf","objOut":"q3siwjs06"}]}],"objName":"Ops.Anim.LFO_v2"},{"id":"l3284qrsh","uiAttribs":{},"portsOut":[{"name":"timesTriggered","links":[{"portIn":"A","portOut":"timesTriggered","objIn":"hd355ern0","objOut":"l3284qrsh"}]}],"objName":"Ops.Trigger.TriggerCounter"},{"id":"xja9p9adg","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"B","portOut":"Value","objIn":"hd355ern0","objOut":"xja9p9adg"},{"portIn":"Phase","portOut":"Value","objIn":"q3siwjs06","objOut":"xja9p9adg"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"orseg18lf","uiAttribs":{},"portsIn":[{"name":"scale","value":1.28},{"name":"x","value":1},{"name":"y","value":1},{"name":"z","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"bmau99lwf","objOut":"orseg18lf"}]}],"objName":"Ops.Gl.Matrix.Scale"},{"id":"hd355ern0","uiAttribs":{},"portsIn":[{"name":"C","value":-1},{"name":"D","value":0},{"name":"Expression","value":"a*(b * 0.01)"}],"portsOut":[{"name":"Result","links":[{"portIn":"Time","portOut":"Result","objIn":"q3siwjs06","objOut":"hd355ern0"}]},{"name":"Expression Valid","value":true}],"objName":"Ops.Math.MathExpression"},{"id":"2p7s5nsc9","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":0.005},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":2},{"name":"pivot y","value":"bottom"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":1},{"name":"num rows","value":1}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"cplq646td","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"j447574nb","objOut":"cplq646td"}]}],"objName":"Ops.Gl.Matrix.Billboard"},{"id":"j447574nb","uiAttribs":{},"portsIn":[{"name":"y","value":1.45},{"name":"z","value":6.66}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"lb4ss1de9","objOut":"j447574nb"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"l53eehg6x","uiAttribs":{},"portsIn":[{"name":"Text","value":"ScapeRVB"},{"name":"Font","value":"chivo"},{"name":"Scale","value":1.54},{"name":"Letter Spacing","value":0.02},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":1},{"name":"Vertical Align","value":"Top"},{"name":"r","value":0.179},{"name":"g","value":1},{"name":"b","value":0.692},{"name":"a","value":0.91},{"name":"SDF","value":1},{"name":"Smoothing","value":0.126},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":3.4483968750000003},{"name":"Height","value":0.9838645833333333},{"name":"Start Y","value":0.4781656249999999},{"name":"Num Chars","value":8}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"fevah6hns","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"finalExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"render","portOut":"Triggered","objIn":"bav6ydpr2","objOut":"fevah6hns"},{"portIn":"exe","portOut":"Triggered","objIn":"rw14ave8u","objOut":"fevah6hns"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"bav6ydpr2","uiAttribs":{},"portsIn":[{"name":"posX","value":0.535},{"name":"posY","value":0.435},{"name":"posZ","value":0},{"name":"scale","value":0.125},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"l53eehg6x","objOut":"bav6ydpr2"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"3g7cbchrs","uiAttribs":{},"portsIn":[{"name":"x","value":-0.6},{"name":"y","value":-0.835},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Exec","portOut":"trigger","objIn":"cplq646td","objOut":"3g7cbchrs"}]}],"objName":"Ops.Gl.Matrix.TranslateView"},{"id":"s9n3wwypa","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_mouseIsChangingDialValue"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"1a68gpjeh","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"2iozqy3i6","objOut":"1a68gpjeh"}]},{"name":"Result","links":[{"portIn":"Object","portOut":"Result","objIn":"2cbchlduf","objOut":"1a68gpjeh"}]}],"objName":"Ops.Data.Compose.Object.CompObject"},{"id":"2iozqy3i6","uiAttribs":{},"portsIn":[{"name":"Key","value":"mix"},{"name":"Number","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"42ukcss4d","objOut":"2iozqy3i6"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetNumber"},{"id":"42ukcss4d","uiAttribs":{},"portsIn":[{"name":"Key","value":"diffuse"},{"name":"Number","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"ebt09vc90","objOut":"42ukcss4d"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetNumber"},{"id":"ebt09vc90","uiAttribs":{},"portsIn":[{"name":"Key","value":"tone"},{"name":"Number","value":0.5}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"fdu5vba76","objOut":"ebt09vc90"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetNumber"},{"id":"fdu5vba76","uiAttribs":{},"portsIn":[{"name":"Key","value":"size"},{"name":"Number","value":0}],"objName":"Ops.Data.Compose.Object.CompObjectSetNumber"},{"id":"28d5nmh91","uiAttribs":{},"portsIn":[{"name":"ZoomText","value":0},{"name":"Line Numbers","value":1},{"name":"Font Size","value":10},{"name":"Scroll","value":0}],"objName":"Ops.Ui.VizObject"},{"id":"ueht75nuq","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"finalExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Exec","portOut":"Triggered","objIn":"x7p8k6vel","objOut":"ueht75nuq"},{"portIn":"Trigger","portOut":"Triggered","objIn":"2cbchlduf","objOut":"ueht75nuq"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"2k40p1ixu","uiAttribs":{},"portsOut":[{"name":"Values","links":[{"portIn":"Array","portOut":"Values","objIn":"o5k93vq6e","objOut":"2k40p1ixu"},{"portIn":"Value","portOut":"Values","objIn":"x6efudpvd","objOut":"2k40p1ixu"}]},{"name":"Num values","value":4}],"objName":"Ops.Json.ObjectValuesAsArray"},{"id":"o5k93vq6e","uiAttribs":{},"portsIn":[{"name":"Start Row","value":0}],"objName":"Ops.Ui.VizArrayTable"},{"id":"lgfxem7we","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_mouseIsChangingParamID"}],"objName":"Ops.Vars.VarSetString_v2"},{"id":"8lyuqd6tn","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"When False index","value":0},{"name":"When False","value":"keep last string"},{"name":"Custom Value","value":""}],"portsOut":[{"name":"String Out","links":[{"portIn":"Key","portOut":"String Out","objIn":"q2imefo72","objOut":"8lyuqd6tn"}]}],"objName":"Ops.String.GateString"},{"id":"8vvl2gwwz","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"el0us87h5","objOut":"8vvl2gwwz"}]},{"name":"Result","links":[{"portIn":"data","portOut":"Result","objIn":"q2imefo72","objOut":"8vvl2gwwz"}]}],"objName":"Ops.Data.Compose.Object.CompObject"},{"id":"madc5uih6","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Named Trigger","value":"mainExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Update","portOut":"Triggered","objIn":"8vvl2gwwz","objOut":"madc5uih6"},{"portIn":"Exec","portOut":"Triggered","objIn":"hf3ib8jqh","objOut":"madc5uih6"},{"portIn":"Update","portOut":"Triggered","objIn":"na2pda15t","objOut":"madc5uih6"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"el0us87h5","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Key","value":"dial.1"},{"name":"String","value":"mix"}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"lq1vvjm70","objOut":"el0us87h5"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetString"},{"id":"lq1vvjm70","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Key","value":"dial.2"},{"name":"String","value":"diffuse"}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"zuuutor70","objOut":"lq1vvjm70"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetString"},{"id":"zuuutor70","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Key","value":"dial.3"},{"name":"String","value":"tone"}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"fvxs3gsfk","objOut":"zuuutor70"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetString"},{"id":"fvxs3gsfk","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Key","value":"dial.4"},{"name":"String","value":"size"}],"objName":"Ops.Data.Compose.Object.CompObjectSetString"},{"id":"q2imefo72","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"lgfxem7we","objOut":"q2imefo72"}]}],"objName":"Ops.Json.ObjectGetString"},{"id":"5h3v4dsa0","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_mouseIsChangingParamID"}],"portsOut":[{"name":"Value","links":[{"portIn":"Key","portOut":"Value","objIn":"2cbchlduf","objOut":"5h3v4dsa0"}]}],"objName":"Ops.Vars.VarGetString"},{"id":"2cbchlduf","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Object In","portOut":"Result","objIn":"1qxuxacu8","objOut":"2cbchlduf"}]}],"objName":"Ops.Json.TriggerObjectSetNumber"},{"id":"x7p8k6vel","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"1a68gpjeh","objOut":"x7p8k6vel"},{"portIn":"Trigger","portOut":"Next","objIn":"z2nzidnng","objOut":"x7p8k6vel"}]},{"name":"Was Triggered","value":1}],"objName":"Ops.Trigger.TriggerOnce"},{"id":"bp5rcdeha","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"preSequenceFlow"}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"cconk53k8","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_dialValues_object"}],"objName":"Ops.Vars.VarSetObject_v2"},{"id":"eko3x9yfz","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_buttonIsDown"}],"portsOut":[{"name":"Value","links":[{"portIn":"bool 1","portOut":"Value","objIn":"uesg11629","objOut":"eko3x9yfz"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"h6fm96idh","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_dialValues_object"}],"portsOut":[{"name":"Value","links":[{"portIn":"Object2","portOut":"Value","objIn":"cx3uanmz2","objOut":"h6fm96idh"}]}],"objName":"Ops.Vars.VarGetObject_v2"},{"id":"1qxuxacu8","uiAttribs":{},"portsIn":[{"name":"When False index","value":0},{"name":"When False","value":"keep last object"},{"name":"Only Valid Objects","value":1}],"portsOut":[{"name":"Object Out","links":[{"portIn":"Object","portOut":"Object Out","objIn":"28d5nmh91","objOut":"1qxuxacu8"},{"portIn":"Value","portOut":"Object Out","objIn":"cconk53k8","objOut":"1qxuxacu8"},{"portIn":"Object1","portOut":"Object Out","objIn":"cx3uanmz2","objOut":"1qxuxacu8"}]}],"objName":"Ops.Json.GateObject"},{"id":"uesg11629","uiAttribs":{},"portsIn":[{"name":"bool 3","value":0},{"name":"bool 4","value":0},{"name":"bool 5","value":0},{"name":"bool 6","value":0},{"name":"bool 7","value":0},{"name":"bool 8","value":0},{"name":"bool 9","value":0},{"name":"bool 10","value":0}],"portsOut":[{"name":"result","links":[{"portIn":"Pass Through","portOut":"result","objIn":"1qxuxacu8","objOut":"uesg11629"}]}],"objName":"Ops.Boolean.Or"},{"id":"z2nzidnng","uiAttribs":{},"portsIn":[{"name":"Duration","value":0.1},{"name":"Value True","value":1},{"name":"Value False","value":0}],"portsOut":[{"name":"Result","links":[{"portIn":"bool 2","portOut":"Result","objIn":"uesg11629","objOut":"z2nzidnng"}]}],"objName":"Ops.Boolean.MonoFlop"},{"id":"tvhdy0oy7","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"key code","value":16},{"name":"canvas only","value":1},{"name":"Mod Key index","value":0},{"name":"Mod Key","value":"none"},{"name":"Enabled","value":1},{"name":"Prevent Default","value":0}],"portsOut":[{"name":"on press","links":[{"portIn":"Trigger 0","portOut":"on press","objIn":"9xrx1aiud","objOut":"tvhdy0oy7"}]},{"name":"on release","links":[{"portIn":"Trigger 1","portOut":"on release","objIn":"9xrx1aiud","objOut":"tvhdy0oy7"}]},{"name":"Pressed","value":1},{"name":"Key","value":"Shift"}],"objName":"Ops.Devices.Keyboard.KeyPressLearn"},{"id":"9xrx1aiud","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Value 0","value":0.05},{"name":"Value 1","value":0.5},{"name":"Value 2","value":0.5},{"name":"Value 3","value":0},{"name":"Value 4","value":0},{"name":"Value 5","value":0},{"name":"Value 6","value":0},{"name":"Value 7","value":0},{"name":"Default Value","value":""}],"portsOut":[{"name":"Value","links":[{"portIn":"Multiply","portOut":"Value","objIn":"dq71li66q","objOut":"9xrx1aiud"}]},{"name":"Last Value","value":0.05}],"objName":"Ops.Number.SwitchNumberOnTrigger"},{"id":"hf3ib8jqh","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"Next","links":[{"portIn":"Trigger 2","portOut":"Next","objIn":"9xrx1aiud","objOut":"hf3ib8jqh"}]},{"name":"Was Triggered","value":1}],"objName":"Ops.Trigger.TriggerOnce"},{"id":"48vrkn65x","uiAttribs":{},"portsIn":[{"name":"Size index","value":0},{"name":"Size","value":"Auto"},{"name":"Width","value":640},{"name":"Height","value":480},{"name":"Filter index","value":1},{"name":"Filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Pixel Format index","value":5},{"name":"Pixel Format","value":"SRGBA 8bit ubyte"},{"name":"R","value":0},{"name":"G","value":0},{"name":"B","value":0},{"name":"A","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"6fb2f0244","objOut":"48vrkn65x"}]},{"name":"texture_out","links":[{"portIn":"Diffuse","portOut":"texture_out","objIn":"flor1ge09","objOut":"48vrkn65x"}]},{"name":"Aspect Ratio","value":1.715883668903803},{"name":"Texture Width","value":1534},{"name":"Texture Height","value":894}],"objName":"Ops.Gl.ImageCompose.ImageCompose_v4"},{"id":"wcm52u6xo","uiAttribs":{},"portsIn":[{"name":"x","value":-1},{"name":"y","value":0.4},{"name":"z","value":-1}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"62jtojeuu","objOut":"wcm52u6xo"}]}],"objName":"Ops.Gl.Matrix.ScaleXYZViewMatrix"},{"id":"flor1ge09","uiAttribs":{},"portsIn":[{"name":"r","value":0.07},{"name":"g","value":0.06},{"name":"b","value":0.51},{"name":"AO Intensity","value":1},{"name":"Normal Map Intensity","value":1},{"name":"Repeat X","value":1},{"name":"Repeat Y","value":1},{"name":"Offset X","value":0.93},{"name":"Offset Y","value":-0.89},{"name":"Screen Space Normals","value":0},{"name":"Calc normal tangents","value":1},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":1},{"name":"Alpha Mask Source index","value":0},{"name":"Alpha Mask Source","value":"Luminance"}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"wcm52u6xo","objOut":"flor1ge09"}]}],"objName":"Ops.Gl.Shader.MatCapMaterial_v3"},{"id":"9dqwuc8l6","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":1},{"name":"height","value":1.8},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":1},{"name":"num rows","value":1}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"2zbdnj6oz","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_size"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"zpf6nadj7","objOut":"2zbdnj6oz"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"eb7wv37c6","uiAttribs":{},"portsIn":[{"name":"file","value":"assets/6697c3b245eb5d333bae2007_NEL_SRVB.webp","display":"file"},{"name":"extrude","value":4.42},{"name":"width","value":3},{"name":"height","value":3},{"name":"columns","value":21},{"name":"texCoords slice","value":1},{"name":"flat","value":1}],"portsOut":[{"name":"geometry","links":[{"portIn":"Value","portOut":"geometry","objIn":"hr05yjyy0","objOut":"eb7wv37c6"}]}],"objName":"Ops.Gl.Meshes.HeightMap"},{"id":"cx3uanmz2","uiAttribs":{},"portsOut":[{"name":"Out Object","links":[{"portIn":"Object","portOut":"Out Object","objIn":"2k40p1ixu","objOut":"cx3uanmz2"}]}],"objName":"Ops.Json.ObjectFunnel"},{"id":"j4exj9jwp","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_tone"}],"portsOut":[{"name":"Value","links":[{"portIn":"Diffuse R","portOut":"Value","objIn":"leqa7h4pd","objOut":"j4exj9jwp"},{"portIn":"Diffuse G","portOut":"Value","objIn":"leqa7h4pd","objOut":"j4exj9jwp"},{"portIn":"Diffuse B","portOut":"Value","objIn":"leqa7h4pd","objOut":"j4exj9jwp"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"c4hww7lmi","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_tone"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"3gcrjukfk","objOut":"c4hww7lmi"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"33hdtkr51","uiAttribs":{},"portsIn":[{"name":"x","value":0},{"name":"y","value":0.31},{"name":"z","value":-0.01}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"flor1ge09","objOut":"33hdtkr51"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"3gcrjukfk","uiAttribs":{},"portsIn":[{"name":"Min","value":0},{"name":"Max","value":1},{"name":"Easing index","value":11},{"name":"Easing","value":"Sin Out"}],"portsOut":[{"name":"Result","links":[{"portIn":"Opacity","portOut":"Result","objIn":"flor1ge09","objOut":"3gcrjukfk"}]}],"objName":"Ops.Math.Ease"},{"id":"62voq6obk","uiAttribs":{},"portsIn":[{"name":"Value","value":0},{"name":"Variable","value":"ui_scapeDiffusion"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"l7fhi163a","uiAttribs":{},"portsIn":[{"name":"Nth","value":2}],"portsOut":[{"name":"Next","links":[{"portIn":"exe","portOut":"Next","objIn":"l3284qrsh","objOut":"l7fhi163a"}]}],"objName":"Ops.Trigger.NthTrigger_v2"},{"id":"zpf6nadj7","uiAttribs":{},"portsOut":[{"name":"Result","value":0.5324599999999999}],"objName":"Ops.Math.OneMinus"},{"id":"oba4wt0jq","uiAttribs":{},"portsIn":[{"name":"scale","value":0.8},{"name":"x","value":1},{"name":"y","value":1},{"name":"z","value":0.86}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"o4q65sx2h","objOut":"oba4wt0jq"}]}],"objName":"Ops.Gl.Matrix.Scale"},{"id":"62jtojeuu","uiAttribs":{},"portsIn":[{"name":"posX","value":0},{"name":"posY","value":-1.15},{"name":"posZ","value":-3.52},{"name":"scale","value":3.57},{"name":"rotX","value":-83.76},{"name":"rotY","value":0},{"name":"rotZ","value":180}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"9dqwuc8l6","objOut":"62jtojeuu"}]}],"objName":"Ops.Gl.Matrix.TransformView"},{"id":"rw14ave8u","uiAttribs":{},"portsIn":[{"name":"easing index","value":8},{"name":"easing","value":"Expo Out"},{"name":"duration","value":0.75},{"name":"Direction index","value":0},{"name":"Direction","value":"Both"},{"name":"value false","value":0},{"name":"value true","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"Update","portOut":"trigger","objIn":"zpbecbb56","objOut":"rw14ave8u"}]},{"name":"value","links":[{"portIn":"Value","portOut":"value","objIn":"62fo5emt0","objOut":"rw14ave8u"},{"portIn":"Value","portOut":"value","objIn":"zpbecbb56","objOut":"rw14ave8u"}]},{"name":"finished","value":1}],"objName":"Ops.Anim.BoolAnim"},{"id":"73bb2nz0u","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_hitBodyName"}],"portsOut":[{"name":"Value","links":[{"portIn":"String","portOut":"Value","objIn":"vgzr81mxh","objOut":"73bb2nz0u"}]}],"objName":"Ops.Vars.VarGetString"},{"id":"vgzr81mxh","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"bool","portOut":"Result","objIn":"rw14ave8u","objOut":"vgzr81mxh"}]}],"objName":"Ops.String.StringLength_v2"},{"id":"n9u25c6ax","uiAttribs":{},"portsIn":[{"name":"posX","value":-0.51},{"name":"posY","value":-0.26},{"name":"posZ","value":0},{"name":"scale","value":1},{"name":"rotX","value":0},{"name":"rotY","value":180},{"name":"rotZ","value":180}],"portsOut":[{"name":"trigger","links":[{"portIn":"Execute","portOut":"trigger","objIn":"lsv3n3hs3","objOut":"n9u25c6ax"},{"portIn":"Execute","portOut":"trigger","objIn":"3n0xi3fsv","objOut":"n9u25c6ax"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"st6y5rwmi","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Speed","value":0.025},{"name":"Play","value":1},{"name":"Sync to timeline","value":0}],"portsOut":[{"name":"Time","links":[{"portIn":"Value 1","portOut":"Time","objIn":"c0ib2t71q","objOut":"st6y5rwmi"}]}],"objName":"Ops.Anim.Timer_v2"},{"id":"t1ryttgy8","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"Next","links":[{"portIn":"Reset","portOut":"Next","objIn":"st6y5rwmi","objOut":"t1ryttgy8"}]},{"name":"Number","value":false}],"objName":"Ops.Number.TriggerOnChangeNumber"},{"id":"c0ib2t71q","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Value 2","value":0.02}],"portsOut":[{"name":"result","links":[{"portIn":"number1","portOut":"result","objIn":"gl8rvk911","objOut":"c0ib2t71q"}]}],"objName":"Ops.Math.Min_v3"},{"id":"gl8rvk911","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"number2","value":-1}],"portsOut":[{"name":"result","links":[{"portIn":"Speed","portOut":"result","objIn":"b65ca0b8-40c9-4d0a-9e22-aba7d89f3abf","objOut":"gl8rvk911"}]}],"objName":"Ops.Math.Multiply"},{"id":"csl3j7cy1","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"When False index","value":0},{"name":"When False","value":"keep last number"}],"portsOut":[{"name":"Value Out","links":[{"portIn":"out0 DeltaSum Absolute Value","portOut":"Value Out","objIn":"7bebb5f0-9d69-43ee-98be-27a13edd98db","objOut":"csl3j7cy1"}]}],"objName":"Ops.Number.GateNumber"},{"id":"na2pda15t","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Separate inc/dec","value":0},{"name":"Value","value":0},{"name":"Inc factor","value":4,"title":"Inc/Dec factor"},{"name":"Dec factor","value":4}],"portsOut":[{"name":"Result","links":[{"portIn":"Custom Value","portOut":"Result","objIn":"csl3j7cy1","objOut":"na2pda15t"}]}],"objName":"Ops.Anim.Smooth"},{"id":"ge3zj70cy","uiAttribs":{},"portsIn":[{"name":"x","value":-0.83},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger","portOut":"trigger","objIn":"jrkdakvqd","objOut":"ge3zj70cy"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"jrkdakvqd","uiAttribs":{},"portsIn":[{"name":"Shape index","value":1},{"name":"Shape","value":"BoxAA"},{"name":"Name","value":"dial.1"},{"name":"Radius","value":0.25},{"name":"Size X","value":0.55},{"name":"Size Y","value":1},{"name":"Size Z","value":0},{"name":"Positions"},{"name":"Append Index to name","value":1}],"objName":"Ops.Graphics.Intersection.IntersectBody"},{"id":"lb4ss1de9","uiAttribs":{},"portsIn":[{"name":"mul","value":-0.92}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"2p7s5nsc9","objOut":"lb4ss1de9"}]}],"objName":"Ops.Gl.Matrix.TransformMul"},{"id":"9f43w7192","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"6kwkmfn9z","objOut":"9f43w7192"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"6kwkmfn9z","uiAttribs":{},"portsIn":[{"name":"number2","value":5}],"portsOut":[{"name":"result","links":[{"portIn":"x","portOut":"result","objIn":"j447574nb","objOut":"6kwkmfn9z"}]}],"objName":"Ops.Math.Multiply"},{"id":"62fo5emt0","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__labelBoolAnim"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"3zhcjuyyj","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__labelBoolAnim"}],"portsOut":[{"name":"Value","links":[{"portIn":"a","portOut":"Value","objIn":"uc9r4wu0r","objOut":"3zhcjuyyj"},{"portIn":"B","portOut":"Value","objIn":"v11enlha4","objOut":"3zhcjuyyj"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"zpbecbb56","uiAttribs":{},"portsIn":[{"name":"Delay","value":0.5},{"name":"Clear on Change","value":0},{"name":"easing index","value":2},{"name":"easing","value":"smoothstep"}],"portsOut":[{"name":"Result","links":[{"portIn":"a","portOut":"Result","objIn":"kgtq6kbqp","objOut":"zpbecbb56"}]}],"objName":"Ops.Number.DelayedNumber"},{"id":"v11enlha4","uiAttribs":{},"portsIn":[{"name":"C","value":2},{"name":"D","value":3},{"name":"Expression","value":"(a*0.15) * b"}],"portsOut":[{"name":"Result","links":[{"portIn":"height","portOut":"Result","objIn":"2p7s5nsc9","objOut":"v11enlha4"}]},{"name":"Expression Valid","value":true}],"objName":"Ops.Math.MathExpression"},{"id":"vw32ba4ay","uiAttribs":{},"portsIn":[{"name":"Maximum","value":0.1}],"portsOut":[{"name":"result","links":[{"portIn":"Value","portOut":"result","objIn":"8dnvznngh","objOut":"vw32ba4ay"}]}],"objName":"Ops.Math.Max"},{"id":"k1xasfekl","uiAttribs":{},"portsIn":[{"name":"Separate inc/dec","value":0},{"name":"Inc factor","value":4,"title":"Inc/Dec factor"},{"name":"Dec factor","value":4}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"a1dx328je","objOut":"k1xasfekl"}]},{"name":"Array Out","links":[{"portIn":"array","portOut":"Array Out","objIn":"scp4776vv","objOut":"k1xasfekl"},{"portIn":"array","portOut":"Array Out","objIn":"ffpua72y1","objOut":"k1xasfekl"},{"portIn":"array","portOut":"Array Out","objIn":"0yopgevxd","objOut":"k1xasfekl"},{"portIn":"array","portOut":"Array Out","objIn":"jj4a1wi34","objOut":"k1xasfekl"}]}],"objName":"Ops.User.cristianvogel.LofiSmoothArray"},{"id":"98iul8y9a","uiAttribs":{},"portsIn":[{"name":"Maximum","value":0.005}],"portsOut":[{"name":"result","links":[{"portIn":"Value","portOut":"result","objIn":"iwrkcxo1s","objOut":"98iul8y9a"}]}],"objName":"Ops.Math.Max"},{"id":"8dnvznngh","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_size"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"ok235i5ag","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_mix"}],"portsOut":[{"name":"Value","links":[{"portIn":"number","portOut":"Value","objIn":"nf37ruj15","objOut":"ok235i5ag"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"6xynvbmkd","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_mix"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"hlukndsg2","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_tone"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"iwrkcxo1s","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_diffusion"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"6htv77yjw","uiAttribs":{},"portsIn":[{"name":"Title","value":"Warping"}],"objName":"Ops.Ui.Area"},{"id":"scp4776vv","uiAttribs":{},"portsIn":[{"name":"index","value":0},{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"Value","portOut":"value","objIn":"6xynvbmkd","objOut":"scp4776vv"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"ffpua72y1","uiAttribs":{},"portsIn":[{"name":"index","value":3},{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"value","portOut":"value","objIn":"vw32ba4ay","objOut":"ffpua72y1"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"0yopgevxd","uiAttribs":{},"portsIn":[{"name":"index","value":2},{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"Value","portOut":"value","objIn":"hlukndsg2","objOut":"0yopgevxd"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"jj4a1wi34","uiAttribs":{},"portsIn":[{"name":"index","value":1},{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"value","portOut":"value","objIn":"98iul8y9a","objOut":"jj4a1wi34"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"34zmy4a4l","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"mainExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Execute","portOut":"Triggered","objIn":"k1xasfekl","objOut":"34zmy4a4l"},{"portIn":"Render","portOut":"Triggered","objIn":"51ldwg650","objOut":"34zmy4a4l"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"g8s0zafv1","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_dialValues_array"}],"portsOut":[{"name":"Value","links":[{"portIn":"Array In","portOut":"Value","objIn":"k1xasfekl","objOut":"g8s0zafv1"}]}],"objName":"Ops.Vars.VarGetArray_v2"},{"id":"lxdfer2oi","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__lensFlareTexts"}],"objName":"Ops.Vars.VarGetTexture_v2"},{"id":"e2dgivql3","uiAttribs":{},"portsIn":[{"name":"value","value":"slider_scapeLength"}],"portsOut":[{"name":"String","links":[{"portIn":"btagbs7z2","portOut":"String","objIn":"5jrf5b006","objOut":"e2dgivql3"}]}],"objName":"Ops.String.String_v2"},{"id":"lsscrp8mo","uiAttribs":{},"portsIn":[{"name":"Font","value":"chivo"},{"name":"Scale","value":0.12},{"name":"Letter Spacing","value":-0.02},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":2},{"name":"Vertical Align","value":"Middle"},{"name":"r","value":0.75},{"name":"g","value":0.75},{"name":"b","value":0.75},{"name":"a","value":1},{"name":"SDF","value":1},{"name":"Smoothing","value":0.108},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.2537625},{"name":"Height","value":0.07025227272727273},{"name":"Start Y","value":0.03612727272727272},{"name":"Num Chars","value":9}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"vh92hy3y9","uiAttribs":{},"portsIn":[{"name":"y","value":-0.94},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"lsscrp8mo","objOut":"vh92hy3y9"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"1kt28jybk","uiAttribs":{},"portsIn":[{"name":"Repeats","value":4},{"name":"Direction index","value":0},{"name":"Direction","value":"Forward"}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"vh92hy3y9","objOut":"1kt28jybk"}]},{"name":"index","links":[{"portIn":"number1","portOut":"index","objIn":"x156qdz90","objOut":"1kt28jybk"},{"portIn":"Index","portOut":"index","objIn":"pu033f5xy","objOut":"1kt28jybk"}]}],"objName":"Ops.Trigger.Repeat_v2"},{"id":"x156qdz90","uiAttribs":{},"portsIn":[{"name":"number2","value":0.8}],"portsOut":[{"name":"result","links":[{"portIn":"x","portOut":"result","objIn":"vh92hy3y9","objOut":"x156qdz90"}]}],"objName":"Ops.Math.Multiply"},{"id":"p3udn0kt2","uiAttribs":{},"portsIn":[{"name":"x","value":-1.2},{"name":"y","value":0.03},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Execute","portOut":"trigger","objIn":"1kt28jybk","objOut":"p3udn0kt2"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"3ph9rgnw8","uiAttribs":{},"portsIn":[{"name":"Title","value":"scape length"}],"objName":"Ops.Ui.Area"},{"id":"pu033f5xy","uiAttribs":{},"portsIn":[{"name":"String 0","value":"light"},{"name":"String 1","value":"surface"},{"name":"String 2","value":"temple"},{"name":"String 3","value":"immersion"},{"name":"String 4","value":""},{"name":"String 5","value":""},{"name":"String 6","value":""},{"name":"String 7","value":""},{"name":"String 8","value":""},{"name":"String 9","value":""}],"portsOut":[{"name":"Result","links":[{"portIn":"Text","portOut":"Result","objIn":"lsscrp8mo","objOut":"pu033f5xy"}]}],"objName":"Ops.String.SwitchString"},{"id":"kvx1qrhxt","uiAttribs":{},"portsIn":[{"name":"number2","value":0.33}],"portsOut":[{"name":"result","links":[{"portIn":"value","portOut":"result","objIn":"9cfc0k1rh","objOut":"kvx1qrhxt"}]}],"objName":"Ops.Math.Sum"},{"id":"p4a68w5bu","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Execute","portOut":"Triggered","objIn":"1qf5qizbm","objOut":"p4a68w5bu"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"2ccc5csp8","uiAttribs":{},"portsIn":[{"name":"value","value":"slider_scapeLevel"}],"portsOut":[{"name":"String","links":[{"portIn":"btagbs7z2","portOut":"String","objIn":"827hbx7y7","objOut":"2ccc5csp8"}]}],"objName":"Ops.String.String_v2"},{"id":"t6jogaz9t","uiAttribs":{},"portsIn":[{"name":"Title","value":"scape mix"}],"objName":"Ops.Ui.Area"},{"id":"xagcljatm","uiAttribs":{},"portsIn":[{"name":"number2","value":0.4}],"portsOut":[{"name":"result","links":[{"portIn":"value","portOut":"result","objIn":"qkhcjgu05","objOut":"xagcljatm"}]}],"objName":"Ops.Math.Sum"},{"id":"l0tg11bqe","uiAttribs":{},"portsIn":[{"name":"width","value":10},{"name":"height","value":0.49},{"name":"Logarithmic","value":1},{"name":"pivot x index","value":0},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":0},{"name":"pivot y","value":"center"},{"name":"num columns","value":8},{"name":"num rows","value":12},{"name":"axis index","value":0},{"name":"axis","value":"xy"}],"portsOut":[{"name":"Point Arrays","links":[{"portIn":"Points","portOut":"Point Arrays","objIn":"bjn0972ht","objOut":"l0tg11bqe"}]}],"objName":"Ops.Gl.Meshes.LinesArray"},{"id":"bjn0972ht","uiAttribs":{},"portsIn":[{"name":"Tesselate Edges","value":0},{"name":"Render Mesh","value":1}],"objName":"Ops.Gl.Meshes.SplineMesh_v2"},{"id":"yte4ra0uu","uiAttribs":{},"portsIn":[{"name":"Width","value":1.03},{"name":"Width Perspective","value":0},{"name":"Mapping index","value":1},{"name":"Mapping","value":"Face"},{"name":"Colorize Texture","value":0},{"name":"Offset","value":0},{"name":"r","value":0.179},{"name":"g","value":1},{"name":"b","value":0.692}],"portsOut":[{"name":"Trigger","links":[{"portIn":"render","portOut":"Trigger","objIn":"kom6mxww1","objOut":"yte4ra0uu"}]}],"objName":"Ops.Gl.Meshes.SplineMeshMaterial_v2"},{"id":"ertlqmhh5","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"l0tg11bqe","objOut":"ertlqmhh5"}]},{"name":"Was Triggered","value":1}],"objName":"Ops.Trigger.TriggerOnce"},{"id":"kom6mxww1","uiAttribs":{},"portsIn":[{"name":"posX","value":0},{"name":"posY","value":-0.75},{"name":"posZ","value":0.45},{"name":"scale","value":1},{"name":"rotX","value":180},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"bjn0972ht","objOut":"kom6mxww1"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"9li4kwtsh","uiAttribs":{},"portsIn":[{"name":"number1","value":1},{"name":"number2","value":0.2}],"portsOut":[{"name":"result","links":[{"portIn":"a","portOut":"result","objIn":"yte4ra0uu","objOut":"9li4kwtsh"}]}],"objName":"Ops.Math.Multiply"},{"id":"99du8h3y9","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"preSequenceFlow"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Render","portOut":"Triggered","objIn":"yte4ra0uu","objOut":"99du8h3y9"},{"portIn":"Exec","portOut":"Triggered","objIn":"ertlqmhh5","objOut":"99du8h3y9"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"0oj6cpo44","uiAttribs":{},"portsIn":[{"name":"Title","value":"LInes"}],"objName":"Ops.Ui.Area"},{"id":"0aj10qlpy","uiAttribs":{},"portsIn":[{"name":"Width","value":0.35},{"name":"Height","value":0.3},{"name":"ID","value":""},{"name":"Class","value":""},{"name":"Pivot x index","value":0},{"name":"Pivot x","value":"center"},{"name":"Pivot y index","value":0},{"name":"Pivot y","value":"center"},{"name":"Axis index","value":0},{"name":"Axis","value":"xy"},{"name":"Is Interactive","value":1},{"name":"Render Rectangle","value":0},{"name":"Show Boundings","value":0},{"name":"Cursor index","value":2},{"name":"Cursor","value":"pointer"},{"name":"Render","value":1,"title":"Active"}],"portsOut":[{"name":"Trigger out","links":[{"portIn":"exe","portOut":"Trigger out","objIn":"txw282mz1","objOut":"0aj10qlpy"}]},{"name":"Pointer Hover","links":[{"portIn":"bool","portOut":"Pointer Hover","objIn":"txw282mz1","objOut":"0aj10qlpy"},{"portIn":"Value","portOut":"Pointer Hover","objIn":"xlw1du0hx","objOut":"0aj10qlpy"}]},{"name":"Pointer Down","links":[{"portIn":"Value","portOut":"Pointer Down","objIn":"kkiqqacrp","objOut":"0aj10qlpy"}]},{"name":"Pointer X","value":0.11228778099303949},{"name":"Pointer Y","value":0.8107744060432474},{"name":"Top","value":2.2850605845451355},{"name":"Left","value":1241.76327586174},{"name":"Right","value":1381.9887015223503},{"name":"Bottom","value":122.47831481695175}],"objName":"Ops.Gl.InteractiveRectangle_v2"},{"id":"skw3mtb13","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Execute","portOut":"Triggered","objIn":"qgfcwj6li","objOut":"skw3mtb13"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"0tooxrj1w","uiAttribs":{},"portsIn":[{"name":"x","value":1.36},{"name":"y","value":0.96},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger in","portOut":"trigger","objIn":"0aj10qlpy","objOut":"0tooxrj1w"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"8jcmfxmos","uiAttribs":{},"portsIn":[{"name":"File","value":"assets/6697c3b245eb5d333bae2007_NEL_SRVB.webp","display":"file"},{"name":"Filter index","value":2},{"name":"Filter","value":"mipmap"},{"name":"Wrap index","value":0},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":3},{"name":"Anisotropic","value":"4"},{"name":"Data Format index","value":3},{"name":"Data Format","value":"RGBA"},{"name":"Flip","value":0},{"name":"Pre Multiplied Alpha","value":0},{"name":"Active","value":1},{"name":"Save Memory","value":1},{"name":"Add Cachebuster","value":0}],"portsOut":[{"name":"Texture","links":[{"portIn":"texture","portOut":"Texture","objIn":"alnrfm1xt","objOut":"8jcmfxmos"}]},{"name":"Width","value":256},{"name":"Height","value":256},{"name":"Aspect Ratio","value":1},{"name":"Loaded","value":1},{"name":"Loading","value":0}],"objName":"Ops.Gl.Texture_v2"},{"id":"k9oj9uhcw","uiAttribs":{},"portsIn":[{"name":"x","value":1.99},{"name":"y","value":1.43},{"name":"z","value":-1}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"alnrfm1xt","objOut":"k9oj9uhcw"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"alnrfm1xt","uiAttribs":{},"portsIn":[{"name":"r","value":0.9084857245945317},{"name":"g","value":0.10570856602655021},{"name":"b","value":0.6349807163120653},{"name":"a","value":1},{"name":"colorizeTexture","value":0},{"name":"Vertex Colors","value":0},{"name":"Alpha Mask Source index","value":0},{"name":"Alpha Mask Source","value":"Luminance"},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":1},{"name":"diffuseRepeatX","value":1},{"name":"diffuseRepeatY","value":1},{"name":"Tex Offset X","value":1},{"name":"Tex Offset Y","value":1},{"name":"Crop TexCoords","value":0},{"name":"billboard","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"update","portOut":"trigger","objIn":"zte2jkdci","objOut":"alnrfm1xt"}]}],"objName":"Ops.Gl.Shader.BasicMaterial_v3"},{"id":"txw282mz1","uiAttribs":{},"portsIn":[{"name":"easing index","value":9},{"name":"easing","value":"Expo In Out"},{"name":"duration","value":0.25},{"name":"Direction index","value":0},{"name":"Direction","value":"Both"},{"name":"value false","value":0},{"name":"value true","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"Execute","portOut":"trigger","objIn":"u2xal6b27","objOut":"txw282mz1"},{"portIn":"render","portOut":"trigger","objIn":"fzsniu9pe","objOut":"txw282mz1"}]},{"name":"value","links":[{"portIn":"Percentage","portOut":"value","objIn":"pmu87q3eb","objOut":"txw282mz1"},{"portIn":"a","portOut":"value","objIn":"gji70mzgw","objOut":"txw282mz1"}]},{"name":"finished","links":[{"portIn":"Boolean","portOut":"finished","objIn":"m56qbr4ki","objOut":"txw282mz1"}]}],"objName":"Ops.Anim.BoolAnim"},{"id":"1u49ak691","uiAttribs":{},"portsIn":[{"name":"radius","value":0.5},{"name":"segments","value":3},{"name":"percent","value":1},{"name":"steps","value":0},{"name":"invertSteps","value":1},{"name":"mapping index","value":1},{"name":"mapping","value":"round"},{"name":"Spline","value":0},{"name":"Draw","value":0,"title":"Render mesh"}],"portsOut":[{"name":"geometry","links":[{"portIn":"Geometry","portOut":"geometry","objIn":"ee0okj3wi","objOut":"1u49ak691"}]}],"objName":"Ops.Gl.Meshes.Circle_v3"},{"id":"kkiqqacrp","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__scapeDirectionToggle"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"6lh7g16he","uiAttribs":{},"portsIn":[{"name":"Value 0","value":0.52},{"name":"Value 1","value":-0.53}],"portsOut":[{"name":"Out Value","links":[{"portIn":"Speed","portOut":"Out Value","objIn":"40fnzsucx","objOut":"6lh7g16he"}]}],"objName":"Ops.Boolean.BoolToNumber_v2"},{"id":"6fb2f0244","uiAttribs":{},"portsIn":[{"name":"Passes","value":1},{"name":"Clamp","value":0},{"name":"direction index","value":0},{"name":"direction","value":"both"},{"name":"Mask Invert","value":0}],"objName":"Ops.Gl.ImageCompose.FastBlur_v2"},{"id":"iw9wg4r88","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_finalTextOut"}],"objName":"Ops.Vars.VarGetTexture_v2"},{"id":"k2von2tr1","uiAttribs":{},"portsIn":[{"name":"Title","value":"reverse"}],"objName":"Ops.Ui.Area"},{"id":"cr8zmkk1u","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLength"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"bwbixjrcv","uiAttribs":{},"portsIn":[{"name":"B","value":1},{"name":"C","value":2},{"name":"D","value":3},{"name":"Expression","value":"a + 0.5"}],"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"cr8zmkk1u","objOut":"bwbixjrcv"}]},{"name":"Expression Valid","value":true}],"objName":"Ops.Math.MathExpression"},{"id":"8s8geqgwx","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLevel"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"6e04u3uk4","uiAttribs":{},"portsIn":[{"name":"B","value":1},{"name":"C","value":2},{"name":"D","value":3},{"name":"Expression","value":"a + 0.5"}],"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"8s8geqgwx","objOut":"6e04u3uk4"}]},{"name":"Expression Valid","value":true}],"objName":"Ops.Math.MathExpression"},{"id":"z3hsmrlsw","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_size"}],"portsOut":[{"name":"Value","links":[{"portIn":"Percentage","portOut":"Value","objIn":"o5rkdhq2k","objOut":"z3hsmrlsw"},{"portIn":"Percentage","portOut":"Value","objIn":"4jk31qlcv","objOut":"z3hsmrlsw"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"o5rkdhq2k","uiAttribs":{},"portsIn":[{"name":"Value 1","value":9},{"name":"Value 2","value":24}],"portsOut":[{"name":"Result","links":[{"portIn":"rows","portOut":"Result","objIn":"eb7wv37c6","objOut":"o5rkdhq2k"}]}],"objName":"Ops.Math.Interpolate"},{"id":"4jk31qlcv","uiAttribs":{},"portsIn":[{"name":"Value 1","value":1},{"name":"Value 2","value":2.6}],"portsOut":[{"name":"Result","links":[{"portIn":"z","portOut":"Result","objIn":"o4q65sx2h","objOut":"4jk31qlcv"}]}],"objName":"Ops.Math.Interpolate"},{"id":"hr05yjyy0","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__heightMapGeometry"}],"objName":"Ops.Vars.VarSetObject_v2"},{"id":"w2fqrmovh","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLength"}],"portsOut":[{"name":"Value","links":[{"portIn":"Percentage","portOut":"Value","objIn":"69bvpidqa","objOut":"w2fqrmovh"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"69bvpidqa","uiAttribs":{},"portsIn":[{"name":"Value 1","value":16},{"name":"Value 2","value":512}],"portsOut":[{"name":"Result","links":[{"portIn":"Number","portOut":"Result","objIn":"7pg8sq01l","objOut":"69bvpidqa"}]}],"objName":"Ops.Math.Interpolate"},{"id":"7pg8sq01l","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"texture width","portOut":"Result","objIn":"v2qv1ozh2","objOut":"7pg8sq01l"}]}],"objName":"Ops.Math.Ceil"},{"id":"3so3f33cf","uiAttribs":{},"portsIn":[{"name":"Diffuse R","value":0.21561448295683894},{"name":"Diffuse G","value":1},{"name":"Diffuse B","value":0.666},{"name":"Diffuse A","value":1},{"name":"Double Sided","value":0},{"name":"Colorize Texture","value":0}],"portsOut":[{"name":"next","links":[{"portIn":"render","portOut":"next","objIn":"oba4wt0jq","objOut":"3so3f33cf"}]}],"objName":"Ops.Gl.Phong.LambertMaterial_v2"},{"id":"65mpod5qd","uiAttribs":{},"portsIn":[{"name":"value","value":-0.15}],"portsOut":[{"name":"result","links":[{"portIn":"y","portOut":"result","objIn":"aupoduf7d","objOut":"65mpod5qd"},{"portIn":"y","portOut":"result","objIn":"7qikt1vaf","objOut":"65mpod5qd"},{"portIn":"y","portOut":"result","objIn":"mbk4m8pcr","objOut":"65mpod5qd"},{"portIn":"y","portOut":"result","objIn":"ge3zj70cy","objOut":"65mpod5qd"}]}],"objName":"Ops.Number.Number"},{"id":"ee0okj3wi","uiAttribs":{},"portsIn":[{"name":"Translate X","value":0},{"name":"Translate Y","value":0.03},{"name":"Translate Z","value":0},{"name":"Rotation X","value":0},{"name":"Rotation Z","value":0}],"portsOut":[{"name":"Result","links":[{"portIn":"Geometry","portOut":"Result","objIn":"iaywmhxb7","objOut":"ee0okj3wi"}]}],"objName":"Ops.Graphics.Geometry.TransformGeometry"},{"id":"iaywmhxb7","uiAttribs":{},"portsIn":[{"name":"Render Mesh","value":1},{"name":"Add Vertex Numbers","value":1}],"objName":"Ops.Gl.RenderGeometry_v2"},{"id":"u2xal6b27","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"render","portOut":"Trigger out","objIn":"1u49ak691","objOut":"u2xal6b27"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"m56qbr4ki","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"bool 1","portOut":"Result","objIn":"2td6endox","objOut":"m56qbr4ki"}]}],"objName":"Ops.Boolean.Not"},{"id":"zy3ewhgid","uiAttribs":{},"portsIn":[{"name":"easing index","value":8},{"name":"easing","value":"Expo Out"},{"name":"duration","value":2},{"name":"Direction index","value":0},{"name":"Direction","value":"Both"},{"name":"value false","value":0},{"name":"value true","value":180}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"iaywmhxb7","objOut":"zy3ewhgid"}]},{"name":"value","links":[{"portIn":"Rotation Y","portOut":"value","objIn":"ee0okj3wi","objOut":"zy3ewhgid"}]},{"name":"finished","value":1}],"objName":"Ops.Anim.BoolAnim"},{"id":"14rplnqfv","uiAttribs":{},"portsIn":[{"name":"value","value":0.3}],"portsOut":[{"name":"result","links":[{"portIn":"Scale X","portOut":"result","objIn":"ee0okj3wi","objOut":"14rplnqfv"},{"portIn":"Scale Y","portOut":"result","objIn":"ee0okj3wi","objOut":"14rplnqfv"},{"portIn":"Scale Z","portOut":"result","objIn":"ee0okj3wi","objOut":"14rplnqfv"}]}],"objName":"Ops.Number.Number"},{"id":"xlw1du0hx","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__directionHover"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"zte2jkdci","uiAttribs":{},"portsIn":[{"name":"Duration","value":0.1},{"name":"Invert","value":0}],"portsOut":[{"name":"Trigger Out","links":[{"portIn":"exe","portOut":"Trigger Out","objIn":"zy3ewhgid","objOut":"zte2jkdci"}]},{"name":"Value","links":[{"portIn":"bool 2","portOut":"Value","objIn":"2td6endox","objOut":"zte2jkdci"}]}],"objName":"Ops.Anim.Bang"},{"id":"2td6endox","uiAttribs":{},"portsIn":[{"name":"bool 3","value":0},{"name":"bool 4","value":0},{"name":"bool 5","value":0},{"name":"bool 6","value":0},{"name":"bool 7","value":0},{"name":"bool 8","value":0},{"name":"bool 9","value":0},{"name":"bool 10","value":0}],"portsOut":[{"name":"result","links":[{"portIn":"Pass Through","portOut":"result","objIn":"u2xal6b27","objOut":"2td6endox"}]}],"objName":"Ops.Boolean.Or"},{"id":"3cv6rdwm5","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"mainExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Exec","portOut":"Triggered","objIn":"litlcklxl","objOut":"3cv6rdwm5"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"litlcklxl","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Bang","portOut":"Next","objIn":"zte2jkdci","objOut":"litlcklxl"}]},{"name":"Was Triggered","value":1}],"objName":"Ops.Trigger.TriggerOnce"},{"id":"5jrf5b006","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"blls2amps","title":"Trigger in"},{"name":"btagbs7z2","title":"Class"},{"name":"lj06d561p","value":0,"title":"Show Boundings"},{"name":"patchId","value":"bp2sub_5jrf5b006"}],"portsOut":[{"name":"nti406vwi","title":"Result","links":[{"portIn":"A","portOut":"nti406vwi","objIn":"bwbixjrcv","objOut":"5jrf5b006"}]},{"name":"gjvx0zyv5","title":"value","links":[{"portIn":"number1","portOut":"gjvx0zyv5","objIn":"kvx1qrhxt","objOut":"5jrf5b006"}]}],"objName":"Ops.Patch.PuSSdim.BasicSlider_v2"},{"id":"827hbx7y7","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"blls2amps","title":"Trigger in"},{"name":"btagbs7z2","title":"Class"},{"name":"lj06d561p","value":0,"title":"Show Boundings"},{"name":"patchId","value":"bp2sub_827hbx7y7"}],"portsOut":[{"name":"nti406vwi","title":"Result","links":[{"portIn":"A","portOut":"nti406vwi","objIn":"6e04u3uk4","objOut":"827hbx7y7"}]},{"name":"gjvx0zyv5","title":"value","links":[{"portIn":"number1","portOut":"gjvx0zyv5","objIn":"xagcljatm","objOut":"827hbx7y7"}]}],"objName":"Ops.Patch.PuSSdim.BasicSlider_v1"},{"id":"hvxfadyo3","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Execute","portOut":"Triggered","objIn":"41p18fvfx","objOut":"hvxfadyo3"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"vr3j7sk4c","uiAttribs":{},"portsIn":[{"name":"posX","value":0.44},{"name":"posY","value":0.9},{"name":"posZ","value":0},{"name":"scale","value":1},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"akq5o2oet","objOut":"vr3j7sk4c"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"akq5o2oet","uiAttribs":{},"portsIn":[{"name":"Text","value":"* structure"},{"name":"Font","value":"chivo"},{"name":"Scale","value":0.14},{"name":"Letter Spacing","value":-0.04},{"name":"Line Height","value":1},{"name":"Align index","value":0},{"name":"Align","value":"Left"},{"name":"Vertical Align index","value":1},{"name":"Vertical Align","value":"Top"},{"name":"r","value":0.9},{"name":"g","value":0.9},{"name":"b","value":0.9},{"name":"SDF","value":1},{"name":"Smoothing","value":0.123},{"name":"Border","value":0},{"name":"Border Width","value":0.5},{"name":"Smoothness","value":0.25},{"name":"Border r","value":1},{"name":"Border g","value":1},{"name":"Border b","value":1},{"name":"Shadow","value":1},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"utt0283xl","objOut":"akq5o2oet"},{"portIn":"Update","portOut":"Next","objIn":"lmzv6xxhp","objOut":"akq5o2oet"}]},{"name":"Num Lines","value":1},{"name":"Width","value":0.32965625},{"name":"Height","value":0.08395160984848485},{"name":"Start Y","value":0.04530710227272727},{"name":"Num Chars","value":11}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"l01dmydzd","uiAttribs":{},"portsIn":[{"name":"Font","value":"chivo"},{"name":"Letter Spacing","value":0},{"name":"Line Height","value":1},{"name":"Align index","value":0},{"name":"Align","value":"Left"},{"name":"Vertical Align index","value":1},{"name":"Vertical Align","value":"Top"},{"name":"SDF","value":1},{"name":"Smoothing","value":0.096},{"name":"Border","value":0},{"name":"Border Width","value":0.5},{"name":"Smoothness","value":0.25},{"name":"Border r","value":1},{"name":"Border g","value":1},{"name":"Border b","value":1},{"name":"Shadow","value":1},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"d394u2tn6","objOut":"l01dmydzd"}]},{"name":"Num Lines","value":1},{"name":"Width","value":0.34924375},{"name":"Height","value":0.10977807765151512},{"name":"Start Y","value":0.05899446022727271},{"name":"Num Chars","value":7}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"utt0283xl","uiAttribs":{},"portsIn":[{"name":"x","value":0.46},{"name":"y","value":0},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"l01dmydzd","objOut":"utt0283xl"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"qt0hony1d","uiAttribs":{},"portsIn":[{"name":"Width","value":0.56},{"name":"Height","value":0.12},{"name":"ID","value":"slider_structure"},{"name":"Class","value":""},{"name":"Pivot x index","value":0},{"name":"Pivot x","value":"center"},{"name":"Pivot y index","value":0},{"name":"Pivot y","value":"center"},{"name":"Axis index","value":0},{"name":"Axis","value":"xy"},{"name":"Is Interactive","value":1},{"name":"Render Rectangle","value":0},{"name":"Show Boundings","value":0},{"name":"Cursor index","value":2},{"name":"Cursor","value":"pointer"},{"name":"Render","value":1,"title":"Active"}],"portsOut":[{"name":"Trigger out","links":[{"portIn":"update","portOut":"Trigger out","objIn":"zarq8c2tv","objOut":"qt0hony1d"},{"portIn":"exe","portOut":"Trigger out","objIn":"b4bc3876u","objOut":"qt0hony1d"}]},{"name":"Pointer Hover","links":[{"portIn":"bool","portOut":"Pointer Hover","objIn":"b4bc3876u","objOut":"qt0hony1d"}]},{"name":"Pointer Down","value":0},{"name":"Pointer X","value":0.10916865925432744},{"name":"Pointer Y","value":0.017482710711775873},{"name":"Top","value":66.38811707496643},{"name":"Left","value":1007.3864635825157},{"name":"Right","value":1231.747144639492},{"name":"Bottom","value":114.46542942523956},{"name":"Left Click","links":[{"portIn":"Bang","portOut":"Left Click","objIn":"zarq8c2tv","objOut":"qt0hony1d"},{"portIn":"trigger in","portOut":"Left Click","objIn":"giylicm3u","objOut":"qt0hony1d"}]}],"objName":"Ops.Gl.InteractiveRectangle_v2"},{"id":"zcqvrg63v","uiAttribs":{},"portsIn":[{"name":"x","value":0.88},{"name":"y","value":0.89},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger in","portOut":"trigger","objIn":"qt0hony1d","objOut":"zcqvrg63v"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"zarq8c2tv","uiAttribs":{},"portsIn":[{"name":"Duration","value":0.5},{"name":"Invert","value":0}],"portsOut":[{"name":"Value","links":[{"portIn":"Random Seed ","portOut":"Value","objIn":"dssq1axq2","objOut":"zarq8c2tv"},{"portIn":"number1","portOut":"Value","objIn":"tusq6xfh3","objOut":"zarq8c2tv"}]}],"objName":"Ops.Anim.Bang"},{"id":"giylicm3u","uiAttribs":{},"portsIn":[{"name":"Loop min","value":0},{"name":"Loop max","value":15}],"portsOut":[{"name":"current count","links":[{"portIn":"number1","portOut":"current count","objIn":"55jf7ng6g","objOut":"giylicm3u"}]}],"objName":"Ops.Trigger.TriggerCounterLoop"},{"id":"djbr6tym4","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"Text","portOut":"result","objIn":"l01dmydzd","objOut":"djbr6tym4"}]}],"objName":"Ops.Array.ArrayGetString"},{"id":"pnzzc7ulm","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_structure"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"26j6rhozk","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_structure"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"lmzv6xxhp","objOut":"26j6rhozk"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"iijz0ye9r","uiAttribs":{},"portsIn":[{"name":"text","value":"A035506\nA007604\nA227413\nA000040\nA052330\nA000607\nA01401\nA064356\nA096441\nA000009\nA199535\nA000010\nA316667\nA111133\nA000124\nA005132"},{"name":"separator","value":" "},{"name":"Numbers","value":0},{"name":"Trim","value":1},{"name":"Split Lines","value":1}],"portsOut":[{"name":"array","links":[{"portIn":"array","portOut":"array","objIn":"djbr6tym4","objOut":"iijz0ye9r"}]},{"name":"length","value":16}],"objName":"Ops.Array.StringToArray_v2"},{"id":"d394u2tn6","uiAttribs":{},"portsIn":[{"name":"x","value":-0.11},{"name":"y","value":-0.05},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"hm7bbicrb","objOut":"d394u2tn6"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"b4bc3876u","uiAttribs":{},"portsIn":[{"name":"easing index","value":0},{"name":"easing","value":"linear"},{"name":"duration","value":0.125},{"name":"Direction index","value":0},{"name":"Direction","value":"Both"},{"name":"value false","value":0},{"name":"value true","value":1}],"portsOut":[{"name":"value","links":[{"portIn":"value","portOut":"value","objIn":"l88qnkqyk","objOut":"b4bc3876u"},{"portIn":"Percentage","portOut":"value","objIn":"wv9yfmhgi","objOut":"b4bc3876u"}]},{"name":"finished","value":1}],"objName":"Ops.Anim.BoolAnim"},{"id":"hm7bbicrb","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":4.91},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":1},{"name":"num rows","value":1}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"dssq1axq2","uiAttribs":{},"portsIn":[{"name":"Num Values","value":15},{"name":"Mode index","value":0},{"name":"Mode","value":"A"},{"name":"Integer","value":0},{"name":"Last == First","value":0},{"name":"Min A","value":0},{"name":"Min B","value":-1},{"name":"Max B","value":1},{"name":"Min C","value":-1},{"name":"Max C","value":1},{"name":"Min D","value":-1},{"name":"Max D","value":1}],"portsOut":[{"name":"Array Out","links":[{"portIn":"Rotations","portOut":"Array Out","objIn":"l01dmydzd","objOut":"dssq1axq2"}]},{"name":"Chunks Amount","value":15},{"name":"Array length","value":15}],"objName":"Ops.Array.RandomNumbersArray_v4"},{"id":"tusq6xfh3","uiAttribs":{},"portsIn":[{"name":"number2","value":0.0001}],"portsOut":[{"name":"result","links":[{"portIn":"number1","portOut":"result","objIn":"q51297pyv","objOut":"tusq6xfh3"}]}],"objName":"Ops.Math.Compare.GreaterThan"},{"id":"q51297pyv","uiAttribs":{},"portsIn":[{"name":"number2","value":360}],"portsOut":[{"name":"result","links":[{"portIn":"Max A","portOut":"result","objIn":"dssq1axq2","objOut":"q51297pyv"}]}],"objName":"Ops.Math.Multiply"},{"id":"fm66pbek9","uiAttribs":{},"portsIn":[{"name":"Title","value":"structure"}],"objName":"Ops.Ui.Area"},{"id":"nme067fl0","uiAttribs":{},"portsIn":[{"name":"number2","value":90}],"portsOut":[{"name":"result","links":[{"portIn":"Rotate","portOut":"result","objIn":"1qwtcdiny","objOut":"nme067fl0"}]}],"objName":"Ops.Math.Multiply"},{"id":"55gbye0uh","uiAttribs":{},"portsIn":[{"name":"number2","value":4},{"name":"pingpong","value":0}],"portsOut":[{"name":"result","links":[{"portIn":"Waveform index","portOut":"result","objIn":"1qwtcdiny","objOut":"55gbye0uh"}]}],"objName":"Ops.Math.Modulo"},{"id":"qfhia7ec3","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_structure"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"nme067fl0","objOut":"qfhia7ec3"},{"portIn":"number1","portOut":"Value","objIn":"55gbye0uh","objOut":"qfhia7ec3"},{"portIn":"Offset X","portOut":"Value","objIn":"1qwtcdiny","objOut":"qfhia7ec3"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"p8itm86lw","uiAttribs":{},"portsIn":[{"name":"posX","value":-1.71},{"name":"posY","value":-0.56},{"name":"posZ","value":0},{"name":"scale","value":1.29},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"djh55ojh2","objOut":"p8itm86lw"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"ud198sc5z","uiAttribs":{},"portsOut":[{"name":"Geometry Result","links":[{"portIn":"Geometry","portOut":"Geometry Result","objIn":"djh55ojh2","objOut":"ud198sc5z"}]}],"objName":"Ops.Graphics.GeometryMergeSimple"},{"id":"djh55ojh2","uiAttribs":{},"portsIn":[{"name":"Render Mesh","value":1},{"name":"Add Vertex Numbers","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"di9yoxov9","objOut":"djh55ojh2"},{"portIn":"Render","portOut":"trigger","objIn":"eerqtlpnp","objOut":"djh55ojh2"}]}],"objName":"Ops.Gl.RenderGeometry_v2"},{"id":"absd3d4hb","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__heightMapGeometry"}],"portsOut":[{"name":"Value","links":[{"portIn":"Geometry 2","portOut":"Value","objIn":"ud198sc5z","objOut":"absd3d4hb"}]}],"objName":"Ops.Vars.VarGetObject_v2"},{"id":"vi3ol2srw","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.35},{"name":"Value 2","value":0.6}],"portsOut":[{"name":"Result","links":[{"portIn":"Amount","portOut":"Result","objIn":"tgeyutq71","objOut":"vi3ol2srw"}]}],"objName":"Ops.Math.Interpolate"},{"id":"5rr738syp","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLevel"}],"portsOut":[{"name":"Value","links":[{"portIn":"Percentage","portOut":"Value","objIn":"vi3ol2srw","objOut":"5rr738syp"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"cdrv5rrjk","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"number1","portOut":"Result","objIn":"jax75maya","objOut":"cdrv5rrjk"}]}],"objName":"Ops.Math.OneMinus"},{"id":"tj2cnloqq","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__lensFlareTexts"}],"objName":"Ops.Vars.VarGetTexture_v2"},{"id":"5dbgajlcv","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLength"}],"portsOut":[{"name":"Value","links":[{"portIn":"r","portOut":"Value","objIn":"1qwtcdiny","objOut":"5dbgajlcv"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"grj3uhv6e","uiAttribs":{},"portsIn":[{"name":"number2","value":0.25}],"portsOut":[{"name":"result","links":[{"portIn":"Line Glow","portOut":"result","objIn":"1qwtcdiny","objOut":"grj3uhv6e"}]}],"objName":"Ops.Math.Multiply"},{"id":"yaju7ahmk","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_diffusion"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"grj3uhv6e","objOut":"yaju7ahmk"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"1qwtcdiny","uiAttribs":{},"portsIn":[{"name":"Blend Mode index","value":18},{"name":"Blend Mode","value":"Math Add"},{"name":"Amount","value":1},{"name":"Alpha Mask index","value":0},{"name":"Alpha Mask","value":"Off"},{"name":"Waveform","value":"Sine"},{"name":"Amplitude","value":0.318},{"name":"Frequency","value":1.83},{"name":"Line Width","value":0},{"name":"invert color","value":0},{"name":"Solid fill","value":0},{"name":"Offset Y","value":0.5},{"name":"g","value":0.897},{"name":"b","value":1}],"objName":"Ops.Gl.ImageCompose.Waveform_v3"},{"id":"pu5boj419","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":6.22},{"name":"height","value":1.18},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":1},{"name":"num rows","value":1}],"portsOut":[{"name":"trigger","title":"Next","links":[{"portIn":"render","portOut":"trigger","objIn":"p8itm86lw","objOut":"pu5boj419"}]},{"name":"geometry","links":[{"portIn":"Geometry","portOut":"geometry","objIn":"ud198sc5z","objOut":"pu5boj419"}]}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"6t34impxr","uiAttribs":{},"portsIn":[{"name":"x","value":1.16},{"name":"y","value":2.05},{"name":"z","value":1.59}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"pvmeev0jc","objOut":"6t34impxr"}]}],"objName":"Ops.Gl.Matrix.ScaleXYZViewMatrix"},{"id":"pvmeev0jc","uiAttribs":{},"portsIn":[{"name":"posX","value":0},{"name":"posY","value":0.2},{"name":"posZ","value":-1.01},{"name":"scale","value":1},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"pu5boj419","objOut":"pvmeev0jc"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"a1dx328je","uiAttribs":{},"portsIn":[{"name":"g","value":0.8266594326686372},{"name":"b","value":0.047299581303328786},{"name":"colorizeTexture","value":0},{"name":"Vertex Colors","value":0},{"name":"Alpha Mask Source index","value":0},{"name":"Alpha Mask Source","value":"Luminance"},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":1},{"name":"diffuseRepeatX","value":1},{"name":"diffuseRepeatY","value":0.77},{"name":"Tex Offset X","value":0},{"name":"Tex Offset Y","value":0},{"name":"Crop TexCoords","value":0},{"name":"billboard","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"6t34impxr","objOut":"a1dx328je"}]}],"objName":"Ops.Gl.Shader.BasicMaterial_v3"},{"id":"o0tqxxwkq","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__lensFlareTexts"}],"objName":"Ops.Vars.VarSetTexture_v2"},{"id":"87k6oec5j","uiAttribs":{},"portsIn":[{"name":"Gradient","value":"{\"keys\":[{\"pos\":0,\"posy\":0.5,\"r\":0.8940386199519508,\"g\":0.4775050106350145,\"b\":0.04740221181545179},{\"pos\":0,\"posy\":0.5,\"r\":0.6792710851801129,\"g\":0.9988421641509637,\"b\":0.7736429666946747},{\"pos\":1,\"posy\":0.5,\"r\":0.19605291427060512,\"g\":0.5730566263925843,\"b\":0.1913144069166861},{\"pos\":1,\"posy\":0.5,\"r\":0.814667993582419,\"g\":0.7737538993299289,\"b\":0.3448912272295479}]}"},{"name":"Direction index","value":1},{"name":"Direction","value":"Y"},{"name":"Smoothstep","value":0},{"name":"Step","value":0},{"name":"Flip","value":0},{"name":"sRGB","value":0},{"name":"Oklab","value":0},{"name":"Size","value":64},{"name":"filter index","value":1},{"name":"filter","value":"linear"},{"name":"wrap index","value":1},{"name":"wrap","value":"repeat"},{"name":"Gradient Array","value":0}],"portsOut":[{"name":"Texture","links":[{"portIn":"Diffuse Texture","portOut":"Texture","objIn":"3so3f33cf","objOut":"87k6oec5j"}]}],"objName":"Ops.Gl.GradientTexture"},{"id":"di9yoxov9","uiAttribs":{},"portsIn":[{"name":"Size index","value":0},{"name":"Size","value":"Auto"},{"name":"Width","value":640},{"name":"Height","value":480},{"name":"Filter index","value":1},{"name":"Filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"R","value":0},{"name":"G","value":0},{"name":"B","value":0},{"name":"A","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"1qwtcdiny","objOut":"di9yoxov9"}]},{"name":"texture_out","links":[{"portIn":"Texture 2","portOut":"texture_out","objIn":"jc2ggn9up","objOut":"di9yoxov9"}]},{"name":"Aspect Ratio","value":1.715883668903803},{"name":"Texture Width","value":1534},{"name":"Texture Height","value":894}],"objName":"Ops.Gl.ImageCompose.ImageCompose_v4"},{"id":"9s6v7pnlp","uiAttribs":{},"portsIn":[{"name":"Size index","value":2},{"name":"Size","value":"Manual"},{"name":"Width","value":640},{"name":"Height","value":480},{"name":"Filter index","value":1},{"name":"Filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"R","value":0},{"name":"G","value":0},{"name":"B","value":0},{"name":"A","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"jc2ggn9up","objOut":"9s6v7pnlp"}]},{"name":"texture_out","links":[{"portIn":"Base Texture","portOut":"texture_out","objIn":"51ldwg650","objOut":"9s6v7pnlp"}]},{"name":"Aspect Ratio","value":1.3333333333333333},{"name":"Texture Width","value":640},{"name":"Texture Height","value":480}],"objName":"Ops.Gl.ImageCompose.ImageCompose_v4"},{"id":"51ldwg650","uiAttribs":{},"portsIn":[{"name":"Size index","value":2},{"name":"Size","value":"Manual"},{"name":"Width","value":512},{"name":"Height","value":512},{"name":"Filter index","value":1},{"name":"Filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"R","value":0},{"name":"G","value":0},{"name":"B","value":0},{"name":"A","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"bf9v1uys8","objOut":"51ldwg650"}]},{"name":"texture_out","links":[{"portIn":"texture","portOut":"texture_out","objIn":"a1dx328je","objOut":"51ldwg650"},{"portIn":"Value","portOut":"texture_out","objIn":"3hamtvj79","objOut":"51ldwg650"}]},{"name":"Aspect Ratio","value":1},{"name":"Texture Width","value":512},{"name":"Texture Height","value":512}],"objName":"Ops.Gl.ImageCompose.ImageCompose_v4"},{"id":"ui62hd3xv","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_diffusion"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"cdrv5rrjk","objOut":"ui62hd3xv"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"nf37ruj15","uiAttribs":{},"portsIn":[{"name":"min","value":-0.1},{"name":"max","value":0.7}],"portsOut":[{"name":"result","links":[{"portIn":"Fade","portOut":"result","objIn":"jc2ggn9up","objOut":"nf37ruj15"}]}],"objName":"Ops.Math.SmoothStep_v2"},{"id":"4bj7hjqvt","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_tone"}],"portsOut":[{"name":"Value","value":0.57096}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"9902kom8s","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_diffusion"}],"portsOut":[{"name":"Value","value":1}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"xeu596ai6","uiAttribs":{},"portsIn":[{"name":"Blend Mode index","value":18},{"name":"Blend Mode","value":"Math Add"},{"name":"Rotate","value":0.948},{"name":"Crop","value":1},{"name":"Clear","value":1}],"objName":"Ops.Gl.ImageCompose.RotateTexture_v2"},{"id":"3hamtvj79","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_finalTextOut"}],"objName":"Ops.Vars.VarSetTexture_v2"},{"id":"r0my206wt","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_structure"}],"portsOut":[{"name":"Value","value":0.3333333333333333}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"jax75maya","uiAttribs":{},"portsIn":[{"name":"number2","value":-200}],"portsOut":[{"name":"result","links":[{"portIn":"Stretch Left","portOut":"result","objIn":"tgeyutq71","objOut":"jax75maya"}]}],"objName":"Ops.Math.Multiply"},{"id":"tgeyutq71","uiAttribs":{},"portsIn":[{"name":"Blend Mode index","value":18},{"name":"Blend Mode","value":"Math Add"},{"name":"Clamp","value":0},{"name":"Stretch Top","value":1},{"name":"Stretch Bottom","value":1},{"name":"Stretch Right","value":-6}],"objName":"Ops.Gl.ImageCompose.SkewStretchImage_v2"},{"id":"jc2ggn9up","uiAttribs":{},"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"tgeyutq71","objOut":"jc2ggn9up"}]}],"objName":"Ops.Gl.ImageCompose.Mix"},{"id":"eerqtlpnp","uiAttribs":{},"portsIn":[{"name":"Size index","value":0},{"name":"Size","value":"Auto"},{"name":"Width","value":512},{"name":"Height","value":512},{"name":"Filter index","value":1},{"name":"Filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"R","value":0},{"name":"G","value":0},{"name":"B","value":0},{"name":"A","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"xeu596ai6","objOut":"eerqtlpnp"}]},{"name":"texture_out","links":[{"portIn":"Texture 1","portOut":"texture_out","objIn":"jc2ggn9up","objOut":"eerqtlpnp"},{"portIn":"Value","portOut":"texture_out","objIn":"o0tqxxwkq","objOut":"eerqtlpnp"}]},{"name":"Aspect Ratio","value":0.41796875},{"name":"Texture Width","value":214},{"name":"Texture Height","value":512}],"objName":"Ops.Gl.ImageCompose.ImageCompose_v4"},{"id":"7afkrw4hx","uiAttribs":{},"portsIn":[{"name":"Blend Mode index","value":1},{"name":"Blend Mode","value":"lighten"},{"name":"Amount","value":0.274},{"name":"Alpha Mask index","value":0},{"name":"Alpha Mask","value":"Off"},{"name":"Offset X","value":0},{"name":"Offset Y","value":12.85},{"name":"Zoom","value":800},{"name":"Iterations","value":25},{"name":"Seed","value":1},{"name":"Spot edge","value":0},{"name":"Gamma","value":0.88}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"lsqdg33wg","objOut":"7afkrw4hx"}]}],"objName":"Ops.Gl.ImageCompose.LensDirt_v2"},{"id":"a5ao9xvu0","uiAttribs":{},"portsIn":[{"name":"Text","value":"Convolvers"},{"name":"Font","value":"chivo"},{"name":"Scale","value":0.14},{"name":"Letter Spacing","value":0},{"name":"Line Height","value":1},{"name":"Align index","value":2},{"name":"Align","value":"Right"},{"name":"Vertical Align index","value":1},{"name":"Vertical Align","value":"Top"},{"name":"r","value":0.848},{"name":"g","value":0.865},{"name":"b","value":0.878},{"name":"SDF","value":1},{"name":"Smoothing","value":0.085},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.359996875},{"name":"Height","value":0.08213598484848486},{"name":"Start Y","value":0.04471647727272727},{"name":"Num Chars","value":10}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"xwjvzec0g","uiAttribs":{},"portsIn":[{"name":"x","value":-1.26},{"name":"y","value":-0.71},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"a5ao9xvu0","objOut":"xwjvzec0g"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"0cmu1ry52","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLevel"}],"portsOut":[{"name":"Value","links":[{"portIn":"Amount","portOut":"Value","objIn":"xeu596ai6","objOut":"0cmu1ry52"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"tbn2qgqn9","uiAttribs":{},"portsIn":[{"name":"Gradient","value":"{\"keys\":[{\"pos\":0,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0},{\"pos\":0,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0},{\"pos\":0.494140625,\"posy\":0.56,\"r\":1,\"g\":1,\"b\":1},{\"pos\":1,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0},{\"pos\":1,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0}]}"},{"name":"Direction index","value":2},{"name":"Direction","value":"XY"},{"name":"Smoothstep","value":0},{"name":"Step","value":0},{"name":"Flip","value":0},{"name":"sRGB","value":0},{"name":"Oklab","value":0},{"name":"Size","value":16},{"name":"filter index","value":0},{"name":"filter","value":"nearest"},{"name":"wrap index","value":0},{"name":"wrap","value":"clamp to edge"},{"name":"Gradient Array","value":0}],"objName":"Ops.Gl.GradientTexture"},{"id":"kjs0gomie","uiAttribs":{},"portsIn":[{"name":"Show Info","value":0},{"name":"Visualize outside 0-1 index","value":1},{"name":"Visualize outside 0-1","value":"Anim"},{"name":"Alpha index","value":0},{"name":"Alpha","value":"A"},{"name":"Show Color","value":0},{"name":"X","value":0.5},{"name":"Y","value":0.5}],"portsOut":[{"name":"Info","value":""}],"objName":"Ops.Ui.VizTexture"},{"id":"fvg1zz75v","uiAttribs":{},"portsIn":[{"name":"Size index","value":0},{"name":"Size","value":"Canvas"},{"name":"texture width","value":1534},{"name":"texture height","value":894},{"name":"Auto Aspect","value":1},{"name":"filter index","value":0},{"name":"filter","value":"nearest"},{"name":"Wrap index","value":0},{"name":"Wrap","value":"Clamp"},{"name":"MSAA index","value":0},{"name":"MSAA","value":"none"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"Depth","value":1},{"name":"Clear","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"n9u25c6ax","objOut":"fvg1zz75v"}]},{"name":"texture","links":[{"portIn":"Base Texture","portOut":"texture","objIn":"48vrkn65x","objOut":"fvg1zz75v"}]}],"objName":"Ops.Gl.RenderToTexture_v3"},{"id":"pxbd6eh63","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_tone"}],"portsOut":[{"name":"Value","links":[{"portIn":"Percentage","portOut":"Value","objIn":"uo6mpre8c","objOut":"pxbd6eh63"},{"portIn":"Value","portOut":"Value","objIn":"5ulr7vh4p","objOut":"pxbd6eh63"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"uo6mpre8c","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.43},{"name":"Value 2","value":1}],"portsOut":[{"name":"Result","links":[{"portIn":"a","portOut":"Result","objIn":"a1dx328je","objOut":"uo6mpre8c"},{"portIn":"r","portOut":"Result","objIn":"a1dx328je","objOut":"uo6mpre8c"}]}],"objName":"Ops.Math.Interpolate"},{"id":"bf9v1uys8","uiAttribs":{},"portsIn":[{"name":"Blend Mode index","value":19},{"name":"Blend Mode","value":"Math Subtract"},{"name":"Alpha Mask index","value":0},{"name":"Alpha Mask","value":"Off"},{"name":"Strength","value":1},{"name":"Radius","value":0.208},{"name":"Sharp","value":0.539},{"name":"Aspect","value":1},{"name":"r","value":0},{"name":"g","value":0},{"name":"b","value":0},{"name":"Alpha","value":0}],"portsOut":[{"name":"Trigger","links":[{"portIn":"render","portOut":"Trigger","objIn":"7afkrw4hx","objOut":"bf9v1uys8"}]}],"objName":"Ops.Gl.ImageCompose.Vignette_v3"},{"id":"5ulr7vh4p","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Amount","portOut":"Result","objIn":"bf9v1uys8","objOut":"5ulr7vh4p"}]}],"objName":"Ops.Math.OneMinus"},{"id":"lsqdg33wg","uiAttribs":{},"portsIn":[{"name":"Clamp","value":1},{"name":"direction index","value":2},{"name":"direction","value":"horizontal"},{"name":"Mask Invert","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"9s6v7pnlp","objOut":"lsqdg33wg"}]}],"objName":"Ops.Gl.ImageCompose.FastBlur_v2"},{"id":"fogdsmdt8","uiAttribs":{},"portsIn":[{"name":"Gradient","value":"{\"keys\":[{\"pos\":0,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0},{\"pos\":0,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0},{\"pos\":0.46875,\"posy\":0.51,\"r\":0.998046875,\"g\":0.998046875,\"b\":0.998046875},{\"pos\":1,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0},{\"pos\":1,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0}]}"},{"name":"Direction index","value":1},{"name":"Direction","value":"Y"},{"name":"Smoothstep","value":0},{"name":"Step","value":1},{"name":"Flip","value":0},{"name":"sRGB","value":0},{"name":"Oklab","value":0},{"name":"Size","value":16},{"name":"filter index","value":1},{"name":"filter","value":"linear"},{"name":"wrap index","value":0},{"name":"wrap","value":"clamp to edge"},{"name":"Gradient Array","value":0}],"portsOut":[{"name":"Texture","links":[{"portIn":"Mask","portOut":"Texture","objIn":"lsqdg33wg","objOut":"fogdsmdt8"}]}],"objName":"Ops.Gl.GradientTexture"},{"id":"v9g4w5w8m","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLevel"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"qhu04l7zy","objOut":"v9g4w5w8m"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"qhu04l7zy","uiAttribs":{},"portsIn":[{"name":"number2","value":4}],"portsOut":[{"name":"result","links":[{"portIn":"Passes","portOut":"result","objIn":"lsqdg33wg","objOut":"qhu04l7zy"}]}],"objName":"Ops.Math.Multiply"},{"id":"qkhcjgu05","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"a","portOut":"result","objIn":"a5ao9xvu0","objOut":"qkhcjgu05"},{"portIn":"number1","portOut":"result","objIn":"jq7ifli9z","objOut":"qkhcjgu05"}]}],"objName":"Ops.Ui.Routing.RouteNumber"},{"id":"gji70mzgw","uiAttribs":{},"portsIn":[{"name":"Text","value":"direction"},{"name":"Font","value":"chivo"},{"name":"Scale","value":0.13},{"name":"Letter Spacing","value":0},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":2},{"name":"Vertical Align","value":"Middle"},{"name":"r","value":1},{"name":"g","value":1},{"name":"b","value":1},{"name":"SDF","value":1},{"name":"Smoothing","value":0.644},{"name":"Border","value":0},{"name":"Border Width","value":0.085},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0.107},{"name":"Border b","value":0.196},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.299609375},{"name":"Height","value":0.07641131628787877},{"name":"Start Y","value":0.039290222537878776},{"name":"Num Chars","value":9}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"fzsniu9pe","uiAttribs":{},"portsIn":[{"name":"posX","value":0.01},{"name":"posY","value":0.02},{"name":"posZ","value":0},{"name":"scale","value":1.12},{"name":"rotX","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"gji70mzgw","objOut":"fzsniu9pe"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"pmu87q3eb","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.8},{"name":"Value 2","value":-1}],"portsOut":[{"name":"Result","links":[{"portIn":"innerRadius","portOut":"Result","objIn":"1u49ak691","objOut":"pmu87q3eb"}]}],"objName":"Ops.Math.Interpolate"},{"id":"z3e9usn2r","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0},{"name":"Value 2","value":180}],"portsOut":[{"name":"Result","links":[{"portIn":"rotY","portOut":"Result","objIn":"fzsniu9pe","objOut":"z3e9usn2r"}]}],"objName":"Ops.Math.Interpolate"},{"id":"bxhz7tp4k","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"blls2amps","title":"Trigger in"},{"name":"btagbs7z2","title":"Class"},{"name":"lj06d561p","value":0,"title":"Show Boundings"},{"name":"patchId","value":"bp2sub_bxhz7tp4k"}],"portsOut":[{"name":"nti406vwi","title":"Result","links":[{"portIn":"A","portOut":"nti406vwi","objIn":"lfp3xq5lr","objOut":"bxhz7tp4k"}]},{"name":"gjvx0zyv5","title":"value","links":[{"portIn":"number1","portOut":"gjvx0zyv5","objIn":"8hgomlv38","objOut":"bxhz7tp4k"},{"portIn":"a","portOut":"gjvx0zyv5","objIn":"nubb2t6qu","objOut":"bxhz7tp4k"}]}],"objName":"Ops.Patch.PuSSdim.BasicSlider_v3"},{"id":"i737pryvq","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Execute","portOut":"Triggered","objIn":"udgixmukx","objOut":"i737pryvq"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"elnq8ccfz","uiAttribs":{},"portsIn":[{"name":"value","value":"slider_position"}],"portsOut":[{"name":"String","links":[{"portIn":"btagbs7z2","portOut":"String","objIn":"bxhz7tp4k","objOut":"elnq8ccfz"}]}],"objName":"Ops.String.String_v2"},{"id":"f0m25q0un","uiAttribs":{},"portsIn":[{"name":"Text","value":"* position"},{"name":"Font","value":"chivo"},{"name":"Scale","value":0.14},{"name":"Letter Spacing","value":-0.04},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":2},{"name":"Vertical Align","value":"Middle"},{"name":"r","value":0.75},{"name":"g","value":0.75},{"name":"b","value":0.75},{"name":"SDF","value":1},{"name":"Smoothing","value":0.108},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.299709375},{"name":"Height","value":0.09127973484848485},{"name":"Start Y","value":0.047398484848484856},{"name":"Num Chars","value":10}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"jr8ldk0r2","uiAttribs":{},"portsIn":[{"name":"x","value":-1.34},{"name":"y","value":1.05},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"f0m25q0un","objOut":"jr8ldk0r2"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"gpudotn6t","uiAttribs":{},"portsIn":[{"name":"Title","value":"position"}],"objName":"Ops.Ui.Area"},{"id":"8hgomlv38","uiAttribs":{},"portsIn":[{"name":"number2","value":0.33}],"portsOut":[{"name":"result","links":[{"portIn":"a","portOut":"result","objIn":"f0m25q0un","objOut":"8hgomlv38"}]}],"objName":"Ops.Math.Sum"},{"id":"8dujs7k4z","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_position"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"lfp3xq5lr","uiAttribs":{},"portsIn":[{"name":"B","value":1},{"name":"C","value":2},{"name":"D","value":3},{"name":"Expression","value":"a + 0.5"}],"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"8dujs7k4z","objOut":"lfp3xq5lr"}]},{"name":"Expression Valid","value":true}],"objName":"Ops.Math.MathExpression"},{"id":"ovge16avj","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":1.71},{"name":"height","value":0.08},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":2},{"name":"num rows","value":3}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"dbxqt7lqg","uiAttribs":{},"portsIn":[{"name":"x","value":-0.555},{"name":"y","value":0.935},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"nubb2t6qu","objOut":"dbxqt7lqg"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"nubb2t6qu","uiAttribs":{},"portsIn":[{"name":"PointSize","value":4},{"name":"Size in Pixels","value":1},{"name":"Random Size","value":0},{"name":"Round","value":0},{"name":"Round Antialias","value":0},{"name":"Scale by Distance","value":0},{"name":"r","value":0.772},{"name":"g","value":0.15106840238933295},{"name":"b","value":0.4207414807217118},{"name":"Vertex Colors","value":0},{"name":"Colorize Texture","value":0},{"name":"Mask Channel index","value":0},{"name":"Mask Channel","value":"R"},{"name":"Colorize Randomize","value":0},{"name":"Point Size Channel index","value":0},{"name":"Point Size Channel","value":"R"},{"name":"Texture Point Size Mul","value":1},{"name":"Map Size 0 index","value":0},{"name":"Map Size 0","value":"Black"},{"name":"Flip Texture","value":0},{"name":"Atlas Cross Fade","value":0},{"name":"Atlas Repeat X ","value":1},{"name":"Min Point Size","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"ovge16avj","objOut":"nubb2t6qu"}]}],"objName":"Ops.Gl.Shader.PointMaterial_v5"},{"id":"359tlq06f","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.003},{"name":"Value 2","value":0.01}],"portsOut":[{"name":"Result","links":[{"portIn":"height","portOut":"Result","objIn":"hm7bbicrb","objOut":"359tlq06f"}]}],"objName":"Ops.Math.Interpolate"},{"id":"li57o4rn2","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.9},{"name":"Value 2","value":1}],"portsOut":[{"name":"Result","links":[{"portIn":"a","portOut":"Result","objIn":"l01dmydzd","objOut":"li57o4rn2"},{"portIn":"g","portOut":"Result","objIn":"l01dmydzd","objOut":"li57o4rn2"},{"portIn":"b","portOut":"Result","objIn":"l01dmydzd","objOut":"li57o4rn2"},{"portIn":"r","portOut":"Result","objIn":"l01dmydzd","objOut":"li57o4rn2"}]}],"objName":"Ops.Math.Interpolate"},{"id":"p2z4x8iu5","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.19},{"name":"Value 2","value":0.23}],"portsOut":[{"name":"Result","links":[{"portIn":"Scale","portOut":"Result","objIn":"l01dmydzd","objOut":"p2z4x8iu5"}]}],"objName":"Ops.Math.Interpolate"},{"id":"l88qnkqyk","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"Percentage","portOut":"result","objIn":"li57o4rn2","objOut":"l88qnkqyk"},{"portIn":"Percentage","portOut":"result","objIn":"p2z4x8iu5","objOut":"l88qnkqyk"},{"portIn":"Percentage","portOut":"result","objIn":"359tlq06f","objOut":"l88qnkqyk"}]}],"objName":"Ops.Ui.Routing.RouteNumber"},{"id":"b8j12x3gl","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":2.74},{"name":"height","value":0.03},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":9},{"name":"num rows","value":3}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"6pwy0s5dx","uiAttribs":{},"portsIn":[{"name":"PointSize","value":3},{"name":"Size in Pixels","value":1},{"name":"Random Size","value":0},{"name":"Round","value":0},{"name":"Round Antialias","value":0},{"name":"Scale by Distance","value":0},{"name":"r","value":0.772},{"name":"g","value":0.15106840238933295},{"name":"b","value":0.4207414807217118},{"name":"Vertex Colors","value":0},{"name":"Colorize Texture","value":1},{"name":"Mask Channel index","value":0},{"name":"Mask Channel","value":"R"},{"name":"Colorize Randomize","value":0},{"name":"Point Size Channel index","value":0},{"name":"Point Size Channel","value":"R"},{"name":"Texture Point Size Mul","value":1},{"name":"Map Size 0 index","value":0},{"name":"Map Size 0","value":"Black"},{"name":"Flip Texture","value":0},{"name":"Atlas Cross Fade","value":0},{"name":"Atlas Repeat X ","value":1},{"name":"Min Point Size","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"b8j12x3gl","objOut":"6pwy0s5dx"}]}],"objName":"Ops.Gl.Shader.PointMaterial_v5"},{"id":"cdqihefdh","uiAttribs":{},"portsIn":[{"name":"x","value":0},{"name":"y","value":-0.77},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"6pwy0s5dx","objOut":"cdqihefdh"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"kzr5ui0jv","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_structure"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"tpi422xya","objOut":"kzr5ui0jv"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"tpi422xya","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Randomize Colors","portOut":"Next","objIn":"87k6oec5j","objOut":"tpi422xya"}]},{"name":"Number","value":0.3333333333333333}],"objName":"Ops.Number.TriggerOnChangeNumber"},{"id":"55jf7ng6g","uiAttribs":{},"portsIn":[{"name":"number2","value":15}],"portsOut":[{"name":"result","links":[{"portIn":"Value","portOut":"result","objIn":"pnzzc7ulm","objOut":"55jf7ng6g"}]}],"objName":"Ops.Math.Divide"},{"id":"huqpajdbd","uiAttribs":{},"portsIn":[{"name":"number2","value":15}],"portsOut":[{"name":"result","links":[{"portIn":"number","portOut":"result","objIn":"y5csdqm5k","objOut":"huqpajdbd"}]}],"objName":"Ops.Math.Multiply"},{"id":"y5csdqm5k","uiAttribs":{},"portsIn":[{"name":"Decimal Places","value":0}],"portsOut":[{"name":"result","links":[{"portIn":"index","portOut":"result","objIn":"djbr6tym4","objOut":"y5csdqm5k"}]}],"objName":"Ops.Math.Round"},{"id":"lmzv6xxhp","uiAttribs":{},"portsIn":[{"name":"Delay","value":0.1},{"name":"Clear on Change","value":0},{"name":"easing index","value":1},{"name":"easing","value":"absolute"}],"portsOut":[{"name":"Result","links":[{"portIn":"number1","portOut":"Result","objIn":"huqpajdbd","objOut":"lmzv6xxhp"}]}],"objName":"Ops.Number.DelayedNumber"},{"id":"l4gff2c89","uiAttribs":{},"portsIn":[{"name":"key code","value":49},{"name":"canvas only","value":1},{"name":"Mod Key index","value":0},{"name":"Mod Key","value":"none"},{"name":"Enabled","value":1},{"name":"Prevent Default","value":0}],"portsOut":[{"name":"on press","links":[{"portIn":"trigger","portOut":"on press","objIn":"st9zrhm6y","objOut":"l4gff2c89"}]},{"name":"Pressed","links":[{"portIn":"Default","portOut":"Pressed","objIn":"st9zrhm6y","objOut":"l4gff2c89"}]},{"name":"Key","value":"1"}],"objName":"Ops.Devices.Keyboard.KeyPressLearn"},{"id":"st9zrhm6y","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"visible","portOut":"result","objIn":"ick4g333d","objOut":"st9zrhm6y"}]}],"objName":"Ops.Boolean.ToggleBool_v2"},{"id":"ick4g333d","uiAttribs":{},"objName":"Ops.Patch.PuSSdim.Console_v2"},{"id":"n19jursgo","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeDirection"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"rucgc73bp","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"patchId","value":"bp2sub_rucgc73bp"}],"portsOut":[{"name":"pmu87y53p","title":"result","links":[{"portIn":"Use Value 1","portOut":"pmu87y53p","objIn":"6lh7g16he","objOut":"rucgc73bp"}]},{"name":"1u3pcbd78","value":0,"title":"Number"}],"objName":"Ops.Patch.PuSSdim.TriggerOnReverseButton_v2"},{"id":"sx7uf9s5r","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"patchId","value":"bp2sub_sx7uf9s5r"}],"portsOut":[{"name":"pmu87y53p","title":"result","links":[{"portIn":"bool","portOut":"pmu87y53p","objIn":"zy3ewhgid","objOut":"sx7uf9s5r"},{"portIn":"Percentage","portOut":"pmu87y53p","objIn":"z3e9usn2r","objOut":"sx7uf9s5r"},{"portIn":"Value","portOut":"pmu87y53p","objIn":"n19jursgo","objOut":"sx7uf9s5r"}]},{"name":"1u3pcbd78","value":0,"title":"Number"}],"objName":"Ops.Patch.PuSSdim.TriggerOnReverseButton_v2"},{"id":"5cer7j6fh","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"patchId","value":"bp2sub_5cer7j6fh"}],"portsOut":[{"name":"pmu87y53p","value":0,"title":"result"},{"name":"1u3pcbd78","value":0,"title":"Number"}],"objName":"Ops.Patch.PuSSdim.TriggerOnReverseButton_v2"},{"id":"jq7ifli9z","uiAttribs":{},"portsIn":[{"name":"number2","value":2}],"portsOut":[{"name":"result","links":[{"portIn":"a","portOut":"result","objIn":"6pwy0s5dx","objOut":"jq7ifli9z"}]}],"objName":"Ops.Math.Divide"},{"id":"rmigep014","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":2.7},{"name":"height","value":0.03},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":9},{"name":"num rows","value":3}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"ezv1vx872","uiAttribs":{},"portsIn":[{"name":"x","value":0},{"name":"y","value":-0.97},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"d4a8366c0","objOut":"ezv1vx872"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"9cfc0k1rh","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"number1","portOut":"result","objIn":"brfy0oj40","objOut":"9cfc0k1rh"}]}],"objName":"Ops.Ui.Routing.RouteNumber"},{"id":"brfy0oj40","uiAttribs":{},"portsIn":[{"name":"number2","value":2}],"portsOut":[{"name":"result","links":[{"portIn":"a","portOut":"result","objIn":"d4a8366c0","objOut":"brfy0oj40"}]}],"objName":"Ops.Math.Divide"},{"id":"7xrwdqmvp","uiAttribs":{},"portsOut":[{"name":"trigger 0","links":[{"portIn":"render","portOut":"trigger 0","objIn":"070by2eug","objOut":"7xrwdqmvp"}]},{"name":"trigger 1","links":[{"portIn":"Trigger in","portOut":"trigger 1","objIn":"gex9oaatc","objOut":"7xrwdqmvp"}]},{"name":"trigger 5","links":[{"portIn":"Render","portOut":"trigger 5","objIn":"e5r0bk5la","objOut":"7xrwdqmvp"}]},{"name":"trigger 7","links":[{"portIn":"exe","portOut":"trigger 7","objIn":"84hdpbwaf","objOut":"7xrwdqmvp"}]}],"objName":"Ops.Gl.LayerSequence"},{"id":"e5r0bk5la","uiAttribs":{},"portsIn":[{"name":"Width","value":1},{"name":"Height","value":1},{"name":"pivot x index","value":0},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":0},{"name":"pivot y","value":"center"},{"name":"Draw Top","value":1},{"name":"Draw Bottom","value":1},{"name":"Draw Left","value":1},{"name":"Draw Right","value":1},{"name":"Active","value":1}],"objName":"Ops.Gl.Meshes.RectangleFrame_v2"},{"id":"gex9oaatc","uiAttribs":{},"portsIn":[{"name":"Width","value":1},{"name":"Height","value":1},{"name":"ID","value":""},{"name":"Class","value":""},{"name":"Pivot x index","value":0},{"name":"Pivot x","value":"center"},{"name":"Pivot y index","value":0},{"name":"Pivot y","value":"center"},{"name":"Axis index","value":0},{"name":"Axis","value":"xy"},{"name":"Is Interactive","value":1},{"name":"Render Rectangle","value":0},{"name":"Show Boundings","value":0},{"name":"Cursor index","value":0},{"name":"Cursor","value":"auto"},{"name":"Render","value":1,"title":"Active"}],"portsOut":[{"name":"Pointer Hover","links":[{"portIn":"bool","portOut":"Pointer Hover","objIn":"84hdpbwaf","objOut":"gex9oaatc"}]},{"name":"Pointer Down","value":0},{"name":"Pointer X","value":0.18818220639624172},{"name":"Pointer Y","value":0.9036123216033479},{"name":"Top","value":179.14312809705734},{"name":"Left","value":47.720436811447144},{"name":"Right","value":84.9080058336258},{"name":"Bottom","value":215.44467186927795},{"name":"Left Click","links":[{"portIn":"trigger","portOut":"Left Click","objIn":"uy0pd5u8k","objOut":"gex9oaatc"}]}],"objName":"Ops.Gl.InteractiveRectangle_v2"},{"id":"mi1ys7y7e","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"preSequenceFlow"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"render","portOut":"Triggered","objIn":"3wwd1k6hu","objOut":"mi1ys7y7e"},{"portIn":"Execute","portOut":"Triggered","objIn":"vu7mkxcal","objOut":"mi1ys7y7e"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"3wwd1k6hu","uiAttribs":{},"portsIn":[{"name":"posX","value":-1.15},{"name":"posY","value":0.18},{"name":"posZ","value":0},{"name":"scale","value":0.06},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"exe","portOut":"trigger","objIn":"7xrwdqmvp","objOut":"3wwd1k6hu"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"070by2eug","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","title":"Render"},{"name":"width","value":0.8},{"name":"height","value":0.8},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":2},{"name":"num rows","value":2}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"uy0pd5u8k","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"Render Mesh","portOut":"result","objIn":"070by2eug","objOut":"uy0pd5u8k"},{"portIn":"Value","portOut":"result","objIn":"3vwe3ipas","objOut":"uy0pd5u8k"}]}],"objName":"Ops.Boolean.ToggleBool_v2"},{"id":"oq4iuk0t0","uiAttribs":{},"portsIn":[{"name":"Title","value":"Bypass Convolvers"}],"objName":"Ops.Ui.Area"},{"id":"x8xbm1wvq","uiAttribs":{},"portsOut":[{"name":"trigger 0","links":[{"portIn":"render","portOut":"trigger 0","objIn":"ula2gv47e","objOut":"x8xbm1wvq"}]},{"name":"trigger 5","links":[{"portIn":"Render","portOut":"trigger 5","objIn":"q4wnfj3p5","objOut":"x8xbm1wvq"}]},{"name":"trigger 6","links":[{"portIn":"Trigger in","portOut":"trigger 6","objIn":"7ed6aczdz","objOut":"x8xbm1wvq"}]},{"name":"trigger 8","links":[{"portIn":"exe","portOut":"trigger 8","objIn":"irf285bha","objOut":"x8xbm1wvq"}]}],"objName":"Ops.Gl.LayerSequence"},{"id":"q4wnfj3p5","uiAttribs":{},"portsIn":[{"name":"Width","value":1},{"name":"Height","value":1},{"name":"pivot x index","value":0},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":0},{"name":"pivot y","value":"center"},{"name":"Draw Top","value":1},{"name":"Draw Bottom","value":1},{"name":"Draw Left","value":1},{"name":"Draw Right","value":1},{"name":"Active","value":1}],"objName":"Ops.Gl.Meshes.RectangleFrame_v2"},{"id":"7ed6aczdz","uiAttribs":{},"portsIn":[{"name":"Width","value":1},{"name":"Height","value":1},{"name":"ID","value":""},{"name":"Class","value":""},{"name":"Pivot x index","value":0},{"name":"Pivot x","value":"center"},{"name":"Pivot y index","value":0},{"name":"Pivot y","value":"center"},{"name":"Axis index","value":0},{"name":"Axis","value":"xy"},{"name":"Is Interactive","value":1},{"name":"Render Rectangle","value":0},{"name":"Show Boundings","value":0},{"name":"Cursor index","value":2},{"name":"Cursor","value":"pointer"},{"name":"Render","value":1,"title":"Active"}],"portsOut":[{"name":"Pointer Hover","links":[{"portIn":"bool","portOut":"Pointer Hover","objIn":"irf285bha","objOut":"7ed6aczdz"}]},{"name":"Pointer Down","value":0},{"name":"Pointer X","value":0.8008722121768128},{"name":"Pointer Y","value":0.37178795601808445},{"name":"Top","value":124.8130384683609},{"name":"Left","value":48.69036364555359},{"name":"Right","value":85.8269584774971},{"name":"Bottom","value":161.01680141687393},{"name":"Left Click","links":[{"portIn":"trigger","portOut":"Left Click","objIn":"j12tm925v","objOut":"7ed6aczdz"}]}],"objName":"Ops.Gl.InteractiveRectangle_v2"},{"id":"ula2gv47e","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","title":"Render"},{"name":"width","value":0.8},{"name":"height","value":0.8},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":2},{"name":"num rows","value":2}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"j12tm925v","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"Render Mesh","portOut":"result","objIn":"ula2gv47e","objOut":"j12tm925v"},{"portIn":"Value","portOut":"result","objIn":"8mgrhcm7a","objOut":"j12tm925v"}]}],"objName":"Ops.Boolean.ToggleBool_v2"},{"id":"amn6xx3kk","uiAttribs":{},"portsIn":[{"name":"Title","value":"Bypass Refs"}],"objName":"Ops.Ui.Area"},{"id":"8mgrhcm7a","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_bypassSRVB"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"52bgygm7a","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_bypassSRVB"}],"portsOut":[{"name":"Value","links":[{"portIn":"Default","portOut":"Value","objIn":"j12tm925v","objOut":"52bgygm7a"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"3vwe3ipas","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_bypassConvolver"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"glkaxm7f0","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_bypassConvolver"}],"portsOut":[{"name":"Value","links":[{"portIn":"Default","portOut":"Value","objIn":"uy0pd5u8k","objOut":"glkaxm7f0"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"ngzgotbds","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"exe","portOut":"Trigger out","objIn":"124910bf-e88f-4da5-847e-888a7ac73020","objOut":"ngzgotbds"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"d4a8366c0","uiAttribs":{},"portsIn":[{"name":"PointSize","value":3},{"name":"Size in Pixels","value":1},{"name":"Random Size","value":0},{"name":"Round","value":0},{"name":"Round Antialias","value":0},{"name":"Scale by Distance","value":0},{"name":"r","value":0.772},{"name":"g","value":0.15106840238933295},{"name":"b","value":0.4207414807217118},{"name":"Vertex Colors","value":0},{"name":"Colorize Texture","value":1},{"name":"Mask Channel index","value":0},{"name":"Mask Channel","value":"R"},{"name":"Colorize Randomize","value":0},{"name":"Point Size Channel index","value":0},{"name":"Point Size Channel","value":"R"},{"name":"Texture Point Size Mul","value":1},{"name":"Map Size 0 index","value":0},{"name":"Map Size 0","value":"Black"},{"name":"Flip Texture","value":0},{"name":"Atlas Cross Fade","value":0},{"name":"Atlas Repeat X ","value":1},{"name":"Min Point Size","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"rmigep014","objOut":"d4a8366c0"}]}],"objName":"Ops.Gl.Shader.PointMaterial_v5"},{"id":"cdn66mu7a","uiAttribs":{},"portsIn":[{"name":"Text","value":"*Scape"},{"name":"Font","value":"chivo"},{"name":"Scale","value":0.24},{"name":"Letter Spacing","value":-0.02},{"name":"Line Height","value":1},{"name":"Align index","value":2},{"name":"Align","value":"Right"},{"name":"Vertical Align index","value":3},{"name":"Vertical Align","value":"Bottom"},{"name":"r","value":0.75},{"name":"g","value":0.75},{"name":"b","value":0.75},{"name":"a","value":1},{"name":"SDF","value":1},{"name":"Smoothing","value":0.085},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.341925},{"name":"Height","value":0.15647954545454545},{"name":"Start Y","value":0.15949431818181817},{"name":"Num Chars","value":6}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"kgztdjkg7","uiAttribs":{},"portsIn":[{"name":"posX","value":-1.62},{"name":"posY","value":-0.71},{"name":"posZ","value":0},{"name":"scale","value":1},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":90}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"cdn66mu7a","objOut":"kgztdjkg7"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"62p51ysxi","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":0.01},{"name":"height","value":-0.43},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":1},{"name":"num rows","value":1}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"b7lt5j2bc","uiAttribs":{},"portsIn":[{"name":"x","value":-1.61},{"name":"y","value":-0.87},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"62p51ysxi","objOut":"b7lt5j2bc"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"ajqkcp9y5","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":0.01},{"name":"height","value":2.48},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":1},{"name":"num rows","value":1}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"9yv8uo1rz","uiAttribs":{},"portsIn":[{"name":"x","value":-1.61},{"name":"y","value":0.79},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"ajqkcp9y5","objOut":"9yv8uo1rz"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"kepigt9gu","uiAttribs":{},"portsIn":[{"name":"r","value":0.179},{"name":"g","value":1},{"name":"b","value":0.692},{"name":"a","value":0.547},{"name":"colorizeTexture","value":0},{"name":"Vertex Colors","value":0},{"name":"Alpha Mask Source index","value":0},{"name":"Alpha Mask Source","value":"Luminance"},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":0},{"name":"diffuseRepeatX","value":1},{"name":"diffuseRepeatY","value":1},{"name":"Tex Offset X","value":0},{"name":"Tex Offset Y","value":0},{"name":"Crop TexCoords","value":0},{"name":"billboard","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"jtsnv54z5","objOut":"kepigt9gu"}]}],"objName":"Ops.Gl.Shader.BasicMaterial_v3"},{"id":"s9d3c0k9s","uiAttribs":{},"portsIn":[{"name":"Text","value":"*Reflectors"},{"name":"Font","value":"chivo"},{"name":"Scale","value":0.24},{"name":"Letter Spacing","value":-0.02},{"name":"Line Height","value":1},{"name":"Align index","value":2},{"name":"Align","value":"Right"},{"name":"Vertical Align index","value":3},{"name":"Vertical Align","value":"Bottom"},{"name":"r","value":0.75},{"name":"g","value":0.75},{"name":"b","value":0.75},{"name":"a","value":1},{"name":"SDF","value":1},{"name":"Smoothing","value":0.085},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.6169875},{"name":"Height","value":0.14320454545454545},{"name":"Start Y","value":0.14734431818181817},{"name":"Num Chars","value":11}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"kcwjgoqk1","uiAttribs":{},"portsIn":[{"name":"posX","value":-1.63},{"name":"posY","value":0.41},{"name":"posZ","value":0},{"name":"scale","value":1},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":90}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"s9d3c0k9s","objOut":"kcwjgoqk1"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"3wnf93z0d","uiAttribs":{},"portsIn":[{"name":"Title","value":"Left Side Panel"}],"objName":"Ops.Ui.Area"},{"id":"w1wyli4ul","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"render","portOut":"Triggered","objIn":"kepigt9gu","objOut":"w1wyli4ul"},{"portIn":"alrh6hig4","portOut":"Triggered","objIn":"n1dxl83p1","objOut":"w1wyli4ul"},{"portIn":"8dittifdh","portOut":"Triggered","objIn":"n1dxl83p1","objOut":"w1wyli4ul"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"jtsnv54z5","uiAttribs":{},"portsIn":[{"name":"x","value":-0.06},{"name":"y","value":0},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"kgztdjkg7","objOut":"jtsnv54z5"},{"portIn":"render","portOut":"trigger","objIn":"kcwjgoqk1","objOut":"jtsnv54z5"},{"portIn":"render","portOut":"trigger","objIn":"b7lt5j2bc","objOut":"jtsnv54z5"},{"portIn":"render","portOut":"trigger","objIn":"9yv8uo1rz","objOut":"jtsnv54z5"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"29wy37qy9","uiAttribs":{},"portsIn":[{"name":"posX","value":-1.15},{"name":"posY","value":0.27},{"name":"posZ","value":0},{"name":"scale","value":0.06},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"exe","portOut":"trigger","objIn":"x8xbm1wvq","objOut":"29wy37qy9"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"2dwg7w4c5","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"preSequenceFlow"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"render","portOut":"Triggered","objIn":"29wy37qy9","objOut":"2dwg7w4c5"},{"portIn":"Execute","portOut":"Triggered","objIn":"hnzd5wpdu","objOut":"2dwg7w4c5"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"8bw0l1iwj","uiAttribs":{},"portsOut":[{"name":"Number","links":[{"portIn":"number1","portOut":"Number","objIn":"dcl7z07s9","objOut":"8bw0l1iwj"},{"portIn":"Value In","portOut":"Number","objIn":"4eybed6uw","objOut":"8bw0l1iwj"}]}],"objName":"Ops.String.ParseInt_v2"},{"id":"rzoomxuz4","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_hitBodyName"}],"portsOut":[{"name":"Value","links":[{"portIn":"String","portOut":"Value","objIn":"zqsm59jgd","objOut":"rzoomxuz4"}]}],"objName":"Ops.Vars.VarGetString"},{"id":"zqsm59jgd","uiAttribs":{},"portsIn":[{"name":"Search For","value":"dial."},{"name":"Replace","value":""},{"name":"Replace What index","value":0},{"name":"Replace What","value":"All"}],"portsOut":[{"name":"Result","links":[{"portIn":"String","portOut":"Result","objIn":"8bw0l1iwj","objOut":"zqsm59jgd"}]}],"objName":"Ops.String.StringReplace"},{"id":"dcl7z07s9","uiAttribs":{},"portsIn":[{"name":"number2","value":0}],"portsOut":[{"name":"result","links":[{"portIn":"Pass Through","portOut":"result","objIn":"4eybed6uw","objOut":"dcl7z07s9"}]}],"objName":"Ops.Math.Compare.GreaterThan"},{"id":"439i0aj79","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_activeDial_ID"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"4eybed6uw","uiAttribs":{},"portsIn":[{"name":"When False index","value":0},{"name":"When False","value":"keep last number"},{"name":"Custom Value","value":0}],"portsOut":[{"name":"Value Out","links":[{"portIn":"Value","portOut":"Value Out","objIn":"439i0aj79","objOut":"4eybed6uw"}]}],"objName":"Ops.Number.GateNumber"},{"id":"cej7j59jx","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_bypassSRVB"}],"portsOut":[{"name":"Value","links":[{"portIn":"Boolean","portOut":"Value","objIn":"irxfck5m6","objOut":"cej7j59jx"},{"portIn":"Pass Through","portOut":"Value","objIn":"oefqiqdsy","objOut":"cej7j59jx"},{"portIn":"Pass Through","portOut":"Value","objIn":"3n0xi3fsv","objOut":"cej7j59jx"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"irxfck5m6","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Pass Through","portOut":"Result","objIn":"ngzgotbds","objOut":"irxfck5m6"},{"portIn":"Pass Through","portOut":"Result","objIn":"lsv3n3hs3","objOut":"irxfck5m6"}]}],"objName":"Ops.Boolean.Not"},{"id":"89jux4z6s","uiAttribs":{},"portsIn":[{"name":"Title","value":"bypass"}],"objName":"Ops.Ui.Area"},{"id":"u3dpm2y6e","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_bypassSRVB"}],"portsOut":[{"name":"Value","links":[{"portIn":"Boolean","portOut":"Value","objIn":"3c3cerstj","objOut":"u3dpm2y6e"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"3c3cerstj","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Pass Through","portOut":"Result","objIn":"41p18fvfx","objOut":"3c3cerstj"}]}],"objName":"Ops.Boolean.Not"},{"id":"r3brv3upl","uiAttribs":{},"portsIn":[{"name":"Title","value":"bypass"}],"objName":"Ops.Ui.Area"},{"id":"41p18fvfx","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"render","portOut":"Trigger out","objIn":"vr3j7sk4c","objOut":"41p18fvfx"},{"portIn":"render","portOut":"Trigger out","objIn":"zcqvrg63v","objOut":"41p18fvfx"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"mcyj3ceqx","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_bypassSRVB"}],"portsOut":[{"name":"Value","links":[{"portIn":"Boolean","portOut":"Value","objIn":"wvmky194s","objOut":"mcyj3ceqx"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"wvmky194s","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Pass Through","portOut":"Result","objIn":"udgixmukx","objOut":"wvmky194s"}]}],"objName":"Ops.Boolean.Not"},{"id":"2nwj9hk6i","uiAttribs":{},"portsIn":[{"name":"Title","value":"bypass"}],"objName":"Ops.Ui.Area"},{"id":"udgixmukx","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"blls2amps","portOut":"Trigger out","objIn":"bxhz7tp4k","objOut":"udgixmukx"},{"portIn":"render","portOut":"Trigger out","objIn":"jr8ldk0r2","objOut":"udgixmukx"},{"portIn":"render","portOut":"Trigger out","objIn":"dbxqt7lqg","objOut":"udgixmukx"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"oefqiqdsy","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"render","portOut":"Trigger out","objIn":"gd8i1910i","objOut":"oefqiqdsy"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"gd8i1910i","uiAttribs":{},"portsIn":[{"name":"posX","value":0},{"name":"posY","value":0},{"name":"posZ","value":0},{"name":"scale","value":0.73},{"name":"rotX","value":90},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"9fkoygcno","portOut":"trigger","objIn":"pa5yuiyom","objOut":"gd8i1910i"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"pa5yuiyom","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"9fkoygcno","title":"Render"},{"name":"patchId","value":"bp2sub_pa5yuiyom"}],"objName":"Ops.Patch.PuSSdim.SubPatch1"},{"id":"3n0xi3fsv","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"9fkoygcno","portOut":"Trigger out","objIn":"pa5yuiyom","objOut":"3n0xi3fsv"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"lsv3n3hs3","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"Execute","portOut":"Trigger out","objIn":"ngzgotbds","objOut":"lsv3n3hs3"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"eval6rzea","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_bypassConvolver"}],"portsOut":[{"name":"Value","links":[{"portIn":"Boolean","portOut":"Value","objIn":"qc9y0rymh","objOut":"eval6rzea"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"qc9y0rymh","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Pass Through","portOut":"Result","objIn":"1qf5qizbm","objOut":"qc9y0rymh"}]}],"objName":"Ops.Boolean.Not"},{"id":"t6ok8gofa","uiAttribs":{},"portsIn":[{"name":"Title","value":"bypass"}],"objName":"Ops.Ui.Area"},{"id":"1qf5qizbm","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"render","portOut":"Trigger out","objIn":"cdqihefdh","objOut":"1qf5qizbm"},{"portIn":"blls2amps","portOut":"Trigger out","objIn":"827hbx7y7","objOut":"1qf5qizbm"},{"portIn":"Execute","portOut":"Trigger out","objIn":"8z3433rds","objOut":"1qf5qizbm"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"8z3433rds","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"p3udn0kt2","objOut":"8z3433rds"},{"portIn":"blls2amps","portOut":"Next","objIn":"5jrf5b006","objOut":"8z3433rds"},{"portIn":"render","portOut":"Next","objIn":"ezv1vx872","objOut":"8z3433rds"},{"portIn":"render","portOut":"Next","objIn":"xwjvzec0g","objOut":"8z3433rds"}]}],"objName":"Ops.Trigger.TriggerExtender"},{"id":"6u9uljqof","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_bypassConvolver"}],"portsOut":[{"name":"Value","links":[{"portIn":"Boolean","portOut":"Value","objIn":"gydu08orr","objOut":"6u9uljqof"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"qgfcwj6li","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"render","portOut":"Trigger out","objIn":"k9oj9uhcw","objOut":"qgfcwj6li"},{"portIn":"render","portOut":"Trigger out","objIn":"0tooxrj1w","objOut":"qgfcwj6li"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"gydu08orr","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Pass Through","portOut":"Result","objIn":"qgfcwj6li","objOut":"gydu08orr"}]}],"objName":"Ops.Boolean.Not"},{"id":"84hdpbwaf","uiAttribs":{},"portsIn":[{"name":"easing index","value":2},{"name":"easing","value":"smoothstep"},{"name":"duration","value":0.25},{"name":"Direction index","value":1},{"name":"Direction","value":"Only True"},{"name":"value false","value":-0.05},{"name":"value true","value":-0.1}],"portsOut":[{"name":"value","links":[{"portIn":"Thickness","portOut":"value","objIn":"e5r0bk5la","objOut":"84hdpbwaf"},{"portIn":"number","portOut":"value","objIn":"zf4zkamma","objOut":"84hdpbwaf"}]},{"name":"finished","value":1}],"objName":"Ops.Anim.BoolAnim"},{"id":"irf285bha","uiAttribs":{},"portsIn":[{"name":"easing index","value":2},{"name":"easing","value":"smoothstep"},{"name":"duration","value":0.25},{"name":"Direction index","value":1},{"name":"Direction","value":"Only True"},{"name":"value false","value":-0.05},{"name":"value true","value":-0.1}],"portsOut":[{"name":"value","links":[{"portIn":"Thickness","portOut":"value","objIn":"q4wnfj3p5","objOut":"irf285bha"},{"portIn":"number","portOut":"value","objIn":"4sdf08lse","objOut":"irf285bha"}]},{"name":"finished","value":1}],"objName":"Ops.Anim.BoolAnim"},{"id":"xlw95x0o1","uiAttribs":{},"portsIn":[{"name":"Text","value":"Bypass Reflections"},{"name":"Font","value":"chivo"},{"name":"Scale","value":0.08},{"name":"Letter Spacing","value":-0.02},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":2},{"name":"Vertical Align","value":"Middle"},{"name":"r","value":1},{"name":"g","value":1},{"name":"b","value":1},{"name":"SDF","value":1},{"name":"Smoothing","value":0.122},{"name":"Border","value":0},{"name":"Border Width","value":0.278},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0.268},{"name":"Border g","value":0.917},{"name":"Border b","value":0.449},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.3358},{"name":"Height","value":0.053334848484848485},{"name":"Start Y","value":0.02804734848484848},{"name":"Num Chars","value":18}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"5l1ap8jif","uiAttribs":{},"portsIn":[{"name":"x","value":-0.91},{"name":"y","value":0.27},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"xlw95x0o1","objOut":"5l1ap8jif"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"hnzd5wpdu","uiAttribs":{},"portsIn":[{"name":"Pass Through","value":1}],"portsOut":[{"name":"Trigger out","links":[{"portIn":"render","portOut":"Trigger out","objIn":"5l1ap8jif","objOut":"hnzd5wpdu"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"l4l0bqldi","uiAttribs":{},"portsIn":[{"name":"Text","value":"Bypass Convolvers"},{"name":"Font","value":"chivo"},{"name":"Scale","value":0.08},{"name":"Letter Spacing","value":-0.02},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":2},{"name":"Vertical Align","value":"Middle"},{"name":"r","value":1},{"name":"g","value":1},{"name":"b","value":1},{"name":"SDF","value":1},{"name":"Smoothing","value":0.122},{"name":"Border","value":0},{"name":"Border Width","value":0.278},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0.268},{"name":"Border g","value":0.917},{"name":"Border b","value":0.449},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.3174},{"name":"Height","value":0.05262234848484848},{"name":"Start Y","value":0.02697859848484848},{"name":"Num Chars","value":17}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"tozpismyt","uiAttribs":{},"portsIn":[{"name":"x","value":-0.92},{"name":"y","value":0.18},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"l4l0bqldi","objOut":"tozpismyt"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"vu7mkxcal","uiAttribs":{},"portsIn":[{"name":"Pass Through","value":1}],"portsOut":[{"name":"Trigger out","links":[{"portIn":"render","portOut":"Trigger out","objIn":"tozpismyt","objOut":"vu7mkxcal"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"n1dxl83p1","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"alrh6hig4","title":"render"},{"name":"8dittifdh","title":"Render"},{"name":"patchId","value":"bp2sub_n1dxl83p1"}],"objName":"Ops.Patch.PuSSdim.SubPatch3"},{"id":"gxqx5ku7y","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.58},{"name":"Value 2","value":5}],"portsOut":[{"name":"Result","links":[{"portIn":"a","portOut":"Result","objIn":"xlw95x0o1","objOut":"gxqx5ku7y"}]}],"objName":"Ops.Math.Interpolate"},{"id":"4sdf08lse","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"Percentage","portOut":"result","objIn":"gxqx5ku7y","objOut":"4sdf08lse"}]}],"objName":"Ops.Math.Abs"},{"id":"tvoul885k","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.58},{"name":"Value 2","value":5}],"portsOut":[{"name":"Result","links":[{"portIn":"a","portOut":"Result","objIn":"l4l0bqldi","objOut":"tvoul885k"}]}],"objName":"Ops.Math.Interpolate"},{"id":"zf4zkamma","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"Percentage","portOut":"result","objIn":"tvoul885k","objOut":"zf4zkamma"}]}],"objName":"Ops.Math.Abs"},{"id":"membr309b","uiAttribs":{},"portsIn":[{"name":"value","value":"slider_dryMix"}],"portsOut":[{"name":"String","links":[{"portIn":"btagbs7z2","portOut":"String","objIn":"dy6sr4seg","objOut":"membr309b"}]}],"objName":"Ops.String.String_v2"},{"id":"8havouexn","uiAttribs":{},"portsIn":[{"name":"Text","value":"* dry mix"},{"name":"Font","value":"chivo"},{"name":"Scale","value":0.14},{"name":"Letter Spacing","value":-0.04},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":2},{"name":"Vertical Align","value":"Middle"},{"name":"r","value":0.75},{"name":"g","value":0.75},{"name":"b","value":0.75},{"name":"SDF","value":1},{"name":"Smoothing","value":0.108},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.271403125},{"name":"Height","value":0.09267973484848485},{"name":"Start Y","value":0.048098484848484856},{"name":"Num Chars","value":9}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"8gspnlp7e","uiAttribs":{},"portsIn":[{"name":"x","value":0.57},{"name":"y","value":0.78},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"8havouexn","objOut":"8gspnlp7e"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"2s2np29qz","uiAttribs":{},"portsIn":[{"name":"Title","value":"dry mix in"}],"objName":"Ops.Ui.Area"},{"id":"8u59uuw3y","uiAttribs":{},"portsIn":[{"name":"number2","value":0.33}],"portsOut":[{"name":"result","links":[{"portIn":"a","portOut":"result","objIn":"8havouexn","objOut":"8u59uuw3y"}]}],"objName":"Ops.Math.Sum"},{"id":"3p6mq05rl","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_dryMix"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"kuku2w9d8","uiAttribs":{},"portsIn":[{"name":"B","value":1},{"name":"C","value":2},{"name":"D","value":3},{"name":"Expression","value":"a + 0.5"}],"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"3p6mq05rl","objOut":"kuku2w9d8"}]},{"name":"Expression Valid","value":true}],"objName":"Ops.Math.MathExpression"},{"id":"5gypeqckx","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"render","portOut":"Triggered","objIn":"8gspnlp7e","objOut":"5gypeqckx"},{"portIn":"blls2amps","portOut":"Triggered","objIn":"dy6sr4seg","objOut":"5gypeqckx"},{"portIn":"render","portOut":"Triggered","objIn":"vm3f05tkh","objOut":"5gypeqckx"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"dy6sr4seg","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"blls2amps","title":"Trigger in"},{"name":"btagbs7z2","title":"Class"},{"name":"lj06d561p","value":0,"title":"Show Boundings"},{"name":"patchId","value":"bp2sub_dy6sr4seg"}],"portsOut":[{"name":"nti406vwi","title":"Result","links":[{"portIn":"A","portOut":"nti406vwi","objIn":"kuku2w9d8","objOut":"dy6sr4seg"}]},{"name":"gjvx0zyv5","title":"value","links":[{"portIn":"number1","portOut":"gjvx0zyv5","objIn":"8u59uuw3y","objOut":"dy6sr4seg"},{"portIn":"a","portOut":"gjvx0zyv5","objIn":"cusun507p","objOut":"dy6sr4seg"}]}],"objName":"Ops.Patch.PuSSdim.BasicSlider_v4"},{"id":"gwbv0asv9","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":0.65},{"name":"height","value":0.03},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":5},{"name":"num rows","value":3}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"vm3f05tkh","uiAttribs":{},"portsIn":[{"name":"x","value":1.06},{"name":"y","value":0.78},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"cusun507p","objOut":"vm3f05tkh"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"cusun507p","uiAttribs":{},"portsIn":[{"name":"PointSize","value":3},{"name":"Size in Pixels","value":1},{"name":"Random Size","value":0},{"name":"Round","value":0},{"name":"Round Antialias","value":0},{"name":"Scale by Distance","value":0},{"name":"r","value":0.772},{"name":"g","value":0.15106840238933295},{"name":"b","value":0.4207414807217118},{"name":"Vertex Colors","value":0},{"name":"Colorize Texture","value":1},{"name":"Mask Channel index","value":0},{"name":"Mask Channel","value":"R"},{"name":"Colorize Randomize","value":0},{"name":"Point Size Channel index","value":0},{"name":"Point Size Channel","value":"R"},{"name":"Texture Point Size Mul","value":1},{"name":"Map Size 0 index","value":0},{"name":"Map Size 0","value":"Black"},{"name":"Flip Texture","value":0},{"name":"Atlas Cross Fade","value":0},{"name":"Atlas Repeat X ","value":1},{"name":"Min Point Size","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"gwbv0asv9","objOut":"cusun507p"}]}],"objName":"Ops.Gl.Shader.PointMaterial_v5"},{"id":"wv9yfmhgi","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.6},{"name":"Value 2","value":1}],"portsOut":[{"name":"Result","links":[{"portIn":"a","portOut":"Result","objIn":"akq5o2oet","objOut":"wv9yfmhgi"}]}],"objName":"Ops.Math.Interpolate"}],"export":{"time":"2024-08-24 16:57","service":"download","exportNumber":1}};
-if(!CABLES.exportedPatch){CABLES.exportedPatch=CABLES.exportedPatches['uSSdim']}
+if(!CABLES.exportedPatches) CABLES.exportedPatches={};CABLES.exportedPatches['AIoPfn']={"_id":"66d62c118d351d887bb24674","ops":[{"id":"zdo60lxbk","uiAttribs":{},"portsIn":[{"name":"FPS Limit","value":0},{"name":"Reduce FPS not focussed","value":1},{"name":"Reduce FPS loading","value":1},{"name":"Clear","value":1},{"name":"ClearAlpha","value":0},{"name":"Fullscreen Button","value":0},{"name":"Active","value":1},{"name":"Hires Displays","value":1},{"name":"Pixel Unit index","value":0},{"name":"Pixel Unit","value":"Display"}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"e0268dfa-e089-4f1f-966c-c30218792023","objOut":"zdo60lxbk"}]},{"name":"width","value":1070},{"name":"height","value":612}],"objName":"Ops.Gl.MainLoop"},{"id":"141502b6-2964-42b8-b273-c6d7f5bcf303","uiAttribs":{},"portsOut":[{"name":"trigger 0","links":[{"portIn":"Trigger","portOut":"trigger 0","objIn":"e0698285-4e6a-4339-a9ba-d9b3e441372c","objOut":"141502b6-2964-42b8-b273-c6d7f5bcf303"}]},{"name":"trigger 1","links":[{"portIn":"Increment","portOut":"trigger 1","objIn":"6hojoyomj","objOut":"141502b6-2964-42b8-b273-c6d7f5bcf303"}]},{"name":"trigger 5","links":[{"portIn":"in0 Cursor Update","portOut":"trigger 5","objIn":"cd9136e7-4c7b-4555-bf01-18381685410b","objOut":"141502b6-2964-42b8-b273-c6d7f5bcf303"}]},{"name":"trigger 8","links":[{"portIn":"Trigger","portOut":"trigger 8","objIn":"ch5u1xz0l","objOut":"141502b6-2964-42b8-b273-c6d7f5bcf303"}]},{"name":"trigger 9","links":[{"portIn":"Execute","portOut":"trigger 9","objIn":"ngzgotbds","objOut":"141502b6-2964-42b8-b273-c6d7f5bcf303"},{"portIn":"Execute","portOut":"trigger 9","objIn":"oefqiqdsy","objOut":"141502b6-2964-42b8-b273-c6d7f5bcf303"}]},{"name":"trigger 13","links":[{"portIn":"Trigger","portOut":"trigger 13","objIn":"afa40c7e-19f5-4546-911c-1e34c62f310b","objOut":"141502b6-2964-42b8-b273-c6d7f5bcf303"}]}],"objName":"Ops.Trigger.Sequence"},{"id":"4950e7c1-dcaf-47ac-9ca9-512013c4e9c9","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Coordinates index","value":0},{"name":"Coordinates","value":"-1 to 1"},{"name":"Area index","value":3},{"name":"Area","value":"Canvas Area"},{"name":"flip y","value":0},{"name":"right click prevent default","value":1},{"name":"Touch support","value":1},{"name":"Passive Events","value":0},{"name":"Active","value":1}],"portsOut":[{"name":"x","value":-1},{"name":"y","value":0.130718954248366},{"name":"click","links":[{"portIn":"Trigger","portOut":"click","objIn":"xz7qgpta6","objOut":"4950e7c1-dcaf-47ac-9ca9-512013c4e9c9"}]},{"name":"Button is down","value":0},{"name":"Mouse is hovering","links":[{"portIn":"Value","portOut":"Mouse is hovering","objIn":"d155f04b-ae78-473c-994b-81138389d0f0","objOut":"4950e7c1-dcaf-47ac-9ca9-512013c4e9c9"}]},{"name":"Movement X","value":0},{"name":"Movement Y","value":0.5}],"objName":"Ops.Devices.Mouse.Mouse_v3"},{"id":"d155f04b-ae78-473c-994b-81138389d0f0","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_mouseOver"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"dq71li66q","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Limit","value":1},{"name":"Min","value":0},{"name":"Max","value":1},{"name":"Rubberband","value":0}],"portsOut":[{"name":"Absolute Value","links":[{"portIn":"Value In","portOut":"Absolute Value","objIn":"csl3j7cy1","objOut":"dq71li66q"}]}],"objName":"Ops.Math.DeltaSum"},{"id":"9d85ffdc-685a-42ef-bd41-b501521a114c","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"create port","value":0}],"objName":"Ops.Ui.PatchInput"},{"id":"7bebb5f0-9d69-43ee-98be-27a13edd98db","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"create port","value":0},{"name":"out1 Ops.Devices.Mouse.Mouse_v3 x","value":0},{"name":"out2 Ops.Devices.Mouse.Mouse_v3 y","value":0},{"name":"out3 DeltaSum Absolute Value","value":0,"title":"DeltaX"}],"objName":"Ops.Ui.PatchOutput"},{"id":"cd9136e7-4c7b-4555-bf01-18381685410b","uiAttribs":{},"storage":{"subPatchVer":1},"portsIn":[{"name":"create port","value":0},{"name":"dataStr","value":"{\"ports\":[{\"name\":\"in0 Cursor Update\",\"type\":1}],\"portsOut\":[{\"name\":\"out0 DeltaSum Absolute Value\",\"type\":0},{\"name\":\"out1 Ops.Devices.Mouse.Mouse_v3 x\",\"type\":0},{\"name\":\"out2 Ops.Devices.Mouse.Mouse_v3 y\",\"type\":0},{\"name\":\"out3 DeltaSum Absolute Value\",\"type\":0,\"title\":\"DeltaX\"}]}"},{"name":"patchId","value":"66dae55a-8297-4120-81e2-d946cc6b2b60"}],"portsOut":[{"name":"create port out","value":0},{"name":"out0 DeltaSum Absolute Value","links":[{"portIn":"Value","portOut":"out0 DeltaSum Absolute Value","objIn":"9fsk0rgx7","objOut":"cd9136e7-4c7b-4555-bf01-18381685410b"}]},{"name":"out3 DeltaSum Absolute Value","title":"DeltaX"}],"objName":"Ops.Ui.SubPatch"},{"id":"c2a85325-d75f-4f01-9b5c-83a2edd8d35d","uiAttribs":{},"portsIn":[{"name":"posY","value":-0.18},{"name":"posZ","value":0},{"name":"scale","value":0.25},{"name":"rotX","value":0},{"name":"rotY","value":180},{"name":"rotZ","value":315.48}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"li365texv","objOut":"c2a85325-d75f-4f01-9b5c-83a2edd8d35d"},{"portIn":"render","portOut":"trigger","objIn":"uc9r4wu0r","objOut":"c2a85325-d75f-4f01-9b5c-83a2edd8d35d"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"e0268dfa-e089-4f1f-966c-c30218792023","uiAttribs":{},"portsIn":[{"name":"r","value":0},{"name":"g","value":0},{"name":"b","value":0},{"name":"a","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"te11ob7nw","objOut":"e0268dfa-e089-4f1f-966c-c30218792023"},{"portIn":"Trigger","portOut":"trigger","objIn":"zcc6zzw4d","objOut":"e0268dfa-e089-4f1f-966c-c30218792023"}]}],"objName":"Ops.Gl.ClearColor"},{"id":"b65ca0b8-40c9-4d0a-9e22-aba7d89f3abf","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Active","value":1},{"name":"Input Type index","value":0},{"name":"Input Type","value":"All"},{"name":"Area index","value":0},{"name":"Area","value":"Canvas Area"}],"portsOut":[{"name":"Delta X","value":0},{"name":"Delta Y","links":[{"portIn":"Delta Value","portOut":"Delta Y","objIn":"dq71li66q","objOut":"b65ca0b8-40c9-4d0a-9e22-aba7d89f3abf"}]},{"name":"Is Dragging","links":[{"portIn":"Value","portOut":"Is Dragging","objIn":"ls3p3eowk","objOut":"b65ca0b8-40c9-4d0a-9e22-aba7d89f3abf"},{"portIn":"Value","portOut":"Is Dragging","objIn":"t1ryttgy8","objOut":"b65ca0b8-40c9-4d0a-9e22-aba7d89f3abf"}]}],"objName":"Ops.Patch.PAIoPfn.MouseDrag"},{"id":"e0698285-4e6a-4339-a9ba-d9b3e441372c","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"mainExe"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"babe81ef-3ee9-4ed3-ba28-8b648c21dd11","uiAttribs":{},"portsIn":[{"name":"Title","value":"LOOP: Main 4"}],"objName":"Ops.Ui.Area"},{"id":"a82e74aa-f66f-47c9-a07a-2f1b0376925b","uiAttribs":{},"portsIn":[{"name":"Title","value":"Data"}],"objName":"Ops.Ui.Area"},{"id":"afa40c7e-19f5-4546-911c-1e34c62f310b","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"finalExe"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"7dq6j5p5k","uiAttribs":{},"portsIn":[{"name":"Check Body Collisions","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Trigger","portOut":"Next","objIn":"9sm9dp98r","objOut":"7dq6j5p5k"}]},{"name":"Total Bodies","value":4}],"objName":"Ops.Graphics.Intersection.IntersectWorld"},{"id":"9sm9dp98r","uiAttribs":{},"portsIn":[{"name":"Coordinate Format index","value":0},{"name":"Coordinate Format","value":"-1 to 1"},{"name":"Z","value":0},{"name":"To X","value":0},{"name":"To Y","value":0},{"name":"To Z","value":0},{"name":"Active","value":1},{"name":"Change Cursor","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"mbk4m8pcr","objOut":"9sm9dp98r"},{"portIn":"render","portOut":"Next","objIn":"7qikt1vaf","objOut":"9sm9dp98r"},{"portIn":"render","portOut":"Next","objIn":"aupoduf7d","objOut":"9sm9dp98r"},{"portIn":"render","portOut":"Next","objIn":"ge3zj70cy","objOut":"9sm9dp98r"}]},{"name":"Has Hit","value":0},{"name":"Hit Body Name","links":[{"portIn":"Value","portOut":"Hit Body Name","objIn":"tg35ehmtt","objOut":"9sm9dp98r"}]},{"name":"Hit X","value":0},{"name":"Hit Y","value":0},{"name":"Hit Z","value":0}],"objName":"Ops.Graphics.Intersection.IntersectTestRaycast"},{"id":"bs0d2bloj","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"mainExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Trigger","portOut":"Triggered","objIn":"7dq6j5p5k","objOut":"bs0d2bloj"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"5me0htliz","uiAttribs":{},"portsIn":[{"name":"Shape index","value":1},{"name":"Shape","value":"BoxAA"},{"name":"Name","value":"dial.2"},{"name":"Radius","value":0.22},{"name":"Size X","value":0.55},{"name":"Size Y","value":1},{"name":"Size Z","value":0},{"name":"Positions"},{"name":"Append Index to name","value":1}],"objName":"Ops.Graphics.Intersection.IntersectBody"},{"id":"mbk4m8pcr","uiAttribs":{},"portsIn":[{"name":"x","value":-0.28},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger","portOut":"trigger","objIn":"5me0htliz","objOut":"mbk4m8pcr"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"adh054ku6","uiAttribs":{},"portsIn":[{"name":"Shape index","value":1},{"name":"Shape","value":"BoxAA"},{"name":"Name","value":"dial.3"},{"name":"Radius","value":0.23},{"name":"Size X","value":0.55},{"name":"Size Y","value":1},{"name":"Size Z","value":0},{"name":"Positions"},{"name":"Append Index to name","value":1}],"objName":"Ops.Graphics.Intersection.IntersectBody"},{"id":"yjtjh6kai","uiAttribs":{},"portsIn":[{"name":"Shape index","value":1},{"name":"Shape","value":"BoxAA"},{"name":"Name","value":"dial.4"},{"name":"Radius","value":0.23},{"name":"Size X","value":0.56},{"name":"Size Y","value":1},{"name":"Size Z","value":0},{"name":"Positions"},{"name":"Append Index to name","value":1}],"objName":"Ops.Graphics.Intersection.IntersectBody"},{"id":"sfqxroo9q","uiAttribs":{},"portsIn":[{"name":"Coordinates index","value":0},{"name":"Coordinates","value":"-1 to 1"},{"name":"Area index","value":0},{"name":"Area","value":"Canvas"},{"name":"flip y","value":1},{"name":"right click prevent default","value":1},{"name":"Touch support","value":1},{"name":"Passive Events","value":0},{"name":"Active","value":1}],"portsOut":[{"name":"x","links":[{"portIn":"X","portOut":"x","objIn":"9sm9dp98r","objOut":"sfqxroo9q"}]},{"name":"y","links":[{"portIn":"Y","portOut":"y","objIn":"9sm9dp98r","objOut":"sfqxroo9q"}]},{"name":"Button is down","links":[{"portIn":"Value","portOut":"Button is down","objIn":"er6016ry9","objOut":"sfqxroo9q"}]},{"name":"Mouse is hovering","value":0},{"name":"Movement X","value":-16.5},{"name":"Movement Y","value":4.5}],"objName":"Ops.Devices.Mouse.Mouse_v3"},{"id":"124910bf-e88f-4da5-847e-888a7ac73020","uiAttribs":{},"portsIn":[{"name":"num x","value":4},{"name":"num y","value":1},{"name":"center","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"zlpf1p0f5","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"},{"portIn":"render","portOut":"trigger","objIn":"c2a85325-d75f-4f01-9b5c-83a2edd8d35d","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"}]},{"name":"x","links":[{"portIn":"posX","portOut":"x","objIn":"c2a85325-d75f-4f01-9b5c-83a2edd8d35d","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"},{"portIn":"posX","portOut":"x","objIn":"zlpf1p0f5","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"},{"portIn":"Value","portOut":"x","objIn":"6v0s7i2sf","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"}]},{"name":"y","value":0},{"name":"index","links":[{"portIn":"Value","portOut":"index","objIn":"euqza6b25","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"}]},{"name":"total iterations","value":4}],"objName":"Ops.Trigger.Repeat2d"},{"id":"7qikt1vaf","uiAttribs":{},"portsIn":[{"name":"x","value":0.27},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger","portOut":"trigger","objIn":"adh054ku6","objOut":"7qikt1vaf"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"aupoduf7d","uiAttribs":{},"portsIn":[{"name":"x","value":0.84},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger","portOut":"trigger","objIn":"yjtjh6kai","objOut":"aupoduf7d"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"32lmfrmux","uiAttribs":{},"portsIn":[{"name":"Title","value":"Intersect"}],"objName":"Ops.Ui.Area"},{"id":"tg35ehmtt","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_hitBodyName"}],"objName":"Ops.Vars.VarSetString_v2"},{"id":"gb0lraco2","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_activeDial_ID"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"kcwn0w2tu","objOut":"gb0lraco2"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"qyara3wac","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"Value","portOut":"result","objIn":"hb06uwqts","objOut":"qyara3wac"}]}],"objName":"Ops.Math.Compare.Equals"},{"id":"xz7qgpta6","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Named Trigger","value":"mouseDown"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"53603a6e-a331-41a7-9822-120aba8de4f8","uiAttribs":{},"portsIn":[{"name":"number2","value":270}],"portsOut":[{"name":"result","links":[{"portIn":"rotY","portOut":"result","objIn":"li365texv","objOut":"53603a6e-a331-41a7-9822-120aba8de4f8"}]}],"objName":"Ops.Math.Multiply"},{"id":"9fsk0rgx7","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_NormValue"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"aqjh1act1","uiAttribs":{},"portsIn":[{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"Value","portOut":"value","objIn":"j3kd0q09w","objOut":"aqjh1act1"},{"portIn":"Value","portOut":"value","objIn":"1rc15x0gs","objOut":"aqjh1act1"},{"portIn":"number1","portOut":"value","objIn":"53603a6e-a331-41a7-9822-120aba8de4f8","objOut":"aqjh1act1"},{"portIn":"A","portOut":"value","objIn":"v11enlha4","objOut":"aqjh1act1"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"i0rjtphmz","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_dialValues_array"}],"portsOut":[{"name":"Value","links":[{"portIn":"array","portOut":"Value","objIn":"aqjh1act1","objOut":"i0rjtphmz"}]}],"objName":"Ops.Vars.VarGetArray_v2"},{"id":"er6016ry9","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_buttonIsDown"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"ls3p3eowk","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_mouseIsDragging"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"kcwn0w2tu","uiAttribs":{},"portsIn":[{"name":"number2","value":1}],"portsOut":[{"name":"result","links":[{"portIn":"number1","portOut":"result","objIn":"qyara3wac","objOut":"kcwn0w2tu"}]}],"objName":"Ops.Math.Subtract"},{"id":"te11ob7nw","uiAttribs":{},"portsIn":[{"name":"projection mode index","value":0},{"name":"projection mode","value":"prespective"},{"name":"frustum near","value":0.01},{"name":"frustum far","value":5000},{"name":"fov","value":30},{"name":"Auto Aspect Ratio","value":1},{"name":"Aspect Ratio","value":1},{"name":"eye X","value":0},{"name":"eye Y","value":-0.03},{"name":"eye Z","value":0.73},{"name":"center X","value":0},{"name":"center Y","value":0},{"name":"center Z","value":0},{"name":"truck","value":0},{"name":"boom","value":0.23},{"name":"dolly","value":0},{"name":"tilt","value":0},{"name":"pan","value":0},{"name":"roll","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"exe","portOut":"trigger","objIn":"141502b6-2964-42b8-b273-c6d7f5bcf303","objOut":"te11ob7nw"},{"portIn":"Trigger","portOut":"trigger","objIn":"4pu8mr0y2","objOut":"te11ob7nw"}]},{"name":"Aspect","value":1.7483660130718954}],"objName":"Ops.Gl.Matrix.Camera"},{"id":"uc9r4wu0r","uiAttribs":{},"portsIn":[{"name":"r","value":0.885},{"name":"g","value":0.8560132010421952},{"name":"b","value":0.856},{"name":"colorizeTexture","value":1},{"name":"Vertex Colors","value":0},{"name":"Alpha Mask Source index","value":4},{"name":"Alpha Mask Source","value":"A"},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":0},{"name":"diffuseRepeatX","value":1},{"name":"diffuseRepeatY","value":0},{"name":"Tex Offset X","value":0},{"name":"Tex Offset Y","value":0},{"name":"Crop TexCoords","value":0},{"name":"billboard","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"3g7cbchrs","objOut":"uc9r4wu0r"}]}],"objName":"Ops.Gl.Shader.BasicMaterial_v3"},{"id":"j3kd0q09w","uiAttribs":{},"portsIn":[{"name":"Min","value":0},{"name":"Max","value":0.9},{"name":"Easing index","value":4},{"name":"Easing","value":"Cubic In"}],"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"conrnxfgk","objOut":"j3kd0q09w"},{"portIn":"Value","portOut":"Result","objIn":"s0o3lhs2y","objOut":"j3kd0q09w"}]}],"objName":"Ops.Math.Ease"},{"id":"conrnxfgk","uiAttribs":{},"portsIn":[{"name":"Min","value":0},{"name":"Max","value":0.27},{"name":"Easing index","value":5},{"name":"Easing","value":"Cubic Out"}],"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"z5bv7gal9","objOut":"conrnxfgk"}]}],"objName":"Ops.Math.Ease"},{"id":"chztenqi0","uiAttribs":{},"portsIn":[{"name":"r","value":1},{"name":"b","value":0.645},{"name":"Opacity","value":0.956},{"name":"AO Intensity","value":0.747},{"name":"Normal Map Intensity","value":0.66},{"name":"Repeat X","value":6},{"name":"Repeat Y","value":0},{"name":"Offset X","value":0},{"name":"Offset Y","value":1.6},{"name":"Screen Space Normals","value":0},{"name":"Calc normal tangents","value":0},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":1},{"name":"Alpha Mask Source index","value":0},{"name":"Alpha Mask Source","value":"Luminance"}],"portsOut":[{"name":"Next","links":[{"portIn":"Execute","portOut":"Next","objIn":"leqa7h4pd","objOut":"chztenqi0"}]},{"name":"Shader","links":[{"portIn":"Value","portOut":"Shader","objIn":"nnu0oo0gu","objOut":"chztenqi0"}]}],"objName":"Ops.Gl.Shader.MatCapMaterial_v3"},{"id":"0oya8etuv","uiAttribs":{},"portsIn":[{"name":"File","value":"assets/6697c3b245eb5d333bae2007_NEL_SRVB.webp","display":"file"},{"name":"Filter index","value":1},{"name":"Filter","value":"linear"},{"name":"Wrap index","value":0},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Data Format index","value":3},{"name":"Data Format","value":"RGBA"},{"name":"Flip","value":0},{"name":"Pre Multiplied Alpha","value":0},{"name":"Active","value":1},{"name":"Save Memory","value":1},{"name":"Add Cachebuster","value":1}],"portsOut":[{"name":"Texture","links":[{"portIn":"MatCap","portOut":"Texture","objIn":"chztenqi0","objOut":"0oya8etuv"}]},{"name":"Width","value":256},{"name":"Height","value":256},{"name":"Aspect Ratio","value":1},{"name":"Loaded","value":1},{"name":"Loading","value":0}],"objName":"Ops.Gl.Texture_v2"},{"id":"li365texv","uiAttribs":{},"portsIn":[{"name":"posX","value":0},{"name":"posY","value":0},{"name":"posZ","value":0.49},{"name":"scale","value":1},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"ts03zao35","objOut":"li365texv"},{"portIn":"Render","portOut":"trigger","objIn":"chztenqi0","objOut":"li365texv"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"bd0mu1qkj","uiAttribs":{},"portsIn":[{"name":"Title","value":"Main"}],"objName":"Ops.Ui.Area"},{"id":"6a24jo2e0","uiAttribs":{},"portsIn":[{"name":"Title","value":"Scape"}],"objName":"Ops.Ui.Area"},{"id":"kgtq6kbqp","uiAttribs":{},"portsIn":[{"name":"Font","value":"chivo"},{"name":"Scale","value":0.8},{"name":"Letter Spacing","value":-0.02},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":2},{"name":"Vertical Align","value":"Middle"},{"name":"r","value":0.949},{"name":"g","value":0.933},{"name":"b","value":0.899},{"name":"SDF","value":1},{"name":"Smoothing","value":0.126},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":1.3237500000000002},{"name":"Height","value":0.4727234848484848},{"name":"Start Y","value":0.24641098484848484},{"name":"Num Chars","value":7}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"1rc15x0gs","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentDialValueInsideRepeat2D"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"o8zk12f1r","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentDialValueInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"number","portOut":"Value","objIn":"2lpsqzgrb","objOut":"o8zk12f1r"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"2lpsqzgrb","uiAttribs":{},"portsIn":[{"name":"Decimal Places","value":4}],"portsOut":[{"name":"result","links":[{"portIn":"Number","portOut":"result","objIn":"vib72zx3n","objOut":"2lpsqzgrb"}]}],"objName":"Ops.Math.Round"},{"id":"vib72zx3n","uiAttribs":{},"portsIn":[{"name":"Decimal Places","value":4}],"portsOut":[{"name":"Result","links":[{"portIn":"String B","portOut":"Result","objIn":"hhpgrbf2g","objOut":"vib72zx3n"}]}],"objName":"Ops.String.NumberToString_v2"},{"id":"zlpf1p0f5","uiAttribs":{},"portsIn":[{"name":"posY","value":-0.565},{"name":"posZ","value":0.22},{"name":"scale","value":0.12},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"kgtq6kbqp","objOut":"zlpf1p0f5"}]}],"objName":"Ops.Gl.Matrix.TransformView"},{"id":"f67se0kft","uiAttribs":{},"portsIn":[{"name":"Title","value":"Text"}],"objName":"Ops.Ui.Area"},{"id":"6hojoyomj","uiAttribs":{},"portsIn":[{"name":"Limit","value":1},{"name":"Length","value":10},{"name":"Mode index","value":1},{"name":"Mode","value":"Stop at Max"},{"name":"Default","value":0}],"portsOut":[{"name":"Value","links":[{"portIn":"val","portOut":"Value","objIn":"1b7ls5v00","objOut":"6hojoyomj"}]}],"objName":"Ops.Math.Incrementor"},{"id":"m4wpz0q5c","uiAttribs":{},"portsIn":[{"name":"number2","value":0.06}],"portsOut":[{"name":"result","links":[{"portIn":"mul","portOut":"result","objIn":"124910bf-e88f-4da5-847e-888a7ac73020","objOut":"m4wpz0q5c"}]}],"objName":"Ops.Math.Multiply"},{"id":"1b7ls5v00","uiAttribs":{},"portsIn":[{"name":"min","value":0},{"name":"max","value":9}],"portsOut":[{"name":"result","links":[{"portIn":"number1","portOut":"result","objIn":"m4wpz0q5c","objOut":"1b7ls5v00"}]}],"objName":"Ops.Math.SmootherStep"},{"id":"hhpgrbf2g","uiAttribs":{},"portsIn":[{"name":"Format","value":"*$a $b"},{"name":"String C","value":2},{"name":"String D","value":3},{"name":"String E","value":""},{"name":"String F","value":""}],"portsOut":[{"name":"Result","links":[{"portIn":"Text","portOut":"Result","objIn":"kgtq6kbqp","objOut":"hhpgrbf2g"}]}],"objName":"Ops.String.StringCompose_v3"},{"id":"euqza6b25","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"34zd4vl4f","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"number2","portOut":"Value","objIn":"qyara3wac","objOut":"34zd4vl4f"},{"portIn":"number1","portOut":"Value","objIn":"ai5mgf397","objOut":"34zd4vl4f"},{"portIn":"index","portOut":"Value","objIn":"aqjh1act1","objOut":"34zd4vl4f"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"mtxdae1jj","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"index","portOut":"Value","objIn":"fxd9qy0nv","objOut":"mtxdae1jj"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"ejryfn62d","uiAttribs":{},"portsIn":[{"name":"Title","value":"*"}],"objName":"Ops.Ui.Area"},{"id":"yvvnsby8j","uiAttribs":{},"portsIn":[{"name":"text","value":"level, diffuse, tone, size"},{"name":"separator","value":","},{"name":"Numbers","value":0},{"name":"Trim","value":1},{"name":"Split Lines","value":0}],"portsOut":[{"name":"array","links":[{"portIn":"array","portOut":"array","objIn":"fxd9qy0nv","objOut":"yvvnsby8j"}]},{"name":"length","value":4}],"objName":"Ops.Array.StringToArray_v2"},{"id":"fxd9qy0nv","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"String A","portOut":"result","objIn":"hhpgrbf2g","objOut":"fxd9qy0nv"}]}],"objName":"Ops.Array.ArrayGetString"},{"id":"xqowbomkj","uiAttribs":{},"portsIn":[{"name":"Title","value":"*"}],"objName":"Ops.Ui.Area"},{"id":"ch5u1xz0l","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"midExe"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"faiior48h","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"midExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Render","portOut":"Triggered","objIn":"48vrkn65x","objOut":"faiior48h"},{"portIn":"render","portOut":"Triggered","objIn":"33hdtkr51","objOut":"faiior48h"},{"portIn":"render","portOut":"Triggered","objIn":"fvg1zz75v","objOut":"faiior48h"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"smns78b6k","uiAttribs":{},"portsIn":[{"name":"Title","value":"*"}],"objName":"Ops.Ui.Area"},{"id":"piq1e64rw","uiAttribs":{},"portsIn":[{"name":"Title","value":"*"}],"objName":"Ops.Ui.Area"},{"id":"t83msa078","uiAttribs":{},"portsIn":[{"name":"Title","value":"*"}],"objName":"Ops.Ui.Area"},{"id":"4pu8mr0y2","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"preSequenceFlow"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"of6q9dm1m","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"midExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"render","portOut":"Triggered","objIn":"v2qv1ozh2","objOut":"of6q9dm1m"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"zcc6zzw4d","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"zi3u8x4zd","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_activeDial_ID"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"zhjkbd61e","objOut":"zi3u8x4zd"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"0txm5qrgs","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_dialValues_array"}],"portsOut":[{"name":"Value","links":[{"portIn":"array","portOut":"Value","objIn":"ccotjup9t","objOut":"0txm5qrgs"}]}],"objName":"Ops.Vars.VarGetArray_v2"},{"id":"ccotjup9t","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"Default Value","portOut":"value","objIn":"dq71li66q","objOut":"ccotjup9t"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"zhjkbd61e","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"number2","value":1}],"portsOut":[{"name":"result","links":[{"portIn":"index","portOut":"result","objIn":"ccotjup9t","objOut":"zhjkbd61e"}]}],"objName":"Ops.Math.Subtract"},{"id":"v2qv1ozh2","uiAttribs":{},"portsIn":[{"name":"Size index","value":1},{"name":"Size","value":"Manual"},{"name":"texture height","value":512},{"name":"Auto Aspect","value":1},{"name":"filter index","value":1},{"name":"filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"Repeat"},{"name":"MSAA index","value":1},{"name":"MSAA","value":"2x"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"Depth","value":0},{"name":"Clear","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"Execute","portOut":"trigger","objIn":"3so3f33cf","objOut":"v2qv1ozh2"}]},{"name":"texture","links":[{"portIn":"Base Texture","portOut":"texture","objIn":"eerqtlpnp","objOut":"v2qv1ozh2"}]}],"objName":"Ops.Gl.RenderToTexture_v3"},{"id":"o4q65sx2h","uiAttribs":{},"portsIn":[{"name":"x","value":-1.4},{"name":"y","value":-1.79}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"eb7wv37c6","objOut":"o4q65sx2h"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"gv2xr0zt3","uiAttribs":{},"portsIn":[{"name":"Font Name","value":"chivo"},{"name":"Font Data","value":"assets/6697c3b245eb5d333bae2007_ChivoMono-Medium-msdf.json","display":"file"},{"name":"Font Image","value":"assets/6697c3b245eb5d333bae2007_ChivoMono-Medium.png","display":"file"},{"name":"Font Image 1","value":0,"display":"file"},{"name":"Font Image 2","value":0,"display":"file"},{"name":"Font Image 3","value":0,"display":"file"}],"portsOut":[{"name":"Loaded","value":true},{"name":"Total Chars","value":66},{"name":"Chars","value":"jQgbdf03689CGOShikl12457ABDEFHIJKLMNPRTUVWXYZpqtyw+acemnorsuvxz*-."}],"objName":"Ops.Gl.FontMSDF_v2"},{"id":"kmdf8veed","uiAttribs":{},"portsIn":[{"name":"File","value":"assets/lib_matcaps_Chrome_Blue_Tint-White.png","display":"file"},{"name":"Filter index","value":2},{"name":"Filter","value":"mipmap"},{"name":"Wrap index","value":0},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Data Format index","value":3},{"name":"Data Format","value":"RGBA"},{"name":"Flip","value":0},{"name":"Pre Multiplied Alpha","value":0},{"name":"Active","value":1},{"name":"Save Memory","value":1},{"name":"Add Cachebuster","value":0}],"portsOut":[{"name":"Texture","links":[{"portIn":"Specular MatCap","portOut":"Texture","objIn":"chztenqi0","objOut":"kmdf8veed"}]},{"name":"Width","value":256},{"name":"Height","value":256},{"name":"Aspect Ratio","value":1},{"name":"Loaded","value":1},{"name":"Loading","value":0}],"objName":"Ops.Gl.Texture_v2"},{"id":"flv1jlkal","uiAttribs":{},"portsIn":[{"name":"File","value":"assets/6697c3b245eb5d333bae2007_Sterungs.webp","display":"file"},{"name":"Filter index","value":2},{"name":"Filter","value":"mipmap"},{"name":"Wrap index","value":0},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Data Format index","value":3},{"name":"Data Format","value":"RGBA"},{"name":"Flip","value":0},{"name":"Pre Multiplied Alpha","value":0},{"name":"Active","value":1},{"name":"Save Memory","value":1},{"name":"Add Cachebuster","value":0}],"portsOut":[{"name":"Texture","links":[{"portIn":"Specular Mask","portOut":"Texture","objIn":"chztenqi0","objOut":"flv1jlkal"}]},{"name":"Width","value":256},{"name":"Height","value":256},{"name":"Aspect Ratio","value":1},{"name":"Loaded","value":1},{"name":"Loading","value":0}],"objName":"Ops.Gl.Texture_v2"},{"id":"40fnzsucx","uiAttribs":{},"portsIn":[{"name":"Play","value":1},{"name":"Sync to timeline","value":0}],"portsOut":[{"name":"Time","links":[{"portIn":"Time","portOut":"Time","objIn":"lv0f0jbcs","objOut":"40fnzsucx"}]}],"objName":"Ops.Anim.Timer_v2"},{"id":"lv0f0jbcs","uiAttribs":{},"portsIn":[{"name":"Type index","value":2},{"name":"Type","value":"ramp up"},{"name":"Phase","value":0},{"name":"Range Min","value":-360},{"name":"Range Max","value":360}],"portsOut":[{"name":"Result","links":[{"portIn":"rotX","portOut":"Result","objIn":"li365texv","objOut":"lv0f0jbcs"}]}],"objName":"Ops.Anim.LFO_v2"},{"id":"ai5mgf397","uiAttribs":{},"portsIn":[{"name":"number2","value":0.01}],"portsOut":[{"name":"result","links":[{"portIn":"Frequency","portOut":"result","objIn":"lv0f0jbcs","objOut":"ai5mgf397"}]}],"objName":"Ops.Math.Multiply"},{"id":"dsy5j4yzl","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"result","links":[{"portIn":"Value","portOut":"result","objIn":"s9n3wwypa","objOut":"dsy5j4yzl"},{"portIn":"Pass Through","portOut":"result","objIn":"8lyuqd6tn","objOut":"dsy5j4yzl"},{"portIn":"Pass Through","portOut":"result","objIn":"csl3j7cy1","objOut":"dsy5j4yzl"}]}],"objName":"Ops.Boolean.And"},{"id":"hd8nl2ugk","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_buttonIsDown"}],"portsOut":[{"name":"Value","links":[{"portIn":"bool 2","portOut":"Value","objIn":"dsy5j4yzl","objOut":"hd8nl2ugk"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"yi13493pq","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_hitBodyName"}],"portsOut":[{"name":"Value","links":[{"portIn":"String","portOut":"Value","objIn":"i77gb1h2c","objOut":"yi13493pq"},{"portIn":"String In","portOut":"Value","objIn":"8lyuqd6tn","objOut":"yi13493pq"}]}],"objName":"Ops.Vars.VarGetString"},{"id":"i77gb1h2c","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"SearchValue","value":"dial"}],"portsOut":[{"name":"Found","links":[{"portIn":"bool 1","portOut":"Found","objIn":"dsy5j4yzl","objOut":"i77gb1h2c"}]},{"name":"Index","value":-1}],"objName":"Ops.String.StringContains_v2"},{"id":"ozs800vz3","uiAttribs":{},"objName":"Ops.Gl.GLTF.GltfDracoCompression"},{"id":"bmau99lwf","uiAttribs":{},"portsIn":[{"name":"data","value":"{\"hiddenNodes\":{}}"},{"name":"glb File","value":"assets/66a8cc11ac4e6d02513b1fae_spherical_animation.draco.glb","display":"file"},{"name":"Draw","value":1},{"name":"Camera index","value":0},{"name":"Camera","value":"None"},{"name":"Animation","value":"Anim "},{"name":"Center index","value":0},{"name":"Center","value":"None"},{"name":"Rescale","value":1},{"name":"Rescale Size","value":1},{"name":"Sync to timeline","value":0},{"name":"Loop","value":1},{"name":"Normals Format index","value":0},{"name":"Normals Format","value":"XYZ"},{"name":"Vertices Format index","value":0},{"name":"Vertices Format","value":"XYZ"},{"name":"Calc Normals index","value":0},{"name":"Calc Normals","value":"Auto"},{"name":"Hide Nodes","value":0},{"name":"Use Material Properties","value":0},{"name":"Active","value":1}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"38w7tj78u","objOut":"bmau99lwf"}]},{"name":"Generator","value":"Sketchfab-16.17.0"},{"name":"GLTF Version","value":2},{"name":"Anim Length","value":8.333333015441895},{"name":"Anim Time","value":7.779470816871832},{"name":"Loading","value":false}],"objName":"Ops.Gl.GLTF.GltfScene_v4"},{"id":"lb1qzrcoj","uiAttribs":{},"portsIn":[{"name":"Material Name","value":"FORGED_METAL"}],"portsOut":[{"name":"Material","links":[{"portIn":"Materials","portOut":"Material","objIn":"bmau99lwf","objOut":"lb1qzrcoj"}]}],"objName":"Ops.Gl.GLTF.GltfSetMaterial"},{"id":"fs2uw3jmy","uiAttribs":{},"portsIn":[{"name":"Material Name","value":"Side"}],"portsOut":[{"name":"Material","links":[{"portIn":"Materials","portOut":"Material","objIn":"bmau99lwf","objOut":"fs2uw3jmy"}]}],"objName":"Ops.Gl.GLTF.GltfSetMaterial"},{"id":"nnu0oo0gu","uiAttribs":{},"portsIn":[{"name":"Variable","value":"NEL_SRVB_Metals"}],"objName":"Ops.Vars.VarSetObject_v2"},{"id":"u5bcyfii0","uiAttribs":{},"portsIn":[{"name":"Variable","value":"NEL_SRVB_Metals"}],"portsOut":[{"name":"Value","links":[{"portIn":"Shader","portOut":"Value","objIn":"lb1qzrcoj","objOut":"u5bcyfii0"}]}],"objName":"Ops.Vars.VarGetObject_v2"},{"id":"leqa7h4pd","uiAttribs":{},"portsIn":[{"name":"Diffuse A","value":1},{"name":"Double Sided","value":0},{"name":"Colorize Texture","value":0}],"portsOut":[{"name":"next","links":[{"portIn":"Execute","portOut":"next","objIn":"0rcbij4av","objOut":"leqa7h4pd"}]},{"name":"Shader","links":[{"portIn":"Shader","portOut":"Shader","objIn":"fs2uw3jmy","objOut":"leqa7h4pd"}]}],"objName":"Ops.Gl.Phong.LambertMaterial_v2"},{"id":"s0o3lhs2y","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ringR"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"z5bv7gal9","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ringG"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"oa1101yyu","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ringR"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"y7uobh49q","objOut":"oa1101yyu"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"tnds1iu5y","uiAttribs":{},"portsIn":[{"name":"Material Name","value":"POINTS"}],"portsOut":[{"name":"Material","links":[{"portIn":"Materials","portOut":"Material","objIn":"bmau99lwf","objOut":"tnds1iu5y"}]}],"objName":"Ops.Gl.GLTF.GltfSetMaterial"},{"id":"0rcbij4av","uiAttribs":{},"portsIn":[{"name":"Diffuse R","value":0.919},{"name":"Diffuse G","value":0.97},{"name":"Diffuse B","value":1},{"name":"Diffuse A","value":1},{"name":"Double Sided","value":0},{"name":"Colorize Texture","value":0}],"portsOut":[{"name":"Shader","links":[{"portIn":"Shader","portOut":"Shader","objIn":"tnds1iu5y","objOut":"0rcbij4av"}]}],"objName":"Ops.Gl.Phong.LambertMaterial_v2"},{"id":"y7uobh49q","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"g","portOut":"Result","objIn":"chztenqi0","objOut":"y7uobh49q"}]}],"objName":"Ops.Math.OneMinus"},{"id":"ts03zao35","uiAttribs":{},"portsIn":[{"name":"r","value":1},{"name":"g","value":1},{"name":"b","value":1},{"name":"Opacity","value":1},{"name":"AO Intensity","value":1},{"name":"Normal Map Intensity","value":1},{"name":"Repeat X","value":1},{"name":"Repeat Y","value":1},{"name":"Offset X","value":0},{"name":"Offset Y","value":0},{"name":"Screen Space Normals","value":0},{"name":"Calc normal tangents","value":1},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":0},{"name":"Alpha Mask Source index","value":0},{"name":"Alpha Mask Source","value":"Luminance"}],"portsOut":[{"name":"Next","links":[{"portIn":"Execute","portOut":"Next","objIn":"l7fhi163a","objOut":"ts03zao35"},{"portIn":"render","portOut":"Next","objIn":"orseg18lf","objOut":"ts03zao35"}]}],"objName":"Ops.Gl.Shader.MatCapMaterial_v3"},{"id":"38w7tj78u","uiAttribs":{},"portsIn":[{"name":"Node Name","value":"c001_1"},{"name":"Translate Y","value":0},{"name":"Translate Z","value":0},{"name":"Rotation X","value":0},{"name":"Rotation Y","value":0},{"name":"Rotation Z","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"bq7dcj36g","objOut":"38w7tj78u"}]},{"name":"Found","value":true}],"objName":"Ops.Gl.GLTF.GltfTransformNode"},{"id":"5g6m8w0kd","uiAttribs":{},"portsIn":[{"name":"Node Name","value":"c003_3"},{"name":"Translate Y","value":0},{"name":"Translate Z","value":0},{"name":"Rotation X","value":0},{"name":"Rotation Y","value":0},{"name":"Rotation Z","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"br7cvag8u","objOut":"5g6m8w0kd"}]},{"name":"Found","value":true}],"objName":"Ops.Gl.GLTF.GltfTransformNode"},{"id":"bq7dcj36g","uiAttribs":{},"portsIn":[{"name":"Node Name","value":"c002_2"},{"name":"Translate Y","value":0},{"name":"Translate Z","value":0},{"name":"Rotation X","value":0},{"name":"Rotation Y","value":0},{"name":"Rotation Z","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"5g6m8w0kd","objOut":"bq7dcj36g"}]},{"name":"Found","value":true}],"objName":"Ops.Gl.GLTF.GltfTransformNode"},{"id":"br7cvag8u","uiAttribs":{},"portsIn":[{"name":"Node Name","value":"c004_4"},{"name":"Translate Y","value":0},{"name":"Translate Z","value":0},{"name":"Rotation X","value":0},{"name":"Rotation Y","value":0},{"name":"Rotation Z","value":0}],"portsOut":[{"name":"Found","value":true}],"objName":"Ops.Gl.GLTF.GltfTransformNode"},{"id":"hf23rbdfn","uiAttribs":{},"portsIn":[{"name":"number2","value":20}],"portsOut":[{"name":"result","links":[{"portIn":"Translate X","portOut":"result","objIn":"38w7tj78u","objOut":"hf23rbdfn"},{"portIn":"Translate X","portOut":"result","objIn":"bq7dcj36g","objOut":"hf23rbdfn"},{"portIn":"Translate X","portOut":"result","objIn":"5g6m8w0kd","objOut":"hf23rbdfn"},{"portIn":"Translate X","portOut":"result","objIn":"br7cvag8u","objOut":"hf23rbdfn"}]}],"objName":"Ops.Math.Multiply"},{"id":"w1vt61ydw","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_dialValues_array"}],"portsOut":[{"name":"Value","links":[{"portIn":"Array in","portOut":"Value","objIn":"z1obzd6uz","objOut":"w1vt61ydw"}]}],"objName":"Ops.Vars.VarGetArray_v2"},{"id":"9044xju7n","uiAttribs":{},"portsIn":[{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"number1","portOut":"value","objIn":"hf23rbdfn","objOut":"9044xju7n"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"z1obzd6uz","uiAttribs":{},"portsIn":[{"name":"When False index","value":0},{"name":"When False","value":"keep last array"}],"portsOut":[{"name":"Array Out","links":[{"portIn":"array","portOut":"Array Out","objIn":"9044xju7n","objOut":"z1obzd6uz"}]}],"objName":"Ops.Array.GateArray_v2"},{"id":"0lxocfgel","uiAttribs":{},"portsIn":[{"name":"Title","value":"Spatial GLTF"}],"objName":"Ops.Ui.Area"},{"id":"hb06uwqts","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentInstanceIsActive"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"9hyokghvg","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentInstanceIsActive"}],"portsOut":[{"name":"Value","links":[{"portIn":"Pass Through","portOut":"Value","objIn":"z1obzd6uz","objOut":"9hyokghvg"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"6dc9673bl","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"A","portOut":"Value","objIn":"88c0pg2n0","objOut":"6dc9673bl"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"88c0pg2n0","uiAttribs":{},"portsIn":[{"name":"B","value":1},{"name":"C","value":2},{"name":"D","value":3},{"name":"Expression","value":"(a + 1) % 4"}],"portsOut":[{"name":"Result","links":[{"portIn":"index","portOut":"Result","objIn":"9044xju7n","objOut":"88c0pg2n0"}]},{"name":"Expression Valid","value":true}],"objName":"Ops.Math.MathExpression"},{"id":"6v0s7i2sf","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_rep2d_x"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"q3siwjs06","uiAttribs":{},"portsIn":[{"name":"Frequency","value":0.002002},{"name":"Type index","value":0},{"name":"Type","value":"sine"},{"name":"Range Min","value":0},{"name":"Range Max","value":8}],"portsOut":[{"name":"Result","links":[{"portIn":"Time","portOut":"Result","objIn":"bmau99lwf","objOut":"q3siwjs06"}]}],"objName":"Ops.Anim.LFO_v2"},{"id":"l3284qrsh","uiAttribs":{},"portsOut":[{"name":"timesTriggered","links":[{"portIn":"A","portOut":"timesTriggered","objIn":"hd355ern0","objOut":"l3284qrsh"}]}],"objName":"Ops.Trigger.TriggerCounter"},{"id":"xja9p9adg","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"B","portOut":"Value","objIn":"hd355ern0","objOut":"xja9p9adg"},{"portIn":"Phase","portOut":"Value","objIn":"q3siwjs06","objOut":"xja9p9adg"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"orseg18lf","uiAttribs":{},"portsIn":[{"name":"scale","value":1.28},{"name":"x","value":1},{"name":"y","value":1},{"name":"z","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"bmau99lwf","objOut":"orseg18lf"}]}],"objName":"Ops.Gl.Matrix.Scale"},{"id":"hd355ern0","uiAttribs":{},"portsIn":[{"name":"C","value":-1},{"name":"D","value":0},{"name":"Expression","value":"a*(b * 0.01)"}],"portsOut":[{"name":"Result","links":[{"portIn":"Time","portOut":"Result","objIn":"q3siwjs06","objOut":"hd355ern0"}]},{"name":"Expression Valid","value":true}],"objName":"Ops.Math.MathExpression"},{"id":"2p7s5nsc9","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":0.005},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":2},{"name":"pivot y","value":"bottom"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":1},{"name":"num rows","value":1}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"cplq646td","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"j447574nb","objOut":"cplq646td"}]}],"objName":"Ops.Gl.Matrix.Billboard"},{"id":"j447574nb","uiAttribs":{},"portsIn":[{"name":"y","value":1.45},{"name":"z","value":6.66}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"lb4ss1de9","objOut":"j447574nb"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"l53eehg6x","uiAttribs":{},"portsIn":[{"name":"Text","value":"ScapeRVB"},{"name":"Font","value":"chivo"},{"name":"Scale","value":1.54},{"name":"Letter Spacing","value":0.02},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":1},{"name":"Vertical Align","value":"Top"},{"name":"r","value":0.179},{"name":"g","value":1},{"name":"b","value":0.692},{"name":"a","value":0.91},{"name":"SDF","value":1},{"name":"Smoothing","value":0.126},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":3.4483968750000003},{"name":"Height","value":0.9838645833333333},{"name":"Start Y","value":0.4781656249999999},{"name":"Num Chars","value":8}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"fevah6hns","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"finalExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"render","portOut":"Triggered","objIn":"bav6ydpr2","objOut":"fevah6hns"},{"portIn":"exe","portOut":"Triggered","objIn":"rw14ave8u","objOut":"fevah6hns"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"bav6ydpr2","uiAttribs":{},"portsIn":[{"name":"posX","value":0.535},{"name":"posY","value":0.435},{"name":"posZ","value":0},{"name":"scale","value":0.125},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"l53eehg6x","objOut":"bav6ydpr2"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"3g7cbchrs","uiAttribs":{},"portsIn":[{"name":"x","value":-0.6},{"name":"y","value":-0.835},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Exec","portOut":"trigger","objIn":"cplq646td","objOut":"3g7cbchrs"}]}],"objName":"Ops.Gl.Matrix.TranslateView"},{"id":"s9n3wwypa","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_mouseIsChangingDialValue"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"lgfxem7we","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_mouseIsChangingParamID"}],"objName":"Ops.Vars.VarSetString_v2"},{"id":"8lyuqd6tn","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"When False index","value":0},{"name":"When False","value":"keep last string"},{"name":"Custom Value","value":""}],"portsOut":[{"name":"String Out","links":[{"portIn":"Key","portOut":"String Out","objIn":"q2imefo72","objOut":"8lyuqd6tn"}]}],"objName":"Ops.String.GateString"},{"id":"8vvl2gwwz","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"el0us87h5","objOut":"8vvl2gwwz"}]},{"name":"Result","links":[{"portIn":"data","portOut":"Result","objIn":"q2imefo72","objOut":"8vvl2gwwz"}]}],"objName":"Ops.Data.Compose.Object.CompObject"},{"id":"madc5uih6","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Named Trigger","value":"mainExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Update","portOut":"Triggered","objIn":"8vvl2gwwz","objOut":"madc5uih6"},{"portIn":"Exec","portOut":"Triggered","objIn":"hf3ib8jqh","objOut":"madc5uih6"},{"portIn":"Update","portOut":"Triggered","objIn":"na2pda15t","objOut":"madc5uih6"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"el0us87h5","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Key","value":"dial.1"},{"name":"String","value":"mix"}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"lq1vvjm70","objOut":"el0us87h5"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetString"},{"id":"lq1vvjm70","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Key","value":"dial.2"},{"name":"String","value":"diffuse"}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"zuuutor70","objOut":"lq1vvjm70"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetString"},{"id":"zuuutor70","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Key","value":"dial.3"},{"name":"String","value":"tone"}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"fvxs3gsfk","objOut":"zuuutor70"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetString"},{"id":"fvxs3gsfk","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Key","value":"dial.4"},{"name":"String","value":"size"}],"objName":"Ops.Data.Compose.Object.CompObjectSetString"},{"id":"q2imefo72","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"lgfxem7we","objOut":"q2imefo72"}]}],"objName":"Ops.Json.ObjectGetString"},{"id":"tvhdy0oy7","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"key code","value":16},{"name":"canvas only","value":1},{"name":"Mod Key index","value":0},{"name":"Mod Key","value":"none"},{"name":"Enabled","value":1},{"name":"Prevent Default","value":0}],"portsOut":[{"name":"on press","links":[{"portIn":"Trigger 0","portOut":"on press","objIn":"9xrx1aiud","objOut":"tvhdy0oy7"}]},{"name":"on release","links":[{"portIn":"Trigger 1","portOut":"on release","objIn":"9xrx1aiud","objOut":"tvhdy0oy7"}]},{"name":"Pressed","value":1},{"name":"Key","value":"Shift"}],"objName":"Ops.Devices.Keyboard.KeyPressLearn"},{"id":"9xrx1aiud","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Value 0","value":0.05},{"name":"Value 1","value":0.5},{"name":"Value 2","value":0.5},{"name":"Value 3","value":0},{"name":"Value 4","value":0},{"name":"Value 5","value":0},{"name":"Value 6","value":0},{"name":"Value 7","value":0},{"name":"Default Value","value":""}],"portsOut":[{"name":"Value","links":[{"portIn":"Multiply","portOut":"Value","objIn":"dq71li66q","objOut":"9xrx1aiud"}]},{"name":"Last Value","value":""}],"objName":"Ops.Number.SwitchNumberOnTrigger"},{"id":"hf3ib8jqh","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"Next","links":[{"portIn":"Trigger 2","portOut":"Next","objIn":"9xrx1aiud","objOut":"hf3ib8jqh"}]},{"name":"Was Triggered","value":1}],"objName":"Ops.Trigger.TriggerOnce"},{"id":"48vrkn65x","uiAttribs":{},"portsIn":[{"name":"Size index","value":0},{"name":"Size","value":"Auto"},{"name":"Width","value":640},{"name":"Height","value":480},{"name":"Filter index","value":1},{"name":"Filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Pixel Format index","value":5},{"name":"Pixel Format","value":"SRGBA 8bit ubyte"},{"name":"R","value":0},{"name":"G","value":0},{"name":"B","value":0},{"name":"A","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"6fb2f0244","objOut":"48vrkn65x"}]},{"name":"texture_out","links":[{"portIn":"Diffuse","portOut":"texture_out","objIn":"flor1ge09","objOut":"48vrkn65x"}]},{"name":"Aspect Ratio","value":1.7483660130718954},{"name":"Texture Width","value":1070},{"name":"Texture Height","value":612}],"objName":"Ops.Gl.ImageCompose.ImageCompose_v4"},{"id":"wcm52u6xo","uiAttribs":{},"portsIn":[{"name":"x","value":-1},{"name":"y","value":0.4},{"name":"z","value":-1}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"62jtojeuu","objOut":"wcm52u6xo"}]}],"objName":"Ops.Gl.Matrix.ScaleXYZViewMatrix"},{"id":"flor1ge09","uiAttribs":{},"portsIn":[{"name":"r","value":0.07},{"name":"g","value":0.06},{"name":"b","value":0.51},{"name":"AO Intensity","value":1},{"name":"Normal Map Intensity","value":1},{"name":"Repeat X","value":1},{"name":"Repeat Y","value":1},{"name":"Offset X","value":0.93},{"name":"Offset Y","value":-0.89},{"name":"Screen Space Normals","value":0},{"name":"Calc normal tangents","value":1},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":1},{"name":"Alpha Mask Source index","value":0},{"name":"Alpha Mask Source","value":"Luminance"}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"wcm52u6xo","objOut":"flor1ge09"}]}],"objName":"Ops.Gl.Shader.MatCapMaterial_v3"},{"id":"9dqwuc8l6","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":1},{"name":"height","value":1.8},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":1},{"name":"num rows","value":1}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"2zbdnj6oz","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_size"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"zpf6nadj7","objOut":"2zbdnj6oz"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"eb7wv37c6","uiAttribs":{},"portsIn":[{"name":"file","value":"assets/6697c3b245eb5d333bae2007_NEL_SRVB.webp","display":"file"},{"name":"extrude","value":4.42},{"name":"width","value":3},{"name":"height","value":3},{"name":"columns","value":21},{"name":"texCoords slice","value":1},{"name":"flat","value":1}],"portsOut":[{"name":"geometry","links":[{"portIn":"Value","portOut":"geometry","objIn":"hr05yjyy0","objOut":"eb7wv37c6"}]}],"objName":"Ops.Gl.Meshes.HeightMap"},{"id":"j4exj9jwp","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_tone"}],"portsOut":[{"name":"Value","links":[{"portIn":"Diffuse R","portOut":"Value","objIn":"leqa7h4pd","objOut":"j4exj9jwp"},{"portIn":"Diffuse G","portOut":"Value","objIn":"leqa7h4pd","objOut":"j4exj9jwp"},{"portIn":"Diffuse B","portOut":"Value","objIn":"leqa7h4pd","objOut":"j4exj9jwp"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"c4hww7lmi","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_tone"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"3gcrjukfk","objOut":"c4hww7lmi"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"33hdtkr51","uiAttribs":{},"portsIn":[{"name":"x","value":0},{"name":"y","value":0.31},{"name":"z","value":-0.01}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"flor1ge09","objOut":"33hdtkr51"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"3gcrjukfk","uiAttribs":{},"portsIn":[{"name":"Min","value":0},{"name":"Max","value":1},{"name":"Easing index","value":11},{"name":"Easing","value":"Sin Out"}],"portsOut":[{"name":"Result","links":[{"portIn":"Opacity","portOut":"Result","objIn":"flor1ge09","objOut":"3gcrjukfk"}]}],"objName":"Ops.Math.Ease"},{"id":"62voq6obk","uiAttribs":{},"portsIn":[{"name":"Value","value":0},{"name":"Variable","value":"ui_scapeDiffusion"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"l7fhi163a","uiAttribs":{},"portsIn":[{"name":"Nth","value":2}],"portsOut":[{"name":"Next","links":[{"portIn":"exe","portOut":"Next","objIn":"l3284qrsh","objOut":"l7fhi163a"}]}],"objName":"Ops.Trigger.NthTrigger_v2"},{"id":"zpf6nadj7","uiAttribs":{},"portsOut":[{"name":"Result","value":0.9}],"objName":"Ops.Math.OneMinus"},{"id":"oba4wt0jq","uiAttribs":{},"portsIn":[{"name":"scale","value":0.8},{"name":"x","value":1},{"name":"y","value":1},{"name":"z","value":0.86}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"o4q65sx2h","objOut":"oba4wt0jq"}]}],"objName":"Ops.Gl.Matrix.Scale"},{"id":"62jtojeuu","uiAttribs":{},"portsIn":[{"name":"posX","value":0},{"name":"posY","value":-1.15},{"name":"posZ","value":-3.52},{"name":"scale","value":3.57},{"name":"rotX","value":-83.76},{"name":"rotY","value":0},{"name":"rotZ","value":180}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"9dqwuc8l6","objOut":"62jtojeuu"}]}],"objName":"Ops.Gl.Matrix.TransformView"},{"id":"rw14ave8u","uiAttribs":{},"portsIn":[{"name":"easing index","value":8},{"name":"easing","value":"Expo Out"},{"name":"duration","value":0.75},{"name":"Direction index","value":0},{"name":"Direction","value":"Both"},{"name":"value false","value":0},{"name":"value true","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"Update","portOut":"trigger","objIn":"zpbecbb56","objOut":"rw14ave8u"}]},{"name":"value","links":[{"portIn":"Value","portOut":"value","objIn":"62fo5emt0","objOut":"rw14ave8u"},{"portIn":"Value","portOut":"value","objIn":"zpbecbb56","objOut":"rw14ave8u"}]},{"name":"finished","value":1}],"objName":"Ops.Anim.BoolAnim"},{"id":"73bb2nz0u","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_hitBodyName"}],"portsOut":[{"name":"Value","links":[{"portIn":"String","portOut":"Value","objIn":"vgzr81mxh","objOut":"73bb2nz0u"}]}],"objName":"Ops.Vars.VarGetString"},{"id":"vgzr81mxh","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"bool","portOut":"Result","objIn":"rw14ave8u","objOut":"vgzr81mxh"}]}],"objName":"Ops.String.StringLength_v2"},{"id":"n9u25c6ax","uiAttribs":{},"portsIn":[{"name":"posX","value":-0.51},{"name":"posY","value":-0.26},{"name":"posZ","value":0},{"name":"scale","value":1},{"name":"rotX","value":0},{"name":"rotY","value":180},{"name":"rotZ","value":180}],"portsOut":[{"name":"trigger","links":[{"portIn":"Execute","portOut":"trigger","objIn":"lsv3n3hs3","objOut":"n9u25c6ax"},{"portIn":"Execute","portOut":"trigger","objIn":"3n0xi3fsv","objOut":"n9u25c6ax"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"st6y5rwmi","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Speed","value":0.025},{"name":"Play","value":1},{"name":"Sync to timeline","value":0}],"portsOut":[{"name":"Time","links":[{"portIn":"Value 1","portOut":"Time","objIn":"c0ib2t71q","objOut":"st6y5rwmi"}]}],"objName":"Ops.Anim.Timer_v2"},{"id":"t1ryttgy8","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"Next","links":[{"portIn":"Reset","portOut":"Next","objIn":"st6y5rwmi","objOut":"t1ryttgy8"}]},{"name":"Number","value":false}],"objName":"Ops.Number.TriggerOnChangeNumber"},{"id":"c0ib2t71q","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Value 2","value":0.02}],"portsOut":[{"name":"result","links":[{"portIn":"number1","portOut":"result","objIn":"gl8rvk911","objOut":"c0ib2t71q"}]}],"objName":"Ops.Math.Min_v3"},{"id":"gl8rvk911","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"number2","value":-1}],"portsOut":[{"name":"result","links":[{"portIn":"Speed","portOut":"result","objIn":"b65ca0b8-40c9-4d0a-9e22-aba7d89f3abf","objOut":"gl8rvk911"}]}],"objName":"Ops.Math.Multiply"},{"id":"csl3j7cy1","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"When False index","value":0},{"name":"When False","value":"keep last number"}],"portsOut":[{"name":"Value Out","links":[{"portIn":"out0 DeltaSum Absolute Value","portOut":"Value Out","objIn":"7bebb5f0-9d69-43ee-98be-27a13edd98db","objOut":"csl3j7cy1"}]}],"objName":"Ops.Number.GateNumber"},{"id":"na2pda15t","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Separate inc/dec","value":0},{"name":"Value","value":0},{"name":"Inc factor","value":4,"title":"Inc/Dec factor"},{"name":"Dec factor","value":4}],"portsOut":[{"name":"Result","links":[{"portIn":"Custom Value","portOut":"Result","objIn":"csl3j7cy1","objOut":"na2pda15t"}]}],"objName":"Ops.Anim.Smooth"},{"id":"ge3zj70cy","uiAttribs":{},"portsIn":[{"name":"x","value":-0.83},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger","portOut":"trigger","objIn":"jrkdakvqd","objOut":"ge3zj70cy"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"jrkdakvqd","uiAttribs":{},"portsIn":[{"name":"Shape index","value":1},{"name":"Shape","value":"BoxAA"},{"name":"Name","value":"dial.1"},{"name":"Radius","value":0.25},{"name":"Size X","value":0.55},{"name":"Size Y","value":1},{"name":"Size Z","value":0},{"name":"Positions"},{"name":"Append Index to name","value":1}],"objName":"Ops.Graphics.Intersection.IntersectBody"},{"id":"lb4ss1de9","uiAttribs":{},"portsIn":[{"name":"mul","value":-0.92}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"2p7s5nsc9","objOut":"lb4ss1de9"}]}],"objName":"Ops.Gl.Matrix.TransformMul"},{"id":"9f43w7192","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"6kwkmfn9z","objOut":"9f43w7192"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"6kwkmfn9z","uiAttribs":{},"portsIn":[{"name":"number2","value":5}],"portsOut":[{"name":"result","links":[{"portIn":"x","portOut":"result","objIn":"j447574nb","objOut":"6kwkmfn9z"}]}],"objName":"Ops.Math.Multiply"},{"id":"62fo5emt0","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__labelBoolAnim"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"3zhcjuyyj","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__labelBoolAnim"}],"portsOut":[{"name":"Value","links":[{"portIn":"a","portOut":"Value","objIn":"uc9r4wu0r","objOut":"3zhcjuyyj"},{"portIn":"B","portOut":"Value","objIn":"v11enlha4","objOut":"3zhcjuyyj"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"zpbecbb56","uiAttribs":{},"portsIn":[{"name":"Delay","value":0.5},{"name":"Clear on Change","value":0},{"name":"easing index","value":2},{"name":"easing","value":"smoothstep"}],"portsOut":[{"name":"Result","links":[{"portIn":"a","portOut":"Result","objIn":"kgtq6kbqp","objOut":"zpbecbb56"}]}],"objName":"Ops.Number.DelayedNumber"},{"id":"v11enlha4","uiAttribs":{},"portsIn":[{"name":"C","value":2},{"name":"D","value":3},{"name":"Expression","value":"(a*0.15) * b"}],"portsOut":[{"name":"Result","links":[{"portIn":"height","portOut":"Result","objIn":"2p7s5nsc9","objOut":"v11enlha4"}]},{"name":"Expression Valid","value":true}],"objName":"Ops.Math.MathExpression"},{"id":"vw32ba4ay","uiAttribs":{},"portsIn":[{"name":"Maximum","value":0.1}],"portsOut":[{"name":"result","links":[{"portIn":"Value","portOut":"result","objIn":"8dnvznngh","objOut":"vw32ba4ay"}]}],"objName":"Ops.Math.Max"},{"id":"k1xasfekl","uiAttribs":{},"portsIn":[{"name":"Separate inc/dec","value":0},{"name":"Inc factor","value":4,"title":"Inc/Dec factor"},{"name":"Dec factor","value":4}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"a1dx328je","objOut":"k1xasfekl"}]},{"name":"Array Out","links":[{"portIn":"array","portOut":"Array Out","objIn":"scp4776vv","objOut":"k1xasfekl"},{"portIn":"array","portOut":"Array Out","objIn":"ffpua72y1","objOut":"k1xasfekl"},{"portIn":"array","portOut":"Array Out","objIn":"0yopgevxd","objOut":"k1xasfekl"},{"portIn":"array","portOut":"Array Out","objIn":"jj4a1wi34","objOut":"k1xasfekl"}]}],"objName":"Ops.User.cristianvogel.LofiSmoothArray"},{"id":"98iul8y9a","uiAttribs":{},"portsIn":[{"name":"Maximum","value":0.005}],"portsOut":[{"name":"result","links":[{"portIn":"Value","portOut":"result","objIn":"iwrkcxo1s","objOut":"98iul8y9a"}]}],"objName":"Ops.Math.Max"},{"id":"8dnvznngh","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_size"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"ok235i5ag","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_mix"}],"portsOut":[{"name":"Value","links":[{"portIn":"number","portOut":"Value","objIn":"nf37ruj15","objOut":"ok235i5ag"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"6xynvbmkd","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_mix"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"hlukndsg2","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_tone"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"iwrkcxo1s","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_diffusion"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"6htv77yjw","uiAttribs":{},"portsIn":[{"name":"Title","value":"Warping"}],"objName":"Ops.Ui.Area"},{"id":"scp4776vv","uiAttribs":{},"portsIn":[{"name":"index","value":0},{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"Value","portOut":"value","objIn":"6xynvbmkd","objOut":"scp4776vv"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"ffpua72y1","uiAttribs":{},"portsIn":[{"name":"index","value":3},{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"value","portOut":"value","objIn":"vw32ba4ay","objOut":"ffpua72y1"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"0yopgevxd","uiAttribs":{},"portsIn":[{"name":"index","value":2},{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"Value","portOut":"value","objIn":"hlukndsg2","objOut":"0yopgevxd"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"jj4a1wi34","uiAttribs":{},"portsIn":[{"name":"index","value":1},{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"value","portOut":"value","objIn":"98iul8y9a","objOut":"jj4a1wi34"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"34zmy4a4l","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"mainExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Execute","portOut":"Triggered","objIn":"k1xasfekl","objOut":"34zmy4a4l"},{"portIn":"Render","portOut":"Triggered","objIn":"51ldwg650","objOut":"34zmy4a4l"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"g8s0zafv1","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_dialValues_array"}],"portsOut":[{"name":"Value","links":[{"portIn":"Array In","portOut":"Value","objIn":"k1xasfekl","objOut":"g8s0zafv1"}]}],"objName":"Ops.Vars.VarGetArray_v2"},{"id":"lxdfer2oi","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__lensFlareTexts"}],"objName":"Ops.Vars.VarGetTexture_v2"},{"id":"e2dgivql3","uiAttribs":{},"portsIn":[{"name":"value","value":"slider_scapeLength"}],"portsOut":[{"name":"String","links":[{"portIn":"btagbs7z2","portOut":"String","objIn":"5jrf5b006","objOut":"e2dgivql3"}]}],"objName":"Ops.String.String_v2"},{"id":"lsscrp8mo","uiAttribs":{},"portsIn":[{"name":"Font","value":"chivo"},{"name":"Scale","value":0.12},{"name":"Letter Spacing","value":-0.02},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":2},{"name":"Vertical Align","value":"Middle"},{"name":"r","value":0.75},{"name":"g","value":0.75},{"name":"b","value":0.75},{"name":"a","value":1},{"name":"SDF","value":1},{"name":"Smoothing","value":0.108},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.2537625},{"name":"Height","value":0.07025227272727273},{"name":"Start Y","value":0.03612727272727272},{"name":"Num Chars","value":9}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"vh92hy3y9","uiAttribs":{},"portsIn":[{"name":"y","value":-0.94},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"lsscrp8mo","objOut":"vh92hy3y9"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"1kt28jybk","uiAttribs":{},"portsIn":[{"name":"Repeats","value":4},{"name":"Direction index","value":0},{"name":"Direction","value":"Forward"}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"vh92hy3y9","objOut":"1kt28jybk"}]},{"name":"index","links":[{"portIn":"number1","portOut":"index","objIn":"x156qdz90","objOut":"1kt28jybk"},{"portIn":"Index","portOut":"index","objIn":"pu033f5xy","objOut":"1kt28jybk"}]}],"objName":"Ops.Trigger.Repeat_v2"},{"id":"x156qdz90","uiAttribs":{},"portsIn":[{"name":"number2","value":0.8}],"portsOut":[{"name":"result","links":[{"portIn":"x","portOut":"result","objIn":"vh92hy3y9","objOut":"x156qdz90"}]}],"objName":"Ops.Math.Multiply"},{"id":"p3udn0kt2","uiAttribs":{},"portsIn":[{"name":"x","value":-1.2},{"name":"y","value":0.03},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Execute","portOut":"trigger","objIn":"1kt28jybk","objOut":"p3udn0kt2"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"3ph9rgnw8","uiAttribs":{},"portsIn":[{"name":"Title","value":"scape length"}],"objName":"Ops.Ui.Area"},{"id":"pu033f5xy","uiAttribs":{},"portsIn":[{"name":"String 0","value":"light"},{"name":"String 1","value":"surface"},{"name":"String 2","value":"temple"},{"name":"String 3","value":"immersion"},{"name":"String 4","value":""},{"name":"String 5","value":""},{"name":"String 6","value":""},{"name":"String 7","value":""},{"name":"String 8","value":""},{"name":"String 9","value":""}],"portsOut":[{"name":"Result","links":[{"portIn":"Text","portOut":"Result","objIn":"lsscrp8mo","objOut":"pu033f5xy"}]}],"objName":"Ops.String.SwitchString"},{"id":"kvx1qrhxt","uiAttribs":{},"portsIn":[{"name":"number2","value":0.33}],"portsOut":[{"name":"result","links":[{"portIn":"value","portOut":"result","objIn":"9cfc0k1rh","objOut":"kvx1qrhxt"}]}],"objName":"Ops.Math.Sum"},{"id":"p4a68w5bu","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Execute","portOut":"Triggered","objIn":"1qf5qizbm","objOut":"p4a68w5bu"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"2ccc5csp8","uiAttribs":{},"portsIn":[{"name":"value","value":"scapeLevel"}],"portsOut":[{"name":"String","links":[{"portIn":"btagbs7z2","portOut":"String","objIn":"827hbx7y7","objOut":"2ccc5csp8"}]}],"objName":"Ops.String.String_v2"},{"id":"t6jogaz9t","uiAttribs":{},"portsIn":[{"name":"Title","value":"scape level"}],"objName":"Ops.Ui.Area"},{"id":"xagcljatm","uiAttribs":{},"portsIn":[{"name":"number2","value":0.4}],"portsOut":[{"name":"result","links":[{"portIn":"value","portOut":"result","objIn":"qkhcjgu05","objOut":"xagcljatm"}]}],"objName":"Ops.Math.Sum"},{"id":"l0tg11bqe","uiAttribs":{},"portsIn":[{"name":"width","value":10},{"name":"height","value":0.49},{"name":"Logarithmic","value":1},{"name":"pivot x index","value":0},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":0},{"name":"pivot y","value":"center"},{"name":"num columns","value":8},{"name":"num rows","value":12},{"name":"axis index","value":0},{"name":"axis","value":"xy"}],"portsOut":[{"name":"Point Arrays","links":[{"portIn":"Points","portOut":"Point Arrays","objIn":"bjn0972ht","objOut":"l0tg11bqe"}]}],"objName":"Ops.Gl.Meshes.LinesArray"},{"id":"bjn0972ht","uiAttribs":{},"portsIn":[{"name":"Tesselate Edges","value":0},{"name":"Render Mesh","value":1}],"objName":"Ops.Gl.Meshes.SplineMesh_v2"},{"id":"yte4ra0uu","uiAttribs":{},"portsIn":[{"name":"Width","value":1.03},{"name":"Width Perspective","value":0},{"name":"Mapping index","value":1},{"name":"Mapping","value":"Face"},{"name":"Colorize Texture","value":0},{"name":"Offset","value":0},{"name":"r","value":0.179},{"name":"g","value":1},{"name":"b","value":0.692}],"portsOut":[{"name":"Trigger","links":[{"portIn":"render","portOut":"Trigger","objIn":"kom6mxww1","objOut":"yte4ra0uu"}]}],"objName":"Ops.Gl.Meshes.SplineMeshMaterial_v2"},{"id":"ertlqmhh5","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"l0tg11bqe","objOut":"ertlqmhh5"}]},{"name":"Was Triggered","value":1}],"objName":"Ops.Trigger.TriggerOnce"},{"id":"kom6mxww1","uiAttribs":{},"portsIn":[{"name":"posX","value":0},{"name":"posY","value":-0.75},{"name":"posZ","value":0.45},{"name":"scale","value":1},{"name":"rotX","value":180},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"bjn0972ht","objOut":"kom6mxww1"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"9li4kwtsh","uiAttribs":{},"portsIn":[{"name":"number1","value":1},{"name":"number2","value":0.2}],"portsOut":[{"name":"result","links":[{"portIn":"a","portOut":"result","objIn":"yte4ra0uu","objOut":"9li4kwtsh"}]}],"objName":"Ops.Math.Multiply"},{"id":"99du8h3y9","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"preSequenceFlow"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Render","portOut":"Triggered","objIn":"yte4ra0uu","objOut":"99du8h3y9"},{"portIn":"Exec","portOut":"Triggered","objIn":"ertlqmhh5","objOut":"99du8h3y9"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"0oj6cpo44","uiAttribs":{},"portsIn":[{"name":"Title","value":"LInes"}],"objName":"Ops.Ui.Area"},{"id":"0aj10qlpy","uiAttribs":{},"portsIn":[{"name":"Width","value":0.35},{"name":"Height","value":0.3},{"name":"ID","value":""},{"name":"Class","value":""},{"name":"Pivot x index","value":0},{"name":"Pivot x","value":"center"},{"name":"Pivot y index","value":0},{"name":"Pivot y","value":"center"},{"name":"Axis index","value":0},{"name":"Axis","value":"xy"},{"name":"Is Interactive","value":1},{"name":"Render Rectangle","value":0},{"name":"Show Boundings","value":0},{"name":"Cursor index","value":2},{"name":"Cursor","value":"pointer"},{"name":"Render","value":1,"title":"Active"}],"portsOut":[{"name":"Trigger out","links":[{"portIn":"exe","portOut":"Trigger out","objIn":"txw282mz1","objOut":"0aj10qlpy"}]},{"name":"Pointer Hover","links":[{"portIn":"bool","portOut":"Pointer Hover","objIn":"txw282mz1","objOut":"0aj10qlpy"},{"portIn":"Value","portOut":"Pointer Hover","objIn":"xlw1du0hx","objOut":"0aj10qlpy"}]},{"name":"Pointer Down","links":[{"portIn":"Value","portOut":"Pointer Down","objIn":"kkiqqacrp","objOut":"0aj10qlpy"}]},{"name":"Pointer X","value":0.07589820153023079},{"name":"Pointer Y","value":0.8007672832859192},{"name":"Top","value":1.5642696619033813},{"name":"Left","value":860.0057166814804},{"name":"Right","value":955.9989532828331},{"name":"Bottom","value":83.8442155122757}],"objName":"Ops.Gl.InteractiveRectangle_v2"},{"id":"skw3mtb13","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Execute","portOut":"Triggered","objIn":"qgfcwj6li","objOut":"skw3mtb13"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"0tooxrj1w","uiAttribs":{},"portsIn":[{"name":"x","value":1.36},{"name":"y","value":0.96},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger in","portOut":"trigger","objIn":"0aj10qlpy","objOut":"0tooxrj1w"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"8jcmfxmos","uiAttribs":{},"portsIn":[{"name":"File","value":"assets/6697c3b245eb5d333bae2007_NEL_SRVB.webp","display":"file"},{"name":"Filter index","value":2},{"name":"Filter","value":"mipmap"},{"name":"Wrap index","value":0},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":3},{"name":"Anisotropic","value":"4"},{"name":"Data Format index","value":3},{"name":"Data Format","value":"RGBA"},{"name":"Flip","value":0},{"name":"Pre Multiplied Alpha","value":0},{"name":"Active","value":1},{"name":"Save Memory","value":1},{"name":"Add Cachebuster","value":0}],"portsOut":[{"name":"Texture","links":[{"portIn":"texture","portOut":"Texture","objIn":"alnrfm1xt","objOut":"8jcmfxmos"}]},{"name":"Width","value":256},{"name":"Height","value":256},{"name":"Aspect Ratio","value":1},{"name":"Loaded","value":1},{"name":"Loading","value":0}],"objName":"Ops.Gl.Texture_v2"},{"id":"k9oj9uhcw","uiAttribs":{},"portsIn":[{"name":"x","value":1.99},{"name":"y","value":1.43},{"name":"z","value":-1}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"alnrfm1xt","objOut":"k9oj9uhcw"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"alnrfm1xt","uiAttribs":{},"portsIn":[{"name":"r","value":0.9084857245945317},{"name":"g","value":0.10570856602655021},{"name":"b","value":0.6349807163120653},{"name":"a","value":1},{"name":"colorizeTexture","value":0},{"name":"Vertex Colors","value":0},{"name":"Alpha Mask Source index","value":0},{"name":"Alpha Mask Source","value":"Luminance"},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":1},{"name":"diffuseRepeatX","value":1},{"name":"diffuseRepeatY","value":1},{"name":"Tex Offset X","value":1},{"name":"Tex Offset Y","value":1},{"name":"Crop TexCoords","value":0},{"name":"billboard","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"update","portOut":"trigger","objIn":"zte2jkdci","objOut":"alnrfm1xt"}]}],"objName":"Ops.Gl.Shader.BasicMaterial_v3"},{"id":"txw282mz1","uiAttribs":{},"portsIn":[{"name":"easing index","value":9},{"name":"easing","value":"Expo In Out"},{"name":"duration","value":0.25},{"name":"Direction index","value":0},{"name":"Direction","value":"Both"},{"name":"value false","value":0},{"name":"value true","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"Execute","portOut":"trigger","objIn":"u2xal6b27","objOut":"txw282mz1"},{"portIn":"render","portOut":"trigger","objIn":"fzsniu9pe","objOut":"txw282mz1"}]},{"name":"value","links":[{"portIn":"Percentage","portOut":"value","objIn":"pmu87q3eb","objOut":"txw282mz1"},{"portIn":"a","portOut":"value","objIn":"gji70mzgw","objOut":"txw282mz1"}]},{"name":"finished","links":[{"portIn":"Boolean","portOut":"finished","objIn":"m56qbr4ki","objOut":"txw282mz1"}]}],"objName":"Ops.Anim.BoolAnim"},{"id":"1u49ak691","uiAttribs":{},"portsIn":[{"name":"radius","value":0.5},{"name":"segments","value":3},{"name":"percent","value":1},{"name":"steps","value":0},{"name":"invertSteps","value":1},{"name":"mapping index","value":1},{"name":"mapping","value":"round"},{"name":"Spline","value":0},{"name":"Draw","value":0,"title":"Render mesh"}],"portsOut":[{"name":"geometry","links":[{"portIn":"Geometry","portOut":"geometry","objIn":"ee0okj3wi","objOut":"1u49ak691"}]}],"objName":"Ops.Gl.Meshes.Circle_v3"},{"id":"kkiqqacrp","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__scapeReverseMomentary"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"6lh7g16he","uiAttribs":{},"portsIn":[{"name":"Value 0","value":0.52},{"name":"Value 1","value":-0.53}],"portsOut":[{"name":"Out Value","links":[{"portIn":"Speed","portOut":"Out Value","objIn":"40fnzsucx","objOut":"6lh7g16he"}]}],"objName":"Ops.Boolean.BoolToNumber_v2"},{"id":"6fb2f0244","uiAttribs":{},"portsIn":[{"name":"Passes","value":1},{"name":"Clamp","value":0},{"name":"direction index","value":0},{"name":"direction","value":"both"},{"name":"Mask Invert","value":0}],"objName":"Ops.Gl.ImageCompose.FastBlur_v2"},{"id":"iw9wg4r88","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_finalTextOut"}],"objName":"Ops.Vars.VarGetTexture_v2"},{"id":"k2von2tr1","uiAttribs":{},"portsIn":[{"name":"Title","value":"reverse"}],"objName":"Ops.Ui.Area"},{"id":"z3hsmrlsw","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_size"}],"portsOut":[{"name":"Value","links":[{"portIn":"Percentage","portOut":"Value","objIn":"o5rkdhq2k","objOut":"z3hsmrlsw"},{"portIn":"Percentage","portOut":"Value","objIn":"4jk31qlcv","objOut":"z3hsmrlsw"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"o5rkdhq2k","uiAttribs":{},"portsIn":[{"name":"Value 1","value":9},{"name":"Value 2","value":24}],"portsOut":[{"name":"Result","links":[{"portIn":"rows","portOut":"Result","objIn":"eb7wv37c6","objOut":"o5rkdhq2k"}]}],"objName":"Ops.Math.Interpolate"},{"id":"4jk31qlcv","uiAttribs":{},"portsIn":[{"name":"Value 1","value":1},{"name":"Value 2","value":2.6}],"portsOut":[{"name":"Result","links":[{"portIn":"z","portOut":"Result","objIn":"o4q65sx2h","objOut":"4jk31qlcv"}]}],"objName":"Ops.Math.Interpolate"},{"id":"hr05yjyy0","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__heightMapGeometry"}],"objName":"Ops.Vars.VarSetObject_v2"},{"id":"w2fqrmovh","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLength"}],"portsOut":[{"name":"Value","links":[{"portIn":"Percentage","portOut":"Value","objIn":"69bvpidqa","objOut":"w2fqrmovh"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"69bvpidqa","uiAttribs":{},"portsIn":[{"name":"Value 1","value":16},{"name":"Value 2","value":512}],"portsOut":[{"name":"Result","links":[{"portIn":"Number","portOut":"Result","objIn":"7pg8sq01l","objOut":"69bvpidqa"}]}],"objName":"Ops.Math.Interpolate"},{"id":"7pg8sq01l","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"texture width","portOut":"Result","objIn":"v2qv1ozh2","objOut":"7pg8sq01l"}]}],"objName":"Ops.Math.Ceil"},{"id":"3so3f33cf","uiAttribs":{},"portsIn":[{"name":"Diffuse R","value":0.21561448295683894},{"name":"Diffuse G","value":1},{"name":"Diffuse B","value":0.666},{"name":"Diffuse A","value":1},{"name":"Double Sided","value":0},{"name":"Colorize Texture","value":0}],"portsOut":[{"name":"next","links":[{"portIn":"render","portOut":"next","objIn":"oba4wt0jq","objOut":"3so3f33cf"}]}],"objName":"Ops.Gl.Phong.LambertMaterial_v2"},{"id":"65mpod5qd","uiAttribs":{},"portsIn":[{"name":"value","value":-0.15}],"portsOut":[{"name":"result","links":[{"portIn":"y","portOut":"result","objIn":"aupoduf7d","objOut":"65mpod5qd"},{"portIn":"y","portOut":"result","objIn":"7qikt1vaf","objOut":"65mpod5qd"},{"portIn":"y","portOut":"result","objIn":"mbk4m8pcr","objOut":"65mpod5qd"},{"portIn":"y","portOut":"result","objIn":"ge3zj70cy","objOut":"65mpod5qd"}]}],"objName":"Ops.Number.Number"},{"id":"ee0okj3wi","uiAttribs":{},"portsIn":[{"name":"Translate X","value":0},{"name":"Translate Y","value":0.03},{"name":"Translate Z","value":0},{"name":"Rotation X","value":0},{"name":"Rotation Z","value":0}],"portsOut":[{"name":"Result","links":[{"portIn":"Geometry","portOut":"Result","objIn":"iaywmhxb7","objOut":"ee0okj3wi"}]}],"objName":"Ops.Graphics.Geometry.TransformGeometry"},{"id":"iaywmhxb7","uiAttribs":{},"portsIn":[{"name":"Render Mesh","value":1},{"name":"Add Vertex Numbers","value":1}],"objName":"Ops.Gl.RenderGeometry_v2"},{"id":"u2xal6b27","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"render","portOut":"Trigger out","objIn":"1u49ak691","objOut":"u2xal6b27"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"m56qbr4ki","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"bool 1","portOut":"Result","objIn":"2td6endox","objOut":"m56qbr4ki"}]}],"objName":"Ops.Boolean.Not"},{"id":"zy3ewhgid","uiAttribs":{},"portsIn":[{"name":"easing index","value":8},{"name":"easing","value":"Expo Out"},{"name":"duration","value":2},{"name":"Direction index","value":0},{"name":"Direction","value":"Both"},{"name":"value false","value":0},{"name":"value true","value":180}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"iaywmhxb7","objOut":"zy3ewhgid"}]},{"name":"value","links":[{"portIn":"Rotation Y","portOut":"value","objIn":"ee0okj3wi","objOut":"zy3ewhgid"}]},{"name":"finished","value":1}],"objName":"Ops.Anim.BoolAnim"},{"id":"14rplnqfv","uiAttribs":{},"portsIn":[{"name":"value","value":0.3}],"portsOut":[{"name":"result","links":[{"portIn":"Scale X","portOut":"result","objIn":"ee0okj3wi","objOut":"14rplnqfv"},{"portIn":"Scale Y","portOut":"result","objIn":"ee0okj3wi","objOut":"14rplnqfv"},{"portIn":"Scale Z","portOut":"result","objIn":"ee0okj3wi","objOut":"14rplnqfv"}]}],"objName":"Ops.Number.Number"},{"id":"xlw1du0hx","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__directionHover"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"zte2jkdci","uiAttribs":{},"portsIn":[{"name":"Duration","value":0.1},{"name":"Invert","value":0}],"portsOut":[{"name":"Trigger Out","links":[{"portIn":"exe","portOut":"Trigger Out","objIn":"zy3ewhgid","objOut":"zte2jkdci"}]},{"name":"Value","links":[{"portIn":"bool 2","portOut":"Value","objIn":"2td6endox","objOut":"zte2jkdci"}]}],"objName":"Ops.Anim.Bang"},{"id":"2td6endox","uiAttribs":{},"portsIn":[{"name":"bool 3","value":0},{"name":"bool 4","value":0},{"name":"bool 5","value":0},{"name":"bool 6","value":0},{"name":"bool 7","value":0},{"name":"bool 8","value":0},{"name":"bool 9","value":0},{"name":"bool 10","value":0}],"portsOut":[{"name":"result","links":[{"portIn":"Pass Through","portOut":"result","objIn":"u2xal6b27","objOut":"2td6endox"}]}],"objName":"Ops.Boolean.Or"},{"id":"3cv6rdwm5","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"mainExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Exec","portOut":"Triggered","objIn":"litlcklxl","objOut":"3cv6rdwm5"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"litlcklxl","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Bang","portOut":"Next","objIn":"zte2jkdci","objOut":"litlcklxl"}]},{"name":"Was Triggered","value":1}],"objName":"Ops.Trigger.TriggerOnce"},{"id":"5jrf5b006","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"blls2amps","title":"Trigger in"},{"name":"btagbs7z2","title":"Class"},{"name":"lj06d561p","value":0,"title":"Show Boundings"},{"name":"patchId","value":"bp2sub_5jrf5b006"}],"portsOut":[{"name":"nti406vwi","value":-0.5,"title":"Result"},{"name":"gjvx0zyv5","title":"value","links":[{"portIn":"number1","portOut":"gjvx0zyv5","objIn":"kvx1qrhxt","objOut":"5jrf5b006"}]}],"objName":"Ops.Patch.PAIoPfn.BasicSlider_v2"},{"id":"827hbx7y7","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"blls2amps","title":"Trigger in"},{"name":"btagbs7z2","title":"Class"},{"name":"lj06d561p","value":0,"title":"Show Boundings"},{"name":"patchId","value":"bp2sub_827hbx7y7"}],"portsOut":[{"name":"nti406vwi","value":-0.5,"title":"Result"},{"name":"gjvx0zyv5","title":"value","links":[{"portIn":"number1","portOut":"gjvx0zyv5","objIn":"xagcljatm","objOut":"827hbx7y7"}]}],"objName":"Ops.Patch.PAIoPfn.BasicSlider_v1"},{"id":"hvxfadyo3","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Execute","portOut":"Triggered","objIn":"41p18fvfx","objOut":"hvxfadyo3"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"vr3j7sk4c","uiAttribs":{},"portsIn":[{"name":"posX","value":0.44},{"name":"posY","value":0.9},{"name":"posZ","value":0},{"name":"scale","value":1},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"akq5o2oet","objOut":"vr3j7sk4c"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"akq5o2oet","uiAttribs":{},"portsIn":[{"name":"Text","value":"* structure"},{"name":"Font","value":"chivo"},{"name":"Scale","value":0.14},{"name":"Letter Spacing","value":-0.04},{"name":"Line Height","value":1},{"name":"Align index","value":0},{"name":"Align","value":"Left"},{"name":"Vertical Align index","value":1},{"name":"Vertical Align","value":"Top"},{"name":"r","value":0.9},{"name":"g","value":0.9},{"name":"b","value":0.9},{"name":"SDF","value":1},{"name":"Smoothing","value":0.123},{"name":"Border","value":0},{"name":"Border Width","value":0.5},{"name":"Smoothness","value":0.25},{"name":"Border r","value":1},{"name":"Border g","value":1},{"name":"Border b","value":1},{"name":"Shadow","value":1},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"utt0283xl","objOut":"akq5o2oet"},{"portIn":"Update","portOut":"Next","objIn":"lmzv6xxhp","objOut":"akq5o2oet"}]},{"name":"Num Lines","value":1},{"name":"Width","value":0.32965625},{"name":"Height","value":0.08395160984848485},{"name":"Start Y","value":0.04530710227272727},{"name":"Num Chars","value":11}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"l01dmydzd","uiAttribs":{},"portsIn":[{"name":"Font","value":"chivo"},{"name":"Letter Spacing","value":0},{"name":"Line Height","value":1},{"name":"Align index","value":0},{"name":"Align","value":"Left"},{"name":"Vertical Align index","value":1},{"name":"Vertical Align","value":"Top"},{"name":"SDF","value":1},{"name":"Smoothing","value":0.096},{"name":"Border","value":0},{"name":"Border Width","value":0.5},{"name":"Smoothness","value":0.25},{"name":"Border r","value":1},{"name":"Border g","value":1},{"name":"Border b","value":1},{"name":"Shadow","value":1},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"d394u2tn6","objOut":"l01dmydzd"}]},{"name":"Num Lines","value":1},{"name":"Width","value":0.3499859375},{"name":"Height","value":0.10977807765151512},{"name":"Start Y","value":0.05899446022727271},{"name":"Num Chars","value":7}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"utt0283xl","uiAttribs":{},"portsIn":[{"name":"x","value":0.46},{"name":"y","value":0},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"l01dmydzd","objOut":"utt0283xl"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"qt0hony1d","uiAttribs":{},"portsIn":[{"name":"Width","value":0.56},{"name":"Height","value":0.12},{"name":"ID","value":"slider_structure"},{"name":"Class","value":""},{"name":"Pivot x index","value":0},{"name":"Pivot x","value":"center"},{"name":"Pivot y index","value":0},{"name":"Pivot y","value":"center"},{"name":"Axis index","value":0},{"name":"Axis","value":"xy"},{"name":"Is Interactive","value":1},{"name":"Render Rectangle","value":0},{"name":"Show Boundings","value":0},{"name":"Cursor index","value":2},{"name":"Cursor","value":"pointer"},{"name":"Render","value":1,"title":"Active"}],"portsOut":[{"name":"Trigger out","links":[{"portIn":"update","portOut":"Trigger out","objIn":"zarq8c2tv","objOut":"qt0hony1d"},{"portIn":"exe","portOut":"Trigger out","objIn":"b4bc3876u","objOut":"qt0hony1d"}]},{"name":"Pointer Hover","links":[{"portIn":"bool","portOut":"Pointer Hover","objIn":"b4bc3876u","objOut":"qt0hony1d"}]},{"name":"Pointer Down","value":0},{"name":"Pointer X","value":0.9961638950842792},{"name":"Pointer Y","value":1},{"name":"Top","value":45.44689893722534},{"name":"Left","value":699.5598569512367},{"name":"Right","value":853.149022758007},{"name":"Bottom","value":78.35888457298279},{"name":"Left Click","links":[{"portIn":"Bang","portOut":"Left Click","objIn":"zarq8c2tv","objOut":"qt0hony1d"},{"portIn":"trigger in","portOut":"Left Click","objIn":"giylicm3u","objOut":"qt0hony1d"}]}],"objName":"Ops.Gl.InteractiveRectangle_v2"},{"id":"zcqvrg63v","uiAttribs":{},"portsIn":[{"name":"x","value":0.88},{"name":"y","value":0.89},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger in","portOut":"trigger","objIn":"qt0hony1d","objOut":"zcqvrg63v"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"zarq8c2tv","uiAttribs":{},"portsIn":[{"name":"Duration","value":0.5},{"name":"Invert","value":0}],"portsOut":[{"name":"Value","links":[{"portIn":"Random Seed ","portOut":"Value","objIn":"dssq1axq2","objOut":"zarq8c2tv"},{"portIn":"number1","portOut":"Value","objIn":"tusq6xfh3","objOut":"zarq8c2tv"}]}],"objName":"Ops.Anim.Bang"},{"id":"giylicm3u","uiAttribs":{},"portsIn":[{"name":"Loop min","value":0},{"name":"Loop max","value":15}],"portsOut":[{"name":"current count","links":[{"portIn":"number1","portOut":"current count","objIn":"55jf7ng6g","objOut":"giylicm3u"}]}],"objName":"Ops.Trigger.TriggerCounterLoop"},{"id":"djbr6tym4","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"Text","portOut":"result","objIn":"l01dmydzd","objOut":"djbr6tym4"}]}],"objName":"Ops.Array.ArrayGetString"},{"id":"pnzzc7ulm","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_structure"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"26j6rhozk","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_structure"}],"portsOut":[{"name":"Value","links":[{"portIn":"Float1","portOut":"Value","objIn":"lapoydnfn","objOut":"26j6rhozk"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"iijz0ye9r","uiAttribs":{},"portsIn":[{"name":"text","value":"A035506\nA007604\nA227413\nA000040\nA052330\nA000607\nA01401\nA064356\nA096441\nA000009\nA199535\nA000010\nA316667\nA111133\nA000124\nA005132"},{"name":"separator","value":" "},{"name":"Numbers","value":0},{"name":"Trim","value":1},{"name":"Split Lines","value":1}],"portsOut":[{"name":"array","links":[{"portIn":"array","portOut":"array","objIn":"djbr6tym4","objOut":"iijz0ye9r"}]},{"name":"length","value":16}],"objName":"Ops.Array.StringToArray_v2"},{"id":"d394u2tn6","uiAttribs":{},"portsIn":[{"name":"x","value":-0.11},{"name":"y","value":-0.05},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"hm7bbicrb","objOut":"d394u2tn6"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"b4bc3876u","uiAttribs":{},"portsIn":[{"name":"easing index","value":0},{"name":"easing","value":"linear"},{"name":"duration","value":0.125},{"name":"Direction index","value":0},{"name":"Direction","value":"Both"},{"name":"value false","value":0},{"name":"value true","value":1}],"portsOut":[{"name":"value","links":[{"portIn":"value","portOut":"value","objIn":"l88qnkqyk","objOut":"b4bc3876u"},{"portIn":"Percentage","portOut":"value","objIn":"wv9yfmhgi","objOut":"b4bc3876u"}]},{"name":"finished","value":1}],"objName":"Ops.Anim.BoolAnim"},{"id":"hm7bbicrb","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":4.91},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":1},{"name":"num rows","value":1}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"dssq1axq2","uiAttribs":{},"portsIn":[{"name":"Num Values","value":15},{"name":"Mode index","value":0},{"name":"Mode","value":"A"},{"name":"Integer","value":0},{"name":"Last == First","value":0},{"name":"Min A","value":0},{"name":"Min B","value":-1},{"name":"Max B","value":1},{"name":"Min C","value":-1},{"name":"Max C","value":1},{"name":"Min D","value":-1},{"name":"Max D","value":1}],"portsOut":[{"name":"Array Out","links":[{"portIn":"Rotations","portOut":"Array Out","objIn":"l01dmydzd","objOut":"dssq1axq2"}]},{"name":"Chunks Amount","value":15},{"name":"Array length","value":15}],"objName":"Ops.Array.RandomNumbersArray_v4"},{"id":"tusq6xfh3","uiAttribs":{},"portsIn":[{"name":"number2","value":0.0001}],"portsOut":[{"name":"result","links":[{"portIn":"number1","portOut":"result","objIn":"q51297pyv","objOut":"tusq6xfh3"}]}],"objName":"Ops.Math.Compare.GreaterThan"},{"id":"q51297pyv","uiAttribs":{},"portsIn":[{"name":"number2","value":360}],"portsOut":[{"name":"result","links":[{"portIn":"Max A","portOut":"result","objIn":"dssq1axq2","objOut":"q51297pyv"}]}],"objName":"Ops.Math.Multiply"},{"id":"fm66pbek9","uiAttribs":{},"portsIn":[{"name":"Title","value":"structure"}],"objName":"Ops.Ui.Area"},{"id":"nme067fl0","uiAttribs":{},"portsIn":[{"name":"number2","value":90}],"portsOut":[{"name":"result","links":[{"portIn":"Rotate","portOut":"result","objIn":"1qwtcdiny","objOut":"nme067fl0"}]}],"objName":"Ops.Math.Multiply"},{"id":"55gbye0uh","uiAttribs":{},"portsIn":[{"name":"number2","value":4},{"name":"pingpong","value":0}],"portsOut":[{"name":"result","links":[{"portIn":"Waveform index","portOut":"result","objIn":"1qwtcdiny","objOut":"55gbye0uh"}]}],"objName":"Ops.Math.Modulo"},{"id":"qfhia7ec3","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_structure"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"nme067fl0","objOut":"qfhia7ec3"},{"portIn":"number1","portOut":"Value","objIn":"55gbye0uh","objOut":"qfhia7ec3"},{"portIn":"Offset X","portOut":"Value","objIn":"1qwtcdiny","objOut":"qfhia7ec3"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"p8itm86lw","uiAttribs":{},"portsIn":[{"name":"posX","value":-1.71},{"name":"posY","value":-0.56},{"name":"posZ","value":0},{"name":"scale","value":1.29},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"djh55ojh2","objOut":"p8itm86lw"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"ud198sc5z","uiAttribs":{},"portsOut":[{"name":"Geometry Result","links":[{"portIn":"Geometry","portOut":"Geometry Result","objIn":"djh55ojh2","objOut":"ud198sc5z"}]}],"objName":"Ops.Graphics.GeometryMergeSimple"},{"id":"djh55ojh2","uiAttribs":{},"portsIn":[{"name":"Render Mesh","value":1},{"name":"Add Vertex Numbers","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"di9yoxov9","objOut":"djh55ojh2"},{"portIn":"Render","portOut":"trigger","objIn":"eerqtlpnp","objOut":"djh55ojh2"}]}],"objName":"Ops.Gl.RenderGeometry_v2"},{"id":"absd3d4hb","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__heightMapGeometry"}],"portsOut":[{"name":"Value","links":[{"portIn":"Geometry 2","portOut":"Value","objIn":"ud198sc5z","objOut":"absd3d4hb"}]}],"objName":"Ops.Vars.VarGetObject_v2"},{"id":"vi3ol2srw","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.35},{"name":"Value 2","value":0.6}],"portsOut":[{"name":"Result","links":[{"portIn":"Amount","portOut":"Result","objIn":"tgeyutq71","objOut":"vi3ol2srw"}]}],"objName":"Ops.Math.Interpolate"},{"id":"5rr738syp","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLevel"}],"portsOut":[{"name":"Value","links":[{"portIn":"Percentage","portOut":"Value","objIn":"vi3ol2srw","objOut":"5rr738syp"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"cdrv5rrjk","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"number1","portOut":"Result","objIn":"jax75maya","objOut":"cdrv5rrjk"}]}],"objName":"Ops.Math.OneMinus"},{"id":"tj2cnloqq","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__lensFlareTexts"}],"objName":"Ops.Vars.VarGetTexture_v2"},{"id":"5dbgajlcv","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLength"}],"portsOut":[{"name":"Value","links":[{"portIn":"r","portOut":"Value","objIn":"1qwtcdiny","objOut":"5dbgajlcv"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"grj3uhv6e","uiAttribs":{},"portsIn":[{"name":"number2","value":0.25}],"portsOut":[{"name":"result","links":[{"portIn":"Line Glow","portOut":"result","objIn":"1qwtcdiny","objOut":"grj3uhv6e"}]}],"objName":"Ops.Math.Multiply"},{"id":"yaju7ahmk","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_diffusion"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"grj3uhv6e","objOut":"yaju7ahmk"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"1qwtcdiny","uiAttribs":{},"portsIn":[{"name":"Blend Mode index","value":18},{"name":"Blend Mode","value":"Math Add"},{"name":"Amount","value":1},{"name":"Alpha Mask index","value":0},{"name":"Alpha Mask","value":"Off"},{"name":"Waveform","value":"Sine"},{"name":"Amplitude","value":0.318},{"name":"Frequency","value":1.83},{"name":"Line Width","value":0},{"name":"invert color","value":0},{"name":"Solid fill","value":0},{"name":"Offset Y","value":0.5},{"name":"g","value":0.897},{"name":"b","value":1}],"objName":"Ops.Gl.ImageCompose.Waveform_v3"},{"id":"pu5boj419","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":6.22},{"name":"height","value":1.18},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":1},{"name":"num rows","value":1}],"portsOut":[{"name":"trigger","title":"Next","links":[{"portIn":"render","portOut":"trigger","objIn":"p8itm86lw","objOut":"pu5boj419"}]},{"name":"geometry","links":[{"portIn":"Geometry","portOut":"geometry","objIn":"ud198sc5z","objOut":"pu5boj419"}]}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"6t34impxr","uiAttribs":{},"portsIn":[{"name":"x","value":1.16},{"name":"y","value":2.05},{"name":"z","value":1.59}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"pvmeev0jc","objOut":"6t34impxr"}]}],"objName":"Ops.Gl.Matrix.ScaleXYZViewMatrix"},{"id":"pvmeev0jc","uiAttribs":{},"portsIn":[{"name":"posX","value":0},{"name":"posY","value":0.2},{"name":"posZ","value":-1.01},{"name":"scale","value":1},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"pu5boj419","objOut":"pvmeev0jc"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"a1dx328je","uiAttribs":{},"portsIn":[{"name":"g","value":0.8266594326686372},{"name":"b","value":0.047299581303328786},{"name":"colorizeTexture","value":0},{"name":"Vertex Colors","value":0},{"name":"Alpha Mask Source index","value":0},{"name":"Alpha Mask Source","value":"Luminance"},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":1},{"name":"diffuseRepeatX","value":1},{"name":"diffuseRepeatY","value":0.77},{"name":"Tex Offset X","value":0},{"name":"Tex Offset Y","value":0},{"name":"Crop TexCoords","value":0},{"name":"billboard","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"6t34impxr","objOut":"a1dx328je"}]}],"objName":"Ops.Gl.Shader.BasicMaterial_v3"},{"id":"o0tqxxwkq","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__lensFlareTexts"}],"objName":"Ops.Vars.VarSetTexture_v2"},{"id":"87k6oec5j","uiAttribs":{},"portsIn":[{"name":"Gradient","value":"{\"keys\":[{\"pos\":0,\"posy\":0.5,\"r\":0.6611651599715629,\"g\":0.4931043215281321,\"b\":0.925634769504589},{\"pos\":0,\"posy\":0.5,\"r\":0.5499184271562756,\"g\":0.2109847470169004,\"b\":0.05035933392429515},{\"pos\":1,\"posy\":0.5,\"r\":0.7722765204174868,\"g\":0.6942781773029976,\"b\":0.8079260265728316},{\"pos\":1,\"posy\":0.5,\"r\":0.5168081499391373,\"g\":0.20479196261418808,\"b\":0.49365422793369285}]}"},{"name":"Direction index","value":1},{"name":"Direction","value":"Y"},{"name":"Smoothstep","value":0},{"name":"Step","value":0},{"name":"Flip","value":0},{"name":"sRGB","value":0},{"name":"Oklab","value":0},{"name":"Size","value":64},{"name":"filter index","value":1},{"name":"filter","value":"linear"},{"name":"wrap index","value":1},{"name":"wrap","value":"repeat"},{"name":"Gradient Array","value":0}],"portsOut":[{"name":"Texture","links":[{"portIn":"Diffuse Texture","portOut":"Texture","objIn":"3so3f33cf","objOut":"87k6oec5j"}]}],"objName":"Ops.Gl.GradientTexture"},{"id":"di9yoxov9","uiAttribs":{},"portsIn":[{"name":"Size index","value":0},{"name":"Size","value":"Auto"},{"name":"Width","value":640},{"name":"Height","value":480},{"name":"Filter index","value":1},{"name":"Filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"R","value":0},{"name":"G","value":0},{"name":"B","value":0},{"name":"A","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"1qwtcdiny","objOut":"di9yoxov9"}]},{"name":"texture_out","links":[{"portIn":"Texture 2","portOut":"texture_out","objIn":"jc2ggn9up","objOut":"di9yoxov9"}]},{"name":"Aspect Ratio","value":1.7483660130718954},{"name":"Texture Width","value":1070},{"name":"Texture Height","value":612}],"objName":"Ops.Gl.ImageCompose.ImageCompose_v4"},{"id":"9s6v7pnlp","uiAttribs":{},"portsIn":[{"name":"Size index","value":2},{"name":"Size","value":"Manual"},{"name":"Width","value":640},{"name":"Height","value":480},{"name":"Filter index","value":1},{"name":"Filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"R","value":0},{"name":"G","value":0},{"name":"B","value":0},{"name":"A","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"jc2ggn9up","objOut":"9s6v7pnlp"}]},{"name":"texture_out","links":[{"portIn":"Base Texture","portOut":"texture_out","objIn":"51ldwg650","objOut":"9s6v7pnlp"}]},{"name":"Aspect Ratio","value":1.3333333333333333},{"name":"Texture Width","value":640},{"name":"Texture Height","value":480}],"objName":"Ops.Gl.ImageCompose.ImageCompose_v4"},{"id":"51ldwg650","uiAttribs":{},"portsIn":[{"name":"Size index","value":2},{"name":"Size","value":"Manual"},{"name":"Width","value":512},{"name":"Height","value":512},{"name":"Filter index","value":1},{"name":"Filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"R","value":0},{"name":"G","value":0},{"name":"B","value":0},{"name":"A","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"bf9v1uys8","objOut":"51ldwg650"}]},{"name":"texture_out","links":[{"portIn":"texture","portOut":"texture_out","objIn":"a1dx328je","objOut":"51ldwg650"},{"portIn":"Value","portOut":"texture_out","objIn":"3hamtvj79","objOut":"51ldwg650"}]},{"name":"Aspect Ratio","value":1},{"name":"Texture Width","value":512},{"name":"Texture Height","value":512}],"objName":"Ops.Gl.ImageCompose.ImageCompose_v4"},{"id":"ui62hd3xv","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_diffusion"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"cdrv5rrjk","objOut":"ui62hd3xv"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"nf37ruj15","uiAttribs":{},"portsIn":[{"name":"min","value":-0.1},{"name":"max","value":0.7}],"portsOut":[{"name":"result","links":[{"portIn":"Fade","portOut":"result","objIn":"jc2ggn9up","objOut":"nf37ruj15"}]}],"objName":"Ops.Math.SmoothStep_v2"},{"id":"4bj7hjqvt","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_tone"}],"portsOut":[{"name":"Value","value":0.5}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"9902kom8s","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_diffusion"}],"portsOut":[{"name":"Value","value":0.005}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"xeu596ai6","uiAttribs":{},"portsIn":[{"name":"Blend Mode index","value":18},{"name":"Blend Mode","value":"Math Add"},{"name":"Rotate","value":0.948},{"name":"Crop","value":1},{"name":"Clear","value":1}],"objName":"Ops.Gl.ImageCompose.RotateTexture_v2"},{"id":"3hamtvj79","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_finalTextOut"}],"objName":"Ops.Vars.VarSetTexture_v2"},{"id":"r0my206wt","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_structure"}],"portsOut":[{"name":"Value","value":0}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"jax75maya","uiAttribs":{},"portsIn":[{"name":"number2","value":-200}],"portsOut":[{"name":"result","links":[{"portIn":"Stretch Left","portOut":"result","objIn":"tgeyutq71","objOut":"jax75maya"}]}],"objName":"Ops.Math.Multiply"},{"id":"tgeyutq71","uiAttribs":{},"portsIn":[{"name":"Blend Mode index","value":18},{"name":"Blend Mode","value":"Math Add"},{"name":"Clamp","value":0},{"name":"Stretch Top","value":1},{"name":"Stretch Bottom","value":1},{"name":"Stretch Right","value":-6}],"objName":"Ops.Gl.ImageCompose.SkewStretchImage_v2"},{"id":"jc2ggn9up","uiAttribs":{},"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"tgeyutq71","objOut":"jc2ggn9up"}]}],"objName":"Ops.Gl.ImageCompose.Mix"},{"id":"eerqtlpnp","uiAttribs":{},"portsIn":[{"name":"Size index","value":0},{"name":"Size","value":"Auto"},{"name":"Width","value":512},{"name":"Height","value":512},{"name":"Filter index","value":1},{"name":"Filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"R","value":0},{"name":"G","value":0},{"name":"B","value":0},{"name":"A","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"xeu596ai6","objOut":"eerqtlpnp"}]},{"name":"texture_out","links":[{"portIn":"Texture 1","portOut":"texture_out","objIn":"jc2ggn9up","objOut":"eerqtlpnp"},{"portIn":"Value","portOut":"texture_out","objIn":"o0tqxxwkq","objOut":"eerqtlpnp"}]},{"name":"Aspect Ratio","value":0.03125},{"name":"Texture Width","value":16},{"name":"Texture Height","value":512}],"objName":"Ops.Gl.ImageCompose.ImageCompose_v4"},{"id":"7afkrw4hx","uiAttribs":{},"portsIn":[{"name":"Blend Mode index","value":1},{"name":"Blend Mode","value":"lighten"},{"name":"Amount","value":0.274},{"name":"Alpha Mask index","value":0},{"name":"Alpha Mask","value":"Off"},{"name":"Offset X","value":0},{"name":"Offset Y","value":12.85},{"name":"Zoom","value":800},{"name":"Iterations","value":25},{"name":"Seed","value":1},{"name":"Spot edge","value":0},{"name":"Gamma","value":0.88}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"lsqdg33wg","objOut":"7afkrw4hx"}]}],"objName":"Ops.Gl.ImageCompose.LensDirt_v2"},{"id":"a5ao9xvu0","uiAttribs":{},"portsIn":[{"name":"Text","value":"Convolvers"},{"name":"Font","value":"chivo"},{"name":"Scale","value":0.14},{"name":"Letter Spacing","value":0},{"name":"Line Height","value":1},{"name":"Align index","value":2},{"name":"Align","value":"Right"},{"name":"Vertical Align index","value":1},{"name":"Vertical Align","value":"Top"},{"name":"r","value":0.848},{"name":"g","value":0.865},{"name":"b","value":0.878},{"name":"SDF","value":1},{"name":"Smoothing","value":0.085},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.359996875},{"name":"Height","value":0.08213598484848486},{"name":"Start Y","value":0.04471647727272727},{"name":"Num Chars","value":10}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"xwjvzec0g","uiAttribs":{},"portsIn":[{"name":"x","value":-1.26},{"name":"y","value":-0.71},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"a5ao9xvu0","objOut":"xwjvzec0g"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"0cmu1ry52","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLevel"}],"portsOut":[{"name":"Value","links":[{"portIn":"Amount","portOut":"Value","objIn":"xeu596ai6","objOut":"0cmu1ry52"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"tbn2qgqn9","uiAttribs":{},"portsIn":[{"name":"Gradient","value":"{\"keys\":[{\"pos\":0,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0},{\"pos\":0,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0},{\"pos\":0.494140625,\"posy\":0.56,\"r\":1,\"g\":1,\"b\":1},{\"pos\":1,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0},{\"pos\":1,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0}]}"},{"name":"Direction index","value":2},{"name":"Direction","value":"XY"},{"name":"Smoothstep","value":0},{"name":"Step","value":0},{"name":"Flip","value":0},{"name":"sRGB","value":0},{"name":"Oklab","value":0},{"name":"Size","value":16},{"name":"filter index","value":0},{"name":"filter","value":"nearest"},{"name":"wrap index","value":0},{"name":"wrap","value":"clamp to edge"},{"name":"Gradient Array","value":0}],"objName":"Ops.Gl.GradientTexture"},{"id":"kjs0gomie","uiAttribs":{},"portsIn":[{"name":"Show Info","value":0},{"name":"Visualize outside 0-1 index","value":1},{"name":"Visualize outside 0-1","value":"Anim"},{"name":"Alpha index","value":0},{"name":"Alpha","value":"A"},{"name":"Show Color","value":0},{"name":"X","value":0.5},{"name":"Y","value":0.5}],"portsOut":[{"name":"Info","value":""}],"objName":"Ops.Ui.VizTexture"},{"id":"fvg1zz75v","uiAttribs":{},"portsIn":[{"name":"Size index","value":0},{"name":"Size","value":"Canvas"},{"name":"texture width","value":1070},{"name":"texture height","value":612},{"name":"Auto Aspect","value":1},{"name":"filter index","value":0},{"name":"filter","value":"nearest"},{"name":"Wrap index","value":0},{"name":"Wrap","value":"Clamp"},{"name":"MSAA index","value":0},{"name":"MSAA","value":"none"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"Depth","value":1},{"name":"Clear","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"n9u25c6ax","objOut":"fvg1zz75v"}]},{"name":"texture","links":[{"portIn":"Base Texture","portOut":"texture","objIn":"48vrkn65x","objOut":"fvg1zz75v"}]}],"objName":"Ops.Gl.RenderToTexture_v3"},{"id":"pxbd6eh63","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_tone"}],"portsOut":[{"name":"Value","links":[{"portIn":"Percentage","portOut":"Value","objIn":"uo6mpre8c","objOut":"pxbd6eh63"},{"portIn":"Value","portOut":"Value","objIn":"5ulr7vh4p","objOut":"pxbd6eh63"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"uo6mpre8c","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.43},{"name":"Value 2","value":1}],"portsOut":[{"name":"Result","links":[{"portIn":"a","portOut":"Result","objIn":"a1dx328je","objOut":"uo6mpre8c"},{"portIn":"r","portOut":"Result","objIn":"a1dx328je","objOut":"uo6mpre8c"}]}],"objName":"Ops.Math.Interpolate"},{"id":"bf9v1uys8","uiAttribs":{},"portsIn":[{"name":"Blend Mode index","value":19},{"name":"Blend Mode","value":"Math Subtract"},{"name":"Alpha Mask index","value":0},{"name":"Alpha Mask","value":"Off"},{"name":"Strength","value":1},{"name":"Radius","value":0.208},{"name":"Sharp","value":0.539},{"name":"Aspect","value":1},{"name":"r","value":0},{"name":"g","value":0},{"name":"b","value":0},{"name":"Alpha","value":0}],"portsOut":[{"name":"Trigger","links":[{"portIn":"render","portOut":"Trigger","objIn":"7afkrw4hx","objOut":"bf9v1uys8"}]}],"objName":"Ops.Gl.ImageCompose.Vignette_v3"},{"id":"5ulr7vh4p","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Amount","portOut":"Result","objIn":"bf9v1uys8","objOut":"5ulr7vh4p"}]}],"objName":"Ops.Math.OneMinus"},{"id":"lsqdg33wg","uiAttribs":{},"portsIn":[{"name":"Clamp","value":1},{"name":"direction index","value":2},{"name":"direction","value":"horizontal"},{"name":"Mask Invert","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"9s6v7pnlp","objOut":"lsqdg33wg"}]}],"objName":"Ops.Gl.ImageCompose.FastBlur_v2"},{"id":"fogdsmdt8","uiAttribs":{},"portsIn":[{"name":"Gradient","value":"{\"keys\":[{\"pos\":0,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0},{\"pos\":0,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0},{\"pos\":0.46875,\"posy\":0.51,\"r\":0.998046875,\"g\":0.998046875,\"b\":0.998046875},{\"pos\":1,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0},{\"pos\":1,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0}]}"},{"name":"Direction index","value":1},{"name":"Direction","value":"Y"},{"name":"Smoothstep","value":0},{"name":"Step","value":1},{"name":"Flip","value":0},{"name":"sRGB","value":0},{"name":"Oklab","value":0},{"name":"Size","value":16},{"name":"filter index","value":1},{"name":"filter","value":"linear"},{"name":"wrap index","value":0},{"name":"wrap","value":"clamp to edge"},{"name":"Gradient Array","value":0}],"portsOut":[{"name":"Texture","links":[{"portIn":"Mask","portOut":"Texture","objIn":"lsqdg33wg","objOut":"fogdsmdt8"}]}],"objName":"Ops.Gl.GradientTexture"},{"id":"v9g4w5w8m","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLevel"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"qhu04l7zy","objOut":"v9g4w5w8m"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"qhu04l7zy","uiAttribs":{},"portsIn":[{"name":"number2","value":4}],"portsOut":[{"name":"result","links":[{"portIn":"Passes","portOut":"result","objIn":"lsqdg33wg","objOut":"qhu04l7zy"}]}],"objName":"Ops.Math.Multiply"},{"id":"qkhcjgu05","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"a","portOut":"result","objIn":"a5ao9xvu0","objOut":"qkhcjgu05"},{"portIn":"number1","portOut":"result","objIn":"jq7ifli9z","objOut":"qkhcjgu05"}]}],"objName":"Ops.Ui.Routing.RouteNumber"},{"id":"gji70mzgw","uiAttribs":{},"portsIn":[{"name":"Text","value":"direction"},{"name":"Font","value":"chivo"},{"name":"Scale","value":0.13},{"name":"Letter Spacing","value":0},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":2},{"name":"Vertical Align","value":"Middle"},{"name":"r","value":1},{"name":"g","value":1},{"name":"b","value":1},{"name":"SDF","value":1},{"name":"Smoothing","value":0.644},{"name":"Border","value":0},{"name":"Border Width","value":0.085},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0.107},{"name":"Border b","value":0.196},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.299609375},{"name":"Height","value":0.07641131628787877},{"name":"Start Y","value":0.039290222537878776},{"name":"Num Chars","value":9}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"fzsniu9pe","uiAttribs":{},"portsIn":[{"name":"posX","value":0.01},{"name":"posY","value":0.02},{"name":"posZ","value":0},{"name":"scale","value":1.12},{"name":"rotX","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"gji70mzgw","objOut":"fzsniu9pe"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"pmu87q3eb","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.8},{"name":"Value 2","value":-1}],"portsOut":[{"name":"Result","links":[{"portIn":"innerRadius","portOut":"Result","objIn":"1u49ak691","objOut":"pmu87q3eb"}]}],"objName":"Ops.Math.Interpolate"},{"id":"z3e9usn2r","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0},{"name":"Value 2","value":180}],"portsOut":[{"name":"Result","links":[{"portIn":"rotY","portOut":"Result","objIn":"fzsniu9pe","objOut":"z3e9usn2r"}]}],"objName":"Ops.Math.Interpolate"},{"id":"bxhz7tp4k","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"blls2amps","title":"Trigger in"},{"name":"btagbs7z2","title":"Class"},{"name":"lj06d561p","value":0,"title":"Show Boundings"},{"name":"patchId","value":"bp2sub_bxhz7tp4k"}],"portsOut":[{"name":"nti406vwi","value":-0.5,"title":"Result"},{"name":"gjvx0zyv5","title":"value","links":[{"portIn":"number1","portOut":"gjvx0zyv5","objIn":"8hgomlv38","objOut":"bxhz7tp4k"},{"portIn":"a","portOut":"gjvx0zyv5","objIn":"nubb2t6qu","objOut":"bxhz7tp4k"}]}],"objName":"Ops.Patch.PAIoPfn.BasicSlider_v3"},{"id":"i737pryvq","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Execute","portOut":"Triggered","objIn":"udgixmukx","objOut":"i737pryvq"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"elnq8ccfz","uiAttribs":{},"portsIn":[{"name":"value","value":"slider_position"}],"portsOut":[{"name":"String","links":[{"portIn":"btagbs7z2","portOut":"String","objIn":"bxhz7tp4k","objOut":"elnq8ccfz"}]}],"objName":"Ops.String.String_v2"},{"id":"f0m25q0un","uiAttribs":{},"portsIn":[{"name":"Text","value":"* position"},{"name":"Font","value":"chivo"},{"name":"Scale","value":0.14},{"name":"Letter Spacing","value":-0.04},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":2},{"name":"Vertical Align","value":"Middle"},{"name":"r","value":0.75},{"name":"g","value":0.75},{"name":"b","value":0.75},{"name":"SDF","value":1},{"name":"Smoothing","value":0.108},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.299709375},{"name":"Height","value":0.09127973484848485},{"name":"Start Y","value":0.047398484848484856},{"name":"Num Chars","value":10}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"jr8ldk0r2","uiAttribs":{},"portsIn":[{"name":"x","value":-1.34},{"name":"y","value":1.05},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"f0m25q0un","objOut":"jr8ldk0r2"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"gpudotn6t","uiAttribs":{},"portsIn":[{"name":"Title","value":"position"}],"objName":"Ops.Ui.Area"},{"id":"8hgomlv38","uiAttribs":{},"portsIn":[{"name":"number2","value":0.33}],"portsOut":[{"name":"result","links":[{"portIn":"a","portOut":"result","objIn":"f0m25q0un","objOut":"8hgomlv38"}]}],"objName":"Ops.Math.Sum"},{"id":"ovge16avj","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":1.71},{"name":"height","value":0.08},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":2},{"name":"num rows","value":3}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"dbxqt7lqg","uiAttribs":{},"portsIn":[{"name":"x","value":-0.555},{"name":"y","value":0.935},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"nubb2t6qu","objOut":"dbxqt7lqg"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"nubb2t6qu","uiAttribs":{},"portsIn":[{"name":"PointSize","value":4},{"name":"Size in Pixels","value":1},{"name":"Random Size","value":0},{"name":"Round","value":0},{"name":"Round Antialias","value":0},{"name":"Scale by Distance","value":0},{"name":"r","value":0.772},{"name":"g","value":0.15106840238933295},{"name":"b","value":0.4207414807217118},{"name":"Vertex Colors","value":0},{"name":"Colorize Texture","value":0},{"name":"Mask Channel index","value":0},{"name":"Mask Channel","value":"R"},{"name":"Colorize Randomize","value":0},{"name":"Point Size Channel index","value":0},{"name":"Point Size Channel","value":"R"},{"name":"Texture Point Size Mul","value":1},{"name":"Map Size 0 index","value":0},{"name":"Map Size 0","value":"Black"},{"name":"Flip Texture","value":0},{"name":"Atlas Cross Fade","value":0},{"name":"Atlas Repeat X ","value":1},{"name":"Min Point Size","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"ovge16avj","objOut":"nubb2t6qu"}]}],"objName":"Ops.Gl.Shader.PointMaterial_v5"},{"id":"359tlq06f","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.003},{"name":"Value 2","value":0.01}],"portsOut":[{"name":"Result","links":[{"portIn":"height","portOut":"Result","objIn":"hm7bbicrb","objOut":"359tlq06f"}]}],"objName":"Ops.Math.Interpolate"},{"id":"li57o4rn2","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.9},{"name":"Value 2","value":1}],"portsOut":[{"name":"Result","links":[{"portIn":"a","portOut":"Result","objIn":"l01dmydzd","objOut":"li57o4rn2"},{"portIn":"g","portOut":"Result","objIn":"l01dmydzd","objOut":"li57o4rn2"},{"portIn":"b","portOut":"Result","objIn":"l01dmydzd","objOut":"li57o4rn2"},{"portIn":"r","portOut":"Result","objIn":"l01dmydzd","objOut":"li57o4rn2"}]}],"objName":"Ops.Math.Interpolate"},{"id":"p2z4x8iu5","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.19},{"name":"Value 2","value":0.23}],"portsOut":[{"name":"Result","links":[{"portIn":"Scale","portOut":"Result","objIn":"l01dmydzd","objOut":"p2z4x8iu5"}]}],"objName":"Ops.Math.Interpolate"},{"id":"l88qnkqyk","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"Percentage","portOut":"result","objIn":"li57o4rn2","objOut":"l88qnkqyk"},{"portIn":"Percentage","portOut":"result","objIn":"p2z4x8iu5","objOut":"l88qnkqyk"},{"portIn":"Percentage","portOut":"result","objIn":"359tlq06f","objOut":"l88qnkqyk"}]}],"objName":"Ops.Ui.Routing.RouteNumber"},{"id":"b8j12x3gl","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":2.74},{"name":"height","value":0.03},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":9},{"name":"num rows","value":3}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"6pwy0s5dx","uiAttribs":{},"portsIn":[{"name":"PointSize","value":3},{"name":"Size in Pixels","value":1},{"name":"Random Size","value":0},{"name":"Round","value":0},{"name":"Round Antialias","value":0},{"name":"Scale by Distance","value":0},{"name":"r","value":0.772},{"name":"g","value":0.15106840238933295},{"name":"b","value":0.4207414807217118},{"name":"Vertex Colors","value":0},{"name":"Colorize Texture","value":1},{"name":"Mask Channel index","value":0},{"name":"Mask Channel","value":"R"},{"name":"Colorize Randomize","value":0},{"name":"Point Size Channel index","value":0},{"name":"Point Size Channel","value":"R"},{"name":"Texture Point Size Mul","value":1},{"name":"Map Size 0 index","value":0},{"name":"Map Size 0","value":"Black"},{"name":"Flip Texture","value":0},{"name":"Atlas Cross Fade","value":0},{"name":"Atlas Repeat X ","value":1},{"name":"Min Point Size","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"b8j12x3gl","objOut":"6pwy0s5dx"}]}],"objName":"Ops.Gl.Shader.PointMaterial_v5"},{"id":"cdqihefdh","uiAttribs":{},"portsIn":[{"name":"x","value":0},{"name":"y","value":-0.77},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"6pwy0s5dx","objOut":"cdqihefdh"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"kzr5ui0jv","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_structure"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"tpi422xya","objOut":"kzr5ui0jv"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"tpi422xya","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Randomize Colors","portOut":"Next","objIn":"87k6oec5j","objOut":"tpi422xya"}]},{"name":"Number","value":0.4666666666666667}],"objName":"Ops.Number.TriggerOnChangeNumber"},{"id":"55jf7ng6g","uiAttribs":{},"portsIn":[{"name":"number2","value":15}],"portsOut":[{"name":"result","links":[{"portIn":"Value","portOut":"result","objIn":"pnzzc7ulm","objOut":"55jf7ng6g"}]}],"objName":"Ops.Math.Divide"},{"id":"huqpajdbd","uiAttribs":{},"portsIn":[{"name":"number2","value":15}],"portsOut":[{"name":"result","links":[{"portIn":"number","portOut":"result","objIn":"y5csdqm5k","objOut":"huqpajdbd"}]}],"objName":"Ops.Math.Multiply"},{"id":"y5csdqm5k","uiAttribs":{},"portsIn":[{"name":"Decimal Places","value":0}],"portsOut":[{"name":"result","links":[{"portIn":"index","portOut":"result","objIn":"djbr6tym4","objOut":"y5csdqm5k"}]}],"objName":"Ops.Math.Round"},{"id":"lmzv6xxhp","uiAttribs":{},"portsIn":[{"name":"Delay","value":0.1},{"name":"Clear on Change","value":0},{"name":"easing index","value":1},{"name":"easing","value":"absolute"}],"portsOut":[{"name":"Result","links":[{"portIn":"number1","portOut":"Result","objIn":"huqpajdbd","objOut":"lmzv6xxhp"}]}],"objName":"Ops.Number.DelayedNumber"},{"id":"l4gff2c89","uiAttribs":{},"portsIn":[{"name":"key code","value":49},{"name":"canvas only","value":1},{"name":"Mod Key index","value":0},{"name":"Mod Key","value":"none"},{"name":"Enabled","value":1},{"name":"Prevent Default","value":0}],"portsOut":[{"name":"on press","links":[{"portIn":"trigger","portOut":"on press","objIn":"st9zrhm6y","objOut":"l4gff2c89"}]},{"name":"Pressed","links":[{"portIn":"Default","portOut":"Pressed","objIn":"st9zrhm6y","objOut":"l4gff2c89"}]},{"name":"Key","value":"1"}],"objName":"Ops.Devices.Keyboard.KeyPressLearn"},{"id":"st9zrhm6y","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"visible","portOut":"result","objIn":"ick4g333d","objOut":"st9zrhm6y"}]}],"objName":"Ops.Boolean.ToggleBool_v2"},{"id":"ick4g333d","uiAttribs":{},"objName":"Ops.Patch.PAIoPfn.Console_v2"},{"id":"n19jursgo","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeReverse"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"jq7ifli9z","uiAttribs":{},"portsIn":[{"name":"number2","value":2}],"portsOut":[{"name":"result","links":[{"portIn":"a","portOut":"result","objIn":"6pwy0s5dx","objOut":"jq7ifli9z"}]}],"objName":"Ops.Math.Divide"},{"id":"rmigep014","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":2.7},{"name":"height","value":0.03},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":9},{"name":"num rows","value":3}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"ezv1vx872","uiAttribs":{},"portsIn":[{"name":"x","value":0},{"name":"y","value":-0.97},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"d4a8366c0","objOut":"ezv1vx872"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"9cfc0k1rh","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"number1","portOut":"result","objIn":"brfy0oj40","objOut":"9cfc0k1rh"}]}],"objName":"Ops.Ui.Routing.RouteNumber"},{"id":"brfy0oj40","uiAttribs":{},"portsIn":[{"name":"number2","value":2}],"portsOut":[{"name":"result","links":[{"portIn":"a","portOut":"result","objIn":"d4a8366c0","objOut":"brfy0oj40"}]}],"objName":"Ops.Math.Divide"},{"id":"7xrwdqmvp","uiAttribs":{},"portsOut":[{"name":"trigger 0","links":[{"portIn":"render","portOut":"trigger 0","objIn":"070by2eug","objOut":"7xrwdqmvp"}]},{"name":"trigger 1","links":[{"portIn":"Trigger in","portOut":"trigger 1","objIn":"gex9oaatc","objOut":"7xrwdqmvp"}]},{"name":"trigger 5","links":[{"portIn":"Render","portOut":"trigger 5","objIn":"e5r0bk5la","objOut":"7xrwdqmvp"}]},{"name":"trigger 7","links":[{"portIn":"exe","portOut":"trigger 7","objIn":"84hdpbwaf","objOut":"7xrwdqmvp"}]}],"objName":"Ops.Gl.LayerSequence"},{"id":"e5r0bk5la","uiAttribs":{},"portsIn":[{"name":"Width","value":1},{"name":"Height","value":1},{"name":"pivot x index","value":0},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":0},{"name":"pivot y","value":"center"},{"name":"Draw Top","value":1},{"name":"Draw Bottom","value":1},{"name":"Draw Left","value":1},{"name":"Draw Right","value":1},{"name":"Active","value":1}],"objName":"Ops.Gl.Meshes.RectangleFrame_v2"},{"id":"gex9oaatc","uiAttribs":{},"portsIn":[{"name":"Width","value":1},{"name":"Height","value":1},{"name":"ID","value":""},{"name":"Class","value":""},{"name":"Pivot x index","value":0},{"name":"Pivot x","value":"center"},{"name":"Pivot y index","value":0},{"name":"Pivot y","value":"center"},{"name":"Axis index","value":0},{"name":"Axis","value":"xy"},{"name":"Is Interactive","value":1},{"name":"Render Rectangle","value":0},{"name":"Show Boundings","value":0},{"name":"Cursor index","value":0},{"name":"Cursor","value":"auto"},{"name":"Render","value":1,"title":"Active"}],"portsOut":[{"name":"Pointer Hover","links":[{"portIn":"bool","portOut":"Pointer Hover","objIn":"84hdpbwaf","objOut":"gex9oaatc"}]},{"name":"Pointer Down","value":0},{"name":"Pointer X","value":0},{"name":"Pointer Y","value":0.18119776523150966},{"name":"Top","value":122.63489305973053},{"name":"Left","value":42.607257068157196},{"name":"Right","value":68.06453615427017},{"name":"Bottom","value":147.48561429977417},{"name":"Left Click","links":[{"portIn":"trigger","portOut":"Left Click","objIn":"uy0pd5u8k","objOut":"gex9oaatc"}]}],"objName":"Ops.Gl.InteractiveRectangle_v2"},{"id":"mi1ys7y7e","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"preSequenceFlow"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"render","portOut":"Triggered","objIn":"3wwd1k6hu","objOut":"mi1ys7y7e"},{"portIn":"Execute","portOut":"Triggered","objIn":"vu7mkxcal","objOut":"mi1ys7y7e"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"3wwd1k6hu","uiAttribs":{},"portsIn":[{"name":"posX","value":-1.15},{"name":"posY","value":0.18},{"name":"posZ","value":0},{"name":"scale","value":0.06},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"exe","portOut":"trigger","objIn":"7xrwdqmvp","objOut":"3wwd1k6hu"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"070by2eug","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","title":"Render"},{"name":"width","value":0.8},{"name":"height","value":0.8},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":2},{"name":"num rows","value":2}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"uy0pd5u8k","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"Render Mesh","portOut":"result","objIn":"070by2eug","objOut":"uy0pd5u8k"},{"portIn":"Value","portOut":"result","objIn":"3vwe3ipas","objOut":"uy0pd5u8k"}]}],"objName":"Ops.Boolean.ToggleBool_v2"},{"id":"oq4iuk0t0","uiAttribs":{},"portsIn":[{"name":"Title","value":"Bypass Convolvers"}],"objName":"Ops.Ui.Area"},{"id":"x8xbm1wvq","uiAttribs":{},"portsOut":[{"name":"trigger 0","links":[{"portIn":"render","portOut":"trigger 0","objIn":"ula2gv47e","objOut":"x8xbm1wvq"}]},{"name":"trigger 5","links":[{"portIn":"Render","portOut":"trigger 5","objIn":"q4wnfj3p5","objOut":"x8xbm1wvq"}]},{"name":"trigger 6","links":[{"portIn":"Trigger in","portOut":"trigger 6","objIn":"7ed6aczdz","objOut":"x8xbm1wvq"}]},{"name":"trigger 8","links":[{"portIn":"exe","portOut":"trigger 8","objIn":"irf285bha","objOut":"x8xbm1wvq"}]}],"objName":"Ops.Gl.LayerSequence"},{"id":"q4wnfj3p5","uiAttribs":{},"portsIn":[{"name":"Width","value":1},{"name":"Height","value":1},{"name":"pivot x index","value":0},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":0},{"name":"pivot y","value":"center"},{"name":"Draw Top","value":1},{"name":"Draw Bottom","value":1},{"name":"Draw Left","value":1},{"name":"Draw Right","value":1},{"name":"Active","value":1}],"objName":"Ops.Gl.Meshes.RectangleFrame_v2"},{"id":"7ed6aczdz","uiAttribs":{},"portsIn":[{"name":"Width","value":1},{"name":"Height","value":1},{"name":"ID","value":""},{"name":"Class","value":""},{"name":"Pivot x index","value":0},{"name":"Pivot x","value":"center"},{"name":"Pivot y index","value":0},{"name":"Pivot y","value":"center"},{"name":"Axis index","value":0},{"name":"Axis","value":"xy"},{"name":"Is Interactive","value":1},{"name":"Render Rectangle","value":0},{"name":"Show Boundings","value":0},{"name":"Cursor index","value":2},{"name":"Cursor","value":"pointer"},{"name":"Render","value":1,"title":"Active"}],"portsOut":[{"name":"Pointer Hover","links":[{"portIn":"bool","portOut":"Pointer Hover","objIn":"irf285bha","objOut":"7ed6aczdz"}]},{"name":"Pointer Down","value":0},{"name":"Pointer X","value":0.32752765166429276},{"name":"Pointer Y","value":0.16008279833919714},{"name":"Top","value":85.44248270988464},{"name":"Left","value":43.27123910188675},{"name":"Right","value":68.69363218545914},{"name":"Bottom","value":110.22626674175262},{"name":"Left Click","links":[{"portIn":"trigger","portOut":"Left Click","objIn":"j12tm925v","objOut":"7ed6aczdz"}]}],"objName":"Ops.Gl.InteractiveRectangle_v2"},{"id":"ula2gv47e","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","title":"Render"},{"name":"width","value":0.8},{"name":"height","value":0.8},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":2},{"name":"num rows","value":2}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"j12tm925v","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"Render Mesh","portOut":"result","objIn":"ula2gv47e","objOut":"j12tm925v"},{"portIn":"Value","portOut":"result","objIn":"8mgrhcm7a","objOut":"j12tm925v"}]}],"objName":"Ops.Boolean.ToggleBool_v2"},{"id":"amn6xx3kk","uiAttribs":{},"portsIn":[{"name":"Title","value":"Bypass Refs"}],"objName":"Ops.Ui.Area"},{"id":"8mgrhcm7a","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_bypassSRVB"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"52bgygm7a","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_bypassSRVB"}],"portsOut":[{"name":"Value","links":[{"portIn":"Float2","portOut":"Value","objIn":"cusctccfp","objOut":"52bgygm7a"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"3vwe3ipas","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_bypassConvolver"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"glkaxm7f0","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_bypassConvolver"}],"portsOut":[{"name":"Value","links":[{"portIn":"Float1","portOut":"Value","objIn":"s8c4pjw9s","objOut":"glkaxm7f0"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"ngzgotbds","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"exe","portOut":"Trigger out","objIn":"124910bf-e88f-4da5-847e-888a7ac73020","objOut":"ngzgotbds"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"d4a8366c0","uiAttribs":{},"portsIn":[{"name":"PointSize","value":3},{"name":"Size in Pixels","value":1},{"name":"Random Size","value":0},{"name":"Round","value":0},{"name":"Round Antialias","value":0},{"name":"Scale by Distance","value":0},{"name":"r","value":0.772},{"name":"g","value":0.15106840238933295},{"name":"b","value":0.4207414807217118},{"name":"Vertex Colors","value":0},{"name":"Colorize Texture","value":1},{"name":"Mask Channel index","value":0},{"name":"Mask Channel","value":"R"},{"name":"Colorize Randomize","value":0},{"name":"Point Size Channel index","value":0},{"name":"Point Size Channel","value":"R"},{"name":"Texture Point Size Mul","value":1},{"name":"Map Size 0 index","value":0},{"name":"Map Size 0","value":"Black"},{"name":"Flip Texture","value":0},{"name":"Atlas Cross Fade","value":0},{"name":"Atlas Repeat X ","value":1},{"name":"Min Point Size","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"rmigep014","objOut":"d4a8366c0"}]}],"objName":"Ops.Gl.Shader.PointMaterial_v5"},{"id":"cdn66mu7a","uiAttribs":{},"portsIn":[{"name":"Text","value":"*Scape"},{"name":"Font","value":"chivo"},{"name":"Scale","value":0.24},{"name":"Letter Spacing","value":-0.02},{"name":"Line Height","value":1},{"name":"Align index","value":2},{"name":"Align","value":"Right"},{"name":"Vertical Align index","value":3},{"name":"Vertical Align","value":"Bottom"},{"name":"r","value":0.75},{"name":"g","value":0.75},{"name":"b","value":0.75},{"name":"a","value":1},{"name":"SDF","value":1},{"name":"Smoothing","value":0.085},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.341925},{"name":"Height","value":0.15647954545454545},{"name":"Start Y","value":0.15949431818181817},{"name":"Num Chars","value":6}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"kgztdjkg7","uiAttribs":{},"portsIn":[{"name":"posX","value":-1.62},{"name":"posY","value":-0.71},{"name":"posZ","value":0},{"name":"scale","value":1},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":90}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"cdn66mu7a","objOut":"kgztdjkg7"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"62p51ysxi","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":0.01},{"name":"height","value":-0.43},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":1},{"name":"num rows","value":1}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"b7lt5j2bc","uiAttribs":{},"portsIn":[{"name":"x","value":-1.61},{"name":"y","value":-0.87},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"62p51ysxi","objOut":"b7lt5j2bc"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"ajqkcp9y5","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":0.01},{"name":"height","value":2.48},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":1},{"name":"num rows","value":1}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"9yv8uo1rz","uiAttribs":{},"portsIn":[{"name":"x","value":-1.61},{"name":"y","value":0.79},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"ajqkcp9y5","objOut":"9yv8uo1rz"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"kepigt9gu","uiAttribs":{},"portsIn":[{"name":"r","value":0.179},{"name":"g","value":1},{"name":"b","value":0.692},{"name":"a","value":0.547},{"name":"colorizeTexture","value":0},{"name":"Vertex Colors","value":0},{"name":"Alpha Mask Source index","value":0},{"name":"Alpha Mask Source","value":"Luminance"},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":0},{"name":"diffuseRepeatX","value":1},{"name":"diffuseRepeatY","value":1},{"name":"Tex Offset X","value":0},{"name":"Tex Offset Y","value":0},{"name":"Crop TexCoords","value":0},{"name":"billboard","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"jtsnv54z5","objOut":"kepigt9gu"}]}],"objName":"Ops.Gl.Shader.BasicMaterial_v3"},{"id":"s9d3c0k9s","uiAttribs":{},"portsIn":[{"name":"Text","value":"*Reflectors"},{"name":"Font","value":"chivo"},{"name":"Scale","value":0.24},{"name":"Letter Spacing","value":-0.02},{"name":"Line Height","value":1},{"name":"Align index","value":2},{"name":"Align","value":"Right"},{"name":"Vertical Align index","value":3},{"name":"Vertical Align","value":"Bottom"},{"name":"r","value":0.75},{"name":"g","value":0.75},{"name":"b","value":0.75},{"name":"a","value":1},{"name":"SDF","value":1},{"name":"Smoothing","value":0.085},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.6169875},{"name":"Height","value":0.14320454545454545},{"name":"Start Y","value":0.14734431818181817},{"name":"Num Chars","value":11}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"kcwjgoqk1","uiAttribs":{},"portsIn":[{"name":"posX","value":-1.63},{"name":"posY","value":0.41},{"name":"posZ","value":0},{"name":"scale","value":1},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":90}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"s9d3c0k9s","objOut":"kcwjgoqk1"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"3wnf93z0d","uiAttribs":{},"portsIn":[{"name":"Title","value":"Left Side Panel"}],"objName":"Ops.Ui.Area"},{"id":"w1wyli4ul","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"render","portOut":"Triggered","objIn":"kepigt9gu","objOut":"w1wyli4ul"},{"portIn":"alrh6hig4","portOut":"Triggered","objIn":"n1dxl83p1","objOut":"w1wyli4ul"},{"portIn":"8dittifdh","portOut":"Triggered","objIn":"n1dxl83p1","objOut":"w1wyli4ul"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"jtsnv54z5","uiAttribs":{},"portsIn":[{"name":"x","value":-0.06},{"name":"y","value":0},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"kgztdjkg7","objOut":"jtsnv54z5"},{"portIn":"render","portOut":"trigger","objIn":"kcwjgoqk1","objOut":"jtsnv54z5"},{"portIn":"render","portOut":"trigger","objIn":"b7lt5j2bc","objOut":"jtsnv54z5"},{"portIn":"render","portOut":"trigger","objIn":"9yv8uo1rz","objOut":"jtsnv54z5"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"29wy37qy9","uiAttribs":{},"portsIn":[{"name":"posX","value":-1.15},{"name":"posY","value":0.27},{"name":"posZ","value":0},{"name":"scale","value":0.06},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"exe","portOut":"trigger","objIn":"x8xbm1wvq","objOut":"29wy37qy9"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"2dwg7w4c5","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"preSequenceFlow"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"render","portOut":"Triggered","objIn":"29wy37qy9","objOut":"2dwg7w4c5"},{"portIn":"Execute","portOut":"Triggered","objIn":"hnzd5wpdu","objOut":"2dwg7w4c5"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"8bw0l1iwj","uiAttribs":{},"portsOut":[{"name":"Number","links":[{"portIn":"number1","portOut":"Number","objIn":"dcl7z07s9","objOut":"8bw0l1iwj"},{"portIn":"Value In","portOut":"Number","objIn":"4eybed6uw","objOut":"8bw0l1iwj"}]}],"objName":"Ops.String.ParseInt_v2"},{"id":"rzoomxuz4","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_hitBodyName"}],"portsOut":[{"name":"Value","links":[{"portIn":"String","portOut":"Value","objIn":"zqsm59jgd","objOut":"rzoomxuz4"}]}],"objName":"Ops.Vars.VarGetString"},{"id":"zqsm59jgd","uiAttribs":{},"portsIn":[{"name":"Search For","value":"dial."},{"name":"Replace","value":""},{"name":"Replace What index","value":0},{"name":"Replace What","value":"All"}],"portsOut":[{"name":"Result","links":[{"portIn":"String","portOut":"Result","objIn":"8bw0l1iwj","objOut":"zqsm59jgd"}]}],"objName":"Ops.String.StringReplace"},{"id":"dcl7z07s9","uiAttribs":{},"portsIn":[{"name":"number2","value":0}],"portsOut":[{"name":"result","links":[{"portIn":"Pass Through","portOut":"result","objIn":"4eybed6uw","objOut":"dcl7z07s9"}]}],"objName":"Ops.Math.Compare.GreaterThan"},{"id":"439i0aj79","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_activeDial_ID"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"4eybed6uw","uiAttribs":{},"portsIn":[{"name":"When False index","value":0},{"name":"When False","value":"keep last number"},{"name":"Custom Value","value":0}],"portsOut":[{"name":"Value Out","links":[{"portIn":"Value","portOut":"Value Out","objIn":"439i0aj79","objOut":"4eybed6uw"}]}],"objName":"Ops.Number.GateNumber"},{"id":"cej7j59jx","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_bypassSRVB"}],"portsOut":[{"name":"Value","links":[{"portIn":"Boolean","portOut":"Value","objIn":"irxfck5m6","objOut":"cej7j59jx"},{"portIn":"Pass Through","portOut":"Value","objIn":"oefqiqdsy","objOut":"cej7j59jx"},{"portIn":"Pass Through","portOut":"Value","objIn":"3n0xi3fsv","objOut":"cej7j59jx"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"irxfck5m6","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Pass Through","portOut":"Result","objIn":"ngzgotbds","objOut":"irxfck5m6"},{"portIn":"Pass Through","portOut":"Result","objIn":"lsv3n3hs3","objOut":"irxfck5m6"}]}],"objName":"Ops.Boolean.Not"},{"id":"89jux4z6s","uiAttribs":{},"portsIn":[{"name":"Title","value":"bypass"}],"objName":"Ops.Ui.Area"},{"id":"u3dpm2y6e","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_bypassSRVB"}],"portsOut":[{"name":"Value","links":[{"portIn":"Boolean","portOut":"Value","objIn":"3c3cerstj","objOut":"u3dpm2y6e"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"3c3cerstj","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Pass Through","portOut":"Result","objIn":"41p18fvfx","objOut":"3c3cerstj"}]}],"objName":"Ops.Boolean.Not"},{"id":"r3brv3upl","uiAttribs":{},"portsIn":[{"name":"Title","value":"bypass"}],"objName":"Ops.Ui.Area"},{"id":"41p18fvfx","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"render","portOut":"Trigger out","objIn":"vr3j7sk4c","objOut":"41p18fvfx"},{"portIn":"render","portOut":"Trigger out","objIn":"zcqvrg63v","objOut":"41p18fvfx"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"mcyj3ceqx","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_bypassSRVB"}],"portsOut":[{"name":"Value","links":[{"portIn":"Boolean","portOut":"Value","objIn":"wvmky194s","objOut":"mcyj3ceqx"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"wvmky194s","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Pass Through","portOut":"Result","objIn":"udgixmukx","objOut":"wvmky194s"}]}],"objName":"Ops.Boolean.Not"},{"id":"2nwj9hk6i","uiAttribs":{},"portsIn":[{"name":"Title","value":"bypass"}],"objName":"Ops.Ui.Area"},{"id":"udgixmukx","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"blls2amps","portOut":"Trigger out","objIn":"bxhz7tp4k","objOut":"udgixmukx"},{"portIn":"render","portOut":"Trigger out","objIn":"jr8ldk0r2","objOut":"udgixmukx"},{"portIn":"render","portOut":"Trigger out","objIn":"dbxqt7lqg","objOut":"udgixmukx"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"oefqiqdsy","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"render","portOut":"Trigger out","objIn":"gd8i1910i","objOut":"oefqiqdsy"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"gd8i1910i","uiAttribs":{},"portsIn":[{"name":"posX","value":0},{"name":"posY","value":0},{"name":"posZ","value":0},{"name":"scale","value":0.73},{"name":"rotX","value":90},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"9fkoygcno","portOut":"trigger","objIn":"pa5yuiyom","objOut":"gd8i1910i"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"pa5yuiyom","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"9fkoygcno","title":"Render"},{"name":"patchId","value":"bp2sub_pa5yuiyom"}],"objName":"Ops.Patch.PAIoPfn.SubPatch1"},{"id":"3n0xi3fsv","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"9fkoygcno","portOut":"Trigger out","objIn":"pa5yuiyom","objOut":"3n0xi3fsv"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"lsv3n3hs3","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"Execute","portOut":"Trigger out","objIn":"ngzgotbds","objOut":"lsv3n3hs3"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"eval6rzea","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_bypassConvolver"}],"portsOut":[{"name":"Value","links":[{"portIn":"Boolean","portOut":"Value","objIn":"qc9y0rymh","objOut":"eval6rzea"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"qc9y0rymh","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Pass Through","portOut":"Result","objIn":"1qf5qizbm","objOut":"qc9y0rymh"}]}],"objName":"Ops.Boolean.Not"},{"id":"t6ok8gofa","uiAttribs":{},"portsIn":[{"name":"Title","value":"bypass"}],"objName":"Ops.Ui.Area"},{"id":"1qf5qizbm","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"render","portOut":"Trigger out","objIn":"cdqihefdh","objOut":"1qf5qizbm"},{"portIn":"blls2amps","portOut":"Trigger out","objIn":"827hbx7y7","objOut":"1qf5qizbm"},{"portIn":"Execute","portOut":"Trigger out","objIn":"8z3433rds","objOut":"1qf5qizbm"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"8z3433rds","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"p3udn0kt2","objOut":"8z3433rds"},{"portIn":"blls2amps","portOut":"Next","objIn":"5jrf5b006","objOut":"8z3433rds"},{"portIn":"render","portOut":"Next","objIn":"ezv1vx872","objOut":"8z3433rds"},{"portIn":"render","portOut":"Next","objIn":"xwjvzec0g","objOut":"8z3433rds"}]}],"objName":"Ops.Trigger.TriggerExtender"},{"id":"6u9uljqof","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_bypassConvolver"}],"portsOut":[{"name":"Value","links":[{"portIn":"Boolean","portOut":"Value","objIn":"gydu08orr","objOut":"6u9uljqof"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"qgfcwj6li","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"render","portOut":"Trigger out","objIn":"k9oj9uhcw","objOut":"qgfcwj6li"},{"portIn":"render","portOut":"Trigger out","objIn":"0tooxrj1w","objOut":"qgfcwj6li"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"gydu08orr","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Pass Through","portOut":"Result","objIn":"qgfcwj6li","objOut":"gydu08orr"}]}],"objName":"Ops.Boolean.Not"},{"id":"84hdpbwaf","uiAttribs":{},"portsIn":[{"name":"easing index","value":2},{"name":"easing","value":"smoothstep"},{"name":"duration","value":0.25},{"name":"Direction index","value":1},{"name":"Direction","value":"Only True"},{"name":"value false","value":-0.05},{"name":"value true","value":-0.1}],"portsOut":[{"name":"value","links":[{"portIn":"Thickness","portOut":"value","objIn":"e5r0bk5la","objOut":"84hdpbwaf"},{"portIn":"number","portOut":"value","objIn":"zf4zkamma","objOut":"84hdpbwaf"}]},{"name":"finished","value":1}],"objName":"Ops.Anim.BoolAnim"},{"id":"irf285bha","uiAttribs":{},"portsIn":[{"name":"easing index","value":2},{"name":"easing","value":"smoothstep"},{"name":"duration","value":0.25},{"name":"Direction index","value":1},{"name":"Direction","value":"Only True"},{"name":"value false","value":-0.05},{"name":"value true","value":-0.1}],"portsOut":[{"name":"value","links":[{"portIn":"Thickness","portOut":"value","objIn":"q4wnfj3p5","objOut":"irf285bha"},{"portIn":"number","portOut":"value","objIn":"4sdf08lse","objOut":"irf285bha"}]},{"name":"finished","value":1}],"objName":"Ops.Anim.BoolAnim"},{"id":"xlw95x0o1","uiAttribs":{},"portsIn":[{"name":"Text","value":"Bypass Reflections"},{"name":"Font","value":"chivo"},{"name":"Scale","value":0.08},{"name":"Letter Spacing","value":-0.02},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":2},{"name":"Vertical Align","value":"Middle"},{"name":"r","value":1},{"name":"g","value":1},{"name":"b","value":1},{"name":"SDF","value":1},{"name":"Smoothing","value":0.122},{"name":"Border","value":0},{"name":"Border Width","value":0.278},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0.268},{"name":"Border g","value":0.917},{"name":"Border b","value":0.449},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.3358},{"name":"Height","value":0.053334848484848485},{"name":"Start Y","value":0.02804734848484848},{"name":"Num Chars","value":18}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"5l1ap8jif","uiAttribs":{},"portsIn":[{"name":"x","value":-0.91},{"name":"y","value":0.27},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"xlw95x0o1","objOut":"5l1ap8jif"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"hnzd5wpdu","uiAttribs":{},"portsIn":[{"name":"Pass Through","value":1}],"portsOut":[{"name":"Trigger out","links":[{"portIn":"render","portOut":"Trigger out","objIn":"5l1ap8jif","objOut":"hnzd5wpdu"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"l4l0bqldi","uiAttribs":{},"portsIn":[{"name":"Text","value":"Bypass Convolvers"},{"name":"Font","value":"chivo"},{"name":"Scale","value":0.08},{"name":"Letter Spacing","value":-0.02},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":2},{"name":"Vertical Align","value":"Middle"},{"name":"r","value":1},{"name":"g","value":1},{"name":"b","value":1},{"name":"SDF","value":1},{"name":"Smoothing","value":0.122},{"name":"Border","value":0},{"name":"Border Width","value":0.278},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0.268},{"name":"Border g","value":0.917},{"name":"Border b","value":0.449},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.3174},{"name":"Height","value":0.05262234848484848},{"name":"Start Y","value":0.02697859848484848},{"name":"Num Chars","value":17}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"tozpismyt","uiAttribs":{},"portsIn":[{"name":"x","value":-0.92},{"name":"y","value":0.18},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"l4l0bqldi","objOut":"tozpismyt"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"vu7mkxcal","uiAttribs":{},"portsIn":[{"name":"Pass Through","value":1}],"portsOut":[{"name":"Trigger out","links":[{"portIn":"render","portOut":"Trigger out","objIn":"tozpismyt","objOut":"vu7mkxcal"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"n1dxl83p1","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"alrh6hig4","title":"render"},{"name":"8dittifdh","title":"Render"},{"name":"patchId","value":"bp2sub_n1dxl83p1"}],"objName":"Ops.Patch.PAIoPfn.SubPatch3"},{"id":"gxqx5ku7y","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.58},{"name":"Value 2","value":5}],"portsOut":[{"name":"Result","links":[{"portIn":"a","portOut":"Result","objIn":"xlw95x0o1","objOut":"gxqx5ku7y"}]}],"objName":"Ops.Math.Interpolate"},{"id":"4sdf08lse","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"Percentage","portOut":"result","objIn":"gxqx5ku7y","objOut":"4sdf08lse"}]}],"objName":"Ops.Math.Abs"},{"id":"tvoul885k","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.58},{"name":"Value 2","value":5}],"portsOut":[{"name":"Result","links":[{"portIn":"a","portOut":"Result","objIn":"l4l0bqldi","objOut":"tvoul885k"}]}],"objName":"Ops.Math.Interpolate"},{"id":"zf4zkamma","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"Percentage","portOut":"result","objIn":"tvoul885k","objOut":"zf4zkamma"}]}],"objName":"Ops.Math.Abs"},{"id":"membr309b","uiAttribs":{},"portsIn":[{"name":"value","value":"slider_dryMix"}],"portsOut":[{"name":"String","links":[{"portIn":"btagbs7z2","portOut":"String","objIn":"dy6sr4seg","objOut":"membr309b"}]}],"objName":"Ops.String.String_v2"},{"id":"8havouexn","uiAttribs":{},"portsIn":[{"name":"Text","value":"* dry mix"},{"name":"Font","value":"chivo"},{"name":"Scale","value":0.14},{"name":"Letter Spacing","value":-0.04},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":2},{"name":"Vertical Align","value":"Middle"},{"name":"r","value":0.75},{"name":"g","value":0.75},{"name":"b","value":0.75},{"name":"SDF","value":1},{"name":"Smoothing","value":0.108},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.271403125},{"name":"Height","value":0.09267973484848485},{"name":"Start Y","value":0.048098484848484856},{"name":"Num Chars","value":9}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"8gspnlp7e","uiAttribs":{},"portsIn":[{"name":"x","value":0.57},{"name":"y","value":0.78},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"8havouexn","objOut":"8gspnlp7e"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"2s2np29qz","uiAttribs":{},"portsIn":[{"name":"Title","value":"dry mix in"}],"objName":"Ops.Ui.Area"},{"id":"8u59uuw3y","uiAttribs":{},"portsIn":[{"name":"number2","value":0.33}],"portsOut":[{"name":"result","links":[{"portIn":"a","portOut":"result","objIn":"8havouexn","objOut":"8u59uuw3y"}]}],"objName":"Ops.Math.Sum"},{"id":"5gypeqckx","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"render","portOut":"Triggered","objIn":"8gspnlp7e","objOut":"5gypeqckx"},{"portIn":"blls2amps","portOut":"Triggered","objIn":"dy6sr4seg","objOut":"5gypeqckx"},{"portIn":"render","portOut":"Triggered","objIn":"vm3f05tkh","objOut":"5gypeqckx"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"dy6sr4seg","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"blls2amps","title":"Trigger in"},{"name":"btagbs7z2","title":"Class"},{"name":"lj06d561p","value":0,"title":"Show Boundings"},{"name":"patchId","value":"bp2sub_dy6sr4seg"}],"portsOut":[{"name":"nti406vwi","value":-0.5,"title":"Result"},{"name":"gjvx0zyv5","title":"value","links":[{"portIn":"number1","portOut":"gjvx0zyv5","objIn":"8u59uuw3y","objOut":"dy6sr4seg"},{"portIn":"a","portOut":"gjvx0zyv5","objIn":"cusun507p","objOut":"dy6sr4seg"}]}],"objName":"Ops.Patch.PAIoPfn.BasicSlider_v4"},{"id":"gwbv0asv9","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":0.65},{"name":"height","value":0.03},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":5},{"name":"num rows","value":3}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"vm3f05tkh","uiAttribs":{},"portsIn":[{"name":"x","value":1.06},{"name":"y","value":0.78},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"cusun507p","objOut":"vm3f05tkh"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"cusun507p","uiAttribs":{},"portsIn":[{"name":"PointSize","value":3},{"name":"Size in Pixels","value":1},{"name":"Random Size","value":0},{"name":"Round","value":0},{"name":"Round Antialias","value":0},{"name":"Scale by Distance","value":0},{"name":"r","value":0.772},{"name":"g","value":0.15106840238933295},{"name":"b","value":0.4207414807217118},{"name":"Vertex Colors","value":0},{"name":"Colorize Texture","value":1},{"name":"Mask Channel index","value":0},{"name":"Mask Channel","value":"R"},{"name":"Colorize Randomize","value":0},{"name":"Point Size Channel index","value":0},{"name":"Point Size Channel","value":"R"},{"name":"Texture Point Size Mul","value":1},{"name":"Map Size 0 index","value":0},{"name":"Map Size 0","value":"Black"},{"name":"Flip Texture","value":0},{"name":"Atlas Cross Fade","value":0},{"name":"Atlas Repeat X ","value":1},{"name":"Min Point Size","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"gwbv0asv9","objOut":"cusun507p"}]}],"objName":"Ops.Gl.Shader.PointMaterial_v5"},{"id":"wv9yfmhgi","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.6},{"name":"Value 2","value":1}],"portsOut":[{"name":"Result","links":[{"portIn":"a","portOut":"Result","objIn":"akq5o2oet","objOut":"wv9yfmhgi"}]}],"objName":"Ops.Math.Interpolate"},{"id":"gc84saaij","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"3dc430vca","objOut":"gc84saaij"}]},{"name":"Result","links":[{"portIn":"Object","portOut":"Result","objIn":"5wlq6d648","objOut":"gc84saaij"}]}],"objName":"Ops.Data.Compose.Object.CompObject"},{"id":"h7opdnd5m","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ext_additionalParams_object"}],"objName":"Ops.Vars.VarSetObject_v2"},{"id":"fm4etku8q","uiAttribs":{},"portsIn":[{"name":"ZoomText","value":0},{"name":"Line Numbers","value":1},{"name":"Font Size","value":10},{"name":"Scroll","value":0}],"objName":"Ops.Ui.VizObject"},{"id":"1cg4663x6","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_additionalParams_object"}],"objName":"Ops.Vars.VarSetObject_v2"},{"id":"a4xygsbmw","uiAttribs":{},"portsIn":[{"name":"Title","value":"External Control"}],"objName":"Ops.Ui.Area"},{"id":"lapoydnfn","uiAttribs":{},"portsIn":[{"name":"Float3","value":0},{"name":"Float4","value":0},{"name":"Float5","value":0}],"portsOut":[{"name":"Out Latest Value","links":[{"portIn":"Value","portOut":"Out Latest Value","objIn":"lmzv6xxhp","objOut":"lapoydnfn"}]}],"objName":"Ops.Patch.PAIoPfn.NumberFunnel5"},{"id":"bpt9rgxdp","uiAttribs":{},"portsIn":[{"name":"Key","value":"structure"}],"portsOut":[{"name":"Result","links":[{"portIn":"Float2","portOut":"Result","objIn":"lapoydnfn","objOut":"bpt9rgxdp"}]},{"name":"Found","value":0}],"objName":"Ops.Json.ObjectGetNumber_v2"},{"id":"7tfudnp6l","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ext_additionalParams_object"}],"portsOut":[{"name":"Value","links":[{"portIn":"Data","portOut":"Value","objIn":"bpt9rgxdp","objOut":"7tfudnp6l"}]}],"objName":"Ops.Vars.VarGetObject_v2"},{"id":"av6nlmfz7","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"patchId","value":"bp2sub_av6nlmfz7"}],"portsOut":[{"name":"pmu87y53p","title":"result","links":[{"portIn":"Use Value 1","portOut":"pmu87y53p","objIn":"6lh7g16he","objOut":"av6nlmfz7"}]},{"name":"1u3pcbd78","value":0,"title":"Number"}],"objName":"Ops.Patch.PAIoPfn.TriggerOnReverseButton_v2"},{"id":"uftw0wz7e","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"patchId","value":"bp2sub_uftw0wz7e"}],"portsOut":[{"name":"pmu87y53p","title":"result","links":[{"portIn":"bool","portOut":"pmu87y53p","objIn":"zy3ewhgid","objOut":"uftw0wz7e"},{"portIn":"Percentage","portOut":"pmu87y53p","objIn":"z3e9usn2r","objOut":"uftw0wz7e"},{"portIn":"Value","portOut":"pmu87y53p","objIn":"n19jursgo","objOut":"uftw0wz7e"}]},{"name":"1u3pcbd78","value":0,"title":"Number"}],"objName":"Ops.Patch.PAIoPfn.TriggerOnReverseButton_v2"},{"id":"gkcojho7r","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"patchId","value":"bp2sub_gkcojho7r"}],"portsOut":[{"name":"pmu87y53p","value":0,"title":"result"},{"name":"1u3pcbd78","value":0,"title":"Number"}],"objName":"Ops.Patch.PAIoPfn.TriggerOnReverseButton_v2"},{"id":"s8c4pjw9s","uiAttribs":{},"portsIn":[{"name":"Float3","value":0},{"name":"Float4","value":0},{"name":"Float5","value":0}],"portsOut":[{"name":"Out Latest Value","links":[{"portIn":"Default","portOut":"Out Latest Value","objIn":"uy0pd5u8k","objOut":"s8c4pjw9s"}]}],"objName":"Ops.Patch.PAIoPfn.NumberFunnel5"},{"id":"0176m2khl","uiAttribs":{},"portsIn":[{"name":"Key","value":"bypassConvolvers"}],"portsOut":[{"name":"Result","links":[{"portIn":"Float2","portOut":"Result","objIn":"s8c4pjw9s","objOut":"0176m2khl"}]},{"name":"Found","value":0}],"objName":"Ops.Json.ObjectGetNumber_v2"},{"id":"ei912fphr","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ext_additionalParams_object"}],"portsOut":[{"name":"Value","links":[{"portIn":"Data","portOut":"Value","objIn":"0176m2khl","objOut":"ei912fphr"},{"portIn":"Data","portOut":"Value","objIn":"g9m9rufcf","objOut":"ei912fphr"}]}],"objName":"Ops.Vars.VarGetObject_v2"},{"id":"g9m9rufcf","uiAttribs":{},"portsIn":[{"name":"Key","value":"bypassReflections"}],"portsOut":[{"name":"Result","links":[{"portIn":"Float1","portOut":"Result","objIn":"cusctccfp","objOut":"g9m9rufcf"}]},{"name":"Found","value":0}],"objName":"Ops.Json.ObjectGetNumber_v2"},{"id":"cusctccfp","uiAttribs":{},"portsIn":[{"name":"Float3","value":0},{"name":"Float4","value":0},{"name":"Float5","value":0}],"portsOut":[{"name":"Out Latest Value","links":[{"portIn":"Default","portOut":"Out Latest Value","objIn":"j12tm925v","objOut":"cusctccfp"}]}],"objName":"Ops.Patch.PAIoPfn.NumberFunnel5"},{"id":"1rvhpekqj","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ext_srvbParams_object"}],"objName":"Ops.Vars.VarSetObject_v2"},{"id":"97apj6h83","uiAttribs":{},"portsIn":[{"name":"Title","value":"Setters "}],"objName":"Ops.Ui.Area"},{"id":"s09zk76xy","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_NormValue"}],"portsOut":[{"name":"Value","links":[{"portIn":"Number","portOut":"Value","objIn":"e7uo8q2lt","objOut":"s09zk76xy"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"249e7fq2n","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_dialValues_array"}],"objName":"Ops.Vars.VarSetArray_v2"},{"id":"qfd7030te","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"eby6thdal","objOut":"qfd7030te"}]},{"name":"Result","links":[{"portIn":"Object","portOut":"Result","objIn":"e7uo8q2lt","objOut":"qfd7030te"}]}],"objName":"Ops.Data.Compose.Object.CompObject"},{"id":"eby6thdal","uiAttribs":{},"portsIn":[{"name":"Key","value":"mix"},{"name":"Number","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"kre03fugk","objOut":"eby6thdal"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetNumber"},{"id":"kre03fugk","uiAttribs":{},"portsIn":[{"name":"Key","value":"diffuse"},{"name":"Number","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"ptfy99kq8","objOut":"kre03fugk"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetNumber"},{"id":"ptfy99kq8","uiAttribs":{},"portsIn":[{"name":"Key","value":"tone"},{"name":"Number","value":0.5}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"3imylsb3r","objOut":"ptfy99kq8"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetNumber"},{"id":"3imylsb3r","uiAttribs":{},"portsIn":[{"name":"Key","value":"size"},{"name":"Number","value":0}],"objName":"Ops.Data.Compose.Object.CompObjectSetNumber"},{"id":"k8bpyyhh5","uiAttribs":{},"portsIn":[{"name":"ZoomText","value":0},{"name":"Line Numbers","value":1},{"name":"Font Size","value":10},{"name":"Scroll","value":0}],"objName":"Ops.Ui.VizObject"},{"id":"7hv2gc56e","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"finalExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Exec","portOut":"Triggered","objIn":"e08lr0y5x","objOut":"7hv2gc56e"},{"portIn":"Trigger","portOut":"Triggered","objIn":"e7uo8q2lt","objOut":"7hv2gc56e"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"ug7fo1kne","uiAttribs":{},"portsIn":[{"name":"Start Row","value":0}],"objName":"Ops.Ui.VizArrayTable"},{"id":"oaboc2lrt","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_mouseIsChangingParamID"}],"portsOut":[{"name":"Value","links":[{"portIn":"Key","portOut":"Value","objIn":"e7uo8q2lt","objOut":"oaboc2lrt"}]}],"objName":"Ops.Vars.VarGetString"},{"id":"e7uo8q2lt","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Trigger","portOut":"Next","objIn":"rky6akt22","objOut":"e7uo8q2lt"}]},{"name":"Result","links":[{"portIn":"Object In","portOut":"Result","objIn":"hny8369vd","objOut":"e7uo8q2lt"}]}],"objName":"Ops.Json.TriggerObjectSetNumber"},{"id":"e08lr0y5x","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"qfd7030te","objOut":"e08lr0y5x"},{"portIn":"Trigger","portOut":"Next","objIn":"ll5zc8ivx","objOut":"e08lr0y5x"}]},{"name":"Was Triggered","value":1}],"objName":"Ops.Trigger.TriggerOnce"},{"id":"otxsqxj5k","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ext_srvbParams_object"}],"objName":"Ops.Vars.VarSetObject_v2"},{"id":"vfx4czyhk","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_buttonIsDown"}],"portsOut":[{"name":"Value","links":[{"portIn":"bool 1","portOut":"Value","objIn":"cb6yvf5fw","objOut":"vfx4czyhk"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"dezkxycuy","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ext_srvbParams_object"}],"portsOut":[{"name":"Value","links":[{"portIn":"Object","portOut":"Value","objIn":"rky6akt22","objOut":"dezkxycuy"}]}],"objName":"Ops.Vars.VarGetObject_v2"},{"id":"hny8369vd","uiAttribs":{},"portsIn":[{"name":"When False index","value":0},{"name":"When False","value":"keep last object"},{"name":"Only Valid Objects","value":1}],"portsOut":[{"name":"Object Out","links":[{"portIn":"Object","portOut":"Object Out","objIn":"k8bpyyhh5","objOut":"hny8369vd"},{"portIn":"Object2","portOut":"Object Out","objIn":"1i0um5egr","objOut":"hny8369vd"},{"portIn":"Value","portOut":"Object Out","objIn":"otxsqxj5k","objOut":"hny8369vd"}]}],"objName":"Ops.Json.GateObject"},{"id":"cb6yvf5fw","uiAttribs":{},"portsIn":[{"name":"bool 3","value":0},{"name":"bool 4","value":0},{"name":"bool 5","value":0},{"name":"bool 6","value":0},{"name":"bool 7","value":0},{"name":"bool 8","value":0},{"name":"bool 9","value":0},{"name":"bool 10","value":0}],"portsOut":[{"name":"result","links":[{"portIn":"Pass Through","portOut":"result","objIn":"hny8369vd","objOut":"cb6yvf5fw"}]}],"objName":"Ops.Boolean.Or"},{"id":"ll5zc8ivx","uiAttribs":{},"portsIn":[{"name":"Duration","value":0.1},{"name":"Value True","value":1},{"name":"Value False","value":0}],"portsOut":[{"name":"Result","links":[{"portIn":"bool 2","portOut":"Result","objIn":"cb6yvf5fw","objOut":"ll5zc8ivx"}]}],"objName":"Ops.Boolean.MonoFlop"},{"id":"1i0um5egr","uiAttribs":{},"portsOut":[{"name":"Out Object","links":[{"portIn":"Object","portOut":"Out Object","objIn":"mbaaum1ke","objOut":"1i0um5egr"}]}],"objName":"Ops.Json.ObjectFunnel"},{"id":"3dc430vca","uiAttribs":{},"portsIn":[{"name":"Key","value":"scapeLevel"},{"name":"Number","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"8abmohasq","objOut":"3dc430vca"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetNumber"},{"id":"8abmohasq","uiAttribs":{},"portsIn":[{"name":"Key","value":"scapeLength"},{"name":"Number","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"yhgena8sx","objOut":"8abmohasq"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetNumber"},{"id":"yhgena8sx","uiAttribs":{},"portsIn":[{"name":"Key","value":"dryMix"},{"name":"Number","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"r6mygowkj","objOut":"yhgena8sx"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetNumber"},{"id":"r6mygowkj","uiAttribs":{},"portsIn":[{"name":"Key","value":"position"},{"name":"Number","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"ank32xawh","objOut":"r6mygowkj"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetNumber"},{"id":"ank32xawh","uiAttribs":{},"portsIn":[{"name":"Key","value":"reverse"},{"name":"Number","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"qgg8xa6ly","objOut":"ank32xawh"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetNumber"},{"id":"qgg8xa6ly","uiAttribs":{},"portsIn":[{"name":"Key","value":"structure"},{"name":"Number","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"skbtwc76n","objOut":"qgg8xa6ly"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetNumber"},{"id":"5ru8z7pig","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"finalExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Exec","portOut":"Triggered","objIn":"i54ltohn2","objOut":"5ru8z7pig"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"i54ltohn2","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"gc84saaij","objOut":"i54ltohn2"},{"portIn":"Trigger","portOut":"Next","objIn":"geoa9vjlk","objOut":"i54ltohn2"}]},{"name":"Was Triggered","value":1}],"objName":"Ops.Trigger.TriggerOnce"},{"id":"geoa9vjlk","uiAttribs":{},"portsIn":[{"name":"Duration","value":0.1},{"name":"Value True","value":1},{"name":"Value False","value":0}],"portsOut":[{"name":"Result","links":[{"portIn":"bool 1","portOut":"Result","objIn":"xcxurqlqx","objOut":"geoa9vjlk"}]}],"objName":"Ops.Boolean.MonoFlop"},{"id":"xcxurqlqx","uiAttribs":{},"portsIn":[{"name":"bool 3","value":0},{"name":"bool 4","value":0},{"name":"bool 5","value":0},{"name":"bool 6","value":0},{"name":"bool 7","value":0},{"name":"bool 8","value":0},{"name":"bool 9","value":0},{"name":"bool 10","value":0}],"portsOut":[{"name":"result","links":[{"portIn":"Pass Through","portOut":"result","objIn":"kf1yqdcxi","objOut":"xcxurqlqx"}]}],"objName":"Ops.Boolean.Or"},{"id":"kf1yqdcxi","uiAttribs":{},"portsIn":[{"name":"When False index","value":0},{"name":"When False","value":"keep last object"},{"name":"Only Valid Objects","value":1}],"portsOut":[{"name":"Object Out","links":[{"portIn":"Value","portOut":"Object Out","objIn":"1cg4663x6","objOut":"kf1yqdcxi"},{"portIn":"Object","portOut":"Object Out","objIn":"fm4etku8q","objOut":"kf1yqdcxi"},{"portIn":"Object1","portOut":"Object Out","objIn":"i6l5tx42g","objOut":"kf1yqdcxi"}]}],"objName":"Ops.Json.GateObject"},{"id":"5wlq6d648","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Object In","portOut":"Result","objIn":"kf1yqdcxi","objOut":"5wlq6d648"}]}],"objName":"Ops.Json.TriggerObjectSetNumber"},{"id":"42b977r7c","uiAttribs":{},"portsOut":[{"name":"Values","links":[{"portIn":"Array","portOut":"Values","objIn":"t01bgtolv","objOut":"42b977r7c"}]},{"name":"Num values","value":0}],"objName":"Ops.Json.ObjectValuesAsArray"},{"id":"7tk7ip8sq","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_additionalParams_object"}],"portsOut":[{"name":"Value","links":[{"portIn":"Object2","portOut":"Value","objIn":"i6l5tx42g","objOut":"7tk7ip8sq"}]}],"objName":"Ops.Vars.VarGetObject_v2"},{"id":"i6l5tx42g","uiAttribs":{},"portsOut":[{"name":"Out Object","links":[{"portIn":"Object","portOut":"Out Object","objIn":"42b977r7c","objOut":"i6l5tx42g"}]}],"objName":"Ops.Json.ObjectFunnel"},{"id":"t01bgtolv","uiAttribs":{},"portsIn":[{"name":"Start Row","value":0}],"objName":"Ops.Ui.VizArrayTable"},{"id":"xp3eztz1o","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_NormValue"}],"portsOut":[{"name":"Value","links":[{"portIn":"Number","portOut":"Value","objIn":"5wlq6d648","objOut":"xp3eztz1o"},{"portIn":"Number","portOut":"Value","objIn":"v9k90j5eh","objOut":"xp3eztz1o"},{"portIn":"Value","portOut":"Value","objIn":"duo8dwz1u","objOut":"xp3eztz1o"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"qcnjxhqie","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_mouseIsChangingParamID"}],"portsOut":[{"name":"Value","links":[{"portIn":"Key","portOut":"Value","objIn":"5wlq6d648","objOut":"qcnjxhqie"}]}],"objName":"Ops.Vars.VarGetString"},{"id":"skbtwc76n","uiAttribs":{},"portsIn":[{"name":"Key","value":"scapeBypass"},{"name":"Number","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"rkxbiaqsa","objOut":"skbtwc76n"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetNumber"},{"id":"rkxbiaqsa","uiAttribs":{},"portsIn":[{"name":"Key","value":"srvbBypass"},{"name":"Number","value":0}],"objName":"Ops.Data.Compose.Object.CompObjectSetNumber"},{"id":"v9k90j5eh","uiAttribs":{},"objName":"Ops.Ui.VizNumberBar"},{"id":"duo8dwz1u","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Trigger","portOut":"Next","objIn":"5wlq6d648","objOut":"duo8dwz1u"},{"portIn":"True","portOut":"Next","objIn":"6lsx2lfil","objOut":"duo8dwz1u"}]},{"name":"Number","value":0}],"objName":"Ops.Number.TriggerOnChangeNumber"},{"id":"6lsx2lfil","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"bool 2","portOut":"Result","objIn":"xcxurqlqx","objOut":"6lsx2lfil"}]}],"objName":"Ops.Boolean.BoolByTrigger"},{"id":"mbaaum1ke","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"249e7fq2n","objOut":"mbaaum1ke"},{"portIn":"Array","portOut":"Result","objIn":"ug7fo1kne","objOut":"mbaaum1ke"}]}],"objName":"Ops.Patch.PAIoPfn.ArrayOfSrvbValuesFromMap"},{"id":"rky6akt22","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Object1","portOut":"Result","objIn":"1i0um5egr","objOut":"rky6akt22"}]}],"objName":"Ops.Json.ObjectTrigger"}],"export":{"time":"2024-09-02 23:53","service":"download","exportNumber":2}};
+if(!CABLES.exportedPatch){CABLES.exportedPatch=CABLES.exportedPatches['AIoPfn']}
 "use strict";
 
 var CABLES=CABLES||{};
@@ -19479,7 +19511,7 @@ Ops.Ui.Routing=Ops.Ui.Routing || {};
 Ops.Data.Compose=Ops.Data.Compose || {};
 Ops.Math.Compare=Ops.Math.Compare || {};
 Ops.Devices.Mouse=Ops.Devices.Mouse || {};
-Ops.Patch.PuSSdim=Ops.Patch.PuSSdim || {};
+Ops.Patch.PAIoPfn=Ops.Patch.PAIoPfn || {};
 Ops.Gl.ImageCompose=Ops.Gl.ImageCompose || {};
 Ops.Devices.Keyboard=Ops.Devices.Keyboard || {};
 Ops.Graphics.Geometry=Ops.Graphics.Geometry || {};
@@ -19491,15 +19523,15 @@ Ops.Graphics.Intersection=Ops.Graphics.Intersection || {};
 
 // **************************************************************
 // 
-// Ops.Patch.PuSSdim.BasicSlider_v2
+// Ops.Patch.PAIoPfn.BasicSlider_v2
 // 
 // **************************************************************
 
-Ops.Patch.PuSSdim.BasicSlider_v2 = function()
+Ops.Patch.PAIoPfn.BasicSlider_v2 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp0-0\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"storage\":{},\"portsIn\":[{\"name\":\"Width\",\"value\":1.01},{\"name\":\"Height\",\"value\":0.45},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"bp0-3\",\"objOut\":\"bp0-0\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp0-9\",\"objOut\":\"bp0-0\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp0-7\",\"objOut\":\"bp0-0\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"bp0-7\",\"objOut\":\"bp0-0\"}]},{\"name\":\"Pointer Y\",\"value\":0.5404207922535432},{\"name\":\"Top\",\"value\":1078.555612206459},{\"name\":\"Left\",\"value\":258.63065552711487},{\"name\":\"Right\",\"value\":1747.3693444728851},{\"name\":\"Bottom\",\"value\":1230.8688561916351}],\"objName\":\"Ops.Gl.InteractiveRectangle_v2\"},{\"id\":\"bp0-1\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp0-4\",\"objOut\":\"bp0-1\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"bp0-2\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"storage\":{},\"portsIn\":[{\"name\":\"posY\",\"value\":0.08},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp0-1\",\"objOut\":\"bp0-2\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp0-3\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"storage\":{},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp0-2\",\"objOut\":\"bp0-3\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"bp0-9\",\"objOut\":\"bp0-3\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"bp0-2\",\"objOut\":\"bp0-3\"},{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"bp0-6\",\"objOut\":\"bp0-3\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"bp0-10\",\"objOut\":\"bp0-3\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"bp0-4\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"storage\":{},\"portsIn\":[{\"name\":\"width\",\"value\":0.017},{\"name\":\"height\",\"value\":0.05},{\"name\":\"Draw\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Triangle_v2\"},{\"id\":\"bp0-5\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"bp0-12\",\"objOut\":\"bp0-5\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"bp0-0\",\"objOut\":\"bp0-5\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"bp0-0\",\"objOut\":\"bp0-5\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp0-6\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"storage\":{},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp0-7\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"storage\":{},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"Value Out\",\"objIn\":\"bp0-8\",\"objOut\":\"bp0-7\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"bp0-8\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp0-3\",\"objOut\":\"bp0-8\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"bp0-9\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"storage\":{},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.49},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"bp0-1\",\"objOut\":\"bp0-9\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"bp0-6\",\"objOut\":\"bp0-9\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"bp0-10\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rotZ\",\"portOut\":\"result\",\"objIn\":\"bp0-2\",\"objOut\":\"bp0-10\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"bp0-11\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"portsIn\":[{\"name\":\"x\",\"value\":2.7},{\"name\":\"y\",\"value\":0.62},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"bp0-0\",\"objOut\":\"bp0-11\"}]}],\"storage\":{\"ref\":\"bp0-11\"},\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"},{\"id\":\"bp0-12\",\"uiAttribs\":{\"subPatch\":\"439g3qzj7\"},\"portsIn\":[{\"name\":\"x\",\"value\":0},{\"name\":\"y\",\"value\":-1.63},{\"name\":\"z\",\"value\":0.02}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp0-11\",\"objOut\":\"bp0-12\"}]}],\"storage\":{\"ref\":\"bp0-12\"},\"objName\":\"Ops.Gl.Matrix.Translate\"}]}",};
+const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp0-0\",\"uiAttribs\":{\"subPatch\":\"qrhd14xil\"},\"storage\":{\"ref\":\"bp0-0\",\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp0-1\",\"uiAttribs\":{\"subPatch\":\"qrhd14xil\"},\"storage\":{\"ref\":\"bp0-1\",\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp0-2\",\"uiAttribs\":{\"subPatch\":\"qrhd14xil\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":1.01},{\"name\":\"Height\",\"value\":0.45},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"bp0-5\",\"objOut\":\"bp0-2\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp0-11\",\"objOut\":\"bp0-2\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp0-9\",\"objOut\":\"bp0-2\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"bp0-9\",\"objOut\":\"bp0-2\"}]},{\"name\":\"Pointer Y\",\"value\":0.38057298034639364},{\"name\":\"Top\",\"value\":525.8629353046417},{\"name\":\"Left\",\"value\":209.07365584373474},{\"name\":\"Right\",\"value\":934.9263441562653},{\"name\":\"Bottom\",\"value\":600.1251139640808}],\"objName\":\"Ops.Gl.InteractiveRectangle_v2\"},{\"id\":\"bp0-3\",\"uiAttribs\":{\"subPatch\":\"qrhd14xil\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp0-6\",\"objOut\":\"bp0-3\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"bp0-4\",\"uiAttribs\":{\"subPatch\":\"qrhd14xil\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posY\",\"value\":0.08},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp0-3\",\"objOut\":\"bp0-4\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp0-5\",\"uiAttribs\":{\"subPatch\":\"qrhd14xil\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp0-4\",\"objOut\":\"bp0-5\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"bp0-11\",\"objOut\":\"bp0-5\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"bp0-4\",\"objOut\":\"bp0-5\"},{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"bp0-8\",\"objOut\":\"bp0-5\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"bp0-12\",\"objOut\":\"bp0-5\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"bp0-6\",\"uiAttribs\":{\"subPatch\":\"qrhd14xil\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"width\",\"value\":0.017},{\"name\":\"height\",\"value\":0.05},{\"name\":\"Draw\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Triangle_v2\"},{\"id\":\"bp0-7\",\"uiAttribs\":{\"subPatch\":\"qrhd14xil\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"bp0-14\",\"objOut\":\"bp0-7\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"bp0-2\",\"objOut\":\"bp0-7\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"bp0-2\",\"objOut\":\"bp0-7\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp0-8\",\"uiAttribs\":{\"subPatch\":\"qrhd14xil\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp0-9\",\"uiAttribs\":{\"subPatch\":\"qrhd14xil\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"Float1\",\"portOut\":\"Value Out\",\"objIn\":\"bp0-15\",\"objOut\":\"bp0-9\"},{\"portIn\":\"4j2yug476\",\"portOut\":\"Value Out\",\"objIn\":\"bp0-16\",\"objOut\":\"bp0-9\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"bp0-10\",\"uiAttribs\":{\"subPatch\":\"qrhd14xil\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp0-5\",\"objOut\":\"bp0-10\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"bp0-11\",\"uiAttribs\":{\"subPatch\":\"qrhd14xil\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.49},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"bp0-3\",\"objOut\":\"bp0-11\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"bp0-8\",\"objOut\":\"bp0-11\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"bp0-12\",\"uiAttribs\":{\"subPatch\":\"qrhd14xil\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rotZ\",\"portOut\":\"result\",\"objIn\":\"bp0-4\",\"objOut\":\"bp0-12\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"bp0-13\",\"uiAttribs\":{\"subPatch\":\"qrhd14xil\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":2.7},{\"name\":\"y\",\"value\":0.62},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"bp0-2\",\"objOut\":\"bp0-13\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"},{\"id\":\"bp0-14\",\"uiAttribs\":{\"subPatch\":\"qrhd14xil\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0},{\"name\":\"y\",\"value\":-1.63},{\"name\":\"z\",\"value\":0.02}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp0-13\",\"objOut\":\"bp0-14\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp0-15\",\"uiAttribs\":{\"subPatch\":\"qrhd14xil\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Float3\",\"value\":0},{\"name\":\"Float4\",\"value\":0},{\"name\":\"Float5\",\"value\":0}],\"portsOut\":[{\"name\":\"Out Latest Value\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"Out Latest Value\",\"objIn\":\"bp0-10\",\"objOut\":\"bp0-15\"},{\"portIn\":\"Value\",\"portOut\":\"Out Latest Value\",\"objIn\":\"bp0-17\",\"objOut\":\"bp0-15\"}]}],\"objName\":\"Ops.Patch.PAIoPfn.NumberFunnel\"},{\"id\":\"bp0-16\",\"uiAttribs\":{\"subPatch\":\"qrhd14xil\"},\"storage\":{\"blueprintVer\":2,\"subPatchVer\":2},\"portsIn\":[{\"name\":\"4j2yug476\",\"title\":\"Norm Value Out\"},{\"name\":\"patchId\",\"value\":\"0fhvtpsan\"}],\"portsOut\":[{\"name\":\"7xcdrsb30\",\"title\":\"Ext Value In\",\"links\":[{\"portIn\":\"Float2\",\"portOut\":\"7xcdrsb30\",\"objIn\":\"bp0-15\",\"objOut\":\"bp0-16\"}]}],\"objName\":\"Ops.User.cristianvogel.HandleExtIntData\"},{\"id\":\"bp0-17\",\"uiAttribs\":{\"subPatch\":\"qrhd14xil\"},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeLength\"}],\"storage\":{\"ref\":\"bp0-17\",\"blueprintVer\":2},\"objName\":\"Ops.Vars.VarSetNumber_v2\"}]}",};
 const port_blls2amps=op.inTrigger("blls2amps");
 port_blls2amps.setUiAttribs({title:"Trigger in",});
 
@@ -19586,23 +19618,23 @@ function initializeSubpatch()
 
 };
 
-Ops.Patch.PuSSdim.BasicSlider_v2.prototype = new CABLES.Op();
-CABLES.OPS["213bee56-c553-44a9-a58b-e0446d3a7023"]={f:Ops.Patch.PuSSdim.BasicSlider_v2,objName:"Ops.Patch.PuSSdim.BasicSlider_v2"};
+Ops.Patch.PAIoPfn.BasicSlider_v2.prototype = new CABLES.Op();
+CABLES.OPS["9f3e6a17-6c57-47d7-96eb-61b042b31dc2"]={f:Ops.Patch.PAIoPfn.BasicSlider_v2,objName:"Ops.Patch.PAIoPfn.BasicSlider_v2"};
 
 
 
 
 // **************************************************************
 // 
-// Ops.Patch.PuSSdim.BasicSlider_v1
+// Ops.Patch.PAIoPfn.BasicSlider_v1
 // 
 // **************************************************************
 
-Ops.Patch.PuSSdim.BasicSlider_v1 = function()
+Ops.Patch.PAIoPfn.BasicSlider_v1 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp1-0\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"storage\":{},\"portsIn\":[{\"name\":\"Width\",\"value\":1},{\"name\":\"Height\",\"value\":0.39},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"bp1-3\",\"objOut\":\"bp1-0\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp1-9\",\"objOut\":\"bp1-0\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp1-7\",\"objOut\":\"bp1-0\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"bp1-7\",\"objOut\":\"bp1-0\"}]},{\"name\":\"Pointer Y\",\"value\":0.29295171066153736},{\"name\":\"Top\",\"value\":598.941089630127},{\"name\":\"Left\",\"value\":305.80947756767273},{\"name\":\"Right\",\"value\":1234.1905224323273},{\"name\":\"Bottom\",\"value\":666.8289563059807}],\"objName\":\"Ops.Gl.InteractiveRectangle_v2\"},{\"id\":\"bp1-1\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp1-4\",\"objOut\":\"bp1-1\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"bp1-2\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"storage\":{},\"portsIn\":[{\"name\":\"posY\",\"value\":-0.01},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp1-1\",\"objOut\":\"bp1-2\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp1-3\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"storage\":{},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp1-2\",\"objOut\":\"bp1-3\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"bp1-9\",\"objOut\":\"bp1-3\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"bp1-2\",\"objOut\":\"bp1-3\"},{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"bp1-6\",\"objOut\":\"bp1-3\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"bp1-10\",\"objOut\":\"bp1-3\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"bp1-4\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"storage\":{},\"portsIn\":[{\"name\":\"width\",\"value\":0.017},{\"name\":\"height\",\"value\":0.05},{\"name\":\"Draw\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Triangle_v2\"},{\"id\":\"bp1-5\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"bp1-12\",\"objOut\":\"bp1-5\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"bp1-0\",\"objOut\":\"bp1-5\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"bp1-0\",\"objOut\":\"bp1-5\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp1-6\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"storage\":{},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp1-7\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"storage\":{},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"Value Out\",\"objIn\":\"bp1-8\",\"objOut\":\"bp1-7\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"bp1-8\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp1-3\",\"objOut\":\"bp1-8\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"bp1-9\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"storage\":{},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.49},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"bp1-1\",\"objOut\":\"bp1-9\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"bp1-6\",\"objOut\":\"bp1-9\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"bp1-10\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rotZ\",\"portOut\":\"result\",\"objIn\":\"bp1-2\",\"objOut\":\"bp1-10\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"bp1-11\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"portsIn\":[{\"name\":\"x\",\"value\":2.72},{\"name\":\"y\",\"value\":0.51},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"bp1-0\",\"objOut\":\"bp1-11\"}]}],\"storage\":{\"ref\":\"bp1-11\"},\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"},{\"id\":\"bp1-12\",\"uiAttribs\":{\"subPatch\":\"er2z9wezf\"},\"portsIn\":[{\"name\":\"x\",\"value\":0},{\"name\":\"y\",\"value\":-1.5},{\"name\":\"z\",\"value\":0.02}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp1-11\",\"objOut\":\"bp1-12\"}]}],\"storage\":{\"ref\":\"bp1-12\"},\"objName\":\"Ops.Gl.Matrix.Translate\"}]}",};
+const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp1-0\",\"uiAttribs\":{\"subPatch\":\"vu93zycjs\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":1},{\"name\":\"Height\",\"value\":0.39},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"bp1-3\",\"objOut\":\"bp1-0\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp1-9\",\"objOut\":\"bp1-0\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp1-7\",\"objOut\":\"bp1-0\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp1-17\",\"objOut\":\"bp1-0\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"bp1-7\",\"objOut\":\"bp1-0\"}]},{\"name\":\"Pointer Y\",\"value\":0.8016687462197913},{\"name\":\"Top\",\"value\":538.4584722518921},{\"name\":\"Left\",\"value\":187.29171407222748},{\"name\":\"Right\",\"value\":1014.7082859277725},{\"name\":\"Bottom\",\"value\":598.9633083343506}],\"objName\":\"Ops.Gl.InteractiveRectangle_v2\"},{\"id\":\"bp1-1\",\"uiAttribs\":{\"subPatch\":\"vu93zycjs\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp1-4\",\"objOut\":\"bp1-1\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"bp1-2\",\"uiAttribs\":{\"subPatch\":\"vu93zycjs\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posY\",\"value\":-0.01},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp1-1\",\"objOut\":\"bp1-2\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp1-3\",\"uiAttribs\":{\"subPatch\":\"vu93zycjs\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp1-2\",\"objOut\":\"bp1-3\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"bp1-9\",\"objOut\":\"bp1-3\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"bp1-2\",\"objOut\":\"bp1-3\"},{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"bp1-6\",\"objOut\":\"bp1-3\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"bp1-10\",\"objOut\":\"bp1-3\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"bp1-4\",\"uiAttribs\":{\"subPatch\":\"vu93zycjs\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"width\",\"value\":0.017},{\"name\":\"height\",\"value\":0.05},{\"name\":\"Draw\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Triangle_v2\"},{\"id\":\"bp1-5\",\"uiAttribs\":{\"subPatch\":\"vu93zycjs\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"bp1-12\",\"objOut\":\"bp1-5\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"bp1-0\",\"objOut\":\"bp1-5\"},{\"portIn\":\"String In\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"bp1-17\",\"objOut\":\"bp1-5\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"bp1-0\",\"objOut\":\"bp1-5\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp1-6\",\"uiAttribs\":{\"subPatch\":\"vu93zycjs\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp1-7\",\"uiAttribs\":{\"subPatch\":\"vu93zycjs\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Value Out\",\"objIn\":\"bp1-13\",\"objOut\":\"bp1-7\"},{\"portIn\":\"number1\",\"portOut\":\"Value Out\",\"objIn\":\"bp1-8\",\"objOut\":\"bp1-7\"},{\"portIn\":\"Value\",\"portOut\":\"Value Out\",\"objIn\":\"bp1-19\",\"objOut\":\"bp1-7\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"bp1-8\",\"uiAttribs\":{\"subPatch\":\"vu93zycjs\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp1-3\",\"objOut\":\"bp1-8\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"bp1-9\",\"uiAttribs\":{\"subPatch\":\"vu93zycjs\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.49},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"bp1-1\",\"objOut\":\"bp1-9\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"bp1-6\",\"objOut\":\"bp1-9\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"bp1-10\",\"uiAttribs\":{\"subPatch\":\"vu93zycjs\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rotZ\",\"portOut\":\"result\",\"objIn\":\"bp1-2\",\"objOut\":\"bp1-10\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"bp1-11\",\"uiAttribs\":{\"subPatch\":\"vu93zycjs\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":2.72},{\"name\":\"y\",\"value\":0.51},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"bp1-0\",\"objOut\":\"bp1-11\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"},{\"id\":\"bp1-12\",\"uiAttribs\":{\"subPatch\":\"vu93zycjs\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0},{\"name\":\"y\",\"value\":-1.5},{\"name\":\"z\",\"value\":0.02}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp1-11\",\"objOut\":\"bp1-12\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp1-13\",\"uiAttribs\":{\"subPatch\":\"vu93zycjs\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeLevel\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp1-14\",\"uiAttribs\":{\"subPatch\":\"vu93zycjs\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Key\",\"value\":\"scapeLevel\"}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Custom Value\",\"portOut\":\"Result\",\"objIn\":\"bp1-7\",\"objOut\":\"bp1-14\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"bp1-15\",\"uiAttribs\":{\"subPatch\":\"vu93zycjs\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_additionalParams_object\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Value\",\"objIn\":\"bp1-14\",\"objOut\":\"bp1-15\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"bp1-16\",\"uiAttribs\":{\"subPatch\":\"vu93zycjs\"},\"storage\":{\"blueprintVer\":2,\"ref\":\"bp1-16\"},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp1-17\",\"uiAttribs\":{\"subPatch\":\"vu93zycjs\"},\"storage\":{\"blueprintVer\":2,\"ref\":\"bp1-17\"},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last string\"},{\"name\":\"Custom Value\",\"value\":\"\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"bp1-18\",\"objOut\":\"bp1-17\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"bp1-18\",\"uiAttribs\":{\"subPatch\":\"vu93zycjs\"},\"storage\":{\"blueprintVer\":2,\"ref\":\"bp1-18\"},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"bp1-19\",\"uiAttribs\":{\"subPatch\":\"vu93zycjs\"},\"storage\":{\"blueprintVer\":2,\"ref\":\"bp1-19\"},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_NormValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"}]}",};
 const port_blls2amps=op.inTrigger("blls2amps");
 port_blls2amps.setUiAttribs({title:"Trigger in",});
 
@@ -19689,23 +19721,23 @@ function initializeSubpatch()
 
 };
 
-Ops.Patch.PuSSdim.BasicSlider_v1.prototype = new CABLES.Op();
-CABLES.OPS["3dd036fa-493f-4e6f-9873-7065eced1a70"]={f:Ops.Patch.PuSSdim.BasicSlider_v1,objName:"Ops.Patch.PuSSdim.BasicSlider_v1"};
+Ops.Patch.PAIoPfn.BasicSlider_v1.prototype = new CABLES.Op();
+CABLES.OPS["91b9774c-ad07-45c1-bd9f-684442d910ed"]={f:Ops.Patch.PAIoPfn.BasicSlider_v1,objName:"Ops.Patch.PAIoPfn.BasicSlider_v1"};
 
 
 
 
 // **************************************************************
 // 
-// Ops.Patch.PuSSdim.BasicSlider_v3
+// Ops.Patch.PAIoPfn.BasicSlider_v3
 // 
 // **************************************************************
 
-Ops.Patch.PuSSdim.BasicSlider_v3 = function()
+Ops.Patch.PAIoPfn.BasicSlider_v3 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp2-0\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsIn\":[{\"name\":\"Width\",\"value\":1.04},{\"name\":\"Height\",\"value\":0.24},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"bp2-3\",\"objOut\":\"bp2-0\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp2-8\",\"objOut\":\"bp2-0\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp2-6\",\"objOut\":\"bp2-0\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"bp2-6\",\"objOut\":\"bp2-0\"}]},{\"name\":\"Pointer Y\",\"value\":0.32679333611665595},{\"name\":\"Top\",\"value\":39.252804696559906},{\"name\":\"Left\",\"value\":275.42424297332764},{\"name\":\"Right\",\"value\":1099.4704477190971},{\"name\":\"Bottom\",\"value\":149.17447358369827}],\"objName\":\"Ops.Gl.InteractiveRectangle_v2\"},{\"id\":\"bp2-1\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp2-11\",\"objOut\":\"bp2-1\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"bp2-2\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsIn\":[{\"name\":\"posY\",\"value\":0.025},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Exec\",\"portOut\":\"trigger\",\"objIn\":\"bp2-15\",\"objOut\":\"bp2-2\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp2-3\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp2-2\",\"objOut\":\"bp2-3\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"bp2-8\",\"objOut\":\"bp2-3\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"bp2-5\",\"objOut\":\"bp2-3\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"bp2-9\",\"objOut\":\"bp2-3\"},{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"bp2-2\",\"objOut\":\"bp2-3\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"bp2-4\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"Exec\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"bp2-14\",\"objOut\":\"bp2-4\"},{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"bp2-16\",\"objOut\":\"bp2-4\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"bp2-0\",\"objOut\":\"bp2-4\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"bp2-0\",\"objOut\":\"bp2-4\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp2-5\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp2-6\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"Value Out\",\"objIn\":\"bp2-7\",\"objOut\":\"bp2-6\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"bp2-7\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp2-3\",\"objOut\":\"bp2-7\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"bp2-8\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.6},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"bp2-1\",\"objOut\":\"bp2-8\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"bp2-5\",\"objOut\":\"bp2-8\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"bp2-9\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rotZ\",\"portOut\":\"result\",\"objIn\":\"bp2-2\",\"objOut\":\"bp2-9\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"bp2-10\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsIn\":[{\"name\":\"x\",\"value\":-0.32},{\"name\":\"y\",\"value\":0.91},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"bp2-0\",\"objOut\":\"bp2-10\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp2-11\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":0.02},{\"name\":\"height\",\"value\":0.11},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":1},{\"name\":\"num rows\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"bp2-12\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_position\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Custom Value\",\"portOut\":\"Value\",\"objIn\":\"bp2-6\",\"objOut\":\"bp2-12\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"bp2-13\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsIn\":[{\"name\":\"Property\",\"value\":\"cursor\"},{\"name\":\"Value\",\"value\":\"col-resize\"}],\"objName\":\"Ops.Html.CSSPropertyString\"},{\"id\":\"bp2-14\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsOut\":[{\"name\":\"Was Triggered\",\"links\":[{\"portIn\":\"Active\",\"portOut\":\"Was Triggered\",\"objIn\":\"bp2-13\",\"objOut\":\"bp2-14\"}]}],\"objName\":\"Ops.Trigger.TriggerOnce\"},{\"id\":\"bp2-15\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp2-1\",\"objOut\":\"bp2-15\"}]}],\"objName\":\"Ops.Gl.Matrix.Billboard\"},{\"id\":\"bp2-16\",\"uiAttribs\":{\"subPatch\":\"ar1fiqx01\"},\"storage\":{},\"portsIn\":[{\"name\":\"x\",\"value\":1.73},{\"name\":\"y\",\"value\":1},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp2-10\",\"objOut\":\"bp2-16\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"}]}",};
+const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp2-0\",\"uiAttribs\":{\"subPatch\":\"db22yxe43\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":1.04},{\"name\":\"Height\",\"value\":0.24},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"bp2-3\",\"objOut\":\"bp2-0\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp2-8\",\"objOut\":\"bp2-0\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp2-6\",\"objOut\":\"bp2-0\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"bp2-6\",\"objOut\":\"bp2-0\"}]},{\"name\":\"Pointer Y\",\"value\":0.5008037652902031},{\"name\":\"Top\",\"value\":11.44553405046463},{\"name\":\"Left\",\"value\":189.9280014038086},{\"name\":\"Right\",\"value\":430.2076292037964},{\"name\":\"Bottom\",\"value\":43.49705785512924}],\"objName\":\"Ops.Gl.InteractiveRectangle_v2\"},{\"id\":\"bp2-1\",\"uiAttribs\":{\"subPatch\":\"db22yxe43\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp2-11\",\"objOut\":\"bp2-1\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"bp2-2\",\"uiAttribs\":{\"subPatch\":\"db22yxe43\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posY\",\"value\":0.025},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Exec\",\"portOut\":\"trigger\",\"objIn\":\"bp2-14\",\"objOut\":\"bp2-2\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp2-3\",\"uiAttribs\":{\"subPatch\":\"db22yxe43\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp2-2\",\"objOut\":\"bp2-3\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"bp2-8\",\"objOut\":\"bp2-3\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"bp2-5\",\"objOut\":\"bp2-3\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"bp2-9\",\"objOut\":\"bp2-3\"},{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"bp2-2\",\"objOut\":\"bp2-3\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"bp2-4\",\"uiAttribs\":{\"subPatch\":\"db22yxe43\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"Exec\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"bp2-13\",\"objOut\":\"bp2-4\"},{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"bp2-15\",\"objOut\":\"bp2-4\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"bp2-0\",\"objOut\":\"bp2-4\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"bp2-0\",\"objOut\":\"bp2-4\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp2-5\",\"uiAttribs\":{\"subPatch\":\"db22yxe43\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp2-6\",\"uiAttribs\":{\"subPatch\":\"db22yxe43\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"Float1\",\"portOut\":\"Value Out\",\"objIn\":\"bp2-16\",\"objOut\":\"bp2-6\"},{\"portIn\":\"Value\",\"portOut\":\"Value Out\",\"objIn\":\"bp2-19\",\"objOut\":\"bp2-6\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"bp2-7\",\"uiAttribs\":{\"subPatch\":\"db22yxe43\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp2-3\",\"objOut\":\"bp2-7\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"bp2-8\",\"uiAttribs\":{\"subPatch\":\"db22yxe43\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.6},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"bp2-1\",\"objOut\":\"bp2-8\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"bp2-5\",\"objOut\":\"bp2-8\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"bp2-9\",\"uiAttribs\":{\"subPatch\":\"db22yxe43\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rotZ\",\"portOut\":\"result\",\"objIn\":\"bp2-2\",\"objOut\":\"bp2-9\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"bp2-10\",\"uiAttribs\":{\"subPatch\":\"db22yxe43\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":-0.32},{\"name\":\"y\",\"value\":0.91},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"bp2-0\",\"objOut\":\"bp2-10\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp2-11\",\"uiAttribs\":{\"subPatch\":\"db22yxe43\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":0.02},{\"name\":\"height\",\"value\":0.11},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":1},{\"name\":\"num rows\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"bp2-12\",\"uiAttribs\":{\"subPatch\":\"db22yxe43\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Property\",\"value\":\"cursor\"},{\"name\":\"Value\",\"value\":\"col-resize\"}],\"objName\":\"Ops.Html.CSSPropertyString\"},{\"id\":\"bp2-13\",\"uiAttribs\":{\"subPatch\":\"db22yxe43\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Was Triggered\",\"links\":[{\"portIn\":\"Active\",\"portOut\":\"Was Triggered\",\"objIn\":\"bp2-12\",\"objOut\":\"bp2-13\"}]}],\"objName\":\"Ops.Trigger.TriggerOnce\"},{\"id\":\"bp2-14\",\"uiAttribs\":{\"subPatch\":\"db22yxe43\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp2-1\",\"objOut\":\"bp2-14\"}]}],\"objName\":\"Ops.Gl.Matrix.Billboard\"},{\"id\":\"bp2-15\",\"uiAttribs\":{\"subPatch\":\"db22yxe43\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1.73},{\"name\":\"y\",\"value\":1},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp2-10\",\"objOut\":\"bp2-15\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"},{\"id\":\"bp2-16\",\"uiAttribs\":{\"subPatch\":\"db22yxe43\"},\"portsIn\":[{\"name\":\"Float3\",\"value\":0},{\"name\":\"Float4\",\"value\":0},{\"name\":\"Float5\",\"value\":0}],\"portsOut\":[{\"name\":\"Out Latest Value\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"Out Latest Value\",\"objIn\":\"bp2-7\",\"objOut\":\"bp2-16\"}]}],\"storage\":{\"ref\":\"bp2-16\",\"blueprintVer\":2},\"objName\":\"Ops.Patch.PAIoPfn.NumberFunnel3\"},{\"id\":\"bp2-17\",\"uiAttribs\":{\"subPatch\":\"db22yxe43\"},\"portsIn\":[{\"name\":\"Key\",\"value\":\"position\"}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Float2\",\"portOut\":\"Result\",\"objIn\":\"bp2-16\",\"objOut\":\"bp2-17\"}]},{\"name\":\"Found\",\"value\":1}],\"storage\":{\"ref\":\"bp2-17\",\"blueprintVer\":2},\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"bp2-18\",\"uiAttribs\":{\"subPatch\":\"db22yxe43\"},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_additionalParams_object\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Value\",\"objIn\":\"bp2-17\",\"objOut\":\"bp2-18\"}]}],\"storage\":{\"ref\":\"bp2-18\",\"blueprintVer\":2},\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"bp2-19\",\"uiAttribs\":{\"subPatch\":\"db22yxe43\"},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_position\"}],\"storage\":{\"ref\":\"bp2-19\",\"blueprintVer\":2},\"objName\":\"Ops.Vars.VarSetNumber_v2\"}]}",};
 const port_blls2amps=op.inTrigger("blls2amps");
 port_blls2amps.setUiAttribs({title:"Trigger in",});
 
@@ -19792,23 +19824,279 @@ function initializeSubpatch()
 
 };
 
-Ops.Patch.PuSSdim.BasicSlider_v3.prototype = new CABLES.Op();
-CABLES.OPS["8f8632c5-2085-4428-9f8c-ab5f6d0c7be2"]={f:Ops.Patch.PuSSdim.BasicSlider_v3,objName:"Ops.Patch.PuSSdim.BasicSlider_v3"};
+Ops.Patch.PAIoPfn.BasicSlider_v3.prototype = new CABLES.Op();
+CABLES.OPS["5dcb05cc-de7e-4d67-89ff-4dcf43ccf275"]={f:Ops.Patch.PAIoPfn.BasicSlider_v3,objName:"Ops.Patch.PAIoPfn.BasicSlider_v3"};
 
 
 
 
 // **************************************************************
 // 
-// Ops.Patch.PuSSdim.TriggerOnReverseButton_v2
+// Ops.Patch.PAIoPfn.SubPatch1
 // 
 // **************************************************************
 
-Ops.Patch.PuSSdim.TriggerOnReverseButton_v2 = function()
+Ops.Patch.PAIoPfn.SubPatch1 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_pmu87y53p=op.outNumber(\"pmu87y53p\");\nport_pmu87y53p.setUiAttribs({title:\"result\",display:\"boolnum\",});\n\nconst port_1u3pcbd78=op.outNumber(\"1u3pcbd78\");\nport_1u3pcbd78.setUiAttribs({title:\"Number\",});\n\nconst port_hv192zqa4=op.outTrigger(\"hv192zqa4\");\nport_hv192zqa4.setUiAttribs({title:\"Next\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_pmu87y53p = addedOps[i].inFloat(\"innerIn_pmu87y53p\");\ninnerIn_pmu87y53p.setUiAttribs({title:\"result\"});\ninnerIn_pmu87y53p.on(\"change\", (a,v) => { port_pmu87y53p.set(a); });\n\nconst innerIn_1u3pcbd78 = addedOps[i].inFloat(\"innerIn_1u3pcbd78\");\ninnerIn_1u3pcbd78.setUiAttribs({title:\"Number\"});\ninnerIn_1u3pcbd78.on(\"change\", (a,v) => { port_1u3pcbd78.set(a); });\n\nconst innerIn_hv192zqa4 = addedOps[i].inTrigger(\"innerIn_hv192zqa4\");\ninnerIn_hv192zqa4.setUiAttribs({title:\"Next\"});\ninnerIn_hv192zqa4.onTriggered = () => { port_hv192zqa4.trigger(); };\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp3-0\",\"uiAttribs\":{\"subPatch\":\"bpisu803v\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__scapeDirectionToggle\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Value\",\"objIn\":\"bp3-4\",\"objOut\":\"bp3-0\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"bp3-1\",\"uiAttribs\":{\"subPatch\":\"bpisu803v\"},\"storage\":{},\"portsIn\":[{\"name\":\"Default\",\"value\":0}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"innerIn_hv192zqa4\",\"portOut\":\"Next\",\"objIn\":\"bp3-3\",\"objOut\":\"bp3-1\"}]},{\"name\":\"result\",\"links\":[{\"portIn\":\"innerIn_pmu87y53p\",\"portOut\":\"result\",\"objIn\":\"bp3-3\",\"objOut\":\"bp3-1\"}]}],\"objName\":\"Ops.Boolean.ToggleBool_v2\"},{\"id\":\"bp3-2\",\"uiAttribs\":{\"subPatch\":\"bpisu803v\"},\"storage\":{},\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp3-3\",\"uiAttribs\":{\"subPatch\":\"bpisu803v\"},\"storage\":{},\"portsIn\":[{\"name\":\"innerIn_pmu87y53p\",\"title\":\"result\"},{\"name\":\"innerIn_1u3pcbd78\",\"value\":0,\"title\":\"Number\"},{\"name\":\"innerIn_hv192zqa4\",\"title\":\"Next\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp3-4\",\"uiAttribs\":{\"subPatch\":\"bpisu803v\"},\"storage\":{},\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"trigger\",\"portOut\":\"Next\",\"objIn\":\"bp3-1\",\"objOut\":\"bp3-4\"}]}],\"objName\":\"Ops.Boolean.TriggerChangedTrue\"}]}",};
+const attachments=op.attachments={"inc_gen_ports_js":"const port_9fkoygcno=op.inTrigger(\"9fkoygcno\");\nport_9fkoygcno.setUiAttribs({title:\"Render\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_9fkoygcno = addedOps[i].outTrigger(\"innerOut_9fkoygcno\");\ninnerOut_9fkoygcno.setUiAttribs({title:\"Render\"});\nport_9fkoygcno.onTriggered = () => { innerOut_9fkoygcno.trigger(); };\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp3-0\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"data\",\"value\":\"\"},{\"name\":\"glb File\",\"value\":\"assets/66c8bba9b731425e29f47a4a_NEL-Logo.draco.glb\",\"display\":\"file\"},{\"name\":\"Draw\",\"value\":1},{\"name\":\"Camera index\",\"value\":0},{\"name\":\"Camera\",\"value\":\"None\"},{\"name\":\"Animation\",\"value\":\"\"},{\"name\":\"Center index\",\"value\":2},{\"name\":\"Center\",\"value\":\"XZ\"},{\"name\":\"Rescale\",\"value\":1},{\"name\":\"Rescale Size\",\"value\":2},{\"name\":\"Time\",\"value\":0},{\"name\":\"Sync to timeline\",\"value\":0},{\"name\":\"Loop\",\"value\":1},{\"name\":\"Normals Format index\",\"value\":0},{\"name\":\"Normals Format\",\"value\":\"XYZ\"},{\"name\":\"Vertices Format index\",\"value\":0},{\"name\":\"Vertices Format\",\"value\":\"XYZ\"},{\"name\":\"Calc Normals index\",\"value\":0},{\"name\":\"Calc Normals\",\"value\":\"Auto\"},{\"name\":\"Hide Nodes\",\"value\":0},{\"name\":\"Use Material Properties\",\"value\":0},{\"name\":\"Active\",\"value\":1}],\"portsOut\":[{\"name\":\"Generator\",\"value\":\"Khronos glTF Blender I/O v4.2.60\"},{\"name\":\"GLTF Version\",\"value\":2},{\"name\":\"Anim Length\",\"value\":0},{\"name\":\"Anim Time\",\"value\":0},{\"name\":\"Loading\",\"value\":false}],\"objName\":\"Ops.Gl.GLTF.GltfScene_v4\"},{\"id\":\"bp3-1\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"Material Name\",\"value\":\"mat0\"}],\"portsOut\":[{\"name\":\"Material\",\"links\":[{\"portIn\":\"Materials\",\"portOut\":\"Material\",\"objIn\":\"bp3-0\",\"objOut\":\"bp3-1\"}]}],\"objName\":\"Ops.Gl.GLTF.GltfSetMaterial\"},{\"id\":\"bp3-2\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"Material Name\",\"value\":\"Material.001\"}],\"portsOut\":[{\"name\":\"Material\",\"links\":[{\"portIn\":\"Materials\",\"portOut\":\"Material\",\"objIn\":\"bp3-0\",\"objOut\":\"bp3-2\"}]}],\"objName\":\"Ops.Gl.GLTF.GltfSetMaterial\"},{\"id\":\"bp3-3\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_9fkoygcno\",\"title\":\"Render\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"innerOut_9fkoygcno\",\"objIn\":\"bp3-5\",\"objOut\":\"bp3-3\"},{\"portIn\":\"Render\",\"portOut\":\"innerOut_9fkoygcno\",\"objIn\":\"bp3-6\",\"objOut\":\"bp3-3\"},{\"portIn\":\"render\",\"portOut\":\"innerOut_9fkoygcno\",\"objIn\":\"bp3-8\",\"objOut\":\"bp3-3\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp3-4\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp3-5\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":0.514},{\"name\":\"b\",\"value\":0.262},{\"name\":\"Opacity\",\"value\":1},{\"name\":\"AO Intensity\",\"value\":1},{\"name\":\"Normal Map Intensity\",\"value\":0.812},{\"name\":\"Repeat X\",\"value\":1},{\"name\":\"Repeat Y\",\"value\":1},{\"name\":\"Offset X\",\"value\":0},{\"name\":\"Offset Y\",\"value\":0.02},{\"name\":\"Screen Space Normals\",\"value\":0},{\"name\":\"Calc normal tangents\",\"value\":1},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"}],\"portsOut\":[{\"name\":\"Shader\",\"links\":[{\"portIn\":\"Shader\",\"portOut\":\"Shader\",\"objIn\":\"bp3-2\",\"objOut\":\"bp3-5\"}]}],\"objName\":\"Ops.Gl.Shader.MatCapMaterial_v3\"},{\"id\":\"bp3-6\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":0.22},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.262},{\"name\":\"Opacity\",\"value\":1},{\"name\":\"AO Intensity\",\"value\":1},{\"name\":\"Normal Map Intensity\",\"value\":0.118},{\"name\":\"Repeat X\",\"value\":1},{\"name\":\"Repeat Y\",\"value\":1},{\"name\":\"Offset X\",\"value\":0},{\"name\":\"Offset Y\",\"value\":0},{\"name\":\"Screen Space Normals\",\"value\":0},{\"name\":\"Calc normal tangents\",\"value\":1},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"}],\"portsOut\":[{\"name\":\"Shader\",\"links\":[{\"portIn\":\"Shader\",\"portOut\":\"Shader\",\"objIn\":\"bp3-1\",\"objOut\":\"bp3-6\"}]}],\"objName\":\"Ops.Gl.Shader.MatCapMaterial_v3\"},{\"id\":\"bp3-7\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"File\",\"value\":\"assets/6697c3b245eb5d333bae2007_NEL_SRVB.webp\",\"display\":\"file\"},{\"name\":\"Filter index\",\"value\":2},{\"name\":\"Filter\",\"value\":\"mipmap\"},{\"name\":\"Wrap index\",\"value\":0},{\"name\":\"Wrap\",\"value\":\"repeat\"},{\"name\":\"Anisotropic index\",\"value\":0},{\"name\":\"Anisotropic\",\"value\":\"0\"},{\"name\":\"Data Format index\",\"value\":3},{\"name\":\"Data Format\",\"value\":\"RGBA\"},{\"name\":\"Flip\",\"value\":0},{\"name\":\"Pre Multiplied Alpha\",\"value\":0},{\"name\":\"Active\",\"value\":1},{\"name\":\"Save Memory\",\"value\":1},{\"name\":\"Add Cachebuster\",\"value\":0}],\"portsOut\":[{\"name\":\"Texture\",\"links\":[{\"portIn\":\"Normal\",\"portOut\":\"Texture\",\"objIn\":\"bp3-5\",\"objOut\":\"bp3-7\"},{\"portIn\":\"Normal\",\"portOut\":\"Texture\",\"objIn\":\"bp3-6\",\"objOut\":\"bp3-7\"}]},{\"name\":\"Width\",\"value\":256},{\"name\":\"Height\",\"value\":256},{\"name\":\"Aspect Ratio\",\"value\":1},{\"name\":\"Loaded\",\"value\":1},{\"name\":\"Loading\",\"value\":0}],\"objName\":\"Ops.Gl.Texture_v2\"},{\"id\":\"bp3-8\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"posX\",\"value\":0},{\"name\":\"posY\",\"value\":-0.56},{\"name\":\"posZ\",\"value\":0.16},{\"name\":\"scale\",\"value\":1},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"bp3-0\",\"objOut\":\"bp3-8\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"}]}",};
+const port_9fkoygcno=op.inTrigger("9fkoygcno");
+port_9fkoygcno.setUiAttribs({title:"Render",});
+
+op.initInnerPorts=function(addedOps)
+{
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
+    {
+const innerOut_9fkoygcno = addedOps[i].outTrigger("innerOut_9fkoygcno");
+innerOut_9fkoygcno.setUiAttribs({title:"Render"});
+port_9fkoygcno.onTriggered = () => { innerOut_9fkoygcno.trigger(); };
+
+    }
+if(addedOps[i].innerOutput)
+{
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
+    {
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
+    }
+
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
+}
+
+
+};
+
+Ops.Patch.PAIoPfn.SubPatch1.prototype = new CABLES.Op();
+CABLES.OPS["2e43cad8-6537-49de-819e-089001463b4e"]={f:Ops.Patch.PAIoPfn.SubPatch1,objName:"Ops.Patch.PAIoPfn.SubPatch1"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PAIoPfn.SubPatch3
+// 
+// **************************************************************
+
+Ops.Patch.PAIoPfn.SubPatch3 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"inc_gen_ports_js":"const port_alrh6hig4=op.inTrigger(\"alrh6hig4\");\nport_alrh6hig4.setUiAttribs({title:\"render\",});\n\nconst port_8dittifdh=op.inTrigger(\"8dittifdh\");\nport_8dittifdh.setUiAttribs({title:\"Render\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_alrh6hig4 = addedOps[i].outTrigger(\"innerOut_alrh6hig4\");\ninnerOut_alrh6hig4.setUiAttribs({title:\"render\"});\nport_alrh6hig4.onTriggered = () => { innerOut_alrh6hig4.trigger(); };\n\nconst innerOut_8dittifdh = addedOps[i].outTrigger(\"innerOut_8dittifdh\");\ninnerOut_8dittifdh.setUiAttribs({title:\"Render\"});\nport_8dittifdh.onTriggered = () => { innerOut_8dittifdh.trigger(); };\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp4-0\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"storage\":{},\"portsIn\":[{\"name\":\"data\",\"value\":\"\"},{\"name\":\"glb File\",\"value\":\"assets/66c8bba9b731425e29f47a4a_tetragram_fixed_material.draco.glb\",\"display\":\"file\"},{\"name\":\"Draw\",\"value\":1},{\"name\":\"Camera index\",\"value\":0},{\"name\":\"Camera\",\"value\":\"None\"},{\"name\":\"Animation\",\"value\":\"\"},{\"name\":\"Center index\",\"value\":1},{\"name\":\"Center\",\"value\":\"XYZ\"},{\"name\":\"Rescale\",\"value\":1},{\"name\":\"Rescale Size\",\"value\":0.15},{\"name\":\"Time\",\"value\":0},{\"name\":\"Sync to timeline\",\"value\":0},{\"name\":\"Loop\",\"value\":1},{\"name\":\"Normals Format index\",\"value\":0},{\"name\":\"Normals Format\",\"value\":\"XYZ\"},{\"name\":\"Vertices Format index\",\"value\":0},{\"name\":\"Vertices Format\",\"value\":\"XYZ\"},{\"name\":\"Calc Normals index\",\"value\":2},{\"name\":\"Calc Normals\",\"value\":\"Never\"},{\"name\":\"Hide Nodes\",\"value\":0},{\"name\":\"Use Material Properties\",\"value\":0},{\"name\":\"Active\",\"value\":1}],\"portsOut\":[{\"name\":\"Generator\",\"value\":\"Khronos glTF Blender I/O v4.2.60\"},{\"name\":\"GLTF Version\",\"value\":2},{\"name\":\"Anim Length\",\"value\":0},{\"name\":\"Anim Time\",\"value\":0},{\"name\":\"Loading\",\"value\":false}],\"objName\":\"Ops.Gl.GLTF.GltfScene_v4\"},{\"id\":\"bp4-1\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"storage\":{},\"portsIn\":[{\"name\":\"posX\",\"value\":-1.74},{\"name\":\"posY\",\"value\":0.97},{\"name\":\"posZ\",\"value\":0.05},{\"name\":\"scale\",\"value\":0.98},{\"name\":\"rotX\",\"value\":13},{\"name\":\"rotY\",\"value\":60.5},{\"name\":\"rotZ\",\"value\":-15}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp4-5\",\"objOut\":\"bp4-1\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp4-2\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Material Name\",\"value\":\"Material_0.001\"}],\"portsOut\":[{\"name\":\"Material\",\"links\":[{\"portIn\":\"Materials\",\"portOut\":\"Material\",\"objIn\":\"bp4-0\",\"objOut\":\"bp4-2\"}]}],\"objName\":\"Ops.Gl.GLTF.GltfSetMaterial\"},{\"id\":\"bp4-3\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":1},{\"name\":\"Opacity\",\"value\":1},{\"name\":\"AO Intensity\",\"value\":1},{\"name\":\"Normal Map Intensity\",\"value\":0.361},{\"name\":\"Repeat X\",\"value\":0},{\"name\":\"Repeat Y\",\"value\":0},{\"name\":\"Offset X\",\"value\":0},{\"name\":\"Offset Y\",\"value\":0},{\"name\":\"Screen Space Normals\",\"value\":0},{\"name\":\"Calc normal tangents\",\"value\":true},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"}],\"portsOut\":[{\"name\":\"Shader\",\"links\":[{\"portIn\":\"Shader\",\"portOut\":\"Shader\",\"objIn\":\"bp4-2\",\"objOut\":\"bp4-3\"}]}],\"objName\":\"Ops.Gl.Shader.MatCapMaterial_v3\"},{\"id\":\"bp4-4\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Gradient\",\"value\":\"{\\\"keys\\\":[{\\\"pos\\\":0,\\\"posy\\\":0.5,\\\"r\\\":0.19606043020884192,\\\"g\\\":0.9551041666666666,\\\"b\\\":0.30280095564822357},{\\\"pos\\\":0,\\\"posy\\\":0.5,\\\"r\\\":0.19606043020884192,\\\"g\\\":0.9551041666666666,\\\"b\\\":0.30280095564822357},{\\\"pos\\\":0.25,\\\"posy\\\":0.7,\\\"r\\\":0.24755528330802917,\\\"g\\\":0.5961175041362186,\\\"b\\\":0.6089322916666666},{\\\"pos\\\":1,\\\"posy\\\":0.5,\\\"r\\\":0.9515885416666666,\\\"g\\\":0.01916651725769043,\\\"b\\\":0.643597891729076},{\\\"pos\\\":1,\\\"posy\\\":0.5,\\\"r\\\":0.9515885416666666,\\\"g\\\":0.01916651725769043,\\\"b\\\":0.643597891729076}]}\"},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"X\"},{\"name\":\"Smoothstep\",\"value\":0},{\"name\":\"Step\",\"value\":true},{\"name\":\"Flip\",\"value\":true},{\"name\":\"sRGB\",\"value\":0},{\"name\":\"Oklab\",\"value\":0},{\"name\":\"Size\",\"value\":8},{\"name\":\"filter index\",\"value\":0},{\"name\":\"filter\",\"value\":\"nearest\"},{\"name\":\"wrap index\",\"value\":0},{\"name\":\"wrap\",\"value\":\"clamp to edge\"},{\"name\":\"Gradient Array\",\"value\":0}],\"portsOut\":[{\"name\":\"Texture\",\"links\":[{\"portIn\":\"Normal\",\"portOut\":\"Texture\",\"objIn\":\"bp4-3\",\"objOut\":\"bp4-4\"}]}],\"objName\":\"Ops.Gl.GradientTexture\"},{\"id\":\"bp4-5\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"storage\":{},\"portsIn\":[{\"name\":\"scale\",\"value\":0.76},{\"name\":\"x\",\"value\":0.99},{\"name\":\"y\",\"value\":1.79},{\"name\":\"z\",\"value\":0.47}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"bp4-0\",\"objOut\":\"bp4-5\"}]}],\"objName\":\"Ops.Gl.Matrix.Scale\"},{\"id\":\"bp4-6\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Frequency\",\"value\":1},{\"name\":\"Type index\",\"value\":0},{\"name\":\"Type\",\"value\":\"sine\"},{\"name\":\"Phase\",\"value\":0},{\"name\":\"Range Min\",\"value\":0},{\"name\":\"Range Max\",\"value\":1}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pos\",\"portOut\":\"Result\",\"objIn\":\"bp4-10\",\"objOut\":\"bp4-6\"}]}],\"objName\":\"Ops.Anim.LFO_v2\"},{\"id\":\"bp4-7\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Speed\",\"value\":0.05},{\"name\":\"Play\",\"value\":1},{\"name\":\"Sync to timeline\",\"value\":0}],\"portsOut\":[{\"name\":\"Time\",\"links\":[{\"portIn\":\"Time\",\"portOut\":\"Time\",\"objIn\":\"bp4-6\",\"objOut\":\"bp4-7\"}]}],\"objName\":\"Ops.Anim.Timer_v2\"},{\"id\":\"bp4-8\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_alrh6hig4\",\"title\":\"render\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_alrh6hig4\",\"objIn\":\"bp4-1\",\"objOut\":\"bp4-8\"}]},{\"name\":\"innerOut_8dittifdh\",\"title\":\"Render\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"innerOut_8dittifdh\",\"objIn\":\"bp4-3\",\"objOut\":\"bp4-8\"},{\"portIn\":\"Render\",\"portOut\":\"innerOut_8dittifdh\",\"objIn\":\"bp4-11\",\"objOut\":\"bp4-8\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp4-9\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"storage\":{},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp4-10\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"portsIn\":[{\"name\":\"Blend Mode index\",\"value\":18},{\"name\":\"Blend Mode\",\"value\":\"Math Add\"},{\"name\":\"Alpha Mask index\",\"value\":0},{\"name\":\"Alpha Mask\",\"value\":\"Off\"},{\"name\":\"Amount\",\"value\":1},{\"name\":\"Width\",\"value\":1},{\"name\":\"Type index\",\"value\":3},{\"name\":\"Type\",\"value\":\"Radial\"},{\"name\":\"Smoothstep\",\"value\":0},{\"name\":\"sRGB\",\"value\":0},{\"name\":\"color space index\",\"value\":0},{\"name\":\"color space\",\"value\":\"RGB\"},{\"name\":\"r\",\"value\":0.19606043020884192},{\"name\":\"g\",\"value\":0.9551},{\"name\":\"b\",\"value\":0.3028},{\"name\":\"r2\",\"value\":0.247},{\"name\":\"g2\",\"value\":0.596},{\"name\":\"b2\",\"value\":0.608},{\"name\":\"r3\",\"value\":0.951},{\"name\":\"g3\",\"value\":0.0191},{\"name\":\"b3\",\"value\":0.6436}],\"storage\":{\"ref\":\"bp4-10\"},\"objName\":\"Ops.Gl.ImageCompose.Gradient_v2\"},{\"id\":\"bp4-11\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"portsIn\":[{\"name\":\"Size index\",\"value\":0},{\"name\":\"Size\",\"value\":\"Auto\"},{\"name\":\"Width\",\"value\":640},{\"name\":\"Height\",\"value\":480},{\"name\":\"Filter index\",\"value\":1},{\"name\":\"Filter\",\"value\":\"linear\"},{\"name\":\"Wrap index\",\"value\":1},{\"name\":\"Wrap\",\"value\":\"repeat\"},{\"name\":\"Anisotropic index\",\"value\":0},{\"name\":\"Anisotropic\",\"value\":\"0\"},{\"name\":\"Pixel Format index\",\"value\":4},{\"name\":\"Pixel Format\",\"value\":\"RGBA 8bit ubyte\"},{\"name\":\"R\",\"value\":0},{\"name\":\"G\",\"value\":0},{\"name\":\"B\",\"value\":0},{\"name\":\"A\",\"value\":0}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"Next\",\"objIn\":\"bp4-10\",\"objOut\":\"bp4-11\"}]},{\"name\":\"texture_out\",\"links\":[{\"portIn\":\"MatCap\",\"portOut\":\"texture_out\",\"objIn\":\"bp4-3\",\"objOut\":\"bp4-11\"}]},{\"name\":\"Aspect Ratio\",\"value\":1.8414872798434443},{\"name\":\"Texture Width\",\"value\":1882},{\"name\":\"Texture Height\",\"value\":1022}],\"storage\":{\"ref\":\"bp4-11\"},\"objName\":\"Ops.Gl.ImageCompose.ImageCompose_v4\"}]}",};
+const port_alrh6hig4=op.inTrigger("alrh6hig4");
+port_alrh6hig4.setUiAttribs({title:"render",});
+
+const port_8dittifdh=op.inTrigger("8dittifdh");
+port_8dittifdh.setUiAttribs({title:"Render",});
+
+op.initInnerPorts=function(addedOps)
+{
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
+    {
+const innerOut_alrh6hig4 = addedOps[i].outTrigger("innerOut_alrh6hig4");
+innerOut_alrh6hig4.setUiAttribs({title:"render"});
+port_alrh6hig4.onTriggered = () => { innerOut_alrh6hig4.trigger(); };
+
+const innerOut_8dittifdh = addedOps[i].outTrigger("innerOut_8dittifdh");
+innerOut_8dittifdh.setUiAttribs({title:"Render"});
+port_8dittifdh.onTriggered = () => { innerOut_8dittifdh.trigger(); };
+
+    }
+if(addedOps[i].innerOutput)
+{
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
+    {
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
+    }
+
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
+}
+
+
+};
+
+Ops.Patch.PAIoPfn.SubPatch3.prototype = new CABLES.Op();
+CABLES.OPS["9787fc64-eb3a-48d2-8361-8ead46c6557a"]={f:Ops.Patch.PAIoPfn.SubPatch3,objName:"Ops.Patch.PAIoPfn.SubPatch3"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PAIoPfn.BasicSlider_v4
+// 
+// **************************************************************
+
+Ops.Patch.PAIoPfn.BasicSlider_v4 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp5-0\",\"uiAttribs\":{\"subPatch\":\"nx443kt13\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":1.05},{\"name\":\"Height\",\"value\":0.25},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"bp5-3\",\"objOut\":\"bp5-0\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp5-8\",\"objOut\":\"bp5-0\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp5-6\",\"objOut\":\"bp5-0\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"bp5-6\",\"objOut\":\"bp5-0\"}]},{\"name\":\"Pointer Y\",\"value\":0.634756939473019},{\"name\":\"Top\",\"value\":84.3549091219902},{\"name\":\"Left\",\"value\":1037.2749507725239},{\"name\":\"Right\",\"value\":1291.1770818829536},{\"name\":\"Bottom\",\"value\":171.96779888868332}],\"objName\":\"Ops.Gl.InteractiveRectangle_v2\"},{\"id\":\"bp5-1\",\"uiAttribs\":{\"subPatch\":\"nx443kt13\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp5-10\",\"objOut\":\"bp5-1\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"bp5-2\",\"uiAttribs\":{\"subPatch\":\"nx443kt13\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posY\",\"value\":0.03},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Exec\",\"portOut\":\"trigger\",\"objIn\":\"bp5-13\",\"objOut\":\"bp5-2\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp5-3\",\"uiAttribs\":{\"subPatch\":\"nx443kt13\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp5-2\",\"objOut\":\"bp5-3\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"bp5-8\",\"objOut\":\"bp5-3\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"bp5-5\",\"objOut\":\"bp5-3\"},{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"bp5-2\",\"objOut\":\"bp5-3\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"bp5-4\",\"uiAttribs\":{\"subPatch\":\"nx443kt13\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"Exec\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"bp5-12\",\"objOut\":\"bp5-4\"},{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"bp5-14\",\"objOut\":\"bp5-4\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"bp5-0\",\"objOut\":\"bp5-4\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"bp5-0\",\"objOut\":\"bp5-4\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp5-5\",\"uiAttribs\":{\"subPatch\":\"nx443kt13\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp5-6\",\"uiAttribs\":{\"subPatch\":\"nx443kt13\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Value Out\",\"objIn\":\"bp5-15\",\"objOut\":\"bp5-6\"},{\"portIn\":\"Float1\",\"portOut\":\"Value Out\",\"objIn\":\"bp5-16\",\"objOut\":\"bp5-6\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"bp5-7\",\"uiAttribs\":{\"subPatch\":\"nx443kt13\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp5-3\",\"objOut\":\"bp5-7\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"bp5-8\",\"uiAttribs\":{\"subPatch\":\"nx443kt13\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.6},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"bp5-1\",\"objOut\":\"bp5-8\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"bp5-5\",\"objOut\":\"bp5-8\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"bp5-9\",\"uiAttribs\":{\"subPatch\":\"nx443kt13\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1.56},{\"name\":\"y\",\"value\":0.75},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"bp5-0\",\"objOut\":\"bp5-9\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp5-10\",\"uiAttribs\":{\"subPatch\":\"nx443kt13\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":0.02},{\"name\":\"height\",\"value\":0.07},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":1},{\"name\":\"num rows\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"bp5-11\",\"uiAttribs\":{\"subPatch\":\"nx443kt13\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Property\",\"value\":\"cursor\"},{\"name\":\"Value\",\"value\":\"col-resize\"}],\"objName\":\"Ops.Html.CSSPropertyString\"},{\"id\":\"bp5-12\",\"uiAttribs\":{\"subPatch\":\"nx443kt13\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Was Triggered\",\"links\":[{\"portIn\":\"Active\",\"portOut\":\"Was Triggered\",\"objIn\":\"bp5-11\",\"objOut\":\"bp5-12\"}]}],\"objName\":\"Ops.Trigger.TriggerOnce\"},{\"id\":\"bp5-13\",\"uiAttribs\":{\"subPatch\":\"nx443kt13\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp5-1\",\"objOut\":\"bp5-13\"}]}],\"objName\":\"Ops.Gl.Matrix.Billboard\"},{\"id\":\"bp5-14\",\"uiAttribs\":{\"subPatch\":\"nx443kt13\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0.69},{\"name\":\"y\",\"value\":1},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp5-9\",\"objOut\":\"bp5-14\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"},{\"id\":\"bp5-15\",\"uiAttribs\":{\"subPatch\":\"nx443kt13\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_dryMix\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp5-16\",\"uiAttribs\":{\"subPatch\":\"nx443kt13\"},\"portsIn\":[{\"name\":\"Float3\",\"value\":0},{\"name\":\"Float4\",\"value\":0},{\"name\":\"Float5\",\"value\":0}],\"portsOut\":[{\"name\":\"Out Latest Value\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"Out Latest Value\",\"objIn\":\"bp5-7\",\"objOut\":\"bp5-16\"}]}],\"storage\":{\"ref\":\"bp5-16\",\"blueprintVer\":2},\"objName\":\"Ops.Patch.PAIoPfn.NumberFunnel4\"},{\"id\":\"bp5-17\",\"uiAttribs\":{\"subPatch\":\"nx443kt13\"},\"portsIn\":[{\"name\":\"Key\",\"value\":\"dryMix\"}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Float2\",\"portOut\":\"Result\",\"objIn\":\"bp5-16\",\"objOut\":\"bp5-17\"}]},{\"name\":\"Found\",\"value\":0}],\"storage\":{\"ref\":\"bp5-17\",\"blueprintVer\":2},\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"bp5-18\",\"uiAttribs\":{\"subPatch\":\"nx443kt13\"},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_additionalParams_object\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Value\",\"objIn\":\"bp5-17\",\"objOut\":\"bp5-18\"}]}],\"storage\":{\"ref\":\"bp5-18\",\"blueprintVer\":2},\"objName\":\"Ops.Vars.VarGetObject_v2\"}]}",};
+const port_blls2amps=op.inTrigger("blls2amps");
+port_blls2amps.setUiAttribs({title:"Trigger in",});
+
+const port_btagbs7z2=op.inString("btagbs7z2","");
+port_btagbs7z2.setUiAttribs({title:"Class",});
+
+const port_lj06d561p=op.inFloat("lj06d561p",0);
+port_lj06d561p.setUiAttribs({title:"Show Boundings",display:"bool",});
+
+const port_nti406vwi=op.outNumber("nti406vwi");
+port_nti406vwi.setUiAttribs({title:"Result",});
+
+const port_gjvx0zyv5=op.outNumber("gjvx0zyv5");
+port_gjvx0zyv5.setUiAttribs({title:"value",});
+
+op.initInnerPorts=function(addedOps)
+{
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
+    {
+const innerOut_blls2amps = addedOps[i].outTrigger("innerOut_blls2amps");
+innerOut_blls2amps.setUiAttribs({title:"Trigger in"});
+port_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };
+
+const innerOut_btagbs7z2 = addedOps[i].outString("innerOut_btagbs7z2");
+innerOut_btagbs7z2.set(port_btagbs7z2.get() );
+innerOut_btagbs7z2.setUiAttribs({title:"Class"});
+port_btagbs7z2.on("change", (a,v) => { innerOut_btagbs7z2.set(a); });
+
+const innerOut_lj06d561p = addedOps[i].outNumber("innerOut_lj06d561p");
+innerOut_lj06d561p.set(port_lj06d561p.get() );
+innerOut_lj06d561p.setUiAttribs({title:"Show Boundings"});
+port_lj06d561p.on("change", (a,v) => { innerOut_lj06d561p.set(a); });
+
+    }
+if(addedOps[i].innerOutput)
+{
+const innerIn_nti406vwi = addedOps[i].inFloat("innerIn_nti406vwi");
+innerIn_nti406vwi.setUiAttribs({title:"Result"});
+innerIn_nti406vwi.on("change", (a,v) => { port_nti406vwi.set(a); });
+
+const innerIn_gjvx0zyv5 = addedOps[i].inFloat("innerIn_gjvx0zyv5");
+innerIn_gjvx0zyv5.setUiAttribs({title:"value"});
+innerIn_gjvx0zyv5.on("change", (a,v) => { port_gjvx0zyv5.set(a); });
+
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
+    {
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
+    }
+
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
+}
+
+
+};
+
+Ops.Patch.PAIoPfn.BasicSlider_v4.prototype = new CABLES.Op();
+CABLES.OPS["4c832a75-5b7d-403f-a7a8-f42640efaf5e"]={f:Ops.Patch.PAIoPfn.BasicSlider_v4,objName:"Ops.Patch.PAIoPfn.BasicSlider_v4"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PAIoPfn.TriggerOnReverseButton_v2
+// 
+// **************************************************************
+
+Ops.Patch.PAIoPfn.TriggerOnReverseButton_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"inc_gen_ports_js":"const port_pmu87y53p=op.outNumber(\"pmu87y53p\");\nport_pmu87y53p.setUiAttribs({title:\"result\",display:\"boolnum\",});\n\nconst port_1u3pcbd78=op.outNumber(\"1u3pcbd78\");\nport_1u3pcbd78.setUiAttribs({title:\"Number\",});\n\nconst port_hv192zqa4=op.outTrigger(\"hv192zqa4\");\nport_hv192zqa4.setUiAttribs({title:\"Next\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_pmu87y53p = addedOps[i].inFloat(\"innerIn_pmu87y53p\");\ninnerIn_pmu87y53p.setUiAttribs({title:\"result\"});\ninnerIn_pmu87y53p.on(\"change\", (a,v) => { port_pmu87y53p.set(a); });\n\nconst innerIn_1u3pcbd78 = addedOps[i].inFloat(\"innerIn_1u3pcbd78\");\ninnerIn_1u3pcbd78.setUiAttribs({title:\"Number\"});\ninnerIn_1u3pcbd78.on(\"change\", (a,v) => { port_1u3pcbd78.set(a); });\n\nconst innerIn_hv192zqa4 = addedOps[i].inTrigger(\"innerIn_hv192zqa4\");\ninnerIn_hv192zqa4.setUiAttribs({title:\"Next\"});\ninnerIn_hv192zqa4.onTriggered = () => { port_hv192zqa4.trigger(); };\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp6-0\",\"uiAttribs\":{\"subPatch\":\"m6r627ywg\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__scapeReverseMomentary\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Float1\",\"portOut\":\"Value\",\"objIn\":\"bp6-5\",\"objOut\":\"bp6-0\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"bp6-1\",\"uiAttribs\":{\"subPatch\":\"m6r627ywg\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Default\",\"value\":0}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"innerIn_hv192zqa4\",\"portOut\":\"Next\",\"objIn\":\"bp6-3\",\"objOut\":\"bp6-1\"}]},{\"name\":\"result\",\"links\":[{\"portIn\":\"innerIn_pmu87y53p\",\"portOut\":\"result\",\"objIn\":\"bp6-3\",\"objOut\":\"bp6-1\"}]}],\"objName\":\"Ops.Boolean.ToggleBool_v2\"},{\"id\":\"bp6-2\",\"uiAttribs\":{\"subPatch\":\"m6r627ywg\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp6-3\",\"uiAttribs\":{\"subPatch\":\"m6r627ywg\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_pmu87y53p\",\"title\":\"result\"},{\"name\":\"innerIn_1u3pcbd78\",\"value\":0,\"title\":\"Number\"},{\"name\":\"innerIn_hv192zqa4\",\"title\":\"Next\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp6-4\",\"uiAttribs\":{\"subPatch\":\"m6r627ywg\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"trigger\",\"portOut\":\"Next\",\"objIn\":\"bp6-1\",\"objOut\":\"bp6-4\"}]}],\"objName\":\"Ops.Boolean.TriggerChangedTrue\"},{\"id\":\"bp6-5\",\"uiAttribs\":{\"subPatch\":\"m6r627ywg\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Float4\",\"value\":0},{\"name\":\"Float5\",\"value\":0}],\"portsOut\":[{\"name\":\"Out Latest Value\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Out Latest Value\",\"objIn\":\"bp6-4\",\"objOut\":\"bp6-5\"}]}],\"objName\":\"Ops.Patch.PAIoPfn.NumberFunnel6\"},{\"id\":\"bp6-6\",\"uiAttribs\":{\"subPatch\":\"m6r627ywg\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Key\",\"value\":\"reverse\"}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Float2\",\"portOut\":\"Result\",\"objIn\":\"bp6-5\",\"objOut\":\"bp6-6\"},{\"portIn\":\"Boolean\",\"portOut\":\"Result\",\"objIn\":\"bp6-8\",\"objOut\":\"bp6-6\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"bp6-7\",\"uiAttribs\":{\"subPatch\":\"m6r627ywg\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_additionalParams_object\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Value\",\"objIn\":\"bp6-6\",\"objOut\":\"bp6-7\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"bp6-8\",\"uiAttribs\":{\"subPatch\":\"m6r627ywg\"},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Float3\",\"portOut\":\"Result\",\"objIn\":\"bp6-5\",\"objOut\":\"bp6-8\"}]}],\"storage\":{\"ref\":\"bp6-8\",\"blueprintVer\":2},\"objName\":\"Ops.Boolean.Not\"}]}",};
 const port_pmu87y53p=op.outNumber("pmu87y53p");
 port_pmu87y53p.setUiAttribs({title:"result",display:"boolnum",});
 
@@ -19879,264 +20167,60 @@ function initializeSubpatch()
 
 };
 
-Ops.Patch.PuSSdim.TriggerOnReverseButton_v2.prototype = new CABLES.Op();
-CABLES.OPS["12380400-f950-4a99-b6dd-289c732311c8"]={f:Ops.Patch.PuSSdim.TriggerOnReverseButton_v2,objName:"Ops.Patch.PuSSdim.TriggerOnReverseButton_v2"};
+Ops.Patch.PAIoPfn.TriggerOnReverseButton_v2.prototype = new CABLES.Op();
+CABLES.OPS["950fff0f-021b-438b-804c-c50405a23f29"]={f:Ops.Patch.PAIoPfn.TriggerOnReverseButton_v2,objName:"Ops.Patch.PAIoPfn.TriggerOnReverseButton_v2"};
 
 
 
 
 // **************************************************************
 // 
-// Ops.Patch.PuSSdim.SubPatch1
+// Ops.Ui.SubPatchInput
 // 
 // **************************************************************
 
-Ops.Patch.PuSSdim.SubPatch1 = function()
+Ops.Ui.SubPatchInput = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_9fkoygcno=op.inTrigger(\"9fkoygcno\");\nport_9fkoygcno.setUiAttribs({title:\"Render\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_9fkoygcno = addedOps[i].outTrigger(\"innerOut_9fkoygcno\");\ninnerOut_9fkoygcno.setUiAttribs({title:\"Render\"});\nport_9fkoygcno.onTriggered = () => { innerOut_9fkoygcno.trigger(); };\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp4-0\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"data\",\"value\":\"\"},{\"name\":\"glb File\",\"value\":\"assets/66c8bba9b731425e29f47a4a_NEL-Logo.draco.glb\",\"display\":\"file\"},{\"name\":\"Draw\",\"value\":1},{\"name\":\"Camera index\",\"value\":0},{\"name\":\"Camera\",\"value\":\"None\"},{\"name\":\"Animation\",\"value\":\"\"},{\"name\":\"Center index\",\"value\":2},{\"name\":\"Center\",\"value\":\"XZ\"},{\"name\":\"Rescale\",\"value\":1},{\"name\":\"Rescale Size\",\"value\":2},{\"name\":\"Time\",\"value\":0},{\"name\":\"Sync to timeline\",\"value\":0},{\"name\":\"Loop\",\"value\":1},{\"name\":\"Normals Format index\",\"value\":0},{\"name\":\"Normals Format\",\"value\":\"XYZ\"},{\"name\":\"Vertices Format index\",\"value\":0},{\"name\":\"Vertices Format\",\"value\":\"XYZ\"},{\"name\":\"Calc Normals index\",\"value\":0},{\"name\":\"Calc Normals\",\"value\":\"Auto\"},{\"name\":\"Hide Nodes\",\"value\":0},{\"name\":\"Use Material Properties\",\"value\":0},{\"name\":\"Active\",\"value\":1}],\"portsOut\":[{\"name\":\"Generator\",\"value\":\"Khronos glTF Blender I/O v4.2.60\"},{\"name\":\"GLTF Version\",\"value\":2},{\"name\":\"Anim Length\",\"value\":0},{\"name\":\"Anim Time\",\"value\":0},{\"name\":\"Loading\",\"value\":false}],\"objName\":\"Ops.Gl.GLTF.GltfScene_v4\"},{\"id\":\"bp4-1\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"Material Name\",\"value\":\"mat0\"}],\"portsOut\":[{\"name\":\"Material\",\"links\":[{\"portIn\":\"Materials\",\"portOut\":\"Material\",\"objIn\":\"bp4-0\",\"objOut\":\"bp4-1\"}]}],\"objName\":\"Ops.Gl.GLTF.GltfSetMaterial\"},{\"id\":\"bp4-2\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"Material Name\",\"value\":\"Material.001\"}],\"portsOut\":[{\"name\":\"Material\",\"links\":[{\"portIn\":\"Materials\",\"portOut\":\"Material\",\"objIn\":\"bp4-0\",\"objOut\":\"bp4-2\"}]}],\"objName\":\"Ops.Gl.GLTF.GltfSetMaterial\"},{\"id\":\"bp4-3\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_9fkoygcno\",\"title\":\"Render\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"innerOut_9fkoygcno\",\"objIn\":\"bp4-5\",\"objOut\":\"bp4-3\"},{\"portIn\":\"Render\",\"portOut\":\"innerOut_9fkoygcno\",\"objIn\":\"bp4-6\",\"objOut\":\"bp4-3\"},{\"portIn\":\"render\",\"portOut\":\"innerOut_9fkoygcno\",\"objIn\":\"bp4-8\",\"objOut\":\"bp4-3\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp4-4\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp4-5\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":0.514},{\"name\":\"b\",\"value\":0.262},{\"name\":\"Opacity\",\"value\":1},{\"name\":\"AO Intensity\",\"value\":1},{\"name\":\"Normal Map Intensity\",\"value\":0.812},{\"name\":\"Repeat X\",\"value\":1},{\"name\":\"Repeat Y\",\"value\":1},{\"name\":\"Offset X\",\"value\":0},{\"name\":\"Offset Y\",\"value\":0.02},{\"name\":\"Screen Space Normals\",\"value\":0},{\"name\":\"Calc normal tangents\",\"value\":1},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"}],\"portsOut\":[{\"name\":\"Shader\",\"links\":[{\"portIn\":\"Shader\",\"portOut\":\"Shader\",\"objIn\":\"bp4-2\",\"objOut\":\"bp4-5\"}]}],\"objName\":\"Ops.Gl.Shader.MatCapMaterial_v3\"},{\"id\":\"bp4-6\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":0.22},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.262},{\"name\":\"Opacity\",\"value\":1},{\"name\":\"AO Intensity\",\"value\":1},{\"name\":\"Normal Map Intensity\",\"value\":0.118},{\"name\":\"Repeat X\",\"value\":1},{\"name\":\"Repeat Y\",\"value\":1},{\"name\":\"Offset X\",\"value\":0},{\"name\":\"Offset Y\",\"value\":0},{\"name\":\"Screen Space Normals\",\"value\":0},{\"name\":\"Calc normal tangents\",\"value\":1},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"}],\"portsOut\":[{\"name\":\"Shader\",\"links\":[{\"portIn\":\"Shader\",\"portOut\":\"Shader\",\"objIn\":\"bp4-1\",\"objOut\":\"bp4-6\"}]}],\"objName\":\"Ops.Gl.Shader.MatCapMaterial_v3\"},{\"id\":\"bp4-7\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"File\",\"value\":\"assets/6697c3b245eb5d333bae2007_NEL_SRVB.webp\",\"display\":\"file\"},{\"name\":\"Filter index\",\"value\":2},{\"name\":\"Filter\",\"value\":\"mipmap\"},{\"name\":\"Wrap index\",\"value\":0},{\"name\":\"Wrap\",\"value\":\"repeat\"},{\"name\":\"Anisotropic index\",\"value\":0},{\"name\":\"Anisotropic\",\"value\":\"0\"},{\"name\":\"Data Format index\",\"value\":3},{\"name\":\"Data Format\",\"value\":\"RGBA\"},{\"name\":\"Flip\",\"value\":0},{\"name\":\"Pre Multiplied Alpha\",\"value\":0},{\"name\":\"Active\",\"value\":1},{\"name\":\"Save Memory\",\"value\":1},{\"name\":\"Add Cachebuster\",\"value\":0}],\"portsOut\":[{\"name\":\"Texture\",\"links\":[{\"portIn\":\"Normal\",\"portOut\":\"Texture\",\"objIn\":\"bp4-5\",\"objOut\":\"bp4-7\"},{\"portIn\":\"Normal\",\"portOut\":\"Texture\",\"objIn\":\"bp4-6\",\"objOut\":\"bp4-7\"}]},{\"name\":\"Width\",\"value\":256},{\"name\":\"Height\",\"value\":256},{\"name\":\"Aspect Ratio\",\"value\":1},{\"name\":\"Loaded\",\"value\":1},{\"name\":\"Loading\",\"value\":0}],\"objName\":\"Ops.Gl.Texture_v2\"},{\"id\":\"bp4-8\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"posX\",\"value\":0},{\"name\":\"posY\",\"value\":-0.56},{\"name\":\"posZ\",\"value\":0.16},{\"name\":\"scale\",\"value\":1},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"bp4-0\",\"objOut\":\"bp4-8\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"}]}",};
-const port_9fkoygcno=op.inTrigger("9fkoygcno");
-port_9fkoygcno.setUiAttribs({title:"Render",});
+const attachments=op.attachments={};
+op.innerInput = true;
 
-op.initInnerPorts=function(addedOps)
+const goto = op.inTriggerButton("Goto SubPatchOp");
+goto.setUiAttribs({ "hidePort": true });
+goto.onTriggered = () =>
 {
-  for(let i=0;i<addedOps.length;i++)
-  {
-    if(addedOps[i].innerInput)
-    {
-const innerOut_9fkoygcno = addedOps[i].outTrigger("innerOut_9fkoygcno");
-innerOut_9fkoygcno.setUiAttribs({title:"Render"});
-port_9fkoygcno.onTriggered = () => { innerOut_9fkoygcno.trigger(); };
-
-    }
-if(addedOps[i].innerOutput)
-{
-}
-}
+    const parent = op.patch.getSubPatchOuterOp(op.uiAttribs.subPatch);
+    gui.patchView.centerSelectOp(parent.id);
 };
-
-const patchId = "bp2sub_" + op.id;
-
-new CABLES.SubPatchOp(op, { "subId": patchId });
-
-initializeSubpatch();
-
-function initializeSubpatch()
-{
-    const p = JSON.parse(attachments.subpatch_json);
-
-    CABLES.Patch.replaceOpIds(p,
-        {
-            "parentSubPatchId": patchId,
-            "prefixHash": patchId,
-            "oldIdAsRef": true,
-            "doNotUnlinkLostLinks": true
-        });
-
-    for (let i = 0; i < p.ops.length; i++)
-    {
-        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
-    }
-
-    op.loadDependencies(p, () =>
-    {
-        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
-        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
-        op.patch.emitEvent("subpatchExpose", patchId);
-        op.setStorage({ "blueprintVer": 2 });
-        op.patch.emitEvent("subpatchExpose", patchId);
-    });
-}
 
 
 };
 
-Ops.Patch.PuSSdim.SubPatch1.prototype = new CABLES.Op();
-CABLES.OPS["f998b91e-8b6d-424e-9e23-ed06e4ab2a47"]={f:Ops.Patch.PuSSdim.SubPatch1,objName:"Ops.Patch.PuSSdim.SubPatch1"};
+Ops.Ui.SubPatchInput.prototype = new CABLES.Op();
+CABLES.OPS["c4e4e933-136e-479e-8de8-0b35b75d9217"]={f:Ops.Ui.SubPatchInput,objName:"Ops.Ui.SubPatchInput"};
 
 
 
 
 // **************************************************************
 // 
-// Ops.Patch.PuSSdim.SubPatch3
+// Ops.Ui.SubPatchOutput
 // 
 // **************************************************************
 
-Ops.Patch.PuSSdim.SubPatch3 = function()
+Ops.Ui.SubPatchOutput = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_alrh6hig4=op.inTrigger(\"alrh6hig4\");\nport_alrh6hig4.setUiAttribs({title:\"render\",});\n\nconst port_8dittifdh=op.inTrigger(\"8dittifdh\");\nport_8dittifdh.setUiAttribs({title:\"Render\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_alrh6hig4 = addedOps[i].outTrigger(\"innerOut_alrh6hig4\");\ninnerOut_alrh6hig4.setUiAttribs({title:\"render\"});\nport_alrh6hig4.onTriggered = () => { innerOut_alrh6hig4.trigger(); };\n\nconst innerOut_8dittifdh = addedOps[i].outTrigger(\"innerOut_8dittifdh\");\ninnerOut_8dittifdh.setUiAttribs({title:\"Render\"});\nport_8dittifdh.onTriggered = () => { innerOut_8dittifdh.trigger(); };\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp5-0\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"storage\":{},\"portsIn\":[{\"name\":\"data\",\"value\":\"\"},{\"name\":\"glb File\",\"value\":\"assets/66c8bba9b731425e29f47a4a_tetragram_fixed_material.draco.glb\",\"display\":\"file\"},{\"name\":\"Draw\",\"value\":1},{\"name\":\"Camera index\",\"value\":0},{\"name\":\"Camera\",\"value\":\"None\"},{\"name\":\"Animation\",\"value\":\"\"},{\"name\":\"Center index\",\"value\":1},{\"name\":\"Center\",\"value\":\"XYZ\"},{\"name\":\"Rescale\",\"value\":1},{\"name\":\"Rescale Size\",\"value\":0.15},{\"name\":\"Time\",\"value\":0},{\"name\":\"Sync to timeline\",\"value\":0},{\"name\":\"Loop\",\"value\":1},{\"name\":\"Normals Format index\",\"value\":0},{\"name\":\"Normals Format\",\"value\":\"XYZ\"},{\"name\":\"Vertices Format index\",\"value\":0},{\"name\":\"Vertices Format\",\"value\":\"XYZ\"},{\"name\":\"Calc Normals index\",\"value\":2},{\"name\":\"Calc Normals\",\"value\":\"Never\"},{\"name\":\"Hide Nodes\",\"value\":0},{\"name\":\"Use Material Properties\",\"value\":0},{\"name\":\"Active\",\"value\":1}],\"portsOut\":[{\"name\":\"Generator\",\"value\":\"Khronos glTF Blender I/O v4.2.60\"},{\"name\":\"GLTF Version\",\"value\":2},{\"name\":\"Anim Length\",\"value\":0},{\"name\":\"Anim Time\",\"value\":0},{\"name\":\"Loading\",\"value\":false}],\"objName\":\"Ops.Gl.GLTF.GltfScene_v4\"},{\"id\":\"bp5-1\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"storage\":{},\"portsIn\":[{\"name\":\"posX\",\"value\":-1.74},{\"name\":\"posY\",\"value\":0.97},{\"name\":\"posZ\",\"value\":0.05},{\"name\":\"scale\",\"value\":0.98},{\"name\":\"rotX\",\"value\":13},{\"name\":\"rotY\",\"value\":60.5},{\"name\":\"rotZ\",\"value\":-15}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp5-5\",\"objOut\":\"bp5-1\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp5-2\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Material Name\",\"value\":\"Material_0.001\"}],\"portsOut\":[{\"name\":\"Material\",\"links\":[{\"portIn\":\"Materials\",\"portOut\":\"Material\",\"objIn\":\"bp5-0\",\"objOut\":\"bp5-2\"}]}],\"objName\":\"Ops.Gl.GLTF.GltfSetMaterial\"},{\"id\":\"bp5-3\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":1},{\"name\":\"Opacity\",\"value\":1},{\"name\":\"AO Intensity\",\"value\":1},{\"name\":\"Normal Map Intensity\",\"value\":0.361},{\"name\":\"Repeat X\",\"value\":0},{\"name\":\"Repeat Y\",\"value\":0},{\"name\":\"Offset X\",\"value\":0},{\"name\":\"Offset Y\",\"value\":0},{\"name\":\"Screen Space Normals\",\"value\":0},{\"name\":\"Calc normal tangents\",\"value\":true},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"}],\"portsOut\":[{\"name\":\"Shader\",\"links\":[{\"portIn\":\"Shader\",\"portOut\":\"Shader\",\"objIn\":\"bp5-2\",\"objOut\":\"bp5-3\"}]}],\"objName\":\"Ops.Gl.Shader.MatCapMaterial_v3\"},{\"id\":\"bp5-4\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Gradient\",\"value\":\"{\\\"keys\\\":[{\\\"pos\\\":0,\\\"posy\\\":0.5,\\\"r\\\":0.19606043020884192,\\\"g\\\":0.9551041666666666,\\\"b\\\":0.30280095564822357},{\\\"pos\\\":0,\\\"posy\\\":0.5,\\\"r\\\":0.19606043020884192,\\\"g\\\":0.9551041666666666,\\\"b\\\":0.30280095564822357},{\\\"pos\\\":0.25,\\\"posy\\\":0.7,\\\"r\\\":0.24755528330802917,\\\"g\\\":0.5961175041362186,\\\"b\\\":0.6089322916666666},{\\\"pos\\\":1,\\\"posy\\\":0.5,\\\"r\\\":0.9515885416666666,\\\"g\\\":0.01916651725769043,\\\"b\\\":0.643597891729076},{\\\"pos\\\":1,\\\"posy\\\":0.5,\\\"r\\\":0.9515885416666666,\\\"g\\\":0.01916651725769043,\\\"b\\\":0.643597891729076}]}\"},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"X\"},{\"name\":\"Smoothstep\",\"value\":0},{\"name\":\"Step\",\"value\":true},{\"name\":\"Flip\",\"value\":true},{\"name\":\"sRGB\",\"value\":0},{\"name\":\"Oklab\",\"value\":0},{\"name\":\"Size\",\"value\":8},{\"name\":\"filter index\",\"value\":0},{\"name\":\"filter\",\"value\":\"nearest\"},{\"name\":\"wrap index\",\"value\":0},{\"name\":\"wrap\",\"value\":\"clamp to edge\"},{\"name\":\"Gradient Array\",\"value\":0}],\"portsOut\":[{\"name\":\"Texture\",\"links\":[{\"portIn\":\"Normal\",\"portOut\":\"Texture\",\"objIn\":\"bp5-3\",\"objOut\":\"bp5-4\"}]}],\"objName\":\"Ops.Gl.GradientTexture\"},{\"id\":\"bp5-5\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"storage\":{},\"portsIn\":[{\"name\":\"scale\",\"value\":0.76},{\"name\":\"x\",\"value\":0.99},{\"name\":\"y\",\"value\":1.79},{\"name\":\"z\",\"value\":0.47}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"bp5-0\",\"objOut\":\"bp5-5\"}]}],\"objName\":\"Ops.Gl.Matrix.Scale\"},{\"id\":\"bp5-6\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Frequency\",\"value\":1},{\"name\":\"Type index\",\"value\":0},{\"name\":\"Type\",\"value\":\"sine\"},{\"name\":\"Phase\",\"value\":0},{\"name\":\"Range Min\",\"value\":0},{\"name\":\"Range Max\",\"value\":1}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pos\",\"portOut\":\"Result\",\"objIn\":\"bp5-10\",\"objOut\":\"bp5-6\"}]}],\"objName\":\"Ops.Anim.LFO_v2\"},{\"id\":\"bp5-7\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Speed\",\"value\":0.05},{\"name\":\"Play\",\"value\":1},{\"name\":\"Sync to timeline\",\"value\":0}],\"portsOut\":[{\"name\":\"Time\",\"links\":[{\"portIn\":\"Time\",\"portOut\":\"Time\",\"objIn\":\"bp5-6\",\"objOut\":\"bp5-7\"}]}],\"objName\":\"Ops.Anim.Timer_v2\"},{\"id\":\"bp5-8\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_alrh6hig4\",\"title\":\"render\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_alrh6hig4\",\"objIn\":\"bp5-1\",\"objOut\":\"bp5-8\"}]},{\"name\":\"innerOut_8dittifdh\",\"title\":\"Render\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"innerOut_8dittifdh\",\"objIn\":\"bp5-3\",\"objOut\":\"bp5-8\"},{\"portIn\":\"Render\",\"portOut\":\"innerOut_8dittifdh\",\"objIn\":\"bp5-11\",\"objOut\":\"bp5-8\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp5-9\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"storage\":{},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp5-10\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"portsIn\":[{\"name\":\"Blend Mode index\",\"value\":18},{\"name\":\"Blend Mode\",\"value\":\"Math Add\"},{\"name\":\"Alpha Mask index\",\"value\":0},{\"name\":\"Alpha Mask\",\"value\":\"Off\"},{\"name\":\"Amount\",\"value\":1},{\"name\":\"Width\",\"value\":1},{\"name\":\"Type index\",\"value\":3},{\"name\":\"Type\",\"value\":\"Radial\"},{\"name\":\"Smoothstep\",\"value\":0},{\"name\":\"sRGB\",\"value\":0},{\"name\":\"color space index\",\"value\":0},{\"name\":\"color space\",\"value\":\"RGB\"},{\"name\":\"r\",\"value\":0.19606043020884192},{\"name\":\"g\",\"value\":0.9551},{\"name\":\"b\",\"value\":0.3028},{\"name\":\"r2\",\"value\":0.247},{\"name\":\"g2\",\"value\":0.596},{\"name\":\"b2\",\"value\":0.608},{\"name\":\"r3\",\"value\":0.951},{\"name\":\"g3\",\"value\":0.0191},{\"name\":\"b3\",\"value\":0.6436}],\"storage\":{\"ref\":\"bp5-10\"},\"objName\":\"Ops.Gl.ImageCompose.Gradient_v2\"},{\"id\":\"bp5-11\",\"uiAttribs\":{\"subPatch\":\"6egss47s9\"},\"portsIn\":[{\"name\":\"Size index\",\"value\":0},{\"name\":\"Size\",\"value\":\"Auto\"},{\"name\":\"Width\",\"value\":640},{\"name\":\"Height\",\"value\":480},{\"name\":\"Filter index\",\"value\":1},{\"name\":\"Filter\",\"value\":\"linear\"},{\"name\":\"Wrap index\",\"value\":1},{\"name\":\"Wrap\",\"value\":\"repeat\"},{\"name\":\"Anisotropic index\",\"value\":0},{\"name\":\"Anisotropic\",\"value\":\"0\"},{\"name\":\"Pixel Format index\",\"value\":4},{\"name\":\"Pixel Format\",\"value\":\"RGBA 8bit ubyte\"},{\"name\":\"R\",\"value\":0},{\"name\":\"G\",\"value\":0},{\"name\":\"B\",\"value\":0},{\"name\":\"A\",\"value\":0}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"Next\",\"objIn\":\"bp5-10\",\"objOut\":\"bp5-11\"}]},{\"name\":\"texture_out\",\"links\":[{\"portIn\":\"MatCap\",\"portOut\":\"texture_out\",\"objIn\":\"bp5-3\",\"objOut\":\"bp5-11\"}]},{\"name\":\"Aspect Ratio\",\"value\":1.8414872798434443},{\"name\":\"Texture Width\",\"value\":1882},{\"name\":\"Texture Height\",\"value\":1022}],\"storage\":{\"ref\":\"bp5-11\"},\"objName\":\"Ops.Gl.ImageCompose.ImageCompose_v4\"}]}",};
-const port_alrh6hig4=op.inTrigger("alrh6hig4");
-port_alrh6hig4.setUiAttribs({title:"render",});
-
-const port_8dittifdh=op.inTrigger("8dittifdh");
-port_8dittifdh.setUiAttribs({title:"Render",});
-
-op.initInnerPorts=function(addedOps)
-{
-  for(let i=0;i<addedOps.length;i++)
-  {
-    if(addedOps[i].innerInput)
-    {
-const innerOut_alrh6hig4 = addedOps[i].outTrigger("innerOut_alrh6hig4");
-innerOut_alrh6hig4.setUiAttribs({title:"render"});
-port_alrh6hig4.onTriggered = () => { innerOut_alrh6hig4.trigger(); };
-
-const innerOut_8dittifdh = addedOps[i].outTrigger("innerOut_8dittifdh");
-innerOut_8dittifdh.setUiAttribs({title:"Render"});
-port_8dittifdh.onTriggered = () => { innerOut_8dittifdh.trigger(); };
-
-    }
-if(addedOps[i].innerOutput)
-{
-}
-}
-};
-
-const patchId = "bp2sub_" + op.id;
-
-new CABLES.SubPatchOp(op, { "subId": patchId });
-
-initializeSubpatch();
-
-function initializeSubpatch()
-{
-    const p = JSON.parse(attachments.subpatch_json);
-
-    CABLES.Patch.replaceOpIds(p,
-        {
-            "parentSubPatchId": patchId,
-            "prefixHash": patchId,
-            "oldIdAsRef": true,
-            "doNotUnlinkLostLinks": true
-        });
-
-    for (let i = 0; i < p.ops.length; i++)
-    {
-        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
-    }
-
-    op.loadDependencies(p, () =>
-    {
-        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
-        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
-        op.patch.emitEvent("subpatchExpose", patchId);
-        op.setStorage({ "blueprintVer": 2 });
-        op.patch.emitEvent("subpatchExpose", patchId);
-    });
-}
+const attachments=op.attachments={};
+op.innerOutput = true;
 
 
 };
 
-Ops.Patch.PuSSdim.SubPatch3.prototype = new CABLES.Op();
-CABLES.OPS["8594a7b9-d150-4c9b-97a0-0814800318c7"]={f:Ops.Patch.PuSSdim.SubPatch3,objName:"Ops.Patch.PuSSdim.SubPatch3"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Patch.PuSSdim.BasicSlider_v4
-// 
-// **************************************************************
-
-Ops.Patch.PuSSdim.BasicSlider_v4 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp6-0\",\"uiAttribs\":{\"subPatch\":\"ry2b8so8q\"},\"storage\":{},\"portsIn\":[{\"name\":\"Width\",\"value\":1.05},{\"name\":\"Height\",\"value\":0.25},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"bp6-3\",\"objOut\":\"bp6-0\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp6-8\",\"objOut\":\"bp6-0\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp6-6\",\"objOut\":\"bp6-0\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"bp6-6\",\"objOut\":\"bp6-0\"}]},{\"name\":\"Pointer Y\",\"value\":0.19651887394345902},{\"name\":\"Top\",\"value\":107.95384013652802},{\"name\":\"Left\",\"value\":1268.085666924715},{\"name\":\"Right\",\"value\":1599.9117208719254},{\"name\":\"Bottom\",\"value\":222.45559632778168}],\"objName\":\"Ops.Gl.InteractiveRectangle_v2\"},{\"id\":\"bp6-1\",\"uiAttribs\":{\"subPatch\":\"ry2b8so8q\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp6-10\",\"objOut\":\"bp6-1\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"bp6-2\",\"uiAttribs\":{\"subPatch\":\"ry2b8so8q\"},\"storage\":{},\"portsIn\":[{\"name\":\"posY\",\"value\":0.03},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Exec\",\"portOut\":\"trigger\",\"objIn\":\"bp6-13\",\"objOut\":\"bp6-2\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp6-3\",\"uiAttribs\":{\"subPatch\":\"ry2b8so8q\"},\"storage\":{},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp6-2\",\"objOut\":\"bp6-3\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"bp6-8\",\"objOut\":\"bp6-3\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"bp6-5\",\"objOut\":\"bp6-3\"},{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"bp6-2\",\"objOut\":\"bp6-3\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"bp6-4\",\"uiAttribs\":{\"subPatch\":\"ry2b8so8q\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"Exec\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"bp6-12\",\"objOut\":\"bp6-4\"},{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"bp6-15\",\"objOut\":\"bp6-4\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"bp6-0\",\"objOut\":\"bp6-4\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"bp6-0\",\"objOut\":\"bp6-4\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp6-5\",\"uiAttribs\":{\"subPatch\":\"ry2b8so8q\"},\"storage\":{},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp6-6\",\"uiAttribs\":{\"subPatch\":\"ry2b8so8q\"},\"storage\":{},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"Value Out\",\"objIn\":\"bp6-7\",\"objOut\":\"bp6-6\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"bp6-7\",\"uiAttribs\":{\"subPatch\":\"ry2b8so8q\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp6-3\",\"objOut\":\"bp6-7\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"bp6-8\",\"uiAttribs\":{\"subPatch\":\"ry2b8so8q\"},\"storage\":{},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.6},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"bp6-1\",\"objOut\":\"bp6-8\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"bp6-5\",\"objOut\":\"bp6-8\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"bp6-9\",\"uiAttribs\":{\"subPatch\":\"ry2b8so8q\"},\"storage\":{},\"portsIn\":[{\"name\":\"x\",\"value\":1.56},{\"name\":\"y\",\"value\":0.75},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"bp6-0\",\"objOut\":\"bp6-9\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp6-10\",\"uiAttribs\":{\"subPatch\":\"ry2b8so8q\"},\"storage\":{},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":0.02},{\"name\":\"height\",\"value\":0.07},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":1},{\"name\":\"num rows\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"bp6-11\",\"uiAttribs\":{\"subPatch\":\"ry2b8so8q\"},\"storage\":{},\"portsIn\":[{\"name\":\"Property\",\"value\":\"cursor\"},{\"name\":\"Value\",\"value\":\"col-resize\"}],\"objName\":\"Ops.Html.CSSPropertyString\"},{\"id\":\"bp6-12\",\"uiAttribs\":{\"subPatch\":\"ry2b8so8q\"},\"storage\":{},\"portsOut\":[{\"name\":\"Was Triggered\",\"links\":[{\"portIn\":\"Active\",\"portOut\":\"Was Triggered\",\"objIn\":\"bp6-11\",\"objOut\":\"bp6-12\"}]}],\"objName\":\"Ops.Trigger.TriggerOnce\"},{\"id\":\"bp6-13\",\"uiAttribs\":{\"subPatch\":\"ry2b8so8q\"},\"storage\":{},\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp6-1\",\"objOut\":\"bp6-13\"}]}],\"objName\":\"Ops.Gl.Matrix.Billboard\"},{\"id\":\"bp6-14\",\"uiAttribs\":{\"subPatch\":\"ry2b8so8q\"},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_dryMix\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Custom Value\",\"portOut\":\"Value\",\"objIn\":\"bp6-6\",\"objOut\":\"bp6-14\"}]}],\"storage\":{\"ref\":\"bp6-14\"},\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"bp6-15\",\"uiAttribs\":{\"subPatch\":\"ry2b8so8q\"},\"portsIn\":[{\"name\":\"x\",\"value\":0.69},{\"name\":\"y\",\"value\":1},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp6-9\",\"objOut\":\"bp6-15\"}]}],\"storage\":{\"ref\":\"bp6-15\"},\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"}]}",};
-const port_blls2amps=op.inTrigger("blls2amps");
-port_blls2amps.setUiAttribs({title:"Trigger in",});
-
-const port_btagbs7z2=op.inString("btagbs7z2","");
-port_btagbs7z2.setUiAttribs({title:"Class",});
-
-const port_lj06d561p=op.inFloat("lj06d561p",0);
-port_lj06d561p.setUiAttribs({title:"Show Boundings",display:"bool",});
-
-const port_nti406vwi=op.outNumber("nti406vwi");
-port_nti406vwi.setUiAttribs({title:"Result",});
-
-const port_gjvx0zyv5=op.outNumber("gjvx0zyv5");
-port_gjvx0zyv5.setUiAttribs({title:"value",});
-
-op.initInnerPorts=function(addedOps)
-{
-  for(let i=0;i<addedOps.length;i++)
-  {
-    if(addedOps[i].innerInput)
-    {
-const innerOut_blls2amps = addedOps[i].outTrigger("innerOut_blls2amps");
-innerOut_blls2amps.setUiAttribs({title:"Trigger in"});
-port_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };
-
-const innerOut_btagbs7z2 = addedOps[i].outString("innerOut_btagbs7z2");
-innerOut_btagbs7z2.set(port_btagbs7z2.get() );
-innerOut_btagbs7z2.setUiAttribs({title:"Class"});
-port_btagbs7z2.on("change", (a,v) => { innerOut_btagbs7z2.set(a); });
-
-const innerOut_lj06d561p = addedOps[i].outNumber("innerOut_lj06d561p");
-innerOut_lj06d561p.set(port_lj06d561p.get() );
-innerOut_lj06d561p.setUiAttribs({title:"Show Boundings"});
-port_lj06d561p.on("change", (a,v) => { innerOut_lj06d561p.set(a); });
-
-    }
-if(addedOps[i].innerOutput)
-{
-const innerIn_nti406vwi = addedOps[i].inFloat("innerIn_nti406vwi");
-innerIn_nti406vwi.setUiAttribs({title:"Result"});
-innerIn_nti406vwi.on("change", (a,v) => { port_nti406vwi.set(a); });
-
-const innerIn_gjvx0zyv5 = addedOps[i].inFloat("innerIn_gjvx0zyv5");
-innerIn_gjvx0zyv5.setUiAttribs({title:"value"});
-innerIn_gjvx0zyv5.on("change", (a,v) => { port_gjvx0zyv5.set(a); });
-
-}
-}
-};
-
-const patchId = "bp2sub_" + op.id;
-
-new CABLES.SubPatchOp(op, { "subId": patchId });
-
-initializeSubpatch();
-
-function initializeSubpatch()
-{
-    const p = JSON.parse(attachments.subpatch_json);
-
-    CABLES.Patch.replaceOpIds(p,
-        {
-            "parentSubPatchId": patchId,
-            "prefixHash": patchId,
-            "oldIdAsRef": true,
-            "doNotUnlinkLostLinks": true
-        });
-
-    for (let i = 0; i < p.ops.length; i++)
-    {
-        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
-    }
-
-    op.loadDependencies(p, () =>
-    {
-        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
-        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
-        op.patch.emitEvent("subpatchExpose", patchId);
-        op.setStorage({ "blueprintVer": 2 });
-        op.patch.emitEvent("subpatchExpose", patchId);
-    });
-}
-
-
-};
-
-Ops.Patch.PuSSdim.BasicSlider_v4.prototype = new CABLES.Op();
-CABLES.OPS["4c1a5ec4-b3e8-4142-9146-66afc01780a0"]={f:Ops.Patch.PuSSdim.BasicSlider_v4,objName:"Ops.Patch.PuSSdim.BasicSlider_v4"};
+Ops.Ui.SubPatchOutput.prototype = new CABLES.Op();
+CABLES.OPS["02d45073-7936-4830-81ad-59a162febf1f"]={f:Ops.Ui.SubPatchOutput,objName:"Ops.Ui.SubPatchOutput"};
 
 
 
@@ -21224,58 +21308,6 @@ CABLES.OPS["ef522d4a-9712-4063-8a99-c6b409f26456"]={f:Ops.Gl.Meshes.Triangle_v2,
 
 // **************************************************************
 // 
-// Ops.Ui.SubPatchInput
-// 
-// **************************************************************
-
-Ops.Ui.SubPatchInput = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-op.innerInput = true;
-
-const goto = op.inTriggerButton("Goto SubPatchOp");
-goto.setUiAttribs({ "hidePort": true });
-goto.onTriggered = () =>
-{
-    const parent = op.patch.getSubPatchOuterOp(op.uiAttribs.subPatch);
-    gui.patchView.centerSelectOp(parent.id);
-};
-
-
-};
-
-Ops.Ui.SubPatchInput.prototype = new CABLES.Op();
-CABLES.OPS["c4e4e933-136e-479e-8de8-0b35b75d9217"]={f:Ops.Ui.SubPatchInput,objName:"Ops.Ui.SubPatchInput"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Ui.SubPatchOutput
-// 
-// **************************************************************
-
-Ops.Ui.SubPatchOutput = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-op.innerOutput = true;
-
-
-};
-
-Ops.Ui.SubPatchOutput.prototype = new CABLES.Op();
-CABLES.OPS["02d45073-7936-4830-81ad-59a162febf1f"]={f:Ops.Ui.SubPatchOutput,objName:"Ops.Ui.SubPatchOutput"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Number.GateNumber
 // 
 // **************************************************************
@@ -21575,6 +21607,384 @@ CABLES.OPS["1f89ba0e-e7eb-46d7-8c66-7814b7c528b9"]={f:Ops.Gl.Matrix.Translate,ob
 
 // **************************************************************
 // 
+// Ops.Patch.PAIoPfn.NumberFunnel
+// 
+// **************************************************************
+
+Ops.Patch.PAIoPfn.NumberFunnel = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inValue1 = op.inFloat("Float1"),
+    inValue2 = op.inFloat("Float2"),
+    inValue3 = op.inFloat("Float3"),
+    inValue4 = op.inFloat("Float4"),
+    inValue5 = op.inFloat("Float5");
+
+let outValue = op.outNumber("Out Latest Value");
+
+inValue1.onChange = function ()
+{
+    outValue.setRef(inValue1.get());
+};
+
+inValue2.onChange = function ()
+{
+    outValue.setRef(inValue2.get());
+};
+
+inValue3.onChange = function ()
+{
+    outValue.setRef(inValue3.get());
+};
+
+inValue4.onChange = function ()
+{
+    outValue.setRef(inValue4.get());
+};
+
+inValue5.onChange = function ()
+{
+    outValue.setRef(inValue5.get());
+};
+
+
+};
+
+Ops.Patch.PAIoPfn.NumberFunnel.prototype = new CABLES.Op();
+CABLES.OPS["c67cd206-6c94-4575-b9d0-b86ca8f9473a"]={f:Ops.Patch.PAIoPfn.NumberFunnel,objName:"Ops.Patch.PAIoPfn.NumberFunnel"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.User.cristianvogel.HandleExtIntData
+// 
+// **************************************************************
+
+Ops.User.cristianvogel.HandleExtIntData = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"inc_gen_ports_js":"const port_4j2yug476=op.inFloat(\"4j2yug476\",0.2762706668266464);\nport_4j2yug476.setUiAttribs({title:\"Norm Value Out\",});\nport_4j2yug476.setUiAttribs({\"values\":[\"\"]});\n\nconst port_igeknmmsh=op.inString(\"igeknmmsh\",\"scapeLength\");\nport_igeknmmsh.setUiAttribs({title:\"value\",});\n\nconst port_7xcdrsb30=op.outNumber(\"7xcdrsb30\");\nport_7xcdrsb30.setUiAttribs({title:\"Ext Value In\",});\nport_7xcdrsb30.setUiAttribs({\"values\":[\"\"]});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_4j2yug476 = addedOps[i].outNumber(\"innerOut_4j2yug476\");\ninnerOut_4j2yug476.set(port_4j2yug476.get() );\ninnerOut_4j2yug476.setUiAttribs({title:\"Norm Value Out\"});\nport_4j2yug476.on(\"change\", (a,v) => { innerOut_4j2yug476.set(a); });\n\nconst innerOut_igeknmmsh = addedOps[i].outString(\"innerOut_igeknmmsh\");\ninnerOut_igeknmmsh.set(port_igeknmmsh.get() );\ninnerOut_igeknmmsh.setUiAttribs({title:\"value\"});\nport_igeknmmsh.on(\"change\", (a,v) => { innerOut_igeknmmsh.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_7xcdrsb30 = addedOps[i].inFloat(\"innerIn_7xcdrsb30\");\ninnerIn_7xcdrsb30.setUiAttribs({title:\"Ext Value In\"});\ninnerIn_7xcdrsb30.on(\"change\", (a,v) => { port_7xcdrsb30.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp21-0\",\"uiAttribs\":{\"subPatch\":\"8nq9f5486\"},\"storage\":{},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"innerIn_7xcdrsb30\",\"portOut\":\"Result\",\"objIn\":\"bp21-5\",\"objOut\":\"bp21-0\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"bp21-1\",\"uiAttribs\":{\"subPatch\":\"8nq9f5486\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_additionalParams_object\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Value\",\"objIn\":\"bp21-0\",\"objOut\":\"bp21-1\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"bp21-2\",\"uiAttribs\":{\"subPatch\":\"8nq9f5486\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"bp21-3\",\"uiAttribs\":{\"subPatch\":\"8nq9f5486\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_NormValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp21-4\",\"uiAttribs\":{\"subPatch\":\"8nq9f5486\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_4j2yug476\",\"title\":\"Norm Value Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"innerOut_4j2yug476\",\"objIn\":\"bp21-3\",\"objOut\":\"bp21-4\"}]},{\"name\":\"innerOut_igeknmmsh\",\"title\":\"value\",\"links\":[{\"portIn\":\"Key\",\"portOut\":\"innerOut_igeknmmsh\",\"objIn\":\"bp21-0\",\"objOut\":\"bp21-4\"},{\"portIn\":\"Value\",\"portOut\":\"innerOut_igeknmmsh\",\"objIn\":\"bp21-2\",\"objOut\":\"bp21-4\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp21-5\",\"uiAttribs\":{\"subPatch\":\"8nq9f5486\"},\"storage\":{},\"portsIn\":[{\"name\":\"innerIn_7xcdrsb30\",\"title\":\"Ext Value In\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"}]}",};
+const port_4j2yug476=op.inFloat("4j2yug476",0.2762706668266464);
+port_4j2yug476.setUiAttribs({title:"Norm Value Out",});
+port_4j2yug476.setUiAttribs({"values":[""]});
+
+const port_igeknmmsh=op.inString("igeknmmsh","scapeLength");
+port_igeknmmsh.setUiAttribs({title:"value",});
+
+const port_7xcdrsb30=op.outNumber("7xcdrsb30");
+port_7xcdrsb30.setUiAttribs({title:"Ext Value In",});
+port_7xcdrsb30.setUiAttribs({"values":[""]});
+
+op.initInnerPorts=function(addedOps)
+{
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
+    {
+const innerOut_4j2yug476 = addedOps[i].outNumber("innerOut_4j2yug476");
+innerOut_4j2yug476.set(port_4j2yug476.get() );
+innerOut_4j2yug476.setUiAttribs({title:"Norm Value Out"});
+port_4j2yug476.on("change", (a,v) => { innerOut_4j2yug476.set(a); });
+
+const innerOut_igeknmmsh = addedOps[i].outString("innerOut_igeknmmsh");
+innerOut_igeknmmsh.set(port_igeknmmsh.get() );
+innerOut_igeknmmsh.setUiAttribs({title:"value"});
+port_igeknmmsh.on("change", (a,v) => { innerOut_igeknmmsh.set(a); });
+
+    }
+if(addedOps[i].innerOutput)
+{
+const innerIn_7xcdrsb30 = addedOps[i].inFloat("innerIn_7xcdrsb30");
+innerIn_7xcdrsb30.setUiAttribs({title:"Ext Value In"});
+innerIn_7xcdrsb30.on("change", (a,v) => { port_7xcdrsb30.set(a); });
+
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
+    {
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
+    }
+
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
+}
+
+
+};
+
+Ops.User.cristianvogel.HandleExtIntData.prototype = new CABLES.Op();
+CABLES.OPS["95da6e98-8270-44e4-9c7c-e5df2236636c"]={f:Ops.User.cristianvogel.HandleExtIntData,objName:"Ops.User.cristianvogel.HandleExtIntData"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Vars.VarSetNumber_v2
+// 
+// **************************************************************
+
+Ops.Vars.VarSetNumber_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const val = op.inValueFloat("Value", 0);
+op.varName = op.inDropDown("Variable", [], "", true);
+
+new CABLES.VarSetOpWrapper(op, "number", val, op.varName);
+
+
+};
+
+Ops.Vars.VarSetNumber_v2.prototype = new CABLES.Op();
+CABLES.OPS["b5249226-6095-4828-8a1c-080654e192fa"]={f:Ops.Vars.VarSetNumber_v2,objName:"Ops.Vars.VarSetNumber_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Json.ObjectGetNumber_v2
+// 
+// **************************************************************
+
+Ops.Json.ObjectGetNumber_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    data = op.inObject("Data"),
+    key = op.inString("Key"),
+    result = op.outNumber("Result"),
+    outFound = op.outBoolNum("Found");
+
+result.ignoreValueSerialize = true;
+data.ignoreValueSerialize = true;
+op.setUiAttrib({ "extendTitlePort": key.name });
+key.setUiAttribs({ "stringTrim": true });
+
+key.onChange =
+    data.onChange = exec;
+
+key.on("change", updateUi);
+updateUi();
+function updateUi()
+{
+    if (!key.get())op.setUiError("nokey", "Missing Key Value");
+    else op.setUiError("nokey", null);
+}
+
+function exec()
+{
+    const d = data.get();
+    if (d)
+    {
+        const val = d[key.get()];
+        result.set(parseFloat(val));
+        if (val === undefined) outFound.set(0);
+        else outFound.set(1);
+    }
+    else
+    {
+        result.set(0);
+        outFound.set(0);
+    }
+}
+
+
+};
+
+Ops.Json.ObjectGetNumber_v2.prototype = new CABLES.Op();
+CABLES.OPS["a7335e79-046e-40da-9e9c-db779b0a5e53"]={f:Ops.Json.ObjectGetNumber_v2,objName:"Ops.Json.ObjectGetNumber_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Vars.VarGetObject_v2
+// 
+// **************************************************************
+
+Ops.Vars.VarGetObject_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const val = op.outObject("Value");
+op.varName = op.inValueSelect("Variable", [], "", true);
+
+new CABLES.VarGetOpWrapper(op, "object", op.varName, val);
+
+
+};
+
+Ops.Vars.VarGetObject_v2.prototype = new CABLES.Op();
+CABLES.OPS["321419d9-69c7-4310-a327-93d310bc2b8e"]={f:Ops.Vars.VarGetObject_v2,objName:"Ops.Vars.VarGetObject_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Vars.VarSetString_v2
+// 
+// **************************************************************
+
+Ops.Vars.VarSetString_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const val=op.inString("Value","New String");
+op.varName=op.inDropDown("Variable",[],"",true);
+
+new CABLES.VarSetOpWrapper(op,"string",val,op.varName);
+
+
+
+
+};
+
+Ops.Vars.VarSetString_v2.prototype = new CABLES.Op();
+CABLES.OPS["0b4d9229-8024-4a30-9cc0-f6653942c2e4"]={f:Ops.Vars.VarSetString_v2,objName:"Ops.Vars.VarSetString_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Ui.Area
+// 
+// **************************************************************
+
+Ops.Ui.Area = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const inTitle = op.inString("Title", "");
+
+inTitle.setUiAttribs({ "hidePort": true });
+
+op.setUiAttrib({ "hasArea": true });
+
+op.init =
+    inTitle.onChange =
+    op.onLoaded = update;
+
+update();
+
+function update()
+{
+    if (CABLES.UI)
+    {
+        gui.savedState.setUnSaved("areaOp");
+        op.uiAttr(
+            {
+                "comment_title": inTitle.get() || " "
+            });
+
+        op.name = inTitle.get();
+    }
+}
+
+
+};
+
+Ops.Ui.Area.prototype = new CABLES.Op();
+CABLES.OPS["38f79614-b0de-4960-8da5-2827e7f43415"]={f:Ops.Ui.Area,objName:"Ops.Ui.Area"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.String.GateString
+// 
+// **************************************************************
+
+Ops.String.GateString = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    valueInPort = op.inString("String In", "hello"),
+    passThroughPort = op.inValueBool("Pass Through", false),
+    inIfNot = op.inSwitch("When False", ["keep last string", "custom"], "keep last string"),
+    inCustomNot = op.inString("Custom Value"),
+    valueOutPort = op.outString("String Out", "");
+
+valueInPort.onChange =
+    passThroughPort.onChange = update;
+
+inIfNot.onChange = updateUi;
+
+function updateUi()
+{
+    inCustomNot.setUiAttribs({ "greyout": inIfNot.get() != "custom" });
+    update();
+}
+
+function update()
+{
+    if (passThroughPort.get())
+    {
+        valueOutPort.set("");
+        valueOutPort.set(valueInPort.get());
+    }
+    else
+    {
+        if (inIfNot.get() == "custom") valueOutPort.set(inCustomNot.get());
+    }
+}
+
+
+};
+
+Ops.String.GateString.prototype = new CABLES.Op();
+CABLES.OPS["0ce14933-2d91-4381-9d82-2304aae22c0e"]={f:Ops.String.GateString,objName:"Ops.String.GateString"};
+
+
+
+
+// **************************************************************
+// 
 // Ops.Gl.Meshes.Rectangle_v4
 // 
 // **************************************************************
@@ -21833,31 +22243,6 @@ CABLES.OPS["cc8c3ede-7103-410b-849f-a645793cab39"]={f:Ops.Gl.Meshes.Rectangle_v4
 
 // **************************************************************
 // 
-// Ops.Vars.VarGetNumber_v2
-// 
-// **************************************************************
-
-Ops.Vars.VarGetNumber_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const val = op.outNumber("Value");
-op.varName = op.inValueSelect("Variable", [], "", true);
-
-new CABLES.VarGetOpWrapper(op, "number", op.varName, val);
-
-
-};
-
-Ops.Vars.VarGetNumber_v2.prototype = new CABLES.Op();
-CABLES.OPS["421f5b52-c0fa-47c4-8b7a-012b9e1c864a"]={f:Ops.Vars.VarGetNumber_v2,objName:"Ops.Vars.VarGetNumber_v2"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Html.CSSPropertyString
 // 
 // **************************************************************
@@ -22029,87 +22414,54 @@ CABLES.OPS["d41e676e-d8a7-4a1e-8abf-f1bddfc982d5"]={f:Ops.Gl.Matrix.Billboard,ob
 
 // **************************************************************
 // 
-// Ops.Boolean.ToggleBool_v2
+// Ops.Patch.PAIoPfn.NumberFunnel3
 // 
 // **************************************************************
 
-Ops.Boolean.ToggleBool_v2 = function()
+Ops.Patch.PAIoPfn.NumberFunnel3 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
 const attachments=op.attachments={};
 const
-    trigger = op.inTriggerButton("trigger"),
-    reset = op.inTriggerButton("reset"),
-    inDefault = op.inBool("Default", false),
-    next = op.outTrigger("Next"),
-    outBool = op.outBoolNum("result");
+    inValue1 = op.inFloat("Float1"),
+    inValue2 = op.inFloat("Float2"),
+    inValue3 = op.inFloat("Float3"),
+    inValue4 = op.inFloat("Float4"),
+    inValue5 = op.inFloat("Float5");
 
-let theBool = false;
+let outValue = op.outNumber("Out Latest Value");
 
-op.onLoadedValueSet = () =>
+inValue1.onChange = function ()
 {
-    outBool.set(inDefault.get());
-    next.trigger();
+    outValue.setRef(inValue1.get());
 };
 
-trigger.onTriggered = function ()
+inValue2.onChange = function ()
 {
-    theBool = !theBool;
-    outBool.set(theBool);
-    next.trigger();
+    outValue.setRef(inValue2.get());
 };
 
-reset.onTriggered = function ()
+inValue3.onChange = function ()
 {
-    theBool = inDefault.get();
-    outBool.set(theBool);
-    next.trigger();
+    outValue.setRef(inValue3.get());
 };
 
-
-};
-
-Ops.Boolean.ToggleBool_v2.prototype = new CABLES.Op();
-CABLES.OPS["4313d9bb-96b6-43bc-9190-6068cfb2593c"]={f:Ops.Boolean.ToggleBool_v2,objName:"Ops.Boolean.ToggleBool_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Boolean.TriggerChangedTrue
-// 
-// **************************************************************
-
-Ops.Boolean.TriggerChangedTrue = function()
+inValue4.onChange = function ()
 {
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-let val = op.inValueBool("Value", false);
-let next = op.outTrigger("Next");
-let oldVal = 0;
+    outValue.setRef(inValue4.get());
+};
 
-val.onChange = function ()
+inValue5.onChange = function ()
 {
-    let newVal = val.get();
-    if (!oldVal && newVal)
-    {
-        oldVal = true;
-        next.trigger();
-    }
-    else
-    {
-        oldVal = false;
-    }
+    outValue.setRef(inValue5.get());
 };
 
 
 };
 
-Ops.Boolean.TriggerChangedTrue.prototype = new CABLES.Op();
-CABLES.OPS["385197e1-8b34-4d1c-897f-d1386d99e3b3"]={f:Ops.Boolean.TriggerChangedTrue,objName:"Ops.Boolean.TriggerChangedTrue"};
+Ops.Patch.PAIoPfn.NumberFunnel3.prototype = new CABLES.Op();
+CABLES.OPS["9185c577-4a5a-4637-aede-fccfc2cb1430"]={f:Ops.Patch.PAIoPfn.NumberFunnel3,objName:"Ops.Patch.PAIoPfn.NumberFunnel3"};
 
 
 
@@ -26708,6 +27060,258 @@ CABLES.OPS["17212e2b-d692-464c-8f8d-2d511dd3410a"]={f:Ops.Gl.ImageCompose.ImageC
 
 // **************************************************************
 // 
+// Ops.Patch.PAIoPfn.NumberFunnel4
+// 
+// **************************************************************
+
+Ops.Patch.PAIoPfn.NumberFunnel4 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inValue1 = op.inFloat("Float1"),
+    inValue2 = op.inFloat("Float2"),
+    inValue3 = op.inFloat("Float3"),
+    inValue4 = op.inFloat("Float4"),
+    inValue5 = op.inFloat("Float5");
+
+let outValue = op.outNumber("Out Latest Value");
+
+inValue1.onChange = function ()
+{
+    outValue.setRef(inValue1.get());
+};
+
+inValue2.onChange = function ()
+{
+    outValue.setRef(inValue2.get());
+};
+
+inValue3.onChange = function ()
+{
+    outValue.setRef(inValue3.get());
+};
+
+inValue4.onChange = function ()
+{
+    outValue.setRef(inValue4.get());
+};
+
+inValue5.onChange = function ()
+{
+    outValue.setRef(inValue5.get());
+};
+
+
+};
+
+Ops.Patch.PAIoPfn.NumberFunnel4.prototype = new CABLES.Op();
+CABLES.OPS["29b120ae-9b44-45a8-b76c-9f9eca6ca756"]={f:Ops.Patch.PAIoPfn.NumberFunnel4,objName:"Ops.Patch.PAIoPfn.NumberFunnel4"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Vars.VarGetNumber_v2
+// 
+// **************************************************************
+
+Ops.Vars.VarGetNumber_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const val = op.outNumber("Value");
+op.varName = op.inValueSelect("Variable", [], "", true);
+
+new CABLES.VarGetOpWrapper(op, "number", op.varName, val);
+
+
+};
+
+Ops.Vars.VarGetNumber_v2.prototype = new CABLES.Op();
+CABLES.OPS["421f5b52-c0fa-47c4-8b7a-012b9e1c864a"]={f:Ops.Vars.VarGetNumber_v2,objName:"Ops.Vars.VarGetNumber_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Boolean.ToggleBool_v2
+// 
+// **************************************************************
+
+Ops.Boolean.ToggleBool_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    trigger = op.inTriggerButton("trigger"),
+    reset = op.inTriggerButton("reset"),
+    inDefault = op.inBool("Default", false),
+    next = op.outTrigger("Next"),
+    outBool = op.outBoolNum("result");
+
+let theBool = false;
+
+op.onLoadedValueSet = () =>
+{
+    theBool = inDefault.get();
+    outBool.set(inDefault.get());
+    next.trigger();
+};
+
+trigger.onTriggered = function ()
+{
+    theBool = !theBool;
+    outBool.set(theBool);
+    next.trigger();
+};
+
+reset.onTriggered = function ()
+{
+    theBool = inDefault.get();
+    outBool.set(theBool);
+    next.trigger();
+};
+
+
+};
+
+Ops.Boolean.ToggleBool_v2.prototype = new CABLES.Op();
+CABLES.OPS["4313d9bb-96b6-43bc-9190-6068cfb2593c"]={f:Ops.Boolean.ToggleBool_v2,objName:"Ops.Boolean.ToggleBool_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Boolean.TriggerChangedTrue
+// 
+// **************************************************************
+
+Ops.Boolean.TriggerChangedTrue = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+let val = op.inValueBool("Value", false);
+let next = op.outTrigger("Next");
+let oldVal = 0;
+
+val.onChange = function ()
+{
+    let newVal = val.get();
+    if (!oldVal && newVal)
+    {
+        oldVal = true;
+        next.trigger();
+    }
+    else
+    {
+        oldVal = false;
+    }
+};
+
+
+};
+
+Ops.Boolean.TriggerChangedTrue.prototype = new CABLES.Op();
+CABLES.OPS["385197e1-8b34-4d1c-897f-d1386d99e3b3"]={f:Ops.Boolean.TriggerChangedTrue,objName:"Ops.Boolean.TriggerChangedTrue"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PAIoPfn.NumberFunnel6
+// 
+// **************************************************************
+
+Ops.Patch.PAIoPfn.NumberFunnel6 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inValue1 = op.inFloat("Float1"),
+    inValue2 = op.inFloat("Float2"),
+    inValue3 = op.inFloat("Float3"),
+    inValue4 = op.inFloat("Float4"),
+    inValue5 = op.inFloat("Float5");
+
+let outValue = op.outNumber("Out Latest Value");
+
+inValue1.onChange = function ()
+{
+    outValue.setRef(inValue1.get());
+};
+
+inValue2.onChange = function ()
+{
+    outValue.setRef(inValue2.get());
+};
+
+inValue3.onChange = function ()
+{
+    outValue.setRef(inValue3.get());
+};
+
+inValue4.onChange = function ()
+{
+    outValue.setRef(inValue4.get());
+};
+
+inValue5.onChange = function ()
+{
+    outValue.setRef(inValue5.get());
+};
+
+
+};
+
+Ops.Patch.PAIoPfn.NumberFunnel6.prototype = new CABLES.Op();
+CABLES.OPS["e01159c9-9fa5-49e2-b98d-429255a713e8"]={f:Ops.Patch.PAIoPfn.NumberFunnel6,objName:"Ops.Patch.PAIoPfn.NumberFunnel6"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Boolean.Not
+// 
+// **************************************************************
+
+Ops.Boolean.Not = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    bool = op.inValueBool("Boolean"),
+    outbool = op.outBoolNum("Result");
+
+bool.changeAlways = true;
+
+bool.onChange = function ()
+{
+    outbool.set((!bool.get()));
+};
+
+
+};
+
+Ops.Boolean.Not.prototype = new CABLES.Op();
+CABLES.OPS["6d123c9f-7485-4fd9-a5c2-76e59dcbeb34"]={f:Ops.Boolean.Not,objName:"Ops.Boolean.Not"};
+
+
+
+
+// **************************************************************
+// 
 // Ops.Gl.MainLoop
 // 
 // **************************************************************
@@ -27373,31 +27977,6 @@ CABLES.OPS["6d1edbc0-088a-43d7-9156-918fb3d7f24b"]={f:Ops.Devices.Mouse.Mouse_v3
 
 // **************************************************************
 // 
-// Ops.Vars.VarSetNumber_v2
-// 
-// **************************************************************
-
-Ops.Vars.VarSetNumber_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const val = op.inValueFloat("Value", 0);
-op.varName = op.inDropDown("Variable", [], "", true);
-
-new CABLES.VarSetOpWrapper(op, "number", val, op.varName);
-
-
-};
-
-Ops.Vars.VarSetNumber_v2.prototype = new CABLES.Op();
-CABLES.OPS["b5249226-6095-4828-8a1c-080654e192fa"]={f:Ops.Vars.VarSetNumber_v2,objName:"Ops.Vars.VarSetNumber_v2"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Math.DeltaSum
 // 
 // **************************************************************
@@ -28039,29 +28618,9 @@ op.addSubLink = function (p, p2)
 op.onDelete = function ()
 {
     for (let i = op.patch.ops.length - 1; i >= 0; i--)
-    {
         if (op.patch.ops[i] && op.patch.ops[i].uiAttribs && op.patch.ops[i].uiAttribs.subPatch == op.patchId.get())
-        {
             op.patch.deleteOp(op.patch.ops[i].id);
-        }
-    }
 };
-
-// function makeBlueprint()
-// {
-//     let attribs = {
-//         "pasted": true,
-//         "translate": {
-//             "x": op.uiAttribs.translate.x - 150,
-//             "y": op.uiAttribs.translate.y
-//         }
-//     };
-
-//     if (CABLES.UI) attribs.subPatch = gui.patchView.getCurrentSubPatch();
-
-//     const bpOp = op.patch.addOp(CABLES.UI.DEFAULTOPNAMES.blueprint, attribs);
-//     bpOp.createBlueprint(gui.patchId, op.patchId.get(), true);
-// }
 
 op.rebuildListeners = () =>
 {
@@ -28127,11 +28686,11 @@ CABLES.OPS["19b441eb-9f63-4f35-ba08-b87841517c4d"]={f:Ops.Gl.ClearColor,objName:
 
 // **************************************************************
 // 
-// Ops.Patch.PuSSdim.MouseDrag
+// Ops.Patch.PAIoPfn.MouseDrag
 // 
 // **************************************************************
 
-Ops.Patch.PuSSdim.MouseDrag = function()
+Ops.Patch.PAIoPfn.MouseDrag = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
@@ -28300,8 +28859,8 @@ op.onDelete = function ()
 
 };
 
-Ops.Patch.PuSSdim.MouseDrag.prototype = new CABLES.Op();
-CABLES.OPS["9076ec81-46db-4de1-aa09-c6e82e060ad8"]={f:Ops.Patch.PuSSdim.MouseDrag,objName:"Ops.Patch.PuSSdim.MouseDrag"};
+Ops.Patch.PAIoPfn.MouseDrag.prototype = new CABLES.Op();
+CABLES.OPS["e2ab5853-5c15-4bce-a83d-d041ce8b1329"]={f:Ops.Patch.PAIoPfn.MouseDrag,objName:"Ops.Patch.PAIoPfn.MouseDrag"};
 
 
 
@@ -28401,52 +28960,6 @@ function doTrigger()
 
 Ops.Trigger.TriggerSend.prototype = new CABLES.Op();
 CABLES.OPS["ce1eaf2b-943b-4dc0-ab5e-ee11b63c9ed0"]={f:Ops.Trigger.TriggerSend,objName:"Ops.Trigger.TriggerSend"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Ui.Area
-// 
-// **************************************************************
-
-Ops.Ui.Area = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const inTitle = op.inString("Title", "");
-
-inTitle.setUiAttribs({ "hidePort": true });
-
-op.setUiAttrib({ "hasArea": true });
-
-op.init =
-    inTitle.onChange =
-    op.onLoaded = update;
-
-update();
-
-function update()
-{
-    if (CABLES.UI)
-    {
-        gui.savedState.setUnSaved("areaOp");
-        op.uiAttr(
-            {
-                "comment_title": inTitle.get() || " "
-            });
-
-        op.name = inTitle.get();
-    }
-}
-
-
-};
-
-Ops.Ui.Area.prototype = new CABLES.Op();
-CABLES.OPS["38f79614-b0de-4960-8da5-2827e7f43415"]={f:Ops.Ui.Area,objName:"Ops.Ui.Area"};
 
 
 
@@ -29140,33 +29653,6 @@ CABLES.OPS["79934693-5887-4173-8b48-3e3a18fcf225"]={f:Ops.Trigger.Repeat2d,objNa
 
 // **************************************************************
 // 
-// Ops.Vars.VarSetString_v2
-// 
-// **************************************************************
-
-Ops.Vars.VarSetString_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const val=op.inString("Value","New String");
-op.varName=op.inDropDown("Variable",[],"",true);
-
-new CABLES.VarSetOpWrapper(op,"string",val,op.varName);
-
-
-
-
-};
-
-Ops.Vars.VarSetString_v2.prototype = new CABLES.Op();
-CABLES.OPS["0b4d9229-8024-4a30-9cc0-f6653942c2e4"]={f:Ops.Vars.VarSetString_v2,objName:"Ops.Vars.VarSetString_v2"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Math.Compare.Equals
 // 
 // **************************************************************
@@ -29244,31 +29730,6 @@ function update()
 
 Ops.Array.ArrayGetNumber.prototype = new CABLES.Op();
 CABLES.OPS["d1189078-70cf-437d-9a37-b2ebe89acdaf"]={f:Ops.Array.ArrayGetNumber,objName:"Ops.Array.ArrayGetNumber"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Vars.VarSetArray_v2
-// 
-// **************************************************************
-
-Ops.Vars.VarSetArray_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const val = op.inArray("Value", null);
-op.varName = op.inDropDown("Variable", [], "", true);
-
-new CABLES.VarSetOpWrapper(op, "array", val, op.varName);
-
-
-};
-
-Ops.Vars.VarSetArray_v2.prototype = new CABLES.Op();
-CABLES.OPS["8088290f-45d4-4312-b4ca-184d34ca4667"]={f:Ops.Vars.VarSetArray_v2,objName:"Ops.Vars.VarSetArray_v2"};
 
 
 
@@ -29561,7 +30022,7 @@ Ops.Gl.TextMeshMSDF_v2 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
-const attachments=op.attachments={"textmeshsdf_frag":"\nUNI sampler2D tex0;\nUNI sampler2D tex1;\nUNI sampler2D tex2;\nUNI sampler2D tex3;\n\nIN vec2 texCoord;\nIN vec4 fragAttrColors;\n\nUNI vec4 color;\nUNI vec2 texSize;\n\n#ifdef BORDER\n    UNI float borderWidth;\n    UNI float borderSmooth;\n    UNI vec3 colorBorder;\n#endif\n\n#ifdef TEXTURE_COLOR\nUNI sampler2D texMulColor;\n#endif\n#ifdef TEXTURE_MASK\nUNI sampler2D texMulMask;\n#endif\n\nUNI float smoothing;\nIN float texIndex;\n\n#ifdef SHADOW\n    UNI float shadowWidth;\n#endif\n\n\nfloat median(float r, float g, float b)\n{\n    return max(min(r, g), min(max(r, g), b));\n}\n\nvoid main()\n{\n    vec4 bgColor=vec4(0.0,0.0,0.0,0.0);\n    vec4 fgColor=color;\n    float opacity=1.0;\n\n    #ifndef SDF\n        if(int(texIndex)==0) outColor = texture(tex0, texCoord);\n        if(int(texIndex)==1) outColor = texture(tex1, texCoord);\n        if(int(texIndex)==2) outColor = texture(tex2, texCoord);\n        if(int(texIndex)==3) outColor = texture(tex3, texCoord);\n\n        return;\n    #endif\n\n\n    #ifdef TEXTURE_COLOR\n        fgColor.rgb *= texture(texMulColor, vec2(0.0,0.0)).rgb; //todo texcoords from char positioning\n    #endif\n    #ifdef TEXTURE_MASK\n        opacity *= texture(texMulMask, vec2(0.0,0.0)).r; //todo texcoords from char positioning\n    #endif\n\n\n    #ifdef SHADOW\n        vec2 msdfUnit1 = texSize;\n        vec2 tcv=vec2(texCoord.x-0.002,texCoord.y-0.002);\n        vec3 smpl1;\n        if(int(texIndex)==0) smpl1 = texture(tex0, tcv).rgb;\n        if(int(texIndex)==1) smpl1 = texture(tex1, tcv).rgb;\n        if(int(texIndex)==2) smpl1 = texture(tex2, tcv).rgb;\n        if(int(texIndex)==3) smpl1 = texture(tex3, tcv).rgb;\n\n        float sigDist1 = median(smpl1.r, smpl1.g, smpl1.b) - 0.001;\n        float opacity1 = smoothstep(0.0,0.9,sigDist1*sigDist1);\n        outColor = mix(bgColor, vec4(0.0,0.0,0.0,1.0), opacity1);\n    #endif\n\n    vec2 msdfUnit = 8.0/texSize;\n    vec3 smpl;\n\n    if(int(texIndex)==0) smpl = texture(tex0, texCoord).rgb;\n    if(int(texIndex)==1) smpl = texture(tex1, texCoord).rgb;\n    if(int(texIndex)==2) smpl = texture(tex2, texCoord).rgb;\n    if(int(texIndex)==3) smpl = texture(tex3, texCoord).rgb;\n\n\n    float sigDist = median(smpl.r, smpl.g, smpl.b) - 0.5;\n    sigDist *= dot(msdfUnit, (0.5+(smoothing-0.5))/fwidth(texCoord));\n    opacity *= clamp(sigDist + 0.5, 0.0, 1.0);\n\n    #ifdef BORDER\n        float sigDist2 = median(smpl.r, smpl.g, smpl.b) - 0.01;\n        float bw=borderWidth*0.6+0.24;\n        float opacity2 = smoothstep(bw-borderSmooth,bw+borderSmooth,sigDist2*sigDist2);\n        fgColor=mix(fgColor,vec4(colorBorder,1.0),1.0-opacity2);\n    #endif\n\n    if(color.a==0.0)discard;\n\n    outColor = mix(outColor, fgColor, opacity*color.a);\n\n#ifdef HAS_ATTR_COLORS\n    outColor*=fragAttrColors;\n#endif\n}\n\n","textmeshsdf_vert":"UNI sampler2D tex1;\nUNI sampler2D tex2;\nUNI sampler2D tex3;\nUNI sampler2D tex4;\n\nUNI mat4 projMatrix;\nUNI mat4 modelMatrix;\nUNI mat4 viewMatrix;\n\nIN vec3 vPosition;\nIN vec2 attrTexCoord;\nIN mat4 instMat;\nIN vec2 attrTexOffsets;\nIN vec2 attrSize;\nIN vec2 attrTcSize;\nIN float attrPage;\nIN vec4 attrColors;\n\nOUT vec2 texCoord;\nOUT float texIndex;\nOUT vec4 fragAttrColors;\n\n\n\n\nconst float mulSize=0.01;\n\nvoid main()\n{\n    texCoord=(attrTexOffsets+attrTexCoord*attrTcSize);\n    texCoord.y=1.0-texCoord.y;\n\n    mat4 instMVMat=instMat;\n    vec4 vert=vec4( vPosition, 1. );\n    vert.x*=attrSize.x*mulSize;\n    vert.y*=attrSize.y*mulSize;\n\n    fragAttrColors=attrColors;\n\n    texIndex=attrPage+0.4; // strange ios rounding errors?!\n\n    mat4 mvMatrix=viewMatrix * modelMatrix * instMVMat;\n\n    gl_Position = projMatrix * mvMatrix * vert;\n}\n",};
+const attachments=op.attachments={"textmeshsdf_frag":"\nUNI sampler2D tex0;\nUNI sampler2D tex1;\nUNI sampler2D tex2;\nUNI sampler2D tex3;\n\nIN vec2 texCoord;\nIN vec4 fragAttrColors;\n\nUNI vec4 color;\nUNI vec2 texSize;\n\n#ifdef BORDER\n    UNI float borderWidth;\n    UNI float borderSmooth;\n    UNI vec3 colorBorder;\n#endif\n\n#ifdef TEXTURE_COLOR\nUNI sampler2D texMulColor;\n#endif\n#ifdef TEXTURE_MASK\nUNI sampler2D texMulMask;\n#endif\n\nUNI float smoothing;\nIN float texIndex;\n\n#ifdef SHADOW\n    UNI float shadowWidth;\n#endif\n\n\nfloat median(float r, float g, float b)\n{\n    return max(min(r, g), min(max(r, g), b));\n}\n\nvoid main()\n{\n    vec4 bgColor=vec4(0.0,0.0,0.0,0.0);\n    vec4 fgColor=color;\n    float opacity=1.0;\n\n    #ifndef SDF\n        if(int(texIndex)==0) outColor = texture(tex0, texCoord);\n        if(int(texIndex)==1) outColor = texture(tex1, texCoord);\n        if(int(texIndex)==2) outColor = texture(tex2, texCoord);\n        if(int(texIndex)==3) outColor = texture(tex3, texCoord);\n\n        return;\n    #endif\n\n\n    #ifdef TEXTURE_COLOR\n        fgColor.rgb *= texture(texMulColor, vec2(0.0,0.0)).rgb; //todo texcoords from char positioning\n    #endif\n    #ifdef TEXTURE_MASK\n        opacity *= texture(texMulMask, vec2(0.0,0.0)).r; //todo texcoords from char positioning\n    #endif\n\n\n    #ifdef SHADOW\n        vec2 msdfUnit1 = texSize;\n        vec2 tcv=vec2(texCoord.x-0.002,texCoord.y-0.002);\n        vec3 smpl1;\n        if(int(texIndex)==0) smpl1 = texture(tex0, tcv).rgb;\n        if(int(texIndex)==1) smpl1 = texture(tex1, tcv).rgb;\n        if(int(texIndex)==2) smpl1 = texture(tex2, tcv).rgb;\n        if(int(texIndex)==3) smpl1 = texture(tex3, tcv).rgb;\n\n        float sigDist1 = median(smpl1.r, smpl1.g, smpl1.b) - 0.001;\n        float opacity1 = smoothstep(0.0,0.9,sigDist1*sigDist1);\n        outColor = mix(bgColor, vec4(0.0,0.0,0.0,1.0), opacity1);\n    #endif\n\n    vec2 msdfUnit = 8.0/texSize;\n    vec3 smpl;\n\n    if(int(texIndex)==0) smpl = texture(tex0, texCoord).rgb;\n    if(int(texIndex)==1) smpl = texture(tex1, texCoord).rgb;\n    if(int(texIndex)==2) smpl = texture(tex2, texCoord).rgb;\n    if(int(texIndex)==3) smpl = texture(tex3, texCoord).rgb;\n\n\n    float sigDist = median(smpl.r, smpl.g, smpl.b) - 0.5;\n    sigDist *= dot(msdfUnit, (0.5+(smoothing-0.5))/fwidth(texCoord));\n    opacity *= clamp(sigDist + 0.5, 0.0, 1.0);\n\n    #ifdef BORDER\n        float sigDist2 = median(smpl.r, smpl.g, smpl.b) - 0.01;\n        float bw=borderWidth*0.6+0.24;\n        float opacity2 = smoothstep(bw-borderSmooth,bw+borderSmooth,sigDist2*sigDist2);\n        fgColor=mix(fgColor,vec4(colorBorder,1.0),1.0-opacity2);\n    #endif\n\n    float opa=opacity*color.a;\n\n    if(opa==0.0)discard;\n\n    outColor = mix(outColor, fgColor, opa);\n\n#ifdef HAS_ATTR_COLORS\n    outColor*=fragAttrColors;\n#endif\n}\n\n","textmeshsdf_vert":"UNI sampler2D tex1;\nUNI sampler2D tex2;\nUNI sampler2D tex3;\nUNI sampler2D tex4;\n\nUNI mat4 projMatrix;\nUNI mat4 modelMatrix;\nUNI mat4 viewMatrix;\n\nIN vec3 vPosition;\nIN vec2 attrTexCoord;\nIN mat4 instMat;\nIN vec2 attrTexOffsets;\nIN vec2 attrSize;\nIN vec2 attrTcSize;\nIN float attrPage;\nIN vec4 attrColors;\n\nOUT vec2 texCoord;\nOUT float texIndex;\nOUT vec4 fragAttrColors;\n\n\n\n\nconst float mulSize=0.01;\n\nvoid main()\n{\n    texCoord=(attrTexOffsets+attrTexCoord*attrTcSize);\n    texCoord.y=1.0-texCoord.y;\n\n    mat4 instMVMat=instMat;\n    vec4 vert=vec4( vPosition, 1. );\n    vert.x*=attrSize.x*mulSize;\n    vert.y*=attrSize.y*mulSize;\n\n    fragAttrColors=attrColors;\n\n    texIndex=attrPage+0.4; // strange ios rounding errors?!\n\n    mat4 mvMatrix=viewMatrix * modelMatrix * instMVMat;\n\n    gl_Position = projMatrix * mvMatrix * vert;\n}\n",};
 // https://soimy.github.io/msdf-bmfont-xml/
 
 // antialiasing:
@@ -31445,31 +31906,6 @@ CABLES.OPS["c7608375-5b45-4bca-87ef-d0c5e970779a"]={f:Ops.Vars.VarSetObject_v2,o
 
 // **************************************************************
 // 
-// Ops.Vars.VarGetObject_v2
-// 
-// **************************************************************
-
-Ops.Vars.VarGetObject_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const val = op.outObject("Value");
-op.varName = op.inValueSelect("Variable", [], "", true);
-
-new CABLES.VarGetOpWrapper(op, "object", op.varName, val);
-
-
-};
-
-Ops.Vars.VarGetObject_v2.prototype = new CABLES.Op();
-CABLES.OPS["321419d9-69c7-4310-a327-93d310bc2b8e"]={f:Ops.Vars.VarGetObject_v2,objName:"Ops.Vars.VarGetObject_v2"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Gl.Phong.LambertMaterial_v2
 // 
 // **************************************************************
@@ -32175,433 +32611,6 @@ CABLES.OPS["c85b449b-fb4e-40b3-928e-5eea6a5d0ebc"]={f:Ops.Data.Compose.Object.Co
 
 // **************************************************************
 // 
-// Ops.Data.Compose.Object.CompObjectSetNumber
-// 
-// **************************************************************
-
-Ops.Data.Compose.Object.CompObjectSetNumber = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    update = op.inTrigger("Update"),
-    inKey = op.inString("Key", ""),
-    inNum = op.inFloat("Number", 0),
-    next = op.outTrigger("Next");
-
-op.setUiAttrib({ "extendTitlePort": inKey.name });
-inKey.setUiAttribs({ "stringTrim": true, "minLength": 1 });
-
-update.onTriggered = () =>
-{
-    if (op.patch.frameStore.compObject && op.patch.frameStore.compObject.length > 0)
-    {
-        let obj = op.patch.frameStore.compObject[op.patch.frameStore.compObject.length - 1];
-        obj[inKey.get()] = inNum.get();
-    }
-    next.trigger();
-};
-
-
-};
-
-Ops.Data.Compose.Object.CompObjectSetNumber.prototype = new CABLES.Op();
-CABLES.OPS["58a75bf7-6828-4190-a205-3b8037bc24d4"]={f:Ops.Data.Compose.Object.CompObjectSetNumber,objName:"Ops.Data.Compose.Object.CompObjectSetNumber"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Ui.VizObject
-// 
-// **************************************************************
-
-Ops.Ui.VizObject = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inObj = op.inObject("Object"),
-    inConsole = op.inTriggerButton("console log"),
-    inZoomText = op.inBool("ZoomText", false),
-    inLineNums = op.inBool("Line Numbers", true),
-    inFontSize = op.inFloat("Font Size", 10),
-    inPos = op.inFloatSlider("Scroll", 0);
-
-let lines = [];
-inConsole.setUiAttribs({ "hidePort": true });
-
-op.setUiAttrib({ "height": 200, "width": 400, "resizable": true, "vizLayerMaxZoom": 2500 });
-
-inObj.onChange = () =>
-{
-    let obj = inObj.get();
-    let str = "???";
-
-    if (obj && obj.getInfo) obj = obj.getInfo();
-
-    if (obj && obj.constructor && obj.constructor.name != "Object") op.setUiAttribs({ "extendTitle": obj.constructor.name });
-
-    if (obj === undefined)str = "undefined";
-    else if (obj == null)str = "null";
-    else
-        try
-        {
-            str = JSON.stringify(obj, false, 4);
-
-            if (
-                obj.hasOwnProperty("isTrusted") && Object.keys(obj).length == 1 ||
-            (str == "{}" && obj && obj.constructor && obj.constructor.name != "Object"))
-            {
-                str = "could not stringify object: " + obj.constructor.name + "\n";
-
-                const o = {};
-                for (const i in obj)
-                {
-                    if (!obj[i]) continue;
-
-                    if (obj[i].constructor)
-                    {
-                        if (obj[i].constructor.name == "Number" || obj[i].constructor.name == "String" || obj[i].constructor.name == "Boolean")
-                            o[i] = obj[i];
-                    }
-                    else
-                        o[i] = "{???}";
-                }
-                obj = o;
-                str = JSON.stringify(obj, false, 4);
-            }
-        }
-        catch (e)
-        {
-            str = "object can not be displayed as string", e.msg;
-        }
-
-    str = String(str);
-    lines = str.split("\n");
-};
-
-inObj.onLinkChanged = () =>
-{
-    if (inObj.isLinked())
-    {
-        const p = inObj.links[0].getOtherPort(inObj);
-
-        op.setUiAttrib({ "extendTitle": p.uiAttribs.objType });
-    }
-};
-
-inConsole.onTriggered = () =>
-{
-    console.info(inObj.get());
-};
-
-op.renderVizLayer = (ctx, layer, viz) =>
-{
-    viz.clear(ctx, layer);
-
-    ctx.save();
-    ctx.scale(layer.scale, layer.scale);
-
-    viz.renderText(ctx, layer, lines, {
-        "zoomText": inZoomText.get(),
-        "showLineNum": inLineNums.get(),
-        "syntax": "js",
-        "fontSize": inFontSize.get(),
-        "scroll": inPos.get()
-    });
-
-    ctx.restore();
-};
-
-//
-
-
-};
-
-Ops.Ui.VizObject.prototype = new CABLES.Op();
-CABLES.OPS["d09bc53e-9f52-4872-94c7-4ef777512222"]={f:Ops.Ui.VizObject,objName:"Ops.Ui.VizObject"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Json.ObjectValuesAsArray
-// 
-// **************************************************************
-
-Ops.Json.ObjectValuesAsArray = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inObj = op.inObject("Object"),
-    outValues = op.outArray("Values"),
-    outNumValues = op.outNumber("Num values");
-
-inObj.onChange = () =>
-{
-    const sourceObj = inObj.get();
-    if (!sourceObj)
-    {
-        outNumValues.set(0);
-        outValues.set([]);
-        return;
-    }
-
-    const values = Object.values(sourceObj);
-    outNumValues.set(values.length);
-    outValues.set(values);
-};
-
-
-};
-
-Ops.Json.ObjectValuesAsArray.prototype = new CABLES.Op();
-CABLES.OPS["32ff73f5-7947-42b0-83fa-e079af7beb5c"]={f:Ops.Json.ObjectValuesAsArray,objName:"Ops.Json.ObjectValuesAsArray"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Ui.VizArrayTable
-// 
-// **************************************************************
-
-Ops.Ui.VizArrayTable = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inArr = op.inArray("Array"),
-    inOffset = op.inInt("Start Row", 0);
-
-op.setUiAttrib({ "height": 200, "width": 400, "resizable": true, "vizLayerMaxZoom": 2500 });
-
-function getCellValue(v)
-{
-    let str = "";
-
-    if (typeof v == "string")
-    {
-        // if (CABLES.UTILS.isNumeric(v)) str = "\"" + v + "\"";
-        // else str = v;
-        str = "\"" + v + "\"";
-    }
-    else if (CABLES.UTILS.isNumeric(v)) str = String(Math.round(v * 10000) / 10000);
-    else if (Array.isArray(v))
-    {
-        let preview = "...";
-        if (v.length == 0) preview = "";
-        str = "[" + preview + "] (" + v.length + ")";
-    }
-    else if (typeof v == "object")
-    {
-        try
-        {
-            str = JSON.stringify(v, true, 1);
-        }
-        catch (e)
-        {
-            str = "{???}";
-        }
-    }
-    else if (v != v || v === undefined)
-    {
-        str += String(v);
-    }
-    else
-    {
-        str += String(v);
-    }
-
-    return str;
-}
-
-op.renderVizLayer = (ctx, layer) =>
-{
-    ctx.fillStyle = "#222";
-    ctx.fillRect(layer.x, layer.y, layer.width, layer.height);
-
-    ctx.save();
-    ctx.scale(layer.scale, layer.scale);
-
-    ctx.font = "normal 10px sourceCodePro";
-    ctx.fillStyle = "#ccc";
-
-    const arr = inArr.get() || [];
-    let stride = 1;
-
-    if (inArr.get() === null) op.setUiAttrib({ "extendTitle": "null" });
-    else if (inArr.get() === undefined) op.setUiAttrib({ "extendTitle": "undefined" });
-    else op.setUiAttrib({ "extendTitle": "length: " + arr.length });
-
-    if (inArr.links.length > 0 && inArr.links[0].getOtherPort(inArr))
-        stride = inArr.links[0].getOtherPort(inArr).uiAttribs.stride || 1;
-
-    let lines = Math.floor(layer.height / layer.scale / 10 - 1);
-    let padding = 4;
-    let offset = inOffset.get() * stride;
-    let columnsWidth = [];
-
-    for (let i = 0; i < stride; i++)columnsWidth[i] = 0;
-
-    for (let i = offset; i < offset + lines * stride; i += stride)
-    {
-        for (let s = 0; s < stride; s++)
-        {
-            const v = arr[i + s];
-
-            columnsWidth[s] = Math.max(columnsWidth[s], getCellValue(v).length);
-        }
-    }
-
-    let columsPos = [];
-    let addUpPos = 30;
-    for (let i = 0; i < stride; i++)
-    {
-        columsPos[i] = addUpPos;
-        addUpPos += (columnsWidth[i] + 1) * 7;
-    }
-
-    for (let i = offset; i < offset + lines * stride; i += stride)
-    {
-        if (i < 0) continue;
-        if (i + stride > arr.length) continue;
-
-        ctx.fillStyle = "#666";
-
-        const lineNum = (i) / stride;
-
-        if (lineNum >= 0)
-            ctx.fillText(lineNum,
-                layer.x / layer.scale + padding,
-                layer.y / layer.scale + 10 + (i - offset) / stride * 10 + padding);
-
-        for (let s = 0; s < stride; s++)
-        {
-            const v = arr[i + s];
-            let str = getCellValue(v);
-
-            ctx.fillStyle = "#ccc";
-
-            if (typeof v == "string")
-            {
-            }
-            else if (CABLES.UTILS.isNumeric(v)) str = String(Math.round(v * 10000) / 10000);
-            else if (Array.isArray(v))
-            {
-            }
-            else if (typeof v == "object")
-            {
-            }
-            else if (v != v || v === undefined)
-            {
-                ctx.fillStyle = "#f00";
-            }
-
-            ctx.fillText(str,
-                layer.x / layer.scale + columsPos[s],
-                layer.y / layer.scale + 10 + (i - offset) / stride * 10 + padding);
-        }
-    }
-
-    if (inArr.get() === null) ctx.fillText("null", layer.x / layer.scale + 10, layer.y / layer.scale + 10 + padding);
-    else if (inArr.get() === undefined) ctx.fillText("undefined", layer.x / layer.scale + 10, layer.y / layer.scale + 10 + padding);
-
-    const gradHeight = 30;
-
-    if (layer.scale <= 0) return;
-    if (offset > 0)
-    {
-        const radGrad = ctx.createLinearGradient(0, layer.y / layer.scale + 5, 0, layer.y / layer.scale + gradHeight);
-        radGrad.addColorStop(0, "#222");
-        radGrad.addColorStop(1, "rgba(34,34,34,0.0)");
-        ctx.fillStyle = radGrad;
-        ctx.fillRect(layer.x / layer.scale, layer.y / layer.scale, 200000, gradHeight);
-    }
-
-    if (offset + lines * stride < arr.length)
-    {
-        const radGrad = ctx.createLinearGradient(0, layer.y / layer.scale + layer.height / layer.scale - gradHeight + 5, 0, layer.y / layer.scale + layer.height / layer.scale - gradHeight + gradHeight);
-        radGrad.addColorStop(1, "#222");
-        radGrad.addColorStop(0, "rgba(34,34,34,0.0)");
-        ctx.fillStyle = radGrad;
-        ctx.fillRect(layer.x / layer.scale, layer.y / layer.scale + layer.height / layer.scale - gradHeight, 200000, gradHeight);
-    }
-
-    ctx.restore();
-};
-
-
-};
-
-Ops.Ui.VizArrayTable.prototype = new CABLES.Op();
-CABLES.OPS["af2eeaaf-ff86-4bfb-9a27-42f05160a5d8"]={f:Ops.Ui.VizArrayTable,objName:"Ops.Ui.VizArrayTable"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.String.GateString
-// 
-// **************************************************************
-
-Ops.String.GateString = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    valueInPort = op.inString("String In", "hello"),
-    passThroughPort = op.inValueBool("Pass Through", false),
-    inIfNot = op.inSwitch("When False", ["keep last string", "custom"], "keep last string"),
-    inCustomNot = op.inString("Custom Value"),
-    valueOutPort = op.outString("String Out", "");
-
-valueInPort.onChange =
-    passThroughPort.onChange = update;
-
-inIfNot.onChange = updateUi;
-
-function updateUi()
-{
-    inCustomNot.setUiAttribs({ "greyout": inIfNot.get() != "custom" });
-    update();
-}
-
-function update()
-{
-    if (passThroughPort.get())
-    {
-        valueOutPort.set("");
-        valueOutPort.set(valueInPort.get());
-    }
-    else
-    {
-        if (inIfNot.get() == "custom") valueOutPort.set(inCustomNot.get());
-    }
-}
-
-
-};
-
-Ops.String.GateString.prototype = new CABLES.Op();
-CABLES.OPS["0ce14933-2d91-4381-9d82-2304aae22c0e"]={f:Ops.String.GateString,objName:"Ops.String.GateString"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Data.Compose.Object.CompObjectSetString
 // 
 // **************************************************************
@@ -32691,194 +32700,6 @@ function exec()
 
 Ops.Json.ObjectGetString.prototype = new CABLES.Op();
 CABLES.OPS["7d86cd28-f7d8-44a1-a4da-466c4782aaec"]={f:Ops.Json.ObjectGetString,objName:"Ops.Json.ObjectGetString"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Json.TriggerObjectSetNumber
-// 
-// **************************************************************
-
-Ops.Json.TriggerObjectSetNumber = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    exec = op.inTriggerButton("Trigger"),
-    inObj = op.inObject("Object"),
-    inKey = op.inString("Key"),
-    inValue = op.inFloat("Number"),
-    next = op.outTrigger("Next"),
-    outObj = op.outObject("Result");
-
-inKey.setUiAttribs({ "stringTrim": true, "minLength": 1 });
-
-exec.onTriggered = () =>
-{
-    const obj = inObj.get();
-
-    if (obj && inKey.get())
-    {
-        obj[inKey.get()] = inValue.get();
-    }
-
-    outObj.setRef(obj);
-
-    next.trigger();
-};
-
-
-};
-
-Ops.Json.TriggerObjectSetNumber.prototype = new CABLES.Op();
-CABLES.OPS["ecc96e87-c51f-49bf-ad90-25f283c73e87"]={f:Ops.Json.TriggerObjectSetNumber,objName:"Ops.Json.TriggerObjectSetNumber"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Json.GateObject
-// 
-// **************************************************************
-
-Ops.Json.GateObject = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    valueInPort = op.inObject("Object In"),
-    passThroughPort = op.inValueBool("Pass Through", true),
-    inIfNull = op.inSwitch("When False", ["keep last object", "null"], "keep last object"),
-    onlyValid = op.inValueBool("Only Valid Objects", false),
-
-    valueOutPort = op.outObject("Object Out");
-
-valueInPort.onChange =
-    inIfNull.onChange =
-    passThroughPort.onChange = update;
-valueInPort.changeAlways = true;
-
-function update()
-{
-    if (!valueInPort.get() && onlyValid.get()) return;
-    if (passThroughPort.get()) valueOutPort.setRef(valueInPort.get());
-    else
-    {
-        if (inIfNull.get() == "null") valueOutPort.setRef(null);
-    }
-}
-
-
-};
-
-Ops.Json.GateObject.prototype = new CABLES.Op();
-CABLES.OPS["95e04331-49d6-42da-81d8-5a75261ab22f"]={f:Ops.Json.GateObject,objName:"Ops.Json.GateObject"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Boolean.Or
-// 
-// **************************************************************
-
-Ops.Boolean.Or = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    bool0 = op.inValueBool("bool 1"),
-    bool1 = op.inValueBool("bool 2"),
-    bool2 = op.inValueBool("bool 3"),
-    bool3 = op.inValueBool("bool 4"),
-    bool4 = op.inValueBool("bool 5"),
-    bool5 = op.inValueBool("bool 6"),
-    bool6 = op.inValueBool("bool 7"),
-    bool7 = op.inValueBool("bool 8"),
-    bool8 = op.inValueBool("bool 9"),
-    bool9 = op.inValueBool("bool 10"),
-    result = op.outBoolNum("result");
-
-bool0.onChange =
-    bool1.onChange =
-    bool2.onChange =
-    bool3.onChange =
-    bool4.onChange =
-    bool5.onChange =
-    bool6.onChange =
-    bool7.onChange =
-    bool8.onChange =
-    bool9.onChange = exec;
-
-function exec()
-{
-    result.set(bool0.get() || bool1.get() || bool2.get() || bool3.get() || bool4.get() || bool5.get() || bool6.get() || bool7.get() || bool8.get() || bool9.get());
-}
-
-
-};
-
-Ops.Boolean.Or.prototype = new CABLES.Op();
-CABLES.OPS["b3b36238-4592-4e11-afe3-8361c4fd6be5"]={f:Ops.Boolean.Or,objName:"Ops.Boolean.Or"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Boolean.MonoFlop
-// 
-// **************************************************************
-
-Ops.Boolean.MonoFlop = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    trigger = op.inTriggerButton("Trigger"),
-    duration = op.inValue("Duration", 1),
-    valueTrue = op.inValue("Value True", 1),
-    valueFalse = op.inValue("Value False", 0),
-    resetButton = op.inTriggerButton("Reset"),
-    outAct = op.outTrigger("Activated"),
-    outEnded = op.outTrigger("Ended"),
-    result = op.outBoolNum("Result", false);
-
-let lastTimeout = -1;
-
-resetButton.onTriggered = function ()
-{
-    result.set(valueFalse.get());
-
-    clearTimeout(lastTimeout);
-};
-
-trigger.onTriggered = function ()
-{
-    if (result.get() == valueFalse.get())outAct.trigger();
-    result.set(valueTrue.get());
-
-    clearTimeout(lastTimeout);
-    lastTimeout = setTimeout(function ()
-    {
-        result.set(valueFalse.get());
-        outEnded.trigger();
-    }, duration.get() * 1000);
-};
-
-
-};
-
-Ops.Boolean.MonoFlop.prototype = new CABLES.Op();
-CABLES.OPS["3a4b0a78-4172-41c7-8248-95cb0856ecc8"]={f:Ops.Boolean.MonoFlop,objName:"Ops.Boolean.MonoFlop"};
 
 
 
@@ -33286,60 +33107,6 @@ function reload()
 
 Ops.Gl.Meshes.HeightMap.prototype = new CABLES.Op();
 CABLES.OPS["81264799-d92b-4b71-a3f1-ad1da8331e62"]={f:Ops.Gl.Meshes.HeightMap,objName:"Ops.Gl.Meshes.HeightMap"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Json.ObjectFunnel
-// 
-// **************************************************************
-
-Ops.Json.ObjectFunnel = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inObj1 = op.inObject("Object1"),
-    inObj2 = op.inObject("Object2"),
-    inObj3 = op.inObject("Object3"),
-    inObj4 = op.inObject("Object4"),
-    inObj5 = op.inObject("Object5");
-
-let outObj = op.outObject("Out Object");
-
-inObj1.onChange = function ()
-{
-    outObj.setRef(inObj1.get());
-};
-
-inObj2.onChange = function ()
-{
-    outObj.setRef(inObj2.get());
-};
-
-inObj3.onChange = function ()
-{
-    outObj.setRef(inObj3.get());
-};
-
-inObj4.onChange = function ()
-{
-    outObj.setRef(inObj4.get());
-};
-
-inObj5.onChange = function ()
-{
-    outObj.setRef(inObj5.get());
-};
-
-
-};
-
-Ops.Json.ObjectFunnel.prototype = new CABLES.Op();
-CABLES.OPS["ff67d867-098e-4eb1-8b37-00ec0863ce5e"]={f:Ops.Json.ObjectFunnel,objName:"Ops.Json.ObjectFunnel"};
 
 
 
@@ -34261,7 +34028,7 @@ function rebuild()
         return;
     }
 
-    if (inpoints[0].length)
+    if (inpoints[0] && inpoints[0].length)
     {
         const arr = [];
         splineIndex = [];
@@ -35238,37 +35005,6 @@ CABLES.OPS["65e8b8a2-ba13-485f-883a-2bcf377989da"]={f:Ops.Trigger.GateTrigger,ob
 
 // **************************************************************
 // 
-// Ops.Boolean.Not
-// 
-// **************************************************************
-
-Ops.Boolean.Not = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    bool = op.inValueBool("Boolean"),
-    outbool = op.outBoolNum("Result");
-
-bool.changeAlways = true;
-
-bool.onChange = function ()
-{
-    outbool.set((!bool.get()));
-};
-
-
-};
-
-Ops.Boolean.Not.prototype = new CABLES.Op();
-CABLES.OPS["6d123c9f-7485-4fd9-a5c2-76e59dcbeb34"]={f:Ops.Boolean.Not,objName:"Ops.Boolean.Not"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Anim.Bang
 // 
 // **************************************************************
@@ -35335,6 +35071,55 @@ inUpdate.onTriggered = function ()
 
 Ops.Anim.Bang.prototype = new CABLES.Op();
 CABLES.OPS["92ca45a7-5b4b-4238-956e-23d79bdc659f"]={f:Ops.Anim.Bang,objName:"Ops.Anim.Bang"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Boolean.Or
+// 
+// **************************************************************
+
+Ops.Boolean.Or = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    bool0 = op.inValueBool("bool 1"),
+    bool1 = op.inValueBool("bool 2"),
+    bool2 = op.inValueBool("bool 3"),
+    bool3 = op.inValueBool("bool 4"),
+    bool4 = op.inValueBool("bool 5"),
+    bool5 = op.inValueBool("bool 6"),
+    bool6 = op.inValueBool("bool 7"),
+    bool7 = op.inValueBool("bool 8"),
+    bool8 = op.inValueBool("bool 9"),
+    bool9 = op.inValueBool("bool 10"),
+    result = op.outBoolNum("result");
+
+bool0.onChange =
+    bool1.onChange =
+    bool2.onChange =
+    bool3.onChange =
+    bool4.onChange =
+    bool5.onChange =
+    bool6.onChange =
+    bool7.onChange =
+    bool8.onChange =
+    bool9.onChange = exec;
+
+function exec()
+{
+    result.set(bool0.get() || bool1.get() || bool2.get() || bool3.get() || bool4.get() || bool5.get() || bool6.get() || bool7.get() || bool8.get() || bool9.get());
+}
+
+
+};
+
+Ops.Boolean.Or.prototype = new CABLES.Op();
+CABLES.OPS["b3b36238-4592-4e11-afe3-8361c4fd6be5"]={f:Ops.Boolean.Or,objName:"Ops.Boolean.Or"};
 
 
 
@@ -36966,11 +36751,11 @@ CABLES.OPS["86fcfd8c-038d-4b91-9820-a08114f6b7eb"]={f:Ops.Math.Divide,objName:"O
 
 // **************************************************************
 // 
-// Ops.Patch.PuSSdim.Console_v2
+// Ops.Patch.PAIoPfn.Console_v2
 // 
 // **************************************************************
 
-Ops.Patch.PuSSdim.Console_v2 = function()
+Ops.Patch.PAIoPfn.Console_v2 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
@@ -37066,8 +36851,8 @@ inClear.onTriggered = () =>
 
 };
 
-Ops.Patch.PuSSdim.Console_v2.prototype = new CABLES.Op();
-CABLES.OPS["41feeadb-b63f-481e-8818-98fcc6466aa9"]={f:Ops.Patch.PuSSdim.Console_v2,objName:"Ops.Patch.PuSSdim.Console_v2"};
+Ops.Patch.PAIoPfn.Console_v2.prototype = new CABLES.Op();
+CABLES.OPS["d20a01b7-560f-47c8-92d5-81cca5d365f6"]={f:Ops.Patch.PAIoPfn.Console_v2,objName:"Ops.Patch.PAIoPfn.Console_v2"};
 
 
 
@@ -37427,6 +37212,852 @@ number.onChange = function ()
 
 Ops.Math.Abs.prototype = new CABLES.Op();
 CABLES.OPS["6b5af21d-065f-44d2-9442-8b7a254753f6"]={f:Ops.Math.Abs,objName:"Ops.Math.Abs"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Ui.VizObject
+// 
+// **************************************************************
+
+Ops.Ui.VizObject = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inObj = op.inObject("Object"),
+    inConsole = op.inTriggerButton("console log"),
+    inZoomText = op.inBool("ZoomText", false),
+    inLineNums = op.inBool("Line Numbers", true),
+    inFontSize = op.inFloat("Font Size", 10),
+    inPos = op.inFloatSlider("Scroll", 0);
+
+let lines = [];
+inConsole.setUiAttribs({ "hidePort": true });
+
+op.setUiAttrib({ "height": 200, "width": 400, "resizable": true, "vizLayerMaxZoom": 2500 });
+
+inObj.onChange = () =>
+{
+    let obj = inObj.get();
+    let str = "???";
+
+    if (obj && obj.getInfo) obj = obj.getInfo();
+
+    if (obj && obj.constructor && obj.constructor.name != "Object") op.setUiAttribs({ "extendTitle": obj.constructor.name });
+
+    if (obj === undefined)str = "undefined";
+    else if (obj == null)str = "null";
+    else
+        try
+        {
+            str = JSON.stringify(obj, false, 4);
+
+            if (
+                obj.hasOwnProperty("isTrusted") && Object.keys(obj).length == 1 ||
+            (str == "{}" && obj && obj.constructor && obj.constructor.name != "Object"))
+            {
+                str = "could not stringify object: " + obj.constructor.name + "\n";
+
+                const o = {};
+                for (const i in obj)
+                {
+                    if (!obj[i]) continue;
+
+                    if (obj[i].constructor)
+                    {
+                        if (obj[i].constructor.name == "Number" || obj[i].constructor.name == "String" || obj[i].constructor.name == "Boolean")
+                            o[i] = obj[i];
+                    }
+                    else
+                        o[i] = "{???}";
+                }
+                obj = o;
+                str = JSON.stringify(obj, false, 4);
+            }
+        }
+        catch (e)
+        {
+            str = "object can not be displayed as string", e.msg;
+        }
+
+    str = String(str);
+    lines = str.split("\n");
+};
+
+inObj.onLinkChanged = () =>
+{
+    if (inObj.isLinked())
+    {
+        const p = inObj.links[0].getOtherPort(inObj);
+
+        op.setUiAttrib({ "extendTitle": p.uiAttribs.objType });
+    }
+};
+
+inConsole.onTriggered = () =>
+{
+    console.info(inObj.get());
+};
+
+op.renderVizLayer = (ctx, layer, viz) =>
+{
+    viz.clear(ctx, layer);
+
+    ctx.save();
+    ctx.scale(layer.scale, layer.scale);
+
+    viz.renderText(ctx, layer, lines, {
+        "zoomText": inZoomText.get(),
+        "showLineNum": inLineNums.get(),
+        "syntax": "js",
+        "fontSize": inFontSize.get(),
+        "scroll": inPos.get()
+    });
+
+    ctx.restore();
+};
+
+//
+
+
+};
+
+Ops.Ui.VizObject.prototype = new CABLES.Op();
+CABLES.OPS["d09bc53e-9f52-4872-94c7-4ef777512222"]={f:Ops.Ui.VizObject,objName:"Ops.Ui.VizObject"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PAIoPfn.NumberFunnel5
+// 
+// **************************************************************
+
+Ops.Patch.PAIoPfn.NumberFunnel5 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inValue1 = op.inFloat("Float1"),
+    inValue2 = op.inFloat("Float2"),
+    inValue3 = op.inFloat("Float3"),
+    inValue4 = op.inFloat("Float4"),
+    inValue5 = op.inFloat("Float5");
+
+let outValue = op.outNumber("Out Latest Value");
+
+inValue1.onChange = function ()
+{
+    outValue.setRef(inValue1.get());
+};
+
+inValue2.onChange = function ()
+{
+    outValue.setRef(inValue2.get());
+};
+
+inValue3.onChange = function ()
+{
+    outValue.setRef(inValue3.get());
+};
+
+inValue4.onChange = function ()
+{
+    outValue.setRef(inValue4.get());
+};
+
+inValue5.onChange = function ()
+{
+    outValue.setRef(inValue5.get());
+};
+
+
+};
+
+Ops.Patch.PAIoPfn.NumberFunnel5.prototype = new CABLES.Op();
+CABLES.OPS["aa824152-64ad-4ecf-87e2-7a6096f9d653"]={f:Ops.Patch.PAIoPfn.NumberFunnel5,objName:"Ops.Patch.PAIoPfn.NumberFunnel5"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Vars.VarSetArray_v2
+// 
+// **************************************************************
+
+Ops.Vars.VarSetArray_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const val = op.inArray("Value", null);
+op.varName = op.inDropDown("Variable", [], "", true);
+
+new CABLES.VarSetOpWrapper(op, "array", val, op.varName);
+
+
+};
+
+Ops.Vars.VarSetArray_v2.prototype = new CABLES.Op();
+CABLES.OPS["8088290f-45d4-4312-b4ca-184d34ca4667"]={f:Ops.Vars.VarSetArray_v2,objName:"Ops.Vars.VarSetArray_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Data.Compose.Object.CompObjectSetNumber
+// 
+// **************************************************************
+
+Ops.Data.Compose.Object.CompObjectSetNumber = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    update = op.inTrigger("Update"),
+    inKey = op.inString("Key", ""),
+    inNum = op.inFloat("Number", 0),
+    next = op.outTrigger("Next");
+
+op.setUiAttrib({ "extendTitlePort": inKey.name });
+inKey.setUiAttribs({ "stringTrim": true, "minLength": 1 });
+
+update.onTriggered = () =>
+{
+    if (op.patch.frameStore.compObject && op.patch.frameStore.compObject.length > 0)
+    {
+        let obj = op.patch.frameStore.compObject[op.patch.frameStore.compObject.length - 1];
+        obj[inKey.get()] = inNum.get();
+    }
+    next.trigger();
+};
+
+
+};
+
+Ops.Data.Compose.Object.CompObjectSetNumber.prototype = new CABLES.Op();
+CABLES.OPS["58a75bf7-6828-4190-a205-3b8037bc24d4"]={f:Ops.Data.Compose.Object.CompObjectSetNumber,objName:"Ops.Data.Compose.Object.CompObjectSetNumber"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Ui.VizArrayTable
+// 
+// **************************************************************
+
+Ops.Ui.VizArrayTable = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inArr = op.inArray("Array"),
+    inOffset = op.inInt("Start Row", 0);
+
+op.setUiAttrib({ "height": 200, "width": 400, "resizable": true, "vizLayerMaxZoom": 2500 });
+
+function getCellValue(v)
+{
+    let str = "";
+
+    if (typeof v == "string")
+    {
+        // if (CABLES.UTILS.isNumeric(v)) str = "\"" + v + "\"";
+        // else str = v;
+        str = "\"" + v + "\"";
+    }
+    else if (CABLES.UTILS.isNumeric(v)) str = String(Math.round(v * 10000) / 10000);
+    else if (Array.isArray(v))
+    {
+        let preview = "...";
+        if (v.length == 0) preview = "";
+        str = "[" + preview + "] (" + v.length + ")";
+    }
+    else if (typeof v == "object")
+    {
+        try
+        {
+            str = JSON.stringify(v, true, 1);
+        }
+        catch (e)
+        {
+            str = "{???}";
+        }
+    }
+    else if (v != v || v === undefined)
+    {
+        str += String(v);
+    }
+    else
+    {
+        str += String(v);
+    }
+
+    return str;
+}
+
+op.renderVizLayer = (ctx, layer) =>
+{
+    ctx.fillStyle = "#222";
+    ctx.fillRect(layer.x, layer.y, layer.width, layer.height);
+
+    ctx.save();
+    ctx.scale(layer.scale, layer.scale);
+
+    ctx.font = "normal 10px sourceCodePro";
+    ctx.fillStyle = "#ccc";
+
+    const arr = inArr.get() || [];
+    let stride = 1;
+
+    if (inArr.get() === null) op.setUiAttrib({ "extendTitle": "null" });
+    else if (inArr.get() === undefined) op.setUiAttrib({ "extendTitle": "undefined" });
+    else op.setUiAttrib({ "extendTitle": "length: " + arr.length });
+
+    if (inArr.links.length > 0 && inArr.links[0].getOtherPort(inArr))
+        stride = inArr.links[0].getOtherPort(inArr).uiAttribs.stride || 1;
+
+    let lines = Math.floor(layer.height / layer.scale / 10 - 1);
+    let padding = 4;
+    let offset = inOffset.get() * stride;
+    let columnsWidth = [];
+
+    for (let i = 0; i < stride; i++)columnsWidth[i] = 0;
+
+    for (let i = offset; i < offset + lines * stride; i += stride)
+    {
+        for (let s = 0; s < stride; s++)
+        {
+            const v = arr[i + s];
+
+            columnsWidth[s] = Math.max(columnsWidth[s], getCellValue(v).length);
+        }
+    }
+
+    let columsPos = [];
+    let addUpPos = 30;
+    for (let i = 0; i < stride; i++)
+    {
+        columsPos[i] = addUpPos;
+        addUpPos += (columnsWidth[i] + 1) * 7;
+    }
+
+    for (let i = offset; i < offset + lines * stride; i += stride)
+    {
+        if (i < 0) continue;
+        if (i + stride > arr.length) continue;
+
+        ctx.fillStyle = "#666";
+
+        const lineNum = (i) / stride;
+
+        if (lineNum >= 0)
+            ctx.fillText(lineNum,
+                layer.x / layer.scale + padding,
+                layer.y / layer.scale + 10 + (i - offset) / stride * 10 + padding);
+
+        for (let s = 0; s < stride; s++)
+        {
+            const v = arr[i + s];
+            let str = getCellValue(v);
+
+            ctx.fillStyle = "#ccc";
+
+            if (typeof v == "string")
+            {
+                str = v;
+            }
+            else if (CABLES.UTILS.isNumeric(v)) str = String(Math.round(v * 10000) / 10000);
+            else if (Array.isArray(v))
+            {
+                str = JSON.stringify(v);
+            }
+            else if (typeof v == "object")
+            {
+                try
+                {
+                    str = JSON.stringify(v);
+                }
+                catch (e)
+                {
+                    str = "{object}";
+                }
+            }
+            else if (v != v || v === undefined)
+            {
+                ctx.fillStyle = "#f00";
+                str = "?";
+            }
+
+            ctx.fillText(str,
+                layer.x / layer.scale + columsPos[s],
+                layer.y / layer.scale + 10 + (i - offset) / stride * 10 + padding);
+        }
+    }
+
+    if (inArr.get() === null) ctx.fillText("null", layer.x / layer.scale + 10, layer.y / layer.scale + 10 + padding);
+    else if (inArr.get() === undefined) ctx.fillText("undefined", layer.x / layer.scale + 10, layer.y / layer.scale + 10 + padding);
+
+    const gradHeight = 30;
+
+    if (layer.scale <= 0) return;
+    if (offset > 0)
+    {
+        const radGrad = ctx.createLinearGradient(0, layer.y / layer.scale + 5, 0, layer.y / layer.scale + gradHeight);
+        radGrad.addColorStop(0, "#222");
+        radGrad.addColorStop(1, "rgba(34,34,34,0.0)");
+        ctx.fillStyle = radGrad;
+        ctx.fillRect(layer.x / layer.scale, layer.y / layer.scale, 200000, gradHeight);
+    }
+
+    if (offset + lines * stride < arr.length)
+    {
+        const radGrad = ctx.createLinearGradient(0, layer.y / layer.scale + layer.height / layer.scale - gradHeight + 5, 0, layer.y / layer.scale + layer.height / layer.scale - gradHeight + gradHeight);
+        radGrad.addColorStop(1, "#222");
+        radGrad.addColorStop(0, "rgba(34,34,34,0.0)");
+        ctx.fillStyle = radGrad;
+        ctx.fillRect(layer.x / layer.scale, layer.y / layer.scale + layer.height / layer.scale - gradHeight, 200000, gradHeight);
+    }
+
+    ctx.restore();
+};
+
+
+};
+
+Ops.Ui.VizArrayTable.prototype = new CABLES.Op();
+CABLES.OPS["af2eeaaf-ff86-4bfb-9a27-42f05160a5d8"]={f:Ops.Ui.VizArrayTable,objName:"Ops.Ui.VizArrayTable"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Json.TriggerObjectSetNumber
+// 
+// **************************************************************
+
+Ops.Json.TriggerObjectSetNumber = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    exec = op.inTriggerButton("Trigger"),
+    inObj = op.inObject("Object"),
+    inKey = op.inString("Key"),
+    inValue = op.inFloat("Number"),
+    next = op.outTrigger("Next"),
+    outObj = op.outObject("Result");
+
+inKey.setUiAttribs({ "stringTrim": true, "minLength": 1 });
+
+exec.onTriggered = () =>
+{
+    const obj = inObj.get();
+
+    if (obj && inKey.get())
+    {
+        obj[inKey.get()] = inValue.get();
+    }
+
+    outObj.setRef(obj);
+
+    next.trigger();
+};
+
+
+};
+
+Ops.Json.TriggerObjectSetNumber.prototype = new CABLES.Op();
+CABLES.OPS["ecc96e87-c51f-49bf-ad90-25f283c73e87"]={f:Ops.Json.TriggerObjectSetNumber,objName:"Ops.Json.TriggerObjectSetNumber"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Json.GateObject
+// 
+// **************************************************************
+
+Ops.Json.GateObject = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    valueInPort = op.inObject("Object In"),
+    passThroughPort = op.inValueBool("Pass Through", true),
+    inIfNull = op.inSwitch("When False", ["keep last object", "null"], "keep last object"),
+    onlyValid = op.inValueBool("Only Valid Objects", false),
+
+    valueOutPort = op.outObject("Object Out");
+
+valueInPort.onChange =
+    inIfNull.onChange =
+    passThroughPort.onChange = update;
+valueInPort.changeAlways = true;
+
+function update()
+{
+    if (!valueInPort.get() && onlyValid.get()) return;
+    if (passThroughPort.get()) valueOutPort.setRef(valueInPort.get());
+    else
+    {
+        if (inIfNull.get() == "null") valueOutPort.setRef(null);
+    }
+}
+
+
+};
+
+Ops.Json.GateObject.prototype = new CABLES.Op();
+CABLES.OPS["95e04331-49d6-42da-81d8-5a75261ab22f"]={f:Ops.Json.GateObject,objName:"Ops.Json.GateObject"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Boolean.MonoFlop
+// 
+// **************************************************************
+
+Ops.Boolean.MonoFlop = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    trigger = op.inTriggerButton("Trigger"),
+    duration = op.inValue("Duration", 1),
+    valueTrue = op.inValue("Value True", 1),
+    valueFalse = op.inValue("Value False", 0),
+    resetButton = op.inTriggerButton("Reset"),
+    outAct = op.outTrigger("Activated"),
+    outEnded = op.outTrigger("Ended"),
+    result = op.outBoolNum("Result", false);
+
+let lastTimeout = -1;
+
+resetButton.onTriggered = function ()
+{
+    result.set(valueFalse.get());
+
+    clearTimeout(lastTimeout);
+};
+
+trigger.onTriggered = function ()
+{
+    if (result.get() == valueFalse.get())outAct.trigger();
+    result.set(valueTrue.get());
+
+    clearTimeout(lastTimeout);
+    lastTimeout = setTimeout(function ()
+    {
+        result.set(valueFalse.get());
+        outEnded.trigger();
+    }, duration.get() * 1000);
+};
+
+
+};
+
+Ops.Boolean.MonoFlop.prototype = new CABLES.Op();
+CABLES.OPS["3a4b0a78-4172-41c7-8248-95cb0856ecc8"]={f:Ops.Boolean.MonoFlop,objName:"Ops.Boolean.MonoFlop"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Json.ObjectFunnel
+// 
+// **************************************************************
+
+Ops.Json.ObjectFunnel = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inObj1 = op.inObject("Object1"),
+    inObj2 = op.inObject("Object2"),
+    inObj3 = op.inObject("Object3"),
+    inObj4 = op.inObject("Object4"),
+    inObj5 = op.inObject("Object5");
+
+let outObj = op.outObject("Out Object");
+
+inObj1.onChange = function ()
+{
+    outObj.setRef(inObj1.get());
+};
+
+inObj2.onChange = function ()
+{
+    outObj.setRef(inObj2.get());
+};
+
+inObj3.onChange = function ()
+{
+    outObj.setRef(inObj3.get());
+};
+
+inObj4.onChange = function ()
+{
+    outObj.setRef(inObj4.get());
+};
+
+inObj5.onChange = function ()
+{
+    outObj.setRef(inObj5.get());
+};
+
+
+};
+
+Ops.Json.ObjectFunnel.prototype = new CABLES.Op();
+CABLES.OPS["ff67d867-098e-4eb1-8b37-00ec0863ce5e"]={f:Ops.Json.ObjectFunnel,objName:"Ops.Json.ObjectFunnel"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Json.ObjectValuesAsArray
+// 
+// **************************************************************
+
+Ops.Json.ObjectValuesAsArray = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inObj = op.inObject("Object"),
+    outValues = op.outArray("Values"),
+    outNumValues = op.outNumber("Num values");
+
+inObj.onChange = () =>
+{
+    const sourceObj = inObj.get();
+    if (!sourceObj)
+    {
+        outNumValues.set(0);
+        outValues.set([]);
+        return;
+    }
+
+    const values = Object.values(sourceObj);
+    outNumValues.set(values.length);
+    outValues.set(values);
+};
+
+
+};
+
+Ops.Json.ObjectValuesAsArray.prototype = new CABLES.Op();
+CABLES.OPS["32ff73f5-7947-42b0-83fa-e079af7beb5c"]={f:Ops.Json.ObjectValuesAsArray,objName:"Ops.Json.ObjectValuesAsArray"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Ui.VizNumberBar
+// 
+// **************************************************************
+
+Ops.Ui.VizNumberBar = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inNum = op.inFloat("Number", 0);
+    // inDrawBar=op.inBool("Draw Bar",true),
+    // inDrawNUm=op.inBool("Draw Number",true);
+
+op.setUiAttrib({ "height": 100, "width": 200, "resizable": true });
+
+let max = -Number.MAX_VALUE;
+let min = Number.MAX_VALUE;
+
+inNum.onLinkChanged = () =>
+{
+    max = -Number.MAX_VALUE;
+    min = Number.MAX_VALUE;
+};
+
+op.renderVizLayer = (ctx, layer) =>
+{
+    ctx.fillStyle = "#222";
+    ctx.fillRect(
+        layer.x, layer.y,
+        layer.width, layer.height);
+
+    // if(inDrawBar.get())
+    {
+        max = Math.max(max, inNum.get());
+        min = Math.min(min, inNum.get());
+
+        if (op.uiAttribs.color)ctx.fillStyle = op.uiAttribs.color;
+        else ctx.fillStyle = "#555";
+
+        let a = CABLES.map(0, min, max, 0, layer.width);
+        let b = CABLES.map(inNum.get(), min, max, 0, layer.width);
+
+        let xMin = Math.min(a, b);
+        let xMax = Math.max(a, b);
+
+        ctx.fillRect(
+            xMin + layer.x, layer.y,
+            xMax - xMin, layer.height);
+    }
+
+    // if(inDrawNUm.get())
+    {
+        const padding = 10;
+        if (op.uiAttribs.color)ctx.fillStyle = "#fff";
+        else ctx.fillStyle = "#ccc";
+
+        const fontSize = layer.height * 0.7;
+        ctx.font = "normal " + fontSize + "px sourceCodePro";
+        ctx.fillText(Math.round(inNum.get() * 10000) / 10000, layer.x + padding, layer.y + fontSize);
+    }
+};
+
+
+};
+
+Ops.Ui.VizNumberBar.prototype = new CABLES.Op();
+CABLES.OPS["37575d2e-4ba6-4d2b-b00c-c503666867c5"]={f:Ops.Ui.VizNumberBar,objName:"Ops.Ui.VizNumberBar"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Boolean.BoolByTrigger
+// 
+// **************************************************************
+
+Ops.Boolean.BoolByTrigger = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inTriggerTrue = op.inTriggerButton("True"),
+    inTriggerFalse = op.inTriggerButton("false"),
+    outResult = op.outBoolNum("Result");
+
+inTriggerTrue.onTriggered = function ()
+{
+    outResult.set(true);
+};
+
+inTriggerFalse.onTriggered = function ()
+{
+    outResult.set(false);
+};
+
+
+};
+
+Ops.Boolean.BoolByTrigger.prototype = new CABLES.Op();
+CABLES.OPS["31f65abe-9d6c-4ba6-a291-ef2de41d2087"]={f:Ops.Boolean.BoolByTrigger,objName:"Ops.Boolean.BoolByTrigger"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PAIoPfn.ArrayOfSrvbValuesFromMap
+// 
+// **************************************************************
+
+Ops.Patch.PAIoPfn.ArrayOfSrvbValuesFromMap = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+// SRVB params handler
+
+let uiVars = {
+    "size": 0.2,
+    "diffuse": 0,
+    "mix": 0.15,
+    "tone": 0.15,
+};
+
+const
+    srcObj = op.inObject("Object"),
+    result = op.outArray("Result");
+
+srcObj.onChange = () =>
+{
+    if (!srcObj.get()) return;
+    const src = srcObj.get();
+
+    result.set([
+        src.mix,
+        src.diffuse,
+        src.tone,
+        src.size
+    ]);
+};
+
+
+};
+
+Ops.Patch.PAIoPfn.ArrayOfSrvbValuesFromMap.prototype = new CABLES.Op();
+CABLES.OPS["259f1be8-4fe8-47ac-b286-c491fb65be82"]={f:Ops.Patch.PAIoPfn.ArrayOfSrvbValuesFromMap,objName:"Ops.Patch.PAIoPfn.ArrayOfSrvbValuesFromMap"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Json.ObjectTrigger
+// 
+// **************************************************************
+
+Ops.Json.ObjectTrigger = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inTrigger = op.inTriggerButton("Trigger"),
+    inObj = op.inObject("Object"),
+    outTrigger = op.outTrigger("Next"),
+    outObj = op.outObject("Result");
+
+inTrigger.onTriggered = function ()
+{
+    outObj.setRef(inObj.get());
+    outTrigger.trigger();
+};
+
+
+};
+
+Ops.Json.ObjectTrigger.prototype = new CABLES.Op();
+CABLES.OPS["e437c074-190f-4adb-8265-3fddea27fe33"]={f:Ops.Json.ObjectTrigger,objName:"Ops.Json.ObjectTrigger"};
 
 
 
@@ -38841,7 +39472,13 @@ String.prototype.endl = function ()
  */
 String.prototype.startsWith = function (prefix)
 {
-    return this.indexOf(prefix) === 0;
+    if (!this || !prefix) return false;
+    if (this.length >= prefix.length)
+    {
+        if (this.substring(0, prefix.length) == prefix) return true;
+    }
+    return false;
+    // return this.indexOf(prefix) === 0;
 };
 
 /**
@@ -41666,14 +42303,14 @@ const Port = function (___op, name, type, uiAttribs)
     Object.defineProperty(this, "val", {
         get()
         {
-            this._log.warn("val getter deprecated!", this);
-            this._log.stack("val getter deprecated");
+            // this._log.warn("val getter deprecated!", this);
+            // this._log.stack("val getter deprecated");
             return this.get();
         },
         set(v)
         {
-            this._log.warn("val setter deprecated!", this);
-            this._log.stack("val setter deprecated");
+            // this._log.warn("val setter deprecated!", this);
+            // this._log.stack("val setter deprecated");
             this.setValue(v);
         }
     });
@@ -41860,10 +42497,15 @@ Port.prototype.get = function ()
     if (this._animated && this._lastAnimFrame != this._op.patch.getFrameNum())
     {
         this._lastAnimFrame = this._op.patch.getFrameNum();
-        this.value = this.anim.getValue(this._op.patch.timer.getTime());
 
-        this._oldAnimVal = this.value;
-        this.forceChange();
+        let animval = this.anim.getValue(this._op.patch.timer.getTime());
+
+        if (this.value != animval)
+        {
+            this.value = animval;
+            this._oldAnimVal = this.value;
+            this.forceChange();
+        }
     }
 
     return this.value;
@@ -44624,8 +45266,8 @@ CGL.CopyTexture = CopyTexture;
 /******/ 	"use strict";
 var __webpack_exports__ = {};
 
-const subpatchInputOpName = "Ops.Ui.SubPatchInput";
-const subpatchOutputOpName = "Ops.Ui.SubPatchOutput";
+// const subpatchInputOpName = "Ops.Ui.SubPatchInput"; // can't use defaultops js because we are in core...
+// const subpatchOutputOpName = "Ops.Ui.SubPatchOutput";
 
 const SubPatchOp = class
 {
@@ -44654,8 +45296,8 @@ const SubPatchOp = class
             // else op.patchId.value=CABLES.uuid();
         };
 
-        op.patch.on("subpatchCreated", () => { this.createInOutOps(); });
-        op.on("loadedValueSet", () => { this.createInOutOps(); });
+        // op.patch.on("subpatchCreated", () => { this.createInOutOps(); });
+        // op.on("loadedValueSet", () => { this.createInOutOps(); });
 
 
         op.init = () =>
@@ -44696,20 +45338,6 @@ const SubPatchOp = class
     get patchId()
     {
         return this._op.patchId.get();
-    }
-
-
-    createInOutOps()
-    {
-        if (this._op.patch.clearSubPatchCache) this._op.patch.clearSubPatchCache(this.patchId);
-
-        let patchInputOP = this._op.patch.getSubPatchOp(this.patchId, subpatchInputOpName);
-        let patchOutputOP = this._op.patch.getSubPatchOp(this.patchId, subpatchOutputOpName);
-
-        if (!patchInputOP) this._op.patch.addOp(subpatchInputOpName, { "subPatch": this.patchId, "translate": { "x": 0, "y": 0 } });
-        if (!patchOutputOP) this._op.patch.addOp(subpatchOutputOpName, { "subPatch": this.patchId, "translate": { "x": 0, "y": 0 } });
-
-        // todo: move to correct positions...
     }
 };
 

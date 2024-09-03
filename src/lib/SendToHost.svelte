@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { UI_DialParams, ConsoleText, UI_ScapeParams, UI_AdditionalParams } from "../stores/stores.svelte";
+  import { UI_SrvbParams, ConsoleText, UI_ScapeParams, UI_AdditionalParams } from "../stores/stores.svelte";
   import { MessageToHost } from "./NativeMessage.svelte";
 
   let dialValuesMemo = {};
@@ -7,7 +7,7 @@
   let additionalValuesMemo = {};
 
   $effect(() => {
-    const current = UI_DialParams.current; 
+    const current = UI_SrvbParams.current; 
     Object.keys(current).forEach((param) => {
       if (current[param] === dialValuesMemo[param]) return;
         MessageToHost.requestParamValueUpdate(param, current[param] || 0);   

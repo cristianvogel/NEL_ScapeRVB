@@ -31,10 +31,10 @@ function processHostState(state: any) {
 
 
 function updateRegisteredParams(param, value) {
-  let targetVar = CABLES.patch.getVar("ui_dialValues_object");
+  let targetVar = CABLES.patch.getVar("ext_srvbParams_object");
   if (!targetVar) return;
       let currentValue = targetVar.getValue();
-      targetVar.setValue( {...currentValue, [param]: value} );
+      targetVar.setValue( {...currentValue, [param]: value, source: "host"} );
 }
 
 export const MessageToHost = {
@@ -52,9 +52,10 @@ export const MessageToHost = {
    * @param paramId - The ID of the parameter to update.
    * @param value - The new value of the parameter.
    */
-  requestParamValueUpdate: function (paramId: string, _value: number) {
+  requestParamValueUpdate: function (paramId: string, _value: number | string) {
 
-    if (typeof globalThis.__postNativeMessage__ === "function") {
+    if (typeof globalThis.__postNativeMessage__ === "function" 
+      && ( typeof paramId === "string" && _value !== "ui")  ) {
       globalThis.__postNativeMessage__("setParameterValue", {
         paramId,
         _value,

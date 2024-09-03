@@ -2,8 +2,8 @@
 /// Svelte5 state stores
 
 /////////////////////////
-export const UI_DialParams = dialValues({});
-function dialValues(initial) {
+export const UI_SrvbParams = ui_srvbParams({});
+function ui_srvbParams(initial) {
   let current = $state(initial);
   return {
     get current() {
