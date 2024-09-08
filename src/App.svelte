@@ -1,10 +1,7 @@
 <script>
   import { onMount } from "svelte";
-  import { SimpleTimer } from "./lib/Timer";
-  import { CablesPatch, ConsoleText } from "./stores/stores.svelte";
+  import {ConsoleText, UI_SrvbParams } from "./stores/stores.svelte";
   import { fade } from "svelte/transition";
-  import SendToHost from "./lib/SendToHost.svelte";
-  import SendToUi from "./lib/SendToUI.svelte";
   import { initPatchListeners } from "./lib/PatchListeners.svelte";
   import {
     MessageToHost,
@@ -14,8 +11,8 @@
   let cablesLoaded = $state(false);
 
   // Do first engine init
-  RegisterMessagesFromHost();
-  MessageToHost.requestReady();
+
+  
 
 
 
@@ -31,21 +28,23 @@
         glCanvasResizeToWindow: true,
         onError: (e) => console.error(e),
         onPatchLoaded: () => (cablesLoaded = true),
-        onFinishedLoading: ()=>{},
+        onFinishedLoading:   ()=>{},
         canvas: { willReadFrequently: true, alpha: true, premultipliedAlpha: true }, // make canvas transparent
       });
       // update stores related to Cables patch
       console.log("Patch vars ->", CABLES.patch.getVars());
       initPatchListeners( CABLES.patch );
+      MessageToHost.requestReady();
+      RegisterMessagesFromHost();
     });
   });
+
+
 </script>
 
 <canvas id="glcanvas" width="100vw" height="100vh" willReadFrequently="true"></canvas>
 
 {#if cablesLoaded}
-  <SendToHost />
-  <SendToUi />
   <pre class="console-text">{ConsoleText.current}</pre>
 {:else}
   <pre class="console-text" in:fade>Loading...</pre>

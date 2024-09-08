@@ -29,37 +29,6 @@ function controlSource( initial ) {
   }
 }
 
-export const UI_ScapeParams = scapeParams({});
-function scapeParams(initial) {
-  let current = $state(initial);
-  return {
-    get current() {
-      return current;
-    },
-    update(newValues) {
-      current = newValues;
-    },
-    snapshot() {
-      return $state.snapshot(current);
-    }
-  };
-}
-
-export const UI_AdditionalParams = additionalParams( {} );
-function additionalParams(initial) {
-  let current = $state(initial);
-  return {
-    get current() {
-      return current;
-    },
-    update(newValues) {
-      current = newValues;
-    },
-    snapshot() {
-      return $state.snapshot(current);
-    }
-  };
-}
 //////////////////////
 export const ConsoleText = consoleText("_");
 function consoleText(initial) {
