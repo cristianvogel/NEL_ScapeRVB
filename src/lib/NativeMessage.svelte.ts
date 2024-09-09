@@ -1,4 +1,4 @@
-import { ConsoleText, ControlSource, HostState } from "../stores/stores.svelte";
+import { ConsoleText, ControlSource, HostState, UI_ChangingParamID } from "../stores/stores.svelte";
 import { REGISTERED_PARAM_NAMES } from "../stores/constants";
 import { equiv } from "@thi.ng/equiv";
 //@ts-nocheck
@@ -28,11 +28,12 @@ async function updateUI(param, value) {
   }
 
   let targetVar = CABLES.patch.getVar("ext_srvbParams_object");
+
   let currentUIState = targetVar.getValue();
   if (!currentUIState || !currentUIState[param] || equiv(currentUIState[param], value)) {
     return;
   }
-  targetVar.setValue({ ...currentUIState, [param]: value, lastTouched: value, source: 'host' });
+  targetVar.setValue({ ...currentUIState, [param]: value, source: 'host' });
 }
 
 export const MessageToHost = {

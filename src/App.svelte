@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import {ConsoleText, UI_SrvbParams } from "./stores/stores.svelte";
+  import {ConsoleText } from "./stores/stores.svelte";
   import { fade } from "svelte/transition";
   import { initPatchListeners } from "./lib/PatchListeners.svelte";
   import {
@@ -9,12 +9,6 @@
   } from "./lib/NativeMessage.svelte";
 
   let cablesLoaded = $state(false);
-
-  // Do first engine init
-
-  
-
-
 
   onMount(() => {
     // Second setup the listener for CABLES loader
@@ -56,5 +50,6 @@
     left: 1rem;
     bottom: 1rem;
     color: chartreuse;
+    font-size: xx-small;
   }
 </style>
