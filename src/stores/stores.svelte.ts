@@ -19,6 +19,7 @@ function ui_srvbParams(initial) {
 }
 
 type ParamData = { name: string, value: number };
+
 export const UI_ChangingParamID = ui_mouseIsChangingParamID( {name: '', value: 0} );
 function ui_mouseIsChangingParamID(initial: ParamData) {
   let current: ParamData = $state(initial);
@@ -26,23 +27,25 @@ function ui_mouseIsChangingParamID(initial: ParamData) {
     get current() {
       return current;
     },
-    update(newObject) {
-      if (newObject.name === '') {
+    update(newValues) {
+      if (!ControlSource === 'ui' || !newValues.name ) {
         return;
       }
-      current = newObject;
+      current = newValues;
     }
   };
 }
 
 export const ControlSource = controlSource('');
 function controlSource( initial ) {
-  let current = $derived( UI_SrvbParams.current.source )
+  let current = $state(initial);
   return { 
     get current() {
-     const cs = current !== null ? current : 'none';
-     return cs;
-    }   
+      return current;
+    } ,
+    update(newValue) {
+      current = newValue;
+    } 
   }
 }
 

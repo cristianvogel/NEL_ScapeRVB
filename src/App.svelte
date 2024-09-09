@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import {ConsoleText } from "./stores/stores.svelte";
+  import {ConsoleText, UI_ChangingParamID } from "./stores/stores.svelte";
   import { fade } from "svelte/transition";
   import { initPatchListeners } from "./lib/PatchListeners.svelte";
   import {
@@ -33,7 +33,7 @@
     });
   });
 
-
+$inspect( UI_ChangingParamID.current );
 </script>
 
 <canvas id="glcanvas" width="100vw" height="100vh" willReadFrequently="true"></canvas>

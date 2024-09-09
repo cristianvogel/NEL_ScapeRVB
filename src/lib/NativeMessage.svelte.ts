@@ -1,6 +1,12 @@
-import { ConsoleText, ControlSource, HostState, UI_ChangingParamID } from "../stores/stores.svelte";
+import {
+  ConsoleText,
+  ControlSource,
+  HostState,
+  UI_ChangingParamID,
+} from "../stores/stores.svelte";
 import { REGISTERED_PARAM_NAMES } from "../stores/constants";
 import { equiv } from "@thi.ng/equiv";
+import { EPS } from "@thi.ng/math";
 //@ts-nocheck
 export declare var globalThis: any;
 declare var CABLES: any;
@@ -17,7 +23,7 @@ function processHostState(state: any) {
   const currenHostState = parsedEntries;
   Object.keys(currenHostState).forEach((param) => {
     if (REGISTERED_PARAM_NAMES.includes(param)) {
-      updateUI(param, currenHostState[param] || 0);
+      updateUI(param, currenHostState[param] as number);
     }
   });
 }
@@ -26,14 +32,22 @@ async function updateUI(param, value) {
   while (typeof CABLES === "undefined") {
     await new Promise((resolve) => setTimeout(resolve, 100)); // Wait for 100ms before checking again
   }
-
+  ControlSource.update("host");
   let targetVar = CABLES.patch.getVar("ext_srvbParams_object");
 
   let currentUIState = targetVar.getValue();
-  if (!currentUIState || !currentUIState[param] || equiv(currentUIState[param], value)) {
-    return;
+
+  // Define the function to update the value
+  function updateValue() {
+    targetVar.setValue({
+      ...currentUIState,
+      [param]: value ? value : EPS,
+      source: "host",
+    });
   }
-  targetVar.setValue({ ...currentUIState, [param]: value, source: 'host' });
+
+  if (!currentUIState || !currentUIState[param]) return;
+  else updateValue();
 }
 
 export const MessageToHost = {
@@ -51,6 +65,7 @@ export const MessageToHost = {
    * @param value - The new value of the parameter.
    */
   requestParamValueUpdate: function (paramId: string, value: number) {
+    ConsoleText.update(">> " + paramId + " : " + value);
     if (typeof globalThis.__postNativeMessage__ === "function") {
       globalThis.__postNativeMessage__("setParameterValue", {
         paramId,
