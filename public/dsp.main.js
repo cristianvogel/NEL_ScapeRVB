@@ -3110,7 +3110,7 @@
     convolverNodes.set("SURFACE", [props.SURFACE_0, props.SURFACE_1]);
     convolverNodes.set("TEMPLE", [props.TEMPLE_0, props.TEMPLE_1]);
     convolverNodes.set("LIGHT", [props.LIGHT_0, props.LIGHT_1]);
-    convolverNodes.set("IMMERSION", [props.IMMERSION_0, props.IMMERSION_1]);
+    convolverNodes.set("DEEPNESS", [props.DEEPNESS_0, props.DEEPNESS_1]);
     const zero2 = stdlib.const({ value: 0, key: "srvb::mute" });
     function HermiteVecInterp(channel, hermiteNodes2, _in) {
       let mixer = [];
@@ -3189,7 +3189,7 @@
     { name: "LIGHT", index: 0, att: 0.65 },
     { name: "SURFACE", index: 1, att: 0.475 },
     { name: "TEMPLE", index: 2, att: 0.475 },
-    { name: "IMMERSION", index: 3, att: 0.25 }
+    { name: "DEEPNESS", index: 3, att: 0.25 }
   ];
   function createHermiteVecInterp() {
     return ramp(
@@ -3295,16 +3295,16 @@
           { path: "LIGHT_1", process: scape.vectorData[0], scale: ir_inputAtt[0], blockSizes },
           [stdlib.tapIn({ name: "srvbOut:1" })]
         ),
-        IMMERSION_0: refs.getOrCreate(
-          "IMMERSION_0",
+        DEEPNESS_0: refs.getOrCreate(
+          "DEEPNESS_0",
           "convolver",
-          { path: "IMMERSION_0", process: scape.vectorData[3], scale: ir_inputAtt[3], blockSizes },
+          { path: "DEEPNESS_0", process: scape.vectorData[3], scale: ir_inputAtt[3], blockSizes },
           [stdlib.tapIn({ name: "srvbOut:0" })]
         ),
-        IMMERSION_1: refs.getOrCreate(
-          "IMMERSION_1",
+        DEEPNESS_1: refs.getOrCreate(
+          "DEEPNESS_1",
           "convolver",
-          { path: "IMMERSION_1", process: scape.vectorData[3], scale: ir_inputAtt[3], blockSizes },
+          { path: "DEEPNESS_1", process: scape.vectorData[3], scale: ir_inputAtt[3], blockSizes },
           [stdlib.tapIn({ name: "srvbOut:1" })]
         )
       };

@@ -19,7 +19,7 @@ export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
   convolverNodes.set("SURFACE", [props.SURFACE_0, props.SURFACE_1]);
   convolverNodes.set("TEMPLE", [props.TEMPLE_0, props.TEMPLE_1]);
   convolverNodes.set("LIGHT", [props.LIGHT_0, props.LIGHT_1]);
-  convolverNodes.set("IMMERSION", [props.IMMERSION_0, props.IMMERSION_1]);
+  convolverNodes.set("DEEPNESS", [props.DEEPNESS_0, props.DEEPNESS_1]);
 
   ////////////////////////////////////////////
   // SCAPE DSP functions
