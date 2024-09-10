@@ -1,9 +1,4 @@
-import {
-  ConsoleText,
-  ControlSource,
-  HostState,
-  UI_ChangingParamID,
-} from "../stores/stores.svelte";
+import { ConsoleText, ControlSource } from "../stores/stores.svelte";
 import { REGISTERED_PARAM_NAMES } from "../stores/constants";
 import { equiv } from "@thi.ng/equiv";
 import { EPS } from "@thi.ng/math";
@@ -21,23 +16,26 @@ function processHostState(state: any) {
     console.warn("Bad state received", parsedEntries);
   }
   const currenHostState = parsedEntries;
-  Object.keys(currenHostState).forEach((param) => {
-    if (REGISTERED_PARAM_NAMES.includes(param)) {
-      updateUI(param, currenHostState[param] as number);
-    }
-  });
+  if (ControlSource.current !== "ui") {
+    Object.keys(currenHostState).forEach((param) => {
+      if (REGISTERED_PARAM_NAMES.includes(param)) {
+        updateUI(param, currenHostState[param] as number);
+      }
+    });
+  }
 }
 
 async function updateUI(param, value) {
   while (typeof CABLES === "undefined") {
     await new Promise((resolve) => setTimeout(resolve, 100)); // Wait for 100ms before checking again
   }
-  ControlSource.update("host");
+  
   let targetVar = CABLES.patch.getVar("ext_srvbParams_object");
 
   let currentUIState = targetVar.getValue();
 
-  // Define the function to update the value
+  // Define the function to update the value in the UI
+  // with the received value from the host
   function updateValue() {
     targetVar.setValue({
       ...currentUIState,
@@ -45,7 +43,7 @@ async function updateUI(param, value) {
       source: "host",
     });
   }
-
+  // do checks, then update
   if (!currentUIState || !currentUIState[param]) return;
   else updateValue();
 }
@@ -65,12 +63,14 @@ export const MessageToHost = {
    * @param value - The new value of the parameter.
    */
   requestParamValueUpdate: function (paramId: string, value: number) {
-    ConsoleText.update(">> " + paramId + " : " + value);
-    if (typeof globalThis.__postNativeMessage__ === "function") {
-      globalThis.__postNativeMessage__("setParameterValue", {
-        paramId,
-        value,
-      });
+    if (REGISTERED_PARAM_NAMES.includes(paramId)) {
+      ConsoleText.extend(">> host >> "+ paramId + " >> " + value);
+      if (typeof globalThis.__postNativeMessage__ === "function") {
+        globalThis.__postNativeMessage__("setParameterValue", {
+          paramId,
+          value,
+        });
+      }
     }
   },
 
@@ -78,6 +78,7 @@ export const MessageToHost = {
    * Send a ready message to the host.
    */
   requestReady: function () {
+    console.log(REGISTERED_PARAM_NAMES);
     if (typeof globalThis.__postNativeMessage__ === "function") {
       globalThis.__postNativeMessage__("ready", {});
     }

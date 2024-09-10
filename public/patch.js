@@ -19477,8 +19477,8 @@ var CABLES = CABLES || {}; CABLES.build = {"timestamp":1725893046792,"created":"
 (()=>{"use strict";var t={d:(n,a)=>{for(var r in a)t.o(a,r)&&!t.o(n,r)&&Object.defineProperty(n,r,{enumerable:!0,get:a[r]})},o:(t,n)=>Object.prototype.hasOwnProperty.call(t,n),r:t=>{"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})}},n={};t.r(n),t.d(n,{ARRAY_TYPE:()=>f,EPSILON:()=>M,RANDOM:()=>l,equals:()=>d,setMatrixArrayType:()=>v,toRadian:()=>m});var a={};t.r(a),t.d(a,{LDU:()=>j,add:()=>z,adjoint:()=>S,clone:()=>y,copy:()=>p,create:()=>x,determinant:()=>R,equals:()=>Y,exactEquals:()=>Q,frob:()=>V,fromRotation:()=>D,fromScaling:()=>F,fromValues:()=>w,identity:()=>q,invert:()=>P,mul:()=>_,multiply:()=>T,multiplyScalar:()=>X,multiplyScalarAndAdd:()=>Z,rotate:()=>I,scale:()=>E,set:()=>g,str:()=>L,sub:()=>B,subtract:()=>O,transpose:()=>A});var r={};t.r(r),t.d(r,{add:()=>it,clone:()=>k,copy:()=>U,create:()=>N,determinant:()=>J,equals:()=>ft,exactEquals:()=>Mt,frob:()=>ot,fromRotation:()=>at,fromScaling:()=>rt,fromTranslation:()=>ut,fromValues:()=>C,identity:()=>W,invert:()=>H,mul:()=>lt,multiply:()=>K,multiplyScalar:()=>ct,multiplyScalarAndAdd:()=>st,rotate:()=>$,scale:()=>tt,set:()=>G,str:()=>et,sub:()=>vt,subtract:()=>ht,translate:()=>nt});var u={};t.r(u),t.d(u,{add:()=>Yt,adjoint:()=>At,clone:()=>dt,copy:()=>xt,create:()=>bt,determinant:()=>Pt,equals:()=>Nt,exactEquals:()=>Bt,frob:()=>Qt,fromMat2d:()=>Lt,fromMat4:()=>mt,fromQuat:()=>Vt,fromRotation:()=>Dt,fromScaling:()=>Ft,fromTranslation:()=>Et,fromValues:()=>yt,identity:()=>qt,invert:()=>gt,mul:()=>kt,multiply:()=>St,multiplyScalar:()=>Zt,multiplyScalarAndAdd:()=>_t,normalFromMat4:()=>jt,projection:()=>zt,rotate:()=>Tt,scale:()=>It,set:()=>pt,str:()=>Ot,sub:()=>Ut,subtract:()=>Xt,translate:()=>Rt,transpose:()=>wt});var e={};t.r(e),t.d(e,{add:()=>Ln,adjoint:()=>nn,clone:()=>Ct,copy:()=>Gt,create:()=>Wt,determinant:()=>an,equals:()=>Qn,exactEquals:()=>On,frob:()=>Fn,fromQuat:()=>An,fromQuat2:()=>xn,fromRotation:()=>ln,fromRotationTranslation:()=>dn,fromRotationTranslationScale:()=>wn,fromRotationTranslationScaleOrigin:()=>gn,fromScaling:()=>fn,fromTranslation:()=>Mn,fromValues:()=>Ht,fromXRotation:()=>vn,fromYRotation:()=>bn,fromZRotation:()=>mn,frustum:()=>Pn,getRotation:()=>qn,getScaling:()=>pn,getTranslation:()=>yn,identity:()=>Kt,invert:()=>tn,lookAt:()=>In,mul:()=>Yn,multiply:()=>rn,multiplyScalar:()=>jn,multiplyScalarAndAdd:()=>zn,ortho:()=>Tn,perspective:()=>Sn,perspectiveFromFieldOfView:()=>Rn,rotate:()=>on,rotateX:()=>hn,rotateY:()=>cn,rotateZ:()=>sn,scale:()=>en,set:()=>Jt,str:()=>Dn,sub:()=>Xn,subtract:()=>Vn,targetTo:()=>En,translate:()=>un,transpose:()=>$t});var o={};t.r(o),t.d(o,{add:()=>Wn,angle:()=>wa,bezier:()=>va,ceil:()=>Jn,clone:()=>_n,copy:()=>kn,create:()=>Zn,cross:()=>Ma,dist:()=>Da,distance:()=>ua,div:()=>Ea,divide:()=>Hn,dot:()=>sa,equals:()=>Sa,exactEquals:()=>Pa,floor:()=>Kn,forEach:()=>ja,fromValues:()=>Nn,hermite:()=>la,inverse:()=>ha,len:()=>La,length:()=>Bn,lerp:()=>fa,max:()=>ta,min:()=>$n,mul:()=>Ia,multiply:()=>Gn,negate:()=>ia,normalize:()=>ca,random:()=>ba,rotateX:()=>ya,rotateY:()=>pa,rotateZ:()=>qa,round:()=>na,scale:()=>aa,scaleAndAdd:()=>ra,set:()=>Un,sqrDist:()=>Fa,sqrLen:()=>Va,squaredDistance:()=>ea,squaredLength:()=>oa,str:()=>Aa,sub:()=>Ta,subtract:()=>Cn,transformMat3:()=>da,transformMat4:()=>ma,transformQuat:()=>xa,zero:()=>ga});var i={};t.r(i),t.d(i,{add:()=>Za,ceil:()=>ka,clone:()=>Oa,copy:()=>Ya,create:()=>za,cross:()=>or,dist:()=>xr,distance:()=>Ka,div:()=>dr,divide:()=>Na,dot:()=>er,equals:()=>vr,exactEquals:()=>lr,floor:()=>Ua,forEach:()=>wr,fromValues:()=>Qa,inverse:()=>rr,len:()=>pr,length:()=>tr,lerp:()=>ir,max:()=>Ca,min:()=>Wa,mul:()=>mr,multiply:()=>Ba,negate:()=>ar,normalize:()=>ur,random:()=>hr,round:()=>Ga,scale:()=>Ha,scaleAndAdd:()=>Ja,set:()=>Xa,sqrDist:()=>yr,sqrLen:()=>qr,squaredDistance:()=>$a,squaredLength:()=>nr,str:()=>fr,sub:()=>br,subtract:()=>_a,transformMat4:()=>cr,transformQuat:()=>sr,zero:()=>Mr});var h={};t.r(h),t.d(h,{add:()=>$r,calculateW:()=>Fr,clone:()=>Gr,conjugate:()=>Yr,copy:()=>Jr,create:()=>gr,dot:()=>au,equals:()=>su,exactEquals:()=>cu,exp:()=>Lr,fromEuler:()=>Zr,fromMat3:()=>Xr,fromValues:()=>Hr,getAngle:()=>Rr,getAxisAngle:()=>Sr,identity:()=>Ar,invert:()=>Qr,len:()=>eu,length:()=>uu,lerp:()=>ru,ln:()=>Vr,mul:()=>tu,multiply:()=>Tr,normalize:()=>hu,pow:()=>jr,random:()=>Or,rotateX:()=>Ir,rotateY:()=>Er,rotateZ:()=>Dr,rotationTo:()=>Mu,scale:()=>nu,set:()=>Kr,setAxes:()=>lu,setAxisAngle:()=>Pr,slerp:()=>zr,sqlerp:()=>fu,sqrLen:()=>iu,squaredLength:()=>ou,str:()=>_r});var c={};t.r(c),t.d(c,{add:()=>Ou,clone:()=>bu,conjugate:()=>Nu,copy:()=>wu,create:()=>vu,dot:()=>Zu,equals:()=>Ku,exactEquals:()=>Ju,fromMat4:()=>qu,fromRotation:()=>pu,fromRotationTranslation:()=>xu,fromRotationTranslationValues:()=>du,fromTranslation:()=>yu,fromValues:()=>mu,getDual:()=>Su,getReal:()=>Pu,getTranslation:()=>Iu,identity:()=>gu,invert:()=>Bu,len:()=>Uu,length:()=>ku,lerp:()=>_u,mul:()=>Yu,multiply:()=>Qu,normalize:()=>Gu,rotateAroundAxis:()=>zu,rotateByQuatAppend:()=>Vu,rotateByQuatPrepend:()=>ju,rotateX:()=>Du,rotateY:()=>Fu,rotateZ:()=>Lu,scale:()=>Xu,set:()=>Au,setDual:()=>Tu,setReal:()=>Ru,sqrLen:()=>Cu,squaredLength:()=>Wu,str:()=>Hu,translate:()=>Eu});var s={};t.r(s),t.d(s,{add:()=>ue,angle:()=>De,ceil:()=>he,clone:()=>te,copy:()=>ae,create:()=>$u,cross:()=>ge,dist:()=>Xe,distance:()=>be,div:()=>Ye,divide:()=>ie,dot:()=>we,equals:()=>je,exactEquals:()=>Ve,floor:()=>ce,forEach:()=>Be,fromValues:()=>ne,inverse:()=>pe,len:()=>ze,length:()=>de,lerp:()=>Ae,max:()=>Me,min:()=>se,mul:()=>Qe,multiply:()=>oe,negate:()=>ye,normalize:()=>qe,random:()=>Pe,rotate:()=>Ee,round:()=>fe,scale:()=>le,scaleAndAdd:()=>ve,set:()=>re,sqrDist:()=>Ze,sqrLen:()=>_e,squaredDistance:()=>me,squaredLength:()=>xe,str:()=>Le,sub:()=>Oe,subtract:()=>ee,transformMat2:()=>Se,transformMat2d:()=>Re,transformMat3:()=>Te,transformMat4:()=>Ie,zero:()=>Fe});var M=1e-6,f="undefined"!=typeof Float32Array?Float32Array:Array,l=Math.random;function v(t){f=t}var b=Math.PI/180;function m(t){return t*b}function d(t,n){return Math.abs(t-n)<=M*Math.max(1,Math.abs(t),Math.abs(n))}function x(){var t=new f(4);return f!=Float32Array&&(t[1]=0,t[2]=0),t[0]=1,t[3]=1,t}function y(t){var n=new f(4);return n[0]=t[0],n[1]=t[1],n[2]=t[2],n[3]=t[3],n}function p(t,n){return t[0]=n[0],t[1]=n[1],t[2]=n[2],t[3]=n[3],t}function q(t){return t[0]=1,t[1]=0,t[2]=0,t[3]=1,t}function w(t,n,a,r){var u=new f(4);return u[0]=t,u[1]=n,u[2]=a,u[3]=r,u}function g(t,n,a,r,u){return t[0]=n,t[1]=a,t[2]=r,t[3]=u,t}function A(t,n){if(t===n){var a=n[1];t[1]=n[2],t[2]=a}else t[0]=n[0],t[1]=n[2],t[2]=n[1],t[3]=n[3];return t}function P(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=a*e-u*r;return o?(o=1/o,t[0]=e*o,t[1]=-r*o,t[2]=-u*o,t[3]=a*o,t):null}function S(t,n){var a=n[0];return t[0]=n[3],t[1]=-n[1],t[2]=-n[2],t[3]=a,t}function R(t){return t[0]*t[3]-t[2]*t[1]}function T(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=a[0],h=a[1],c=a[2],s=a[3];return t[0]=r*i+e*h,t[1]=u*i+o*h,t[2]=r*c+e*s,t[3]=u*c+o*s,t}function I(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=Math.sin(a),h=Math.cos(a);return t[0]=r*h+e*i,t[1]=u*h+o*i,t[2]=r*-i+e*h,t[3]=u*-i+o*h,t}function E(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=a[0],h=a[1];return t[0]=r*i,t[1]=u*i,t[2]=e*h,t[3]=o*h,t}function D(t,n){var a=Math.sin(n),r=Math.cos(n);return t[0]=r,t[1]=a,t[2]=-a,t[3]=r,t}function F(t,n){return t[0]=n[0],t[1]=0,t[2]=0,t[3]=n[1],t}function L(t){return"mat2("+t[0]+", "+t[1]+", "+t[2]+", "+t[3]+")"}function V(t){return Math.hypot(t[0],t[1],t[2],t[3])}function j(t,n,a,r){return t[2]=r[2]/r[0],a[0]=r[0],a[1]=r[1],a[3]=r[3]-t[2]*a[1],[t,n,a]}function z(t,n,a){return t[0]=n[0]+a[0],t[1]=n[1]+a[1],t[2]=n[2]+a[2],t[3]=n[3]+a[3],t}function O(t,n,a){return t[0]=n[0]-a[0],t[1]=n[1]-a[1],t[2]=n[2]-a[2],t[3]=n[3]-a[3],t}function Q(t,n){return t[0]===n[0]&&t[1]===n[1]&&t[2]===n[2]&&t[3]===n[3]}function Y(t,n){var a=t[0],r=t[1],u=t[2],e=t[3],o=n[0],i=n[1],h=n[2],c=n[3];return Math.abs(a-o)<=M*Math.max(1,Math.abs(a),Math.abs(o))&&Math.abs(r-i)<=M*Math.max(1,Math.abs(r),Math.abs(i))&&Math.abs(u-h)<=M*Math.max(1,Math.abs(u),Math.abs(h))&&Math.abs(e-c)<=M*Math.max(1,Math.abs(e),Math.abs(c))}function X(t,n,a){return t[0]=n[0]*a,t[1]=n[1]*a,t[2]=n[2]*a,t[3]=n[3]*a,t}function Z(t,n,a,r){return t[0]=n[0]+a[0]*r,t[1]=n[1]+a[1]*r,t[2]=n[2]+a[2]*r,t[3]=n[3]+a[3]*r,t}Math.hypot||(Math.hypot=function(){for(var t=0,n=arguments.length;n--;)t+=arguments[n]*arguments[n];return Math.sqrt(t)});var _=T,B=O;function N(){var t=new f(6);return f!=Float32Array&&(t[1]=0,t[2]=0,t[4]=0,t[5]=0),t[0]=1,t[3]=1,t}function k(t){var n=new f(6);return n[0]=t[0],n[1]=t[1],n[2]=t[2],n[3]=t[3],n[4]=t[4],n[5]=t[5],n}function U(t,n){return t[0]=n[0],t[1]=n[1],t[2]=n[2],t[3]=n[3],t[4]=n[4],t[5]=n[5],t}function W(t){return t[0]=1,t[1]=0,t[2]=0,t[3]=1,t[4]=0,t[5]=0,t}function C(t,n,a,r,u,e){var o=new f(6);return o[0]=t,o[1]=n,o[2]=a,o[3]=r,o[4]=u,o[5]=e,o}function G(t,n,a,r,u,e,o){return t[0]=n,t[1]=a,t[2]=r,t[3]=u,t[4]=e,t[5]=o,t}function H(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=n[4],i=n[5],h=a*e-r*u;return h?(h=1/h,t[0]=e*h,t[1]=-r*h,t[2]=-u*h,t[3]=a*h,t[4]=(u*i-e*o)*h,t[5]=(r*o-a*i)*h,t):null}function J(t){return t[0]*t[3]-t[1]*t[2]}function K(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=n[4],h=n[5],c=a[0],s=a[1],M=a[2],f=a[3],l=a[4],v=a[5];return t[0]=r*c+e*s,t[1]=u*c+o*s,t[2]=r*M+e*f,t[3]=u*M+o*f,t[4]=r*l+e*v+i,t[5]=u*l+o*v+h,t}function $(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=n[4],h=n[5],c=Math.sin(a),s=Math.cos(a);return t[0]=r*s+e*c,t[1]=u*s+o*c,t[2]=r*-c+e*s,t[3]=u*-c+o*s,t[4]=i,t[5]=h,t}function tt(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=n[4],h=n[5],c=a[0],s=a[1];return t[0]=r*c,t[1]=u*c,t[2]=e*s,t[3]=o*s,t[4]=i,t[5]=h,t}function nt(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=n[4],h=n[5],c=a[0],s=a[1];return t[0]=r,t[1]=u,t[2]=e,t[3]=o,t[4]=r*c+e*s+i,t[5]=u*c+o*s+h,t}function at(t,n){var a=Math.sin(n),r=Math.cos(n);return t[0]=r,t[1]=a,t[2]=-a,t[3]=r,t[4]=0,t[5]=0,t}function rt(t,n){return t[0]=n[0],t[1]=0,t[2]=0,t[3]=n[1],t[4]=0,t[5]=0,t}function ut(t,n){return t[0]=1,t[1]=0,t[2]=0,t[3]=1,t[4]=n[0],t[5]=n[1],t}function et(t){return"mat2d("+t[0]+", "+t[1]+", "+t[2]+", "+t[3]+", "+t[4]+", "+t[5]+")"}function ot(t){return Math.hypot(t[0],t[1],t[2],t[3],t[4],t[5],1)}function it(t,n,a){return t[0]=n[0]+a[0],t[1]=n[1]+a[1],t[2]=n[2]+a[2],t[3]=n[3]+a[3],t[4]=n[4]+a[4],t[5]=n[5]+a[5],t}function ht(t,n,a){return t[0]=n[0]-a[0],t[1]=n[1]-a[1],t[2]=n[2]-a[2],t[3]=n[3]-a[3],t[4]=n[4]-a[4],t[5]=n[5]-a[5],t}function ct(t,n,a){return t[0]=n[0]*a,t[1]=n[1]*a,t[2]=n[2]*a,t[3]=n[3]*a,t[4]=n[4]*a,t[5]=n[5]*a,t}function st(t,n,a,r){return t[0]=n[0]+a[0]*r,t[1]=n[1]+a[1]*r,t[2]=n[2]+a[2]*r,t[3]=n[3]+a[3]*r,t[4]=n[4]+a[4]*r,t[5]=n[5]+a[5]*r,t}function Mt(t,n){return t[0]===n[0]&&t[1]===n[1]&&t[2]===n[2]&&t[3]===n[3]&&t[4]===n[4]&&t[5]===n[5]}function ft(t,n){var a=t[0],r=t[1],u=t[2],e=t[3],o=t[4],i=t[5],h=n[0],c=n[1],s=n[2],f=n[3],l=n[4],v=n[5];return Math.abs(a-h)<=M*Math.max(1,Math.abs(a),Math.abs(h))&&Math.abs(r-c)<=M*Math.max(1,Math.abs(r),Math.abs(c))&&Math.abs(u-s)<=M*Math.max(1,Math.abs(u),Math.abs(s))&&Math.abs(e-f)<=M*Math.max(1,Math.abs(e),Math.abs(f))&&Math.abs(o-l)<=M*Math.max(1,Math.abs(o),Math.abs(l))&&Math.abs(i-v)<=M*Math.max(1,Math.abs(i),Math.abs(v))}var lt=K,vt=ht;function bt(){var t=new f(9);return f!=Float32Array&&(t[1]=0,t[2]=0,t[3]=0,t[5]=0,t[6]=0,t[7]=0),t[0]=1,t[4]=1,t[8]=1,t}function mt(t,n){return t[0]=n[0],t[1]=n[1],t[2]=n[2],t[3]=n[4],t[4]=n[5],t[5]=n[6],t[6]=n[8],t[7]=n[9],t[8]=n[10],t}function dt(t){var n=new f(9);return n[0]=t[0],n[1]=t[1],n[2]=t[2],n[3]=t[3],n[4]=t[4],n[5]=t[5],n[6]=t[6],n[7]=t[7],n[8]=t[8],n}function xt(t,n){return t[0]=n[0],t[1]=n[1],t[2]=n[2],t[3]=n[3],t[4]=n[4],t[5]=n[5],t[6]=n[6],t[7]=n[7],t[8]=n[8],t}function yt(t,n,a,r,u,e,o,i,h){var c=new f(9);return c[0]=t,c[1]=n,c[2]=a,c[3]=r,c[4]=u,c[5]=e,c[6]=o,c[7]=i,c[8]=h,c}function pt(t,n,a,r,u,e,o,i,h,c){return t[0]=n,t[1]=a,t[2]=r,t[3]=u,t[4]=e,t[5]=o,t[6]=i,t[7]=h,t[8]=c,t}function qt(t){return t[0]=1,t[1]=0,t[2]=0,t[3]=0,t[4]=1,t[5]=0,t[6]=0,t[7]=0,t[8]=1,t}function wt(t,n){if(t===n){var a=n[1],r=n[2],u=n[5];t[1]=n[3],t[2]=n[6],t[3]=a,t[5]=n[7],t[6]=r,t[7]=u}else t[0]=n[0],t[1]=n[3],t[2]=n[6],t[3]=n[1],t[4]=n[4],t[5]=n[7],t[6]=n[2],t[7]=n[5],t[8]=n[8];return t}function gt(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=n[4],i=n[5],h=n[6],c=n[7],s=n[8],M=s*o-i*c,f=-s*e+i*h,l=c*e-o*h,v=a*M+r*f+u*l;return v?(v=1/v,t[0]=M*v,t[1]=(-s*r+u*c)*v,t[2]=(i*r-u*o)*v,t[3]=f*v,t[4]=(s*a-u*h)*v,t[5]=(-i*a+u*e)*v,t[6]=l*v,t[7]=(-c*a+r*h)*v,t[8]=(o*a-r*e)*v,t):null}function At(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=n[4],i=n[5],h=n[6],c=n[7],s=n[8];return t[0]=o*s-i*c,t[1]=u*c-r*s,t[2]=r*i-u*o,t[3]=i*h-e*s,t[4]=a*s-u*h,t[5]=u*e-a*i,t[6]=e*c-o*h,t[7]=r*h-a*c,t[8]=a*o-r*e,t}function Pt(t){var n=t[0],a=t[1],r=t[2],u=t[3],e=t[4],o=t[5],i=t[6],h=t[7],c=t[8];return n*(c*e-o*h)+a*(-c*u+o*i)+r*(h*u-e*i)}function St(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=n[4],h=n[5],c=n[6],s=n[7],M=n[8],f=a[0],l=a[1],v=a[2],b=a[3],m=a[4],d=a[5],x=a[6],y=a[7],p=a[8];return t[0]=f*r+l*o+v*c,t[1]=f*u+l*i+v*s,t[2]=f*e+l*h+v*M,t[3]=b*r+m*o+d*c,t[4]=b*u+m*i+d*s,t[5]=b*e+m*h+d*M,t[6]=x*r+y*o+p*c,t[7]=x*u+y*i+p*s,t[8]=x*e+y*h+p*M,t}function Rt(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=n[4],h=n[5],c=n[6],s=n[7],M=n[8],f=a[0],l=a[1];return t[0]=r,t[1]=u,t[2]=e,t[3]=o,t[4]=i,t[5]=h,t[6]=f*r+l*o+c,t[7]=f*u+l*i+s,t[8]=f*e+l*h+M,t}function Tt(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=n[4],h=n[5],c=n[6],s=n[7],M=n[8],f=Math.sin(a),l=Math.cos(a);return t[0]=l*r+f*o,t[1]=l*u+f*i,t[2]=l*e+f*h,t[3]=l*o-f*r,t[4]=l*i-f*u,t[5]=l*h-f*e,t[6]=c,t[7]=s,t[8]=M,t}function It(t,n,a){var r=a[0],u=a[1];return t[0]=r*n[0],t[1]=r*n[1],t[2]=r*n[2],t[3]=u*n[3],t[4]=u*n[4],t[5]=u*n[5],t[6]=n[6],t[7]=n[7],t[8]=n[8],t}function Et(t,n){return t[0]=1,t[1]=0,t[2]=0,t[3]=0,t[4]=1,t[5]=0,t[6]=n[0],t[7]=n[1],t[8]=1,t}function Dt(t,n){var a=Math.sin(n),r=Math.cos(n);return t[0]=r,t[1]=a,t[2]=0,t[3]=-a,t[4]=r,t[5]=0,t[6]=0,t[7]=0,t[8]=1,t}function Ft(t,n){return t[0]=n[0],t[1]=0,t[2]=0,t[3]=0,t[4]=n[1],t[5]=0,t[6]=0,t[7]=0,t[8]=1,t}function Lt(t,n){return t[0]=n[0],t[1]=n[1],t[2]=0,t[3]=n[2],t[4]=n[3],t[5]=0,t[6]=n[4],t[7]=n[5],t[8]=1,t}function Vt(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=a+a,i=r+r,h=u+u,c=a*o,s=r*o,M=r*i,f=u*o,l=u*i,v=u*h,b=e*o,m=e*i,d=e*h;return t[0]=1-M-v,t[3]=s-d,t[6]=f+m,t[1]=s+d,t[4]=1-c-v,t[7]=l-b,t[2]=f-m,t[5]=l+b,t[8]=1-c-M,t}function jt(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=n[4],i=n[5],h=n[6],c=n[7],s=n[8],M=n[9],f=n[10],l=n[11],v=n[12],b=n[13],m=n[14],d=n[15],x=a*i-r*o,y=a*h-u*o,p=a*c-e*o,q=r*h-u*i,w=r*c-e*i,g=u*c-e*h,A=s*b-M*v,P=s*m-f*v,S=s*d-l*v,R=M*m-f*b,T=M*d-l*b,I=f*d-l*m,E=x*I-y*T+p*R+q*S-w*P+g*A;return E?(E=1/E,t[0]=(i*I-h*T+c*R)*E,t[1]=(h*S-o*I-c*P)*E,t[2]=(o*T-i*S+c*A)*E,t[3]=(u*T-r*I-e*R)*E,t[4]=(a*I-u*S+e*P)*E,t[5]=(r*S-a*T-e*A)*E,t[6]=(b*g-m*w+d*q)*E,t[7]=(m*p-v*g-d*y)*E,t[8]=(v*w-b*p+d*x)*E,t):null}function zt(t,n,a){return t[0]=2/n,t[1]=0,t[2]=0,t[3]=0,t[4]=-2/a,t[5]=0,t[6]=-1,t[7]=1,t[8]=1,t}function Ot(t){return"mat3("+t[0]+", "+t[1]+", "+t[2]+", "+t[3]+", "+t[4]+", "+t[5]+", "+t[6]+", "+t[7]+", "+t[8]+")"}function Qt(t){return Math.hypot(t[0],t[1],t[2],t[3],t[4],t[5],t[6],t[7],t[8])}function Yt(t,n,a){return t[0]=n[0]+a[0],t[1]=n[1]+a[1],t[2]=n[2]+a[2],t[3]=n[3]+a[3],t[4]=n[4]+a[4],t[5]=n[5]+a[5],t[6]=n[6]+a[6],t[7]=n[7]+a[7],t[8]=n[8]+a[8],t}function Xt(t,n,a){return t[0]=n[0]-a[0],t[1]=n[1]-a[1],t[2]=n[2]-a[2],t[3]=n[3]-a[3],t[4]=n[4]-a[4],t[5]=n[5]-a[5],t[6]=n[6]-a[6],t[7]=n[7]-a[7],t[8]=n[8]-a[8],t}function Zt(t,n,a){return t[0]=n[0]*a,t[1]=n[1]*a,t[2]=n[2]*a,t[3]=n[3]*a,t[4]=n[4]*a,t[5]=n[5]*a,t[6]=n[6]*a,t[7]=n[7]*a,t[8]=n[8]*a,t}function _t(t,n,a,r){return t[0]=n[0]+a[0]*r,t[1]=n[1]+a[1]*r,t[2]=n[2]+a[2]*r,t[3]=n[3]+a[3]*r,t[4]=n[4]+a[4]*r,t[5]=n[5]+a[5]*r,t[6]=n[6]+a[6]*r,t[7]=n[7]+a[7]*r,t[8]=n[8]+a[8]*r,t}function Bt(t,n){return t[0]===n[0]&&t[1]===n[1]&&t[2]===n[2]&&t[3]===n[3]&&t[4]===n[4]&&t[5]===n[5]&&t[6]===n[6]&&t[7]===n[7]&&t[8]===n[8]}function Nt(t,n){var a=t[0],r=t[1],u=t[2],e=t[3],o=t[4],i=t[5],h=t[6],c=t[7],s=t[8],f=n[0],l=n[1],v=n[2],b=n[3],m=n[4],d=n[5],x=n[6],y=n[7],p=n[8];return Math.abs(a-f)<=M*Math.max(1,Math.abs(a),Math.abs(f))&&Math.abs(r-l)<=M*Math.max(1,Math.abs(r),Math.abs(l))&&Math.abs(u-v)<=M*Math.max(1,Math.abs(u),Math.abs(v))&&Math.abs(e-b)<=M*Math.max(1,Math.abs(e),Math.abs(b))&&Math.abs(o-m)<=M*Math.max(1,Math.abs(o),Math.abs(m))&&Math.abs(i-d)<=M*Math.max(1,Math.abs(i),Math.abs(d))&&Math.abs(h-x)<=M*Math.max(1,Math.abs(h),Math.abs(x))&&Math.abs(c-y)<=M*Math.max(1,Math.abs(c),Math.abs(y))&&Math.abs(s-p)<=M*Math.max(1,Math.abs(s),Math.abs(p))}var kt=St,Ut=Xt;function Wt(){var t=new f(16);return f!=Float32Array&&(t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[6]=0,t[7]=0,t[8]=0,t[9]=0,t[11]=0,t[12]=0,t[13]=0,t[14]=0),t[0]=1,t[5]=1,t[10]=1,t[15]=1,t}function Ct(t){var n=new f(16);return n[0]=t[0],n[1]=t[1],n[2]=t[2],n[3]=t[3],n[4]=t[4],n[5]=t[5],n[6]=t[6],n[7]=t[7],n[8]=t[8],n[9]=t[9],n[10]=t[10],n[11]=t[11],n[12]=t[12],n[13]=t[13],n[14]=t[14],n[15]=t[15],n}function Gt(t,n){return t[0]=n[0],t[1]=n[1],t[2]=n[2],t[3]=n[3],t[4]=n[4],t[5]=n[5],t[6]=n[6],t[7]=n[7],t[8]=n[8],t[9]=n[9],t[10]=n[10],t[11]=n[11],t[12]=n[12],t[13]=n[13],t[14]=n[14],t[15]=n[15],t}function Ht(t,n,a,r,u,e,o,i,h,c,s,M,l,v,b,m){var d=new f(16);return d[0]=t,d[1]=n,d[2]=a,d[3]=r,d[4]=u,d[5]=e,d[6]=o,d[7]=i,d[8]=h,d[9]=c,d[10]=s,d[11]=M,d[12]=l,d[13]=v,d[14]=b,d[15]=m,d}function Jt(t,n,a,r,u,e,o,i,h,c,s,M,f,l,v,b,m){return t[0]=n,t[1]=a,t[2]=r,t[3]=u,t[4]=e,t[5]=o,t[6]=i,t[7]=h,t[8]=c,t[9]=s,t[10]=M,t[11]=f,t[12]=l,t[13]=v,t[14]=b,t[15]=m,t}function Kt(t){return t[0]=1,t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[5]=1,t[6]=0,t[7]=0,t[8]=0,t[9]=0,t[10]=1,t[11]=0,t[12]=0,t[13]=0,t[14]=0,t[15]=1,t}function $t(t,n){if(t===n){var a=n[1],r=n[2],u=n[3],e=n[6],o=n[7],i=n[11];t[1]=n[4],t[2]=n[8],t[3]=n[12],t[4]=a,t[6]=n[9],t[7]=n[13],t[8]=r,t[9]=e,t[11]=n[14],t[12]=u,t[13]=o,t[14]=i}else t[0]=n[0],t[1]=n[4],t[2]=n[8],t[3]=n[12],t[4]=n[1],t[5]=n[5],t[6]=n[9],t[7]=n[13],t[8]=n[2],t[9]=n[6],t[10]=n[10],t[11]=n[14],t[12]=n[3],t[13]=n[7],t[14]=n[11],t[15]=n[15];return t}function tn(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=n[4],i=n[5],h=n[6],c=n[7],s=n[8],M=n[9],f=n[10],l=n[11],v=n[12],b=n[13],m=n[14],d=n[15],x=a*i-r*o,y=a*h-u*o,p=a*c-e*o,q=r*h-u*i,w=r*c-e*i,g=u*c-e*h,A=s*b-M*v,P=s*m-f*v,S=s*d-l*v,R=M*m-f*b,T=M*d-l*b,I=f*d-l*m,E=x*I-y*T+p*R+q*S-w*P+g*A;return E?(E=1/E,t[0]=(i*I-h*T+c*R)*E,t[1]=(u*T-r*I-e*R)*E,t[2]=(b*g-m*w+d*q)*E,t[3]=(f*w-M*g-l*q)*E,t[4]=(h*S-o*I-c*P)*E,t[5]=(a*I-u*S+e*P)*E,t[6]=(m*p-v*g-d*y)*E,t[7]=(s*g-f*p+l*y)*E,t[8]=(o*T-i*S+c*A)*E,t[9]=(r*S-a*T-e*A)*E,t[10]=(v*w-b*p+d*x)*E,t[11]=(M*p-s*w-l*x)*E,t[12]=(i*P-o*R-h*A)*E,t[13]=(a*R-r*P+u*A)*E,t[14]=(b*y-v*q-m*x)*E,t[15]=(s*q-M*y+f*x)*E,t):null}function nn(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=n[4],i=n[5],h=n[6],c=n[7],s=n[8],M=n[9],f=n[10],l=n[11],v=n[12],b=n[13],m=n[14],d=n[15];return t[0]=i*(f*d-l*m)-M*(h*d-c*m)+b*(h*l-c*f),t[1]=-(r*(f*d-l*m)-M*(u*d-e*m)+b*(u*l-e*f)),t[2]=r*(h*d-c*m)-i*(u*d-e*m)+b*(u*c-e*h),t[3]=-(r*(h*l-c*f)-i*(u*l-e*f)+M*(u*c-e*h)),t[4]=-(o*(f*d-l*m)-s*(h*d-c*m)+v*(h*l-c*f)),t[5]=a*(f*d-l*m)-s*(u*d-e*m)+v*(u*l-e*f),t[6]=-(a*(h*d-c*m)-o*(u*d-e*m)+v*(u*c-e*h)),t[7]=a*(h*l-c*f)-o*(u*l-e*f)+s*(u*c-e*h),t[8]=o*(M*d-l*b)-s*(i*d-c*b)+v*(i*l-c*M),t[9]=-(a*(M*d-l*b)-s*(r*d-e*b)+v*(r*l-e*M)),t[10]=a*(i*d-c*b)-o*(r*d-e*b)+v*(r*c-e*i),t[11]=-(a*(i*l-c*M)-o*(r*l-e*M)+s*(r*c-e*i)),t[12]=-(o*(M*m-f*b)-s*(i*m-h*b)+v*(i*f-h*M)),t[13]=a*(M*m-f*b)-s*(r*m-u*b)+v*(r*f-u*M),t[14]=-(a*(i*m-h*b)-o*(r*m-u*b)+v*(r*h-u*i)),t[15]=a*(i*f-h*M)-o*(r*f-u*M)+s*(r*h-u*i),t}function an(t){var n=t[0],a=t[1],r=t[2],u=t[3],e=t[4],o=t[5],i=t[6],h=t[7],c=t[8],s=t[9],M=t[10],f=t[11],l=t[12],v=t[13],b=t[14],m=t[15];return(n*o-a*e)*(M*m-f*b)-(n*i-r*e)*(s*m-f*v)+(n*h-u*e)*(s*b-M*v)+(a*i-r*o)*(c*m-f*l)-(a*h-u*o)*(c*b-M*l)+(r*h-u*i)*(c*v-s*l)}function rn(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=n[4],h=n[5],c=n[6],s=n[7],M=n[8],f=n[9],l=n[10],v=n[11],b=n[12],m=n[13],d=n[14],x=n[15],y=a[0],p=a[1],q=a[2],w=a[3];return t[0]=y*r+p*i+q*M+w*b,t[1]=y*u+p*h+q*f+w*m,t[2]=y*e+p*c+q*l+w*d,t[3]=y*o+p*s+q*v+w*x,y=a[4],p=a[5],q=a[6],w=a[7],t[4]=y*r+p*i+q*M+w*b,t[5]=y*u+p*h+q*f+w*m,t[6]=y*e+p*c+q*l+w*d,t[7]=y*o+p*s+q*v+w*x,y=a[8],p=a[9],q=a[10],w=a[11],t[8]=y*r+p*i+q*M+w*b,t[9]=y*u+p*h+q*f+w*m,t[10]=y*e+p*c+q*l+w*d,t[11]=y*o+p*s+q*v+w*x,y=a[12],p=a[13],q=a[14],w=a[15],t[12]=y*r+p*i+q*M+w*b,t[13]=y*u+p*h+q*f+w*m,t[14]=y*e+p*c+q*l+w*d,t[15]=y*o+p*s+q*v+w*x,t}function un(t,n,a){var r,u,e,o,i,h,c,s,M,f,l,v,b=a[0],m=a[1],d=a[2];return n===t?(t[12]=n[0]*b+n[4]*m+n[8]*d+n[12],t[13]=n[1]*b+n[5]*m+n[9]*d+n[13],t[14]=n[2]*b+n[6]*m+n[10]*d+n[14],t[15]=n[3]*b+n[7]*m+n[11]*d+n[15]):(r=n[0],u=n[1],e=n[2],o=n[3],i=n[4],h=n[5],c=n[6],s=n[7],M=n[8],f=n[9],l=n[10],v=n[11],t[0]=r,t[1]=u,t[2]=e,t[3]=o,t[4]=i,t[5]=h,t[6]=c,t[7]=s,t[8]=M,t[9]=f,t[10]=l,t[11]=v,t[12]=r*b+i*m+M*d+n[12],t[13]=u*b+h*m+f*d+n[13],t[14]=e*b+c*m+l*d+n[14],t[15]=o*b+s*m+v*d+n[15]),t}function en(t,n,a){var r=a[0],u=a[1],e=a[2];return t[0]=n[0]*r,t[1]=n[1]*r,t[2]=n[2]*r,t[3]=n[3]*r,t[4]=n[4]*u,t[5]=n[5]*u,t[6]=n[6]*u,t[7]=n[7]*u,t[8]=n[8]*e,t[9]=n[9]*e,t[10]=n[10]*e,t[11]=n[11]*e,t[12]=n[12],t[13]=n[13],t[14]=n[14],t[15]=n[15],t}function on(t,n,a,r){var u,e,o,i,h,c,s,f,l,v,b,m,d,x,y,p,q,w,g,A,P,S,R,T,I=r[0],E=r[1],D=r[2],F=Math.hypot(I,E,D);return F<M?null:(I*=F=1/F,E*=F,D*=F,u=Math.sin(a),o=1-(e=Math.cos(a)),i=n[0],h=n[1],c=n[2],s=n[3],f=n[4],l=n[5],v=n[6],b=n[7],m=n[8],d=n[9],x=n[10],y=n[11],p=I*I*o+e,q=E*I*o+D*u,w=D*I*o-E*u,g=I*E*o-D*u,A=E*E*o+e,P=D*E*o+I*u,S=I*D*o+E*u,R=E*D*o-I*u,T=D*D*o+e,t[0]=i*p+f*q+m*w,t[1]=h*p+l*q+d*w,t[2]=c*p+v*q+x*w,t[3]=s*p+b*q+y*w,t[4]=i*g+f*A+m*P,t[5]=h*g+l*A+d*P,t[6]=c*g+v*A+x*P,t[7]=s*g+b*A+y*P,t[8]=i*S+f*R+m*T,t[9]=h*S+l*R+d*T,t[10]=c*S+v*R+x*T,t[11]=s*S+b*R+y*T,n!==t&&(t[12]=n[12],t[13]=n[13],t[14]=n[14],t[15]=n[15]),t)}function hn(t,n,a){var r=Math.sin(a),u=Math.cos(a),e=n[4],o=n[5],i=n[6],h=n[7],c=n[8],s=n[9],M=n[10],f=n[11];return n!==t&&(t[0]=n[0],t[1]=n[1],t[2]=n[2],t[3]=n[3],t[12]=n[12],t[13]=n[13],t[14]=n[14],t[15]=n[15]),t[4]=e*u+c*r,t[5]=o*u+s*r,t[6]=i*u+M*r,t[7]=h*u+f*r,t[8]=c*u-e*r,t[9]=s*u-o*r,t[10]=M*u-i*r,t[11]=f*u-h*r,t}function cn(t,n,a){var r=Math.sin(a),u=Math.cos(a),e=n[0],o=n[1],i=n[2],h=n[3],c=n[8],s=n[9],M=n[10],f=n[11];return n!==t&&(t[4]=n[4],t[5]=n[5],t[6]=n[6],t[7]=n[7],t[12]=n[12],t[13]=n[13],t[14]=n[14],t[15]=n[15]),t[0]=e*u-c*r,t[1]=o*u-s*r,t[2]=i*u-M*r,t[3]=h*u-f*r,t[8]=e*r+c*u,t[9]=o*r+s*u,t[10]=i*r+M*u,t[11]=h*r+f*u,t}function sn(t,n,a){var r=Math.sin(a),u=Math.cos(a),e=n[0],o=n[1],i=n[2],h=n[3],c=n[4],s=n[5],M=n[6],f=n[7];return n!==t&&(t[8]=n[8],t[9]=n[9],t[10]=n[10],t[11]=n[11],t[12]=n[12],t[13]=n[13],t[14]=n[14],t[15]=n[15]),t[0]=e*u+c*r,t[1]=o*u+s*r,t[2]=i*u+M*r,t[3]=h*u+f*r,t[4]=c*u-e*r,t[5]=s*u-o*r,t[6]=M*u-i*r,t[7]=f*u-h*r,t}function Mn(t,n){return t[0]=1,t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[5]=1,t[6]=0,t[7]=0,t[8]=0,t[9]=0,t[10]=1,t[11]=0,t[12]=n[0],t[13]=n[1],t[14]=n[2],t[15]=1,t}function fn(t,n){return t[0]=n[0],t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[5]=n[1],t[6]=0,t[7]=0,t[8]=0,t[9]=0,t[10]=n[2],t[11]=0,t[12]=0,t[13]=0,t[14]=0,t[15]=1,t}function ln(t,n,a){var r,u,e,o=a[0],i=a[1],h=a[2],c=Math.hypot(o,i,h);return c<M?null:(o*=c=1/c,i*=c,h*=c,r=Math.sin(n),e=1-(u=Math.cos(n)),t[0]=o*o*e+u,t[1]=i*o*e+h*r,t[2]=h*o*e-i*r,t[3]=0,t[4]=o*i*e-h*r,t[5]=i*i*e+u,t[6]=h*i*e+o*r,t[7]=0,t[8]=o*h*e+i*r,t[9]=i*h*e-o*r,t[10]=h*h*e+u,t[11]=0,t[12]=0,t[13]=0,t[14]=0,t[15]=1,t)}function vn(t,n){var a=Math.sin(n),r=Math.cos(n);return t[0]=1,t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[5]=r,t[6]=a,t[7]=0,t[8]=0,t[9]=-a,t[10]=r,t[11]=0,t[12]=0,t[13]=0,t[14]=0,t[15]=1,t}function bn(t,n){var a=Math.sin(n),r=Math.cos(n);return t[0]=r,t[1]=0,t[2]=-a,t[3]=0,t[4]=0,t[5]=1,t[6]=0,t[7]=0,t[8]=a,t[9]=0,t[10]=r,t[11]=0,t[12]=0,t[13]=0,t[14]=0,t[15]=1,t}function mn(t,n){var a=Math.sin(n),r=Math.cos(n);return t[0]=r,t[1]=a,t[2]=0,t[3]=0,t[4]=-a,t[5]=r,t[6]=0,t[7]=0,t[8]=0,t[9]=0,t[10]=1,t[11]=0,t[12]=0,t[13]=0,t[14]=0,t[15]=1,t}function dn(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=r+r,h=u+u,c=e+e,s=r*i,M=r*h,f=r*c,l=u*h,v=u*c,b=e*c,m=o*i,d=o*h,x=o*c;return t[0]=1-(l+b),t[1]=M+x,t[2]=f-d,t[3]=0,t[4]=M-x,t[5]=1-(s+b),t[6]=v+m,t[7]=0,t[8]=f+d,t[9]=v-m,t[10]=1-(s+l),t[11]=0,t[12]=a[0],t[13]=a[1],t[14]=a[2],t[15]=1,t}function xn(t,n){var a=new f(3),r=-n[0],u=-n[1],e=-n[2],o=n[3],i=n[4],h=n[5],c=n[6],s=n[7],M=r*r+u*u+e*e+o*o;return M>0?(a[0]=2*(i*o+s*r+h*e-c*u)/M,a[1]=2*(h*o+s*u+c*r-i*e)/M,a[2]=2*(c*o+s*e+i*u-h*r)/M):(a[0]=2*(i*o+s*r+h*e-c*u),a[1]=2*(h*o+s*u+c*r-i*e),a[2]=2*(c*o+s*e+i*u-h*r)),dn(t,n,a),t}function yn(t,n){return t[0]=n[12],t[1]=n[13],t[2]=n[14],t}function pn(t,n){var a=n[0],r=n[1],u=n[2],e=n[4],o=n[5],i=n[6],h=n[8],c=n[9],s=n[10];return t[0]=Math.hypot(a,r,u),t[1]=Math.hypot(e,o,i),t[2]=Math.hypot(h,c,s),t}function qn(t,n){var a=new f(3);pn(a,n);var r=1/a[0],u=1/a[1],e=1/a[2],o=n[0]*r,i=n[1]*u,h=n[2]*e,c=n[4]*r,s=n[5]*u,M=n[6]*e,l=n[8]*r,v=n[9]*u,b=n[10]*e,m=o+s+b,d=0;return m>0?(d=2*Math.sqrt(m+1),t[3]=.25*d,t[0]=(M-v)/d,t[1]=(l-h)/d,t[2]=(i-c)/d):o>s&&o>b?(d=2*Math.sqrt(1+o-s-b),t[3]=(M-v)/d,t[0]=.25*d,t[1]=(i+c)/d,t[2]=(l+h)/d):s>b?(d=2*Math.sqrt(1+s-o-b),t[3]=(l-h)/d,t[0]=(i+c)/d,t[1]=.25*d,t[2]=(M+v)/d):(d=2*Math.sqrt(1+b-o-s),t[3]=(i-c)/d,t[0]=(l+h)/d,t[1]=(M+v)/d,t[2]=.25*d),t}function wn(t,n,a,r){var u=n[0],e=n[1],o=n[2],i=n[3],h=u+u,c=e+e,s=o+o,M=u*h,f=u*c,l=u*s,v=e*c,b=e*s,m=o*s,d=i*h,x=i*c,y=i*s,p=r[0],q=r[1],w=r[2];return t[0]=(1-(v+m))*p,t[1]=(f+y)*p,t[2]=(l-x)*p,t[3]=0,t[4]=(f-y)*q,t[5]=(1-(M+m))*q,t[6]=(b+d)*q,t[7]=0,t[8]=(l+x)*w,t[9]=(b-d)*w,t[10]=(1-(M+v))*w,t[11]=0,t[12]=a[0],t[13]=a[1],t[14]=a[2],t[15]=1,t}function gn(t,n,a,r,u){var e=n[0],o=n[1],i=n[2],h=n[3],c=e+e,s=o+o,M=i+i,f=e*c,l=e*s,v=e*M,b=o*s,m=o*M,d=i*M,x=h*c,y=h*s,p=h*M,q=r[0],w=r[1],g=r[2],A=u[0],P=u[1],S=u[2],R=(1-(b+d))*q,T=(l+p)*q,I=(v-y)*q,E=(l-p)*w,D=(1-(f+d))*w,F=(m+x)*w,L=(v+y)*g,V=(m-x)*g,j=(1-(f+b))*g;return t[0]=R,t[1]=T,t[2]=I,t[3]=0,t[4]=E,t[5]=D,t[6]=F,t[7]=0,t[8]=L,t[9]=V,t[10]=j,t[11]=0,t[12]=a[0]+A-(R*A+E*P+L*S),t[13]=a[1]+P-(T*A+D*P+V*S),t[14]=a[2]+S-(I*A+F*P+j*S),t[15]=1,t}function An(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=a+a,i=r+r,h=u+u,c=a*o,s=r*o,M=r*i,f=u*o,l=u*i,v=u*h,b=e*o,m=e*i,d=e*h;return t[0]=1-M-v,t[1]=s+d,t[2]=f-m,t[3]=0,t[4]=s-d,t[5]=1-c-v,t[6]=l+b,t[7]=0,t[8]=f+m,t[9]=l-b,t[10]=1-c-M,t[11]=0,t[12]=0,t[13]=0,t[14]=0,t[15]=1,t}function Pn(t,n,a,r,u,e,o){var i=1/(a-n),h=1/(u-r),c=1/(e-o);return t[0]=2*e*i,t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[5]=2*e*h,t[6]=0,t[7]=0,t[8]=(a+n)*i,t[9]=(u+r)*h,t[10]=(o+e)*c,t[11]=-1,t[12]=0,t[13]=0,t[14]=o*e*2*c,t[15]=0,t}function Sn(t,n,a,r,u){var e,o=1/Math.tan(n/2);return t[0]=o/a,t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[5]=o,t[6]=0,t[7]=0,t[8]=0,t[9]=0,t[11]=-1,t[12]=0,t[13]=0,t[15]=0,null!=u&&u!==1/0?(e=1/(r-u),t[10]=(u+r)*e,t[14]=2*u*r*e):(t[10]=-1,t[14]=-2*r),t}function Rn(t,n,a,r){var u=Math.tan(n.upDegrees*Math.PI/180),e=Math.tan(n.downDegrees*Math.PI/180),o=Math.tan(n.leftDegrees*Math.PI/180),i=Math.tan(n.rightDegrees*Math.PI/180),h=2/(o+i),c=2/(u+e);return t[0]=h,t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[5]=c,t[6]=0,t[7]=0,t[8]=-(o-i)*h*.5,t[9]=(u-e)*c*.5,t[10]=r/(a-r),t[11]=-1,t[12]=0,t[13]=0,t[14]=r*a/(a-r),t[15]=0,t}function Tn(t,n,a,r,u,e,o){var i=1/(n-a),h=1/(r-u),c=1/(e-o);return t[0]=-2*i,t[1]=0,t[2]=0,t[3]=0,t[4]=0,t[5]=-2*h,t[6]=0,t[7]=0,t[8]=0,t[9]=0,t[10]=2*c,t[11]=0,t[12]=(n+a)*i,t[13]=(u+r)*h,t[14]=(o+e)*c,t[15]=1,t}function In(t,n,a,r){var u,e,o,i,h,c,s,f,l,v,b=n[0],m=n[1],d=n[2],x=r[0],y=r[1],p=r[2],q=a[0],w=a[1],g=a[2];return Math.abs(b-q)<M&&Math.abs(m-w)<M&&Math.abs(d-g)<M?Kt(t):(s=b-q,f=m-w,l=d-g,u=y*(l*=v=1/Math.hypot(s,f,l))-p*(f*=v),e=p*(s*=v)-x*l,o=x*f-y*s,(v=Math.hypot(u,e,o))?(u*=v=1/v,e*=v,o*=v):(u=0,e=0,o=0),i=f*o-l*e,h=l*u-s*o,c=s*e-f*u,(v=Math.hypot(i,h,c))?(i*=v=1/v,h*=v,c*=v):(i=0,h=0,c=0),t[0]=u,t[1]=i,t[2]=s,t[3]=0,t[4]=e,t[5]=h,t[6]=f,t[7]=0,t[8]=o,t[9]=c,t[10]=l,t[11]=0,t[12]=-(u*b+e*m+o*d),t[13]=-(i*b+h*m+c*d),t[14]=-(s*b+f*m+l*d),t[15]=1,t)}function En(t,n,a,r){var u=n[0],e=n[1],o=n[2],i=r[0],h=r[1],c=r[2],s=u-a[0],M=e-a[1],f=o-a[2],l=s*s+M*M+f*f;l>0&&(s*=l=1/Math.sqrt(l),M*=l,f*=l);var v=h*f-c*M,b=c*s-i*f,m=i*M-h*s;return(l=v*v+b*b+m*m)>0&&(v*=l=1/Math.sqrt(l),b*=l,m*=l),t[0]=v,t[1]=b,t[2]=m,t[3]=0,t[4]=M*m-f*b,t[5]=f*v-s*m,t[6]=s*b-M*v,t[7]=0,t[8]=s,t[9]=M,t[10]=f,t[11]=0,t[12]=u,t[13]=e,t[14]=o,t[15]=1,t}function Dn(t){return"mat4("+t[0]+", "+t[1]+", "+t[2]+", "+t[3]+", "+t[4]+", "+t[5]+", "+t[6]+", "+t[7]+", "+t[8]+", "+t[9]+", "+t[10]+", "+t[11]+", "+t[12]+", "+t[13]+", "+t[14]+", "+t[15]+")"}function Fn(t){return Math.hypot(t[0],t[1],t[3],t[4],t[5],t[6],t[7],t[8],t[9],t[10],t[11],t[12],t[13],t[14],t[15])}function Ln(t,n,a){return t[0]=n[0]+a[0],t[1]=n[1]+a[1],t[2]=n[2]+a[2],t[3]=n[3]+a[3],t[4]=n[4]+a[4],t[5]=n[5]+a[5],t[6]=n[6]+a[6],t[7]=n[7]+a[7],t[8]=n[8]+a[8],t[9]=n[9]+a[9],t[10]=n[10]+a[10],t[11]=n[11]+a[11],t[12]=n[12]+a[12],t[13]=n[13]+a[13],t[14]=n[14]+a[14],t[15]=n[15]+a[15],t}function Vn(t,n,a){return t[0]=n[0]-a[0],t[1]=n[1]-a[1],t[2]=n[2]-a[2],t[3]=n[3]-a[3],t[4]=n[4]-a[4],t[5]=n[5]-a[5],t[6]=n[6]-a[6],t[7]=n[7]-a[7],t[8]=n[8]-a[8],t[9]=n[9]-a[9],t[10]=n[10]-a[10],t[11]=n[11]-a[11],t[12]=n[12]-a[12],t[13]=n[13]-a[13],t[14]=n[14]-a[14],t[15]=n[15]-a[15],t}function jn(t,n,a){return t[0]=n[0]*a,t[1]=n[1]*a,t[2]=n[2]*a,t[3]=n[3]*a,t[4]=n[4]*a,t[5]=n[5]*a,t[6]=n[6]*a,t[7]=n[7]*a,t[8]=n[8]*a,t[9]=n[9]*a,t[10]=n[10]*a,t[11]=n[11]*a,t[12]=n[12]*a,t[13]=n[13]*a,t[14]=n[14]*a,t[15]=n[15]*a,t}function zn(t,n,a,r){return t[0]=n[0]+a[0]*r,t[1]=n[1]+a[1]*r,t[2]=n[2]+a[2]*r,t[3]=n[3]+a[3]*r,t[4]=n[4]+a[4]*r,t[5]=n[5]+a[5]*r,t[6]=n[6]+a[6]*r,t[7]=n[7]+a[7]*r,t[8]=n[8]+a[8]*r,t[9]=n[9]+a[9]*r,t[10]=n[10]+a[10]*r,t[11]=n[11]+a[11]*r,t[12]=n[12]+a[12]*r,t[13]=n[13]+a[13]*r,t[14]=n[14]+a[14]*r,t[15]=n[15]+a[15]*r,t}function On(t,n){return t[0]===n[0]&&t[1]===n[1]&&t[2]===n[2]&&t[3]===n[3]&&t[4]===n[4]&&t[5]===n[5]&&t[6]===n[6]&&t[7]===n[7]&&t[8]===n[8]&&t[9]===n[9]&&t[10]===n[10]&&t[11]===n[11]&&t[12]===n[12]&&t[13]===n[13]&&t[14]===n[14]&&t[15]===n[15]}function Qn(t,n){var a=t[0],r=t[1],u=t[2],e=t[3],o=t[4],i=t[5],h=t[6],c=t[7],s=t[8],f=t[9],l=t[10],v=t[11],b=t[12],m=t[13],d=t[14],x=t[15],y=n[0],p=n[1],q=n[2],w=n[3],g=n[4],A=n[5],P=n[6],S=n[7],R=n[8],T=n[9],I=n[10],E=n[11],D=n[12],F=n[13],L=n[14],V=n[15];return Math.abs(a-y)<=M*Math.max(1,Math.abs(a),Math.abs(y))&&Math.abs(r-p)<=M*Math.max(1,Math.abs(r),Math.abs(p))&&Math.abs(u-q)<=M*Math.max(1,Math.abs(u),Math.abs(q))&&Math.abs(e-w)<=M*Math.max(1,Math.abs(e),Math.abs(w))&&Math.abs(o-g)<=M*Math.max(1,Math.abs(o),Math.abs(g))&&Math.abs(i-A)<=M*Math.max(1,Math.abs(i),Math.abs(A))&&Math.abs(h-P)<=M*Math.max(1,Math.abs(h),Math.abs(P))&&Math.abs(c-S)<=M*Math.max(1,Math.abs(c),Math.abs(S))&&Math.abs(s-R)<=M*Math.max(1,Math.abs(s),Math.abs(R))&&Math.abs(f-T)<=M*Math.max(1,Math.abs(f),Math.abs(T))&&Math.abs(l-I)<=M*Math.max(1,Math.abs(l),Math.abs(I))&&Math.abs(v-E)<=M*Math.max(1,Math.abs(v),Math.abs(E))&&Math.abs(b-D)<=M*Math.max(1,Math.abs(b),Math.abs(D))&&Math.abs(m-F)<=M*Math.max(1,Math.abs(m),Math.abs(F))&&Math.abs(d-L)<=M*Math.max(1,Math.abs(d),Math.abs(L))&&Math.abs(x-V)<=M*Math.max(1,Math.abs(x),Math.abs(V))}var Yn=rn,Xn=Vn;function Zn(){var t=new f(3);return f!=Float32Array&&(t[0]=0,t[1]=0,t[2]=0),t}function _n(t){var n=new f(3);return n[0]=t[0],n[1]=t[1],n[2]=t[2],n}function Bn(t){var n=t[0],a=t[1],r=t[2];return Math.hypot(n,a,r)}function Nn(t,n,a){var r=new f(3);return r[0]=t,r[1]=n,r[2]=a,r}function kn(t,n){return t[0]=n[0],t[1]=n[1],t[2]=n[2],t}function Un(t,n,a,r){return t[0]=n,t[1]=a,t[2]=r,t}function Wn(t,n,a){return t[0]=n[0]+a[0],t[1]=n[1]+a[1],t[2]=n[2]+a[2],t}function Cn(t,n,a){return t[0]=n[0]-a[0],t[1]=n[1]-a[1],t[2]=n[2]-a[2],t}function Gn(t,n,a){return t[0]=n[0]*a[0],t[1]=n[1]*a[1],t[2]=n[2]*a[2],t}function Hn(t,n,a){return t[0]=n[0]/a[0],t[1]=n[1]/a[1],t[2]=n[2]/a[2],t}function Jn(t,n){return t[0]=Math.ceil(n[0]),t[1]=Math.ceil(n[1]),t[2]=Math.ceil(n[2]),t}function Kn(t,n){return t[0]=Math.floor(n[0]),t[1]=Math.floor(n[1]),t[2]=Math.floor(n[2]),t}function $n(t,n,a){return t[0]=Math.min(n[0],a[0]),t[1]=Math.min(n[1],a[1]),t[2]=Math.min(n[2],a[2]),t}function ta(t,n,a){return t[0]=Math.max(n[0],a[0]),t[1]=Math.max(n[1],a[1]),t[2]=Math.max(n[2],a[2]),t}function na(t,n){return t[0]=Math.round(n[0]),t[1]=Math.round(n[1]),t[2]=Math.round(n[2]),t}function aa(t,n,a){return t[0]=n[0]*a,t[1]=n[1]*a,t[2]=n[2]*a,t}function ra(t,n,a,r){return t[0]=n[0]+a[0]*r,t[1]=n[1]+a[1]*r,t[2]=n[2]+a[2]*r,t}function ua(t,n){var a=n[0]-t[0],r=n[1]-t[1],u=n[2]-t[2];return Math.hypot(a,r,u)}function ea(t,n){var a=n[0]-t[0],r=n[1]-t[1],u=n[2]-t[2];return a*a+r*r+u*u}function oa(t){var n=t[0],a=t[1],r=t[2];return n*n+a*a+r*r}function ia(t,n){return t[0]=-n[0],t[1]=-n[1],t[2]=-n[2],t}function ha(t,n){return t[0]=1/n[0],t[1]=1/n[1],t[2]=1/n[2],t}function ca(t,n){var a=n[0],r=n[1],u=n[2],e=a*a+r*r+u*u;return e>0&&(e=1/Math.sqrt(e)),t[0]=n[0]*e,t[1]=n[1]*e,t[2]=n[2]*e,t}function sa(t,n){return t[0]*n[0]+t[1]*n[1]+t[2]*n[2]}function Ma(t,n,a){var r=n[0],u=n[1],e=n[2],o=a[0],i=a[1],h=a[2];return t[0]=u*h-e*i,t[1]=e*o-r*h,t[2]=r*i-u*o,t}function fa(t,n,a,r){var u=n[0],e=n[1],o=n[2];return t[0]=u+r*(a[0]-u),t[1]=e+r*(a[1]-e),t[2]=o+r*(a[2]-o),t}function la(t,n,a,r,u,e){var o=e*e,i=o*(2*e-3)+1,h=o*(e-2)+e,c=o*(e-1),s=o*(3-2*e);return t[0]=n[0]*i+a[0]*h+r[0]*c+u[0]*s,t[1]=n[1]*i+a[1]*h+r[1]*c+u[1]*s,t[2]=n[2]*i+a[2]*h+r[2]*c+u[2]*s,t}function va(t,n,a,r,u,e){var o=1-e,i=o*o,h=e*e,c=i*o,s=3*e*i,M=3*h*o,f=h*e;return t[0]=n[0]*c+a[0]*s+r[0]*M+u[0]*f,t[1]=n[1]*c+a[1]*s+r[1]*M+u[1]*f,t[2]=n[2]*c+a[2]*s+r[2]*M+u[2]*f,t}function ba(t,n){n=n||1;var a=2*l()*Math.PI,r=2*l()-1,u=Math.sqrt(1-r*r)*n;return t[0]=Math.cos(a)*u,t[1]=Math.sin(a)*u,t[2]=r*n,t}function ma(t,n,a){var r=n[0],u=n[1],e=n[2],o=a[3]*r+a[7]*u+a[11]*e+a[15];return o=o||1,t[0]=(a[0]*r+a[4]*u+a[8]*e+a[12])/o,t[1]=(a[1]*r+a[5]*u+a[9]*e+a[13])/o,t[2]=(a[2]*r+a[6]*u+a[10]*e+a[14])/o,t}function da(t,n,a){var r=n[0],u=n[1],e=n[2];return t[0]=r*a[0]+u*a[3]+e*a[6],t[1]=r*a[1]+u*a[4]+e*a[7],t[2]=r*a[2]+u*a[5]+e*a[8],t}function xa(t,n,a){var r=a[0],u=a[1],e=a[2],o=a[3],i=n[0],h=n[1],c=n[2],s=u*c-e*h,M=e*i-r*c,f=r*h-u*i,l=u*f-e*M,v=e*s-r*f,b=r*M-u*s,m=2*o;return s*=m,M*=m,f*=m,l*=2,v*=2,b*=2,t[0]=i+s+l,t[1]=h+M+v,t[2]=c+f+b,t}function ya(t,n,a,r){var u=[],e=[];return u[0]=n[0]-a[0],u[1]=n[1]-a[1],u[2]=n[2]-a[2],e[0]=u[0],e[1]=u[1]*Math.cos(r)-u[2]*Math.sin(r),e[2]=u[1]*Math.sin(r)+u[2]*Math.cos(r),t[0]=e[0]+a[0],t[1]=e[1]+a[1],t[2]=e[2]+a[2],t}function pa(t,n,a,r){var u=[],e=[];return u[0]=n[0]-a[0],u[1]=n[1]-a[1],u[2]=n[2]-a[2],e[0]=u[2]*Math.sin(r)+u[0]*Math.cos(r),e[1]=u[1],e[2]=u[2]*Math.cos(r)-u[0]*Math.sin(r),t[0]=e[0]+a[0],t[1]=e[1]+a[1],t[2]=e[2]+a[2],t}function qa(t,n,a,r){var u=[],e=[];return u[0]=n[0]-a[0],u[1]=n[1]-a[1],u[2]=n[2]-a[2],e[0]=u[0]*Math.cos(r)-u[1]*Math.sin(r),e[1]=u[0]*Math.sin(r)+u[1]*Math.cos(r),e[2]=u[2],t[0]=e[0]+a[0],t[1]=e[1]+a[1],t[2]=e[2]+a[2],t}function wa(t,n){var a=Nn(t[0],t[1],t[2]),r=Nn(n[0],n[1],n[2]);ca(a,a),ca(r,r);var u=sa(a,r);return u>1?0:u<-1?Math.PI:Math.acos(u)}function ga(t){return t[0]=0,t[1]=0,t[2]=0,t}function Aa(t){return"vec3("+t[0]+", "+t[1]+", "+t[2]+")"}function Pa(t,n){return t[0]===n[0]&&t[1]===n[1]&&t[2]===n[2]}function Sa(t,n){var a=t[0],r=t[1],u=t[2],e=n[0],o=n[1],i=n[2];return Math.abs(a-e)<=M*Math.max(1,Math.abs(a),Math.abs(e))&&Math.abs(r-o)<=M*Math.max(1,Math.abs(r),Math.abs(o))&&Math.abs(u-i)<=M*Math.max(1,Math.abs(u),Math.abs(i))}var Ra,Ta=Cn,Ia=Gn,Ea=Hn,Da=ua,Fa=ea,La=Bn,Va=oa,ja=(Ra=Zn(),function(t,n,a,r,u,e){var o,i;for(n||(n=3),a||(a=0),i=r?Math.min(r*n+a,t.length):t.length,o=a;o<i;o+=n)Ra[0]=t[o],Ra[1]=t[o+1],Ra[2]=t[o+2],u(Ra,Ra,e),t[o]=Ra[0],t[o+1]=Ra[1],t[o+2]=Ra[2];return t});function za(){var t=new f(4);return f!=Float32Array&&(t[0]=0,t[1]=0,t[2]=0,t[3]=0),t}function Oa(t){var n=new f(4);return n[0]=t[0],n[1]=t[1],n[2]=t[2],n[3]=t[3],n}function Qa(t,n,a,r){var u=new f(4);return u[0]=t,u[1]=n,u[2]=a,u[3]=r,u}function Ya(t,n){return t[0]=n[0],t[1]=n[1],t[2]=n[2],t[3]=n[3],t}function Xa(t,n,a,r,u){return t[0]=n,t[1]=a,t[2]=r,t[3]=u,t}function Za(t,n,a){return t[0]=n[0]+a[0],t[1]=n[1]+a[1],t[2]=n[2]+a[2],t[3]=n[3]+a[3],t}function _a(t,n,a){return t[0]=n[0]-a[0],t[1]=n[1]-a[1],t[2]=n[2]-a[2],t[3]=n[3]-a[3],t}function Ba(t,n,a){return t[0]=n[0]*a[0],t[1]=n[1]*a[1],t[2]=n[2]*a[2],t[3]=n[3]*a[3],t}function Na(t,n,a){return t[0]=n[0]/a[0],t[1]=n[1]/a[1],t[2]=n[2]/a[2],t[3]=n[3]/a[3],t}function ka(t,n){return t[0]=Math.ceil(n[0]),t[1]=Math.ceil(n[1]),t[2]=Math.ceil(n[2]),t[3]=Math.ceil(n[3]),t}function Ua(t,n){return t[0]=Math.floor(n[0]),t[1]=Math.floor(n[1]),t[2]=Math.floor(n[2]),t[3]=Math.floor(n[3]),t}function Wa(t,n,a){return t[0]=Math.min(n[0],a[0]),t[1]=Math.min(n[1],a[1]),t[2]=Math.min(n[2],a[2]),t[3]=Math.min(n[3],a[3]),t}function Ca(t,n,a){return t[0]=Math.max(n[0],a[0]),t[1]=Math.max(n[1],a[1]),t[2]=Math.max(n[2],a[2]),t[3]=Math.max(n[3],a[3]),t}function Ga(t,n){return t[0]=Math.round(n[0]),t[1]=Math.round(n[1]),t[2]=Math.round(n[2]),t[3]=Math.round(n[3]),t}function Ha(t,n,a){return t[0]=n[0]*a,t[1]=n[1]*a,t[2]=n[2]*a,t[3]=n[3]*a,t}function Ja(t,n,a,r){return t[0]=n[0]+a[0]*r,t[1]=n[1]+a[1]*r,t[2]=n[2]+a[2]*r,t[3]=n[3]+a[3]*r,t}function Ka(t,n){var a=n[0]-t[0],r=n[1]-t[1],u=n[2]-t[2],e=n[3]-t[3];return Math.hypot(a,r,u,e)}function $a(t,n){var a=n[0]-t[0],r=n[1]-t[1],u=n[2]-t[2],e=n[3]-t[3];return a*a+r*r+u*u+e*e}function tr(t){var n=t[0],a=t[1],r=t[2],u=t[3];return Math.hypot(n,a,r,u)}function nr(t){var n=t[0],a=t[1],r=t[2],u=t[3];return n*n+a*a+r*r+u*u}function ar(t,n){return t[0]=-n[0],t[1]=-n[1],t[2]=-n[2],t[3]=-n[3],t}function rr(t,n){return t[0]=1/n[0],t[1]=1/n[1],t[2]=1/n[2],t[3]=1/n[3],t}function ur(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=a*a+r*r+u*u+e*e;return o>0&&(o=1/Math.sqrt(o)),t[0]=a*o,t[1]=r*o,t[2]=u*o,t[3]=e*o,t}function er(t,n){return t[0]*n[0]+t[1]*n[1]+t[2]*n[2]+t[3]*n[3]}function or(t,n,a,r){var u=a[0]*r[1]-a[1]*r[0],e=a[0]*r[2]-a[2]*r[0],o=a[0]*r[3]-a[3]*r[0],i=a[1]*r[2]-a[2]*r[1],h=a[1]*r[3]-a[3]*r[1],c=a[2]*r[3]-a[3]*r[2],s=n[0],M=n[1],f=n[2],l=n[3];return t[0]=M*c-f*h+l*i,t[1]=-s*c+f*o-l*e,t[2]=s*h-M*o+l*u,t[3]=-s*i+M*e-f*u,t}function ir(t,n,a,r){var u=n[0],e=n[1],o=n[2],i=n[3];return t[0]=u+r*(a[0]-u),t[1]=e+r*(a[1]-e),t[2]=o+r*(a[2]-o),t[3]=i+r*(a[3]-i),t}function hr(t,n){var a,r,u,e,o,i;n=n||1;do{o=(a=2*l()-1)*a+(r=2*l()-1)*r}while(o>=1);do{i=(u=2*l()-1)*u+(e=2*l()-1)*e}while(i>=1);var h=Math.sqrt((1-o)/i);return t[0]=n*a,t[1]=n*r,t[2]=n*u*h,t[3]=n*e*h,t}function cr(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3];return t[0]=a[0]*r+a[4]*u+a[8]*e+a[12]*o,t[1]=a[1]*r+a[5]*u+a[9]*e+a[13]*o,t[2]=a[2]*r+a[6]*u+a[10]*e+a[14]*o,t[3]=a[3]*r+a[7]*u+a[11]*e+a[15]*o,t}function sr(t,n,a){var r=n[0],u=n[1],e=n[2],o=a[0],i=a[1],h=a[2],c=a[3],s=c*r+i*e-h*u,M=c*u+h*r-o*e,f=c*e+o*u-i*r,l=-o*r-i*u-h*e;return t[0]=s*c+l*-o+M*-h-f*-i,t[1]=M*c+l*-i+f*-o-s*-h,t[2]=f*c+l*-h+s*-i-M*-o,t[3]=n[3],t}function Mr(t){return t[0]=0,t[1]=0,t[2]=0,t[3]=0,t}function fr(t){return"vec4("+t[0]+", "+t[1]+", "+t[2]+", "+t[3]+")"}function lr(t,n){return t[0]===n[0]&&t[1]===n[1]&&t[2]===n[2]&&t[3]===n[3]}function vr(t,n){var a=t[0],r=t[1],u=t[2],e=t[3],o=n[0],i=n[1],h=n[2],c=n[3];return Math.abs(a-o)<=M*Math.max(1,Math.abs(a),Math.abs(o))&&Math.abs(r-i)<=M*Math.max(1,Math.abs(r),Math.abs(i))&&Math.abs(u-h)<=M*Math.max(1,Math.abs(u),Math.abs(h))&&Math.abs(e-c)<=M*Math.max(1,Math.abs(e),Math.abs(c))}var br=_a,mr=Ba,dr=Na,xr=Ka,yr=$a,pr=tr,qr=nr,wr=function(){var t=za();return function(n,a,r,u,e,o){var i,h;for(a||(a=4),r||(r=0),h=u?Math.min(u*a+r,n.length):n.length,i=r;i<h;i+=a)t[0]=n[i],t[1]=n[i+1],t[2]=n[i+2],t[3]=n[i+3],e(t,t,o),n[i]=t[0],n[i+1]=t[1],n[i+2]=t[2],n[i+3]=t[3];return n}}();function gr(){var t=new f(4);return f!=Float32Array&&(t[0]=0,t[1]=0,t[2]=0),t[3]=1,t}function Ar(t){return t[0]=0,t[1]=0,t[2]=0,t[3]=1,t}function Pr(t,n,a){a*=.5;var r=Math.sin(a);return t[0]=r*n[0],t[1]=r*n[1],t[2]=r*n[2],t[3]=Math.cos(a),t}function Sr(t,n){var a=2*Math.acos(n[3]),r=Math.sin(a/2);return r>M?(t[0]=n[0]/r,t[1]=n[1]/r,t[2]=n[2]/r):(t[0]=1,t[1]=0,t[2]=0),a}function Rr(t,n){var a=au(t,n);return Math.acos(2*a*a-1)}function Tr(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=a[0],h=a[1],c=a[2],s=a[3];return t[0]=r*s+o*i+u*c-e*h,t[1]=u*s+o*h+e*i-r*c,t[2]=e*s+o*c+r*h-u*i,t[3]=o*s-r*i-u*h-e*c,t}function Ir(t,n,a){a*=.5;var r=n[0],u=n[1],e=n[2],o=n[3],i=Math.sin(a),h=Math.cos(a);return t[0]=r*h+o*i,t[1]=u*h+e*i,t[2]=e*h-u*i,t[3]=o*h-r*i,t}function Er(t,n,a){a*=.5;var r=n[0],u=n[1],e=n[2],o=n[3],i=Math.sin(a),h=Math.cos(a);return t[0]=r*h-e*i,t[1]=u*h+o*i,t[2]=e*h+r*i,t[3]=o*h-u*i,t}function Dr(t,n,a){a*=.5;var r=n[0],u=n[1],e=n[2],o=n[3],i=Math.sin(a),h=Math.cos(a);return t[0]=r*h+u*i,t[1]=u*h-r*i,t[2]=e*h+o*i,t[3]=o*h-e*i,t}function Fr(t,n){var a=n[0],r=n[1],u=n[2];return t[0]=a,t[1]=r,t[2]=u,t[3]=Math.sqrt(Math.abs(1-a*a-r*r-u*u)),t}function Lr(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=Math.sqrt(a*a+r*r+u*u),i=Math.exp(e),h=o>0?i*Math.sin(o)/o:0;return t[0]=a*h,t[1]=r*h,t[2]=u*h,t[3]=i*Math.cos(o),t}function Vr(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=Math.sqrt(a*a+r*r+u*u),i=o>0?Math.atan2(o,e)/o:0;return t[0]=a*i,t[1]=r*i,t[2]=u*i,t[3]=.5*Math.log(a*a+r*r+u*u+e*e),t}function jr(t,n,a){return Vr(t,n),nu(t,t,a),Lr(t,t),t}function zr(t,n,a,r){var u,e,o,i,h,c=n[0],s=n[1],f=n[2],l=n[3],v=a[0],b=a[1],m=a[2],d=a[3];return(e=c*v+s*b+f*m+l*d)<0&&(e=-e,v=-v,b=-b,m=-m,d=-d),1-e>M?(u=Math.acos(e),o=Math.sin(u),i=Math.sin((1-r)*u)/o,h=Math.sin(r*u)/o):(i=1-r,h=r),t[0]=i*c+h*v,t[1]=i*s+h*b,t[2]=i*f+h*m,t[3]=i*l+h*d,t}function Or(t){var n=l(),a=l(),r=l(),u=Math.sqrt(1-n),e=Math.sqrt(n);return t[0]=u*Math.sin(2*Math.PI*a),t[1]=u*Math.cos(2*Math.PI*a),t[2]=e*Math.sin(2*Math.PI*r),t[3]=e*Math.cos(2*Math.PI*r),t}function Qr(t,n){var a=n[0],r=n[1],u=n[2],e=n[3],o=a*a+r*r+u*u+e*e,i=o?1/o:0;return t[0]=-a*i,t[1]=-r*i,t[2]=-u*i,t[3]=e*i,t}function Yr(t,n){return t[0]=-n[0],t[1]=-n[1],t[2]=-n[2],t[3]=n[3],t}function Xr(t,n){var a,r=n[0]+n[4]+n[8];if(r>0)a=Math.sqrt(r+1),t[3]=.5*a,a=.5/a,t[0]=(n[5]-n[7])*a,t[1]=(n[6]-n[2])*a,t[2]=(n[1]-n[3])*a;else{var u=0;n[4]>n[0]&&(u=1),n[8]>n[3*u+u]&&(u=2);var e=(u+1)%3,o=(u+2)%3;a=Math.sqrt(n[3*u+u]-n[3*e+e]-n[3*o+o]+1),t[u]=.5*a,a=.5/a,t[3]=(n[3*e+o]-n[3*o+e])*a,t[e]=(n[3*e+u]+n[3*u+e])*a,t[o]=(n[3*o+u]+n[3*u+o])*a}return t}function Zr(t,n,a,r){var u=.5*Math.PI/180;n*=u,a*=u,r*=u;var e=Math.sin(n),o=Math.cos(n),i=Math.sin(a),h=Math.cos(a),c=Math.sin(r),s=Math.cos(r);return t[0]=e*h*s-o*i*c,t[1]=o*i*s+e*h*c,t[2]=o*h*c-e*i*s,t[3]=o*h*s+e*i*c,t}function _r(t){return"quat("+t[0]+", "+t[1]+", "+t[2]+", "+t[3]+")"}var Br,Nr,kr,Ur,Wr,Cr,Gr=Oa,Hr=Qa,Jr=Ya,Kr=Xa,$r=Za,tu=Tr,nu=Ha,au=er,ru=ir,uu=tr,eu=uu,ou=nr,iu=ou,hu=ur,cu=lr,su=vr,Mu=(Br=Zn(),Nr=Nn(1,0,0),kr=Nn(0,1,0),function(t,n,a){var r=sa(n,a);return r<-.999999?(Ma(Br,Nr,n),La(Br)<1e-6&&Ma(Br,kr,n),ca(Br,Br),Pr(t,Br,Math.PI),t):r>.999999?(t[0]=0,t[1]=0,t[2]=0,t[3]=1,t):(Ma(Br,n,a),t[0]=Br[0],t[1]=Br[1],t[2]=Br[2],t[3]=1+r,hu(t,t))}),fu=(Ur=gr(),Wr=gr(),function(t,n,a,r,u,e){return zr(Ur,n,u,e),zr(Wr,a,r,e),zr(t,Ur,Wr,2*e*(1-e)),t}),lu=(Cr=bt(),function(t,n,a,r){return Cr[0]=a[0],Cr[3]=a[1],Cr[6]=a[2],Cr[1]=r[0],Cr[4]=r[1],Cr[7]=r[2],Cr[2]=-n[0],Cr[5]=-n[1],Cr[8]=-n[2],hu(t,Xr(t,Cr))});function vu(){var t=new f(8);return f!=Float32Array&&(t[0]=0,t[1]=0,t[2]=0,t[4]=0,t[5]=0,t[6]=0,t[7]=0),t[3]=1,t}function bu(t){var n=new f(8);return n[0]=t[0],n[1]=t[1],n[2]=t[2],n[3]=t[3],n[4]=t[4],n[5]=t[5],n[6]=t[6],n[7]=t[7],n}function mu(t,n,a,r,u,e,o,i){var h=new f(8);return h[0]=t,h[1]=n,h[2]=a,h[3]=r,h[4]=u,h[5]=e,h[6]=o,h[7]=i,h}function du(t,n,a,r,u,e,o){var i=new f(8);i[0]=t,i[1]=n,i[2]=a,i[3]=r;var h=.5*u,c=.5*e,s=.5*o;return i[4]=h*r+c*a-s*n,i[5]=c*r+s*t-h*a,i[6]=s*r+h*n-c*t,i[7]=-h*t-c*n-s*a,i}function xu(t,n,a){var r=.5*a[0],u=.5*a[1],e=.5*a[2],o=n[0],i=n[1],h=n[2],c=n[3];return t[0]=o,t[1]=i,t[2]=h,t[3]=c,t[4]=r*c+u*h-e*i,t[5]=u*c+e*o-r*h,t[6]=e*c+r*i-u*o,t[7]=-r*o-u*i-e*h,t}function yu(t,n){return t[0]=0,t[1]=0,t[2]=0,t[3]=1,t[4]=.5*n[0],t[5]=.5*n[1],t[6]=.5*n[2],t[7]=0,t}function pu(t,n){return t[0]=n[0],t[1]=n[1],t[2]=n[2],t[3]=n[3],t[4]=0,t[5]=0,t[6]=0,t[7]=0,t}function qu(t,n){var a=gr();qn(a,n);var r=new f(3);return yn(r,n),xu(t,a,r),t}function wu(t,n){return t[0]=n[0],t[1]=n[1],t[2]=n[2],t[3]=n[3],t[4]=n[4],t[5]=n[5],t[6]=n[6],t[7]=n[7],t}function gu(t){return t[0]=0,t[1]=0,t[2]=0,t[3]=1,t[4]=0,t[5]=0,t[6]=0,t[7]=0,t}function Au(t,n,a,r,u,e,o,i,h){return t[0]=n,t[1]=a,t[2]=r,t[3]=u,t[4]=e,t[5]=o,t[6]=i,t[7]=h,t}var Pu=Jr;function Su(t,n){return t[0]=n[4],t[1]=n[5],t[2]=n[6],t[3]=n[7],t}var Ru=Jr;function Tu(t,n){return t[4]=n[0],t[5]=n[1],t[6]=n[2],t[7]=n[3],t}function Iu(t,n){var a=n[4],r=n[5],u=n[6],e=n[7],o=-n[0],i=-n[1],h=-n[2],c=n[3];return t[0]=2*(a*c+e*o+r*h-u*i),t[1]=2*(r*c+e*i+u*o-a*h),t[2]=2*(u*c+e*h+a*i-r*o),t}function Eu(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=.5*a[0],h=.5*a[1],c=.5*a[2],s=n[4],M=n[5],f=n[6],l=n[7];return t[0]=r,t[1]=u,t[2]=e,t[3]=o,t[4]=o*i+u*c-e*h+s,t[5]=o*h+e*i-r*c+M,t[6]=o*c+r*h-u*i+f,t[7]=-r*i-u*h-e*c+l,t}function Du(t,n,a){var r=-n[0],u=-n[1],e=-n[2],o=n[3],i=n[4],h=n[5],c=n[6],s=n[7],M=i*o+s*r+h*e-c*u,f=h*o+s*u+c*r-i*e,l=c*o+s*e+i*u-h*r,v=s*o-i*r-h*u-c*e;return Ir(t,n,a),r=t[0],u=t[1],e=t[2],o=t[3],t[4]=M*o+v*r+f*e-l*u,t[5]=f*o+v*u+l*r-M*e,t[6]=l*o+v*e+M*u-f*r,t[7]=v*o-M*r-f*u-l*e,t}function Fu(t,n,a){var r=-n[0],u=-n[1],e=-n[2],o=n[3],i=n[4],h=n[5],c=n[6],s=n[7],M=i*o+s*r+h*e-c*u,f=h*o+s*u+c*r-i*e,l=c*o+s*e+i*u-h*r,v=s*o-i*r-h*u-c*e;return Er(t,n,a),r=t[0],u=t[1],e=t[2],o=t[3],t[4]=M*o+v*r+f*e-l*u,t[5]=f*o+v*u+l*r-M*e,t[6]=l*o+v*e+M*u-f*r,t[7]=v*o-M*r-f*u-l*e,t}function Lu(t,n,a){var r=-n[0],u=-n[1],e=-n[2],o=n[3],i=n[4],h=n[5],c=n[6],s=n[7],M=i*o+s*r+h*e-c*u,f=h*o+s*u+c*r-i*e,l=c*o+s*e+i*u-h*r,v=s*o-i*r-h*u-c*e;return Dr(t,n,a),r=t[0],u=t[1],e=t[2],o=t[3],t[4]=M*o+v*r+f*e-l*u,t[5]=f*o+v*u+l*r-M*e,t[6]=l*o+v*e+M*u-f*r,t[7]=v*o-M*r-f*u-l*e,t}function Vu(t,n,a){var r=a[0],u=a[1],e=a[2],o=a[3],i=n[0],h=n[1],c=n[2],s=n[3];return t[0]=i*o+s*r+h*e-c*u,t[1]=h*o+s*u+c*r-i*e,t[2]=c*o+s*e+i*u-h*r,t[3]=s*o-i*r-h*u-c*e,i=n[4],h=n[5],c=n[6],s=n[7],t[4]=i*o+s*r+h*e-c*u,t[5]=h*o+s*u+c*r-i*e,t[6]=c*o+s*e+i*u-h*r,t[7]=s*o-i*r-h*u-c*e,t}function ju(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=a[0],h=a[1],c=a[2],s=a[3];return t[0]=r*s+o*i+u*c-e*h,t[1]=u*s+o*h+e*i-r*c,t[2]=e*s+o*c+r*h-u*i,t[3]=o*s-r*i-u*h-e*c,i=a[4],h=a[5],c=a[6],s=a[7],t[4]=r*s+o*i+u*c-e*h,t[5]=u*s+o*h+e*i-r*c,t[6]=e*s+o*c+r*h-u*i,t[7]=o*s-r*i-u*h-e*c,t}function zu(t,n,a,r){if(Math.abs(r)<M)return wu(t,n);var u=Math.hypot(a[0],a[1],a[2]);r*=.5;var e=Math.sin(r),o=e*a[0]/u,i=e*a[1]/u,h=e*a[2]/u,c=Math.cos(r),s=n[0],f=n[1],l=n[2],v=n[3];t[0]=s*c+v*o+f*h-l*i,t[1]=f*c+v*i+l*o-s*h,t[2]=l*c+v*h+s*i-f*o,t[3]=v*c-s*o-f*i-l*h;var b=n[4],m=n[5],d=n[6],x=n[7];return t[4]=b*c+x*o+m*h-d*i,t[5]=m*c+x*i+d*o-b*h,t[6]=d*c+x*h+b*i-m*o,t[7]=x*c-b*o-m*i-d*h,t}function Ou(t,n,a){return t[0]=n[0]+a[0],t[1]=n[1]+a[1],t[2]=n[2]+a[2],t[3]=n[3]+a[3],t[4]=n[4]+a[4],t[5]=n[5]+a[5],t[6]=n[6]+a[6],t[7]=n[7]+a[7],t}function Qu(t,n,a){var r=n[0],u=n[1],e=n[2],o=n[3],i=a[4],h=a[5],c=a[6],s=a[7],M=n[4],f=n[5],l=n[6],v=n[7],b=a[0],m=a[1],d=a[2],x=a[3];return t[0]=r*x+o*b+u*d-e*m,t[1]=u*x+o*m+e*b-r*d,t[2]=e*x+o*d+r*m-u*b,t[3]=o*x-r*b-u*m-e*d,t[4]=r*s+o*i+u*c-e*h+M*x+v*b+f*d-l*m,t[5]=u*s+o*h+e*i-r*c+f*x+v*m+l*b-M*d,t[6]=e*s+o*c+r*h-u*i+l*x+v*d+M*m-f*b,t[7]=o*s-r*i-u*h-e*c+v*x-M*b-f*m-l*d,t}var Yu=Qu;function Xu(t,n,a){return t[0]=n[0]*a,t[1]=n[1]*a,t[2]=n[2]*a,t[3]=n[3]*a,t[4]=n[4]*a,t[5]=n[5]*a,t[6]=n[6]*a,t[7]=n[7]*a,t}var Zu=au;function _u(t,n,a,r){var u=1-r;return Zu(n,a)<0&&(r=-r),t[0]=n[0]*u+a[0]*r,t[1]=n[1]*u+a[1]*r,t[2]=n[2]*u+a[2]*r,t[3]=n[3]*u+a[3]*r,t[4]=n[4]*u+a[4]*r,t[5]=n[5]*u+a[5]*r,t[6]=n[6]*u+a[6]*r,t[7]=n[7]*u+a[7]*r,t}function Bu(t,n){var a=Wu(n);return t[0]=-n[0]/a,t[1]=-n[1]/a,t[2]=-n[2]/a,t[3]=n[3]/a,t[4]=-n[4]/a,t[5]=-n[5]/a,t[6]=-n[6]/a,t[7]=n[7]/a,t}function Nu(t,n){return t[0]=-n[0],t[1]=-n[1],t[2]=-n[2],t[3]=n[3],t[4]=-n[4],t[5]=-n[5],t[6]=-n[6],t[7]=n[7],t}var ku=uu,Uu=ku,Wu=ou,Cu=Wu;function Gu(t,n){var a=Wu(n);if(a>0){a=Math.sqrt(a);var r=n[0]/a,u=n[1]/a,e=n[2]/a,o=n[3]/a,i=n[4],h=n[5],c=n[6],s=n[7],M=r*i+u*h+e*c+o*s;t[0]=r,t[1]=u,t[2]=e,t[3]=o,t[4]=(i-r*M)/a,t[5]=(h-u*M)/a,t[6]=(c-e*M)/a,t[7]=(s-o*M)/a}return t}function Hu(t){return"quat2("+t[0]+", "+t[1]+", "+t[2]+", "+t[3]+", "+t[4]+", "+t[5]+", "+t[6]+", "+t[7]+")"}function Ju(t,n){return t[0]===n[0]&&t[1]===n[1]&&t[2]===n[2]&&t[3]===n[3]&&t[4]===n[4]&&t[5]===n[5]&&t[6]===n[6]&&t[7]===n[7]}function Ku(t,n){var a=t[0],r=t[1],u=t[2],e=t[3],o=t[4],i=t[5],h=t[6],c=t[7],s=n[0],f=n[1],l=n[2],v=n[3],b=n[4],m=n[5],d=n[6],x=n[7];return Math.abs(a-s)<=M*Math.max(1,Math.abs(a),Math.abs(s))&&Math.abs(r-f)<=M*Math.max(1,Math.abs(r),Math.abs(f))&&Math.abs(u-l)<=M*Math.max(1,Math.abs(u),Math.abs(l))&&Math.abs(e-v)<=M*Math.max(1,Math.abs(e),Math.abs(v))&&Math.abs(o-b)<=M*Math.max(1,Math.abs(o),Math.abs(b))&&Math.abs(i-m)<=M*Math.max(1,Math.abs(i),Math.abs(m))&&Math.abs(h-d)<=M*Math.max(1,Math.abs(h),Math.abs(d))&&Math.abs(c-x)<=M*Math.max(1,Math.abs(c),Math.abs(x))}function $u(){var t=new f(2);return f!=Float32Array&&(t[0]=0,t[1]=0),t}function te(t){var n=new f(2);return n[0]=t[0],n[1]=t[1],n}function ne(t,n){var a=new f(2);return a[0]=t,a[1]=n,a}function ae(t,n){return t[0]=n[0],t[1]=n[1],t}function re(t,n,a){return t[0]=n,t[1]=a,t}function ue(t,n,a){return t[0]=n[0]+a[0],t[1]=n[1]+a[1],t}function ee(t,n,a){return t[0]=n[0]-a[0],t[1]=n[1]-a[1],t}function oe(t,n,a){return t[0]=n[0]*a[0],t[1]=n[1]*a[1],t}function ie(t,n,a){return t[0]=n[0]/a[0],t[1]=n[1]/a[1],t}function he(t,n){return t[0]=Math.ceil(n[0]),t[1]=Math.ceil(n[1]),t}function ce(t,n){return t[0]=Math.floor(n[0]),t[1]=Math.floor(n[1]),t}function se(t,n,a){return t[0]=Math.min(n[0],a[0]),t[1]=Math.min(n[1],a[1]),t}function Me(t,n,a){return t[0]=Math.max(n[0],a[0]),t[1]=Math.max(n[1],a[1]),t}function fe(t,n){return t[0]=Math.round(n[0]),t[1]=Math.round(n[1]),t}function le(t,n,a){return t[0]=n[0]*a,t[1]=n[1]*a,t}function ve(t,n,a,r){return t[0]=n[0]+a[0]*r,t[1]=n[1]+a[1]*r,t}function be(t,n){var a=n[0]-t[0],r=n[1]-t[1];return Math.hypot(a,r)}function me(t,n){var a=n[0]-t[0],r=n[1]-t[1];return a*a+r*r}function de(t){var n=t[0],a=t[1];return Math.hypot(n,a)}function xe(t){var n=t[0],a=t[1];return n*n+a*a}function ye(t,n){return t[0]=-n[0],t[1]=-n[1],t}function pe(t,n){return t[0]=1/n[0],t[1]=1/n[1],t}function qe(t,n){var a=n[0],r=n[1],u=a*a+r*r;return u>0&&(u=1/Math.sqrt(u)),t[0]=n[0]*u,t[1]=n[1]*u,t}function we(t,n){return t[0]*n[0]+t[1]*n[1]}function ge(t,n,a){var r=n[0]*a[1]-n[1]*a[0];return t[0]=t[1]=0,t[2]=r,t}function Ae(t,n,a,r){var u=n[0],e=n[1];return t[0]=u+r*(a[0]-u),t[1]=e+r*(a[1]-e),t}function Pe(t,n){n=n||1;var a=2*l()*Math.PI;return t[0]=Math.cos(a)*n,t[1]=Math.sin(a)*n,t}function Se(t,n,a){var r=n[0],u=n[1];return t[0]=a[0]*r+a[2]*u,t[1]=a[1]*r+a[3]*u,t}function Re(t,n,a){var r=n[0],u=n[1];return t[0]=a[0]*r+a[2]*u+a[4],t[1]=a[1]*r+a[3]*u+a[5],t}function Te(t,n,a){var r=n[0],u=n[1];return t[0]=a[0]*r+a[3]*u+a[6],t[1]=a[1]*r+a[4]*u+a[7],t}function Ie(t,n,a){var r=n[0],u=n[1];return t[0]=a[0]*r+a[4]*u+a[12],t[1]=a[1]*r+a[5]*u+a[13],t}function Ee(t,n,a,r){var u=n[0]-a[0],e=n[1]-a[1],o=Math.sin(r),i=Math.cos(r);return t[0]=u*i-e*o+a[0],t[1]=u*o+e*i+a[1],t}function De(t,n){var a=t[0],r=t[1],u=n[0],e=n[1],o=a*a+r*r;o>0&&(o=1/Math.sqrt(o));var i=u*u+e*e;i>0&&(i=1/Math.sqrt(i));var h=(a*u+r*e)*o*i;return h>1?0:h<-1?Math.PI:Math.acos(h)}function Fe(t){return t[0]=0,t[1]=0,t}function Le(t){return"vec2("+t[0]+", "+t[1]+")"}function Ve(t,n){return t[0]===n[0]&&t[1]===n[1]}function je(t,n){var a=t[0],r=t[1],u=n[0],e=n[1];return Math.abs(a-u)<=M*Math.max(1,Math.abs(a),Math.abs(u))&&Math.abs(r-e)<=M*Math.max(1,Math.abs(r),Math.abs(e))}var ze=de,Oe=ee,Qe=oe,Ye=ie,Xe=be,Ze=me,_e=xe,Be=function(){var t=$u();return function(n,a,r,u,e,o){var i,h;for(a||(a=2),r||(r=0),h=u?Math.min(u*a+r,n.length):n.length,i=r;i<h;i+=a)t[0]=n[i],t[1]=n[i+1],e(t,t,o),n[i]=t[0],n[i+1]=t[1];return n}}();window.glMatrix=n,window.mat2=a,window.mat2d=r,window.mat3=u,window.mat4=e,window.quat=h,window.quat2=c,window.vec2=s,window.vec3=o,window.vec4=i})();
 //# sourceMappingURL=libs.core.js.map
 
-if(!CABLES.exportedPatches) CABLES.exportedPatches={};CABLES.exportedPatches['4oPpSn']={"_id":"66dedf58c92279c30bd3fbb8","ops":[{"id":"9d85ffdc-685a-42ef-bd41-b501521a114c","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"create port","value":0}],"objName":"Ops.Ui.PatchInput"},{"id":"7bebb5f0-9d69-43ee-98be-27a13edd98db","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"create port","value":0},{"name":"out1 Ops.Devices.Mouse.Mouse_v3 x","value":0},{"name":"out2 Ops.Devices.Mouse.Mouse_v3 y","value":0},{"name":"out3 DeltaSum Absolute Value","value":0,"title":"DeltaX"}],"objName":"Ops.Ui.PatchOutput"},{"id":"cd9136e7-4c7b-4555-bf01-18381685410b","uiAttribs":{},"storage":{"subPatchVer":1},"portsIn":[{"name":"create port","value":0},{"name":"dataStr","value":"{\"ports\":[{\"name\":\"in0 Cursor Update\",\"type\":1}],\"portsOut\":[{\"name\":\"out0 DeltaSum Absolute Value\",\"type\":0},{\"name\":\"out1 Ops.Devices.Mouse.Mouse_v3 x\",\"type\":0},{\"name\":\"out2 Ops.Devices.Mouse.Mouse_v3 y\",\"type\":0},{\"name\":\"out3 DeltaSum Absolute Value\",\"type\":0,\"title\":\"DeltaX\"}]}"},{"name":"patchId","value":"66dae55a-8297-4120-81e2-d946cc6b2b60"}],"portsOut":[{"name":"create port out","value":0},{"name":"out0 DeltaSum Absolute Value","links":[{"portIn":"Value","portOut":"out0 DeltaSum Absolute Value","objIn":"9fsk0rgx7","objOut":"cd9136e7-4c7b-4555-bf01-18381685410b"}]},{"name":"out3 DeltaSum Absolute Value","title":"DeltaX"}],"objName":"Ops.Ui.SubPatch"},{"id":"c2a85325-d75f-4f01-9b5c-83a2edd8d35d","uiAttribs":{},"portsIn":[{"name":"posY","value":-0.18},{"name":"posZ","value":0},{"name":"scale","value":0.25},{"name":"rotX","value":0},{"name":"rotY","value":180},{"name":"rotZ","value":315.48}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"li365texv","objOut":"c2a85325-d75f-4f01-9b5c-83a2edd8d35d"},{"portIn":"render","portOut":"trigger","objIn":"uc9r4wu0r","objOut":"c2a85325-d75f-4f01-9b5c-83a2edd8d35d"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"e0268dfa-e089-4f1f-966c-c30218792023","uiAttribs":{},"portsIn":[{"name":"r","value":0},{"name":"g","value":0},{"name":"b","value":0},{"name":"a","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"te11ob7nw","objOut":"e0268dfa-e089-4f1f-966c-c30218792023"},{"portIn":"Trigger","portOut":"trigger","objIn":"zcc6zzw4d","objOut":"e0268dfa-e089-4f1f-966c-c30218792023"}]}],"objName":"Ops.Gl.ClearColor"},{"id":"e0698285-4e6a-4339-a9ba-d9b3e441372c","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"mainExe"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"babe81ef-3ee9-4ed3-ba28-8b648c21dd11","uiAttribs":{},"portsIn":[{"name":"Title","value":"LOOP: Main 4"}],"objName":"Ops.Ui.Area"},{"id":"a82e74aa-f66f-47c9-a07a-2f1b0376925b","uiAttribs":{},"portsIn":[{"name":"Title","value":"Data"}],"objName":"Ops.Ui.Area"},{"id":"afa40c7e-19f5-4546-911c-1e34c62f310b","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"finalExe"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"7dq6j5p5k","uiAttribs":{},"portsIn":[{"name":"Check Body Collisions","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Trigger","portOut":"Next","objIn":"9sm9dp98r","objOut":"7dq6j5p5k"}]},{"name":"Total Bodies","value":4}],"objName":"Ops.Graphics.Intersection.IntersectWorld"},{"id":"9sm9dp98r","uiAttribs":{},"portsIn":[{"name":"Coordinate Format index","value":0},{"name":"Coordinate Format","value":"-1 to 1"},{"name":"Z","value":0},{"name":"To X","value":0},{"name":"To Y","value":0},{"name":"To Z","value":0},{"name":"Active","value":1},{"name":"Change Cursor","value":1}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"mbk4m8pcr","objOut":"9sm9dp98r"},{"portIn":"render","portOut":"Next","objIn":"7qikt1vaf","objOut":"9sm9dp98r"},{"portIn":"render","portOut":"Next","objIn":"aupoduf7d","objOut":"9sm9dp98r"},{"portIn":"render","portOut":"Next","objIn":"ge3zj70cy","objOut":"9sm9dp98r"}]},{"name":"Has Hit","value":0},{"name":"Hit Body Name","links":[{"portIn":"Value","portOut":"Hit Body Name","objIn":"tg35ehmtt","objOut":"9sm9dp98r"}]},{"name":"Hit X","value":0},{"name":"Hit Y","links":[{"portIn":"Value","portOut":"Hit Y","objIn":"735k5dq88","objOut":"9sm9dp98r"}]},{"name":"Hit Z","value":0}],"objName":"Ops.Graphics.Intersection.IntersectTestRaycast"},{"id":"bs0d2bloj","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"mainExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Trigger","portOut":"Triggered","objIn":"7dq6j5p5k","objOut":"bs0d2bloj"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"5me0htliz","uiAttribs":{},"portsIn":[{"name":"Shape index","value":1},{"name":"Shape","value":"BoxAA"},{"name":"Name","value":"dial.2"},{"name":"Radius","value":0.22},{"name":"Size X","value":0.55},{"name":"Size Y","value":0.91},{"name":"Size Z","value":0},{"name":"Positions"},{"name":"Append Index to name","value":1}],"objName":"Ops.Graphics.Intersection.IntersectBody"},{"id":"mbk4m8pcr","uiAttribs":{},"portsIn":[{"name":"x","value":-0.28},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger","portOut":"trigger","objIn":"5me0htliz","objOut":"mbk4m8pcr"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"adh054ku6","uiAttribs":{},"portsIn":[{"name":"Shape index","value":1},{"name":"Shape","value":"BoxAA"},{"name":"Name","value":"dial.3"},{"name":"Radius","value":0.23},{"name":"Size X","value":0.55},{"name":"Size Y","value":0.91},{"name":"Size Z","value":0},{"name":"Positions"},{"name":"Append Index to name","value":1}],"objName":"Ops.Graphics.Intersection.IntersectBody"},{"id":"yjtjh6kai","uiAttribs":{},"portsIn":[{"name":"Shape index","value":1},{"name":"Shape","value":"BoxAA"},{"name":"Name","value":"dial.4"},{"name":"Radius","value":0.23},{"name":"Size X","value":0.56},{"name":"Size Y","value":0.9},{"name":"Size Z","value":0},{"name":"Positions"},{"name":"Append Index to name","value":1}],"objName":"Ops.Graphics.Intersection.IntersectBody"},{"id":"sfqxroo9q","uiAttribs":{},"portsIn":[{"name":"Coordinates index","value":0},{"name":"Coordinates","value":"-1 to 1"},{"name":"Area index","value":0},{"name":"Area","value":"Canvas"},{"name":"flip y","value":1},{"name":"right click prevent default","value":1},{"name":"Touch support","value":0},{"name":"Passive Events","value":1},{"name":"Active","value":1}],"portsOut":[{"name":"x","links":[{"portIn":"X","portOut":"x","objIn":"9sm9dp98r","objOut":"sfqxroo9q"}]},{"name":"y","links":[{"portIn":"Y","portOut":"y","objIn":"9sm9dp98r","objOut":"sfqxroo9q"}]},{"name":"Button is down","value":0},{"name":"Mouse is hovering","value":0},{"name":"Movement X","value":-36.5},{"name":"Movement Y","value":7.5}],"objName":"Ops.Devices.Mouse.Mouse_v3"},{"id":"124910bf-e88f-4da5-847e-888a7ac73020","uiAttribs":{},"portsIn":[{"name":"num x","value":4},{"name":"num y","value":1},{"name":"center","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"c2a85325-d75f-4f01-9b5c-83a2edd8d35d","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"},{"portIn":"render","portOut":"trigger","objIn":"zlpf1p0f5","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"}]},{"name":"x","links":[{"portIn":"posX","portOut":"x","objIn":"c2a85325-d75f-4f01-9b5c-83a2edd8d35d","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"},{"portIn":"Value","portOut":"x","objIn":"6v0s7i2sf","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"},{"portIn":"posX","portOut":"x","objIn":"zlpf1p0f5","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"}]},{"name":"y","value":0},{"name":"index","links":[{"portIn":"Value","portOut":"index","objIn":"euqza6b25","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"}]},{"name":"total iterations","value":4}],"objName":"Ops.Trigger.Repeat2d"},{"id":"7qikt1vaf","uiAttribs":{},"portsIn":[{"name":"x","value":0.27},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger","portOut":"trigger","objIn":"adh054ku6","objOut":"7qikt1vaf"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"aupoduf7d","uiAttribs":{},"portsIn":[{"name":"x","value":0.84},{"name":"y","value":-0.2},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger","portOut":"trigger","objIn":"yjtjh6kai","objOut":"aupoduf7d"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"32lmfrmux","uiAttribs":{},"portsIn":[{"name":"Title","value":"Intersect"}],"objName":"Ops.Ui.Area"},{"id":"tg35ehmtt","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_hitBodyName"}],"objName":"Ops.Vars.VarSetString_v2"},{"id":"gb0lraco2","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_activeDial_ID"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"kcwn0w2tu","objOut":"gb0lraco2"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"qyara3wac","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"Value","portOut":"result","objIn":"hb06uwqts","objOut":"qyara3wac"}]}],"objName":"Ops.Math.Compare.Equals"},{"id":"53603a6e-a331-41a7-9822-120aba8de4f8","uiAttribs":{},"portsIn":[{"name":"number2","value":-270}],"portsOut":[{"name":"result","links":[{"portIn":"rotY","portOut":"result","objIn":"li365texv","objOut":"53603a6e-a331-41a7-9822-120aba8de4f8"}]}],"objName":"Ops.Math.Multiply"},{"id":"9fsk0rgx7","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_normValue"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"aqjh1act1","uiAttribs":{},"portsIn":[{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"Value","portOut":"value","objIn":"j3kd0q09w","objOut":"aqjh1act1"},{"portIn":"Value","portOut":"value","objIn":"1rc15x0gs","objOut":"aqjh1act1"},{"portIn":"number1","portOut":"value","objIn":"53603a6e-a331-41a7-9822-120aba8de4f8","objOut":"aqjh1act1"},{"portIn":"A","portOut":"value","objIn":"v11enlha4","objOut":"aqjh1act1"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"i0rjtphmz","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_dialValues_array"}],"portsOut":[{"name":"Value","links":[{"portIn":"array","portOut":"Value","objIn":"aqjh1act1","objOut":"i0rjtphmz"}]}],"objName":"Ops.Vars.VarGetArray_v2"},{"id":"kcwn0w2tu","uiAttribs":{},"portsIn":[{"name":"number2","value":1}],"portsOut":[{"name":"result","links":[{"portIn":"number1","portOut":"result","objIn":"qyara3wac","objOut":"kcwn0w2tu"}]}],"objName":"Ops.Math.Subtract"},{"id":"te11ob7nw","uiAttribs":{},"portsIn":[{"name":"projection mode index","value":0},{"name":"projection mode","value":"prespective"},{"name":"frustum near","value":0.01},{"name":"frustum far","value":5000},{"name":"fov","value":30},{"name":"Auto Aspect Ratio","value":1},{"name":"Aspect Ratio","value":1},{"name":"eye X","value":0},{"name":"eye Y","value":-0.03},{"name":"eye Z","value":0.73},{"name":"center X","value":0},{"name":"center Y","value":0},{"name":"center Z","value":0},{"name":"truck","value":0},{"name":"boom","value":0.23},{"name":"dolly","value":0},{"name":"tilt","value":0},{"name":"pan","value":0},{"name":"roll","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger","portOut":"trigger","objIn":"4pu8mr0y2","objOut":"te11ob7nw"},{"portIn":"exe","portOut":"trigger","objIn":"866dbq8co","objOut":"te11ob7nw"},{"portIn":"Input_0","portOut":"trigger","objIn":"5zxbuf3na","objOut":"te11ob7nw"}]},{"name":"Aspect","value":2.004618937644342}],"objName":"Ops.Gl.Matrix.Camera"},{"id":"uc9r4wu0r","uiAttribs":{},"portsIn":[{"name":"r","value":0.885},{"name":"g","value":0.8560132010421952},{"name":"b","value":0.856},{"name":"colorizeTexture","value":1},{"name":"Vertex Colors","value":0},{"name":"Alpha Mask Source index","value":4},{"name":"Alpha Mask Source","value":"A"},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":0},{"name":"diffuseRepeatX","value":1},{"name":"diffuseRepeatY","value":0},{"name":"Tex Offset X","value":0},{"name":"Tex Offset Y","value":0},{"name":"Crop TexCoords","value":0},{"name":"billboard","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"3g7cbchrs","objOut":"uc9r4wu0r"}]}],"objName":"Ops.Gl.Shader.BasicMaterial_v3"},{"id":"j3kd0q09w","uiAttribs":{},"portsIn":[{"name":"Min","value":0},{"name":"Max","value":0.9},{"name":"Easing index","value":4},{"name":"Easing","value":"Cubic In"}],"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"conrnxfgk","objOut":"j3kd0q09w"},{"portIn":"Value","portOut":"Result","objIn":"s0o3lhs2y","objOut":"j3kd0q09w"}]}],"objName":"Ops.Math.Ease"},{"id":"conrnxfgk","uiAttribs":{},"portsIn":[{"name":"Min","value":0},{"name":"Max","value":0.27},{"name":"Easing index","value":5},{"name":"Easing","value":"Cubic Out"}],"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"z5bv7gal9","objOut":"conrnxfgk"}]}],"objName":"Ops.Math.Ease"},{"id":"chztenqi0","uiAttribs":{},"portsIn":[{"name":"r","value":1},{"name":"b","value":0.645},{"name":"Opacity","value":0.956},{"name":"AO Intensity","value":0.747},{"name":"Normal Map Intensity","value":0.66},{"name":"Repeat X","value":6},{"name":"Repeat Y","value":0},{"name":"Offset X","value":0},{"name":"Offset Y","value":1.6},{"name":"Screen Space Normals","value":0},{"name":"Calc normal tangents","value":0},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":1},{"name":"Alpha Mask Source index","value":0},{"name":"Alpha Mask Source","value":"Luminance"}],"portsOut":[{"name":"Next","links":[{"portIn":"Execute","portOut":"Next","objIn":"leqa7h4pd","objOut":"chztenqi0"}]},{"name":"Shader","links":[{"portIn":"Value","portOut":"Shader","objIn":"nnu0oo0gu","objOut":"chztenqi0"}]}],"objName":"Ops.Gl.Shader.MatCapMaterial_v3"},{"id":"0oya8etuv","uiAttribs":{},"portsIn":[{"name":"File","value":"assets/6697c3b245eb5d333bae2007_NEL_SRVB.webp","display":"file"},{"name":"Filter index","value":1},{"name":"Filter","value":"linear"},{"name":"Wrap index","value":0},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Data Format index","value":3},{"name":"Data Format","value":"RGBA"},{"name":"Flip","value":0},{"name":"Pre Multiplied Alpha","value":0},{"name":"Active","value":1},{"name":"Save Memory","value":1},{"name":"Add Cachebuster","value":1}],"portsOut":[{"name":"Texture","links":[{"portIn":"MatCap","portOut":"Texture","objIn":"chztenqi0","objOut":"0oya8etuv"}]},{"name":"Width","value":256},{"name":"Height","value":256},{"name":"Aspect Ratio","value":1},{"name":"Loaded","value":1},{"name":"Loading","value":0}],"objName":"Ops.Gl.Texture_v2"},{"id":"li365texv","uiAttribs":{},"portsIn":[{"name":"posX","value":0},{"name":"posY","value":0},{"name":"posZ","value":0.49},{"name":"scale","value":1},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"ts03zao35","objOut":"li365texv"},{"portIn":"Render","portOut":"trigger","objIn":"chztenqi0","objOut":"li365texv"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"bd0mu1qkj","uiAttribs":{},"portsIn":[{"name":"Title","value":"Main"}],"objName":"Ops.Ui.Area"},{"id":"6a24jo2e0","uiAttribs":{},"portsIn":[{"name":"Title","value":"Visuals+"}],"objName":"Ops.Ui.Area"},{"id":"kgtq6kbqp","uiAttribs":{},"portsIn":[{"name":"Font","value":"eb066298-c95b-4900-a9c8-abb0e9ea0930"},{"name":"Letter Spacing","value":-0.02},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":2},{"name":"Vertical Align","value":"Middle"},{"name":"g","value":0.933},{"name":"b","value":0.899},{"name":"SDF","value":1},{"name":"Smoothing","value":0.177},{"name":"Border","value":0},{"name":"Border Width","value":0.46},{"name":"Smoothness","value":1},{"name":"Border r","value":1},{"name":"Border g","value":1},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":1.260146484375},{"name":"Height","value":0.3814277447089947},{"name":"Start Y","value":0.17603711970899472},{"name":"Num Chars","value":11}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"1rc15x0gs","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentDialValueInsideRepeat2D"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"o8zk12f1r","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentDialValueInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"number","portOut":"Value","objIn":"2lpsqzgrb","objOut":"o8zk12f1r"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"2lpsqzgrb","uiAttribs":{},"portsIn":[{"name":"Decimal Places","value":3}],"portsOut":[{"name":"result","links":[{"portIn":"Number","portOut":"result","objIn":"vib72zx3n","objOut":"2lpsqzgrb"}]}],"objName":"Ops.Math.Round"},{"id":"vib72zx3n","uiAttribs":{},"portsIn":[{"name":"Decimal Places","value":4}],"portsOut":[{"name":"Result","links":[{"portIn":"String B","portOut":"Result","objIn":"hhpgrbf2g","objOut":"vib72zx3n"}]}],"objName":"Ops.String.NumberToString_v2"},{"id":"zlpf1p0f5","uiAttribs":{},"portsIn":[{"name":"posY","value":-0.565},{"name":"posZ","value":0.22},{"name":"scale","value":0.12},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"kgtq6kbqp","objOut":"zlpf1p0f5"}]}],"objName":"Ops.Gl.Matrix.TransformView"},{"id":"f67se0kft","uiAttribs":{},"portsIn":[{"name":"Title","value":"Text"}],"objName":"Ops.Ui.Area"},{"id":"m4wpz0q5c","uiAttribs":{},"portsIn":[{"name":"number2","value":0.06}],"portsOut":[{"name":"result","links":[{"portIn":"mul","portOut":"result","objIn":"124910bf-e88f-4da5-847e-888a7ac73020","objOut":"m4wpz0q5c"}]}],"objName":"Ops.Math.Multiply"},{"id":"1b7ls5v00","uiAttribs":{},"portsIn":[{"name":"min","value":0},{"name":"max","value":9}],"portsOut":[{"name":"result","links":[{"portIn":"number1","portOut":"result","objIn":"m4wpz0q5c","objOut":"1b7ls5v00"},{"portIn":"value","portOut":"result","objIn":"c8rxrl5sv","objOut":"1b7ls5v00"}]}],"objName":"Ops.Math.SmootherStep"},{"id":"hhpgrbf2g","uiAttribs":{},"portsIn":[{"name":"Format","value":"*$a $b"},{"name":"String C","value":2},{"name":"String D","value":3},{"name":"String E","value":""},{"name":"String F","value":""}],"portsOut":[{"name":"Result","links":[{"portIn":"Text","portOut":"Result","objIn":"kgtq6kbqp","objOut":"hhpgrbf2g"}]}],"objName":"Ops.String.StringCompose_v3"},{"id":"euqza6b25","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"34zd4vl4f","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"number2","portOut":"Value","objIn":"qyara3wac","objOut":"34zd4vl4f"},{"portIn":"number1","portOut":"Value","objIn":"ai5mgf397","objOut":"34zd4vl4f"},{"portIn":"index","portOut":"Value","objIn":"aqjh1act1","objOut":"34zd4vl4f"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"mtxdae1jj","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"index","portOut":"Value","objIn":"fxd9qy0nv","objOut":"mtxdae1jj"},{"portIn":"number2","portOut":"Value","objIn":"wow8ddz8v","objOut":"mtxdae1jj"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"ejryfn62d","uiAttribs":{},"portsIn":[{"name":"Title","value":"*"}],"objName":"Ops.Ui.Area"},{"id":"yvvnsby8j","uiAttribs":{},"portsIn":[{"name":"text","value":"level, diffuse, tone, size"},{"name":"separator","value":","},{"name":"Numbers","value":0},{"name":"Trim","value":1},{"name":"Split Lines","value":0}],"portsOut":[{"name":"array","links":[{"portIn":"array","portOut":"array","objIn":"fxd9qy0nv","objOut":"yvvnsby8j"}]},{"name":"length","value":4}],"objName":"Ops.Array.StringToArray_v2"},{"id":"fxd9qy0nv","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"String A","portOut":"result","objIn":"hhpgrbf2g","objOut":"fxd9qy0nv"}]}],"objName":"Ops.Array.ArrayGetString"},{"id":"xqowbomkj","uiAttribs":{},"portsIn":[{"name":"Title","value":"*"}],"objName":"Ops.Ui.Area"},{"id":"ch5u1xz0l","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"midExe"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"faiior48h","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"midExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Render","portOut":"Triggered","objIn":"48vrkn65x","objOut":"faiior48h"},{"portIn":"render","portOut":"Triggered","objIn":"33hdtkr51","objOut":"faiior48h"},{"portIn":"render","portOut":"Triggered","objIn":"fvg1zz75v","objOut":"faiior48h"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"smns78b6k","uiAttribs":{},"portsIn":[{"name":"Title","value":"*"}],"objName":"Ops.Ui.Area"},{"id":"piq1e64rw","uiAttribs":{},"portsIn":[{"name":"Title","value":"*"}],"objName":"Ops.Ui.Area"},{"id":"t83msa078","uiAttribs":{},"portsIn":[{"name":"Title","value":"*"}],"objName":"Ops.Ui.Area"},{"id":"4pu8mr0y2","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"preSequenceFlow"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"of6q9dm1m","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"midExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"render","portOut":"Triggered","objIn":"v2qv1ozh2","objOut":"of6q9dm1m"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"zcc6zzw4d","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"zi3u8x4zd","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_activeDial_ID"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"zhjkbd61e","objOut":"zi3u8x4zd"},{"portIn":"number1","portOut":"Value","objIn":"5g2iodxq1","objOut":"zi3u8x4zd"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"zhjkbd61e","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"number2","value":1}],"portsOut":[{"name":"result","links":[{"portIn":"index","portOut":"result","objIn":"22d7e3ut3","objOut":"zhjkbd61e"}]}],"objName":"Ops.Math.Subtract"},{"id":"v2qv1ozh2","uiAttribs":{},"portsIn":[{"name":"Size index","value":1},{"name":"Size","value":"Manual"},{"name":"texture height","value":512},{"name":"Auto Aspect","value":1},{"name":"filter index","value":1},{"name":"filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"Repeat"},{"name":"MSAA index","value":1},{"name":"MSAA","value":"2x"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"Depth","value":0},{"name":"Clear","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"Execute","portOut":"trigger","objIn":"3so3f33cf","objOut":"v2qv1ozh2"}]},{"name":"texture","links":[{"portIn":"Base Texture","portOut":"texture","objIn":"eerqtlpnp","objOut":"v2qv1ozh2"}]}],"objName":"Ops.Gl.RenderToTexture_v3"},{"id":"o4q65sx2h","uiAttribs":{},"portsIn":[{"name":"x","value":-1.3},{"name":"y","value":-1.79},{"name":"z","value":-0.46}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"eb7wv37c6","objOut":"o4q65sx2h"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"kmdf8veed","uiAttribs":{},"portsIn":[{"name":"File","value":"assets/lib_matcaps_Chrome_Blue_Tint-White.png","display":"file"},{"name":"Filter index","value":2},{"name":"Filter","value":"mipmap"},{"name":"Wrap index","value":0},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Data Format index","value":3},{"name":"Data Format","value":"RGBA"},{"name":"Flip","value":0},{"name":"Pre Multiplied Alpha","value":0},{"name":"Active","value":1},{"name":"Save Memory","value":1},{"name":"Add Cachebuster","value":0}],"portsOut":[{"name":"Texture","links":[{"portIn":"Specular MatCap","portOut":"Texture","objIn":"chztenqi0","objOut":"kmdf8veed"}]},{"name":"Width","value":256},{"name":"Height","value":256},{"name":"Aspect Ratio","value":1},{"name":"Loaded","value":1},{"name":"Loading","value":0}],"objName":"Ops.Gl.Texture_v2"},{"id":"flv1jlkal","uiAttribs":{},"portsIn":[{"name":"File","value":"assets/6697c3b245eb5d333bae2007_Sterungs.webp","display":"file"},{"name":"Filter index","value":2},{"name":"Filter","value":"mipmap"},{"name":"Wrap index","value":0},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Data Format index","value":3},{"name":"Data Format","value":"RGBA"},{"name":"Flip","value":0},{"name":"Pre Multiplied Alpha","value":0},{"name":"Active","value":1},{"name":"Save Memory","value":1},{"name":"Add Cachebuster","value":0}],"portsOut":[{"name":"Texture","links":[{"portIn":"Specular Mask","portOut":"Texture","objIn":"chztenqi0","objOut":"flv1jlkal"}]},{"name":"Width","value":256},{"name":"Height","value":256},{"name":"Aspect Ratio","value":1},{"name":"Loaded","value":1},{"name":"Loading","value":0}],"objName":"Ops.Gl.Texture_v2"},{"id":"40fnzsucx","uiAttribs":{},"portsIn":[{"name":"Play","value":1},{"name":"Sync to timeline","value":0}],"portsOut":[{"name":"Time","links":[{"portIn":"Time","portOut":"Time","objIn":"lv0f0jbcs","objOut":"40fnzsucx"}]}],"objName":"Ops.Anim.Timer_v2"},{"id":"lv0f0jbcs","uiAttribs":{},"portsIn":[{"name":"Type index","value":2},{"name":"Type","value":"ramp up"},{"name":"Phase","value":0},{"name":"Range Min","value":-360},{"name":"Range Max","value":360}],"portsOut":[{"name":"Result","links":[{"portIn":"rotX","portOut":"Result","objIn":"li365texv","objOut":"lv0f0jbcs"}]}],"objName":"Ops.Anim.LFO_v2"},{"id":"ai5mgf397","uiAttribs":{},"portsIn":[{"name":"number2","value":0.01}],"portsOut":[{"name":"result","links":[{"portIn":"Frequency","portOut":"result","objIn":"lv0f0jbcs","objOut":"ai5mgf397"}]}],"objName":"Ops.Math.Multiply"},{"id":"dsy5j4yzl","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"result","links":[{"portIn":"Value","portOut":"result","objIn":"s9n3wwypa","objOut":"dsy5j4yzl"},{"portIn":"bool 1","portOut":"result","objIn":"9jk3wdwe4","objOut":"dsy5j4yzl"}]}],"objName":"Ops.Boolean.And"},{"id":"hd8nl2ugk","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_leftButtonIsDown"}],"portsOut":[{"name":"Value","links":[{"portIn":"bool 2","portOut":"Value","objIn":"dsy5j4yzl","objOut":"hd8nl2ugk"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"yi13493pq","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_hitBodyName"}],"portsOut":[{"name":"Value","links":[{"portIn":"String","portOut":"Value","objIn":"i77gb1h2c","objOut":"yi13493pq"},{"portIn":"String","portOut":"Value","objIn":"kbetzqvfv","objOut":"yi13493pq"}]}],"objName":"Ops.Vars.VarGetString"},{"id":"i77gb1h2c","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"SearchValue","value":"dial"}],"portsOut":[{"name":"Found","links":[{"portIn":"bool 1","portOut":"Found","objIn":"dsy5j4yzl","objOut":"i77gb1h2c"}]},{"name":"Index","value":-1}],"objName":"Ops.String.StringContains_v2"},{"id":"ozs800vz3","uiAttribs":{},"objName":"Ops.Gl.GLTF.GltfDracoCompression"},{"id":"bmau99lwf","uiAttribs":{},"portsIn":[{"name":"data","value":"{\"hiddenNodes\":{}}"},{"name":"glb File","value":"assets/66a8cc11ac4e6d02513b1fae_spherical_animation.draco.glb","display":"file"},{"name":"Draw","value":1},{"name":"Camera index","value":0},{"name":"Camera","value":"None"},{"name":"Animation","value":"Anim "},{"name":"Center index","value":0},{"name":"Center","value":"None"},{"name":"Rescale","value":1},{"name":"Rescale Size","value":1},{"name":"Sync to timeline","value":0},{"name":"Loop","value":1},{"name":"Normals Format index","value":0},{"name":"Normals Format","value":"XYZ"},{"name":"Vertices Format index","value":0},{"name":"Vertices Format","value":"XYZ"},{"name":"Calc Normals index","value":0},{"name":"Calc Normals","value":"Auto"},{"name":"Hide Nodes","value":0},{"name":"Use Material Properties","value":0},{"name":"Active","value":1}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"38w7tj78u","objOut":"bmau99lwf"}]},{"name":"Generator","value":"Sketchfab-16.17.0"},{"name":"GLTF Version","value":2},{"name":"Anim Length","value":8.333333015441895},{"name":"Anim Time","value":7.66368167773613},{"name":"Loading","value":false}],"objName":"Ops.Gl.GLTF.GltfScene_v4"},{"id":"lb1qzrcoj","uiAttribs":{},"portsIn":[{"name":"Material Name","value":"FORGED_METAL"}],"portsOut":[{"name":"Material","links":[{"portIn":"Materials","portOut":"Material","objIn":"bmau99lwf","objOut":"lb1qzrcoj"}]}],"objName":"Ops.Gl.GLTF.GltfSetMaterial"},{"id":"fs2uw3jmy","uiAttribs":{},"portsIn":[{"name":"Material Name","value":"Side"}],"portsOut":[{"name":"Material","links":[{"portIn":"Materials","portOut":"Material","objIn":"bmau99lwf","objOut":"fs2uw3jmy"}]}],"objName":"Ops.Gl.GLTF.GltfSetMaterial"},{"id":"nnu0oo0gu","uiAttribs":{},"portsIn":[{"name":"Variable","value":"NEL_SRVB_Metals"}],"objName":"Ops.Vars.VarSetObject_v2"},{"id":"u5bcyfii0","uiAttribs":{},"portsIn":[{"name":"Variable","value":"NEL_SRVB_Metals"}],"portsOut":[{"name":"Value","links":[{"portIn":"Shader","portOut":"Value","objIn":"lb1qzrcoj","objOut":"u5bcyfii0"}]}],"objName":"Ops.Vars.VarGetObject_v2"},{"id":"leqa7h4pd","uiAttribs":{},"portsIn":[{"name":"Diffuse A","value":1},{"name":"Double Sided","value":0},{"name":"Colorize Texture","value":0}],"portsOut":[{"name":"next","links":[{"portIn":"Execute","portOut":"next","objIn":"0rcbij4av","objOut":"leqa7h4pd"}]},{"name":"Shader","links":[{"portIn":"Shader","portOut":"Shader","objIn":"fs2uw3jmy","objOut":"leqa7h4pd"}]}],"objName":"Ops.Gl.Phong.LambertMaterial_v2"},{"id":"s0o3lhs2y","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ringR"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"z5bv7gal9","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ringG"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"oa1101yyu","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ringR"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"y7uobh49q","objOut":"oa1101yyu"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"tnds1iu5y","uiAttribs":{},"portsIn":[{"name":"Material Name","value":"POINTS"}],"portsOut":[{"name":"Material","links":[{"portIn":"Materials","portOut":"Material","objIn":"bmau99lwf","objOut":"tnds1iu5y"}]}],"objName":"Ops.Gl.GLTF.GltfSetMaterial"},{"id":"0rcbij4av","uiAttribs":{},"portsIn":[{"name":"Diffuse R","value":0.919},{"name":"Diffuse G","value":0.97},{"name":"Diffuse B","value":1},{"name":"Diffuse A","value":1},{"name":"Double Sided","value":0},{"name":"Colorize Texture","value":0}],"portsOut":[{"name":"Shader","links":[{"portIn":"Shader","portOut":"Shader","objIn":"tnds1iu5y","objOut":"0rcbij4av"}]}],"objName":"Ops.Gl.Phong.LambertMaterial_v2"},{"id":"y7uobh49q","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"g","portOut":"Result","objIn":"chztenqi0","objOut":"y7uobh49q"}]}],"objName":"Ops.Math.OneMinus"},{"id":"ts03zao35","uiAttribs":{},"portsIn":[{"name":"r","value":1},{"name":"g","value":1},{"name":"b","value":1},{"name":"Opacity","value":1},{"name":"AO Intensity","value":1},{"name":"Normal Map Intensity","value":1},{"name":"Repeat X","value":1},{"name":"Repeat Y","value":1},{"name":"Offset X","value":0},{"name":"Offset Y","value":0},{"name":"Screen Space Normals","value":0},{"name":"Calc normal tangents","value":1},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":0},{"name":"Alpha Mask Source index","value":0},{"name":"Alpha Mask Source","value":"Luminance"}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"orseg18lf","objOut":"ts03zao35"},{"portIn":"Execute","portOut":"Next","objIn":"l7fhi163a","objOut":"ts03zao35"}]}],"objName":"Ops.Gl.Shader.MatCapMaterial_v3"},{"id":"38w7tj78u","uiAttribs":{},"portsIn":[{"name":"Node Name","value":"c001_1"},{"name":"Translate Y","value":0},{"name":"Translate Z","value":0},{"name":"Rotation X","value":0},{"name":"Rotation Y","value":0},{"name":"Rotation Z","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"bq7dcj36g","objOut":"38w7tj78u"}]},{"name":"Found","value":true}],"objName":"Ops.Gl.GLTF.GltfTransformNode"},{"id":"5g6m8w0kd","uiAttribs":{},"portsIn":[{"name":"Node Name","value":"c003_3"},{"name":"Translate Y","value":0},{"name":"Translate Z","value":0},{"name":"Rotation X","value":0},{"name":"Rotation Y","value":0},{"name":"Rotation Z","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"br7cvag8u","objOut":"5g6m8w0kd"}]},{"name":"Found","value":true}],"objName":"Ops.Gl.GLTF.GltfTransformNode"},{"id":"bq7dcj36g","uiAttribs":{},"portsIn":[{"name":"Node Name","value":"c002_2"},{"name":"Translate Y","value":0},{"name":"Translate Z","value":0},{"name":"Rotation X","value":0},{"name":"Rotation Y","value":0},{"name":"Rotation Z","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"5g6m8w0kd","objOut":"bq7dcj36g"}]},{"name":"Found","value":true}],"objName":"Ops.Gl.GLTF.GltfTransformNode"},{"id":"br7cvag8u","uiAttribs":{},"portsIn":[{"name":"Node Name","value":"c004_4"},{"name":"Translate Y","value":0},{"name":"Translate Z","value":0},{"name":"Rotation X","value":0},{"name":"Rotation Y","value":0},{"name":"Rotation Z","value":0}],"portsOut":[{"name":"Found","value":true}],"objName":"Ops.Gl.GLTF.GltfTransformNode"},{"id":"hf23rbdfn","uiAttribs":{},"portsIn":[{"name":"number2","value":20}],"portsOut":[{"name":"result","links":[{"portIn":"Translate X","portOut":"result","objIn":"38w7tj78u","objOut":"hf23rbdfn"},{"portIn":"Translate X","portOut":"result","objIn":"bq7dcj36g","objOut":"hf23rbdfn"},{"portIn":"Translate X","portOut":"result","objIn":"5g6m8w0kd","objOut":"hf23rbdfn"},{"portIn":"Translate X","portOut":"result","objIn":"br7cvag8u","objOut":"hf23rbdfn"}]}],"objName":"Ops.Math.Multiply"},{"id":"w1vt61ydw","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_dialValues_array"}],"portsOut":[{"name":"Value","links":[{"portIn":"Array in","portOut":"Value","objIn":"z1obzd6uz","objOut":"w1vt61ydw"}]}],"objName":"Ops.Vars.VarGetArray_v2"},{"id":"9044xju7n","uiAttribs":{},"portsIn":[{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"number1","portOut":"value","objIn":"hf23rbdfn","objOut":"9044xju7n"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"z1obzd6uz","uiAttribs":{},"portsIn":[{"name":"When False index","value":0},{"name":"When False","value":"keep last array"}],"portsOut":[{"name":"Array Out","links":[{"portIn":"array","portOut":"Array Out","objIn":"9044xju7n","objOut":"z1obzd6uz"}]}],"objName":"Ops.Array.GateArray_v2"},{"id":"0lxocfgel","uiAttribs":{},"portsIn":[{"name":"Title","value":"Spatial GLTF"}],"objName":"Ops.Ui.Area"},{"id":"hb06uwqts","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentInstanceIsActive"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"9hyokghvg","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentInstanceIsActive"}],"portsOut":[{"name":"Value","links":[{"portIn":"Pass Through","portOut":"Value","objIn":"z1obzd6uz","objOut":"9hyokghvg"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"6dc9673bl","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"A","portOut":"Value","objIn":"88c0pg2n0","objOut":"6dc9673bl"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"88c0pg2n0","uiAttribs":{},"portsIn":[{"name":"B","value":1},{"name":"C","value":2},{"name":"D","value":3},{"name":"Expression","value":"(a + 1) % 4"}],"portsOut":[{"name":"Result","links":[{"portIn":"index","portOut":"Result","objIn":"9044xju7n","objOut":"88c0pg2n0"}]},{"name":"Expression Valid","value":true}],"objName":"Ops.Math.MathExpression"},{"id":"6v0s7i2sf","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_rep2d_x"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"q3siwjs06","uiAttribs":{},"portsIn":[{"name":"Frequency","value":0.002002},{"name":"Type index","value":0},{"name":"Type","value":"sine"},{"name":"Range Min","value":0},{"name":"Range Max","value":8}],"portsOut":[{"name":"Result","links":[{"portIn":"Time","portOut":"Result","objIn":"bmau99lwf","objOut":"q3siwjs06"}]}],"objName":"Ops.Anim.LFO_v2"},{"id":"l3284qrsh","uiAttribs":{},"portsOut":[{"name":"timesTriggered","links":[{"portIn":"A","portOut":"timesTriggered","objIn":"hd355ern0","objOut":"l3284qrsh"}]}],"objName":"Ops.Trigger.TriggerCounter"},{"id":"xja9p9adg","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"B","portOut":"Value","objIn":"hd355ern0","objOut":"xja9p9adg"},{"portIn":"Phase","portOut":"Value","objIn":"q3siwjs06","objOut":"xja9p9adg"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"orseg18lf","uiAttribs":{},"portsIn":[{"name":"scale","value":1.28},{"name":"x","value":1},{"name":"y","value":1},{"name":"z","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"bmau99lwf","objOut":"orseg18lf"}]}],"objName":"Ops.Gl.Matrix.Scale"},{"id":"hd355ern0","uiAttribs":{},"portsIn":[{"name":"C","value":-1},{"name":"D","value":0},{"name":"Expression","value":"a*(b * 0.01)"}],"portsOut":[{"name":"Result","links":[{"portIn":"Time","portOut":"Result","objIn":"q3siwjs06","objOut":"hd355ern0"}]},{"name":"Expression Valid","value":true}],"objName":"Ops.Math.MathExpression"},{"id":"2p7s5nsc9","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":0.005},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":2},{"name":"pivot y","value":"bottom"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":1},{"name":"num rows","value":1}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"cplq646td","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"j447574nb","objOut":"cplq646td"}]}],"objName":"Ops.Gl.Matrix.Billboard"},{"id":"j447574nb","uiAttribs":{},"portsIn":[{"name":"y","value":1.45},{"name":"z","value":6.66}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"lb4ss1de9","objOut":"j447574nb"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"l53eehg6x","uiAttribs":{},"portsIn":[{"name":"Text","value":"MirrorScape"},{"name":"Font","value":"eb066298-c95b-4900-a9c8-abb0e9ea0930"},{"name":"Scale","value":0.64},{"name":"Letter Spacing","value":0.04},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":1},{"name":"Vertical Align","value":"Top"},{"name":"r","value":0.179},{"name":"g","value":1},{"name":"b","value":0.692},{"name":"a","value":0.91},{"name":"SDF","value":1},{"name":"Smoothing","value":0.125},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":3.85615},{"name":"Height","value":0.6830550264550266},{"name":"Start Y","value":0.3375825396825398},{"name":"Num Chars","value":11}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"fevah6hns","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"finalExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"exe","portOut":"Triggered","objIn":"rw14ave8u","objOut":"fevah6hns"},{"portIn":"render","portOut":"Triggered","objIn":"bav6ydpr2","objOut":"fevah6hns"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"bav6ydpr2","uiAttribs":{},"portsIn":[{"name":"posX","value":0.525},{"name":"posY","value":0.435},{"name":"posZ","value":0},{"name":"scale","value":0.125},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"l53eehg6x","objOut":"bav6ydpr2"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"3g7cbchrs","uiAttribs":{},"portsIn":[{"name":"x","value":-0.6},{"name":"y","value":-0.835},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Exec","portOut":"trigger","objIn":"cplq646td","objOut":"3g7cbchrs"}]}],"objName":"Ops.Gl.Matrix.TranslateView"},{"id":"s9n3wwypa","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_mouseIsChangingDialValue"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"lgfxem7we","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_mouseIsChangingParamID"}],"objName":"Ops.Vars.VarSetString_v2"},{"id":"8lyuqd6tn","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"When False index","value":1},{"name":"When False","value":"custom"},{"name":"Custom Value","value":"\"lastTouched\""}],"portsOut":[{"name":"String Out","links":[{"portIn":"Key","portOut":"String Out","objIn":"q2imefo72","objOut":"8lyuqd6tn"}]}],"objName":"Ops.String.GateString"},{"id":"8vvl2gwwz","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"el0us87h5","objOut":"8vvl2gwwz"}]},{"name":"Result","links":[{"portIn":"data","portOut":"Result","objIn":"q2imefo72","objOut":"8vvl2gwwz"}]}],"objName":"Ops.Data.Compose.Object.CompObject"},{"id":"madc5uih6","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Named Trigger","value":"mainExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Update","portOut":"Triggered","objIn":"8vvl2gwwz","objOut":"madc5uih6"},{"portIn":"Update","portOut":"Triggered","objIn":"na2pda15t","objOut":"madc5uih6"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"el0us87h5","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Key","value":"dial.1"},{"name":"String","value":"mix"}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"lq1vvjm70","objOut":"el0us87h5"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetString"},{"id":"lq1vvjm70","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Key","value":"dial.2"},{"name":"String","value":"diffuse"}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"zuuutor70","objOut":"lq1vvjm70"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetString"},{"id":"zuuutor70","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Key","value":"dial.3"},{"name":"String","value":"tone"}],"portsOut":[{"name":"Next","links":[{"portIn":"Update","portOut":"Next","objIn":"fvxs3gsfk","objOut":"zuuutor70"}]}],"objName":"Ops.Data.Compose.Object.CompObjectSetString"},{"id":"fvxs3gsfk","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Key","value":"dial.4"},{"name":"String","value":"size"}],"objName":"Ops.Data.Compose.Object.CompObjectSetString"},{"id":"q2imefo72","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"lgfxem7we","objOut":"q2imefo72"},{"portIn":"String","portOut":"Result","objIn":"etfoevu6h","objOut":"q2imefo72"},{"portIn":"Value","portOut":"Result","objIn":"8yma3j0v0","objOut":"q2imefo72"}]}],"objName":"Ops.Json.ObjectGetString"},{"id":"48vrkn65x","uiAttribs":{},"portsIn":[{"name":"Size index","value":0},{"name":"Size","value":"Auto"},{"name":"Width","value":640},{"name":"Height","value":480},{"name":"Filter index","value":1},{"name":"Filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Pixel Format index","value":5},{"name":"Pixel Format","value":"SRGBA 8bit ubyte"},{"name":"R","value":0},{"name":"G","value":0},{"name":"B","value":0},{"name":"A","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"6fb2f0244","objOut":"48vrkn65x"}]},{"name":"texture_out","links":[{"portIn":"Diffuse","portOut":"texture_out","objIn":"flor1ge09","objOut":"48vrkn65x"}]},{"name":"Aspect Ratio","value":2.004618937644342},{"name":"Texture Width","value":1736},{"name":"Texture Height","value":866}],"objName":"Ops.Gl.ImageCompose.ImageCompose_v4"},{"id":"wcm52u6xo","uiAttribs":{},"portsIn":[{"name":"x","value":-1},{"name":"y","value":0.4},{"name":"z","value":-1}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"62jtojeuu","objOut":"wcm52u6xo"}]}],"objName":"Ops.Gl.Matrix.ScaleXYZViewMatrix"},{"id":"flor1ge09","uiAttribs":{},"portsIn":[{"name":"r","value":0.07},{"name":"g","value":0.06},{"name":"b","value":0.51},{"name":"AO Intensity","value":1},{"name":"Normal Map Intensity","value":1},{"name":"Repeat X","value":1},{"name":"Repeat Y","value":1},{"name":"Offset X","value":0.93},{"name":"Offset Y","value":-0.89},{"name":"Screen Space Normals","value":0},{"name":"Calc normal tangents","value":1},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":1},{"name":"Alpha Mask Source index","value":0},{"name":"Alpha Mask Source","value":"Luminance"}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"wcm52u6xo","objOut":"flor1ge09"}]}],"objName":"Ops.Gl.Shader.MatCapMaterial_v3"},{"id":"9dqwuc8l6","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":1},{"name":"height","value":1.8},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":1},{"name":"num rows","value":1}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"2zbdnj6oz","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_size"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"zpf6nadj7","objOut":"2zbdnj6oz"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"eb7wv37c6","uiAttribs":{},"portsIn":[{"name":"file","value":"assets/6697c3b245eb5d333bae2007_NEL_SRVB.webp","display":"file"},{"name":"height","value":3},{"name":"rows","value":20},{"name":"columns","value":12},{"name":"texCoords slice","value":1},{"name":"flat","value":1}],"portsOut":[{"name":"geometry","links":[{"portIn":"Value","portOut":"geometry","objIn":"hr05yjyy0","objOut":"eb7wv37c6"}]}],"objName":"Ops.Gl.Meshes.HeightMap"},{"id":"j4exj9jwp","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_tone"}],"portsOut":[{"name":"Value","links":[{"portIn":"Diffuse R","portOut":"Value","objIn":"leqa7h4pd","objOut":"j4exj9jwp"},{"portIn":"Diffuse G","portOut":"Value","objIn":"leqa7h4pd","objOut":"j4exj9jwp"},{"portIn":"Diffuse B","portOut":"Value","objIn":"leqa7h4pd","objOut":"j4exj9jwp"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"c4hww7lmi","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_tone"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"3gcrjukfk","objOut":"c4hww7lmi"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"33hdtkr51","uiAttribs":{},"portsIn":[{"name":"x","value":0},{"name":"y","value":0.31},{"name":"z","value":-0.01}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"flor1ge09","objOut":"33hdtkr51"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"3gcrjukfk","uiAttribs":{},"portsIn":[{"name":"Min","value":0},{"name":"Max","value":1},{"name":"Easing index","value":11},{"name":"Easing","value":"Sin Out"}],"portsOut":[{"name":"Result","links":[{"portIn":"Opacity","portOut":"Result","objIn":"flor1ge09","objOut":"3gcrjukfk"}]}],"objName":"Ops.Math.Ease"},{"id":"zpf6nadj7","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"z","portOut":"Result","objIn":"oba4wt0jq","objOut":"zpf6nadj7"}]}],"objName":"Ops.Math.OneMinus"},{"id":"oba4wt0jq","uiAttribs":{},"portsIn":[{"name":"scale","value":1},{"name":"x","value":1},{"name":"y","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"o4q65sx2h","objOut":"oba4wt0jq"}]}],"objName":"Ops.Gl.Matrix.Scale"},{"id":"62jtojeuu","uiAttribs":{},"portsIn":[{"name":"posX","value":0},{"name":"posY","value":-1.15},{"name":"posZ","value":-3.52},{"name":"scale","value":3.57},{"name":"rotX","value":-83.76},{"name":"rotY","value":0},{"name":"rotZ","value":180}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"9dqwuc8l6","objOut":"62jtojeuu"}]}],"objName":"Ops.Gl.Matrix.TransformView"},{"id":"rw14ave8u","uiAttribs":{},"portsIn":[{"name":"easing index","value":8},{"name":"easing","value":"Expo Out"},{"name":"duration","value":0.75},{"name":"Direction index","value":0},{"name":"Direction","value":"Both"},{"name":"value false","value":0},{"name":"value true","value":1}],"portsOut":[{"name":"value","links":[{"portIn":"Value","portOut":"value","objIn":"62fo5emt0","objOut":"rw14ave8u"},{"portIn":"Percentage","portOut":"value","objIn":"vbqzfym0q","objOut":"rw14ave8u"},{"portIn":"a","portOut":"value","objIn":"kgtq6kbqp","objOut":"rw14ave8u"}]},{"name":"finished","value":1}],"objName":"Ops.Anim.BoolAnim"},{"id":"73bb2nz0u","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_hitBodyName"}],"portsOut":[{"name":"Value","links":[{"portIn":"String","portOut":"Value","objIn":"vgzr81mxh","objOut":"73bb2nz0u"}]}],"objName":"Ops.Vars.VarGetString"},{"id":"vgzr81mxh","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"bool","portOut":"Result","objIn":"rw14ave8u","objOut":"vgzr81mxh"}]}],"objName":"Ops.String.StringLength_v2"},{"id":"n9u25c6ax","uiAttribs":{},"portsIn":[{"name":"posX","value":-0.51},{"name":"posY","value":-0.26},{"name":"posZ","value":0},{"name":"scale","value":1},{"name":"rotX","value":0},{"name":"rotY","value":180},{"name":"rotZ","value":180}],"portsOut":[{"name":"trigger","links":[{"portIn":"Execute","portOut":"trigger","objIn":"lsv3n3hs3","objOut":"n9u25c6ax"},{"portIn":"Execute","portOut":"trigger","objIn":"3n0xi3fsv","objOut":"n9u25c6ax"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"csl3j7cy1","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"When False index","value":0},{"name":"When False","value":"keep last number"},{"name":"Custom Value","value":0}],"portsOut":[{"name":"Value Out","links":[{"portIn":"Value","portOut":"Value Out","objIn":"na2pda15t","objOut":"csl3j7cy1"}]}],"objName":"Ops.Number.GateNumber"},{"id":"na2pda15t","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Separate inc/dec","value":0},{"name":"Inc factor","value":3,"title":"Inc/Dec factor"},{"name":"Dec factor","value":4}],"portsOut":[{"name":"Result","links":[{"portIn":"out0 DeltaSum Absolute Value","portOut":"Result","objIn":"7bebb5f0-9d69-43ee-98be-27a13edd98db","objOut":"na2pda15t"}]}],"objName":"Ops.Anim.Smooth"},{"id":"ge3zj70cy","uiAttribs":{},"portsIn":[{"name":"x","value":-0.83},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger","portOut":"trigger","objIn":"jrkdakvqd","objOut":"ge3zj70cy"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"jrkdakvqd","uiAttribs":{},"portsIn":[{"name":"Shape index","value":1},{"name":"Shape","value":"BoxAA"},{"name":"Name","value":"dial.1"},{"name":"Radius","value":0.25},{"name":"Size X","value":0.55},{"name":"Size Y","value":0.92},{"name":"Size Z","value":0},{"name":"Positions"},{"name":"Append Index to name","value":1}],"objName":"Ops.Graphics.Intersection.IntersectBody"},{"id":"lb4ss1de9","uiAttribs":{},"portsIn":[{"name":"mul","value":-0.92}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"2p7s5nsc9","objOut":"lb4ss1de9"}]}],"objName":"Ops.Gl.Matrix.TransformMul"},{"id":"9f43w7192","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"6kwkmfn9z","objOut":"9f43w7192"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"6kwkmfn9z","uiAttribs":{},"portsIn":[{"name":"number2","value":5}],"portsOut":[{"name":"result","links":[{"portIn":"x","portOut":"result","objIn":"j447574nb","objOut":"6kwkmfn9z"}]}],"objName":"Ops.Math.Multiply"},{"id":"62fo5emt0","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__labelBoolAnim"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"3zhcjuyyj","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__labelBoolAnim"}],"portsOut":[{"name":"Value","links":[{"portIn":"B","portOut":"Value","objIn":"v11enlha4","objOut":"3zhcjuyyj"},{"portIn":"number1","portOut":"Value","objIn":"tsahvrwcv","objOut":"3zhcjuyyj"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"v11enlha4","uiAttribs":{},"portsIn":[{"name":"C","value":1},{"name":"D","value":3},{"name":"Expression","value":"(a*0.15) * c"}],"portsOut":[{"name":"Result","links":[{"portIn":"height","portOut":"Result","objIn":"2p7s5nsc9","objOut":"v11enlha4"}]},{"name":"Expression Valid","value":true}],"objName":"Ops.Math.MathExpression"},{"id":"vw32ba4ay","uiAttribs":{},"portsIn":[{"name":"Maximum","value":0.1}],"portsOut":[{"name":"result","links":[{"portIn":"Value","portOut":"result","objIn":"8dnvznngh","objOut":"vw32ba4ay"}]}],"objName":"Ops.Math.Max"},{"id":"k1xasfekl","uiAttribs":{},"portsIn":[{"name":"Separate inc/dec","value":0},{"name":"Inc factor","value":4,"title":"Inc/Dec factor"},{"name":"Dec factor","value":4}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"a1dx328je","objOut":"k1xasfekl"}]},{"name":"Array Out","links":[{"portIn":"array","portOut":"Array Out","objIn":"scp4776vv","objOut":"k1xasfekl"},{"portIn":"array","portOut":"Array Out","objIn":"ffpua72y1","objOut":"k1xasfekl"},{"portIn":"array","portOut":"Array Out","objIn":"0yopgevxd","objOut":"k1xasfekl"},{"portIn":"array","portOut":"Array Out","objIn":"jj4a1wi34","objOut":"k1xasfekl"}]}],"objName":"Ops.User.cristianvogel.LofiSmoothArray"},{"id":"98iul8y9a","uiAttribs":{},"portsIn":[{"name":"Maximum","value":0.005}],"portsOut":[{"name":"result","links":[{"portIn":"Value","portOut":"result","objIn":"iwrkcxo1s","objOut":"98iul8y9a"}]}],"objName":"Ops.Math.Max"},{"id":"8dnvznngh","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_size"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"ok235i5ag","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_mix"}],"portsOut":[{"name":"Value","links":[{"portIn":"number","portOut":"Value","objIn":"nf37ruj15","objOut":"ok235i5ag"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"6xynvbmkd","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_mix"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"hlukndsg2","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_tone"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"iwrkcxo1s","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_diffusion"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"scp4776vv","uiAttribs":{},"portsIn":[{"name":"index","value":0},{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"Value","portOut":"value","objIn":"6xynvbmkd","objOut":"scp4776vv"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"ffpua72y1","uiAttribs":{},"portsIn":[{"name":"index","value":3},{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"value","portOut":"value","objIn":"vw32ba4ay","objOut":"ffpua72y1"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"0yopgevxd","uiAttribs":{},"portsIn":[{"name":"index","value":2},{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"Value","portOut":"value","objIn":"hlukndsg2","objOut":"0yopgevxd"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"jj4a1wi34","uiAttribs":{},"portsIn":[{"name":"index","value":1},{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"value","portOut":"value","objIn":"98iul8y9a","objOut":"jj4a1wi34"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"34zmy4a4l","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"mainExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Execute","portOut":"Triggered","objIn":"k1xasfekl","objOut":"34zmy4a4l"},{"portIn":"Render","portOut":"Triggered","objIn":"51ldwg650","objOut":"34zmy4a4l"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"g8s0zafv1","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_dialValues_array"}],"portsOut":[{"name":"Value","links":[{"portIn":"Array In","portOut":"Value","objIn":"k1xasfekl","objOut":"g8s0zafv1"}]}],"objName":"Ops.Vars.VarGetArray_v2"},{"id":"l0tg11bqe","uiAttribs":{},"portsIn":[{"name":"width","value":10},{"name":"height","value":0.49},{"name":"Logarithmic","value":1},{"name":"pivot x index","value":0},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":0},{"name":"pivot y","value":"center"},{"name":"num columns","value":8},{"name":"num rows","value":12},{"name":"axis index","value":0},{"name":"axis","value":"xy"}],"portsOut":[{"name":"Point Arrays","links":[{"portIn":"Points","portOut":"Point Arrays","objIn":"bjn0972ht","objOut":"l0tg11bqe"}]}],"objName":"Ops.Gl.Meshes.LinesArray"},{"id":"bjn0972ht","uiAttribs":{},"portsIn":[{"name":"Tesselate Edges","value":0},{"name":"Render Mesh","value":1}],"objName":"Ops.Gl.Meshes.SplineMesh_v2"},{"id":"yte4ra0uu","uiAttribs":{},"portsIn":[{"name":"Width","value":1.03},{"name":"Width Perspective","value":0},{"name":"Mapping index","value":1},{"name":"Mapping","value":"Face"},{"name":"Colorize Texture","value":0},{"name":"Offset","value":0},{"name":"r","value":0.179},{"name":"g","value":1},{"name":"b","value":0.692}],"portsOut":[{"name":"Trigger","links":[{"portIn":"render","portOut":"Trigger","objIn":"kom6mxww1","objOut":"yte4ra0uu"}]}],"objName":"Ops.Gl.Meshes.SplineMeshMaterial_v2"},{"id":"ertlqmhh5","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"l0tg11bqe","objOut":"ertlqmhh5"}]},{"name":"Was Triggered","value":1}],"objName":"Ops.Trigger.TriggerOnce"},{"id":"kom6mxww1","uiAttribs":{},"portsIn":[{"name":"posX","value":0},{"name":"posY","value":-0.75},{"name":"posZ","value":0.45},{"name":"scale","value":1},{"name":"rotX","value":180},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"bjn0972ht","objOut":"kom6mxww1"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"9li4kwtsh","uiAttribs":{},"portsIn":[{"name":"number1","value":1},{"name":"number2","value":0.2}],"portsOut":[{"name":"result","links":[{"portIn":"a","portOut":"result","objIn":"yte4ra0uu","objOut":"9li4kwtsh"}]}],"objName":"Ops.Math.Multiply"},{"id":"99du8h3y9","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"preSequenceFlow"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Render","portOut":"Triggered","objIn":"yte4ra0uu","objOut":"99du8h3y9"},{"portIn":"Exec","portOut":"Triggered","objIn":"ertlqmhh5","objOut":"99du8h3y9"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"0oj6cpo44","uiAttribs":{},"portsIn":[{"name":"Title","value":"LInes"}],"objName":"Ops.Ui.Area"},{"id":"6lh7g16he","uiAttribs":{},"portsIn":[{"name":"Value 0","value":-0.52},{"name":"Value 1","value":0.53}],"portsOut":[{"name":"Out Value","links":[{"portIn":"Speed","portOut":"Out Value","objIn":"40fnzsucx","objOut":"6lh7g16he"}]}],"objName":"Ops.Boolean.BoolToNumber_v2"},{"id":"6fb2f0244","uiAttribs":{},"portsIn":[{"name":"Passes","value":1},{"name":"Clamp","value":0},{"name":"direction index","value":0},{"name":"direction","value":"both"},{"name":"Mask Invert","value":0}],"objName":"Ops.Gl.ImageCompose.FastBlur_v2"},{"id":"z3hsmrlsw","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_size"}],"portsOut":[{"name":"Value","links":[{"portIn":"Percentage","portOut":"Value","objIn":"o5rkdhq2k","objOut":"z3hsmrlsw"},{"portIn":"Percentage","portOut":"Value","objIn":"4jk31qlcv","objOut":"z3hsmrlsw"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"hr05yjyy0","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__heightMapGeometry"}],"objName":"Ops.Vars.VarSetObject_v2"},{"id":"w2fqrmovh","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLength"}],"portsOut":[{"name":"Value","links":[{"portIn":"Percentage","portOut":"Value","objIn":"69bvpidqa","objOut":"w2fqrmovh"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"69bvpidqa","uiAttribs":{},"portsIn":[{"name":"Value 1","value":16},{"name":"Value 2","value":512}],"portsOut":[{"name":"Result","links":[{"portIn":"Number","portOut":"Result","objIn":"7pg8sq01l","objOut":"69bvpidqa"}]}],"objName":"Ops.Math.Interpolate"},{"id":"7pg8sq01l","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"texture width","portOut":"Result","objIn":"v2qv1ozh2","objOut":"7pg8sq01l"}]}],"objName":"Ops.Math.Ceil"},{"id":"3so3f33cf","uiAttribs":{},"portsIn":[{"name":"Diffuse R","value":0.21561448295683894},{"name":"Diffuse G","value":1},{"name":"Diffuse B","value":0.666},{"name":"Diffuse A","value":1},{"name":"Double Sided","value":0},{"name":"Colorize Texture","value":0}],"portsOut":[{"name":"next","links":[{"portIn":"render","portOut":"next","objIn":"oba4wt0jq","objOut":"3so3f33cf"}]}],"objName":"Ops.Gl.Phong.LambertMaterial_v2"},{"id":"65mpod5qd","uiAttribs":{},"portsIn":[{"name":"value","value":-0.15}],"portsOut":[{"name":"result","links":[{"portIn":"y","portOut":"result","objIn":"7qikt1vaf","objOut":"65mpod5qd"},{"portIn":"y","portOut":"result","objIn":"mbk4m8pcr","objOut":"65mpod5qd"},{"portIn":"y","portOut":"result","objIn":"ge3zj70cy","objOut":"65mpod5qd"}]}],"objName":"Ops.Number.Number"},{"id":"nme067fl0","uiAttribs":{},"portsIn":[{"name":"number2","value":90}],"portsOut":[{"name":"result","links":[{"portIn":"Rotate","portOut":"result","objIn":"1qwtcdiny","objOut":"nme067fl0"}]}],"objName":"Ops.Math.Multiply"},{"id":"55gbye0uh","uiAttribs":{},"portsIn":[{"name":"number2","value":4},{"name":"pingpong","value":0}],"portsOut":[{"name":"result","links":[{"portIn":"Waveform index","portOut":"result","objIn":"1qwtcdiny","objOut":"55gbye0uh"}]}],"objName":"Ops.Math.Modulo"},{"id":"qfhia7ec3","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_structure"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"nme067fl0","objOut":"qfhia7ec3"},{"portIn":"number1","portOut":"Value","objIn":"55gbye0uh","objOut":"qfhia7ec3"},{"portIn":"Offset X","portOut":"Value","objIn":"1qwtcdiny","objOut":"qfhia7ec3"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"p8itm86lw","uiAttribs":{},"portsIn":[{"name":"posX","value":-1.71},{"name":"posY","value":-0.56},{"name":"posZ","value":0},{"name":"scale","value":1.29},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"djh55ojh2","objOut":"p8itm86lw"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"ud198sc5z","uiAttribs":{},"portsOut":[{"name":"Geometry Result","links":[{"portIn":"Geometry","portOut":"Geometry Result","objIn":"djh55ojh2","objOut":"ud198sc5z"}]}],"objName":"Ops.Graphics.GeometryMergeSimple"},{"id":"djh55ojh2","uiAttribs":{},"portsIn":[{"name":"Render Mesh","value":1},{"name":"Add Vertex Numbers","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"di9yoxov9","objOut":"djh55ojh2"},{"portIn":"Render","portOut":"trigger","objIn":"eerqtlpnp","objOut":"djh55ojh2"}]}],"objName":"Ops.Gl.RenderGeometry_v2"},{"id":"absd3d4hb","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__heightMapGeometry"}],"portsOut":[{"name":"Value","links":[{"portIn":"Geometry 2","portOut":"Value","objIn":"ud198sc5z","objOut":"absd3d4hb"}]}],"objName":"Ops.Vars.VarGetObject_v2"},{"id":"vi3ol2srw","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.35},{"name":"Value 2","value":0.6}],"portsOut":[{"name":"Result","links":[{"portIn":"Stretch Right","portOut":"Result","objIn":"tgeyutq71","objOut":"vi3ol2srw"}]}],"objName":"Ops.Math.Interpolate"},{"id":"5rr738syp","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLevel"}],"portsOut":[{"name":"Value","links":[{"portIn":"Percentage","portOut":"Value","objIn":"vi3ol2srw","objOut":"5rr738syp"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"cdrv5rrjk","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"number1","portOut":"Result","objIn":"jax75maya","objOut":"cdrv5rrjk"}]}],"objName":"Ops.Math.OneMinus"},{"id":"5dbgajlcv","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLength"}],"portsOut":[{"name":"Value","links":[{"portIn":"r","portOut":"Value","objIn":"1qwtcdiny","objOut":"5dbgajlcv"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"grj3uhv6e","uiAttribs":{},"portsIn":[{"name":"number2","value":0.25}],"portsOut":[{"name":"result","links":[{"portIn":"Line Glow","portOut":"result","objIn":"1qwtcdiny","objOut":"grj3uhv6e"}]}],"objName":"Ops.Math.Multiply"},{"id":"yaju7ahmk","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_diffusion"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"grj3uhv6e","objOut":"yaju7ahmk"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"1qwtcdiny","uiAttribs":{},"portsIn":[{"name":"Blend Mode index","value":18},{"name":"Blend Mode","value":"Math Add"},{"name":"Amount","value":1},{"name":"Alpha Mask index","value":0},{"name":"Alpha Mask","value":"Off"},{"name":"Waveform","value":"Sine"},{"name":"Amplitude","value":0.318},{"name":"Frequency","value":1.83},{"name":"Line Width","value":0},{"name":"invert color","value":0},{"name":"Solid fill","value":0},{"name":"Offset Y","value":0.5},{"name":"g","value":0.897},{"name":"b","value":1}],"objName":"Ops.Gl.ImageCompose.Waveform_v3"},{"id":"pu5boj419","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":6.22},{"name":"height","value":1.39},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":1},{"name":"num rows","value":1}],"portsOut":[{"name":"trigger","title":"Next","links":[{"portIn":"render","portOut":"trigger","objIn":"p8itm86lw","objOut":"pu5boj419"}]},{"name":"geometry","links":[{"portIn":"Geometry","portOut":"geometry","objIn":"ud198sc5z","objOut":"pu5boj419"}]}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"6t34impxr","uiAttribs":{},"portsIn":[{"name":"x","value":4},{"name":"y","value":2},{"name":"z","value":4}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"pvmeev0jc","objOut":"6t34impxr"}]}],"objName":"Ops.Gl.Matrix.ScaleXYZViewMatrix"},{"id":"pvmeev0jc","uiAttribs":{},"portsIn":[{"name":"posX","value":0.03},{"name":"posY","value":0.3},{"name":"posZ","value":-1.01},{"name":"scale","value":1},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"pu5boj419","objOut":"pvmeev0jc"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"a1dx328je","uiAttribs":{},"portsIn":[{"name":"g","value":0.8266594326686372},{"name":"b","value":0.047299581303328786},{"name":"colorizeTexture","value":0},{"name":"Vertex Colors","value":0},{"name":"Alpha Mask Source index","value":0},{"name":"Alpha Mask Source","value":"Luminance"},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":1},{"name":"diffuseRepeatX","value":1},{"name":"diffuseRepeatY","value":1},{"name":"Tex Offset Y","value":0},{"name":"Crop TexCoords","value":0},{"name":"billboard","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"6t34impxr","objOut":"a1dx328je"}]}],"objName":"Ops.Gl.Shader.BasicMaterial_v3"},{"id":"87k6oec5j","uiAttribs":{},"portsIn":[{"name":"Gradient","value":"{\"keys\":[{\"pos\":0,\"posy\":0.5,\"r\":0.2625590268940652,\"g\":0.054026891322556114,\"b\":0.6205756441878059},{\"pos\":0,\"posy\":0.5,\"r\":0.8299420212822664,\"g\":0.16556362844740513,\"b\":0.8260829660269384},{\"pos\":1,\"posy\":0.5,\"r\":0.5669327267581887,\"g\":0.16232555165816587,\"b\":0.5756675209595701},{\"pos\":1,\"posy\":0.5,\"r\":0.30793833174821916,\"g\":0.9434570279225993,\"b\":0.9981465641571576}]}"},{"name":"Direction index","value":1},{"name":"Direction","value":"Y"},{"name":"Smoothstep","value":0},{"name":"Step","value":0},{"name":"Flip","value":0},{"name":"sRGB","value":0},{"name":"Oklab","value":0},{"name":"Size","value":64},{"name":"filter index","value":1},{"name":"filter","value":"linear"},{"name":"wrap index","value":1},{"name":"wrap","value":"repeat"},{"name":"Gradient Array","value":0}],"portsOut":[{"name":"Texture","links":[{"portIn":"Objects_0","portOut":"Texture","objIn":"4bfp0wzok","objOut":"87k6oec5j"}]}],"objName":"Ops.Gl.GradientTexture"},{"id":"di9yoxov9","uiAttribs":{},"portsIn":[{"name":"Size index","value":0},{"name":"Size","value":"Auto"},{"name":"Width","value":640},{"name":"Height","value":480},{"name":"Filter index","value":1},{"name":"Filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"R","value":0},{"name":"G","value":0},{"name":"B","value":0},{"name":"A","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"1qwtcdiny","objOut":"di9yoxov9"}]},{"name":"texture_out","links":[{"portIn":"Texture 2","portOut":"texture_out","objIn":"jc2ggn9up","objOut":"di9yoxov9"}]},{"name":"Aspect Ratio","value":0.259765625},{"name":"Texture Width","value":133},{"name":"Texture Height","value":512}],"objName":"Ops.Gl.ImageCompose.ImageCompose_v4"},{"id":"9s6v7pnlp","uiAttribs":{},"portsIn":[{"name":"Size index","value":2},{"name":"Size","value":"Manual"},{"name":"Width","value":640},{"name":"Height","value":480},{"name":"Filter index","value":2},{"name":"Filter","value":"mipmap"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"R","value":0},{"name":"G","value":0},{"name":"B","value":0},{"name":"A","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"jc2ggn9up","objOut":"9s6v7pnlp"}]},{"name":"texture_out","links":[{"portIn":"Base Texture","portOut":"texture_out","objIn":"51ldwg650","objOut":"9s6v7pnlp"}]},{"name":"Aspect Ratio","value":1.3333333333333333},{"name":"Texture Width","value":640},{"name":"Texture Height","value":480}],"objName":"Ops.Gl.ImageCompose.ImageCompose_v4"},{"id":"51ldwg650","uiAttribs":{},"portsIn":[{"name":"Size index","value":2},{"name":"Size","value":"Manual"},{"name":"Width","value":512},{"name":"Height","value":512},{"name":"Filter index","value":2},{"name":"Filter","value":"mipmap"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"R","value":0},{"name":"G","value":0},{"name":"B","value":0},{"name":"A","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"u8f4ns874","objOut":"51ldwg650"}]},{"name":"texture_out","links":[{"portIn":"Value","portOut":"texture_out","objIn":"3hamtvj79","objOut":"51ldwg650"},{"portIn":"texture","portOut":"texture_out","objIn":"a1dx328je","objOut":"51ldwg650"}]},{"name":"Aspect Ratio","value":1},{"name":"Texture Width","value":512},{"name":"Texture Height","value":512}],"objName":"Ops.Gl.ImageCompose.ImageCompose_v4"},{"id":"ui62hd3xv","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_diffusion"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"cdrv5rrjk","objOut":"ui62hd3xv"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"nf37ruj15","uiAttribs":{},"portsIn":[{"name":"min","value":-0.1},{"name":"max","value":0.7}],"portsOut":[{"name":"result","links":[{"portIn":"Value","portOut":"result","objIn":"yt1rl0z6v","objOut":"nf37ruj15"}]}],"objName":"Ops.Math.SmoothStep_v2"},{"id":"xeu596ai6","uiAttribs":{},"portsIn":[{"name":"Blend Mode index","value":18},{"name":"Blend Mode","value":"Math Add"},{"name":"Crop","value":1},{"name":"Clear","value":1}],"objName":"Ops.Gl.ImageCompose.RotateTexture_v2"},{"id":"3hamtvj79","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_finalTextOut"}],"objName":"Ops.Vars.VarSetTexture_v2"},{"id":"jax75maya","uiAttribs":{},"portsIn":[{"name":"number2","value":-200}],"portsOut":[{"name":"result","links":[{"portIn":"Stretch Left","portOut":"result","objIn":"tgeyutq71","objOut":"jax75maya"}]}],"objName":"Ops.Math.Multiply"},{"id":"tgeyutq71","uiAttribs":{},"portsIn":[{"name":"Blend Mode index","value":18},{"name":"Blend Mode","value":"Math Add"},{"name":"Amount","value":1},{"name":"Clamp","value":0},{"name":"Stretch Top","value":1},{"name":"Stretch Bottom","value":1}],"objName":"Ops.Gl.ImageCompose.SkewStretchImage_v2"},{"id":"jc2ggn9up","uiAttribs":{},"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"tgeyutq71","objOut":"jc2ggn9up"}]}],"objName":"Ops.Gl.ImageCompose.Mix"},{"id":"eerqtlpnp","uiAttribs":{},"portsIn":[{"name":"Size index","value":0},{"name":"Size","value":"Auto"},{"name":"Width","value":512},{"name":"Height","value":512},{"name":"Filter index","value":1},{"name":"Filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"R","value":0},{"name":"G","value":0},{"name":"B","value":0},{"name":"A","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"xeu596ai6","objOut":"eerqtlpnp"}]},{"name":"texture_out","links":[{"portIn":"Texture 1","portOut":"texture_out","objIn":"jc2ggn9up","objOut":"eerqtlpnp"},{"portIn":"Texture In","portOut":"texture_out","objIn":"uoo2qkue7","objOut":"eerqtlpnp"},{"portIn":"Value","portOut":"texture_out","objIn":"veadj9l25","objOut":"eerqtlpnp"}]},{"name":"Aspect Ratio","value":0.259765625},{"name":"Texture Width","value":133},{"name":"Texture Height","value":512}],"objName":"Ops.Gl.ImageCompose.ImageCompose_v4"},{"id":"0cmu1ry52","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLevel"}],"portsOut":[{"name":"Value","links":[{"portIn":"Amount","portOut":"Value","objIn":"xeu596ai6","objOut":"0cmu1ry52"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"fvg1zz75v","uiAttribs":{},"portsIn":[{"name":"Size index","value":0},{"name":"Size","value":"Canvas"},{"name":"texture width","value":1736},{"name":"texture height","value":866},{"name":"Auto Aspect","value":1},{"name":"filter index","value":0},{"name":"filter","value":"nearest"},{"name":"Wrap index","value":0},{"name":"Wrap","value":"Clamp"},{"name":"MSAA index","value":0},{"name":"MSAA","value":"none"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"Depth","value":1},{"name":"Clear","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"n9u25c6ax","objOut":"fvg1zz75v"}]},{"name":"texture","links":[{"portIn":"Base Texture","portOut":"texture","objIn":"48vrkn65x","objOut":"fvg1zz75v"}]}],"objName":"Ops.Gl.RenderToTexture_v3"},{"id":"pxbd6eh63","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_tone"}],"portsOut":[{"name":"Value","links":[{"portIn":"Percentage","portOut":"Value","objIn":"uo6mpre8c","objOut":"pxbd6eh63"},{"portIn":"Value","portOut":"Value","objIn":"5ulr7vh4p","objOut":"pxbd6eh63"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"uo6mpre8c","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.43},{"name":"Value 2","value":1}],"portsOut":[{"name":"Result","links":[{"portIn":"a","portOut":"Result","objIn":"a1dx328je","objOut":"uo6mpre8c"},{"portIn":"r","portOut":"Result","objIn":"a1dx328je","objOut":"uo6mpre8c"}]}],"objName":"Ops.Math.Interpolate"},{"id":"bf9v1uys8","uiAttribs":{},"portsIn":[{"name":"Blend Mode index","value":19},{"name":"Blend Mode","value":"Math Subtract"},{"name":"Alpha Mask index","value":0},{"name":"Alpha Mask","value":"Off"},{"name":"Strength","value":1},{"name":"Radius","value":0.208},{"name":"Sharp","value":0.539},{"name":"Aspect","value":1},{"name":"r","value":0},{"name":"g","value":0},{"name":"b","value":0},{"name":"Alpha","value":0}],"portsOut":[{"name":"Trigger","links":[{"portIn":"render","portOut":"Trigger","objIn":"lsqdg33wg","objOut":"bf9v1uys8"}]}],"objName":"Ops.Gl.ImageCompose.Vignette_v3"},{"id":"5ulr7vh4p","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Amount","portOut":"Result","objIn":"bf9v1uys8","objOut":"5ulr7vh4p"}]}],"objName":"Ops.Math.OneMinus"},{"id":"lsqdg33wg","uiAttribs":{},"portsIn":[{"name":"Clamp","value":1},{"name":"direction index","value":2},{"name":"direction","value":"horizontal"},{"name":"Mask Invert","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"9s6v7pnlp","objOut":"lsqdg33wg"}]}],"objName":"Ops.Gl.ImageCompose.FastBlur_v2"},{"id":"fogdsmdt8","uiAttribs":{},"portsIn":[{"name":"Gradient","value":"{\"keys\":[{\"pos\":0,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0},{\"pos\":0,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0},{\"pos\":0.271484375,\"posy\":0.51,\"r\":0.66625,\"g\":0.5517789459228516,\"b\":0.5517789459228516},{\"pos\":0.46875,\"posy\":0.51,\"r\":0.998046875,\"g\":0.998046875,\"b\":0.998046875},{\"pos\":0.697265625,\"posy\":0.58,\"r\":0.12551709251666177,\"g\":0.5638552207620753,\"b\":0.504936360395575},{\"pos\":1,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0},{\"pos\":1,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0}]}"},{"name":"Direction index","value":1},{"name":"Direction","value":"Y"},{"name":"Smoothstep","value":1},{"name":"Step","value":0},{"name":"Flip","value":0},{"name":"sRGB","value":0},{"name":"Oklab","value":0},{"name":"Size","value":24},{"name":"filter index","value":1},{"name":"filter","value":"linear"},{"name":"wrap index","value":0},{"name":"wrap","value":"clamp to edge"},{"name":"Gradient Array","value":0}],"portsOut":[{"name":"Texture","links":[{"portIn":"Mask","portOut":"Texture","objIn":"lsqdg33wg","objOut":"fogdsmdt8"}]}],"objName":"Ops.Gl.GradientTexture"},{"id":"v9g4w5w8m","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLevel"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"qhu04l7zy","objOut":"v9g4w5w8m"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"qhu04l7zy","uiAttribs":{},"portsIn":[{"name":"number2","value":4}],"portsOut":[{"name":"result","links":[{"portIn":"Passes","portOut":"result","objIn":"lsqdg33wg","objOut":"qhu04l7zy"}]}],"objName":"Ops.Math.Multiply"},{"id":"kzr5ui0jv","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_structure"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"tpi422xya","objOut":"kzr5ui0jv"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"tpi422xya","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Randomize Colors","portOut":"Next","objIn":"87k6oec5j","objOut":"tpi422xya"}]},{"name":"Number","value":0}],"objName":"Ops.Number.TriggerOnChangeNumber"},{"id":"l4gff2c89","uiAttribs":{},"portsIn":[{"name":"key code","value":49},{"name":"canvas only","value":1},{"name":"Mod Key index","value":0},{"name":"Mod Key","value":"none"},{"name":"Enabled","value":1},{"name":"Prevent Default","value":0}],"portsOut":[{"name":"on press","links":[{"portIn":"trigger","portOut":"on press","objIn":"st9zrhm6y","objOut":"l4gff2c89"}]},{"name":"Pressed","links":[{"portIn":"Default","portOut":"Pressed","objIn":"st9zrhm6y","objOut":"l4gff2c89"}]},{"name":"Key","value":"1"}],"objName":"Ops.Devices.Keyboard.KeyPressLearn"},{"id":"st9zrhm6y","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"visible","portOut":"result","objIn":"ick4g333d","objOut":"st9zrhm6y"}]}],"objName":"Ops.Boolean.ToggleBool_v2"},{"id":"ick4g333d","uiAttribs":{},"objName":"Ops.Patch.P4oPpSn.Console_v2"},{"id":"ngzgotbds","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"exe","portOut":"Trigger out","objIn":"124910bf-e88f-4da5-847e-888a7ac73020","objOut":"ngzgotbds"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"cdn66mu7a","uiAttribs":{},"portsIn":[{"name":"Text","value":"~Scape"},{"name":"Font","value":"eb066298-c95b-4900-a9c8-abb0e9ea0930"},{"name":"Scale","value":0.1},{"name":"Letter Spacing","value":-0.02},{"name":"Line Height","value":1},{"name":"Align index","value":2},{"name":"Align","value":"Right"},{"name":"Vertical Align index","value":3},{"name":"Vertical Align","value":"Bottom"},{"name":"r","value":0.75},{"name":"g","value":0.75},{"name":"b","value":0.75},{"name":"a","value":1},{"name":"SDF","value":1},{"name":"Smoothing","value":0.16},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.32166796875000003},{"name":"Height","value":0.10333672288359791},{"name":"Start Y","value":0.08180977182539684},{"name":"Num Chars","value":6}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"kgztdjkg7","uiAttribs":{},"portsIn":[{"name":"posX","value":-1.62},{"name":"posY","value":-0.71},{"name":"posZ","value":0},{"name":"scale","value":1},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":90}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"cdn66mu7a","objOut":"kgztdjkg7"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"62p51ysxi","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":0.01},{"name":"height","value":-0.43},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":1},{"name":"num rows","value":1}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"b7lt5j2bc","uiAttribs":{},"portsIn":[{"name":"x","value":-1.61},{"name":"y","value":-0.87},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"62p51ysxi","objOut":"b7lt5j2bc"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"ajqkcp9y5","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":0.01},{"name":"height","value":2.48},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":1},{"name":"num rows","value":1}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"9yv8uo1rz","uiAttribs":{},"portsIn":[{"name":"x","value":-1.61},{"name":"y","value":0.79},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"ajqkcp9y5","objOut":"9yv8uo1rz"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"kepigt9gu","uiAttribs":{},"portsIn":[{"name":"r","value":0.179},{"name":"g","value":1},{"name":"b","value":0.692},{"name":"a","value":0.547},{"name":"colorizeTexture","value":0},{"name":"Vertex Colors","value":0},{"name":"Alpha Mask Source index","value":0},{"name":"Alpha Mask Source","value":"Luminance"},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":0},{"name":"diffuseRepeatX","value":1},{"name":"diffuseRepeatY","value":1},{"name":"Tex Offset X","value":0},{"name":"Tex Offset Y","value":0},{"name":"Crop TexCoords","value":0},{"name":"billboard","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"jtsnv54z5","objOut":"kepigt9gu"}]}],"objName":"Ops.Gl.Shader.BasicMaterial_v3"},{"id":"s9d3c0k9s","uiAttribs":{},"portsIn":[{"name":"Text","value":"*Reflectors"},{"name":"Font","value":"eb066298-c95b-4900-a9c8-abb0e9ea0930"},{"name":"Scale","value":0.1},{"name":"Letter Spacing","value":-0.02},{"name":"Line Height","value":1},{"name":"Align index","value":2},{"name":"Align","value":"Right"},{"name":"Vertical Align index","value":3},{"name":"Vertical Align","value":"Bottom"},{"name":"r","value":0.75},{"name":"g","value":0.75},{"name":"b","value":0.75},{"name":"a","value":1},{"name":"SDF","value":1},{"name":"Smoothing","value":0.16},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.52047265625},{"name":"Height","value":0.10703984788359788},{"name":"Start Y","value":0.10116914682539685},{"name":"Num Chars","value":11}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"kcwjgoqk1","uiAttribs":{},"portsIn":[{"name":"posX","value":-1.63},{"name":"posY","value":0.41},{"name":"posZ","value":0},{"name":"scale","value":1},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":90}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"s9d3c0k9s","objOut":"kcwjgoqk1"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"3wnf93z0d","uiAttribs":{},"portsIn":[{"name":"Title","value":"Left Side Panel"}],"objName":"Ops.Ui.Area"},{"id":"w1wyli4ul","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"alrh6hig4","portOut":"Triggered","objIn":"n1dxl83p1","objOut":"w1wyli4ul"},{"portIn":"8dittifdh","portOut":"Triggered","objIn":"n1dxl83p1","objOut":"w1wyli4ul"},{"portIn":"render","portOut":"Triggered","objIn":"kepigt9gu","objOut":"w1wyli4ul"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"jtsnv54z5","uiAttribs":{},"portsIn":[{"name":"x","value":-0.06},{"name":"y","value":0},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"kgztdjkg7","objOut":"jtsnv54z5"},{"portIn":"render","portOut":"trigger","objIn":"kcwjgoqk1","objOut":"jtsnv54z5"},{"portIn":"render","portOut":"trigger","objIn":"b7lt5j2bc","objOut":"jtsnv54z5"},{"portIn":"render","portOut":"trigger","objIn":"9yv8uo1rz","objOut":"jtsnv54z5"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"8bw0l1iwj","uiAttribs":{},"portsOut":[{"name":"Number","links":[{"portIn":"number1","portOut":"Number","objIn":"dcl7z07s9","objOut":"8bw0l1iwj"},{"portIn":"Value In","portOut":"Number","objIn":"4eybed6uw","objOut":"8bw0l1iwj"}]}],"objName":"Ops.String.ParseInt_v2"},{"id":"rzoomxuz4","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_hitBodyName"}],"portsOut":[{"name":"Value","links":[{"portIn":"String","portOut":"Value","objIn":"zqsm59jgd","objOut":"rzoomxuz4"}]}],"objName":"Ops.Vars.VarGetString"},{"id":"zqsm59jgd","uiAttribs":{},"portsIn":[{"name":"Search For","value":"dial."},{"name":"Replace","value":""},{"name":"Replace What index","value":0},{"name":"Replace What","value":"All"}],"portsOut":[{"name":"Result","links":[{"portIn":"String","portOut":"Result","objIn":"8bw0l1iwj","objOut":"zqsm59jgd"}]}],"objName":"Ops.String.StringReplace"},{"id":"dcl7z07s9","uiAttribs":{},"portsIn":[{"name":"number2","value":0}],"portsOut":[{"name":"result","links":[{"portIn":"Pass Through","portOut":"result","objIn":"4eybed6uw","objOut":"dcl7z07s9"}]}],"objName":"Ops.Math.Compare.GreaterThan"},{"id":"439i0aj79","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_activeDial_ID"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"4eybed6uw","uiAttribs":{},"portsIn":[{"name":"When False index","value":0},{"name":"When False","value":"keep last number"},{"name":"Custom Value","value":0}],"portsOut":[{"name":"Value Out","links":[{"portIn":"Value","portOut":"Value Out","objIn":"439i0aj79","objOut":"4eybed6uw"}]}],"objName":"Ops.Number.GateNumber"},{"id":"cej7j59jx","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_bypassSRVB"}],"portsOut":[{"name":"Value","links":[{"portIn":"Boolean","portOut":"Value","objIn":"irxfck5m6","objOut":"cej7j59jx"},{"portIn":"Pass Through","portOut":"Value","objIn":"oefqiqdsy","objOut":"cej7j59jx"},{"portIn":"Pass Through","portOut":"Value","objIn":"3n0xi3fsv","objOut":"cej7j59jx"},{"portIn":"Value","portOut":"Value","objIn":"8qsfm58e9","objOut":"cej7j59jx"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"irxfck5m6","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Pass Through","portOut":"Result","objIn":"ngzgotbds","objOut":"irxfck5m6"},{"portIn":"Pass Through","portOut":"Result","objIn":"lsv3n3hs3","objOut":"irxfck5m6"}]}],"objName":"Ops.Boolean.Not"},{"id":"89jux4z6s","uiAttribs":{},"portsIn":[{"name":"Title","value":"bypass"}],"objName":"Ops.Ui.Area"},{"id":"oefqiqdsy","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"render","portOut":"Trigger out","objIn":"gd8i1910i","objOut":"oefqiqdsy"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"gd8i1910i","uiAttribs":{},"portsIn":[{"name":"posX","value":0},{"name":"posY","value":0},{"name":"posZ","value":0},{"name":"scale","value":0.73},{"name":"rotX","value":90},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"9fkoygcno","portOut":"trigger","objIn":"pa5yuiyom","objOut":"gd8i1910i"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"pa5yuiyom","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"9fkoygcno","title":"Render"},{"name":"patchId","value":"bp2sub_pa5yuiyom"}],"objName":"Ops.Patch.P4oPpSn.SubPatch1"},{"id":"3n0xi3fsv","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"9fkoygcno","portOut":"Trigger out","objIn":"pa5yuiyom","objOut":"3n0xi3fsv"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"lsv3n3hs3","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"Execute","portOut":"Trigger out","objIn":"ngzgotbds","objOut":"lsv3n3hs3"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"n1dxl83p1","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"alrh6hig4","title":"render"},{"name":"8dittifdh","title":"Render"},{"name":"patchId","value":"bp2sub_n1dxl83p1"}],"objName":"Ops.Patch.P4oPpSn.SubPatch3"},{"id":"membr309b","uiAttribs":{},"portsIn":[{"name":"value","value":"dryMix"}],"portsOut":[{"name":"String","links":[{"portIn":"btagbs7z2","portOut":"String","objIn":"dy6sr4seg","objOut":"membr309b"}]}],"objName":"Ops.String.String_v2"},{"id":"8havouexn","uiAttribs":{},"portsIn":[{"name":"Text","value":"* dry mix"},{"name":"Font","value":"eb066298-c95b-4900-a9c8-abb0e9ea0930"},{"name":"Scale","value":0.06},{"name":"Letter Spacing","value":-0.04},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":2},{"name":"Vertical Align","value":"Middle"},{"name":"r","value":0.75},{"name":"g","value":0.75},{"name":"b","value":0.75},{"name":"SDF","value":1},{"name":"Smoothing","value":0.176},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.2531765625},{"name":"Height","value":0.09154265873015872},{"name":"Start Y","value":0.04224890873015873},{"name":"Num Chars","value":9}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"8gspnlp7e","uiAttribs":{},"portsIn":[{"name":"x","value":0.51},{"name":"y","value":0.78},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"8havouexn","objOut":"8gspnlp7e"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"2s2np29qz","uiAttribs":{},"portsIn":[{"name":"Title","value":"dry mix in"}],"objName":"Ops.Ui.Area"},{"id":"8u59uuw3y","uiAttribs":{},"portsIn":[{"name":"number2","value":0.33}],"portsOut":[{"name":"result","links":[{"portIn":"a","portOut":"result","objIn":"8havouexn","objOut":"8u59uuw3y"}]}],"objName":"Ops.Math.Sum"},{"id":"5gypeqckx","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"render","portOut":"Triggered","objIn":"8gspnlp7e","objOut":"5gypeqckx"},{"portIn":"blls2amps","portOut":"Triggered","objIn":"dy6sr4seg","objOut":"5gypeqckx"},{"portIn":"render","portOut":"Triggered","objIn":"vm3f05tkh","objOut":"5gypeqckx"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"dy6sr4seg","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"blls2amps","title":"Trigger in"},{"name":"btagbs7z2","title":"Class"},{"name":"lj06d561p","value":0,"title":"Show Boundings"},{"name":"patchId","value":"bp2sub_dy6sr4seg"}],"portsOut":[{"name":"nti406vwi","value":-0.06557429114164764,"title":"Result"},{"name":"gjvx0zyv5","title":"value","links":[{"portIn":"number1","portOut":"gjvx0zyv5","objIn":"8u59uuw3y","objOut":"dy6sr4seg"},{"portIn":"a","portOut":"gjvx0zyv5","objIn":"cusun507p","objOut":"dy6sr4seg"}]}],"objName":"Ops.Patch.P4oPpSn.BasicSlider_v4"},{"id":"gwbv0asv9","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":0.65},{"name":"height","value":0.03},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":5},{"name":"num rows","value":3}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"vm3f05tkh","uiAttribs":{},"portsIn":[{"name":"x","value":1.06},{"name":"y","value":0.78},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"cusun507p","objOut":"vm3f05tkh"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"cusun507p","uiAttribs":{},"portsIn":[{"name":"PointSize","value":3},{"name":"Size in Pixels","value":1},{"name":"Random Size","value":0},{"name":"Round","value":0},{"name":"Round Antialias","value":0},{"name":"Scale by Distance","value":0},{"name":"r","value":0.772},{"name":"g","value":0.15106840238933295},{"name":"b","value":0.4207414807217118},{"name":"Vertex Colors","value":0},{"name":"Colorize Texture","value":1},{"name":"Mask Channel index","value":0},{"name":"Mask Channel","value":"R"},{"name":"Colorize Randomize","value":0},{"name":"Point Size Channel index","value":0},{"name":"Point Size Channel","value":"R"},{"name":"Texture Point Size Mul","value":1},{"name":"Map Size 0 index","value":0},{"name":"Map Size 0","value":"Black"},{"name":"Flip Texture","value":0},{"name":"Atlas Cross Fade","value":0},{"name":"Atlas Repeat X ","value":1},{"name":"Min Point Size","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"gwbv0asv9","objOut":"cusun507p"}]}],"objName":"Ops.Gl.Shader.PointMaterial_v5"},{"id":"h7opdnd5m","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ext_additionalParams_object"}],"objName":"Ops.Vars.VarSetObject_v2"},{"id":"1rvhpekqj","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ext_srvbParams_object"}],"objName":"Ops.Vars.VarSetObject_v2"},{"id":"97apj6h83","uiAttribs":{},"portsIn":[{"name":"Title","value":"Setters "}],"objName":"Ops.Ui.Area"},{"id":"249e7fq2n","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_dialValues_array"}],"objName":"Ops.Vars.VarSetArray_v2"},{"id":"7hv2gc56e","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"finalExe"}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"ug7fo1kne","uiAttribs":{},"portsIn":[{"name":"Start Row","value":0}],"objName":"Ops.Ui.VizArrayTable"},{"id":"dezkxycuy","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ext_srvbParams_object"}],"portsOut":[{"name":"Value","links":[{"portIn":"Object","portOut":"Value","objIn":"4j8lm1ndp","objOut":"dezkxycuy"},{"portIn":"Object","portOut":"Value","objIn":"mj18i7jze","objOut":"dezkxycuy"}]}],"objName":"Ops.Vars.VarGetObject_v2"},{"id":"mbaaum1ke","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"249e7fq2n","objOut":"mbaaum1ke"},{"portIn":"Array","portOut":"Result","objIn":"ug7fo1kne","objOut":"mbaaum1ke"}]}],"objName":"Ops.Patch.P4oPpSn.ArrayOfSrvbValuesFromMap"},{"id":"t4p3rshmb","uiAttribs":{},"portsIn":[{"name":"ZoomText","value":0},{"name":"Line Numbers","value":1},{"name":"Font Size","value":10},{"name":"Scroll","value":0}],"objName":"Ops.Ui.VizObject"},{"id":"ng5s1rvcc","uiAttribs":{},"portsIn":[{"name":"Value","value":0},{"name":"Variable","value":"ext_normValue"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"hf6n2jft0","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Object Index","portOut":"Result","objIn":"bm8hegp12","objOut":"hf6n2jft0"}]}],"objName":"Ops.Boolean.Not"},{"id":"sc4ijk6x3","uiAttribs":{},"portsIn":[{"name":"Value","value":"New String"},{"name":"Variable","value":"ui_mouseIsChangingParamID"}],"objName":"Ops.Vars.VarSetString_v2"},{"id":"2k8iykaf0","uiAttribs":{},"portsIn":[{"name":"Value","value":"New String"},{"name":"Variable","value":"ext_changingParamID"}],"objName":"Ops.Vars.VarSetString_v2"},{"id":"b5t80f4gy","uiAttribs":{},"portsIn":[{"name":"String 2","value":"ui"}],"portsOut":[{"name":"Result","links":[{"portIn":"Boolean","portOut":"Result","objIn":"hf6n2jft0","objOut":"b5t80f4gy"},{"portIn":"Pass Through","portOut":"Result","objIn":"ks9hjc1vv","objOut":"b5t80f4gy"}]}],"objName":"Ops.String.StringEquals"},{"id":"ks9hjc1vv","uiAttribs":{},"portsIn":[{"name":"When False index","value":0},{"name":"When False","value":"keep last object"},{"name":"Only Valid Objects","value":1}],"portsOut":[{"name":"Object Out","links":[{"portIn":"Value","portOut":"Object Out","objIn":"otxsqxj5k","objOut":"ks9hjc1vv"},{"portIn":"Object","portOut":"Object Out","objIn":"t4p3rshmb","objOut":"ks9hjc1vv"}]}],"objName":"Ops.Json.GateObject"},{"id":"i3b9bjwk1","uiAttribs":{},"portsIn":[{"name":"Key","value":"source"}],"portsOut":[{"name":"Result","links":[{"portIn":"String 1","portOut":"Result","objIn":"b5t80f4gy","objOut":"i3b9bjwk1"}]}],"objName":"Ops.Json.ObjectGetString"},{"id":"otxsqxj5k","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ext_srvbParams_object"}],"objName":"Ops.Vars.VarSetObject_v2"},{"id":"e7uo8q2lt","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Object In","portOut":"Result","objIn":"ks9hjc1vv","objOut":"e7uo8q2lt"},{"portIn":"data","portOut":"Result","objIn":"i3b9bjwk1","objOut":"e7uo8q2lt"},{"portIn":"Object","portOut":"Result","objIn":"tnjaqfn3b","objOut":"e7uo8q2lt"}]}],"objName":"Ops.Json.TriggerObjectSetNumber"},{"id":"oaboc2lrt","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_mouseIsChangingParamID"}],"portsOut":[{"name":"Value","links":[{"portIn":"String","portOut":"Value","objIn":"ho7jgiwa3","objOut":"oaboc2lrt"}]}],"objName":"Ops.Vars.VarGetString"},{"id":"s09zk76xy","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_normValue"}],"portsOut":[{"name":"Value","links":[{"portIn":"Number","portOut":"Value","objIn":"u32wlypd1","objOut":"s09zk76xy"},{"portIn":"Number","portOut":"Value","objIn":"e7uo8q2lt","objOut":"s09zk76xy"},{"portIn":"Value","portOut":"Value","objIn":"yx1m5mdal","objOut":"s09zk76xy"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"qoq8qo410","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_leftButtonIsDown"}],"portsOut":[{"name":"Value","links":[{"portIn":"bool 1","portOut":"Value","objIn":"jvd2pqi1b","objOut":"qoq8qo410"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"gxrhhh215","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ext_srvbParams_object"}],"portsOut":[{"name":"Value","links":[{"portIn":"Object","portOut":"Value","objIn":"ziza3osrm","objOut":"gxrhhh215"}]}],"objName":"Ops.Vars.VarGetObject_v2"},{"id":"vsusgq3er","uiAttribs":{},"portsIn":[{"name":"value","value":"const ext_srvb = gui.corePatch().getVar('ext_srvbParams_object');\n\nlet lfo = ( s ) => Math.abs( Math.sin( Date.now()  * s) );\n\n// let timerTone = setInterval( ()=>{ ext_srvb.setValue( {...ext_srvb.getValue(), mix: lfo(4.0e-4), tone: lfo(3.0e-4), size: lfo(2.0e-4)  } ) }, 50)\n\nlet timerTone = \nsetInterval( ()=>{ \n    ext_srvb.setValue( {...ext_srvb.getValue(), \n    mix: lfo(4.0e-4), \n    dryMix: lfo(3e-4),\n    scapeLevel: lfo(3e-4)\n        \n    } ) }, 50)\n\n"},{"name":"Syntax index","value":6},{"name":"Syntax","value":"javascript"}],"portsOut":[{"name":"Result","value":"const ext_srvb = gui.corePatch().getVar('ext_srvbParams_object');\n\nlet lfo = ( s ) => Math.abs( Math.sin( Date.now()  * s) );\n\n// let timerTone = setInterval( ()=>{ ext_srvb.setValue( {...ext_srvb.getValue(), mix: lfo(4.0e-4), tone: lfo(3.0e-4), size: lfo(2.0e-4)  } ) }, 50)\n\nlet timerTone = \nsetInterval( ()=>{ \n    ext_srvb.setValue( {...ext_srvb.getValue(), \n    mix: lfo(4.0e-4), \n    dryMix: lfo(3e-4),\n    scapeLevel: lfo(3e-4)\n        \n    } ) }, 50)\n\n"}],"objName":"Ops.String.StringEditor"},{"id":"u32wlypd1","uiAttribs":{},"objName":"Ops.Ui.VizNumberBar"},{"id":"ziza3osrm","uiAttribs":{},"portsIn":[{"name":"Key","value":"source"}],"portsOut":[{"name":"Result Object","links":[{"portIn":"Object","portOut":"Result Object","objIn":"e7uo8q2lt","objOut":"ziza3osrm"}]}],"objName":"Ops.Json.ObjectSetString_v2"},{"id":"jh04j0bs0","uiAttribs":{},"portsIn":[{"name":"String 0","value":"host"},{"name":"String 1","value":"ui"},{"name":"String 2","value":""},{"name":"String 3","value":""},{"name":"String 4","value":""},{"name":"String 5","value":""},{"name":"String 6","value":""},{"name":"String 7","value":""},{"name":"String 8","value":""},{"name":"String 9","value":""}],"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"ziza3osrm","objOut":"jh04j0bs0"}]}],"objName":"Ops.String.SwitchString"},{"id":"kvi8vmcfl","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_leftButtonIsDown"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"curf02st9","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"ui_leftButtonRelease"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"x0ik1c00c","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"ui_leftButtonRelease"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Input_0","portOut":"Triggered","objIn":"pbx782ld8","objOut":"x0ik1c00c"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"tpixuegec","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_additionalParams_object"}],"objName":"Ops.Vars.VarSetObject_v2"},{"id":"gp3nq252u","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_mouseIsChangingParamID"}],"objName":"Ops.Vars.VarSetString_v2"},{"id":"g1jqq3q4e","uiAttribs":{},"portsIn":[{"name":"String In","value":"lastTouched"},{"name":"When False index","value":1},{"name":"When False","value":"custom"},{"name":"Custom Value","value":""}],"portsOut":[{"name":"String Out","links":[{"portIn":"Value","portOut":"String Out","objIn":"gp3nq252u","objOut":"g1jqq3q4e"},{"portIn":"String","portOut":"String Out","objIn":"6xz7wyt5r","objOut":"g1jqq3q4e"}]}],"objName":"Ops.String.GateString"},{"id":"dcl88tuvn","uiAttribs":{},"portsIn":[{"name":"Duration","value":0.1},{"name":"Value True","value":1},{"name":"Value False","value":0}],"portsOut":[{"name":"Result","links":[{"portIn":"Pass Through","portOut":"Result","objIn":"g1jqq3q4e","objOut":"dcl88tuvn"}]}],"objName":"Ops.Boolean.MonoFlop"},{"id":"vey3lr6o9","uiAttribs":{},"portsIn":[{"name":"Area index","value":0},{"name":"Area","value":"Canvas"},{"name":"Active","value":1}],"portsOut":[{"name":"Button pressed Left","links":[{"portIn":"Value","portOut":"Button pressed Left","objIn":"kvi8vmcfl","objOut":"vey3lr6o9"}]},{"name":"Button pressed Middle","value":0},{"name":"Button pressed Right","value":0},{"name":"Mouse Up Left","links":[{"portIn":"Trigger","portOut":"Mouse Up Left","objIn":"curf02st9","objOut":"vey3lr6o9"}]}],"objName":"Ops.Devices.Mouse.MouseButtons"},{"id":"jvd2pqi1b","uiAttribs":{},"portsIn":[{"name":"bool 4","value":0},{"name":"bool 5","value":0},{"name":"bool 6","value":0},{"name":"bool 7","value":0},{"name":"bool 8","value":0},{"name":"bool 9","value":0},{"name":"bool 10","value":0}],"portsOut":[{"name":"result","links":[{"portIn":"Index","portOut":"result","objIn":"jh04j0bs0","objOut":"jvd2pqi1b"}]}],"objName":"Ops.Boolean.Or"},{"id":"70w5rrmdf","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_leftButtonSlider"}],"portsOut":[{"name":"Value","links":[{"portIn":"bool 3","portOut":"Value","objIn":"jvd2pqi1b","objOut":"70w5rrmdf"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"ckr6cidod","uiAttribs":{},"portsIn":[{"name":"JSON String","value":"{\n  \"size\": 0.15,\n  \"diffuse\": 0.25,\n  \"mix\": 1,\n  \"position\": 0.5,\n  \"tone\": 0.5,\n  \"structure\": 0,\n  \"scapeLevel\": 0,\n  \"scapeLength\": 0,\n  \"scapeReverse\": 0.00,\n  \"scapeBypass\": 0.00,\n  \"srvbBypass\": 0.00,\n  \"dryMix\": 0.0\n}"}],"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"1rvhpekqj","objOut":"ckr6cidod"}]},{"name":"Valid","value":1}],"objName":"Ops.Json.ParseObject_v2"},{"id":"31x5h827w","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_bypassConvolver"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"kwndhosu8","objOut":"31x5h827w"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"kwndhosu8","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Input_1","portOut":"Next","objIn":"pbx782ld8","objOut":"kwndhosu8"}]},{"name":"Number","value":0}],"objName":"Ops.Number.TriggerOnChangeNumber"},{"id":"pbx782ld8","uiAttribs":{},"portsIn":[{"name":"Input","multiPortNum":4}],"portsOut":[{"name":"Output_0","links":[{"portIn":"Trigger","portOut":"Output_0","objIn":"dcl88tuvn","objOut":"pbx782ld8"}]}],"objName":"Ops.Trigger.SequenceMultiPort"},{"id":"qxs32uxlw","uiAttribs":{},"portsIn":[{"name":"Title","value":"Mouse U"}],"objName":"Ops.Ui.Area"},{"id":"gg0y6zr0s","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_bypassSRVB"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"99xveg0ql","objOut":"gg0y6zr0s"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"99xveg0ql","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Input_2","portOut":"Next","objIn":"pbx782ld8","objOut":"99xveg0ql"}]},{"name":"Number","value":0}],"objName":"Ops.Number.TriggerOnChangeNumber"},{"id":"r75jir16e","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"Result","links":[{"portIn":"Value In","portOut":"Result","objIn":"utgkg6jnr","objOut":"r75jir16e"}]},{"name":"Found","value":1}],"objName":"Ops.Json.ObjectGetNumber_v2"},{"id":"z4pwql36i","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ext_srvbParams_object"}],"portsOut":[{"name":"Value","links":[{"portIn":"Data","portOut":"Value","objIn":"r75jir16e","objOut":"z4pwql36i"}]}],"objName":"Ops.Vars.VarGetObject_v2"},{"id":"vnv5ee860","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_normValue"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"tqhtenybi","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Duration","value":0.26},{"name":"Value True","value":1},{"name":"Value False","value":0}],"portsOut":[{"name":"Result","links":[{"portIn":"Pass Through","portOut":"Result","objIn":"utgkg6jnr","objOut":"tqhtenybi"}]}],"objName":"Ops.Boolean.MonoFlop"},{"id":"lp59ps7g6","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"Changed","links":[{"portIn":"True","portOut":"Changed","objIn":"dr1tksul8","objOut":"lp59ps7g6"},{"portIn":"Trigger","portOut":"Changed","objIn":"tqhtenybi","objOut":"lp59ps7g6"}]}],"objName":"Ops.Trigger.TriggerOnChangeString"},{"id":"60hh1ncxf","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_leftButtonToggle"}],"portsOut":[{"name":"Value","links":[{"portIn":"bool 2","portOut":"Value","objIn":"jvd2pqi1b","objOut":"60hh1ncxf"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"yq19a4mek","uiAttribs":{},"portsIn":[{"name":"Font Name","value":"eb066298-c95b-4900-a9c8-abb0e9ea0930"},{"name":"Font Data","value":"assets/lib_fonts_msdf_worksans-regular_int.json","display":"file"},{"name":"Font Image","value":"assets/lib_fonts_msdf_worksans-regular_int.png","display":"file"},{"name":"Font Image 1","value":0,"display":"file"},{"name":"Font Image 2","value":0,"display":"file"},{"name":"Font Image 3","value":0,"display":"file"}],"portsOut":[{"name":"Loaded","value":true},{"name":"Total Chars","value":189},{"name":"Chars","value":" ýŒ(){}þjŠŽÔÛÿ[]|ÂÆÊÎÒÓÙÚWÀÁÇÈÉÌÍÕÝÃÑQœÖÜ$@ŸÄËÏÅåg/%w§mæš¶àáèéòóùúžßâêìíôûbdflîðhkãçõipqyØñµäëöü¢ï&03689?CGOS£€©®¿!25JU¡#147;ABDEFHIKLMNPRTVXYZ¥ÐÞt±ø<>_:aceos÷^nru+vxz¬=*ªº~×³²¹«»¯°-’,\"'`.·"}],"objName":"Ops.Gl.FontMSDF_v2"},{"id":"k8meiwmxd","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_normValue"}],"portsOut":[{"name":"Value","links":[{"portIn":"Custom Value","portOut":"Value","objIn":"utgkg6jnr","objOut":"k8meiwmxd"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"utgkg6jnr","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"When False index","value":0},{"name":"When False","value":"keep last number"}],"portsOut":[{"name":"Value Out","links":[{"portIn":"Value","portOut":"Value Out","objIn":"vnv5ee860","objOut":"utgkg6jnr"},{"portIn":"Number","portOut":"Value Out","objIn":"drqkak2at","objOut":"utgkg6jnr"}]}],"objName":"Ops.Number.GateNumber"},{"id":"dr1tksul8","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"Result","links":[{"portIn":"bool 2","portOut":"Result","objIn":"9jk3wdwe4","objOut":"dr1tksul8"}]}],"objName":"Ops.Boolean.BoolByTrigger"},{"id":"9jk3wdwe4","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"bool 3","value":0},{"name":"bool 4","value":0},{"name":"bool 5","value":0},{"name":"bool 6","value":0},{"name":"bool 7","value":0},{"name":"bool 8","value":0},{"name":"bool 9","value":0},{"name":"bool 10","value":0}],"portsOut":[{"name":"result","links":[{"portIn":"Pass Through","portOut":"result","objIn":"8lyuqd6tn","objOut":"9jk3wdwe4"},{"portIn":"Pass Through","portOut":"result","objIn":"csl3j7cy1","objOut":"9jk3wdwe4"}]}],"objName":"Ops.Boolean.Or"},{"id":"kbetzqvfv","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Invalid if null","value":1},{"name":"Invalid if undefined","value":1},{"name":"Invalid if empty","value":0},{"name":"Invalid if 0","value":1}],"portsOut":[{"name":"Last Valid String","links":[{"portIn":"String In","portOut":"Last Valid String","objIn":"8lyuqd6tn","objOut":"kbetzqvfv"},{"portIn":"String","portOut":"Last Valid String","objIn":"lp59ps7g6","objOut":"kbetzqvfv"}]},{"name":"Is Valid","value":1}],"objName":"Ops.String.FilterValidString"},{"id":"drqkak2at","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"objName":"Ops.Ui.VizNumberBar"},{"id":"etfoevu6h","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Invalid if null","value":1},{"name":"Invalid if undefined","value":1},{"name":"Invalid if empty","value":1},{"name":"Invalid if 0","value":1}],"portsOut":[{"name":"Last Valid String","links":[{"portIn":"Key","portOut":"Last Valid String","objIn":"r75jir16e","objOut":"etfoevu6h"}]},{"name":"Is Valid","value":0}],"objName":"Ops.String.FilterValidString"},{"id":"a3f97m3q3","uiAttribs":{},"portsIn":[{"name":"When False index","value":1},{"name":"When False","value":"custom"}],"portsOut":[{"name":"String Out","links":[{"portIn":"String","portOut":"String Out","objIn":"e86y9328o","objOut":"a3f97m3q3"}]}],"objName":"Ops.String.GateString"},{"id":"bm8hegp12","uiAttribs":{},"portsOut":[{"name":"object out","links":[{"portIn":"Object","portOut":"object out","objIn":"mbaaum1ke","objOut":"bm8hegp12"}]}],"objName":"Ops.Json.SwitchObject"},{"id":"4j8lm1ndp","uiAttribs":{},"portsOut":[{"name":"Last Valid Object","links":[{"portIn":"object port 1","portOut":"Last Valid Object","objIn":"bm8hegp12","objOut":"4j8lm1ndp"}]},{"name":"Is Valid","value":true}],"objName":"Ops.Json.FilterValidObject"},{"id":"tnjaqfn3b","uiAttribs":{},"portsOut":[{"name":"Last Valid Object","links":[{"portIn":"object port 0","portOut":"Last Valid Object","objIn":"bm8hegp12","objOut":"tnjaqfn3b"}]},{"name":"Is Valid","value":true}],"objName":"Ops.Json.FilterValidObject"},{"id":"mj18i7jze","uiAttribs":{},"portsIn":[{"name":"ZoomText","value":0},{"name":"Line Numbers","value":1},{"name":"Font Size","value":10},{"name":"Scroll","value":0}],"objName":"Ops.Ui.VizObject"},{"id":"ho7jgiwa3","uiAttribs":{},"portsIn":[{"name":"Invalid if null","value":1},{"name":"Invalid if undefined","value":1},{"name":"Invalid if empty","value":1},{"name":"Invalid if 0","value":1}],"portsOut":[{"name":"Last Valid String","links":[{"portIn":"String In","portOut":"Last Valid String","objIn":"a3f97m3q3","objOut":"ho7jgiwa3"},{"portIn":"String 1","portOut":"Last Valid String","objIn":"461my52vu","objOut":"ho7jgiwa3"}]},{"name":"Is Valid","value":0}],"objName":"Ops.String.FilterValidString"},{"id":"uoo2qkue7","uiAttribs":{},"portsIn":[{"name":"Show Info","value":0},{"name":"Visualize outside 0-1 index","value":1},{"name":"Visualize outside 0-1","value":"Anim"},{"name":"Alpha index","value":0},{"name":"Alpha","value":"A"},{"name":"Show Color","value":0},{"name":"X","value":0.5},{"name":"Y","value":0.5}],"portsOut":[{"name":"Info","value":""}],"objName":"Ops.Ui.VizTexture"},{"id":"12z7psewt","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_position"}],"portsOut":[{"name":"Value","links":[{"portIn":"Percentage","portOut":"Value","objIn":"1lvt0a4ik","objOut":"12z7psewt"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"1lvt0a4ik","uiAttribs":{},"portsIn":[{"name":"Value 1","value":-0.15},{"name":"Value 2","value":0.15}],"portsOut":[{"name":"Result","links":[{"portIn":"Tex Offset X","portOut":"Result","objIn":"a1dx328je","objOut":"1lvt0a4ik"}]}],"objName":"Ops.Math.Interpolate"},{"id":"h3ylf3rfo","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLength"}],"portsOut":[{"name":"Value","links":[{"portIn":"Rotate","portOut":"Value","objIn":"xeu596ai6","objOut":"h3ylf3rfo"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"veadj9l25","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__lensFlareTexts"}],"objName":"Ops.Vars.VarSetTexture_v2"},{"id":"frtxa4811","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__lensFlareTexts"}],"portsOut":[{"name":"Value","links":[{"portIn":"Base Texture","portOut":"Value","objIn":"di9yoxov9","objOut":"frtxa4811"}]}],"objName":"Ops.Vars.VarGetTexture_v2"},{"id":"bslw7qoeu","uiAttribs":{},"portsIn":[{"name":"Gradient","value":"{\"keys\":[{\"pos\":0,\"posy\":0.5,\"r\":0.28638020833333333,\"g\":0.14993272900581361,\"b\":0.1626410726686708},{\"pos\":0,\"posy\":0.5,\"r\":0.28638020833333333,\"g\":0.14993272900581361,\"b\":0.1626410726686708},{\"pos\":1,\"posy\":0.5,\"r\":0.44312720298286745,\"g\":0.5631773417250991,\"b\":0.6284772463827235},{\"pos\":1,\"posy\":0.5,\"r\":0.44312720298286745,\"g\":0.5631773417250991,\"b\":0.6284772463827235}]}"},{"name":"Direction index","value":1},{"name":"Direction","value":"Y"},{"name":"Smoothstep","value":0},{"name":"Step","value":0},{"name":"Flip","value":0},{"name":"sRGB","value":0},{"name":"Oklab","value":0},{"name":"Size","value":64},{"name":"filter index","value":1},{"name":"filter","value":"linear"},{"name":"wrap index","value":1},{"name":"wrap","value":"repeat"},{"name":"Gradient Array","value":0}],"portsOut":[{"name":"Texture","links":[{"portIn":"Objects_1","portOut":"Texture","objIn":"4bfp0wzok","objOut":"bslw7qoeu"}]}],"objName":"Ops.Gl.GradientTexture"},{"id":"4bfp0wzok","uiAttribs":{},"portsIn":[{"name":"Objects","multiPortNum":2},{"name":"Objects_2","value":0,"title":"add port"}],"portsOut":[{"name":"Object","links":[{"portIn":"Diffuse Texture","portOut":"Object","objIn":"3so3f33cf","objOut":"4bfp0wzok"}]},{"name":"Num Values","value":2}],"objName":"Ops.Json.SwitchObjectMultiPort"},{"id":"rm3mpjot1","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_structure"}],"portsOut":[{"name":"Value","links":[{"portIn":"A","portOut":"Value","objIn":"z97k7j32s","objOut":"rm3mpjot1"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"z97k7j32s","uiAttribs":{},"portsIn":[{"name":"B","value":1},{"name":"C","value":2},{"name":"D","value":3},{"name":"Expression","value":"(a === 0) || (a==15)"}],"portsOut":[{"name":"Result","links":[{"portIn":"Index","portOut":"Result","objIn":"4bfp0wzok","objOut":"z97k7j32s"}]},{"name":"Expression Valid","value":true}],"objName":"Ops.Math.MathExpression"},{"id":"6t1onutgk","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"patchId","value":"bp2sub_6t1onutgk"}],"objName":"Ops.Patch.P4oPpSn.UI_Structure"},{"id":"ict1ndrtr","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"patchId","value":"bp2sub_ict1ndrtr"}],"objName":"Ops.Patch.P4oPpSn.UI_Position"},{"id":"xzovia1yq","uiAttribs":{},"portsIn":[{"name":"Title","value":"UI Parameter Components"}],"objName":"Ops.Ui.Area"},{"id":"favgdsw83","uiAttribs":{},"portsIn":[{"name":"Title","value":"Visuals"}],"objName":"Ops.Ui.Area"},{"id":"fjxn5qlzr","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"patchId","value":"bp2sub_fjxn5qlzr"}],"objName":"Ops.Patch.P4oPpSn.UI_Reverse"},{"id":"735k5dq88","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__bodyHitY"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"157s3di6a","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"__bodyHitY"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value In","portOut":"Value","objIn":"dswmavt7w","objOut":"157s3di6a"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"3ydxdakeh","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__sliderLeave"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"6hf0xdhwc","objOut":"3ydxdakeh"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"6hf0xdhwc","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Input_3","portOut":"Next","objIn":"pbx782ld8","objOut":"6hf0xdhwc"}]}],"objName":"Ops.Boolean.TriggerChangedTrue"},{"id":"461my52vu","uiAttribs":{},"portsIn":[{"name":"String 2","value":"lastTouched"}],"portsOut":[{"name":"Result","links":[{"portIn":"Boolean","portOut":"Result","objIn":"myv01hb3i","objOut":"461my52vu"}]}],"objName":"Ops.String.StringEquals"},{"id":"8yma3j0v0","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"__currentReflectorParam"}],"objName":"Ops.Vars.VarSetString_v2"},{"id":"l8z9x9fr7","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__currentReflectorParam"}],"portsOut":[{"name":"Value","links":[{"portIn":"Custom Value","portOut":"Value","objIn":"a3f97m3q3","objOut":"l8z9x9fr7"}]}],"objName":"Ops.Vars.VarGetString"},{"id":"myv01hb3i","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Pass Through","portOut":"Result","objIn":"a3f97m3q3","objOut":"myv01hb3i"}]}],"objName":"Ops.Boolean.Not"},{"id":"e86y9328o","uiAttribs":{},"portsIn":[{"name":"Invalid if null","value":1},{"name":"Invalid if undefined","value":1},{"name":"Invalid if empty","value":1},{"name":"Invalid if 0","value":1}],"portsOut":[{"name":"Last Valid String","links":[{"portIn":"Key","portOut":"Last Valid String","objIn":"e7uo8q2lt","objOut":"e86y9328o"},{"portIn":"String","portOut":"Last Valid String","objIn":"e1l00q6bu","objOut":"e86y9328o"}]},{"name":"Is Valid","value":1}],"objName":"Ops.String.FilterValidString"},{"id":"u8f4ns874","uiAttribs":{},"portsIn":[{"name":"Blend Mode index","value":19},{"name":"Blend Mode","value":"Math Subtract"},{"name":"Amount","value":0.655},{"name":"Clamp","value":1},{"name":"Stretch Top","value":1},{"name":"Stretch Bottom","value":1},{"name":"Stretch Left","value":1.12},{"name":"Stretch Right","value":0.86}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"bf9v1uys8","objOut":"u8f4ns874"}]}],"objName":"Ops.Gl.ImageCompose.SkewStretchImage_v2"},{"id":"o5rkdhq2k","uiAttribs":{},"portsIn":[{"name":"Value 1","value":3},{"name":"Value 2","value":4}],"portsOut":[{"name":"Result","value":3.19782}],"objName":"Ops.Math.Interpolate"},{"id":"4jk31qlcv","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.1},{"name":"Value 2","value":10}],"portsOut":[{"name":"Result","links":[{"portIn":"width","portOut":"Result","objIn":"eb7wv37c6","objOut":"4jk31qlcv"}]}],"objName":"Ops.Math.Interpolate"},{"id":"yt1rl0z6v","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Fade","portOut":"Result","objIn":"jc2ggn9up","objOut":"yt1rl0z6v"}]}],"objName":"Ops.Math.OneMinus"},{"id":"866dbq8co","uiAttribs":{},"portsOut":[{"name":"trigger 0","links":[{"portIn":"Trigger","portOut":"trigger 0","objIn":"e0698285-4e6a-4339-a9ba-d9b3e441372c","objOut":"866dbq8co"}]},{"name":"trigger 2","links":[{"portIn":"Trigger","portOut":"trigger 2","objIn":"ch5u1xz0l","objOut":"866dbq8co"}]},{"name":"trigger 4","links":[{"portIn":"Trigger","portOut":"trigger 4","objIn":"afa40c7e-19f5-4546-911c-1e34c62f310b","objOut":"866dbq8co"}]}],"objName":"Ops.Gl.LayerSequence"},{"id":"5zxbuf3na","uiAttribs":{},"portsIn":[{"name":"Input","multiPortNum":4,"multiPortManual":true}],"portsOut":[{"name":"Output","multiPortNum":4},{"name":"Output_0","links":[{"portIn":"Execute","portOut":"Output_0","objIn":"oefqiqdsy","objOut":"5zxbuf3na"}]},{"name":"Output_1","title":"add port","links":[{"portIn":"render","portOut":"Output_1","objIn":"ljp36mj0s","objOut":"5zxbuf3na"}]},{"name":"Output_2","links":[{"portIn":"in0 Cursor Update","portOut":"Output_2","objIn":"cd9136e7-4c7b-4555-bf01-18381685410b","objOut":"5zxbuf3na"}]},{"name":"Output_3","title":"add port","links":[{"portIn":"Execute","portOut":"Output_3","objIn":"xfa58o4pa","objOut":"5zxbuf3na"}]}],"objName":"Ops.Trigger.SequenceMultiPort"},{"id":"gnultinbe","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"patchId","value":"bp2sub_gnultinbe"}],"objName":"Ops.Patch.P4oPpSn.UI_ScapeParams"},{"id":"uh2d2mdyy","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"patchId","value":"bp2sub_uh2d2mdyy"}],"objName":"Ops.Patch.P4oPpSn.UI_Bypassers"},{"id":"l7fhi163a","uiAttribs":{},"portsIn":[{"name":"Nth","value":2}],"portsOut":[{"name":"Next","links":[{"portIn":"exe","portOut":"Next","objIn":"l3284qrsh","objOut":"l7fhi163a"}]}],"objName":"Ops.Trigger.NthTrigger_v2"},{"id":"66byw8qqr","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_activeDial_ID"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"gglcw7l93","objOut":"66byw8qqr"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"gglcw7l93","uiAttribs":{},"portsIn":[{"name":"number2","value":1}],"portsOut":[{"name":"result","links":[{"portIn":"number1","portOut":"result","objIn":"wow8ddz8v","objOut":"gglcw7l93"}]}],"objName":"Ops.Math.Subtract"},{"id":"wow8ddz8v","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"Boolean","portOut":"result","objIn":"drgtvpkrm","objOut":"wow8ddz8v"}]}],"objName":"Ops.Math.Compare.Equals"},{"id":"drgtvpkrm","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"r","portOut":"Result","objIn":"kgtq6kbqp","objOut":"drgtvpkrm"}]}],"objName":"Ops.Boolean.Not"},{"id":"tsahvrwcv","uiAttribs":{},"portsIn":[{"name":"number2","value":0.5}],"portsOut":[{"name":"result","links":[{"portIn":"a","portOut":"result","objIn":"uc9r4wu0r","objOut":"tsahvrwcv"}]}],"objName":"Ops.Math.Sum"},{"id":"chdn002nx","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_dialValues_array"}],"portsOut":[{"name":"Value","links":[{"portIn":"array","portOut":"Value","objIn":"22d7e3ut3","objOut":"chdn002nx"}]}],"objName":"Ops.Vars.VarGetArray_v2"},{"id":"22d7e3ut3","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"Default Value","portOut":"value","objIn":"qblnvlo15","objOut":"22d7e3ut3"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"vum2mp3rr","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Change Always","value":0}],"portsOut":[{"name":"Delta","links":[{"portIn":"Value","portOut":"Delta","objIn":"du3ou2bdu","objOut":"vum2mp3rr"},{"portIn":"number","portOut":"Delta","objIn":"cx9v6l6vh","objOut":"vum2mp3rr"}]}],"objName":"Ops.Math.Delta"},{"id":"6pdclykma","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"objName":"Ops.Ui.VizNumberBar"},{"id":"qblnvlo15","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"Current value","links":[{"portIn":"val","portOut":"Current value","objIn":"ngsk0ua0b","objOut":"qblnvlo15"},{"portIn":"number1","portOut":"Current value","objIn":"vucyoxogs","objOut":"qblnvlo15"},{"portIn":"number1","portOut":"Current value","objIn":"haq8uigfe","objOut":"qblnvlo15"}]}],"objName":"Ops.Math.Accumulator"},{"id":"ngsk0ua0b","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"min","value":0},{"name":"max","value":1},{"name":"ignore outside values","value":0}],"portsOut":[{"name":"result","links":[{"portIn":"Number","portOut":"result","objIn":"6pdclykma","objOut":"ngsk0ua0b"},{"portIn":"Value In","portOut":"result","objIn":"csl3j7cy1","objOut":"ngsk0ua0b"}]}],"objName":"Ops.Math.Clamp"},{"id":"hodi835rj","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"Next","links":[{"portIn":"Trigger in","portOut":"Next","objIn":"qblnvlo15","objOut":"hodi835rj"}]},{"name":"Number","links":[{"portIn":"Add to number","portOut":"Number","objIn":"qblnvlo15","objOut":"hodi835rj"}]}],"objName":"Ops.Number.TriggerOnChangeNumber"},{"id":"du3ou2bdu","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"hodi835rj","objOut":"du3ou2bdu"}]}],"objName":"Ops.Math.FlipSign"},{"id":"jzlbt53oe","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"Next","links":[{"portIn":"Set Default Value","portOut":"Next","objIn":"qblnvlo15","objOut":"jzlbt53oe"},{"portIn":"Trigger","portOut":"Next","objIn":"w4ofxo0wk","objOut":"jzlbt53oe"}]},{"name":"Number","value":1}],"objName":"Ops.Number.TriggerOnChangeNumber"},{"id":"dswmavt7w","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"When False index","value":0},{"name":"When False","value":"keep last number"},{"name":"Custom Value","value":0}],"portsOut":[{"name":"Value Out","links":[{"portIn":"Value","portOut":"Value Out","objIn":"vum2mp3rr","objOut":"dswmavt7w"}]}],"objName":"Ops.Number.GateNumber"},{"id":"d2tnjywi3","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"Variable","value":"ui_mouseIsChangingDialValue"}],"portsOut":[{"name":"Value","links":[{"portIn":"Pass Through","portOut":"Value","objIn":"dswmavt7w","objOut":"d2tnjywi3"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"cx9v6l6vh","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"result","links":[{"portIn":"number1","portOut":"result","objIn":"75gjryyam","objOut":"cx9v6l6vh"}]}],"objName":"Ops.Math.Abs"},{"id":"75gjryyam","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"number2","value":10}],"portsOut":[{"name":"result","links":[{"portIn":"number1","portOut":"result","objIn":"pw75dud44","objOut":"75gjryyam"}]}],"objName":"Ops.Math.Multiply"},{"id":"pw75dud44","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"number2","value":5}],"portsOut":[{"name":"result","links":[{"portIn":"Multiplier to add number","portOut":"result","objIn":"qblnvlo15","objOut":"pw75dud44"}]}],"objName":"Ops.Math.Sum"},{"id":"w4ofxo0wk","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"Count","value":294}],"objName":"Ops.Ui.VizTrigger"},{"id":"5g2iodxq1","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"result","links":[{"portIn":"number1","portOut":"result","objIn":"1dwx4dkya","objOut":"5g2iodxq1"}]}],"objName":"Ops.Math.Sum"},{"id":"vucyoxogs","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"number2","value":0}],"portsOut":[{"name":"result","links":[{"portIn":"number2","portOut":"result","objIn":"5g2iodxq1","objOut":"vucyoxogs"}]}],"objName":"Ops.Math.Compare.LessThan"},{"id":"1dwx4dkya","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsOut":[{"name":"result","links":[{"portIn":"Value","portOut":"result","objIn":"jzlbt53oe","objOut":"1dwx4dkya"}]}],"objName":"Ops.Math.Sum"},{"id":"haq8uigfe","uiAttribs":{"subPatch":"66dae55a-8297-4120-81e2-d946cc6b2b60"},"portsIn":[{"name":"number2","value":1}],"portsOut":[{"name":"result","links":[{"portIn":"number2","portOut":"result","objIn":"1dwx4dkya","objOut":"haq8uigfe"}]}],"objName":"Ops.Math.Compare.GreaterThan"},{"id":"dvydn6fxq","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeReverse"}],"portsOut":[{"name":"Value","links":[{"portIn":"Boolean","portOut":"Value","objIn":"eisqrtpxy","objOut":"dvydn6fxq"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"eisqrtpxy","uiAttribs":{},"portsOut":[{"name":"Bool","links":[{"portIn":"Percentage","portOut":"Bool","objIn":"bp0egzb8r","objOut":"eisqrtpxy"}]}],"objName":"Ops.Ui.VizBool"},{"id":"bp0egzb8r","uiAttribs":{},"portsIn":[{"name":"Value 1","value":4},{"name":"Value 2","value":16}],"portsOut":[{"name":"Result","links":[{"portIn":"extrude","portOut":"Result","objIn":"eb7wv37c6","objOut":"bp0egzb8r"}]}],"objName":"Ops.Math.Interpolate"},{"id":"ogdnhiigt","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeReverse"}],"portsOut":[{"name":"Value","links":[{"portIn":"Use Value 1","portOut":"Value","objIn":"6lh7g16he","objOut":"ogdnhiigt"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"6xz7wyt5r","uiAttribs":{},"portsIn":[{"name":"ZoomText","value":0},{"name":"Line Numbers","value":0},{"name":"Whitespace","value":0},{"name":"Wrap lines","value":1},{"name":"Syntax index","value":0},{"name":"Syntax","value":"text"},{"name":"Font Size","value":17.56},{"name":"Scroll","value":0}],"objName":"Ops.Ui.VizString"},{"id":"e1l00q6bu","uiAttribs":{},"portsIn":[{"name":"ZoomText","value":0},{"name":"Line Numbers","value":0},{"name":"Whitespace","value":0},{"name":"Wrap lines","value":1},{"name":"Syntax index","value":0},{"name":"Syntax","value":"text"},{"name":"Font Size","value":24},{"name":"Scroll","value":0}],"objName":"Ops.Ui.VizString"},{"id":"yx1m5mdal","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Trigger","portOut":"Next","objIn":"e7uo8q2lt","objOut":"yx1m5mdal"},{"portIn":"Trigger","portOut":"Next","objIn":"ts62w2kk6","objOut":"yx1m5mdal"}]},{"name":"Number","value":0.539400031113199}],"objName":"Ops.Number.TriggerOnChangeNumber"},{"id":"ts62w2kk6","uiAttribs":{},"portsOut":[{"name":"Count","value":4346}],"objName":"Ops.Ui.VizTrigger"},{"id":"jeqjx9zcv","uiAttribs":{},"portsIn":[{"name":"FPS Limit","value":0},{"name":"Reduce FPS not focussed","value":1},{"name":"Reduce FPS loading","value":1},{"name":"Clear","value":1},{"name":"ClearAlpha","value":0},{"name":"Fullscreen Button","value":0},{"name":"Active","value":1},{"name":"Hires Displays","value":1},{"name":"Pixel Unit index","value":0},{"name":"Pixel Unit","value":"Display"}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"e0268dfa-e089-4f1f-966c-c30218792023","objOut":"jeqjx9zcv"}]},{"name":"width","value":1736},{"name":"height","value":866}],"objName":"Ops.Gl.MainLoop"},{"id":"ljp36mj0s","uiAttribs":{},"portsIn":[{"name":"x","value":0},{"name":"y","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Execute","portOut":"trigger","objIn":"ngzgotbds","objOut":"ljp36mj0s"}]}],"objName":"Ops.Gl.Matrix.TranslateView"},{"id":"kpq1vq2hy","uiAttribs":{},"portsIn":[{"name":"Title","value":"."}],"objName":"Ops.Ui.Area"},{"id":"c8rxrl5sv","uiAttribs":{},"portsIn":[{"name":"old min","value":0},{"name":"old max","value":9},{"name":"new min","value":-20},{"name":"new max","value":0},{"name":"Easing index","value":2},{"name":"Easing","value":"Smootherstep"},{"name":"Clamp","value":1}],"portsOut":[{"name":"result","links":[{"portIn":"z","portOut":"result","objIn":"ljp36mj0s","objOut":"c8rxrl5sv"}]}],"objName":"Ops.Math.MapRange"},{"id":"zq8a0mk2d","uiAttribs":{},"portsIn":[{"name":"Add to number","value":10},{"name":"Multiplier to add number","value":0.1},{"name":"Default Value","value":0}],"portsOut":[{"name":"Current value","links":[{"portIn":"val","portOut":"Current value","objIn":"1b7ls5v00","objOut":"zq8a0mk2d"},{"portIn":"number1","portOut":"Current value","objIn":"fqvil1m20","objOut":"zq8a0mk2d"}]}],"objName":"Ops.Math.Accumulator"},{"id":"8qsfm58e9","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Set Default Value","portOut":"Next","objIn":"zq8a0mk2d","objOut":"8qsfm58e9"}]}],"objName":"Ops.Boolean.TriggerChangedFalse"},{"id":"xfa58o4pa","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"Trigger in","portOut":"Trigger out","objIn":"zq8a0mk2d","objOut":"xfa58o4pa"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"fqvil1m20","uiAttribs":{},"portsIn":[{"name":"number2","value":50}],"portsOut":[{"name":"result","links":[{"portIn":"Pass Through","portOut":"result","objIn":"xfa58o4pa","objOut":"fqvil1m20"}]}],"objName":"Ops.Math.Compare.LessThan"},{"id":"vbqzfym0q","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.25},{"name":"Value 2","value":0.35}],"portsOut":[{"name":"Result","links":[{"portIn":"Scale","portOut":"Result","objIn":"kgtq6kbqp","objOut":"vbqzfym0q"}]}],"objName":"Ops.Math.Interpolate"}],"export":{"time":"2024-09-10 13:08","service":"download","exportNumber":4}};
-if(!CABLES.exportedPatch){CABLES.exportedPatch=CABLES.exportedPatches['4oPpSn']}
+if(!CABLES.exportedPatches) CABLES.exportedPatches={};CABLES.exportedPatches['W10J0o']={"_id":"66e0bef4f604ef1e46967ce0","ops":[{"id":"c2a85325-d75f-4f01-9b5c-83a2edd8d35d","uiAttribs":{},"portsIn":[{"name":"posY","value":-0.18},{"name":"posZ","value":0},{"name":"scale","value":0.25},{"name":"rotX","value":0},{"name":"rotY","value":180},{"name":"rotZ","value":315.48}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"li365texv","objOut":"c2a85325-d75f-4f01-9b5c-83a2edd8d35d"},{"portIn":"render","portOut":"trigger","objIn":"uc9r4wu0r","objOut":"c2a85325-d75f-4f01-9b5c-83a2edd8d35d"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"e0268dfa-e089-4f1f-966c-c30218792023","uiAttribs":{},"portsIn":[{"name":"r","value":0},{"name":"g","value":0},{"name":"b","value":0},{"name":"a","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"te11ob7nw","objOut":"e0268dfa-e089-4f1f-966c-c30218792023"},{"portIn":"Trigger","portOut":"trigger","objIn":"zcc6zzw4d","objOut":"e0268dfa-e089-4f1f-966c-c30218792023"}]}],"objName":"Ops.Gl.ClearColor"},{"id":"e0698285-4e6a-4339-a9ba-d9b3e441372c","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"mainExe"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"babe81ef-3ee9-4ed3-ba28-8b648c21dd11","uiAttribs":{},"portsIn":[{"name":"Title","value":"LOOP: Main 4"}],"objName":"Ops.Ui.Area"},{"id":"a82e74aa-f66f-47c9-a07a-2f1b0376925b","uiAttribs":{},"portsIn":[{"name":"Title","value":"Data"}],"objName":"Ops.Ui.Area"},{"id":"afa40c7e-19f5-4546-911c-1e34c62f310b","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"finalExe"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"7dq6j5p5k","uiAttribs":{},"portsIn":[{"name":"Check Body Collisions","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Trigger","portOut":"Next","objIn":"9sm9dp98r","objOut":"7dq6j5p5k"}]},{"name":"Total Bodies","value":4}],"objName":"Ops.Graphics.Intersection.IntersectWorld"},{"id":"9sm9dp98r","uiAttribs":{},"portsIn":[{"name":"Coordinate Format index","value":0},{"name":"Coordinate Format","value":"-1 to 1"},{"name":"Z","value":0},{"name":"To X","value":0},{"name":"To Y","value":0},{"name":"To Z","value":0},{"name":"Active","value":1},{"name":"Change Cursor","value":1}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"mbk4m8pcr","objOut":"9sm9dp98r"},{"portIn":"render","portOut":"Next","objIn":"7qikt1vaf","objOut":"9sm9dp98r"},{"portIn":"render","portOut":"Next","objIn":"aupoduf7d","objOut":"9sm9dp98r"},{"portIn":"render","portOut":"Next","objIn":"ge3zj70cy","objOut":"9sm9dp98r"}]},{"name":"Has Hit","value":0},{"name":"Hit Body Name","links":[{"portIn":"Value","portOut":"Hit Body Name","objIn":"tg35ehmtt","objOut":"9sm9dp98r"}]},{"name":"Hit X","value":0},{"name":"Hit Y","links":[{"portIn":"Value","portOut":"Hit Y","objIn":"735k5dq88","objOut":"9sm9dp98r"}]},{"name":"Hit Z","value":0}],"objName":"Ops.Graphics.Intersection.IntersectTestRaycast"},{"id":"bs0d2bloj","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"mainExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Trigger","portOut":"Triggered","objIn":"7dq6j5p5k","objOut":"bs0d2bloj"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"5me0htliz","uiAttribs":{},"portsIn":[{"name":"Shape index","value":1},{"name":"Shape","value":"BoxAA"},{"name":"Name","value":"dial.2"},{"name":"Radius","value":0.22},{"name":"Size X","value":0.49},{"name":"Size Y","value":0.88},{"name":"Size Z","value":0},{"name":"Positions"},{"name":"Append Index to name","value":1}],"objName":"Ops.Graphics.Intersection.IntersectBody"},{"id":"mbk4m8pcr","uiAttribs":{},"portsIn":[{"name":"x","value":-0.28},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger","portOut":"trigger","objIn":"5me0htliz","objOut":"mbk4m8pcr"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"adh054ku6","uiAttribs":{},"portsIn":[{"name":"Shape index","value":1},{"name":"Shape","value":"BoxAA"},{"name":"Name","value":"dial.3"},{"name":"Radius","value":0.23},{"name":"Size X","value":0.51},{"name":"Size Y","value":0.88},{"name":"Size Z","value":0},{"name":"Positions"},{"name":"Append Index to name","value":1}],"objName":"Ops.Graphics.Intersection.IntersectBody"},{"id":"yjtjh6kai","uiAttribs":{},"portsIn":[{"name":"Shape index","value":1},{"name":"Shape","value":"BoxAA"},{"name":"Name","value":"dial.4"},{"name":"Radius","value":0.23},{"name":"Size X","value":0.5},{"name":"Size Y","value":0.89},{"name":"Size Z","value":0},{"name":"Positions"},{"name":"Append Index to name","value":1}],"objName":"Ops.Graphics.Intersection.IntersectBody"},{"id":"sfqxroo9q","uiAttribs":{},"portsIn":[{"name":"Coordinates index","value":0},{"name":"Coordinates","value":"-1 to 1"},{"name":"Area index","value":0},{"name":"Area","value":"Canvas"},{"name":"flip y","value":1},{"name":"right click prevent default","value":1},{"name":"Touch support","value":0},{"name":"Passive Events","value":1},{"name":"Active","value":1}],"portsOut":[{"name":"x","links":[{"portIn":"X","portOut":"x","objIn":"9sm9dp98r","objOut":"sfqxroo9q"}]},{"name":"y","links":[{"portIn":"Y","portOut":"y","objIn":"9sm9dp98r","objOut":"sfqxroo9q"}]},{"name":"Button is down","value":0},{"name":"Mouse is hovering","value":0},{"name":"Movement X","value":-36},{"name":"Movement Y","value":-4}],"objName":"Ops.Devices.Mouse.Mouse_v3"},{"id":"124910bf-e88f-4da5-847e-888a7ac73020","uiAttribs":{},"portsIn":[{"name":"num x","value":4},{"name":"num y","value":1},{"name":"center","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"c2a85325-d75f-4f01-9b5c-83a2edd8d35d","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"},{"portIn":"render","portOut":"trigger","objIn":"zlpf1p0f5","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"}]},{"name":"x","links":[{"portIn":"posX","portOut":"x","objIn":"c2a85325-d75f-4f01-9b5c-83a2edd8d35d","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"},{"portIn":"Value","portOut":"x","objIn":"6v0s7i2sf","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"},{"portIn":"posX","portOut":"x","objIn":"zlpf1p0f5","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"}]},{"name":"y","value":0},{"name":"index","links":[{"portIn":"Value","portOut":"index","objIn":"euqza6b25","objOut":"124910bf-e88f-4da5-847e-888a7ac73020"}]},{"name":"total iterations","value":4}],"objName":"Ops.Trigger.Repeat2d"},{"id":"7qikt1vaf","uiAttribs":{},"portsIn":[{"name":"x","value":0.27},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger","portOut":"trigger","objIn":"adh054ku6","objOut":"7qikt1vaf"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"aupoduf7d","uiAttribs":{},"portsIn":[{"name":"x","value":0.8},{"name":"y","value":-0.15},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger","portOut":"trigger","objIn":"yjtjh6kai","objOut":"aupoduf7d"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"32lmfrmux","uiAttribs":{},"portsIn":[{"name":"Title","value":"Intersect"}],"objName":"Ops.Ui.Area"},{"id":"tg35ehmtt","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_hitBodyName"}],"objName":"Ops.Vars.VarSetString_v2"},{"id":"gb0lraco2","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_activeDial_ID"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"kcwn0w2tu","objOut":"gb0lraco2"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"qyara3wac","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"Value","portOut":"result","objIn":"hb06uwqts","objOut":"qyara3wac"}]}],"objName":"Ops.Math.Compare.Equals"},{"id":"53603a6e-a331-41a7-9822-120aba8de4f8","uiAttribs":{},"portsIn":[{"name":"number2","value":-270}],"portsOut":[{"name":"result","links":[{"portIn":"rotY","portOut":"result","objIn":"li365texv","objOut":"53603a6e-a331-41a7-9822-120aba8de4f8"}]}],"objName":"Ops.Math.Multiply"},{"id":"aqjh1act1","uiAttribs":{},"portsIn":[{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"Value","portOut":"value","objIn":"j3kd0q09w","objOut":"aqjh1act1"},{"portIn":"Value","portOut":"value","objIn":"1rc15x0gs","objOut":"aqjh1act1"},{"portIn":"number1","portOut":"value","objIn":"53603a6e-a331-41a7-9822-120aba8de4f8","objOut":"aqjh1act1"},{"portIn":"A","portOut":"value","objIn":"v11enlha4","objOut":"aqjh1act1"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"i0rjtphmz","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_dialValues_array"}],"portsOut":[{"name":"Value","links":[{"portIn":"array","portOut":"Value","objIn":"aqjh1act1","objOut":"i0rjtphmz"}]}],"objName":"Ops.Vars.VarGetArray_v2"},{"id":"kcwn0w2tu","uiAttribs":{},"portsIn":[{"name":"number2","value":1}],"portsOut":[{"name":"result","links":[{"portIn":"number1","portOut":"result","objIn":"qyara3wac","objOut":"kcwn0w2tu"}]}],"objName":"Ops.Math.Subtract"},{"id":"te11ob7nw","uiAttribs":{},"portsIn":[{"name":"projection mode index","value":0},{"name":"projection mode","value":"prespective"},{"name":"frustum near","value":0.01},{"name":"frustum far","value":5000},{"name":"fov","value":30},{"name":"Auto Aspect Ratio","value":1},{"name":"Aspect Ratio","value":1},{"name":"eye X","value":0},{"name":"eye Y","value":-0.03},{"name":"eye Z","value":0.73},{"name":"center X","value":0},{"name":"center Y","value":0},{"name":"center Z","value":0},{"name":"truck","value":0},{"name":"boom","value":0.23},{"name":"dolly","value":0},{"name":"tilt","value":0},{"name":"pan","value":0},{"name":"roll","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger","portOut":"trigger","objIn":"4pu8mr0y2","objOut":"te11ob7nw"},{"portIn":"exe","portOut":"trigger","objIn":"866dbq8co","objOut":"te11ob7nw"},{"portIn":"Input_0","portOut":"trigger","objIn":"5zxbuf3na","objOut":"te11ob7nw"}]},{"name":"Aspect","value":2.2083333333333335}],"objName":"Ops.Gl.Matrix.Camera"},{"id":"uc9r4wu0r","uiAttribs":{},"portsIn":[{"name":"r","value":0.885},{"name":"g","value":0.8560132010421952},{"name":"b","value":0.856},{"name":"colorizeTexture","value":1},{"name":"Vertex Colors","value":0},{"name":"Alpha Mask Source index","value":4},{"name":"Alpha Mask Source","value":"A"},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":0},{"name":"diffuseRepeatX","value":1},{"name":"diffuseRepeatY","value":0},{"name":"Tex Offset X","value":0},{"name":"Tex Offset Y","value":0},{"name":"Crop TexCoords","value":0},{"name":"billboard","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"3g7cbchrs","objOut":"uc9r4wu0r"}]}],"objName":"Ops.Gl.Shader.BasicMaterial_v3"},{"id":"j3kd0q09w","uiAttribs":{},"portsIn":[{"name":"Min","value":0},{"name":"Max","value":0.9},{"name":"Easing index","value":4},{"name":"Easing","value":"Cubic In"}],"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"conrnxfgk","objOut":"j3kd0q09w"},{"portIn":"Value","portOut":"Result","objIn":"s0o3lhs2y","objOut":"j3kd0q09w"}]}],"objName":"Ops.Math.Ease"},{"id":"conrnxfgk","uiAttribs":{},"portsIn":[{"name":"Min","value":0},{"name":"Max","value":0.27},{"name":"Easing index","value":5},{"name":"Easing","value":"Cubic Out"}],"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"z5bv7gal9","objOut":"conrnxfgk"}]}],"objName":"Ops.Math.Ease"},{"id":"chztenqi0","uiAttribs":{},"portsIn":[{"name":"r","value":1},{"name":"b","value":0.645},{"name":"Opacity","value":0.956},{"name":"AO Intensity","value":0.747},{"name":"Normal Map Intensity","value":0.66},{"name":"Repeat X","value":6},{"name":"Repeat Y","value":0},{"name":"Offset X","value":0},{"name":"Offset Y","value":1.6},{"name":"Screen Space Normals","value":0},{"name":"Calc normal tangents","value":0},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":1},{"name":"Alpha Mask Source index","value":0},{"name":"Alpha Mask Source","value":"Luminance"}],"portsOut":[{"name":"Next","links":[{"portIn":"Execute","portOut":"Next","objIn":"leqa7h4pd","objOut":"chztenqi0"}]},{"name":"Shader","links":[{"portIn":"Value","portOut":"Shader","objIn":"nnu0oo0gu","objOut":"chztenqi0"}]}],"objName":"Ops.Gl.Shader.MatCapMaterial_v3"},{"id":"0oya8etuv","uiAttribs":{},"portsIn":[{"name":"File","value":"assets/6697c3b245eb5d333bae2007_NEL_SRVB.webp","display":"file"},{"name":"Filter index","value":1},{"name":"Filter","value":"linear"},{"name":"Wrap index","value":0},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Data Format index","value":3},{"name":"Data Format","value":"RGBA"},{"name":"Flip","value":0},{"name":"Pre Multiplied Alpha","value":0},{"name":"Active","value":1},{"name":"Save Memory","value":1},{"name":"Add Cachebuster","value":1}],"portsOut":[{"name":"Texture","links":[{"portIn":"MatCap","portOut":"Texture","objIn":"chztenqi0","objOut":"0oya8etuv"}]},{"name":"Width","value":256},{"name":"Height","value":256},{"name":"Aspect Ratio","value":1},{"name":"Loaded","value":1},{"name":"Loading","value":0}],"objName":"Ops.Gl.Texture_v2"},{"id":"li365texv","uiAttribs":{},"portsIn":[{"name":"posX","value":0},{"name":"posY","value":0},{"name":"posZ","value":0.49},{"name":"scale","value":1},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"ts03zao35","objOut":"li365texv"},{"portIn":"Render","portOut":"trigger","objIn":"chztenqi0","objOut":"li365texv"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"bd0mu1qkj","uiAttribs":{},"portsIn":[{"name":"Title","value":"Main"}],"objName":"Ops.Ui.Area"},{"id":"6a24jo2e0","uiAttribs":{},"portsIn":[{"name":"Title","value":"Visuals+"}],"objName":"Ops.Ui.Area"},{"id":"kgtq6kbqp","uiAttribs":{},"portsIn":[{"name":"Font","value":"eb066298-c95b-4900-a9c8-abb0e9ea0930"},{"name":"Letter Spacing","value":-0.02},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":2},{"name":"Vertical Align","value":"Middle"},{"name":"g","value":0.933},{"name":"b","value":0.899},{"name":"SDF","value":1},{"name":"Smoothing","value":0.177},{"name":"Border","value":0},{"name":"Border Width","value":0.46},{"name":"Smoothness","value":1},{"name":"Border r","value":1},{"name":"Border g","value":1},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":1.2451464843750002},{"name":"Height","value":0.3814277447089947},{"name":"Start Y","value":0.17603711970899472},{"name":"Num Chars","value":11}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"1rc15x0gs","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentDialValueInsideRepeat2D"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"o8zk12f1r","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentDialValueInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"number","portOut":"Value","objIn":"2lpsqzgrb","objOut":"o8zk12f1r"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"2lpsqzgrb","uiAttribs":{},"portsIn":[{"name":"Decimal Places","value":3}],"portsOut":[{"name":"result","links":[{"portIn":"Number","portOut":"result","objIn":"vib72zx3n","objOut":"2lpsqzgrb"}]}],"objName":"Ops.Math.Round"},{"id":"vib72zx3n","uiAttribs":{},"portsIn":[{"name":"Decimal Places","value":4}],"portsOut":[{"name":"Result","links":[{"portIn":"String B","portOut":"Result","objIn":"hhpgrbf2g","objOut":"vib72zx3n"}]}],"objName":"Ops.String.NumberToString_v2"},{"id":"zlpf1p0f5","uiAttribs":{},"portsIn":[{"name":"posY","value":-0.565},{"name":"posZ","value":0.22},{"name":"scale","value":0.12},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"kgtq6kbqp","objOut":"zlpf1p0f5"}]}],"objName":"Ops.Gl.Matrix.TransformView"},{"id":"f67se0kft","uiAttribs":{},"portsIn":[{"name":"Title","value":"Text"}],"objName":"Ops.Ui.Area"},{"id":"m4wpz0q5c","uiAttribs":{},"portsIn":[{"name":"number2","value":0.06}],"portsOut":[{"name":"result","links":[{"portIn":"mul","portOut":"result","objIn":"124910bf-e88f-4da5-847e-888a7ac73020","objOut":"m4wpz0q5c"}]}],"objName":"Ops.Math.Multiply"},{"id":"1b7ls5v00","uiAttribs":{},"portsIn":[{"name":"min","value":0},{"name":"max","value":9}],"portsOut":[{"name":"result","links":[{"portIn":"number1","portOut":"result","objIn":"m4wpz0q5c","objOut":"1b7ls5v00"},{"portIn":"value","portOut":"result","objIn":"c8rxrl5sv","objOut":"1b7ls5v00"}]}],"objName":"Ops.Math.SmootherStep"},{"id":"hhpgrbf2g","uiAttribs":{},"portsIn":[{"name":"Format","value":"*$a $b"},{"name":"String C","value":2},{"name":"String D","value":3},{"name":"String E","value":""},{"name":"String F","value":""}],"portsOut":[{"name":"Result","links":[{"portIn":"Text","portOut":"Result","objIn":"kgtq6kbqp","objOut":"hhpgrbf2g"}]}],"objName":"Ops.String.StringCompose_v3"},{"id":"euqza6b25","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"34zd4vl4f","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"number2","portOut":"Value","objIn":"qyara3wac","objOut":"34zd4vl4f"},{"portIn":"number1","portOut":"Value","objIn":"ai5mgf397","objOut":"34zd4vl4f"},{"portIn":"index","portOut":"Value","objIn":"aqjh1act1","objOut":"34zd4vl4f"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"mtxdae1jj","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"index","portOut":"Value","objIn":"fxd9qy0nv","objOut":"mtxdae1jj"},{"portIn":"number2","portOut":"Value","objIn":"wow8ddz8v","objOut":"mtxdae1jj"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"ejryfn62d","uiAttribs":{},"portsIn":[{"name":"Title","value":"*"}],"objName":"Ops.Ui.Area"},{"id":"yvvnsby8j","uiAttribs":{},"portsIn":[{"name":"text","value":"level, diffuse, tone, size"},{"name":"separator","value":","},{"name":"Numbers","value":0},{"name":"Trim","value":1},{"name":"Split Lines","value":0}],"portsOut":[{"name":"array","links":[{"portIn":"array","portOut":"array","objIn":"fxd9qy0nv","objOut":"yvvnsby8j"}]},{"name":"length","value":4}],"objName":"Ops.Array.StringToArray_v2"},{"id":"fxd9qy0nv","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"String A","portOut":"result","objIn":"hhpgrbf2g","objOut":"fxd9qy0nv"}]}],"objName":"Ops.Array.ArrayGetString"},{"id":"xqowbomkj","uiAttribs":{},"portsIn":[{"name":"Title","value":"*"}],"objName":"Ops.Ui.Area"},{"id":"ch5u1xz0l","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"midExe"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"faiior48h","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"midExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Render","portOut":"Triggered","objIn":"48vrkn65x","objOut":"faiior48h"},{"portIn":"render","portOut":"Triggered","objIn":"33hdtkr51","objOut":"faiior48h"},{"portIn":"render","portOut":"Triggered","objIn":"fvg1zz75v","objOut":"faiior48h"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"smns78b6k","uiAttribs":{},"portsIn":[{"name":"Title","value":"*"}],"objName":"Ops.Ui.Area"},{"id":"piq1e64rw","uiAttribs":{},"portsIn":[{"name":"Title","value":"*"}],"objName":"Ops.Ui.Area"},{"id":"t83msa078","uiAttribs":{},"portsIn":[{"name":"Title","value":"*"}],"objName":"Ops.Ui.Area"},{"id":"4pu8mr0y2","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"preSequenceFlow"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"of6q9dm1m","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"midExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"render","portOut":"Triggered","objIn":"v2qv1ozh2","objOut":"of6q9dm1m"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"zcc6zzw4d","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"v2qv1ozh2","uiAttribs":{},"portsIn":[{"name":"Size index","value":1},{"name":"Size","value":"Manual"},{"name":"texture height","value":512},{"name":"Auto Aspect","value":1},{"name":"filter index","value":1},{"name":"filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"Repeat"},{"name":"MSAA index","value":1},{"name":"MSAA","value":"2x"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"Depth","value":0},{"name":"Clear","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"Execute","portOut":"trigger","objIn":"3so3f33cf","objOut":"v2qv1ozh2"}]},{"name":"texture","links":[{"portIn":"Base Texture","portOut":"texture","objIn":"eerqtlpnp","objOut":"v2qv1ozh2"}]}],"objName":"Ops.Gl.RenderToTexture_v3"},{"id":"o4q65sx2h","uiAttribs":{},"portsIn":[{"name":"x","value":-1.3},{"name":"y","value":-1.79},{"name":"z","value":-0.46}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"eb7wv37c6","objOut":"o4q65sx2h"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"kmdf8veed","uiAttribs":{},"portsIn":[{"name":"File","value":"assets/lib_matcaps_Chrome_Blue_Tint-White.png","display":"file"},{"name":"Filter index","value":2},{"name":"Filter","value":"mipmap"},{"name":"Wrap index","value":0},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Data Format index","value":3},{"name":"Data Format","value":"RGBA"},{"name":"Flip","value":0},{"name":"Pre Multiplied Alpha","value":0},{"name":"Active","value":1},{"name":"Save Memory","value":1},{"name":"Add Cachebuster","value":0}],"portsOut":[{"name":"Texture","links":[{"portIn":"Specular MatCap","portOut":"Texture","objIn":"chztenqi0","objOut":"kmdf8veed"}]},{"name":"Width","value":256},{"name":"Height","value":256},{"name":"Aspect Ratio","value":1},{"name":"Loaded","value":1},{"name":"Loading","value":0}],"objName":"Ops.Gl.Texture_v2"},{"id":"flv1jlkal","uiAttribs":{},"portsIn":[{"name":"File","value":"assets/6697c3b245eb5d333bae2007_Sterungs.webp","display":"file"},{"name":"Filter index","value":2},{"name":"Filter","value":"mipmap"},{"name":"Wrap index","value":0},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Data Format index","value":3},{"name":"Data Format","value":"RGBA"},{"name":"Flip","value":0},{"name":"Pre Multiplied Alpha","value":0},{"name":"Active","value":1},{"name":"Save Memory","value":1},{"name":"Add Cachebuster","value":0}],"portsOut":[{"name":"Texture","links":[{"portIn":"Specular Mask","portOut":"Texture","objIn":"chztenqi0","objOut":"flv1jlkal"}]},{"name":"Width","value":256},{"name":"Height","value":256},{"name":"Aspect Ratio","value":1},{"name":"Loaded","value":1},{"name":"Loading","value":0}],"objName":"Ops.Gl.Texture_v2"},{"id":"40fnzsucx","uiAttribs":{},"portsIn":[{"name":"Play","value":1},{"name":"Sync to timeline","value":0}],"portsOut":[{"name":"Time","links":[{"portIn":"Time","portOut":"Time","objIn":"lv0f0jbcs","objOut":"40fnzsucx"}]}],"objName":"Ops.Anim.Timer_v2"},{"id":"lv0f0jbcs","uiAttribs":{},"portsIn":[{"name":"Type index","value":2},{"name":"Type","value":"ramp up"},{"name":"Phase","value":0},{"name":"Range Min","value":-360},{"name":"Range Max","value":360}],"portsOut":[{"name":"Result","links":[{"portIn":"rotX","portOut":"Result","objIn":"li365texv","objOut":"lv0f0jbcs"}]}],"objName":"Ops.Anim.LFO_v2"},{"id":"ai5mgf397","uiAttribs":{},"portsIn":[{"name":"number2","value":0.01}],"portsOut":[{"name":"result","links":[{"portIn":"Frequency","portOut":"result","objIn":"lv0f0jbcs","objOut":"ai5mgf397"}]}],"objName":"Ops.Math.Multiply"},{"id":"ozs800vz3","uiAttribs":{},"objName":"Ops.Gl.GLTF.GltfDracoCompression"},{"id":"bmau99lwf","uiAttribs":{},"portsIn":[{"name":"data","value":"{\"hiddenNodes\":{}}"},{"name":"glb File","value":"assets/66a8cc11ac4e6d02513b1fae_spherical_animation.draco.glb","display":"file"},{"name":"Draw","value":1},{"name":"Camera index","value":0},{"name":"Camera","value":"None"},{"name":"Animation","value":"Anim "},{"name":"Center index","value":0},{"name":"Center","value":"None"},{"name":"Rescale","value":1},{"name":"Rescale Size","value":1},{"name":"Sync to timeline","value":0},{"name":"Loop","value":1},{"name":"Normals Format index","value":0},{"name":"Normals Format","value":"XYZ"},{"name":"Vertices Format index","value":0},{"name":"Vertices Format","value":"XYZ"},{"name":"Calc Normals index","value":0},{"name":"Calc Normals","value":"Auto"},{"name":"Hide Nodes","value":0},{"name":"Use Material Properties","value":0},{"name":"Active","value":1}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"38w7tj78u","objOut":"bmau99lwf"}]},{"name":"Generator","value":"Sketchfab-16.17.0"},{"name":"GLTF Version","value":2},{"name":"Anim Length","value":8.333333015441895},{"name":"Anim Time","value":6.318081236024511},{"name":"Loading","value":false}],"objName":"Ops.Gl.GLTF.GltfScene_v4"},{"id":"lb1qzrcoj","uiAttribs":{},"portsIn":[{"name":"Material Name","value":"FORGED_METAL"}],"portsOut":[{"name":"Material","links":[{"portIn":"Materials","portOut":"Material","objIn":"bmau99lwf","objOut":"lb1qzrcoj"}]}],"objName":"Ops.Gl.GLTF.GltfSetMaterial"},{"id":"fs2uw3jmy","uiAttribs":{},"portsIn":[{"name":"Material Name","value":"Side"}],"portsOut":[{"name":"Material","links":[{"portIn":"Materials","portOut":"Material","objIn":"bmau99lwf","objOut":"fs2uw3jmy"}]}],"objName":"Ops.Gl.GLTF.GltfSetMaterial"},{"id":"nnu0oo0gu","uiAttribs":{},"portsIn":[{"name":"Variable","value":"NEL_SRVB_Metals"}],"objName":"Ops.Vars.VarSetObject_v2"},{"id":"u5bcyfii0","uiAttribs":{},"portsIn":[{"name":"Variable","value":"NEL_SRVB_Metals"}],"portsOut":[{"name":"Value","links":[{"portIn":"Shader","portOut":"Value","objIn":"lb1qzrcoj","objOut":"u5bcyfii0"}]}],"objName":"Ops.Vars.VarGetObject_v2"},{"id":"leqa7h4pd","uiAttribs":{},"portsIn":[{"name":"Diffuse A","value":1},{"name":"Double Sided","value":0},{"name":"Colorize Texture","value":0}],"portsOut":[{"name":"next","links":[{"portIn":"Execute","portOut":"next","objIn":"0rcbij4av","objOut":"leqa7h4pd"}]},{"name":"Shader","links":[{"portIn":"Shader","portOut":"Shader","objIn":"fs2uw3jmy","objOut":"leqa7h4pd"}]}],"objName":"Ops.Gl.Phong.LambertMaterial_v2"},{"id":"s0o3lhs2y","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ringR"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"z5bv7gal9","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ringG"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"oa1101yyu","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ringR"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"y7uobh49q","objOut":"oa1101yyu"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"tnds1iu5y","uiAttribs":{},"portsIn":[{"name":"Material Name","value":"POINTS"}],"portsOut":[{"name":"Material","links":[{"portIn":"Materials","portOut":"Material","objIn":"bmau99lwf","objOut":"tnds1iu5y"}]}],"objName":"Ops.Gl.GLTF.GltfSetMaterial"},{"id":"0rcbij4av","uiAttribs":{},"portsIn":[{"name":"Diffuse R","value":0.919},{"name":"Diffuse G","value":0.97},{"name":"Diffuse B","value":1},{"name":"Diffuse A","value":1},{"name":"Double Sided","value":0},{"name":"Colorize Texture","value":0}],"portsOut":[{"name":"Shader","links":[{"portIn":"Shader","portOut":"Shader","objIn":"tnds1iu5y","objOut":"0rcbij4av"}]}],"objName":"Ops.Gl.Phong.LambertMaterial_v2"},{"id":"y7uobh49q","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"g","portOut":"Result","objIn":"chztenqi0","objOut":"y7uobh49q"}]}],"objName":"Ops.Math.OneMinus"},{"id":"ts03zao35","uiAttribs":{},"portsIn":[{"name":"r","value":1},{"name":"g","value":1},{"name":"b","value":1},{"name":"Opacity","value":1},{"name":"AO Intensity","value":1},{"name":"Normal Map Intensity","value":1},{"name":"Repeat X","value":1},{"name":"Repeat Y","value":1},{"name":"Offset X","value":0},{"name":"Offset Y","value":0},{"name":"Screen Space Normals","value":0},{"name":"Calc normal tangents","value":1},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":0},{"name":"Alpha Mask Source index","value":0},{"name":"Alpha Mask Source","value":"Luminance"}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"orseg18lf","objOut":"ts03zao35"},{"portIn":"Execute","portOut":"Next","objIn":"l7fhi163a","objOut":"ts03zao35"}]}],"objName":"Ops.Gl.Shader.MatCapMaterial_v3"},{"id":"38w7tj78u","uiAttribs":{},"portsIn":[{"name":"Node Name","value":"c001_1"},{"name":"Translate Y","value":0},{"name":"Translate Z","value":0},{"name":"Rotation X","value":0},{"name":"Rotation Y","value":0},{"name":"Rotation Z","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"bq7dcj36g","objOut":"38w7tj78u"}]},{"name":"Found","value":true}],"objName":"Ops.Gl.GLTF.GltfTransformNode"},{"id":"5g6m8w0kd","uiAttribs":{},"portsIn":[{"name":"Node Name","value":"c003_3"},{"name":"Translate Y","value":0},{"name":"Translate Z","value":0},{"name":"Rotation X","value":0},{"name":"Rotation Y","value":0},{"name":"Rotation Z","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"br7cvag8u","objOut":"5g6m8w0kd"}]},{"name":"Found","value":true}],"objName":"Ops.Gl.GLTF.GltfTransformNode"},{"id":"bq7dcj36g","uiAttribs":{},"portsIn":[{"name":"Node Name","value":"c002_2"},{"name":"Translate Y","value":0},{"name":"Translate Z","value":0},{"name":"Rotation X","value":0},{"name":"Rotation Y","value":0},{"name":"Rotation Z","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"5g6m8w0kd","objOut":"bq7dcj36g"}]},{"name":"Found","value":true}],"objName":"Ops.Gl.GLTF.GltfTransformNode"},{"id":"br7cvag8u","uiAttribs":{},"portsIn":[{"name":"Node Name","value":"c004_4"},{"name":"Translate Y","value":0},{"name":"Translate Z","value":0},{"name":"Rotation X","value":0},{"name":"Rotation Y","value":0},{"name":"Rotation Z","value":0}],"portsOut":[{"name":"Found","value":true}],"objName":"Ops.Gl.GLTF.GltfTransformNode"},{"id":"hf23rbdfn","uiAttribs":{},"portsIn":[{"name":"number2","value":20}],"portsOut":[{"name":"result","links":[{"portIn":"Translate X","portOut":"result","objIn":"38w7tj78u","objOut":"hf23rbdfn"},{"portIn":"Translate X","portOut":"result","objIn":"bq7dcj36g","objOut":"hf23rbdfn"},{"portIn":"Translate X","portOut":"result","objIn":"5g6m8w0kd","objOut":"hf23rbdfn"},{"portIn":"Translate X","portOut":"result","objIn":"br7cvag8u","objOut":"hf23rbdfn"}]}],"objName":"Ops.Math.Multiply"},{"id":"w1vt61ydw","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_dialValues_array"}],"portsOut":[{"name":"Value","links":[{"portIn":"Array in","portOut":"Value","objIn":"z1obzd6uz","objOut":"w1vt61ydw"}]}],"objName":"Ops.Vars.VarGetArray_v2"},{"id":"9044xju7n","uiAttribs":{},"portsIn":[{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"number1","portOut":"value","objIn":"hf23rbdfn","objOut":"9044xju7n"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"z1obzd6uz","uiAttribs":{},"portsIn":[{"name":"When False index","value":0},{"name":"When False","value":"keep last array"}],"portsOut":[{"name":"Array Out","links":[{"portIn":"array","portOut":"Array Out","objIn":"9044xju7n","objOut":"z1obzd6uz"}]}],"objName":"Ops.Array.GateArray_v2"},{"id":"0lxocfgel","uiAttribs":{},"portsIn":[{"name":"Title","value":"Spatial GLTF"}],"objName":"Ops.Ui.Area"},{"id":"hb06uwqts","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentInstanceIsActive"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"9hyokghvg","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentInstanceIsActive"}],"portsOut":[{"name":"Value","links":[{"portIn":"Pass Through","portOut":"Value","objIn":"z1obzd6uz","objOut":"9hyokghvg"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"6dc9673bl","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"A","portOut":"Value","objIn":"88c0pg2n0","objOut":"6dc9673bl"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"88c0pg2n0","uiAttribs":{},"portsIn":[{"name":"B","value":1},{"name":"C","value":2},{"name":"D","value":3},{"name":"Expression","value":"(a + 1) % 4"}],"portsOut":[{"name":"Result","links":[{"portIn":"index","portOut":"Result","objIn":"9044xju7n","objOut":"88c0pg2n0"}]},{"name":"Expression Valid","value":true}],"objName":"Ops.Math.MathExpression"},{"id":"6v0s7i2sf","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_rep2d_x"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"q3siwjs06","uiAttribs":{},"portsIn":[{"name":"Frequency","value":0.002002},{"name":"Type index","value":0},{"name":"Type","value":"sine"},{"name":"Range Min","value":0},{"name":"Range Max","value":8}],"portsOut":[{"name":"Result","links":[{"portIn":"Time","portOut":"Result","objIn":"bmau99lwf","objOut":"q3siwjs06"}]}],"objName":"Ops.Anim.LFO_v2"},{"id":"l3284qrsh","uiAttribs":{},"portsOut":[{"name":"timesTriggered","links":[{"portIn":"A","portOut":"timesTriggered","objIn":"hd355ern0","objOut":"l3284qrsh"}]}],"objName":"Ops.Trigger.TriggerCounter"},{"id":"xja9p9adg","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"B","portOut":"Value","objIn":"hd355ern0","objOut":"xja9p9adg"},{"portIn":"Phase","portOut":"Value","objIn":"q3siwjs06","objOut":"xja9p9adg"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"orseg18lf","uiAttribs":{},"portsIn":[{"name":"scale","value":1.28},{"name":"x","value":1},{"name":"y","value":1},{"name":"z","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"bmau99lwf","objOut":"orseg18lf"}]}],"objName":"Ops.Gl.Matrix.Scale"},{"id":"hd355ern0","uiAttribs":{},"portsIn":[{"name":"C","value":-1},{"name":"D","value":0},{"name":"Expression","value":"a*(b * 0.01)"}],"portsOut":[{"name":"Result","links":[{"portIn":"Time","portOut":"Result","objIn":"q3siwjs06","objOut":"hd355ern0"}]},{"name":"Expression Valid","value":true}],"objName":"Ops.Math.MathExpression"},{"id":"2p7s5nsc9","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":0.005},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":2},{"name":"pivot y","value":"bottom"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":1},{"name":"num rows","value":1}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"cplq646td","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"j447574nb","objOut":"cplq646td"}]}],"objName":"Ops.Gl.Matrix.Billboard"},{"id":"j447574nb","uiAttribs":{},"portsIn":[{"name":"y","value":1.45},{"name":"z","value":6.66}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"lb4ss1de9","objOut":"j447574nb"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"l53eehg6x","uiAttribs":{},"portsIn":[{"name":"Text","value":"MirrorScape"},{"name":"Font","value":"eb066298-c95b-4900-a9c8-abb0e9ea0930"},{"name":"Scale","value":0.64},{"name":"Letter Spacing","value":0.04},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":1},{"name":"Vertical Align","value":"Top"},{"name":"r","value":0.179},{"name":"g","value":1},{"name":"b","value":0.692},{"name":"a","value":0.91},{"name":"SDF","value":1},{"name":"Smoothing","value":0.125},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":3.85615},{"name":"Height","value":0.6830550264550266},{"name":"Start Y","value":0.3375825396825398},{"name":"Num Chars","value":11}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"fevah6hns","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"finalExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"exe","portOut":"Triggered","objIn":"rw14ave8u","objOut":"fevah6hns"},{"portIn":"render","portOut":"Triggered","objIn":"bav6ydpr2","objOut":"fevah6hns"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"bav6ydpr2","uiAttribs":{},"portsIn":[{"name":"posX","value":0.525},{"name":"posY","value":0.435},{"name":"posZ","value":0},{"name":"scale","value":0.125},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"l53eehg6x","objOut":"bav6ydpr2"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"3g7cbchrs","uiAttribs":{},"portsIn":[{"name":"x","value":-0.6},{"name":"y","value":-0.835},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Exec","portOut":"trigger","objIn":"cplq646td","objOut":"3g7cbchrs"}]}],"objName":"Ops.Gl.Matrix.TranslateView"},{"id":"48vrkn65x","uiAttribs":{},"portsIn":[{"name":"Size index","value":0},{"name":"Size","value":"Auto"},{"name":"Width","value":640},{"name":"Height","value":480},{"name":"Filter index","value":1},{"name":"Filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Pixel Format index","value":5},{"name":"Pixel Format","value":"SRGBA 8bit ubyte"},{"name":"R","value":0},{"name":"G","value":0},{"name":"B","value":0},{"name":"A","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"6fb2f0244","objOut":"48vrkn65x"}]},{"name":"texture_out","links":[{"portIn":"Diffuse","portOut":"texture_out","objIn":"flor1ge09","objOut":"48vrkn65x"}]},{"name":"Aspect Ratio","value":2.2083333333333335},{"name":"Texture Width","value":2014},{"name":"Texture Height","value":912}],"objName":"Ops.Gl.ImageCompose.ImageCompose_v4"},{"id":"wcm52u6xo","uiAttribs":{},"portsIn":[{"name":"x","value":-1},{"name":"y","value":0.4},{"name":"z","value":-1}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"62jtojeuu","objOut":"wcm52u6xo"}]}],"objName":"Ops.Gl.Matrix.ScaleXYZViewMatrix"},{"id":"flor1ge09","uiAttribs":{},"portsIn":[{"name":"r","value":0.07},{"name":"g","value":0.06},{"name":"b","value":0.51},{"name":"AO Intensity","value":1},{"name":"Normal Map Intensity","value":1},{"name":"Repeat X","value":1},{"name":"Repeat Y","value":1},{"name":"Offset X","value":0.93},{"name":"Offset Y","value":-0.89},{"name":"Screen Space Normals","value":0},{"name":"Calc normal tangents","value":1},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":1},{"name":"Alpha Mask Source index","value":0},{"name":"Alpha Mask Source","value":"Luminance"}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"wcm52u6xo","objOut":"flor1ge09"}]}],"objName":"Ops.Gl.Shader.MatCapMaterial_v3"},{"id":"9dqwuc8l6","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":1},{"name":"height","value":1.8},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":1},{"name":"num rows","value":1}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"2zbdnj6oz","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_size"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"zpf6nadj7","objOut":"2zbdnj6oz"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"eb7wv37c6","uiAttribs":{},"portsIn":[{"name":"file","value":"assets/6697c3b245eb5d333bae2007_NEL_SRVB.webp","display":"file"},{"name":"height","value":3},{"name":"rows","value":20},{"name":"texCoords slice","value":1},{"name":"flat","value":1}],"portsOut":[{"name":"geometry","links":[{"portIn":"Value","portOut":"geometry","objIn":"hr05yjyy0","objOut":"eb7wv37c6"}]}],"objName":"Ops.Gl.Meshes.HeightMap"},{"id":"j4exj9jwp","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_tone"}],"portsOut":[{"name":"Value","links":[{"portIn":"Diffuse R","portOut":"Value","objIn":"leqa7h4pd","objOut":"j4exj9jwp"},{"portIn":"Diffuse G","portOut":"Value","objIn":"leqa7h4pd","objOut":"j4exj9jwp"},{"portIn":"Diffuse B","portOut":"Value","objIn":"leqa7h4pd","objOut":"j4exj9jwp"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"c4hww7lmi","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_tone"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"3gcrjukfk","objOut":"c4hww7lmi"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"33hdtkr51","uiAttribs":{},"portsIn":[{"name":"x","value":0},{"name":"y","value":0.31},{"name":"z","value":-0.01}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"flor1ge09","objOut":"33hdtkr51"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"3gcrjukfk","uiAttribs":{},"portsIn":[{"name":"Min","value":0},{"name":"Max","value":1},{"name":"Easing index","value":11},{"name":"Easing","value":"Sin Out"}],"portsOut":[{"name":"Result","links":[{"portIn":"Opacity","portOut":"Result","objIn":"flor1ge09","objOut":"3gcrjukfk"}]}],"objName":"Ops.Math.Ease"},{"id":"zpf6nadj7","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"z","portOut":"Result","objIn":"oba4wt0jq","objOut":"zpf6nadj7"}]}],"objName":"Ops.Math.OneMinus"},{"id":"oba4wt0jq","uiAttribs":{},"portsIn":[{"name":"scale","value":1},{"name":"x","value":1},{"name":"y","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"o4q65sx2h","objOut":"oba4wt0jq"}]}],"objName":"Ops.Gl.Matrix.Scale"},{"id":"62jtojeuu","uiAttribs":{},"portsIn":[{"name":"posX","value":0},{"name":"posY","value":-1.15},{"name":"posZ","value":-3.52},{"name":"scale","value":3.57},{"name":"rotX","value":-83.76},{"name":"rotY","value":0},{"name":"rotZ","value":180}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"9dqwuc8l6","objOut":"62jtojeuu"}]}],"objName":"Ops.Gl.Matrix.TransformView"},{"id":"rw14ave8u","uiAttribs":{},"portsIn":[{"name":"easing index","value":8},{"name":"easing","value":"Expo Out"},{"name":"duration","value":0.75},{"name":"Direction index","value":0},{"name":"Direction","value":"Both"},{"name":"value false","value":0},{"name":"value true","value":1}],"portsOut":[{"name":"value","links":[{"portIn":"Value","portOut":"value","objIn":"62fo5emt0","objOut":"rw14ave8u"},{"portIn":"Percentage","portOut":"value","objIn":"vbqzfym0q","objOut":"rw14ave8u"},{"portIn":"a","portOut":"value","objIn":"kgtq6kbqp","objOut":"rw14ave8u"}]},{"name":"finished","value":1}],"objName":"Ops.Anim.BoolAnim"},{"id":"73bb2nz0u","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_hitBodyName"}],"portsOut":[{"name":"Value","links":[{"portIn":"String","portOut":"Value","objIn":"vgzr81mxh","objOut":"73bb2nz0u"}]}],"objName":"Ops.Vars.VarGetString"},{"id":"vgzr81mxh","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"bool","portOut":"Result","objIn":"rw14ave8u","objOut":"vgzr81mxh"}]}],"objName":"Ops.String.StringLength_v2"},{"id":"n9u25c6ax","uiAttribs":{},"portsIn":[{"name":"posX","value":-0.51},{"name":"posY","value":-0.26},{"name":"posZ","value":0},{"name":"scale","value":1},{"name":"rotX","value":0},{"name":"rotY","value":180},{"name":"rotZ","value":180}],"portsOut":[{"name":"trigger","links":[{"portIn":"Execute","portOut":"trigger","objIn":"lsv3n3hs3","objOut":"n9u25c6ax"},{"portIn":"Execute","portOut":"trigger","objIn":"3n0xi3fsv","objOut":"n9u25c6ax"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"ge3zj70cy","uiAttribs":{},"portsIn":[{"name":"x","value":-0.81},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Trigger","portOut":"trigger","objIn":"jrkdakvqd","objOut":"ge3zj70cy"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"jrkdakvqd","uiAttribs":{},"portsIn":[{"name":"Shape index","value":1},{"name":"Shape","value":"BoxAA"},{"name":"Name","value":"dial.1"},{"name":"Radius","value":0.25},{"name":"Size X","value":0.51},{"name":"Size Y","value":0.84},{"name":"Size Z","value":0},{"name":"Positions"},{"name":"Append Index to name","value":1}],"objName":"Ops.Graphics.Intersection.IntersectBody"},{"id":"lb4ss1de9","uiAttribs":{},"portsIn":[{"name":"mul","value":-0.92}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"2p7s5nsc9","objOut":"lb4ss1de9"}]}],"objName":"Ops.Gl.Matrix.TransformMul"},{"id":"9f43w7192","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_currentIndexInsideRepeat2D"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"6kwkmfn9z","objOut":"9f43w7192"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"6kwkmfn9z","uiAttribs":{},"portsIn":[{"name":"number2","value":5}],"portsOut":[{"name":"result","links":[{"portIn":"x","portOut":"result","objIn":"j447574nb","objOut":"6kwkmfn9z"}]}],"objName":"Ops.Math.Multiply"},{"id":"62fo5emt0","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__labelBoolAnim"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"3zhcjuyyj","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__labelBoolAnim"}],"portsOut":[{"name":"Value","links":[{"portIn":"B","portOut":"Value","objIn":"v11enlha4","objOut":"3zhcjuyyj"},{"portIn":"number1","portOut":"Value","objIn":"tsahvrwcv","objOut":"3zhcjuyyj"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"v11enlha4","uiAttribs":{},"portsIn":[{"name":"C","value":1},{"name":"D","value":3},{"name":"Expression","value":"(a*0.15) * c"}],"portsOut":[{"name":"Result","links":[{"portIn":"height","portOut":"Result","objIn":"2p7s5nsc9","objOut":"v11enlha4"}]},{"name":"Expression Valid","value":true}],"objName":"Ops.Math.MathExpression"},{"id":"vw32ba4ay","uiAttribs":{},"portsIn":[{"name":"Maximum","value":0.1}],"portsOut":[{"name":"result","links":[{"portIn":"Value","portOut":"result","objIn":"8dnvznngh","objOut":"vw32ba4ay"}]}],"objName":"Ops.Math.Max"},{"id":"k1xasfekl","uiAttribs":{},"portsIn":[{"name":"Separate inc/dec","value":0},{"name":"Inc factor","value":4,"title":"Inc/Dec factor"},{"name":"Dec factor","value":4}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"a1dx328je","objOut":"k1xasfekl"}]},{"name":"Array Out","links":[{"portIn":"array","portOut":"Array Out","objIn":"scp4776vv","objOut":"k1xasfekl"},{"portIn":"array","portOut":"Array Out","objIn":"ffpua72y1","objOut":"k1xasfekl"},{"portIn":"array","portOut":"Array Out","objIn":"0yopgevxd","objOut":"k1xasfekl"},{"portIn":"array","portOut":"Array Out","objIn":"jj4a1wi34","objOut":"k1xasfekl"}]}],"objName":"Ops.User.cristianvogel.LofiSmoothArray"},{"id":"98iul8y9a","uiAttribs":{},"portsIn":[{"name":"Maximum","value":0.005}],"portsOut":[{"name":"result","links":[{"portIn":"Value","portOut":"result","objIn":"iwrkcxo1s","objOut":"98iul8y9a"}]}],"objName":"Ops.Math.Max"},{"id":"8dnvznngh","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_size"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"ok235i5ag","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_mix"}],"portsOut":[{"name":"Value","links":[{"portIn":"number","portOut":"Value","objIn":"nf37ruj15","objOut":"ok235i5ag"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"6xynvbmkd","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_mix"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"hlukndsg2","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_tone"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"iwrkcxo1s","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_diffusion"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"scp4776vv","uiAttribs":{},"portsIn":[{"name":"index","value":0},{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"Value","portOut":"value","objIn":"6xynvbmkd","objOut":"scp4776vv"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"ffpua72y1","uiAttribs":{},"portsIn":[{"name":"index","value":3},{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"value","portOut":"value","objIn":"vw32ba4ay","objOut":"ffpua72y1"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"0yopgevxd","uiAttribs":{},"portsIn":[{"name":"index","value":2},{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"Value","portOut":"value","objIn":"hlukndsg2","objOut":"0yopgevxd"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"jj4a1wi34","uiAttribs":{},"portsIn":[{"name":"index","value":1},{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"value","portOut":"value","objIn":"98iul8y9a","objOut":"jj4a1wi34"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"34zmy4a4l","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"mainExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Execute","portOut":"Triggered","objIn":"k1xasfekl","objOut":"34zmy4a4l"},{"portIn":"Render","portOut":"Triggered","objIn":"51ldwg650","objOut":"34zmy4a4l"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"g8s0zafv1","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_dialValues_array"}],"portsOut":[{"name":"Value","links":[{"portIn":"Array In","portOut":"Value","objIn":"k1xasfekl","objOut":"g8s0zafv1"}]}],"objName":"Ops.Vars.VarGetArray_v2"},{"id":"l0tg11bqe","uiAttribs":{},"portsIn":[{"name":"width","value":10},{"name":"height","value":0.49},{"name":"Logarithmic","value":1},{"name":"pivot x index","value":0},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":0},{"name":"pivot y","value":"center"},{"name":"num columns","value":8},{"name":"num rows","value":12},{"name":"axis index","value":0},{"name":"axis","value":"xy"}],"portsOut":[{"name":"Point Arrays","links":[{"portIn":"Points","portOut":"Point Arrays","objIn":"bjn0972ht","objOut":"l0tg11bqe"}]}],"objName":"Ops.Gl.Meshes.LinesArray"},{"id":"bjn0972ht","uiAttribs":{},"portsIn":[{"name":"Tesselate Edges","value":0},{"name":"Render Mesh","value":1}],"objName":"Ops.Gl.Meshes.SplineMesh_v2"},{"id":"yte4ra0uu","uiAttribs":{},"portsIn":[{"name":"Width","value":1.03},{"name":"Width Perspective","value":0},{"name":"Mapping index","value":1},{"name":"Mapping","value":"Face"},{"name":"Colorize Texture","value":0},{"name":"Offset","value":0},{"name":"r","value":0.179},{"name":"g","value":1},{"name":"b","value":0.692}],"portsOut":[{"name":"Trigger","links":[{"portIn":"render","portOut":"Trigger","objIn":"kom6mxww1","objOut":"yte4ra0uu"}]}],"objName":"Ops.Gl.Meshes.SplineMeshMaterial_v2"},{"id":"ertlqmhh5","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"l0tg11bqe","objOut":"ertlqmhh5"}]},{"name":"Was Triggered","value":1}],"objName":"Ops.Trigger.TriggerOnce"},{"id":"kom6mxww1","uiAttribs":{},"portsIn":[{"name":"posX","value":0},{"name":"posY","value":-0.75},{"name":"posZ","value":0.45},{"name":"scale","value":1},{"name":"rotX","value":180},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"bjn0972ht","objOut":"kom6mxww1"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"9li4kwtsh","uiAttribs":{},"portsIn":[{"name":"number1","value":1},{"name":"number2","value":0.2}],"portsOut":[{"name":"result","links":[{"portIn":"a","portOut":"result","objIn":"yte4ra0uu","objOut":"9li4kwtsh"}]}],"objName":"Ops.Math.Multiply"},{"id":"99du8h3y9","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"preSequenceFlow"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Render","portOut":"Triggered","objIn":"yte4ra0uu","objOut":"99du8h3y9"},{"portIn":"Exec","portOut":"Triggered","objIn":"ertlqmhh5","objOut":"99du8h3y9"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"0oj6cpo44","uiAttribs":{},"portsIn":[{"name":"Title","value":"LInes"}],"objName":"Ops.Ui.Area"},{"id":"6lh7g16he","uiAttribs":{},"portsIn":[{"name":"Value 0","value":-0.52},{"name":"Value 1","value":0.53}],"portsOut":[{"name":"Out Value","links":[{"portIn":"Speed","portOut":"Out Value","objIn":"40fnzsucx","objOut":"6lh7g16he"}]}],"objName":"Ops.Boolean.BoolToNumber_v2"},{"id":"6fb2f0244","uiAttribs":{},"portsIn":[{"name":"Passes","value":1},{"name":"Clamp","value":0},{"name":"direction index","value":0},{"name":"direction","value":"both"},{"name":"Mask Invert","value":0}],"objName":"Ops.Gl.ImageCompose.FastBlur_v2"},{"id":"z3hsmrlsw","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_size"}],"portsOut":[{"name":"Value","links":[{"portIn":"Percentage","portOut":"Value","objIn":"o5rkdhq2k","objOut":"z3hsmrlsw"},{"portIn":"Percentage","portOut":"Value","objIn":"4jk31qlcv","objOut":"z3hsmrlsw"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"hr05yjyy0","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__heightMapGeometry"}],"objName":"Ops.Vars.VarSetObject_v2"},{"id":"w2fqrmovh","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLength"}],"portsOut":[{"name":"Value","links":[{"portIn":"Percentage","portOut":"Value","objIn":"69bvpidqa","objOut":"w2fqrmovh"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"69bvpidqa","uiAttribs":{},"portsIn":[{"name":"Value 1","value":16},{"name":"Value 2","value":512}],"portsOut":[{"name":"Result","links":[{"portIn":"Number","portOut":"Result","objIn":"7pg8sq01l","objOut":"69bvpidqa"}]}],"objName":"Ops.Math.Interpolate"},{"id":"7pg8sq01l","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"texture width","portOut":"Result","objIn":"v2qv1ozh2","objOut":"7pg8sq01l"}]}],"objName":"Ops.Math.Ceil"},{"id":"3so3f33cf","uiAttribs":{},"portsIn":[{"name":"Diffuse R","value":0.21561448295683894},{"name":"Diffuse G","value":1},{"name":"Diffuse B","value":0.666},{"name":"Diffuse A","value":1},{"name":"Double Sided","value":0},{"name":"Colorize Texture","value":0}],"portsOut":[{"name":"next","links":[{"portIn":"render","portOut":"next","objIn":"oba4wt0jq","objOut":"3so3f33cf"}]}],"objName":"Ops.Gl.Phong.LambertMaterial_v2"},{"id":"65mpod5qd","uiAttribs":{},"portsIn":[{"name":"value","value":-0.15}],"portsOut":[{"name":"result","links":[{"portIn":"y","portOut":"result","objIn":"7qikt1vaf","objOut":"65mpod5qd"},{"portIn":"y","portOut":"result","objIn":"mbk4m8pcr","objOut":"65mpod5qd"},{"portIn":"y","portOut":"result","objIn":"ge3zj70cy","objOut":"65mpod5qd"}]}],"objName":"Ops.Number.Number"},{"id":"nme067fl0","uiAttribs":{},"portsIn":[{"name":"number2","value":90}],"portsOut":[{"name":"result","links":[{"portIn":"Rotate","portOut":"result","objIn":"1qwtcdiny","objOut":"nme067fl0"}]}],"objName":"Ops.Math.Multiply"},{"id":"55gbye0uh","uiAttribs":{},"portsIn":[{"name":"number2","value":4},{"name":"pingpong","value":0}],"portsOut":[{"name":"result","links":[{"portIn":"Waveform index","portOut":"result","objIn":"1qwtcdiny","objOut":"55gbye0uh"}]}],"objName":"Ops.Math.Modulo"},{"id":"qfhia7ec3","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_structure"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"nme067fl0","objOut":"qfhia7ec3"},{"portIn":"number1","portOut":"Value","objIn":"55gbye0uh","objOut":"qfhia7ec3"},{"portIn":"Offset X","portOut":"Value","objIn":"1qwtcdiny","objOut":"qfhia7ec3"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"p8itm86lw","uiAttribs":{},"portsIn":[{"name":"posX","value":-1.71},{"name":"posY","value":-0.56},{"name":"posZ","value":0},{"name":"scale","value":1.29},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"djh55ojh2","objOut":"p8itm86lw"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"ud198sc5z","uiAttribs":{},"portsOut":[{"name":"Geometry Result","links":[{"portIn":"Geometry","portOut":"Geometry Result","objIn":"djh55ojh2","objOut":"ud198sc5z"}]}],"objName":"Ops.Graphics.GeometryMergeSimple"},{"id":"djh55ojh2","uiAttribs":{},"portsIn":[{"name":"Render Mesh","value":1},{"name":"Add Vertex Numbers","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"di9yoxov9","objOut":"djh55ojh2"},{"portIn":"Render","portOut":"trigger","objIn":"eerqtlpnp","objOut":"djh55ojh2"}]}],"objName":"Ops.Gl.RenderGeometry_v2"},{"id":"absd3d4hb","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__heightMapGeometry"}],"portsOut":[{"name":"Value","links":[{"portIn":"Geometry 2","portOut":"Value","objIn":"ud198sc5z","objOut":"absd3d4hb"}]}],"objName":"Ops.Vars.VarGetObject_v2"},{"id":"vi3ol2srw","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.35},{"name":"Value 2","value":0.6}],"portsOut":[{"name":"Result","links":[{"portIn":"Stretch Right","portOut":"Result","objIn":"tgeyutq71","objOut":"vi3ol2srw"}]}],"objName":"Ops.Math.Interpolate"},{"id":"5rr738syp","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLevel"}],"portsOut":[{"name":"Value","links":[{"portIn":"Percentage","portOut":"Value","objIn":"vi3ol2srw","objOut":"5rr738syp"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"cdrv5rrjk","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"number1","portOut":"Result","objIn":"jax75maya","objOut":"cdrv5rrjk"}]}],"objName":"Ops.Math.OneMinus"},{"id":"5dbgajlcv","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLength"}],"portsOut":[{"name":"Value","links":[{"portIn":"r","portOut":"Value","objIn":"1qwtcdiny","objOut":"5dbgajlcv"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"grj3uhv6e","uiAttribs":{},"portsIn":[{"name":"number2","value":0.25}],"portsOut":[{"name":"result","links":[{"portIn":"Line Glow","portOut":"result","objIn":"1qwtcdiny","objOut":"grj3uhv6e"}]}],"objName":"Ops.Math.Multiply"},{"id":"yaju7ahmk","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_diffusion"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"grj3uhv6e","objOut":"yaju7ahmk"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"1qwtcdiny","uiAttribs":{},"portsIn":[{"name":"Blend Mode index","value":18},{"name":"Blend Mode","value":"Math Add"},{"name":"Amount","value":1},{"name":"Alpha Mask index","value":0},{"name":"Alpha Mask","value":"Off"},{"name":"Waveform","value":"Sawtooth"},{"name":"Amplitude","value":0.318},{"name":"Frequency","value":1.83},{"name":"Line Width","value":0},{"name":"invert color","value":0},{"name":"Solid fill","value":0},{"name":"Offset Y","value":0.5},{"name":"g","value":0.897},{"name":"b","value":1}],"objName":"Ops.Gl.ImageCompose.Waveform_v3"},{"id":"pu5boj419","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":6.22},{"name":"height","value":1.39},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":1},{"name":"num rows","value":1}],"portsOut":[{"name":"trigger","title":"Next","links":[{"portIn":"render","portOut":"trigger","objIn":"p8itm86lw","objOut":"pu5boj419"}]},{"name":"geometry","links":[{"portIn":"Geometry","portOut":"geometry","objIn":"ud198sc5z","objOut":"pu5boj419"}]}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"6t34impxr","uiAttribs":{},"portsIn":[{"name":"x","value":4},{"name":"y","value":2},{"name":"z","value":4}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"pvmeev0jc","objOut":"6t34impxr"}]}],"objName":"Ops.Gl.Matrix.ScaleXYZViewMatrix"},{"id":"pvmeev0jc","uiAttribs":{},"portsIn":[{"name":"posX","value":0.03},{"name":"posY","value":0.3},{"name":"posZ","value":-1.01},{"name":"scale","value":1},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"pu5boj419","objOut":"pvmeev0jc"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"a1dx328je","uiAttribs":{},"portsIn":[{"name":"g","value":0.8266594326686372},{"name":"b","value":0.047299581303328786},{"name":"colorizeTexture","value":0},{"name":"Vertex Colors","value":0},{"name":"Alpha Mask Source index","value":0},{"name":"Alpha Mask Source","value":"Luminance"},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":1},{"name":"diffuseRepeatX","value":1},{"name":"diffuseRepeatY","value":1},{"name":"Tex Offset Y","value":0},{"name":"Crop TexCoords","value":0},{"name":"billboard","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"6t34impxr","objOut":"a1dx328je"}]}],"objName":"Ops.Gl.Shader.BasicMaterial_v3"},{"id":"87k6oec5j","uiAttribs":{},"portsIn":[{"name":"Gradient","value":"{\"keys\":[{\"pos\":0,\"posy\":0.5,\"r\":0.13052016544598977,\"g\":0.8199986938666459,\"b\":0.7051047779208401},{\"pos\":0,\"posy\":0.5,\"r\":0.9893306010310972,\"g\":0.039880784201146824,\"b\":0.7088918993412003},{\"pos\":1,\"posy\":0.5,\"r\":0.01235982607986541,\"g\":0.4365081609818686,\"b\":0.25906231197065743},{\"pos\":1,\"posy\":0.5,\"r\":0.830334421945359,\"g\":0.08778995308978188,\"b\":0.677490524761718}]}"},{"name":"Direction index","value":1},{"name":"Direction","value":"Y"},{"name":"Smoothstep","value":0},{"name":"Step","value":0},{"name":"Flip","value":0},{"name":"sRGB","value":1},{"name":"Oklab","value":0},{"name":"Size","value":64},{"name":"filter index","value":1},{"name":"filter","value":"linear"},{"name":"wrap index","value":1},{"name":"wrap","value":"repeat"},{"name":"Gradient Array","value":0}],"portsOut":[{"name":"Texture","links":[{"portIn":"Objects_0","portOut":"Texture","objIn":"4bfp0wzok","objOut":"87k6oec5j"}]}],"objName":"Ops.Gl.GradientTexture"},{"id":"di9yoxov9","uiAttribs":{},"portsIn":[{"name":"Size index","value":0},{"name":"Size","value":"Auto"},{"name":"Width","value":640},{"name":"Height","value":480},{"name":"Filter index","value":1},{"name":"Filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"R","value":0},{"name":"G","value":0},{"name":"B","value":0},{"name":"A","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"1qwtcdiny","objOut":"di9yoxov9"}]},{"name":"texture_out","links":[{"portIn":"Texture 2","portOut":"texture_out","objIn":"jc2ggn9up","objOut":"di9yoxov9"},{"portIn":"Texture In","portOut":"texture_out","objIn":"tg8ghy5gz","objOut":"di9yoxov9"}]},{"name":"Aspect Ratio","value":0.56640625},{"name":"Texture Width","value":290},{"name":"Texture Height","value":512}],"objName":"Ops.Gl.ImageCompose.ImageCompose_v4"},{"id":"9s6v7pnlp","uiAttribs":{},"portsIn":[{"name":"Size index","value":2},{"name":"Size","value":"Manual"},{"name":"Width","value":640},{"name":"Height","value":480},{"name":"Filter index","value":2},{"name":"Filter","value":"mipmap"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"R","value":0},{"name":"G","value":0},{"name":"B","value":0},{"name":"A","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"jc2ggn9up","objOut":"9s6v7pnlp"}]},{"name":"texture_out","links":[{"portIn":"Base Texture","portOut":"texture_out","objIn":"51ldwg650","objOut":"9s6v7pnlp"}]},{"name":"Aspect Ratio","value":1.3333333333333333},{"name":"Texture Width","value":640},{"name":"Texture Height","value":480}],"objName":"Ops.Gl.ImageCompose.ImageCompose_v4"},{"id":"51ldwg650","uiAttribs":{},"portsIn":[{"name":"Size index","value":2},{"name":"Size","value":"Manual"},{"name":"Width","value":512},{"name":"Height","value":512},{"name":"Filter index","value":2},{"name":"Filter","value":"mipmap"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"R","value":0},{"name":"G","value":0},{"name":"B","value":0},{"name":"A","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"u8f4ns874","objOut":"51ldwg650"}]},{"name":"texture_out","links":[{"portIn":"Value","portOut":"texture_out","objIn":"3hamtvj79","objOut":"51ldwg650"},{"portIn":"texture","portOut":"texture_out","objIn":"a1dx328je","objOut":"51ldwg650"}]},{"name":"Aspect Ratio","value":1},{"name":"Texture Width","value":512},{"name":"Texture Height","value":512}],"objName":"Ops.Gl.ImageCompose.ImageCompose_v4"},{"id":"ui62hd3xv","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_diffusion"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"cdrv5rrjk","objOut":"ui62hd3xv"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"nf37ruj15","uiAttribs":{},"portsIn":[{"name":"min","value":-0.1},{"name":"max","value":0.7}],"portsOut":[{"name":"result","links":[{"portIn":"Value","portOut":"result","objIn":"yt1rl0z6v","objOut":"nf37ruj15"}]}],"objName":"Ops.Math.SmoothStep_v2"},{"id":"xeu596ai6","uiAttribs":{},"portsIn":[{"name":"Blend Mode index","value":18},{"name":"Blend Mode","value":"Math Add"},{"name":"Crop","value":1},{"name":"Clear","value":1}],"objName":"Ops.Gl.ImageCompose.RotateTexture_v2"},{"id":"3hamtvj79","uiAttribs":{},"portsIn":[{"name":"Variable","value":"_finalTextOut"}],"objName":"Ops.Vars.VarSetTexture_v2"},{"id":"jax75maya","uiAttribs":{},"portsIn":[{"name":"number2","value":-200}],"portsOut":[{"name":"result","links":[{"portIn":"Stretch Left","portOut":"result","objIn":"tgeyutq71","objOut":"jax75maya"}]}],"objName":"Ops.Math.Multiply"},{"id":"tgeyutq71","uiAttribs":{},"portsIn":[{"name":"Blend Mode index","value":18},{"name":"Blend Mode","value":"Math Add"},{"name":"Amount","value":1},{"name":"Clamp","value":0},{"name":"Stretch Top","value":1},{"name":"Stretch Bottom","value":1}],"objName":"Ops.Gl.ImageCompose.SkewStretchImage_v2"},{"id":"jc2ggn9up","uiAttribs":{},"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"tgeyutq71","objOut":"jc2ggn9up"}]}],"objName":"Ops.Gl.ImageCompose.Mix"},{"id":"eerqtlpnp","uiAttribs":{},"portsIn":[{"name":"Size index","value":0},{"name":"Size","value":"Auto"},{"name":"Width","value":512},{"name":"Height","value":512},{"name":"Filter index","value":1},{"name":"Filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"R","value":0},{"name":"G","value":0},{"name":"B","value":0},{"name":"A","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"render","portOut":"Next","objIn":"xeu596ai6","objOut":"eerqtlpnp"}]},{"name":"texture_out","links":[{"portIn":"Texture 1","portOut":"texture_out","objIn":"jc2ggn9up","objOut":"eerqtlpnp"},{"portIn":"Texture In","portOut":"texture_out","objIn":"uoo2qkue7","objOut":"eerqtlpnp"},{"portIn":"Value","portOut":"texture_out","objIn":"veadj9l25","objOut":"eerqtlpnp"}]},{"name":"Aspect Ratio","value":0.56640625},{"name":"Texture Width","value":290},{"name":"Texture Height","value":512}],"objName":"Ops.Gl.ImageCompose.ImageCompose_v4"},{"id":"0cmu1ry52","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLevel"}],"portsOut":[{"name":"Value","links":[{"portIn":"Amount","portOut":"Value","objIn":"xeu596ai6","objOut":"0cmu1ry52"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"fvg1zz75v","uiAttribs":{},"portsIn":[{"name":"Size index","value":0},{"name":"Size","value":"Canvas"},{"name":"texture width","value":2014},{"name":"texture height","value":912},{"name":"Auto Aspect","value":1},{"name":"filter index","value":0},{"name":"filter","value":"nearest"},{"name":"Wrap index","value":0},{"name":"Wrap","value":"Clamp"},{"name":"MSAA index","value":0},{"name":"MSAA","value":"none"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"Depth","value":1},{"name":"Clear","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"n9u25c6ax","objOut":"fvg1zz75v"}]},{"name":"texture","links":[{"portIn":"Base Texture","portOut":"texture","objIn":"48vrkn65x","objOut":"fvg1zz75v"}]}],"objName":"Ops.Gl.RenderToTexture_v3"},{"id":"pxbd6eh63","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_smoothedParam_tone"}],"portsOut":[{"name":"Value","links":[{"portIn":"Percentage","portOut":"Value","objIn":"uo6mpre8c","objOut":"pxbd6eh63"},{"portIn":"Value","portOut":"Value","objIn":"5ulr7vh4p","objOut":"pxbd6eh63"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"uo6mpre8c","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.43},{"name":"Value 2","value":1}],"portsOut":[{"name":"Result","links":[{"portIn":"a","portOut":"Result","objIn":"a1dx328je","objOut":"uo6mpre8c"},{"portIn":"r","portOut":"Result","objIn":"a1dx328je","objOut":"uo6mpre8c"}]}],"objName":"Ops.Math.Interpolate"},{"id":"bf9v1uys8","uiAttribs":{},"portsIn":[{"name":"Blend Mode index","value":19},{"name":"Blend Mode","value":"Math Subtract"},{"name":"Alpha Mask index","value":0},{"name":"Alpha Mask","value":"Off"},{"name":"Strength","value":1},{"name":"Radius","value":0.208},{"name":"Sharp","value":0.539},{"name":"Aspect","value":1},{"name":"r","value":0},{"name":"g","value":0},{"name":"b","value":0},{"name":"Alpha","value":0}],"portsOut":[{"name":"Trigger","links":[{"portIn":"render","portOut":"Trigger","objIn":"lsqdg33wg","objOut":"bf9v1uys8"}]}],"objName":"Ops.Gl.ImageCompose.Vignette_v3"},{"id":"5ulr7vh4p","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Amount","portOut":"Result","objIn":"bf9v1uys8","objOut":"5ulr7vh4p"}]}],"objName":"Ops.Math.OneMinus"},{"id":"lsqdg33wg","uiAttribs":{},"portsIn":[{"name":"Clamp","value":1},{"name":"direction index","value":2},{"name":"direction","value":"horizontal"},{"name":"Mask Invert","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"9s6v7pnlp","objOut":"lsqdg33wg"}]}],"objName":"Ops.Gl.ImageCompose.FastBlur_v2"},{"id":"fogdsmdt8","uiAttribs":{},"portsIn":[{"name":"Gradient","value":"{\"keys\":[{\"pos\":0,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0},{\"pos\":0,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0},{\"pos\":0.271484375,\"posy\":0.51,\"r\":0.66625,\"g\":0.5517789459228516,\"b\":0.5517789459228516},{\"pos\":0.46875,\"posy\":0.51,\"r\":0.998046875,\"g\":0.998046875,\"b\":0.998046875},{\"pos\":0.697265625,\"posy\":0.58,\"r\":0.12551709251666177,\"g\":0.5638552207620753,\"b\":0.504936360395575},{\"pos\":1,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0},{\"pos\":1,\"posy\":0.5,\"r\":0,\"g\":0,\"b\":0}]}"},{"name":"Direction index","value":1},{"name":"Direction","value":"Y"},{"name":"Smoothstep","value":1},{"name":"Step","value":0},{"name":"Flip","value":0},{"name":"sRGB","value":0},{"name":"Oklab","value":0},{"name":"Size","value":24},{"name":"filter index","value":1},{"name":"filter","value":"linear"},{"name":"wrap index","value":0},{"name":"wrap","value":"clamp to edge"},{"name":"Gradient Array","value":0}],"portsOut":[{"name":"Texture","links":[{"portIn":"Mask","portOut":"Texture","objIn":"lsqdg33wg","objOut":"fogdsmdt8"}]}],"objName":"Ops.Gl.GradientTexture"},{"id":"v9g4w5w8m","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLevel"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"qhu04l7zy","objOut":"v9g4w5w8m"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"qhu04l7zy","uiAttribs":{},"portsIn":[{"name":"number2","value":4}],"portsOut":[{"name":"result","links":[{"portIn":"Passes","portOut":"result","objIn":"lsqdg33wg","objOut":"qhu04l7zy"}]}],"objName":"Ops.Math.Multiply"},{"id":"kzr5ui0jv","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_structure"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"tpi422xya","objOut":"kzr5ui0jv"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"tpi422xya","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Randomize Colors","portOut":"Next","objIn":"87k6oec5j","objOut":"tpi422xya"}]},{"name":"Number","value":1}],"objName":"Ops.Number.TriggerOnChangeNumber"},{"id":"l4gff2c89","uiAttribs":{},"portsIn":[{"name":"key code","value":49},{"name":"canvas only","value":1},{"name":"Mod Key index","value":0},{"name":"Mod Key","value":"none"},{"name":"Enabled","value":1},{"name":"Prevent Default","value":0}],"portsOut":[{"name":"on press","links":[{"portIn":"trigger","portOut":"on press","objIn":"st9zrhm6y","objOut":"l4gff2c89"}]},{"name":"Pressed","links":[{"portIn":"Default","portOut":"Pressed","objIn":"st9zrhm6y","objOut":"l4gff2c89"}]},{"name":"Key","value":"1"}],"objName":"Ops.Devices.Keyboard.KeyPressLearn"},{"id":"st9zrhm6y","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"visible","portOut":"result","objIn":"ick4g333d","objOut":"st9zrhm6y"}]}],"objName":"Ops.Boolean.ToggleBool_v2"},{"id":"ick4g333d","uiAttribs":{},"objName":"Ops.Patch.PW10J0o.Console_v2"},{"id":"ngzgotbds","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"exe","portOut":"Trigger out","objIn":"124910bf-e88f-4da5-847e-888a7ac73020","objOut":"ngzgotbds"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"cdn66mu7a","uiAttribs":{},"portsIn":[{"name":"Text","value":"~Scape"},{"name":"Font","value":"eb066298-c95b-4900-a9c8-abb0e9ea0930"},{"name":"Scale","value":0.1},{"name":"Letter Spacing","value":-0.02},{"name":"Line Height","value":1},{"name":"Align index","value":2},{"name":"Align","value":"Right"},{"name":"Vertical Align index","value":3},{"name":"Vertical Align","value":"Bottom"},{"name":"r","value":0.75},{"name":"g","value":0.75},{"name":"b","value":0.75},{"name":"a","value":1},{"name":"SDF","value":1},{"name":"Smoothing","value":0.16},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.32166796875000003},{"name":"Height","value":0.10333672288359791},{"name":"Start Y","value":0.08180977182539684},{"name":"Num Chars","value":6}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"kgztdjkg7","uiAttribs":{},"portsIn":[{"name":"posX","value":-1.62},{"name":"posY","value":-0.71},{"name":"posZ","value":0},{"name":"scale","value":1},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":90}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"cdn66mu7a","objOut":"kgztdjkg7"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"62p51ysxi","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":0.01},{"name":"height","value":-0.43},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":1},{"name":"num rows","value":1}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"b7lt5j2bc","uiAttribs":{},"portsIn":[{"name":"x","value":-1.61},{"name":"y","value":-0.87},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"62p51ysxi","objOut":"b7lt5j2bc"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"ajqkcp9y5","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":0.01},{"name":"height","value":2.48},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":1},{"name":"num rows","value":1}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"9yv8uo1rz","uiAttribs":{},"portsIn":[{"name":"x","value":-1.61},{"name":"y","value":0.79},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"ajqkcp9y5","objOut":"9yv8uo1rz"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"kepigt9gu","uiAttribs":{},"portsIn":[{"name":"r","value":0.179},{"name":"g","value":1},{"name":"b","value":0.692},{"name":"a","value":0.547},{"name":"colorizeTexture","value":0},{"name":"Vertex Colors","value":0},{"name":"Alpha Mask Source index","value":0},{"name":"Alpha Mask Source","value":"Luminance"},{"name":"Opacity TexCoords Transform","value":0},{"name":"Discard Transparent Pixels","value":0},{"name":"diffuseRepeatX","value":1},{"name":"diffuseRepeatY","value":1},{"name":"Tex Offset X","value":0},{"name":"Tex Offset Y","value":0},{"name":"Crop TexCoords","value":0},{"name":"billboard","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"jtsnv54z5","objOut":"kepigt9gu"}]}],"objName":"Ops.Gl.Shader.BasicMaterial_v3"},{"id":"s9d3c0k9s","uiAttribs":{},"portsIn":[{"name":"Text","value":"*Reflectors"},{"name":"Font","value":"eb066298-c95b-4900-a9c8-abb0e9ea0930"},{"name":"Scale","value":0.1},{"name":"Letter Spacing","value":-0.02},{"name":"Line Height","value":1},{"name":"Align index","value":2},{"name":"Align","value":"Right"},{"name":"Vertical Align index","value":3},{"name":"Vertical Align","value":"Bottom"},{"name":"r","value":0.75},{"name":"g","value":0.75},{"name":"b","value":0.75},{"name":"a","value":1},{"name":"SDF","value":1},{"name":"Smoothing","value":0.16},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.52047265625},{"name":"Height","value":0.10703984788359788},{"name":"Start Y","value":0.10116914682539685},{"name":"Num Chars","value":11}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"kcwjgoqk1","uiAttribs":{},"portsIn":[{"name":"posX","value":-1.63},{"name":"posY","value":0.41},{"name":"posZ","value":0},{"name":"scale","value":1},{"name":"rotX","value":0},{"name":"rotY","value":0},{"name":"rotZ","value":90}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"s9d3c0k9s","objOut":"kcwjgoqk1"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"3wnf93z0d","uiAttribs":{},"portsIn":[{"name":"Title","value":"Left Side Panel"}],"objName":"Ops.Ui.Area"},{"id":"w1wyli4ul","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"alrh6hig4","portOut":"Triggered","objIn":"n1dxl83p1","objOut":"w1wyli4ul"},{"portIn":"8dittifdh","portOut":"Triggered","objIn":"n1dxl83p1","objOut":"w1wyli4ul"},{"portIn":"render","portOut":"Triggered","objIn":"kepigt9gu","objOut":"w1wyli4ul"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"jtsnv54z5","uiAttribs":{},"portsIn":[{"name":"x","value":-0.06},{"name":"y","value":0},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"kgztdjkg7","objOut":"jtsnv54z5"},{"portIn":"render","portOut":"trigger","objIn":"kcwjgoqk1","objOut":"jtsnv54z5"},{"portIn":"render","portOut":"trigger","objIn":"b7lt5j2bc","objOut":"jtsnv54z5"},{"portIn":"render","portOut":"trigger","objIn":"9yv8uo1rz","objOut":"jtsnv54z5"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"8bw0l1iwj","uiAttribs":{},"portsOut":[{"name":"Number","links":[{"portIn":"number1","portOut":"Number","objIn":"dcl7z07s9","objOut":"8bw0l1iwj"},{"portIn":"Value In","portOut":"Number","objIn":"4eybed6uw","objOut":"8bw0l1iwj"}]}],"objName":"Ops.String.ParseInt_v2"},{"id":"rzoomxuz4","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_hitBodyName"}],"portsOut":[{"name":"Value","links":[{"portIn":"String","portOut":"Value","objIn":"zqsm59jgd","objOut":"rzoomxuz4"}]}],"objName":"Ops.Vars.VarGetString"},{"id":"zqsm59jgd","uiAttribs":{},"portsIn":[{"name":"Search For","value":"dial."},{"name":"Replace","value":""},{"name":"Replace What index","value":0},{"name":"Replace What","value":"All"}],"portsOut":[{"name":"Result","links":[{"portIn":"String","portOut":"Result","objIn":"8bw0l1iwj","objOut":"zqsm59jgd"}]}],"objName":"Ops.String.StringReplace"},{"id":"dcl7z07s9","uiAttribs":{},"portsIn":[{"name":"number2","value":0}],"portsOut":[{"name":"result","links":[{"portIn":"Pass Through","portOut":"result","objIn":"4eybed6uw","objOut":"dcl7z07s9"}]}],"objName":"Ops.Math.Compare.GreaterThan"},{"id":"439i0aj79","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_activeDial_ID"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"4eybed6uw","uiAttribs":{},"portsIn":[{"name":"When False index","value":0},{"name":"When False","value":"keep last number"},{"name":"Custom Value","value":0}],"portsOut":[{"name":"Value Out","links":[{"portIn":"Value","portOut":"Value Out","objIn":"439i0aj79","objOut":"4eybed6uw"},{"portIn":"Number","portOut":"Value Out","objIn":"388m7te72","objOut":"4eybed6uw"}]}],"objName":"Ops.Number.GateNumber"},{"id":"cej7j59jx","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_bypassSRVB"}],"portsOut":[{"name":"Value","links":[{"portIn":"Boolean","portOut":"Value","objIn":"irxfck5m6","objOut":"cej7j59jx"},{"portIn":"Pass Through","portOut":"Value","objIn":"oefqiqdsy","objOut":"cej7j59jx"},{"portIn":"Pass Through","portOut":"Value","objIn":"3n0xi3fsv","objOut":"cej7j59jx"},{"portIn":"Value","portOut":"Value","objIn":"8qsfm58e9","objOut":"cej7j59jx"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"irxfck5m6","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Pass Through","portOut":"Result","objIn":"ngzgotbds","objOut":"irxfck5m6"},{"portIn":"Pass Through","portOut":"Result","objIn":"lsv3n3hs3","objOut":"irxfck5m6"}]}],"objName":"Ops.Boolean.Not"},{"id":"89jux4z6s","uiAttribs":{},"portsIn":[{"name":"Title","value":"bypass"}],"objName":"Ops.Ui.Area"},{"id":"oefqiqdsy","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"render","portOut":"Trigger out","objIn":"gd8i1910i","objOut":"oefqiqdsy"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"gd8i1910i","uiAttribs":{},"portsIn":[{"name":"posX","value":0},{"name":"posY","value":0},{"name":"posZ","value":0},{"name":"scale","value":0.73},{"name":"rotX","value":90},{"name":"rotY","value":0},{"name":"rotZ","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"9fkoygcno","portOut":"trigger","objIn":"pa5yuiyom","objOut":"gd8i1910i"}]}],"objName":"Ops.Gl.Matrix.Transform"},{"id":"pa5yuiyom","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"9fkoygcno","title":"Render"},{"name":"patchId","value":"bp2sub_pa5yuiyom"}],"objName":"Ops.Patch.PW10J0o.SubPatch1"},{"id":"3n0xi3fsv","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"9fkoygcno","portOut":"Trigger out","objIn":"pa5yuiyom","objOut":"3n0xi3fsv"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"lsv3n3hs3","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"Execute","portOut":"Trigger out","objIn":"ngzgotbds","objOut":"lsv3n3hs3"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"n1dxl83p1","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"alrh6hig4","title":"render"},{"name":"8dittifdh","title":"Render"},{"name":"patchId","value":"bp2sub_n1dxl83p1"}],"objName":"Ops.Patch.PW10J0o.SubPatch3"},{"id":"membr309b","uiAttribs":{},"portsIn":[{"name":"value","value":"dryMix"}],"portsOut":[{"name":"String","links":[{"portIn":"btagbs7z2","portOut":"String","objIn":"r9k02tczl","objOut":"membr309b"}]}],"objName":"Ops.String.String_v2"},{"id":"8havouexn","uiAttribs":{},"portsIn":[{"name":"Text","value":"* dry mix"},{"name":"Font","value":"eb066298-c95b-4900-a9c8-abb0e9ea0930"},{"name":"Scale","value":0.06},{"name":"Letter Spacing","value":-0.04},{"name":"Line Height","value":1},{"name":"Align index","value":1},{"name":"Align","value":"Center"},{"name":"Vertical Align index","value":2},{"name":"Vertical Align","value":"Middle"},{"name":"r","value":0.75},{"name":"g","value":0.75},{"name":"b","value":0.75},{"name":"SDF","value":1},{"name":"Smoothing","value":0.176},{"name":"Border","value":0},{"name":"Border Width","value":0.222},{"name":"Smoothness","value":0.25},{"name":"Border r","value":0},{"name":"Border g","value":0},{"name":"Border b","value":1},{"name":"Shadow","value":0},{"name":"Positions","value":0},{"name":"Scalings","value":0},{"name":"Rotations","value":0},{"name":"Colors","value":0}],"portsOut":[{"name":"Num Lines","value":1},{"name":"Width","value":0.2531765625},{"name":"Height","value":0.09154265873015872},{"name":"Start Y","value":0.04224890873015873},{"name":"Num Chars","value":9}],"objName":"Ops.Gl.TextMeshMSDF_v2"},{"id":"8gspnlp7e","uiAttribs":{},"portsIn":[{"name":"x","value":1.73},{"name":"y","value":0.88},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"8havouexn","objOut":"8gspnlp7e"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"2s2np29qz","uiAttribs":{},"portsIn":[{"name":"Title","value":"dry mix in"}],"objName":"Ops.Ui.Area"},{"id":"8u59uuw3y","uiAttribs":{},"portsIn":[{"name":"number2","value":0.33}],"portsOut":[{"name":"result","links":[{"portIn":"a","portOut":"result","objIn":"8havouexn","objOut":"8u59uuw3y"}]}],"objName":"Ops.Math.Sum"},{"id":"5gypeqckx","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"exeNoCamera"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"render","portOut":"Triggered","objIn":"8gspnlp7e","objOut":"5gypeqckx"},{"portIn":"render","portOut":"Triggered","objIn":"vm3f05tkh","objOut":"5gypeqckx"},{"portIn":"blls2amps","portOut":"Triggered","objIn":"r9k02tczl","objOut":"5gypeqckx"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"gwbv0asv9","uiAttribs":{},"portsIn":[{"name":"render","title":"Trigger"},{"name":"Render Mesh","value":1,"title":"Render"},{"name":"width","value":0.05},{"name":"height","value":1.91},{"name":"pivot x index","value":1},{"name":"pivot x","value":"center"},{"name":"pivot y index","value":1},{"name":"pivot y","value":"center"},{"name":"axis index","value":0},{"name":"axis","value":"xy"},{"name":"Flip TexCoord X","value":0},{"name":"Flip TexCoord Y","value":1},{"name":"num columns","value":4},{"name":"num rows","value":6}],"objName":"Ops.Gl.Meshes.Rectangle_v4"},{"id":"vm3f05tkh","uiAttribs":{},"portsIn":[{"name":"x","value":1.76},{"name":"y","value":-0.19},{"name":"z","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"cusun507p","objOut":"vm3f05tkh"}]}],"objName":"Ops.Gl.Matrix.Translate"},{"id":"cusun507p","uiAttribs":{},"portsIn":[{"name":"PointSize","value":3},{"name":"Size in Pixels","value":1},{"name":"Random Size","value":0},{"name":"Round","value":0},{"name":"Round Antialias","value":0},{"name":"Scale by Distance","value":0},{"name":"r","value":0.772},{"name":"g","value":0.15106840238933295},{"name":"b","value":0.4207414807217118},{"name":"Vertex Colors","value":0},{"name":"Colorize Texture","value":1},{"name":"Mask Channel index","value":0},{"name":"Mask Channel","value":"R"},{"name":"Colorize Randomize","value":0},{"name":"Point Size Channel index","value":0},{"name":"Point Size Channel","value":"R"},{"name":"Texture Point Size Mul","value":1},{"name":"Map Size 0 index","value":0},{"name":"Map Size 0","value":"Black"},{"name":"Flip Texture","value":0},{"name":"Atlas Cross Fade","value":0},{"name":"Atlas Repeat X ","value":1},{"name":"Min Point Size","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"gwbv0asv9","objOut":"cusun507p"}]}],"objName":"Ops.Gl.Shader.PointMaterial_v5"},{"id":"h7opdnd5m","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ext_additionalParams_object"}],"objName":"Ops.Vars.VarSetObject_v2"},{"id":"1rvhpekqj","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ext_srvbParams_object"}],"objName":"Ops.Vars.VarSetObject_v2"},{"id":"97apj6h83","uiAttribs":{},"portsIn":[{"name":"Title","value":"Setters "}],"objName":"Ops.Ui.Area"},{"id":"249e7fq2n","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_dialValues_array"}],"objName":"Ops.Vars.VarSetArray_v2"},{"id":"7hv2gc56e","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"finalExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Trigger","portOut":"Triggered","objIn":"e7uo8q2lt","objOut":"7hv2gc56e"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"ug7fo1kne","uiAttribs":{},"portsIn":[{"name":"Start Row","value":0}],"objName":"Ops.Ui.VizArrayTable"},{"id":"dezkxycuy","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ext_srvbParams_object"}],"portsOut":[{"name":"Value","links":[{"portIn":"Object","portOut":"Value","objIn":"4j8lm1ndp","objOut":"dezkxycuy"},{"portIn":"Object","portOut":"Value","objIn":"mj18i7jze","objOut":"dezkxycuy"}]}],"objName":"Ops.Vars.VarGetObject_v2"},{"id":"mbaaum1ke","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"249e7fq2n","objOut":"mbaaum1ke"},{"portIn":"Array","portOut":"Result","objIn":"ug7fo1kne","objOut":"mbaaum1ke"}]}],"objName":"Ops.Patch.PW10J0o.ArrayOfSrvbValuesFromMap"},{"id":"t4p3rshmb","uiAttribs":{},"portsIn":[{"name":"ZoomText","value":0},{"name":"Line Numbers","value":1},{"name":"Font Size","value":10},{"name":"Scroll","value":0}],"objName":"Ops.Ui.VizObject"},{"id":"ng5s1rvcc","uiAttribs":{},"portsIn":[{"name":"Value","value":0},{"name":"Variable","value":"ext_normValue"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"hf6n2jft0","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Object Index","portOut":"Result","objIn":"bm8hegp12","objOut":"hf6n2jft0"}]}],"objName":"Ops.Boolean.Not"},{"id":"sc4ijk6x3","uiAttribs":{},"portsIn":[{"name":"Value","value":"New String"},{"name":"Variable","value":"ui_mouseIsChangingParamID"}],"objName":"Ops.Vars.VarSetString_v2"},{"id":"2k8iykaf0","uiAttribs":{},"portsIn":[{"name":"Value","value":"New String"},{"name":"Variable","value":"ext_changingParamID"}],"objName":"Ops.Vars.VarSetString_v2"},{"id":"ks9hjc1vv","uiAttribs":{},"portsIn":[{"name":"When False index","value":0},{"name":"When False","value":"keep last object"},{"name":"Only Valid Objects","value":1}],"portsOut":[{"name":"Object Out","links":[{"portIn":"Value","portOut":"Object Out","objIn":"otxsqxj5k","objOut":"ks9hjc1vv"},{"portIn":"Object","portOut":"Object Out","objIn":"t4p3rshmb","objOut":"ks9hjc1vv"}]}],"objName":"Ops.Json.GateObject"},{"id":"otxsqxj5k","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ext_srvbParams_object"}],"objName":"Ops.Vars.VarSetObject_v2"},{"id":"e7uo8q2lt","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Object In","portOut":"Result","objIn":"ks9hjc1vv","objOut":"e7uo8q2lt"},{"portIn":"Object","portOut":"Result","objIn":"tnjaqfn3b","objOut":"e7uo8q2lt"},{"portIn":"data","portOut":"Result","objIn":"kn15lk7f1","objOut":"e7uo8q2lt"}]}],"objName":"Ops.Json.TriggerObjectSetNumber"},{"id":"oaboc2lrt","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_mouseIsChangingParamID"}],"portsOut":[{"name":"Value","links":[{"portIn":"String","portOut":"Value","objIn":"ho7jgiwa3","objOut":"oaboc2lrt"}]}],"objName":"Ops.Vars.VarGetString"},{"id":"s09zk76xy","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_normValue"}],"portsOut":[{"name":"Value","links":[{"portIn":"Number","portOut":"Value","objIn":"u32wlypd1","objOut":"s09zk76xy"},{"portIn":"Number","portOut":"Value","objIn":"e7uo8q2lt","objOut":"s09zk76xy"},{"portIn":"Value","portOut":"Value","objIn":"yx1m5mdal","objOut":"s09zk76xy"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"qoq8qo410","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_leftButtonIsDown"}],"portsOut":[{"name":"Value","links":[{"portIn":"bool 1","portOut":"Value","objIn":"jvd2pqi1b","objOut":"qoq8qo410"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"gxrhhh215","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ext_srvbParams_object"}],"portsOut":[{"name":"Value","links":[{"portIn":"Object","portOut":"Value","objIn":"ziza3osrm","objOut":"gxrhhh215"}]}],"objName":"Ops.Vars.VarGetObject_v2"},{"id":"vsusgq3er","uiAttribs":{},"portsIn":[{"name":"value","value":"const ext_srvb = gui.corePatch().getVar('ext_srvbParams_object');\n\nlet lfo = ( s ) => Math.abs( Math.sin( Date.now()  * s) );\n\n// let timerTone = setInterval( ()=>{ ext_srvb.setValue( {...ext_srvb.getValue(), mix: lfo(4.0e-4), tone: lfo(3.0e-4), size: lfo(2.0e-4)  } ) }, 50)\n\nlet timerTone = \nsetInterval( ()=>{ \n    ext_srvb.setValue( {...ext_srvb.getValue(), \n    mix: lfo(4.0e-4), \n    dryMix: lfo(3e-4),\n    scapeLevel: lfo(3e-4)\n        \n    } ) }, 50)\n\n"},{"name":"Syntax index","value":6},{"name":"Syntax","value":"javascript"}],"portsOut":[{"name":"Result","value":"const ext_srvb = gui.corePatch().getVar('ext_srvbParams_object');\n\nlet lfo = ( s ) => Math.abs( Math.sin( Date.now()  * s) );\n\n// let timerTone = setInterval( ()=>{ ext_srvb.setValue( {...ext_srvb.getValue(), mix: lfo(4.0e-4), tone: lfo(3.0e-4), size: lfo(2.0e-4)  } ) }, 50)\n\nlet timerTone = \nsetInterval( ()=>{ \n    ext_srvb.setValue( {...ext_srvb.getValue(), \n    mix: lfo(4.0e-4), \n    dryMix: lfo(3e-4),\n    scapeLevel: lfo(3e-4)\n        \n    } ) }, 50)\n\n"}],"objName":"Ops.String.StringEditor"},{"id":"u32wlypd1","uiAttribs":{},"objName":"Ops.Ui.VizNumberBar"},{"id":"ziza3osrm","uiAttribs":{},"portsIn":[{"name":"Key","value":"source"}],"portsOut":[{"name":"Result Object","links":[{"portIn":"Object","portOut":"Result Object","objIn":"e7uo8q2lt","objOut":"ziza3osrm"}]}],"objName":"Ops.Json.ObjectSetString_v2"},{"id":"jh04j0bs0","uiAttribs":{},"portsIn":[{"name":"String 0","value":"host"},{"name":"String 1","value":"ui"},{"name":"String 2","value":""},{"name":"String 3","value":""},{"name":"String 4","value":""},{"name":"String 5","value":""},{"name":"String 6","value":""},{"name":"String 7","value":""},{"name":"String 8","value":""},{"name":"String 9","value":""}],"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"ziza3osrm","objOut":"jh04j0bs0"}]}],"objName":"Ops.String.SwitchString"},{"id":"kvi8vmcfl","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_leftButtonIsDown"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"curf02st9","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"ui_leftButtonRelease"}],"objName":"Ops.Trigger.TriggerSend"},{"id":"x0ik1c00c","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"ui_leftButtonRelease"}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"tpixuegec","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_additionalParams_object"}],"objName":"Ops.Vars.VarSetObject_v2"},{"id":"gp3nq252u","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_mouseIsChangingParamID"}],"objName":"Ops.Vars.VarSetString_v2"},{"id":"g1jqq3q4e","uiAttribs":{},"portsIn":[{"name":"String In","value":"disengage"},{"name":"When False index","value":0},{"name":"When False","value":"keep last string"},{"name":"Custom Value","value":"disengage"}],"portsOut":[{"name":"String Out","links":[{"portIn":"Value","portOut":"String Out","objIn":"gp3nq252u","objOut":"g1jqq3q4e"},{"portIn":"String","portOut":"String Out","objIn":"6xz7wyt5r","objOut":"g1jqq3q4e"}]}],"objName":"Ops.String.GateString"},{"id":"dcl88tuvn","uiAttribs":{},"portsIn":[{"name":"Duration","value":0.1},{"name":"Value True","value":1},{"name":"Value False","value":0}],"portsOut":[{"name":"Result","links":[{"portIn":"Pass Through","portOut":"Result","objIn":"g1jqq3q4e","objOut":"dcl88tuvn"}]}],"objName":"Ops.Boolean.MonoFlop"},{"id":"vey3lr6o9","uiAttribs":{},"portsIn":[{"name":"Area index","value":0},{"name":"Area","value":"Canvas"},{"name":"Active","value":1}],"portsOut":[{"name":"Button pressed Left","links":[{"portIn":"Value","portOut":"Button pressed Left","objIn":"kvi8vmcfl","objOut":"vey3lr6o9"}]},{"name":"Button pressed Middle","value":0},{"name":"Button pressed Right","value":0},{"name":"Mouse Up Left","links":[{"portIn":"Trigger","portOut":"Mouse Up Left","objIn":"curf02st9","objOut":"vey3lr6o9"}]}],"objName":"Ops.Devices.Mouse.MouseButtons"},{"id":"jvd2pqi1b","uiAttribs":{},"portsIn":[{"name":"bool 4","value":0},{"name":"bool 5","value":0},{"name":"bool 6","value":0},{"name":"bool 7","value":0},{"name":"bool 8","value":0},{"name":"bool 9","value":0},{"name":"bool 10","value":0}],"portsOut":[{"name":"result","links":[{"portIn":"Index","portOut":"result","objIn":"jh04j0bs0","objOut":"jvd2pqi1b"}]}],"objName":"Ops.Boolean.Or"},{"id":"70w5rrmdf","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_leftButtonSlider"}],"portsOut":[{"name":"Value","links":[{"portIn":"bool 3","portOut":"Value","objIn":"jvd2pqi1b","objOut":"70w5rrmdf"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"ckr6cidod","uiAttribs":{},"portsIn":[{"name":"JSON String","value":"{\n  \"size\": 0.15,\n  \"diffuse\": 0.25,\n  \"mix\": 1,\n  \"position\": 0.5,\n  \"tone\": 0.5,\n  \"structure\": 0,\n  \"scapeLevel\": 0,\n  \"scapeLength\": 0,\n  \"scapeReverse\": 0.00,\n  \"scapeBypass\": 0.00,\n  \"srvbBypass\": 0.00,\n  \"dryMix\": 0.0\n}"}],"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"1rvhpekqj","objOut":"ckr6cidod"}]},{"name":"Valid","value":1}],"objName":"Ops.Json.ParseObject_v2"},{"id":"31x5h827w","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_bypassConvolver"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"kwndhosu8","objOut":"31x5h827w"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"kwndhosu8","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Input_1","portOut":"Next","objIn":"pbx782ld8","objOut":"kwndhosu8"}]},{"name":"Number","value":0}],"objName":"Ops.Number.TriggerOnChangeNumber"},{"id":"pbx782ld8","uiAttribs":{},"portsIn":[{"name":"Input","multiPortNum":4}],"portsOut":[{"name":"Output_0","links":[{"portIn":"Trigger","portOut":"Output_0","objIn":"dcl88tuvn","objOut":"pbx782ld8"}]}],"objName":"Ops.Trigger.SequenceMultiPort"},{"id":"qxs32uxlw","uiAttribs":{},"portsIn":[{"name":"Title","value":"Mouse U"}],"objName":"Ops.Ui.Area"},{"id":"gg0y6zr0s","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_bypassSRVB"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"99xveg0ql","objOut":"gg0y6zr0s"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"99xveg0ql","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Input_2","portOut":"Next","objIn":"pbx782ld8","objOut":"99xveg0ql"}]},{"name":"Number","value":0}],"objName":"Ops.Number.TriggerOnChangeNumber"},{"id":"60hh1ncxf","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_leftButtonToggle"}],"portsOut":[{"name":"Value","links":[{"portIn":"bool 2","portOut":"Value","objIn":"jvd2pqi1b","objOut":"60hh1ncxf"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"yq19a4mek","uiAttribs":{},"portsIn":[{"name":"Font Name","value":"eb066298-c95b-4900-a9c8-abb0e9ea0930"},{"name":"Font Data","value":"assets/lib_fonts_msdf_worksans-regular_int.json","display":"file"},{"name":"Font Image","value":"assets/lib_fonts_msdf_worksans-regular_int.png","display":"file"},{"name":"Font Image 1","value":0,"display":"file"},{"name":"Font Image 2","value":0,"display":"file"},{"name":"Font Image 3","value":0,"display":"file"}],"portsOut":[{"name":"Loaded","value":true},{"name":"Total Chars","value":189},{"name":"Chars","value":" ýŒ(){}þjŠŽÔÛÿ[]|ÂÆÊÎÒÓÙÚWÀÁÇÈÉÌÍÕÝÃÑQœÖÜ$@ŸÄËÏÅåg/%w§mæš¶àáèéòóùúžßâêìíôûbdflîðhkãçõipqyØñµäëöü¢ï&03689?CGOS£€©®¿!25JU¡#147;ABDEFHIKLMNPRTVXYZ¥ÐÞt±ø<>_:aceos÷^nru+vxz¬=*ªº~×³²¹«»¯°-’,\"'`.·"}],"objName":"Ops.Gl.FontMSDF_v2"},{"id":"a3f97m3q3","uiAttribs":{},"portsIn":[{"name":"When False index","value":1},{"name":"When False","value":"custom"}],"portsOut":[{"name":"String Out","links":[{"portIn":"String","portOut":"String Out","objIn":"e86y9328o","objOut":"a3f97m3q3"}]}],"objName":"Ops.String.GateString"},{"id":"bm8hegp12","uiAttribs":{},"portsOut":[{"name":"object out","links":[{"portIn":"Object","portOut":"object out","objIn":"mbaaum1ke","objOut":"bm8hegp12"}]}],"objName":"Ops.Json.SwitchObject"},{"id":"4j8lm1ndp","uiAttribs":{},"portsOut":[{"name":"Last Valid Object","links":[{"portIn":"object port 1","portOut":"Last Valid Object","objIn":"bm8hegp12","objOut":"4j8lm1ndp"}]},{"name":"Is Valid","value":true}],"objName":"Ops.Json.FilterValidObject"},{"id":"tnjaqfn3b","uiAttribs":{},"portsOut":[{"name":"Last Valid Object","links":[{"portIn":"object port 0","portOut":"Last Valid Object","objIn":"bm8hegp12","objOut":"tnjaqfn3b"}]},{"name":"Is Valid","value":true}],"objName":"Ops.Json.FilterValidObject"},{"id":"mj18i7jze","uiAttribs":{},"portsIn":[{"name":"ZoomText","value":0},{"name":"Line Numbers","value":1},{"name":"Font Size","value":10},{"name":"Scroll","value":0}],"objName":"Ops.Ui.VizObject"},{"id":"ho7jgiwa3","uiAttribs":{},"portsIn":[{"name":"Invalid if null","value":1},{"name":"Invalid if undefined","value":1},{"name":"Invalid if empty","value":1},{"name":"Invalid if 0","value":1}],"portsOut":[{"name":"Last Valid String","links":[{"portIn":"String In","portOut":"Last Valid String","objIn":"a3f97m3q3","objOut":"ho7jgiwa3"},{"portIn":"String 1","portOut":"Last Valid String","objIn":"461my52vu","objOut":"ho7jgiwa3"}]},{"name":"Is Valid","value":1}],"objName":"Ops.String.FilterValidString"},{"id":"uoo2qkue7","uiAttribs":{},"portsIn":[{"name":"Show Info","value":0},{"name":"Visualize outside 0-1 index","value":1},{"name":"Visualize outside 0-1","value":"Anim"},{"name":"Alpha index","value":0},{"name":"Alpha","value":"A"},{"name":"Show Color","value":0},{"name":"X","value":0.5},{"name":"Y","value":0.5}],"portsOut":[{"name":"Info","value":""}],"objName":"Ops.Ui.VizTexture"},{"id":"12z7psewt","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_position"}],"portsOut":[{"name":"Value","links":[{"portIn":"Percentage","portOut":"Value","objIn":"1lvt0a4ik","objOut":"12z7psewt"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"1lvt0a4ik","uiAttribs":{},"portsIn":[{"name":"Value 1","value":-0.15},{"name":"Value 2","value":0.15}],"portsOut":[{"name":"Result","links":[{"portIn":"Tex Offset X","portOut":"Result","objIn":"a1dx328je","objOut":"1lvt0a4ik"}]}],"objName":"Ops.Math.Interpolate"},{"id":"h3ylf3rfo","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeLength"}],"portsOut":[{"name":"Value","links":[{"portIn":"Rotate","portOut":"Value","objIn":"xeu596ai6","objOut":"h3ylf3rfo"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"veadj9l25","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__lensFlareTexts"}],"objName":"Ops.Vars.VarSetTexture_v2"},{"id":"frtxa4811","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__lensFlareTexts"}],"portsOut":[{"name":"Value","links":[{"portIn":"Base Texture","portOut":"Value","objIn":"di9yoxov9","objOut":"frtxa4811"}]}],"objName":"Ops.Vars.VarGetTexture_v2"},{"id":"bslw7qoeu","uiAttribs":{},"portsIn":[{"name":"Gradient","value":"{\"keys\":[{\"pos\":0,\"posy\":0.5,\"r\":0.28638020833333333,\"g\":0.14993272900581361,\"b\":0.1626410726686708},{\"pos\":0,\"posy\":0.5,\"r\":0.28638020833333333,\"g\":0.14993272900581361,\"b\":0.1626410726686708},{\"pos\":1,\"posy\":0.5,\"r\":0.44312720298286745,\"g\":0.5631773417250991,\"b\":0.6284772463827235},{\"pos\":1,\"posy\":0.5,\"r\":0.44312720298286745,\"g\":0.5631773417250991,\"b\":0.6284772463827235}]}"},{"name":"Direction index","value":1},{"name":"Direction","value":"Y"},{"name":"Smoothstep","value":0},{"name":"Step","value":0},{"name":"Flip","value":0},{"name":"sRGB","value":0},{"name":"Oklab","value":0},{"name":"Size","value":64},{"name":"filter index","value":1},{"name":"filter","value":"linear"},{"name":"wrap index","value":1},{"name":"wrap","value":"repeat"},{"name":"Gradient Array","value":0}],"portsOut":[{"name":"Texture","links":[{"portIn":"Objects_1","portOut":"Texture","objIn":"4bfp0wzok","objOut":"bslw7qoeu"}]}],"objName":"Ops.Gl.GradientTexture"},{"id":"4bfp0wzok","uiAttribs":{},"portsIn":[{"name":"Objects","multiPortNum":2},{"name":"Objects_2","value":0,"title":"add port"}],"portsOut":[{"name":"Object","links":[{"portIn":"Diffuse Texture","portOut":"Object","objIn":"3so3f33cf","objOut":"4bfp0wzok"}]},{"name":"Num Values","value":2}],"objName":"Ops.Json.SwitchObjectMultiPort"},{"id":"rm3mpjot1","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_structure"}],"portsOut":[{"name":"Value","links":[{"portIn":"A","portOut":"Value","objIn":"z97k7j32s","objOut":"rm3mpjot1"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"z97k7j32s","uiAttribs":{},"portsIn":[{"name":"B","value":1},{"name":"C","value":2},{"name":"D","value":3},{"name":"Expression","value":"(a === 0) || (a==15)"}],"portsOut":[{"name":"Result","links":[{"portIn":"Index","portOut":"Result","objIn":"4bfp0wzok","objOut":"z97k7j32s"}]},{"name":"Expression Valid","value":true}],"objName":"Ops.Math.MathExpression"},{"id":"6t1onutgk","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"patchId","value":"bp2sub_6t1onutgk"}],"objName":"Ops.Patch.PW10J0o.UI_Structure"},{"id":"ict1ndrtr","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"patchId","value":"bp2sub_ict1ndrtr"}],"objName":"Ops.Patch.PW10J0o.UI_Position"},{"id":"xzovia1yq","uiAttribs":{},"portsIn":[{"name":"Title","value":"UI Parameter Components"}],"objName":"Ops.Ui.Area"},{"id":"favgdsw83","uiAttribs":{},"portsIn":[{"name":"Title","value":"Visuals"}],"objName":"Ops.Ui.Area"},{"id":"fjxn5qlzr","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"patchId","value":"bp2sub_fjxn5qlzr"}],"objName":"Ops.Patch.PW10J0o.UI_Reverse"},{"id":"735k5dq88","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__bodyHitY"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"3ydxdakeh","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__sliderLeave"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value","portOut":"Value","objIn":"6hf0xdhwc","objOut":"3ydxdakeh"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"6hf0xdhwc","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Input_3","portOut":"Next","objIn":"pbx782ld8","objOut":"6hf0xdhwc"}]}],"objName":"Ops.Boolean.TriggerChangedTrue"},{"id":"461my52vu","uiAttribs":{},"portsIn":[{"name":"String 2","value":"nothing"}],"portsOut":[{"name":"Result","links":[{"portIn":"Boolean","portOut":"Result","objIn":"myv01hb3i","objOut":"461my52vu"}]}],"objName":"Ops.String.StringEquals"},{"id":"l8z9x9fr7","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__currentReflectorParam"}],"portsOut":[{"name":"Value","links":[{"portIn":"Custom Value","portOut":"Value","objIn":"a3f97m3q3","objOut":"l8z9x9fr7"}]}],"objName":"Ops.Vars.VarGetString"},{"id":"myv01hb3i","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Pass Through","portOut":"Result","objIn":"a3f97m3q3","objOut":"myv01hb3i"}]}],"objName":"Ops.Boolean.Not"},{"id":"e86y9328o","uiAttribs":{},"portsIn":[{"name":"Invalid if null","value":1},{"name":"Invalid if undefined","value":1},{"name":"Invalid if empty","value":1},{"name":"Invalid if 0","value":1}],"portsOut":[{"name":"Last Valid String","links":[{"portIn":"Key","portOut":"Last Valid String","objIn":"e7uo8q2lt","objOut":"e86y9328o"},{"portIn":"String","portOut":"Last Valid String","objIn":"e1l00q6bu","objOut":"e86y9328o"}]},{"name":"Is Valid","value":1}],"objName":"Ops.String.FilterValidString"},{"id":"u8f4ns874","uiAttribs":{},"portsIn":[{"name":"Blend Mode index","value":19},{"name":"Blend Mode","value":"Math Subtract"},{"name":"Amount","value":0.655},{"name":"Clamp","value":1},{"name":"Stretch Top","value":1},{"name":"Stretch Bottom","value":1},{"name":"Stretch Left","value":1.12},{"name":"Stretch Right","value":0.86}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"bf9v1uys8","objOut":"u8f4ns874"}]}],"objName":"Ops.Gl.ImageCompose.SkewStretchImage_v2"},{"id":"o5rkdhq2k","uiAttribs":{},"portsIn":[{"name":"Value 1","value":3},{"name":"Value 2","value":4}],"portsOut":[{"name":"Result","value":3.17566}],"objName":"Ops.Math.Interpolate"},{"id":"4jk31qlcv","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.1},{"name":"Value 2","value":10}],"portsOut":[{"name":"Result","links":[{"portIn":"width","portOut":"Result","objIn":"eb7wv37c6","objOut":"4jk31qlcv"}]}],"objName":"Ops.Math.Interpolate"},{"id":"yt1rl0z6v","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Fade","portOut":"Result","objIn":"jc2ggn9up","objOut":"yt1rl0z6v"}]}],"objName":"Ops.Math.OneMinus"},{"id":"866dbq8co","uiAttribs":{},"portsOut":[{"name":"trigger 0","links":[{"portIn":"Trigger","portOut":"trigger 0","objIn":"e0698285-4e6a-4339-a9ba-d9b3e441372c","objOut":"866dbq8co"}]},{"name":"trigger 2","links":[{"portIn":"Trigger","portOut":"trigger 2","objIn":"ch5u1xz0l","objOut":"866dbq8co"}]},{"name":"trigger 4","links":[{"portIn":"Trigger","portOut":"trigger 4","objIn":"afa40c7e-19f5-4546-911c-1e34c62f310b","objOut":"866dbq8co"}]}],"objName":"Ops.Gl.LayerSequence"},{"id":"5zxbuf3na","uiAttribs":{},"portsIn":[{"name":"Input","multiPortNum":4,"multiPortManual":true}],"portsOut":[{"name":"Output","multiPortNum":3},{"name":"Output_0","links":[{"portIn":"Execute","portOut":"Output_0","objIn":"oefqiqdsy","objOut":"5zxbuf3na"}]},{"name":"Output_1","title":"add port","links":[{"portIn":"render","portOut":"Output_1","objIn":"ljp36mj0s","objOut":"5zxbuf3na"}]},{"name":"Output_2","title":"add port","links":[{"portIn":"Execute","portOut":"Output_2","objIn":"xfa58o4pa","objOut":"5zxbuf3na"}]}],"objName":"Ops.Trigger.SequenceMultiPort"},{"id":"gnultinbe","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"patchId","value":"bp2sub_gnultinbe"}],"objName":"Ops.Patch.PW10J0o.UI_ScapeParams"},{"id":"uh2d2mdyy","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"patchId","value":"bp2sub_uh2d2mdyy"}],"objName":"Ops.Patch.PW10J0o.UI_Bypassers"},{"id":"l7fhi163a","uiAttribs":{},"portsIn":[{"name":"Nth","value":2}],"portsOut":[{"name":"Next","links":[{"portIn":"exe","portOut":"Next","objIn":"l3284qrsh","objOut":"l7fhi163a"}]}],"objName":"Ops.Trigger.NthTrigger_v2"},{"id":"66byw8qqr","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_activeDial_ID"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"gglcw7l93","objOut":"66byw8qqr"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"gglcw7l93","uiAttribs":{},"portsIn":[{"name":"number2","value":1}],"portsOut":[{"name":"result","links":[{"portIn":"number1","portOut":"result","objIn":"wow8ddz8v","objOut":"gglcw7l93"}]}],"objName":"Ops.Math.Subtract"},{"id":"wow8ddz8v","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"Boolean","portOut":"result","objIn":"drgtvpkrm","objOut":"wow8ddz8v"}]}],"objName":"Ops.Math.Compare.Equals"},{"id":"drgtvpkrm","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"r","portOut":"Result","objIn":"kgtq6kbqp","objOut":"drgtvpkrm"}]}],"objName":"Ops.Boolean.Not"},{"id":"tsahvrwcv","uiAttribs":{},"portsIn":[{"name":"number2","value":0.5}],"portsOut":[{"name":"result","links":[{"portIn":"a","portOut":"result","objIn":"uc9r4wu0r","objOut":"tsahvrwcv"}]}],"objName":"Ops.Math.Sum"},{"id":"dvydn6fxq","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeReverse"}],"portsOut":[{"name":"Value","links":[{"portIn":"Boolean","portOut":"Value","objIn":"eisqrtpxy","objOut":"dvydn6fxq"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"eisqrtpxy","uiAttribs":{},"portsOut":[{"name":"Bool","links":[{"portIn":"Percentage","portOut":"Bool","objIn":"bp0egzb8r","objOut":"eisqrtpxy"}]}],"objName":"Ops.Ui.VizBool"},{"id":"bp0egzb8r","uiAttribs":{},"portsIn":[{"name":"Value 1","value":4},{"name":"Value 2","value":16}],"portsOut":[{"name":"Result","links":[{"portIn":"extrude","portOut":"Result","objIn":"eb7wv37c6","objOut":"bp0egzb8r"}]}],"objName":"Ops.Math.Interpolate"},{"id":"ogdnhiigt","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_scapeReverse"}],"portsOut":[{"name":"Value","links":[{"portIn":"Use Value 1","portOut":"Value","objIn":"6lh7g16he","objOut":"ogdnhiigt"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"6xz7wyt5r","uiAttribs":{},"portsIn":[{"name":"ZoomText","value":0},{"name":"Line Numbers","value":0},{"name":"Whitespace","value":0},{"name":"Wrap lines","value":1},{"name":"Syntax index","value":0},{"name":"Syntax","value":"text"},{"name":"Font Size","value":17.56},{"name":"Scroll","value":0}],"objName":"Ops.Ui.VizString"},{"id":"e1l00q6bu","uiAttribs":{},"portsIn":[{"name":"ZoomText","value":0},{"name":"Line Numbers","value":0},{"name":"Whitespace","value":0},{"name":"Wrap lines","value":1},{"name":"Syntax index","value":0},{"name":"Syntax","value":"text"},{"name":"Font Size","value":24},{"name":"Scroll","value":0}],"objName":"Ops.Ui.VizString"},{"id":"yx1m5mdal","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Trigger","portOut":"Next","objIn":"ts62w2kk6","objOut":"yx1m5mdal"}]},{"name":"Number","value":0.3818817156666755}],"objName":"Ops.Number.TriggerOnChangeNumber"},{"id":"ts62w2kk6","uiAttribs":{},"portsOut":[{"name":"Count","value":618}],"objName":"Ops.Ui.VizTrigger"},{"id":"jeqjx9zcv","uiAttribs":{},"portsIn":[{"name":"FPS Limit","value":0},{"name":"Reduce FPS not focussed","value":1},{"name":"Reduce FPS loading","value":1},{"name":"Clear","value":1},{"name":"ClearAlpha","value":0},{"name":"Fullscreen Button","value":0},{"name":"Active","value":1},{"name":"Hires Displays","value":1},{"name":"Pixel Unit index","value":0},{"name":"Pixel Unit","value":"Display"}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"h0uuloq0t","objOut":"jeqjx9zcv"},{"portIn":"render","portOut":"trigger","objIn":"t2ccc4n1c","objOut":"jeqjx9zcv"}]},{"name":"width","value":2014},{"name":"height","value":912}],"objName":"Ops.Gl.MainLoop"},{"id":"ljp36mj0s","uiAttribs":{},"portsIn":[{"name":"x","value":0},{"name":"y","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Execute","portOut":"trigger","objIn":"ngzgotbds","objOut":"ljp36mj0s"}]}],"objName":"Ops.Gl.Matrix.TranslateView"},{"id":"kpq1vq2hy","uiAttribs":{},"portsIn":[{"name":"Title","value":"."}],"objName":"Ops.Ui.Area"},{"id":"c8rxrl5sv","uiAttribs":{},"portsIn":[{"name":"old min","value":0},{"name":"old max","value":9},{"name":"new min","value":-20},{"name":"new max","value":0},{"name":"Easing index","value":2},{"name":"Easing","value":"Smootherstep"},{"name":"Clamp","value":1}],"portsOut":[{"name":"result","links":[{"portIn":"z","portOut":"result","objIn":"ljp36mj0s","objOut":"c8rxrl5sv"}]}],"objName":"Ops.Math.MapRange"},{"id":"zq8a0mk2d","uiAttribs":{},"portsIn":[{"name":"Add to number","value":10},{"name":"Multiplier to add number","value":0.1},{"name":"Default Value","value":0}],"portsOut":[{"name":"Current value","links":[{"portIn":"val","portOut":"Current value","objIn":"1b7ls5v00","objOut":"zq8a0mk2d"},{"portIn":"number1","portOut":"Current value","objIn":"fqvil1m20","objOut":"zq8a0mk2d"}]}],"objName":"Ops.Math.Accumulator"},{"id":"8qsfm58e9","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Set Default Value","portOut":"Next","objIn":"zq8a0mk2d","objOut":"8qsfm58e9"}]}],"objName":"Ops.Boolean.TriggerChangedFalse"},{"id":"xfa58o4pa","uiAttribs":{},"portsOut":[{"name":"Trigger out","links":[{"portIn":"Trigger in","portOut":"Trigger out","objIn":"zq8a0mk2d","objOut":"xfa58o4pa"}]}],"objName":"Ops.Trigger.GateTrigger"},{"id":"fqvil1m20","uiAttribs":{},"portsIn":[{"name":"number2","value":50}],"portsOut":[{"name":"result","links":[{"portIn":"Pass Through","portOut":"result","objIn":"xfa58o4pa","objOut":"fqvil1m20"}]}],"objName":"Ops.Math.Compare.LessThan"},{"id":"vbqzfym0q","uiAttribs":{},"portsIn":[{"name":"Value 1","value":0.25},{"name":"Value 2","value":0.35}],"portsOut":[{"name":"Result","links":[{"portIn":"Scale","portOut":"Result","objIn":"kgtq6kbqp","objOut":"vbqzfym0q"}]}],"objName":"Ops.Math.Interpolate"},{"id":"388m7te72","uiAttribs":{},"objName":"Ops.Ui.VizNumberBar"},{"id":"alzkn0zrx","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_activeDial_ID"}],"portsOut":[{"name":"Value","links":[{"portIn":"number1","portOut":"Value","objIn":"o3v0fs8ny","objOut":"alzkn0zrx"},{"portIn":"number1","portOut":"Value","objIn":"33ec14olc","objOut":"alzkn0zrx"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"o3v0fs8ny","uiAttribs":{},"portsIn":[{"name":"number2","value":1}],"portsOut":[{"name":"result","links":[{"portIn":"index","portOut":"result","objIn":"xs6m7urd8","objOut":"o3v0fs8ny"}]}],"objName":"Ops.Math.Subtract"},{"id":"r5b36nebf","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"Value","portOut":"result","objIn":"k7jb0442i","objOut":"r5b36nebf"},{"portIn":"Pass Through","portOut":"result","objIn":"h6if42tnb","objOut":"r5b36nebf"},{"portIn":"Boolean","portOut":"result","objIn":"xwunnchj4","objOut":"r5b36nebf"}]}],"objName":"Ops.Boolean.And"},{"id":"5juarvo9f","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_leftButtonIsDown"}],"portsOut":[{"name":"Value","links":[{"portIn":"bool 2","portOut":"Value","objIn":"r5b36nebf","objOut":"5juarvo9f"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"wdi31qcw9","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_hitBodyName"}],"portsOut":[{"name":"Value","links":[{"portIn":"String","portOut":"Value","objIn":"ve06dtrpi","objOut":"wdi31qcw9"}]}],"objName":"Ops.Vars.VarGetString"},{"id":"ve06dtrpi","uiAttribs":{},"portsIn":[{"name":"SearchValue","value":"dial"}],"portsOut":[{"name":"Found","links":[{"portIn":"bool 1","portOut":"Found","objIn":"r5b36nebf","objOut":"ve06dtrpi"}]},{"name":"Index","value":-1}],"objName":"Ops.String.StringContains_v2"},{"id":"k7jb0442i","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_mouseIsChangingDialValue"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"v23hgopgb","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_mouseIsChangingParamID"}],"objName":"Ops.Vars.VarSetString_v2"},{"id":"ffon5uvkk","uiAttribs":{},"portsIn":[{"name":"Named Trigger","value":"mainExe"}],"portsOut":[{"name":"Triggered","links":[{"portIn":"Update","portOut":"Triggered","objIn":"ctp1o4td7","objOut":"ffon5uvkk"}]}],"objName":"Ops.Trigger.TriggerReceive"},{"id":"h6if42tnb","uiAttribs":{},"portsIn":[{"name":"When False index","value":0},{"name":"When False","value":"keep last number"},{"name":"Custom Value","value":0}],"portsOut":[{"name":"Value Out","links":[{"portIn":"Value","portOut":"Value Out","objIn":"ctp1o4td7","objOut":"h6if42tnb"}]}],"objName":"Ops.Number.GateNumber"},{"id":"ctp1o4td7","uiAttribs":{},"portsIn":[{"name":"Separate inc/dec","value":0},{"name":"Inc factor","value":3,"title":"Inc/Dec factor"},{"name":"Dec factor","value":4}],"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"genm38kql","objOut":"ctp1o4td7"}]}],"objName":"Ops.Anim.Smooth"},{"id":"4uxiwkl7k","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Number","portOut":"Result","objIn":"fehb8iqf4","objOut":"4uxiwkl7k"}]},{"name":"Found","value":1}],"objName":"Ops.Json.ObjectGetNumber_v2"},{"id":"uh3x78naj","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ext_srvbParams_object"}],"portsOut":[{"name":"Value","links":[{"portIn":"Data","portOut":"Value","objIn":"4uxiwkl7k","objOut":"uh3x78naj"}]}],"objName":"Ops.Vars.VarGetObject_v2"},{"id":"genm38kql","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_normValue"}],"objName":"Ops.Vars.VarSetNumber_v2"},{"id":"fehb8iqf4","uiAttribs":{},"objName":"Ops.Ui.VizNumberBar"},{"id":"lq1qpjxb2","uiAttribs":{},"portsIn":[{"name":"Invalid if null","value":1},{"name":"Invalid if undefined","value":1},{"name":"Invalid if empty","value":1},{"name":"Invalid if 0","value":1}],"portsOut":[{"name":"Last Valid String","links":[{"portIn":"Key","portOut":"Last Valid String","objIn":"4uxiwkl7k","objOut":"lq1qpjxb2"}]},{"name":"Is Valid","value":1}],"objName":"Ops.String.FilterValidString"},{"id":"85bab04qe","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__bodyHitY"}],"portsOut":[{"name":"Value","links":[{"portIn":"Value In","portOut":"Value","objIn":"kcioipgq5","objOut":"85bab04qe"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"bzipk2cz2","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__currentReflectorParam"}],"objName":"Ops.Vars.VarSetString_v2"},{"id":"u06tw04c6","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_dialValues_array"}],"portsOut":[{"name":"Value","links":[{"portIn":"array","portOut":"Value","objIn":"xs6m7urd8","objOut":"u06tw04c6"}]}],"objName":"Ops.Vars.VarGetArray_v2"},{"id":"xs6m7urd8","uiAttribs":{},"portsIn":[{"name":"Value Invalid Index","value":0}],"portsOut":[{"name":"value","links":[{"portIn":"Default Value","portOut":"value","objIn":"yw2bj7dow","objOut":"xs6m7urd8"}]},{"name":"Valid Index","value":1}],"objName":"Ops.Array.ArrayGetNumber"},{"id":"95ek6f47c","uiAttribs":{},"portsIn":[{"name":"Change Always","value":0}],"portsOut":[{"name":"Delta","links":[{"portIn":"Value","portOut":"Delta","objIn":"1x6fvof7h","objOut":"95ek6f47c"},{"portIn":"number","portOut":"Delta","objIn":"7bes21hy9","objOut":"95ek6f47c"}]}],"objName":"Ops.Math.Delta"},{"id":"79qswg95g","uiAttribs":{},"objName":"Ops.Ui.VizNumberBar"},{"id":"yw2bj7dow","uiAttribs":{},"portsOut":[{"name":"Current value","links":[{"portIn":"val","portOut":"Current value","objIn":"nzetckd5z","objOut":"yw2bj7dow"},{"portIn":"number1","portOut":"Current value","objIn":"g8nzxy9e3","objOut":"yw2bj7dow"},{"portIn":"number1","portOut":"Current value","objIn":"sx5fsqs8q","objOut":"yw2bj7dow"}]}],"objName":"Ops.Math.Accumulator"},{"id":"nzetckd5z","uiAttribs":{},"portsIn":[{"name":"min","value":0},{"name":"max","value":1},{"name":"ignore outside values","value":0}],"portsOut":[{"name":"result","links":[{"portIn":"Number","portOut":"result","objIn":"79qswg95g","objOut":"nzetckd5z"},{"portIn":"Value In","portOut":"result","objIn":"h6if42tnb","objOut":"nzetckd5z"}]}],"objName":"Ops.Math.Clamp"},{"id":"f9u8yre7e","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Trigger in","portOut":"Next","objIn":"yw2bj7dow","objOut":"f9u8yre7e"}]},{"name":"Number","links":[{"portIn":"Add to number","portOut":"Number","objIn":"yw2bj7dow","objOut":"f9u8yre7e"}]}],"objName":"Ops.Number.TriggerOnChangeNumber"},{"id":"1x6fvof7h","uiAttribs":{},"portsOut":[{"name":"Result","links":[{"portIn":"Value","portOut":"Result","objIn":"f9u8yre7e","objOut":"1x6fvof7h"}]}],"objName":"Ops.Math.FlipSign"},{"id":"hgo8de8cm","uiAttribs":{},"portsOut":[{"name":"Next","links":[{"portIn":"Set Default Value","portOut":"Next","objIn":"yw2bj7dow","objOut":"hgo8de8cm"},{"portIn":"Trigger","portOut":"Next","objIn":"zox3zetcs","objOut":"hgo8de8cm"}]},{"name":"Number","value":1}],"objName":"Ops.Number.TriggerOnChangeNumber"},{"id":"kcioipgq5","uiAttribs":{},"portsIn":[{"name":"When False index","value":0},{"name":"When False","value":"keep last number"},{"name":"Custom Value","value":0}],"portsOut":[{"name":"Value Out","links":[{"portIn":"Value","portOut":"Value Out","objIn":"95ek6f47c","objOut":"kcioipgq5"}]}],"objName":"Ops.Number.GateNumber"},{"id":"py1p6t0na","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_mouseIsChangingDialValue"}],"portsOut":[{"name":"Value","links":[{"portIn":"Pass Through","portOut":"Value","objIn":"kcioipgq5","objOut":"py1p6t0na"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"7bes21hy9","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"number1","portOut":"result","objIn":"1saqvxre3","objOut":"7bes21hy9"}]}],"objName":"Ops.Math.Abs"},{"id":"1saqvxre3","uiAttribs":{},"portsIn":[{"name":"number2","value":10}],"portsOut":[{"name":"result","links":[{"portIn":"number1","portOut":"result","objIn":"390zp6tvi","objOut":"1saqvxre3"}]}],"objName":"Ops.Math.Multiply"},{"id":"390zp6tvi","uiAttribs":{},"portsIn":[{"name":"number2","value":5}],"portsOut":[{"name":"result","links":[{"portIn":"Multiplier to add number","portOut":"result","objIn":"yw2bj7dow","objOut":"390zp6tvi"}]}],"objName":"Ops.Math.Sum"},{"id":"zox3zetcs","uiAttribs":{},"portsOut":[{"name":"Count","value":73}],"objName":"Ops.Ui.VizTrigger"},{"id":"33ec14olc","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"number1","portOut":"result","objIn":"5uwqjvpu1","objOut":"33ec14olc"}]}],"objName":"Ops.Math.Sum"},{"id":"g8nzxy9e3","uiAttribs":{},"portsIn":[{"name":"number2","value":0}],"portsOut":[{"name":"result","links":[{"portIn":"number2","portOut":"result","objIn":"33ec14olc","objOut":"g8nzxy9e3"}]}],"objName":"Ops.Math.Compare.LessThan"},{"id":"5uwqjvpu1","uiAttribs":{},"portsOut":[{"name":"result","links":[{"portIn":"Value","portOut":"result","objIn":"hgo8de8cm","objOut":"5uwqjvpu1"}]}],"objName":"Ops.Math.Sum"},{"id":"sx5fsqs8q","uiAttribs":{},"portsIn":[{"name":"number2","value":1}],"portsOut":[{"name":"result","links":[{"portIn":"number2","portOut":"result","objIn":"5uwqjvpu1","objOut":"sx5fsqs8q"}]}],"objName":"Ops.Math.Compare.GreaterThan"},{"id":"039tyo3hk","uiAttribs":{},"portsIn":[{"name":"Title","value":"Reflectors IO"}],"objName":"Ops.Ui.Area"},{"id":"h7xc3duf6","uiAttribs":{},"portsIn":[{"name":"Strings","multiPortNum":5,"multiPortManual":true},{"name":"Strings_0","value":"disengage"},{"name":"Strings_1","value":"mix"},{"name":"Strings_2","value":"diffuse"},{"name":"Strings_3","value":"tone"},{"name":"Strings_4","value":"size"}],"portsOut":[{"name":"String","links":[{"portIn":"Value","portOut":"String","objIn":"v23hgopgb","objOut":"h7xc3duf6"},{"portIn":"String","portOut":"String","objIn":"lq1qpjxb2","objOut":"h7xc3duf6"},{"portIn":"Value","portOut":"String","objIn":"bzipk2cz2","objOut":"h7xc3duf6"}]},{"name":"Num Values","value":5}],"objName":"Ops.String.SwitchStringMultiPort"},{"id":"621p55v6o","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_activeDial_ID"}],"portsOut":[{"name":"Value","links":[{"portIn":"Index","portOut":"Value","objIn":"h7xc3duf6","objOut":"621p55v6o"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"xwunnchj4","uiAttribs":{},"portsOut":[{"name":"Bool","value":0}],"objName":"Ops.Ui.VizBool"},{"id":"7e8o3nnt4","uiAttribs":{},"portsIn":[{"name":"Variable","value":"__currentReflectorParam"}],"portsOut":[{"name":"Value","value":"mix"}],"objName":"Ops.Vars.VarGetString"},{"id":"r9k02tczl","uiAttribs":{},"storage":{"blueprintVer":2,"subPatchVer":2},"portsIn":[{"name":"blls2amps","title":"Trigger in"},{"name":"btagbs7z2","title":"Class"},{"name":"lj06d561p","value":0,"title":"Show Boundings"},{"name":"patchId","value":"bp2sub_r9k02tczl"}],"portsOut":[{"name":"nti406vwi","value":0.3818817156666755,"title":"Result"},{"name":"gjvx0zyv5","title":"value","links":[{"portIn":"number1","portOut":"gjvx0zyv5","objIn":"8u59uuw3y","objOut":"r9k02tczl"},{"portIn":"a","portOut":"gjvx0zyv5","objIn":"cusun507p","objOut":"r9k02tczl"}]}],"objName":"Ops.Patch.PW10J0o.BasicSlider_v5"},{"id":"za29rrvk4","uiAttribs":{},"portsIn":[{"name":"String 2","value":"ui"}],"portsOut":[{"name":"Result","links":[{"portIn":"Boolean","portOut":"Result","objIn":"hf6n2jft0","objOut":"za29rrvk4"},{"portIn":"Pass Through","portOut":"Result","objIn":"ks9hjc1vv","objOut":"za29rrvk4"}]}],"objName":"Ops.String.StringEquals"},{"id":"kn15lk7f1","uiAttribs":{},"portsIn":[{"name":"Key","value":"source"}],"portsOut":[{"name":"Result","links":[{"portIn":"String 1","portOut":"Result","objIn":"za29rrvk4","objOut":"kn15lk7f1"}]}],"objName":"Ops.Json.ObjectGetString"},{"id":"tg8ghy5gz","uiAttribs":{},"portsIn":[{"name":"Show Info","value":0},{"name":"Visualize outside 0-1 index","value":1},{"name":"Visualize outside 0-1","value":"Anim"},{"name":"Alpha index","value":0},{"name":"Alpha","value":"A"},{"name":"Show Color","value":0},{"name":"X","value":0.5},{"name":"Y","value":0.5}],"portsOut":[{"name":"Info","value":""}],"objName":"Ops.Ui.VizTexture"},{"id":"ncbemophd","uiAttribs":{},"portsIn":[{"name":"Variable","value":"ui_structure"}],"portsOut":[{"name":"Value","links":[{"portIn":"A","portOut":"Value","objIn":"xmdv927c1","objOut":"ncbemophd"}]}],"objName":"Ops.Vars.VarGetNumber_v2"},{"id":"xmdv927c1","uiAttribs":{},"portsIn":[{"name":"B","value":1},{"name":"C","value":2},{"name":"D","value":3},{"name":"Expression","value":"(a*2) + 12"}],"portsOut":[{"name":"Result","links":[{"portIn":"columns","portOut":"Result","objIn":"eb7wv37c6","objOut":"xmdv927c1"}]},{"name":"Expression Valid","value":true}],"objName":"Ops.Math.MathExpression"},{"id":"h0uuloq0t","uiAttribs":{},"portsIn":[{"name":"Size index","value":0},{"name":"Size","value":"Canvas"},{"name":"texture width","value":2014},{"name":"texture height","value":912},{"name":"Auto Aspect","value":1},{"name":"filter index","value":1},{"name":"filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"Repeat"},{"name":"MSAA index","value":3},{"name":"MSAA","value":"8x"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"Depth","value":1},{"name":"Clear","value":1}],"portsOut":[{"name":"trigger","links":[{"portIn":"render","portOut":"trigger","objIn":"e0268dfa-e089-4f1f-966c-c30218792023","objOut":"h0uuloq0t"}]},{"name":"texture","links":[{"portIn":"Base Texture","portOut":"texture","objIn":"epozd8g5m","objOut":"h0uuloq0t"}]}],"objName":"Ops.Gl.RenderToTexture_v3"},{"id":"t2ccc4n1c","uiAttribs":{},"portsIn":[{"name":"Scale index","value":1},{"name":"Scale","value":"Fit"},{"name":"Flip Y","value":0},{"name":"Flip X","value":0}],"portsOut":[{"name":"trigger","links":[{"portIn":"Render","portOut":"trigger","objIn":"epozd8g5m","objOut":"t2ccc4n1c"}]}],"objName":"Ops.Gl.Meshes.FullscreenRectangle_v2"},{"id":"epozd8g5m","uiAttribs":{},"portsIn":[{"name":"Size index","value":0},{"name":"Size","value":"Auto"},{"name":"Width","value":640},{"name":"Height","value":480},{"name":"Filter index","value":1},{"name":"Filter","value":"linear"},{"name":"Wrap index","value":1},{"name":"Wrap","value":"repeat"},{"name":"Anisotropic index","value":0},{"name":"Anisotropic","value":"0"},{"name":"Pixel Format index","value":4},{"name":"Pixel Format","value":"RGBA 8bit ubyte"},{"name":"R","value":0},{"name":"G","value":0},{"name":"B","value":0},{"name":"A","value":0}],"portsOut":[{"name":"Next","links":[{"portIn":"Render","portOut":"Next","objIn":"wyyl6w7vw","objOut":"epozd8g5m"}]},{"name":"texture_out","links":[{"portIn":"Texture","portOut":"texture_out","objIn":"t2ccc4n1c","objOut":"epozd8g5m"}]},{"name":"Aspect Ratio","value":2.2083333333333335},{"name":"Texture Width","value":2014},{"name":"Texture Height","value":912}],"objName":"Ops.Gl.ImageCompose.ImageCompose_v4"},{"id":"wyyl6w7vw","uiAttribs":{},"portsIn":[{"name":"amount","value":-0.26}],"objName":"Ops.Gl.ImageCompose.Vibrance"}],"export":{"time":"2024-09-11 00:29","service":"download","exportNumber":3}};
+if(!CABLES.exportedPatch){CABLES.exportedPatch=CABLES.exportedPatches['W10J0o']}
 "use strict";
 
 var CABLES=CABLES||{};
@@ -19488,7 +19488,6 @@ var Ops=Ops || {};
 Ops.Gl=Ops.Gl || {};
 Ops.Ui=Ops.Ui || {};
 Ops.Anim=Ops.Anim || {};
-Ops.Data=Ops.Data || {};
 Ops.Html=Ops.Html || {};
 Ops.Json=Ops.Json || {};
 Ops.Math=Ops.Math || {};
@@ -19508,26 +19507,26 @@ Ops.Gl.Matrix=Ops.Gl.Matrix || {};
 Ops.Gl.Meshes=Ops.Gl.Meshes || {};
 Ops.Gl.Shader=Ops.Gl.Shader || {};
 Ops.Ui.Routing=Ops.Ui.Routing || {};
-Ops.Data.Compose=Ops.Data.Compose || {};
+Ops.Gl.Textures=Ops.Gl.Textures || {};
 Ops.Math.Compare=Ops.Math.Compare || {};
 Ops.Devices.Mouse=Ops.Devices.Mouse || {};
-Ops.Patch.P4oPpSn=Ops.Patch.P4oPpSn || {};
+Ops.Patch.PW10J0o=Ops.Patch.PW10J0o || {};
 Ops.Gl.ImageCompose=Ops.Gl.ImageCompose || {};
 Ops.Devices.Keyboard=Ops.Devices.Keyboard || {};
+Ops.Gl.ShaderEffects=Ops.Gl.ShaderEffects || {};
 Ops.Graphics.Geometry=Ops.Graphics.Geometry || {};
 Ops.User.cristianvogel=Ops.User.cristianvogel || {};
-Ops.Data.Compose.Object=Ops.Data.Compose.Object || {};
 Ops.Graphics.Intersection=Ops.Graphics.Intersection || {};
 
 
 
 // **************************************************************
 // 
-// Ops.Patch.P4oPpSn.SubPatch1
+// Ops.Patch.PW10J0o.SubPatch1
 // 
 // **************************************************************
 
-Ops.Patch.P4oPpSn.SubPatch1 = function()
+Ops.Patch.PW10J0o.SubPatch1 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
@@ -19588,19 +19587,19 @@ function initializeSubpatch()
 
 };
 
-Ops.Patch.P4oPpSn.SubPatch1.prototype = new CABLES.Op();
-CABLES.OPS["aff07186-9423-4c54-96c1-c127233cc695"]={f:Ops.Patch.P4oPpSn.SubPatch1,objName:"Ops.Patch.P4oPpSn.SubPatch1"};
+Ops.Patch.PW10J0o.SubPatch1.prototype = new CABLES.Op();
+CABLES.OPS["ee378717-67c2-448c-8a75-8459937c7b04"]={f:Ops.Patch.PW10J0o.SubPatch1,objName:"Ops.Patch.PW10J0o.SubPatch1"};
 
 
 
 
 // **************************************************************
 // 
-// Ops.Patch.P4oPpSn.SubPatch3
+// Ops.Patch.PW10J0o.SubPatch3
 // 
 // **************************************************************
 
-Ops.Patch.P4oPpSn.SubPatch3 = function()
+Ops.Patch.PW10J0o.SubPatch3 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
@@ -19668,23 +19667,353 @@ function initializeSubpatch()
 
 };
 
-Ops.Patch.P4oPpSn.SubPatch3.prototype = new CABLES.Op();
-CABLES.OPS["3ab8df39-3240-423a-aab4-69c611b13340"]={f:Ops.Patch.P4oPpSn.SubPatch3,objName:"Ops.Patch.P4oPpSn.SubPatch3"};
+Ops.Patch.PW10J0o.SubPatch3.prototype = new CABLES.Op();
+CABLES.OPS["40928c05-6973-4373-9b22-fd750d80b149"]={f:Ops.Patch.PW10J0o.SubPatch3,objName:"Ops.Patch.PW10J0o.SubPatch3"};
 
 
 
 
 // **************************************************************
 // 
-// Ops.Patch.P4oPpSn.BasicSlider_v4
+// Ops.Patch.PW10J0o.UI_Structure
 // 
 // **************************************************************
 
-Ops.Patch.P4oPpSn.BasicSlider_v4 = function()
+Ops.Patch.PW10J0o.UI_Structure = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp2-0\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":1.05},{\"name\":\"Height\",\"value\":0.13},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"bp2-3\",\"objOut\":\"bp2-0\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp2-33\",\"objOut\":\"bp2-0\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp2-11\",\"objOut\":\"bp2-0\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp2-34\",\"objOut\":\"bp2-0\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"bp2-34\",\"objOut\":\"bp2-0\"}]},{\"name\":\"Pointer Y\",\"value\":0.20717480785374276},{\"name\":\"Top\",\"value\":101.17794698476791},{\"name\":\"Left\",\"value\":1145.1587083339691},{\"name\":\"Right\",\"value\":1426.3342125415802},{\"name\":\"Bottom\",\"value\":151.6304305791855}],\"objName\":\"Ops.Gl.InteractiveRectangle_v2\"},{\"id\":\"bp2-1\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp2-9\",\"objOut\":\"bp2-1\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"bp2-2\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posY\",\"value\":-0.005},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Exec\",\"portOut\":\"trigger\",\"objIn\":\"bp2-27\",\"objOut\":\"bp2-2\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp2-3\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp2-2\",\"objOut\":\"bp2-3\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"bp2-7\",\"objOut\":\"bp2-3\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"bp2-5\",\"objOut\":\"bp2-3\"},{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"bp2-2\",\"objOut\":\"bp2-3\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"bp2-4\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"bp2-10\",\"objOut\":\"bp2-4\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"bp2-0\",\"objOut\":\"bp2-4\"},{\"portIn\":\"String In\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"bp2-14\",\"objOut\":\"bp2-4\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"bp2-0\",\"objOut\":\"bp2-4\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp2-5\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp2-6\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp2-3\",\"objOut\":\"bp2-6\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"bp2-7\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.6},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"bp2-1\",\"objOut\":\"bp2-7\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"bp2-5\",\"objOut\":\"bp2-7\"},{\"portIn\":\"Opacity\",\"portOut\":\"value\",\"objIn\":\"bp2-30\",\"objOut\":\"bp2-7\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"bp2-8\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1.56},{\"name\":\"y\",\"value\":0.79},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"bp2-0\",\"objOut\":\"bp2-8\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp2-9\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":0.02},{\"name\":\"height\",\"value\":0.07},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":1},{\"name\":\"num rows\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"title\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp2-25\",\"objOut\":\"bp2-9\"}]}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"bp2-10\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0.69},{\"name\":\"y\",\"value\":1},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp2-8\",\"objOut\":\"bp2-10\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"},{\"id\":\"bp2-11\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp2-19\",\"objOut\":\"bp2-11\"},{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"bp2-22\",\"objOut\":\"bp2-11\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"bp2-12\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_dryMix\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp2-13\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int dry mix\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp2-14\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"dryMix\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"bp2-15\",\"objOut\":\"bp2-14\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"bp2-18\",\"objOut\":\"bp2-14\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"bp2-15\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"bp2-16\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp2-17\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_srvbParams_object\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"bp2-21\",\"objOut\":\"bp2-17\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"bp2-18\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Numbers_1\",\"portOut\":\"Result\",\"objIn\":\"bp2-20\",\"objOut\":\"bp2-18\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"bp2-19\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonSlider\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp2-20\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"bp2-12\",\"objOut\":\"bp2-20\"},{\"portIn\":\"number1\",\"portOut\":\"Number\",\"objIn\":\"bp2-28\",\"objOut\":\"bp2-20\"},{\"portIn\":\"number1\",\"portOut\":\"Number\",\"objIn\":\"bp2-6\",\"objOut\":\"bp2-20\"},{\"portIn\":\"Number\",\"portOut\":\"Number\",\"objIn\":\"bp2-31\",\"objOut\":\"bp2-20\"}]},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"bp2-21\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":1}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"bp2-18\",\"objOut\":\"bp2-21\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"bp2-22\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"bp2-21\",\"objOut\":\"bp2-22\"},{\"portIn\":\"Index\",\"portOut\":\"Result\",\"objIn\":\"bp2-20\",\"objOut\":\"bp2-22\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"bp2-23\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp2-16\",\"objOut\":\"bp2-23\"},{\"portIn\":\"Numbers_0\",\"portOut\":\"result\",\"objIn\":\"bp2-20\",\"objOut\":\"bp2-23\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"bp2-24\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Decimal Places\",\"value\":0}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"string1\",\"portOut\":\"Result\",\"objIn\":\"bp2-29\",\"objOut\":\"bp2-24\"}]}],\"objName\":\"Ops.String.NumberToString_v2\"},{\"id\":\"bp2-25\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":-0.11},{\"name\":\"y\",\"value\":-0.01},{\"name\":\"z\",\"value\":0}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp2-26\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"digits\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp2-27\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp2-1\",\"objOut\":\"bp2-27\"}]}],\"objName\":\"Ops.Gl.Matrix.Billboard\"},{\"id\":\"bp2-28\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":100}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Number\",\"portOut\":\"result\",\"objIn\":\"bp2-24\",\"objOut\":\"bp2-28\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"bp2-29\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"string2\",\"value\":\"%\"},{\"name\":\"New Line\",\"value\":0},{\"name\":\"Active\",\"value\":1}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Text\",\"portOut\":\"result\",\"objIn\":\"bp2-30\",\"objOut\":\"bp2-29\"}]}],\"objName\":\"Ops.String.Concat_v2\"},{\"id\":\"bp2-30\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Position index\",\"value\":0},{\"name\":\"Position\",\"value\":\"Absolute\"},{\"name\":\"Interactive\",\"value\":0},{\"name\":\"Set Size\",\"value\":1},{\"name\":\"Width\",\"value\":30},{\"name\":\"Height\",\"value\":30},{\"name\":\"Overflow index\",\"value\":1},{\"name\":\"Overflow\",\"value\":\"Hidden\"},{\"name\":\"Inline Style\",\"value\":\"font-size: 0.5rem;\\npadding-top: 0.3rem;\\npadding-left: 3.5rem;\\n\"},{\"name\":\"CSS Class\",\"value\":\"\"},{\"name\":\"Disable CSS Props\",\"value\":0},{\"name\":\"Display index\",\"value\":1},{\"name\":\"Display\",\"value\":\"Block\"},{\"name\":\"Propagate Click-Events\",\"value\":0}],\"portsOut\":[{\"name\":\"DOM Element\",\"links\":[{\"portIn\":\"Element\",\"portOut\":\"DOM Element\",\"objIn\":\"bp2-35\",\"objOut\":\"bp2-30\"}]},{\"name\":\"Hovering\",\"value\":0}],\"objName\":\"Ops.Patch.P4oPpSn.Element\"},{\"id\":\"bp2-31\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.VizNumberBar\"},{\"id\":\"bp2-32\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"portsOut\":[{\"name\":\"Value\"}],\"objName\":\"Ops.Vars.VarGetString\"},{\"id\":\"bp2-33\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"result\",\"objIn\":\"bp2-7\",\"objOut\":\"bp2-33\"},{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"bp2-14\",\"objOut\":\"bp2-33\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"bp2-34\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Value Out\",\"objIn\":\"bp2-23\",\"objOut\":\"bp2-34\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"bp2-35\",\"uiAttribs\":{\"subPatch\":\"yaiz43hkt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Translate Active\",\"value\":1},{\"name\":\"Translate X\",\"value\":658.85},{\"name\":\"Translate Y\",\"value\":55},{\"name\":\"Unit index\",\"value\":0},{\"name\":\"Unit\",\"value\":\"px\"},{\"name\":\"Scale Active\",\"value\":0},{\"name\":\"Scale\",\"value\":1},{\"name\":\"Rotate Active\",\"value\":1},{\"name\":\"Rot Z\",\"value\":0},{\"name\":\"Set Origin\",\"value\":1},{\"name\":\"Origin X index\",\"value\":1},{\"name\":\"Origin X\",\"value\":\"center\"},{\"name\":\"Origin Y index\",\"value\":1},{\"name\":\"Origin Y\",\"value\":\"center\"},{\"name\":\"Z Index Active\",\"value\":0},{\"name\":\"Z Index\",\"value\":100}],\"objName\":\"Ops.Html.ElementCssTransform\"}]}",};
+const attachments=op.attachments={"inc_gen_ports_js":"op.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp2-0\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Named Trigger\",\"value\":\"exeNoCamera\"}],\"portsOut\":[{\"name\":\"Triggered\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"Triggered\",\"objIn\":\"bp2-26\",\"objOut\":\"bp2-0\"}]}],\"objName\":\"Ops.Trigger.TriggerReceive\"},{\"id\":\"bp2-1\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posX\",\"value\":0.36},{\"name\":\"posY\",\"value\":0.9},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":1},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"bp2-2\",\"objOut\":\"bp2-1\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp2-2\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Text\",\"value\":\"* structure\"},{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.06},{\"name\":\"Letter Spacing\",\"value\":-0.04},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":0},{\"name\":\"Align\",\"value\":\"Left\"},{\"name\":\"Vertical Align index\",\"value\":1},{\"name\":\"Vertical Align\",\"value\":\"Top\"},{\"name\":\"r\",\"value\":0.9},{\"name\":\"g\",\"value\":0.9},{\"name\":\"b\",\"value\":0.9},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.17},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.5},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":1},{\"name\":\"Border g\",\"value\":1},{\"name\":\"Border b\",\"value\":1},{\"name\":\"Shadow\",\"value\":1},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp2-4\",\"objOut\":\"bp2-2\"},{\"portIn\":\"Update\",\"portOut\":\"Next\",\"objIn\":\"bp2-22\",\"objOut\":\"bp2-2\"}]},{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.29631796875000005},{\"name\":\"Height\",\"value\":0.09154265873015872},{\"name\":\"Start Y\",\"value\":0.0390077380952381},{\"name\":\"Num Chars\",\"value\":11}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"bp2-3\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Letter Spacing\",\"value\":-0.05},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":0},{\"name\":\"Align\",\"value\":\"Left\"},{\"name\":\"Vertical Align index\",\"value\":1},{\"name\":\"Vertical Align\",\"value\":\"Top\"},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.25},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.5},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":1},{\"name\":\"Border g\",\"value\":1},{\"name\":\"Border b\",\"value\":1},{\"name\":\"Shadow\",\"value\":1},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp2-10\",\"objOut\":\"bp2-3\"}]},{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.3368847656250001},{\"name\":\"Height\",\"value\":0.07645148809523811},{\"name\":\"Start Y\",\"value\":0.044420982142857154},{\"name\":\"Num Chars\",\"value\":7}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"bp2-4\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0.36},{\"name\":\"y\",\"value\":0},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"bp2-3\",\"objOut\":\"bp2-4\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp2-5\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0.88},{\"name\":\"y\",\"value\":0.89},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"bp2-49\",\"objOut\":\"bp2-5\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp2-6\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Duration\",\"value\":0.5},{\"name\":\"Invert\",\"value\":0}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Random Seed \",\"portOut\":\"Value\",\"objIn\":\"bp2-13\",\"objOut\":\"bp2-6\"},{\"portIn\":\"number1\",\"portOut\":\"Value\",\"objIn\":\"bp2-14\",\"objOut\":\"bp2-6\"}]}],\"objName\":\"Ops.Anim.Bang\"},{\"id\":\"bp2-7\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Loop min\",\"value\":0},{\"name\":\"Loop max\",\"value\":15}],\"portsOut\":[{\"name\":\"current count\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"current count\",\"objIn\":\"bp2-21\",\"objOut\":\"bp2-7\"},{\"portIn\":\"Value\",\"portOut\":\"current count\",\"objIn\":\"bp2-22\",\"objOut\":\"bp2-7\"}]}],\"objName\":\"Ops.Trigger.TriggerCounterLoop\"},{\"id\":\"bp2-8\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Text\",\"portOut\":\"result\",\"objIn\":\"bp2-3\",\"objOut\":\"bp2-8\"}]}],\"objName\":\"Ops.Array.ArrayGetString\"},{\"id\":\"bp2-9\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"text\",\"value\":\"A035506\\nA007604\\nA227413\\nA000040\\nA052330\\nA000607\\nA01401\\nA064356\\nA096441\\nA000009\\nA199535\\nA000010\\nA316667\\nA111133\\nA000124\\nA005132\"},{\"name\":\"separator\",\"value\":\" \"},{\"name\":\"Numbers\",\"value\":0},{\"name\":\"Trim\",\"value\":1},{\"name\":\"Split Lines\",\"value\":1}],\"portsOut\":[{\"name\":\"array\",\"links\":[{\"portIn\":\"array\",\"portOut\":\"array\",\"objIn\":\"bp2-8\",\"objOut\":\"bp2-9\"}]},{\"name\":\"length\",\"value\":16}],\"objName\":\"Ops.Array.StringToArray_v2\"},{\"id\":\"bp2-10\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0.06},{\"name\":\"y\",\"value\":-0.05},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp2-12\",\"objOut\":\"bp2-10\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp2-11\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.125},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"value\",\"objIn\":\"bp2-20\",\"objOut\":\"bp2-11\"},{\"portIn\":\"Percentage\",\"portOut\":\"value\",\"objIn\":\"bp2-27\",\"objOut\":\"bp2-11\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"bp2-12\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":4.91},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":1},{\"name\":\"num rows\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"bp2-13\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Num Values\",\"value\":24},{\"name\":\"Mode index\",\"value\":0},{\"name\":\"Mode\",\"value\":\"A\"},{\"name\":\"Integer\",\"value\":0},{\"name\":\"Last == First\",\"value\":0},{\"name\":\"Min A\",\"value\":0},{\"name\":\"Min B\",\"value\":-1},{\"name\":\"Max B\",\"value\":1},{\"name\":\"Min C\",\"value\":-1},{\"name\":\"Max C\",\"value\":1},{\"name\":\"Min D\",\"value\":-1},{\"name\":\"Max D\",\"value\":1}],\"portsOut\":[{\"name\":\"Array Out\",\"links\":[{\"portIn\":\"Rotations\",\"portOut\":\"Array Out\",\"objIn\":\"bp2-3\",\"objOut\":\"bp2-13\"}]},{\"name\":\"Chunks Amount\",\"value\":24},{\"name\":\"Array length\",\"value\":24}],\"objName\":\"Ops.Array.RandomNumbersArray_v4\"},{\"id\":\"bp2-14\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.0001}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"result\",\"objIn\":\"bp2-15\",\"objOut\":\"bp2-14\"}]}],\"objName\":\"Ops.Math.Compare.GreaterThan\"},{\"id\":\"bp2-15\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":360}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Max A\",\"portOut\":\"result\",\"objIn\":\"bp2-13\",\"objOut\":\"bp2-15\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"bp2-16\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"structure\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp2-17\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0.003},{\"name\":\"Value 2\",\"value\":0.01}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"height\",\"portOut\":\"Result\",\"objIn\":\"bp2-12\",\"objOut\":\"bp2-17\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"bp2-18\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0.9},{\"name\":\"Value 2\",\"value\":1}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"Result\",\"objIn\":\"bp2-3\",\"objOut\":\"bp2-18\"},{\"portIn\":\"g\",\"portOut\":\"Result\",\"objIn\":\"bp2-3\",\"objOut\":\"bp2-18\"},{\"portIn\":\"b\",\"portOut\":\"Result\",\"objIn\":\"bp2-3\",\"objOut\":\"bp2-18\"},{\"portIn\":\"r\",\"portOut\":\"Result\",\"objIn\":\"bp2-3\",\"objOut\":\"bp2-18\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"bp2-19\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0.09},{\"name\":\"Value 2\",\"value\":0.11}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Scale\",\"portOut\":\"Result\",\"objIn\":\"bp2-3\",\"objOut\":\"bp2-19\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"bp2-20\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Percentage\",\"portOut\":\"result\",\"objIn\":\"bp2-18\",\"objOut\":\"bp2-20\"},{\"portIn\":\"Percentage\",\"portOut\":\"result\",\"objIn\":\"bp2-19\",\"objOut\":\"bp2-20\"},{\"portIn\":\"Percentage\",\"portOut\":\"result\",\"objIn\":\"bp2-17\",\"objOut\":\"bp2-20\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"bp2-21\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":15}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"result\",\"objIn\":\"bp2-30\",\"objOut\":\"bp2-21\"}]}],\"objName\":\"Ops.Math.Divide\"},{\"id\":\"bp2-22\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Delay\",\"value\":0.1},{\"name\":\"Clear on Change\",\"value\":0},{\"name\":\"easing index\",\"value\":1},{\"name\":\"easing\",\"value\":\"absolute\"}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"index\",\"portOut\":\"Result\",\"objIn\":\"bp2-8\",\"objOut\":\"bp2-22\"}]}],\"objName\":\"Ops.Number.DelayedNumber\"},{\"id\":\"bp2-23\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_bypassSRVB\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"Value\",\"objIn\":\"bp2-24\",\"objOut\":\"bp2-23\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"bp2-24\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"bp2-26\",\"objOut\":\"bp2-24\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"bp2-25\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"bypass\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp2-26\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"bp2-1\",\"objOut\":\"bp2-26\"},{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"bp2-5\",\"objOut\":\"bp2-26\"}]}],\"objName\":\"Ops.Trigger.GateTrigger\"},{\"id\":\"bp2-27\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0.6},{\"name\":\"Value 2\",\"value\":1}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"Result\",\"objIn\":\"bp2-2\",\"objOut\":\"bp2-27\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"bp2-28\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"value\",\"value\":\"structure\"}],\"portsOut\":[{\"name\":\"String\",\"links\":[{\"portIn\":\"String In\",\"portOut\":\"String\",\"objIn\":\"bp2-33\",\"objOut\":\"bp2-28\"},{\"portIn\":\"ID\",\"portOut\":\"String\",\"objIn\":\"bp2-49\",\"objOut\":\"bp2-28\"}]}],\"objName\":\"Ops.String.String_v2\"},{\"id\":\"bp2-29\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"bp2-40\",\"objOut\":\"bp2-29\"},{\"portIn\":\"Index\",\"portOut\":\"result\",\"objIn\":\"bp2-38\",\"objOut\":\"bp2-29\"},{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp2-41\",\"objOut\":\"bp2-29\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"bp2-30\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Numbers_1\",\"portOut\":\"result\",\"objIn\":\"bp2-38\",\"objOut\":\"bp2-30\"},{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp2-35\",\"objOut\":\"bp2-30\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"bp2-31\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_structure\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp2-32\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int structure\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp2-33\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"structure\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"bp2-34\",\"objOut\":\"bp2-33\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"bp2-37\",\"objOut\":\"bp2-33\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"bp2-34\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"bp2-35\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp2-36\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_srvbParams_object\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"bp2-39\",\"objOut\":\"bp2-36\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"bp2-37\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Numbers_0\",\"portOut\":\"Result\",\"objIn\":\"bp2-38\",\"objOut\":\"bp2-37\"},{\"portIn\":\"A\",\"portOut\":\"Result\",\"objIn\":\"bp2-43\",\"objOut\":\"bp2-37\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"bp2-38\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"A\",\"portOut\":\"Number\",\"objIn\":\"bp2-44\",\"objOut\":\"bp2-38\"}]},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"bp2-39\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":1}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"bp2-37\",\"objOut\":\"bp2-39\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"bp2-40\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"bp2-39\",\"objOut\":\"bp2-40\"},{\"portIn\":\"B\",\"portOut\":\"Result\",\"objIn\":\"bp2-43\",\"objOut\":\"bp2-40\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"bp2-41\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonSlider\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp2-42\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"Input_0\",\"portOut\":\"Next\",\"objIn\":\"bp2-45\",\"objOut\":\"bp2-42\"}]},{\"name\":\"Number\",\"value\":1}],\"objName\":\"Ops.Number.TriggerOnChangeNumber\"},{\"id\":\"bp2-43\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"C\",\"value\":2},{\"name\":\"D\",\"value\":3},{\"name\":\"Expression\",\"value\":\"Math.floor(  a * 16 ) \"}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"bp2-42\",\"objOut\":\"bp2-43\"}]},{\"name\":\"Expression Valid\",\"value\":true}],\"objName\":\"Ops.Math.MathExpression\"},{\"id\":\"bp2-44\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"B\",\"value\":1},{\"name\":\"C\",\"value\":2},{\"name\":\"D\",\"value\":3},{\"name\":\"Expression\",\"value\":\"Math.round( a * 15 )\"}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"bp2-31\",\"objOut\":\"bp2-44\"}]},{\"name\":\"Expression Valid\",\"value\":true}],\"objName\":\"Ops.Math.MathExpression\"},{\"id\":\"bp2-45\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Input\",\"multiPortNum\":2}],\"portsOut\":[{\"name\":\"Output_0\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"Output_0\",\"objIn\":\"bp2-46\",\"objOut\":\"bp2-45\"}]}],\"objName\":\"Ops.Trigger.SequenceMultiPort\"},{\"id\":\"bp2-46\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Nth\",\"value\":2}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"trigger in\",\"portOut\":\"Next\",\"objIn\":\"bp2-7\",\"objOut\":\"bp2-46\"}]}],\"objName\":\"Ops.Trigger.NthTrigger_v2\"},{\"id\":\"bp2-47\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp2-48\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp2-49\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":0.56},{\"name\":\"Height\",\"value\":0.12},{\"name\":\"Class\",\"value\":\"\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":0},{\"name\":\"Pivot y\",\"value\":\"center\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Render Rectangle\",\"value\":0},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":2},{\"name\":\"Cursor\",\"value\":\"pointer\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"update\",\"portOut\":\"Trigger out\",\"objIn\":\"bp2-6\",\"objOut\":\"bp2-49\"},{\"portIn\":\"exe\",\"portOut\":\"Trigger out\",\"objIn\":\"bp2-11\",\"objOut\":\"bp2-49\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp2-11\",\"objOut\":\"bp2-49\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp2-33\",\"objOut\":\"bp2-49\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp2-51\",\"objOut\":\"bp2-49\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp2-29\",\"objOut\":\"bp2-49\"}]},{\"name\":\"Pointer X\",\"value\":0.5854647366659123},{\"name\":\"Pointer Y\",\"value\":0.3067635077934695},{\"name\":\"Top\",\"value\":67.72479057312012},{\"name\":\"Left\",\"value\":1252.2264622449875},{\"name\":\"Right\",\"value\":1481.104465663433},{\"name\":\"Bottom\",\"value\":116.77010250091553},{\"name\":\"Left Click\",\"links\":[{\"portIn\":\"Bang\",\"portOut\":\"Left Click\",\"objIn\":\"bp2-6\",\"objOut\":\"bp2-49\"},{\"portIn\":\"Input_1\",\"portOut\":\"Left Click\",\"objIn\":\"bp2-45\",\"objOut\":\"bp2-49\"}]}],\"objName\":\"Ops.Patch.PW10J0o.InteractiveRectangle_v2\"},{\"id\":\"bp2-50\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2,\"ref\":\"bp2-50\"},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp2-51\",\"uiAttribs\":{\"subPatch\":\"51zz2pg3l\"},\"storage\":{\"blueprintVer\":2,\"ref\":\"bp2-51\"},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"bp2-50\",\"objOut\":\"bp2-51\"}]}],\"objName\":\"Ops.Boolean.Not\"}]}",};
+op.initInnerPorts=function(addedOps)
+{
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
+    {
+    }
+if(addedOps[i].innerOutput)
+{
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
+    {
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
+    }
+
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
+}
+
+
+};
+
+Ops.Patch.PW10J0o.UI_Structure.prototype = new CABLES.Op();
+CABLES.OPS["85205f83-07e3-43ff-8b77-727831e3a7a8"]={f:Ops.Patch.PW10J0o.UI_Structure,objName:"Ops.Patch.PW10J0o.UI_Structure"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PW10J0o.UI_Position
+// 
+// **************************************************************
+
+Ops.Patch.PW10J0o.UI_Position = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"inc_gen_ports_js":"op.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp3-0\",\"uiAttribs\":{\"subPatch\":\"yhlehjjyz\"},\"storage\":{\"blueprintVer\":2,\"subPatchVer\":2},\"portsIn\":[{\"name\":\"blls2amps\",\"title\":\"Trigger in\"},{\"name\":\"btagbs7z2\",\"title\":\"Class\"},{\"name\":\"lj06d561p\",\"value\":0,\"title\":\"Show Boundings\"},{\"name\":\"patchId\",\"value\":\"yucjicj8c\"}],\"portsOut\":[{\"name\":\"nti406vwi\",\"value\":-0.3966481903275366,\"title\":\"Result\"},{\"name\":\"gjvx0zyv5\",\"title\":\"value\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"gjvx0zyv5\",\"objIn\":\"bp3-6\",\"objOut\":\"bp3-0\"},{\"portIn\":\"a\",\"portOut\":\"gjvx0zyv5\",\"objIn\":\"bp3-9\",\"objOut\":\"bp3-0\"}]}],\"objName\":\"Ops.Patch.PW10J0o.BasicSlider_v3\"},{\"id\":\"bp3-1\",\"uiAttribs\":{\"subPatch\":\"yhlehjjyz\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Named Trigger\",\"value\":\"exeNoCamera\"}],\"portsOut\":[{\"name\":\"Triggered\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"Triggered\",\"objIn\":\"bp3-13\",\"objOut\":\"bp3-1\"}]}],\"objName\":\"Ops.Trigger.TriggerReceive\"},{\"id\":\"bp3-2\",\"uiAttribs\":{\"subPatch\":\"yhlehjjyz\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"value\",\"value\":\"position\"}],\"portsOut\":[{\"name\":\"String\",\"links\":[{\"portIn\":\"btagbs7z2\",\"portOut\":\"String\",\"objIn\":\"bp3-0\",\"objOut\":\"bp3-2\"}]}],\"objName\":\"Ops.String.String_v2\"},{\"id\":\"bp3-3\",\"uiAttribs\":{\"subPatch\":\"yhlehjjyz\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Text\",\"value\":\"* position\"},{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.06},{\"name\":\"Letter Spacing\",\"value\":-0.04},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":1},{\"name\":\"Align\",\"value\":\"Center\"},{\"name\":\"Vertical Align index\",\"value\":2},{\"name\":\"Vertical Align\",\"value\":\"Middle\"},{\"name\":\"r\",\"value\":0.75},{\"name\":\"g\",\"value\":0.75},{\"name\":\"b\",\"value\":0.75},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.17},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.222},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":0},{\"name\":\"Border g\",\"value\":0},{\"name\":\"Border b\",\"value\":1},{\"name\":\"Shadow\",\"value\":0},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.26200078125},{\"name\":\"Height\",\"value\":0.09154265873015872},{\"name\":\"Start Y\",\"value\":0.04224890873015873},{\"name\":\"Num Chars\",\"value\":10}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"bp3-4\",\"uiAttribs\":{\"subPatch\":\"yhlehjjyz\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":-1.34},{\"name\":\"y\",\"value\":1.05},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"bp3-3\",\"objOut\":\"bp3-4\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp3-5\",\"uiAttribs\":{\"subPatch\":\"yhlehjjyz\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"position\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp3-6\",\"uiAttribs\":{\"subPatch\":\"yhlehjjyz\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.33}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"result\",\"objIn\":\"bp3-3\",\"objOut\":\"bp3-6\"}]}],\"objName\":\"Ops.Math.Sum\"},{\"id\":\"bp3-7\",\"uiAttribs\":{\"subPatch\":\"yhlehjjyz\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":1.71},{\"name\":\"height\",\"value\":0.08},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":2},{\"name\":\"num rows\",\"value\":3}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"bp3-8\",\"uiAttribs\":{\"subPatch\":\"yhlehjjyz\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":-0.555},{\"name\":\"y\",\"value\":0.915},{\"name\":\"z\",\"value\":0.05}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp3-9\",\"objOut\":\"bp3-8\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp3-9\",\"uiAttribs\":{\"subPatch\":\"yhlehjjyz\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"PointSize\",\"value\":4},{\"name\":\"Size in Pixels\",\"value\":1},{\"name\":\"Random Size\",\"value\":0},{\"name\":\"Round\",\"value\":0},{\"name\":\"Round Antialias\",\"value\":0},{\"name\":\"Scale by Distance\",\"value\":0},{\"name\":\"r\",\"value\":0.772},{\"name\":\"g\",\"value\":0.15106840238933295},{\"name\":\"b\",\"value\":0.4207414807217118},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Colorize Texture\",\"value\":0},{\"name\":\"Mask Channel index\",\"value\":0},{\"name\":\"Mask Channel\",\"value\":\"R\"},{\"name\":\"Colorize Randomize\",\"value\":0},{\"name\":\"Point Size Channel index\",\"value\":0},{\"name\":\"Point Size Channel\",\"value\":\"R\"},{\"name\":\"Texture Point Size Mul\",\"value\":1},{\"name\":\"Map Size 0 index\",\"value\":0},{\"name\":\"Map Size 0\",\"value\":\"Black\"},{\"name\":\"Flip Texture\",\"value\":0},{\"name\":\"Atlas Cross Fade\",\"value\":0},{\"name\":\"Atlas Repeat X \",\"value\":1},{\"name\":\"Min Point Size\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp3-7\",\"objOut\":\"bp3-9\"}]}],\"objName\":\"Ops.Gl.Shader.PointMaterial_v5\"},{\"id\":\"bp3-10\",\"uiAttribs\":{\"subPatch\":\"yhlehjjyz\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_bypassSRVB\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"Value\",\"objIn\":\"bp3-11\",\"objOut\":\"bp3-10\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"bp3-11\",\"uiAttribs\":{\"subPatch\":\"yhlehjjyz\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"bp3-13\",\"objOut\":\"bp3-11\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"bp3-12\",\"uiAttribs\":{\"subPatch\":\"yhlehjjyz\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"bypass\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp3-13\",\"uiAttribs\":{\"subPatch\":\"yhlehjjyz\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"blls2amps\",\"portOut\":\"Trigger out\",\"objIn\":\"bp3-0\",\"objOut\":\"bp3-13\"},{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"bp3-4\",\"objOut\":\"bp3-13\"},{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"bp3-8\",\"objOut\":\"bp3-13\"}]}],\"objName\":\"Ops.Trigger.GateTrigger\"},{\"id\":\"bp3-14\",\"uiAttribs\":{\"subPatch\":\"yhlehjjyz\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp3-15\",\"uiAttribs\":{\"subPatch\":\"yhlehjjyz\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchOutput\"}]}",};
+op.initInnerPorts=function(addedOps)
+{
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
+    {
+    }
+if(addedOps[i].innerOutput)
+{
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
+    {
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
+    }
+
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
+}
+
+
+};
+
+Ops.Patch.PW10J0o.UI_Position.prototype = new CABLES.Op();
+CABLES.OPS["9f2fc7fd-e104-4492-a817-5dbbd661a1f3"]={f:Ops.Patch.PW10J0o.UI_Position,objName:"Ops.Patch.PW10J0o.UI_Position"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PW10J0o.UI_Reverse
+// 
+// **************************************************************
+
+Ops.Patch.PW10J0o.UI_Reverse = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"inc_gen_ports_js":"op.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp4-0\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Named Trigger\",\"value\":\"exeNoCamera\"}],\"portsOut\":[{\"name\":\"Triggered\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"Triggered\",\"objIn\":\"bp4-24\",\"objOut\":\"bp4-0\"}]}],\"objName\":\"Ops.Trigger.TriggerReceive\"},{\"id\":\"bp4-1\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1.56},{\"name\":\"y\",\"value\":-0.91},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"bp4-44\",\"objOut\":\"bp4-1\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp4-2\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"File\",\"value\":\"assets/6697c3b245eb5d333bae2007_NEL_SRVB.webp\",\"display\":\"file\"},{\"name\":\"Filter index\",\"value\":2},{\"name\":\"Filter\",\"value\":\"mipmap\"},{\"name\":\"Wrap index\",\"value\":0},{\"name\":\"Wrap\",\"value\":\"repeat\"},{\"name\":\"Anisotropic index\",\"value\":3},{\"name\":\"Anisotropic\",\"value\":\"4\"},{\"name\":\"Data Format index\",\"value\":3},{\"name\":\"Data Format\",\"value\":\"RGBA\"},{\"name\":\"Flip\",\"value\":0},{\"name\":\"Pre Multiplied Alpha\",\"value\":0},{\"name\":\"Active\",\"value\":1},{\"name\":\"Save Memory\",\"value\":1},{\"name\":\"Add Cachebuster\",\"value\":0}],\"portsOut\":[{\"name\":\"Texture\",\"links\":[{\"portIn\":\"texture\",\"portOut\":\"Texture\",\"objIn\":\"bp4-4\",\"objOut\":\"bp4-2\"}]},{\"name\":\"Width\",\"value\":256},{\"name\":\"Height\",\"value\":256},{\"name\":\"Aspect Ratio\",\"value\":1},{\"name\":\"Loaded\",\"value\":1},{\"name\":\"Loading\",\"value\":0}],\"objName\":\"Ops.Gl.Texture_v2\"},{\"id\":\"bp4-3\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":2.35},{\"name\":\"y\",\"value\":-1.41},{\"name\":\"z\",\"value\":-1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp4-4\",\"objOut\":\"bp4-3\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp4-4\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.9084857245945317},{\"name\":\"g\",\"value\":0.10570856602655021},{\"name\":\"b\",\"value\":0.6349807163120653},{\"name\":\"a\",\"value\":1},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":1},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":1},{\"name\":\"Tex Offset Y\",\"value\":1},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"update\",\"portOut\":\"trigger\",\"objIn\":\"bp4-15\",\"objOut\":\"bp4-4\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"bp4-5\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":9},{\"name\":\"easing\",\"value\":\"Expo In Out\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"trigger\",\"objIn\":\"bp4-10\",\"objOut\":\"bp4-5\"},{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp4-20\",\"objOut\":\"bp4-5\"}]},{\"name\":\"value\",\"links\":[{\"portIn\":\"Percentage\",\"portOut\":\"value\",\"objIn\":\"bp4-21\",\"objOut\":\"bp4-5\"}]},{\"name\":\"finished\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"finished\",\"objIn\":\"bp4-11\",\"objOut\":\"bp4-5\"}]}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"bp4-6\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"radius\",\"value\":0.5},{\"name\":\"segments\",\"value\":3},{\"name\":\"percent\",\"value\":1},{\"name\":\"steps\",\"value\":0},{\"name\":\"invertSteps\",\"value\":1},{\"name\":\"mapping index\",\"value\":1},{\"name\":\"mapping\",\"value\":\"round\"},{\"name\":\"Spline\",\"value\":0},{\"name\":\"Draw\",\"value\":0,\"title\":\"Render mesh\"}],\"portsOut\":[{\"name\":\"geometry\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"geometry\",\"objIn\":\"bp4-8\",\"objOut\":\"bp4-6\"}]}],\"objName\":\"Ops.Gl.Meshes.Circle_v3\"},{\"id\":\"bp4-7\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"direction\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp4-8\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Translate X\",\"value\":0},{\"name\":\"Translate Y\",\"value\":0.03},{\"name\":\"Translate Z\",\"value\":0},{\"name\":\"Rotation X\",\"value\":0},{\"name\":\"Rotation Z\",\"value\":0}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"Result\",\"objIn\":\"bp4-9\",\"objOut\":\"bp4-8\"}]}],\"objName\":\"Ops.Graphics.Geometry.TransformGeometry\"},{\"id\":\"bp4-9\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Render Mesh\",\"value\":1},{\"name\":\"Add Vertex Numbers\",\"value\":1}],\"objName\":\"Ops.Gl.RenderGeometry_v2\"},{\"id\":\"bp4-10\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"bp4-6\",\"objOut\":\"bp4-10\"}]}],\"objName\":\"Ops.Trigger.GateTrigger\"},{\"id\":\"bp4-11\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"bool 1\",\"portOut\":\"Result\",\"objIn\":\"bp4-16\",\"objOut\":\"bp4-11\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"bp4-12\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":8},{\"name\":\"easing\",\"value\":\"Expo Out\"},{\"name\":\"duration\",\"value\":2},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0},{\"name\":\"value true\",\"value\":180}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp4-9\",\"objOut\":\"bp4-12\"}]},{\"name\":\"value\",\"links\":[{\"portIn\":\"Rotation Y\",\"portOut\":\"value\",\"objIn\":\"bp4-8\",\"objOut\":\"bp4-12\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"bp4-13\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"value\",\"value\":0.3}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Scale X\",\"portOut\":\"result\",\"objIn\":\"bp4-8\",\"objOut\":\"bp4-13\"},{\"portIn\":\"Scale Y\",\"portOut\":\"result\",\"objIn\":\"bp4-8\",\"objOut\":\"bp4-13\"},{\"portIn\":\"Scale Z\",\"portOut\":\"result\",\"objIn\":\"bp4-8\",\"objOut\":\"bp4-13\"}]}],\"objName\":\"Ops.Number.Number\"},{\"id\":\"bp4-14\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__directionHover\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp4-15\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Duration\",\"value\":0.1},{\"name\":\"Invert\",\"value\":0}],\"portsOut\":[{\"name\":\"Trigger Out\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"Trigger Out\",\"objIn\":\"bp4-12\",\"objOut\":\"bp4-15\"}]},{\"name\":\"Value\",\"links\":[{\"portIn\":\"bool 2\",\"portOut\":\"Value\",\"objIn\":\"bp4-16\",\"objOut\":\"bp4-15\"}]}],\"objName\":\"Ops.Anim.Bang\"},{\"id\":\"bp4-16\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"bool 3\",\"value\":0},{\"name\":\"bool 4\",\"value\":0},{\"name\":\"bool 5\",\"value\":0},{\"name\":\"bool 6\",\"value\":0},{\"name\":\"bool 7\",\"value\":0},{\"name\":\"bool 8\",\"value\":0},{\"name\":\"bool 9\",\"value\":0},{\"name\":\"bool 10\",\"value\":0}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"bp4-10\",\"objOut\":\"bp4-16\"}]}],\"objName\":\"Ops.Boolean.Or\"},{\"id\":\"bp4-17\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Named Trigger\",\"value\":\"mainExe\"}],\"portsOut\":[{\"name\":\"Triggered\",\"links\":[{\"portIn\":\"Exec\",\"portOut\":\"Triggered\",\"objIn\":\"bp4-18\",\"objOut\":\"bp4-17\"}]}],\"objName\":\"Ops.Trigger.TriggerReceive\"},{\"id\":\"bp4-18\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"Bang\",\"portOut\":\"Next\",\"objIn\":\"bp4-15\",\"objOut\":\"bp4-18\"}]},{\"name\":\"Was Triggered\",\"value\":1}],\"objName\":\"Ops.Trigger.TriggerOnce\"},{\"id\":\"bp4-19\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Text\",\"value\":\"mirror\"},{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.06},{\"name\":\"Letter Spacing\",\"value\":0},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":1},{\"name\":\"Align\",\"value\":\"Center\"},{\"name\":\"Vertical Align index\",\"value\":2},{\"name\":\"Vertical Align\",\"value\":\"Middle\"},{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":1},{\"name\":\"a\",\"value\":1},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.147},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.085},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":0},{\"name\":\"Border g\",\"value\":0.107},{\"name\":\"Border b\",\"value\":0.196},{\"name\":\"Shadow\",\"value\":0},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.1596796875},{\"name\":\"Height\",\"value\":0.056864533730158734},{\"name\":\"Start Y\",\"value\":0.017550471230158737},{\"name\":\"Num Chars\",\"value\":6}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"bp4-20\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posX\",\"value\":-0.06},{\"name\":\"posY\",\"value\":0},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":1.12},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"bp4-19\",\"objOut\":\"bp4-20\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp4-21\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0.8},{\"name\":\"Value 2\",\"value\":-1}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"innerRadius\",\"portOut\":\"Result\",\"objIn\":\"bp4-6\",\"objOut\":\"bp4-21\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"bp4-22\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0},{\"name\":\"Value 2\",\"value\":180}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"rotY\",\"portOut\":\"Result\",\"objIn\":\"bp4-20\",\"objOut\":\"bp4-22\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"bp4-23\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_bypassConvolver\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"Value\",\"objIn\":\"bp4-25\",\"objOut\":\"bp4-23\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"bp4-24\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"bp4-3\",\"objOut\":\"bp4-24\"},{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"bp4-1\",\"objOut\":\"bp4-24\"}]}],\"objName\":\"Ops.Trigger.GateTrigger\"},{\"id\":\"bp4-25\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"bp4-24\",\"objOut\":\"bp4-25\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"bp4-26\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"bp4-27\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp4-31\",\"objOut\":\"bp4-27\"},{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"bp4-41\",\"objOut\":\"bp4-27\"},{\"portIn\":\"Index\",\"portOut\":\"result\",\"objIn\":\"bp4-39\",\"objOut\":\"bp4-27\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"bp4-28\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"value\",\"value\":\"scapeReverse\"}],\"portsOut\":[{\"name\":\"String\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String\",\"objIn\":\"bp4-26\",\"objOut\":\"bp4-28\"},{\"portIn\":\"String In\",\"portOut\":\"String\",\"objIn\":\"bp4-34\",\"objOut\":\"bp4-28\"},{\"portIn\":\"ID\",\"portOut\":\"String\",\"objIn\":\"bp4-44\",\"objOut\":\"bp4-28\"}]}],\"objName\":\"Ops.String.String_v2\"},{\"id\":\"bp4-29\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Bool\",\"value\":0}],\"objName\":\"Ops.Ui.VizBool\"},{\"id\":\"bp4-30\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Default\",\"value\":0}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"result\",\"objIn\":\"bp4-12\",\"objOut\":\"bp4-30\"},{\"portIn\":\"Percentage\",\"portOut\":\"result\",\"objIn\":\"bp4-22\",\"objOut\":\"bp4-30\"},{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"bp4-29\",\"objOut\":\"bp4-30\"},{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp4-36\",\"objOut\":\"bp4-30\"}]}],\"objName\":\"Ops.Boolean.ToggleBool_v2\"},{\"id\":\"bp4-31\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonToggle\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp4-32\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeReverse\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp4-33\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int rev\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp4-34\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"scapeReverse\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"bp4-35\",\"objOut\":\"bp4-34\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"bp4-38\",\"objOut\":\"bp4-34\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"bp4-35\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"bp4-36\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp4-37\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_srvbParams_object\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"bp4-40\",\"objOut\":\"bp4-37\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"bp4-38\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Numbers_0\",\"portOut\":\"Result\",\"objIn\":\"bp4-39\",\"objOut\":\"bp4-38\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"bp4-39\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_1\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"bp4-32\",\"objOut\":\"bp4-39\"}]},{\"name\":\"Num Values\",\"value\":1}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"bp4-40\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":1}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"bp4-38\",\"objOut\":\"bp4-40\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"bp4-41\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"bp4-40\",\"objOut\":\"bp4-41\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"bp4-42\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp4-43\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp4-44\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":0.18},{\"name\":\"Height\",\"value\":0.3},{\"name\":\"Class\",\"value\":\"\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":0},{\"name\":\"Pivot y\",\"value\":\"center\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Render Rectangle\",\"value\":0},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":2},{\"name\":\"Cursor\",\"value\":\"pointer\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"Trigger out\",\"objIn\":\"bp4-5\",\"objOut\":\"bp4-44\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp4-5\",\"objOut\":\"bp4-44\"},{\"portIn\":\"Value\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp4-14\",\"objOut\":\"bp4-44\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp4-34\",\"objOut\":\"bp4-44\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp4-46\",\"objOut\":\"bp4-44\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp4-27\",\"objOut\":\"bp4-44\"}]},{\"name\":\"Pointer X\",\"value\":0.6796435570366715},{\"name\":\"Pointer Y\",\"value\":0.05393587150974455},{\"name\":\"Top\",\"value\":766.6201729774475},{\"name\":\"Left\",\"value\":1607.8047664761543},{\"name\":\"Right\",\"value\":1681.372741162777},{\"name\":\"Bottom\",\"value\":889.233425617218},{\"name\":\"Left Click\",\"links\":[{\"portIn\":\"trigger\",\"portOut\":\"Left Click\",\"objIn\":\"bp4-30\",\"objOut\":\"bp4-44\"}]}],\"objName\":\"Ops.Patch.PW10J0o.InteractiveRectangle_v23\"},{\"id\":\"bp4-45\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2,\"ref\":\"bp4-45\"},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp4-46\",\"uiAttribs\":{\"subPatch\":\"mv4m8aqro\"},\"storage\":{\"blueprintVer\":2,\"ref\":\"bp4-46\"},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"bp4-45\",\"objOut\":\"bp4-46\"}]}],\"objName\":\"Ops.Boolean.Not\"}]}",};
+op.initInnerPorts=function(addedOps)
+{
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
+    {
+    }
+if(addedOps[i].innerOutput)
+{
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
+    {
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
+    }
+
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
+}
+
+
+};
+
+Ops.Patch.PW10J0o.UI_Reverse.prototype = new CABLES.Op();
+CABLES.OPS["3d75e5e2-6658-470e-804e-bf48817fa12a"]={f:Ops.Patch.PW10J0o.UI_Reverse,objName:"Ops.Patch.PW10J0o.UI_Reverse"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PW10J0o.UI_ScapeParams
+// 
+// **************************************************************
+
+Ops.Patch.PW10J0o.UI_ScapeParams = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"inc_gen_ports_js":"op.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp5-0\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"value\",\"value\":\"scapeLength\"}],\"portsOut\":[{\"name\":\"String\",\"links\":[{\"portIn\":\"btagbs7z2\",\"portOut\":\"String\",\"objIn\":\"bp5-13\",\"objOut\":\"bp5-0\"}]}],\"objName\":\"Ops.String.String_v2\"},{\"id\":\"bp5-1\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.05},{\"name\":\"Letter Spacing\",\"value\":-0.02},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":1},{\"name\":\"Align\",\"value\":\"Center\"},{\"name\":\"Vertical Align index\",\"value\":1},{\"name\":\"Vertical Align\",\"value\":\"Top\"},{\"name\":\"r\",\"value\":0.75},{\"name\":\"g\",\"value\":0.75},{\"name\":\"b\",\"value\":0.75},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.259},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.515},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":0},{\"name\":\"Border g\",\"value\":0.781},{\"name\":\"Border b\",\"value\":1},{\"name\":\"Shadow\",\"value\":0},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.21398632812500004},{\"name\":\"Height\",\"value\":0.05346133019179895},{\"name\":\"Start Y\",\"value\":0.026471292162698425},{\"name\":\"Num Chars\",\"value\":8}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"bp5-2\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"y\",\"value\":-0.94},{\"name\":\"z\",\"value\":0.01}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"bp5-1\",\"objOut\":\"bp5-2\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp5-3\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Repeats\",\"value\":4},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Forward\"}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp5-2\",\"objOut\":\"bp5-3\"}]},{\"name\":\"index\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"index\",\"objIn\":\"bp5-4\",\"objOut\":\"bp5-3\"},{\"portIn\":\"Index\",\"portOut\":\"index\",\"objIn\":\"bp5-7\",\"objOut\":\"bp5-3\"}]}],\"objName\":\"Ops.Trigger.Repeat_v2\"},{\"id\":\"bp5-4\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.8}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"x\",\"portOut\":\"result\",\"objIn\":\"bp5-2\",\"objOut\":\"bp5-4\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"bp5-5\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":-1.2},{\"name\":\"y\",\"value\":0.02},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"trigger\",\"objIn\":\"bp5-3\",\"objOut\":\"bp5-5\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp5-6\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"scape IR\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp5-7\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"String 0\",\"value\":\"light\"},{\"name\":\"String 1\",\"value\":\"surface\"},{\"name\":\"String 2\",\"value\":\"temple\"},{\"name\":\"String 3\",\"value\":\"deepness\"},{\"name\":\"String 4\",\"value\":\"\"},{\"name\":\"String 5\",\"value\":\"\"},{\"name\":\"String 6\",\"value\":\"\"},{\"name\":\"String 7\",\"value\":\"\"},{\"name\":\"String 8\",\"value\":\"\"},{\"name\":\"String 9\",\"value\":\"\"}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Text\",\"portOut\":\"Result\",\"objIn\":\"bp5-1\",\"objOut\":\"bp5-7\"}]}],\"objName\":\"Ops.String.SwitchString\"},{\"id\":\"bp5-8\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.33}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"result\",\"objIn\":\"bp5-24\",\"objOut\":\"bp5-8\"}]}],\"objName\":\"Ops.Math.Sum\"},{\"id\":\"bp5-9\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Named Trigger\",\"value\":\"exeNoCamera\"}],\"portsOut\":[{\"name\":\"Triggered\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"Triggered\",\"objIn\":\"bp5-30\",\"objOut\":\"bp5-9\"}]}],\"objName\":\"Ops.Trigger.TriggerReceive\"},{\"id\":\"bp5-10\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"value\",\"value\":\"scapeLevel\"}],\"portsOut\":[{\"name\":\"String\",\"links\":[{\"portIn\":\"btagbs7z2\",\"portOut\":\"String\",\"objIn\":\"bp5-14\",\"objOut\":\"bp5-10\"}]}],\"objName\":\"Ops.String.String_v2\"},{\"id\":\"bp5-11\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"scape level\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp5-12\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.4}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"result\",\"objIn\":\"bp5-17\",\"objOut\":\"bp5-12\"}]}],\"objName\":\"Ops.Math.Sum\"},{\"id\":\"bp5-13\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2,\"subPatchVer\":2},\"portsIn\":[{\"name\":\"blls2amps\",\"title\":\"Trigger in\"},{\"name\":\"btagbs7z2\",\"title\":\"Class\"},{\"name\":\"lj06d561p\",\"value\":0,\"title\":\"Show Boundings\"},{\"name\":\"patchId\",\"value\":\"b2enf958a\"}],\"portsOut\":[{\"name\":\"nti406vwi\",\"value\":0.2994227487404977,\"title\":\"Result\"},{\"name\":\"gjvx0zyv5\",\"title\":\"value\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"gjvx0zyv5\",\"objIn\":\"bp5-8\",\"objOut\":\"bp5-13\"}]}],\"objName\":\"Ops.Patch.PW10J0o.BasicSlider_v2\"},{\"id\":\"bp5-14\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2,\"subPatchVer\":2},\"portsIn\":[{\"name\":\"blls2amps\",\"title\":\"Trigger in\"},{\"name\":\"btagbs7z2\",\"title\":\"Class\"},{\"name\":\"lj06d561p\",\"value\":0,\"title\":\"Show Boundings\"},{\"name\":\"patchId\",\"value\":\"suv53ol7o\"}],\"portsOut\":[{\"name\":\"nti406vwi\",\"value\":-0.39491704974676195,\"title\":\"Result\"},{\"name\":\"gjvx0zyv5\",\"title\":\"value\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"gjvx0zyv5\",\"objIn\":\"bp5-12\",\"objOut\":\"bp5-14\"}]}],\"objName\":\"Ops.Patch.PW10J0o.BasicSlider_v1\"},{\"id\":\"bp5-15\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Text\",\"value\":\"~ level\"},{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.06},{\"name\":\"Letter Spacing\",\"value\":-0.05},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":2},{\"name\":\"Align\",\"value\":\"Right\"},{\"name\":\"Vertical Align index\",\"value\":1},{\"name\":\"Vertical Align\",\"value\":\"Top\"},{\"name\":\"r\",\"value\":0.848},{\"name\":\"g\",\"value\":0.865},{\"name\":\"b\",\"value\":0.878},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.17},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.222},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":0},{\"name\":\"Border g\",\"value\":0},{\"name\":\"Border b\",\"value\":1},{\"name\":\"Shadow\",\"value\":0},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.16333593750000003},{\"name\":\"Height\",\"value\":0.08430047123015873},{\"name\":\"Start Y\",\"value\":0.031765550595238105},{\"name\":\"Num Chars\",\"value\":7}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"bp5-16\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":-1.42},{\"name\":\"y\",\"value\":-0.77},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"bp5-15\",\"objOut\":\"bp5-16\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp5-17\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"result\",\"objIn\":\"bp5-15\",\"objOut\":\"bp5-17\"},{\"portIn\":\"number1\",\"portOut\":\"result\",\"objIn\":\"bp5-21\",\"objOut\":\"bp5-17\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"bp5-18\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":2.74},{\"name\":\"height\",\"value\":0.03},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":9},{\"name\":\"num rows\",\"value\":3}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"bp5-19\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"PointSize\",\"value\":3},{\"name\":\"Size in Pixels\",\"value\":1},{\"name\":\"Random Size\",\"value\":0},{\"name\":\"Round\",\"value\":0},{\"name\":\"Round Antialias\",\"value\":0},{\"name\":\"Scale by Distance\",\"value\":0},{\"name\":\"r\",\"value\":0.772},{\"name\":\"g\",\"value\":0.15106840238933295},{\"name\":\"b\",\"value\":0.4207414807217118},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Colorize Texture\",\"value\":1},{\"name\":\"Mask Channel index\",\"value\":0},{\"name\":\"Mask Channel\",\"value\":\"R\"},{\"name\":\"Colorize Randomize\",\"value\":0},{\"name\":\"Point Size Channel index\",\"value\":0},{\"name\":\"Point Size Channel\",\"value\":\"R\"},{\"name\":\"Texture Point Size Mul\",\"value\":1},{\"name\":\"Map Size 0 index\",\"value\":0},{\"name\":\"Map Size 0\",\"value\":\"Black\"},{\"name\":\"Flip Texture\",\"value\":0},{\"name\":\"Atlas Cross Fade\",\"value\":0},{\"name\":\"Atlas Repeat X \",\"value\":1},{\"name\":\"Min Point Size\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp5-18\",\"objOut\":\"bp5-19\"}]}],\"objName\":\"Ops.Gl.Shader.PointMaterial_v5\"},{\"id\":\"bp5-20\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0},{\"name\":\"y\",\"value\":-0.77},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp5-19\",\"objOut\":\"bp5-20\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp5-21\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":2}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"result\",\"objIn\":\"bp5-19\",\"objOut\":\"bp5-21\"}]}],\"objName\":\"Ops.Math.Divide\"},{\"id\":\"bp5-22\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":2.7},{\"name\":\"height\",\"value\":0.03},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":9},{\"name\":\"num rows\",\"value\":3}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"bp5-23\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0},{\"name\":\"y\",\"value\":-0.97},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp5-26\",\"objOut\":\"bp5-23\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp5-24\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"result\",\"objIn\":\"bp5-25\",\"objOut\":\"bp5-24\"},{\"portIn\":\"a\",\"portOut\":\"result\",\"objIn\":\"bp5-36\",\"objOut\":\"bp5-24\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"bp5-25\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":2}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"result\",\"objIn\":\"bp5-26\",\"objOut\":\"bp5-25\"},{\"portIn\":\"number1\",\"portOut\":\"result\",\"objIn\":\"bp5-32\",\"objOut\":\"bp5-25\"}]}],\"objName\":\"Ops.Math.Divide\"},{\"id\":\"bp5-26\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"PointSize\",\"value\":3},{\"name\":\"Size in Pixels\",\"value\":1},{\"name\":\"Random Size\",\"value\":0},{\"name\":\"Round\",\"value\":0},{\"name\":\"Round Antialias\",\"value\":0},{\"name\":\"Scale by Distance\",\"value\":0},{\"name\":\"r\",\"value\":0.772},{\"name\":\"g\",\"value\":0.15106840238933295},{\"name\":\"b\",\"value\":0.4207414807217118},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Colorize Texture\",\"value\":1},{\"name\":\"Mask Channel index\",\"value\":0},{\"name\":\"Mask Channel\",\"value\":\"R\"},{\"name\":\"Colorize Randomize\",\"value\":0},{\"name\":\"Point Size Channel index\",\"value\":0},{\"name\":\"Point Size Channel\",\"value\":\"R\"},{\"name\":\"Texture Point Size Mul\",\"value\":1},{\"name\":\"Map Size 0 index\",\"value\":0},{\"name\":\"Map Size 0\",\"value\":\"Black\"},{\"name\":\"Flip Texture\",\"value\":0},{\"name\":\"Atlas Cross Fade\",\"value\":0},{\"name\":\"Atlas Repeat X \",\"value\":1},{\"name\":\"Min Point Size\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp5-22\",\"objOut\":\"bp5-26\"}]}],\"objName\":\"Ops.Gl.Shader.PointMaterial_v5\"},{\"id\":\"bp5-27\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_bypassConvolver\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"Value\",\"objIn\":\"bp5-28\",\"objOut\":\"bp5-27\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"bp5-28\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"bp5-30\",\"objOut\":\"bp5-28\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"bp5-29\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"bypass\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp5-30\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"bp5-20\",\"objOut\":\"bp5-30\"},{\"portIn\":\"blls2amps\",\"portOut\":\"Trigger out\",\"objIn\":\"bp5-14\",\"objOut\":\"bp5-30\"},{\"portIn\":\"Trigger\",\"portOut\":\"Trigger out\",\"objIn\":\"bp5-31\",\"objOut\":\"bp5-30\"}]}],\"objName\":\"Ops.Trigger.GateTrigger\"},{\"id\":\"bp5-31\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp5-5\",\"objOut\":\"bp5-31\"},{\"portIn\":\"blls2amps\",\"portOut\":\"Next\",\"objIn\":\"bp5-13\",\"objOut\":\"bp5-31\"},{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp5-23\",\"objOut\":\"bp5-31\"},{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp5-16\",\"objOut\":\"bp5-31\"},{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp5-37\",\"objOut\":\"bp5-31\"}]}],\"objName\":\"Ops.Ui.Routing.RouteTrigger\"},{\"id\":\"bp5-32\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":2}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"result\",\"objIn\":\"bp5-33\",\"objOut\":\"bp5-32\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"bp5-33\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.2}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"result\",\"objIn\":\"bp5-1\",\"objOut\":\"bp5-33\"}]}],\"objName\":\"Ops.Math.Sum\"},{\"id\":\"bp5-34\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp5-35\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp5-36\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Text\",\"value\":\"~ type\"},{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.06},{\"name\":\"Letter Spacing\",\"value\":-0.05},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":2},{\"name\":\"Align\",\"value\":\"Right\"},{\"name\":\"Vertical Align index\",\"value\":1},{\"name\":\"Vertical Align\",\"value\":\"Top\"},{\"name\":\"r\",\"value\":0.848},{\"name\":\"g\",\"value\":0.865},{\"name\":\"b\",\"value\":0.878},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.17},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.222},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":0},{\"name\":\"Border g\",\"value\":0},{\"name\":\"Border b\",\"value\":1},{\"name\":\"Shadow\",\"value\":0},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.16000078125},{\"name\":\"Height\",\"value\":0.08107312748015873},{\"name\":\"Start Y\",\"value\":0.0285382068452381},{\"name\":\"Num Chars\",\"value\":6}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"bp5-37\",\"uiAttribs\":{\"subPatch\":\"xuzg05mms\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":-1.42},{\"name\":\"y\",\"value\":-0.92},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"bp5-36\",\"objOut\":\"bp5-37\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"}]}",};
+op.initInnerPorts=function(addedOps)
+{
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
+    {
+    }
+if(addedOps[i].innerOutput)
+{
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
+    {
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
+    }
+
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
+}
+
+
+};
+
+Ops.Patch.PW10J0o.UI_ScapeParams.prototype = new CABLES.Op();
+CABLES.OPS["fdd34a11-eec1-4d61-badb-9538891fbbd4"]={f:Ops.Patch.PW10J0o.UI_ScapeParams,objName:"Ops.Patch.PW10J0o.UI_ScapeParams"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PW10J0o.UI_Bypassers
+// 
+// **************************************************************
+
+Ops.Patch.PW10J0o.UI_Bypassers = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"inc_gen_ports_js":"op.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp6-0\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"trigger 0\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger 0\",\"objIn\":\"bp6-4\",\"objOut\":\"bp6-0\"}]},{\"name\":\"trigger 1\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger 1\",\"objIn\":\"bp6-59\",\"objOut\":\"bp6-0\"}]},{\"name\":\"trigger 5\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger 5\",\"objIn\":\"bp6-1\",\"objOut\":\"bp6-0\"}]},{\"name\":\"trigger 7\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"trigger 7\",\"objIn\":\"bp6-14\",\"objOut\":\"bp6-0\"}]}],\"objName\":\"Ops.Gl.LayerSequence\"},{\"id\":\"bp6-1\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":1},{\"name\":\"Height\",\"value\":1},{\"name\":\"pivot x index\",\"value\":0},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":0},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"Draw Top\",\"value\":1},{\"name\":\"Draw Bottom\",\"value\":1},{\"name\":\"Draw Left\",\"value\":1},{\"name\":\"Draw Right\",\"value\":1},{\"name\":\"Active\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.RectangleFrame_v2\"},{\"id\":\"bp6-2\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Named Trigger\",\"value\":\"midExe\"}],\"portsOut\":[{\"name\":\"Triggered\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Triggered\",\"objIn\":\"bp6-3\",\"objOut\":\"bp6-2\"},{\"portIn\":\"render\",\"portOut\":\"Triggered\",\"objIn\":\"bp6-20\",\"objOut\":\"bp6-2\"}]}],\"objName\":\"Ops.Trigger.TriggerReceive\"},{\"id\":\"bp6-3\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posX\",\"value\":-1.15},{\"name\":\"posY\",\"value\":0.18},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.06},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"trigger\",\"objIn\":\"bp6-0\",\"objOut\":\"bp6-3\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp6-4\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"title\":\"Render\"},{\"name\":\"width\",\"value\":0.8},{\"name\":\"height\",\"value\":0.8},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":2},{\"name\":\"num rows\",\"value\":2}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"bp6-5\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Default\",\"value\":0}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Render Mesh\",\"portOut\":\"result\",\"objIn\":\"bp6-4\",\"objOut\":\"bp6-5\"},{\"portIn\":\"Numbers_0\",\"portOut\":\"result\",\"objIn\":\"bp6-42\",\"objOut\":\"bp6-5\"},{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"bp6-43\",\"objOut\":\"bp6-5\"},{\"portIn\":\"Value In\",\"portOut\":\"result\",\"objIn\":\"bp6-51\",\"objOut\":\"bp6-5\"}]}],\"objName\":\"Ops.Boolean.ToggleBool_v2\"},{\"id\":\"bp6-6\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"Bypass Convolvers\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp6-7\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"trigger 0\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger 0\",\"objIn\":\"bp6-9\",\"objOut\":\"bp6-7\"}]},{\"name\":\"trigger 5\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger 5\",\"objIn\":\"bp6-8\",\"objOut\":\"bp6-7\"}]},{\"name\":\"trigger 6\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger 6\",\"objIn\":\"bp6-60\",\"objOut\":\"bp6-7\"}]},{\"name\":\"trigger 8\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"trigger 8\",\"objIn\":\"bp6-15\",\"objOut\":\"bp6-7\"}]}],\"objName\":\"Ops.Gl.LayerSequence\"},{\"id\":\"bp6-8\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":1},{\"name\":\"Height\",\"value\":1},{\"name\":\"pivot x index\",\"value\":0},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":0},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"Draw Top\",\"value\":1},{\"name\":\"Draw Bottom\",\"value\":1},{\"name\":\"Draw Left\",\"value\":1},{\"name\":\"Draw Right\",\"value\":1},{\"name\":\"Active\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.RectangleFrame_v2\"},{\"id\":\"bp6-9\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"title\":\"Render\"},{\"name\":\"width\",\"value\":0.8},{\"name\":\"height\",\"value\":0.8},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":2},{\"name\":\"num rows\",\"value\":2}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"bp6-10\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Default\",\"value\":0}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Render Mesh\",\"portOut\":\"result\",\"objIn\":\"bp6-9\",\"objOut\":\"bp6-10\"},{\"portIn\":\"Numbers_0\",\"portOut\":\"result\",\"objIn\":\"bp6-34\",\"objOut\":\"bp6-10\"},{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"bp6-45\",\"objOut\":\"bp6-10\"},{\"portIn\":\"Value In\",\"portOut\":\"result\",\"objIn\":\"bp6-53\",\"objOut\":\"bp6-10\"}]}],\"objName\":\"Ops.Boolean.ToggleBool_v2\"},{\"id\":\"bp6-11\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"Bypass Refs\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp6-12\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posX\",\"value\":-1.15},{\"name\":\"posY\",\"value\":0.27},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.06},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"trigger\",\"objIn\":\"bp6-7\",\"objOut\":\"bp6-12\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp6-13\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Named Trigger\",\"value\":\"midExe\"}],\"portsOut\":[{\"name\":\"Triggered\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Triggered\",\"objIn\":\"bp6-12\",\"objOut\":\"bp6-13\"},{\"portIn\":\"Execute\",\"portOut\":\"Triggered\",\"objIn\":\"bp6-18\",\"objOut\":\"bp6-13\"}]}],\"objName\":\"Ops.Trigger.TriggerReceive\"},{\"id\":\"bp6-14\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":2},{\"name\":\"easing\",\"value\":\"smoothstep\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":1},{\"name\":\"Direction\",\"value\":\"Only True\"},{\"name\":\"value false\",\"value\":-0.05},{\"name\":\"value true\",\"value\":-0.1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"Thickness\",\"portOut\":\"value\",\"objIn\":\"bp6-1\",\"objOut\":\"bp6-14\"},{\"portIn\":\"number\",\"portOut\":\"value\",\"objIn\":\"bp6-24\",\"objOut\":\"bp6-14\"},{\"portIn\":\"SDF\",\"portOut\":\"value\",\"objIn\":\"bp6-19\",\"objOut\":\"bp6-14\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"bp6-15\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":2},{\"name\":\"easing\",\"value\":\"smoothstep\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":1},{\"name\":\"Direction\",\"value\":\"Only True\"},{\"name\":\"value false\",\"value\":-0.05},{\"name\":\"value true\",\"value\":-0.1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"Thickness\",\"portOut\":\"value\",\"objIn\":\"bp6-8\",\"objOut\":\"bp6-15\"},{\"portIn\":\"number\",\"portOut\":\"value\",\"objIn\":\"bp6-22\",\"objOut\":\"bp6-15\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"bp6-16\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Text\",\"value\":\"Bypass Reflectors\"},{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.03},{\"name\":\"Letter Spacing\",\"value\":-0.02},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":0},{\"name\":\"Align\",\"value\":\"Left\"},{\"name\":\"Vertical Align index\",\"value\":2},{\"name\":\"Vertical Align\",\"value\":\"Middle\"},{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":1},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.17},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.278},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":0.268},{\"name\":\"Border g\",\"value\":0.917},{\"name\":\"Border b\",\"value\":0.449},{\"name\":\"Shadow\",\"value\":0},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.25007109375000003},{\"name\":\"Height\",\"value\":0.042150235615079364},{\"name\":\"Start Y\",\"value\":0.01569281374007937},{\"name\":\"Num Chars\",\"value\":17}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"bp6-17\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":-1.07},{\"name\":\"y\",\"value\":0.275},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"bp6-16\",\"objOut\":\"bp6-17\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp6-18\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Pass Through\",\"value\":1}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"bp6-17\",\"objOut\":\"bp6-18\"}]}],\"objName\":\"Ops.Trigger.GateTrigger\"},{\"id\":\"bp6-19\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Text\",\"value\":\"Bypass Scape\"},{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.03},{\"name\":\"Letter Spacing\",\"value\":-0.02},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":0},{\"name\":\"Align\",\"value\":\"Left\"},{\"name\":\"Vertical Align index\",\"value\":2},{\"name\":\"Vertical Align\",\"value\":\"Middle\"},{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.146},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.278},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":0.268},{\"name\":\"Border g\",\"value\":0.917},{\"name\":\"Border b\",\"value\":0.449},{\"name\":\"Shadow\",\"value\":0},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.19078828125000002},{\"name\":\"Height\",\"value\":0.041074454365079366},{\"name\":\"Start Y\",\"value\":0.014079141865079366},{\"name\":\"Num Chars\",\"value\":12}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"bp6-20\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":-1.07},{\"name\":\"y\",\"value\":0.185},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"bp6-19\",\"objOut\":\"bp6-20\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp6-21\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0},{\"name\":\"Value 2\",\"value\":10}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"Result\",\"objIn\":\"bp6-16\",\"objOut\":\"bp6-21\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"bp6-22\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Percentage\",\"portOut\":\"result\",\"objIn\":\"bp6-21\",\"objOut\":\"bp6-22\"}]}],\"objName\":\"Ops.Math.Abs\"},{\"id\":\"bp6-23\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0},{\"name\":\"Value 2\",\"value\":10}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"Result\",\"objIn\":\"bp6-19\",\"objOut\":\"bp6-23\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"bp6-24\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Percentage\",\"portOut\":\"result\",\"objIn\":\"bp6-23\",\"objOut\":\"bp6-24\"}]}],\"objName\":\"Ops.Math.Abs\"},{\"id\":\"bp6-25\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"value\",\"value\":\"scapeBypass\"}],\"portsOut\":[{\"name\":\"String\",\"links\":[{\"portIn\":\"String In\",\"portOut\":\"String\",\"objIn\":\"bp6-37\",\"objOut\":\"bp6-25\"},{\"portIn\":\"ID\",\"portOut\":\"String\",\"objIn\":\"bp6-59\",\"objOut\":\"bp6-25\"}]}],\"objName\":\"Ops.String.String_v2\"},{\"id\":\"bp6-26\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"value\",\"value\":\"srvbBypass\"}],\"portsOut\":[{\"name\":\"String\",\"links\":[{\"portIn\":\"String In\",\"portOut\":\"String\",\"objIn\":\"bp6-29\",\"objOut\":\"bp6-26\"},{\"portIn\":\"ID\",\"portOut\":\"String\",\"objIn\":\"bp6-60\",\"objOut\":\"bp6-26\"}]}],\"objName\":\"Ops.String.String_v2\"},{\"id\":\"bp6-27\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_bypassSRVB\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp6-28\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int srvbBypass\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp6-29\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"srvbBypass\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"bp6-30\",\"objOut\":\"bp6-29\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"bp6-33\",\"objOut\":\"bp6-29\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"bp6-30\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"bp6-31\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp6-32\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_srvbParams_object\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Value\",\"objIn\":\"bp6-33\",\"objOut\":\"bp6-32\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"bp6-33\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"Result\",\"objIn\":\"bp6-48\",\"objOut\":\"bp6-33\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"bp6-34\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"Number\",\"portOut\":\"Number\",\"objIn\":\"bp6-49\",\"objOut\":\"bp6-34\"}]},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"bp6-35\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Index\",\"portOut\":\"Result\",\"objIn\":\"bp6-34\",\"objOut\":\"bp6-35\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"bp6-36\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int scapeBypass\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp6-37\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"scapeBypass\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"bp6-38\",\"objOut\":\"bp6-37\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"bp6-41\",\"objOut\":\"bp6-37\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"bp6-38\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"bp6-39\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp6-40\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_srvbParams_object\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Value\",\"objIn\":\"bp6-41\",\"objOut\":\"bp6-40\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"bp6-41\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Numbers_1\",\"portOut\":\"Result\",\"objIn\":\"bp6-42\",\"objOut\":\"bp6-41\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"bp6-42\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"value\":0},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"bp6-43\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Bool\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Bool\",\"objIn\":\"bp6-44\",\"objOut\":\"bp6-43\"}]}],\"objName\":\"Ops.Ui.VizBool\"},{\"id\":\"bp6-44\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_bypassConvolver\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp6-45\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Bool\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Bool\",\"objIn\":\"bp6-27\",\"objOut\":\"bp6-45\"}]}],\"objName\":\"Ops.Ui.VizBool\"},{\"id\":\"bp6-46\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.VizNumberBar\"},{\"id\":\"bp6-47\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"bp6-37\",\"objOut\":\"bp6-47\"},{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"bp6-51\",\"objOut\":\"bp6-47\"},{\"portIn\":\"Index\",\"portOut\":\"result\",\"objIn\":\"bp6-42\",\"objOut\":\"bp6-47\"},{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp6-55\",\"objOut\":\"bp6-47\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"bp6-48\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Numbers_1\",\"portOut\":\"Result\",\"objIn\":\"bp6-34\",\"objOut\":\"bp6-48\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"bp6-49\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.VizNumberBar\"},{\"id\":\"bp6-50\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"bp6-35\",\"objOut\":\"bp6-50\"},{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"bp6-29\",\"objOut\":\"bp6-50\"},{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"bp6-53\",\"objOut\":\"bp6-50\"},{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp6-56\",\"objOut\":\"bp6-50\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"bp6-51\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"Value Out\",\"objIn\":\"bp6-52\",\"objOut\":\"bp6-51\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"bp6-52\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"bp6-39\",\"objOut\":\"bp6-52\"},{\"portIn\":\"Number\",\"portOut\":\"Result\",\"objIn\":\"bp6-46\",\"objOut\":\"bp6-52\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"bp6-53\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"Value Out\",\"objIn\":\"bp6-54\",\"objOut\":\"bp6-53\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"bp6-54\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"bp6-31\",\"objOut\":\"bp6-54\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"bp6-55\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonToggle\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp6-56\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonToggle\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp6-57\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp6-58\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp6-59\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"portsIn\":[{\"name\":\"Width\",\"value\":4},{\"name\":\"Height\",\"value\":1},{\"name\":\"Class\",\"value\":\"\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":0},{\"name\":\"Pivot y\",\"value\":\"center\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Render Rectangle\",\"value\":0},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":0},{\"name\":\"Cursor\",\"value\":\"auto\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp6-14\",\"objOut\":\"bp6-59\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp6-47\",\"objOut\":\"bp6-59\"}]},{\"name\":\"Pointer X\",\"value\":0},{\"name\":\"Pointer Y\",\"value\":0},{\"name\":\"Top\",\"value\":157.1009087562561},{\"name\":\"Left\",\"value\":36.11217051744461},{\"name\":\"Right\",\"value\":164.9011605978012},{\"name\":\"Bottom\",\"value\":188.9358196258545},{\"name\":\"Left Click\",\"links\":[{\"portIn\":\"trigger\",\"portOut\":\"Left Click\",\"objIn\":\"bp6-5\",\"objOut\":\"bp6-59\"}]}],\"storage\":{\"ref\":\"bp6-59\",\"blueprintVer\":2},\"objName\":\"Ops.Patch.PW10J0o.InteractiveRectangle_v25\"},{\"id\":\"bp6-60\",\"uiAttribs\":{\"subPatch\":\"uc9lgm0d0\"},\"portsIn\":[{\"name\":\"Width\",\"value\":4},{\"name\":\"Height\",\"value\":1},{\"name\":\"Class\",\"value\":\"\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":0},{\"name\":\"Pivot y\",\"value\":\"center\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Render Rectangle\",\"value\":0},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":2},{\"name\":\"Cursor\",\"value\":\"pointer\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp6-15\",\"objOut\":\"bp6-60\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp6-50\",\"objOut\":\"bp6-60\"}]},{\"name\":\"Pointer X\",\"value\":0},{\"name\":\"Pointer Y\",\"value\":0},{\"name\":\"Top\",\"value\":109.4557294845581},{\"name\":\"Left\",\"value\":37.02763319015503},{\"name\":\"Right\",\"value\":165.6423184275627},{\"name\":\"Bottom\",\"value\":141.20489072799683},{\"name\":\"Left Click\",\"links\":[{\"portIn\":\"trigger\",\"portOut\":\"Left Click\",\"objIn\":\"bp6-10\",\"objOut\":\"bp6-60\"}]}],\"storage\":{\"ref\":\"bp6-60\",\"blueprintVer\":2},\"objName\":\"Ops.Patch.PW10J0o.InteractiveRectangle_v25\"}]}",};
+op.initInnerPorts=function(addedOps)
+{
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
+    {
+    }
+if(addedOps[i].innerOutput)
+{
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
+    {
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
+    }
+
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
+}
+
+
+};
+
+Ops.Patch.PW10J0o.UI_Bypassers.prototype = new CABLES.Op();
+CABLES.OPS["bc2d16d6-1c92-4284-9056-f2005b3092c5"]={f:Ops.Patch.PW10J0o.UI_Bypassers,objName:"Ops.Patch.PW10J0o.UI_Bypassers"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PW10J0o.BasicSlider_v5
+// 
+// **************************************************************
+
+Ops.Patch.PW10J0o.BasicSlider_v5 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp7-0\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":0.24},{\"name\":\"Height\",\"value\":1},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":0},{\"name\":\"Pivot y\",\"value\":\"center\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Render Rectangle\",\"value\":0},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"bp7-2\",\"objOut\":\"bp7-0\"}]},{\"name\":\"geometry\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"geometry\",\"objIn\":\"bp7-35\",\"objOut\":\"bp7-0\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp7-29\",\"objOut\":\"bp7-0\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp7-41\",\"objOut\":\"bp7-0\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp7-8\",\"objOut\":\"bp7-0\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp7-30\",\"objOut\":\"bp7-0\"}]},{\"name\":\"Pointer X\",\"value\":0.020389319187370077},{\"name\":\"Pointer Y\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer Y\",\"objIn\":\"bp7-30\",\"objOut\":\"bp7-0\"}]},{\"name\":\"Top\",\"value\":137.30369997024536},{\"name\":\"Left\",\"value\":1677.2856114506721},{\"name\":\"Right\",\"value\":1775.3761843442917},{\"name\":\"Bottom\",\"value\":758.5440187454224}],\"objName\":\"Ops.Gl.InteractiveRectangle_v2\"},{\"id\":\"bp7-1\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp7-7\",\"objOut\":\"bp7-1\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"bp7-2\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"bp7-5\",\"objOut\":\"bp7-2\"},{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp7-32\",\"objOut\":\"bp7-2\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"bp7-4\",\"objOut\":\"bp7-2\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"bp7-34\",\"objOut\":\"bp7-2\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"bp7-3\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"bp7-6\",\"objOut\":\"bp7-3\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"bp7-0\",\"objOut\":\"bp7-3\"},{\"portIn\":\"String In\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"bp7-11\",\"objOut\":\"bp7-3\"}]},{\"name\":\"innerOut_lj06d561p\",\"value\":0,\"title\":\"Show Boundings\"}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp7-4\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp7-5\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.6},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp7-22\",\"objOut\":\"bp7-5\"}]},{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"bp7-1\",\"objOut\":\"bp7-5\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"bp7-4\",\"objOut\":\"bp7-5\"},{\"portIn\":\"Opacity\",\"portOut\":\"value\",\"objIn\":\"bp7-26\",\"objOut\":\"bp7-5\"},{\"portIn\":\"Percentage\",\"portOut\":\"value\",\"objIn\":\"bp7-39\",\"objOut\":\"bp7-5\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"bp7-6\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1.76},{\"name\":\"y\",\"value\":0.013},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp7-33\",\"objOut\":\"bp7-6\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp7-7\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":0.07},{\"name\":\"height\",\"value\":0.01},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":1},{\"name\":\"num rows\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"bp7-8\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp7-16\",\"objOut\":\"bp7-8\"},{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"bp7-19\",\"objOut\":\"bp7-8\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"bp7-9\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_dryMix\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp7-10\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int dry mix\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp7-11\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"dryMix\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"bp7-12\",\"objOut\":\"bp7-11\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"bp7-15\",\"objOut\":\"bp7-11\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"bp7-12\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"bp7-13\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp7-14\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_srvbParams_object\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"bp7-18\",\"objOut\":\"bp7-14\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"bp7-15\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Numbers_1\",\"portOut\":\"Result\",\"objIn\":\"bp7-17\",\"objOut\":\"bp7-15\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"bp7-16\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonSlider\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp7-17\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"bp7-9\",\"objOut\":\"bp7-17\"},{\"portIn\":\"number1\",\"portOut\":\"Number\",\"objIn\":\"bp7-24\",\"objOut\":\"bp7-17\"},{\"portIn\":\"Number\",\"portOut\":\"Number\",\"objIn\":\"bp7-27\",\"objOut\":\"bp7-17\"},{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"bp7-2\",\"objOut\":\"bp7-17\"}]},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"bp7-18\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":1}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"bp7-15\",\"objOut\":\"bp7-18\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"bp7-19\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"bp7-18\",\"objOut\":\"bp7-19\"},{\"portIn\":\"Index\",\"portOut\":\"Result\",\"objIn\":\"bp7-17\",\"objOut\":\"bp7-19\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"bp7-20\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp7-13\",\"objOut\":\"bp7-20\"},{\"portIn\":\"Numbers_0\",\"portOut\":\"result\",\"objIn\":\"bp7-17\",\"objOut\":\"bp7-20\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"bp7-21\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Decimal Places\",\"value\":0}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"string1\",\"portOut\":\"Result\",\"objIn\":\"bp7-25\",\"objOut\":\"bp7-21\"}]}],\"objName\":\"Ops.String.NumberToString_v2\"},{\"id\":\"bp7-22\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0.03},{\"name\":\"y\",\"value\":0.59},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"trigger\",\"portOut\":\"trigger\",\"objIn\":\"bp7-31\",\"objOut\":\"bp7-22\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp7-23\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"digits\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp7-24\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":100}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Number\",\"portOut\":\"result\",\"objIn\":\"bp7-21\",\"objOut\":\"bp7-24\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"bp7-25\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"string2\",\"value\":\"%\"},{\"name\":\"New Line\",\"value\":0},{\"name\":\"Active\",\"value\":1}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Text\",\"portOut\":\"result\",\"objIn\":\"bp7-26\",\"objOut\":\"bp7-25\"}]}],\"objName\":\"Ops.String.Concat_v2\"},{\"id\":\"bp7-26\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Position index\",\"value\":3},{\"name\":\"Position\",\"value\":\"Fixed\"},{\"name\":\"Interactive\",\"value\":0},{\"name\":\"Set Size\",\"value\":1},{\"name\":\"Width\",\"value\":30},{\"name\":\"Height\",\"value\":30},{\"name\":\"Overflow index\",\"value\":1},{\"name\":\"Overflow\",\"value\":\"Hidden\"},{\"name\":\"Inline Style\",\"value\":\"font-size: 0.7rem;\\n\\n\\n\"},{\"name\":\"CSS Class\",\"value\":\"\"},{\"name\":\"Disable CSS Props\",\"value\":0},{\"name\":\"Display index\",\"value\":1},{\"name\":\"Display\",\"value\":\"Block\"},{\"name\":\"Propagate Click-Events\",\"value\":0}],\"portsOut\":[{\"name\":\"DOM Element\",\"links\":[{\"portIn\":\"DOMElement\",\"portOut\":\"DOM Element\",\"objIn\":\"bp7-31\",\"objOut\":\"bp7-26\"}]},{\"name\":\"Hovering\",\"value\":0}],\"objName\":\"Ops.Patch.PW10J0o.Element\"},{\"id\":\"bp7-27\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.VizNumberBar\"},{\"id\":\"bp7-28\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"portsOut\":[{\"name\":\"Value\",\"value\":\"mix\"}],\"objName\":\"Ops.Vars.VarGetString\"},{\"id\":\"bp7-29\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"result\",\"objIn\":\"bp7-5\",\"objOut\":\"bp7-29\"},{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"bp7-11\",\"objOut\":\"bp7-29\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"bp7-30\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Value Out\",\"objIn\":\"bp7-20\",\"objOut\":\"bp7-30\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"bp7-31\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"origin index\",\"value\":4},{\"name\":\"origin\",\"value\":\"center-middle\"}],\"objName\":\"Ops.Html.TransformCSS3DElement\"},{\"id\":\"bp7-32\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posX\",\"value\":0},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":1},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp7-1\",\"objOut\":\"bp7-32\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp7-33\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.651},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.912},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":0.05},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":-0.04},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp7-36\",\"objOut\":\"bp7-33\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"bp7-34\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"posY\",\"portOut\":\"result\",\"objIn\":\"bp7-32\",\"objOut\":\"bp7-34\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"bp7-35\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Translate X\",\"value\":0.44},{\"name\":\"Translate Y\",\"value\":-0.05},{\"name\":\"Translate Z\",\"value\":-0.5},{\"name\":\"Scale X\",\"value\":0.35},{\"name\":\"Scale Y\",\"value\":2},{\"name\":\"Scale Z\",\"value\":1},{\"name\":\"Rotation X\",\"value\":0},{\"name\":\"Rotation Y\",\"value\":0},{\"name\":\"Rotation Z\",\"value\":0}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"Result\",\"objIn\":\"bp7-36\",\"objOut\":\"bp7-35\"}]}],\"objName\":\"Ops.Graphics.Geometry.TransformGeometry\"},{\"id\":\"bp7-36\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Render Mesh\",\"value\":1},{\"name\":\"Add Vertex Numbers\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp7-38\",\"objOut\":\"bp7-36\"}]}],\"objName\":\"Ops.Gl.RenderGeometry_v2\"},{\"id\":\"bp7-37\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__lensFlareTexts\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"texture\",\"portOut\":\"Value\",\"objIn\":\"bp7-33\",\"objOut\":\"bp7-37\"}]}],\"objName\":\"Ops.Vars.VarGetTexture_v2\"},{\"id\":\"bp7-38\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1},{\"name\":\"y\",\"value\":1.52},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"bp7-0\",\"objOut\":\"bp7-38\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"},{\"id\":\"bp7-39\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":-2},{\"name\":\"Value 2\",\"value\":2}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"Result\",\"objIn\":\"bp7-33\",\"objOut\":\"bp7-39\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"bp7-40\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2,\"ref\":\"bp7-40\"},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp7-41\",\"uiAttribs\":{\"subPatch\":\"u1fu6udj2\"},\"storage\":{\"blueprintVer\":2,\"ref\":\"bp7-41\"},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"bp7-40\",\"objOut\":\"bp7-41\"}]}],\"objName\":\"Ops.Boolean.Not\"}]}",};
 const port_blls2amps=op.inTrigger("blls2amps");
 port_blls2amps.setUiAttribs({title:"Trigger in",});
 
@@ -19771,338 +20100,8 @@ function initializeSubpatch()
 
 };
 
-Ops.Patch.P4oPpSn.BasicSlider_v4.prototype = new CABLES.Op();
-CABLES.OPS["d83a8192-bfbf-4e8c-80d0-f85cafa732a6"]={f:Ops.Patch.P4oPpSn.BasicSlider_v4,objName:"Ops.Patch.P4oPpSn.BasicSlider_v4"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Patch.P4oPpSn.UI_Structure
-// 
-// **************************************************************
-
-Ops.Patch.P4oPpSn.UI_Structure = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"op.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp3-0\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"Named Trigger\",\"value\":\"exeNoCamera\"}],\"portsOut\":[{\"name\":\"Triggered\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"Triggered\",\"objIn\":\"bp3-27\",\"objOut\":\"bp3-0\"}]}],\"objName\":\"Ops.Trigger.TriggerReceive\"},{\"id\":\"bp3-1\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"posX\",\"value\":0.36},{\"name\":\"posY\",\"value\":0.9},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":1},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"bp3-2\",\"objOut\":\"bp3-1\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp3-2\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"Text\",\"value\":\"* structure\"},{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.06},{\"name\":\"Letter Spacing\",\"value\":-0.04},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":0},{\"name\":\"Align\",\"value\":\"Left\"},{\"name\":\"Vertical Align index\",\"value\":1},{\"name\":\"Vertical Align\",\"value\":\"Top\"},{\"name\":\"r\",\"value\":0.9},{\"name\":\"g\",\"value\":0.9},{\"name\":\"b\",\"value\":0.9},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.17},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.5},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":1},{\"name\":\"Border g\",\"value\":1},{\"name\":\"Border b\",\"value\":1},{\"name\":\"Shadow\",\"value\":1},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp3-4\",\"objOut\":\"bp3-2\"},{\"portIn\":\"Update\",\"portOut\":\"Next\",\"objIn\":\"bp3-23\",\"objOut\":\"bp3-2\"}]},{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.29631796875000005},{\"name\":\"Height\",\"value\":0.09154265873015872},{\"name\":\"Start Y\",\"value\":0.0390077380952381},{\"name\":\"Num Chars\",\"value\":11}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"bp3-3\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Letter Spacing\",\"value\":-0.05},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":0},{\"name\":\"Align\",\"value\":\"Left\"},{\"name\":\"Vertical Align index\",\"value\":1},{\"name\":\"Vertical Align\",\"value\":\"Top\"},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.25},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.5},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":1},{\"name\":\"Border g\",\"value\":1},{\"name\":\"Border b\",\"value\":1},{\"name\":\"Shadow\",\"value\":1},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp3-11\",\"objOut\":\"bp3-3\"}]},{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.3368847656250001},{\"name\":\"Height\",\"value\":0.07645148809523811},{\"name\":\"Start Y\",\"value\":0.044420982142857154},{\"name\":\"Num Chars\",\"value\":7}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"bp3-4\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"x\",\"value\":0.36},{\"name\":\"y\",\"value\":0},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"bp3-3\",\"objOut\":\"bp3-4\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp3-5\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"Width\",\"value\":0.56},{\"name\":\"Height\",\"value\":0.12},{\"name\":\"Class\",\"value\":\"\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":0},{\"name\":\"Pivot y\",\"value\":\"center\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Render Rectangle\",\"value\":0},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":2},{\"name\":\"Cursor\",\"value\":\"pointer\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"update\",\"portOut\":\"Trigger out\",\"objIn\":\"bp3-7\",\"objOut\":\"bp3-5\"},{\"portIn\":\"exe\",\"portOut\":\"Trigger out\",\"objIn\":\"bp3-12\",\"objOut\":\"bp3-5\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp3-12\",\"objOut\":\"bp3-5\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp3-34\",\"objOut\":\"bp3-5\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp3-30\",\"objOut\":\"bp3-5\"}]},{\"name\":\"Pointer X\",\"value\":0.5337413609776848},{\"name\":\"Pointer Y\",\"value\":0.48466375691425967},{\"name\":\"Top\",\"value\":64.30884718894958},{\"name\":\"Left\",\"value\":1100.857571721077},{\"name\":\"Right\",\"value\":1318.1913001537323},{\"name\":\"Bottom\",\"value\":110.88038241863251},{\"name\":\"Left Click\",\"links\":[{\"portIn\":\"Bang\",\"portOut\":\"Left Click\",\"objIn\":\"bp3-7\",\"objOut\":\"bp3-5\"},{\"portIn\":\"Input_1\",\"portOut\":\"Left Click\",\"objIn\":\"bp3-46\",\"objOut\":\"bp3-5\"}]}],\"objName\":\"Ops.Gl.InteractiveRectangle_v2\"},{\"id\":\"bp3-6\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"x\",\"value\":0.88},{\"name\":\"y\",\"value\":0.89},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"bp3-5\",\"objOut\":\"bp3-6\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp3-7\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"Duration\",\"value\":0.5},{\"name\":\"Invert\",\"value\":0}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Random Seed \",\"portOut\":\"Value\",\"objIn\":\"bp3-14\",\"objOut\":\"bp3-7\"},{\"portIn\":\"number1\",\"portOut\":\"Value\",\"objIn\":\"bp3-15\",\"objOut\":\"bp3-7\"}]}],\"objName\":\"Ops.Anim.Bang\"},{\"id\":\"bp3-8\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"Loop min\",\"value\":0},{\"name\":\"Loop max\",\"value\":15}],\"portsOut\":[{\"name\":\"current count\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"current count\",\"objIn\":\"bp3-22\",\"objOut\":\"bp3-8\"},{\"portIn\":\"Value\",\"portOut\":\"current count\",\"objIn\":\"bp3-23\",\"objOut\":\"bp3-8\"}]}],\"objName\":\"Ops.Trigger.TriggerCounterLoop\"},{\"id\":\"bp3-9\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Text\",\"portOut\":\"result\",\"objIn\":\"bp3-3\",\"objOut\":\"bp3-9\"}]}],\"objName\":\"Ops.Array.ArrayGetString\"},{\"id\":\"bp3-10\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"text\",\"value\":\"A035506\\nA007604\\nA227413\\nA000040\\nA052330\\nA000607\\nA01401\\nA064356\\nA096441\\nA000009\\nA199535\\nA000010\\nA316667\\nA111133\\nA000124\\nA005132\"},{\"name\":\"separator\",\"value\":\" \"},{\"name\":\"Numbers\",\"value\":0},{\"name\":\"Trim\",\"value\":1},{\"name\":\"Split Lines\",\"value\":1}],\"portsOut\":[{\"name\":\"array\",\"links\":[{\"portIn\":\"array\",\"portOut\":\"array\",\"objIn\":\"bp3-9\",\"objOut\":\"bp3-10\"}]},{\"name\":\"length\",\"value\":16}],\"objName\":\"Ops.Array.StringToArray_v2\"},{\"id\":\"bp3-11\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"x\",\"value\":0.06},{\"name\":\"y\",\"value\":-0.05},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp3-13\",\"objOut\":\"bp3-11\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp3-12\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.125},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"value\",\"objIn\":\"bp3-21\",\"objOut\":\"bp3-12\"},{\"portIn\":\"Percentage\",\"portOut\":\"value\",\"objIn\":\"bp3-28\",\"objOut\":\"bp3-12\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"bp3-13\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":4.91},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":1},{\"name\":\"num rows\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"bp3-14\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"Num Values\",\"value\":24},{\"name\":\"Mode index\",\"value\":0},{\"name\":\"Mode\",\"value\":\"A\"},{\"name\":\"Integer\",\"value\":0},{\"name\":\"Last == First\",\"value\":0},{\"name\":\"Min A\",\"value\":0},{\"name\":\"Min B\",\"value\":-1},{\"name\":\"Max B\",\"value\":1},{\"name\":\"Min C\",\"value\":-1},{\"name\":\"Max C\",\"value\":1},{\"name\":\"Min D\",\"value\":-1},{\"name\":\"Max D\",\"value\":1}],\"portsOut\":[{\"name\":\"Array Out\",\"links\":[{\"portIn\":\"Rotations\",\"portOut\":\"Array Out\",\"objIn\":\"bp3-3\",\"objOut\":\"bp3-14\"}]},{\"name\":\"Chunks Amount\",\"value\":24},{\"name\":\"Array length\",\"value\":24}],\"objName\":\"Ops.Array.RandomNumbersArray_v4\"},{\"id\":\"bp3-15\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":0.0001}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"result\",\"objIn\":\"bp3-16\",\"objOut\":\"bp3-15\"}]}],\"objName\":\"Ops.Math.Compare.GreaterThan\"},{\"id\":\"bp3-16\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":360}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Max A\",\"portOut\":\"result\",\"objIn\":\"bp3-14\",\"objOut\":\"bp3-16\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"bp3-17\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"Title\",\"value\":\"structure\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp3-18\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0.003},{\"name\":\"Value 2\",\"value\":0.01}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"height\",\"portOut\":\"Result\",\"objIn\":\"bp3-13\",\"objOut\":\"bp3-18\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"bp3-19\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0.9},{\"name\":\"Value 2\",\"value\":1}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"Result\",\"objIn\":\"bp3-3\",\"objOut\":\"bp3-19\"},{\"portIn\":\"g\",\"portOut\":\"Result\",\"objIn\":\"bp3-3\",\"objOut\":\"bp3-19\"},{\"portIn\":\"b\",\"portOut\":\"Result\",\"objIn\":\"bp3-3\",\"objOut\":\"bp3-19\"},{\"portIn\":\"r\",\"portOut\":\"Result\",\"objIn\":\"bp3-3\",\"objOut\":\"bp3-19\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"bp3-20\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0.09},{\"name\":\"Value 2\",\"value\":0.11}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Scale\",\"portOut\":\"Result\",\"objIn\":\"bp3-3\",\"objOut\":\"bp3-20\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"bp3-21\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Percentage\",\"portOut\":\"result\",\"objIn\":\"bp3-19\",\"objOut\":\"bp3-21\"},{\"portIn\":\"Percentage\",\"portOut\":\"result\",\"objIn\":\"bp3-20\",\"objOut\":\"bp3-21\"},{\"portIn\":\"Percentage\",\"portOut\":\"result\",\"objIn\":\"bp3-18\",\"objOut\":\"bp3-21\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"bp3-22\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":15}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"result\",\"objIn\":\"bp3-31\",\"objOut\":\"bp3-22\"}]}],\"objName\":\"Ops.Math.Divide\"},{\"id\":\"bp3-23\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"Delay\",\"value\":0.1},{\"name\":\"Clear on Change\",\"value\":0},{\"name\":\"easing index\",\"value\":1},{\"name\":\"easing\",\"value\":\"absolute\"}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"index\",\"portOut\":\"Result\",\"objIn\":\"bp3-9\",\"objOut\":\"bp3-23\"}]}],\"objName\":\"Ops.Number.DelayedNumber\"},{\"id\":\"bp3-24\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_bypassSRVB\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"Value\",\"objIn\":\"bp3-25\",\"objOut\":\"bp3-24\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"bp3-25\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"bp3-27\",\"objOut\":\"bp3-25\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"bp3-26\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"Title\",\"value\":\"bypass\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp3-27\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"bp3-1\",\"objOut\":\"bp3-27\"},{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"bp3-6\",\"objOut\":\"bp3-27\"}]}],\"objName\":\"Ops.Trigger.GateTrigger\"},{\"id\":\"bp3-28\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0.6},{\"name\":\"Value 2\",\"value\":1}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"Result\",\"objIn\":\"bp3-2\",\"objOut\":\"bp3-28\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"bp3-29\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"value\",\"value\":\"structure\"}],\"portsOut\":[{\"name\":\"String\",\"links\":[{\"portIn\":\"ID\",\"portOut\":\"String\",\"objIn\":\"bp3-5\",\"objOut\":\"bp3-29\"},{\"portIn\":\"String In\",\"portOut\":\"String\",\"objIn\":\"bp3-34\",\"objOut\":\"bp3-29\"}]}],\"objName\":\"Ops.String.String_v2\"},{\"id\":\"bp3-30\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"bp3-41\",\"objOut\":\"bp3-30\"},{\"portIn\":\"Index\",\"portOut\":\"result\",\"objIn\":\"bp3-39\",\"objOut\":\"bp3-30\"},{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp3-42\",\"objOut\":\"bp3-30\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"bp3-31\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Numbers_1\",\"portOut\":\"result\",\"objIn\":\"bp3-39\",\"objOut\":\"bp3-31\"},{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp3-36\",\"objOut\":\"bp3-31\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"bp3-32\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_structure\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp3-33\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int structure\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp3-34\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"\\\"structure\\\"\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"bp3-35\",\"objOut\":\"bp3-34\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"bp3-38\",\"objOut\":\"bp3-34\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"bp3-35\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"bp3-36\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp3-37\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_srvbParams_object\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"bp3-40\",\"objOut\":\"bp3-37\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"bp3-38\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Numbers_0\",\"portOut\":\"Result\",\"objIn\":\"bp3-39\",\"objOut\":\"bp3-38\"},{\"portIn\":\"A\",\"portOut\":\"Result\",\"objIn\":\"bp3-44\",\"objOut\":\"bp3-38\"}]},{\"name\":\"Found\",\"value\":0}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"bp3-39\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"A\",\"portOut\":\"Number\",\"objIn\":\"bp3-45\",\"objOut\":\"bp3-39\"}]},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"bp3-40\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":1}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"bp3-38\",\"objOut\":\"bp3-40\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"bp3-41\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"bp3-40\",\"objOut\":\"bp3-41\"},{\"portIn\":\"B\",\"portOut\":\"Result\",\"objIn\":\"bp3-44\",\"objOut\":\"bp3-41\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"bp3-42\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonSlider\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp3-43\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"Input_0\",\"portOut\":\"Next\",\"objIn\":\"bp3-46\",\"objOut\":\"bp3-43\"}]},{\"name\":\"Number\",\"value\":9}],\"objName\":\"Ops.Number.TriggerOnChangeNumber\"},{\"id\":\"bp3-44\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"C\",\"value\":2},{\"name\":\"D\",\"value\":3},{\"name\":\"Expression\",\"value\":\"Math.floor(  a * 16 ) \"}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"bp3-43\",\"objOut\":\"bp3-44\"}]},{\"name\":\"Expression Valid\",\"value\":true}],\"objName\":\"Ops.Math.MathExpression\"},{\"id\":\"bp3-45\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"B\",\"value\":1},{\"name\":\"C\",\"value\":2},{\"name\":\"D\",\"value\":3},{\"name\":\"Expression\",\"value\":\"Math.round( a * 15 )\"}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"bp3-32\",\"objOut\":\"bp3-45\"}]},{\"name\":\"Expression Valid\",\"value\":true}],\"objName\":\"Ops.Math.MathExpression\"},{\"id\":\"bp3-46\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"Input\",\"multiPortNum\":2}],\"portsOut\":[{\"name\":\"Output_0\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"Output_0\",\"objIn\":\"bp3-47\",\"objOut\":\"bp3-46\"}]}],\"objName\":\"Ops.Trigger.SequenceMultiPort\"},{\"id\":\"bp3-47\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"portsIn\":[{\"name\":\"Nth\",\"value\":2}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"trigger in\",\"portOut\":\"Next\",\"objIn\":\"bp3-8\",\"objOut\":\"bp3-47\"}]}],\"objName\":\"Ops.Trigger.NthTrigger_v2\"},{\"id\":\"bp3-48\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp3-49\",\"uiAttribs\":{\"subPatch\":\"usjwseqnh\"},\"storage\":{},\"objName\":\"Ops.Ui.SubPatchOutput\"}]}",};
-op.initInnerPorts=function(addedOps)
-{
-  for(let i=0;i<addedOps.length;i++)
-  {
-    if(addedOps[i].innerInput)
-    {
-    }
-if(addedOps[i].innerOutput)
-{
-}
-}
-};
-
-const patchId = "bp2sub_" + op.id;
-
-new CABLES.SubPatchOp(op, { "subId": patchId });
-
-initializeSubpatch();
-
-function initializeSubpatch()
-{
-    const p = JSON.parse(attachments.subpatch_json);
-
-    CABLES.Patch.replaceOpIds(p,
-        {
-            "parentSubPatchId": patchId,
-            "prefixHash": patchId,
-            "oldIdAsRef": true,
-            "doNotUnlinkLostLinks": true
-        });
-
-    for (let i = 0; i < p.ops.length; i++)
-    {
-        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
-    }
-
-    op.loadDependencies(p, () =>
-    {
-        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
-        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
-        op.patch.emitEvent("subpatchExpose", patchId);
-        op.setStorage({ "blueprintVer": 2 });
-        op.patch.emitEvent("subpatchExpose", patchId);
-    });
-}
-
-
-};
-
-Ops.Patch.P4oPpSn.UI_Structure.prototype = new CABLES.Op();
-CABLES.OPS["78ded024-4f84-44f6-ab36-9ab3322b928a"]={f:Ops.Patch.P4oPpSn.UI_Structure,objName:"Ops.Patch.P4oPpSn.UI_Structure"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Patch.P4oPpSn.UI_Position
-// 
-// **************************************************************
-
-Ops.Patch.P4oPpSn.UI_Position = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"op.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp4-0\",\"uiAttribs\":{\"subPatch\":\"dqsfvjxjp\"},\"storage\":{\"blueprintVer\":2,\"subPatchVer\":2},\"portsIn\":[{\"name\":\"blls2amps\",\"title\":\"Trigger in\"},{\"name\":\"btagbs7z2\",\"title\":\"Class\"},{\"name\":\"lj06d561p\",\"value\":0,\"title\":\"Show Boundings\"},{\"name\":\"patchId\",\"value\":\"f4vm7v8hs\"}],\"portsOut\":[{\"name\":\"nti406vwi\",\"value\":-0.28278602306942524,\"title\":\"Result\"},{\"name\":\"gjvx0zyv5\",\"title\":\"value\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"gjvx0zyv5\",\"objIn\":\"bp4-6\",\"objOut\":\"bp4-0\"},{\"portIn\":\"a\",\"portOut\":\"gjvx0zyv5\",\"objIn\":\"bp4-9\",\"objOut\":\"bp4-0\"}]}],\"objName\":\"Ops.Patch.P4oPpSn.BasicSlider_v3\"},{\"id\":\"bp4-1\",\"uiAttribs\":{\"subPatch\":\"dqsfvjxjp\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Named Trigger\",\"value\":\"exeNoCamera\"}],\"portsOut\":[{\"name\":\"Triggered\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"Triggered\",\"objIn\":\"bp4-13\",\"objOut\":\"bp4-1\"}]}],\"objName\":\"Ops.Trigger.TriggerReceive\"},{\"id\":\"bp4-2\",\"uiAttribs\":{\"subPatch\":\"dqsfvjxjp\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"value\",\"value\":\"position\"}],\"portsOut\":[{\"name\":\"String\",\"links\":[{\"portIn\":\"btagbs7z2\",\"portOut\":\"String\",\"objIn\":\"bp4-0\",\"objOut\":\"bp4-2\"}]}],\"objName\":\"Ops.String.String_v2\"},{\"id\":\"bp4-3\",\"uiAttribs\":{\"subPatch\":\"dqsfvjxjp\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Text\",\"value\":\"* position\"},{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.06},{\"name\":\"Letter Spacing\",\"value\":-0.04},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":1},{\"name\":\"Align\",\"value\":\"Center\"},{\"name\":\"Vertical Align index\",\"value\":2},{\"name\":\"Vertical Align\",\"value\":\"Middle\"},{\"name\":\"r\",\"value\":0.75},{\"name\":\"g\",\"value\":0.75},{\"name\":\"b\",\"value\":0.75},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.17},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.222},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":0},{\"name\":\"Border g\",\"value\":0},{\"name\":\"Border b\",\"value\":1},{\"name\":\"Shadow\",\"value\":0},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.26200078125},{\"name\":\"Height\",\"value\":0.09154265873015872},{\"name\":\"Start Y\",\"value\":0.04224890873015873},{\"name\":\"Num Chars\",\"value\":10}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"bp4-4\",\"uiAttribs\":{\"subPatch\":\"dqsfvjxjp\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":-1.34},{\"name\":\"y\",\"value\":1.05},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"bp4-3\",\"objOut\":\"bp4-4\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp4-5\",\"uiAttribs\":{\"subPatch\":\"dqsfvjxjp\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"position\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp4-6\",\"uiAttribs\":{\"subPatch\":\"dqsfvjxjp\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.33}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"result\",\"objIn\":\"bp4-3\",\"objOut\":\"bp4-6\"}]}],\"objName\":\"Ops.Math.Sum\"},{\"id\":\"bp4-7\",\"uiAttribs\":{\"subPatch\":\"dqsfvjxjp\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":1.71},{\"name\":\"height\",\"value\":0.08},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":2},{\"name\":\"num rows\",\"value\":3}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"bp4-8\",\"uiAttribs\":{\"subPatch\":\"dqsfvjxjp\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":-0.555},{\"name\":\"y\",\"value\":0.935},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp4-9\",\"objOut\":\"bp4-8\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp4-9\",\"uiAttribs\":{\"subPatch\":\"dqsfvjxjp\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"PointSize\",\"value\":4},{\"name\":\"Size in Pixels\",\"value\":1},{\"name\":\"Random Size\",\"value\":0},{\"name\":\"Round\",\"value\":0},{\"name\":\"Round Antialias\",\"value\":0},{\"name\":\"Scale by Distance\",\"value\":0},{\"name\":\"r\",\"value\":0.772},{\"name\":\"g\",\"value\":0.15106840238933295},{\"name\":\"b\",\"value\":0.4207414807217118},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Colorize Texture\",\"value\":0},{\"name\":\"Mask Channel index\",\"value\":0},{\"name\":\"Mask Channel\",\"value\":\"R\"},{\"name\":\"Colorize Randomize\",\"value\":0},{\"name\":\"Point Size Channel index\",\"value\":0},{\"name\":\"Point Size Channel\",\"value\":\"R\"},{\"name\":\"Texture Point Size Mul\",\"value\":1},{\"name\":\"Map Size 0 index\",\"value\":0},{\"name\":\"Map Size 0\",\"value\":\"Black\"},{\"name\":\"Flip Texture\",\"value\":0},{\"name\":\"Atlas Cross Fade\",\"value\":0},{\"name\":\"Atlas Repeat X \",\"value\":1},{\"name\":\"Min Point Size\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp4-7\",\"objOut\":\"bp4-9\"}]}],\"objName\":\"Ops.Gl.Shader.PointMaterial_v5\"},{\"id\":\"bp4-10\",\"uiAttribs\":{\"subPatch\":\"dqsfvjxjp\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_bypassSRVB\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"Value\",\"objIn\":\"bp4-11\",\"objOut\":\"bp4-10\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"bp4-11\",\"uiAttribs\":{\"subPatch\":\"dqsfvjxjp\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"bp4-13\",\"objOut\":\"bp4-11\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"bp4-12\",\"uiAttribs\":{\"subPatch\":\"dqsfvjxjp\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"bypass\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp4-13\",\"uiAttribs\":{\"subPatch\":\"dqsfvjxjp\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"blls2amps\",\"portOut\":\"Trigger out\",\"objIn\":\"bp4-0\",\"objOut\":\"bp4-13\"},{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"bp4-4\",\"objOut\":\"bp4-13\"},{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"bp4-8\",\"objOut\":\"bp4-13\"}]}],\"objName\":\"Ops.Trigger.GateTrigger\"},{\"id\":\"bp4-14\",\"uiAttribs\":{\"subPatch\":\"dqsfvjxjp\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp4-15\",\"uiAttribs\":{\"subPatch\":\"dqsfvjxjp\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchOutput\"}]}",};
-op.initInnerPorts=function(addedOps)
-{
-  for(let i=0;i<addedOps.length;i++)
-  {
-    if(addedOps[i].innerInput)
-    {
-    }
-if(addedOps[i].innerOutput)
-{
-}
-}
-};
-
-const patchId = "bp2sub_" + op.id;
-
-new CABLES.SubPatchOp(op, { "subId": patchId });
-
-initializeSubpatch();
-
-function initializeSubpatch()
-{
-    const p = JSON.parse(attachments.subpatch_json);
-
-    CABLES.Patch.replaceOpIds(p,
-        {
-            "parentSubPatchId": patchId,
-            "prefixHash": patchId,
-            "oldIdAsRef": true,
-            "doNotUnlinkLostLinks": true
-        });
-
-    for (let i = 0; i < p.ops.length; i++)
-    {
-        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
-    }
-
-    op.loadDependencies(p, () =>
-    {
-        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
-        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
-        op.patch.emitEvent("subpatchExpose", patchId);
-        op.setStorage({ "blueprintVer": 2 });
-        op.patch.emitEvent("subpatchExpose", patchId);
-    });
-}
-
-
-};
-
-Ops.Patch.P4oPpSn.UI_Position.prototype = new CABLES.Op();
-CABLES.OPS["93a06c73-b117-478a-bb8a-6d06ab563144"]={f:Ops.Patch.P4oPpSn.UI_Position,objName:"Ops.Patch.P4oPpSn.UI_Position"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Patch.P4oPpSn.UI_Reverse
-// 
-// **************************************************************
-
-Ops.Patch.P4oPpSn.UI_Reverse = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"op.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp5-0\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Width\",\"value\":0.35},{\"name\":\"Height\",\"value\":0.3},{\"name\":\"Class\",\"value\":\"\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":0},{\"name\":\"Pivot y\",\"value\":\"center\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Render Rectangle\",\"value\":0},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":2},{\"name\":\"Cursor\",\"value\":\"pointer\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"Trigger out\",\"objIn\":\"bp5-6\",\"objOut\":\"bp5-0\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp5-6\",\"objOut\":\"bp5-0\"},{\"portIn\":\"Value\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp5-15\",\"objOut\":\"bp5-0\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp5-28\",\"objOut\":\"bp5-0\"}]},{\"name\":\"Pointer X\",\"value\":0.08834341660639704},{\"name\":\"Pointer Y\",\"value\":0.07239455682312457},{\"name\":\"Top\",\"value\":2.213492691516876},{\"name\":\"Left\",\"value\":1327.8937151432037},{\"name\":\"Right\",\"value\":1463.7272663116455},{\"name\":\"Bottom\",\"value\":118.642304956913},{\"name\":\"Left Click\",\"links\":[{\"portIn\":\"trigger\",\"portOut\":\"Left Click\",\"objIn\":\"bp5-31\",\"objOut\":\"bp5-0\"}]}],\"objName\":\"Ops.Gl.InteractiveRectangle_v2\"},{\"id\":\"bp5-1\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Named Trigger\",\"value\":\"exeNoCamera\"}],\"portsOut\":[{\"name\":\"Triggered\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"Triggered\",\"objIn\":\"bp5-25\",\"objOut\":\"bp5-1\"}]}],\"objName\":\"Ops.Trigger.TriggerReceive\"},{\"id\":\"bp5-2\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsIn\":[{\"name\":\"x\",\"value\":1.36},{\"name\":\"y\",\"value\":0.96},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"bp5-0\",\"objOut\":\"bp5-2\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp5-3\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsIn\":[{\"name\":\"File\",\"value\":\"assets/6697c3b245eb5d333bae2007_NEL_SRVB.webp\",\"display\":\"file\"},{\"name\":\"Filter index\",\"value\":2},{\"name\":\"Filter\",\"value\":\"mipmap\"},{\"name\":\"Wrap index\",\"value\":0},{\"name\":\"Wrap\",\"value\":\"repeat\"},{\"name\":\"Anisotropic index\",\"value\":3},{\"name\":\"Anisotropic\",\"value\":\"4\"},{\"name\":\"Data Format index\",\"value\":3},{\"name\":\"Data Format\",\"value\":\"RGBA\"},{\"name\":\"Flip\",\"value\":0},{\"name\":\"Pre Multiplied Alpha\",\"value\":0},{\"name\":\"Active\",\"value\":1},{\"name\":\"Save Memory\",\"value\":1},{\"name\":\"Add Cachebuster\",\"value\":0}],\"portsOut\":[{\"name\":\"Texture\",\"links\":[{\"portIn\":\"texture\",\"portOut\":\"Texture\",\"objIn\":\"bp5-5\",\"objOut\":\"bp5-3\"}]},{\"name\":\"Width\",\"value\":256},{\"name\":\"Height\",\"value\":256},{\"name\":\"Aspect Ratio\",\"value\":1},{\"name\":\"Loaded\",\"value\":1},{\"name\":\"Loading\",\"value\":0}],\"objName\":\"Ops.Gl.Texture_v2\"},{\"id\":\"bp5-4\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsIn\":[{\"name\":\"x\",\"value\":1.99},{\"name\":\"y\",\"value\":1.43},{\"name\":\"z\",\"value\":-1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp5-5\",\"objOut\":\"bp5-4\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp5-5\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":0.9084857245945317},{\"name\":\"g\",\"value\":0.10570856602655021},{\"name\":\"b\",\"value\":0.6349807163120653},{\"name\":\"a\",\"value\":1},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":1},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":1},{\"name\":\"Tex Offset Y\",\"value\":1},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"update\",\"portOut\":\"trigger\",\"objIn\":\"bp5-16\",\"objOut\":\"bp5-5\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"bp5-6\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsIn\":[{\"name\":\"easing index\",\"value\":9},{\"name\":\"easing\",\"value\":\"Expo In Out\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"trigger\",\"objIn\":\"bp5-11\",\"objOut\":\"bp5-6\"},{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp5-21\",\"objOut\":\"bp5-6\"}]},{\"name\":\"value\",\"links\":[{\"portIn\":\"Percentage\",\"portOut\":\"value\",\"objIn\":\"bp5-22\",\"objOut\":\"bp5-6\"},{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"bp5-20\",\"objOut\":\"bp5-6\"}]},{\"name\":\"finished\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"finished\",\"objIn\":\"bp5-12\",\"objOut\":\"bp5-6\"}]}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"bp5-7\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsIn\":[{\"name\":\"radius\",\"value\":0.5},{\"name\":\"segments\",\"value\":3},{\"name\":\"percent\",\"value\":1},{\"name\":\"steps\",\"value\":0},{\"name\":\"invertSteps\",\"value\":1},{\"name\":\"mapping index\",\"value\":1},{\"name\":\"mapping\",\"value\":\"round\"},{\"name\":\"Spline\",\"value\":0},{\"name\":\"Draw\",\"value\":0,\"title\":\"Render mesh\"}],\"portsOut\":[{\"name\":\"geometry\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"geometry\",\"objIn\":\"bp5-9\",\"objOut\":\"bp5-7\"}]}],\"objName\":\"Ops.Gl.Meshes.Circle_v3\"},{\"id\":\"bp5-8\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Title\",\"value\":\"direction\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp5-9\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Translate X\",\"value\":0},{\"name\":\"Translate Y\",\"value\":0.03},{\"name\":\"Translate Z\",\"value\":0},{\"name\":\"Rotation X\",\"value\":0},{\"name\":\"Rotation Z\",\"value\":0}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"Result\",\"objIn\":\"bp5-10\",\"objOut\":\"bp5-9\"}]}],\"objName\":\"Ops.Graphics.Geometry.TransformGeometry\"},{\"id\":\"bp5-10\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Render Mesh\",\"value\":1},{\"name\":\"Add Vertex Numbers\",\"value\":1}],\"objName\":\"Ops.Gl.RenderGeometry_v2\"},{\"id\":\"bp5-11\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"bp5-7\",\"objOut\":\"bp5-11\"}]}],\"objName\":\"Ops.Trigger.GateTrigger\"},{\"id\":\"bp5-12\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"bool 1\",\"portOut\":\"Result\",\"objIn\":\"bp5-17\",\"objOut\":\"bp5-12\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"bp5-13\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsIn\":[{\"name\":\"easing index\",\"value\":8},{\"name\":\"easing\",\"value\":\"Expo Out\"},{\"name\":\"duration\",\"value\":2},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0},{\"name\":\"value true\",\"value\":180}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp5-10\",\"objOut\":\"bp5-13\"}]},{\"name\":\"value\",\"links\":[{\"portIn\":\"Rotation Y\",\"portOut\":\"value\",\"objIn\":\"bp5-9\",\"objOut\":\"bp5-13\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"bp5-14\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsIn\":[{\"name\":\"value\",\"value\":0.3}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Scale X\",\"portOut\":\"result\",\"objIn\":\"bp5-9\",\"objOut\":\"bp5-14\"},{\"portIn\":\"Scale Y\",\"portOut\":\"result\",\"objIn\":\"bp5-9\",\"objOut\":\"bp5-14\"},{\"portIn\":\"Scale Z\",\"portOut\":\"result\",\"objIn\":\"bp5-9\",\"objOut\":\"bp5-14\"}]}],\"objName\":\"Ops.Number.Number\"},{\"id\":\"bp5-15\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__directionHover\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp5-16\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Duration\",\"value\":0.1},{\"name\":\"Invert\",\"value\":0}],\"portsOut\":[{\"name\":\"Trigger Out\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"Trigger Out\",\"objIn\":\"bp5-13\",\"objOut\":\"bp5-16\"}]},{\"name\":\"Value\",\"links\":[{\"portIn\":\"bool 2\",\"portOut\":\"Value\",\"objIn\":\"bp5-17\",\"objOut\":\"bp5-16\"}]}],\"objName\":\"Ops.Anim.Bang\"},{\"id\":\"bp5-17\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsIn\":[{\"name\":\"bool 3\",\"value\":0},{\"name\":\"bool 4\",\"value\":0},{\"name\":\"bool 5\",\"value\":0},{\"name\":\"bool 6\",\"value\":0},{\"name\":\"bool 7\",\"value\":0},{\"name\":\"bool 8\",\"value\":0},{\"name\":\"bool 9\",\"value\":0},{\"name\":\"bool 10\",\"value\":0}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"bp5-11\",\"objOut\":\"bp5-17\"}]}],\"objName\":\"Ops.Boolean.Or\"},{\"id\":\"bp5-18\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Named Trigger\",\"value\":\"mainExe\"}],\"portsOut\":[{\"name\":\"Triggered\",\"links\":[{\"portIn\":\"Exec\",\"portOut\":\"Triggered\",\"objIn\":\"bp5-19\",\"objOut\":\"bp5-18\"}]}],\"objName\":\"Ops.Trigger.TriggerReceive\"},{\"id\":\"bp5-19\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"Bang\",\"portOut\":\"Next\",\"objIn\":\"bp5-16\",\"objOut\":\"bp5-19\"}]},{\"name\":\"Was Triggered\",\"value\":1}],\"objName\":\"Ops.Trigger.TriggerOnce\"},{\"id\":\"bp5-20\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Text\",\"value\":\"direction\"},{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.06},{\"name\":\"Letter Spacing\",\"value\":0},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":1},{\"name\":\"Align\",\"value\":\"Center\"},{\"name\":\"Vertical Align index\",\"value\":2},{\"name\":\"Vertical Align\",\"value\":\"Middle\"},{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":1},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.5},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.085},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":0},{\"name\":\"Border g\",\"value\":0.107},{\"name\":\"Border b\",\"value\":0.196},{\"name\":\"Shadow\",\"value\":0},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.24790078125},{\"name\":\"Height\",\"value\":0.05698172123015873},{\"name\":\"Start Y\",\"value\":0.01772625248015874},{\"name\":\"Num Chars\",\"value\":9}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"bp5-21\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsIn\":[{\"name\":\"posX\",\"value\":0.01},{\"name\":\"posY\",\"value\":0.02},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":1.12},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"bp5-20\",\"objOut\":\"bp5-21\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp5-22\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0.8},{\"name\":\"Value 2\",\"value\":-1}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"innerRadius\",\"portOut\":\"Result\",\"objIn\":\"bp5-7\",\"objOut\":\"bp5-22\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"bp5-23\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0},{\"name\":\"Value 2\",\"value\":180}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"rotY\",\"portOut\":\"Result\",\"objIn\":\"bp5-21\",\"objOut\":\"bp5-23\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"bp5-24\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_bypassConvolver\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"Value\",\"objIn\":\"bp5-26\",\"objOut\":\"bp5-24\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"bp5-25\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"bp5-4\",\"objOut\":\"bp5-25\"},{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"bp5-2\",\"objOut\":\"bp5-25\"}]}],\"objName\":\"Ops.Trigger.GateTrigger\"},{\"id\":\"bp5-26\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"bp5-25\",\"objOut\":\"bp5-26\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"bp5-27\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"bp5-28\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp5-32\",\"objOut\":\"bp5-28\"},{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"bp5-42\",\"objOut\":\"bp5-28\"},{\"portIn\":\"Index\",\"portOut\":\"result\",\"objIn\":\"bp5-40\",\"objOut\":\"bp5-28\"},{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"bp5-35\",\"objOut\":\"bp5-28\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"bp5-29\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsIn\":[{\"name\":\"value\",\"value\":\"scapeReverse\"}],\"portsOut\":[{\"name\":\"String\",\"links\":[{\"portIn\":\"ID\",\"portOut\":\"String\",\"objIn\":\"bp5-0\",\"objOut\":\"bp5-29\"},{\"portIn\":\"Value\",\"portOut\":\"String\",\"objIn\":\"bp5-27\",\"objOut\":\"bp5-29\"},{\"portIn\":\"String In\",\"portOut\":\"String\",\"objIn\":\"bp5-35\",\"objOut\":\"bp5-29\"}]}],\"objName\":\"Ops.String.String_v2\"},{\"id\":\"bp5-30\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsOut\":[{\"name\":\"Bool\",\"value\":0}],\"objName\":\"Ops.Ui.VizBool\"},{\"id\":\"bp5-31\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Default\",\"value\":0}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"result\",\"objIn\":\"bp5-13\",\"objOut\":\"bp5-31\"},{\"portIn\":\"Percentage\",\"portOut\":\"result\",\"objIn\":\"bp5-23\",\"objOut\":\"bp5-31\"},{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"bp5-30\",\"objOut\":\"bp5-31\"},{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp5-37\",\"objOut\":\"bp5-31\"}]}],\"objName\":\"Ops.Boolean.ToggleBool_v2\"},{\"id\":\"bp5-32\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonToggle\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp5-33\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeReverse\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp5-34\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int rev\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp5-35\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"scapeReverse\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"bp5-36\",\"objOut\":\"bp5-35\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"bp5-39\",\"objOut\":\"bp5-35\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"bp5-36\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"bp5-37\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp5-38\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_srvbParams_object\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"bp5-41\",\"objOut\":\"bp5-38\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"bp5-39\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Numbers_0\",\"portOut\":\"Result\",\"objIn\":\"bp5-40\",\"objOut\":\"bp5-39\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"bp5-40\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_1\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"bp5-33\",\"objOut\":\"bp5-40\"}]},{\"name\":\"Num Values\",\"value\":1}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"bp5-41\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":1}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"bp5-39\",\"objOut\":\"bp5-41\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"bp5-42\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"bp5-41\",\"objOut\":\"bp5-42\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"bp5-43\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp5-44\",\"uiAttribs\":{\"subPatch\":\"pxbn2arp9\"},\"storage\":{},\"objName\":\"Ops.Ui.SubPatchOutput\"}]}",};
-op.initInnerPorts=function(addedOps)
-{
-  for(let i=0;i<addedOps.length;i++)
-  {
-    if(addedOps[i].innerInput)
-    {
-    }
-if(addedOps[i].innerOutput)
-{
-}
-}
-};
-
-const patchId = "bp2sub_" + op.id;
-
-new CABLES.SubPatchOp(op, { "subId": patchId });
-
-initializeSubpatch();
-
-function initializeSubpatch()
-{
-    const p = JSON.parse(attachments.subpatch_json);
-
-    CABLES.Patch.replaceOpIds(p,
-        {
-            "parentSubPatchId": patchId,
-            "prefixHash": patchId,
-            "oldIdAsRef": true,
-            "doNotUnlinkLostLinks": true
-        });
-
-    for (let i = 0; i < p.ops.length; i++)
-    {
-        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
-    }
-
-    op.loadDependencies(p, () =>
-    {
-        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
-        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
-        op.patch.emitEvent("subpatchExpose", patchId);
-        op.setStorage({ "blueprintVer": 2 });
-        op.patch.emitEvent("subpatchExpose", patchId);
-    });
-}
-
-
-};
-
-Ops.Patch.P4oPpSn.UI_Reverse.prototype = new CABLES.Op();
-CABLES.OPS["b14356ff-40b2-4cca-bc2a-c3b1589c13bf"]={f:Ops.Patch.P4oPpSn.UI_Reverse,objName:"Ops.Patch.P4oPpSn.UI_Reverse"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Patch.P4oPpSn.UI_ScapeParams
-// 
-// **************************************************************
-
-Ops.Patch.P4oPpSn.UI_ScapeParams = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"op.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp6-0\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"portsIn\":[{\"name\":\"value\",\"value\":\"scapeLength\"}],\"portsOut\":[{\"name\":\"String\",\"links\":[{\"portIn\":\"btagbs7z2\",\"portOut\":\"String\",\"objIn\":\"bp6-13\",\"objOut\":\"bp6-0\"}]}],\"objName\":\"Ops.String.String_v2\"},{\"id\":\"bp6-1\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"portsIn\":[{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.05},{\"name\":\"Letter Spacing\",\"value\":-0.02},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":1},{\"name\":\"Align\",\"value\":\"Center\"},{\"name\":\"Vertical Align index\",\"value\":1},{\"name\":\"Vertical Align\",\"value\":\"Top\"},{\"name\":\"r\",\"value\":0.75},{\"name\":\"g\",\"value\":0.75},{\"name\":\"b\",\"value\":0.75},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.17},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.222},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":0},{\"name\":\"Border g\",\"value\":0},{\"name\":\"Border b\",\"value\":1},{\"name\":\"Shadow\",\"value\":0},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.21398632812500004},{\"name\":\"Height\",\"value\":0.05346133019179895},{\"name\":\"Start Y\",\"value\":0.026471292162698425},{\"name\":\"Num Chars\",\"value\":8}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"bp6-2\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"portsIn\":[{\"name\":\"y\",\"value\":-0.94},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"bp6-1\",\"objOut\":\"bp6-2\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp6-3\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"portsIn\":[{\"name\":\"Repeats\",\"value\":4},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Forward\"}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp6-2\",\"objOut\":\"bp6-3\"}]},{\"name\":\"index\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"index\",\"objIn\":\"bp6-4\",\"objOut\":\"bp6-3\"},{\"portIn\":\"Index\",\"portOut\":\"index\",\"objIn\":\"bp6-7\",\"objOut\":\"bp6-3\"}]}],\"objName\":\"Ops.Trigger.Repeat_v2\"},{\"id\":\"bp6-4\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":0.8}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"x\",\"portOut\":\"result\",\"objIn\":\"bp6-2\",\"objOut\":\"bp6-4\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"bp6-5\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"portsIn\":[{\"name\":\"x\",\"value\":-1.2},{\"name\":\"y\",\"value\":0.03},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"trigger\",\"objIn\":\"bp6-3\",\"objOut\":\"bp6-5\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp6-6\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"portsIn\":[{\"name\":\"Title\",\"value\":\"scape IR\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp6-7\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"portsIn\":[{\"name\":\"String 0\",\"value\":\"light\"},{\"name\":\"String 1\",\"value\":\"surface\"},{\"name\":\"String 2\",\"value\":\"temple\"},{\"name\":\"String 3\",\"value\":\"deepness\"},{\"name\":\"String 4\",\"value\":\"\"},{\"name\":\"String 5\",\"value\":\"\"},{\"name\":\"String 6\",\"value\":\"\"},{\"name\":\"String 7\",\"value\":\"\"},{\"name\":\"String 8\",\"value\":\"\"},{\"name\":\"String 9\",\"value\":\"\"}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Text\",\"portOut\":\"Result\",\"objIn\":\"bp6-1\",\"objOut\":\"bp6-7\"}]}],\"objName\":\"Ops.String.SwitchString\"},{\"id\":\"bp6-8\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":0.33}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"result\",\"objIn\":\"bp6-24\",\"objOut\":\"bp6-8\"}]}],\"objName\":\"Ops.Math.Sum\"},{\"id\":\"bp6-9\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"portsIn\":[{\"name\":\"Named Trigger\",\"value\":\"exeNoCamera\"}],\"portsOut\":[{\"name\":\"Triggered\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"Triggered\",\"objIn\":\"bp6-30\",\"objOut\":\"bp6-9\"}]}],\"objName\":\"Ops.Trigger.TriggerReceive\"},{\"id\":\"bp6-10\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"portsIn\":[{\"name\":\"value\",\"value\":\"scapeLevel\"}],\"portsOut\":[{\"name\":\"String\",\"links\":[{\"portIn\":\"btagbs7z2\",\"portOut\":\"String\",\"objIn\":\"bp6-14\",\"objOut\":\"bp6-10\"}]}],\"objName\":\"Ops.String.String_v2\"},{\"id\":\"bp6-11\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"portsIn\":[{\"name\":\"Title\",\"value\":\"scape level\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp6-12\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":0.4}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"result\",\"objIn\":\"bp6-17\",\"objOut\":\"bp6-12\"}]}],\"objName\":\"Ops.Math.Sum\"},{\"id\":\"bp6-13\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{\"blueprintVer\":2,\"subPatchVer\":2},\"portsIn\":[{\"name\":\"blls2amps\",\"title\":\"Trigger in\"},{\"name\":\"btagbs7z2\",\"title\":\"Class\"},{\"name\":\"lj06d561p\",\"value\":0,\"title\":\"Show Boundings\"},{\"name\":\"patchId\",\"value\":\"0lj10idn8\"}],\"portsOut\":[{\"name\":\"nti406vwi\",\"value\":0.4971676054693225,\"title\":\"Result\"},{\"name\":\"gjvx0zyv5\",\"title\":\"value\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"gjvx0zyv5\",\"objIn\":\"bp6-8\",\"objOut\":\"bp6-13\"}]}],\"objName\":\"Ops.Patch.P4oPpSn.BasicSlider_v2\"},{\"id\":\"bp6-14\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{\"blueprintVer\":2,\"subPatchVer\":2},\"portsIn\":[{\"name\":\"blls2amps\",\"title\":\"Trigger in\"},{\"name\":\"btagbs7z2\",\"title\":\"Class\"},{\"name\":\"lj06d561p\",\"value\":0,\"title\":\"Show Boundings\"},{\"name\":\"patchId\",\"value\":\"ty1cenvq6\"}],\"portsOut\":[{\"name\":\"nti406vwi\",\"value\":0.4791014479288117,\"title\":\"Result\"},{\"name\":\"gjvx0zyv5\",\"title\":\"value\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"gjvx0zyv5\",\"objIn\":\"bp6-12\",\"objOut\":\"bp6-14\"}]}],\"objName\":\"Ops.Patch.P4oPpSn.BasicSlider_v1\"},{\"id\":\"bp6-15\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"portsIn\":[{\"name\":\"Text\",\"value\":\"~ level\"},{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.06},{\"name\":\"Letter Spacing\",\"value\":-0.05},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":2},{\"name\":\"Align\",\"value\":\"Right\"},{\"name\":\"Vertical Align index\",\"value\":1},{\"name\":\"Vertical Align\",\"value\":\"Top\"},{\"name\":\"r\",\"value\":0.848},{\"name\":\"g\",\"value\":0.865},{\"name\":\"b\",\"value\":0.878},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.17},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.222},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":0},{\"name\":\"Border g\",\"value\":0},{\"name\":\"Border b\",\"value\":1},{\"name\":\"Shadow\",\"value\":0},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.16333593750000003},{\"name\":\"Height\",\"value\":0.08430047123015873},{\"name\":\"Start Y\",\"value\":0.031765550595238105},{\"name\":\"Num Chars\",\"value\":7}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"bp6-16\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"portsIn\":[{\"name\":\"x\",\"value\":-1.42},{\"name\":\"y\",\"value\":-0.77},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"bp6-15\",\"objOut\":\"bp6-16\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp6-17\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"result\",\"objIn\":\"bp6-15\",\"objOut\":\"bp6-17\"},{\"portIn\":\"number1\",\"portOut\":\"result\",\"objIn\":\"bp6-21\",\"objOut\":\"bp6-17\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"bp6-18\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":2.74},{\"name\":\"height\",\"value\":0.03},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":9},{\"name\":\"num rows\",\"value\":3}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"bp6-19\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"portsIn\":[{\"name\":\"PointSize\",\"value\":3},{\"name\":\"Size in Pixels\",\"value\":1},{\"name\":\"Random Size\",\"value\":0},{\"name\":\"Round\",\"value\":0},{\"name\":\"Round Antialias\",\"value\":0},{\"name\":\"Scale by Distance\",\"value\":0},{\"name\":\"r\",\"value\":0.772},{\"name\":\"g\",\"value\":0.15106840238933295},{\"name\":\"b\",\"value\":0.4207414807217118},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Colorize Texture\",\"value\":1},{\"name\":\"Mask Channel index\",\"value\":0},{\"name\":\"Mask Channel\",\"value\":\"R\"},{\"name\":\"Colorize Randomize\",\"value\":0},{\"name\":\"Point Size Channel index\",\"value\":0},{\"name\":\"Point Size Channel\",\"value\":\"R\"},{\"name\":\"Texture Point Size Mul\",\"value\":1},{\"name\":\"Map Size 0 index\",\"value\":0},{\"name\":\"Map Size 0\",\"value\":\"Black\"},{\"name\":\"Flip Texture\",\"value\":0},{\"name\":\"Atlas Cross Fade\",\"value\":0},{\"name\":\"Atlas Repeat X \",\"value\":1},{\"name\":\"Min Point Size\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp6-18\",\"objOut\":\"bp6-19\"}]}],\"objName\":\"Ops.Gl.Shader.PointMaterial_v5\"},{\"id\":\"bp6-20\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"portsIn\":[{\"name\":\"x\",\"value\":0},{\"name\":\"y\",\"value\":-0.77},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp6-19\",\"objOut\":\"bp6-20\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp6-21\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":2}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"result\",\"objIn\":\"bp6-19\",\"objOut\":\"bp6-21\"}]}],\"objName\":\"Ops.Math.Divide\"},{\"id\":\"bp6-22\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":2.7},{\"name\":\"height\",\"value\":0.03},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":9},{\"name\":\"num rows\",\"value\":3}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"bp6-23\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"portsIn\":[{\"name\":\"x\",\"value\":0},{\"name\":\"y\",\"value\":-0.97},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp6-26\",\"objOut\":\"bp6-23\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp6-24\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"result\",\"objIn\":\"bp6-25\",\"objOut\":\"bp6-24\"},{\"portIn\":\"a\",\"portOut\":\"result\",\"objIn\":\"bp6-36\",\"objOut\":\"bp6-24\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"bp6-25\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":2}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"result\",\"objIn\":\"bp6-26\",\"objOut\":\"bp6-25\"},{\"portIn\":\"number1\",\"portOut\":\"result\",\"objIn\":\"bp6-32\",\"objOut\":\"bp6-25\"}]}],\"objName\":\"Ops.Math.Divide\"},{\"id\":\"bp6-26\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"portsIn\":[{\"name\":\"PointSize\",\"value\":3},{\"name\":\"Size in Pixels\",\"value\":1},{\"name\":\"Random Size\",\"value\":0},{\"name\":\"Round\",\"value\":0},{\"name\":\"Round Antialias\",\"value\":0},{\"name\":\"Scale by Distance\",\"value\":0},{\"name\":\"r\",\"value\":0.772},{\"name\":\"g\",\"value\":0.15106840238933295},{\"name\":\"b\",\"value\":0.4207414807217118},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Colorize Texture\",\"value\":1},{\"name\":\"Mask Channel index\",\"value\":0},{\"name\":\"Mask Channel\",\"value\":\"R\"},{\"name\":\"Colorize Randomize\",\"value\":0},{\"name\":\"Point Size Channel index\",\"value\":0},{\"name\":\"Point Size Channel\",\"value\":\"R\"},{\"name\":\"Texture Point Size Mul\",\"value\":1},{\"name\":\"Map Size 0 index\",\"value\":0},{\"name\":\"Map Size 0\",\"value\":\"Black\"},{\"name\":\"Flip Texture\",\"value\":0},{\"name\":\"Atlas Cross Fade\",\"value\":0},{\"name\":\"Atlas Repeat X \",\"value\":1},{\"name\":\"Min Point Size\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp6-22\",\"objOut\":\"bp6-26\"}]}],\"objName\":\"Ops.Gl.Shader.PointMaterial_v5\"},{\"id\":\"bp6-27\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_bypassConvolver\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"Value\",\"objIn\":\"bp6-28\",\"objOut\":\"bp6-27\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"bp6-28\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"bp6-30\",\"objOut\":\"bp6-28\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"bp6-29\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"portsIn\":[{\"name\":\"Title\",\"value\":\"bypass\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp6-30\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"bp6-20\",\"objOut\":\"bp6-30\"},{\"portIn\":\"blls2amps\",\"portOut\":\"Trigger out\",\"objIn\":\"bp6-14\",\"objOut\":\"bp6-30\"},{\"portIn\":\"Trigger\",\"portOut\":\"Trigger out\",\"objIn\":\"bp6-31\",\"objOut\":\"bp6-30\"}]}],\"objName\":\"Ops.Trigger.GateTrigger\"},{\"id\":\"bp6-31\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp6-5\",\"objOut\":\"bp6-31\"},{\"portIn\":\"blls2amps\",\"portOut\":\"Next\",\"objIn\":\"bp6-13\",\"objOut\":\"bp6-31\"},{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp6-23\",\"objOut\":\"bp6-31\"},{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp6-16\",\"objOut\":\"bp6-31\"},{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp6-37\",\"objOut\":\"bp6-31\"}]}],\"objName\":\"Ops.Ui.Routing.RouteTrigger\"},{\"id\":\"bp6-32\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":2}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"result\",\"objIn\":\"bp6-33\",\"objOut\":\"bp6-32\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"bp6-33\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":0.2}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"result\",\"objIn\":\"bp6-1\",\"objOut\":\"bp6-33\"}]}],\"objName\":\"Ops.Math.Sum\"},{\"id\":\"bp6-34\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp6-35\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"storage\":{},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp6-36\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"portsIn\":[{\"name\":\"Text\",\"value\":\"~ type\"},{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.06},{\"name\":\"Letter Spacing\",\"value\":-0.05},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":2},{\"name\":\"Align\",\"value\":\"Right\"},{\"name\":\"Vertical Align index\",\"value\":1},{\"name\":\"Vertical Align\",\"value\":\"Top\"},{\"name\":\"r\",\"value\":0.848},{\"name\":\"g\",\"value\":0.865},{\"name\":\"b\",\"value\":0.878},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.17},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.222},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":0},{\"name\":\"Border g\",\"value\":0},{\"name\":\"Border b\",\"value\":1},{\"name\":\"Shadow\",\"value\":0},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.16000078125},{\"name\":\"Height\",\"value\":0.08107312748015873},{\"name\":\"Start Y\",\"value\":0.0285382068452381},{\"name\":\"Num Chars\",\"value\":6}],\"storage\":{\"ref\":\"bp6-36\"},\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"bp6-37\",\"uiAttribs\":{\"subPatch\":\"8qz3bttzf\"},\"portsIn\":[{\"name\":\"x\",\"value\":-1.42},{\"name\":\"y\",\"value\":-0.97},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"bp6-36\",\"objOut\":\"bp6-37\"}]}],\"storage\":{\"ref\":\"bp6-37\"},\"objName\":\"Ops.Gl.Matrix.Translate\"}]}",};
-op.initInnerPorts=function(addedOps)
-{
-  for(let i=0;i<addedOps.length;i++)
-  {
-    if(addedOps[i].innerInput)
-    {
-    }
-if(addedOps[i].innerOutput)
-{
-}
-}
-};
-
-const patchId = "bp2sub_" + op.id;
-
-new CABLES.SubPatchOp(op, { "subId": patchId });
-
-initializeSubpatch();
-
-function initializeSubpatch()
-{
-    const p = JSON.parse(attachments.subpatch_json);
-
-    CABLES.Patch.replaceOpIds(p,
-        {
-            "parentSubPatchId": patchId,
-            "prefixHash": patchId,
-            "oldIdAsRef": true,
-            "doNotUnlinkLostLinks": true
-        });
-
-    for (let i = 0; i < p.ops.length; i++)
-    {
-        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
-    }
-
-    op.loadDependencies(p, () =>
-    {
-        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
-        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
-        op.patch.emitEvent("subpatchExpose", patchId);
-        op.setStorage({ "blueprintVer": 2 });
-        op.patch.emitEvent("subpatchExpose", patchId);
-    });
-}
-
-
-};
-
-Ops.Patch.P4oPpSn.UI_ScapeParams.prototype = new CABLES.Op();
-CABLES.OPS["74861bee-87e2-4626-a2d4-50d63d2dfdac"]={f:Ops.Patch.P4oPpSn.UI_ScapeParams,objName:"Ops.Patch.P4oPpSn.UI_ScapeParams"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Patch.P4oPpSn.UI_Bypassers
-// 
-// **************************************************************
-
-Ops.Patch.P4oPpSn.UI_Bypassers = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"op.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp7-0\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsOut\":[{\"name\":\"trigger 0\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger 0\",\"objIn\":\"bp7-5\",\"objOut\":\"bp7-0\"}]},{\"name\":\"trigger 1\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger 1\",\"objIn\":\"bp7-2\",\"objOut\":\"bp7-0\"}]},{\"name\":\"trigger 5\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger 5\",\"objIn\":\"bp7-1\",\"objOut\":\"bp7-0\"}]},{\"name\":\"trigger 7\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"trigger 7\",\"objIn\":\"bp7-16\",\"objOut\":\"bp7-0\"}]}],\"objName\":\"Ops.Gl.LayerSequence\"},{\"id\":\"bp7-1\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Width\",\"value\":1},{\"name\":\"Height\",\"value\":1},{\"name\":\"pivot x index\",\"value\":0},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":0},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"Draw Top\",\"value\":1},{\"name\":\"Draw Bottom\",\"value\":1},{\"name\":\"Draw Left\",\"value\":1},{\"name\":\"Draw Right\",\"value\":1},{\"name\":\"Active\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.RectangleFrame_v2\"},{\"id\":\"bp7-2\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Width\",\"value\":4},{\"name\":\"Height\",\"value\":1},{\"name\":\"Class\",\"value\":\"\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":0},{\"name\":\"Pivot y\",\"value\":\"center\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Render Rectangle\",\"value\":0},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":0},{\"name\":\"Cursor\",\"value\":\"auto\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp7-16\",\"objOut\":\"bp7-2\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp7-49\",\"objOut\":\"bp7-2\"}]},{\"name\":\"Pointer X\",\"value\":0.49205933739803076},{\"name\":\"Pointer Y\",\"value\":0.8293737748474971},{\"name\":\"Top\",\"value\":173.53238135576248},{\"name\":\"Left\",\"value\":118.10608100891113},{\"name\":\"Right\",\"value\":260.36534667015076},{\"name\":\"Bottom\",\"value\":208.69696402549744},{\"name\":\"Left Click\",\"links\":[{\"portIn\":\"trigger\",\"portOut\":\"Left Click\",\"objIn\":\"bp7-6\",\"objOut\":\"bp7-2\"}]}],\"objName\":\"Ops.Gl.InteractiveRectangle_v2\"},{\"id\":\"bp7-3\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Named Trigger\",\"value\":\"midExe\"}],\"portsOut\":[{\"name\":\"Triggered\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Triggered\",\"objIn\":\"bp7-4\",\"objOut\":\"bp7-3\"},{\"portIn\":\"render\",\"portOut\":\"Triggered\",\"objIn\":\"bp7-22\",\"objOut\":\"bp7-3\"}]}],\"objName\":\"Ops.Trigger.TriggerReceive\"},{\"id\":\"bp7-4\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsIn\":[{\"name\":\"posX\",\"value\":-1.15},{\"name\":\"posY\",\"value\":0.18},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.06},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"trigger\",\"objIn\":\"bp7-0\",\"objOut\":\"bp7-4\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp7-5\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"title\":\"Render\"},{\"name\":\"width\",\"value\":0.8},{\"name\":\"height\",\"value\":0.8},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":2},{\"name\":\"num rows\",\"value\":2}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"bp7-6\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Default\",\"value\":0}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Render Mesh\",\"portOut\":\"result\",\"objIn\":\"bp7-5\",\"objOut\":\"bp7-6\"},{\"portIn\":\"Numbers_0\",\"portOut\":\"result\",\"objIn\":\"bp7-44\",\"objOut\":\"bp7-6\"},{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"bp7-45\",\"objOut\":\"bp7-6\"},{\"portIn\":\"Value In\",\"portOut\":\"result\",\"objIn\":\"bp7-53\",\"objOut\":\"bp7-6\"}]}],\"objName\":\"Ops.Boolean.ToggleBool_v2\"},{\"id\":\"bp7-7\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Title\",\"value\":\"Bypass Convolvers\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp7-8\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsOut\":[{\"name\":\"trigger 0\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger 0\",\"objIn\":\"bp7-11\",\"objOut\":\"bp7-8\"}]},{\"name\":\"trigger 5\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger 5\",\"objIn\":\"bp7-9\",\"objOut\":\"bp7-8\"}]},{\"name\":\"trigger 6\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger 6\",\"objIn\":\"bp7-10\",\"objOut\":\"bp7-8\"}]},{\"name\":\"trigger 8\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"trigger 8\",\"objIn\":\"bp7-17\",\"objOut\":\"bp7-8\"}]}],\"objName\":\"Ops.Gl.LayerSequence\"},{\"id\":\"bp7-9\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Width\",\"value\":1},{\"name\":\"Height\",\"value\":1},{\"name\":\"pivot x index\",\"value\":0},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":0},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"Draw Top\",\"value\":1},{\"name\":\"Draw Bottom\",\"value\":1},{\"name\":\"Draw Left\",\"value\":1},{\"name\":\"Draw Right\",\"value\":1},{\"name\":\"Active\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.RectangleFrame_v2\"},{\"id\":\"bp7-10\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Width\",\"value\":4},{\"name\":\"Height\",\"value\":1},{\"name\":\"Class\",\"value\":\"\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":0},{\"name\":\"Pivot y\",\"value\":\"center\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Render Rectangle\",\"value\":0},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":2},{\"name\":\"Cursor\",\"value\":\"pointer\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp7-17\",\"objOut\":\"bp7-10\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp7-52\",\"objOut\":\"bp7-10\"}]},{\"name\":\"Pointer X\",\"value\":0.25340209706117683},{\"name\":\"Pointer Y\",\"value\":0.8289129395231344},{\"name\":\"Top\",\"value\":120.90390527248383},{\"name\":\"Left\",\"value\":119.11727738380432},{\"name\":\"Right\",\"value\":261.18397855758667},{\"name\":\"Bottom\",\"value\":155.97376960515976},{\"name\":\"Left Click\",\"links\":[{\"portIn\":\"trigger\",\"portOut\":\"Left Click\",\"objIn\":\"bp7-12\",\"objOut\":\"bp7-10\"}]}],\"objName\":\"Ops.Gl.InteractiveRectangle_v2\"},{\"id\":\"bp7-11\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"title\":\"Render\"},{\"name\":\"width\",\"value\":0.8},{\"name\":\"height\",\"value\":0.8},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":2},{\"name\":\"num rows\",\"value\":2}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"bp7-12\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Default\",\"value\":0}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Render Mesh\",\"portOut\":\"result\",\"objIn\":\"bp7-11\",\"objOut\":\"bp7-12\"},{\"portIn\":\"Numbers_0\",\"portOut\":\"result\",\"objIn\":\"bp7-36\",\"objOut\":\"bp7-12\"},{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"bp7-47\",\"objOut\":\"bp7-12\"},{\"portIn\":\"Value In\",\"portOut\":\"result\",\"objIn\":\"bp7-55\",\"objOut\":\"bp7-12\"}]}],\"objName\":\"Ops.Boolean.ToggleBool_v2\"},{\"id\":\"bp7-13\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Title\",\"value\":\"Bypass Refs\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp7-14\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsIn\":[{\"name\":\"posX\",\"value\":-1.15},{\"name\":\"posY\",\"value\":0.27},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.06},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"trigger\",\"objIn\":\"bp7-8\",\"objOut\":\"bp7-14\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp7-15\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Named Trigger\",\"value\":\"midExe\"}],\"portsOut\":[{\"name\":\"Triggered\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Triggered\",\"objIn\":\"bp7-14\",\"objOut\":\"bp7-15\"},{\"portIn\":\"Execute\",\"portOut\":\"Triggered\",\"objIn\":\"bp7-20\",\"objOut\":\"bp7-15\"}]}],\"objName\":\"Ops.Trigger.TriggerReceive\"},{\"id\":\"bp7-16\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsIn\":[{\"name\":\"easing index\",\"value\":2},{\"name\":\"easing\",\"value\":\"smoothstep\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":1},{\"name\":\"Direction\",\"value\":\"Only True\"},{\"name\":\"value false\",\"value\":-0.05},{\"name\":\"value true\",\"value\":-0.1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"Thickness\",\"portOut\":\"value\",\"objIn\":\"bp7-1\",\"objOut\":\"bp7-16\"},{\"portIn\":\"number\",\"portOut\":\"value\",\"objIn\":\"bp7-26\",\"objOut\":\"bp7-16\"},{\"portIn\":\"SDF\",\"portOut\":\"value\",\"objIn\":\"bp7-21\",\"objOut\":\"bp7-16\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"bp7-17\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsIn\":[{\"name\":\"easing index\",\"value\":2},{\"name\":\"easing\",\"value\":\"smoothstep\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":1},{\"name\":\"Direction\",\"value\":\"Only True\"},{\"name\":\"value false\",\"value\":-0.05},{\"name\":\"value true\",\"value\":-0.1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"Thickness\",\"portOut\":\"value\",\"objIn\":\"bp7-9\",\"objOut\":\"bp7-17\"},{\"portIn\":\"number\",\"portOut\":\"value\",\"objIn\":\"bp7-24\",\"objOut\":\"bp7-17\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"bp7-18\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Text\",\"value\":\"Bypass Reflectors\"},{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.03},{\"name\":\"Letter Spacing\",\"value\":-0.02},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":0},{\"name\":\"Align\",\"value\":\"Left\"},{\"name\":\"Vertical Align index\",\"value\":2},{\"name\":\"Vertical Align\",\"value\":\"Middle\"},{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":1},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.17},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.278},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":0.268},{\"name\":\"Border g\",\"value\":0.917},{\"name\":\"Border b\",\"value\":0.449},{\"name\":\"Shadow\",\"value\":0},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.25007109375000003},{\"name\":\"Height\",\"value\":0.042150235615079364},{\"name\":\"Start Y\",\"value\":0.01569281374007937},{\"name\":\"Num Chars\",\"value\":17}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"bp7-19\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsIn\":[{\"name\":\"x\",\"value\":-1.07},{\"name\":\"y\",\"value\":0.275},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"bp7-18\",\"objOut\":\"bp7-19\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp7-20\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Pass Through\",\"value\":1}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"bp7-19\",\"objOut\":\"bp7-20\"}]}],\"objName\":\"Ops.Trigger.GateTrigger\"},{\"id\":\"bp7-21\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Text\",\"value\":\"Bypass Scape\"},{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.03},{\"name\":\"Letter Spacing\",\"value\":-0.02},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":0},{\"name\":\"Align\",\"value\":\"Left\"},{\"name\":\"Vertical Align index\",\"value\":2},{\"name\":\"Vertical Align\",\"value\":\"Middle\"},{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.146},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.278},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":0.268},{\"name\":\"Border g\",\"value\":0.917},{\"name\":\"Border b\",\"value\":0.449},{\"name\":\"Shadow\",\"value\":0},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.19078828125000002},{\"name\":\"Height\",\"value\":0.041074454365079366},{\"name\":\"Start Y\",\"value\":0.014079141865079366},{\"name\":\"Num Chars\",\"value\":12}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"bp7-22\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsIn\":[{\"name\":\"x\",\"value\":-1.07},{\"name\":\"y\",\"value\":0.185},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"bp7-21\",\"objOut\":\"bp7-22\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp7-23\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0},{\"name\":\"Value 2\",\"value\":10}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"Result\",\"objIn\":\"bp7-18\",\"objOut\":\"bp7-23\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"bp7-24\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Percentage\",\"portOut\":\"result\",\"objIn\":\"bp7-23\",\"objOut\":\"bp7-24\"}]}],\"objName\":\"Ops.Math.Abs\"},{\"id\":\"bp7-25\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0},{\"name\":\"Value 2\",\"value\":10}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"Result\",\"objIn\":\"bp7-21\",\"objOut\":\"bp7-25\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"bp7-26\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Percentage\",\"portOut\":\"result\",\"objIn\":\"bp7-25\",\"objOut\":\"bp7-26\"}]}],\"objName\":\"Ops.Math.Abs\"},{\"id\":\"bp7-27\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsIn\":[{\"name\":\"value\",\"value\":\"scapeBypass\"}],\"portsOut\":[{\"name\":\"String\",\"links\":[{\"portIn\":\"ID\",\"portOut\":\"String\",\"objIn\":\"bp7-2\",\"objOut\":\"bp7-27\"},{\"portIn\":\"String In\",\"portOut\":\"String\",\"objIn\":\"bp7-39\",\"objOut\":\"bp7-27\"}]}],\"objName\":\"Ops.String.String_v2\"},{\"id\":\"bp7-28\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsIn\":[{\"name\":\"value\",\"value\":\"srvbBypass\"}],\"portsOut\":[{\"name\":\"String\",\"links\":[{\"portIn\":\"ID\",\"portOut\":\"String\",\"objIn\":\"bp7-10\",\"objOut\":\"bp7-28\"},{\"portIn\":\"String In\",\"portOut\":\"String\",\"objIn\":\"bp7-31\",\"objOut\":\"bp7-28\"}]}],\"objName\":\"Ops.String.String_v2\"},{\"id\":\"bp7-29\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_bypassSRVB\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp7-30\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int srvbBypass\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp7-31\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"srvbBypass\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"bp7-32\",\"objOut\":\"bp7-31\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"bp7-35\",\"objOut\":\"bp7-31\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"bp7-32\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"bp7-33\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp7-34\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_srvbParams_object\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Value\",\"objIn\":\"bp7-35\",\"objOut\":\"bp7-34\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"bp7-35\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"Result\",\"objIn\":\"bp7-50\",\"objOut\":\"bp7-35\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"bp7-36\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"Number\",\"portOut\":\"Number\",\"objIn\":\"bp7-51\",\"objOut\":\"bp7-36\"}]},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"bp7-37\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Index\",\"portOut\":\"Result\",\"objIn\":\"bp7-36\",\"objOut\":\"bp7-37\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"bp7-38\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int scapeBypass\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp7-39\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"scapeBypass\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"bp7-40\",\"objOut\":\"bp7-39\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"bp7-43\",\"objOut\":\"bp7-39\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"bp7-40\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"bp7-41\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp7-42\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_srvbParams_object\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Value\",\"objIn\":\"bp7-43\",\"objOut\":\"bp7-42\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"bp7-43\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Numbers_1\",\"portOut\":\"Result\",\"objIn\":\"bp7-44\",\"objOut\":\"bp7-43\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"bp7-44\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"value\":0},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"bp7-45\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsOut\":[{\"name\":\"Bool\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Bool\",\"objIn\":\"bp7-46\",\"objOut\":\"bp7-45\"}]}],\"objName\":\"Ops.Ui.VizBool\"},{\"id\":\"bp7-46\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_bypassConvolver\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp7-47\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsOut\":[{\"name\":\"Bool\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Bool\",\"objIn\":\"bp7-29\",\"objOut\":\"bp7-47\"}]}],\"objName\":\"Ops.Ui.VizBool\"},{\"id\":\"bp7-48\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"objName\":\"Ops.Ui.VizNumberBar\"},{\"id\":\"bp7-49\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"bp7-39\",\"objOut\":\"bp7-49\"},{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"bp7-53\",\"objOut\":\"bp7-49\"},{\"portIn\":\"Index\",\"portOut\":\"result\",\"objIn\":\"bp7-44\",\"objOut\":\"bp7-49\"},{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp7-57\",\"objOut\":\"bp7-49\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"bp7-50\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Numbers_1\",\"portOut\":\"Result\",\"objIn\":\"bp7-36\",\"objOut\":\"bp7-50\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"bp7-51\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"objName\":\"Ops.Ui.VizNumberBar\"},{\"id\":\"bp7-52\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"bp7-37\",\"objOut\":\"bp7-52\"},{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"bp7-31\",\"objOut\":\"bp7-52\"},{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"bp7-55\",\"objOut\":\"bp7-52\"},{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp7-58\",\"objOut\":\"bp7-52\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"bp7-53\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"Value Out\",\"objIn\":\"bp7-54\",\"objOut\":\"bp7-53\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"bp7-54\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"bp7-41\",\"objOut\":\"bp7-54\"},{\"portIn\":\"Number\",\"portOut\":\"Result\",\"objIn\":\"bp7-48\",\"objOut\":\"bp7-54\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"bp7-55\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"Value Out\",\"objIn\":\"bp7-56\",\"objOut\":\"bp7-55\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"bp7-56\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"bp7-33\",\"objOut\":\"bp7-56\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"bp7-57\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonToggle\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp7-58\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonToggle\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp7-59\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp7-60\",\"uiAttribs\":{\"subPatch\":\"tukcruqj9\"},\"storage\":{},\"objName\":\"Ops.Ui.SubPatchOutput\"}]}",};
-op.initInnerPorts=function(addedOps)
-{
-  for(let i=0;i<addedOps.length;i++)
-  {
-    if(addedOps[i].innerInput)
-    {
-    }
-if(addedOps[i].innerOutput)
-{
-}
-}
-};
-
-const patchId = "bp2sub_" + op.id;
-
-new CABLES.SubPatchOp(op, { "subId": patchId });
-
-initializeSubpatch();
-
-function initializeSubpatch()
-{
-    const p = JSON.parse(attachments.subpatch_json);
-
-    CABLES.Patch.replaceOpIds(p,
-        {
-            "parentSubPatchId": patchId,
-            "prefixHash": patchId,
-            "oldIdAsRef": true,
-            "doNotUnlinkLostLinks": true
-        });
-
-    for (let i = 0; i < p.ops.length; i++)
-    {
-        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
-    }
-
-    op.loadDependencies(p, () =>
-    {
-        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
-        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
-        op.patch.emitEvent("subpatchExpose", patchId);
-        op.setStorage({ "blueprintVer": 2 });
-        op.patch.emitEvent("subpatchExpose", patchId);
-    });
-}
-
-
-};
-
-Ops.Patch.P4oPpSn.UI_Bypassers.prototype = new CABLES.Op();
-CABLES.OPS["5cd6a42c-6e37-4a57-b681-4019cf6e8fcb"]={f:Ops.Patch.P4oPpSn.UI_Bypassers,objName:"Ops.Patch.P4oPpSn.UI_Bypassers"};
+Ops.Patch.PW10J0o.BasicSlider_v5.prototype = new CABLES.Op();
+CABLES.OPS["bc9c1b45-26f2-483c-9b39-e334e9a37d00"]={f:Ops.Patch.PW10J0o.BasicSlider_v5,objName:"Ops.Patch.PW10J0o.BasicSlider_v5"};
 
 
 
@@ -24902,2425 +24901,6 @@ CABLES.OPS["17212e2b-d692-464c-8f8d-2d511dd3410a"]={f:Ops.Gl.ImageCompose.ImageC
 
 // **************************************************************
 // 
-// Ops.Gl.InteractiveRectangle_v2
-// 
-// **************************************************************
-
-Ops.Gl.InteractiveRectangle_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    render = op.inTrigger("Trigger in"),
-    trigger = op.outTrigger("Trigger out"),
-    width = op.inValue("Width", 1),
-    height = op.inValue("Height", 1),
-    inId = op.inString("ID"),
-    classPort = op.inString("Class"),
-    pivotX = op.inValueSelect("Pivot x", ["center", "left", "right"]),
-    pivotY = op.inValueSelect("Pivot y", ["center", "top", "bottom"]),
-    axis = op.inValueSelect("Axis", ["xy", "xz"]),
-    isInteractive = op.inValueBool("Is Interactive", true),
-    renderRect = op.inValueBool("Render Rectangle", true),
-    divVisible = op.inValueBool("Show Boundings", true),
-    cursorPort = op.inValueSelect("Cursor", ["auto", "crosshair", "pointer", "Hand", "move", "n-resize", "ne-resize", "e-resize", "se-resize", "s-resize", "sw-resize", "w-resize", "nw-resize", "text", "wait", "help", "none"], "pointer"),
-    active = op.inValueBool("Render", true);
-
-const geomOut = op.outObject("geometry");
-geomOut.ignoreValueSerialize = true;
-
-const
-    mouseOver = op.outBoolNum("Pointer Hover", false),
-    mouseDown = op.outBoolNum("Pointer Down", false),
-    outX = op.outNumber("Pointer X"),
-    outY = op.outNumber("Pointer Y"),
-    outTop = op.outNumber("Top"),
-    outLeft = op.outNumber("Left"),
-    outRight = op.outNumber("Right"),
-    outBottom = op.outNumber("Bottom"),
-    mouseClick = op.outTrigger("Left Click");
-
-const elementPort = op.outObject("Dom Element");
-
-active.setUiAttribs({ "title": "Active" });
-
-const cgl = op.patch.cgl;
-axis.set("xy");
-pivotX.set("center");
-pivotY.set("center");
-
-const geom = new CGL.Geometry(op.name);
-let mesh = null;
-let div = null;
-const m = mat4.create();
-const trans = mat4.create();
-const pos = vec3.create();
-const divAlign = vec3.create();
-const divAlignSize = vec3.create();
-
-axis.onChange = rebuild;
-pivotX.onChange = rebuild;
-pivotY.onChange = rebuild;
-width.onChange = rebuild;
-height.onChange = rebuild;
-cursorPort.onChange = updateCursor;
-rebuild();
-
-const modelMatrix = mat4.create();
-const identViewMatrix = mat4.create();
-const zeroVec3 = vec3.create();
-
-render.onTriggered = function ()
-{
-    if (!div)
-    {
-        setUpDiv();
-        addListeners();
-        updateDivVisibility();
-        updateIsInteractive();
-    }
-    updateDivSize();
-
-    if (active.get() && renderRect.get() && mesh) mesh.render(cgl.getShader());
-
-    trigger.trigger();
-};
-
-function rebuild()
-{
-    let w = width.get();
-    let h = height.get();
-    let x = 0;
-    let y = 0;
-
-    if (typeof w == "string")w = parseFloat(w);
-    if (typeof h == "string")h = parseFloat(h);
-
-    if (pivotX.get() == "center")
-    {
-        x = 0;
-        divAlign[0] = -w / 2;
-    }
-    if (pivotX.get() == "right")
-    {
-        x = -w / 2;
-    }
-    if (pivotX.get() == "left")
-    {
-        x = w / 2;
-    }
-
-    if (pivotY.get() == "center")
-    {
-        y = 0;
-        divAlign[1] = -h / 2;
-    }
-    if (pivotY.get() == "top") y = -h / 2;
-    if (pivotY.get() == "bottom") y = +h / 2;
-
-    const verts = [];
-    const tc = [];
-    const norms = [];
-    const indices = [];
-
-    const numRows = 1;
-    const numColumns = 1;
-
-    const stepColumn = w / numColumns;
-    const stepRow = h / numRows;
-
-    let c, r;
-
-    for (r = 0; r <= numRows; r++)
-    {
-        for (c = 0; c <= numColumns; c++)
-        {
-            verts.push(c * stepColumn - width.get() / 2 + x);
-            if (axis.get() == "xz") verts.push(0.0);
-            verts.push(r * stepRow - height.get() / 2 + y);
-            if (axis.get() == "xy") verts.push(0.0);
-
-            tc.push(c / numColumns);
-            tc.push(1.0 - r / numRows);
-
-            if (axis.get() == "xz")
-            {
-                norms.push(0);
-                norms.push(1);
-                norms.push(0);
-            }
-
-            if (axis.get() == "xy")
-            {
-                norms.push(0);
-                norms.push(0);
-                norms.push(-1);
-            }
-        }
-    }
-
-    for (c = 0; c < numColumns; c++)
-    {
-        for (r = 0; r < numRows; r++)
-        {
-            const ind = c + (numColumns + 1) * r;
-            const v1 = ind;
-            const v2 = ind + 1;
-            const v3 = ind + numColumns + 1;
-            const v4 = ind + 1 + numColumns + 1;
-
-            indices.push(v1);
-            indices.push(v3);
-            indices.push(v2);
-
-            indices.push(v2);
-            indices.push(v3);
-            indices.push(v4);
-        }
-    }
-
-    geom.clear();
-    geom.vertices = verts;
-    geom.texCoords = tc;
-    geom.verticesIndices = indices;
-    geom.vertexNormals = norms;
-
-    if (!mesh) mesh = new CGL.Mesh(cgl, geom);
-    else mesh.setGeom(geom);
-
-    geomOut.set(null);
-    geomOut.set(geom);
-}
-
-let divX = 0;
-let divY = 0;
-let divWidth = 0;
-let divHeight = 0;
-
-const mMatrix = mat4.create();
-divVisible.onChange = updateDivVisibility;
-inId.onChange = updateId;
-classPort.onChange = updateClassNames;
-
-function updateDivVisibility()
-{
-    if (div)
-    {
-        if (divVisible.get()) div.style.border = "1px solid red";
-        else div.style.border = "none";
-    }
-}
-
-function updateCursor()
-{
-    if (div)
-    {
-        div.style.cursor = cursorPort.get();
-    }
-}
-
-function updateId()
-{
-    if (div)
-    {
-        div.setAttribute("id", inId.get());
-    }
-}
-
-function updateDivSize()
-{
-    // var vp=cgl.getViewPort();
-
-    mat4.multiply(mMatrix, cgl.vMatrix, cgl.mMatrix);
-    vec3.transformMat4(pos, divAlign, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const top = cgl.canvas.styleMarginTop || 0;
-    const left = cgl.canvas.styleMarginLeft || 0;
-
-    const x1 = (trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2 + left;
-    const y1 = (trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top;
-
-    divAlignSize[0] = divAlign[0] + width.get();
-    divAlignSize[1] = divAlign[1];
-
-    vec3.transformMat4(pos, divAlignSize, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const x2 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
-    const y2 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
-
-    divAlignSize[0] = divAlign[0];
-    divAlignSize[1] = divAlign[1] + height.get();
-
-    vec3.transformMat4(pos, divAlignSize, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const x3 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
-    const y3 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
-
-    divAlignSize[0] = divAlign[0] + width.get();
-    divAlignSize[1] = divAlign[1] + height.get();
-
-    vec3.transformMat4(pos, divAlignSize, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const x4 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
-    const y4 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
-
-    divX = Math.min(x1, x2, x3, x4);
-    divY = Math.min(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
-
-    const xb = Math.max(x1, x2, x3, x4);
-    const yb = Math.max(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
-
-    outTop.set(divY);
-    outLeft.set(divX);
-    outRight.set(xb);
-    outBottom.set(yb);
-
-    divWidth = Math.abs(xb - divX);
-    divHeight = Math.abs(yb - divY);
-
-    divX /= op.patch.cgl.pixelDensity;
-    divY /= op.patch.cgl.pixelDensity;
-    divWidth /= op.patch.cgl.pixelDensity;
-    divHeight /= op.patch.cgl.pixelDensity;
-
-    // div.style.left=divX+'px';
-    // div.style.top=divY+'px';
-    // div.style.width=divWidth+'px';
-    // div.style.height=divHeight+'px';
-
-    const divXpx = divX + "px";
-    const divYpx = divY + "px";
-    const divWidthPx = divWidth + "px";
-    const divHeightPx = divHeight + "px";
-    if (divXpx != div.style.left) div.style.left = divXpx;
-    if (divYpx != div.style.top) div.style.top = divYpx;
-    if (div.style.width != divWidthPx) div.style.width = divWidthPx;
-    if (div.style.height != divHeightPx) div.style.height = divHeightPx;
-}
-
-function updateClassNames()
-{
-    if (div)
-    {
-        div.className = classPort.get();
-    }
-}
-
-op.onDelete = function ()
-{
-    if (div)div.remove();
-};
-
-function setUpDiv()
-{
-    if (!div)
-    {
-        div = document.createElement("div");
-        div.dataset.op = op.id;
-        div.oncontextmenu = function (e)
-        {
-            e.preventDefault();
-        };
-
-        div.style.padding = "0px";
-        div.style.position = "absolute";
-        div.style["box-sizing"] = "border-box";
-        div.style.border = "1px solid red";
-        // div.style['border-left']="1px solid blue";
-        // div.style['border-top']="1px solid green";
-        div.style["z-index"] = "500";
-
-        div.style["-webkit-user-select"] = "none";
-        div.style["user-select"] = "none";
-        div.style["-webkit-tap-highlight-color"] = "rgba(0,0,0,0)";
-        div.style["-webkit-touch-callout"] = "none";
-
-        const canvas = op.patch.cgl.canvas.parentElement;
-        canvas.appendChild(div);
-        updateCursor();
-        updateIsInteractive();
-        updateId();
-        updateClassNames();
-    }
-    updateDivSize();
-    elementPort.set(div);
-}
-
-let listenerElement = null;
-
-function onMouseMove(e)
-{
-    const offsetX = -width.get() / 2;
-    const offsetY = -height.get() / 2;
-
-    outX.set(Math.max(0.0, Math.min(1.0, e.offsetX / divWidth)));
-    outY.set(Math.max(0.0, Math.min(1.0, 1.0 - e.offsetY / divHeight)));
-}
-
-function onMouseLeave(e)
-{
-    mouseDown.set(false);
-    mouseOver.set(false);
-}
-
-function onMouseEnter(e)
-{
-    mouseOver.set(true);
-}
-
-function onMouseDown(e)
-{
-    mouseDown.set(true);
-}
-
-function onMouseUp(e)
-{
-    mouseDown.set(false);
-}
-
-function onmouseclick(e)
-{
-    mouseClick.trigger();
-}
-
-function onTouchMove(e)
-{
-    const targetEle = document.elementFromPoint(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
-
-    if (targetEle == div)
-    {
-        mouseOver.set(true);
-        if (e.touches && e.touches.length > 0)
-        {
-            const rect = div.getBoundingClientRect(); // e.target
-            const x = e.targetTouches[0].pageX - rect.left;
-            const y = e.targetTouches[0].pageY - rect.top;
-
-            const touch = e.touches[0];
-
-            outX.set(Math.max(0.0, Math.min(1.0, x / divWidth)));
-            outY.set(Math.max(0.0, Math.min(1.0, 1.0 - y / divHeight)));
-
-            onMouseMove(touch);
-        }
-    }
-    else
-    {
-        mouseOver.set(false);
-    }
-}
-
-active.onChange = updateActiveRender;
-function updateActiveRender()
-{
-    if (active.get())
-    {
-        addListeners();
-        if (div) div.style.display = "block";
-    }
-    else
-    {
-        removeListeners();
-        if (div) div.style.display = "none";
-    }
-}
-
-isInteractive.onChange = updateIsInteractive;
-function updateIsInteractive()
-{
-    if (isInteractive.get())
-    {
-        addListeners();
-        if (div)div.style["pointer-events"] = "initial";
-    }
-    else
-    {
-        removeListeners();
-        mouseDown.set(false);
-        mouseOver.set(false);
-        if (div)div.style["pointer-events"] = "none";
-    }
-}
-
-function removeListeners()
-{
-    if (listenerElement)
-    {
-        document.removeEventListener("touchmove", onTouchMove);
-        listenerElement.removeEventListener("touchend", onMouseUp);
-        listenerElement.removeEventListener("touchstart", onMouseDown);
-
-        listenerElement.removeEventListener("click", onmouseclick);
-        listenerElement.removeEventListener("mousemove", onMouseMove);
-        listenerElement.removeEventListener("mouseleave", onMouseLeave);
-        listenerElement.removeEventListener("mousedown", onMouseDown);
-        listenerElement.removeEventListener("mouseup", onMouseUp);
-        listenerElement.removeEventListener("mouseenter", onMouseEnter);
-        // listenerElement.removeEventListener('contextmenu', onClickRight);
-        listenerElement = null;
-    }
-}
-
-function addListeners()
-{
-    if (listenerElement)removeListeners();
-
-    listenerElement = div;
-
-    if (listenerElement)
-    {
-        document.addEventListener("touchmove", onTouchMove);
-        listenerElement.addEventListener("touchend", onMouseUp);
-        listenerElement.addEventListener("touchstart", onMouseDown);
-
-        listenerElement.addEventListener("click", onmouseclick);
-        listenerElement.addEventListener("mousemove", onMouseMove);
-        listenerElement.addEventListener("mouseleave", onMouseLeave);
-        listenerElement.addEventListener("mousedown", onMouseDown);
-        listenerElement.addEventListener("mouseup", onMouseUp);
-        listenerElement.addEventListener("mouseenter", onMouseEnter);
-        // listenerElement.addEventListener('contextmenu', onClickRight);
-    }
-}
-
-
-};
-
-Ops.Gl.InteractiveRectangle_v2.prototype = new CABLES.Op();
-CABLES.OPS["334728ca-60a2-4a42-a059-d9b5f3fe4d32"]={f:Ops.Gl.InteractiveRectangle_v2,objName:"Ops.Gl.InteractiveRectangle_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.Shader.BasicMaterial_v3
-// 
-// **************************************************************
-
-Ops.Gl.Shader.BasicMaterial_v3 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={"basicmaterial_frag":"{{MODULES_HEAD}}\n\nIN vec2 texCoord;\n\n#ifdef VERTEX_COLORS\nIN vec4 vertCol;\n#endif\n\n#ifdef HAS_TEXTURES\n    IN vec2 texCoordOrig;\n    #ifdef HAS_TEXTURE_DIFFUSE\n        UNI sampler2D tex;\n    #endif\n    #ifdef HAS_TEXTURE_OPACITY\n        UNI sampler2D texOpacity;\n   #endif\n#endif\n\n\n\nvoid main()\n{\n    {{MODULE_BEGIN_FRAG}}\n    vec4 col=color;\n\n\n    #ifdef HAS_TEXTURES\n        vec2 uv=texCoord;\n\n        #ifdef CROP_TEXCOORDS\n            if(uv.x<0.0 || uv.x>1.0 || uv.y<0.0 || uv.y>1.0) discard;\n        #endif\n\n        #ifdef HAS_TEXTURE_DIFFUSE\n            col=texture(tex,uv);\n\n            #ifdef COLORIZE_TEXTURE\n                col.r*=color.r;\n                col.g*=color.g;\n                col.b*=color.b;\n            #endif\n        #endif\n        col.a*=color.a;\n        #ifdef HAS_TEXTURE_OPACITY\n            #ifdef TRANSFORMALPHATEXCOORDS\n                uv=texCoordOrig;\n            #endif\n            #ifdef ALPHA_MASK_IR\n                col.a*=1.0-texture(texOpacity,uv).r;\n            #endif\n            #ifdef ALPHA_MASK_IALPHA\n                col.a*=1.0-texture(texOpacity,uv).a;\n            #endif\n            #ifdef ALPHA_MASK_ALPHA\n                col.a*=texture(texOpacity,uv).a;\n            #endif\n            #ifdef ALPHA_MASK_LUMI\n                col.a*=dot(vec3(0.2126,0.7152,0.0722), texture(texOpacity,uv).rgb);\n            #endif\n            #ifdef ALPHA_MASK_R\n                col.a*=texture(texOpacity,uv).r;\n            #endif\n            #ifdef ALPHA_MASK_G\n                col.a*=texture(texOpacity,uv).g;\n            #endif\n            #ifdef ALPHA_MASK_B\n                col.a*=texture(texOpacity,uv).b;\n            #endif\n            // #endif\n        #endif\n    #endif\n\n    {{MODULE_COLOR}}\n\n    #ifdef DISCARDTRANS\n        if(col.a<0.2) discard;\n    #endif\n\n    #ifdef VERTEX_COLORS\n        col*=vertCol;\n    #endif\n\n    outColor = col;\n}\n","basicmaterial_vert":"\n{{MODULES_HEAD}}\n\nOUT vec2 texCoord;\nOUT vec2 texCoordOrig;\n\nUNI mat4 projMatrix;\nUNI mat4 modelMatrix;\nUNI mat4 viewMatrix;\n\n#ifdef HAS_TEXTURES\n    UNI float diffuseRepeatX;\n    UNI float diffuseRepeatY;\n    UNI float texOffsetX;\n    UNI float texOffsetY;\n#endif\n\n#ifdef VERTEX_COLORS\n    in vec4 attrVertColor;\n    out vec4 vertCol;\n\n#endif\n\n\nvoid main()\n{\n    mat4 mMatrix=modelMatrix;\n    mat4 modelViewMatrix;\n\n    norm=attrVertNormal;\n    texCoordOrig=attrTexCoord;\n    texCoord=attrTexCoord;\n    #ifdef HAS_TEXTURES\n        texCoord.x=texCoord.x*diffuseRepeatX+texOffsetX;\n        texCoord.y=(1.0-texCoord.y)*diffuseRepeatY+texOffsetY;\n    #endif\n\n    #ifdef VERTEX_COLORS\n        vertCol=attrVertColor;\n    #endif\n\n    vec4 pos = vec4(vPosition, 1.0);\n\n    #ifdef BILLBOARD\n       vec3 position=vPosition;\n       modelViewMatrix=viewMatrix*modelMatrix;\n\n       gl_Position = projMatrix * modelViewMatrix * vec4((\n           position.x * vec3(\n               modelViewMatrix[0][0],\n               modelViewMatrix[1][0],\n               modelViewMatrix[2][0] ) +\n           position.y * vec3(\n               modelViewMatrix[0][1],\n               modelViewMatrix[1][1],\n               modelViewMatrix[2][1]) ), 1.0);\n    #endif\n\n    {{MODULE_VERTEX_POSITION}}\n\n    #ifndef BILLBOARD\n        modelViewMatrix=viewMatrix * mMatrix;\n\n        {{MODULE_VERTEX_MOVELVIEW}}\n\n    #endif\n\n    // mat4 modelViewMatrix=viewMatrix*mMatrix;\n\n    #ifndef BILLBOARD\n        // gl_Position = projMatrix * viewMatrix * modelMatrix * pos;\n        gl_Position = projMatrix * modelViewMatrix * pos;\n    #endif\n}\n",};
-const render = op.inTrigger("render");
-const trigger = op.outTrigger("trigger");
-const shaderOut = op.outObject("shader", null, "shader");
-
-shaderOut.ignoreValueSerialize = true;
-
-op.toWorkPortsNeedToBeLinked(render);
-op.toWorkShouldNotBeChild("Ops.Gl.TextureEffects.ImageCompose", CABLES.OP_PORT_TYPE_FUNCTION);
-
-const cgl = op.patch.cgl;
-const shader = new CGL.Shader(cgl, "basicmaterialnew", this);
-shader.addAttribute({ "type": "vec3", "name": "vPosition" });
-shader.addAttribute({ "type": "vec2", "name": "attrTexCoord" });
-shader.addAttribute({ "type": "vec3", "name": "attrVertNormal", "nameFrag": "norm" });
-shader.addAttribute({ "type": "float", "name": "attrVertIndex" });
-
-shader.setModules(["MODULE_VERTEX_POSITION", "MODULE_COLOR", "MODULE_BEGIN_FRAG", "MODULE_VERTEX_MOVELVIEW"]);
-
-shader.setSource(attachments.basicmaterial_vert, attachments.basicmaterial_frag);
-
-shaderOut.setRef(shader);
-
-render.onTriggered = doRender;
-
-// rgba colors
-const r = op.inValueSlider("r", Math.random());
-const g = op.inValueSlider("g", Math.random());
-const b = op.inValueSlider("b", Math.random());
-const a = op.inValueSlider("a", 1);
-r.setUiAttribs({ "colorPick": true });
-
-// const uniColor=new CGL.Uniform(shader,'4f','color',r,g,b,a);
-const colUni = shader.addUniformFrag("4f", "color", r, g, b, a);
-
-shader.uniformColorDiffuse = colUni;
-
-// diffuse outTexture
-
-const diffuseTexture = op.inTexture("texture");
-let diffuseTextureUniform = null;
-diffuseTexture.onChange = updateDiffuseTexture;
-
-const colorizeTexture = op.inValueBool("colorizeTexture", false);
-const vertexColors = op.inValueBool("Vertex Colors", false);
-
-// opacity texture
-const textureOpacity = op.inTexture("textureOpacity");
-let textureOpacityUniform = null;
-
-const alphaMaskSource = op.inSwitch("Alpha Mask Source", ["Luminance", "R", "G", "B", "A", "1-A", "1-R"], "Luminance");
-alphaMaskSource.setUiAttribs({ "greyout": true });
-textureOpacity.onChange = updateOpacity;
-
-const texCoordAlpha = op.inValueBool("Opacity TexCoords Transform", false);
-const discardTransPxl = op.inValueBool("Discard Transparent Pixels");
-
-// texture coords
-const
-    diffuseRepeatX = op.inValue("diffuseRepeatX", 1),
-    diffuseRepeatY = op.inValue("diffuseRepeatY", 1),
-    diffuseOffsetX = op.inValue("Tex Offset X", 0),
-    diffuseOffsetY = op.inValue("Tex Offset Y", 0),
-    cropRepeat = op.inBool("Crop TexCoords", false);
-
-shader.addUniformFrag("f", "diffuseRepeatX", diffuseRepeatX);
-shader.addUniformFrag("f", "diffuseRepeatY", diffuseRepeatY);
-shader.addUniformFrag("f", "texOffsetX", diffuseOffsetX);
-shader.addUniformFrag("f", "texOffsetY", diffuseOffsetY);
-
-const doBillboard = op.inValueBool("billboard", false);
-
-alphaMaskSource.onChange =
-    doBillboard.onChange =
-    discardTransPxl.onChange =
-    texCoordAlpha.onChange =
-    cropRepeat.onChange =
-    vertexColors.onChange =
-    colorizeTexture.onChange = updateDefines;
-
-op.setPortGroup("Color", [r, g, b, a]);
-op.setPortGroup("Color Texture", [diffuseTexture, vertexColors, colorizeTexture]);
-op.setPortGroup("Opacity", [textureOpacity, alphaMaskSource, discardTransPxl, texCoordAlpha]);
-op.setPortGroup("Texture Transform", [diffuseRepeatX, diffuseRepeatY, diffuseOffsetX, diffuseOffsetY, cropRepeat]);
-
-updateOpacity();
-updateDiffuseTexture();
-
-op.preRender = function ()
-{
-    shader.bind();
-    doRender();
-};
-
-function doRender()
-{
-    if (!shader) return;
-
-    cgl.pushShader(shader);
-    shader.popTextures();
-
-    if (diffuseTextureUniform && diffuseTexture.get()) shader.pushTexture(diffuseTextureUniform, diffuseTexture.get());
-    if (textureOpacityUniform && textureOpacity.get()) shader.pushTexture(textureOpacityUniform, textureOpacity.get());
-
-    trigger.trigger();
-
-    cgl.popShader();
-}
-
-function updateOpacity()
-{
-    if (textureOpacity.get())
-    {
-        if (textureOpacityUniform !== null) return;
-        shader.removeUniform("texOpacity");
-        shader.define("HAS_TEXTURE_OPACITY");
-        if (!textureOpacityUniform)textureOpacityUniform = new CGL.Uniform(shader, "t", "texOpacity");
-    }
-    else
-    {
-        shader.removeUniform("texOpacity");
-        shader.removeDefine("HAS_TEXTURE_OPACITY");
-        textureOpacityUniform = null;
-    }
-
-    updateDefines();
-}
-
-function updateDiffuseTexture()
-{
-    if (diffuseTexture.get())
-    {
-        if (!shader.hasDefine("HAS_TEXTURE_DIFFUSE"))shader.define("HAS_TEXTURE_DIFFUSE");
-        if (!diffuseTextureUniform)diffuseTextureUniform = new CGL.Uniform(shader, "t", "texDiffuse");
-    }
-    else
-    {
-        shader.removeUniform("texDiffuse");
-        shader.removeDefine("HAS_TEXTURE_DIFFUSE");
-        diffuseTextureUniform = null;
-    }
-    updateUi();
-}
-
-function updateUi()
-{
-    const hasTexture = diffuseTexture.isLinked() || textureOpacity.isLinked();
-    diffuseRepeatX.setUiAttribs({ "greyout": !hasTexture });
-    diffuseRepeatY.setUiAttribs({ "greyout": !hasTexture });
-    diffuseOffsetX.setUiAttribs({ "greyout": !hasTexture });
-    diffuseOffsetY.setUiAttribs({ "greyout": !hasTexture });
-    colorizeTexture.setUiAttribs({ "greyout": !hasTexture });
-
-    alphaMaskSource.setUiAttribs({ "greyout": !textureOpacity.get() });
-    texCoordAlpha.setUiAttribs({ "greyout": !textureOpacity.get() });
-
-    let notUsingColor = true;
-    notUsingColor = diffuseTexture.get() && !colorizeTexture.get();
-    r.setUiAttribs({ "greyout": notUsingColor });
-    g.setUiAttribs({ "greyout": notUsingColor });
-    b.setUiAttribs({ "greyout": notUsingColor });
-}
-
-function updateDefines()
-{
-    shader.toggleDefine("VERTEX_COLORS", vertexColors.get());
-    shader.toggleDefine("CROP_TEXCOORDS", cropRepeat.get());
-    shader.toggleDefine("COLORIZE_TEXTURE", colorizeTexture.get());
-    shader.toggleDefine("TRANSFORMALPHATEXCOORDS", texCoordAlpha.get());
-    shader.toggleDefine("DISCARDTRANS", discardTransPxl.get());
-    shader.toggleDefine("BILLBOARD", doBillboard.get());
-
-    shader.toggleDefine("ALPHA_MASK_ALPHA", alphaMaskSource.get() == "A");
-    shader.toggleDefine("ALPHA_MASK_IALPHA", alphaMaskSource.get() == "1-A");
-    shader.toggleDefine("ALPHA_MASK_IR", alphaMaskSource.get() == "1-R");
-    shader.toggleDefine("ALPHA_MASK_LUMI", alphaMaskSource.get() == "Luminance");
-    shader.toggleDefine("ALPHA_MASK_R", alphaMaskSource.get() == "R");
-    shader.toggleDefine("ALPHA_MASK_G", alphaMaskSource.get() == "G");
-    shader.toggleDefine("ALPHA_MASK_B", alphaMaskSource.get() == "B");
-    updateUi();
-}
-
-
-};
-
-Ops.Gl.Shader.BasicMaterial_v3.prototype = new CABLES.Op();
-CABLES.OPS["ec55d252-3843-41b1-b731-0482dbd9e72b"]={f:Ops.Gl.Shader.BasicMaterial_v3,objName:"Ops.Gl.Shader.BasicMaterial_v3"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Anim.Smooth
-// 
-// **************************************************************
-
-Ops.Anim.Smooth = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    exec = op.inTrigger("Update"),
-    inMode = op.inBool("Separate inc/dec", false),
-    inVal = op.inValue("Value"),
-    next = op.outTrigger("Next"),
-    inDivisorUp = op.inValue("Inc factor", 4),
-    inDivisorDown = op.inValue("Dec factor", 4),
-    result = op.outNumber("Result", 0);
-
-let val = 0;
-let goal = 0;
-let oldVal = 0;
-let lastTrigger = 0;
-
-op.toWorkPortsNeedToBeLinked(exec);
-
-let divisorUp;
-let divisorDown;
-let divisor = 4;
-let finished = true;
-
-let selectIndex = 0;
-const MODE_SINGLE = 0;
-const MODE_UP_DOWN = 1;
-
-onFilterChange();
-getDivisors();
-
-inMode.setUiAttribs({ "hidePort": true });
-
-inDivisorUp.onChange = inDivisorDown.onChange = getDivisors;
-inMode.onChange = onFilterChange;
-update();
-
-function onFilterChange()
-{
-    const selectedMode = inMode.get();
-    if (!selectedMode) selectIndex = MODE_SINGLE;
-    else selectIndex = MODE_UP_DOWN;
-
-    if (selectIndex == MODE_SINGLE)
-    {
-        inDivisorDown.setUiAttribs({ "greyout": true });
-        inDivisorUp.setUiAttribs({ "title": "Inc/Dec factor" });
-    }
-    else if (selectIndex == MODE_UP_DOWN)
-    {
-        inDivisorDown.setUiAttribs({ "greyout": false });
-        inDivisorUp.setUiAttribs({ "title": "Inc factor" });
-    }
-
-    getDivisors();
-    update();
-}
-
-function getDivisors()
-{
-    if (selectIndex == MODE_SINGLE)
-    {
-        divisorUp = inDivisorUp.get();
-        divisorDown = inDivisorUp.get();
-    }
-    else if (selectIndex == MODE_UP_DOWN)
-    {
-        divisorUp = inDivisorUp.get();
-        divisorDown = inDivisorDown.get();
-    }
-
-    if (divisorUp <= 0.2 || divisorUp != divisorUp)divisorUp = 0.2;
-    if (divisorDown <= 0.2 || divisorDown != divisorDown)divisorDown = 0.2;
-}
-
-inVal.onChange = function ()
-{
-    finished = false;
-    let oldGoal = goal;
-    goal = inVal.get();
-};
-
-inDivisorUp.onChange = function ()
-{
-    getDivisors();
-};
-
-function update()
-{
-    let tm = 1;
-    if (performance.now() - lastTrigger > 500 || lastTrigger === 0) val = inVal.get() || 0;
-    else tm = (performance.now() - lastTrigger) / (performance.now() - lastTrigger);
-    lastTrigger = performance.now();
-
-    if (val != val)val = 0;
-
-    if (divisor <= 0)divisor = 0.0001;
-
-    const diff = goal - val;
-
-    if (diff >= 0) val += (diff) / (divisorDown * tm);
-    else val += (diff) / (divisorUp * tm);
-
-    if (Math.abs(diff) < 0.00001)val = goal;
-
-    if (divisor != divisor)val = 0;
-    if (val != val || val == -Infinity || val == Infinity)val = inVal.get();
-
-    if (oldVal != val)
-    {
-        result.set(val);
-        oldVal = val;
-    }
-
-    if (val == goal && !finished)
-    {
-        finished = true;
-        result.set(val);
-    }
-
-    next.trigger();
-}
-
-exec.onTriggered = function ()
-{
-    update();
-};
-
-
-};
-
-Ops.Anim.Smooth.prototype = new CABLES.Op();
-CABLES.OPS["5677b5b5-753a-4fbf-9e91-64c81ec68a2f"]={f:Ops.Anim.Smooth,objName:"Ops.Anim.Smooth"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Math.Subtract
-// 
-// **************************************************************
-
-Ops.Math.Subtract = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    number1 = op.inValue("number1", 1),
-    number2 = op.inValue("number2", 1),
-    result = op.outNumber("result");
-
-op.setUiAttribs({ "mathTitle": true });
-
-number1.onChange =
-    number2.onChange = exec;
-exec();
-
-function exec()
-{
-    let v = number1.get() - number2.get();
-    if (!isNaN(v)) result.set(v);
-}
-
-
-};
-
-Ops.Math.Subtract.prototype = new CABLES.Op();
-CABLES.OPS["a4ffe852-d200-4b96-9347-68feb01122ca"]={f:Ops.Math.Subtract,objName:"Ops.Math.Subtract"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Anim.BoolAnim
-// 
-// **************************************************************
-
-Ops.Anim.BoolAnim = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const anim = new CABLES.Anim();
-
-const
-    exe = op.inTrigger("exe"),
-    bool = op.inValueBool("bool"),
-    pease = anim.createPort(op, "easing"),
-    duration = op.inValue("duration", 0.25),
-    dir = op.inValueSelect("Direction", ["Both", "Only True", "Only False"], "Both"),
-    valueFalse = op.inValue("value false", 0),
-    valueTrue = op.inValue("value true", 1),
-    next = op.outTrigger("trigger"),
-    value = op.outNumber("value"),
-    finished = op.outBoolNum("finished"),
-    finishedTrigger = op.outTrigger("Finished Trigger");
-
-const startTime = CABLES.now();
-op.toWorkPortsNeedToBeLinked(exe);
-op.setPortGroup("Animation", [duration, pease]);
-op.setPortGroup("Values", [valueFalse, valueTrue]);
-
-dir.onChange = bool.onChange = valueFalse.onChange = valueTrue.onChange = duration.onChange = setAnim;
-setAnim();
-
-function setAnim()
-{
-    if (dir.get() == "Animate Both")dir.set("Both");
-    finished.set(false);
-    const now = (CABLES.now() - startTime) / 1000;
-    const oldValue = anim.getValue(now);
-    anim.clear();
-
-    anim.setValue(now, oldValue);
-
-    if (!bool.get())
-    {
-        if (dir.get() != "Only True") anim.setValue(now + duration.get(), valueFalse.get());
-        else anim.setValue(now, valueFalse.get());
-    }
-    else
-    {
-        if (dir.get() != "Only False") anim.setValue(now + duration.get(), valueTrue.get());
-        else anim.setValue(now, valueTrue.get());
-    }
-}
-
-exe.onTriggered = function ()
-{
-    const t = (CABLES.now() - startTime) / 1000;
-    value.set(anim.getValue(t));
-
-    if (anim.hasEnded(t))
-    {
-        if (!finished.get()) finishedTrigger.trigger();
-        finished.set(true);
-    }
-
-    next.trigger();
-};
-
-
-};
-
-Ops.Anim.BoolAnim.prototype = new CABLES.Op();
-CABLES.OPS["06ad9d35-ccf5-4d31-889c-e23fa062588a"]={f:Ops.Anim.BoolAnim,objName:"Ops.Anim.BoolAnim"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.Matrix.Translate
-// 
-// **************************************************************
-
-Ops.Gl.Matrix.Translate = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    render = op.inTrigger("render"),
-    trigger = op.outTrigger("trigger"),
-    x = op.inValue("x"),
-    y = op.inValue("y"),
-    z = op.inValue("z");
-
-const vec = vec3.create();
-
-render.onTriggered = function ()
-{
-    const cgl = op.patch.cg;
-
-    vec3.set(vec, x.get(), y.get(), z.get());
-    cgl.pushModelMatrix();
-    mat4.translate(cgl.mMatrix, cgl.mMatrix, vec);
-    trigger.trigger();
-    cgl.popModelMatrix();
-};
-
-
-};
-
-Ops.Gl.Matrix.Translate.prototype = new CABLES.Op();
-CABLES.OPS["1f89ba0e-e7eb-46d7-8c66-7814b7c528b9"]={f:Ops.Gl.Matrix.Translate,objName:"Ops.Gl.Matrix.Translate"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.Meshes.Rectangle_v4
-// 
-// **************************************************************
-
-Ops.Gl.Meshes.Rectangle_v4 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    render = op.inTrigger("render"),
-    doRender = op.inValueBool("Render Mesh", true),
-    width = op.inValue("width", 1),
-    height = op.inValue("height", 1),
-    pivotX = op.inSwitch("pivot x", ["left", "center", "right"], "center"),
-    pivotY = op.inSwitch("pivot y", ["top", "center", "bottom"], "center"),
-    axis = op.inSwitch("axis", ["xy", "xz"], "xy"),
-    flipTcX = op.inBool("Flip TexCoord X", false),
-    flipTcY = op.inBool("Flip TexCoord Y", true),
-    nColumns = op.inValueInt("num columns", 1),
-    nRows = op.inValueInt("num rows", 1),
-    trigger = op.outTrigger("trigger"),
-    geomOut = op.outObject("geometry", null, "geometry");
-
-geomOut.ignoreValueSerialize = true;
-
-const cgl = op.patch.cgl;
-const geom = new CGL.Geometry("rectangle");
-
-doRender.setUiAttribs({ "title": "Render" });
-render.setUiAttribs({ "title": "Trigger" });
-trigger.setUiAttribs({ "title": "Next" });
-op.setPortGroup("Pivot", [pivotX, pivotY, axis]);
-op.setPortGroup("Size", [width, height]);
-op.setPortGroup("Structure", [nColumns, nRows]);
-op.toWorkPortsNeedToBeLinked(render);
-op.toWorkShouldNotBeChild("Ops.Gl.TextureEffects.ImageCompose", CABLES.OP_PORT_TYPE_TRIGGER);
-
-const AXIS_XY = 0;
-const AXIS_XZ = 1;
-
-let curAxis = AXIS_XY;
-let mesh = null;
-let needsRebuild = true;
-let doScale = true;
-
-const vScale = vec3.create();
-vec3.set(vScale, 1, 1, 1);
-
-axis.onChange =
-    pivotX.onChange =
-    pivotY.onChange =
-    flipTcX.onChange =
-    flipTcY.onChange =
-    nRows.onChange =
-    nColumns.onChange = rebuildLater;
-updateScale();
-
-width.onChange =
-    height.onChange =
-    () =>
-    {
-        if (doScale) updateScale();
-        else needsRebuild = true;
-    };
-
-function updateScale()
-{
-    if (curAxis === AXIS_XY) vec3.set(vScale, width.get(), height.get(), 1);
-    if (curAxis === AXIS_XZ) vec3.set(vScale, width.get(), 1, height.get());
-}
-
-geomOut.onLinkChanged = () =>
-{
-    doScale = !geomOut.isLinked();
-    updateScale();
-    needsRebuild = true;
-};
-
-function rebuildLater()
-{
-    needsRebuild = true;
-}
-
-render.onTriggered = () =>
-{
-    if (needsRebuild) rebuild();
-    const cg = op.patch.cg;
-    if (cg && mesh && doRender.get())
-    {
-        if (doScale)
-        {
-            cg.pushModelMatrix();
-            mat4.scale(cg.mMatrix, cg.mMatrix, vScale);
-        }
-
-        mesh.render(cg.getShader());
-
-        if (doScale) cg.popModelMatrix();
-    }
-
-    trigger.trigger();
-};
-
-op.onDelete = () =>
-{
-    if (mesh) mesh.dispose();
-    rebuildLater();
-};
-
-function rebuild()
-{
-    if (axis.get() == "xy") curAxis = AXIS_XY;
-    if (axis.get() == "xz") curAxis = AXIS_XZ;
-
-    updateScale();
-    let w = width.get();
-    let h = height.get();
-
-    if (doScale) w = h = 1;
-
-    let x = 0;
-    let y = 0;
-
-    if (pivotX.get() == "center") x = 0;
-    else if (pivotX.get() == "right") x = -w / 2;
-    else if (pivotX.get() == "left") x = +w / 2;
-
-    if (pivotY.get() == "center") y = 0;
-    else if (pivotY.get() == "top") y = -h / 2;
-    else if (pivotY.get() == "bottom") y = +h / 2;
-
-    const numRows = Math.max(1, Math.round(nRows.get()));
-    const numColumns = Math.max(1, Math.round(nColumns.get()));
-
-    const stepColumn = w / numColumns;
-    const stepRow = h / numRows;
-
-    const indices = [];
-    const tc = new Float32Array((numColumns + 1) * (numRows + 1) * 2);
-    const verts = new Float32Array((numColumns + 1) * (numRows + 1) * 3);
-    const norms = new Float32Array((numColumns + 1) * (numRows + 1) * 3);
-    const tangents = new Float32Array((numColumns + 1) * (numRows + 1) * 3);
-    const biTangents = new Float32Array((numColumns + 1) * (numRows + 1) * 3);
-
-    let idxTc = 0;
-    let idxVert = 0;
-    let idxNorms = 0;
-    let idxTangent = 0;
-    let idxBiTangent = 0;
-
-    for (let r = 0; r <= numRows; r++)
-    {
-        for (let c = 0; c <= numColumns; c++)
-        {
-            verts[idxVert++] = c * stepColumn - w / 2 + x;
-            if (curAxis == AXIS_XZ) verts[idxVert++] = 0;
-            verts[idxVert++] = r * stepRow - h / 2 + y;
-
-            if (curAxis == AXIS_XY)verts[idxVert++] = 0;
-
-            tc[idxTc++] = c / numColumns;
-            tc[idxTc++] = r / numRows;
-
-            if (curAxis == AXIS_XY) // default
-            {
-                norms[idxNorms++] = 0;
-                norms[idxNorms++] = 0;
-                norms[idxNorms++] = 1;
-
-                tangents[idxTangent++] = 1;
-                tangents[idxTangent++] = 0;
-                tangents[idxTangent++] = 0;
-
-                biTangents[idxBiTangent++] = 0;
-                biTangents[idxBiTangent++] = 1;
-                biTangents[idxBiTangent++] = 0;
-            }
-            else if (curAxis == AXIS_XZ)
-            {
-                norms[idxNorms++] = 0;
-                norms[idxNorms++] = 1;
-                norms[idxNorms++] = 0;
-
-                biTangents[idxBiTangent++] = 0;
-                biTangents[idxBiTangent++] = 0;
-                biTangents[idxBiTangent++] = 1;
-            }
-        }
-    }
-
-    indices.length = numColumns * numRows * 6;
-    let idx = 0;
-
-    for (let c = 0; c < numColumns; c++)
-    {
-        for (let r = 0; r < numRows; r++)
-        {
-            const ind = c + (numColumns + 1) * r;
-            const v1 = ind;
-            const v2 = ind + 1;
-            const v3 = ind + numColumns + 1;
-            const v4 = ind + 1 + numColumns + 1;
-
-            if (curAxis == AXIS_XY) // default
-            {
-                indices[idx++] = v1;
-                indices[idx++] = v2;
-                indices[idx++] = v3;
-
-                indices[idx++] = v3;
-                indices[idx++] = v2;
-                indices[idx++] = v4;
-            }
-            else
-            if (curAxis == AXIS_XZ)
-            {
-                indices[idx++] = v1;
-                indices[idx++] = v3;
-                indices[idx++] = v2;
-
-                indices[idx++] = v2;
-                indices[idx++] = v3;
-                indices[idx++] = v4;
-            }
-        }
-    }
-
-    if (flipTcY.get()) for (let i = 0; i < tc.length; i += 2)tc[i + 1] = 1.0 - tc[i + 1];
-    if (flipTcX.get()) for (let i = 0; i < tc.length; i += 2)tc[i] = 1.0 - tc[i];
-
-    geom.clear();
-    geom.vertices = verts;
-    geom.texCoords = tc;
-    geom.verticesIndices = indices;
-    geom.vertexNormals = norms;
-    geom.tangents = tangents;
-    geom.biTangents = biTangents;
-
-    if (op.patch.cg)
-        if (!mesh) mesh = op.patch.cg.createMesh(geom, { "opId": op.id });
-        else mesh.setGeom(geom);
-
-    geomOut.setRef(geom);
-    needsRebuild = false;
-}
-
-
-};
-
-Ops.Gl.Meshes.Rectangle_v4.prototype = new CABLES.Op();
-CABLES.OPS["cc8c3ede-7103-410b-849f-a645793cab39"]={f:Ops.Gl.Meshes.Rectangle_v4,objName:"Ops.Gl.Meshes.Rectangle_v4"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.Matrix.ScaleXYZViewMatrix
-// 
-// **************************************************************
-
-Ops.Gl.Matrix.ScaleXYZViewMatrix = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    render = op.inTrigger("render"),
-    scaleX = op.inValueFloat("x", 1),
-    scaleY = op.inValueFloat("y", 1),
-    scaleZ = op.inValueFloat("z", 1),
-    trigger = op.outTrigger("trigger");
-
-const cgl = op.patch.cgl;
-let vScale = vec3.create();
-let transMatrix = mat4.create();
-mat4.identity(transMatrix);
-
-scaleX.onChange = scaleY.onChange = scaleZ.onChange = scaleChanged;
-scaleChanged();
-
-render.onTriggered = exec;
-
-function exec()
-{
-    cgl.pushViewMatrix();
-    mat4.multiply(cgl.vMatrix, cgl.vMatrix, transMatrix);
-    trigger.trigger();
-    cgl.popViewMatrix();
-}
-
-function scaleChanged()
-{
-    vec3.set(vScale, scaleX.get(), scaleY.get(), scaleZ.get());
-    mat4.identity(transMatrix);
-    mat4.scale(transMatrix, transMatrix, vScale);
-}
-
-
-};
-
-Ops.Gl.Matrix.ScaleXYZViewMatrix.prototype = new CABLES.Op();
-CABLES.OPS["8b1fa9c9-0c4d-41b6-9c4f-8f4b633a9d7f"]={f:Ops.Gl.Matrix.ScaleXYZViewMatrix,objName:"Ops.Gl.Matrix.ScaleXYZViewMatrix"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Ui.Routing.RouteNumber
-// 
-// **************************************************************
-
-Ops.Ui.Routing.RouteNumber = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    v = op.inValueFloat("value"),
-    result = op.outNumber("result");
-
-v.onChange = exec;
-
-let wasLinked = false;
-
-op.setUiAttribs({ "display": "reroute" });
-
-function exec()
-{
-    result.set(v.get());
-}
-
-
-};
-
-Ops.Ui.Routing.RouteNumber.prototype = new CABLES.Op();
-CABLES.OPS["afff634a-b581-4449-b6f7-9ec7863c5d4d"]={f:Ops.Ui.Routing.RouteNumber,objName:"Ops.Ui.Routing.RouteNumber"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Vars.VarSetNumber_v2
-// 
-// **************************************************************
-
-Ops.Vars.VarSetNumber_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const val = op.inValueFloat("Value", 0);
-op.varName = op.inDropDown("Variable", [], "", true);
-
-new CABLES.VarSetOpWrapper(op, "number", val, op.varName);
-
-
-};
-
-Ops.Vars.VarSetNumber_v2.prototype = new CABLES.Op();
-CABLES.OPS["b5249226-6095-4828-8a1c-080654e192fa"]={f:Ops.Vars.VarSetNumber_v2,objName:"Ops.Vars.VarSetNumber_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Ui.Area
-// 
-// **************************************************************
-
-Ops.Ui.Area = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const inTitle = op.inString("Title", "");
-
-inTitle.setUiAttribs({ "hidePort": true });
-
-op.setUiAttrib({ "hasArea": true });
-
-op.init =
-    inTitle.onChange =
-    op.onLoaded = update;
-
-update();
-
-function update()
-{
-    if (CABLES.UI)
-    {
-        gui.savedState.setUnSaved("areaOp");
-        op.uiAttr(
-            {
-                "comment_title": inTitle.get() || " "
-            });
-
-        op.name = inTitle.get();
-    }
-}
-
-
-};
-
-Ops.Ui.Area.prototype = new CABLES.Op();
-CABLES.OPS["38f79614-b0de-4960-8da5-2827e7f43415"]={f:Ops.Ui.Area,objName:"Ops.Ui.Area"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.String.GateString
-// 
-// **************************************************************
-
-Ops.String.GateString = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    valueInPort = op.inString("String In", "hello"),
-    passThroughPort = op.inValueBool("Pass Through", false),
-    inIfNot = op.inSwitch("When False", ["keep last string", "custom"], "keep last string"),
-    inCustomNot = op.inString("Custom Value"),
-    valueOutPort = op.outString("String Out", "");
-
-valueInPort.onChange =
-    passThroughPort.onChange = update;
-
-inIfNot.onChange = updateUi;
-
-function updateUi()
-{
-    inCustomNot.setUiAttribs({ "greyout": inIfNot.get() != "custom" });
-    update();
-}
-
-function update()
-{
-    if (passThroughPort.get())
-    {
-        valueOutPort.set("");
-        valueOutPort.set(valueInPort.get());
-    }
-    else
-    {
-        if (inIfNot.get() == "custom") valueOutPort.set(inCustomNot.get());
-    }
-}
-
-
-};
-
-Ops.String.GateString.prototype = new CABLES.Op();
-CABLES.OPS["0ce14933-2d91-4381-9d82-2304aae22c0e"]={f:Ops.String.GateString,objName:"Ops.String.GateString"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Vars.VarSetString_v2
-// 
-// **************************************************************
-
-Ops.Vars.VarSetString_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const val=op.inString("Value","New String");
-op.varName=op.inDropDown("Variable",[],"",true);
-
-new CABLES.VarSetOpWrapper(op,"string",val,op.varName);
-
-
-
-
-};
-
-Ops.Vars.VarSetString_v2.prototype = new CABLES.Op();
-CABLES.OPS["0b4d9229-8024-4a30-9cc0-f6653942c2e4"]={f:Ops.Vars.VarSetString_v2,objName:"Ops.Vars.VarSetString_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Vars.VarGetObject_v2
-// 
-// **************************************************************
-
-Ops.Vars.VarGetObject_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const val = op.outObject("Value");
-op.varName = op.inValueSelect("Variable", [], "", true);
-
-new CABLES.VarGetOpWrapper(op, "object", op.varName, val);
-
-
-};
-
-Ops.Vars.VarGetObject_v2.prototype = new CABLES.Op();
-CABLES.OPS["321419d9-69c7-4310-a327-93d310bc2b8e"]={f:Ops.Vars.VarGetObject_v2,objName:"Ops.Vars.VarGetObject_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Json.ObjectGetNumber_v2
-// 
-// **************************************************************
-
-Ops.Json.ObjectGetNumber_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    data = op.inObject("Data"),
-    key = op.inString("Key"),
-    result = op.outNumber("Result"),
-    outFound = op.outBoolNum("Found");
-
-result.ignoreValueSerialize = true;
-data.ignoreValueSerialize = true;
-op.setUiAttrib({ "extendTitlePort": key.name });
-key.setUiAttribs({ "stringTrim": true });
-
-key.onChange =
-    data.onChange = exec;
-
-key.on("change", updateUi);
-updateUi();
-function updateUi()
-{
-    if (!key.get())op.setUiError("nokey", "Missing Key Value");
-    else op.setUiError("nokey", null);
-}
-
-function exec()
-{
-    const d = data.get();
-    if (d)
-    {
-        const val = d[key.get()];
-        result.set(parseFloat(val));
-        if (val === undefined) outFound.set(0);
-        else outFound.set(1);
-    }
-    else
-    {
-        result.set(0);
-        outFound.set(0);
-    }
-}
-
-
-};
-
-Ops.Json.ObjectGetNumber_v2.prototype = new CABLES.Op();
-CABLES.OPS["a7335e79-046e-40da-9e9c-db779b0a5e53"]={f:Ops.Json.ObjectGetNumber_v2,objName:"Ops.Json.ObjectGetNumber_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Number.SwitchNumberMultiPort
-// 
-// **************************************************************
-
-Ops.Number.SwitchNumberMultiPort = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inIndex = op.inInt("Index", 0),
-    inStrs = op.inMultiPort("Numbers", CABLES.OP_PORT_TYPE_NUMBER),
-    outResult = op.outNumber("Number"),
-    outNum = op.outNumber("Num Values");
-
-inIndex.onChange =
-inStrs.onChange = () =>
-{
-    const valuePorts = inStrs.get();
-    const idx = Math.ceil(Math.min(valuePorts.length - 1, Math.max(0, inIndex.get())));
-
-    outResult.set(valuePorts[idx].get());
-    outNum.set(valuePorts.length);
-};
-
-
-};
-
-Ops.Number.SwitchNumberMultiPort.prototype = new CABLES.Op();
-CABLES.OPS["6061c7ae-ac4b-45e7-ba7c-06b14ada2f19"]={f:Ops.Number.SwitchNumberMultiPort,objName:"Ops.Number.SwitchNumberMultiPort"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Json.GateObject
-// 
-// **************************************************************
-
-Ops.Json.GateObject = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    valueInPort = op.inObject("Object In"),
-    passThroughPort = op.inValueBool("Pass Through", true),
-    inIfNull = op.inSwitch("When False", ["keep last object", "null"], "keep last object"),
-    onlyValid = op.inValueBool("Only Valid Objects", false),
-
-    valueOutPort = op.outObject("Object Out");
-
-valueInPort.onChange =
-    inIfNull.onChange =
-    passThroughPort.onChange = update;
-valueInPort.changeAlways = true;
-
-function update()
-{
-    if (!valueInPort.get() && onlyValid.get()) return;
-    if (passThroughPort.get()) valueOutPort.setRef(valueInPort.get());
-    else
-    {
-        if (inIfNull.get() == "null") valueOutPort.setRef(null);
-    }
-}
-
-
-};
-
-Ops.Json.GateObject.prototype = new CABLES.Op();
-CABLES.OPS["95e04331-49d6-42da-81d8-5a75261ab22f"]={f:Ops.Json.GateObject,objName:"Ops.Json.GateObject"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Boolean.Not
-// 
-// **************************************************************
-
-Ops.Boolean.Not = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    bool = op.inValueBool("Boolean"),
-    outbool = op.outBoolNum("Result");
-
-bool.changeAlways = true;
-
-bool.onChange = function ()
-{
-    outbool.set((!bool.get()));
-};
-
-
-};
-
-Ops.Boolean.Not.prototype = new CABLES.Op();
-CABLES.OPS["6d123c9f-7485-4fd9-a5c2-76e59dcbeb34"]={f:Ops.Boolean.Not,objName:"Ops.Boolean.Not"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.String.NumberToString_v2
-// 
-// **************************************************************
-
-Ops.String.NumberToString_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    val = op.inValue("Number"),
-    decPlaces = op.inInt("Decimal Places", 4),
-    result = op.outString("Result");
-
-let doDec = false;
-let decm = 1;
-decPlaces.onChange = updateDecm;
-val.onChange = update;
-updateDecm();
-update();
-
-function updateDecm()
-{
-    doDec = decPlaces.get() < 100;
-    decm = Math.pow(10, decPlaces.get());
-    update();
-}
-
-function update()
-{
-    if (doDec)
-        result.set(String(Math.round(val.get() * decm) / decm));
-    else
-        result.set(String(val.get() || 0));
-}
-
-
-};
-
-Ops.String.NumberToString_v2.prototype = new CABLES.Op();
-CABLES.OPS["5c6d375a-82db-4366-8013-93f56b4061a9"]={f:Ops.String.NumberToString_v2,objName:"Ops.String.NumberToString_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.Matrix.Billboard
-// 
-// **************************************************************
-
-Ops.Gl.Matrix.Billboard = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const exec = op.inTrigger("Exec");
-const next = op.outTrigger("Next");
-
-const cgl = op.patch.cgl;
-
-let mm = mat4.create();
-let mv = mat4.create();
-let m = mat4.create();
-let mempty = mat4.create();
-
-exec.onTriggered = function ()
-{
-    mat4.invert(mm, cgl.mMatrix);
-    mat4.invert(mv, cgl.vMatrix);
-
-    mat4.mul(mm, mm, mv);
-
-    mm[12] = 0;
-    mm[13] = 0;
-    mm[14] = 0;
-
-    cgl.pushModelMatrix();
-    cgl.pushViewMatrix();
-    mat4.mul(cgl.mMatrix, cgl.mMatrix, mm);
-    next.trigger();
-    cgl.popViewMatrix();
-    cgl.popModelMatrix();
-};
-
-
-};
-
-Ops.Gl.Matrix.Billboard.prototype = new CABLES.Op();
-CABLES.OPS["d41e676e-d8a7-4a1e-8abf-f1bddfc982d5"]={f:Ops.Gl.Matrix.Billboard,objName:"Ops.Gl.Matrix.Billboard"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Math.Multiply
-// 
-// **************************************************************
-
-Ops.Math.Multiply = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    number1 = op.inValueFloat("number1", 1),
-    number2 = op.inValueFloat("number2", 1),
-    result = op.outNumber("result");
-
-op.setUiAttribs({ "mathTitle": true });
-
-number1.onChange = number2.onChange = update;
-update();
-
-function update()
-{
-    const n1 = number1.get();
-    const n2 = number2.get();
-
-    result.set(n1 * n2);
-}
-
-
-};
-
-Ops.Math.Multiply.prototype = new CABLES.Op();
-CABLES.OPS["1bbdae06-fbb2-489b-9bcc-36c9d65bd441"]={f:Ops.Math.Multiply,objName:"Ops.Math.Multiply"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.String.Concat_v2
-// 
-// **************************************************************
-
-Ops.String.Concat_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    string1 = op.inString("string1", "ABC"),
-    string2 = op.inString("string2", "XYZ"),
-    newLine = op.inValueBool("New Line", false),
-    active = op.inBool("Active", true),
-    result = op.outString("result");
-
-newLine.onChange =
-    string2.onChange =
-    string1.onChange =
-    active.onChange = exec;
-
-exec();
-
-function exec()
-{
-    if (!active.get())
-    {
-        return result.set(string1.get());
-    }
-    let s1 = string1.get();
-    let s2 = string2.get();
-    if (!s1 && !s2)
-    {
-        result.set("");
-        return;
-    }
-    if (!s1)s1 = "";
-    if (!s2)s2 = "";
-
-    let nl = "";
-    if (s1 && s2 && newLine.get())nl = "\n";
-    result.set(String(s1) + nl + String(s2));
-}
-
-
-};
-
-Ops.String.Concat_v2.prototype = new CABLES.Op();
-CABLES.OPS["a52722aa-0ca9-402c-a844-b7e98a6c6e60"]={f:Ops.String.Concat_v2,objName:"Ops.String.Concat_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Patch.P4oPpSn.Element
-// 
-// **************************************************************
-
-Ops.Patch.P4oPpSn.Element = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inText = op.inString("Text", "Hello Div"),
-    inPos = op.inSwitch("Position", ["Absolute", "Static", "Relative", "Fixed"], "Absolute"),
-    inInteractive = op.inValueBool("Interactive", false),
-
-    inSetSize = op.inValueBool("Set Size", true),
-    inWidth = op.inFloat("Width", 100),
-    inHeight = op.inFloat("Height", 100),
-    inOverflow = op.inSwitch("Overflow", ["Visible", "Hidden", "Scroll", "Auto"], "Hidden"),
-
-    inStyle = op.inStringEditor("Inline Style", "", "inline-css"),
-    inClass = op.inString("CSS Class"),
-    inBlacklist = op.inString("Disable CSS Props"),
-
-    inDisplay = op.inDropDown("Display", ["None", "Block", "Inline", "inline-block", "flex", "inline-flex", "grid", "inline-grid", "flow-root"], "Block"),
-    inOpacity = op.inFloatSlider("Opacity", 1),
-    inPropagation = op.inValueBool("Propagate Click-Events", true),
-
-    outElement = op.outObject("DOM Element", null, "element"),
-    outHover = op.outBoolNum("Hovering"),
-    outClicked = op.outTrigger("Clicked");
-
-op.setPortGroup("Area", [inWidth, inHeight, inSetSize, inOverflow]);
-op.setPortGroup("CSS", [inClass, inStyle, inBlacklist]);
-
-let listenerElement = null;
-let oldStr = null;
-let prevDisplay = "block";
-let div = null;
-
-const canvas = op.patch.cgl.canvas.parentElement;
-
-createElement();
-
-inClass.onChange = updateClass;
-inText.onChange = updateText;
-
-inDisplay.onChange =
-    inOpacity.onChange =
-    inPos.onChange =
-    inWidth.onChange =
-    inHeight.onChange =
-    inOverflow.onChange =
-    inSetSize.onChange =
-    inHeight.onChange =
-    inStyle.onChange = updateStyle;
-
-inInteractive.onChange = updateInteractive;
-
-updateText();
-updateStyle();
-warning();
-updateInteractive();
-
-let oldClassesStr = "";
-op.onDelete = removeElement;
-
-outElement.onLinkChanged = updateStyle;
-
-inInteractive.onLinkChanged =
-outClicked.onLinkChanged = () =>
-{
-    op.setUiError("interactiveProblem", null);
-    if (outClicked.isLinked() && !inInteractive.get() && !inInteractive.isLinked())
-        op.setUiError("interactiveProblem", "Interactive should be activated when linking clicked port");
-};
-
-function createElement()
-{
-    div = op.patch.getDocument().createElement("div");
-    div.dataset.op = op.id;
-    div.classList.add("cablesEle");
-
-    canvas.appendChild(div);
-    outElement.set(div);
-}
-
-function removeElement()
-{
-    if (div) removeClasses();
-    if (div && div.parentNode) div.parentNode.removeChild(div);
-    oldStr = null;
-    div = null;
-}
-
-function updateText()
-{
-    let str = inText.get();
-
-    if (oldStr === str) return;
-    oldStr = str;
-
-    if (div.innerHTML != str) div.innerHTML = str;
-    outElement.set(null);
-    outElement.set(div);
-}
-
-function updateStyle()
-{
-    if (!div) return;
-
-    div.setAttribute("style", inStyle.get());
-    div.style.opacity = inOpacity.get();
-    div.style.position = inPos.get().toLowerCase();
-
-    div.style.overflow = inOverflow.get().toLowerCase();
-    div.style.display = inDisplay.get();
-
-    if (inSetSize.get())
-    {
-        div.style.width = inWidth.get() + "px";
-        div.style.height = inHeight.get() + "px";
-    }
-    else
-    {
-        div.style.width = "";
-        div.style.height = "";
-    }
-
-    outElement.setRef(div);
-
-    if (!div.parentElement) canvas.appendChild(div);
-
-    warning();
-}
-
-function removeClasses()
-{
-    if (!div) return;
-
-    const classes = (inClass.get() || "").split(" ");
-    for (let i = 0; i < classes.length; i++)
-    {
-        if (classes[i]) div.classList.remove(classes[i]);
-    }
-    oldClassesStr = "";
-}
-
-function updateClass()
-{
-    const classes = (inClass.get() || "").split(" ");
-    const oldClasses = (oldClassesStr || "").split(" ");
-
-    let found = false;
-
-    for (let i = 0; i < oldClasses.length; i++)
-    {
-        if (
-            oldClasses[i] &&
-            classes.indexOf(oldClasses[i].trim()) == -1)
-        {
-            found = true;
-            div.classList.remove(oldClasses[i]);
-        }
-    }
-
-    for (let i = 0; i < classes.length; i++)
-    {
-        if (classes[i])
-        {
-            div.classList.add(classes[i].trim());
-        }
-    }
-
-    oldClassesStr = inClass.get();
-    warning();
-}
-
-function onMouseEnter(e)
-{
-    outHover.set(true);
-}
-
-function onMouseLeave(e)
-{
-    outHover.set(false);
-}
-
-function onMouseClick(e)
-{
-    if (!inPropagation.get()) e.stopPropagation();
-    outClicked.trigger();
-}
-
-function updateInteractive()
-{
-    op.setUiError("interactiveProblem", null);
-
-    removeListeners();
-    if (inInteractive.get()) addListeners();
-}
-
-function removeListeners()
-{
-    if (listenerElement)
-    {
-        listenerElement.removeEventListener("pointerdown", onMouseClick);
-        listenerElement.removeEventListener("pointerleave", onMouseLeave);
-        listenerElement.removeEventListener("pointerenter", onMouseEnter);
-        listenerElement = null;
-    }
-}
-
-function addListeners()
-{
-    if (listenerElement)removeListeners();
-
-    listenerElement = div;
-
-    if (listenerElement)
-    {
-        listenerElement.addEventListener("pointerdown", onMouseClick);
-        listenerElement.addEventListener("pointerleave", onMouseLeave);
-        listenerElement.addEventListener("pointerenter", onMouseEnter);
-    }
-}
-
-op.addEventListener("onEnabledChange", (enabled) =>
-{
-    removeElement();
-    if (!enabled) return;
-
-    createElement();
-    updateStyle();
-    updateClass();
-    updateText();
-    updateInteractive();
-});
-
-function warning()
-{
-    if (inClass.get() && inStyle.get())
-    {
-        op.setUiError("error", "Element uses external and inline CSS", 1);
-    }
-    else
-    {
-        op.setUiError("error", null);
-    }
-}
-
-
-};
-
-Ops.Patch.P4oPpSn.Element.prototype = new CABLES.Op();
-CABLES.OPS["412d744e-8bd5-4702-93a4-0cdc4f34a1cd"]={f:Ops.Patch.P4oPpSn.Element,objName:"Ops.Patch.P4oPpSn.Element"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Ui.VizNumberBar
-// 
-// **************************************************************
-
-Ops.Ui.VizNumberBar = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inNum = op.inFloat("Number", 0);
-    // inDrawBar=op.inBool("Draw Bar",true),
-    // inDrawNUm=op.inBool("Draw Number",true);
-
-op.setUiAttrib({ "height": 100, "width": 200, "resizable": true });
-
-let max = -Number.MAX_VALUE;
-let min = Number.MAX_VALUE;
-
-inNum.onLinkChanged = () =>
-{
-    max = -Number.MAX_VALUE;
-    min = Number.MAX_VALUE;
-};
-
-op.renderVizLayer = (ctx, layer) =>
-{
-    ctx.fillStyle = "#222";
-    ctx.fillRect(
-        layer.x, layer.y,
-        layer.width, layer.height);
-
-    // if(inDrawBar.get())
-    {
-        max = Math.max(max, inNum.get());
-        min = Math.min(min, inNum.get());
-
-        if (op.uiAttribs.color)ctx.fillStyle = op.uiAttribs.color;
-        else ctx.fillStyle = "#555";
-
-        let a = CABLES.map(0, min, max, 0, layer.width);
-        let b = CABLES.map(inNum.get(), min, max, 0, layer.width);
-
-        let xMin = Math.min(a, b);
-        let xMax = Math.max(a, b);
-
-        ctx.fillRect(
-            xMin + layer.x, layer.y,
-            xMax - xMin, layer.height);
-    }
-
-    // if(inDrawNUm.get())
-    {
-        const padding = 10;
-        if (op.uiAttribs.color)ctx.fillStyle = "#fff";
-        else ctx.fillStyle = "#ccc";
-
-        const fontSize = layer.height * 0.7;
-        ctx.font = "normal " + fontSize + "px sourceCodePro";
-        ctx.fillText(Math.round(inNum.get() * 10000) / 10000, layer.x + padding, layer.y + fontSize);
-    }
-};
-
-
-};
-
-Ops.Ui.VizNumberBar.prototype = new CABLES.Op();
-CABLES.OPS["37575d2e-4ba6-4d2b-b00c-c503666867c5"]={f:Ops.Ui.VizNumberBar,objName:"Ops.Ui.VizNumberBar"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Vars.VarGetString
-// 
-// **************************************************************
-
-Ops.Vars.VarGetString = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-var val=op.outString("Value");
-op.varName=op.inValueSelect("Variable",[],"",true);
-
-new CABLES.VarGetOpWrapper(op,"string",op.varName,val);
-
-
-};
-
-Ops.Vars.VarGetString.prototype = new CABLES.Op();
-CABLES.OPS["3ad08cfc-bce6-4175-9746-fef2817a3b12"]={f:Ops.Vars.VarGetString,objName:"Ops.Vars.VarGetString"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Number.GateNumber
-// 
-// **************************************************************
-
-Ops.Number.GateNumber = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    valueInPort = op.inValue("Value In", 0),
-    passThroughPort = op.inValueBool("Pass Through"),
-    inIfNot = op.inSwitch("When False", ["keep last number", "custom"], "keep last number"),
-    inCustomNot = op.inFloat("Custom Value", 0),
-    valueOutPort = op.outNumber("Value Out");
-
-valueInPort.onChange = update;
-passThroughPort.onChange = update;
-
-valueInPort.changeAlways =
-    valueOutPort.changeAlways = true;
-
-inIfNot.onChange = updateUi;
-
-function updateUi()
-{
-    inCustomNot.setUiAttribs({ "greyout": inIfNot.get() != "custom" });
-    update();
-}
-
-function update()
-{
-    if (passThroughPort.get())
-    {
-        valueOutPort.set(valueInPort.get());
-    }
-    else
-    {
-        if (inIfNot.get() == "custom") valueOutPort.set(inCustomNot.get());
-    }
-}
-
-
-};
-
-Ops.Number.GateNumber.prototype = new CABLES.Op();
-CABLES.OPS["594105c8-1fdb-4f3c-bbd5-29b9ad6b33e0"]={f:Ops.Number.GateNumber,objName:"Ops.Number.GateNumber"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Html.ElementCssTransform
-// 
-// **************************************************************
-
-Ops.Html.ElementCssTransform = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inEle = op.inObject("Element", null, "element"),
-    inDoTranslate = op.inBool("Translate Active", true),
-    inTransX = op.inFloat("Translate X", 0),
-    inTransY = op.inFloat("Translate Y", 0),
-    inTransUnit = op.inSwitch("Unit", ["px", "%"], "px"),
-
-    inDoScale = op.inBool("Scale Active", true),
-    inScale = op.inFloat("Scale", 1),
-
-    inDoRot = op.inBool("Rotate Active", true),
-    inRot = op.inFloat("Rot Z", 0),
-
-    inDoOrigin = op.inBool("Set Origin", true),
-    inOriginX = op.inSwitch("Origin X", ["left", "center", "right"], "center"),
-    inOriginY = op.inSwitch("Origin Y", ["top", "center", "bottom"], "center"),
-
-    inDoZ = op.inBool("Z Index Active", false),
-    inZ = op.inFloat("Z Index", 100),
-
-    outEle = op.outObject("Passthrough", null, "element");
-
-op.setPortGroup("Element", [inEle]);
-op.setPortGroup("Translation", [inDoTranslate, inTransY, inTransX, inTransUnit]);
-op.setPortGroup("Scaling", [inScale, inDoScale]);
-op.setPortGroup("Rotation", [inDoRot, inRot]);
-op.setPortGroup("Origin", [inDoOrigin, inOriginX, inOriginY]);
-
-inTransUnit.onChange =
-    inOriginX.onChange =
-    inOriginY.onChange =
-    inTransX.onChange =
-    inTransY.onChange =
-    inScale.onChange =
-    inRot.onChange = update;
-
-let ele = null;
-
-inDoTranslate.onChange =
-    inDoOrigin.onChange =
-    inDoScale.onChange =
-    inDoRot.onChange = updateUi;
-
-inEle.onChange = inEle.onLinkChanged = function ()
-{
-    if (ele && ele.style)
-    {
-        ele.style.transform = "initial";
-
-        if (CABLES.UI && inEle.get() && ele != inEle.get())
-        {
-            if (window.getComputedStyle(ele).position !== "absolute") op.setUiError("oppos", "Element position should be absolute");
-            else op.setUiError("oppos", null);
-        }
-    }
-
-    update();
-    outEle.setRef(inEle.get());
-};
-
-function updateUi()
-{
-    inTransX.setUiAttribs({ "greyout": !inDoTranslate.get() });
-    inTransY.setUiAttribs({ "greyout": !inDoTranslate.get() });
-    inScale.setUiAttribs({ "greyout": !inDoScale.get() });
-    inRot.setUiAttribs({ "greyout": !inDoRot.get() });
-    inOriginY.setUiAttribs({ "greyout": !inDoOrigin.get() });
-    inOriginX.setUiAttribs({ "greyout": !inDoOrigin.get() });
-
-    update();
-}
-
-function update()
-{
-    ele = inEle.get();
-    if (ele && ele.style)
-    {
-        let str = "";
-
-        if (inDoTranslate.get())
-            str += "translate(" + inTransX.get() + inTransUnit.get() + " , " + inTransY.get() + inTransUnit.get() + ") ";
-
-        if (inDoScale.get())
-            if (inScale.get() != 1.0)
-                str += "scale(" + inScale.get() + ") ";
-
-        if (inDoRot.get())
-            if (inRot.get() != 0.0)
-                str += "rotateZ(" + inRot.get() + "deg) ";
-
-        try
-        {
-            ele.style.transform = str;
-
-            if (inDoOrigin.get())
-                ele.style["transform-origin"] = inOriginY.get() + " " + inOriginX.get();
-            else
-                ele.style["transform-origin"] = "initial";
-        }
-        catch (e)
-        {
-            op.logError(e);
-        }
-    }
-    else
-    {
-        setTimeout(update, 50);
-    }
-}
-
-
-};
-
-Ops.Html.ElementCssTransform.prototype = new CABLES.Op();
-CABLES.OPS["777d00c6-5605-43c5-9b6a-b20d465bd3ba"]={f:Ops.Html.ElementCssTransform,objName:"Ops.Html.ElementCssTransform"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Trigger.TriggerReceive
 // 
 // **************************************************************
@@ -27957,6 +25537,46 @@ CABLES.OPS["b5c99363-a749-4040-884b-66f91294bcad"]={f:Ops.Gl.TextMeshMSDF_v2,obj
 
 // **************************************************************
 // 
+// Ops.Gl.Matrix.Translate
+// 
+// **************************************************************
+
+Ops.Gl.Matrix.Translate = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("render"),
+    trigger = op.outTrigger("trigger"),
+    x = op.inValue("x"),
+    y = op.inValue("y"),
+    z = op.inValue("z");
+
+const vec = vec3.create();
+
+render.onTriggered = function ()
+{
+    const cgl = op.patch.cg;
+
+    vec3.set(vec, x.get(), y.get(), z.get());
+    cgl.pushModelMatrix();
+    mat4.translate(cgl.mMatrix, cgl.mMatrix, vec);
+    trigger.trigger();
+    cgl.popModelMatrix();
+};
+
+
+};
+
+Ops.Gl.Matrix.Translate.prototype = new CABLES.Op();
+CABLES.OPS["1f89ba0e-e7eb-46d7-8c66-7814b7c528b9"]={f:Ops.Gl.Matrix.Translate,objName:"Ops.Gl.Matrix.Translate"};
+
+
+
+
+// **************************************************************
+// 
 // Ops.Anim.Bang
 // 
 // **************************************************************
@@ -28268,6 +25888,343 @@ CABLES.OPS["c974de41-4ce4-4432-b94d-724741109c71"]={f:Ops.Array.StringToArray_v2
 
 // **************************************************************
 // 
+// Ops.Anim.BoolAnim
+// 
+// **************************************************************
+
+Ops.Anim.BoolAnim = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const anim = new CABLES.Anim();
+
+const
+    exe = op.inTrigger("exe"),
+    bool = op.inValueBool("bool"),
+    pease = anim.createPort(op, "easing"),
+    duration = op.inValue("duration", 0.25),
+    dir = op.inValueSelect("Direction", ["Both", "Only True", "Only False"], "Both"),
+    valueFalse = op.inValue("value false", 0),
+    valueTrue = op.inValue("value true", 1),
+    next = op.outTrigger("trigger"),
+    value = op.outNumber("value"),
+    finished = op.outBoolNum("finished"),
+    finishedTrigger = op.outTrigger("Finished Trigger");
+
+const startTime = CABLES.now();
+op.toWorkPortsNeedToBeLinked(exe);
+op.setPortGroup("Animation", [duration, pease]);
+op.setPortGroup("Values", [valueFalse, valueTrue]);
+
+dir.onChange = bool.onChange = valueFalse.onChange = valueTrue.onChange = duration.onChange = setAnim;
+setAnim();
+
+function setAnim()
+{
+    if (dir.get() == "Animate Both")dir.set("Both");
+    finished.set(false);
+    const now = (CABLES.now() - startTime) / 1000;
+    const oldValue = anim.getValue(now);
+    anim.clear();
+
+    anim.setValue(now, oldValue);
+
+    if (!bool.get())
+    {
+        if (dir.get() != "Only True") anim.setValue(now + duration.get(), valueFalse.get());
+        else anim.setValue(now, valueFalse.get());
+    }
+    else
+    {
+        if (dir.get() != "Only False") anim.setValue(now + duration.get(), valueTrue.get());
+        else anim.setValue(now, valueTrue.get());
+    }
+}
+
+exe.onTriggered = function ()
+{
+    const t = (CABLES.now() - startTime) / 1000;
+    value.set(anim.getValue(t));
+
+    if (anim.hasEnded(t))
+    {
+        if (!finished.get()) finishedTrigger.trigger();
+        finished.set(true);
+    }
+
+    next.trigger();
+};
+
+
+};
+
+Ops.Anim.BoolAnim.prototype = new CABLES.Op();
+CABLES.OPS["06ad9d35-ccf5-4d31-889c-e23fa062588a"]={f:Ops.Anim.BoolAnim,objName:"Ops.Anim.BoolAnim"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.Meshes.Rectangle_v4
+// 
+// **************************************************************
+
+Ops.Gl.Meshes.Rectangle_v4 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("render"),
+    doRender = op.inValueBool("Render Mesh", true),
+    width = op.inValue("width", 1),
+    height = op.inValue("height", 1),
+    pivotX = op.inSwitch("pivot x", ["left", "center", "right"], "center"),
+    pivotY = op.inSwitch("pivot y", ["top", "center", "bottom"], "center"),
+    axis = op.inSwitch("axis", ["xy", "xz"], "xy"),
+    flipTcX = op.inBool("Flip TexCoord X", false),
+    flipTcY = op.inBool("Flip TexCoord Y", true),
+    nColumns = op.inValueInt("num columns", 1),
+    nRows = op.inValueInt("num rows", 1),
+    trigger = op.outTrigger("trigger"),
+    geomOut = op.outObject("geometry", null, "geometry");
+
+geomOut.ignoreValueSerialize = true;
+
+const cgl = op.patch.cgl;
+const geom = new CGL.Geometry("rectangle");
+
+doRender.setUiAttribs({ "title": "Render" });
+render.setUiAttribs({ "title": "Trigger" });
+trigger.setUiAttribs({ "title": "Next" });
+op.setPortGroup("Pivot", [pivotX, pivotY, axis]);
+op.setPortGroup("Size", [width, height]);
+op.setPortGroup("Structure", [nColumns, nRows]);
+op.toWorkPortsNeedToBeLinked(render);
+op.toWorkShouldNotBeChild("Ops.Gl.TextureEffects.ImageCompose", CABLES.OP_PORT_TYPE_TRIGGER);
+
+const AXIS_XY = 0;
+const AXIS_XZ = 1;
+
+let curAxis = AXIS_XY;
+let mesh = null;
+let needsRebuild = true;
+let doScale = true;
+
+const vScale = vec3.create();
+vec3.set(vScale, 1, 1, 1);
+
+axis.onChange =
+    pivotX.onChange =
+    pivotY.onChange =
+    flipTcX.onChange =
+    flipTcY.onChange =
+    nRows.onChange =
+    nColumns.onChange = rebuildLater;
+updateScale();
+
+width.onChange =
+    height.onChange =
+    () =>
+    {
+        if (doScale) updateScale();
+        else needsRebuild = true;
+    };
+
+function updateScale()
+{
+    if (curAxis === AXIS_XY) vec3.set(vScale, width.get(), height.get(), 1);
+    if (curAxis === AXIS_XZ) vec3.set(vScale, width.get(), 1, height.get());
+}
+
+geomOut.onLinkChanged = () =>
+{
+    doScale = !geomOut.isLinked();
+    updateScale();
+    needsRebuild = true;
+};
+
+function rebuildLater()
+{
+    needsRebuild = true;
+}
+
+render.onTriggered = () =>
+{
+    if (needsRebuild) rebuild();
+    const cg = op.patch.cg;
+    if (cg && mesh && doRender.get())
+    {
+        if (doScale)
+        {
+            cg.pushModelMatrix();
+            mat4.scale(cg.mMatrix, cg.mMatrix, vScale);
+        }
+
+        mesh.render(cg.getShader());
+
+        if (doScale) cg.popModelMatrix();
+    }
+
+    trigger.trigger();
+};
+
+op.onDelete = () =>
+{
+    if (mesh) mesh.dispose();
+    rebuildLater();
+};
+
+function rebuild()
+{
+    if (axis.get() == "xy") curAxis = AXIS_XY;
+    if (axis.get() == "xz") curAxis = AXIS_XZ;
+
+    updateScale();
+    let w = width.get();
+    let h = height.get();
+
+    if (doScale) w = h = 1;
+
+    let x = 0;
+    let y = 0;
+
+    if (pivotX.get() == "center") x = 0;
+    else if (pivotX.get() == "right") x = -w / 2;
+    else if (pivotX.get() == "left") x = +w / 2;
+
+    if (pivotY.get() == "center") y = 0;
+    else if (pivotY.get() == "top") y = -h / 2;
+    else if (pivotY.get() == "bottom") y = +h / 2;
+
+    const numRows = Math.max(1, Math.round(nRows.get()));
+    const numColumns = Math.max(1, Math.round(nColumns.get()));
+
+    const stepColumn = w / numColumns;
+    const stepRow = h / numRows;
+
+    const indices = [];
+    const tc = new Float32Array((numColumns + 1) * (numRows + 1) * 2);
+    const verts = new Float32Array((numColumns + 1) * (numRows + 1) * 3);
+    const norms = new Float32Array((numColumns + 1) * (numRows + 1) * 3);
+    const tangents = new Float32Array((numColumns + 1) * (numRows + 1) * 3);
+    const biTangents = new Float32Array((numColumns + 1) * (numRows + 1) * 3);
+
+    let idxTc = 0;
+    let idxVert = 0;
+    let idxNorms = 0;
+    let idxTangent = 0;
+    let idxBiTangent = 0;
+
+    for (let r = 0; r <= numRows; r++)
+    {
+        for (let c = 0; c <= numColumns; c++)
+        {
+            verts[idxVert++] = c * stepColumn - w / 2 + x;
+            if (curAxis == AXIS_XZ) verts[idxVert++] = 0;
+            verts[idxVert++] = r * stepRow - h / 2 + y;
+
+            if (curAxis == AXIS_XY)verts[idxVert++] = 0;
+
+            tc[idxTc++] = c / numColumns;
+            tc[idxTc++] = r / numRows;
+
+            if (curAxis == AXIS_XY) // default
+            {
+                norms[idxNorms++] = 0;
+                norms[idxNorms++] = 0;
+                norms[idxNorms++] = 1;
+
+                tangents[idxTangent++] = 1;
+                tangents[idxTangent++] = 0;
+                tangents[idxTangent++] = 0;
+
+                biTangents[idxBiTangent++] = 0;
+                biTangents[idxBiTangent++] = 1;
+                biTangents[idxBiTangent++] = 0;
+            }
+            else if (curAxis == AXIS_XZ)
+            {
+                norms[idxNorms++] = 0;
+                norms[idxNorms++] = 1;
+                norms[idxNorms++] = 0;
+
+                biTangents[idxBiTangent++] = 0;
+                biTangents[idxBiTangent++] = 0;
+                biTangents[idxBiTangent++] = 1;
+            }
+        }
+    }
+
+    indices.length = numColumns * numRows * 6;
+    let idx = 0;
+
+    for (let c = 0; c < numColumns; c++)
+    {
+        for (let r = 0; r < numRows; r++)
+        {
+            const ind = c + (numColumns + 1) * r;
+            const v1 = ind;
+            const v2 = ind + 1;
+            const v3 = ind + numColumns + 1;
+            const v4 = ind + 1 + numColumns + 1;
+
+            if (curAxis == AXIS_XY) // default
+            {
+                indices[idx++] = v1;
+                indices[idx++] = v2;
+                indices[idx++] = v3;
+
+                indices[idx++] = v3;
+                indices[idx++] = v2;
+                indices[idx++] = v4;
+            }
+            else
+            if (curAxis == AXIS_XZ)
+            {
+                indices[idx++] = v1;
+                indices[idx++] = v3;
+                indices[idx++] = v2;
+
+                indices[idx++] = v2;
+                indices[idx++] = v3;
+                indices[idx++] = v4;
+            }
+        }
+    }
+
+    if (flipTcY.get()) for (let i = 0; i < tc.length; i += 2)tc[i + 1] = 1.0 - tc[i + 1];
+    if (flipTcX.get()) for (let i = 0; i < tc.length; i += 2)tc[i] = 1.0 - tc[i];
+
+    geom.clear();
+    geom.vertices = verts;
+    geom.texCoords = tc;
+    geom.verticesIndices = indices;
+    geom.vertexNormals = norms;
+    geom.tangents = tangents;
+    geom.biTangents = biTangents;
+
+    if (op.patch.cg)
+        if (!mesh) mesh = op.patch.cg.createMesh(geom, { "opId": op.id });
+        else mesh.setGeom(geom);
+
+    geomOut.setRef(geom);
+    needsRebuild = false;
+}
+
+
+};
+
+Ops.Gl.Meshes.Rectangle_v4.prototype = new CABLES.Op();
+CABLES.OPS["cc8c3ede-7103-410b-849f-a645793cab39"]={f:Ops.Gl.Meshes.Rectangle_v4,objName:"Ops.Gl.Meshes.Rectangle_v4"};
+
+
+
+
+// **************************************************************
+// 
 // Ops.Array.RandomNumbersArray_v4
 // 
 // **************************************************************
@@ -28446,6 +26403,90 @@ CABLES.OPS["b250d606-f7f8-44d3-b099-c29efff2608a"]={f:Ops.Math.Compare.GreaterTh
 
 // **************************************************************
 // 
+// Ops.Math.Multiply
+// 
+// **************************************************************
+
+Ops.Math.Multiply = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    number1 = op.inValueFloat("number1", 1),
+    number2 = op.inValueFloat("number2", 1),
+    result = op.outNumber("result");
+
+op.setUiAttribs({ "mathTitle": true });
+
+number1.onChange = number2.onChange = update;
+update();
+
+function update()
+{
+    const n1 = number1.get();
+    const n2 = number2.get();
+
+    result.set(n1 * n2);
+}
+
+
+};
+
+Ops.Math.Multiply.prototype = new CABLES.Op();
+CABLES.OPS["1bbdae06-fbb2-489b-9bcc-36c9d65bd441"]={f:Ops.Math.Multiply,objName:"Ops.Math.Multiply"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Ui.Area
+// 
+// **************************************************************
+
+Ops.Ui.Area = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const inTitle = op.inString("Title", "");
+
+inTitle.setUiAttribs({ "hidePort": true });
+
+op.setUiAttrib({ "hasArea": true });
+
+op.init =
+    inTitle.onChange =
+    op.onLoaded = update;
+
+update();
+
+function update()
+{
+    if (CABLES.UI)
+    {
+        gui.savedState.setUnSaved("areaOp");
+        op.uiAttr(
+            {
+                "comment_title": inTitle.get() || " "
+            });
+
+        op.name = inTitle.get();
+    }
+}
+
+
+};
+
+Ops.Ui.Area.prototype = new CABLES.Op();
+CABLES.OPS["38f79614-b0de-4960-8da5-2827e7f43415"]={f:Ops.Ui.Area,objName:"Ops.Ui.Area"};
+
+
+
+
+// **************************************************************
+// 
 // Ops.Math.Interpolate
 // 
 // **************************************************************
@@ -28475,6 +26516,41 @@ function update()
 
 Ops.Math.Interpolate.prototype = new CABLES.Op();
 CABLES.OPS["d126e2c8-221e-428f-8ff4-8b8c5f6b8905"]={f:Ops.Math.Interpolate,objName:"Ops.Math.Interpolate"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Ui.Routing.RouteNumber
+// 
+// **************************************************************
+
+Ops.Ui.Routing.RouteNumber = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    v = op.inValueFloat("value"),
+    result = op.outNumber("result");
+
+v.onChange = exec;
+
+let wasLinked = false;
+
+op.setUiAttribs({ "display": "reroute" });
+
+function exec()
+{
+    result.set(v.get());
+}
+
+
+};
+
+Ops.Ui.Routing.RouteNumber.prototype = new CABLES.Op();
+CABLES.OPS["afff634a-b581-4449-b6f7-9ec7863c5d4d"]={f:Ops.Ui.Routing.RouteNumber,objName:"Ops.Ui.Routing.RouteNumber"};
 
 
 
@@ -28592,6 +26668,37 @@ CABLES.OPS["421f5b52-c0fa-47c4-8b7a-012b9e1c864a"]={f:Ops.Vars.VarGetNumber_v2,o
 
 // **************************************************************
 // 
+// Ops.Boolean.Not
+// 
+// **************************************************************
+
+Ops.Boolean.Not = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    bool = op.inValueBool("Boolean"),
+    outbool = op.outBoolNum("Result");
+
+bool.changeAlways = true;
+
+bool.onChange = function ()
+{
+    outbool.set((!bool.get()));
+};
+
+
+};
+
+Ops.Boolean.Not.prototype = new CABLES.Op();
+CABLES.OPS["6d123c9f-7485-4fd9-a5c2-76e59dcbeb34"]={f:Ops.Boolean.Not,objName:"Ops.Boolean.Not"};
+
+
+
+
+// **************************************************************
+// 
 // Ops.Trigger.GateTrigger
 // 
 // **************************************************************
@@ -28649,6 +26756,272 @@ v.onChange = function ()
 
 Ops.String.String_v2.prototype = new CABLES.Op();
 CABLES.OPS["d697ff82-74fd-4f31-8f54-295bc64e713d"]={f:Ops.String.String_v2,objName:"Ops.String.String_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Vars.VarSetNumber_v2
+// 
+// **************************************************************
+
+Ops.Vars.VarSetNumber_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const val = op.inValueFloat("Value", 0);
+op.varName = op.inDropDown("Variable", [], "", true);
+
+new CABLES.VarSetOpWrapper(op, "number", val, op.varName);
+
+
+};
+
+Ops.Vars.VarSetNumber_v2.prototype = new CABLES.Op();
+CABLES.OPS["b5249226-6095-4828-8a1c-080654e192fa"]={f:Ops.Vars.VarSetNumber_v2,objName:"Ops.Vars.VarSetNumber_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.String.GateString
+// 
+// **************************************************************
+
+Ops.String.GateString = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    valueInPort = op.inString("String In", "hello"),
+    passThroughPort = op.inValueBool("Pass Through", false),
+    inIfNot = op.inSwitch("When False", ["keep last string", "custom"], "keep last string"),
+    inCustomNot = op.inString("Custom Value"),
+    valueOutPort = op.outString("String Out", "");
+
+valueInPort.onChange =
+    passThroughPort.onChange = update;
+
+inIfNot.onChange = updateUi;
+
+function updateUi()
+{
+    inCustomNot.setUiAttribs({ "greyout": inIfNot.get() != "custom" });
+    update();
+}
+
+function update()
+{
+    if (passThroughPort.get())
+    {
+        valueOutPort.set("");
+        valueOutPort.set(valueInPort.get());
+    }
+    else
+    {
+        if (inIfNot.get() == "custom") valueOutPort.set(inCustomNot.get());
+    }
+}
+
+
+};
+
+Ops.String.GateString.prototype = new CABLES.Op();
+CABLES.OPS["0ce14933-2d91-4381-9d82-2304aae22c0e"]={f:Ops.String.GateString,objName:"Ops.String.GateString"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Vars.VarSetString_v2
+// 
+// **************************************************************
+
+Ops.Vars.VarSetString_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const val=op.inString("Value","New String");
+op.varName=op.inDropDown("Variable",[],"",true);
+
+new CABLES.VarSetOpWrapper(op,"string",val,op.varName);
+
+
+
+
+};
+
+Ops.Vars.VarSetString_v2.prototype = new CABLES.Op();
+CABLES.OPS["0b4d9229-8024-4a30-9cc0-f6653942c2e4"]={f:Ops.Vars.VarSetString_v2,objName:"Ops.Vars.VarSetString_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Vars.VarGetObject_v2
+// 
+// **************************************************************
+
+Ops.Vars.VarGetObject_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const val = op.outObject("Value");
+op.varName = op.inValueSelect("Variable", [], "", true);
+
+new CABLES.VarGetOpWrapper(op, "object", op.varName, val);
+
+
+};
+
+Ops.Vars.VarGetObject_v2.prototype = new CABLES.Op();
+CABLES.OPS["321419d9-69c7-4310-a327-93d310bc2b8e"]={f:Ops.Vars.VarGetObject_v2,objName:"Ops.Vars.VarGetObject_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Json.ObjectGetNumber_v2
+// 
+// **************************************************************
+
+Ops.Json.ObjectGetNumber_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    data = op.inObject("Data"),
+    key = op.inString("Key"),
+    result = op.outNumber("Result"),
+    outFound = op.outBoolNum("Found");
+
+result.ignoreValueSerialize = true;
+data.ignoreValueSerialize = true;
+op.setUiAttrib({ "extendTitlePort": key.name });
+key.setUiAttribs({ "stringTrim": true });
+
+key.onChange =
+    data.onChange = exec;
+
+key.on("change", updateUi);
+updateUi();
+function updateUi()
+{
+    if (!key.get())op.setUiError("nokey", "Missing Key Value");
+    else op.setUiError("nokey", null);
+}
+
+function exec()
+{
+    const d = data.get();
+    if (d)
+    {
+        const val = d[key.get()];
+        result.set(parseFloat(val));
+        if (val === undefined) outFound.set(0);
+        else outFound.set(1);
+    }
+    else
+    {
+        result.set(0);
+        outFound.set(0);
+    }
+}
+
+
+};
+
+Ops.Json.ObjectGetNumber_v2.prototype = new CABLES.Op();
+CABLES.OPS["a7335e79-046e-40da-9e9c-db779b0a5e53"]={f:Ops.Json.ObjectGetNumber_v2,objName:"Ops.Json.ObjectGetNumber_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Number.SwitchNumberMultiPort
+// 
+// **************************************************************
+
+Ops.Number.SwitchNumberMultiPort = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inIndex = op.inInt("Index", 0),
+    inStrs = op.inMultiPort("Numbers", CABLES.OP_PORT_TYPE_NUMBER),
+    outResult = op.outNumber("Number"),
+    outNum = op.outNumber("Num Values");
+
+inIndex.onChange =
+inStrs.onChange = () =>
+{
+    const valuePorts = inStrs.get();
+    const idx = Math.ceil(Math.min(valuePorts.length - 1, Math.max(0, inIndex.get())));
+
+    outResult.set(valuePorts[idx].get());
+    outNum.set(valuePorts.length);
+};
+
+
+};
+
+Ops.Number.SwitchNumberMultiPort.prototype = new CABLES.Op();
+CABLES.OPS["6061c7ae-ac4b-45e7-ba7c-06b14ada2f19"]={f:Ops.Number.SwitchNumberMultiPort,objName:"Ops.Number.SwitchNumberMultiPort"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Json.GateObject
+// 
+// **************************************************************
+
+Ops.Json.GateObject = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    valueInPort = op.inObject("Object In"),
+    passThroughPort = op.inValueBool("Pass Through", true),
+    inIfNull = op.inSwitch("When False", ["keep last object", "null"], "keep last object"),
+    onlyValid = op.inValueBool("Only Valid Objects", false),
+
+    valueOutPort = op.outObject("Object Out");
+
+valueInPort.onChange =
+    inIfNull.onChange =
+    passThroughPort.onChange = update;
+valueInPort.changeAlways = true;
+
+function update()
+{
+    if (!valueInPort.get() && onlyValid.get()) return;
+    if (passThroughPort.get()) valueOutPort.setRef(valueInPort.get());
+    else
+    {
+        if (inIfNull.get() == "null") valueOutPort.setRef(null);
+    }
+}
+
+
+};
+
+Ops.Json.GateObject.prototype = new CABLES.Op();
+CABLES.OPS["95e04331-49d6-42da-81d8-5a75261ab22f"]={f:Ops.Json.GateObject,objName:"Ops.Json.GateObject"};
 
 
 
@@ -28839,15 +27212,512 @@ CABLES.OPS["ea43c184-5842-4aa1-b298-5db4515cbed0"]={f:Ops.Trigger.NthTrigger_v2,
 
 // **************************************************************
 // 
-// Ops.Patch.P4oPpSn.BasicSlider_v3
+// Ops.Patch.PW10J0o.InteractiveRectangle_v2
 // 
 // **************************************************************
 
-Ops.Patch.P4oPpSn.BasicSlider_v3 = function()
+Ops.Patch.PW10J0o.InteractiveRectangle_v2 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp66-0\",\"uiAttribs\":{\"subPatch\":\"875ptg0xr\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":1.04},{\"name\":\"Height\",\"value\":0.24},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"bp66-3\",\"objOut\":\"bp66-0\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp66-7\",\"objOut\":\"bp66-0\"},{\"portIn\":\"Active\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp66-11\",\"objOut\":\"bp66-0\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp66-28\",\"objOut\":\"bp66-0\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp66-16\",\"objOut\":\"bp66-0\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp66-21\",\"objOut\":\"bp66-0\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"bp66-26\",\"objOut\":\"bp66-0\"}]},{\"name\":\"Pointer Y\",\"value\":0.09816107482277447},{\"name\":\"Top\",\"value\":33.261182844638824},{\"name\":\"Left\",\"value\":304.0189709663391},{\"name\":\"Right\",\"value\":1002.281226336956},{\"name\":\"Bottom\",\"value\":126.4042016863823}],\"objName\":\"Ops.Gl.InteractiveRectangle_v2\"},{\"id\":\"bp66-1\",\"uiAttribs\":{\"subPatch\":\"875ptg0xr\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp66-10\",\"objOut\":\"bp66-1\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"bp66-2\",\"uiAttribs\":{\"subPatch\":\"875ptg0xr\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posY\",\"value\":0.025},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Exec\",\"portOut\":\"trigger\",\"objIn\":\"bp66-12\",\"objOut\":\"bp66-2\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp66-3\",\"uiAttribs\":{\"subPatch\":\"875ptg0xr\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp66-2\",\"objOut\":\"bp66-3\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"bp66-7\",\"objOut\":\"bp66-3\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"bp66-5\",\"objOut\":\"bp66-3\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"bp66-8\",\"objOut\":\"bp66-3\"},{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"bp66-2\",\"objOut\":\"bp66-3\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"bp66-4\",\"uiAttribs\":{\"subPatch\":\"875ptg0xr\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"bp66-13\",\"objOut\":\"bp66-4\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"bp66-0\",\"objOut\":\"bp66-4\"},{\"portIn\":\"String In\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"bp66-16\",\"objOut\":\"bp66-4\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"bp66-0\",\"objOut\":\"bp66-4\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp66-5\",\"uiAttribs\":{\"subPatch\":\"875ptg0xr\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp66-6\",\"uiAttribs\":{\"subPatch\":\"875ptg0xr\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp66-3\",\"objOut\":\"bp66-6\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"bp66-7\",\"uiAttribs\":{\"subPatch\":\"875ptg0xr\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.6},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"bp66-1\",\"objOut\":\"bp66-7\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"bp66-5\",\"objOut\":\"bp66-7\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"bp66-8\",\"uiAttribs\":{\"subPatch\":\"875ptg0xr\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rotZ\",\"portOut\":\"result\",\"objIn\":\"bp66-2\",\"objOut\":\"bp66-8\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"bp66-9\",\"uiAttribs\":{\"subPatch\":\"875ptg0xr\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":-0.32},{\"name\":\"y\",\"value\":0.91},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"bp66-0\",\"objOut\":\"bp66-9\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp66-10\",\"uiAttribs\":{\"subPatch\":\"875ptg0xr\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":0.02},{\"name\":\"height\",\"value\":0.11},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":1},{\"name\":\"num rows\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"bp66-11\",\"uiAttribs\":{\"subPatch\":\"875ptg0xr\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Property\",\"value\":\"cursor\"},{\"name\":\"Value\",\"value\":\"col-resize\"}],\"objName\":\"Ops.Html.CSSPropertyString\"},{\"id\":\"bp66-12\",\"uiAttribs\":{\"subPatch\":\"875ptg0xr\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp66-1\",\"objOut\":\"bp66-12\"}]}],\"objName\":\"Ops.Gl.Matrix.Billboard\"},{\"id\":\"bp66-13\",\"uiAttribs\":{\"subPatch\":\"875ptg0xr\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1.73},{\"name\":\"y\",\"value\":1},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp66-9\",\"objOut\":\"bp66-13\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"},{\"id\":\"bp66-14\",\"uiAttribs\":{\"subPatch\":\"875ptg0xr\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_position\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp66-15\",\"uiAttribs\":{\"subPatch\":\"875ptg0xr\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int position\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp66-16\",\"uiAttribs\":{\"subPatch\":\"875ptg0xr\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"position\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"bp66-17\",\"objOut\":\"bp66-16\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"bp66-20\",\"objOut\":\"bp66-16\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"bp66-17\",\"uiAttribs\":{\"subPatch\":\"875ptg0xr\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"bp66-18\",\"uiAttribs\":{\"subPatch\":\"875ptg0xr\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp66-19\",\"uiAttribs\":{\"subPatch\":\"875ptg0xr\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_srvbParams_object\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"bp66-24\",\"objOut\":\"bp66-19\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"bp66-20\",\"uiAttribs\":{\"subPatch\":\"875ptg0xr\"},\"storage\":{},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Numbers_0\",\"portOut\":\"Result\",\"objIn\":\"bp66-23\",\"objOut\":\"bp66-20\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"bp66-21\",\"uiAttribs\":{\"subPatch\":\"875ptg0xr\"},\"storage\":{},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp66-22\",\"objOut\":\"bp66-21\"},{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"bp66-25\",\"objOut\":\"bp66-21\"},{\"portIn\":\"Index\",\"portOut\":\"result\",\"objIn\":\"bp66-23\",\"objOut\":\"bp66-21\"},{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"bp66-26\",\"objOut\":\"bp66-21\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"bp66-22\",\"uiAttribs\":{\"subPatch\":\"875ptg0xr\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonSlider\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp66-23\",\"uiAttribs\":{\"subPatch\":\"875ptg0xr\"},\"storage\":{},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"Number\",\"objIn\":\"bp66-6\",\"objOut\":\"bp66-23\"},{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"bp66-14\",\"objOut\":\"bp66-23\"}]},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"bp66-24\",\"uiAttribs\":{\"subPatch\":\"875ptg0xr\"},\"storage\":{},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":0}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"bp66-20\",\"objOut\":\"bp66-24\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"bp66-25\",\"uiAttribs\":{\"subPatch\":\"875ptg0xr\"},\"storage\":{},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"bp66-24\",\"objOut\":\"bp66-25\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"bp66-26\",\"uiAttribs\":{\"subPatch\":\"875ptg0xr\"},\"storage\":{},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"Numbers_1\",\"portOut\":\"Value Out\",\"objIn\":\"bp66-23\",\"objOut\":\"bp66-26\"},{\"portIn\":\"Value\",\"portOut\":\"Value Out\",\"objIn\":\"bp66-18\",\"objOut\":\"bp66-26\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"bp66-27\",\"uiAttribs\":{\"subPatch\":\"875ptg0xr\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp66-28\",\"uiAttribs\":{\"subPatch\":\"875ptg0xr\"},\"storage\":{},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"bp66-27\",\"objOut\":\"bp66-28\"}]}],\"objName\":\"Ops.Boolean.Not\"}]}",};
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("Trigger in"),
+    trigger = op.outTrigger("Trigger out"),
+    width = op.inValue("Width", 1),
+    height = op.inValue("Height", 1),
+    inId = op.inString("ID"),
+    classPort = op.inString("Class"),
+    pivotX = op.inValueSelect("Pivot x", ["center", "left", "right"]),
+    pivotY = op.inValueSelect("Pivot y", ["center", "top", "bottom"]),
+    axis = op.inValueSelect("Axis", ["xy", "xz"]),
+    isInteractive = op.inValueBool("Is Interactive", true),
+    renderRect = op.inValueBool("Render Rectangle", true),
+    divVisible = op.inValueBool("Show Boundings", true),
+    cursorPort = op.inValueSelect("Cursor", ["auto", "crosshair", "pointer", "Hand", "move", "n-resize", "ne-resize", "e-resize", "se-resize", "s-resize", "sw-resize", "w-resize", "nw-resize", "text", "wait", "help", "none"], "pointer"),
+    active = op.inValueBool("Render", true);
+
+const geomOut = op.outObject("geometry");
+geomOut.ignoreValueSerialize = true;
+
+const
+    mouseOver = op.outBoolNum("Pointer Hover", false),
+    mouseDown = op.outBoolNum("Pointer Down", false),
+    outX = op.outNumber("Pointer X"),
+    outY = op.outNumber("Pointer Y"),
+    outTop = op.outNumber("Top"),
+    outLeft = op.outNumber("Left"),
+    outRight = op.outNumber("Right"),
+    outBottom = op.outNumber("Bottom"),
+    mouseClick = op.outTrigger("Left Click");
+
+const elementPort = op.outObject("Dom Element");
+
+active.setUiAttribs({ "title": "Active" });
+
+const cgl = op.patch.cgl;
+axis.set("xy");
+pivotX.set("center");
+pivotY.set("center");
+
+const geom = new CGL.Geometry(op.name);
+let mesh = null;
+let div = null;
+const m = mat4.create();
+const trans = mat4.create();
+const pos = vec3.create();
+const divAlign = vec3.create();
+const divAlignSize = vec3.create();
+
+axis.onChange = rebuild;
+pivotX.onChange = rebuild;
+pivotY.onChange = rebuild;
+width.onChange = rebuild;
+height.onChange = rebuild;
+cursorPort.onChange = updateCursor;
+rebuild();
+
+const modelMatrix = mat4.create();
+const identViewMatrix = mat4.create();
+const zeroVec3 = vec3.create();
+
+render.onTriggered = function ()
+{
+    if (!div)
+    {
+        setUpDiv();
+        addListeners();
+        updateDivVisibility();
+        updateIsInteractive();
+    }
+    updateDivSize();
+
+    if (active.get() && renderRect.get() && mesh) mesh.render(cgl.getShader());
+
+    trigger.trigger();
+};
+
+function rebuild()
+{
+    let w = width.get();
+    let h = height.get();
+    let x = 0;
+    let y = 0;
+
+    if (typeof w == "string")w = parseFloat(w);
+    if (typeof h == "string")h = parseFloat(h);
+
+    if (pivotX.get() == "center")
+    {
+        x = 0;
+        divAlign[0] = -w / 2;
+    }
+    if (pivotX.get() == "right")
+    {
+        x = -w / 2;
+    }
+    if (pivotX.get() == "left")
+    {
+        x = w / 2;
+    }
+
+    if (pivotY.get() == "center")
+    {
+        y = 0;
+        divAlign[1] = -h / 2;
+    }
+    if (pivotY.get() == "top") y = -h / 2;
+    if (pivotY.get() == "bottom") y = +h / 2;
+
+    const verts = [];
+    const tc = [];
+    const norms = [];
+    const indices = [];
+
+    const numRows = 1;
+    const numColumns = 1;
+
+    const stepColumn = w / numColumns;
+    const stepRow = h / numRows;
+
+    let c, r;
+
+    for (r = 0; r <= numRows; r++)
+    {
+        for (c = 0; c <= numColumns; c++)
+        {
+            verts.push(c * stepColumn - width.get() / 2 + x);
+            if (axis.get() == "xz") verts.push(0.0);
+            verts.push(r * stepRow - height.get() / 2 + y);
+            if (axis.get() == "xy") verts.push(0.0);
+
+            tc.push(c / numColumns);
+            tc.push(1.0 - r / numRows);
+
+            if (axis.get() == "xz")
+            {
+                norms.push(0);
+                norms.push(1);
+                norms.push(0);
+            }
+
+            if (axis.get() == "xy")
+            {
+                norms.push(0);
+                norms.push(0);
+                norms.push(-1);
+            }
+        }
+    }
+
+    for (c = 0; c < numColumns; c++)
+    {
+        for (r = 0; r < numRows; r++)
+        {
+            const ind = c + (numColumns + 1) * r;
+            const v1 = ind;
+            const v2 = ind + 1;
+            const v3 = ind + numColumns + 1;
+            const v4 = ind + 1 + numColumns + 1;
+
+            indices.push(v1);
+            indices.push(v3);
+            indices.push(v2);
+
+            indices.push(v2);
+            indices.push(v3);
+            indices.push(v4);
+        }
+    }
+
+    geom.clear();
+    geom.vertices = verts;
+    geom.texCoords = tc;
+    geom.verticesIndices = indices;
+    geom.vertexNormals = norms;
+
+    if (!mesh) mesh = new CGL.Mesh(cgl, geom);
+    else mesh.setGeom(geom);
+
+    geomOut.set(null);
+    geomOut.set(geom);
+}
+
+let divX = 0;
+let divY = 0;
+let divWidth = 0;
+let divHeight = 0;
+
+const mMatrix = mat4.create();
+divVisible.onChange = updateDivVisibility;
+inId.onChange = updateId;
+classPort.onChange = updateClassNames;
+
+function updateDivVisibility()
+{
+    if (div)
+    {
+        if (divVisible.get()) div.style.border = "1px solid red";
+        else div.style.border = "none";
+    }
+}
+
+function updateCursor()
+{
+    if (div)
+    {
+        div.style.cursor = cursorPort.get();
+    }
+}
+
+function updateId()
+{
+    if (div)
+    {
+        div.setAttribute("id", inId.get());
+    }
+}
+
+function updateDivSize()
+{
+    // var vp=cgl.getViewPort();
+
+    mat4.multiply(mMatrix, cgl.vMatrix, cgl.mMatrix);
+    vec3.transformMat4(pos, divAlign, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const top = cgl.canvas.styleMarginTop || 0;
+    const left = cgl.canvas.styleMarginLeft || 0;
+
+    const x1 = (trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2 + left;
+    const y1 = (trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top;
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1];
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x2 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y2 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0];
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x3 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y3 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x4 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y4 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divX = Math.min(x1, x2, x3, x4);
+    divY = Math.min(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    const xb = Math.max(x1, x2, x3, x4);
+    const yb = Math.max(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    outTop.set(divY);
+    outLeft.set(divX);
+    outRight.set(xb);
+    outBottom.set(yb);
+
+    divWidth = Math.abs(xb - divX);
+    divHeight = Math.abs(yb - divY);
+
+    divX /= op.patch.cgl.pixelDensity;
+    divY /= op.patch.cgl.pixelDensity;
+    divWidth /= op.patch.cgl.pixelDensity;
+    divHeight /= op.patch.cgl.pixelDensity;
+
+    // div.style.left=divX+'px';
+    // div.style.top=divY+'px';
+    // div.style.width=divWidth+'px';
+    // div.style.height=divHeight+'px';
+
+    const divXpx = divX + "px";
+    const divYpx = divY + "px";
+    const divWidthPx = divWidth + "px";
+    const divHeightPx = divHeight + "px";
+    if (divXpx != div.style.left) div.style.left = divXpx;
+    if (divYpx != div.style.top) div.style.top = divYpx;
+    if (div.style.width != divWidthPx) div.style.width = divWidthPx;
+    if (div.style.height != divHeightPx) div.style.height = divHeightPx;
+}
+
+function updateClassNames()
+{
+    if (div)
+    {
+        div.className = classPort.get();
+    }
+}
+
+op.onDelete = function ()
+{
+    if (div)div.remove();
+};
+
+function setUpDiv()
+{
+    if (!div)
+    {
+        div = document.createElement("div");
+        div.dataset.op = op.id;
+        div.oncontextmenu = function (e)
+        {
+            e.preventDefault();
+        };
+
+        div.style.padding = "0px";
+        div.style.position = "absolute";
+        div.style["box-sizing"] = "border-box";
+        div.style.border = "1px solid red";
+        // div.style['border-left']="1px solid blue";
+        // div.style['border-top']="1px solid green";
+        div.style["z-index"] = "500";
+
+        div.style["-webkit-user-select"] = "none";
+        div.style["user-select"] = "none";
+        div.style["-webkit-tap-highlight-color"] = "rgba(0,0,0,0)";
+        div.style["-webkit-touch-callout"] = "none";
+
+        const canvas = op.patch.cgl.canvas.parentElement;
+        canvas.appendChild(div);
+        updateCursor();
+        updateIsInteractive();
+        updateId();
+        updateClassNames();
+    }
+    updateDivSize();
+    elementPort.set(div);
+}
+
+let listenerElement = null;
+
+function onMouseMove(e)
+{
+    const offsetX = -width.get() / 2;
+    const offsetY = -height.get() / 2;
+
+    outX.set(Math.max(0.0, Math.min(1.0, e.offsetX / divWidth)));
+    outY.set(Math.max(0.0, Math.min(1.0, 1.0 - e.offsetY / divHeight)));
+}
+
+function onMouseLeave(e)
+{
+    mouseDown.set(false);
+    mouseOver.set(false);
+}
+
+function onMouseEnter(e)
+{
+    mouseOver.set(true);
+}
+
+function onMouseDown(e)
+{
+    mouseDown.set(true);
+}
+
+function onMouseUp(e)
+{
+    mouseDown.set(false);
+}
+
+function onmouseclick(e)
+{
+    mouseClick.trigger();
+}
+
+function onTouchMove(e)
+{
+    const targetEle = document.elementFromPoint(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
+
+    if (targetEle == div)
+    {
+        mouseOver.set(true);
+        if (e.touches && e.touches.length > 0)
+        {
+            const rect = div.getBoundingClientRect(); // e.target
+            const x = e.targetTouches[0].pageX - rect.left;
+            const y = e.targetTouches[0].pageY - rect.top;
+
+            const touch = e.touches[0];
+
+            outX.set(Math.max(0.0, Math.min(1.0, x / divWidth)));
+            outY.set(Math.max(0.0, Math.min(1.0, 1.0 - y / divHeight)));
+
+            onMouseMove(touch);
+        }
+    }
+    else
+    {
+        mouseOver.set(false);
+    }
+}
+
+active.onChange = updateActiveRender;
+function updateActiveRender()
+{
+    if (active.get())
+    {
+        addListeners();
+        if (div) div.style.display = "block";
+    }
+    else
+    {
+        removeListeners();
+        if (div) div.style.display = "none";
+    }
+}
+
+isInteractive.onChange = updateIsInteractive;
+function updateIsInteractive()
+{
+    if (isInteractive.get())
+    {
+        addListeners();
+        if (div)div.style["pointer-events"] = "initial";
+    }
+    else
+    {
+        removeListeners();
+        mouseDown.set(false);
+        mouseOver.set(false);
+        if (div)div.style["pointer-events"] = "none";
+    }
+}
+
+function removeListeners()
+{
+    if (listenerElement)
+    {
+        document.removeEventListener("touchmove", onTouchMove);
+        listenerElement.removeEventListener("touchend", onMouseUp);
+        listenerElement.removeEventListener("touchstart", onMouseDown);
+
+        listenerElement.removeEventListener("click", onmouseclick);
+        listenerElement.removeEventListener("mousemove", onMouseMove);
+        listenerElement.removeEventListener("mouseleave", onMouseLeave);
+        listenerElement.removeEventListener("mousedown", onMouseDown);
+        listenerElement.removeEventListener("mouseup", onMouseUp);
+        listenerElement.removeEventListener("mouseenter", onMouseEnter);
+        // listenerElement.removeEventListener('contextmenu', onClickRight);
+        listenerElement = null;
+    }
+}
+
+function addListeners()
+{
+    if (listenerElement)removeListeners();
+
+    listenerElement = div;
+
+    if (listenerElement)
+    {
+        document.addEventListener("touchmove", onTouchMove);
+        listenerElement.addEventListener("touchend", onMouseUp);
+        listenerElement.addEventListener("touchstart", onMouseDown);
+
+        listenerElement.addEventListener("click", onmouseclick);
+        listenerElement.addEventListener("mousemove", onMouseMove);
+        listenerElement.addEventListener("mouseleave", onMouseLeave);
+        listenerElement.addEventListener("mousedown", onMouseDown);
+        listenerElement.addEventListener("mouseup", onMouseUp);
+        listenerElement.addEventListener("mouseenter", onMouseEnter);
+        // listenerElement.addEventListener('contextmenu', onClickRight);
+    }
+}
+
+
+};
+
+Ops.Patch.PW10J0o.InteractiveRectangle_v2.prototype = new CABLES.Op();
+CABLES.OPS["936a93cd-138a-4469-8121-05543b7200d4"]={f:Ops.Patch.PW10J0o.InteractiveRectangle_v2,objName:"Ops.Patch.PW10J0o.InteractiveRectangle_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PW10J0o.BasicSlider_v3
+// 
+// **************************************************************
+
+Ops.Patch.PW10J0o.BasicSlider_v3 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp54-0\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp54-9\",\"objOut\":\"bp54-0\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"bp54-1\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posY\",\"value\":0.025},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Exec\",\"portOut\":\"trigger\",\"objIn\":\"bp54-10\",\"objOut\":\"bp54-1\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp54-2\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp54-1\",\"objOut\":\"bp54-2\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"bp54-6\",\"objOut\":\"bp54-2\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"bp54-4\",\"objOut\":\"bp54-2\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"bp54-7\",\"objOut\":\"bp54-2\"},{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"bp54-1\",\"objOut\":\"bp54-2\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"bp54-3\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"bp54-11\",\"objOut\":\"bp54-3\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"String In\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"bp54-14\",\"objOut\":\"bp54-3\"},{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"bp54-27\",\"objOut\":\"bp54-3\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"bp54-27\",\"objOut\":\"bp54-3\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp54-4\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp54-5\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp54-2\",\"objOut\":\"bp54-5\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"bp54-6\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.6},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"bp54-0\",\"objOut\":\"bp54-6\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"bp54-4\",\"objOut\":\"bp54-6\"},{\"portIn\":\"Percentage\",\"portOut\":\"value\",\"objIn\":\"bp54-29\",\"objOut\":\"bp54-6\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"bp54-7\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rotZ\",\"portOut\":\"result\",\"objIn\":\"bp54-1\",\"objOut\":\"bp54-7\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"bp54-8\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":-0.32},{\"name\":\"y\",\"value\":0.91},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp54-28\",\"objOut\":\"bp54-8\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp54-9\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":0.02},{\"name\":\"height\",\"value\":0.11},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":1},{\"name\":\"num rows\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"bp54-10\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp54-0\",\"objOut\":\"bp54-10\"}]}],\"objName\":\"Ops.Gl.Matrix.Billboard\"},{\"id\":\"bp54-11\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1.73},{\"name\":\"y\",\"value\":1},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp54-8\",\"objOut\":\"bp54-11\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"},{\"id\":\"bp54-12\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_position\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp54-13\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int position\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp54-14\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"position\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"bp54-15\",\"objOut\":\"bp54-14\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"bp54-18\",\"objOut\":\"bp54-14\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"bp54-15\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"bp54-16\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp54-17\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_srvbParams_object\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"bp54-22\",\"objOut\":\"bp54-17\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"bp54-18\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Numbers_0\",\"portOut\":\"Result\",\"objIn\":\"bp54-21\",\"objOut\":\"bp54-18\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"bp54-19\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp54-20\",\"objOut\":\"bp54-19\"},{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"bp54-23\",\"objOut\":\"bp54-19\"},{\"portIn\":\"Index\",\"portOut\":\"result\",\"objIn\":\"bp54-21\",\"objOut\":\"bp54-19\"},{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"bp54-24\",\"objOut\":\"bp54-19\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"bp54-20\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonSlider\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp54-21\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"Number\",\"objIn\":\"bp54-5\",\"objOut\":\"bp54-21\"},{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"bp54-12\",\"objOut\":\"bp54-21\"}]},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"bp54-22\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":0}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"bp54-18\",\"objOut\":\"bp54-22\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"bp54-23\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"bp54-22\",\"objOut\":\"bp54-23\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"bp54-24\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"Numbers_1\",\"portOut\":\"Value Out\",\"objIn\":\"bp54-21\",\"objOut\":\"bp54-24\"},{\"portIn\":\"Value\",\"portOut\":\"Value Out\",\"objIn\":\"bp54-16\",\"objOut\":\"bp54-24\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"bp54-25\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp54-26\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"bp54-25\",\"objOut\":\"bp54-26\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"bp54-27\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":1.04},{\"name\":\"Height\",\"value\":0.24},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"bp54-2\",\"objOut\":\"bp54-27\"}]},{\"name\":\"geometry\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"geometry\",\"objIn\":\"bp54-34\",\"objOut\":\"bp54-27\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp54-6\",\"objOut\":\"bp54-27\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp54-26\",\"objOut\":\"bp54-27\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp54-14\",\"objOut\":\"bp54-27\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp54-19\",\"objOut\":\"bp54-27\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"bp54-24\",\"objOut\":\"bp54-27\"}]},{\"name\":\"Pointer Y\",\"value\":0.06209128489557336},{\"name\":\"Top\",\"value\":35.02794313430786},{\"name\":\"Left\",\"value\":413.0615562200546},{\"name\":\"Right\",\"value\":1148.4139437675476},{\"name\":\"Bottom\",\"value\":133.11851263046265}],\"objName\":\"Ops.Patch.PW10J0o.InteractiveRectangle_v22\"},{\"id\":\"bp54-28\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.502},{\"name\":\"g\",\"value\":0.974},{\"name\":\"b\",\"value\":0.846},{\"name\":\"colorizeTexture\",\"value\":1},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":3},{\"name\":\"Alpha Mask Source\",\"value\":\"B\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":0.95},{\"name\":\"diffuseRepeatY\",\"value\":0.2},{\"name\":\"Tex Offset X\",\"value\":0.54},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"bp54-33\",\"objOut\":\"bp54-28\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"bp54-29\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":-0.44},{\"name\":\"Value 2\",\"value\":0.31}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"Result\",\"objIn\":\"bp54-28\",\"objOut\":\"bp54-29\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"bp54-30\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Translate X\",\"value\":-0.01},{\"name\":\"Translate Y\",\"value\":-0.03},{\"name\":\"Translate Z\",\"value\":0},{\"name\":\"Scale X\",\"value\":0.964},{\"name\":\"Scale Y\",\"value\":0.447},{\"name\":\"Scale Z\",\"value\":1},{\"name\":\"Rotation X\",\"value\":0},{\"name\":\"Rotation Y\",\"value\":0},{\"name\":\"Rotation Z\",\"value\":0}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"Result\",\"objIn\":\"bp54-32\",\"objOut\":\"bp54-30\"}]}],\"objName\":\"Ops.Graphics.Geometry.TransformGeometry\"},{\"id\":\"bp54-31\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"glassy\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp54-32\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Render Mesh\",\"value\":1},{\"name\":\"Add Vertex Numbers\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"bp54-27\",\"objOut\":\"bp54-32\"}]}],\"objName\":\"Ops.Gl.RenderGeometry_v2\"},{\"id\":\"bp54-33\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Distance\",\"value\":-0.69},{\"name\":\"Size\",\"value\":1.22},{\"name\":\"Absolute\",\"value\":0},{\"name\":\"add x\",\"value\":0},{\"name\":\"add y\",\"value\":0},{\"name\":\"add z\",\"value\":1},{\"name\":\"mul x\",\"value\":1},{\"name\":\"mul y\",\"value\":1},{\"name\":\"mul z\",\"value\":1.15},{\"name\":\"x\",\"value\":0},{\"name\":\"y\",\"value\":0.88},{\"name\":\"z\",\"value\":-0.29}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp54-32\",\"objOut\":\"bp54-33\"}]}],\"objName\":\"Ops.Gl.ShaderEffects.ExplodeDividedMesh_v2\"},{\"id\":\"bp54-34\",\"uiAttribs\":{\"subPatch\":\"qwjwnvo4w\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"Result\",\"objIn\":\"bp54-30\",\"objOut\":\"bp54-34\"}]}],\"objName\":\"Ops.Graphics.Geometry.DivideGeometry\"}]}",};
 const port_blls2amps=op.inTrigger("blls2amps");
 port_blls2amps.setUiAttribs({title:"Trigger in",});
 
@@ -28934,8 +27804,8 @@ function initializeSubpatch()
 
 };
 
-Ops.Patch.P4oPpSn.BasicSlider_v3.prototype = new CABLES.Op();
-CABLES.OPS["8bc3c454-a545-44df-91ef-5de31d4b99d2"]={f:Ops.Patch.P4oPpSn.BasicSlider_v3,objName:"Ops.Patch.P4oPpSn.BasicSlider_v3"};
+Ops.Patch.PW10J0o.BasicSlider_v3.prototype = new CABLES.Op();
+CABLES.OPS["fda0f6d1-88f2-45bb-93d7-2ed86d29dc7f"]={f:Ops.Patch.PW10J0o.BasicSlider_v3,objName:"Ops.Patch.PW10J0o.BasicSlider_v3"};
 
 
 
@@ -29175,77 +28045,1385 @@ CABLES.OPS["72a2449e-db5c-44e7-ad9f-49f3c78b8c71"]={f:Ops.Gl.Shader.PointMateria
 
 // **************************************************************
 // 
-// Ops.Html.CSSPropertyString
+// Ops.Gl.Shader.BasicMaterial_v3
 // 
 // **************************************************************
 
-Ops.Html.CSSPropertyString = function()
+Ops.Gl.Shader.BasicMaterial_v3 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"basicmaterial_frag":"{{MODULES_HEAD}}\n\nIN vec2 texCoord;\n\n#ifdef VERTEX_COLORS\nIN vec4 vertCol;\n#endif\n\n#ifdef HAS_TEXTURES\n    IN vec2 texCoordOrig;\n    #ifdef HAS_TEXTURE_DIFFUSE\n        UNI sampler2D tex;\n    #endif\n    #ifdef HAS_TEXTURE_OPACITY\n        UNI sampler2D texOpacity;\n   #endif\n#endif\n\n\n\nvoid main()\n{\n    {{MODULE_BEGIN_FRAG}}\n    vec4 col=color;\n\n\n    #ifdef HAS_TEXTURES\n        vec2 uv=texCoord;\n\n        #ifdef CROP_TEXCOORDS\n            if(uv.x<0.0 || uv.x>1.0 || uv.y<0.0 || uv.y>1.0) discard;\n        #endif\n\n        #ifdef HAS_TEXTURE_DIFFUSE\n            col=texture(tex,uv);\n\n            #ifdef COLORIZE_TEXTURE\n                col.r*=color.r;\n                col.g*=color.g;\n                col.b*=color.b;\n            #endif\n        #endif\n        col.a*=color.a;\n        #ifdef HAS_TEXTURE_OPACITY\n            #ifdef TRANSFORMALPHATEXCOORDS\n                uv=texCoordOrig;\n            #endif\n            #ifdef ALPHA_MASK_IR\n                col.a*=1.0-texture(texOpacity,uv).r;\n            #endif\n            #ifdef ALPHA_MASK_IALPHA\n                col.a*=1.0-texture(texOpacity,uv).a;\n            #endif\n            #ifdef ALPHA_MASK_ALPHA\n                col.a*=texture(texOpacity,uv).a;\n            #endif\n            #ifdef ALPHA_MASK_LUMI\n                col.a*=dot(vec3(0.2126,0.7152,0.0722), texture(texOpacity,uv).rgb);\n            #endif\n            #ifdef ALPHA_MASK_R\n                col.a*=texture(texOpacity,uv).r;\n            #endif\n            #ifdef ALPHA_MASK_G\n                col.a*=texture(texOpacity,uv).g;\n            #endif\n            #ifdef ALPHA_MASK_B\n                col.a*=texture(texOpacity,uv).b;\n            #endif\n            // #endif\n        #endif\n    #endif\n\n    {{MODULE_COLOR}}\n\n    #ifdef DISCARDTRANS\n        if(col.a<0.2) discard;\n    #endif\n\n    #ifdef VERTEX_COLORS\n        col*=vertCol;\n    #endif\n\n    outColor = col;\n}\n","basicmaterial_vert":"\n{{MODULES_HEAD}}\n\nOUT vec2 texCoord;\nOUT vec2 texCoordOrig;\n\nUNI mat4 projMatrix;\nUNI mat4 modelMatrix;\nUNI mat4 viewMatrix;\n\n#ifdef HAS_TEXTURES\n    UNI float diffuseRepeatX;\n    UNI float diffuseRepeatY;\n    UNI float texOffsetX;\n    UNI float texOffsetY;\n#endif\n\n#ifdef VERTEX_COLORS\n    in vec4 attrVertColor;\n    out vec4 vertCol;\n\n#endif\n\n\nvoid main()\n{\n    mat4 mMatrix=modelMatrix;\n    mat4 modelViewMatrix;\n\n    norm=attrVertNormal;\n    texCoordOrig=attrTexCoord;\n    texCoord=attrTexCoord;\n    #ifdef HAS_TEXTURES\n        texCoord.x=texCoord.x*diffuseRepeatX+texOffsetX;\n        texCoord.y=(1.0-texCoord.y)*diffuseRepeatY+texOffsetY;\n    #endif\n\n    #ifdef VERTEX_COLORS\n        vertCol=attrVertColor;\n    #endif\n\n    vec4 pos = vec4(vPosition, 1.0);\n\n    #ifdef BILLBOARD\n       vec3 position=vPosition;\n       modelViewMatrix=viewMatrix*modelMatrix;\n\n       gl_Position = projMatrix * modelViewMatrix * vec4((\n           position.x * vec3(\n               modelViewMatrix[0][0],\n               modelViewMatrix[1][0],\n               modelViewMatrix[2][0] ) +\n           position.y * vec3(\n               modelViewMatrix[0][1],\n               modelViewMatrix[1][1],\n               modelViewMatrix[2][1]) ), 1.0);\n    #endif\n\n    {{MODULE_VERTEX_POSITION}}\n\n    #ifndef BILLBOARD\n        modelViewMatrix=viewMatrix * mMatrix;\n\n        {{MODULE_VERTEX_MOVELVIEW}}\n\n    #endif\n\n    // mat4 modelViewMatrix=viewMatrix*mMatrix;\n\n    #ifndef BILLBOARD\n        // gl_Position = projMatrix * viewMatrix * modelMatrix * pos;\n        gl_Position = projMatrix * modelViewMatrix * pos;\n    #endif\n}\n",};
+const render = op.inTrigger("render");
+const trigger = op.outTrigger("trigger");
+const shaderOut = op.outObject("shader", null, "shader");
+
+shaderOut.ignoreValueSerialize = true;
+
+op.toWorkPortsNeedToBeLinked(render);
+op.toWorkShouldNotBeChild("Ops.Gl.TextureEffects.ImageCompose", CABLES.OP_PORT_TYPE_FUNCTION);
+
+const cgl = op.patch.cgl;
+const shader = new CGL.Shader(cgl, "basicmaterialnew", this);
+shader.addAttribute({ "type": "vec3", "name": "vPosition" });
+shader.addAttribute({ "type": "vec2", "name": "attrTexCoord" });
+shader.addAttribute({ "type": "vec3", "name": "attrVertNormal", "nameFrag": "norm" });
+shader.addAttribute({ "type": "float", "name": "attrVertIndex" });
+
+shader.setModules(["MODULE_VERTEX_POSITION", "MODULE_COLOR", "MODULE_BEGIN_FRAG", "MODULE_VERTEX_MOVELVIEW"]);
+
+shader.setSource(attachments.basicmaterial_vert, attachments.basicmaterial_frag);
+
+shaderOut.setRef(shader);
+
+render.onTriggered = doRender;
+
+// rgba colors
+const r = op.inValueSlider("r", Math.random());
+const g = op.inValueSlider("g", Math.random());
+const b = op.inValueSlider("b", Math.random());
+const a = op.inValueSlider("a", 1);
+r.setUiAttribs({ "colorPick": true });
+
+// const uniColor=new CGL.Uniform(shader,'4f','color',r,g,b,a);
+const colUni = shader.addUniformFrag("4f", "color", r, g, b, a);
+
+shader.uniformColorDiffuse = colUni;
+
+// diffuse outTexture
+
+const diffuseTexture = op.inTexture("texture");
+let diffuseTextureUniform = null;
+diffuseTexture.onChange = updateDiffuseTexture;
+
+const colorizeTexture = op.inValueBool("colorizeTexture", false);
+const vertexColors = op.inValueBool("Vertex Colors", false);
+
+// opacity texture
+const textureOpacity = op.inTexture("textureOpacity");
+let textureOpacityUniform = null;
+
+const alphaMaskSource = op.inSwitch("Alpha Mask Source", ["Luminance", "R", "G", "B", "A", "1-A", "1-R"], "Luminance");
+alphaMaskSource.setUiAttribs({ "greyout": true });
+textureOpacity.onChange = updateOpacity;
+
+const texCoordAlpha = op.inValueBool("Opacity TexCoords Transform", false);
+const discardTransPxl = op.inValueBool("Discard Transparent Pixels");
+
+// texture coords
+const
+    diffuseRepeatX = op.inValue("diffuseRepeatX", 1),
+    diffuseRepeatY = op.inValue("diffuseRepeatY", 1),
+    diffuseOffsetX = op.inValue("Tex Offset X", 0),
+    diffuseOffsetY = op.inValue("Tex Offset Y", 0),
+    cropRepeat = op.inBool("Crop TexCoords", false);
+
+shader.addUniformFrag("f", "diffuseRepeatX", diffuseRepeatX);
+shader.addUniformFrag("f", "diffuseRepeatY", diffuseRepeatY);
+shader.addUniformFrag("f", "texOffsetX", diffuseOffsetX);
+shader.addUniformFrag("f", "texOffsetY", diffuseOffsetY);
+
+const doBillboard = op.inValueBool("billboard", false);
+
+alphaMaskSource.onChange =
+    doBillboard.onChange =
+    discardTransPxl.onChange =
+    texCoordAlpha.onChange =
+    cropRepeat.onChange =
+    vertexColors.onChange =
+    colorizeTexture.onChange = updateDefines;
+
+op.setPortGroup("Color", [r, g, b, a]);
+op.setPortGroup("Color Texture", [diffuseTexture, vertexColors, colorizeTexture]);
+op.setPortGroup("Opacity", [textureOpacity, alphaMaskSource, discardTransPxl, texCoordAlpha]);
+op.setPortGroup("Texture Transform", [diffuseRepeatX, diffuseRepeatY, diffuseOffsetX, diffuseOffsetY, cropRepeat]);
+
+updateOpacity();
+updateDiffuseTexture();
+
+op.preRender = function ()
+{
+    shader.bind();
+    doRender();
+};
+
+function doRender()
+{
+    if (!shader) return;
+
+    cgl.pushShader(shader);
+    shader.popTextures();
+
+    if (diffuseTextureUniform && diffuseTexture.get()) shader.pushTexture(diffuseTextureUniform, diffuseTexture.get());
+    if (textureOpacityUniform && textureOpacity.get()) shader.pushTexture(textureOpacityUniform, textureOpacity.get());
+
+    trigger.trigger();
+
+    cgl.popShader();
+}
+
+function updateOpacity()
+{
+    if (textureOpacity.get())
+    {
+        if (textureOpacityUniform !== null) return;
+        shader.removeUniform("texOpacity");
+        shader.define("HAS_TEXTURE_OPACITY");
+        if (!textureOpacityUniform)textureOpacityUniform = new CGL.Uniform(shader, "t", "texOpacity");
+    }
+    else
+    {
+        shader.removeUniform("texOpacity");
+        shader.removeDefine("HAS_TEXTURE_OPACITY");
+        textureOpacityUniform = null;
+    }
+
+    updateDefines();
+}
+
+function updateDiffuseTexture()
+{
+    if (diffuseTexture.get())
+    {
+        if (!shader.hasDefine("HAS_TEXTURE_DIFFUSE"))shader.define("HAS_TEXTURE_DIFFUSE");
+        if (!diffuseTextureUniform)diffuseTextureUniform = new CGL.Uniform(shader, "t", "texDiffuse");
+    }
+    else
+    {
+        shader.removeUniform("texDiffuse");
+        shader.removeDefine("HAS_TEXTURE_DIFFUSE");
+        diffuseTextureUniform = null;
+    }
+    updateUi();
+}
+
+function updateUi()
+{
+    const hasTexture = diffuseTexture.isLinked() || textureOpacity.isLinked();
+    diffuseRepeatX.setUiAttribs({ "greyout": !hasTexture });
+    diffuseRepeatY.setUiAttribs({ "greyout": !hasTexture });
+    diffuseOffsetX.setUiAttribs({ "greyout": !hasTexture });
+    diffuseOffsetY.setUiAttribs({ "greyout": !hasTexture });
+    colorizeTexture.setUiAttribs({ "greyout": !hasTexture });
+
+    alphaMaskSource.setUiAttribs({ "greyout": !textureOpacity.get() });
+    texCoordAlpha.setUiAttribs({ "greyout": !textureOpacity.get() });
+
+    let notUsingColor = true;
+    notUsingColor = diffuseTexture.get() && !colorizeTexture.get();
+    r.setUiAttribs({ "greyout": notUsingColor });
+    g.setUiAttribs({ "greyout": notUsingColor });
+    b.setUiAttribs({ "greyout": notUsingColor });
+}
+
+function updateDefines()
+{
+    shader.toggleDefine("VERTEX_COLORS", vertexColors.get());
+    shader.toggleDefine("CROP_TEXCOORDS", cropRepeat.get());
+    shader.toggleDefine("COLORIZE_TEXTURE", colorizeTexture.get());
+    shader.toggleDefine("TRANSFORMALPHATEXCOORDS", texCoordAlpha.get());
+    shader.toggleDefine("DISCARDTRANS", discardTransPxl.get());
+    shader.toggleDefine("BILLBOARD", doBillboard.get());
+
+    shader.toggleDefine("ALPHA_MASK_ALPHA", alphaMaskSource.get() == "A");
+    shader.toggleDefine("ALPHA_MASK_IALPHA", alphaMaskSource.get() == "1-A");
+    shader.toggleDefine("ALPHA_MASK_IR", alphaMaskSource.get() == "1-R");
+    shader.toggleDefine("ALPHA_MASK_LUMI", alphaMaskSource.get() == "Luminance");
+    shader.toggleDefine("ALPHA_MASK_R", alphaMaskSource.get() == "R");
+    shader.toggleDefine("ALPHA_MASK_G", alphaMaskSource.get() == "G");
+    shader.toggleDefine("ALPHA_MASK_B", alphaMaskSource.get() == "B");
+    updateUi();
+}
+
+
+};
+
+Ops.Gl.Shader.BasicMaterial_v3.prototype = new CABLES.Op();
+CABLES.OPS["ec55d252-3843-41b1-b731-0482dbd9e72b"]={f:Ops.Gl.Shader.BasicMaterial_v3,objName:"Ops.Gl.Shader.BasicMaterial_v3"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Anim.Smooth
+// 
+// **************************************************************
+
+Ops.Anim.Smooth = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
 const attachments=op.attachments={};
 const
-    inEle = op.inObject("Element"),
-    inProperty = op.inString("Property"),
-    inValue = op.inString("Value"),
-    inActive = op.inBool("Active", true),
-    outEle = op.outObject("HTML Element");
+    exec = op.inTrigger("Update"),
+    inMode = op.inBool("Separate inc/dec", false),
+    inVal = op.inValue("Value"),
+    next = op.outTrigger("Next"),
+    inDivisorUp = op.inValue("Inc factor", 4),
+    inDivisorDown = op.inValue("Dec factor", 4),
+    result = op.outNumber("Result", 0);
 
-op.setPortGroup("Element", [inEle]);
-op.setPortGroup("Attributes", [inProperty, inValue]);
+let val = 0;
+let goal = 0;
+let oldVal = 0;
+let lastTrigger = 0;
 
-inProperty.onChange = updateProperty;
-inValue.onChange = update;
-let ele = null;
+op.toWorkPortsNeedToBeLinked(exec);
 
-inEle.onChange =
-    outEle.onLinkChanged =
-    inEle.onLinkChanged = removeProp;
+let divisorUp;
+let divisorDown;
+let divisor = 4;
+let finished = true;
 
-inActive.onChange = () =>
+let selectIndex = 0;
+const MODE_SINGLE = 0;
+const MODE_UP_DOWN = 1;
+
+onFilterChange();
+getDivisors();
+
+inMode.setUiAttribs({ "hidePort": true });
+
+inDivisorUp.onChange = inDivisorDown.onChange = getDivisors;
+inMode.onChange = onFilterChange;
+update();
+
+function onFilterChange()
 {
-    if (!inActive.get()) removeProp();
-    else update();
-};
+    const selectedMode = inMode.get();
+    if (!selectedMode) selectIndex = MODE_SINGLE;
+    else selectIndex = MODE_UP_DOWN;
 
-function removeProp()
-{
-    if (ele && ele.style) ele.style[inProperty.get()] = "initial";
+    if (selectIndex == MODE_SINGLE)
+    {
+        inDivisorDown.setUiAttribs({ "greyout": true });
+        inDivisorUp.setUiAttribs({ "title": "Inc/Dec factor" });
+    }
+    else if (selectIndex == MODE_UP_DOWN)
+    {
+        inDivisorDown.setUiAttribs({ "greyout": false });
+        inDivisorUp.setUiAttribs({ "title": "Inc factor" });
+    }
+
+    getDivisors();
     update();
 }
 
-function updateProperty()
+function getDivisors()
+{
+    if (selectIndex == MODE_SINGLE)
+    {
+        divisorUp = inDivisorUp.get();
+        divisorDown = inDivisorUp.get();
+    }
+    else if (selectIndex == MODE_UP_DOWN)
+    {
+        divisorUp = inDivisorUp.get();
+        divisorDown = inDivisorDown.get();
+    }
+
+    if (divisorUp <= 0.2 || divisorUp != divisorUp)divisorUp = 0.2;
+    if (divisorDown <= 0.2 || divisorDown != divisorDown)divisorDown = 0.2;
+}
+
+inVal.onChange = function ()
+{
+    finished = false;
+    let oldGoal = goal;
+    goal = inVal.get();
+};
+
+inDivisorUp.onChange = function ()
+{
+    getDivisors();
+};
+
+function update()
+{
+    let tm = 1;
+    if (performance.now() - lastTrigger > 500 || lastTrigger === 0) val = inVal.get() || 0;
+    else tm = (performance.now() - lastTrigger) / (performance.now() - lastTrigger);
+    lastTrigger = performance.now();
+
+    if (val != val)val = 0;
+
+    if (divisor <= 0)divisor = 0.0001;
+
+    const diff = goal - val;
+
+    if (diff >= 0) val += (diff) / (divisorDown * tm);
+    else val += (diff) / (divisorUp * tm);
+
+    if (Math.abs(diff) < 0.00001)val = goal;
+
+    if (divisor != divisor)val = 0;
+    if (val != val || val == -Infinity || val == Infinity)val = inVal.get();
+
+    if (oldVal != val)
+    {
+        result.set(val);
+        oldVal = val;
+    }
+
+    if (val == goal && !finished)
+    {
+        finished = true;
+        result.set(val);
+    }
+
+    next.trigger();
+}
+
+exec.onTriggered = function ()
 {
     update();
-    op.setUiAttrib({ "extendTitle": inProperty.get() + "" });
+};
+
+
+};
+
+Ops.Anim.Smooth.prototype = new CABLES.Op();
+CABLES.OPS["5677b5b5-753a-4fbf-9e91-64c81ec68a2f"]={f:Ops.Anim.Smooth,objName:"Ops.Anim.Smooth"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.Subtract
+// 
+// **************************************************************
+
+Ops.Math.Subtract = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    number1 = op.inValue("number1", 1),
+    number2 = op.inValue("number2", 1),
+    result = op.outNumber("result");
+
+op.setUiAttribs({ "mathTitle": true });
+
+number1.onChange =
+    number2.onChange = exec;
+exec();
+
+function exec()
+{
+    let v = number1.get() - number2.get();
+    if (!isNaN(v)) result.set(v);
+}
+
+
+};
+
+Ops.Math.Subtract.prototype = new CABLES.Op();
+CABLES.OPS["a4ffe852-d200-4b96-9347-68feb01122ca"]={f:Ops.Math.Subtract,objName:"Ops.Math.Subtract"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.Matrix.Billboard
+// 
+// **************************************************************
+
+Ops.Gl.Matrix.Billboard = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const exec = op.inTrigger("Exec");
+const next = op.outTrigger("Next");
+
+const cgl = op.patch.cgl;
+
+let mm = mat4.create();
+let mv = mat4.create();
+let m = mat4.create();
+let mempty = mat4.create();
+
+exec.onTriggered = function ()
+{
+    mat4.invert(mm, cgl.mMatrix);
+    mat4.invert(mv, cgl.vMatrix);
+
+    mat4.mul(mm, mm, mv);
+
+    mm[12] = 0;
+    mm[13] = 0;
+    mm[14] = 0;
+
+    cgl.pushModelMatrix();
+    cgl.pushViewMatrix();
+    mat4.mul(cgl.mMatrix, cgl.mMatrix, mm);
+    next.trigger();
+    cgl.popViewMatrix();
+    cgl.popModelMatrix();
+};
+
+
+};
+
+Ops.Gl.Matrix.Billboard.prototype = new CABLES.Op();
+CABLES.OPS["d41e676e-d8a7-4a1e-8abf-f1bddfc982d5"]={f:Ops.Gl.Matrix.Billboard,objName:"Ops.Gl.Matrix.Billboard"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.Matrix.ScaleXYZViewMatrix
+// 
+// **************************************************************
+
+Ops.Gl.Matrix.ScaleXYZViewMatrix = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("render"),
+    scaleX = op.inValueFloat("x", 1),
+    scaleY = op.inValueFloat("y", 1),
+    scaleZ = op.inValueFloat("z", 1),
+    trigger = op.outTrigger("trigger");
+
+const cgl = op.patch.cgl;
+let vScale = vec3.create();
+let transMatrix = mat4.create();
+mat4.identity(transMatrix);
+
+scaleX.onChange = scaleY.onChange = scaleZ.onChange = scaleChanged;
+scaleChanged();
+
+render.onTriggered = exec;
+
+function exec()
+{
+    cgl.pushViewMatrix();
+    mat4.multiply(cgl.vMatrix, cgl.vMatrix, transMatrix);
+    trigger.trigger();
+    cgl.popViewMatrix();
+}
+
+function scaleChanged()
+{
+    vec3.set(vScale, scaleX.get(), scaleY.get(), scaleZ.get());
+    mat4.identity(transMatrix);
+    mat4.scale(transMatrix, transMatrix, vScale);
+}
+
+
+};
+
+Ops.Gl.Matrix.ScaleXYZViewMatrix.prototype = new CABLES.Op();
+CABLES.OPS["8b1fa9c9-0c4d-41b6-9c4f-8f4b633a9d7f"]={f:Ops.Gl.Matrix.ScaleXYZViewMatrix,objName:"Ops.Gl.Matrix.ScaleXYZViewMatrix"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Number.GateNumber
+// 
+// **************************************************************
+
+Ops.Number.GateNumber = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    valueInPort = op.inValue("Value In", 0),
+    passThroughPort = op.inValueBool("Pass Through"),
+    inIfNot = op.inSwitch("When False", ["keep last number", "custom"], "keep last number"),
+    inCustomNot = op.inFloat("Custom Value", 0),
+    valueOutPort = op.outNumber("Value Out");
+
+valueInPort.onChange = update;
+passThroughPort.onChange = update;
+
+valueInPort.changeAlways =
+    valueOutPort.changeAlways = true;
+
+inIfNot.onChange = updateUi;
+
+function updateUi()
+{
+    inCustomNot.setUiAttribs({ "greyout": inIfNot.get() != "custom" });
+    update();
 }
 
 function update()
 {
-    if (!inActive.get()) return;
-
-    ele = inEle.get();
-    if (ele && ele.style)
+    if (passThroughPort.get())
     {
-        const str = inValue.get();
-        try
-        {
-            ele.style[inProperty.get()] = str;
-        }
-        catch (e)
-        {
-            op.logError(e);
-        }
+        valueOutPort.set(valueInPort.get());
     }
-
-    outEle.set(inEle.get());
+    else
+    {
+        if (inIfNot.get() == "custom") valueOutPort.set(inCustomNot.get());
+    }
 }
 
 
 };
 
-Ops.Html.CSSPropertyString.prototype = new CABLES.Op();
-CABLES.OPS["a7abdfb9-4c2a-4ddb-8fc6-55b3fdfbdaf3"]={f:Ops.Html.CSSPropertyString,objName:"Ops.Html.CSSPropertyString"};
+Ops.Number.GateNumber.prototype = new CABLES.Op();
+CABLES.OPS["594105c8-1fdb-4f3c-bbd5-29b9ad6b33e0"]={f:Ops.Number.GateNumber,objName:"Ops.Number.GateNumber"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PW10J0o.InteractiveRectangle_v22
+// 
+// **************************************************************
+
+Ops.Patch.PW10J0o.InteractiveRectangle_v22 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("Trigger in"),
+    trigger = op.outTrigger("Trigger out"),
+    width = op.inValue("Width", 1),
+    height = op.inValue("Height", 1),
+    inId = op.inString("ID"),
+    classPort = op.inString("Class"),
+    pivotX = op.inValueSelect("Pivot x", ["center", "left", "right"]),
+    pivotY = op.inValueSelect("Pivot y", ["center", "top", "bottom"]),
+    axis = op.inValueSelect("Axis", ["xy", "xz"]),
+    isInteractive = op.inValueBool("Is Interactive", true),
+    renderRect = op.inValueBool("Render Rectangle", true),
+    divVisible = op.inValueBool("Show Boundings", true),
+    cursorPort = op.inValueSelect("Cursor", ["auto", "crosshair", "pointer", "Hand", "move", "n-resize", "ne-resize", "e-resize", "se-resize", "s-resize", "sw-resize", "w-resize", "nw-resize", "text", "wait", "help", "none"], "pointer"),
+    active = op.inValueBool("Render", true);
+
+const geomOut = op.outObject("geometry");
+geomOut.ignoreValueSerialize = true;
+
+const
+    mouseOver = op.outBoolNum("Pointer Hover", false),
+    mouseDown = op.outBoolNum("Pointer Down", false),
+    outX = op.outNumber("Pointer X"),
+    outY = op.outNumber("Pointer Y"),
+    outTop = op.outNumber("Top"),
+    outLeft = op.outNumber("Left"),
+    outRight = op.outNumber("Right"),
+    outBottom = op.outNumber("Bottom"),
+    mouseClick = op.outTrigger("Left Click");
+
+const elementPort = op.outObject("Dom Element");
+
+active.setUiAttribs({ "title": "Active" });
+
+const cgl = op.patch.cgl;
+axis.set("xy");
+pivotX.set("center");
+pivotY.set("center");
+
+const geom = new CGL.Geometry(op.name);
+let mesh = null;
+let div = null;
+const m = mat4.create();
+const trans = mat4.create();
+const pos = vec3.create();
+const divAlign = vec3.create();
+const divAlignSize = vec3.create();
+
+axis.onChange = rebuild;
+pivotX.onChange = rebuild;
+pivotY.onChange = rebuild;
+width.onChange = rebuild;
+height.onChange = rebuild;
+cursorPort.onChange = updateCursor;
+rebuild();
+
+const modelMatrix = mat4.create();
+const identViewMatrix = mat4.create();
+const zeroVec3 = vec3.create();
+
+render.onTriggered = function ()
+{
+    if (!div)
+    {
+        setUpDiv();
+        addListeners();
+        updateDivVisibility();
+        updateIsInteractive();
+    }
+    updateDivSize();
+
+    if (active.get() && renderRect.get() && mesh) mesh.render(cgl.getShader());
+
+    trigger.trigger();
+};
+
+function rebuild()
+{
+    let w = width.get();
+    let h = height.get();
+    let x = 0;
+    let y = 0;
+
+    if (typeof w == "string")w = parseFloat(w);
+    if (typeof h == "string")h = parseFloat(h);
+
+    if (pivotX.get() == "center")
+    {
+        x = 0;
+        divAlign[0] = -w / 2;
+    }
+    if (pivotX.get() == "right")
+    {
+        x = -w / 2;
+    }
+    if (pivotX.get() == "left")
+    {
+        x = w / 2;
+    }
+
+    if (pivotY.get() == "center")
+    {
+        y = 0;
+        divAlign[1] = -h / 2;
+    }
+    if (pivotY.get() == "top") y = -h / 2;
+    if (pivotY.get() == "bottom") y = +h / 2;
+
+    const verts = [];
+    const tc = [];
+    const norms = [];
+    const indices = [];
+
+    const numRows = 1;
+    const numColumns = 1;
+
+    const stepColumn = w / numColumns;
+    const stepRow = h / numRows;
+
+    let c, r;
+
+    for (r = 0; r <= numRows; r++)
+    {
+        for (c = 0; c <= numColumns; c++)
+        {
+            verts.push(c * stepColumn - width.get() / 2 + x);
+            if (axis.get() == "xz") verts.push(0.0);
+            verts.push(r * stepRow - height.get() / 2 + y);
+            if (axis.get() == "xy") verts.push(0.0);
+
+            tc.push(c / numColumns);
+            tc.push(1.0 - r / numRows);
+
+            if (axis.get() == "xz")
+            {
+                norms.push(0);
+                norms.push(1);
+                norms.push(0);
+            }
+
+            if (axis.get() == "xy")
+            {
+                norms.push(0);
+                norms.push(0);
+                norms.push(-1);
+            }
+        }
+    }
+
+    for (c = 0; c < numColumns; c++)
+    {
+        for (r = 0; r < numRows; r++)
+        {
+            const ind = c + (numColumns + 1) * r;
+            const v1 = ind;
+            const v2 = ind + 1;
+            const v3 = ind + numColumns + 1;
+            const v4 = ind + 1 + numColumns + 1;
+
+            indices.push(v1);
+            indices.push(v3);
+            indices.push(v2);
+
+            indices.push(v2);
+            indices.push(v3);
+            indices.push(v4);
+        }
+    }
+
+    geom.clear();
+    geom.vertices = verts;
+    geom.texCoords = tc;
+    geom.verticesIndices = indices;
+    geom.vertexNormals = norms;
+
+    if (!mesh) mesh = new CGL.Mesh(cgl, geom);
+    else mesh.setGeom(geom);
+
+    geomOut.set(null);
+    geomOut.set(geom);
+}
+
+let divX = 0;
+let divY = 0;
+let divWidth = 0;
+let divHeight = 0;
+
+const mMatrix = mat4.create();
+divVisible.onChange = updateDivVisibility;
+inId.onChange = updateId;
+classPort.onChange = updateClassNames;
+
+function updateDivVisibility()
+{
+    if (div)
+    {
+        if (divVisible.get()) div.style.border = "1px solid red";
+        else div.style.border = "none";
+    }
+}
+
+function updateCursor()
+{
+    if (div)
+    {
+        div.style.cursor = cursorPort.get();
+    }
+}
+
+function updateId()
+{
+    if (div)
+    {
+        div.setAttribute("id", inId.get());
+    }
+}
+
+function updateDivSize()
+{
+    // var vp=cgl.getViewPort();
+
+    mat4.multiply(mMatrix, cgl.vMatrix, cgl.mMatrix);
+    vec3.transformMat4(pos, divAlign, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const top = cgl.canvas.styleMarginTop || 0;
+    const left = cgl.canvas.styleMarginLeft || 0;
+
+    const x1 = (trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2 + left;
+    const y1 = (trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top;
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1];
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x2 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y2 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0];
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x3 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y3 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x4 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y4 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divX = Math.min(x1, x2, x3, x4);
+    divY = Math.min(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    const xb = Math.max(x1, x2, x3, x4);
+    const yb = Math.max(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    outTop.set(divY);
+    outLeft.set(divX);
+    outRight.set(xb);
+    outBottom.set(yb);
+
+    divWidth = Math.abs(xb - divX);
+    divHeight = Math.abs(yb - divY);
+
+    divX /= op.patch.cgl.pixelDensity;
+    divY /= op.patch.cgl.pixelDensity;
+    divWidth /= op.patch.cgl.pixelDensity;
+    divHeight /= op.patch.cgl.pixelDensity;
+
+    // div.style.left=divX+'px';
+    // div.style.top=divY+'px';
+    // div.style.width=divWidth+'px';
+    // div.style.height=divHeight+'px';
+
+    const divXpx = divX + "px";
+    const divYpx = divY + "px";
+    const divWidthPx = divWidth + "px";
+    const divHeightPx = divHeight + "px";
+    if (divXpx != div.style.left) div.style.left = divXpx;
+    if (divYpx != div.style.top) div.style.top = divYpx;
+    if (div.style.width != divWidthPx) div.style.width = divWidthPx;
+    if (div.style.height != divHeightPx) div.style.height = divHeightPx;
+}
+
+function updateClassNames()
+{
+    if (div)
+    {
+        div.className = classPort.get();
+    }
+}
+
+op.onDelete = function ()
+{
+    if (div)div.remove();
+};
+
+function setUpDiv()
+{
+    if (!div)
+    {
+        div = document.createElement("div");
+        div.dataset.op = op.id;
+        div.oncontextmenu = function (e)
+        {
+            e.preventDefault();
+        };
+
+        div.style.padding = "0px";
+        div.style.position = "absolute";
+        div.style["box-sizing"] = "border-box";
+        div.style.border = "1px solid red";
+        // div.style['border-left']="1px solid blue";
+        // div.style['border-top']="1px solid green";
+        div.style["z-index"] = "500";
+
+        div.style["-webkit-user-select"] = "none";
+        div.style["user-select"] = "none";
+        div.style["-webkit-tap-highlight-color"] = "rgba(0,0,0,0)";
+        div.style["-webkit-touch-callout"] = "none";
+
+        const canvas = op.patch.cgl.canvas.parentElement;
+        canvas.appendChild(div);
+        updateCursor();
+        updateIsInteractive();
+        updateId();
+        updateClassNames();
+    }
+    updateDivSize();
+    elementPort.set(div);
+}
+
+let listenerElement = null;
+
+function onMouseMove(e)
+{
+    const offsetX = -width.get() / 2;
+    const offsetY = -height.get() / 2;
+
+    outX.set(Math.max(0.0, Math.min(1.0, e.offsetX / divWidth)));
+    outY.set(Math.max(0.0, Math.min(1.0, 1.0 - e.offsetY / divHeight)));
+}
+
+function onMouseLeave(e)
+{
+    mouseDown.set(false);
+    mouseOver.set(false);
+}
+
+function onMouseEnter(e)
+{
+    mouseOver.set(true);
+}
+
+function onMouseDown(e)
+{
+    mouseDown.set(true);
+}
+
+function onMouseUp(e)
+{
+    mouseDown.set(false);
+}
+
+function onmouseclick(e)
+{
+    mouseClick.trigger();
+}
+
+function onTouchMove(e)
+{
+    const targetEle = document.elementFromPoint(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
+
+    if (targetEle == div)
+    {
+        mouseOver.set(true);
+        if (e.touches && e.touches.length > 0)
+        {
+            const rect = div.getBoundingClientRect(); // e.target
+            const x = e.targetTouches[0].pageX - rect.left;
+            const y = e.targetTouches[0].pageY - rect.top;
+
+            const touch = e.touches[0];
+
+            outX.set(Math.max(0.0, Math.min(1.0, x / divWidth)));
+            outY.set(Math.max(0.0, Math.min(1.0, 1.0 - y / divHeight)));
+
+            onMouseMove(touch);
+        }
+    }
+    else
+    {
+        mouseOver.set(false);
+    }
+}
+
+active.onChange = updateActiveRender;
+function updateActiveRender()
+{
+    if (active.get())
+    {
+        addListeners();
+        if (div) div.style.display = "block";
+    }
+    else
+    {
+        removeListeners();
+        if (div) div.style.display = "none";
+    }
+}
+
+isInteractive.onChange = updateIsInteractive;
+function updateIsInteractive()
+{
+    if (isInteractive.get())
+    {
+        addListeners();
+        if (div)div.style["pointer-events"] = "initial";
+    }
+    else
+    {
+        removeListeners();
+        mouseDown.set(false);
+        mouseOver.set(false);
+        if (div)div.style["pointer-events"] = "none";
+    }
+}
+
+function removeListeners()
+{
+    if (listenerElement)
+    {
+        document.removeEventListener("touchmove", onTouchMove);
+        listenerElement.removeEventListener("touchend", onMouseUp);
+        listenerElement.removeEventListener("touchstart", onMouseDown);
+
+        listenerElement.removeEventListener("click", onmouseclick);
+        listenerElement.removeEventListener("mousemove", onMouseMove);
+        listenerElement.removeEventListener("mouseleave", onMouseLeave);
+        listenerElement.removeEventListener("mousedown", onMouseDown);
+        listenerElement.removeEventListener("mouseup", onMouseUp);
+        listenerElement.removeEventListener("mouseenter", onMouseEnter);
+        // listenerElement.removeEventListener('contextmenu', onClickRight);
+        listenerElement = null;
+    }
+}
+
+function addListeners()
+{
+    if (listenerElement)removeListeners();
+
+    listenerElement = div;
+
+    if (listenerElement)
+    {
+        document.addEventListener("touchmove", onTouchMove);
+        listenerElement.addEventListener("touchend", onMouseUp);
+        listenerElement.addEventListener("touchstart", onMouseDown);
+
+        listenerElement.addEventListener("click", onmouseclick);
+        listenerElement.addEventListener("mousemove", onMouseMove);
+        listenerElement.addEventListener("mouseleave", onMouseLeave);
+        listenerElement.addEventListener("mousedown", onMouseDown);
+        listenerElement.addEventListener("mouseup", onMouseUp);
+        listenerElement.addEventListener("mouseenter", onMouseEnter);
+        // listenerElement.addEventListener('contextmenu', onClickRight);
+    }
+}
+
+
+};
+
+Ops.Patch.PW10J0o.InteractiveRectangle_v22.prototype = new CABLES.Op();
+CABLES.OPS["74abbaa4-816c-4458-8781-05e9231e814b"]={f:Ops.Patch.PW10J0o.InteractiveRectangle_v22,objName:"Ops.Patch.PW10J0o.InteractiveRectangle_v22"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Graphics.Geometry.TransformGeometry
+// 
+// **************************************************************
+
+Ops.Graphics.Geometry.TransformGeometry = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    geometry = op.inObject("Geometry"),
+    transX = op.inValue("Translate X"),
+    transY = op.inValue("Translate Y"),
+    transZ = op.inValue("Translate Z"),
+    scaleX = op.inValueSlider("Scale X", 1),
+    scaleY = op.inValueSlider("Scale Y", 1),
+    scaleZ = op.inValueSlider("Scale Z", 1),
+    rotX = op.inValue("Rotation X"),
+    rotY = op.inValue("Rotation Y"),
+    rotZ = op.inValue("Rotation Z"),
+    outGeom = op.outObject("Result", null, "geometry");
+
+transX.onChange =
+    transY.onChange =
+    transZ.onChange =
+    scaleX.onChange =
+    scaleY.onChange =
+    scaleZ.onChange =
+    rotX.onChange =
+    rotY.onChange =
+    rotZ.onChange =
+    geometry.onChange = update;
+
+const rotVec = vec3.create();
+const emptyVec = vec3.create();
+const transVec = vec3.create();
+const centerVec = vec3.create();
+
+function update()
+{
+    const oldGeom = geometry.get();
+    const i = 0;
+
+    if (oldGeom && oldGeom.copy)
+    {
+        const geom = oldGeom.copy();
+
+        for (let i = 0; i < geom.vertices.length; i += 3)
+        {
+            geom.vertices[i + 0] *= scaleX.get();
+            geom.vertices[i + 1] *= scaleY.get();
+            geom.vertices[i + 2] *= scaleZ.get();
+
+            geom.vertices[i + 0] += transX.get();
+            geom.vertices[i + 1] += transY.get();
+            geom.vertices[i + 2] += transZ.get();
+        }
+
+        for (let i = 0; i < geom.vertices.length; i += 3)
+        {
+            vec3.set(rotVec,
+                geom.vertices[i + 0],
+                geom.vertices[i + 1],
+                geom.vertices[i + 2]);
+
+            vec3.rotateX(rotVec, rotVec, transVec, rotX.get() * CGL.DEG2RAD);
+            vec3.rotateY(rotVec, rotVec, transVec, rotY.get() * CGL.DEG2RAD);
+            vec3.rotateZ(rotVec, rotVec, transVec, rotZ.get() * CGL.DEG2RAD);
+
+            geom.vertices[i + 0] = rotVec[0];
+            geom.vertices[i + 1] = rotVec[1];
+            geom.vertices[i + 2] = rotVec[2];
+        }
+
+        outGeom.setRef(geom);
+    }
+    else
+    {
+        outGeom.setRef(null);
+    }
+}
+
+
+};
+
+Ops.Graphics.Geometry.TransformGeometry.prototype = new CABLES.Op();
+CABLES.OPS["9678fee2-5436-499c-b94d-2603cdbeb380"]={f:Ops.Graphics.Geometry.TransformGeometry,objName:"Ops.Graphics.Geometry.TransformGeometry"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.RenderGeometry_v2
+// 
+// **************************************************************
+
+Ops.Gl.RenderGeometry_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("render"),
+    geometry = op.inObject("Geometry", null, "geometry"),
+    inActive = op.inBool("Render Mesh", true),
+
+    inVertNums = op.inBool("Add Vertex Numbers", true),
+    trigger = op.outTrigger("trigger");
+
+op.toWorkPortsNeedToBeLinked(geometry, render);
+
+geometry.ignoreValueSerialize = true;
+
+let mesh = null;
+let needsUpdate = true;
+
+geometry.onLinkChanged =
+inVertNums.onChange =
+    geometry.onChange = () => { needsUpdate = true; };
+
+render.onTriggered = function ()
+{
+    if (needsUpdate) update();
+    if (mesh && inActive.get()) mesh.render(op.patch.cgl.getShader());
+    trigger.trigger();
+};
+
+function update()
+{
+    needsUpdate = false;
+    const geom = geometry.get();
+    if (geom && geom.isGeometry)
+    {
+        if (mesh)
+        {
+            mesh.dispose();
+            mesh = null;
+        }
+        if (!mesh)
+        {
+            mesh = new CGL.Mesh(op.patch.cgl, geom);
+            mesh.addVertexNumbers = inVertNums.get();
+            mesh.setGeom(geom);
+        }
+    }
+    else
+    {
+        mesh = null;
+    }
+}
+
+
+};
+
+Ops.Gl.RenderGeometry_v2.prototype = new CABLES.Op();
+CABLES.OPS["0a9bdb39-8250-460e-8d99-50fe6825d956"]={f:Ops.Gl.RenderGeometry_v2,objName:"Ops.Gl.RenderGeometry_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.ShaderEffects.ExplodeDividedMesh_v2
+// 
+// **************************************************************
+
+Ops.Gl.ShaderEffects.ExplodeDividedMesh_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"explode_divided_mesh_vert":"\nfloat MOD_rand(vec2 co)\n{\n    return fract(sin(dot(co.xy ,vec2(12.9898,78.233))) * 43758.5453);\n}\n\nvec4 MOD_deform(vec4 pos,vec3 normal,float index)\n{\n    index=floor(index/3.0);\n\n    vec4 p=abs(pos);\n    p.x+=MOD_x+0.01;\n    p.y+=MOD_y+0.01;\n    p.z+=MOD_z+0.01;\n\n    vec4 pp=vec4(normal*(MOD_rand(vec2(index)) * MOD_dist-MOD_dist/2.0),1.0) * p;\n\n    #ifdef MOD_ABSOLUTE\n        pp=abs(pp);\n    #endif\n\n    pp.x*=MOD_mulx;\n    pp.y*=MOD_muly;\n    pp.z*=MOD_mulz;\n\n\n    float MOD_falloff=0.2;\n    float distMul=distance(vec3(MOD_posx,MOD_posy,MOD_posz),pos.xyz);\n    distMul=1.0-smoothstep(MOD_falloff*MOD_size,MOD_size,distMul);\n\n\n\n    pos.xyz += distMul*pp.xyz;\n\n    return pos;\n}\n",};
+const
+    render = op.inTrigger("Render"),
+    inDistance = op.inValue("Distance", 1),
+    inSize = op.inValue("Size", 1),
+
+    inAbsolute = op.inValueBool("Absolute", false),
+    x = op.inValue("add x"),
+    y = op.inValue("add y"),
+    z = op.inValue("add z"),
+
+    mulx = op.inValue("mul x", 1),
+    muly = op.inValue("mul y", 1),
+    mulz = op.inValue("mul z", 1),
+
+    posx = op.inValue("x"),
+    posy = op.inValue("y"),
+    posz = op.inValue("z"),
+
+    next = op.outTrigger("Next");
+
+op.setPortGroup("Add", [x, z, y]);
+op.setPortGroup("Multiply", [mulx, mulz, muly]);
+op.setPortGroup("Position", [posx, posz, posy]);
+
+const cgl = op.patch.cgl;
+const srcHeadVert = attachments.explode_divided_mesh_vert;
+
+const srcBodyVert = ""
+    .endl() + "pos=MOD_deform(pos,attrVertNormal,attrVertIndex);"
+    .endl();
+
+inAbsolute.onChange = function ()
+{
+    mod.toggleDefine("MOD_ABSOLUTE", inAbsolute.get());
+};
+
+const mod = new CGL.ShaderModifier(cgl, op.name, { "opId": op.id });
+mod.addModule({
+    "title": op.objName,
+    "name": "MODULE_VERTEX_POSITION",
+    "srcHeadVert": srcHeadVert,
+    "srcBodyVert": srcBodyVert
+});
+
+mod.addUniform("f", "MOD_dist", inDistance);
+
+mod.addUniform("f", "MOD_x", x);
+mod.addUniform("f", "MOD_y", y);
+mod.addUniform("f", "MOD_z", z);
+
+mod.addUniform("f", "MOD_mulx", mulx);
+mod.addUniform("f", "MOD_muly", muly);
+mod.addUniform("f", "MOD_mulz", mulz);
+
+mod.addUniform("f", "MOD_posx", posx);
+mod.addUniform("f", "MOD_posy", posy);
+mod.addUniform("f", "MOD_posz", posz);
+
+mod.addUniform("f", "MOD_size", inSize);
+
+render.onTriggered = function ()
+{
+    if (op.isCurrentUiOp())
+        gui.setTransformGizmo(
+            {
+                "posX": posx,
+                "posY": posy,
+                "posZ": posz
+            });
+
+    mod.bind();
+    next.trigger();
+    mod.unbind();
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+};
+
+Ops.Gl.ShaderEffects.ExplodeDividedMesh_v2.prototype = new CABLES.Op();
+CABLES.OPS["a12f2aab-0cde-44ce-923e-f78a605c783c"]={f:Ops.Gl.ShaderEffects.ExplodeDividedMesh_v2,objName:"Ops.Gl.ShaderEffects.ExplodeDividedMesh_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Graphics.Geometry.DivideGeometry
+// 
+// **************************************************************
+
+Ops.Graphics.Geometry.DivideGeometry = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+let geometry = op.inObject("Geometry");
+let outGeom = op.outObject("Result");
+
+geometry.onChange = update;
+
+function update()
+{
+    outGeom.set(null);
+    if (geometry.get())
+    {
+        let geom = geometry.get();
+        let newGeom = new CGL.Geometry(op.name);
+
+        let newVerts = [];
+        let newFaces = [];
+        let newNormals = [];
+        let newTexCoords = [];
+
+        for (let i = 0; i < geom.verticesIndices.length; i += 3)
+        {
+            newFaces.push(newVerts.length / 3);
+            newVerts.push(geom.vertices[geom.verticesIndices[i + 0] * 3 + 0]);
+            newVerts.push(geom.vertices[geom.verticesIndices[i + 0] * 3 + 1]);
+            newVerts.push(geom.vertices[geom.verticesIndices[i + 0] * 3 + 2]);
+            newNormals.push(geom.vertexNormals[geom.verticesIndices[i + 0] * 3 + 0]);
+            newNormals.push(geom.vertexNormals[geom.verticesIndices[i + 0] * 3 + 1]);
+            newNormals.push(geom.vertexNormals[geom.verticesIndices[i + 0] * 3 + 2]);
+            newTexCoords.push(geom.texCoords[geom.verticesIndices[i + 0] * 2 + 0]);
+            newTexCoords.push(geom.texCoords[geom.verticesIndices[i + 0] * 2 + 1]);
+
+            newFaces.push(newVerts.length / 3);
+            newVerts.push(geom.vertices[geom.verticesIndices[i + 1] * 3 + 0]);
+            newVerts.push(geom.vertices[geom.verticesIndices[i + 1] * 3 + 1]);
+            newVerts.push(geom.vertices[geom.verticesIndices[i + 1] * 3 + 2]);
+            newNormals.push(geom.vertexNormals[geom.verticesIndices[i + 1] * 3 + 0]);
+            newNormals.push(geom.vertexNormals[geom.verticesIndices[i + 1] * 3 + 1]);
+            newNormals.push(geom.vertexNormals[geom.verticesIndices[i + 1] * 3 + 2]);
+            newTexCoords.push(geom.texCoords[geom.verticesIndices[i + 1] * 2 + 0]);
+            newTexCoords.push(geom.texCoords[geom.verticesIndices[i + 1] * 2 + 1]);
+
+            newFaces.push(newVerts.length / 3);
+            newVerts.push(geom.vertices[geom.verticesIndices[i + 2] * 3 + 0]);
+            newVerts.push(geom.vertices[geom.verticesIndices[i + 2] * 3 + 1]);
+            newVerts.push(geom.vertices[geom.verticesIndices[i + 2] * 3 + 2]);
+            newNormals.push(geom.vertexNormals[geom.verticesIndices[i + 2] * 3 + 0]);
+            newNormals.push(geom.vertexNormals[geom.verticesIndices[i + 2] * 3 + 1]);
+            newNormals.push(geom.vertexNormals[geom.verticesIndices[i + 2] * 3 + 2]);
+            newTexCoords.push(geom.texCoords[geom.verticesIndices[i + 2] * 2 + 0]);
+            newTexCoords.push(geom.texCoords[geom.verticesIndices[i + 2] * 2 + 1]);
+        }
+
+        newGeom.vertices = newVerts;
+        newGeom.vertexNormals = newNormals;
+        newGeom.verticesIndices = newFaces;
+        newGeom.setTexCoords(newTexCoords);
+
+        outGeom.set(newGeom);
+    }
+}
+
+
+};
+
+Ops.Graphics.Geometry.DivideGeometry.prototype = new CABLES.Op();
+CABLES.OPS["ab0c768e-e684-47ba-b11f-f95d86532df2"]={f:Ops.Graphics.Geometry.DivideGeometry,objName:"Ops.Graphics.Geometry.DivideGeometry"};
 
 
 
@@ -29550,169 +29728,6 @@ CABLES.OPS["ae07830b-91c3-4cbe-a7d6-d3b737392c16"]={f:Ops.Gl.Meshes.Circle_v3,ob
 
 // **************************************************************
 // 
-// Ops.Graphics.Geometry.TransformGeometry
-// 
-// **************************************************************
-
-Ops.Graphics.Geometry.TransformGeometry = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    geometry = op.inObject("Geometry"),
-    transX = op.inValue("Translate X"),
-    transY = op.inValue("Translate Y"),
-    transZ = op.inValue("Translate Z"),
-    scaleX = op.inValueSlider("Scale X", 1),
-    scaleY = op.inValueSlider("Scale Y", 1),
-    scaleZ = op.inValueSlider("Scale Z", 1),
-    rotX = op.inValue("Rotation X"),
-    rotY = op.inValue("Rotation Y"),
-    rotZ = op.inValue("Rotation Z"),
-    outGeom = op.outObject("Result", null, "geometry");
-
-transX.onChange =
-    transY.onChange =
-    transZ.onChange =
-    scaleX.onChange =
-    scaleY.onChange =
-    scaleZ.onChange =
-    rotX.onChange =
-    rotY.onChange =
-    rotZ.onChange =
-    geometry.onChange = update;
-
-const rotVec = vec3.create();
-const emptyVec = vec3.create();
-const transVec = vec3.create();
-const centerVec = vec3.create();
-
-function update()
-{
-    const oldGeom = geometry.get();
-    const i = 0;
-
-    if (oldGeom && oldGeom.copy)
-    {
-        const geom = oldGeom.copy();
-
-        for (let i = 0; i < geom.vertices.length; i += 3)
-        {
-            geom.vertices[i + 0] *= scaleX.get();
-            geom.vertices[i + 1] *= scaleY.get();
-            geom.vertices[i + 2] *= scaleZ.get();
-
-            geom.vertices[i + 0] += transX.get();
-            geom.vertices[i + 1] += transY.get();
-            geom.vertices[i + 2] += transZ.get();
-        }
-
-        for (let i = 0; i < geom.vertices.length; i += 3)
-        {
-            vec3.set(rotVec,
-                geom.vertices[i + 0],
-                geom.vertices[i + 1],
-                geom.vertices[i + 2]);
-
-            vec3.rotateX(rotVec, rotVec, transVec, rotX.get() * CGL.DEG2RAD);
-            vec3.rotateY(rotVec, rotVec, transVec, rotY.get() * CGL.DEG2RAD);
-            vec3.rotateZ(rotVec, rotVec, transVec, rotZ.get() * CGL.DEG2RAD);
-
-            geom.vertices[i + 0] = rotVec[0];
-            geom.vertices[i + 1] = rotVec[1];
-            geom.vertices[i + 2] = rotVec[2];
-        }
-
-        outGeom.setRef(geom);
-    }
-    else
-    {
-        outGeom.setRef(null);
-    }
-}
-
-
-};
-
-Ops.Graphics.Geometry.TransformGeometry.prototype = new CABLES.Op();
-CABLES.OPS["9678fee2-5436-499c-b94d-2603cdbeb380"]={f:Ops.Graphics.Geometry.TransformGeometry,objName:"Ops.Graphics.Geometry.TransformGeometry"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.RenderGeometry_v2
-// 
-// **************************************************************
-
-Ops.Gl.RenderGeometry_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    render = op.inTrigger("render"),
-    geometry = op.inObject("Geometry", null, "geometry"),
-    inActive = op.inBool("Render Mesh", true),
-
-    inVertNums = op.inBool("Add Vertex Numbers", true),
-    trigger = op.outTrigger("trigger");
-
-op.toWorkPortsNeedToBeLinked(geometry, render);
-
-geometry.ignoreValueSerialize = true;
-
-let mesh = null;
-let needsUpdate = true;
-
-geometry.onLinkChanged =
-inVertNums.onChange =
-    geometry.onChange = () => { needsUpdate = true; };
-
-render.onTriggered = function ()
-{
-    if (needsUpdate) update();
-    if (mesh && inActive.get()) mesh.render(op.patch.cgl.getShader());
-    trigger.trigger();
-};
-
-function update()
-{
-    needsUpdate = false;
-    const geom = geometry.get();
-    if (geom && geom.isGeometry)
-    {
-        if (mesh)
-        {
-            mesh.dispose();
-            mesh = null;
-        }
-        if (!mesh)
-        {
-            mesh = new CGL.Mesh(op.patch.cgl, geom);
-            mesh.addVertexNumbers = inVertNums.get();
-            mesh.setGeom(geom);
-        }
-    }
-    else
-    {
-        mesh = null;
-    }
-}
-
-
-};
-
-Ops.Gl.RenderGeometry_v2.prototype = new CABLES.Op();
-CABLES.OPS["0a9bdb39-8250-460e-8d99-50fe6825d956"]={f:Ops.Gl.RenderGeometry_v2,objName:"Ops.Gl.RenderGeometry_v2"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Number.Number
 // 
 // **************************************************************
@@ -29948,6 +29963,503 @@ CABLES.OPS["4313d9bb-96b6-43bc-9190-6068cfb2593c"]={f:Ops.Boolean.ToggleBool_v2,
 
 // **************************************************************
 // 
+// Ops.Patch.PW10J0o.InteractiveRectangle_v23
+// 
+// **************************************************************
+
+Ops.Patch.PW10J0o.InteractiveRectangle_v23 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("Trigger in"),
+    trigger = op.outTrigger("Trigger out"),
+    width = op.inValue("Width", 1),
+    height = op.inValue("Height", 1),
+    inId = op.inString("ID"),
+    classPort = op.inString("Class"),
+    pivotX = op.inValueSelect("Pivot x", ["center", "left", "right"]),
+    pivotY = op.inValueSelect("Pivot y", ["center", "top", "bottom"]),
+    axis = op.inValueSelect("Axis", ["xy", "xz"]),
+    isInteractive = op.inValueBool("Is Interactive", true),
+    renderRect = op.inValueBool("Render Rectangle", true),
+    divVisible = op.inValueBool("Show Boundings", true),
+    cursorPort = op.inValueSelect("Cursor", ["auto", "crosshair", "pointer", "Hand", "move", "n-resize", "ne-resize", "e-resize", "se-resize", "s-resize", "sw-resize", "w-resize", "nw-resize", "text", "wait", "help", "none"], "pointer"),
+    active = op.inValueBool("Render", true);
+
+const geomOut = op.outObject("geometry");
+geomOut.ignoreValueSerialize = true;
+
+const
+    mouseOver = op.outBoolNum("Pointer Hover", false),
+    mouseDown = op.outBoolNum("Pointer Down", false),
+    outX = op.outNumber("Pointer X"),
+    outY = op.outNumber("Pointer Y"),
+    outTop = op.outNumber("Top"),
+    outLeft = op.outNumber("Left"),
+    outRight = op.outNumber("Right"),
+    outBottom = op.outNumber("Bottom"),
+    mouseClick = op.outTrigger("Left Click");
+
+const elementPort = op.outObject("Dom Element");
+
+active.setUiAttribs({ "title": "Active" });
+
+const cgl = op.patch.cgl;
+axis.set("xy");
+pivotX.set("center");
+pivotY.set("center");
+
+const geom = new CGL.Geometry(op.name);
+let mesh = null;
+let div = null;
+const m = mat4.create();
+const trans = mat4.create();
+const pos = vec3.create();
+const divAlign = vec3.create();
+const divAlignSize = vec3.create();
+
+axis.onChange = rebuild;
+pivotX.onChange = rebuild;
+pivotY.onChange = rebuild;
+width.onChange = rebuild;
+height.onChange = rebuild;
+cursorPort.onChange = updateCursor;
+rebuild();
+
+const modelMatrix = mat4.create();
+const identViewMatrix = mat4.create();
+const zeroVec3 = vec3.create();
+
+render.onTriggered = function ()
+{
+    if (!div)
+    {
+        setUpDiv();
+        addListeners();
+        updateDivVisibility();
+        updateIsInteractive();
+    }
+    updateDivSize();
+
+    if (active.get() && renderRect.get() && mesh) mesh.render(cgl.getShader());
+
+    trigger.trigger();
+};
+
+function rebuild()
+{
+    let w = width.get();
+    let h = height.get();
+    let x = 0;
+    let y = 0;
+
+    if (typeof w == "string")w = parseFloat(w);
+    if (typeof h == "string")h = parseFloat(h);
+
+    if (pivotX.get() == "center")
+    {
+        x = 0;
+        divAlign[0] = -w / 2;
+    }
+    if (pivotX.get() == "right")
+    {
+        x = -w / 2;
+    }
+    if (pivotX.get() == "left")
+    {
+        x = w / 2;
+    }
+
+    if (pivotY.get() == "center")
+    {
+        y = 0;
+        divAlign[1] = -h / 2;
+    }
+    if (pivotY.get() == "top") y = -h / 2;
+    if (pivotY.get() == "bottom") y = +h / 2;
+
+    const verts = [];
+    const tc = [];
+    const norms = [];
+    const indices = [];
+
+    const numRows = 1;
+    const numColumns = 1;
+
+    const stepColumn = w / numColumns;
+    const stepRow = h / numRows;
+
+    let c, r;
+
+    for (r = 0; r <= numRows; r++)
+    {
+        for (c = 0; c <= numColumns; c++)
+        {
+            verts.push(c * stepColumn - width.get() / 2 + x);
+            if (axis.get() == "xz") verts.push(0.0);
+            verts.push(r * stepRow - height.get() / 2 + y);
+            if (axis.get() == "xy") verts.push(0.0);
+
+            tc.push(c / numColumns);
+            tc.push(1.0 - r / numRows);
+
+            if (axis.get() == "xz")
+            {
+                norms.push(0);
+                norms.push(1);
+                norms.push(0);
+            }
+
+            if (axis.get() == "xy")
+            {
+                norms.push(0);
+                norms.push(0);
+                norms.push(-1);
+            }
+        }
+    }
+
+    for (c = 0; c < numColumns; c++)
+    {
+        for (r = 0; r < numRows; r++)
+        {
+            const ind = c + (numColumns + 1) * r;
+            const v1 = ind;
+            const v2 = ind + 1;
+            const v3 = ind + numColumns + 1;
+            const v4 = ind + 1 + numColumns + 1;
+
+            indices.push(v1);
+            indices.push(v3);
+            indices.push(v2);
+
+            indices.push(v2);
+            indices.push(v3);
+            indices.push(v4);
+        }
+    }
+
+    geom.clear();
+    geom.vertices = verts;
+    geom.texCoords = tc;
+    geom.verticesIndices = indices;
+    geom.vertexNormals = norms;
+
+    if (!mesh) mesh = new CGL.Mesh(cgl, geom);
+    else mesh.setGeom(geom);
+
+    geomOut.set(null);
+    geomOut.set(geom);
+}
+
+let divX = 0;
+let divY = 0;
+let divWidth = 0;
+let divHeight = 0;
+
+const mMatrix = mat4.create();
+divVisible.onChange = updateDivVisibility;
+inId.onChange = updateId;
+classPort.onChange = updateClassNames;
+
+function updateDivVisibility()
+{
+    if (div)
+    {
+        if (divVisible.get()) div.style.border = "1px solid red";
+        else div.style.border = "none";
+    }
+}
+
+function updateCursor()
+{
+    if (div)
+    {
+        div.style.cursor = cursorPort.get();
+    }
+}
+
+function updateId()
+{
+    if (div)
+    {
+        div.setAttribute("id", inId.get());
+    }
+}
+
+function updateDivSize()
+{
+    // var vp=cgl.getViewPort();
+
+    mat4.multiply(mMatrix, cgl.vMatrix, cgl.mMatrix);
+    vec3.transformMat4(pos, divAlign, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const top = cgl.canvas.styleMarginTop || 0;
+    const left = cgl.canvas.styleMarginLeft || 0;
+
+    const x1 = (trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2 + left;
+    const y1 = (trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top;
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1];
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x2 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y2 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0];
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x3 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y3 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x4 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y4 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divX = Math.min(x1, x2, x3, x4);
+    divY = Math.min(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    const xb = Math.max(x1, x2, x3, x4);
+    const yb = Math.max(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    outTop.set(divY);
+    outLeft.set(divX);
+    outRight.set(xb);
+    outBottom.set(yb);
+
+    divWidth = Math.abs(xb - divX);
+    divHeight = Math.abs(yb - divY);
+
+    divX /= op.patch.cgl.pixelDensity;
+    divY /= op.patch.cgl.pixelDensity;
+    divWidth /= op.patch.cgl.pixelDensity;
+    divHeight /= op.patch.cgl.pixelDensity;
+
+    // div.style.left=divX+'px';
+    // div.style.top=divY+'px';
+    // div.style.width=divWidth+'px';
+    // div.style.height=divHeight+'px';
+
+    const divXpx = divX + "px";
+    const divYpx = divY + "px";
+    const divWidthPx = divWidth + "px";
+    const divHeightPx = divHeight + "px";
+    if (divXpx != div.style.left) div.style.left = divXpx;
+    if (divYpx != div.style.top) div.style.top = divYpx;
+    if (div.style.width != divWidthPx) div.style.width = divWidthPx;
+    if (div.style.height != divHeightPx) div.style.height = divHeightPx;
+}
+
+function updateClassNames()
+{
+    if (div)
+    {
+        div.className = classPort.get();
+    }
+}
+
+op.onDelete = function ()
+{
+    if (div)div.remove();
+};
+
+function setUpDiv()
+{
+    if (!div)
+    {
+        div = document.createElement("div");
+        div.dataset.op = op.id;
+        div.oncontextmenu = function (e)
+        {
+            e.preventDefault();
+        };
+
+        div.style.padding = "0px";
+        div.style.position = "absolute";
+        div.style["box-sizing"] = "border-box";
+        div.style.border = "1px solid red";
+        // div.style['border-left']="1px solid blue";
+        // div.style['border-top']="1px solid green";
+        div.style["z-index"] = "500";
+
+        div.style["-webkit-user-select"] = "none";
+        div.style["user-select"] = "none";
+        div.style["-webkit-tap-highlight-color"] = "rgba(0,0,0,0)";
+        div.style["-webkit-touch-callout"] = "none";
+
+        const canvas = op.patch.cgl.canvas.parentElement;
+        canvas.appendChild(div);
+        updateCursor();
+        updateIsInteractive();
+        updateId();
+        updateClassNames();
+    }
+    updateDivSize();
+    elementPort.set(div);
+}
+
+let listenerElement = null;
+
+function onMouseMove(e)
+{
+    const offsetX = -width.get() / 2;
+    const offsetY = -height.get() / 2;
+
+    outX.set(Math.max(0.0, Math.min(1.0, e.offsetX / divWidth)));
+    outY.set(Math.max(0.0, Math.min(1.0, 1.0 - e.offsetY / divHeight)));
+}
+
+function onMouseLeave(e)
+{
+    mouseDown.set(false);
+    mouseOver.set(false);
+}
+
+function onMouseEnter(e)
+{
+    mouseOver.set(true);
+}
+
+function onMouseDown(e)
+{
+    mouseDown.set(true);
+}
+
+function onMouseUp(e)
+{
+    mouseDown.set(false);
+}
+
+function onmouseclick(e)
+{
+    mouseClick.trigger();
+}
+
+function onTouchMove(e)
+{
+    const targetEle = document.elementFromPoint(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
+
+    if (targetEle == div)
+    {
+        mouseOver.set(true);
+        if (e.touches && e.touches.length > 0)
+        {
+            const rect = div.getBoundingClientRect(); // e.target
+            const x = e.targetTouches[0].pageX - rect.left;
+            const y = e.targetTouches[0].pageY - rect.top;
+
+            const touch = e.touches[0];
+
+            outX.set(Math.max(0.0, Math.min(1.0, x / divWidth)));
+            outY.set(Math.max(0.0, Math.min(1.0, 1.0 - y / divHeight)));
+
+            onMouseMove(touch);
+        }
+    }
+    else
+    {
+        mouseOver.set(false);
+    }
+}
+
+active.onChange = updateActiveRender;
+function updateActiveRender()
+{
+    if (active.get())
+    {
+        addListeners();
+        if (div) div.style.display = "block";
+    }
+    else
+    {
+        removeListeners();
+        if (div) div.style.display = "none";
+    }
+}
+
+isInteractive.onChange = updateIsInteractive;
+function updateIsInteractive()
+{
+    if (isInteractive.get())
+    {
+        addListeners();
+        if (div)div.style["pointer-events"] = "initial";
+    }
+    else
+    {
+        removeListeners();
+        mouseDown.set(false);
+        mouseOver.set(false);
+        if (div)div.style["pointer-events"] = "none";
+    }
+}
+
+function removeListeners()
+{
+    if (listenerElement)
+    {
+        document.removeEventListener("touchmove", onTouchMove);
+        listenerElement.removeEventListener("touchend", onMouseUp);
+        listenerElement.removeEventListener("touchstart", onMouseDown);
+
+        listenerElement.removeEventListener("click", onmouseclick);
+        listenerElement.removeEventListener("mousemove", onMouseMove);
+        listenerElement.removeEventListener("mouseleave", onMouseLeave);
+        listenerElement.removeEventListener("mousedown", onMouseDown);
+        listenerElement.removeEventListener("mouseup", onMouseUp);
+        listenerElement.removeEventListener("mouseenter", onMouseEnter);
+        // listenerElement.removeEventListener('contextmenu', onClickRight);
+        listenerElement = null;
+    }
+}
+
+function addListeners()
+{
+    if (listenerElement)removeListeners();
+
+    listenerElement = div;
+
+    if (listenerElement)
+    {
+        document.addEventListener("touchmove", onTouchMove);
+        listenerElement.addEventListener("touchend", onMouseUp);
+        listenerElement.addEventListener("touchstart", onMouseDown);
+
+        listenerElement.addEventListener("click", onmouseclick);
+        listenerElement.addEventListener("mousemove", onMouseMove);
+        listenerElement.addEventListener("mouseleave", onMouseLeave);
+        listenerElement.addEventListener("mousedown", onMouseDown);
+        listenerElement.addEventListener("mouseup", onMouseUp);
+        listenerElement.addEventListener("mouseenter", onMouseEnter);
+        // listenerElement.addEventListener('contextmenu', onClickRight);
+    }
+}
+
+
+};
+
+Ops.Patch.PW10J0o.InteractiveRectangle_v23.prototype = new CABLES.Op();
+CABLES.OPS["611de3c8-cf6f-4e1c-9e11-005bdeec5e91"]={f:Ops.Patch.PW10J0o.InteractiveRectangle_v23,objName:"Ops.Patch.PW10J0o.InteractiveRectangle_v23"};
+
+
+
+
+// **************************************************************
+// 
 // Ops.Trigger.Repeat_v2
 // 
 // **************************************************************
@@ -30047,15 +30559,15 @@ CABLES.OPS["2a7a0c68-f7c9-4249-b19a-d2de5cb4862c"]={f:Ops.String.SwitchString,ob
 
 // **************************************************************
 // 
-// Ops.Patch.P4oPpSn.BasicSlider_v2
+// Ops.Patch.PW10J0o.BasicSlider_v2
 // 
 // **************************************************************
 
-Ops.Patch.P4oPpSn.BasicSlider_v2 = function()
+Ops.Patch.PW10J0o.BasicSlider_v2 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp80-0\",\"uiAttribs\":{\"subPatch\":\"ripe11kvt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"value\":0,\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"value\":0,\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp80-1\",\"uiAttribs\":{\"subPatch\":\"ripe11kvt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":1.01},{\"name\":\"Height\",\"value\":0.45},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"bp80-4\",\"objOut\":\"bp80-1\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp80-9\",\"objOut\":\"bp80-1\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp80-17\",\"objOut\":\"bp80-1\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp80-29\",\"objOut\":\"bp80-1\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp80-12\",\"objOut\":\"bp80-1\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"bp80-26\",\"objOut\":\"bp80-1\"}]},{\"name\":\"Pointer Y\",\"value\":0.8537109799954532},{\"name\":\"Top\",\"value\":774.4852074384689},{\"name\":\"Left\",\"value\":333.48604559898376},{\"name\":\"Right\",\"value\":1402.5139544010162},{\"name\":\"Bottom\",\"value\":883.8577358722687}],\"objName\":\"Ops.Gl.InteractiveRectangle_v2\"},{\"id\":\"bp80-2\",\"uiAttribs\":{\"subPatch\":\"ripe11kvt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp80-5\",\"objOut\":\"bp80-2\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"bp80-3\",\"uiAttribs\":{\"subPatch\":\"ripe11kvt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posY\",\"value\":0},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp80-2\",\"objOut\":\"bp80-3\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp80-4\",\"uiAttribs\":{\"subPatch\":\"ripe11kvt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp80-3\",\"objOut\":\"bp80-4\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"bp80-9\",\"objOut\":\"bp80-4\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"bp80-3\",\"objOut\":\"bp80-4\"},{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"bp80-7\",\"objOut\":\"bp80-4\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"bp80-13\",\"objOut\":\"bp80-4\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"bp80-5\",\"uiAttribs\":{\"subPatch\":\"ripe11kvt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"width\",\"value\":0.017},{\"name\":\"height\",\"value\":0.05},{\"name\":\"Draw\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Triangle_v2\"},{\"id\":\"bp80-6\",\"uiAttribs\":{\"subPatch\":\"ripe11kvt\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"bp80-11\",\"objOut\":\"bp80-6\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"bp80-1\",\"objOut\":\"bp80-6\"},{\"portIn\":\"String In\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"bp80-17\",\"objOut\":\"bp80-6\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"bp80-1\",\"objOut\":\"bp80-6\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp80-7\",\"uiAttribs\":{\"subPatch\":\"ripe11kvt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp80-8\",\"uiAttribs\":{\"subPatch\":\"ripe11kvt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp80-4\",\"objOut\":\"bp80-8\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"bp80-9\",\"uiAttribs\":{\"subPatch\":\"ripe11kvt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.49},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"bp80-2\",\"objOut\":\"bp80-9\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"bp80-7\",\"objOut\":\"bp80-9\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"bp80-10\",\"uiAttribs\":{\"subPatch\":\"ripe11kvt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":2.7},{\"name\":\"y\",\"value\":0.62},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"bp80-1\",\"objOut\":\"bp80-10\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"},{\"id\":\"bp80-11\",\"uiAttribs\":{\"subPatch\":\"ripe11kvt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0},{\"name\":\"y\",\"value\":-1.63},{\"name\":\"z\",\"value\":0.02}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp80-10\",\"objOut\":\"bp80-11\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp80-12\",\"uiAttribs\":{\"subPatch\":\"ripe11kvt\"},\"storage\":{},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"bp80-24\",\"objOut\":\"bp80-12\"},{\"portIn\":\"Index\",\"portOut\":\"result\",\"objIn\":\"bp80-22\",\"objOut\":\"bp80-12\"},{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp80-25\",\"objOut\":\"bp80-12\"},{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"bp80-26\",\"objOut\":\"bp80-12\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"bp80-13\",\"uiAttribs\":{\"subPatch\":\"ripe11kvt\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rotZ\",\"portOut\":\"result\",\"objIn\":\"bp80-3\",\"objOut\":\"bp80-13\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"bp80-14\",\"uiAttribs\":{\"subPatch\":\"ripe11kvt\"},\"storage\":{},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp80-19\",\"objOut\":\"bp80-14\"},{\"portIn\":\"Numbers_1\",\"portOut\":\"result\",\"objIn\":\"bp80-22\",\"objOut\":\"bp80-14\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"bp80-15\",\"uiAttribs\":{\"subPatch\":\"ripe11kvt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeLength\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp80-16\",\"uiAttribs\":{\"subPatch\":\"ripe11kvt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int scapeLength\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp80-17\",\"uiAttribs\":{\"subPatch\":\"ripe11kvt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last string\"},{\"name\":\"Custom Value\",\"value\":\"\\\"\\\"\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"bp80-18\",\"objOut\":\"bp80-17\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"bp80-21\",\"objOut\":\"bp80-17\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"bp80-18\",\"uiAttribs\":{\"subPatch\":\"ripe11kvt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"bp80-19\",\"uiAttribs\":{\"subPatch\":\"ripe11kvt\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp80-20\",\"uiAttribs\":{\"subPatch\":\"ripe11kvt\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_srvbParams_object\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"bp80-23\",\"objOut\":\"bp80-20\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"bp80-21\",\"uiAttribs\":{\"subPatch\":\"ripe11kvt\"},\"storage\":{},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Numbers_0\",\"portOut\":\"Result\",\"objIn\":\"bp80-22\",\"objOut\":\"bp80-21\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"bp80-22\",\"uiAttribs\":{\"subPatch\":\"ripe11kvt\"},\"storage\":{},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"bp80-15\",\"objOut\":\"bp80-22\"},{\"portIn\":\"number1\",\"portOut\":\"Number\",\"objIn\":\"bp80-8\",\"objOut\":\"bp80-22\"}]},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"bp80-23\",\"uiAttribs\":{\"subPatch\":\"ripe11kvt\"},\"storage\":{},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":1}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"bp80-21\",\"objOut\":\"bp80-23\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"bp80-24\",\"uiAttribs\":{\"subPatch\":\"ripe11kvt\"},\"storage\":{},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"bp80-23\",\"objOut\":\"bp80-24\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"bp80-25\",\"uiAttribs\":{\"subPatch\":\"ripe11kvt\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonSlider\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp80-26\",\"uiAttribs\":{\"subPatch\":\"ripe11kvt\"},\"storage\":{},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Value Out\",\"objIn\":\"bp80-14\",\"objOut\":\"bp80-26\"},{\"portIn\":\"Number\",\"portOut\":\"Value Out\",\"objIn\":\"bp80-27\",\"objOut\":\"bp80-26\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"bp80-27\",\"uiAttribs\":{\"subPatch\":\"ripe11kvt\"},\"storage\":{},\"objName\":\"Ops.Ui.VizNumberBar\"},{\"id\":\"bp80-28\",\"uiAttribs\":{\"subPatch\":\"ripe11kvt\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp80-29\",\"uiAttribs\":{\"subPatch\":\"ripe11kvt\"},\"storage\":{},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"bp80-28\",\"objOut\":\"bp80-29\"}]}],\"objName\":\"Ops.Boolean.Not\"}]}",};
+const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp77-0\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"value\":0,\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"value\":0,\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp77-1\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp77-4\",\"objOut\":\"bp77-1\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"bp77-2\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posY\",\"value\":0},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp77-1\",\"objOut\":\"bp77-2\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp77-3\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp77-2\",\"objOut\":\"bp77-3\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"bp77-8\",\"objOut\":\"bp77-3\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"bp77-2\",\"objOut\":\"bp77-3\"},{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"bp77-6\",\"objOut\":\"bp77-3\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"bp77-12\",\"objOut\":\"bp77-3\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"bp77-4\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"width\",\"value\":0.017},{\"name\":\"height\",\"value\":0.05},{\"name\":\"Draw\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Triangle_v2\"},{\"id\":\"bp77-5\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"bp77-10\",\"objOut\":\"bp77-5\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"String In\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"bp77-16\",\"objOut\":\"bp77-5\"},{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"bp77-29\",\"objOut\":\"bp77-5\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"bp77-29\",\"objOut\":\"bp77-5\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp77-6\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp77-7\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp77-3\",\"objOut\":\"bp77-7\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"bp77-8\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.49},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"bp77-1\",\"objOut\":\"bp77-8\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"bp77-6\",\"objOut\":\"bp77-8\"},{\"portIn\":\"Percentage\",\"portOut\":\"value\",\"objIn\":\"bp77-33\",\"objOut\":\"bp77-8\"},{\"portIn\":\"Percentage\",\"portOut\":\"value\",\"objIn\":\"bp77-39\",\"objOut\":\"bp77-8\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"bp77-9\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":2.7},{\"name\":\"y\",\"value\":0.62},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"bp77-29\",\"objOut\":\"bp77-9\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"},{\"id\":\"bp77-10\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0},{\"name\":\"y\",\"value\":-1.63},{\"name\":\"z\",\"value\":0.02}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"bp77-35\",\"objOut\":\"bp77-10\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp77-11\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"bp77-23\",\"objOut\":\"bp77-11\"},{\"portIn\":\"Index\",\"portOut\":\"result\",\"objIn\":\"bp77-21\",\"objOut\":\"bp77-11\"},{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp77-24\",\"objOut\":\"bp77-11\"},{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"bp77-25\",\"objOut\":\"bp77-11\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"bp77-12\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rotZ\",\"portOut\":\"result\",\"objIn\":\"bp77-2\",\"objOut\":\"bp77-12\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"bp77-13\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp77-18\",\"objOut\":\"bp77-13\"},{\"portIn\":\"Numbers_1\",\"portOut\":\"result\",\"objIn\":\"bp77-21\",\"objOut\":\"bp77-13\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"bp77-14\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeLength\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp77-15\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int scapeLength\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp77-16\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"scapeLength\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"bp77-17\",\"objOut\":\"bp77-16\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"bp77-20\",\"objOut\":\"bp77-16\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"bp77-17\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"bp77-18\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp77-19\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_srvbParams_object\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"bp77-22\",\"objOut\":\"bp77-19\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"bp77-20\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Numbers_0\",\"portOut\":\"Result\",\"objIn\":\"bp77-21\",\"objOut\":\"bp77-20\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"bp77-21\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"bp77-14\",\"objOut\":\"bp77-21\"},{\"portIn\":\"number1\",\"portOut\":\"Number\",\"objIn\":\"bp77-7\",\"objOut\":\"bp77-21\"}]},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"bp77-22\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":1}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"bp77-20\",\"objOut\":\"bp77-22\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"bp77-23\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"bp77-22\",\"objOut\":\"bp77-23\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"bp77-24\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonSlider\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp77-25\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Value Out\",\"objIn\":\"bp77-13\",\"objOut\":\"bp77-25\"},{\"portIn\":\"Number\",\"portOut\":\"Value Out\",\"objIn\":\"bp77-26\",\"objOut\":\"bp77-25\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"bp77-26\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.VizNumberBar\"},{\"id\":\"bp77-27\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp77-28\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"bp77-27\",\"objOut\":\"bp77-28\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"bp77-29\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":1.01},{\"name\":\"Height\",\"value\":0.45},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"bp77-3\",\"objOut\":\"bp77-29\"}]},{\"name\":\"geometry\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"geometry\",\"objIn\":\"bp77-30\",\"objOut\":\"bp77-29\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp77-8\",\"objOut\":\"bp77-29\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp77-16\",\"objOut\":\"bp77-29\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp77-28\",\"objOut\":\"bp77-29\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp77-11\",\"objOut\":\"bp77-29\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"bp77-25\",\"objOut\":\"bp77-29\"}]},{\"name\":\"Pointer Y\",\"value\":0.8610895928465596},{\"name\":\"Top\",\"value\":815.6241445541382},{\"name\":\"Left\",\"value\":444.09382712841034},{\"name\":\"Right\",\"value\":1569.9061728715897},{\"name\":\"Bottom\",\"value\":930.8062992095947}],\"objName\":\"Ops.Patch.PW10J0o.InteractiveRectangle_v24\"},{\"id\":\"bp77-30\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Translate X\",\"value\":0},{\"name\":\"Translate Y\",\"value\":0.65},{\"name\":\"Translate Z\",\"value\":-0.01},{\"name\":\"Scale X\",\"value\":2.7},{\"name\":\"Scale Y\",\"value\":0.27},{\"name\":\"Scale Z\",\"value\":1},{\"name\":\"Rotation X\",\"value\":0},{\"name\":\"Rotation Y\",\"value\":0},{\"name\":\"Rotation Z\",\"value\":0}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"Result\",\"objIn\":\"bp77-34\",\"objOut\":\"bp77-30\"}]}],\"objName\":\"Ops.Graphics.Geometry.TransformGeometry\"},{\"id\":\"bp77-31\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Render Mesh\",\"value\":1},{\"name\":\"Add Vertex Numbers\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp77-9\",\"objOut\":\"bp77-31\"}]}],\"objName\":\"Ops.Gl.RenderGeometry_v2\"},{\"id\":\"bp77-32\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__lensFlareTexts\"}],\"objName\":\"Ops.Vars.VarGetTexture_v2\"},{\"id\":\"bp77-33\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0.1},{\"name\":\"Value 2\",\"value\":0.66}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Opacity\",\"portOut\":\"Result\",\"objIn\":\"bp77-35\",\"objOut\":\"bp77-33\"},{\"portIn\":\"Value 1\",\"portOut\":\"Result\",\"objIn\":\"bp77-39\",\"objOut\":\"bp77-33\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"bp77-34\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Height\",\"value\":-0.04},{\"name\":\"Smooth\",\"value\":0},{\"name\":\"Walls\",\"value\":1},{\"name\":\"Top\",\"value\":1},{\"name\":\"Bottom\",\"value\":1}],\"portsOut\":[{\"name\":\"Result Geometry\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"Result Geometry\",\"objIn\":\"bp77-31\",\"objOut\":\"bp77-34\"}]}],\"objName\":\"Ops.Graphics.Geometry.GeometryExtrude\"},{\"id\":\"bp77-35\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":1},{\"name\":\"AO Intensity\",\"value\":1},{\"name\":\"Normal Map Intensity\",\"value\":1},{\"name\":\"Repeat X\",\"value\":0.75},{\"name\":\"Repeat Y\",\"value\":1},{\"name\":\"Offset X\",\"value\":-0.32},{\"name\":\"Offset Y\",\"value\":-0.71},{\"name\":\"Screen Space Normals\",\"value\":0},{\"name\":\"Calc normal tangents\",\"value\":0},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"Trigger In\",\"portOut\":\"Next\",\"objIn\":\"bp77-37\",\"objOut\":\"bp77-35\"}]}],\"objName\":\"Ops.Gl.Shader.MatCapMaterial_v3\"},{\"id\":\"bp77-36\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":4},{\"name\":\"Height\",\"value\":16},{\"name\":\"Filter index\",\"value\":1},{\"name\":\"Filter\",\"value\":\"linear\"},{\"name\":\"Wrap index\",\"value\":0},{\"name\":\"Wrap\",\"value\":\"repeat\"},{\"name\":\"Color\",\"value\":1},{\"name\":\"Pixel Format index\",\"value\":4},{\"name\":\"Pixel Format\",\"value\":\"RGBA 8bit ubyte\"},{\"name\":\"Integer\",\"value\":0},{\"name\":\"Seed\",\"value\":0.41},{\"name\":\"Channel R\",\"value\":1},{\"name\":\"Min R\",\"value\":0},{\"name\":\"Max R\",\"value\":0.97},{\"name\":\"Channel G\",\"value\":1},{\"name\":\"Min G\",\"value\":0},{\"name\":\"Max G\",\"value\":1},{\"name\":\"Channel B\",\"value\":1},{\"name\":\"Min B\",\"value\":0},{\"name\":\"Max B\",\"value\":1},{\"name\":\"Channel A\",\"value\":1},{\"name\":\"Min A\",\"value\":0.1},{\"name\":\"Max A\",\"value\":1}],\"portsOut\":[{\"name\":\"Texture\",\"links\":[{\"portIn\":\"Diffuse\",\"portOut\":\"Texture\",\"objIn\":\"bp77-35\",\"objOut\":\"bp77-36\"}]},{\"name\":\"Total Pixel\",\"value\":64}],\"objName\":\"Ops.Gl.Textures.NoiseTexture\"},{\"id\":\"bp77-37\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Active\",\"value\":1},{\"name\":\"R\",\"value\":0.073},{\"name\":\"G\",\"value\":0.07784896736316682},{\"name\":\"B\",\"value\":0.07},{\"name\":\"Fresnel Exponent\",\"value\":-0.54}],\"portsOut\":[{\"name\":\"Trigger Out\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Trigger Out\",\"objIn\":\"bp77-31\",\"objOut\":\"bp77-37\"}]}],\"objName\":\"Ops.Gl.ShaderEffects.FresnelGlow\"},{\"id\":\"bp77-38\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Gradient\",\"value\":\"{\\\"keys\\\" : [{\\\"pos\\\":0,\\\"r\\\":0,\\\"g\\\":0,\\\"b\\\":0},{\\\"pos\\\":1,\\\"r\\\":1,\\\"g\\\":1,\\\"b\\\":1}]}\"},{\"name\":\"Direction index\",\"value\":4},{\"name\":\"Direction\",\"value\":\"Radial\"},{\"name\":\"Smoothstep\",\"value\":0},{\"name\":\"Step\",\"value\":0},{\"name\":\"Flip\",\"value\":0},{\"name\":\"sRGB\",\"value\":0},{\"name\":\"Oklab\",\"value\":0},{\"name\":\"Size\",\"value\":32},{\"name\":\"filter index\",\"value\":0},{\"name\":\"filter\",\"value\":\"nearest\"},{\"name\":\"wrap index\",\"value\":0},{\"name\":\"wrap\",\"value\":\"clamp to edge\"},{\"name\":\"Gradient Array\",\"value\":0}],\"portsOut\":[{\"name\":\"Texture\",\"links\":[{\"portIn\":\"Opacity Texture\",\"portOut\":\"Texture\",\"objIn\":\"bp77-35\",\"objOut\":\"bp77-38\"}]}],\"objName\":\"Ops.Gl.GradientTexture\"},{\"id\":\"bp77-39\",\"uiAttribs\":{\"subPatch\":\"dmrz1658s\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 2\",\"value\":1}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Fresnel Intensity\",\"portOut\":\"Result\",\"objIn\":\"bp77-37\",\"objOut\":\"bp77-39\"}]}],\"objName\":\"Ops.Math.Interpolate\"}]}",};
 const port_blls2amps=op.inTrigger("blls2amps");
 port_blls2amps.setUiAttribs({title:"Trigger in",});
 
@@ -30142,23 +30654,23 @@ function initializeSubpatch()
 
 };
 
-Ops.Patch.P4oPpSn.BasicSlider_v2.prototype = new CABLES.Op();
-CABLES.OPS["10b583be-7a13-431f-9de1-e6ceb08aecf5"]={f:Ops.Patch.P4oPpSn.BasicSlider_v2,objName:"Ops.Patch.P4oPpSn.BasicSlider_v2"};
+Ops.Patch.PW10J0o.BasicSlider_v2.prototype = new CABLES.Op();
+CABLES.OPS["29e20685-8fd5-4df9-a4ae-fd073c187fd7"]={f:Ops.Patch.PW10J0o.BasicSlider_v2,objName:"Ops.Patch.PW10J0o.BasicSlider_v2"};
 
 
 
 
 // **************************************************************
 // 
-// Ops.Patch.P4oPpSn.BasicSlider_v1
+// Ops.Patch.PW10J0o.BasicSlider_v1
 // 
 // **************************************************************
 
-Ops.Patch.P4oPpSn.BasicSlider_v1 = function()
+Ops.Patch.PW10J0o.BasicSlider_v1 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp81-0\",\"uiAttribs\":{\"subPatch\":\"o9172p3c2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":1},{\"name\":\"Height\",\"value\":0.39},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"bp81-3\",\"objOut\":\"bp81-0\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp81-8\",\"objOut\":\"bp81-0\"},{\"portIn\":\"Display index\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp81-28\",\"objOut\":\"bp81-0\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp81-18\",\"objOut\":\"bp81-0\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp81-32\",\"objOut\":\"bp81-0\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp81-12\",\"objOut\":\"bp81-0\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"bp81-29\",\"objOut\":\"bp81-0\"}]},{\"name\":\"Pointer Y\",\"value\":0.9743497685642224},{\"name\":\"Top\",\"value\":693.9063050150871},{\"name\":\"Left\",\"value\":334.8581063747406},{\"name\":\"Right\",\"value\":1401.1418936252594},{\"name\":\"Bottom\",\"value\":771.8783110380173}],\"objName\":\"Ops.Gl.InteractiveRectangle_v2\"},{\"id\":\"bp81-1\",\"uiAttribs\":{\"subPatch\":\"o9172p3c2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp81-4\",\"objOut\":\"bp81-1\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"bp81-2\",\"uiAttribs\":{\"subPatch\":\"o9172p3c2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posY\",\"value\":-0.07},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp81-1\",\"objOut\":\"bp81-2\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp81-3\",\"uiAttribs\":{\"subPatch\":\"o9172p3c2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp81-2\",\"objOut\":\"bp81-3\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"bp81-8\",\"objOut\":\"bp81-3\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"bp81-2\",\"objOut\":\"bp81-3\"},{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"bp81-6\",\"objOut\":\"bp81-3\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"bp81-9\",\"objOut\":\"bp81-3\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"bp81-4\",\"uiAttribs\":{\"subPatch\":\"o9172p3c2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"width\",\"value\":0.017},{\"name\":\"height\",\"value\":0.05},{\"name\":\"Draw\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp81-15\",\"objOut\":\"bp81-4\"}]}],\"objName\":\"Ops.Gl.Meshes.Triangle_v2\"},{\"id\":\"bp81-5\",\"uiAttribs\":{\"subPatch\":\"o9172p3c2\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"bp81-11\",\"objOut\":\"bp81-5\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"bp81-0\",\"objOut\":\"bp81-5\"},{\"portIn\":\"String In\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"bp81-18\",\"objOut\":\"bp81-5\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"bp81-0\",\"objOut\":\"bp81-5\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp81-6\",\"uiAttribs\":{\"subPatch\":\"o9172p3c2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp81-7\",\"uiAttribs\":{\"subPatch\":\"o9172p3c2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp81-3\",\"objOut\":\"bp81-7\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"bp81-8\",\"uiAttribs\":{\"subPatch\":\"o9172p3c2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.49},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"bp81-1\",\"objOut\":\"bp81-8\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"bp81-6\",\"objOut\":\"bp81-8\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"bp81-9\",\"uiAttribs\":{\"subPatch\":\"o9172p3c2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rotZ\",\"portOut\":\"result\",\"objIn\":\"bp81-2\",\"objOut\":\"bp81-9\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"bp81-10\",\"uiAttribs\":{\"subPatch\":\"o9172p3c2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":2.72},{\"name\":\"y\",\"value\":0.51},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"bp81-0\",\"objOut\":\"bp81-10\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"},{\"id\":\"bp81-11\",\"uiAttribs\":{\"subPatch\":\"o9172p3c2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0},{\"name\":\"y\",\"value\":-1.5},{\"name\":\"z\",\"value\":0.02}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp81-10\",\"objOut\":\"bp81-11\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp81-12\",\"uiAttribs\":{\"subPatch\":\"o9172p3c2\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"bp81-25\",\"objOut\":\"bp81-12\"},{\"portIn\":\"Index\",\"portOut\":\"result\",\"objIn\":\"bp81-23\",\"objOut\":\"bp81-12\"},{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp81-26\",\"objOut\":\"bp81-12\"},{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"bp81-29\",\"objOut\":\"bp81-12\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"bp81-13\",\"uiAttribs\":{\"subPatch\":\"o9172p3c2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Scale\",\"value\":1},{\"name\":\"Orthogonal\",\"value\":0},{\"name\":\"Rotate\",\"value\":0},{\"name\":\"Hide out of view\",\"value\":0},{\"name\":\"Align Vertical index\",\"value\":1},{\"name\":\"Align Vertical\",\"value\":\"Center\"},{\"name\":\"Align Horizontal index\",\"value\":0},{\"name\":\"Align Horizontal\",\"value\":\"Top\"},{\"name\":\"Active\",\"value\":1}],\"objName\":\"Ops.Html.TransformElement\"},{\"id\":\"bp81-14\",\"uiAttribs\":{\"subPatch\":\"o9172p3c2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Decimal Places\",\"value\":2}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Text\",\"portOut\":\"Result\",\"objIn\":\"bp81-28\",\"objOut\":\"bp81-14\"}]}],\"objName\":\"Ops.String.NumberToString_v2\"},{\"id\":\"bp81-15\",\"uiAttribs\":{\"subPatch\":\"o9172p3c2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0.005},{\"name\":\"y\",\"value\":0.15},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Exec\",\"portOut\":\"trigger\",\"objIn\":\"bp81-13\",\"objOut\":\"bp81-15\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp81-16\",\"uiAttribs\":{\"subPatch\":\"o9172p3c2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeLevel\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp81-17\",\"uiAttribs\":{\"subPatch\":\"o9172p3c2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int ir level\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp81-18\",\"uiAttribs\":{\"subPatch\":\"o9172p3c2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last string\"},{\"name\":\"Custom Value\",\"value\":\"\\\"\\\"\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"bp81-19\",\"objOut\":\"bp81-18\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"bp81-22\",\"objOut\":\"bp81-18\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"bp81-19\",\"uiAttribs\":{\"subPatch\":\"o9172p3c2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"bp81-20\",\"uiAttribs\":{\"subPatch\":\"o9172p3c2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp81-21\",\"uiAttribs\":{\"subPatch\":\"o9172p3c2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_srvbParams_object\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"bp81-24\",\"objOut\":\"bp81-21\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"bp81-22\",\"uiAttribs\":{\"subPatch\":\"o9172p3c2\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Numbers_0\",\"portOut\":\"Result\",\"objIn\":\"bp81-23\",\"objOut\":\"bp81-22\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"bp81-23\",\"uiAttribs\":{\"subPatch\":\"o9172p3c2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"bp81-16\",\"objOut\":\"bp81-23\"},{\"portIn\":\"number1\",\"portOut\":\"Number\",\"objIn\":\"bp81-7\",\"objOut\":\"bp81-23\"},{\"portIn\":\"Number\",\"portOut\":\"Number\",\"objIn\":\"bp81-14\",\"objOut\":\"bp81-23\"}]},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"bp81-24\",\"uiAttribs\":{\"subPatch\":\"o9172p3c2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":1}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"bp81-22\",\"objOut\":\"bp81-24\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"bp81-25\",\"uiAttribs\":{\"subPatch\":\"o9172p3c2\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"bp81-24\",\"objOut\":\"bp81-25\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"bp81-26\",\"uiAttribs\":{\"subPatch\":\"o9172p3c2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonSlider\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp81-27\",\"uiAttribs\":{\"subPatch\":\"o9172p3c2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"digits\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp81-28\",\"uiAttribs\":{\"subPatch\":\"o9172p3c2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Position index\",\"value\":0},{\"name\":\"Position\",\"value\":\"Absolute\"},{\"name\":\"Interactive\",\"value\":0},{\"name\":\"Set Size\",\"value\":1},{\"name\":\"Width\",\"value\":30},{\"name\":\"Height\",\"value\":30},{\"name\":\"Overflow index\",\"value\":1},{\"name\":\"Overflow\",\"value\":\"Hidden\"},{\"name\":\"Inline Style\",\"value\":\"font-size: 0.5rem;\\npadding-top: 0.3rem;\\npadding-left: 3.5rem;\\n\"},{\"name\":\"CSS Class\",\"value\":\"\"},{\"name\":\"Disable CSS Props\",\"value\":\"\"},{\"name\":\"Display\",\"value\":\"None\"},{\"name\":\"Opacity\",\"value\":1},{\"name\":\"Propagate Click-Events\",\"value\":0}],\"portsOut\":[{\"name\":\"DOM Element\",\"links\":[{\"portIn\":\"Element\",\"portOut\":\"DOM Element\",\"objIn\":\"bp81-13\",\"objOut\":\"bp81-28\"}]},{\"name\":\"Hovering\",\"value\":0}],\"objName\":\"Ops.Patch.P4oPpSn.Element2\"},{\"id\":\"bp81-29\",\"uiAttribs\":{\"subPatch\":\"o9172p3c2\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Value Out\",\"objIn\":\"bp81-20\",\"objOut\":\"bp81-29\"},{\"portIn\":\"Numbers_1\",\"portOut\":\"Value Out\",\"objIn\":\"bp81-23\",\"objOut\":\"bp81-29\"},{\"portIn\":\"Number\",\"portOut\":\"Value Out\",\"objIn\":\"bp81-30\",\"objOut\":\"bp81-29\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"bp81-30\",\"uiAttribs\":{\"subPatch\":\"o9172p3c2\"},\"storage\":{},\"objName\":\"Ops.Ui.VizNumberBar\"},{\"id\":\"bp81-31\",\"uiAttribs\":{\"subPatch\":\"o9172p3c2\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp81-32\",\"uiAttribs\":{\"subPatch\":\"o9172p3c2\"},\"storage\":{},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"bp81-31\",\"objOut\":\"bp81-32\"}]}],\"objName\":\"Ops.Boolean.Not\"}]}",};
+const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"bp78-0\",\"uiAttribs\":{\"subPatch\":\"tyasd2xpg\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp78-3\",\"objOut\":\"bp78-0\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"bp78-1\",\"uiAttribs\":{\"subPatch\":\"tyasd2xpg\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posY\",\"value\":-0.07},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp78-0\",\"objOut\":\"bp78-1\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"bp78-2\",\"uiAttribs\":{\"subPatch\":\"tyasd2xpg\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"bp78-1\",\"objOut\":\"bp78-2\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"bp78-7\",\"objOut\":\"bp78-2\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"bp78-1\",\"objOut\":\"bp78-2\"},{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"bp78-5\",\"objOut\":\"bp78-2\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"bp78-8\",\"objOut\":\"bp78-2\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"bp78-3\",\"uiAttribs\":{\"subPatch\":\"tyasd2xpg\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"width\",\"value\":0.017},{\"name\":\"height\",\"value\":0.05},{\"name\":\"Draw\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp78-14\",\"objOut\":\"bp78-3\"}]}],\"objName\":\"Ops.Gl.Meshes.Triangle_v2\"},{\"id\":\"bp78-4\",\"uiAttribs\":{\"subPatch\":\"tyasd2xpg\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"bp78-10\",\"objOut\":\"bp78-4\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"String In\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"bp78-17\",\"objOut\":\"bp78-4\"},{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"bp78-32\",\"objOut\":\"bp78-4\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"bp78-32\",\"objOut\":\"bp78-4\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"bp78-5\",\"uiAttribs\":{\"subPatch\":\"tyasd2xpg\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"bp78-6\",\"uiAttribs\":{\"subPatch\":\"tyasd2xpg\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp78-2\",\"objOut\":\"bp78-6\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"bp78-7\",\"uiAttribs\":{\"subPatch\":\"tyasd2xpg\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.49},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"bp78-0\",\"objOut\":\"bp78-7\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"bp78-5\",\"objOut\":\"bp78-7\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"bp78-8\",\"uiAttribs\":{\"subPatch\":\"tyasd2xpg\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rotZ\",\"portOut\":\"result\",\"objIn\":\"bp78-1\",\"objOut\":\"bp78-8\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"bp78-9\",\"uiAttribs\":{\"subPatch\":\"tyasd2xpg\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":2.72},{\"name\":\"y\",\"value\":0.51},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"bp78-32\",\"objOut\":\"bp78-9\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"},{\"id\":\"bp78-10\",\"uiAttribs\":{\"subPatch\":\"tyasd2xpg\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0},{\"name\":\"y\",\"value\":-1.5},{\"name\":\"z\",\"value\":0.02}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bp78-9\",\"objOut\":\"bp78-10\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp78-11\",\"uiAttribs\":{\"subPatch\":\"tyasd2xpg\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"bp78-24\",\"objOut\":\"bp78-11\"},{\"portIn\":\"Index\",\"portOut\":\"result\",\"objIn\":\"bp78-22\",\"objOut\":\"bp78-11\"},{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"bp78-25\",\"objOut\":\"bp78-11\"},{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"bp78-28\",\"objOut\":\"bp78-11\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"bp78-12\",\"uiAttribs\":{\"subPatch\":\"tyasd2xpg\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Scale\",\"value\":1},{\"name\":\"Orthogonal\",\"value\":0},{\"name\":\"Rotate\",\"value\":0},{\"name\":\"Hide out of view\",\"value\":0},{\"name\":\"Align Vertical index\",\"value\":1},{\"name\":\"Align Vertical\",\"value\":\"Center\"},{\"name\":\"Align Horizontal index\",\"value\":0},{\"name\":\"Align Horizontal\",\"value\":\"Top\"},{\"name\":\"Active\",\"value\":1}],\"objName\":\"Ops.Html.TransformElement\"},{\"id\":\"bp78-13\",\"uiAttribs\":{\"subPatch\":\"tyasd2xpg\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Decimal Places\",\"value\":2}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Text\",\"portOut\":\"Result\",\"objIn\":\"bp78-27\",\"objOut\":\"bp78-13\"}]}],\"objName\":\"Ops.String.NumberToString_v2\"},{\"id\":\"bp78-14\",\"uiAttribs\":{\"subPatch\":\"tyasd2xpg\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0.005},{\"name\":\"y\",\"value\":0.15},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Exec\",\"portOut\":\"trigger\",\"objIn\":\"bp78-12\",\"objOut\":\"bp78-14\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bp78-15\",\"uiAttribs\":{\"subPatch\":\"tyasd2xpg\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeLevel\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp78-16\",\"uiAttribs\":{\"subPatch\":\"tyasd2xpg\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int ir level\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp78-17\",\"uiAttribs\":{\"subPatch\":\"tyasd2xpg\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"scapeLevel\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"bp78-18\",\"objOut\":\"bp78-17\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"bp78-21\",\"objOut\":\"bp78-17\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"bp78-18\",\"uiAttribs\":{\"subPatch\":\"tyasd2xpg\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"bp78-19\",\"uiAttribs\":{\"subPatch\":\"tyasd2xpg\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp78-20\",\"uiAttribs\":{\"subPatch\":\"tyasd2xpg\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_srvbParams_object\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"bp78-23\",\"objOut\":\"bp78-20\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"bp78-21\",\"uiAttribs\":{\"subPatch\":\"tyasd2xpg\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Numbers_0\",\"portOut\":\"Result\",\"objIn\":\"bp78-22\",\"objOut\":\"bp78-21\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"bp78-22\",\"uiAttribs\":{\"subPatch\":\"tyasd2xpg\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"bp78-15\",\"objOut\":\"bp78-22\"},{\"portIn\":\"number1\",\"portOut\":\"Number\",\"objIn\":\"bp78-6\",\"objOut\":\"bp78-22\"},{\"portIn\":\"Number\",\"portOut\":\"Number\",\"objIn\":\"bp78-13\",\"objOut\":\"bp78-22\"}]},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"bp78-23\",\"uiAttribs\":{\"subPatch\":\"tyasd2xpg\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":1}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"bp78-21\",\"objOut\":\"bp78-23\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"bp78-24\",\"uiAttribs\":{\"subPatch\":\"tyasd2xpg\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"bp78-23\",\"objOut\":\"bp78-24\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"bp78-25\",\"uiAttribs\":{\"subPatch\":\"tyasd2xpg\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonSlider\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp78-26\",\"uiAttribs\":{\"subPatch\":\"tyasd2xpg\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"digits\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"bp78-27\",\"uiAttribs\":{\"subPatch\":\"tyasd2xpg\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Position index\",\"value\":0},{\"name\":\"Position\",\"value\":\"Absolute\"},{\"name\":\"Interactive\",\"value\":0},{\"name\":\"Set Size\",\"value\":1},{\"name\":\"Width\",\"value\":30},{\"name\":\"Height\",\"value\":30},{\"name\":\"Overflow index\",\"value\":1},{\"name\":\"Overflow\",\"value\":\"Hidden\"},{\"name\":\"Inline Style\",\"value\":\"font-size: 0.5rem;\\npadding-top: 0.3rem;\\npadding-left: 3.5rem;\\n\"},{\"name\":\"CSS Class\",\"value\":\"\"},{\"name\":\"Disable CSS Props\",\"value\":\"\"},{\"name\":\"Display\",\"value\":\"None\"},{\"name\":\"Opacity\",\"value\":1},{\"name\":\"Propagate Click-Events\",\"value\":0}],\"portsOut\":[{\"name\":\"DOM Element\",\"links\":[{\"portIn\":\"Element\",\"portOut\":\"DOM Element\",\"objIn\":\"bp78-12\",\"objOut\":\"bp78-27\"}]},{\"name\":\"Hovering\",\"value\":0}],\"objName\":\"Ops.Patch.PW10J0o.Element2\"},{\"id\":\"bp78-28\",\"uiAttribs\":{\"subPatch\":\"tyasd2xpg\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Value Out\",\"objIn\":\"bp78-19\",\"objOut\":\"bp78-28\"},{\"portIn\":\"Numbers_1\",\"portOut\":\"Value Out\",\"objIn\":\"bp78-22\",\"objOut\":\"bp78-28\"},{\"portIn\":\"Number\",\"portOut\":\"Value Out\",\"objIn\":\"bp78-29\",\"objOut\":\"bp78-28\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"bp78-29\",\"uiAttribs\":{\"subPatch\":\"tyasd2xpg\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.VizNumberBar\"},{\"id\":\"bp78-30\",\"uiAttribs\":{\"subPatch\":\"tyasd2xpg\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bp78-31\",\"uiAttribs\":{\"subPatch\":\"tyasd2xpg\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"bp78-30\",\"objOut\":\"bp78-31\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"bp78-32\",\"uiAttribs\":{\"subPatch\":\"tyasd2xpg\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":1},{\"name\":\"Height\",\"value\":0.39},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"bp78-2\",\"objOut\":\"bp78-32\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp78-7\",\"objOut\":\"bp78-32\"},{\"portIn\":\"Display index\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp78-27\",\"objOut\":\"bp78-32\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp78-17\",\"objOut\":\"bp78-32\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bp78-31\",\"objOut\":\"bp78-32\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"bp78-11\",\"objOut\":\"bp78-32\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"bp78-28\",\"objOut\":\"bp78-32\"}]},{\"name\":\"Pointer Y\",\"value\":1},{\"name\":\"Top\",\"value\":730.7650694847107},{\"name\":\"Left\",\"value\":445.53879380226135},{\"name\":\"Right\",\"value\":1568.4612061977386},{\"name\":\"Bottom\",\"value\":812.8787755966187}],\"objName\":\"Ops.Patch.PW10J0o.InteractiveRectangle_v24\"}]}",};
 const port_blls2amps=op.inTrigger("blls2amps");
 port_blls2amps.setUiAttribs({title:"Trigger in",});
 
@@ -30245,8 +30757,8 @@ function initializeSubpatch()
 
 };
 
-Ops.Patch.P4oPpSn.BasicSlider_v1.prototype = new CABLES.Op();
-CABLES.OPS["7fc9571c-c727-4a65-bfa2-c2010054ed40"]={f:Ops.Patch.P4oPpSn.BasicSlider_v1,objName:"Ops.Patch.P4oPpSn.BasicSlider_v1"};
+Ops.Patch.PW10J0o.BasicSlider_v1.prototype = new CABLES.Op();
+CABLES.OPS["f150f618-0f4b-4f57-9c1b-3f23605204d5"]={f:Ops.Patch.PW10J0o.BasicSlider_v1,objName:"Ops.Patch.PW10J0o.BasicSlider_v1"};
 
 
 
@@ -30367,6 +30879,1069 @@ function create()
 
 Ops.Gl.Meshes.Triangle_v2.prototype = new CABLES.Op();
 CABLES.OPS["ef522d4a-9712-4063-8a99-c6b409f26456"]={f:Ops.Gl.Meshes.Triangle_v2,objName:"Ops.Gl.Meshes.Triangle_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Ui.VizNumberBar
+// 
+// **************************************************************
+
+Ops.Ui.VizNumberBar = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inNum = op.inFloat("Number", 0);
+    // inDrawBar=op.inBool("Draw Bar",true),
+    // inDrawNUm=op.inBool("Draw Number",true);
+
+op.setUiAttrib({ "height": 100, "width": 200, "resizable": true });
+
+let max = -Number.MAX_VALUE;
+let min = Number.MAX_VALUE;
+
+inNum.onLinkChanged = () =>
+{
+    max = -Number.MAX_VALUE;
+    min = Number.MAX_VALUE;
+};
+
+op.renderVizLayer = (ctx, layer) =>
+{
+    ctx.fillStyle = "#222";
+    ctx.fillRect(
+        layer.x, layer.y,
+        layer.width, layer.height);
+
+    // if(inDrawBar.get())
+    {
+        max = Math.max(max, inNum.get());
+        min = Math.min(min, inNum.get());
+
+        if (op.uiAttribs.color)ctx.fillStyle = op.uiAttribs.color;
+        else ctx.fillStyle = "#555";
+
+        let a = CABLES.map(0, min, max, 0, layer.width);
+        let b = CABLES.map(inNum.get(), min, max, 0, layer.width);
+
+        let xMin = Math.min(a, b);
+        let xMax = Math.max(a, b);
+
+        ctx.fillRect(
+            xMin + layer.x, layer.y,
+            xMax - xMin, layer.height);
+    }
+
+    // if(inDrawNUm.get())
+    {
+        const padding = 10;
+        if (op.uiAttribs.color)ctx.fillStyle = "#fff";
+        else ctx.fillStyle = "#ccc";
+
+        const fontSize = layer.height * 0.7;
+        ctx.font = "normal " + fontSize + "px sourceCodePro";
+        ctx.fillText(Math.round(inNum.get() * 10000) / 10000, layer.x + padding, layer.y + fontSize);
+    }
+};
+
+
+};
+
+Ops.Ui.VizNumberBar.prototype = new CABLES.Op();
+CABLES.OPS["37575d2e-4ba6-4d2b-b00c-c503666867c5"]={f:Ops.Ui.VizNumberBar,objName:"Ops.Ui.VizNumberBar"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PW10J0o.InteractiveRectangle_v24
+// 
+// **************************************************************
+
+Ops.Patch.PW10J0o.InteractiveRectangle_v24 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("Trigger in"),
+    trigger = op.outTrigger("Trigger out"),
+    width = op.inValue("Width", 1),
+    height = op.inValue("Height", 1),
+    inId = op.inString("ID"),
+    classPort = op.inString("Class"),
+    pivotX = op.inValueSelect("Pivot x", ["center", "left", "right"]),
+    pivotY = op.inValueSelect("Pivot y", ["center", "top", "bottom"]),
+    axis = op.inValueSelect("Axis", ["xy", "xz"]),
+    isInteractive = op.inValueBool("Is Interactive", true),
+    renderRect = op.inValueBool("Render Rectangle", true),
+    divVisible = op.inValueBool("Show Boundings", true),
+    cursorPort = op.inValueSelect("Cursor", ["auto", "crosshair", "pointer", "Hand", "move", "n-resize", "ne-resize", "e-resize", "se-resize", "s-resize", "sw-resize", "w-resize", "nw-resize", "text", "wait", "help", "none"], "pointer"),
+    active = op.inValueBool("Render", true);
+
+const geomOut = op.outObject("geometry");
+geomOut.ignoreValueSerialize = true;
+
+const
+    mouseOver = op.outBoolNum("Pointer Hover", false),
+    mouseDown = op.outBoolNum("Pointer Down", false),
+    outX = op.outNumber("Pointer X"),
+    outY = op.outNumber("Pointer Y"),
+    outTop = op.outNumber("Top"),
+    outLeft = op.outNumber("Left"),
+    outRight = op.outNumber("Right"),
+    outBottom = op.outNumber("Bottom"),
+    mouseClick = op.outTrigger("Left Click");
+
+const elementPort = op.outObject("Dom Element");
+
+active.setUiAttribs({ "title": "Active" });
+
+const cgl = op.patch.cgl;
+axis.set("xy");
+pivotX.set("center");
+pivotY.set("center");
+
+const geom = new CGL.Geometry(op.name);
+let mesh = null;
+let div = null;
+const m = mat4.create();
+const trans = mat4.create();
+const pos = vec3.create();
+const divAlign = vec3.create();
+const divAlignSize = vec3.create();
+
+axis.onChange = rebuild;
+pivotX.onChange = rebuild;
+pivotY.onChange = rebuild;
+width.onChange = rebuild;
+height.onChange = rebuild;
+cursorPort.onChange = updateCursor;
+rebuild();
+
+const modelMatrix = mat4.create();
+const identViewMatrix = mat4.create();
+const zeroVec3 = vec3.create();
+
+render.onTriggered = function ()
+{
+    if (!div)
+    {
+        setUpDiv();
+        addListeners();
+        updateDivVisibility();
+        updateIsInteractive();
+    }
+    updateDivSize();
+
+    if (active.get() && renderRect.get() && mesh) mesh.render(cgl.getShader());
+
+    trigger.trigger();
+};
+
+function rebuild()
+{
+    let w = width.get();
+    let h = height.get();
+    let x = 0;
+    let y = 0;
+
+    if (typeof w == "string")w = parseFloat(w);
+    if (typeof h == "string")h = parseFloat(h);
+
+    if (pivotX.get() == "center")
+    {
+        x = 0;
+        divAlign[0] = -w / 2;
+    }
+    if (pivotX.get() == "right")
+    {
+        x = -w / 2;
+    }
+    if (pivotX.get() == "left")
+    {
+        x = w / 2;
+    }
+
+    if (pivotY.get() == "center")
+    {
+        y = 0;
+        divAlign[1] = -h / 2;
+    }
+    if (pivotY.get() == "top") y = -h / 2;
+    if (pivotY.get() == "bottom") y = +h / 2;
+
+    const verts = [];
+    const tc = [];
+    const norms = [];
+    const indices = [];
+
+    const numRows = 1;
+    const numColumns = 1;
+
+    const stepColumn = w / numColumns;
+    const stepRow = h / numRows;
+
+    let c, r;
+
+    for (r = 0; r <= numRows; r++)
+    {
+        for (c = 0; c <= numColumns; c++)
+        {
+            verts.push(c * stepColumn - width.get() / 2 + x);
+            if (axis.get() == "xz") verts.push(0.0);
+            verts.push(r * stepRow - height.get() / 2 + y);
+            if (axis.get() == "xy") verts.push(0.0);
+
+            tc.push(c / numColumns);
+            tc.push(1.0 - r / numRows);
+
+            if (axis.get() == "xz")
+            {
+                norms.push(0);
+                norms.push(1);
+                norms.push(0);
+            }
+
+            if (axis.get() == "xy")
+            {
+                norms.push(0);
+                norms.push(0);
+                norms.push(-1);
+            }
+        }
+    }
+
+    for (c = 0; c < numColumns; c++)
+    {
+        for (r = 0; r < numRows; r++)
+        {
+            const ind = c + (numColumns + 1) * r;
+            const v1 = ind;
+            const v2 = ind + 1;
+            const v3 = ind + numColumns + 1;
+            const v4 = ind + 1 + numColumns + 1;
+
+            indices.push(v1);
+            indices.push(v3);
+            indices.push(v2);
+
+            indices.push(v2);
+            indices.push(v3);
+            indices.push(v4);
+        }
+    }
+
+    geom.clear();
+    geom.vertices = verts;
+    geom.texCoords = tc;
+    geom.verticesIndices = indices;
+    geom.vertexNormals = norms;
+
+    if (!mesh) mesh = new CGL.Mesh(cgl, geom);
+    else mesh.setGeom(geom);
+
+    geomOut.set(null);
+    geomOut.set(geom);
+}
+
+let divX = 0;
+let divY = 0;
+let divWidth = 0;
+let divHeight = 0;
+
+const mMatrix = mat4.create();
+divVisible.onChange = updateDivVisibility;
+inId.onChange = updateId;
+classPort.onChange = updateClassNames;
+
+function updateDivVisibility()
+{
+    if (div)
+    {
+        if (divVisible.get()) div.style.border = "1px solid red";
+        else div.style.border = "none";
+    }
+}
+
+function updateCursor()
+{
+    if (div)
+    {
+        div.style.cursor = cursorPort.get();
+    }
+}
+
+function updateId()
+{
+    if (div)
+    {
+        div.setAttribute("id", inId.get());
+    }
+}
+
+function updateDivSize()
+{
+    // var vp=cgl.getViewPort();
+
+    mat4.multiply(mMatrix, cgl.vMatrix, cgl.mMatrix);
+    vec3.transformMat4(pos, divAlign, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const top = cgl.canvas.styleMarginTop || 0;
+    const left = cgl.canvas.styleMarginLeft || 0;
+
+    const x1 = (trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2 + left;
+    const y1 = (trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top;
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1];
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x2 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y2 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0];
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x3 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y3 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x4 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y4 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divX = Math.min(x1, x2, x3, x4);
+    divY = Math.min(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    const xb = Math.max(x1, x2, x3, x4);
+    const yb = Math.max(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    outTop.set(divY);
+    outLeft.set(divX);
+    outRight.set(xb);
+    outBottom.set(yb);
+
+    divWidth = Math.abs(xb - divX);
+    divHeight = Math.abs(yb - divY);
+
+    divX /= op.patch.cgl.pixelDensity;
+    divY /= op.patch.cgl.pixelDensity;
+    divWidth /= op.patch.cgl.pixelDensity;
+    divHeight /= op.patch.cgl.pixelDensity;
+
+    // div.style.left=divX+'px';
+    // div.style.top=divY+'px';
+    // div.style.width=divWidth+'px';
+    // div.style.height=divHeight+'px';
+
+    const divXpx = divX + "px";
+    const divYpx = divY + "px";
+    const divWidthPx = divWidth + "px";
+    const divHeightPx = divHeight + "px";
+    if (divXpx != div.style.left) div.style.left = divXpx;
+    if (divYpx != div.style.top) div.style.top = divYpx;
+    if (div.style.width != divWidthPx) div.style.width = divWidthPx;
+    if (div.style.height != divHeightPx) div.style.height = divHeightPx;
+}
+
+function updateClassNames()
+{
+    if (div)
+    {
+        div.className = classPort.get();
+    }
+}
+
+op.onDelete = function ()
+{
+    if (div)div.remove();
+};
+
+function setUpDiv()
+{
+    if (!div)
+    {
+        div = document.createElement("div");
+        div.dataset.op = op.id;
+        div.oncontextmenu = function (e)
+        {
+            e.preventDefault();
+        };
+
+        div.style.padding = "0px";
+        div.style.position = "absolute";
+        div.style["box-sizing"] = "border-box";
+        div.style.border = "1px solid red";
+        // div.style['border-left']="1px solid blue";
+        // div.style['border-top']="1px solid green";
+        div.style["z-index"] = "500";
+
+        div.style["-webkit-user-select"] = "none";
+        div.style["user-select"] = "none";
+        div.style["-webkit-tap-highlight-color"] = "rgba(0,0,0,0)";
+        div.style["-webkit-touch-callout"] = "none";
+
+        const canvas = op.patch.cgl.canvas.parentElement;
+        canvas.appendChild(div);
+        updateCursor();
+        updateIsInteractive();
+        updateId();
+        updateClassNames();
+    }
+    updateDivSize();
+    elementPort.set(div);
+}
+
+let listenerElement = null;
+
+function onMouseMove(e)
+{
+    const offsetX = -width.get() / 2;
+    const offsetY = -height.get() / 2;
+
+    outX.set(Math.max(0.0, Math.min(1.0, e.offsetX / divWidth)));
+    outY.set(Math.max(0.0, Math.min(1.0, 1.0 - e.offsetY / divHeight)));
+}
+
+function onMouseLeave(e)
+{
+    mouseDown.set(false);
+    mouseOver.set(false);
+}
+
+function onMouseEnter(e)
+{
+    mouseOver.set(true);
+}
+
+function onMouseDown(e)
+{
+    mouseDown.set(true);
+}
+
+function onMouseUp(e)
+{
+    mouseDown.set(false);
+}
+
+function onmouseclick(e)
+{
+    mouseClick.trigger();
+}
+
+function onTouchMove(e)
+{
+    const targetEle = document.elementFromPoint(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
+
+    if (targetEle == div)
+    {
+        mouseOver.set(true);
+        if (e.touches && e.touches.length > 0)
+        {
+            const rect = div.getBoundingClientRect(); // e.target
+            const x = e.targetTouches[0].pageX - rect.left;
+            const y = e.targetTouches[0].pageY - rect.top;
+
+            const touch = e.touches[0];
+
+            outX.set(Math.max(0.0, Math.min(1.0, x / divWidth)));
+            outY.set(Math.max(0.0, Math.min(1.0, 1.0 - y / divHeight)));
+
+            onMouseMove(touch);
+        }
+    }
+    else
+    {
+        mouseOver.set(false);
+    }
+}
+
+active.onChange = updateActiveRender;
+function updateActiveRender()
+{
+    if (active.get())
+    {
+        addListeners();
+        if (div) div.style.display = "block";
+    }
+    else
+    {
+        removeListeners();
+        if (div) div.style.display = "none";
+    }
+}
+
+isInteractive.onChange = updateIsInteractive;
+function updateIsInteractive()
+{
+    if (isInteractive.get())
+    {
+        addListeners();
+        if (div)div.style["pointer-events"] = "initial";
+    }
+    else
+    {
+        removeListeners();
+        mouseDown.set(false);
+        mouseOver.set(false);
+        if (div)div.style["pointer-events"] = "none";
+    }
+}
+
+function removeListeners()
+{
+    if (listenerElement)
+    {
+        document.removeEventListener("touchmove", onTouchMove);
+        listenerElement.removeEventListener("touchend", onMouseUp);
+        listenerElement.removeEventListener("touchstart", onMouseDown);
+
+        listenerElement.removeEventListener("click", onmouseclick);
+        listenerElement.removeEventListener("mousemove", onMouseMove);
+        listenerElement.removeEventListener("mouseleave", onMouseLeave);
+        listenerElement.removeEventListener("mousedown", onMouseDown);
+        listenerElement.removeEventListener("mouseup", onMouseUp);
+        listenerElement.removeEventListener("mouseenter", onMouseEnter);
+        // listenerElement.removeEventListener('contextmenu', onClickRight);
+        listenerElement = null;
+    }
+}
+
+function addListeners()
+{
+    if (listenerElement)removeListeners();
+
+    listenerElement = div;
+
+    if (listenerElement)
+    {
+        document.addEventListener("touchmove", onTouchMove);
+        listenerElement.addEventListener("touchend", onMouseUp);
+        listenerElement.addEventListener("touchstart", onMouseDown);
+
+        listenerElement.addEventListener("click", onmouseclick);
+        listenerElement.addEventListener("mousemove", onMouseMove);
+        listenerElement.addEventListener("mouseleave", onMouseLeave);
+        listenerElement.addEventListener("mousedown", onMouseDown);
+        listenerElement.addEventListener("mouseup", onMouseUp);
+        listenerElement.addEventListener("mouseenter", onMouseEnter);
+        // listenerElement.addEventListener('contextmenu', onClickRight);
+    }
+}
+
+
+};
+
+Ops.Patch.PW10J0o.InteractiveRectangle_v24.prototype = new CABLES.Op();
+CABLES.OPS["b7c50ebf-35dc-4d61-a50b-9cb0358150c7"]={f:Ops.Patch.PW10J0o.InteractiveRectangle_v24,objName:"Ops.Patch.PW10J0o.InteractiveRectangle_v24"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Vars.VarGetTexture_v2
+// 
+// **************************************************************
+
+Ops.Vars.VarGetTexture_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const val = op.outTexture("Value");
+op.varName = op.inValueSelect("Variable", [], "", true);
+
+new CABLES.VarGetOpWrapper(op, "object", op.varName, val);
+
+
+};
+
+Ops.Vars.VarGetTexture_v2.prototype = new CABLES.Op();
+CABLES.OPS["5f8ce5fc-9787-45c9-9a83-0eebd2c6de15"]={f:Ops.Vars.VarGetTexture_v2,objName:"Ops.Vars.VarGetTexture_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Graphics.Geometry.GeometryExtrude
+// 
+// **************************************************************
+
+Ops.Graphics.Geometry.GeometryExtrude = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inGeom = op.inObject("Geometry", null, "geometry"),
+    inHeight = op.inFloat("Height", 0.5),
+    inSmooth = op.inBool("Smooth", true),
+    inExtrudeWalls = op.inBool("Walls", true),
+    inCapTop = op.inBool("Top", true),
+    inCapBottom = op.inBool("Bottom", true),
+    outGeom = op.outObject("Result Geometry", null, "geometry");
+
+function isClockwise(verts)
+{
+    let sum = 0.0;
+    for (let i = 0; i < verts.length - 3; i += 3)
+    {
+        // Vector v1 = verts[i];
+        // Vector v2 = verts[(i + 1) % verts.length];
+        sum += (verts[i + 3] - verts[i]) * (verts[i + 3 + 1] + verts[i]);
+    }
+    return sum > 0.0;
+}
+
+inSmooth.onChange =
+inExtrudeWalls.onChange =
+inCapTop.onChange =
+inCapBottom.onChange =
+inHeight.onChange =
+inGeom.onChange = () =>
+{
+    const geom = inGeom.get();
+
+    if (!geom)
+    {
+        outGeom.set(null);
+        return;
+    }
+
+    function edgesUsedMulti(idx1, idx2)
+    {
+        let count = 0;
+        for (let i = 0; i < geom.verticesIndices.length; i += 3)
+        {
+            if (
+                (
+                    geom.verticesIndices[i] == idx1 ||
+                    geom.verticesIndices[i + 1] == idx1 ||
+                    geom.verticesIndices[i + 2] == idx1
+                ) &&
+                (
+                    geom.verticesIndices[i] == idx2 ||
+                    geom.verticesIndices[i + 1] == idx2 ||
+                    geom.verticesIndices[i + 2] == idx2
+                ))
+            {
+                count++;
+                if (count == 2) return true;
+            }
+        }
+
+        return false;
+    }
+
+    let verts = [];
+    const indices = [];
+    const h = inHeight.get();
+
+    if (inExtrudeWalls.get())
+        for (let i = 0; i < geom.verticesIndices.length; i += 3)
+        {
+            const vert1 = geom.verticesIndices[i];
+            const vert2 = geom.verticesIndices[i + 1];
+            const vert3 = geom.verticesIndices[i + 2];
+
+            // 1
+            if (!edgesUsedMulti(vert1, vert2))
+            {
+                const a = [];
+                a.push([geom.vertices[vert1 * 3 + 0], geom.vertices[vert1 * 3 + 1], geom.vertices[vert1 * 3 + 2]]);
+                a.push([geom.vertices[vert1 * 3 + 0], geom.vertices[vert1 * 3 + 1], geom.vertices[vert1 * 3 + 2] + h]);
+                a.push([geom.vertices[vert2 * 3 + 0], geom.vertices[vert2 * 3 + 1], geom.vertices[vert2 * 3 + 2]]);
+
+                if (!isClockwise(a)) verts = verts.concat(a);
+                else verts = verts.concat(a.reverse());
+
+                a.length = 0;
+                a.push([geom.vertices[vert2 * 3 + 0], geom.vertices[vert2 * 3 + 1], geom.vertices[vert2 * 3 + 2] + h]);
+                a.push([geom.vertices[vert2 * 3 + 0], geom.vertices[vert2 * 3 + 1], geom.vertices[vert2 * 3 + 2]]);
+                a.push([geom.vertices[vert1 * 3 + 0], geom.vertices[vert1 * 3 + 1], geom.vertices[vert1 * 3 + 2] + h]);
+
+                if (!isClockwise(a)) verts = verts.concat(a);
+                else verts = verts.concat(a.reverse());
+            }
+
+            // 2
+            if (!edgesUsedMulti(vert3, vert2))
+            {
+                const a = [];
+                a.push([geom.vertices[vert3 * 3 + 0], geom.vertices[vert3 * 3 + 1], geom.vertices[vert3 * 3 + 2]]);
+                a.push([geom.vertices[vert3 * 3 + 0], geom.vertices[vert3 * 3 + 1], geom.vertices[vert3 * 3 + 2] + h]);
+                a.push([geom.vertices[vert2 * 3 + 0], geom.vertices[vert2 * 3 + 1], geom.vertices[vert2 * 3 + 2]]);
+
+                if (isClockwise(a)) verts = verts.concat(a);
+                else verts = verts.concat(a.reverse());
+
+                a.length = 0;
+
+                a.push([geom.vertices[vert2 * 3 + 0], geom.vertices[vert2 * 3 + 1], geom.vertices[vert2 * 3 + 2] + h]);
+                a.push([geom.vertices[vert2 * 3 + 0], geom.vertices[vert2 * 3 + 1], geom.vertices[vert2 * 3 + 2]]);
+                a.push([geom.vertices[vert3 * 3 + 0], geom.vertices[vert3 * 3 + 1], geom.vertices[vert3 * 3 + 2] + h]);
+
+                if (isClockwise(a)) verts = verts.concat(a);
+                else verts = verts.concat(a.reverse());
+            }
+            // 3
+
+            if (!edgesUsedMulti(vert3, vert1))
+            {
+                const a = [];
+                a.push([geom.vertices[vert3 * 3 + 0], geom.vertices[vert3 * 3 + 1], geom.vertices[vert3 * 3 + 2]]);
+                a.push([geom.vertices[vert3 * 3 + 0], geom.vertices[vert3 * 3 + 1], geom.vertices[vert3 * 3 + 2] + h]);
+                a.push([geom.vertices[vert1 * 3 + 0], geom.vertices[vert1 * 3 + 1], geom.vertices[vert1 * 3 + 2]]);
+
+                if (!isClockwise(a)) verts = verts.concat(a);
+                else verts = verts.concat(a.reverse());
+
+                a.length = 0;
+
+                a.push([geom.vertices[vert1 * 3 + 0], geom.vertices[vert1 * 3 + 1], geom.vertices[vert1 * 3 + 2] + h]);
+                a.push([geom.vertices[vert1 * 3 + 0], geom.vertices[vert1 * 3 + 1], geom.vertices[vert1 * 3 + 2]]);
+                a.push([geom.vertices[vert3 * 3 + 0], geom.vertices[vert3 * 3 + 1], geom.vertices[vert3 * 3 + 2] + h]);
+
+                if (!isClockwise(a)) verts = verts.concat(a);
+                else verts = verts.concat(a.reverse());
+            }
+        }
+
+    const newGeom = CGL.Geometry.buildFromFaces(verts, "extrude", true);
+
+    newGeom.calculateNormals();
+    newGeom.calcTangentsBitangents();
+
+    if (inCapBottom.get())
+    {
+        newGeom.merge(geom);
+    }
+
+    if (inCapTop.get())
+    {
+        const flippedgeo = geom.copy();
+
+        for (let i = 0; i < flippedgeo.vertices.length; i += 3)
+            flippedgeo.vertices[i + 2] += h;
+
+        flippedgeo.flipVertDir();
+        flippedgeo.flipNormals();
+        newGeom.merge(flippedgeo);
+    }
+
+    newGeom.flipVertDir();
+
+    if (!inSmooth.get())
+    {
+        newGeom.unIndex();
+        newGeom.calculateNormals({ "forceZUp": true });
+        newGeom.flipNormals();
+    }
+
+    outGeom.set(null);
+    outGeom.set(newGeom);
+};
+
+
+};
+
+Ops.Graphics.Geometry.GeometryExtrude.prototype = new CABLES.Op();
+CABLES.OPS["64a34a29-000d-4350-875f-5b72b97a314f"]={f:Ops.Graphics.Geometry.GeometryExtrude,objName:"Ops.Graphics.Geometry.GeometryExtrude"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.Textures.NoiseTexture
+// 
+// **************************************************************
+
+Ops.Gl.Textures.NoiseTexture = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+
+    inWidth = op.inValueInt("Width", 256),
+    inHeight = op.inValueInt("Height", 256),
+    tfilter = op.inSwitch("Filter", ["nearest", "linear"], "nearest"),
+    wrap = op.inValueSelect("Wrap", ["repeat", "mirrored repeat", "clamp to edge"], "repeat"),
+    inColor = op.inValueBool("Color", false),
+    inPixel = op.inDropDown("Pixel Format", CGL.Texture.PIXELFORMATS, CGL.Texture.PFORMATSTR_RGBA8UB),
+    inInteger = op.inBool("Integer", false),
+    inSeed = op.inFloat("Seed", 1),
+    inOutR = op.inBool("Channel R", true),
+    inMinR = op.inFloat("Min R", 0),
+    inMaxR = op.inFloat("Max R", 1),
+    inOutG = op.inBool("Channel G", true),
+    inMinG = op.inFloat("Min G", 0),
+    inMaxG = op.inFloat("Max G", 1),
+    inOutB = op.inBool("Channel B", true),
+    inMinB = op.inFloat("Min B", 0),
+    inMaxB = op.inFloat("Max B", 1),
+    inOutA = op.inBool("Channel A", true),
+    inMinA = op.inFloat("Min A", 1),
+    inMaxA = op.inFloat("Max A", 1),
+    outTex = op.outTexture("Texture"),
+    outNumPixel = op.outNumber("Total Pixel");
+
+const cgl = op.patch.cgl;
+let to = null;
+let loadingId = null;
+
+inSeed.onChange =
+    inWidth.onChange =
+    inHeight.onChange =
+    inPixel.onChange =
+    inMinR.onChange =
+    inMaxR.onChange =
+    inMinG.onChange =
+    inMinA.onChange =
+    inMaxG.onChange =
+    inMaxA.onChange =
+    inMinB.onChange =
+    inMaxB.onChange =
+    inOutR.onChange =
+    inOutB.onChange =
+    inOutG.onChange =
+    inOutA.onChange =
+    tfilter.onChange =
+    wrap.onChange =
+    inInteger.onChange =
+    inColor.onChange = createSoon;
+
+createSoon();
+
+function createSoon()
+{
+    if (loadingId)cgl.patch.loading.finished(loadingId);
+    loadingId = cgl.patch.loading.start("noisetexture", "noisetexture");
+    cgl.addNextFrameOnceCallback(update);
+}
+
+function update()
+{
+    const isFp = inPixel.get().indexOf("float") > -1;
+    if (!isFp)
+    {
+        if (
+            inMinR.get() < 0.0 || inMinR.get() > 1.0 ||
+            inMinG.get() < 0.0 || inMinG.get() > 1.0 ||
+            inMinB.get() < 0.0 || inMinB.get() > 1.0 ||
+            inMaxR.get() < 0.0 || inMaxR.get() > 1.0 ||
+            inMaxA.get() < 0.0 || inMaxA.get() > 1.0 ||
+            inMaxG.get() < 0.0 || inMaxG.get() > 1.0 ||
+            inMaxB.get() < 0.0 || inMaxB.get() > 1.0) op.setUiError("nonfprange", "Non floating point textures have to be between 0 and 1");
+        else op.setUiError("nonfprange", null);
+    }
+    else op.setUiError("nonfprange", null);
+
+    inMinG.setUiAttribs({ "greyout": !inColor.get() });
+    inMaxG.setUiAttribs({ "greyout": !inColor.get() });
+    inMinB.setUiAttribs({ "greyout": !inColor.get() });
+    inMaxB.setUiAttribs({ "greyout": !inColor.get() });
+    inMaxA.setUiAttribs({ "greyout": !inColor.get() });
+
+    let width = Math.ceil(inWidth.get());
+    let height = Math.ceil(inHeight.get());
+
+    if (width < 1)width = 1;
+    if (height < 1)height = 1;
+
+    let pixels;
+    const num = width * 4 * height;
+
+    const minR = inMinR.get();
+    const diffR = inMaxR.get() - minR;
+
+    const minG = inMinG.get();
+    const diffG = inMaxG.get() - minG;
+
+    const minB = inMinB.get();
+    const diffB = inMaxB.get() - minB;
+
+    const minA = inMinA.get();
+    const diffA = inMaxA.get() - minA;
+
+    Math.randomSeed = inSeed.get();
+
+    if (isFp)
+    {
+        pixels = new Float32Array(num);
+
+        if (inColor.get())
+        {
+            for (let i = 0; i < num; i += 4)
+            {
+                pixels[i + 0] = minR + Math.seededRandom() * diffR;
+                pixels[i + 1] = minG + Math.seededRandom() * diffG;
+                pixels[i + 2] = minB + Math.seededRandom() * diffB;
+                pixels[i + 3] = minA + Math.seededRandom() * diffA;
+            }
+        }
+        else
+        {
+            for (let i = 0; i < num; i += 4)
+            {
+                let c = minR + Math.seededRandom() * diffR;
+                pixels[i + 0] = pixels[i + 1] = pixels[i + 2] = c;
+                pixels[i + 3] = 1;
+            }
+        }
+    }
+    else
+    {
+        pixels = new Uint8Array(num);
+
+        if (inColor.get())
+        {
+            for (let i = 0; i < num; i += 4)
+            {
+                pixels[i + 0] = (minR + Math.seededRandom() * diffR) * 255;
+                pixels[i + 1] = (minG + Math.seededRandom() * diffG) * 255;
+                pixels[i + 2] = (minB + Math.seededRandom() * diffB) * 255;
+                pixels[i + 3] = (minA + Math.seededRandom() * diffA) * 255;
+            }
+        }
+        else
+        {
+            for (let i = 0; i < num; i += 4)
+            {
+                pixels[i + 0] =
+                pixels[i + 1] =
+                pixels[i + 2] = (minR + Math.seededRandom() * diffR) * 255;
+                pixels[i + 3] = 255;
+            }
+        }
+    }
+
+    if (inInteger.get())
+    {
+        for (let i = 0; i < pixels.length; i++)pixels[i] = Math.round(pixels[i] - 0.5);
+    }
+
+    if (!inOutR.get()) for (let i = 0; i < num; i += 4)pixels[i + 0] = 0.0;
+    if (!inOutG.get()) for (let i = 0; i < num; i += 4)pixels[i + 1] = 0.0;
+    if (!inOutB.get()) for (let i = 0; i < num; i += 4)pixels[i + 2] = 0.0;
+    if (!inOutA.get()) for (let i = 0; i < num; i += 4)pixels[i + 3] = 0.0;
+
+    let cgl_filter = CGL.Texture.FILTER_NEAREST;
+    if (tfilter.get() == "linear") cgl_filter = CGL.Texture.FILTER_LINEAR;
+    // else if (tfilter.get() == "mipmap") cgl_filter = CGL.Texture.FILTER_MIPMAP;
+    // else if (tfilter.get() == "Anisotropic") cgl_filter = CGL.Texture.FILTER_ANISOTROPIC;
+
+    let cgl_wrap = CGL.Texture.WRAP_REPEAT;
+    if (wrap.get() == "mirrored repeat") cgl_wrap = CGL.Texture.WRAP_MIRRORED_REPEAT;
+    if (wrap.get() == "clamp to edge") cgl_wrap = CGL.Texture.WRAP_CLAMP_TO_EDGE;
+
+    let tex = new CGL.Texture(cgl, { "isFloatingPointTexture": isFp, "name": "noisetexture" });
+
+    tex.initFromData(pixels, width, height, cgl_filter, cgl_wrap);
+
+    outNumPixel.set(width * height);
+    outTex.setRef(tex);
+    loadingId = cgl.patch.loading.finished(loadingId);
+}
+
+
+};
+
+Ops.Gl.Textures.NoiseTexture.prototype = new CABLES.Op();
+CABLES.OPS["b781bc6b-b2cf-44fe-80eb-a840e430d27d"]={f:Ops.Gl.Textures.NoiseTexture,objName:"Ops.Gl.Textures.NoiseTexture"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.ShaderEffects.FresnelGlow
+// 
+// **************************************************************
+
+Ops.Gl.ShaderEffects.FresnelGlow = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"fresnel_body_frag":"#ifdef ENABLE_FRESNEL_MOD\n    vec3 MOD_fragNormal = normalize(MOD_norm);\n    col.rgb += MOD_inFresnel.rgb *\n        MOD_CalculateFresnel(vec3(MOD_cameraSpace_pos), MOD_fragNormal)\n        * MOD_inFresnel.w;\n#endif\n","fresnel_body_vert":"#ifdef ENABLE_FRESNEL_MOD\n    MOD_cameraSpace_pos = viewMatrix*mMatrix * pos;\n    MOD_norm = norm;\n    MOD_viewMatrix = mat3(viewMatrix);\n#endif","fresnel_head_frag":"IN vec4 MOD_cameraSpace_pos;\nIN mat3 MOD_viewMatrix;\nIN vec3 MOD_norm;\n\n#ifdef ENABLE_FRESNEL_MOD\n    float MOD_CalculateFresnel(vec3 cameraSpace_pos, vec3 normal)\n    {\n\n        vec3 nDirection = normalize(cameraSpace_pos);\n        vec3 nNormal = normalize(MOD_viewMatrix * normal);\n        vec3 halfDirection = normalize(nNormal + nDirection);\n\n        float cosine = dot(halfDirection, nDirection);\n        float product = max(cosine, 0.0);\n        float factor = pow(product, MOD_inFresnelExponent);\n\n        return 5. * factor;\n\n\n    }\n#endif\n","fresnel_head_vert":"#ifdef ENABLE_FRESNEL_MOD\n    OUT vec4 MOD_cameraSpace_pos;\n    OUT mat3 MOD_viewMatrix;\n    OUT vec3 MOD_norm;\n#endif",};
+const cgl = op.patch.cgl;
+
+const inTrigger = op.inTrigger("Trigger In");
+const inActive = op.inBool("Active", true);
+const inR = op.inFloatSlider("R", Math.random());
+const inG = op.inFloatSlider("G", Math.random());
+const inB = op.inFloatSlider("B", Math.random());
+inR.setUiAttribs({ "colorPick": true });
+op.setPortGroup("Color", [inR, inG, inB]);
+const inIntensity = op.inFloat("Fresnel Intensity", 1);
+const inExponent = op.inFloat("Fresnel Exponent", 2.5);
+op.setPortGroup("Fresnel Settings", [inIntensity, inExponent]);
+
+inActive.onChange = () =>
+{
+    mod.toggleDefine("ENABLE_FRESNEL_MOD", inActive);
+    inR.setUiAttribs({ "greyout": !inActive.get() });
+    inG.setUiAttribs({ "greyout": !inActive.get() });
+    inB.setUiAttribs({ "greyout": !inActive.get() });
+    inIntensity.setUiAttribs({ "greyout": !inActive.get() });
+    inExponent.setUiAttribs({ "greyout": !inActive.get() });
+};
+
+const outTrigger = op.outTrigger("Trigger Out");
+
+
+const mod = new CGL.ShaderModifier(cgl, "fresnelGlow");
+mod.toggleDefine("ENABLE_FRESNEL_MOD", inActive);
+
+mod.addModule({
+    "priority": 2,
+    "title": "fresnelGlow",
+    "name": "MODULE_VERTEX_POSITION",
+    "srcHeadVert": attachments.fresnel_head_vert,
+    "srcBodyVert": attachments.fresnel_body_vert
+});
+
+mod.addModule({
+    "title": "fresnelGlow",
+    "name": "MODULE_COLOR",
+    "srcHeadFrag": attachments.fresnel_head_frag,
+    "srcBodyFrag": attachments.fresnel_body_frag
+});
+
+mod.addUniform("4f", "MOD_inFresnel", inR, inG, inB, inIntensity);
+mod.addUniform("f", "MOD_inFresnelExponent", inExponent);
+
+inTrigger.onTriggered = () =>
+{
+    mod.bind();
+    outTrigger.trigger();
+    mod.unbind();
+};
+
+
+};
+
+Ops.Gl.ShaderEffects.FresnelGlow.prototype = new CABLES.Op();
+CABLES.OPS["89979937-68a6-4736-8241-3c6b748103d4"]={f:Ops.Gl.ShaderEffects.FresnelGlow,objName:"Ops.Gl.ShaderEffects.FresnelGlow"};
 
 
 
@@ -30576,11 +32151,58 @@ CABLES.OPS["caca0307-d460-47df-8674-b7d2601239ab"]={f:Ops.Html.TransformElement,
 
 // **************************************************************
 // 
-// Ops.Patch.P4oPpSn.Element2
+// Ops.String.NumberToString_v2
 // 
 // **************************************************************
 
-Ops.Patch.P4oPpSn.Element2 = function()
+Ops.String.NumberToString_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    val = op.inValue("Number"),
+    decPlaces = op.inInt("Decimal Places", 4),
+    result = op.outString("Result");
+
+let doDec = false;
+let decm = 1;
+decPlaces.onChange = updateDecm;
+val.onChange = update;
+updateDecm();
+update();
+
+function updateDecm()
+{
+    doDec = decPlaces.get() < 100;
+    decm = Math.pow(10, decPlaces.get());
+    update();
+}
+
+function update()
+{
+    if (doDec)
+        result.set(String(Math.round(val.get() * decm) / decm));
+    else
+        result.set(String(val.get() || 0));
+}
+
+
+};
+
+Ops.String.NumberToString_v2.prototype = new CABLES.Op();
+CABLES.OPS["5c6d375a-82db-4366-8013-93f56b4061a9"]={f:Ops.String.NumberToString_v2,objName:"Ops.String.NumberToString_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PW10J0o.Element2
+// 
+// **************************************************************
+
+Ops.Patch.PW10J0o.Element2 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
@@ -30829,8 +32451,8 @@ function warning()
 
 };
 
-Ops.Patch.P4oPpSn.Element2.prototype = new CABLES.Op();
-CABLES.OPS["dbb0c5d1-9b68-4bf9-8e00-1c3fa5bcc368"]={f:Ops.Patch.P4oPpSn.Element2,objName:"Ops.Patch.P4oPpSn.Element2"};
+Ops.Patch.PW10J0o.Element2.prototype = new CABLES.Op();
+CABLES.OPS["63fa0aa4-1f18-4162-b523-d2761e17991d"]={f:Ops.Patch.PW10J0o.Element2,objName:"Ops.Patch.PW10J0o.Element2"};
 
 
 
@@ -31086,535 +32708,1513 @@ CABLES.OPS["6b5af21d-065f-44d2-9442-8b7a254753f6"]={f:Ops.Math.Abs,objName:"Ops.
 
 // **************************************************************
 // 
-// Ops.Ui.PatchInput
+// Ops.Patch.PW10J0o.InteractiveRectangle_v25
 // 
 // **************************************************************
 
-Ops.Ui.PatchInput = function()
+Ops.Patch.PW10J0o.InteractiveRectangle_v25 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
 const attachments=op.attachments={};
-const dyn = op.addOutPort(new CABLES.Port(op, "create port", CABLES.OP_PORT_TYPE_DYNAMIC));
+const
+    render = op.inTrigger("Trigger in"),
+    trigger = op.outTrigger("Trigger out"),
+    width = op.inValue("Width", 1),
+    height = op.inValue("Height", 1),
+    inId = op.inString("ID"),
+    classPort = op.inString("Class"),
+    pivotX = op.inValueSelect("Pivot x", ["center", "left", "right"]),
+    pivotY = op.inValueSelect("Pivot y", ["center", "top", "bottom"]),
+    axis = op.inValueSelect("Axis", ["xy", "xz"]),
+    isInteractive = op.inValueBool("Is Interactive", true),
+    renderRect = op.inValueBool("Render Rectangle", true),
+    divVisible = op.inValueBool("Show Boundings", true),
+    cursorPort = op.inValueSelect("Cursor", ["auto", "crosshair", "pointer", "Hand", "move", "n-resize", "ne-resize", "e-resize", "se-resize", "s-resize", "sw-resize", "w-resize", "nw-resize", "text", "wait", "help", "none"], "pointer"),
+    active = op.inValueBool("Render", true);
 
-function getPatchOp()
+const geomOut = op.outObject("geometry");
+geomOut.ignoreValueSerialize = true;
+
+const
+    mouseOver = op.outBoolNum("Pointer Hover", false),
+    mouseDown = op.outBoolNum("Pointer Down", false),
+    outX = op.outNumber("Pointer X"),
+    outY = op.outNumber("Pointer Y"),
+    outTop = op.outNumber("Top"),
+    outLeft = op.outNumber("Left"),
+    outRight = op.outNumber("Right"),
+    outBottom = op.outNumber("Bottom"),
+    mouseClick = op.outTrigger("Left Click");
+
+const elementPort = op.outObject("Dom Element");
+
+active.setUiAttribs({ "title": "Active" });
+
+const cgl = op.patch.cgl;
+axis.set("xy");
+pivotX.set("center");
+pivotY.set("center");
+
+const geom = new CGL.Geometry(op.name);
+let mesh = null;
+let div = null;
+const m = mat4.create();
+const trans = mat4.create();
+const pos = vec3.create();
+const divAlign = vec3.create();
+const divAlignSize = vec3.create();
+
+axis.onChange = rebuild;
+pivotX.onChange = rebuild;
+pivotY.onChange = rebuild;
+width.onChange = rebuild;
+height.onChange = rebuild;
+cursorPort.onChange = updateCursor;
+rebuild();
+
+const modelMatrix = mat4.create();
+const identViewMatrix = mat4.create();
+const zeroVec3 = vec3.create();
+
+render.onTriggered = function ()
 {
-    for (let i in op.patch.ops)
+    if (!div)
     {
-        if (op.patch.ops[i].patchId)
+        setUpDiv();
+        addListeners();
+        updateDivVisibility();
+        updateIsInteractive();
+    }
+    updateDivSize();
+
+    if (active.get() && renderRect.get() && mesh) mesh.render(cgl.getShader());
+
+    trigger.trigger();
+};
+
+function rebuild()
+{
+    let w = width.get();
+    let h = height.get();
+    let x = 0;
+    let y = 0;
+
+    if (typeof w == "string")w = parseFloat(w);
+    if (typeof h == "string")h = parseFloat(h);
+
+    if (pivotX.get() == "center")
+    {
+        x = 0;
+        divAlign[0] = -w / 2;
+    }
+    if (pivotX.get() == "right")
+    {
+        x = -w / 2;
+    }
+    if (pivotX.get() == "left")
+    {
+        x = w / 2;
+    }
+
+    if (pivotY.get() == "center")
+    {
+        y = 0;
+        divAlign[1] = -h / 2;
+    }
+    if (pivotY.get() == "top") y = -h / 2;
+    if (pivotY.get() == "bottom") y = +h / 2;
+
+    const verts = [];
+    const tc = [];
+    const norms = [];
+    const indices = [];
+
+    const numRows = 1;
+    const numColumns = 1;
+
+    const stepColumn = w / numColumns;
+    const stepRow = h / numRows;
+
+    let c, r;
+
+    for (r = 0; r <= numRows; r++)
+    {
+        for (c = 0; c <= numColumns; c++)
         {
-            if (op.patch.ops[i].patchId.get() == op.uiAttribs.subPatch)
+            verts.push(c * stepColumn - width.get() / 2 + x);
+            if (axis.get() == "xz") verts.push(0.0);
+            verts.push(r * stepRow - height.get() / 2 + y);
+            if (axis.get() == "xy") verts.push(0.0);
+
+            tc.push(c / numColumns);
+            tc.push(1.0 - r / numRows);
+
+            if (axis.get() == "xz")
             {
-                return op.patch.ops[i];
+                norms.push(0);
+                norms.push(1);
+                norms.push(0);
+            }
+
+            if (axis.get() == "xy")
+            {
+                norms.push(0);
+                norms.push(0);
+                norms.push(-1);
             }
         }
     }
-}
 
-dyn.onLinkChanged = () =>
-{
-    const mySubPatchOp = getPatchOp();
-
-    if (!dyn.links.length || !mySubPatchOp || !mySubPatchOp.addNewInPort) return;
-
-
-    const otherPort = dyn.links[0].getOtherPort(dyn);
-    dyn.removeLinks();
-
-    const newPortName = mySubPatchOp.addNewInPort(otherPort);
-
-    const l = gui.scene().link(
-        otherPort.parent,
-        otherPort.getName(),
-        op,
-        newPortName);
-
-    mySubPatchOp.saveData();
-};
-
-
-};
-
-Ops.Ui.PatchInput.prototype = new CABLES.Op();
-CABLES.OPS["e3f68bc3-892a-4c78-9974-aca25c27025d"]={f:Ops.Ui.PatchInput,objName:"Ops.Ui.PatchInput"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Ui.PatchOutput
-// 
-// **************************************************************
-
-Ops.Ui.PatchOutput = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const dyn = op.addInPort(new CABLES.Port(op, "create port", CABLES.OP_PORT_TYPE_DYNAMIC));
-
-function getPatchOp()
-{
-    for (let i in op.patch.ops)
+    for (c = 0; c < numColumns; c++)
     {
-        if (op.patch.ops[i].patchId)
+        for (r = 0; r < numRows; r++)
         {
-            if (op.patch.ops[i].patchId.get() == op.uiAttribs.subPatch)
-            {
-                return op.patch.ops[i];
-            }
-        }
-    }
-}
+            const ind = c + (numColumns + 1) * r;
+            const v1 = ind;
+            const v2 = ind + 1;
+            const v3 = ind + numColumns + 1;
+            const v4 = ind + 1 + numColumns + 1;
 
-dyn.onLinkChanged = () =>
-{
-    const mySubPatchOp = getPatchOp();
+            indices.push(v1);
+            indices.push(v3);
+            indices.push(v2);
 
-    if (!dyn.links.length) return;
-
-    const otherPort = dyn.links[0].getOtherPort(dyn);
-    dyn.removeLinks();
-
-    const newPortName = mySubPatchOp.addNewOutPort(otherPort);
-
-    const l = gui.scene().link(
-        otherPort.parent,
-        otherPort.getName(),
-        op,
-        newPortName);
-
-    mySubPatchOp.saveData();
-};
-
-
-};
-
-Ops.Ui.PatchOutput.prototype = new CABLES.Op();
-CABLES.OPS["851b44cb-5667-4140-9800-5aeb7031f1d7"]={f:Ops.Ui.PatchOutput,objName:"Ops.Ui.PatchOutput"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Ui.SubPatch
-// 
-// **************************************************************
-
-Ops.Ui.SubPatch = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-op.dyn = op.addInPort(new CABLES.Port(op, "create port", CABLES.OP_PORT_TYPE_DYNAMIC));
-op.dynOut = op.addOutPort(new CABLES.Port(op, "create port out", CABLES.OP_PORT_TYPE_DYNAMIC));
-
-const dataStr = op.addInPort(new CABLES.Port(op, "dataStr", CABLES.OP_PORT_TYPE_VALUE, { "display": "readonly" }));
-op.patchId = op.addInPort(new CABLES.Port(op, "patchId", CABLES.OP_PORT_TYPE_VALUE, { "display": "readonly" }));
-
-
-dataStr.setUiAttribs({ "hideParam": true });
-op.patchId.setUiAttribs({ "hidePort": true });
-
-let data = { "ports": [], "portsOut": [] };
-let oldPatchId = CABLES.generateUUID();
-op.patchId.set(oldPatchId);
-getSubPatchInputOp();
-getSubPatchOutputOp();
-
-let dataLoaded = false;
-
-op.saveData = saveData;
-
-op.init = () =>
-{
-    op.setStorage({ "subPatchVer": 1 });
-};
-
-op.patchId.onChange = function ()
-{
-    if (!op.patch.isEditorMode()) return;
-    const oldPatchOps = op.patch.getSubPatchOps(oldPatchId);
-    if (oldPatchOps.length === 2)
-    {
-        if (op.patch.isEditorMode() && CABLES.UI.DEFAULTOPS.isInBlueprint(op)) CABLES.UI.undo.pause();
-        for (let i = 0; i < oldPatchOps.length; i++)
-        {
-            op.patch.deleteOp(oldPatchOps[i].id);
-        }
-        if (op.patch.isEditorMode() && CABLES.UI.DEFAULTOPS.isInBlueprint(op)) CABLES.UI.undo.resume();
-    }
-};
-
-op.onLoaded = function ()
-{
-};
-
-op.onLoadedValueSet = function ()
-{
-    data = JSON.parse(dataStr.get());
-    if (!data)
-    {
-        data = { "ports": [], "portsOut": [] };
-    }
-    setupPorts();
-};
-
-function loadData()
-{
-}
-
-dataStr.onChange = function ()
-{
-    if (dataLoaded) return;
-
-    if (!dataStr.get()) return;
-    try
-    {
-        loadData();
-    }
-    catch (e)
-    {
-        op.logError("cannot load subpatch data...");
-        op.logError(e);
-    }
-};
-
-function saveData()
-{
-    try
-    {
-        dataStr.set(JSON.stringify(data));
-    }
-    catch (e)
-    {
-        op.log(e);
-    }
-}
-
-op.addPortListener = addPortListener;
-function addPortListener(newPort, newPortInPatch)
-{
-    if (!newPort.hasSubpatchLstener)
-    {
-        newPort.hasSubpatchLstener = true;
-        newPort.addEventListener("onUiAttrChange", function (attribs)
-        {
-            if (attribs.title)
-            {
-                let i = 0;
-                for (i = 0; i < data.portsOut.length; i++)
-                    if (data.portsOut[i].name == newPort.name)
-                        data.portsOut[i].title = attribs.title;
-
-                for (i = 0; i < data.ports.length; i++)
-                    if (data.ports[i].name == newPort.name)
-                        data.ports[i].title = attribs.title;
-
-                saveData();
-            }
-        });
-    }
-
-    if (newPort.direction == CABLES.PORT_DIR_IN)
-    {
-        if (newPort.type == CABLES.OP_PORT_TYPE_FUNCTION)
-        {
-            newPort.onTriggered = function ()
-            {
-                if (newPortInPatch.isLinked())
-                    newPortInPatch.trigger();
-            };
-        }
-        else
-        {
-            newPort.onChange = function ()
-            {
-                newPortInPatch.set(newPort.get());
-                if (!newPort.isLinked())
-                {
-                    for (let i = 0; i < data.ports.length; i++)
-                    {
-                        if (data.ports[i].name === newPort.name)
-                        {
-                            data.ports[i].value = newPort.get();
-                        }
-                    }
-                    saveData();
-                }
-            };
-        }
-    }
-}
-
-op.setupPorts = setupPorts;
-function setupPorts()
-{
-    if (!op.patchId.get()) return;
-    const ports = data.ports || [];
-    const portsOut = data.portsOut || [];
-    let i = 0;
-
-    for (i = 0; i < ports.length; i++)
-    {
-        if (!op.getPortByName(ports[i].name))
-        {
-            const newPort = op.addInPort(new CABLES.Port(op, ports[i].name, ports[i].type));
-
-            const patchInputOp = getSubPatchInputOp();
-            const newPortInPatch = patchInputOp.addOutPort(new CABLES.Port(patchInputOp, ports[i].name, ports[i].type));
-
-            newPort.ignoreValueSerialize = true;
-            newPort.setUiAttribs({ "editableTitle": true });
-            if (ports[i].title)
-            {
-                newPort.setUiAttribs({ "title": ports[i].title });
-                newPortInPatch.setUiAttribs({ "title": ports[i].title });
-            }
-            if (ports[i].objType)
-            {
-                newPort.setUiAttribs({ "objType": ports[i].objType });
-                newPortInPatch.setUiAttribs({ "objType": ports[i].objType });
-            }
-            if (ports[i].value)
-            {
-                newPort.set(ports[i].value);
-                newPortInPatch.set(ports[i].value);
-            }
-            addPortListener(newPort, newPortInPatch);
+            indices.push(v2);
+            indices.push(v3);
+            indices.push(v4);
         }
     }
 
-    for (i = 0; i < portsOut.length; i++)
-    {
-        if (!op.getPortByName(portsOut[i].name))
-        {
-            const newPortOut = op.addOutPort(new CABLES.Port(op, portsOut[i].name, portsOut[i].type));
-            const patchOutputOp = getSubPatchOutputOp();
-            const newPortOutPatch = patchOutputOp.addInPort(new CABLES.Port(patchOutputOp, portsOut[i].name, portsOut[i].type));
+    geom.clear();
+    geom.vertices = verts;
+    geom.texCoords = tc;
+    geom.verticesIndices = indices;
+    geom.vertexNormals = norms;
 
-            newPortOut.ignoreValueSerialize = true;
-            newPortOut.setUiAttribs({ "editableTitle": true });
+    if (!mesh) mesh = new CGL.Mesh(cgl, geom);
+    else mesh.setGeom(geom);
 
-            if (portsOut[i].title)
-            {
-                newPortOut.setUiAttribs({ "title": portsOut[i].title });
-                newPortOutPatch.setUiAttribs({ "title": portsOut[i].title });
-            }
-            if (portsOut[i].objType)
-            {
-                newPortOut.setUiAttribs({ "objType": portsOut[i].objType });
-                newPortOutPatch.setUiAttribs({ "objType": portsOut[i].objType });
-            }
-
-            // addPortListener(newPortOut,newPortOutPatch);
-            addPortListener(newPortOutPatch, newPortOut);
-        }
-    }
-
-    dataLoaded = true;
+    geomOut.set(null);
+    geomOut.set(geom);
 }
 
-op.addNewInPort = function (otherPort, type, objType)
+let divX = 0;
+let divY = 0;
+let divWidth = 0;
+let divHeight = 0;
+
+const mMatrix = mat4.create();
+divVisible.onChange = updateDivVisibility;
+inId.onChange = updateId;
+classPort.onChange = updateClassNames;
+
+function updateDivVisibility()
 {
-    const newName = "in" + data.ports.length + " " + otherPort.op.name + " " + otherPort.name;
-
-    const o = { "name": newName, "type": otherPort.type };
-    if (otherPort.uiAttribs.objType)o.objType = otherPort.uiAttribs.objType;
-
-    data.ports.push(o);
-    setupPorts();
-    return newName;
-};
-
-op.dyn.onLinkChanged = function ()
-{
-    if (op.dyn.isLinked())
+    if (div)
     {
-        const otherPort = op.dyn.links[0].getOtherPort(op.dyn);
-        op.dyn.removeLinks();
-        otherPort.removeLinkTo(op.dyn);
-
-        op.log("dyn link changed!!!");
-
-        // const newName = "in" + data.ports.length + " " + otherPort.op.name + " " + otherPort.name;
-
-        // const o = { "name": newName, "type": otherPort.type };
-        // if (otherPort.uiAttribs.objType)o.objType = otherPort.uiAttribs.objType;
-        // data.ports.push(o);
-
-        // setupPorts();
-
-        const newName = op.addNewInPort(otherPort);
-
-        const l = gui.scene().link(
-            otherPort.op,
-            otherPort.getName(),
-            op,
-            newName
-        );
-
-        dataLoaded = true;
-        saveData();
+        if (divVisible.get()) div.style.border = "1px solid red";
+        else div.style.border = "none";
     }
-    else
-    {
-        setTimeout(function ()
-        {
-            op.dyn.removeLinks();
-        }, 100);
-    }
-};
-
-op.addNewOutPort = function (otherPort, type, objType)
-{
-    const newName = "out" + data.portsOut.length + " " + otherPort.op.name + " " + otherPort.name;
-
-    const o = { "name": newName, "type": otherPort.type };
-    if (otherPort.uiAttribs.objType)o.objType = otherPort.uiAttribs.objType;
-
-    data.portsOut.push(o);
-    setupPorts();
-    return newName;
-};
-
-op.dynOut.onLinkChanged = function ()
-{
-    if (op.dynOut.isLinked())
-    {
-        const otherPort = op.dynOut.links[0].getOtherPort(op.dynOut);
-        op.dynOut.removeLinks();
-        if (otherPort)
-        {
-            otherPort.removeLinkTo(op.dynOut);
-
-            const newName = op.addNewOutPort(otherPort);
-
-            gui.scene().link(
-                otherPort.op,
-                otherPort.getName(),
-                op,
-                newName
-            );
-        }
-
-        dataLoaded = true;
-        saveData();
-    }
-    else
-    {
-        setTimeout(function ()
-        {
-            op.dynOut.removeLinks();
-        }, 100);
-
-        op.log("dynOut unlinked...");
-    }
-};
-
-function getSubPatchOutputOp()
-{
-    let patchOutputOP = op.patch.getSubPatchOp(op.patchId.get(), "Ops.Ui.PatchOutput");
-
-    if (!patchOutputOP)
-    {
-        op.patch.addOp("Ops.Ui.PatchOutput", { "subPatch": op.patchId.get(), "translate": { "x": 0, "y": 0 } });
-        patchOutputOP = op.patch.getSubPatchOp(op.patchId.get(), "Ops.Ui.PatchOutput");
-        if (!patchOutputOP) op.warn("no patchoutput!");
-    }
-    return patchOutputOP;
 }
 
-function getSubPatchInputOp()
+function updateCursor()
 {
-    let patchInputOP = op.patch.getSubPatchOp(op.patchId.get(), "Ops.Ui.PatchInput");
-
-    if (!patchInputOP)
+    if (div)
     {
-        op.patch.addOp("Ops.Ui.PatchInput", { "subPatch": op.patchId.get(), "translate": { "x": 0, "y": 0 } });
-        patchInputOP = op.patch.getSubPatchOp(op.patchId.get(), "Ops.Ui.PatchInput");
-        if (!patchInputOP) op.warn("no patchinput2!");
+        div.style.cursor = cursorPort.get();
     }
-
-    return patchInputOP;
 }
 
-op.addSubLink = function (p, p2)
+function updateId()
 {
-    const num = data.ports.length;
-    const sublPortname = "in" + (num - 1) + " " + p2.op.name + " " + p2.name;
-
-    if (p.direction == CABLES.PORT_DIR_IN)
+    if (div)
     {
-        gui.scene().link(
-            p.op,
-            p.getName(),
-            getSubPatchInputOp(),
-            sublPortname
-        );
+        div.setAttribute("id", inId.get());
     }
-    else
+}
+
+function updateDivSize()
+{
+    // var vp=cgl.getViewPort();
+
+    mat4.multiply(mMatrix, cgl.vMatrix, cgl.mMatrix);
+    vec3.transformMat4(pos, divAlign, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const top = cgl.canvas.styleMarginTop || 0;
+    const left = cgl.canvas.styleMarginLeft || 0;
+
+    const x1 = (trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2 + left;
+    const y1 = (trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top;
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1];
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x2 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y2 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0];
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x3 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y3 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x4 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y4 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divX = Math.min(x1, x2, x3, x4);
+    divY = Math.min(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    const xb = Math.max(x1, x2, x3, x4);
+    const yb = Math.max(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    outTop.set(divY);
+    outLeft.set(divX);
+    outRight.set(xb);
+    outBottom.set(yb);
+
+    divWidth = Math.abs(xb - divX);
+    divHeight = Math.abs(yb - divY);
+
+    divX /= op.patch.cgl.pixelDensity;
+    divY /= op.patch.cgl.pixelDensity;
+    divWidth /= op.patch.cgl.pixelDensity;
+    divHeight /= op.patch.cgl.pixelDensity;
+
+    // div.style.left=divX+'px';
+    // div.style.top=divY+'px';
+    // div.style.width=divWidth+'px';
+    // div.style.height=divHeight+'px';
+
+    const divXpx = divX + "px";
+    const divYpx = divY + "px";
+    const divWidthPx = divWidth + "px";
+    const divHeightPx = divHeight + "px";
+    if (divXpx != div.style.left) div.style.left = divXpx;
+    if (divYpx != div.style.top) div.style.top = divYpx;
+    if (div.style.width != divWidthPx) div.style.width = divWidthPx;
+    if (div.style.height != divHeightPx) div.style.height = divHeightPx;
+}
+
+function updateClassNames()
+{
+    if (div)
     {
-        const numOut = data.portsOut.length;
-        gui.scene().link(
-            p.op,
-            p.getName(),
-            getSubPatchOutputOp(),
-            "out" + (numOut - 1) + " " + p2.op.name + " " + p2.name
-        );
+        div.className = classPort.get();
     }
-
-    const bounds = gui.patchView.getSubPatchBounds(op.patchId.get());
-
-    getSubPatchInputOp().uiAttr(
-        {
-            "translate":
-            {
-                "x": bounds.minx,
-                "y": bounds.miny - 100
-            }
-        });
-
-    getSubPatchOutputOp().uiAttr(
-        {
-            "translate":
-            {
-                "x": bounds.minx,
-                "y": bounds.maxy + 100
-            }
-        });
-    saveData();
-    return sublPortname;
-};
+}
 
 op.onDelete = function ()
 {
-    for (let i = op.patch.ops.length - 1; i >= 0; i--)
-        if (op.patch.ops[i] && op.patch.ops[i].uiAttribs && op.patch.ops[i].uiAttribs.subPatch == op.patchId.get())
-            op.patch.deleteOp(op.patch.ops[i].id);
+    if (div)div.remove();
 };
 
-op.rebuildListeners = () =>
+function setUpDiv()
 {
-    op.log("rebuild listeners...");
-
-    const outop = getSubPatchOutputOp();
-    for (let i = 0; i < outop.portsIn.length; i++)
+    if (!div)
     {
-        if (outop.portsIn[i].isLinked())
+        div = document.createElement("div");
+        div.dataset.op = op.id;
+        div.oncontextmenu = function (e)
         {
-            addPortListener(outop.portsIn[i], this.portsOut[i]);
+            e.preventDefault();
+        };
+
+        div.style.padding = "0px";
+        div.style.position = "absolute";
+        div.style["box-sizing"] = "border-box";
+        div.style.border = "1px solid red";
+        // div.style['border-left']="1px solid blue";
+        // div.style['border-top']="1px solid green";
+        div.style["z-index"] = "500";
+
+        div.style["-webkit-user-select"] = "none";
+        div.style["user-select"] = "none";
+        div.style["-webkit-tap-highlight-color"] = "rgba(0,0,0,0)";
+        div.style["-webkit-touch-callout"] = "none";
+
+        const canvas = op.patch.cgl.canvas.parentElement;
+        canvas.appendChild(div);
+        updateCursor();
+        updateIsInteractive();
+        updateId();
+        updateClassNames();
+    }
+    updateDivSize();
+    elementPort.set(div);
+}
+
+let listenerElement = null;
+
+function onMouseMove(e)
+{
+    const offsetX = -width.get() / 2;
+    const offsetY = -height.get() / 2;
+
+    outX.set(Math.max(0.0, Math.min(1.0, e.offsetX / divWidth)));
+    outY.set(Math.max(0.0, Math.min(1.0, 1.0 - e.offsetY / divHeight)));
+}
+
+function onMouseLeave(e)
+{
+    mouseDown.set(false);
+    mouseOver.set(false);
+}
+
+function onMouseEnter(e)
+{
+    mouseOver.set(true);
+}
+
+function onMouseDown(e)
+{
+    mouseDown.set(true);
+}
+
+function onMouseUp(e)
+{
+    mouseDown.set(false);
+}
+
+function onmouseclick(e)
+{
+    mouseClick.trigger();
+}
+
+function onTouchMove(e)
+{
+    const targetEle = document.elementFromPoint(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
+
+    if (targetEle == div)
+    {
+        mouseOver.set(true);
+        if (e.touches && e.touches.length > 0)
+        {
+            const rect = div.getBoundingClientRect(); // e.target
+            const x = e.targetTouches[0].pageX - rect.left;
+            const y = e.targetTouches[0].pageY - rect.top;
+
+            const touch = e.touches[0];
+
+            outX.set(Math.max(0.0, Math.min(1.0, x / divWidth)));
+            outY.set(Math.max(0.0, Math.min(1.0, 1.0 - y / divHeight)));
+
+            onMouseMove(touch);
         }
     }
-};
+    else
+    {
+        mouseOver.set(false);
+    }
+}
+
+active.onChange = updateActiveRender;
+function updateActiveRender()
+{
+    if (active.get())
+    {
+        addListeners();
+        if (div) div.style.display = "block";
+    }
+    else
+    {
+        removeListeners();
+        if (div) div.style.display = "none";
+    }
+}
+
+isInteractive.onChange = updateIsInteractive;
+function updateIsInteractive()
+{
+    if (isInteractive.get())
+    {
+        addListeners();
+        if (div)div.style["pointer-events"] = "initial";
+    }
+    else
+    {
+        removeListeners();
+        mouseDown.set(false);
+        mouseOver.set(false);
+        if (div)div.style["pointer-events"] = "none";
+    }
+}
+
+function removeListeners()
+{
+    if (listenerElement)
+    {
+        document.removeEventListener("touchmove", onTouchMove);
+        listenerElement.removeEventListener("touchend", onMouseUp);
+        listenerElement.removeEventListener("touchstart", onMouseDown);
+
+        listenerElement.removeEventListener("click", onmouseclick);
+        listenerElement.removeEventListener("mousemove", onMouseMove);
+        listenerElement.removeEventListener("mouseleave", onMouseLeave);
+        listenerElement.removeEventListener("mousedown", onMouseDown);
+        listenerElement.removeEventListener("mouseup", onMouseUp);
+        listenerElement.removeEventListener("mouseenter", onMouseEnter);
+        // listenerElement.removeEventListener('contextmenu', onClickRight);
+        listenerElement = null;
+    }
+}
+
+function addListeners()
+{
+    if (listenerElement)removeListeners();
+
+    listenerElement = div;
+
+    if (listenerElement)
+    {
+        document.addEventListener("touchmove", onTouchMove);
+        listenerElement.addEventListener("touchend", onMouseUp);
+        listenerElement.addEventListener("touchstart", onMouseDown);
+
+        listenerElement.addEventListener("click", onmouseclick);
+        listenerElement.addEventListener("mousemove", onMouseMove);
+        listenerElement.addEventListener("mouseleave", onMouseLeave);
+        listenerElement.addEventListener("mousedown", onMouseDown);
+        listenerElement.addEventListener("mouseup", onMouseUp);
+        listenerElement.addEventListener("mouseenter", onMouseEnter);
+        // listenerElement.addEventListener('contextmenu', onClickRight);
+    }
+}
 
 
 };
 
-Ops.Ui.SubPatch.prototype = new CABLES.Op();
-CABLES.OPS["84d9a6f0-ed7a-466d-b386-225ed9e89c60"]={f:Ops.Ui.SubPatch,objName:"Ops.Ui.SubPatch"};
+Ops.Patch.PW10J0o.InteractiveRectangle_v25.prototype = new CABLES.Op();
+CABLES.OPS["3ef4c156-0b34-43b2-8b19-51f8c50a2913"]={f:Ops.Patch.PW10J0o.InteractiveRectangle_v25,objName:"Ops.Patch.PW10J0o.InteractiveRectangle_v25"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.InteractiveRectangle_v2
+// 
+// **************************************************************
+
+Ops.Gl.InteractiveRectangle_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("Trigger in"),
+    trigger = op.outTrigger("Trigger out"),
+    width = op.inValue("Width", 1),
+    height = op.inValue("Height", 1),
+    inId = op.inString("ID"),
+    classPort = op.inString("Class"),
+    pivotX = op.inValueSelect("Pivot x", ["center", "left", "right"]),
+    pivotY = op.inValueSelect("Pivot y", ["center", "top", "bottom"]),
+    axis = op.inValueSelect("Axis", ["xy", "xz"]),
+    isInteractive = op.inValueBool("Is Interactive", true),
+    renderRect = op.inValueBool("Render Rectangle", true),
+    divVisible = op.inValueBool("Show Boundings", true),
+    cursorPort = op.inValueSelect("Cursor", ["auto", "crosshair", "pointer", "Hand", "move", "n-resize", "ne-resize", "e-resize", "se-resize", "s-resize", "sw-resize", "w-resize", "nw-resize", "text", "wait", "help", "none"], "pointer"),
+    active = op.inValueBool("Render", true);
+
+const geomOut = op.outObject("geometry");
+geomOut.ignoreValueSerialize = true;
+
+const
+    mouseOver = op.outBoolNum("Pointer Hover", false),
+    mouseDown = op.outBoolNum("Pointer Down", false),
+    outX = op.outNumber("Pointer X"),
+    outY = op.outNumber("Pointer Y"),
+    outTop = op.outNumber("Top"),
+    outLeft = op.outNumber("Left"),
+    outRight = op.outNumber("Right"),
+    outBottom = op.outNumber("Bottom"),
+    mouseClick = op.outTrigger("Left Click");
+
+const elementPort = op.outObject("Dom Element");
+
+active.setUiAttribs({ "title": "Active" });
+
+const cgl = op.patch.cgl;
+axis.set("xy");
+pivotX.set("center");
+pivotY.set("center");
+
+const geom = new CGL.Geometry(op.name);
+let mesh = null;
+let div = null;
+const m = mat4.create();
+const trans = mat4.create();
+const pos = vec3.create();
+const divAlign = vec3.create();
+const divAlignSize = vec3.create();
+
+axis.onChange = rebuild;
+pivotX.onChange = rebuild;
+pivotY.onChange = rebuild;
+width.onChange = rebuild;
+height.onChange = rebuild;
+cursorPort.onChange = updateCursor;
+rebuild();
+
+const modelMatrix = mat4.create();
+const identViewMatrix = mat4.create();
+const zeroVec3 = vec3.create();
+
+render.onTriggered = function ()
+{
+    if (!div)
+    {
+        setUpDiv();
+        addListeners();
+        updateDivVisibility();
+        updateIsInteractive();
+    }
+    updateDivSize();
+
+    if (active.get() && renderRect.get() && mesh) mesh.render(cgl.getShader());
+
+    trigger.trigger();
+};
+
+function rebuild()
+{
+    let w = width.get();
+    let h = height.get();
+    let x = 0;
+    let y = 0;
+
+    if (typeof w == "string")w = parseFloat(w);
+    if (typeof h == "string")h = parseFloat(h);
+
+    if (pivotX.get() == "center")
+    {
+        x = 0;
+        divAlign[0] = -w / 2;
+    }
+    if (pivotX.get() == "right")
+    {
+        x = -w / 2;
+    }
+    if (pivotX.get() == "left")
+    {
+        x = w / 2;
+    }
+
+    if (pivotY.get() == "center")
+    {
+        y = 0;
+        divAlign[1] = -h / 2;
+    }
+    if (pivotY.get() == "top") y = -h / 2;
+    if (pivotY.get() == "bottom") y = +h / 2;
+
+    const verts = [];
+    const tc = [];
+    const norms = [];
+    const indices = [];
+
+    const numRows = 1;
+    const numColumns = 1;
+
+    const stepColumn = w / numColumns;
+    const stepRow = h / numRows;
+
+    let c, r;
+
+    for (r = 0; r <= numRows; r++)
+    {
+        for (c = 0; c <= numColumns; c++)
+        {
+            verts.push(c * stepColumn - width.get() / 2 + x);
+            if (axis.get() == "xz") verts.push(0.0);
+            verts.push(r * stepRow - height.get() / 2 + y);
+            if (axis.get() == "xy") verts.push(0.0);
+
+            tc.push(c / numColumns);
+            tc.push(1.0 - r / numRows);
+
+            if (axis.get() == "xz")
+            {
+                norms.push(0);
+                norms.push(1);
+                norms.push(0);
+            }
+
+            if (axis.get() == "xy")
+            {
+                norms.push(0);
+                norms.push(0);
+                norms.push(-1);
+            }
+        }
+    }
+
+    for (c = 0; c < numColumns; c++)
+    {
+        for (r = 0; r < numRows; r++)
+        {
+            const ind = c + (numColumns + 1) * r;
+            const v1 = ind;
+            const v2 = ind + 1;
+            const v3 = ind + numColumns + 1;
+            const v4 = ind + 1 + numColumns + 1;
+
+            indices.push(v1);
+            indices.push(v3);
+            indices.push(v2);
+
+            indices.push(v2);
+            indices.push(v3);
+            indices.push(v4);
+        }
+    }
+
+    geom.clear();
+    geom.vertices = verts;
+    geom.texCoords = tc;
+    geom.verticesIndices = indices;
+    geom.vertexNormals = norms;
+
+    if (!mesh) mesh = new CGL.Mesh(cgl, geom);
+    else mesh.setGeom(geom);
+
+    geomOut.set(null);
+    geomOut.set(geom);
+}
+
+let divX = 0;
+let divY = 0;
+let divWidth = 0;
+let divHeight = 0;
+
+const mMatrix = mat4.create();
+divVisible.onChange = updateDivVisibility;
+inId.onChange = updateId;
+classPort.onChange = updateClassNames;
+
+function updateDivVisibility()
+{
+    if (div)
+    {
+        if (divVisible.get()) div.style.border = "1px solid red";
+        else div.style.border = "none";
+    }
+}
+
+function updateCursor()
+{
+    if (div)
+    {
+        div.style.cursor = cursorPort.get();
+    }
+}
+
+function updateId()
+{
+    if (div)
+    {
+        div.setAttribute("id", inId.get());
+    }
+}
+
+function updateDivSize()
+{
+    // var vp=cgl.getViewPort();
+
+    mat4.multiply(mMatrix, cgl.vMatrix, cgl.mMatrix);
+    vec3.transformMat4(pos, divAlign, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const top = cgl.canvas.styleMarginTop || 0;
+    const left = cgl.canvas.styleMarginLeft || 0;
+
+    const x1 = (trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2 + left;
+    const y1 = (trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top;
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1];
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x2 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y2 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0];
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x3 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y3 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x4 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y4 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divX = Math.min(x1, x2, x3, x4);
+    divY = Math.min(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    const xb = Math.max(x1, x2, x3, x4);
+    const yb = Math.max(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    outTop.set(divY);
+    outLeft.set(divX);
+    outRight.set(xb);
+    outBottom.set(yb);
+
+    divWidth = Math.abs(xb - divX);
+    divHeight = Math.abs(yb - divY);
+
+    divX /= op.patch.cgl.pixelDensity;
+    divY /= op.patch.cgl.pixelDensity;
+    divWidth /= op.patch.cgl.pixelDensity;
+    divHeight /= op.patch.cgl.pixelDensity;
+
+    // div.style.left=divX+'px';
+    // div.style.top=divY+'px';
+    // div.style.width=divWidth+'px';
+    // div.style.height=divHeight+'px';
+
+    const divXpx = divX + "px";
+    const divYpx = divY + "px";
+    const divWidthPx = divWidth + "px";
+    const divHeightPx = divHeight + "px";
+    if (divXpx != div.style.left) div.style.left = divXpx;
+    if (divYpx != div.style.top) div.style.top = divYpx;
+    if (div.style.width != divWidthPx) div.style.width = divWidthPx;
+    if (div.style.height != divHeightPx) div.style.height = divHeightPx;
+}
+
+function updateClassNames()
+{
+    if (div)
+    {
+        div.className = classPort.get();
+    }
+}
+
+op.onDelete = function ()
+{
+    if (div)div.remove();
+};
+
+function setUpDiv()
+{
+    if (!div)
+    {
+        div = document.createElement("div");
+        div.dataset.op = op.id;
+        div.oncontextmenu = function (e)
+        {
+            e.preventDefault();
+        };
+
+        div.style.padding = "0px";
+        div.style.position = "absolute";
+        div.style["box-sizing"] = "border-box";
+        div.style.border = "1px solid red";
+        // div.style['border-left']="1px solid blue";
+        // div.style['border-top']="1px solid green";
+        div.style["z-index"] = "500";
+
+        div.style["-webkit-user-select"] = "none";
+        div.style["user-select"] = "none";
+        div.style["-webkit-tap-highlight-color"] = "rgba(0,0,0,0)";
+        div.style["-webkit-touch-callout"] = "none";
+
+        const canvas = op.patch.cgl.canvas.parentElement;
+        canvas.appendChild(div);
+        updateCursor();
+        updateIsInteractive();
+        updateId();
+        updateClassNames();
+    }
+    updateDivSize();
+    elementPort.set(div);
+}
+
+let listenerElement = null;
+
+function onMouseMove(e)
+{
+    const offsetX = -width.get() / 2;
+    const offsetY = -height.get() / 2;
+
+    outX.set(Math.max(0.0, Math.min(1.0, e.offsetX / divWidth)));
+    outY.set(Math.max(0.0, Math.min(1.0, 1.0 - e.offsetY / divHeight)));
+}
+
+function onMouseLeave(e)
+{
+    mouseDown.set(false);
+    mouseOver.set(false);
+}
+
+function onMouseEnter(e)
+{
+    mouseOver.set(true);
+}
+
+function onMouseDown(e)
+{
+    mouseDown.set(true);
+}
+
+function onMouseUp(e)
+{
+    mouseDown.set(false);
+}
+
+function onmouseclick(e)
+{
+    mouseClick.trigger();
+}
+
+function onTouchMove(e)
+{
+    const targetEle = document.elementFromPoint(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
+
+    if (targetEle == div)
+    {
+        mouseOver.set(true);
+        if (e.touches && e.touches.length > 0)
+        {
+            const rect = div.getBoundingClientRect(); // e.target
+            const x = e.targetTouches[0].pageX - rect.left;
+            const y = e.targetTouches[0].pageY - rect.top;
+
+            const touch = e.touches[0];
+
+            outX.set(Math.max(0.0, Math.min(1.0, x / divWidth)));
+            outY.set(Math.max(0.0, Math.min(1.0, 1.0 - y / divHeight)));
+
+            onMouseMove(touch);
+        }
+    }
+    else
+    {
+        mouseOver.set(false);
+    }
+}
+
+active.onChange = updateActiveRender;
+function updateActiveRender()
+{
+    if (active.get())
+    {
+        addListeners();
+        if (div) div.style.display = "block";
+    }
+    else
+    {
+        removeListeners();
+        if (div) div.style.display = "none";
+    }
+}
+
+isInteractive.onChange = updateIsInteractive;
+function updateIsInteractive()
+{
+    if (isInteractive.get())
+    {
+        addListeners();
+        if (div)div.style["pointer-events"] = "initial";
+    }
+    else
+    {
+        removeListeners();
+        mouseDown.set(false);
+        mouseOver.set(false);
+        if (div)div.style["pointer-events"] = "none";
+    }
+}
+
+function removeListeners()
+{
+    if (listenerElement)
+    {
+        document.removeEventListener("touchmove", onTouchMove);
+        listenerElement.removeEventListener("touchend", onMouseUp);
+        listenerElement.removeEventListener("touchstart", onMouseDown);
+
+        listenerElement.removeEventListener("click", onmouseclick);
+        listenerElement.removeEventListener("mousemove", onMouseMove);
+        listenerElement.removeEventListener("mouseleave", onMouseLeave);
+        listenerElement.removeEventListener("mousedown", onMouseDown);
+        listenerElement.removeEventListener("mouseup", onMouseUp);
+        listenerElement.removeEventListener("mouseenter", onMouseEnter);
+        // listenerElement.removeEventListener('contextmenu', onClickRight);
+        listenerElement = null;
+    }
+}
+
+function addListeners()
+{
+    if (listenerElement)removeListeners();
+
+    listenerElement = div;
+
+    if (listenerElement)
+    {
+        document.addEventListener("touchmove", onTouchMove);
+        listenerElement.addEventListener("touchend", onMouseUp);
+        listenerElement.addEventListener("touchstart", onMouseDown);
+
+        listenerElement.addEventListener("click", onmouseclick);
+        listenerElement.addEventListener("mousemove", onMouseMove);
+        listenerElement.addEventListener("mouseleave", onMouseLeave);
+        listenerElement.addEventListener("mousedown", onMouseDown);
+        listenerElement.addEventListener("mouseup", onMouseUp);
+        listenerElement.addEventListener("mouseenter", onMouseEnter);
+        // listenerElement.addEventListener('contextmenu', onClickRight);
+    }
+}
+
+
+};
+
+Ops.Gl.InteractiveRectangle_v2.prototype = new CABLES.Op();
+CABLES.OPS["334728ca-60a2-4a42-a059-d9b5f3fe4d32"]={f:Ops.Gl.InteractiveRectangle_v2,objName:"Ops.Gl.InteractiveRectangle_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.String.Concat_v2
+// 
+// **************************************************************
+
+Ops.String.Concat_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    string1 = op.inString("string1", "ABC"),
+    string2 = op.inString("string2", "XYZ"),
+    newLine = op.inValueBool("New Line", false),
+    active = op.inBool("Active", true),
+    result = op.outString("result");
+
+newLine.onChange =
+    string2.onChange =
+    string1.onChange =
+    active.onChange = exec;
+
+exec();
+
+function exec()
+{
+    if (!active.get())
+    {
+        return result.set(string1.get());
+    }
+    let s1 = string1.get();
+    let s2 = string2.get();
+    if (!s1 && !s2)
+    {
+        result.set("");
+        return;
+    }
+    if (!s1)s1 = "";
+    if (!s2)s2 = "";
+
+    let nl = "";
+    if (s1 && s2 && newLine.get())nl = "\n";
+    result.set(String(s1) + nl + String(s2));
+}
+
+
+};
+
+Ops.String.Concat_v2.prototype = new CABLES.Op();
+CABLES.OPS["a52722aa-0ca9-402c-a844-b7e98a6c6e60"]={f:Ops.String.Concat_v2,objName:"Ops.String.Concat_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PW10J0o.Element
+// 
+// **************************************************************
+
+Ops.Patch.PW10J0o.Element = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inText = op.inString("Text", "Hello Div"),
+    inPos = op.inSwitch("Position", ["Absolute", "Static", "Relative", "Fixed"], "Absolute"),
+    inInteractive = op.inValueBool("Interactive", false),
+
+    inSetSize = op.inValueBool("Set Size", true),
+    inWidth = op.inFloat("Width", 100),
+    inHeight = op.inFloat("Height", 100),
+    inOverflow = op.inSwitch("Overflow", ["Visible", "Hidden", "Scroll", "Auto"], "Hidden"),
+
+    inStyle = op.inStringEditor("Inline Style", "", "inline-css"),
+    inClass = op.inString("CSS Class"),
+    inBlacklist = op.inString("Disable CSS Props"),
+
+    inDisplay = op.inDropDown("Display", ["None", "Block", "Inline", "inline-block", "flex", "inline-flex", "grid", "inline-grid", "flow-root"], "Block"),
+    inOpacity = op.inFloatSlider("Opacity", 1),
+    inPropagation = op.inValueBool("Propagate Click-Events", true),
+
+    outElement = op.outObject("DOM Element", null, "element"),
+    outHover = op.outBoolNum("Hovering"),
+    outClicked = op.outTrigger("Clicked");
+
+op.setPortGroup("Area", [inWidth, inHeight, inSetSize, inOverflow]);
+op.setPortGroup("CSS", [inClass, inStyle, inBlacklist]);
+
+let listenerElement = null;
+let oldStr = null;
+let prevDisplay = "block";
+let div = null;
+
+const canvas = op.patch.cgl.canvas.parentElement;
+
+createElement();
+
+inClass.onChange = updateClass;
+inText.onChange = updateText;
+
+inDisplay.onChange =
+    inOpacity.onChange =
+    inPos.onChange =
+    inWidth.onChange =
+    inHeight.onChange =
+    inOverflow.onChange =
+    inSetSize.onChange =
+    inHeight.onChange =
+    inStyle.onChange = updateStyle;
+
+inInteractive.onChange = updateInteractive;
+
+updateText();
+updateStyle();
+warning();
+updateInteractive();
+
+let oldClassesStr = "";
+op.onDelete = removeElement;
+
+outElement.onLinkChanged = updateStyle;
+
+inInteractive.onLinkChanged =
+outClicked.onLinkChanged = () =>
+{
+    op.setUiError("interactiveProblem", null);
+    if (outClicked.isLinked() && !inInteractive.get() && !inInteractive.isLinked())
+        op.setUiError("interactiveProblem", "Interactive should be activated when linking clicked port");
+};
+
+function createElement()
+{
+    div = op.patch.getDocument().createElement("div");
+    div.dataset.op = op.id;
+    div.classList.add("cablesEle");
+
+    canvas.appendChild(div);
+    outElement.set(div);
+}
+
+function removeElement()
+{
+    if (div) removeClasses();
+    if (div && div.parentNode) div.parentNode.removeChild(div);
+    oldStr = null;
+    div = null;
+}
+
+function updateText()
+{
+    let str = inText.get();
+
+    if (oldStr === str) return;
+    oldStr = str;
+
+    if (div.innerHTML != str) div.innerHTML = str;
+    outElement.set(null);
+    outElement.set(div);
+}
+
+function updateStyle()
+{
+    if (!div) return;
+
+    div.setAttribute("style", inStyle.get());
+    div.style.opacity = inOpacity.get();
+    div.style.position = inPos.get().toLowerCase();
+
+    div.style.overflow = inOverflow.get().toLowerCase();
+    div.style.display = inDisplay.get();
+
+    if (inSetSize.get())
+    {
+        div.style.width = inWidth.get() + "px";
+        div.style.height = inHeight.get() + "px";
+    }
+    else
+    {
+        div.style.width = "";
+        div.style.height = "";
+    }
+
+    outElement.setRef(div);
+
+    if (!div.parentElement) canvas.appendChild(div);
+
+    warning();
+}
+
+function removeClasses()
+{
+    if (!div) return;
+
+    const classes = (inClass.get() || "").split(" ");
+    for (let i = 0; i < classes.length; i++)
+    {
+        if (classes[i]) div.classList.remove(classes[i]);
+    }
+    oldClassesStr = "";
+}
+
+function updateClass()
+{
+    const classes = (inClass.get() || "").split(" ");
+    const oldClasses = (oldClassesStr || "").split(" ");
+
+    let found = false;
+
+    for (let i = 0; i < oldClasses.length; i++)
+    {
+        if (
+            oldClasses[i] &&
+            classes.indexOf(oldClasses[i].trim()) == -1)
+        {
+            found = true;
+            div.classList.remove(oldClasses[i]);
+        }
+    }
+
+    for (let i = 0; i < classes.length; i++)
+    {
+        if (classes[i])
+        {
+            div.classList.add(classes[i].trim());
+        }
+    }
+
+    oldClassesStr = inClass.get();
+    warning();
+}
+
+function onMouseEnter(e)
+{
+    outHover.set(true);
+}
+
+function onMouseLeave(e)
+{
+    outHover.set(false);
+}
+
+function onMouseClick(e)
+{
+    if (!inPropagation.get()) e.stopPropagation();
+    outClicked.trigger();
+}
+
+function updateInteractive()
+{
+    op.setUiError("interactiveProblem", null);
+
+    removeListeners();
+    if (inInteractive.get()) addListeners();
+}
+
+function removeListeners()
+{
+    if (listenerElement)
+    {
+        listenerElement.removeEventListener("pointerdown", onMouseClick);
+        listenerElement.removeEventListener("pointerleave", onMouseLeave);
+        listenerElement.removeEventListener("pointerenter", onMouseEnter);
+        listenerElement = null;
+    }
+}
+
+function addListeners()
+{
+    if (listenerElement)removeListeners();
+
+    listenerElement = div;
+
+    if (listenerElement)
+    {
+        listenerElement.addEventListener("pointerdown", onMouseClick);
+        listenerElement.addEventListener("pointerleave", onMouseLeave);
+        listenerElement.addEventListener("pointerenter", onMouseEnter);
+    }
+}
+
+op.addEventListener("onEnabledChange", (enabled) =>
+{
+    removeElement();
+    if (!enabled) return;
+
+    createElement();
+    updateStyle();
+    updateClass();
+    updateText();
+    updateInteractive();
+});
+
+function warning()
+{
+    if (inClass.get() && inStyle.get())
+    {
+        op.setUiError("error", "Element uses external and inline CSS", 1);
+    }
+    else
+    {
+        op.setUiError("error", null);
+    }
+}
+
+
+};
+
+Ops.Patch.PW10J0o.Element.prototype = new CABLES.Op();
+CABLES.OPS["aec4480c-50b0-4612-8619-94a8f4c909aa"]={f:Ops.Patch.PW10J0o.Element,objName:"Ops.Patch.PW10J0o.Element"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Vars.VarGetString
+// 
+// **************************************************************
+
+Ops.Vars.VarGetString = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+var val=op.outString("Value");
+op.varName=op.inValueSelect("Variable",[],"",true);
+
+new CABLES.VarGetOpWrapper(op,"string",op.varName,val);
+
+
+};
+
+Ops.Vars.VarGetString.prototype = new CABLES.Op();
+CABLES.OPS["3ad08cfc-bce6-4175-9746-fef2817a3b12"]={f:Ops.Vars.VarGetString,objName:"Ops.Vars.VarGetString"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Html.TransformCSS3DElement
+// 
+// **************************************************************
+
+Ops.Html.TransformCSS3DElement = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    cgl = op.patch.cgl,
+    origins = [
+	    "top-left", "top-middle", "top-right",
+	    "center-left", "center-middle", "center-right",
+	    "bottom-left", "bottom-middle", "bottom-right"
+    ],
+    trigger = op.inTrigger("trigger"),
+    inElement = op.inObject("DOMElement"),
+    inOrigin = op.inValueSelect("origin", origins, "center-middle"),
+    next = op.outTrigger("next"),
+    sCSSMatrix = mat4.create(),
+    sScalingVector = vec3.create();
+op.uuid = CABLES.uuid();
+let oldEle = null;
+
+let elProjection = cgl.canvas.parentElement.querySelector("[data-provide=\"css3d\"]");
+if (!elProjection)
+{
+    elProjection = document.createElement("div");
+    elProjection.dataset.op = op.id;
+    elProjection.style.position = "absolute";
+    elProjection.style.top = elProjection.style.left = 0;
+    elProjection.style.width = elProjection.style.height = "100%";
+    elProjection.dataset.provide = "css3d";
+    elProjection.style.zIndex = 1000;
+    elProjection.style.pointerEvents = "none";
+    elProjection.style.perspectiveOrigin = "center center";
+    cgl.canvas.parentElement.appendChild(elProjection);
+
+    let style = document.createElement("style");
+    style.dataset.op = op.id;
+    style.type = "text/css";
+    style.textContent = [
+	    ".cables-loading .cables-css3dview {visibility:hidden;pointer-events:none;backface-visibility:hidden;}",
+	    ".cables-css3dview {position:absolute;left:0;top:0;width:100%;height:100%;transform-style:preserve-3d;}",
+        ".cables-css3dview > * {pointer-events:auto;}",
+        ".cables-css3dview.origin-top-left > * {}",
+        ".cables-css3dview.origin-top-middle > * {transform:translate3d(-50%,0,0);}",
+        ".cables-css3dview.origin-top-right > * {transform:translate3d(-100%,0,0);}",
+        ".cables-css3dview.origin-center-left > * {transform:translate3d(0,-50%,0);}",
+        ".cables-css3dview.origin-center-middle > * {transform:translate3d(-50%,-50%,0);}",
+        ".cables-css3dview.origin-center-right > * {transform:translate3d(-100%,-50%,0);}",
+        ".cables-css3dview.origin-bottom-left > * {transform:translate3d(0,-100%,0);}",
+        ".cables-css3dview.origin-bottom-middle > * {transform:translate3d(-50%,-100%,0);}",
+        ".cables-css3dview.origin-bottom-right > * {transform:translate3d(-100%,-100%,0);}"
+    ].join("\n");
+    elProjection.appendChild(style);
+}
+
+op.onDelete = function ()
+{
+    let el = elProjection.querySelector("[data-ccs3did=\"" + op.uuid + "\"]");
+    if (el && el.parentElement) el.parentElement.removeChild(el);
+};
+
+function wrap(el)
+{
+    let view = document.createElement("div");
+    view.classList.add("cables-css3dview");
+    view.dataset.css3did = op.uuid;
+    view.appendChild(el);
+    return view;
+}
+
+inElement.onChange = function (self, el)
+{
+    op.onDelete();
+    if (!el) return;
+    elProjection.appendChild(wrap(el));
+    inOrigin.onChange();
+};
+inOrigin.onChange = function ()
+{
+    let el = inElement.get();
+    if (!el || !el.parentElement) return;
+    DOMTokenList.prototype.remove.apply(el.parentElement.classList, origins.map(function (o) { return "origin-" + o; }));
+    el.parentElement.classList.add("origin-" + inOrigin.get());
+};
+trigger.onTriggered = function ()
+{
+    let pxfov = 0.5 / (1 / cgl.pMatrix[5]) * cgl.gl.drawingBufferHeight / op.patch.cgl.pixelDensity;
+    elProjection.style.perspective = pxfov + "px";
+    let a = -2 * cgl.gl.drawingBufferWidth / cgl.gl.drawingBufferHeight;
+    vec3.set(
+        sScalingVector,
+        a / cgl.gl.drawingBufferWidth * op.patch.cgl.pixelDensity,
+        -2 / cgl.gl.drawingBufferHeight * op.patch.cgl.pixelDensity,
+        1
+    );
+    let el = inElement.get();
+    if (el)
+    {
+        mat4.multiply(
+            sCSSMatrix,
+            cgl.vMatrix,
+            cgl.mMatrix
+        );
+        mat4.scale(
+            sCSSMatrix,
+            sCSSMatrix,
+            sScalingVector
+        );
+
+        if (el.parentElement)
+    		el.parentElement.style.transform = "translateZ(" + pxfov + "px) matrix3d(" +
+    			sCSSMatrix[0] + "," +
+    			-sCSSMatrix[1] + "," +
+    			sCSSMatrix[2] + "," +
+    			sCSSMatrix[3] + "," +
+
+    			sCSSMatrix[4] + "," +
+    			-sCSSMatrix[5] + "," +
+    			sCSSMatrix[6] + "," +
+    			sCSSMatrix[7] + "," +
+
+    			sCSSMatrix[8] + "," +
+    			-sCSSMatrix[9] + "," +
+    			sCSSMatrix[10] + "," +
+    			sCSSMatrix[11] + "," +
+
+    			sCSSMatrix[12] + "," +
+    			-sCSSMatrix[13] + "," +
+    			sCSSMatrix[14] + "," +
+    			sCSSMatrix[15] +
+    		") scaleX(-1) translate3d(" +
+    			cgl.gl.drawingBufferWidth / 2 / op.patch.cgl.pixelDensity + "px," +
+    			cgl.gl.drawingBufferHeight / 2 / op.patch.cgl.pixelDensity + "px" +
+    			",0" +
+    		")";
+    }
+    next.trigger();
+    oldEle = el;
+};
+inOrigin.onChange();
+
+function removeProperties(el)
+{
+    if (!el)el = inElement.get();
+    if (el && el.parentElement)el.parentElement.style.transform = "";
+}
+
+op.onDelete = function ()
+{
+    removeProperties(oldEle);
+};
+
+inElement.onLinkChanged = function ()
+{
+    if (!inElement.isLinked())
+        removeProperties(oldEle);
+};
+
+op.addEventListener("onEnabledChange", function (enabled)
+{
+    if (!enabled) removeProperties();
+});
+
+
+};
+
+Ops.Html.TransformCSS3DElement.prototype = new CABLES.Op();
+CABLES.OPS["7b81ed97-6fb9-4044-a731-962a2a11db27"]={f:Ops.Html.TransformCSS3DElement,objName:"Ops.Html.TransformCSS3DElement"};
 
 
 
@@ -33486,85 +36086,6 @@ CABLES.OPS["41eec5c7-c480-477a-be81-04c3efac8357"]={f:Ops.Gl.RenderToTexture_v3,
 
 // **************************************************************
 // 
-// Ops.Boolean.And
-// 
-// **************************************************************
-
-Ops.Boolean.And = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    bool0 = op.inValueBool("bool 1"),
-    bool1 = op.inValueBool("bool 2"),
-    result = op.outBoolNum("result");
-
-bool0.onChange =
-bool1.onChange = exec;
-
-function exec()
-{
-    result.set(bool1.get() && bool0.get());
-}
-
-
-};
-
-Ops.Boolean.And.prototype = new CABLES.Op();
-CABLES.OPS["c26e6ce0-8047-44bb-9bc8-5a4f911ed8ad"]={f:Ops.Boolean.And,objName:"Ops.Boolean.And"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.String.StringContains_v2
-// 
-// **************************************************************
-
-Ops.String.StringContains_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inStr = op.inString("String"),
-    inValue = op.inString("SearchValue"),
-    outFound = op.outBoolNum("Found", false),
-    outIndex = op.outNumber("Index", -1);
-
-inValue.onChange =
-    inStr.onChange = exec;
-
-exec();
-
-function exec()
-{
-    if (inStr.get() && inValue.get() && inValue.get().length > 0)
-    {
-        const index = inStr.get().indexOf(inValue.get());
-        outIndex.set(index);
-        outFound.set(index > -1);
-    }
-    else
-    {
-        outIndex.set(-1);
-        outFound.set(false);
-    }
-}
-
-
-};
-
-Ops.String.StringContains_v2.prototype = new CABLES.Op();
-CABLES.OPS["2ca3e5d7-e6b4-46a7-8381-3fe1ad8b6879"]={f:Ops.String.StringContains_v2,objName:"Ops.String.StringContains_v2"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Gl.GLTF.GltfDracoCompression
 // 
 // **************************************************************
@@ -34458,137 +36979,6 @@ render.onTriggered=function()
 
 Ops.Gl.Matrix.TranslateView.prototype = new CABLES.Op();
 CABLES.OPS["b15472e2-b895-4dde-95c3-239fa5e08afc"]={f:Ops.Gl.Matrix.TranslateView,objName:"Ops.Gl.Matrix.TranslateView"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Data.Compose.Object.CompObject
-// 
-// **************************************************************
-
-Ops.Data.Compose.Object.CompObject = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    update = op.inTrigger("Update"),
-    next = op.outTrigger("Next"),
-    outArr = op.outObject("Result");
-
-update.onTriggered = () =>
-{
-    op.patch.frameStore.compObject = op.patch.frameStore.compObject || [];
-
-    let obj = {};
-    op.patch.frameStore.compObject.push(obj);
-    next.trigger();
-
-    outArr.setRef(op.patch.frameStore.compObject.pop());
-};
-
-
-};
-
-Ops.Data.Compose.Object.CompObject.prototype = new CABLES.Op();
-CABLES.OPS["c85b449b-fb4e-40b3-928e-5eea6a5d0ebc"]={f:Ops.Data.Compose.Object.CompObject,objName:"Ops.Data.Compose.Object.CompObject"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Data.Compose.Object.CompObjectSetString
-// 
-// **************************************************************
-
-Ops.Data.Compose.Object.CompObjectSetString = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    update = op.inTrigger("Update"),
-    inKey = op.inString("Key", ""),
-    inStr = op.inString("String", ""),
-    next = op.outTrigger("Next");
-
-op.setUiAttrib({ "extendTitlePort": inKey.name });
-inKey.setUiAttribs({ "stringTrim": true, "minLength": 1 });
-
-update.onTriggered = () =>
-{
-    if (op.patch.frameStore.compObject && op.patch.frameStore.compObject.length > 0)
-    {
-        let obj = op.patch.frameStore.compObject[op.patch.frameStore.compObject.length - 1];
-        obj[inKey.get()] = inStr.get();
-    }
-    next.trigger();
-};
-
-
-};
-
-Ops.Data.Compose.Object.CompObjectSetString.prototype = new CABLES.Op();
-CABLES.OPS["b5a24d4c-4b1d-44c7-b6ef-a38cc71b9ad1"]={f:Ops.Data.Compose.Object.CompObjectSetString,objName:"Ops.Data.Compose.Object.CompObjectSetString"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Json.ObjectGetString
-// 
-// **************************************************************
-
-Ops.Json.ObjectGetString = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    data = op.inObject("data"),
-    key = op.inString("Key"),
-    result = op.outString("Result");
-
-result.ignoreValueSerialize = true;
-data.ignoreValueSerialize = true;
-
-op.setUiAttrib({ "extendTitlePort": key.name });
-key.setUiAttribs({ "stringTrim": true });
-
-key.onChange =
-data.onChange = exec;
-
-function exec()
-{
-    if (data.get())
-    {
-        const value = data.get()[key.get()];
-        const isNull = value === undefined || value === null;
-
-        if (isNull)
-        {
-            result.setRef(null);
-        }
-        else
-        {
-            result.set(String(value));
-        }
-    }
-    else
-    {
-        result.setRef(null);
-    }
-}
-
-
-};
-
-Ops.Json.ObjectGetString.prototype = new CABLES.Op();
-CABLES.OPS["7d86cd28-f7d8-44a1-a4da-466c4782aaec"]={f:Ops.Json.ObjectGetString,objName:"Ops.Json.ObjectGetString"};
 
 
 
@@ -36473,11 +38863,11 @@ CABLES.OPS["f069c0db-4051-4eae-989e-6ef7953787fd"]={f:Ops.Devices.Keyboard.KeyPr
 
 // **************************************************************
 // 
-// Ops.Patch.P4oPpSn.Console_v2
+// Ops.Patch.PW10J0o.Console_v2
 // 
 // **************************************************************
 
-Ops.Patch.P4oPpSn.Console_v2 = function()
+Ops.Patch.PW10J0o.Console_v2 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
@@ -36573,8 +38963,8 @@ inClear.onTriggered = () =>
 
 };
 
-Ops.Patch.P4oPpSn.Console_v2.prototype = new CABLES.Op();
-CABLES.OPS["3f85890a-135b-4c46-87f7-d1fb23233ce0"]={f:Ops.Patch.P4oPpSn.Console_v2,objName:"Ops.Patch.P4oPpSn.Console_v2"};
+Ops.Patch.PW10J0o.Console_v2.prototype = new CABLES.Op();
+CABLES.OPS["7e012b23-159b-43f8-be43-41c4d878a90d"]={f:Ops.Patch.PW10J0o.Console_v2,objName:"Ops.Patch.PW10J0o.Console_v2"};
 
 
 
@@ -36879,11 +39269,11 @@ CABLES.OPS["af2eeaaf-ff86-4bfb-9a27-42f05160a5d8"]={f:Ops.Ui.VizArrayTable,objNa
 
 // **************************************************************
 // 
-// Ops.Patch.P4oPpSn.ArrayOfSrvbValuesFromMap
+// Ops.Patch.PW10J0o.ArrayOfSrvbValuesFromMap
 // 
 // **************************************************************
 
-Ops.Patch.P4oPpSn.ArrayOfSrvbValuesFromMap = function()
+Ops.Patch.PW10J0o.ArrayOfSrvbValuesFromMap = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
@@ -36917,8 +39307,8 @@ srcObj.onChange = () =>
 
 };
 
-Ops.Patch.P4oPpSn.ArrayOfSrvbValuesFromMap.prototype = new CABLES.Op();
-CABLES.OPS["fc20a052-42d2-4b6e-aa8d-3ff68d9abf5e"]={f:Ops.Patch.P4oPpSn.ArrayOfSrvbValuesFromMap,objName:"Ops.Patch.P4oPpSn.ArrayOfSrvbValuesFromMap"};
+Ops.Patch.PW10J0o.ArrayOfSrvbValuesFromMap.prototype = new CABLES.Op();
+CABLES.OPS["5d8ea53d-8aa5-4573-9cf3-41ed9f6d05e9"]={f:Ops.Patch.PW10J0o.ArrayOfSrvbValuesFromMap,objName:"Ops.Patch.PW10J0o.ArrayOfSrvbValuesFromMap"};
 
 
 
@@ -37035,38 +39425,6 @@ op.renderVizLayer = (ctx, layer, viz) =>
 
 Ops.Ui.VizObject.prototype = new CABLES.Op();
 CABLES.OPS["d09bc53e-9f52-4872-94c7-4ef777512222"]={f:Ops.Ui.VizObject,objName:"Ops.Ui.VizObject"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.String.StringEquals
-// 
-// **************************************************************
-
-Ops.String.StringEquals = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    str1 = op.inString("String 1"),
-    str2 = op.inString("String 2"),
-    result = op.outBoolNum("Result");
-
-str1.onChange =
-str2.onChange =
-    function ()
-    {
-        result.set(str1.get() == str2.get());
-    };
-
-
-};
-
-Ops.String.StringEquals.prototype = new CABLES.Op();
-CABLES.OPS["ef15195a-760b-4ac5-9630-322b0ba7b722"]={f:Ops.String.StringEquals,objName:"Ops.String.StringEquals"};
 
 
 
@@ -37478,39 +39836,6 @@ CABLES.OPS["2ce8a4d3-37d3-4cdc-abd1-a560fbe841ee"]={f:Ops.Json.ParseObject_v2,ob
 
 // **************************************************************
 // 
-// Ops.Trigger.TriggerOnChangeString
-// 
-// **************************************************************
-
-Ops.Trigger.TriggerOnChangeString = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inval = op.inString("String"),
-    next = op.outTrigger("Changed"),
-    outStr = op.outString("Result");
-
-outStr.ignoreValueSerialize = true;
-
-inval.onChange = function ()
-{
-    outStr.set(inval.get());
-    next.trigger();
-};
-
-
-};
-
-Ops.Trigger.TriggerOnChangeString.prototype = new CABLES.Op();
-CABLES.OPS["319d07e0-5cbe-4bc1-89fb-a934fd41b0c4"]={f:Ops.Trigger.TriggerOnChangeString,objName:"Ops.Trigger.TriggerOnChangeString"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Gl.FontMSDF_v2
 // 
 // **************************************************************
@@ -37708,89 +40033,6 @@ CABLES.OPS["6cbd5d67-25d5-4936-a2ad-3ee8ed478570"]={f:Ops.Gl.FontMSDF_v2,objName
 
 // **************************************************************
 // 
-// Ops.Boolean.BoolByTrigger
-// 
-// **************************************************************
-
-Ops.Boolean.BoolByTrigger = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inTriggerTrue = op.inTriggerButton("True"),
-    inTriggerFalse = op.inTriggerButton("false"),
-    outResult = op.outBoolNum("Result");
-
-inTriggerTrue.onTriggered = function ()
-{
-    outResult.set(true);
-};
-
-inTriggerFalse.onTriggered = function ()
-{
-    outResult.set(false);
-};
-
-
-};
-
-Ops.Boolean.BoolByTrigger.prototype = new CABLES.Op();
-CABLES.OPS["31f65abe-9d6c-4ba6-a291-ef2de41d2087"]={f:Ops.Boolean.BoolByTrigger,objName:"Ops.Boolean.BoolByTrigger"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.String.FilterValidString
-// 
-// **************************************************************
-
-Ops.String.FilterValidString = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inStr = op.inString("String", ""),
-    checkNull = op.inBool("Invalid if null", true),
-    checkUndefined = op.inBool("Invalid if undefined", true),
-    checkEmpty = op.inBool("Invalid if empty", true),
-    checkZero = op.inBool("Invalid if 0", true),
-    outStr = op.outString("Last Valid String"),
-    result = op.outBoolNum("Is Valid");
-
-inStr.onChange =
-checkNull.onChange =
-checkUndefined.onChange =
-checkEmpty.onChange =
-function ()
-{
-    const str = inStr.get();
-    let r = true;
-
-    if (r === false)r = false;
-    if (r && checkZero.get() && (str === 0 || str === "0")) r = false;
-    if (r && checkNull.get() && str === null) r = false;
-    if (r && checkUndefined.get() && str === undefined) r = false;
-    if (r && checkEmpty.get() && str === "") r = false;
-
-    result.set(r);
-    if (r)outStr.set(str);
-};
-
-
-};
-
-Ops.String.FilterValidString.prototype = new CABLES.Op();
-CABLES.OPS["a522235d-f220-46ea-bc26-13a5b20ec8c6"]={f:Ops.String.FilterValidString,objName:"Ops.String.FilterValidString"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Json.SwitchObject
 // 
 // **************************************************************
@@ -37879,6 +40121,54 @@ function update()
 
 Ops.Json.FilterValidObject.prototype = new CABLES.Op();
 CABLES.OPS["a851cddb-74e5-41e7-ac75-709beae914fd"]={f:Ops.Json.FilterValidObject,objName:"Ops.Json.FilterValidObject"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.String.FilterValidString
+// 
+// **************************************************************
+
+Ops.String.FilterValidString = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inStr = op.inString("String", ""),
+    checkNull = op.inBool("Invalid if null", true),
+    checkUndefined = op.inBool("Invalid if undefined", true),
+    checkEmpty = op.inBool("Invalid if empty", true),
+    checkZero = op.inBool("Invalid if 0", true),
+    outStr = op.outString("Last Valid String"),
+    result = op.outBoolNum("Is Valid");
+
+inStr.onChange =
+checkNull.onChange =
+checkUndefined.onChange =
+checkEmpty.onChange =
+function ()
+{
+    const str = inStr.get();
+    let r = true;
+
+    if (r === false)r = false;
+    if (r && checkZero.get() && (str === 0 || str === "0")) r = false;
+    if (r && checkNull.get() && str === null) r = false;
+    if (r && checkUndefined.get() && str === undefined) r = false;
+    if (r && checkEmpty.get() && str === "") r = false;
+
+    result.set(r);
+    if (r)outStr.set(str);
+};
+
+
+};
+
+Ops.String.FilterValidString.prototype = new CABLES.Op();
+CABLES.OPS["a522235d-f220-46ea-bc26-13a5b20ec8c6"]={f:Ops.String.FilterValidString,objName:"Ops.String.FilterValidString"};
 
 
 
@@ -38330,31 +40620,6 @@ CABLES.OPS["4ea2d7b0-ca74-45db-962b-4d1965ac20c0"]={f:Ops.Ui.VizTexture,objName:
 
 // **************************************************************
 // 
-// Ops.Vars.VarGetTexture_v2
-// 
-// **************************************************************
-
-Ops.Vars.VarGetTexture_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const val = op.outTexture("Value");
-op.varName = op.inValueSelect("Variable", [], "", true);
-
-new CABLES.VarGetOpWrapper(op, "object", op.varName, val);
-
-
-};
-
-Ops.Vars.VarGetTexture_v2.prototype = new CABLES.Op();
-CABLES.OPS["5f8ce5fc-9787-45c9-9a83-0eebd2c6de15"]={f:Ops.Vars.VarGetTexture_v2,objName:"Ops.Vars.VarGetTexture_v2"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Json.SwitchObjectMultiPort
 // 
 // **************************************************************
@@ -38429,284 +40694,32 @@ CABLES.OPS["385197e1-8b34-4d1c-897f-d1386d99e3b3"]={f:Ops.Boolean.TriggerChanged
 
 // **************************************************************
 // 
-// Ops.Math.Delta
+// Ops.String.StringEquals
 // 
 // **************************************************************
 
-Ops.Math.Delta = function()
+Ops.String.StringEquals = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
 const attachments=op.attachments={};
 const
-    val = op.inValue("Value"),
-    changeAlwaysPort = op.inValueBool("Change Always", false),
-    inReset = op.inTrigger("Reset"),
-    result = op.outNumber("Delta");
+    str1 = op.inString("String 1"),
+    str2 = op.inString("String 2"),
+    result = op.outBoolNum("Result");
 
-val.changeAlways = false;
-
-let oldVal = 0;
-let firstTime = true;
-
-changeAlwaysPort.onChange = function ()
-{
-    val.changeAlways = changeAlwaysPort.get();
-};
-
-inReset.onTriggered = function ()
-{
-    firstTime = true;
-};
-
-val.onChange = function ()
-{
-    let change = oldVal - val.get();
-    oldVal = val.get();
-    if (firstTime)
+str1.onChange =
+str2.onChange =
+    function ()
     {
-        firstTime = false;
-        return;
-    }
-    result.set(change);
-};
+        result.set(str1.get() == str2.get());
+    };
 
 
 };
 
-Ops.Math.Delta.prototype = new CABLES.Op();
-CABLES.OPS["0f203337-e13c-47ec-a09f-b309212540b0"]={f:Ops.Math.Delta,objName:"Ops.Math.Delta"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Math.Accumulator
-// 
-// **************************************************************
-
-Ops.Math.Accumulator = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    exe = op.inTrigger("Trigger in"),
-    inAddNumber = op.inValueFloat("Add to number", 0.0),
-    inMultiplier = op.inValueFloat("Multiplier to add number", 1.0),
-    inSetNumber = op.inValueFloat("Default Value", 1.0),
-    inSet = op.inTriggerButton("Set Default Value"),
-    outNumber = op.outNumber("Current value");
-
-let lastTime = performance.now();
-let currentNumber = 0.0;
-let firsttime = true;
-
-inSet.onTriggered = resetNumber;
-
-function resetNumber()
-{
-    currentNumber = inSetNumber.get();
-    outNumber.set(currentNumber);
-    firsttime = true;
-}
-
-exe.onTriggered = function ()
-{
-    if (!firsttime)
-    {
-        let diff = (performance.now() - lastTime) / 100;
-        currentNumber += inAddNumber.get() * diff * inMultiplier.get();
-        outNumber.set(currentNumber);
-    }
-    lastTime = performance.now();
-    firsttime = false;
-};
-
-
-};
-
-Ops.Math.Accumulator.prototype = new CABLES.Op();
-CABLES.OPS["460574ca-dca2-4283-8c37-57a8c446a51f"]={f:Ops.Math.Accumulator,objName:"Ops.Math.Accumulator"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Math.Clamp
-// 
-// **************************************************************
-
-Ops.Math.Clamp = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    val = op.inValueFloat("val", 0.5),
-    min = op.inValueFloat("min", 0),
-    max = op.inValueFloat("max", 1),
-    ignore = op.inValueBool("ignore outside values"),
-    result = op.outNumber("result");
-
-val.onChange = min.onChange = max.onChange = clamp;
-
-function clamp()
-{
-    if (ignore.get())
-    {
-        if (val.get() > max.get()) return;
-        if (val.get() < min.get()) return;
-    }
-    result.set(Math.min(Math.max(val.get(), min.get()), max.get()));
-}
-
-
-};
-
-Ops.Math.Clamp.prototype = new CABLES.Op();
-CABLES.OPS["cda1a98e-5e16-40bd-9b18-a67e9eaad5a1"]={f:Ops.Math.Clamp,objName:"Ops.Math.Clamp"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Math.FlipSign
-// 
-// **************************************************************
-
-Ops.Math.FlipSign = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inval = op.inValueFloat("Value", 1),
-    result = op.outNumber("Result");
-
-inval.onChange = update;
-update();
-
-function update()
-{
-    result.set(inval.get() * -1);
-}
-
-
-};
-
-Ops.Math.FlipSign.prototype = new CABLES.Op();
-CABLES.OPS["f5c858a2-2654-4108-86fe-319efa70ecec"]={f:Ops.Math.FlipSign,objName:"Ops.Math.FlipSign"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Ui.VizTrigger
-// 
-// **************************************************************
-
-Ops.Ui.VizTrigger = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inTrigger = op.inTriggerButton("Trigger"),
-    inReset = op.inTriggerButton("Reset"),
-    outCount = op.outNumber("Count");
-
-op.setUiAttrib({ "height": 100, "width": 130, "resizable": true });
-
-let lastTime = 0;
-let count = 0;
-
-inReset.onTriggered = () =>
-{
-    count = 0;
-    op.setUiAttrib({ "extendTitle": "_____" + String(count) });
-    outCount.set(count);
-};
-
-inTrigger.onTriggered = () =>
-{
-    lastTime = performance.now();
-    op.setUiAttrib({ "extendTitle": String(++count) });
-    outCount.set(count);
-};
-
-op.renderVizLayer = (ctx, layer) =>
-{
-    ctx.fillStyle = "#222";
-    ctx.fillRect(
-        layer.x, layer.y,
-        layer.width, layer.height);
-
-    let radius = Math.min(layer.height, layer.width) / 2.4 * 0.8;
-    let diff = performance.now() - lastTime;
-
-    let v = CABLES.map(diff, 0, 100, 1, 0);
-
-    ctx.globalAlpha = v + 0.3;
-    ctx.fillStyle = "#ccc";
-
-    let circle = new Path2D();
-
-    const sizeAnim = v * 6;
-    circle.arc(
-        layer.x + layer.width / 2,
-        layer.y + layer.height / 2,
-        radius - (ctx.lineWidth / 2) + (sizeAnim * 2),
-        0, 2 * Math.PI, false);
-    ctx.fill(circle);
-
-    ctx.globalAlpha = 1.0;
-};
-
-
-};
-
-Ops.Ui.VizTrigger.prototype = new CABLES.Op();
-CABLES.OPS["4533060f-3cd4-4572-ac78-dad0710a3f7a"]={f:Ops.Ui.VizTrigger,objName:"Ops.Ui.VizTrigger"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Math.Compare.LessThan
-// 
-// **************************************************************
-
-Ops.Math.Compare.LessThan = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const number1 = op.inValue("number1");
-const number2 = op.inValue("number2");
-const result = op.outBoolNum("result");
-
-op.setUiAttribs({ "mathTitle": true });
-
-number1.onChange = exec;
-number2.onChange = exec;
-exec();
-
-function exec()
-{
-    result.set(number1.get() < number2.get());
-}
-
-
-};
-
-Ops.Math.Compare.LessThan.prototype = new CABLES.Op();
-CABLES.OPS["04fd113f-ade1-43fb-99fa-f8825f8814c0"]={f:Ops.Math.Compare.LessThan,objName:"Ops.Math.Compare.LessThan"};
+Ops.String.StringEquals.prototype = new CABLES.Op();
+CABLES.OPS["ef15195a-760b-4ac5-9630-322b0ba7b722"]={f:Ops.String.StringEquals,objName:"Ops.String.StringEquals"};
 
 
 
@@ -38779,6 +40792,78 @@ op.renderVizLayer = (ctx, layer, viz) =>
 
 Ops.Ui.VizString.prototype = new CABLES.Op();
 CABLES.OPS["b4c93fde-85c6-4c7e-9962-a6463a84838b"]={f:Ops.Ui.VizString,objName:"Ops.Ui.VizString"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Ui.VizTrigger
+// 
+// **************************************************************
+
+Ops.Ui.VizTrigger = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inTrigger = op.inTriggerButton("Trigger"),
+    inReset = op.inTriggerButton("Reset"),
+    outCount = op.outNumber("Count");
+
+op.setUiAttrib({ "height": 100, "width": 130, "resizable": true });
+
+let lastTime = 0;
+let count = 0;
+
+inReset.onTriggered = () =>
+{
+    count = 0;
+    op.setUiAttrib({ "extendTitle": "_____" + String(count) });
+    outCount.set(count);
+};
+
+inTrigger.onTriggered = () =>
+{
+    lastTime = performance.now();
+    op.setUiAttrib({ "extendTitle": String(++count) });
+    outCount.set(count);
+};
+
+op.renderVizLayer = (ctx, layer) =>
+{
+    ctx.fillStyle = "#222";
+    ctx.fillRect(
+        layer.x, layer.y,
+        layer.width, layer.height);
+
+    let radius = Math.min(layer.height, layer.width) / 2.4 * 0.8;
+    let diff = performance.now() - lastTime;
+
+    let v = CABLES.map(diff, 0, 100, 1, 0);
+
+    ctx.globalAlpha = v + 0.3;
+    ctx.fillStyle = "#ccc";
+
+    let circle = new Path2D();
+
+    const sizeAnim = v * 6;
+    circle.arc(
+        layer.x + layer.width / 2,
+        layer.y + layer.height / 2,
+        radius - (ctx.lineWidth / 2) + (sizeAnim * 2),
+        0, 2 * Math.PI, false);
+    ctx.fill(circle);
+
+    ctx.globalAlpha = 1.0;
+};
+
+
+};
+
+Ops.Ui.VizTrigger.prototype = new CABLES.Op();
+CABLES.OPS["4533060f-3cd4-4572-ac78-dad0710a3f7a"]={f:Ops.Ui.VizTrigger,objName:"Ops.Ui.VizTrigger"};
 
 
 
@@ -39160,6 +41245,59 @@ CABLES.OPS["2617b407-60a0-4ff6-b4a7-18136cfa7817"]={f:Ops.Math.MapRange,objName:
 
 // **************************************************************
 // 
+// Ops.Math.Accumulator
+// 
+// **************************************************************
+
+Ops.Math.Accumulator = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    exe = op.inTrigger("Trigger in"),
+    inAddNumber = op.inValueFloat("Add to number", 0.0),
+    inMultiplier = op.inValueFloat("Multiplier to add number", 1.0),
+    inSetNumber = op.inValueFloat("Default Value", 1.0),
+    inSet = op.inTriggerButton("Set Default Value"),
+    outNumber = op.outNumber("Current value");
+
+let lastTime = performance.now();
+let currentNumber = 0.0;
+let firsttime = true;
+
+inSet.onTriggered = resetNumber;
+
+function resetNumber()
+{
+    currentNumber = inSetNumber.get();
+    outNumber.set(currentNumber);
+    firsttime = true;
+}
+
+exe.onTriggered = function ()
+{
+    if (!firsttime)
+    {
+        let diff = (performance.now() - lastTime) / 100;
+        currentNumber += inAddNumber.get() * diff * inMultiplier.get();
+        outNumber.set(currentNumber);
+    }
+    lastTime = performance.now();
+    firsttime = false;
+};
+
+
+};
+
+Ops.Math.Accumulator.prototype = new CABLES.Op();
+CABLES.OPS["460574ca-dca2-4283-8c37-57a8c446a51f"]={f:Ops.Math.Accumulator,objName:"Ops.Math.Accumulator"};
+
+
+
+
+// **************************************************************
+// 
 // Ops.Boolean.TriggerChangedFalse
 // 
 // **************************************************************
@@ -39193,6 +41331,598 @@ val.onChange = function ()
 
 Ops.Boolean.TriggerChangedFalse.prototype = new CABLES.Op();
 CABLES.OPS["6387bcb0-6091-4199-8ab7-f96ad4aa3c7d"]={f:Ops.Boolean.TriggerChangedFalse,objName:"Ops.Boolean.TriggerChangedFalse"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.Compare.LessThan
+// 
+// **************************************************************
+
+Ops.Math.Compare.LessThan = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const number1 = op.inValue("number1");
+const number2 = op.inValue("number2");
+const result = op.outBoolNum("result");
+
+op.setUiAttribs({ "mathTitle": true });
+
+number1.onChange = exec;
+number2.onChange = exec;
+exec();
+
+function exec()
+{
+    result.set(number1.get() < number2.get());
+}
+
+
+};
+
+Ops.Math.Compare.LessThan.prototype = new CABLES.Op();
+CABLES.OPS["04fd113f-ade1-43fb-99fa-f8825f8814c0"]={f:Ops.Math.Compare.LessThan,objName:"Ops.Math.Compare.LessThan"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Boolean.And
+// 
+// **************************************************************
+
+Ops.Boolean.And = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    bool0 = op.inValueBool("bool 1"),
+    bool1 = op.inValueBool("bool 2"),
+    result = op.outBoolNum("result");
+
+bool0.onChange =
+bool1.onChange = exec;
+
+function exec()
+{
+    result.set(bool1.get() && bool0.get());
+}
+
+
+};
+
+Ops.Boolean.And.prototype = new CABLES.Op();
+CABLES.OPS["c26e6ce0-8047-44bb-9bc8-5a4f911ed8ad"]={f:Ops.Boolean.And,objName:"Ops.Boolean.And"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.String.StringContains_v2
+// 
+// **************************************************************
+
+Ops.String.StringContains_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inStr = op.inString("String"),
+    inValue = op.inString("SearchValue"),
+    outFound = op.outBoolNum("Found", false),
+    outIndex = op.outNumber("Index", -1);
+
+inValue.onChange =
+    inStr.onChange = exec;
+
+exec();
+
+function exec()
+{
+    if (inStr.get() && inValue.get() && inValue.get().length > 0)
+    {
+        const index = inStr.get().indexOf(inValue.get());
+        outIndex.set(index);
+        outFound.set(index > -1);
+    }
+    else
+    {
+        outIndex.set(-1);
+        outFound.set(false);
+    }
+}
+
+
+};
+
+Ops.String.StringContains_v2.prototype = new CABLES.Op();
+CABLES.OPS["2ca3e5d7-e6b4-46a7-8381-3fe1ad8b6879"]={f:Ops.String.StringContains_v2,objName:"Ops.String.StringContains_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.Delta
+// 
+// **************************************************************
+
+Ops.Math.Delta = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    val = op.inValue("Value"),
+    changeAlwaysPort = op.inValueBool("Change Always", false),
+    inReset = op.inTrigger("Reset"),
+    result = op.outNumber("Delta");
+
+val.changeAlways = false;
+
+let oldVal = 0;
+let firstTime = true;
+
+changeAlwaysPort.onChange = function ()
+{
+    val.changeAlways = changeAlwaysPort.get();
+};
+
+inReset.onTriggered = function ()
+{
+    firstTime = true;
+};
+
+val.onChange = function ()
+{
+    let change = oldVal - val.get();
+    oldVal = val.get();
+    if (firstTime)
+    {
+        firstTime = false;
+        return;
+    }
+    result.set(change);
+};
+
+
+};
+
+Ops.Math.Delta.prototype = new CABLES.Op();
+CABLES.OPS["0f203337-e13c-47ec-a09f-b309212540b0"]={f:Ops.Math.Delta,objName:"Ops.Math.Delta"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.Clamp
+// 
+// **************************************************************
+
+Ops.Math.Clamp = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    val = op.inValueFloat("val", 0.5),
+    min = op.inValueFloat("min", 0),
+    max = op.inValueFloat("max", 1),
+    ignore = op.inValueBool("ignore outside values"),
+    result = op.outNumber("result");
+
+val.onChange = min.onChange = max.onChange = clamp;
+
+function clamp()
+{
+    if (ignore.get())
+    {
+        if (val.get() > max.get()) return;
+        if (val.get() < min.get()) return;
+    }
+    result.set(Math.min(Math.max(val.get(), min.get()), max.get()));
+}
+
+
+};
+
+Ops.Math.Clamp.prototype = new CABLES.Op();
+CABLES.OPS["cda1a98e-5e16-40bd-9b18-a67e9eaad5a1"]={f:Ops.Math.Clamp,objName:"Ops.Math.Clamp"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.FlipSign
+// 
+// **************************************************************
+
+Ops.Math.FlipSign = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inval = op.inValueFloat("Value", 1),
+    result = op.outNumber("Result");
+
+inval.onChange = update;
+update();
+
+function update()
+{
+    result.set(inval.get() * -1);
+}
+
+
+};
+
+Ops.Math.FlipSign.prototype = new CABLES.Op();
+CABLES.OPS["f5c858a2-2654-4108-86fe-319efa70ecec"]={f:Ops.Math.FlipSign,objName:"Ops.Math.FlipSign"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.String.SwitchStringMultiPort
+// 
+// **************************************************************
+
+Ops.String.SwitchStringMultiPort = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inIndex = op.inInt("Index", 0),
+    inStrs = op.inMultiPort("Strings", CABLES.OP_PORT_TYPE_STRING),
+    outResult = op.outString("String"),
+    outNum = op.outNumber("Num Values");
+
+inIndex.onChange =
+inStrs.onChange = () =>
+{
+    const valuePorts = inStrs.get();
+    const idx = Math.ceil(Math.min(valuePorts.length - 1, Math.max(0, inIndex.get())));
+
+    outResult.set(valuePorts[idx].get());
+    outNum.set(valuePorts.length);
+};
+
+
+};
+
+Ops.String.SwitchStringMultiPort.prototype = new CABLES.Op();
+CABLES.OPS["cf8a883f-cf09-44a6-ba1c-7f9c1220b618"]={f:Ops.String.SwitchStringMultiPort,objName:"Ops.String.SwitchStringMultiPort"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Json.ObjectGetString
+// 
+// **************************************************************
+
+Ops.Json.ObjectGetString = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    data = op.inObject("data"),
+    key = op.inString("Key"),
+    result = op.outString("Result");
+
+result.ignoreValueSerialize = true;
+data.ignoreValueSerialize = true;
+
+op.setUiAttrib({ "extendTitlePort": key.name });
+key.setUiAttribs({ "stringTrim": true });
+
+key.onChange =
+data.onChange = exec;
+
+function exec()
+{
+    if (data.get())
+    {
+        const value = data.get()[key.get()];
+        const isNull = value === undefined || value === null;
+
+        if (isNull)
+        {
+            result.setRef(null);
+        }
+        else
+        {
+            result.set(String(value));
+        }
+    }
+    else
+    {
+        result.setRef(null);
+    }
+}
+
+
+};
+
+Ops.Json.ObjectGetString.prototype = new CABLES.Op();
+CABLES.OPS["7d86cd28-f7d8-44a1-a4da-466c4782aaec"]={f:Ops.Json.ObjectGetString,objName:"Ops.Json.ObjectGetString"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.Meshes.FullscreenRectangle_v2
+// 
+// **************************************************************
+
+Ops.Gl.Meshes.FullscreenRectangle_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"shader_frag":"UNI sampler2D tex;\nIN vec2 texCoord;\n\nvoid main()\n{\n    outColor= texture(tex,texCoord);\n}\n\n","shader_vert":"{{MODULES_HEAD}}\n\nIN vec3 vPosition;\nUNI mat4 projMatrix;\nUNI mat4 mvMatrix;\n\nOUT vec2 texCoord;\nIN vec2 attrTexCoord;\n\nvoid main()\n{\n   vec4 pos=vec4(vPosition,  1.0);\n\n   texCoord=vec2(attrTexCoord.x,(1.0-attrTexCoord.y));\n\n   gl_Position = projMatrix * mvMatrix * pos;\n}\n",};
+const
+    render = op.inTrigger("render"),
+    inScale = op.inSwitch("Scale", ["Stretch", "Fit"], "Fit"),
+    flipY = op.inValueBool("Flip Y"),
+    flipX = op.inValueBool("Flip X"),
+    inTexture = op.inTexture("Texture"),
+    trigger = op.outTrigger("trigger");
+
+const cgl = op.patch.cgl;
+let mesh = null;
+let geom = new CGL.Geometry("fullscreen rectangle");
+let x = 0, y = 0, w = 0, h = 0;
+
+op.toWorkShouldNotBeChild("Ops.Gl.TextureEffects.ImageCompose", CABLES.OP_PORT_TYPE_FUNCTION);
+op.toWorkPortsNeedToBeLinked(render);
+
+flipX.onChange = rebuildFlip;
+flipY.onChange = rebuildFlip;
+render.onTriggered = doRender;
+inTexture.onLinkChanged = updateUi;
+inScale.onChange = updateScale;
+
+const shader = new CGL.Shader(cgl, "fullscreenrectangle", this);
+shader.setModules(["MODULE_VERTEX_POSITION", "MODULE_COLOR", "MODULE_BEGIN_FRAG"]);
+
+shader.setSource(attachments.shader_vert, attachments.shader_frag);
+shader.fullscreenRectUniform = new CGL.Uniform(shader, "t", "tex", 0);
+shader.aspectUni = new CGL.Uniform(shader, "f", "aspectTex", 0);
+
+let useShader = false;
+let updateShaderLater = true;
+let fitImageAspect = false;
+
+updateUi();
+updateScale();
+
+inTexture.onChange = function ()
+{
+    updateShaderLater = true;
+};
+
+function updateUi()
+{
+    if (!CABLES.UI) return;
+    flipY.setUiAttribs({ "greyout": !inTexture.isLinked() });
+    flipX.setUiAttribs({ "greyout": !inTexture.isLinked() });
+    inScale.setUiAttribs({ "greyout": !inTexture.isLinked() });
+}
+
+function updateShader()
+{
+    let tex = inTexture.get();
+    if (tex) useShader = true;
+    else useShader = false;
+}
+
+op.preRender = function ()
+{
+    updateShader();
+    shader.bind();
+    if (mesh)mesh.render(shader);
+    doRender();
+};
+
+function updateScale()
+{
+    fitImageAspect = inScale.get() == "Fit";
+}
+
+function doRender()
+{
+    if (cgl.viewPort[2] != w || cgl.viewPort[3] != h || !mesh) rebuild();
+
+    if (updateShaderLater) updateShader();
+
+    cgl.pushPMatrix();
+    mat4.identity(cgl.pMatrix);
+    mat4.ortho(cgl.pMatrix, 0, w, h, 0, -10.0, 1000);
+
+    cgl.pushModelMatrix();
+    mat4.identity(cgl.mMatrix);
+
+    cgl.pushViewMatrix();
+    mat4.identity(cgl.vMatrix);
+
+    if (fitImageAspect && inTexture.get())
+    {
+        const rat = inTexture.get().width / inTexture.get().height;
+
+        let _h = h;
+        let _w = h * rat;
+
+        if (_w > w)
+        {
+            _h = w * 1 / rat;
+            _w = w;
+        }
+
+        cgl.pushViewPort((w - _w) / 2, (h - _h) / 2, _w, _h);
+    }
+
+    if (useShader)
+    {
+        if (inTexture.get()) cgl.setTexture(0, inTexture.get().tex);
+        mesh.render(shader);
+    }
+    else
+    {
+        mesh.render(cgl.getShader());
+    }
+
+    cgl.gl.clear(cgl.gl.DEPTH_BUFFER_BIT);
+
+    cgl.popPMatrix();
+    cgl.popModelMatrix();
+    cgl.popViewMatrix();
+
+    if (fitImageAspect && inTexture.get()) cgl.popViewPort();
+
+    trigger.trigger();
+}
+
+function rebuildFlip()
+{
+    mesh = null;
+}
+
+function rebuild()
+{
+    if (cgl.viewPort[2] == w && cgl.viewPort[3] == h && mesh) return;
+
+    let xx = 0, xy = 0;
+
+    w = cgl.viewPort[2];
+    h = cgl.viewPort[3];
+
+    geom.vertices = new Float32Array([
+        xx + w, xy + h, 0.0,
+        xx, xy + h, 0.0,
+        xx + w, xy, 0.0,
+        xx, xy, 0.0
+    ]);
+
+    let tc = null;
+
+    if (flipY.get())
+        tc = new Float32Array([
+            1.0, 0.0,
+            0.0, 0.0,
+            1.0, 1.0,
+            0.0, 1.0
+        ]);
+    else
+        tc = new Float32Array([
+            1.0, 1.0,
+            0.0, 1.0,
+            1.0, 0.0,
+            0.0, 0.0
+        ]);
+
+    if (flipX.get())
+    {
+        tc[0] = 0.0;
+        tc[2] = 1.0;
+        tc[4] = 0.0;
+        tc[6] = 1.0;
+    }
+
+    geom.setTexCoords(tc);
+
+    geom.verticesIndices = new Uint16Array([
+        2, 1, 0,
+        3, 1, 2
+    ]);
+
+    geom.vertexNormals = new Float32Array([
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+        0, 0, 1,
+    ]);
+    geom.tangents = new Float32Array([
+        -1, 0, 0,
+        -1, 0, 0,
+        -1, 0, 0,
+        -1, 0, 0]);
+    geom.biTangents == new Float32Array([
+        0, -1, 0,
+        0, -1, 0,
+        0, -1, 0,
+        0, -1, 0]);
+
+    if (!mesh) mesh = new CGL.Mesh(cgl, geom);
+    else mesh.setGeom(geom);
+}
+
+
+};
+
+Ops.Gl.Meshes.FullscreenRectangle_v2.prototype = new CABLES.Op();
+CABLES.OPS["fb70721a-eac2-4ff5-a5a2-5c59e2393972"]={f:Ops.Gl.Meshes.FullscreenRectangle_v2,objName:"Ops.Gl.Meshes.FullscreenRectangle_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.ImageCompose.Vibrance
+// 
+// **************************************************************
+
+Ops.Gl.ImageCompose.Vibrance = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"vibrance_frag":"IN vec2 texCoord;\nUNI sampler2D tex;\nUNI float amount;\n\nconst vec4 lumcoeff = vec4(0.299,0.587,0.114, 0.);\n\nvoid main()\n{\n   vec4 col=vec4(1.0,0.0,0.0,1.0);\n   col=texture(tex,texCoord);\n\n   float luma = dot(col, lumcoeff);\n   vec4 mask = (col - vec4(luma));\n   mask = clamp(mask, 0.0, 1.0);\n   float lumaMask = dot(lumcoeff, mask);\n   lumaMask = 1.0 - lumaMask;\n   vec4 vibrance = mix(vec4(luma), col, 1.0 + amount * lumaMask);\n   outColor= vibrance;\n}",};
+const render = op.inTrigger("Render");
+const trigger = op.outTrigger("Trigger");
+const amount = op.inValue("amount", 2);
+
+const cgl = op.patch.cgl;
+const shader = new CGL.Shader(cgl, op.name, op);
+
+shader.setSource(shader.getDefaultVertexShader(), attachments.vibrance_frag);
+const textureUniform = new CGL.Uniform(shader, "t", "tex", 0);
+const amountUniform = new CGL.Uniform(shader, "f", "amount", amount);
+
+render.onTriggered = function ()
+{
+    if (!CGL.TextureEffect.checkOpInEffect(op)) return;
+
+    cgl.pushShader(shader);
+    cgl.currentTextureEffect.bind();
+
+    cgl.setTexture(0, cgl.currentTextureEffect.getCurrentSourceTexture().tex);
+
+    cgl.currentTextureEffect.finish();
+    cgl.popShader();
+
+    trigger.trigger();
+};
+
+
+};
+
+Ops.Gl.ImageCompose.Vibrance.prototype = new CABLES.Op();
+CABLES.OPS["9c71c980-e439-4397-9c2b-c2ae085eaed9"]={f:Ops.Gl.ImageCompose.Vibrance,objName:"Ops.Gl.ImageCompose.Vibrance"};
 
 
 

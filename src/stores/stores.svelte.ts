@@ -20,7 +20,7 @@ function ui_srvbParams(initial) {
 
 type ParamData = { name: string, value: number };
 
-export const UI_ChangingParamID = ui_mouseIsChangingParamID( {name: '', value: 0} );
+export const UI_ChangingParamID = ui_mouseIsChangingParamID( {name: 'disengage', value: 0} );
 function ui_mouseIsChangingParamID(initial: ParamData) {
   let current: ParamData = $state(initial);
   return {
@@ -28,10 +28,11 @@ function ui_mouseIsChangingParamID(initial: ParamData) {
       return current;
     },
     update(newValues) {
-      if (!ControlSource === 'ui' || !newValues.name ) {
-        return;
-      }
+      ConsoleText.update('Update paramID: ' + newValues.name);
       current = newValues;
+    },
+    updateName(newName) {
+      if (newName ) current.name = newName;
     }
   };
 }
@@ -53,6 +54,7 @@ function controlSource( initial ) {
 export const ConsoleText = consoleText("_");
 function consoleText(initial) {
   let current = $state(initial);
+  let extended = $state(initial);
   return {
     get current() {
       return current;
@@ -60,6 +62,12 @@ function consoleText(initial) {
     update(newValues) {
       current = newValues;
     },
+    extend(newText) {
+      extended = newText;
+    },
+    get extended() {
+      return extended;
+    }
   };
 }
 //////////////////////

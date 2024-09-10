@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import {ConsoleText, UI_ChangingParamID } from "./stores/stores.svelte";
+  import {ConsoleText, ControlSource, UI_ChangingParamID } from "./stores/stores.svelte";
   import { fade } from "svelte/transition";
   import { initPatchListeners } from "./lib/PatchListeners.svelte";
   import {
@@ -40,6 +40,7 @@ $inspect( UI_ChangingParamID.current );
 
 {#if cablesLoaded}
   <pre class="console-text">{ConsoleText.current}</pre>
+  <pre class="console-text" style='bottom: 2rem;'>{ConsoleText.extended}</pre>
 {:else}
   <pre class="console-text" in:fade>Loading...</pre>
 {/if}
