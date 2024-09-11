@@ -39,7 +39,7 @@ async function updateUI(param, value) {
   function updateValue() {
     targetVar.setValue({
       ...currentUIState,
-      [param]: value ? value : EPS,
+      [param]: value + EPS,
       source: "host",
     });
   }
@@ -63,7 +63,7 @@ export const MessageToHost = {
    * @param value - The new value of the parameter.
    */
   requestParamValueUpdate: function (paramId: string, value: number) {
-    if (REGISTERED_PARAM_NAMES.includes(paramId)) {
+    if (REGISTERED_PARAM_NAMES.includes(paramId) && ControlSource.current === "ui") {
       ConsoleText.extend(">> host >> "+ paramId + " >> " + value);
       if (typeof globalThis.__postNativeMessage__ === "function") {
         globalThis.__postNativeMessage__("setParameterValue", {

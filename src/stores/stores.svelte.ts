@@ -32,7 +32,12 @@ function ui_mouseIsChangingParamID(initial: ParamData) {
       current = newValues;
     },
     updateName(newName) {
-      if (newName ) current.name = newName;
+      if ( newName ) current.name = newName;
+    },
+    updateValue(newValue?) {
+      if ( newValue ) current.value = newValue + EPS
+      else 
+      current.value = current.value + EPS;
     }
   };
 }
