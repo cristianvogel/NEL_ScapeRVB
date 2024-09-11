@@ -10,24 +10,19 @@ export function initPatchListeners(patch) {
   const ui_allParamsState = patch.getVar("ext_srvbParams_object");
 
   ui_mouseIsChangingParamID.on("change", (name) => {
-    UI_ChangingParamID.updateName( name || "disengage");
-    UI_ChangingParamID.updateValue();
-  });
-
-  ui_normValue.on("change", (value) => {
-    const name = ui_mouseIsChangingParamID.getValue() || "disengage";
-    ControlSource.update("ui");
-    UI_ChangingParamID.update({
-      name: name || "disengage",
-      value: value + EPS,
-    });
+    UI_ChangingParamID.update({name , value: ui_normValue.getValue() + EPS});
   });
 
   ui_allParamsState.on("change", (newValues: Array<"host" | "ui" | number>) => {
     if (newValues !== null) {
-      ControlSource.update(newValues["source"]);
-      const param = UI_ChangingParamID.current;
-      MessageToHost.requestParamValueUpdate(param.name, param.value + EPS);
+      for (let [param, value] of Object.entries(newValues)) {
+        if (param === "source") {
+          ControlSource.update(value as string);
+        } else {
+          UI_ChangingParamID.update({ name: param, value: value });
+          MessageToHost.requestParamValueUpdate(param, (value as number) + EPS);
+        }
+      }
     }
   });
 }

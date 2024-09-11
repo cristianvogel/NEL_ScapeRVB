@@ -27,9 +27,8 @@ function ui_mouseIsChangingParamID(initial: ParamData) {
     get current() {
       return current;
     },
-    update(newValues) {
-      ConsoleText.update('Update paramID: ' + newValues.name);
-      current = newValues;
+    update(newValue) {
+      current = newValue;
     },
     updateName(newName) {
       if ( newName ) current.name = newName;
