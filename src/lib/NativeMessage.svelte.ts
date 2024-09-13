@@ -1,7 +1,10 @@
-import { ConsoleText, ControlSource } from "../stores/stores.svelte";
+import {
+  ConsoleText,
+  ControlSource,
+  CablesReady,
+} from "../stores/stores.svelte";
 import { REGISTERED_PARAM_NAMES } from "../stores/constants";
-import { equiv } from "@thi.ng/equiv";
-import { EPS } from "@thi.ng/math";
+
 //@ts-nocheck
 export declare var globalThis: any;
 declare var CABLES: any;
@@ -10,44 +13,59 @@ function processHostState(state: any) {
   // ━━━━━━━
   // Parse the state object and convert it to an array of key-value pairs
   let parsedEntries: { [key: string]: number | number[] } = {};
+  ControlSource.update("host");
   try {
     parsedEntries = JSON.parse(state);
   } catch (e) {
     console.warn("Bad state received", parsedEntries);
   }
-  const currenHostState = parsedEntries;
-  if (ControlSource.snapshot() !== "ui") {
-    Object.keys(currenHostState).forEach((param) => {
-      if (REGISTERED_PARAM_NAMES.includes(param)) {
-        updateUI(param, currenHostState[param] as number);
-      }
-    });
-  }
+  const hostState = parsedEntries;
+
+  Object.keys(hostState).forEach((param) => {
+    if (REGISTERED_PARAM_NAMES.includes(param)) {
+      updateUI(param, hostState[param] as number);
+    }
+  });
 }
 
-async function updateUI(param, value) {
-  while (typeof CABLES === "undefined") {
-    await new Promise((resolve) => setTimeout(resolve, 100)); // Wait for 100ms before checking again
-  }
+function updateUI(param, value) {
+  if (!CablesReady.current  ) return;
   
-  let targetVar = CABLES.patch.getVar("ext_srvbParams_object");
+  let ext_srvbParams = CABLES.patch.getVar("ext_srvbParams_object");
+  let ext_srvbByPass = CABLES.patch.getVar("host_srvbBypass");
+  let ext_scapeByPass = CABLES.patch.getVar("host_scapeBypass");
 
-  let currentUIState = targetVar.getValue();
+  let currentUIState = ext_srvbParams.getValue();
+  delete currentUIState.srvbBypass;
+  delete currentUIState.scapeBypass;
 
-  // Define the function to update the value in the UI
+  // update the value in the UI
   // with the received value from the host
   function updateValue() {
-    ControlSource.update("host");
-    targetVar.setValue({
+    if (ControlSource.current === "ui") return;
+   
+    ext_srvbParams.setValue({
       ...currentUIState,
-      [param]: value + EPS
+      [param]: value,
     });
   }
 
- 
-  // do checks, then update
-  if (!currentUIState || !currentUIState[param]) return;
+  // do checks, then update the rest of the params
+  if (!currentUIState) return;
   else updateValue();
+
+  //  do the special cases
+  if (param === "srvbBypass" && ControlSource.current !== "ui")  {
+    if (ext_srvbByPass) {
+      ConsoleText.extend(">> host (special case) >> " + param + " >> " + value);
+      ext_srvbByPass.setValue(value);
+    }
+  } else if (param === "scapeBypass" && ControlSource.current !== "ui" ) {
+    if (ext_scapeByPass) {
+      ConsoleText.extend(">> host (special case) >> " + param + " >> " + value);
+      ext_scapeByPass.setValue(value);
+    }
+  }
 }
 
 export const MessageToHost = {
@@ -66,9 +84,16 @@ export const MessageToHost = {
    */
   requestParamValueUpdate: function (paramId: string, value: number) {
     ControlSource.update("ui");
-    if (REGISTERED_PARAM_NAMES.includes(paramId) ) {
-      ConsoleText.extend(">> host >> "+ paramId + " >> " + value);
-      if (typeof globalThis.__postNativeMessage__ === "function" && ControlSource.snapshot() === "ui") {
+    if (
+      REGISTERED_PARAM_NAMES.includes(paramId) &&
+      paramId !== "srvbByPass" &&
+      paramId !== "scapeByPass" 
+    ) {
+      ConsoleText.extend(">> host >> " + paramId + " >> " + value);
+      if (
+        typeof globalThis.__postNativeMessage__ === "function" &&
+        ControlSource.snapshot() === "ui"
+      ) {
         globalThis.__postNativeMessage__("setParameterValue", {
           paramId,
           value,

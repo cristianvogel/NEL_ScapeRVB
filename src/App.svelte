@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import {ConsoleText, ControlSource, UI_ChangingParamID } from "./stores/stores.svelte";
+  import { ConsoleText, CablesReady, ControlSource } from "./stores/stores.svelte";
   import { fade } from "svelte/transition";
   import { initPatchListeners } from "./lib/PatchListeners.svelte";
   import {
@@ -8,39 +8,56 @@
     RegisterMessagesFromHost,
   } from "./lib/NativeMessage.svelte";
 
-  let cablesLoaded = $state(false);
+  import { PARAM_DEFAULTS } from "./stores/constants";
+
+
 
   onMount(() => {
     // Second setup the listener for CABLES loader
     document.addEventListener("CABLES.jsLoaded", function (event) {
       CABLES.patch = new CABLES.Patch({
-        patchFile: "js/NEL-SRVB_v0.2.61.json",
-          prefixAssetPath: "/assets/",
-          assetPath: "/assets/",
-          jsPath: "js/",
+        patchFile: "MirrorScape-ui/js/MirrorScape-ui.json",
+        prefixAssetPath: "/assets/",
+        assetPath: "/assets/",
+        jsPath: "js/",
         glCanvasId: "glcanvas",
         glCanvasResizeToWindow: true,
         onError: (e) => console.error(e),
-        onPatchLoaded: () => (cablesLoaded = true),
-        onFinishedLoading:   ()=>{},
-        canvas: { willReadFrequently: true, alpha: true, premultipliedAlpha: true }, // make canvas transparent
+        onPatchLoaded: () => {
+          initPatchListeners(CABLES.patch);
+        },
+        onFinishedLoading: () => {  CablesReady.update(true); console.log("UI finished loading.") },
+        canvas: {
+          willReadFrequently: true,
+          alpha: true,
+          premultipliedAlpha: true,
+        },
+        variables: {
+          ext_srvbParams_object: PARAM_DEFAULTS,
+        },
       });
-      // update stores related to Cables patch
-      console.log("Patch vars ->", CABLES.patch.getVars());
-      initPatchListeners( CABLES.patch );
-      MessageToHost.requestReady();
-      RegisterMessagesFromHost();
     });
+
+   $effect ( ()=> {
+      if ( CablesReady.current ) {
+        console.log( 'Registering messages with host.' )
+        RegisterMessagesFromHost();
+        MessageToHost.requestReady();
+      }
+    }
+    );
+ 
+    console.log("ui_params set to ", PARAM_DEFAULTS);
+
   });
-
-
 </script>
 
-<canvas id="glcanvas" width="100vw" height="100vh" willReadFrequently="true"></canvas>
+<canvas id="glcanvas" width="100vw" height="100vh" willReadFrequently="true"
+></canvas>
 
-{#if cablesLoaded}
-  <pre class="console-text">{ConsoleText.current}</pre>
-  <pre class="console-text" style='bottom: 2rem;'>{ConsoleText.extended}</pre>
+{#if CablesReady.current}
+  <!-- <pre class="console-text">{ConsoleText.current}</pre>
+  <pre class="console-text" style="bottom: 2rem;">{ConsoleText.extended}</pre> -->
 {:else}
   <pre class="console-text" in:fade>Loading...</pre>
 {/if}

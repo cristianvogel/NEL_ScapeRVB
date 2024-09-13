@@ -2476,7 +2476,7 @@
     );
     let positioning = (i, x) => stdlib.delay(
       { key: `downmix:${i}`, size: ms2samps2(137) },
-      stdlib.sub(1, stdlib.abs(stdlib.sin(stdlib.mul(Math.PI * 2, [position, stdlib.sub(1, position)][i % 2])))),
+      stdlib.sm(stdlib.sub(1, stdlib.abs(stdlib.sin(stdlib.mul(Math.PI * 2, [position, stdlib.sub(1, position)][i % 2]))))),
       0,
       stdlib.mul(stdlib.sub(1.05, stdlib.div(structureArray[i], structureMax)), x)
     );
@@ -3168,17 +3168,24 @@
       { paramId: "structure", name: "Structure", min: 0, max: 15, defaultValue: 0, step: 1 },
       { paramId: "scapeLevel", name: "Convolvers", min: 0, max: 1, defaultValue: 0 },
       { paramId: "scapeLength", name: "Scape IR", min: 0, max: 1, defaultValue: 0 },
-      { paramId: "scapeReverse", name: "Scape Reverse", min: 0, max: 1, defaultValue: 1e-3, step: 1 },
-      { paramId: "scapeBypass", name: "Bypass Convolvers", min: 0, max: 1, defaultValue: 1e-3, step: 1 },
-      { paramId: "srvbBypass", name: "Bypass Reflectors", min: 0, max: 1, defaultValue: 1e-3, step: 1 },
+      { paramId: "scapeReverse", name: "Scape Reverse", min: 0, max: 1, defaultValue: 0, step: 1 },
+      { paramId: "scapeBypass", name: "Bypass Convolvers", min: 0, max: 1, defaultValue: 0, step: 1 },
+      { paramId: "srvbBypass", name: "Bypass Reflectors", min: 0, max: 1, defaultValue: 0, step: 1 },
       { paramId: "dryMix", name: "Dry Mix", min: 0, max: 1, defaultValue: 0 }
     ]
   };
 
   // src/stores/constants.ts
   var HOST_PARAMS = manifest_default.parameters;
-  var REGISTERED_PARAM_NAMES = HOST_PARAMS.map((p) => p.paramId);
+  var REGISTERED_PARAM_NAMES = HOST_PARAMS.map(
+    (p) => p.paramId
+  );
   var REVERSE_BUFFER_PREFIX = manifest_default["REVERSE-BUFFER-PREFIX"];
+  var PARAM_DEFAULTS = Object.fromEntries(
+    HOST_PARAMS.filter(
+      (p) => p.paramId !== "srvbBypass" && p.paramId !== "scapeBypass"
+    ).map((p) => [p.paramId, p.defaultValue])
+  );
 
   // dsp/main.ts
   var core = new Renderer((batch) => {

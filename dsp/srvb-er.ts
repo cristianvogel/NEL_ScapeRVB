@@ -248,7 +248,7 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
   let positioning = (i, x: ElemNode): ElemNode =>
     el.delay(
       { key: `downmix:${i}`, size: ms2samps(137) },
-      el.sub( 1, el.abs( el.sin( el.mul( Math.PI * 2 ,  [ position , el.sub( 1, position ) ][ i % 2] ) ) ) ),
+     el.sm( el.sub( 1, el.abs( el.sin( el.mul( Math.PI * 2 ,  [ position , el.sub( 1, position ) ][ i % 2] ) ) ) ) ),
       0,
       el.mul( el.sub( 1.05 , el.div( structureArray[i], structureMax) )  , x )
     );

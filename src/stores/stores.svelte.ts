@@ -5,6 +5,8 @@ import { bypassEvents, bypassStates } from "../types";
 import { fsm } from '@githubnext/tiny-svelte-fsm';
 /////////////////////////
 
+
+
 export const srvbBypassFSM = fsm<bypassStates, bypassEvents>('0', {
 	'0': {
 		toggle: '1'
@@ -75,7 +77,7 @@ function ui_normValue(initial: number) {
   };
 }
 
-export const ControlSource = controlSource('');
+export const ControlSource = controlSource('host');
 function controlSource( initial ) {
   let current = $state(initial);
   return { 
@@ -112,8 +114,8 @@ function consoleText(initial) {
   };
 }
 //////////////////////
-export const CablesPatch = cablesPatch({});
-function cablesPatch(initial) {
+export const CablesReady = cablesReady(false);
+function cablesReady(initial) {
   let current = $state(initial);
   return {
     get current() {
