@@ -16,7 +16,7 @@ function processHostState(state: any) {
     console.warn("Bad state received", parsedEntries);
   }
   const currenHostState = parsedEntries;
-  if (ControlSource.current !== "ui") {
+  if (ControlSource.snapshot() !== "ui") {
     Object.keys(currenHostState).forEach((param) => {
       if (REGISTERED_PARAM_NAMES.includes(param)) {
         updateUI(param, currenHostState[param] as number);
@@ -37,12 +37,14 @@ async function updateUI(param, value) {
   // Define the function to update the value in the UI
   // with the received value from the host
   function updateValue() {
+    ControlSource.update("host");
     targetVar.setValue({
       ...currentUIState,
-      [param]: value + EPS,
-      source: "host",
+      [param]: value + EPS
     });
   }
+
+ 
   // do checks, then update
   if (!currentUIState || !currentUIState[param]) return;
   else updateValue();
@@ -63,9 +65,10 @@ export const MessageToHost = {
    * @param value - The new value of the parameter.
    */
   requestParamValueUpdate: function (paramId: string, value: number) {
-    if (REGISTERED_PARAM_NAMES.includes(paramId) && ControlSource.current === "ui") {
+    ControlSource.update("ui");
+    if (REGISTERED_PARAM_NAMES.includes(paramId) ) {
       ConsoleText.extend(">> host >> "+ paramId + " >> " + value);
-      if (typeof globalThis.__postNativeMessage__ === "function") {
+      if (typeof globalThis.__postNativeMessage__ === "function" && ControlSource.snapshot() === "ui") {
         globalThis.__postNativeMessage__("setParameterValue", {
           paramId,
           value,

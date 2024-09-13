@@ -12,12 +12,12 @@
 
   onMount(() => {
     // Second setup the listener for CABLES loader
-    document.addEventListener("CABLES.jsLoaded", function () {
+    document.addEventListener("CABLES.jsLoaded", function (event) {
       CABLES.patch = new CABLES.Patch({
-        patch: CABLES.exportedPatch,
-        prefixAssetPath: "",
-        assetPath: "assets/",
-        jsPath: "js/",
+        patchFile: "js/NEL-SRVB_v0.2.61.json",
+          prefixAssetPath: "/assets/",
+          assetPath: "/assets/",
+          jsPath: "js/",
         glCanvasId: "glcanvas",
         glCanvasResizeToWindow: true,
         onError: (e) => console.error(e),
@@ -33,7 +33,7 @@
     });
   });
 
-$inspect( UI_ChangingParamID.current );
+
 </script>
 
 <canvas id="glcanvas" width="100vw" height="100vh" willReadFrequently="true"></canvas>

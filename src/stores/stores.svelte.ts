@@ -1,7 +1,30 @@
 //@ts-nocheck
 /// Svelte5 state stores
 
+import { bypassEvents, bypassStates } from "../types";
+import { fsm } from '@githubnext/tiny-svelte-fsm';
 /////////////////////////
+
+export const srvbBypassFSM = fsm<bypassStates, bypassEvents>('0', {
+	'0': {
+		toggle: '1'
+	},
+	'1': {
+		toggle: '0'
+	}
+});
+
+export const scapeBypassFSM = fsm<bypassStates, bypassEvents>('0', {   // - default state 
+  '0': {
+    toggle: '1'
+  },
+  '1': {
+    toggle: '0'
+  }
+});
+
+
+
 export const UI_SrvbParams = ui_srvbParams({});
 function ui_srvbParams(initial) {
   let current = $state(initial);
@@ -20,9 +43,9 @@ function ui_srvbParams(initial) {
 
 type ParamData = { name: string, value: number };
 
-export const UI_ChangingParamID = ui_mouseIsChangingParamID( {name: 'disengage', value: 0} );
-function ui_mouseIsChangingParamID(initial: ParamData) {
-  let current: ParamData = $state(initial);
+export const UI_ChangingParamID = ui_mouseIsChangingParamID( '' );
+function ui_mouseIsChangingParamID(initial: string) {
+  let current: string = $state(initial);
   return {
     get current() {
       return current;
@@ -30,13 +53,24 @@ function ui_mouseIsChangingParamID(initial: ParamData) {
     update(newValue) {
       current = newValue;
     },
-    updateName(newName) {
-      if ( newName ) current.name = newName;
+    snapshot() {
+      return $state.snapshot(current);
+    }
+  };
+}
+
+export const UI_NormValue = ui_normValue(0);
+function ui_normValue(initial: number) {
+  let current = $state(initial);
+  return {
+    get current() {
+      return current;
     },
-    updateValue(newValue?) {
-      if ( newValue ) current.value = newValue + EPS
-      else 
-      current.value = current.value + EPS;
+    update(newValue) {
+      current = newValue;
+    },
+    snapshot() {
+      return $state.snapshot(current);
     }
   };
 }
@@ -50,7 +84,10 @@ function controlSource( initial ) {
     } ,
     update(newValue) {
       current = newValue;
-    } 
+    } ,
+    snapshot() {
+      return $state.snapshot(current);
+    }
   }
 }
 
