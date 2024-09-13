@@ -17,7 +17,6 @@ export function initPatchListeners(patch) {
   const ui_srvbBypass = patch.getVar("ui_bypassSRVB");
   const ui_scapeBypass = patch.getVar("ui_bypassConvolver");
 
-
   if (ui_normValue && ui_mouseIsChangingParamID && ui_allParamsState) {
     // when the single object in the patch
     // that holds most of the UI params changes
@@ -25,17 +24,19 @@ export function initPatchListeners(patch) {
     // with the currently changing normValue
     // They are independent of each other,
     // but should always come together and be correctly paired
-    ui_allParamsState.on(
-      "change",
-      (state: any) => {
-        if (state !== null && state.source !== "host") {
+    ui_allParamsState.on("change", (state: any) => {
+      if (state !== null && state.source !== "host") {
+        if (
+          UI_ChangingParamID.current !== "srvbBypass" &&
+          UI_ChangingParamID.current !== "scapeBypass"
+        ) {
           MessageToHost.requestParamValueUpdate(
             UI_ChangingParamID.current,
             UI_NormValue.current
           );
         }
       }
-    );
+    });
 
     ui_normValue.on("change", (value) => {
       ControlSource.update("ui");
@@ -43,23 +44,27 @@ export function initPatchListeners(patch) {
     });
 
     ui_mouseIsChangingParamID.on("change", (name) => {
-      if (name !== 'srvbBypass' && name !== 'scapeBypass') UI_ChangingParamID.update(name);
+      UI_ChangingParamID.update(name);
     });
   }
   ///////////// special case for bypasses and scapeLength
-  if (ui_srvbBypass && ui_scapeBypass) {
-    ui_srvbBypass.on("change", (value) => {
-      ControlSource.update("ui");
-      srvbBypassFSM.send("toggle");
-      ConsoleText.update(">> srvbBypassFSM >> " + srvbBypassFSM.current);
-      MessageToHost.requestParamValueUpdate("srvbBypass", parseInt(srvbBypassFSM.current));   
-    });
-    ui_scapeBypass.on("change", (value) => {
-      ControlSource.update("ui");
-      scapeBypassFSM.send("toggle");
-      ConsoleText.update(">> scapeBypassFSM >> " + scapeBypassFSM.current);
-      MessageToHost.requestParamValueUpdate("scapeBypass", parseInt(scapeBypassFSM.current));
-    });
 
-  }
+  ui_srvbBypass.on("change", (value) => {
+    console.log("ui_srvbBypass change", value);
+    ControlSource.update("ui");
+    srvbBypassFSM.send("toggle");
+    MessageToHost.requestParamValueUpdate(
+      "srvbBypass",
+      parseInt(srvbBypassFSM.current)
+    );
+  });
+  ui_scapeBypass.on("change", (value) => {
+    console.log("ui_scapeBypass change", value);
+    ControlSource.update("ui");
+    scapeBypassFSM.send("toggle");
+    MessageToHost.requestParamValueUpdate(
+      "scapeBypass",
+      parseInt(scapeBypassFSM.current)
+    );
+  });
 }

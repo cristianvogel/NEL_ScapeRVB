@@ -2,6 +2,9 @@ import {
   ConsoleText,
   ControlSource,
   CablesReady,
+  UI_ChangingParamID,
+  srvbBypassFSM,
+  scapeBypassFSM,
 } from "../stores/stores.svelte";
 import { REGISTERED_PARAM_NAMES } from "../stores/constants";
 
@@ -29,21 +32,32 @@ function processHostState(state: any) {
 }
 
 function updateUI(param, value) {
-  if (!CablesReady.current  ) return;
-  
+  if (!CablesReady.current) return;
+
   let ext_srvbParams = CABLES.patch.getVar("ext_srvbParams_object");
-  let ext_srvbByPass = CABLES.patch.getVar("host_srvbBypass");
-  let ext_scapeByPass = CABLES.patch.getVar("host_scapeBypass");
+  let ext_srvbBypass = CABLES.patch.getVar("host_srvbBypass");
+  let ext_scapeBypass = CABLES.patch.getVar("host_scapeBypass");
 
   let currentUIState = ext_srvbParams.getValue();
   delete currentUIState.srvbBypass;
   delete currentUIState.scapeBypass;
 
+  //  do the special cases from host to ui
+  if (
+    param === "srvbBypass" 
+  ) {
+    ext_srvbBypass.setValue(!srvbBypassFSM.current);
+  } else if (
+    param === "scapeBypass"
+  ) {
+    ext_scapeBypass.setValue(!scapeBypassFSM.current);
+  }
+
   // update the value in the UI
   // with the received value from the host
   function updateValue() {
     if (ControlSource.current === "ui") return;
-   
+
     ext_srvbParams.setValue({
       ...currentUIState,
       [param]: value,
@@ -53,19 +67,6 @@ function updateUI(param, value) {
   // do checks, then update the rest of the params
   if (!currentUIState) return;
   else updateValue();
-
-  //  do the special cases
-  if (param === "srvbBypass" && ControlSource.current !== "ui")  {
-    if (ext_srvbByPass) {
-      ConsoleText.extend(">> host (special case) >> " + param + " >> " + value);
-      ext_srvbByPass.setValue(value);
-    }
-  } else if (param === "scapeBypass" && ControlSource.current !== "ui" ) {
-    if (ext_scapeByPass) {
-      ConsoleText.extend(">> host (special case) >> " + param + " >> " + value);
-      ext_scapeByPass.setValue(value);
-    }
-  }
 }
 
 export const MessageToHost = {
@@ -87,7 +88,7 @@ export const MessageToHost = {
     if (
       REGISTERED_PARAM_NAMES.includes(paramId) &&
       paramId !== "srvbByPass" &&
-      paramId !== "scapeByPass" 
+      paramId !== "scapeByPass"
     ) {
       ConsoleText.extend(">> host >> " + paramId + " >> " + value);
       if (
@@ -201,15 +202,4 @@ export function RegisterMessagesFromHost() {
     //ConsoleText.set("Error: " + error);
     console.warn("Log: ", log);
   };
-}
-
-// mutatesthe parsedEntries object
-function denormaliseStructureParam(parsedEntries: {
-  [key: string]: number | number[];
-}) {
-  parsedEntries = {
-    ...parsedEntries,
-    structure: parsedEntries.structure as number,
-  };
-  console.log(parsedEntries.structure);
 }

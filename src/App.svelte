@@ -1,6 +1,6 @@
 <script>
   import { onMount } from "svelte";
-  import { ConsoleText, CablesReady, ControlSource } from "./stores/stores.svelte";
+  import { ConsoleText, CablesReady, ControlSource, UI_ChangingParamID } from "./stores/stores.svelte";
   import { fade } from "svelte/transition";
   import { initPatchListeners } from "./lib/PatchListeners.svelte";
   import {
@@ -24,9 +24,12 @@
         glCanvasResizeToWindow: true,
         onError: (e) => console.error(e),
         onPatchLoaded: () => {
-          initPatchListeners(CABLES.patch);
+          
         },
-        onFinishedLoading: () => {  CablesReady.update(true); console.log("UI finished loading.") },
+        onFinishedLoading: () => {  
+          initPatchListeners(CABLES.patch);
+          CablesReady.update(true); 
+          console.log("UI finished loading.") },
         canvas: {
           willReadFrequently: true,
           alpha: true,
@@ -48,7 +51,7 @@
     );
  
     console.log("ui_params set to ", PARAM_DEFAULTS);
-
+  // $inspect( UI_ChangingParamID.current )
   });
 </script>
 
