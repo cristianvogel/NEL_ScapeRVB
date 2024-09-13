@@ -3,7 +3,7 @@ project(NEL_ShifterMesh VERSION 1.01)
 
 set(TARGET_NAME "NEL_ScapeRVB")
 set(ASSETS_DIR ${CMAKE_SOURCE_DIR}/../dist/)
-set(BUILD_VERSION "v0.1.2")
+set(BUILD_VERSION "v0.2.8x86")
 
 option(JUCE_ENABLE_MODULE_SOURCE_GROUPS "Enable Module Source Groups" ON)
 option(JUCE_BUILD_EXTRAS "Build JUCE Extras" OFF)
@@ -152,8 +152,8 @@ target_link_libraries(${TARGET_NAME}
   juce::juce_data_structures
  # juce::juce_dsp
   juce::juce_events
-  juce::juce_graphics
-  juce::juce_gui_basics
-  juce::juce_gui_extra
+ # juce::juce_graphics
+ # juce::juce_gui_basics
+ # juce::juce_gui_extra
   runtime
 )

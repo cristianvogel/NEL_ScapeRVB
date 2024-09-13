@@ -28,7 +28,7 @@ const IRs = [ // SHOULD MATCH FILE NAMES IN THE PUBLIC IR FOLDER
   { name: "LIGHT", index: 0, att: 0.65 },
   { name: "SURFACE", index: 1, att: 0.475 },
   { name: "TEMPLE", index: 2, att: 0.475 },
-  { name: "IMMERSION", index: 3, att: 0.25},
+  { name: "DEEPNESS", index: 3, att: 0.25},
 ];
 
 // create the vector interpolation ramp, used to crossfade between 4 IRs
@@ -143,10 +143,10 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
       { path: "LIGHT_0", process: scape.vectorData[0], scale: ir_inputAtt[0] , blockSizes }, [ el.tapIn( { name: "srvbOut:0" }) ] ),
     LIGHT_1: refs.getOrCreate("LIGHT_1", "convolver", 
       { path: "LIGHT_1", process: scape.vectorData[0], scale: ir_inputAtt[0] , blockSizes }, [ el.tapIn( { name: "srvbOut:1" }) ] ),
-    IMMERSION_0: refs.getOrCreate("IMMERSION_0", "convolver", 
-      { path: "IMMERSION_0", process: scape.vectorData[3], scale: ir_inputAtt[3] ,  blockSizes }, [ el.tapIn( { name: "srvbOut:0" }) ] ),
-    IMMERSION_1: refs.getOrCreate("IMMERSION_1", "convolver", 
-      { path: "IMMERSION_1", process: scape.vectorData[3], scale: ir_inputAtt[3]  , blockSizes }, [ el.tapIn( { name: "srvbOut:1" }) ] ),
+    DEEPNESS_0: refs.getOrCreate("DEEPNESS_0", "convolver", 
+      { path: "DEEPNESS_0", process: scape.vectorData[3], scale: ir_inputAtt[3] ,  blockSizes }, [ el.tapIn( { name: "srvbOut:0" }) ] ),
+    DEEPNESS_1: refs.getOrCreate("DEEPNESS_1", "convolver", 
+      { path: "DEEPNESS_1", process: scape.vectorData[3], scale: ir_inputAtt[3]  , blockSizes }, [ el.tapIn( { name: "srvbOut:1" }) ] ),
   };
   return props;
   }
@@ -213,7 +213,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     });
   }
 
-  // console.log( Object.keys( refs._map.get("IMMERSION_0")[0].children  ) );
+  // console.log( Object.keys( refs._map.get("DEEPNESS_0")[0].children  ) );
 
   // memoisation of nodes and non-node state
   memoized = {

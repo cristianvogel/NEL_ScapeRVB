@@ -7011,14 +7011,8 @@ Texture.setUpGlPixelFormat = function (cgl, pixelFormatStr)
     }
 
 
-    o.numColorChannels = 1;
-    if (pixelFormatStr.startsWith("R"))o.numColorChannels = 1;
-    if (pixelFormatStr.startsWith("RG"))o.numColorChannels = 2;
-    if (pixelFormatStr.startsWith("RGB"))o.numColorChannels = 3;
-    if (pixelFormatStr.startsWith("RGBA"))o.numColorChannels = 4;
+    o.numColorChannels = Texture.getPixelFormatNumChannels(pixelFormatStr);
 
-
-    // console.log(pixelFormatStr, this.name);
 
     if (!o.glDataType || !o.glInternalFormat || !o.glDataFormat) console.log("pixelformat wrong ?!", pixelFormatStr, o.glDataType, o.glInternalFormat, o.glDataFormat, this);
 
@@ -7881,16 +7875,25 @@ Texture.PIXELFORMATS = [
 
 ];
 
-Texture.isPixelFormatFloat =
-    (pxlfrmt) =>
+Texture.getPixelFormatNumChannels =
+    (pxlFrmtStr) =>
     {
-        return (pxlfrmt || "").contains("float");
+        if (pxlFrmtStr.startsWith("RGBA")) return 4;
+        if (pxlFrmtStr.startsWith("RGB")) return 3;
+        if (pxlFrmtStr.startsWith("RG")) return 2;
+        return 1;
+    };
+
+Texture.isPixelFormatFloat =
+    (pxlFrmtStr) =>
+    {
+        return (pxlFrmtStr || "").contains("float");
     };
 
 Texture.isPixelFormatHalfFloat =
-    (pxlfrmt) =>
+    (pxlFrmtStr) =>
     {
-        return (pxlfrmt || "").contains("float") && (pxlfrmt || "").contains("16bit");
+        return (pxlFrmtStr || "").contains("float") && (pxlFrmtStr || "").contains("16bit");
     };
 
 
@@ -8401,8 +8404,6 @@ Geometry.prototype.setTexCoords = function (arr)
 Geometry.prototype.calcNormals = function (smooth)
 {
     const options = { "smooth": smooth };
-
-
     this.calculateNormals(options);
 };
 
@@ -15659,7 +15660,7 @@ Patch.prototype.serialize = function (options)
     for (const i in this.ops)
     {
         const op = this.ops[i];
-        obj.ops.push(op.getSerialized());
+        if (op && op.getSerialized)obj.ops.push(op.getSerialized());
     }
 
     cleanJson(obj);
@@ -19263,4 +19264,4 @@ CABLES = __webpack_exports__["default"];
 ;
 
 
-var CABLES = CABLES || {}; CABLES.build = {"timestamp":1725378748185,"created":"2024-09-03T15:52:28.185Z","git":{"branch":"develop","commit":"ab14f69c53e01b1fc6881c5d6c6230b35ee0e4b1","date":"1725377757","message":"Merge branch 'develop' of github.com:cables-gl/cables into develop"}};
+var CABLES = CABLES || {}; CABLES.build = {"timestamp":1725954531144,"created":"2024-09-10T07:48:51.144Z","git":{"branch":"develop","commit":"2b2ff1f7738a14b29c445cca17e9c55fcae0ff0f","date":"1725950103","message":"rename parametricsurface"}};

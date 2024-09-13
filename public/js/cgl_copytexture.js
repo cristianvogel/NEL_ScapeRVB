@@ -1266,8 +1266,6 @@ Geometry.prototype.setTexCoords = function (arr)
 Geometry.prototype.calcNormals = function (smooth)
 {
     const options = { "smooth": smooth };
-
-
     this.calculateNormals(options);
 };
 

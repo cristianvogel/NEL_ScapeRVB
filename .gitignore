@@ -20,7 +20,6 @@ node_modules
 build
 dist
 *.local
-public/dsp.main.js
 # public/assets
 src/cables-ui
 cables-ui

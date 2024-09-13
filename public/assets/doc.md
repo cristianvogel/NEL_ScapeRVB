@@ -4,7 +4,6 @@
 * ____heightMapGeometry__ ```Object```
 * ____labelBoolAnim__ ```Number```
 * ____lensFlareTexts__ ```Texture```
-* ____scapeReverseMomentary__ ```Number```
 * ___currentDialValueInsideRepeat2D__ ```Number```
 * ___currentIndexInsideRepeat2D__ ```Number```
 * ___currentInstanceIsActive__ ```Number```
@@ -21,21 +20,25 @@
 * __ui_additionalParams_object__ ```Object```
 * __ui_bypassConvolver__ ```Number```
 * __ui_bypassSRVB__ ```Number```
+
+  ->
+
 * __ui_dialValues_array__ ```Array```
 * __ui_hitBodyName__ ```String```
 * __ui_leftButtonIsDown__ ```Number```
+* __ui_leftButtonToggle__ ```Number```
+
+  needs to set the non-gl element
+  interaction flag
+
 * __ui_mouseIsChangingDialValue__ ```Number```
 * __ui_mouseIsChangingParamID__ ```String``` (default Value: `New String`)
 * __ui_mouseIsDragging__ ```Number```
 * __ui_mouseOver__ ```Number```
 * __ui_normValue__ ```Number```
-* __ui_scapeDiffusion__ ```Number``` (default Value: `0`)
-
-  ui_scapeDiffusion
-
 * __ui_scapeReverse__ ```Number```
 
-  -> external
+  ->
 
 * __ui_smoothedParam_diffusion__ ```Number```
 * __ui_smoothedParam_mix__ ```Number```

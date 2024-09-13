@@ -2,12 +2,94 @@
 /******/ 	"use strict";
 var __webpack_exports__ = {};
 
+;// CONCATENATED MODULE: ../shared/client/src/logger.js
+/* eslint-disable no-console */
+
+class Logger
+{
+    constructor(initiator)
+    {
+        this.initiator = initiator;
+    }
+
+    stack(t)
+    {
+        console.info("[" + this.initiator + "] ", t);
+        console.log((new Error()).stack);
+    }
+
+    groupCollapsed(t)
+    {
+        if ((CABLES.UI && CABLES.UI.logFilter.filterLog({ "initiator": this.initiator, "level": 0 }, ...arguments)) || !CABLES.logSilent) console.log("[" + this.initiator + "]", ...arguments);
+
+        console.groupCollapsed("[" + this.initiator + "] " + t);
+    }
+
+    table(t)
+    {
+        console.table(t);
+    }
+
+    groupEnd()
+    {
+        console.groupEnd();
+    }
+
+    error()
+    {
+        if ((CABLES.UI && CABLES.UI.logFilter.filterLog({ "initiator": this.initiator, "level": 2 }, ...arguments)) || !CABLES.logSilent)
+            console.error("[" + this.initiator + "]", ...arguments);
+    }
+
+    errorGui()
+    {
+        if (CABLES.UI) CABLES.UI.logFilter.filterLog({ "initiator": this.initiator, "level": 2 }, ...arguments);
+    }
+
+    warn()
+    {
+        if ((CABLES.UI && CABLES.UI.logFilter.filterLog({ "initiator": this.initiator, "level": 1 }, ...arguments)) || !CABLES.logSilent)
+            console.warn("[" + this.initiator + "]", ...arguments);
+    }
+
+    verbose()
+    {
+        if ((CABLES.UI && CABLES.UI.logFilter.filterLog({ "initiator": this.initiator, "level": 0 }, ...arguments)) || !CABLES.logSilent)
+            console.log("[" + this.initiator + "]", ...arguments);
+    }
+
+    info()
+    {
+        if ((CABLES.UI && CABLES.UI.logFilter.filterLog({ "initiator": this.initiator, "level": 0 }, ...arguments)) || !CABLES.logSilent)
+            console.info("[" + this.initiator + "]", ...arguments);
+    }
+
+    log()
+    {
+        if ((CABLES.UI && CABLES.UI.logFilter.filterLog({ "initiator": this.initiator, "level": 0 }, ...arguments)) || !CABLES.logSilent)
+            console.log("[" + this.initiator + "]", ...arguments);
+    }
+
+    logGui()
+    {
+        if (CABLES.UI) CABLES.UI.logFilter.filterLog({ "initiator": this.initiator, "level": 0 }, ...arguments);
+    }
+
+    userInteraction(text)
+    {
+        // this.log({ "initiator": "userinteraction", "text": text });
+    }
+}
+
 ;// CONCATENATED MODULE: ./src/libs/cgl/pixelreader/pixelreader.js
+
 
 class PixelReader
 {
     constructor()
     {
+        this._log = new Logger("LoadingStatus");
+
         this.pixelData = null;
         this._finishedFence = true;
         this._size = 0;
@@ -38,25 +120,25 @@ class PixelReader
                 else
                 if (status == gl.TIMEOUT_EXPIRED)
                 {
-                    // console.log("TIMEOUT_EXPIRED");
+                    // this._log.log("TIMEOUT_EXPIRED");
                     return setTimeout(check, 0);
                 }
                 else
                 if (status == gl.CONDITION_SATISFIED)
                 {
-                    // console.log("CONDITION_SATISFIED");
+                    // this._log.log("CONDITION_SATISFIED");
                     resolve();
                     gl.deleteSync(sync);
                 }
                 else if (status == gl.ALREADY_SIGNALED)
                 {
-                    // console.log("already signaled");
+                    // this._log.log("already signaled");
                     resolve();
                     gl.deleteSync(sync);
                 }
                 else
                 {
-                    console.log("unknown fence status", status);
+                    this._log.log("unknown fence status", status);
                 }
             }
 
@@ -94,7 +176,7 @@ class PixelReader
 
         if (!this._pixelData || this._size != numItems * bytesPerItem)
         {
-            if (isFloatingPoint) this._pixelData = new Float32Array(numItems * bytesPerItem);
+            if (isFloatingPoint) this._pixelData = new Float32Array(numItems);
             else this._pixelData = new Uint8Array(numItems);
 
             this._size = numItems * bytesPerItem;
@@ -105,7 +187,7 @@ class PixelReader
 
         if (this._size == 0 || !this._pixelData)
         {
-            console.error("readpixel size 0", this._size, w, h);
+            this._log.error("readpixel size 0", this._size, w, h);
             return;
         }
 
@@ -117,9 +199,16 @@ class PixelReader
             gl.bindFramebuffer(gl.FRAMEBUFFER, fb);
             gl.bindBuffer(gl.PIXEL_PACK_BUFFER, this._pbo);
             cgl.profileData.profileFencedPixelRead++;
+
+            if (this._size != numItems * bytesPerItem)
+                this._log.error("buffer size invalid", numItems, w, h, bytesPerItem);
+
+            // const altFormat = gl.getParameter(gl.IMPLEMENTATION_COLOR_READ_FORMAT);
+            // const altType = gl.getParameter(gl.IMPLEMENTATION_COLOR_READ_TYPE);
+
             gl.readPixels(
-                x, y, w, h, gl.RGBA, pixelInfo.glDataType, 0
-                // x, y, w, h, pixelInfo.glDataFormat, pixelInfo.glDataType, 0
+                // x, y, w, h, altFormat, altType, 0
+                x, y, w, h, pixelInfo.glDataFormat, pixelInfo.glDataType, 0
             );
 
             gl.bindBuffer(gl.PIXEL_PACK_BUFFER, null);

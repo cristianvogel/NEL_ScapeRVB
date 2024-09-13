@@ -1,6 +1,11 @@
 import { ElemNode } from "@elemaudio/core";
 
 ////////// STATE
+
+type bypassStates = '0' | '1';
+type bypassEvents = 'toggle';
+
+
 type HostParams = {
   paramId: string;
   name: string;

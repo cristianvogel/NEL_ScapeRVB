@@ -1,11 +1,10 @@
-import { ConsoleText, ControlSource, HostState } from "../stores/stores.svelte";
+import { ConsoleText, ControlSource } from "../stores/stores.svelte";
 import { REGISTERED_PARAM_NAMES } from "../stores/constants";
 import { equiv } from "@thi.ng/equiv";
+import { EPS } from "@thi.ng/math";
 //@ts-nocheck
 export declare var globalThis: any;
 declare var CABLES: any;
-
-let hostStateMemo = {};
 
 function processHostState(state: any) {
   // ━━━━━━━
@@ -16,35 +15,46 @@ function processHostState(state: any) {
   } catch (e) {
     console.warn("Bad state received", parsedEntries);
   }
-  const current = parsedEntries;
-  Object.keys(current).forEach((param) => {
-
-    if (equiv(current[param], hostStateMemo[param]) ) return;
-
-     if (REGISTERED_PARAM_NAMES.includes(param)) {
-       updateRegisteredParams(param, current[param] || 0);
-       hostStateMemo[param] = current[param];
-     }
-     
-   });
-
-
+  const currenHostState = parsedEntries;
+  if (ControlSource.snapshot() !== "ui") {
+    Object.keys(currenHostState).forEach((param) => {
+      if (REGISTERED_PARAM_NAMES.includes(param)) {
+        updateUI(param, currenHostState[param] as number);
+      }
+    });
+  }
 }
 
-
-function updateRegisteredParams(param, value) {
-  if (!CABLES) return;
+async function updateUI(param, value) {
+  while (typeof CABLES === "undefined") {
+    await new Promise((resolve) => setTimeout(resolve, 100)); // Wait for 100ms before checking again
+  }
+  
   let targetVar = CABLES.patch.getVar("ext_srvbParams_object");
-      let currentValue = targetVar.getValue();
-      targetVar.setValue( {...currentValue, [param]: value, source: "host"} );
+
+  let currentUIState = targetVar.getValue();
+
+  // Define the function to update the value in the UI
+  // with the received value from the host
+  function updateValue() {
+    ControlSource.update("host");
+    targetVar.setValue({
+      ...currentUIState,
+      [param]: value + EPS
+    });
+  }
+
+ 
+  // do checks, then update
+  if (!currentUIState || !currentUIState[param]) return;
+  else updateValue();
 }
 
 export const MessageToHost = {
- 
   stashMeshState: function () {
     let dataToPersist = {
-       presets: {},
-      license: 'VALID',
+      presets: {},
+      license: "VALID",
     };
     this.__setMeshStateInHost(dataToPersist);
   },
@@ -54,12 +64,16 @@ export const MessageToHost = {
    * @param paramId - The ID of the parameter to update.
    * @param value - The new value of the parameter.
    */
-  requestParamValueUpdate: function (paramId: string, value: number ) {
-    if (typeof globalThis.__postNativeMessage__ === "function" )   {
-      globalThis.__postNativeMessage__("setParameterValue", {
-        paramId,
-        value,
-      });
+  requestParamValueUpdate: function (paramId: string, value: number) {
+    ControlSource.update("ui");
+    if (REGISTERED_PARAM_NAMES.includes(paramId) ) {
+      ConsoleText.extend(">> host >> "+ paramId + " >> " + value);
+      if (typeof globalThis.__postNativeMessage__ === "function" && ControlSource.snapshot() === "ui") {
+        globalThis.__postNativeMessage__("setParameterValue", {
+          paramId,
+          value,
+        });
+      }
     }
   },
 
@@ -67,6 +81,7 @@ export const MessageToHost = {
    * Send a ready message to the host.
    */
   requestReady: function () {
+    console.log(REGISTERED_PARAM_NAMES);
     if (typeof globalThis.__postNativeMessage__ === "function") {
       globalThis.__postNativeMessage__("ready", {});
     }
@@ -91,7 +106,7 @@ export const MessageToHost = {
    */
   __setMeshStateInHost: function (dataToPersist: any) {
     if (typeof globalThis.__postNativeMessage__ === "function") {
-     // stash view secondary state 
+      // stash view secondary state
     }
   },
 
@@ -127,7 +142,6 @@ export function RegisterMessagesFromHost() {
     processHostState(state);
   };
 
-
   /** ━━━━━━━
    * Handles the unlock status received from the host.
    * @param status - The unlock status string.
@@ -146,7 +160,7 @@ export function RegisterMessagesFromHost() {
    * @param message - The host information object.
    */
   globalThis.__hostInfo__ = function (message: string) {
-     console.log("Got host Info: ", message);
+    console.log("Got host Info: ", message);
   };
 
   /** ━━━━━━━
@@ -165,9 +179,12 @@ export function RegisterMessagesFromHost() {
 }
 
 // mutatesthe parsedEntries object
-function denormaliseStructureParam(parsedEntries: { [key: string]: number | number[]; }) {
-
-    parsedEntries = { ...parsedEntries, structure: parsedEntries.structure as number  };
-  console.log( parsedEntries.structure );
+function denormaliseStructureParam(parsedEntries: {
+  [key: string]: number | number[];
+}) {
+  parsedEntries = {
+    ...parsedEntries,
+    structure: parsedEntries.structure as number,
+  };
+  console.log(parsedEntries.structure);
 }
- 
