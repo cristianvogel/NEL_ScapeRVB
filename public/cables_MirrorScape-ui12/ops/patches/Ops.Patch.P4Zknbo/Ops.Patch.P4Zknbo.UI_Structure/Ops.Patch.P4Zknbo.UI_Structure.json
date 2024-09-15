@@ -1,0 +1,57 @@
+{
+    "id": "334f382a-e0ce-42a7-806a-a2a6ca8fa997",
+    "created": 1725864299664,
+    "license": "MIT",
+    "authorName": "cristianvogel",
+    "changelog": [
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "cristianvogel",
+            "date": 1725864299711
+        },
+        {
+            "message": "Ops.Patch.PU070On.SubPatch0 renamed to Ops.Patch.PU070On.UI_Structure",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1725864369574
+        },
+        {
+            "message": "Ops.Patch.PU070On.UI_Structure renamed to Ops.Patch.PoS7dRn.UI_Structure",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1725864401434
+        },
+        {
+            "message": "Ops.Patch.PoS7dRn.UI_Structure renamed to Ops.Patch.P4oPpSn.UI_Structure",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1725882203872
+        },
+        {
+            "message": "Ops.Patch.P4oPpSn.UI_Structure renamed to Ops.Patch.PDUHsZn.UI_Structure",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1725986324030
+        },
+        {
+            "message": "Ops.Patch.PDUHsZn.UI_Structure renamed to Ops.Patch.PW10J0o.UI_Structure",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1726004982830
+        },
+        {
+            "message": "Ops.Patch.PW10J0o.UI_Structure renamed to Ops.Patch.P4Zknbo.UI_Structure",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1726162359271
+        }
+    ],
+    "coreLibs": [
+        "subpatchop"
+    ],
+    "layout": {
+        "portsIn": [],
+        "portsOut": []
+    }
+}

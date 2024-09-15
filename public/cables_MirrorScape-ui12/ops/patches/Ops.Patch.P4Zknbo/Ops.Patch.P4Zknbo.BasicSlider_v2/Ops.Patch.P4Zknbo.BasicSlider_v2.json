@@ -1,0 +1,159 @@
+{
+    "id": "4758cdcf-b59d-4706-88e6-2fa754c33f04",
+    "created": 1723802362808,
+    "license": "MIT",
+    "authorName": "cristianvogel",
+    "changelog": [
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "cristianvogel",
+            "date": 1723729020848
+        },
+        {
+            "message": "Ops.Patch.PFwMGwl.SubPatch0 renamed to Ops.Patch.PunvHvl.SubPatch0",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1723729169338
+        },
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "cristianvogel",
+            "date": 1723802362810
+        },
+        {
+            "message": "Ops.Patch.PunvHvl.BasicSlider_v2 renamed to Ops.Patch.P8zbhDl.BasicSlider_v2",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1723826232754
+        },
+        {
+            "message": "Ops.Patch.P8zbhDl.BasicSlider_v2 renamed to Ops.Patch.PmhkN4m.BasicSlider_v2",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1724232853627
+        },
+        {
+            "message": "Ops.Patch.PmhkN4m.BasicSlider_v2 renamed to Ops.Patch.PD8qfbm.BasicSlider_v2",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1724328206598
+        },
+        {
+            "message": "Ops.Patch.PD8qfbm.BasicSlider_v2 renamed to Ops.Patch.PuSSdim.BasicSlider_v2",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1724431274812
+        },
+        {
+            "message": "Ops.Patch.PuSSdim.BasicSlider_v2 renamed to Ops.Patch.PGcsYsm.BasicSlider_v2",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1724590136571
+        },
+        {
+            "message": "Ops.Patch.PGcsYsm.BasicSlider_v2 renamed to Ops.Patch.PZ51fXm.BasicSlider_v2",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1725037373562
+        },
+        {
+            "message": "Ops.Patch.PZ51fXm.BasicSlider_v2 renamed to Ops.Patch.PAIoPfn.BasicSlider_v2",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1725312018589
+        },
+        {
+            "message": "Ops.Patch.PAIoPfn.BasicSlider_v2 renamed to Ops.Patch.P9S6hjn.BasicSlider_v2",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1725362952998
+        },
+        {
+            "message": "Ops.Patch.P9S6hjn.BasicSlider_v2 renamed to Ops.Patch.Per7Sun.BasicSlider_v2",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1725534313175
+        },
+        {
+            "message": "Ops.Patch.Per7Sun.BasicSlider_v2 renamed to Ops.Patch.PbnNcNn.BasicSlider_v2",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1725805214000
+        },
+        {
+            "message": "Ops.Patch.PbnNcNn.BasicSlider_v2 renamed to Ops.Patch.PU070On.BasicSlider_v2",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1725816967353
+        },
+        {
+            "message": "Ops.Patch.PU070On.BasicSlider_v2 renamed to Ops.Patch.PoS7dRn.BasicSlider_v2",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1725864400820
+        },
+        {
+            "message": "Ops.Patch.PoS7dRn.BasicSlider_v2 renamed to Ops.Patch.P4oPpSn.BasicSlider_v2",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1725882203152
+        },
+        {
+            "message": "Ops.Patch.P4oPpSn.BasicSlider_v2 renamed to Ops.Patch.PDUHsZn.BasicSlider_v2",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1725986325949
+        },
+        {
+            "message": "Ops.Patch.PDUHsZn.BasicSlider_v2 renamed to Ops.Patch.PW10J0o.BasicSlider_v2",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1726004984560
+        },
+        {
+            "message": "Ops.Patch.PW10J0o.BasicSlider_v2 renamed to Ops.Patch.P4Zknbo.BasicSlider_v2",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1726162361152
+        }
+    ],
+    "coreLibs": [
+        "subpatchop"
+    ],
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "blls2amps",
+                "uititle": "Trigger in"
+            },
+            {
+                "type": 5,
+                "name": "btagbs7z2",
+                "uititle": "Class"
+            },
+            {
+                "type": 0,
+                "name": "lj06d561p",
+                "uititle": "Show Boundings",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 0,
+                "name": "nti406vwi",
+                "uititle": "Result",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "gjvx0zyv5",
+                "uititle": "value",
+                "subType": "number"
+            }
+        ]
+    }
+}

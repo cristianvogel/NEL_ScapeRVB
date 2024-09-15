@@ -1,0 +1,51 @@
+{
+    "id": "542fcabf-cbcc-4a8f-897c-b6b622a90b92",
+    "created": 1725864812085,
+    "license": "MIT",
+    "authorName": "cristianvogel",
+    "changelog": [
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "cristianvogel",
+            "date": 1725864812144
+        },
+        {
+            "message": "Ops.Patch.PoS7dRn.SubPatch0 renamed to Ops.Patch.PoS7dRn.UI_Reverse",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1725864880058
+        },
+        {
+            "message": "Ops.Patch.PoS7dRn.UI_Reverse renamed to Ops.Patch.P4oPpSn.UI_Reverse",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1725882204680
+        },
+        {
+            "message": "Ops.Patch.P4oPpSn.UI_Reverse renamed to Ops.Patch.PDUHsZn.UI_Reverse",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1725986325480
+        },
+        {
+            "message": "Ops.Patch.PDUHsZn.UI_Reverse renamed to Ops.Patch.PW10J0o.UI_Reverse",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1726004983825
+        },
+        {
+            "message": "Ops.Patch.PW10J0o.UI_Reverse renamed to Ops.Patch.P4Zknbo.UI_Reverse",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1726162360561
+        }
+    ],
+    "coreLibs": [
+        "subpatchop"
+    ],
+    "layout": {
+        "portsIn": [],
+        "portsOut": []
+    }
+}
