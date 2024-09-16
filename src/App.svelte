@@ -16,7 +16,7 @@
     // Second setup the listener for CABLES loader
     document.addEventListener("CABLES.jsLoaded", function (event) {
       CABLES.patch = new CABLES.Patch({
-        patchFile: "MirrorScape-ui/js/MirrorScape-ui.json",
+        patchFile: "MirrorScape-ui-ws/js/MirrorScape-ui-ws.json",
         prefixAssetPath: "/assets/",
         assetPath: "/assets/",
         jsPath: "js/",

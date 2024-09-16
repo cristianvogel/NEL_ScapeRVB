@@ -53,20 +53,20 @@ function updateUI(param, value) {
     ext_scapeBypass.setValue(!scapeBypassFSM.current);
   }
 
-  // update the value in the UI
-  // with the received value from the host
-  function updateValue() {
-    if (ControlSource.current === "ui") return;
+  // // update the value in the UI
+  // // with the received value from the host
+  // function updateValue() {
+  //   if (ControlSource.current === "ui") return;
 
-    ext_srvbParams.setValue({
-      ...currentUIState,
-      [param]: value,
-    });
-  }
+  //   ext_srvbParams.setValue({
+  //     ...currentUIState,
+  //     [param]: value,
+  //   });
+  // }
 
-  // do checks, then update the rest of the params
-  if (!currentUIState) return;
-  else updateValue();
+  // // do checks, then update the rest of the params
+  // if (!currentUIState) return;
+  // else updateValue();
 }
 
 export const MessageToHost = {
@@ -83,25 +83,25 @@ export const MessageToHost = {
    * @param paramId - The ID of the parameter to update.
    * @param value - The new value of the parameter.
    */
-  requestParamValueUpdate: function (paramId: string, value: number) {
-    ControlSource.update("ui");
-    if (
-      REGISTERED_PARAM_NAMES.includes(paramId) &&
-      paramId !== "srvbByPass" &&
-      paramId !== "scapeByPass"
-    ) {
-      ConsoleText.extend(">> host >> " + paramId + " >> " + value);
-      if (
-        typeof globalThis.__postNativeMessage__ === "function" &&
-        ControlSource.snapshot() === "ui"
-      ) {
-        globalThis.__postNativeMessage__("setParameterValue", {
-          paramId,
-          value,
-        });
-      }
-    }
-  },
+  // requestParamValueUpdate: function (paramId: string, value: number) {
+  //   ControlSource.update("ui");
+  //   if (
+  //     REGISTERED_PARAM_NAMES.includes(paramId) &&
+  //     paramId !== "srvbByPass" &&
+  //     paramId !== "scapeByPass"
+  //   ) {
+  //     ConsoleText.extend(">> host >> " + paramId + " >> " + value);
+  //     if (
+  //       typeof globalThis.__postNativeMessage__ === "function" &&
+  //       ControlSource.snapshot() === "ui"
+  //     ) {
+  //       globalThis.__postNativeMessage__("setParameterValue", {
+  //         paramId,
+  //         value,
+  //       });
+  //     }
+  //   }
+  // },
 
   /** ━━━━━━━
    * Send a ready message to the host.

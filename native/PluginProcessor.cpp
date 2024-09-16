@@ -1,10 +1,10 @@
 #include "PluginProcessor.h"
 #include "ConvolverNode.h"
-#include "WebViewEditor.h"
 
 #include <choc_javascript_QuickJS.h>
 #include <choc_javascript_Timer.h>
 #include <choc_StringUtilities.h>
+#include <choc_HTTPServer.h>
 
 //==============================================================================
 // A quick helper for locating bundled asset files
@@ -53,20 +53,40 @@ EffectsPluginProcessor::EffectsPluginProcessor()
     const auto parameters = manifest.getWithDefault("parameters", elem::js::Array());
     createParameters(parameters);
 
+    // Initialize editor/view and license activator
+    editor = new WebViewEditor(this, getAssetsDirectory(), 800, 440);
+
     // The view state property has to have some value so that when state is loaded
     // from the host, the key exists and is populated.
     meshState.insert_or_assign(MESH_STATE_PROPERTY, "{}");
 
     // register audio file formats
     formatManager.registerBasicFormats();
+
+    // create server
+    auto ws = EffectsPluginProcessor::runWebServer();
+    if (ws != 0)
+    {
+        dispatchError("Server error:", "Websocket server failed to start on port 13755");
+    }
 }
 
+// Destructor
 EffectsPluginProcessor::~EffectsPluginProcessor()
 {
+    // Remove listeners from all parameters
     for (auto &p : getParameters())
     {
         p->removeListener(this);
+    };
+    // Delete the editor if it is not nullptr
+    if (editor != nullptr)
+    {
+        delete editor;
+        editor = nullptr;
     }
+    // Close the server
+        server.close();
 }
 
 //==============================================================================
@@ -109,11 +129,11 @@ void EffectsPluginProcessor::addImpulseResponsesToVirtualFileSystem(std::vector<
         delete reader;
 
         auto numSamples = buffer.getNumSamples();
-       // fade in, less ER energy from the IR, as we have a whole ER engine already
-        buffer.applyGainRamp( 0, numSamples, 0.2, 1 );
-       // buffer.copyFromWithRamp(1, 0, buffer.getReadPointer(0), buffer.getNumSamples(), 0.2, 1);
+        // fade in, less ER energy from the IR, as we have a whole ER engine already
+        buffer.applyGainRamp(0, numSamples, 0.2, 1);
+        // buffer.copyFromWithRamp(1, 0, buffer.getReadPointer(0), buffer.getNumSamples(), 0.2, 1);
         // add the gain ramped impulse response to the virtual file system
-        
+
         runtime->updateSharedResourceMap(
             name,
             buffer.getReadPointer(0),
@@ -121,14 +141,50 @@ void EffectsPluginProcessor::addImpulseResponsesToVirtualFileSystem(std::vector<
         // Creative touch: Reverse the IR and copy that to the other channel
         // Get the reverse from a little way in too, so its less draggy
         // so its easy to swap into in realtime
-        buffer.reverse( 0, numSamples * 0.75 );
-        buffer.copyFrom( 1, 0, buffer.getReadPointer(0), numSamples * 0.75 );
+        buffer.reverse(0, numSamples * 0.75);
+        buffer.copyFrom(1, 0, buffer.getReadPointer(0), numSamples * 0.75);
         // add the shaped impulse response to the virtual file system
         runtime->updateSharedResourceMap(
             REVERSE_BUFFER_PREFIX + name,
             buffer.getReadPointer(1),
             numSamples * 0.75);
     }
+}
+
+//==============================================================================
+
+//==============================================================================
+int EffectsPluginProcessor::runWebServer()
+{
+    auto address = "127.0.0.1";
+    uint16_t preferredPortNum = 13755;
+
+    bool openedOK = server.open(address, preferredPortNum, 0, [this]() -> std::unique_ptr<choc::network::HTTPServer::ClientInstance>
+                                {
+                                    // Create a new object for each client..
+                                    clientInstance = std::make_unique<ViewClientInstance>(*this);
+                                    return std::move(clientInstance); }, [this](const std::string &error)
+                                {
+                                    // Handle some kind of server error..
+                                    dispatchError("IO Error: ", error); });
+
+    if (!openedOK)
+        return 1;
+    // While the server is running, this thread no longer needs to be involved.
+    // you could also run the
+    // message loop or get on with other tasks.
+    return 0;
+}
+
+void EffectsPluginProcessor::sendDataOverSocket(const std::string &dataToSend)
+{
+    // clientInstance needs to be thread safe
+    // as it is accessed from server thread
+    // and the message thread
+    std::lock_guard<std::mutex> lock(clientInstanceMutex);
+    if (clientInstance == nullptr)
+        return;
+    clientInstance->sendWebSocketMessage(dataToSend);
 }
 
 //==============================================================================
@@ -169,10 +225,7 @@ void EffectsPluginProcessor::createParameters(const std::vector<elem::js::Value>
 
 juce::AudioProcessorEditor *EffectsPluginProcessor::createEditor()
 {
-    const auto editor = new WebViewEditor(this, getAssetsDirectory(), 800, 440);
-
-  
-
+    // KEYZY LICENSE ACTIVATION
     // -----------
     // semi-online license activation
     // -----------
@@ -428,7 +481,7 @@ void EffectsPluginProcessor::initJavaScriptEngine()
 {
     jsContext = choc::javascript::createQuickJSContext();
 
-      choc::javascript::registerTimerFunctions(jsContext);
+    choc::javascript::registerTimerFunctions(jsContext);
 
     // Install some native interop functions in our JavaScript environment
     jsContext.registerFunction(NATIVE_MESSAGE_FUNCTION_NAME, [this](choc::javascript::ArgumentList args)
@@ -553,7 +606,7 @@ void EffectsPluginProcessor::dispatchMeshStateChange()
 // NO END OF PROBLEMS from this logging system!
 void EffectsPluginProcessor::dispatchError(std::string const &name, std::string const &message)
 {
-   // Need the serialize here to correctly form the string script.
+    // Need the serialize here to correctly form the string script.
     const auto expr = juce::String(jsFunctions::errorScript).replace("@", elem::js::serialize(name)).replace("%", elem::js::serialize(message)).toStdString();
 
     // First we try to dispatch to the UI if it's available, because running this step will
@@ -565,7 +618,7 @@ void EffectsPluginProcessor::dispatchError(std::string const &name, std::string 
             errorLogQueue.pop();
         }
         errorLogQueue.push(expr);
-    } 
+    }
 
     // Next we dispatch to the local engine which will evaluate any necessary JavaScript synchronously
     // here on the main thread

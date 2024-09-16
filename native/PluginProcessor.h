@@ -5,10 +5,16 @@
 #include <juce_audio_formats/juce_audio_formats.h>
 
 #include <choc_javascript.h>
+#include <choc_HTTPServer.h>
+#include <mutex>
 
 #include <elem/Runtime.h>
 
 #include <KeyzyLicenseActivator.h>
+#include "WebViewEditor.h"
+
+class WebServer;     // Forward declaration of the WebServer class
+class WebViewEditor; // Forward declaration of WebViewEditor
 
 //==============================================================================
 class EffectsPluginProcessor
@@ -24,6 +30,7 @@ public:
     ~EffectsPluginProcessor() override;
 
     //==============================================================================
+    WebViewEditor *editor; // Declare editor as a member variable
     juce::AudioProcessorEditor *createEditor() override;
     bool hasEditor() const override;
 
@@ -79,24 +86,17 @@ public:
 
 private:
     std::string REVERSE_BUFFER_PREFIX = "REVERSED_";
-
     std::string MESH_STATE_PROPERTY = "meshState";
-
     std::string MAIN_DSP_JS_FILE = "dsp.main.js";
-
     std::string MAIN_PATCH_JS_FILE = "patch.main.js";
-
     std::string SAMPLE_RATE_PROPERTY = "sampleRate";
-
     std::string NATIVE_MESSAGE_FUNCTION_NAME = "__postNativeMessage__";
-
     std::string LOG_FUNCTION_NAME = "__log__";
+    std::string WS_RESPONSE_PROPERTY = "NEL_STATE";
 
     // The maximum number of error messages to keep in the queue
     size_t MAX_ERROR_LOG_QUEUE_SIZE = 200;
-
     std::optional<std::string> loadDspEntryFileContents() const;
-
     std::optional<std::string> loadPatchEntryFileContents() const;
 
     /**
@@ -128,37 +128,111 @@ private:
     std::queue<std::string> errorLogQueue;
 
     //=============================================
-   
-   std::vector<juce::File> impulseResponses;
-    void addImpulseResponsesToVirtualFileSystem(std::vector<juce::File> );
+
+    std::vector<juce::File> impulseResponses;
+    void addImpulseResponsesToVirtualFileSystem(std::vector<juce::File>);
     std::vector<juce::File> loadImpulseResponses();
     juce::AudioBuffer<float> getAudioBufferFromFile(juce::File file);
-    juce::AudioFormatManager formatManager; 
-    
-//==============================================================================
-// A simple "dirty list" abstraction here for propagating realtime parameter
-// value changes
-struct ParameterReadout
-{
-    float value = 0;
-    bool dirty = false;
+    juce::AudioFormatManager formatManager;
+
+    //=============================================
+public:
+    int runWebServer();
+    void sendDataOverSocket(const std::string &dataToSend);
+
+    struct ViewClientInstance : public choc::network::HTTPServer::ClientInstance
+    {
+        ViewClientInstance(EffectsPluginProcessor &processor) : processor(processor)
+        {
+            static int clientCount = 0;
+            clientID = ++clientCount;
+        }
+
+        ~ViewClientInstance()
+        {
+        }
+
+        choc::network::HTTPContent getHTTPContent(std::string_view path) override
+        {
+            // not using HTML
+            return {};
+        }
+
+        void upgradedToWebSocket(std::string_view path) override
+        {
+        }
+
+        void handleWebSocketMessage(std::string_view message) override
+        {
+            // Convert std::string_view to std::string
+            std::string messageStr(message);
+
+            // Deserialize the message
+            auto parsed = elem::js::parseJSON(messageStr);
+
+            if (parsed.isObject())
+            {
+                auto o = parsed.getObject();
+
+                for (auto &[key, value] : o)
+                {
+                    if (key == "requestState")
+                    {
+                        // Create a new JSON-like object
+                        elem::js::Object wrappedState;
+                        // Set the clientID as the key and processor.state as the value
+                        wrappedState[processor.WS_RESPONSE_PROPERTY] = processor.state;
+                        // Serialize the new object
+                        std::string serializedState = elem::js::serialize(wrappedState);
+                        // Send the serialized string
+                        sendWebSocketMessage(serializedState);
+                        break;
+                    }
+
+                    // ignore any params that are not host related
+                    if (value.isNumber() && processor.parameterMap.count(key) > 0)
+                    {
+                        // Convert elem::js::Value to float
+                        float paramValue = static_cast<float>(static_cast<elem::js::Number>(value));
+                        // Use editor->setParameterValue to update each parameter
+                        processor.editor->setParameterValue(key, paramValue);
+                    }
+                }
+            }
+        }
+
+        int clientID = 0;
+        EffectsPluginProcessor &processor; // Reference to the enclosing class
+    };
+
+private:
+    std::unique_ptr<ViewClientInstance> clientInstance; // Use a smart pointer to store the client instance
+    std::mutex clientInstanceMutex;                     // Mutex to protect access to clientInstance
+    choc::network::HTTPServer server;
+
+    //==============================================================================
+    // A simple "dirty list" abstraction here for propagating realtime parameter
+    // value changes
+    struct ParameterReadout
+    {
+        float value = 0;
+        bool dirty = false;
+    };
+
+    std::list<std::atomic<ParameterReadout>> parameterReadouts;
+    static_assert(std::atomic<ParameterReadout>::is_always_lock_free);
+
+    //==============================================================================
+    // Keyzy License Activator
+    //     Keyzy::ProductData productData{"YOUR_APP_ID", "YOUR_API_KEY", "YOUR_PRODUCT_CODE", "YOUR_CRYPTION_KEY"};
+
+    Keyzy::ProductData productData{"JXgnTvml", "Q4PbXdKz6riNP3eVxOrj53aBRM9QIyB6LmF1QU5b", "01afc290-0c82-11ef-8629-07468c68230b", "3qKlXJ2vnkxbQhhSgpW1D7Qi6YNIOIhz"};
+    Keyzy::KeyzyLicenseActivator licenseActivator{productData};
+    Keyzy::LicenseStatus licenseStatus = Keyzy::LicenseStatus::NOT_AUTHORIZED;
+
+    //==============================================================================
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(EffectsPluginProcessor)
 };
-
-std::list<std::atomic<ParameterReadout>> parameterReadouts;
-static_assert(std::atomic<ParameterReadout>::is_always_lock_free);
-
-//==============================================================================
-// Keyzy License Activator
-//     Keyzy::ProductData productData{"YOUR_APP_ID", "YOUR_API_KEY", "YOUR_PRODUCT_CODE", "YOUR_CRYPTION_KEY"};
-
-Keyzy::ProductData productData{"JXgnTvml", "Q4PbXdKz6riNP3eVxOrj53aBRM9QIyB6LmF1QU5b", "01afc290-0c82-11ef-8629-07468c68230b", "3qKlXJ2vnkxbQhhSgpW1D7Qi6YNIOIhz"};
-Keyzy::KeyzyLicenseActivator licenseActivator{productData};
-Keyzy::LicenseStatus licenseStatus = Keyzy::LicenseStatus::NOT_AUTHORIZED;
-
-//==============================================================================
-JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(EffectsPluginProcessor)
-}
-;
 
 namespace unlock
 {

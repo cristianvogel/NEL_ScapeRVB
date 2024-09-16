@@ -17,36 +17,36 @@ export function initPatchListeners(patch) {
   const ui_srvbBypass = patch.getVar("ui_bypassSRVB");
   const ui_scapeBypass = patch.getVar("ui_bypassConvolver");
 
-  if (ui_normValue && ui_mouseIsChangingParamID && ui_allParamsState) {
-    // when the single object in the patch
-    // that holds most of the UI params changes
-    // we update the UI state of the currently changing param
-    // with the currently changing normValue
-    // They are independent of each other,
-    // but should always come together and be correctly paired
-    ui_allParamsState.on("change", (state: any) => {
-      if (state !== null && state.source !== "host") {
-        if (
-          UI_ChangingParamID.current !== "srvbBypass" &&
-          UI_ChangingParamID.current !== "scapeBypass"
-        ) {
-          MessageToHost.requestParamValueUpdate(
-            UI_ChangingParamID.current,
-            UI_NormValue.current
-          );
-        }
-      }
-    });
+  // if (ui_normValue && ui_mouseIsChangingParamID && ui_allParamsState) {
+  //   // when the single object in the patch
+  //   // that holds most of the UI params changes
+  //   // we update the UI state of the currently changing param
+  //   // with the currently changing normValue
+  //   // They are independent of each other,
+  //   // but should always come together and be correctly paired
+  //   ui_allParamsState.on("change", (state: any) => {
+  //     if (state !== null && state.source !== "host") {
+  //       if (
+  //         UI_ChangingParamID.current !== "srvbBypass" &&
+  //         UI_ChangingParamID.current !== "scapeBypass"
+  //       ) {
+  //         MessageToHost.requestParamValueUpdate(
+  //           UI_ChangingParamID.current,
+  //           UI_NormValue.current
+  //         );
+  //       }
+  //     }
+  //   });
 
     ui_normValue.on("change", (value) => {
       ControlSource.update("ui");
       UI_NormValue.update(value);
     });
 
-    ui_mouseIsChangingParamID.on("change", (name) => {
-      UI_ChangingParamID.update(name);
-    });
-  }
+  //   ui_mouseIsChangingParamID.on("change", (name) => {
+  //     UI_ChangingParamID.update(name);
+  //   });
+  // }
   ///////////// special case for bypasses and scapeLength
 
   ui_srvbBypass.on("change", (value) => {

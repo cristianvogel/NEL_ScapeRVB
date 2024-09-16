@@ -1,9 +1,9 @@
 cmake_minimum_required(VERSION 3.15)
-project(NEL_ShifterMesh VERSION 1.01)
+project(NEL_scape|space VERSION 1.01)
 
-set(TARGET_NAME "NEL_ScapeRVB")
+set(TARGET_NAME "NEL_scape_space")
 set(ASSETS_DIR ${CMAKE_SOURCE_DIR}/../dist/)
-set(BUILD_VERSION "v0.2.9_ARM")
+set(BUILD_VERSION "v0.3.2ws")
 
 option(JUCE_ENABLE_MODULE_SOURCE_GROUPS "Enable Module Source Groups" ON)
 option(JUCE_BUILD_EXTRAS "Build JUCE Extras" OFF)
@@ -23,7 +23,7 @@ if(WIN32)
 endif()
 
 juce_add_plugin(${TARGET_NAME}
-  BUNDLE_ID "audio.neverenginelabs.NELScapeRVB"
+  BUNDLE_ID "audio.neverenginelabs.scapespace"
   COMPANY_NAME "NeverEngineLabs"
   COMPANY_WEBSITE "https://neverenginelabs.com"
   COMPANY_EMAIL "support@neverenginelabs.com"
@@ -33,7 +33,7 @@ juce_add_plugin(${TARGET_NAME}
   APP_SANDBOX_ENABLED FALSE
   APP_SANDBOX_OPTIONS com.apple.security.network.client com.apple.security.files.user-selected.read-write
   FORMATS AU VST3 STANDALONE # The formats to build. Other valid formats are: AAX Unity VST AU AUv3
-  PRODUCT_NAME "NEL_ScapeRVB_${CMAKE_OSX_ARCHITECTURES}${PC_ARCH}_${BUILD_VERSION}") # The name of the final executable, which can differ from the target name
+  PRODUCT_NAME "NEL_scape_space_${CMAKE_OSX_ARCHITECTURES}${PC_ARCH}_${BUILD_VERSION}") # The name of the final executable, which can differ from the target name
 
 # Keyzy Client Library
 # Replace KeyzyClientLibraryX.X.X with your actual library version
@@ -80,8 +80,15 @@ elseif(APPLE)
   target_link_libraries(${TARGET_NAME} PRIVATE ${KEYZY_CLIENT_LIB})
 endif()
 
+# Find Boost libraries
+find_package(Boost REQUIRED COMPONENTS system thread)
+
+# Link Boost libraries
+target_link_libraries(${TARGET_NAME} PRIVATE Boost::system Boost::thread)
+
 target_include_directories(${TARGET_NAME} PRIVATE
-  $<BUILD_INTERFACE:${LIB_DIR}/Include>)
+  $<BUILD_INTERFACE:${LIB_DIR}/Include>
+  $<BUILD_INTERFACE:${Boost_INCLUDE_DIRS}>)
 
 # Copy static assets post build
 if(NOT ELEM_DEV_LOCALHOST)
@@ -126,6 +133,7 @@ target_include_directories(${TARGET_NAME}
   PRIVATE
   ${CMAKE_CURRENT_SOURCE_DIR}/choc/gui
   ${CMAKE_CURRENT_SOURCE_DIR}/choc/javascript
+  ${CMAKE_CURRENT_SOURCE_DIR}/choc/network
   ${CMAKE_CURRENT_SOURCE_DIR}/choc/text
   ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver
 )
