@@ -6,7 +6,6 @@
 
 #include <choc_javascript.h>
 #include <choc_HTTPServer.h>
-#include <mutex>
 
 #include <elem/Runtime.h>
 
@@ -82,6 +81,10 @@ public:
 
     /** error to UI */
     void dispatchError(std::string const &name, std::string const &message);
+
+    // server
+    uint16_t serverPort = 0;
+    uint16_t getServerPort() const { return serverPort; }
 
 private:
     std::string REVERSE_BUFFER_PREFIX = "REVERSED_";
@@ -208,7 +211,6 @@ public:
 
 private:
     std::unique_ptr<ViewClientInstance> clientInstance; // Use a smart pointer to store the client instance
-    std::mutex clientInstanceMutex;                     // Mutex to protect access to clientInstance
     choc::network::HTTPServer server;
 
     //==============================================================================

@@ -89,11 +89,6 @@ WebViewEditor::WebViewEditor(juce::AudioProcessor *proc, juce::File const &asset
                 return handleSetParameterValueEvent(args[1]);
             }
 
-            if (eventName == SET_MESH_STATE && args.size() > 1) {
-                // Take a copy of the value and pass it to the view state change handler.
-                auto value = choc::value::Value(args[1]);
-                setMeshState(value);
-            }
 
             // For Keyzy send an unlock event with an object containing the serial number
             if (eventName == UNLOCK_EVENT && args.size() > 1) {

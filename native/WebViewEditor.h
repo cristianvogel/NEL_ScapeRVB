@@ -26,7 +26,7 @@ public:
     std::function<void(choc::value::Value &)> handleUnlockEvent = [](choc::value::Value &) {};
 
     //==============================================================================
-    std::function<void(choc::value::Value &)> setMeshState = [](choc::value::Value &) {};
+
     std::function<void(const std::string &, float)> setParameterValue = [](const std::string &, float) {};
     std::function<void()> reload = []() {};
     std::function<void()> ready = []() {};
@@ -38,7 +38,7 @@ private:
     std::string READY_EVENT = "ready";
     std::string RELOAD_EVENT = "reload";
     std::string SET_PARAMETER_VALUE = "setParameterValue";
-    std::string SET_MESH_STATE = "setMeshState";
+
     std::string UNLOCK_EVENT = "unlock";
     std::string HOST_INFO = "hostInfo";
 

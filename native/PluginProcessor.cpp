@@ -148,8 +148,10 @@ int EffectsPluginProcessor::runWebServer()
 {
     auto address = "127.0.0.1";
     // uint16_t preferredPortNum = 13755;
-    // ...If you pass 0 for the port number, a free one will be automatically chosen.
-    bool openedOK = server.open(address, 0, 0, [this]() -> std::unique_ptr<choc::network::HTTPServer::ClientInstance>
+    // <<...If you pass 0 for the port number, a free one will be automatically chosen...>>
+    // as we don't want every plugin instance under the same server, we use a random port
+    // and pass it over to the UI client
+    bool openedOK = server.open(address, 0, serverPort, [this]() -> std::unique_ptr<choc::network::HTTPServer::ClientInstance>
                                 {
                                     // Create a new object for each client..
                                     clientInstance = std::make_unique<ViewClientInstance>(*this);
@@ -240,7 +242,6 @@ juce::AudioProcessorEditor *EffectsPluginProcessor::createEditor()
     editor->ready = [this]()
     {
         dispatchStateChange();
-        dispatchMeshStateChange();
     };
 
     // When setting a parameter value, we simply tell the host. This will in turn fire
