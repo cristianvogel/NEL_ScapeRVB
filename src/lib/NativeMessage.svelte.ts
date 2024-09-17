@@ -168,6 +168,16 @@ export function RegisterMessagesFromHost() {
     processHostState(state);
   };
 
+  /** ━━━━━━━ 
+  * Handles receiving the port for this instance of the plugin.
+  * @param port - The port number.
+  * */
+  
+  globalThis.__receiveServerInfo__ = function (port: number) {
+    console.log("Port received: ", port);
+    CABLES.patch.getVar( "ext_serverInfo").setValue( `ws://127.0.0.1:${port}`);
+  };
+
   /** ━━━━━━━
    * Handles the unlock status received from the host.
    * @param status - The unlock status string.

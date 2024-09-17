@@ -77,7 +77,8 @@ public:
     /** Internal helper for propagating processor state changes. */
     void dispatchStateChange();
 
-
+    /** Function to send info about the backend server to the View */
+    void dispatchServerInfo();
 
     /** error to UI */
     void dispatchError(std::string const &name, std::string const &message);
@@ -376,8 +377,6 @@ namespace jsFunctions
 })();
 )script";
 
-   
-
     inline auto errorScript = R"script(
 (function() {
   if (typeof globalThis.__receiveError__ !== 'function')
@@ -389,5 +388,15 @@ namespace jsFunctions
   globalThis.__receiveError__(e);
   return true;
 })();
+)script";
+
+    inline auto serverInfoScript = R"script(
+(function() {
+    if (typeof globalThis.__receiveServerInfo__ !== 'function')
+        return false;
+    
+    globalThis.__receiveServerInfo__(%);
+    return true;
+    })();
 )script";
 }

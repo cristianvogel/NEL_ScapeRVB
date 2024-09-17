@@ -65,6 +65,7 @@ EffectsPluginProcessor::EffectsPluginProcessor()
     {
         dispatchError("Server error:", "Websocket server failed to start on port" + std::to_string( server.getPort()));
     }
+    serverPort = server.getPort();
 }
 
 // Destructor
@@ -242,6 +243,7 @@ juce::AudioProcessorEditor *EffectsPluginProcessor::createEditor()
     editor->ready = [this]()
     {
         dispatchStateChange();
+        dispatchServerInfo();
     };
 
     // When setting a parameter value, we simply tell the host. This will in turn fire
@@ -553,6 +555,20 @@ void EffectsPluginProcessor::dispatchStateChange()
     }
 }
 
+void EffectsPluginProcessor::dispatchServerInfo()
+{
+     // Retrieve the port number
+     serverPort = getServerPort();
+
+    // Convert the port number to a string
+     // Convert the port number to a choc::value::Value
+    const auto portValue = choc::value::createInt32( serverPort );
+
+    // Send the server port to the UI
+    const auto expr = serialize(jsFunctions::serverInfoScript, portValue, "%");
+    sendJavascriptToUI(expr);
+}
+
 // NO END OF PROBLEMS from this logging system!
 void EffectsPluginProcessor::dispatchError(std::string const &name, std::string const &message)
 {
@@ -625,6 +641,8 @@ std::string EffectsPluginProcessor::serialize(const std::string &function, const
 {
     return juce::String(function).replace(replacementChar, elem::js::serialize(elem::js::serialize(data))).toStdString();
 }
+
+
 
 std::string EffectsPluginProcessor::serialize(const std::string &function, const choc::value::Value &data, const juce::String &replacementChar)
 {

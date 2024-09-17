@@ -67,7 +67,7 @@ WebViewEditor::WebViewEditor(juce::AudioProcessor *proc, juce::File const &asset
 #endif
 
     addAndMakeVisible(viewContainer);
-    viewContainer.setBounds({0, 0, 800, 440});
+    viewContainer.setBounds({0, 0, 840, 480});
 
     // Install message passing handlers
     webView->bind(POST_NATIVE_MESSAGE, [=](const choc::value::ValueView &args) -> choc::value::Value
