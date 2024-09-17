@@ -34,13 +34,13 @@ function processHostState(state: any) {
 function updateUI(param, value) {
   if (!CablesReady.current) return;
 
-  let ext_srvbParams = CABLES.patch.getVar("ext_srvbParams_object");
+ // let ext_srvbParams = CABLES.patch.getVar("ext_srvbParams_object");
   let ext_srvbBypass = CABLES.patch.getVar("host_srvbBypass");
   let ext_scapeBypass = CABLES.patch.getVar("host_scapeBypass");
 
-  let currentUIState = ext_srvbParams.getValue();
-  delete currentUIState.srvbBypass;
-  delete currentUIState.scapeBypass;
+ // let currentUIState = ext_srvbParams.getValue();
+ // delete currentUIState.srvbBypass;
+ // delete currentUIState.scapeBypass;
 
   //  do the special cases from host to ui
   if (
@@ -83,25 +83,25 @@ export const MessageToHost = {
    * @param paramId - The ID of the parameter to update.
    * @param value - The new value of the parameter.
    */
-  // requestParamValueUpdate: function (paramId: string, value: number) {
-  //   ControlSource.update("ui");
-  //   if (
-  //     REGISTERED_PARAM_NAMES.includes(paramId) &&
-  //     paramId !== "srvbByPass" &&
-  //     paramId !== "scapeByPass"
-  //   ) {
-  //     ConsoleText.extend(">> host >> " + paramId + " >> " + value);
-  //     if (
-  //       typeof globalThis.__postNativeMessage__ === "function" &&
-  //       ControlSource.snapshot() === "ui"
-  //     ) {
-  //       globalThis.__postNativeMessage__("setParameterValue", {
-  //         paramId,
-  //         value,
-  //       });
-  //     }
-  //   }
-  // },
+  requestParamValueUpdate: function (paramId: string, value: number) {
+    ControlSource.update("ui");
+    if (
+      REGISTERED_PARAM_NAMES.includes(paramId) &&
+      paramId !== "srvbByPass" &&
+      paramId !== "scapeByPass"
+    ) {
+      ConsoleText.extend(">> host >> " + paramId + " >> " + value);
+      if (
+        typeof globalThis.__postNativeMessage__ === "function" &&
+        ControlSource.snapshot() === "ui"
+      ) {
+        globalThis.__postNativeMessage__("setParameterValue", {
+          paramId,
+          value,
+        });
+      }
+    }
+  },
 
   /** ━━━━━━━
    * Send a ready message to the host.

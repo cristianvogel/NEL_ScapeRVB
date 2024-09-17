@@ -54,11 +54,7 @@ EffectsPluginProcessor::EffectsPluginProcessor()
     createParameters(parameters);
 
     // Initialize editor/view and license activator
-    editor = new WebViewEditor(this, getAssetsDirectory(), 800, 440);
-
-    // The view state property has to have some value so that when state is loaded
-    // from the host, the key exists and is populated.
-    meshState.insert_or_assign(MESH_STATE_PROPERTY, "{}");
+    editor = new WebViewEditor(this, getAssetsDirectory(), 840, 480);
 
     // register audio file formats
     formatManager.registerBasicFormats();
@@ -67,26 +63,20 @@ EffectsPluginProcessor::EffectsPluginProcessor()
     auto ws = EffectsPluginProcessor::runWebServer();
     if (ws != 0)
     {
-        dispatchError("Server error:", "Websocket server failed to start on port 13755");
+        dispatchError("Server error:", "Websocket server failed to start on port" + std::to_string( server.getPort()));
     }
 }
 
 // Destructor
 EffectsPluginProcessor::~EffectsPluginProcessor()
 {
+    // Close the server
+    server.close();
     // Remove listeners from all parameters
     for (auto &p : getParameters())
     {
         p->removeListener(this);
     };
-    // Delete the editor if it is not nullptr
-    if (editor != nullptr)
-    {
-        delete editor;
-        editor = nullptr;
-    }
-    // Close the server
-        server.close();
 }
 
 //==============================================================================
@@ -157,9 +147,9 @@ void EffectsPluginProcessor::addImpulseResponsesToVirtualFileSystem(std::vector<
 int EffectsPluginProcessor::runWebServer()
 {
     auto address = "127.0.0.1";
-    uint16_t preferredPortNum = 13755;
-
-    bool openedOK = server.open(address, preferredPortNum, 0, [this]() -> std::unique_ptr<choc::network::HTTPServer::ClientInstance>
+    // uint16_t preferredPortNum = 13755;
+    // ...If you pass 0 for the port number, a free one will be automatically chosen.
+    bool openedOK = server.open(address, 0, 0, [this]() -> std::unique_ptr<choc::network::HTTPServer::ClientInstance>
                                 {
                                     // Create a new object for each client..
                                     clientInstance = std::make_unique<ViewClientInstance>(*this);
@@ -174,17 +164,6 @@ int EffectsPluginProcessor::runWebServer()
     // you could also run the
     // message loop or get on with other tasks.
     return 0;
-}
-
-void EffectsPluginProcessor::sendDataOverSocket(const std::string &dataToSend)
-{
-    // clientInstance needs to be thread safe
-    // as it is accessed from server thread
-    // and the message thread
-    std::lock_guard<std::mutex> lock(clientInstanceMutex);
-    if (clientInstance == nullptr)
-        return;
-    clientInstance->sendWebSocketMessage(dataToSend);
 }
 
 //==============================================================================
@@ -275,19 +254,11 @@ juce::AudioProcessorEditor *EffectsPluginProcessor::createEditor()
         }
     };
 
-    editor->setMeshState = [this](choc::value::Value &v)
-    {
-        meshState.insert_or_assign(MESH_STATE_PROPERTY, v.toString());
-        dispatchStateChange();
-        //  dispatchMeshStateChange();   <--- was causing feedback loop!
-    };
-
 #if ELEM_DEV_LOCALHOST
     editor->reload = [this]()
     {
         initJavaScriptEngine();
         dispatchStateChange();
-        dispatchMeshStateChange();
     };
 
 #endif
@@ -303,7 +274,7 @@ bool EffectsPluginProcessor::hasEditor() const
 //==============================================================================
 const juce::String EffectsPluginProcessor::getName() const
 {
-    return "NEL-SRVB";
+    return "NEL-ScapeSpace";
 }
 
 bool EffectsPluginProcessor::acceptsMidi() const
@@ -581,28 +552,6 @@ void EffectsPluginProcessor::dispatchStateChange()
     }
 }
 
-void EffectsPluginProcessor::dispatchMeshStateChange()
-{
-    // Need the double serialize here to correctly form the string script. The first
-    // serialize produces the payload we want, the second serialize ensures we can replace
-    // the % character in the above block and produce a valid javascript expression.
-    auto localState = meshState;
-    const auto expr = serialize(jsFunctions::dispatchMeshStateScript, localState);
-    // First we try to dispatch to the UI if it's available, because running this step will
-    // just involve placing a message in a queue.
-    sendJavascriptToUI(expr);
-    // Next we dispatch to the local engine which will evaluate any necessary JavaScript synchronously
-    // here on the main thread
-    try
-    {
-        jsContext.evaluateExpression(expr);
-    }
-    catch (std::exception &e)
-    {
-        dispatchError("DSP JS:", e.what());
-    }
-}
-
 // NO END OF PROBLEMS from this logging system!
 void EffectsPluginProcessor::dispatchError(std::string const &name, std::string const &message)
 {
@@ -684,17 +633,9 @@ std::string EffectsPluginProcessor::serialize(const std::string &function, const
 //==============================================================================
 void EffectsPluginProcessor::getStateInformation(juce::MemoryBlock &destData)
 {
-
-    // serialise the secondary store for meshData
-    // then insert it into the data to be stored by the host
-    state.insert_or_assign(MESH_STATE_PROPERTY, meshState.at(MESH_STATE_PROPERTY));
-    // seriliase the whole package
     const auto serializedState = elem::js::serialize(state);
     // stash
     destData.replaceAll((void *)serializedState.c_str(), serializedState.size());
-    // remove the meshData from the active param state updates
-    // so the meshData doesn't get sent on every update
-    state.erase(MESH_STATE_PROPERTY);
 }
 
 void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInBytes)
@@ -703,6 +644,7 @@ void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInByt
     // restore the data the host stashed previously
     const auto jsonString = std::string(static_cast<const char *>(data), sizeInBytes);
     // try to deserialise the whole stashed data string
+
     try
     {
         parsed = elem::js::parseJSON(jsonString);
@@ -718,27 +660,19 @@ void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInByt
         auto o = parsed.getObject();
         for (auto &[key, value] : o)
         {
-            if (key != MESH_STATE_PROPERTY)
+            if (state.count(key) > 0)
             {
-                if (state.count(key) > 0)
-                {
-                    state.insert_or_assign(key, value);
-                }
-            }
-            else
-            {
-                meshState.insert_or_assign(MESH_STATE_PROPERTY, value);
+                state.insert_or_assign(key, value);
             }
         }
         dispatchStateChange();
-        dispatchMeshStateChange();
     }
 
     catch (...)
     {
         // Failed to parse the incoming state, or the state we did parse was not actually
         // an object type. How you handle it is up to you.
-        dispatchError("State Error", "Failed to restore mesh!");
+        dispatchError("State Error", "Failed to restore state!");
     }
 }
 

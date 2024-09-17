@@ -78,15 +78,14 @@ public:
     /** Internal helper for propagating processor state changes. */
     void dispatchStateChange();
 
-    /** INternal helper for mesh data view state changes */
-    void dispatchMeshStateChange();
+
 
     /** error to UI */
     void dispatchError(std::string const &name, std::string const &message);
 
 private:
     std::string REVERSE_BUFFER_PREFIX = "REVERSED_";
-    std::string MESH_STATE_PROPERTY = "meshState";
+
     std::string MAIN_DSP_JS_FILE = "dsp.main.js";
     std::string MAIN_PATCH_JS_FILE = "patch.main.js";
     std::string SAMPLE_RATE_PROPERTY = "sampleRate";
@@ -117,7 +116,6 @@ private:
 
     //===== js stores and context  ==//
     elem::js::Object state;
-    elem::js::Object meshState;
     choc::javascript::Context jsContext;
 
     juce::AudioBuffer<float> scratchBuffer;
@@ -138,7 +136,6 @@ private:
     //=============================================
 public:
     int runWebServer();
-    void sendDataOverSocket(const std::string &dataToSend);
 
     struct ViewClientInstance : public choc::network::HTTPServer::ClientInstance
     {
@@ -186,16 +183,20 @@ public:
                         std::string serializedState = elem::js::serialize(wrappedState);
                         // Send the serialized string
                         sendWebSocketMessage(serializedState);
-                        break;
                     }
 
                     // ignore any params that are not host related
-                    if (value.isNumber() && processor.parameterMap.count(key) > 0)
+                    else if (value.isNumber() && processor.parameterMap.count(key) > 0)
                     {
                         // Convert elem::js::Value to float
                         float paramValue = static_cast<float>(static_cast<elem::js::Number>(value));
-                        // Use editor->setParameterValue to update each parameter
-                        processor.editor->setParameterValue(key, paramValue);
+                        // Convert processor.state[key] to float
+                        float stateValue = static_cast<float>(static_cast<elem::js::Number>(processor.state[key]));
+                        // If the values are different, update the state
+                        if (paramValue != stateValue)
+                        {
+                            processor.editor->setParameterValue(key, paramValue);
+                        }
                     }
                 }
             }
@@ -373,16 +374,7 @@ namespace jsFunctions
 })();
 )script";
 
-    //// seperated for Mesh state send
-    inline auto dispatchMeshStateScript = R"script(
-(function() {
-  if (typeof globalThis.__receiveMeshStateChange__ !== 'function')
-    return false;
-
-  globalThis.__receiveMeshStateChange__(%);
-  return true;
-})();
-)script";
+   
 
     inline auto errorScript = R"script(
 (function() {
