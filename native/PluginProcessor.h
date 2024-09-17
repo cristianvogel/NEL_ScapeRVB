@@ -29,9 +29,10 @@ public:
     ~EffectsPluginProcessor() override;
 
     //==============================================================================
-    WebViewEditor *editor; // Declare editor as a member variable
+
     juce::AudioProcessorEditor *createEditor() override;
     bool hasEditor() const override;
+    WebViewEditor* editor = nullptr;
 
     //==============================================================================
     void prepareToPlay(double sampleRate, int samplesPerBlock) override;
@@ -141,6 +142,7 @@ private:
 public:
     int runWebServer();
 
+
     struct ViewClientInstance : public choc::network::HTTPServer::ClientInstance
     {
         ViewClientInstance(EffectsPluginProcessor &processor) : processor(processor)
@@ -151,6 +153,7 @@ public:
 
         ~ViewClientInstance()
         {
+            sendWebSocketMessage( "Closing connection to client " + std::to_string(clientID) );
         }
 
         choc::network::HTTPContent getHTTPContent(std::string_view path) override
@@ -211,8 +214,8 @@ public:
     };
 
 private:
-    std::unique_ptr<ViewClientInstance> clientInstance; // Use a smart pointer to store the client instance
-    choc::network::HTTPServer server;
+     std::unique_ptr<ViewClientInstance> clientInstance; // Use a smart pointer to store the client instance
+     std::unique_ptr<choc::network::HTTPServer> server; // Use a smart pointer to manage the server
 
     //==============================================================================
     // A simple "dirty list" abstraction here for propagating realtime parameter

@@ -175,7 +175,8 @@ export function RegisterMessagesFromHost() {
   
   globalThis.__receiveServerInfo__ = function (port: number) {
     console.log("Port received: ", port);
-    CABLES.patch.getVar( "ext_serverInfo").setValue( `ws://127.0.0.1:${port}`);
+    CABLES.patch.getVar( "ext_serverInfo").setValue( `ws://127.0.0.1:${port}`); // we should definitely have CABLES loaded at this point
+    ConsoleText.update("▶︎ Connected to WS on: " + port);
   };
 
   /** ━━━━━━━

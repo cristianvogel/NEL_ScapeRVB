@@ -99,7 +99,7 @@ function consoleText(initial) {
   let current = $state(initial);
   let extended = $state(initial);
   return {
-    get current() {
+    get current(): string {
       return current;
     },
     update(newValues) {

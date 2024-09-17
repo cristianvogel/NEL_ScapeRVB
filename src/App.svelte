@@ -1,6 +1,11 @@
 <script>
   import { onMount } from "svelte";
-  import { ConsoleText, CablesReady, ControlSource, UI_ChangingParamID } from "./stores/stores.svelte";
+  import {
+    ConsoleText,
+    CablesReady,
+    ControlSource,
+    UI_ChangingParamID,
+  } from "./stores/stores.svelte";
   import { fade } from "svelte/transition";
   import { initPatchListeners } from "./lib/PatchListeners.svelte";
   import {
@@ -9,8 +14,6 @@
   } from "./lib/NativeMessage.svelte";
 
   import { PARAM_DEFAULTS } from "./stores/constants";
-
-
 
   onMount(() => {
     // Second setup the listener for CABLES loader
@@ -23,13 +26,12 @@
         glCanvasId: "glcanvas",
         glCanvasResizeToWindow: true,
         onError: (e) => console.error(e),
-        onPatchLoaded: () => {
-          
-        },
-        onFinishedLoading: () => {  
+        onPatchLoaded: () => {},
+        onFinishedLoading: () => {
           initPatchListeners(CABLES.patch);
-          CablesReady.update(true); 
-          console.log("UI finished loading.") },
+          CablesReady.update(true);
+          console.log("UI finished loading.");
+        },
         canvas: {
           willReadFrequently: true,
           alpha: true,
@@ -41,17 +43,24 @@
       });
     });
 
-   $effect ( ()=> {
-      if ( CablesReady.current ) {
-        console.log( 'Registering messages with host.' )
+    $effect(() => {
+      if (CablesReady.current) {
+        console.log("Registering messages with host.");
         RegisterMessagesFromHost();
         MessageToHost.requestReady();
       }
-    }
-    );
- 
+    });
+
+    $effect(() => {
+      if (ConsoleText.current.length > 0) {
+        setTimeout(() => {
+          ConsoleText.update('');
+        }, 3000);
+      }
+    });
+
     console.log("ui_params set to ", PARAM_DEFAULTS);
-  // $inspect( UI_ChangingParamID.current )
+    // $inspect( UI_ChangingParamID.current )
   });
 </script>
 
@@ -59,7 +68,8 @@
 ></canvas>
 
 {#if CablesReady.current}
-  <!-- <pre class="console-text">{ConsoleText.current}</pre>
+  <pre class="console-text">{ConsoleText.current}</pre>
+  <!-- 
   <pre class="console-text" style="bottom: 2rem;">{ConsoleText.extended}</pre> -->
 {:else}
   <pre class="console-text" in:fade>Loading...</pre>
@@ -69,7 +79,7 @@
   .console-text {
     position: absolute;
     left: 1rem;
-    bottom: 1rem;
+    bottom: 7rem;
     color: chartreuse;
     font-size: xx-small;
   }

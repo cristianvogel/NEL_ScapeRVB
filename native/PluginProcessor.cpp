@@ -30,7 +30,10 @@ EffectsPluginProcessor::EffectsPluginProcessor()
     : AudioProcessor(BusesProperties()
                          .withInput("Input", juce::AudioChannelSet::stereo(), true)
                          .withOutput("Output", juce::AudioChannelSet::stereo(), true)),
-      jsContext(choc::javascript::createQuickJSContext())
+      jsContext(choc::javascript::createQuickJSContext()),
+      server(std::make_unique<choc::network::HTTPServer>()),
+      clientInstance(std::make_unique<ViewClientInstance>(*this))
+
 {
     // Initialize parameters from the manifest file
 #if ELEM_DEV_LOCALHOST
@@ -63,16 +66,17 @@ EffectsPluginProcessor::EffectsPluginProcessor()
     auto ws = EffectsPluginProcessor::runWebServer();
     if (ws != 0)
     {
-        dispatchError("Server error:", "Websocket server failed to start on port" + std::to_string( server.getPort()));
+        dispatchError("Server error:", "Websocket server failed to start asio.");
     }
-    serverPort = server.getPort();
+
+    serverPort = server->getPort();
 }
 
 // Destructor
 EffectsPluginProcessor::~EffectsPluginProcessor()
 {
     // Close the server
-    server.close();
+    server->close();
     // Remove listeners from all parameters
     for (auto &p : getParameters())
     {
@@ -152,12 +156,12 @@ int EffectsPluginProcessor::runWebServer()
     // <<...If you pass 0 for the port number, a free one will be automatically chosen...>>
     // as we don't want every plugin instance under the same server, we use a random port
     // and pass it over to the UI client
-    bool openedOK = server.open(address, 0, serverPort, [this]() -> std::unique_ptr<choc::network::HTTPServer::ClientInstance>
-                                {
+    bool openedOK = server->open(address, 0, serverPort, [this]() -> std::unique_ptr<choc::network::HTTPServer::ClientInstance>
+                                 {
                                     // Create a new object for each client..
                                     clientInstance = std::make_unique<ViewClientInstance>(*this);
                                     return std::move(clientInstance); }, [this](const std::string &error)
-                                {
+                                 {
                                     // Handle some kind of server error..
                                     dispatchError("IO Error: ", error); });
 
@@ -207,17 +211,12 @@ void EffectsPluginProcessor::createParameters(const std::vector<elem::js::Value>
 
 juce::AudioProcessorEditor *EffectsPluginProcessor::createEditor()
 {
+    editor = new WebViewEditor(this, getAssetsDirectory(), 840, 480);
+
     // KEYZY LICENSE ACTIVATION
     // -----------
     // semi-online license activation
-    // -----------
-    // From docs:
-    // You may need to use semi-online activation without giving a serial number.
-    // First two cases are:
-    // 1- You may choose to renew weekly the offline license of the users with Semi Online activation.
-    // You don't want to ask the serial number again and again.
-    // 2- You may set Offline License Life (recommended) to 30 days. After 30 days, the offline license
-    // will be INVALID. Then you will need to activate it again without a serial number.
+
     editor->handleUnlockEvent = [this](choc::value::Value &v)
     {
         const bool hasSerial = v.hasObjectMember("serial") && v["serial"].isString() && v["serial"].getString().length() > 0;
@@ -557,12 +556,12 @@ void EffectsPluginProcessor::dispatchStateChange()
 
 void EffectsPluginProcessor::dispatchServerInfo()
 {
-     // Retrieve the port number
-     serverPort = getServerPort();
+    // Retrieve the port number
+    serverPort = getServerPort();
 
     // Convert the port number to a string
-     // Convert the port number to a choc::value::Value
-    const auto portValue = choc::value::createInt32( serverPort );
+    // Convert the port number to a choc::value::Value
+    const auto portValue = choc::value::createInt32(serverPort);
 
     // Send the server port to the UI
     const auto expr = serialize(jsFunctions::serverInfoScript, portValue, "%");
@@ -641,8 +640,6 @@ std::string EffectsPluginProcessor::serialize(const std::string &function, const
 {
     return juce::String(function).replace(replacementChar, elem::js::serialize(elem::js::serialize(data))).toStdString();
 }
-
-
 
 std::string EffectsPluginProcessor::serialize(const std::string &function, const choc::value::Value &data, const juce::String &replacementChar)
 {
