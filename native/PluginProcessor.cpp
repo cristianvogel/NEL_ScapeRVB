@@ -187,25 +187,49 @@ void EffectsPluginProcessor::createParameters(const std::vector<elem::js::Value>
         auto maxValue = parameter.getWithDefault("max", elem::js::Number(1));
         auto defaultValue = parameter.getWithDefault("defaultValue", elem::js::Number(0));
         auto step = parameter.getWithDefault("step", elem::js::Number(0));
+        auto isBoolean = parameter.getWithDefault("isBoolean", elem::js::Boolean(false));
 
-        auto *p = new juce::AudioParameterFloat(
-            juce::ParameterID(paramId, 1),
-            name,
-            {static_cast<float>(minValue), static_cast<float>(maxValue), static_cast<float>(step)},
-            static_cast<float>(defaultValue));
+        if (isBoolean)
+        {
+            auto *p = new juce::AudioParameterBool(
+                juce::ParameterID(paramId, 1),
+                name,
+                static_cast<bool>(defaultValue));
 
-        // Keep a map from parameter ID to the juce audio parameter
-        // to avoid looping over the parameter list every time one changes
-        parameterMap.insert({paramId, p});
+            // Keep a map from parameter ID to the juce audio parameter
+            // to avoid looping over the parameter list every time one changes
+            parameterMap.insert({paramId, p});
 
-        p->addListener(this);
-        addParameter(p);
+            p->addListener(this);
+            addParameter(p);
 
-        // Push a new ParameterReadout onto the list to represent this parameter
-        parameterReadouts.emplace_back(ParameterReadout{static_cast<float>(defaultValue), false});
+            // Push a new ParameterReadout onto the list to represent this parameter
+            parameterReadouts.emplace_back(ParameterReadout{static_cast<float>(defaultValue), false});
 
-        // Update our state object with the default parameter value
-        state.insert_or_assign(paramId, defaultValue);
+            // Update our state object with the default parameter value
+            state.insert_or_assign(paramId, defaultValue);
+        }
+        else
+        {
+            auto *p = new juce::AudioParameterFloat(
+                juce::ParameterID(paramId, 1),
+                name,
+                {static_cast<float>(minValue), static_cast<float>(maxValue), static_cast<float>(step)},
+                static_cast<float>(defaultValue));
+
+            // Keep a map from parameter ID to the juce audio parameter
+            // to avoid looping over the parameter list every time one changes
+            parameterMap.insert({paramId, p});
+
+            p->addListener(this);
+            addParameter(p);
+
+            // Push a new ParameterReadout onto the list to represent this parameter
+            parameterReadouts.emplace_back(ParameterReadout{static_cast<float>(defaultValue), false});
+
+            // Update our state object with the default parameter value
+            state.insert_or_assign(paramId, defaultValue);
+        }
     }
 }
 
@@ -252,7 +276,14 @@ juce::AudioProcessorEditor *EffectsPluginProcessor::createEditor()
     {
         if (parameterMap.count(paramId) > 0)
         {
-            parameterMap[paramId]->setValueNotifyingHost(value);
+            std::visit([value](auto&& param) {
+                using T = std::decay_t<decltype(param)>;
+                if constexpr (std::is_same_v<T, juce::AudioParameterFloat*>) {
+                    param->setValueNotifyingHost(value);
+                } else if constexpr (std::is_same_v<T, juce::AudioParameterBool*>) {
+                    param->setValueNotifyingHost(static_cast<bool>(value));
+                }
+            }, parameterMap[paramId]);
         }
     };
 

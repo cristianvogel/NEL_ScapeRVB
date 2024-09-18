@@ -127,7 +127,9 @@ private:
 
     std::unique_ptr<elem::Runtime<float>> runtime;
 
-    std::map<std::string, juce::AudioParameterFloat *> parameterMap;
+     // Use std::variant to store either juce::AudioParameterFloat* or juce::AudioParameterBool*
+    std::map<std::string, std::variant<juce::AudioParameterFloat*, juce::AudioParameterBool*>> parameterMap;
+
     std::queue<std::string> errorLogQueue;
 
     //=============================================
