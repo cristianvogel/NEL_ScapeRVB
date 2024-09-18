@@ -5,6 +5,15 @@ import { ElemNode } from "@elemaudio/core";
 type bypassStates = '0' | '1';
 type bypassEvents = 'toggle';
 
+type ToggleCablesVarname =
+  'host_srvbBypass' |
+  'host_scapeBypass' |
+  'host_scapeReverse';
+  
+type ToggleParamID =
+  'srvbBypass' |
+  'scapeBypass' |
+  'scapeReverse' ;
 
 type HostParams = {
   paramId: string;

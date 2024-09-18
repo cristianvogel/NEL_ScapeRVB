@@ -1,3 +1,4 @@
+
 import {
   ConsoleText,
   ControlSource,
@@ -7,99 +8,98 @@ import {
   scapeBypassFSM,
 } from "../stores/stores.svelte";
 import { REGISTERED_PARAM_NAMES } from "../stores/constants";
+import { ToggleCablesVarname, ToggleParamID } from "../types";
 
-//@ts-nocheck
+
+
 export declare var globalThis: any;
 declare var CABLES: any;
+
+// Create WebSocket connection.
+let socketPort:number = 0;
+let connection:WebSocket;
+
+// Toggle memoization
+let memoToggle = { srvbBypass: 0, scapeBypass: 0 };
+const toggleParams: Map<ToggleParamID, ToggleCablesVarname> = new Map([
+  ["srvbBypass", "host_srvbBypass"],
+  ["scapeBypass", "host_scapeBypass"],
+  ["scapeReverse", "host_scapeReverse"],
+]);
+
+
+/* ━━━━━━━
+  * Initialize a WebSocket connection to the host.
+  * @param port - The port number to connect to.
+  */
+function initializeWebSocketConnection(port: number) {
+  socketPort = port;
+  try {
+    CABLES.patch.getVar("ext_serverInfo").setValue(`ws://127.0.0.1:${port}`); // we should definitely have CABLES loaded at this point
+  } catch (e) {
+    console.error("Error connecting to WS: ", e);
+  }
+
+}
+
+
 
 function processHostState(state: any) {
   // ━━━━━━━
   // Parse the state object and convert it to an array of key-value pairs
-  let parsedEntries: { [key: string]: number | number[] } = {};
-  ControlSource.update("host");
+  let parsedEntries: { [key: string]: number } = {};
+
   try {
     parsedEntries = JSON.parse(state);
   } catch (e) {
     console.warn("Bad state received", parsedEntries);
   }
   const hostState = parsedEntries;
-
-  Object.keys(hostState).forEach((param) => {
-    if (REGISTERED_PARAM_NAMES.includes(param)) {
-      updateUI(param, hostState[param] as number);
-    }
-  });
-}
-
-function updateUI(param, value) {
-  if (!CablesReady.current) return;
-
- // let ext_srvbParams = CABLES.patch.getVar("ext_srvbParams_object");
-  let ext_srvbBypass = CABLES.patch.getVar("host_srvbBypass");
-  let ext_scapeBypass = CABLES.patch.getVar("host_scapeBypass");
-
- // let currentUIState = ext_srvbParams.getValue();
- // delete currentUIState.srvbBypass;
- // delete currentUIState.scapeBypass;
-
-  //  do the special cases from host to ui
-  if (
-    param === "srvbBypass" 
-  ) {
-    ext_srvbBypass.setValue(!srvbBypassFSM.current);
-  } else if (
-    param === "scapeBypass"
-  ) {
-    ext_scapeBypass.setValue(!scapeBypassFSM.current);
+ 
+  for (const name of toggleParams.keys()) {
+      handleBypassChange(
+        name,
+        name === "srvbBypass" ? srvbBypassFSM : scapeBypassFSM,
+      );
   }
 
-  // // update the value in the UI
-  // // with the received value from the host
-  // function updateValue() {
-  //   if (ControlSource.current === "ui") return;
+  function handleBypassChange(bypassName, bypassFSM, ) {
+    const roundedValue = Math.round( hostState[bypassName] );
 
-  //   ext_srvbParams.setValue({
-  //     ...currentUIState,
-  //     [param]: value,
-  //   });
-  // }
+  //  connection.send(JSON.stringify({ "toggle": { [bypassName]: roundedValue }} ));
 
-  // // do checks, then update the rest of the params
-  // if (!currentUIState) return;
-  // else updateValue();
+    if ( memoToggle[bypassName] === roundedValue ) return;
+    
+    updateUI(bypassName, parseInt(bypassFSM.current));
+
+    memoToggle[bypassName] = roundedValue;
+  }
+
+  function updateUI(param, value) {
+     let cablesVar = CABLES.patch.getVar(toggleParams.get(param));
+     cablesVar.setValue(value);
+
+  }
 }
 
 export const MessageToHost = {
-  stashMeshState: function () {
-    let dataToPersist = {
-      presets: {},
-      license: "VALID",
-    };
-    this.__setMeshStateInHost(dataToPersist);
-  },
-
   /** ━━━━━━━
    * Update parameter values in the host.
+   *
+   * we are only dealing with toggles here
+   * since ws handles the rest from the native server
+   *
    * @param paramId - The ID of the parameter to update.
    * @param value - The new value of the parameter.
    */
   requestParamValueUpdate: function (paramId: string, value: number) {
-    ControlSource.update("ui");
     if (
-      REGISTERED_PARAM_NAMES.includes(paramId) &&
-      paramId !== "srvbByPass" &&
-      paramId !== "scapeByPass"
+      typeof globalThis.__postNativeMessage__ === "function" 
     ) {
-      ConsoleText.extend(">> host >> " + paramId + " >> " + value);
-      if (
-        typeof globalThis.__postNativeMessage__ === "function" &&
-        ControlSource.snapshot() === "ui"
-      ) {
-        globalThis.__postNativeMessage__("setParameterValue", {
-          paramId,
-          value,
-        });
-      }
+      globalThis.__postNativeMessage__("setParameterValue", {
+        paramId,
+        value,
+      });
     }
   },
 
@@ -124,16 +124,6 @@ export const MessageToHost = {
     //     // globalThis.__postNativeMessage__("unlock", { serial });
     //   }
     // }
-  },
-
-  /** ━━━━━━━
-   * Store any persistent UI state in the host.
-   * @param dataToPersist - The data to persist in the host.
-   */
-  __setMeshStateInHost: function (dataToPersist: any) {
-    if (typeof globalThis.__postNativeMessage__ === "function") {
-      // stash view secondary state
-    }
   },
 
   /** ━━━━━━━
@@ -168,16 +158,15 @@ export function RegisterMessagesFromHost() {
     processHostState(state);
   };
 
-  /** ━━━━━━━ 
-  * Handles receiving the port for this instance of the plugin.
-  * @param port - The port number.
-  * */
-  
+  /** ━━━━━━━
+   * Handles receiving the port for this instance of the plugin.
+   * @param port - The port number.
+   * */
+
   globalThis.__receiveServerInfo__ = function (port: number) {
-    console.log("Port received: ", port);
-    CABLES.patch.getVar( "ext_serverInfo").setValue( `ws://127.0.0.1:${port}`); // we should definitely have CABLES loaded at this point
-    ConsoleText.update("▶︎ Connected to WS on: " + port);
-  };
+  
+    initializeWebSocketConnection(port);
+};
 
   /** ━━━━━━━
    * Handles the unlock status received from the host.

@@ -32,7 +32,7 @@ public:
 
     juce::AudioProcessorEditor *createEditor() override;
     bool hasEditor() const override;
-    WebViewEditor* editor = nullptr;
+    WebViewEditor *editor = nullptr;
 
     //==============================================================================
     void prepareToPlay(double sampleRate, int samplesPerBlock) override;
@@ -127,8 +127,8 @@ private:
 
     std::unique_ptr<elem::Runtime<float>> runtime;
 
-     // Use std::variant to store either juce::AudioParameterFloat* or juce::AudioParameterBool*
-    std::map<std::string, std::variant<juce::AudioParameterFloat*, juce::AudioParameterBool*>> parameterMap;
+    // Use std::variant to store either juce::AudioParameterFloat* or juce::AudioParameterBool*
+    std::map<std::string, std::variant<juce::AudioParameterFloat *, juce::AudioParameterBool *>> parameterMap;
 
     std::queue<std::string> errorLogQueue;
 
@@ -144,7 +144,6 @@ private:
 public:
     int runWebServer();
 
-
     struct ViewClientInstance : public choc::network::HTTPServer::ClientInstance
     {
         ViewClientInstance(EffectsPluginProcessor &processor) : processor(processor)
@@ -155,7 +154,7 @@ public:
 
         ~ViewClientInstance()
         {
-            sendWebSocketMessage( "Closing connection to client " + std::to_string(clientID) );
+            sendWebSocketMessage("Closing connection to client " + std::to_string(clientID));
         }
 
         choc::network::HTTPContent getHTTPContent(std::string_view path) override
@@ -186,21 +185,28 @@ public:
                     {
                         // Create a new JSON-like object
                         elem::js::Object wrappedState;
-                        // Set the clientID as the key and processor.state as the value
+                        // Set processor.state as the value
                         wrappedState[processor.WS_RESPONSE_PROPERTY] = processor.state;
                         // Serialize the new object
                         std::string serializedState = elem::js::serialize(wrappedState);
                         // Send the serialized string
                         sendWebSocketMessage(serializedState);
+                        continue;
                     }
 
                     // ignore any params that are not host related
                     else if (value.isNumber() && processor.parameterMap.count(key) > 0)
                     {
                         // Convert elem::js::Value to float
-                        float paramValue = static_cast<float>(static_cast<elem::js::Number>(value));
+                        float paramValue = static_cast<elem::js::Number>(value);
                         // Convert processor.state[key] to float
-                        float stateValue = static_cast<float>(static_cast<elem::js::Number>(processor.state[key]));
+                        float stateValue = static_cast<elem::js::Number>(processor.state[key]);
+                        if (key == "srvbBypass" || key == "scapeBypass" || key == "scapeReverse")
+                        {
+                            paramValue = juce::roundToInt(paramValue);
+                            stateValue = juce::roundToInt(stateValue);
+                        }
+
                         // If the values are different, update the state
                         if (paramValue != stateValue)
                         {
@@ -216,8 +222,8 @@ public:
     };
 
 private:
-     std::unique_ptr<ViewClientInstance> clientInstance; // Use a smart pointer to store the client instance
-     std::unique_ptr<choc::network::HTTPServer> server; // Use a smart pointer to manage the server
+    std::unique_ptr<ViewClientInstance> clientInstance; // Use a smart pointer to store the client instance
+    std::unique_ptr<choc::network::HTTPServer> server;  // Use a smart pointer to manage the server
 
     //==============================================================================
     // A simple "dirty list" abstraction here for propagating realtime parameter
