@@ -461,72 +461,6 @@ CABLES.OPS["0db9c714-f1ae-4b9e-9a97-d7dee7c13dd4"]={f:Ops.Patch.P4Zknbo.UI_Scape
 
 // **************************************************************
 // 
-// Ops.Patch.P4Zknbo.UI_Bypassers
-// 
-// **************************************************************
-
-Ops.Patch.P4Zknbo.UI_Bypassers = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"op.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"vi7rmr80z\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"trigger 0\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger 0\",\"objIn\":\"gpqslq2et\",\"objOut\":\"vi7rmr80z\"}]},{\"name\":\"trigger 1\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger 1\",\"objIn\":\"thbgro9t4\",\"objOut\":\"vi7rmr80z\"}]},{\"name\":\"trigger 5\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger 5\",\"objIn\":\"do9w6rmjv\",\"objOut\":\"vi7rmr80z\"}]},{\"name\":\"trigger 7\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"trigger 7\",\"objIn\":\"0c2kqkx23\",\"objOut\":\"vi7rmr80z\"}]}],\"objName\":\"Ops.Gl.LayerSequence\"},{\"id\":\"do9w6rmjv\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":1},{\"name\":\"Height\",\"value\":1},{\"name\":\"pivot x index\",\"value\":0},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":0},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"Draw Top\",\"value\":1},{\"name\":\"Draw Bottom\",\"value\":1},{\"name\":\"Draw Left\",\"value\":1},{\"name\":\"Draw Right\",\"value\":1},{\"name\":\"Active\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.RectangleFrame_v2\"},{\"id\":\"xftwo3c9h\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Named Trigger\",\"value\":\"midExe\"}],\"portsOut\":[{\"name\":\"Triggered\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Triggered\",\"objIn\":\"f5itw74qg\",\"objOut\":\"xftwo3c9h\"},{\"portIn\":\"render\",\"portOut\":\"Triggered\",\"objIn\":\"wkj5broen\",\"objOut\":\"xftwo3c9h\"}]}],\"objName\":\"Ops.Trigger.TriggerReceive\"},{\"id\":\"f5itw74qg\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posX\",\"value\":-1.15},{\"name\":\"posY\",\"value\":0.18},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.06},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"trigger\",\"objIn\":\"vi7rmr80z\",\"objOut\":\"f5itw74qg\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"gpqslq2et\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"title\":\"Render\"},{\"name\":\"width\",\"value\":0.8},{\"name\":\"height\",\"value\":0.8},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":2},{\"name\":\"num rows\",\"value\":2}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"pqako3678\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Default\",\"value\":0}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Render Mesh\",\"portOut\":\"result\",\"objIn\":\"gpqslq2et\",\"objOut\":\"pqako3678\"},{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"3h83003s9\",\"objOut\":\"pqako3678\"},{\"portIn\":\"Value In\",\"portOut\":\"result\",\"objIn\":\"eklm04iom\",\"objOut\":\"pqako3678\"}]}],\"objName\":\"Ops.Boolean.ToggleBool_v2\"},{\"id\":\"nwcitfsyz\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"Bypass Convolvers\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"q53zhn6lc\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"trigger 0\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger 0\",\"objIn\":\"n9dyl0auc\",\"objOut\":\"q53zhn6lc\"}]},{\"name\":\"trigger 5\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger 5\",\"objIn\":\"ojvpu8kqc\",\"objOut\":\"q53zhn6lc\"}]},{\"name\":\"trigger 6\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger 6\",\"objIn\":\"awvzavosj\",\"objOut\":\"q53zhn6lc\"}]},{\"name\":\"trigger 8\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"trigger 8\",\"objIn\":\"rrb24yfu5\",\"objOut\":\"q53zhn6lc\"}]}],\"objName\":\"Ops.Gl.LayerSequence\"},{\"id\":\"ojvpu8kqc\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":1},{\"name\":\"Height\",\"value\":1},{\"name\":\"pivot x index\",\"value\":0},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":0},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"Draw Top\",\"value\":1},{\"name\":\"Draw Bottom\",\"value\":1},{\"name\":\"Draw Left\",\"value\":1},{\"name\":\"Draw Right\",\"value\":1},{\"name\":\"Active\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.RectangleFrame_v2\"},{\"id\":\"n9dyl0auc\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"title\":\"Render\"},{\"name\":\"width\",\"value\":0.8},{\"name\":\"height\",\"value\":0.8},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":2},{\"name\":\"num rows\",\"value\":2}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"ivyxdp0yt\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Default\",\"value\":0}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Render Mesh\",\"portOut\":\"result\",\"objIn\":\"n9dyl0auc\",\"objOut\":\"ivyxdp0yt\"},{\"portIn\":\"Value In\",\"portOut\":\"result\",\"objIn\":\"1j1f7aaov\",\"objOut\":\"ivyxdp0yt\"},{\"portIn\":\"Number\",\"portOut\":\"result\",\"objIn\":\"4qzwcjn6r\",\"objOut\":\"ivyxdp0yt\"}]}],\"objName\":\"Ops.Boolean.ToggleBool_v2\"},{\"id\":\"7kxxjhds4\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"Bypass Refs\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"rch1t8hix\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posX\",\"value\":-1.15},{\"name\":\"posY\",\"value\":0.27},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.06},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"trigger\",\"objIn\":\"q53zhn6lc\",\"objOut\":\"rch1t8hix\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"fz4hjkoar\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Named Trigger\",\"value\":\"midExe\"}],\"portsOut\":[{\"name\":\"Triggered\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Triggered\",\"objIn\":\"rch1t8hix\",\"objOut\":\"fz4hjkoar\"},{\"portIn\":\"Execute\",\"portOut\":\"Triggered\",\"objIn\":\"gc0vi1imc\",\"objOut\":\"fz4hjkoar\"}]}],\"objName\":\"Ops.Trigger.TriggerReceive\"},{\"id\":\"0c2kqkx23\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":2},{\"name\":\"easing\",\"value\":\"smoothstep\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":1},{\"name\":\"Direction\",\"value\":\"Only True\"},{\"name\":\"value false\",\"value\":-0.05},{\"name\":\"value true\",\"value\":-0.1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"Thickness\",\"portOut\":\"value\",\"objIn\":\"do9w6rmjv\",\"objOut\":\"0c2kqkx23\"},{\"portIn\":\"number\",\"portOut\":\"value\",\"objIn\":\"s7pij1q1i\",\"objOut\":\"0c2kqkx23\"},{\"portIn\":\"SDF\",\"portOut\":\"value\",\"objIn\":\"p3kptyzya\",\"objOut\":\"0c2kqkx23\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"rrb24yfu5\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":2},{\"name\":\"easing\",\"value\":\"smoothstep\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":1},{\"name\":\"Direction\",\"value\":\"Only True\"},{\"name\":\"value false\",\"value\":-0.05},{\"name\":\"value true\",\"value\":-0.1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"Thickness\",\"portOut\":\"value\",\"objIn\":\"ojvpu8kqc\",\"objOut\":\"rrb24yfu5\"},{\"portIn\":\"number\",\"portOut\":\"value\",\"objIn\":\"62hfccv6y\",\"objOut\":\"rrb24yfu5\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"9zg7l03da\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Text\",\"value\":\"Bypass Reflectors\"},{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.03},{\"name\":\"Letter Spacing\",\"value\":-0.02},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":0},{\"name\":\"Align\",\"value\":\"Left\"},{\"name\":\"Vertical Align index\",\"value\":2},{\"name\":\"Vertical Align\",\"value\":\"Middle\"},{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":1},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.17},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.278},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":0.268},{\"name\":\"Border g\",\"value\":0.917},{\"name\":\"Border b\",\"value\":0.449},{\"name\":\"Shadow\",\"value\":0},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.25007109375000003},{\"name\":\"Height\",\"value\":0.042150235615079364},{\"name\":\"Start Y\",\"value\":0.01569281374007937},{\"name\":\"Num Chars\",\"value\":17}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"hjfdhsdnd\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":-1.07},{\"name\":\"y\",\"value\":0.275},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"9zg7l03da\",\"objOut\":\"hjfdhsdnd\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"gc0vi1imc\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Pass Through\",\"value\":1}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"hjfdhsdnd\",\"objOut\":\"gc0vi1imc\"}]}],\"objName\":\"Ops.Trigger.GateTrigger\"},{\"id\":\"p3kptyzya\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Text\",\"value\":\"Bypass Scape\"},{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.03},{\"name\":\"Letter Spacing\",\"value\":-0.02},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":0},{\"name\":\"Align\",\"value\":\"Left\"},{\"name\":\"Vertical Align index\",\"value\":2},{\"name\":\"Vertical Align\",\"value\":\"Middle\"},{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.146},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.278},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":0.268},{\"name\":\"Border g\",\"value\":0.917},{\"name\":\"Border b\",\"value\":0.449},{\"name\":\"Shadow\",\"value\":0},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.19078828125000002},{\"name\":\"Height\",\"value\":0.041074454365079366},{\"name\":\"Start Y\",\"value\":0.014079141865079366},{\"name\":\"Num Chars\",\"value\":12}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"wkj5broen\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":-1.07},{\"name\":\"y\",\"value\":0.185},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"p3kptyzya\",\"objOut\":\"wkj5broen\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"bmobwnopa\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0},{\"name\":\"Value 2\",\"value\":10}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"Result\",\"objIn\":\"9zg7l03da\",\"objOut\":\"bmobwnopa\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"62hfccv6y\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Percentage\",\"portOut\":\"result\",\"objIn\":\"bmobwnopa\",\"objOut\":\"62hfccv6y\"}]}],\"objName\":\"Ops.Math.Abs\"},{\"id\":\"bhee504ub\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0},{\"name\":\"Value 2\",\"value\":10}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"Result\",\"objIn\":\"p3kptyzya\",\"objOut\":\"bhee504ub\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"s7pij1q1i\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Percentage\",\"portOut\":\"result\",\"objIn\":\"bhee504ub\",\"objOut\":\"s7pij1q1i\"}]}],\"objName\":\"Ops.Math.Abs\"},{\"id\":\"yato93sp1\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"value\",\"value\":\"scapeBypass\"}],\"portsOut\":[{\"name\":\"String\",\"links\":[{\"portIn\":\"String In\",\"portOut\":\"String\",\"objIn\":\"w23lwytbq\",\"objOut\":\"yato93sp1\"},{\"portIn\":\"ID\",\"portOut\":\"String\",\"objIn\":\"thbgro9t4\",\"objOut\":\"yato93sp1\"}]}],\"objName\":\"Ops.String.String_v2\"},{\"id\":\"m1humujk6\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"value\",\"value\":\"srvbBypass\"}],\"portsOut\":[{\"name\":\"String\",\"links\":[{\"portIn\":\"String In\",\"portOut\":\"String\",\"objIn\":\"1fpcqufgn\",\"objOut\":\"m1humujk6\"},{\"portIn\":\"ID\",\"portOut\":\"String\",\"objIn\":\"awvzavosj\",\"objOut\":\"m1humujk6\"}]}],\"objName\":\"Ops.String.String_v2\"},{\"id\":\"rkkqumhut\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_bypassSRVB\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"vz25cccq6\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int srvbBypass\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"1fpcqufgn\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"srvbBypass\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"4be97q6f4\",\"objOut\":\"1fpcqufgn\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"4be97q6f4\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"z53lzpzya\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int scapeBypass\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"w23lwytbq\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"scapeBypass\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"chpxull77\",\"objOut\":\"w23lwytbq\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"chpxull77\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"3h83003s9\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Bool\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Bool\",\"objIn\":\"r4zymkuty\",\"objOut\":\"3h83003s9\"}]}],\"objName\":\"Ops.Ui.VizBool\"},{\"id\":\"r4zymkuty\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_bypassConvolver\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"aqfozaqv5\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Bool\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Bool\",\"objIn\":\"rkkqumhut\",\"objOut\":\"aqfozaqv5\"}]}],\"objName\":\"Ops.Ui.VizBool\"},{\"id\":\"y5x4zhexr\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"jvxsdd4y8\",\"objOut\":\"y5x4zhexr\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"u4fxhiu8b\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"1adv82dos\",\"objOut\":\"u4fxhiu8b\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"jvxsdd4y8\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonToggle\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"1adv82dos\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonToggle\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"hgrxownjb\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"guppvdu55\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"thbgro9t4\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":4},{\"name\":\"Height\",\"value\":1},{\"name\":\"Class\",\"value\":\"\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":0},{\"name\":\"Pivot y\",\"value\":\"center\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Render Rectangle\",\"value\":0},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":0},{\"name\":\"Cursor\",\"value\":\"auto\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"0c2kqkx23\",\"objOut\":\"thbgro9t4\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Hover\",\"objIn\":\"w23lwytbq\",\"objOut\":\"thbgro9t4\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Hover\",\"objIn\":\"eklm04iom\",\"objOut\":\"thbgro9t4\"},{\"portIn\":\"jqg7l6f5m\",\"portOut\":\"Pointer Hover\",\"objIn\":\"17zpcihf2\",\"objOut\":\"thbgro9t4\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"y5x4zhexr\",\"objOut\":\"thbgro9t4\"}]},{\"name\":\"Pointer X\",\"value\":0.7327516900575614},{\"name\":\"Pointer Y\",\"value\":0.08788696924649653},{\"name\":\"Top\",\"value\":173.13161373138428},{\"name\":\"Left\",\"value\":143.83791995048523},{\"name\":\"Right\",\"value\":285.76867413520813},{\"name\":\"Bottom\",\"value\":208.21498489379883},{\"name\":\"Left Click\",\"links\":[{\"portIn\":\"Input_0\",\"portOut\":\"Left Click\",\"objIn\":\"9uaebm5ol\",\"objOut\":\"thbgro9t4\"}]}],\"objName\":\"Ops.Patch.P4Zknbo.InteractiveRectangle_v25\"},{\"id\":\"awvzavosj\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":4},{\"name\":\"Height\",\"value\":1},{\"name\":\"Class\",\"value\":\"\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":0},{\"name\":\"Pivot y\",\"value\":\"center\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Render Rectangle\",\"value\":0},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":2},{\"name\":\"Cursor\",\"value\":\"pointer\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"rrb24yfu5\",\"objOut\":\"awvzavosj\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Hover\",\"objIn\":\"1fpcqufgn\",\"objOut\":\"awvzavosj\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Hover\",\"objIn\":\"1j1f7aaov\",\"objOut\":\"awvzavosj\"},{\"portIn\":\"jqg7l6f5m\",\"portOut\":\"Pointer Hover\",\"objIn\":\"25vp18oge\",\"objOut\":\"awvzavosj\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"u4fxhiu8b\",\"objOut\":\"awvzavosj\"}]},{\"name\":\"Pointer X\",\"value\":0.8748498540293391},{\"name\":\"Pointer Y\",\"value\":0.885677936440613},{\"name\":\"Top\",\"value\":120.62468147277832},{\"name\":\"Left\",\"value\":144.8468234539032},{\"name\":\"Right\",\"value\":286.5854308605194},{\"name\":\"Bottom\",\"value\":155.61355304718018},{\"name\":\"Left Click\",\"links\":[{\"portIn\":\"Input_0\",\"portOut\":\"Left Click\",\"objIn\":\"de6hwsi7a\",\"objOut\":\"awvzavosj\"}]}],\"objName\":\"Ops.Patch.P4Zknbo.InteractiveRectangle_v25\"},{\"id\":\"aegv1zwbs\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValueOnHover\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"9uaebm5ol\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Input\",\"multiPortNum\":3,\"multiPortManual\":true}],\"portsOut\":[{\"name\":\"Output_0\",\"links\":[{\"portIn\":\"trigger\",\"portOut\":\"Output_0\",\"objIn\":\"pqako3678\",\"objOut\":\"9uaebm5ol\"}]}],\"objName\":\"Ops.Trigger.SequenceMultiPort\"},{\"id\":\"de6hwsi7a\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Input\",\"multiPortNum\":3,\"multiPortManual\":true}],\"portsOut\":[{\"name\":\"Output_0\",\"links\":[{\"portIn\":\"trigger\",\"portOut\":\"Output_0\",\"objIn\":\"ivyxdp0yt\",\"objOut\":\"de6hwsi7a\"}]}],\"objName\":\"Ops.Trigger.SequenceMultiPort\"},{\"id\":\"sglc6f32p\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValueOnHover\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"gaiqx2eyn\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value\",\"value\":0},{\"name\":\"Variable\",\"value\":\"host_srvbBypass\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"u2u1tia3y\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value\",\"value\":0},{\"name\":\"Variable\",\"value\":\"host_scapeBypass\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"rrqbg3qjo\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"host_srvbBypass\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"number\",\"portOut\":\"Value\",\"objIn\":\"vjr2c8qlc\",\"objOut\":\"rrqbg3qjo\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"l3jngzmg6\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"host_scapeBypass\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"number\",\"portOut\":\"Value\",\"objIn\":\"gr3pfm1cp\",\"objOut\":\"l3jngzmg6\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"q2jj8b9rx\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"True\",\"links\":[{\"portIn\":\"Input_1\",\"portOut\":\"True\",\"objIn\":\"9uaebm5ol\",\"objOut\":\"q2jj8b9rx\"}]},{\"name\":\"False\",\"links\":[{\"portIn\":\"reset\",\"portOut\":\"False\",\"objIn\":\"pqako3678\",\"objOut\":\"q2jj8b9rx\"}]}],\"objName\":\"Ops.Boolean.TriggerOnChangeBoolean\"},{\"id\":\"0zc2kyf4j\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"True\",\"links\":[{\"portIn\":\"Input_1\",\"portOut\":\"True\",\"objIn\":\"de6hwsi7a\",\"objOut\":\"0zc2kyf4j\"}]},{\"name\":\"False\",\"links\":[{\"portIn\":\"reset\",\"portOut\":\"False\",\"objIn\":\"ivyxdp0yt\",\"objOut\":\"0zc2kyf4j\"}]}],\"objName\":\"Ops.Boolean.TriggerOnChangeBoolean\"},{\"id\":\"gr3pfm1cp\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Decimal Places\",\"value\":0}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"q2jj8b9rx\",\"objOut\":\"gr3pfm1cp\"}]}],\"objName\":\"Ops.Math.Round\"},{\"id\":\"vjr2c8qlc\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Decimal Places\",\"value\":0}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"0zc2kyf4j\",\"objOut\":\"vjr2c8qlc\"}]}],\"objName\":\"Ops.Math.Round\"},{\"id\":\"1j1f7aaov\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Value Out\",\"objIn\":\"sglc6f32p\",\"objOut\":\"1j1f7aaov\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"eklm04iom\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Value Out\",\"objIn\":\"aegv1zwbs\",\"objOut\":\"eklm04iom\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"17zpcihf2\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2,\"subPatchVer\":2},\"portsIn\":[{\"name\":\"jqg7l6f5m\",\"title\":\"Boolean\"},{\"name\":\"patchId\",\"value\":\"3eb7bjq13\"}],\"objName\":\"Ops.Patch.P4Zknbo.DisengageFlag2\"},{\"id\":\"25vp18oge\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"storage\":{\"blueprintVer\":2,\"subPatchVer\":2},\"portsIn\":[{\"name\":\"jqg7l6f5m\",\"title\":\"Boolean\"},{\"name\":\"patchId\",\"value\":\"j08gwy2g8\"}],\"objName\":\"Ops.Patch.P4Zknbo.DisengageFlag2\"},{\"id\":\"4qzwcjn6r\",\"uiAttribs\":{\"subPatch\":\"trw5lm9os\"},\"portsIn\":[{\"name\":\"Invalid when 0\",\"value\":0},{\"name\":\"Invalid when <0\",\"value\":0}],\"portsOut\":[{\"name\":\"Last Valid Number\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"Last Valid Number\",\"objIn\":\"aqfozaqv5\",\"objOut\":\"4qzwcjn6r\"}]},{\"name\":\"Is Valid\",\"value\":true}],\"storage\":{\"ref\":\"4qzwcjn6r\"},\"objName\":\"Ops.Number.FilterValidNumber\"}]}",};
-op.initInnerPorts=function(addedOps)
-{
-  for(let i=0;i<addedOps.length;i++)
-  {
-    if(addedOps[i].innerInput)
-    {
-    }
-if(addedOps[i].innerOutput)
-{
-}
-}
-};
-
-const patchId = "bp2sub_" + op.id;
-
-new CABLES.SubPatchOp(op, { "subId": patchId });
-
-initializeSubpatch();
-
-function initializeSubpatch()
-{
-    const p = JSON.parse(attachments.subpatch_json);
-
-    CABLES.Patch.replaceOpIds(p,
-        {
-            "parentSubPatchId": patchId,
-            "prefixHash": patchId,
-            "oldIdAsRef": true,
-            "doNotUnlinkLostLinks": true
-        });
-
-    for (let i = 0; i < p.ops.length; i++)
-    {
-        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
-    }
-
-    op.loadDependencies(p, () =>
-    {
-        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
-        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
-        op.patch.emitEvent("subpatchExpose", patchId);
-        op.setStorage({ "blueprintVer": 2 });
-        op.patch.emitEvent("subpatchExpose", patchId);
-    });
-}
-
-
-};
-
-Ops.Patch.P4Zknbo.UI_Bypassers.prototype = new CABLES.Op();
-CABLES.OPS["5d0484a6-6c40-4389-b817-d064b1bc441b"]={f:Ops.Patch.P4Zknbo.UI_Bypassers,objName:"Ops.Patch.P4Zknbo.UI_Bypassers"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Patch.P4Zknbo.BasicSlider_v5
 // 
 // **************************************************************
@@ -624,6 +558,2355 @@ function initializeSubpatch()
 
 Ops.Patch.P4Zknbo.BasicSlider_v5.prototype = new CABLES.Op();
 CABLES.OPS["a69c9b2a-f8c4-4806-aacb-2033c1fd98d0"]={f:Ops.Patch.P4Zknbo.BasicSlider_v5,objName:"Ops.Patch.P4Zknbo.BasicSlider_v5"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.LayerSequence
+// 
+// **************************************************************
+
+Ops.Gl.LayerSequence = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    exe = op.inTrigger("exe"),
+    cleanup = op.inTriggerButton("Clean up connections");
+
+const
+    cgl = op.patch.cgl,
+    triggers = [],
+    num = 16;
+
+let updateTimeout = null;
+
+exe.onTriggered = triggerAll;
+cleanup.onTriggered = clean;
+cleanup.setUiAttribs({ "hidePort": true });
+cleanup.setUiAttribs({ "hideParam": true });
+
+for (let i = 0; i < num; i++)
+{
+    const p = op.outTrigger("trigger " + i);
+    triggers.push(p);
+    p.onLinkChanged = updateButton;
+}
+
+function updateButton()
+{
+    clearTimeout(updateTimeout);
+    updateTimeout = setTimeout(() =>
+    {
+        let show = false;
+        for (let i = 0; i < triggers.length; i++)
+            if (triggers[i].links.length > 1) show = true;
+
+        cleanup.setUiAttribs({ "hideParam": !show });
+
+        if (op.isCurrentUiOp()) op.refreshParams();
+    }, 60);
+}
+
+function triggerAll()
+{
+    for (let i = 0; i < triggers.length; i++)
+    {
+        if (triggers[i].isLinked())
+        {
+            cgl.gl.clear(cgl.gl.DEPTH_BUFFER_BIT);
+
+            triggers[i].trigger();
+        }
+    }
+}
+
+function clean()
+{
+    let count = 0;
+    for (let i = 0; i < triggers.length; i++)
+    {
+        let removeLinks = [];
+
+        if (triggers[i].links.length > 1)
+            for (let j = 1; j < triggers[i].links.length; j++)
+            {
+                while (triggers[count].links.length > 0) count++;
+
+                removeLinks.push(triggers[i].links[j]);
+                const otherPort = triggers[i].links[j].getOtherPort(triggers[i]);
+                op.patch.link(op, "trigger " + count, otherPort.op, otherPort.name);
+                count++;
+            }
+
+        for (let j = 0; j < removeLinks.length; j++) removeLinks[j].remove();
+    }
+    updateButton();
+}
+
+
+};
+
+Ops.Gl.LayerSequence.prototype = new CABLES.Op();
+CABLES.OPS["09c33c7e-e282-468d-93e1-b8a7a0a4c4d2"]={f:Ops.Gl.LayerSequence,objName:"Ops.Gl.LayerSequence"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.Meshes.RectangleFrame_v2
+// 
+// **************************************************************
+
+Ops.Gl.Meshes.RectangleFrame_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("Render"),
+    width = op.inValueFloat("Width", 1),
+    height = op.inValueFloat("Height", 1),
+    thickness = op.inValueFloat("Thickness", -0.1),
+    pivotX = op.inSwitch("pivot x", ["center", "left", "right"], "center"),
+    pivotY = op.inSwitch("pivot y", ["center", "top", "bottom"], "center"),
+
+    trigger = op.outTrigger("trigger"),
+    geomOut = op.outObject("Geometry"),
+
+    drawTop = op.inValueBool("Draw Top", true),
+    drawBottom = op.inValueBool("Draw Bottom", true),
+    drawLeft = op.inValueBool("Draw Left", true),
+    drawRight = op.inValueBool("Draw Right", true),
+    active = op.inValueBool("Active", true);
+
+op.toWorkPortsNeedToBeLinked(render);
+op.setPortGroup("Geometry", [width, height, thickness]);
+op.setPortGroup("Transform", [pivotX, pivotY]);
+op.setPortGroup("Sections", [drawTop, drawBottom, drawLeft, drawRight]);
+
+const cgl = op.patch.cgl;
+let mesh = null;
+const geom = new CGL.Geometry(op.name);
+geom.tangents = [];
+geom.biTangents = [];
+
+geomOut.ignoreValueSerialize = true;
+
+width.onChange =
+    pivotX.onChange =
+    pivotY.onChange =
+    height.onChange =
+    thickness.onChange =
+    drawTop.onChange =
+    drawBottom.onChange =
+    drawLeft.onChange =
+    drawRight.onChange = () => { mesh = null; };
+
+render.onTriggered = function ()
+{
+    if (!mesh) create();
+    if (active.get() && mesh) mesh.render(cgl.getShader());
+
+    trigger.trigger();
+};
+
+function create()
+{
+    const w = width.get();
+    const h = height.get();
+    let x = -w / 2;
+    let y = -h / 2;
+    const th = thickness.get();//* Math.min(height.get(),width.get())*-0.5;
+
+    if (pivotX.get() == "right") x = -w;
+    else if (pivotX.get() == "left") x = 0;
+
+    if (pivotY.get() == "top") y = -h;
+    else if (pivotY.get() == "bottom") y = 0;
+
+    geom.vertices.length = 0;
+    geom.vertices.push(
+        x, y, 0,
+        x + w, y, 0,
+        x + w, y + h, 0,
+        x, y + h, 0,
+        x - th, y - th, 0,
+        x + w + th, y - th, 0,
+        x + w + th, y + h + th, 0,
+        x - th, y + h + th, 0
+    );
+
+    if (geom.vertexNormals.length === 0) geom.vertexNormals = [0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1];
+    if (geom.tangents.length === 0) geom.tangents = [1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0];
+    if (geom.biTangents.length === 0) geom.biTangents = [0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0];
+
+    if (geom.verticesIndices)geom.verticesIndices.length = 0;
+    else geom.verticesIndices = [];
+
+    const vertInd = [];
+    if (drawBottom.get()) vertInd.push(0, 1, 4, 1, 5, 4);
+    if (drawRight.get()) vertInd.push(1, 2, 5, 5, 2, 6);
+    if (drawTop.get()) vertInd.push(7, 6, 3, 6, 2, 3);
+    if (drawLeft.get()) vertInd.push(0, 4, 3, 4, 7, 3);
+    geom.verticesIndices = vertInd;
+
+    if (geom.texCoords.length === 0)
+    {
+        const tc = [];
+        for (let i = 0, j = 0; i < geom.vertices.length; i += 3, j += 2)
+        {
+            tc[j] = geom.vertices[i + 0] / w - 0.5;
+            tc[j + 1] = geom.vertices[i + 1] / h - 0.5;
+        }
+        geom.texCoords = tc;
+    }
+
+    if (!mesh) mesh = new CGL.Mesh(cgl, geom);
+    else mesh.setGeom(geom);
+
+    geomOut.set(null);
+    geomOut.set(geom);
+}
+
+
+};
+
+Ops.Gl.Meshes.RectangleFrame_v2.prototype = new CABLES.Op();
+CABLES.OPS["34e4535e-a784-4474-9b6f-a7e54e26f09e"]={f:Ops.Gl.Meshes.RectangleFrame_v2,objName:"Ops.Gl.Meshes.RectangleFrame_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Trigger.TriggerReceive
+// 
+// **************************************************************
+
+Ops.Trigger.TriggerReceive = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const next = op.outTrigger("Triggered");
+op.varName = op.inValueSelect("Named Trigger", [], "", true);
+
+updateVarNamesDropdown();
+op.patch.addEventListener("namedTriggersChanged", updateVarNamesDropdown);
+
+let oldName = null;
+
+function doTrigger()
+{
+    next.trigger();
+}
+
+function updateVarNamesDropdown()
+{
+    if (CABLES.UI)
+    {
+        let varnames = [];
+        let vars = op.patch.namedTriggers;
+        // varnames.push('+ create new one');
+        for (let i in vars) varnames.push(i);
+        op.varName.uiAttribs.values = varnames;
+    }
+}
+
+op.varName.onChange = function ()
+{
+    if (oldName)
+    {
+        let oldCbs = op.patch.namedTriggers[oldName];
+        let a = oldCbs.indexOf(doTrigger);
+        if (a != -1) oldCbs.splice(a, 1);
+    }
+
+    op.setTitle(">" + op.varName.get());
+    op.patch.namedTriggers[op.varName.get()] = op.patch.namedTriggers[op.varName.get()] || [];
+    let cbs = op.patch.namedTriggers[op.varName.get()];
+
+    cbs.push(doTrigger);
+    oldName = op.varName.get();
+    updateError();
+    op.patch.emitEvent("opTriggerNameChanged", op, op.varName.get());
+};
+
+op.on("uiParamPanel", updateError);
+
+function updateError()
+{
+    if (!op.varName.get())
+    {
+        op.setUiError("unknowntrigger", "unknown trigger");
+    }
+    else op.setUiError("unknowntrigger", null);
+}
+
+
+};
+
+Ops.Trigger.TriggerReceive.prototype = new CABLES.Op();
+CABLES.OPS["0816c999-f2db-466b-9777-2814573574c5"]={f:Ops.Trigger.TriggerReceive,objName:"Ops.Trigger.TriggerReceive"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.Matrix.Transform
+// 
+// **************************************************************
+
+Ops.Gl.Matrix.Transform = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("render"),
+    posX = op.inValue("posX", 0),
+    posY = op.inValue("posY", 0),
+    posZ = op.inValue("posZ", 0),
+    scale = op.inValue("scale", 1),
+    rotX = op.inValue("rotX", 0),
+    rotY = op.inValue("rotY", 0),
+    rotZ = op.inValue("rotZ", 0),
+    trigger = op.outTrigger("trigger");
+
+op.setPortGroup("Rotation", [rotX, rotY, rotZ]);
+op.setPortGroup("Position", [posX, posY, posZ]);
+op.setPortGroup("Scale", [scale]);
+op.setUiAxisPorts(posX, posY, posZ);
+
+op.toWorkPortsNeedToBeLinked(render, trigger);
+
+const vPos = vec3.create();
+const vScale = vec3.create();
+const transMatrix = mat4.create();
+mat4.identity(transMatrix);
+
+let
+    doScale = false,
+    doTranslate = false,
+    translationChanged = true,
+    scaleChanged = true,
+    rotChanged = true;
+
+rotX.onChange = rotY.onChange = rotZ.onChange = setRotChanged;
+posX.onChange = posY.onChange = posZ.onChange = setTranslateChanged;
+scale.onChange = setScaleChanged;
+
+render.onTriggered = function ()
+{
+    // if(!CGL.TextureEffect.checkOpNotInTextureEffect(op)) return;
+
+    let updateMatrix = false;
+    if (translationChanged)
+    {
+        updateTranslation();
+        updateMatrix = true;
+    }
+    if (scaleChanged)
+    {
+        updateScale();
+        updateMatrix = true;
+    }
+    if (rotChanged) updateMatrix = true;
+
+    if (updateMatrix) doUpdateMatrix();
+
+    const cg = op.patch.cg || op.patch.cgl;
+    cg.pushModelMatrix();
+    mat4.multiply(cg.mMatrix, cg.mMatrix, transMatrix);
+
+    trigger.trigger();
+    cg.popModelMatrix();
+
+    if (CABLES.UI)
+    {
+        if (!posX.isLinked() && !posY.isLinked() && !posZ.isLinked())
+        {
+            gui.setTransform(op.id, posX.get(), posY.get(), posZ.get());
+
+            if (op.isCurrentUiOp())
+                gui.setTransformGizmo(
+                    {
+                        "posX": posX,
+                        "posY": posY,
+                        "posZ": posZ,
+                    });
+        }
+    }
+};
+
+// op.transform3d = function ()
+// {
+//     return { "pos": [posX, posY, posZ] };
+// };
+
+function doUpdateMatrix()
+{
+    mat4.identity(transMatrix);
+    if (doTranslate)mat4.translate(transMatrix, transMatrix, vPos);
+
+    if (rotX.get() !== 0)mat4.rotateX(transMatrix, transMatrix, rotX.get() * CGL.DEG2RAD);
+    if (rotY.get() !== 0)mat4.rotateY(transMatrix, transMatrix, rotY.get() * CGL.DEG2RAD);
+    if (rotZ.get() !== 0)mat4.rotateZ(transMatrix, transMatrix, rotZ.get() * CGL.DEG2RAD);
+
+    if (doScale)mat4.scale(transMatrix, transMatrix, vScale);
+    rotChanged = false;
+}
+
+function updateTranslation()
+{
+    doTranslate = false;
+    if (posX.get() !== 0.0 || posY.get() !== 0.0 || posZ.get() !== 0.0) doTranslate = true;
+    vec3.set(vPos, posX.get(), posY.get(), posZ.get());
+    translationChanged = false;
+}
+
+function updateScale()
+{
+    // doScale=false;
+    // if(scale.get()!==0.0)
+    doScale = true;
+    vec3.set(vScale, scale.get(), scale.get(), scale.get());
+    scaleChanged = false;
+}
+
+function setTranslateChanged()
+{
+    translationChanged = true;
+}
+
+function setScaleChanged()
+{
+    scaleChanged = true;
+}
+
+function setRotChanged()
+{
+    rotChanged = true;
+}
+
+doUpdateMatrix();
+
+
+};
+
+Ops.Gl.Matrix.Transform.prototype = new CABLES.Op();
+CABLES.OPS["650baeb1-db2d-4781-9af6-ab4e9d4277be"]={f:Ops.Gl.Matrix.Transform,objName:"Ops.Gl.Matrix.Transform"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.Meshes.Rectangle_v4
+// 
+// **************************************************************
+
+Ops.Gl.Meshes.Rectangle_v4 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("render"),
+    doRender = op.inValueBool("Render Mesh", true),
+    width = op.inValue("width", 1),
+    height = op.inValue("height", 1),
+    pivotX = op.inSwitch("pivot x", ["left", "center", "right"], "center"),
+    pivotY = op.inSwitch("pivot y", ["top", "center", "bottom"], "center"),
+    axis = op.inSwitch("axis", ["xy", "xz"], "xy"),
+    flipTcX = op.inBool("Flip TexCoord X", false),
+    flipTcY = op.inBool("Flip TexCoord Y", true),
+    nColumns = op.inValueInt("num columns", 1),
+    nRows = op.inValueInt("num rows", 1),
+    trigger = op.outTrigger("trigger"),
+    geomOut = op.outObject("geometry", null, "geometry");
+
+geomOut.ignoreValueSerialize = true;
+
+const cgl = op.patch.cgl;
+const geom = new CGL.Geometry("rectangle");
+
+doRender.setUiAttribs({ "title": "Render" });
+render.setUiAttribs({ "title": "Trigger" });
+trigger.setUiAttribs({ "title": "Next" });
+op.setPortGroup("Pivot", [pivotX, pivotY, axis]);
+op.setPortGroup("Size", [width, height]);
+op.setPortGroup("Structure", [nColumns, nRows]);
+op.toWorkPortsNeedToBeLinked(render);
+op.toWorkShouldNotBeChild("Ops.Gl.TextureEffects.ImageCompose", CABLES.OP_PORT_TYPE_TRIGGER);
+
+const AXIS_XY = 0;
+const AXIS_XZ = 1;
+
+let curAxis = AXIS_XY;
+let mesh = null;
+let needsRebuild = true;
+let doScale = true;
+
+const vScale = vec3.create();
+vec3.set(vScale, 1, 1, 1);
+
+axis.onChange =
+    pivotX.onChange =
+    pivotY.onChange =
+    flipTcX.onChange =
+    flipTcY.onChange =
+    nRows.onChange =
+    nColumns.onChange = rebuildLater;
+updateScale();
+
+width.onChange =
+    height.onChange =
+    () =>
+    {
+        if (doScale) updateScale();
+        else needsRebuild = true;
+    };
+
+function updateScale()
+{
+    if (curAxis === AXIS_XY) vec3.set(vScale, width.get(), height.get(), 1);
+    if (curAxis === AXIS_XZ) vec3.set(vScale, width.get(), 1, height.get());
+}
+
+geomOut.onLinkChanged = () =>
+{
+    doScale = !geomOut.isLinked();
+    updateScale();
+    needsRebuild = true;
+};
+
+function rebuildLater()
+{
+    needsRebuild = true;
+}
+
+render.onTriggered = () =>
+{
+    if (needsRebuild) rebuild();
+    const cg = op.patch.cg;
+    if (cg && mesh && doRender.get())
+    {
+        if (doScale)
+        {
+            cg.pushModelMatrix();
+            mat4.scale(cg.mMatrix, cg.mMatrix, vScale);
+        }
+
+        mesh.render(cg.getShader());
+
+        if (doScale) cg.popModelMatrix();
+    }
+
+    trigger.trigger();
+};
+
+op.onDelete = () =>
+{
+    if (mesh) mesh.dispose();
+    rebuildLater();
+};
+
+function rebuild()
+{
+    if (axis.get() == "xy") curAxis = AXIS_XY;
+    if (axis.get() == "xz") curAxis = AXIS_XZ;
+
+    updateScale();
+    let w = width.get();
+    let h = height.get();
+
+    if (doScale) w = h = 1;
+
+    let x = 0;
+    let y = 0;
+
+    if (pivotX.get() == "center") x = 0;
+    else if (pivotX.get() == "right") x = -w / 2;
+    else if (pivotX.get() == "left") x = +w / 2;
+
+    if (pivotY.get() == "center") y = 0;
+    else if (pivotY.get() == "top") y = -h / 2;
+    else if (pivotY.get() == "bottom") y = +h / 2;
+
+    const numRows = Math.max(1, Math.round(nRows.get()));
+    const numColumns = Math.max(1, Math.round(nColumns.get()));
+
+    const stepColumn = w / numColumns;
+    const stepRow = h / numRows;
+
+    const indices = [];
+    const tc = new Float32Array((numColumns + 1) * (numRows + 1) * 2);
+    const verts = new Float32Array((numColumns + 1) * (numRows + 1) * 3);
+    const norms = new Float32Array((numColumns + 1) * (numRows + 1) * 3);
+    const tangents = new Float32Array((numColumns + 1) * (numRows + 1) * 3);
+    const biTangents = new Float32Array((numColumns + 1) * (numRows + 1) * 3);
+
+    let idxTc = 0;
+    let idxVert = 0;
+    let idxNorms = 0;
+    let idxTangent = 0;
+    let idxBiTangent = 0;
+
+    for (let r = 0; r <= numRows; r++)
+    {
+        for (let c = 0; c <= numColumns; c++)
+        {
+            verts[idxVert++] = c * stepColumn - w / 2 + x;
+            if (curAxis == AXIS_XZ) verts[idxVert++] = 0;
+            verts[idxVert++] = r * stepRow - h / 2 + y;
+
+            if (curAxis == AXIS_XY)verts[idxVert++] = 0;
+
+            tc[idxTc++] = c / numColumns;
+            tc[idxTc++] = r / numRows;
+
+            if (curAxis == AXIS_XY) // default
+            {
+                norms[idxNorms++] = 0;
+                norms[idxNorms++] = 0;
+                norms[idxNorms++] = 1;
+
+                tangents[idxTangent++] = 1;
+                tangents[idxTangent++] = 0;
+                tangents[idxTangent++] = 0;
+
+                biTangents[idxBiTangent++] = 0;
+                biTangents[idxBiTangent++] = 1;
+                biTangents[idxBiTangent++] = 0;
+            }
+            else if (curAxis == AXIS_XZ)
+            {
+                norms[idxNorms++] = 0;
+                norms[idxNorms++] = 1;
+                norms[idxNorms++] = 0;
+
+                biTangents[idxBiTangent++] = 0;
+                biTangents[idxBiTangent++] = 0;
+                biTangents[idxBiTangent++] = 1;
+            }
+        }
+    }
+
+    indices.length = numColumns * numRows * 6;
+    let idx = 0;
+
+    for (let c = 0; c < numColumns; c++)
+    {
+        for (let r = 0; r < numRows; r++)
+        {
+            const ind = c + (numColumns + 1) * r;
+            const v1 = ind;
+            const v2 = ind + 1;
+            const v3 = ind + numColumns + 1;
+            const v4 = ind + 1 + numColumns + 1;
+
+            if (curAxis == AXIS_XY) // default
+            {
+                indices[idx++] = v1;
+                indices[idx++] = v2;
+                indices[idx++] = v3;
+
+                indices[idx++] = v3;
+                indices[idx++] = v2;
+                indices[idx++] = v4;
+            }
+            else
+            if (curAxis == AXIS_XZ)
+            {
+                indices[idx++] = v1;
+                indices[idx++] = v3;
+                indices[idx++] = v2;
+
+                indices[idx++] = v2;
+                indices[idx++] = v3;
+                indices[idx++] = v4;
+            }
+        }
+    }
+
+    if (flipTcY.get()) for (let i = 0; i < tc.length; i += 2)tc[i + 1] = 1.0 - tc[i + 1];
+    if (flipTcX.get()) for (let i = 0; i < tc.length; i += 2)tc[i] = 1.0 - tc[i];
+
+    geom.clear();
+    geom.vertices = verts;
+    geom.texCoords = tc;
+    geom.verticesIndices = indices;
+    geom.vertexNormals = norms;
+    geom.tangents = tangents;
+    geom.biTangents = biTangents;
+
+    if (op.patch.cg)
+        if (!mesh) mesh = op.patch.cg.createMesh(geom, { "opId": op.id });
+        else mesh.setGeom(geom);
+
+    geomOut.setRef(geom);
+    needsRebuild = false;
+}
+
+
+};
+
+Ops.Gl.Meshes.Rectangle_v4.prototype = new CABLES.Op();
+CABLES.OPS["cc8c3ede-7103-410b-849f-a645793cab39"]={f:Ops.Gl.Meshes.Rectangle_v4,objName:"Ops.Gl.Meshes.Rectangle_v4"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Ui.Area
+// 
+// **************************************************************
+
+Ops.Ui.Area = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const inTitle = op.inString("Title", "");
+
+inTitle.setUiAttribs({ "hidePort": true });
+
+op.setUiAttrib({ "hasArea": true });
+
+op.init =
+    inTitle.onChange =
+    op.onLoaded = update;
+
+update();
+
+function update()
+{
+    if (CABLES.UI)
+    {
+        gui.savedState.setUnSaved("areaOp");
+        op.uiAttr(
+            {
+                "comment_title": inTitle.get() || " "
+            });
+
+        op.name = inTitle.get();
+    }
+}
+
+
+};
+
+Ops.Ui.Area.prototype = new CABLES.Op();
+CABLES.OPS["38f79614-b0de-4960-8da5-2827e7f43415"]={f:Ops.Ui.Area,objName:"Ops.Ui.Area"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Anim.BoolAnim
+// 
+// **************************************************************
+
+Ops.Anim.BoolAnim = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const anim = new CABLES.Anim();
+
+const
+    exe = op.inTrigger("exe"),
+    bool = op.inValueBool("bool"),
+    pease = anim.createPort(op, "easing"),
+    duration = op.inValue("duration", 0.25),
+    dir = op.inValueSelect("Direction", ["Both", "Only True", "Only False"], "Both"),
+    valueFalse = op.inValue("value false", 0),
+    valueTrue = op.inValue("value true", 1),
+    next = op.outTrigger("trigger"),
+    value = op.outNumber("value"),
+    finished = op.outBoolNum("finished"),
+    finishedTrigger = op.outTrigger("Finished Trigger");
+
+const startTime = CABLES.now();
+op.toWorkPortsNeedToBeLinked(exe);
+op.setPortGroup("Animation", [duration, pease]);
+op.setPortGroup("Values", [valueFalse, valueTrue]);
+
+dir.onChange = bool.onChange = valueFalse.onChange = valueTrue.onChange = duration.onChange = setAnim;
+setAnim();
+
+function setAnim()
+{
+    if (dir.get() == "Animate Both")dir.set("Both");
+    finished.set(false);
+    const now = (CABLES.now() - startTime) / 1000;
+    const oldValue = anim.getValue(now);
+    anim.clear();
+
+    anim.setValue(now, oldValue);
+
+    if (!bool.get())
+    {
+        if (dir.get() != "Only True") anim.setValue(now + duration.get(), valueFalse.get());
+        else anim.setValue(now, valueFalse.get());
+    }
+    else
+    {
+        if (dir.get() != "Only False") anim.setValue(now + duration.get(), valueTrue.get());
+        else anim.setValue(now, valueTrue.get());
+    }
+}
+
+exe.onTriggered = function ()
+{
+    const t = (CABLES.now() - startTime) / 1000;
+    value.set(anim.getValue(t));
+
+    if (anim.hasEnded(t))
+    {
+        if (!finished.get()) finishedTrigger.trigger();
+        finished.set(true);
+    }
+
+    next.trigger();
+};
+
+
+};
+
+Ops.Anim.BoolAnim.prototype = new CABLES.Op();
+CABLES.OPS["06ad9d35-ccf5-4d31-889c-e23fa062588a"]={f:Ops.Anim.BoolAnim,objName:"Ops.Anim.BoolAnim"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.TextMeshMSDF_v2
+// 
+// **************************************************************
+
+Ops.Gl.TextMeshMSDF_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"textmeshsdf_frag":"\nUNI sampler2D tex0;\nUNI sampler2D tex1;\nUNI sampler2D tex2;\nUNI sampler2D tex3;\n\nIN vec2 texCoord;\nIN vec4 fragAttrColors;\n\nUNI vec4 color;\nUNI vec2 texSize;\n\n#ifdef BORDER\n    UNI float borderWidth;\n    UNI float borderSmooth;\n    UNI vec3 colorBorder;\n#endif\n\n#ifdef TEXTURE_COLOR\nUNI sampler2D texMulColor;\n#endif\n#ifdef TEXTURE_MASK\nUNI sampler2D texMulMask;\n#endif\n\nUNI float smoothing;\nIN float texIndex;\n\n#ifdef SHADOW\n    UNI float shadowWidth;\n#endif\n\n\nfloat median(float r, float g, float b)\n{\n    return max(min(r, g), min(max(r, g), b));\n}\n\nvoid main()\n{\n    vec4 bgColor=vec4(0.0,0.0,0.0,0.0);\n    vec4 fgColor=color;\n    float opacity=1.0;\n\n    #ifndef SDF\n        if(int(texIndex)==0) outColor = texture(tex0, texCoord);\n        if(int(texIndex)==1) outColor = texture(tex1, texCoord);\n        if(int(texIndex)==2) outColor = texture(tex2, texCoord);\n        if(int(texIndex)==3) outColor = texture(tex3, texCoord);\n\n        return;\n    #endif\n\n\n    #ifdef TEXTURE_COLOR\n        fgColor.rgb *= texture(texMulColor, vec2(0.0,0.0)).rgb; //todo texcoords from char positioning\n    #endif\n    #ifdef TEXTURE_MASK\n        opacity *= texture(texMulMask, vec2(0.0,0.0)).r; //todo texcoords from char positioning\n    #endif\n\n\n    #ifdef SHADOW\n        vec2 msdfUnit1 = texSize;\n        vec2 tcv=vec2(texCoord.x-0.002,texCoord.y-0.002);\n        vec3 smpl1;\n        if(int(texIndex)==0) smpl1 = texture(tex0, tcv).rgb;\n        if(int(texIndex)==1) smpl1 = texture(tex1, tcv).rgb;\n        if(int(texIndex)==2) smpl1 = texture(tex2, tcv).rgb;\n        if(int(texIndex)==3) smpl1 = texture(tex3, tcv).rgb;\n\n        float sigDist1 = median(smpl1.r, smpl1.g, smpl1.b) - 0.001;\n        float opacity1 = smoothstep(0.0,0.9,sigDist1*sigDist1);\n        outColor = mix(bgColor, vec4(0.0,0.0,0.0,1.0), opacity1);\n    #endif\n\n    vec2 msdfUnit = 8.0/texSize;\n    vec3 smpl;\n\n    if(int(texIndex)==0) smpl = texture(tex0, texCoord).rgb;\n    if(int(texIndex)==1) smpl = texture(tex1, texCoord).rgb;\n    if(int(texIndex)==2) smpl = texture(tex2, texCoord).rgb;\n    if(int(texIndex)==3) smpl = texture(tex3, texCoord).rgb;\n\n\n    float sigDist = median(smpl.r, smpl.g, smpl.b) - 0.5;\n    sigDist *= dot(msdfUnit, (0.5+(smoothing-0.5))/fwidth(texCoord));\n    opacity *= clamp(sigDist + 0.5, 0.0, 1.0);\n\n    #ifdef BORDER\n        float sigDist2 = median(smpl.r, smpl.g, smpl.b) - 0.01;\n        float bw=borderWidth*0.6+0.24;\n        float opacity2 = smoothstep(bw-borderSmooth,bw+borderSmooth,sigDist2*sigDist2);\n        fgColor=mix(fgColor,vec4(colorBorder,1.0),1.0-opacity2);\n    #endif\n\n    float opa=opacity*color.a;\n\n    if(opa==0.0)discard;\n\n    outColor = mix(outColor, fgColor, opa);\n\n#ifdef HAS_ATTR_COLORS\n    outColor*=fragAttrColors;\n#endif\n}\n\n","textmeshsdf_vert":"UNI sampler2D tex1;\nUNI sampler2D tex2;\nUNI sampler2D tex3;\nUNI sampler2D tex4;\n\nUNI mat4 projMatrix;\nUNI mat4 modelMatrix;\nUNI mat4 viewMatrix;\n\nIN vec3 vPosition;\nIN vec2 attrTexCoord;\nIN mat4 instMat;\nIN vec2 attrTexOffsets;\nIN vec2 attrSize;\nIN vec2 attrTcSize;\nIN float attrPage;\nIN vec4 attrColors;\n\nOUT vec2 texCoord;\nOUT float texIndex;\nOUT vec4 fragAttrColors;\n\n\n\n\nconst float mulSize=0.01;\n\nvoid main()\n{\n    texCoord=(attrTexOffsets+attrTexCoord*attrTcSize);\n    texCoord.y=1.0-texCoord.y;\n\n    mat4 instMVMat=instMat;\n    vec4 vert=vec4( vPosition, 1. );\n    vert.x*=attrSize.x*mulSize;\n    vert.y*=attrSize.y*mulSize;\n\n    fragAttrColors=attrColors;\n\n    texIndex=attrPage+0.4; // strange ios rounding errors?!\n\n    mat4 mvMatrix=viewMatrix * modelMatrix * instMVMat;\n\n    gl_Position = projMatrix * mvMatrix * vert;\n}\n",};
+// https://soimy.github.io/msdf-bmfont-xml/
+
+// antialiasing:
+// https://github.com/Chlumsky/msdfgen/issues/22
+
+const
+    render = op.inTrigger("Render"),
+    str = op.inString("Text", "cables"),
+    inFont = op.inDropDown("Font", [], "", true),
+    scale = op.inFloat("Scale", 0.25),
+
+    letterSpace = op.inFloat("Letter Spacing", 0),
+    lineHeight = op.inFloat("Line Height", 1),
+
+    align = op.inSwitch("Align", ["Left", "Center", "Right"], "Center"),
+    valign = op.inSwitch("Vertical Align", ["Zero", "Top", "Middle", "Bottom"], "Middle"),
+
+    r = op.inValueSlider("r", 1),
+    g = op.inValueSlider("g", 1),
+    b = op.inValueSlider("b", 1),
+    a = op.inValueSlider("a", 1),
+    doSDF = op.inBool("SDF", true),
+
+    smoothing = op.inValueSlider("Smoothing", 0.3),
+
+    inBorder = op.inBool("Border", false),
+    inBorderWidth = op.inFloatSlider("Border Width", 0.5),
+    inBorderSmooth = op.inFloatSlider("Smoothness", 0.25),
+    br = op.inValueSlider("Border r", 1),
+    bg = op.inValueSlider("Border g", 1),
+    bb = op.inValueSlider("Border b", 1),
+
+    inShadow = op.inBool("Shadow", false),
+
+    inTexColor = op.inTexture("Texture Color"),
+    inTexMask = op.inTexture("Texture Mask"),
+
+    inPosArr = op.inArray("Positions"),
+    inScaleArr = op.inArray("Scalings"),
+    inRotArr = op.inArray("Rotations"),
+    inColors = op.inArray("Colors"),
+
+    next = op.outTrigger("Next"),
+    outArr = op.outArray("Positions Original", null, 3),
+
+    outScales = op.outArray("Scales", null, 2),
+    outLines = op.outNumber("Num Lines"),
+
+    outWidth = op.outNumber("Width"),
+    outHeight = op.outNumber("Height"),
+    outStartY = op.outNumber("Start Y"),
+    outNumChars = op.outNumber("Num Chars");
+
+op.setPortGroup("Size", [letterSpace, lineHeight, scale]);
+op.setPortGroup("Character Transformations", [inScaleArr, inRotArr, inPosArr]);
+op.setPortGroup("Alignment", [align, valign]);
+op.setPortGroup("Color", [r, g, b, a, doSDF]);
+op.setPortGroup("Border", [br, bg, bb, inBorderSmooth, inBorderWidth, inBorder]);
+
+r.setUiAttribs({ "colorPick": true });
+br.setUiAttribs({ "colorPick": true });
+
+const cgl = op.patch.cgl;
+const fontDataVarPrefix = "font_data_";
+const substrLength = fontDataVarPrefix.length;
+const alignVec = vec3.create();
+const vScale = vec3.create();
+const shader = new CGL.Shader(cgl, "TextMeshSDF");
+shader.define("INSTANCING");
+
+let fontTexs = null;
+let fontData = null;
+let fontChars = null;
+let needUpdate = true;
+let geom = null;
+let mesh = null;
+let disabled = false;
+let valignMode = 1;
+let heightAll = 0, widthAll = 0;
+let avgHeight = 0;
+let minY, maxY, minX, maxX;
+let needsUpdateTransmats = true;
+let transMats = null;
+let offY = 0;
+
+if (cgl.glVersion == 1)
+{
+    cgl.gl.getExtension("OES_standard_derivatives");
+    shader.enableExtension("GL_OES_standard_derivatives");
+}
+
+shader.setSource(attachments.textmeshsdf_vert, attachments.textmeshsdf_frag);
+
+const
+    uniTex = new CGL.Uniform(shader, "t", "tex0", 0),
+    uniTex1 = new CGL.Uniform(shader, "t", "tex1", 1),
+    uniTex2 = new CGL.Uniform(shader, "t", "tex2", 2),
+    uniTex3 = new CGL.Uniform(shader, "t", "tex3", 3),
+    uniTexMul = new CGL.Uniform(shader, "t", "texMulColor", 4),
+    uniTexMulMask = new CGL.Uniform(shader, "t", "texMulMask", 5),
+    uniColor = new CGL.Uniform(shader, "4f", "color", r, g, b, a),
+    uniColorBorder = new CGL.Uniform(shader, "3f", "colorBorder", br, bg, bb),
+
+    uniTexSize = new CGL.Uniform(shader, "2f", "texSize", 0, 0),
+
+    uniSmoothing = new CGL.Uniform(shader, "f", "smoothing", smoothing),
+    uniborderSmooth = new CGL.Uniform(shader, "f", "borderSmooth", inBorderSmooth),
+    uniborderWidth = new CGL.Uniform(shader, "f", "borderWidth", inBorderWidth);
+
+scale.onChange = updateScale;
+
+inRotArr.onChange =
+    inPosArr.onChange =
+    inScaleArr.onChange = function () { needsUpdateTransmats = true; };
+
+inTexColor.onChange =
+inTexMask.onChange =
+inShadow.onChange =
+inBorder.onChange =
+doSDF.onChange =
+    updateDefines;
+
+inColors.onLinkChanged = () =>
+{
+    updateDefines();
+    needsUpdateTransmats = true;
+    needUpdate = true;
+};
+
+inColors.onChange = () =>
+{
+    needUpdate = true;
+    if (mesh && inColors.get() && inColors.isLinked())
+        mesh.setAttribute("attrColors", new Float32Array(inColors.get()), 4, { "instanced": true });
+};
+
+align.onChange =
+    str.onChange =
+    letterSpace.onChange =
+    lineHeight.onChange =
+    function ()
+    {
+        needUpdate = true;
+    };
+
+valign.onChange = updateAlign;
+
+op.patch.addEventListener("variablesChanged", updateFontList);
+op.patch.addEventListener("FontLoadedMSDF", updateFontList);
+
+inFont.onChange = updateFontData;
+
+updateDefines();
+updateScale();
+updateFontList();
+
+function updateDefines()
+{
+    shader.toggleDefine("SDF", doSDF.get());
+    shader.toggleDefine("SHADOW", inShadow.get());
+    shader.toggleDefine("BORDER", inBorder.get());
+    shader.toggleDefine("TEXTURE_COLOR", inTexColor.isLinked());
+    shader.toggleDefine("TEXTURE_MASK", inTexMask.isLinked());
+    shader.toggleDefine("HAS_ATTR_COLORS", inColors.isLinked());
+
+    br.setUiAttribs({ "greyout": !inBorder.get() });
+    bg.setUiAttribs({ "greyout": !inBorder.get() });
+    bb.setUiAttribs({ "greyout": !inBorder.get() });
+    inBorderSmooth.setUiAttribs({ "greyout": !inBorder.get() });
+    inBorderWidth.setUiAttribs({ "greyout": !inBorder.get() });
+}
+
+function updateFontData()
+{
+    updateFontList();
+    const varname = fontDataVarPrefix + inFont.get();
+
+    fontData = null;
+    fontTexs = null;
+    fontChars = {};
+
+    const dataVar = op.patch.getVar(varname);
+
+    if (!dataVar || !dataVar.getValue())
+    {
+        fontData = null;
+
+        // op.warn("no varname", varname);
+        return;
+    }
+
+    fontData = dataVar.getValue().data;
+
+    if (!fontData)
+    {
+        return;
+    }
+
+    const basename = dataVar.getValue().basename;
+
+    const textVar = op.patch.getVar("font_tex_" + basename);
+    if (!textVar)
+    {
+        fontTexs = null;
+        fontData = null;
+        return;
+    }
+
+    fontTexs = textVar.getValue();
+
+    for (let i = 0; i < fontData.chars.length; i++) fontChars[fontData.chars[i].char] = fontData.chars[i];
+    needUpdate = true;
+}
+
+function updateFontList()
+{
+    const vars = op.patch.getVars();
+    const names = ["..."];
+
+    for (const i in vars)
+        if (vars[i].type == "fontData")
+            names.push(i.substr(substrLength));
+
+    inFont.uiAttribs.values = names;
+}
+
+function updateScale()
+{
+    const s = scale.get();
+    vec3.set(vScale, s, s, s);
+    vec3.set(alignVec, 0, offY * s, 0);
+
+    outWidth.set(widthAll * s);
+    outHeight.set(heightAll * s);
+
+    outStartY.set((maxY + offY) * s);
+}
+
+function updateAlign()
+{
+    if (minX == undefined) return;
+    if (valign.get() == "Top") valignMode = 0;
+    else if (valign.get() == "Middle") valignMode = 1;
+    else if (valign.get() == "Bottom") valignMode = 2;
+    else if (valign.get() == "Zero") valignMode = 3;
+
+    offY = 0;
+    widthAll = (Math.abs(minX - maxX));
+    heightAll = (Math.abs(minY - maxY));
+
+    if (valignMode === 1) offY = heightAll / 2;
+    else if (valignMode === 2) offY = heightAll;
+
+    if (valignMode != 0)offY -= avgHeight;
+
+    updateScale();
+}
+
+function buildTransMats()
+{
+    needsUpdateTransmats = false;
+
+    // if(!( inPosArr.get() || inScaleArr.get() || inRotArr.get()))
+    // {
+    //     transMats=null;
+    //     return;
+    // }
+
+    const transformations = [];
+    const translates = inPosArr.get() || outArr.get();
+    const scales = inScaleArr.get();
+    const rots = inRotArr.get();
+
+    for (let i = 0; i < mesh.numInstances; i++)
+    {
+        const m = mat4.create();
+        mat4.translate(m, m, [translates[i * 3 + 0], translates[i * 3 + 1], translates[i * 3 + 2]]);
+
+        if (scales) mat4.scale(m, m, [scales[i * 3 + 0], scales[i * 3 + 1], scales[i * 3 + 2]]);
+
+        if (rots)
+        {
+            mat4.rotateX(m, m, rots[i * 3 + 0] * CGL.DEG2RAD);
+            mat4.rotateY(m, m, rots[i * 3 + 1] * CGL.DEG2RAD);
+            mat4.rotateZ(m, m, rots[i * 3 + 2] * CGL.DEG2RAD);
+        }
+
+        transformations.push(Array.prototype.slice.call(m));
+    }
+
+    transMats = [].concat.apply([], transformations);
+}
+
+render.onTriggered = function ()
+{
+    if (!fontData || !fontTexs)
+    {
+        updateFontData();
+    }
+
+    if (!fontData)
+    {
+        op.setUiError("nodata", "No font data!");
+        op.setUiError("msdfhint", "Use the FontMSDF op to create font and texture.", 0);
+    }
+    if (!fontTexs)
+    {
+        op.setUiError("nodata", "No font texture");
+        op.setUiError("msdfhint", "Use the FontMSDF op to create font and texture.", 0);
+    }
+    if (fontTexs && fontData)
+    {
+        op.setUiError("nodata", null);
+        op.setUiError("msdfhint", null);
+    }
+
+    if (needUpdate)
+    {
+        generateMesh();
+        needUpdate = false;
+    }
+
+    if (mesh && mesh.numInstances > 0 && fontTexs)
+    {
+        cgl.pushShader(shader);
+
+        cgl.setTexture(0, CGL.Texture.getEmptyTexture(cgl).tex);
+
+        if (fontTexs[0]) uniTexSize.setValue([fontTexs[0].width, fontTexs[0].height]);
+
+        if (fontTexs[0]) cgl.setTexture(0, fontTexs[0].tex);
+        else cgl.setTexture(0, CGL.Texture.getEmptyTexture(cgl).tex);
+
+        if (fontTexs[1])cgl.setTexture(1, fontTexs[1].tex);
+        else cgl.setTexture(1, CGL.Texture.getEmptyTexture(cgl).tex);
+
+        if (fontTexs[2])cgl.setTexture(2, fontTexs[2].tex);
+        else cgl.setTexture(2, CGL.Texture.getEmptyTexture(cgl).tex);
+
+        if (fontTexs[3])cgl.setTexture(3, fontTexs[3].tex);
+        else cgl.setTexture(3, CGL.Texture.getEmptyTexture(cgl).tex);
+
+        if (inTexColor.get()) cgl.setTexture(4, inTexColor.get().tex);
+        if (inTexMask.get()) cgl.setTexture(5, inTexMask.get().tex);
+
+        cgl.pushModelMatrix();
+        mat4.translate(cgl.mMatrix, cgl.mMatrix, alignVec);
+
+        if (needsUpdateTransmats) buildTransMats();
+        if (transMats) mesh.setAttribute("instMat", new Float32Array(transMats), 16, { "instanced": true });
+
+        if (!disabled)
+        {
+            mat4.scale(cgl.mMatrix, cgl.mMatrix, vScale);
+
+            mesh.render(cgl.getShader());
+        }
+
+        cgl.popModelMatrix();
+
+        // cgl.setTexture(0, null);
+        cgl.popShader();
+        // cgl.popBlendMode();
+    }
+
+    next.trigger();
+};
+
+function getChar(chStr)
+{
+    return fontChars[String(chStr)] || fontChars["?"] || fontChars._ || fontChars.X;
+}
+
+function generateMesh()
+{
+    if (!fontData || !fontChars)
+    {
+        outNumChars.set(0);
+        return;
+    }
+
+    const theString = String(str.get() + "");
+
+    if (!geom)
+    {
+        geom = new CGL.Geometry("textmesh");
+
+        geom.vertices = [
+            0.5, 0.5, 0.0,
+            -0.5, 0.5, 0.0,
+            0.5, -0.5, 0.0,
+            -0.5, -0.5, 0.0
+        ];
+
+        geom.normals = [
+            0.0, 0.0, 0.0,
+            0.0, 0.0, 0.0,
+            0.0, 0.0, 0.0,
+            0.0, 0.0, 0.0
+        ];
+
+        geom.texCoords = new Float32Array([
+            1.0, 0.0,
+            0.0, 0.0,
+            1.0, 1.0,
+            0.0, 1.0
+        ]);
+
+        geom.verticesIndices = [
+            0, 1, 2,
+            2, 1, 3
+        ];
+    }
+
+    if (mesh)mesh.dispose();
+    mesh = new CGL.Mesh(cgl, geom);
+
+    const strings = (theString).split("\n");
+    const transformations = [];
+    const tcOffsets = [];
+    const sizes = [];
+    const texPos = [];
+    const tcSizes = [];
+    const pages = [];
+    let charCounter = 0;
+    const arrPositions = [];
+
+    const mulSize = 0.01;
+
+    outLines.set(strings.length);
+    minY = 99999;
+    maxY = -99999;
+    minX = 99999;
+    maxX = -99999;
+
+    avgHeight = 0;
+
+    for (let i = 0; i < fontData.chars.length; i++)
+    {
+        if (fontData.chars[i].height) avgHeight += fontData.chars[i].height;
+    }
+    avgHeight /= fontData.chars.length;
+    avgHeight *= mulSize;
+
+    for (let s = 0; s < strings.length; s++)
+    {
+        const txt = strings[s];
+        const numChars = txt.length;
+        let lineWidth = 0;
+
+        for (let i = 0; i < numChars; i++)
+        {
+            const chStr = txt.substring(i, i + 1);
+            const char = getChar(chStr);
+            if (char) lineWidth += char.xadvance * mulSize + letterSpace.get();
+        }
+
+        let pos = 0;
+        if (align.get() == "Right") pos -= lineWidth;
+        else if (align.get() == "Center") pos -= lineWidth / 2;
+
+        for (let i = 0; i < numChars; i++)
+        {
+            const m = mat4.create();
+
+            const chStr = txt.substring(i, i + 1);
+            const char = getChar(chStr);
+
+            if (!char) continue;
+
+            pages.push(char.page || 0);
+            sizes.push(char.width, char.height);
+
+            tcOffsets.push(char.x / fontData.common.scaleW, (char.y / fontData.common.scaleH));
+
+            const charWidth = char.width / fontData.common.scaleW;
+            const charHeight = char.height / fontData.common.scaleH;
+            const charOffsetY = (char.yoffset / fontData.common.scaleH);
+            const charOffsetX = char.xoffset / fontData.common.scaleW;
+
+            if (chStr == " ") tcSizes.push(0, 0);
+            else tcSizes.push(charWidth, charHeight);
+
+            mat4.identity(m);
+
+            let adv = (char.xadvance / 2) * mulSize;
+            pos += adv;
+
+            const x = pos + (char.xoffset / 2) * mulSize;
+            const y = (s * -lineHeight.get()) + (avgHeight) - (mulSize * (char.yoffset + char.height / 2));
+
+            minX = Math.min(x - charWidth, minX);
+            maxX = Math.max(x + charWidth, maxX);
+            minY = Math.min(y - charHeight - avgHeight / 2, minY);
+            maxY = Math.max(y + charHeight + avgHeight / 2, maxY);
+
+            mat4.translate(m, m, [x, y, 0]);
+            arrPositions.push(x, y, 0);
+
+            adv = (char.xadvance / 2) * mulSize + letterSpace.get();
+
+            pos += adv;
+
+            minX = Math.min(pos - charWidth, minX);
+            maxX = Math.max(pos + charWidth, maxX);
+
+            transformations.push(Array.prototype.slice.call(m));
+
+            charCounter++;
+        }
+    }
+
+    transMats = [].concat.apply([], transformations);
+
+    disabled = false;
+    if (transMats.length == 0) disabled = true;
+
+    mesh.numInstances = transMats.length / 16;
+    outNumChars.set(mesh.numInstances);
+
+    if (mesh.numInstances == 0)
+    {
+        disabled = true;
+        return;
+    }
+
+    mesh.setAttribute("instMat", new Float32Array(transMats), 16, { "instanced": true });
+    mesh.setAttribute("attrTexOffsets", new Float32Array(tcOffsets), 2, { "instanced": true });
+    mesh.setAttribute("attrTcSize", new Float32Array(tcSizes), 2, { "instanced": true });
+    mesh.setAttribute("attrSize", new Float32Array(sizes), 2, { "instanced": true });
+    mesh.setAttribute("attrPage", new Float32Array(pages), 1, { "instanced": true });
+
+    if (inColors.isLinked())
+        mesh.setAttribute("attrColors", new Float32Array(inColors.get()), 4, { "instanced": true });
+
+    outScales.set(sizes);
+    updateAlign();
+    needsUpdateTransmats = true;
+    outArr.setRef(arrPositions);
+}
+
+
+};
+
+Ops.Gl.TextMeshMSDF_v2.prototype = new CABLES.Op();
+CABLES.OPS["b5c99363-a749-4040-884b-66f91294bcad"]={f:Ops.Gl.TextMeshMSDF_v2,objName:"Ops.Gl.TextMeshMSDF_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.Matrix.Translate
+// 
+// **************************************************************
+
+Ops.Gl.Matrix.Translate = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("render"),
+    trigger = op.outTrigger("trigger"),
+    x = op.inValue("x"),
+    y = op.inValue("y"),
+    z = op.inValue("z");
+
+const vec = vec3.create();
+
+render.onTriggered = function ()
+{
+    const cgl = op.patch.cg;
+
+    vec3.set(vec, x.get(), y.get(), z.get());
+    cgl.pushModelMatrix();
+    mat4.translate(cgl.mMatrix, cgl.mMatrix, vec);
+    trigger.trigger();
+    cgl.popModelMatrix();
+};
+
+
+};
+
+Ops.Gl.Matrix.Translate.prototype = new CABLES.Op();
+CABLES.OPS["1f89ba0e-e7eb-46d7-8c66-7814b7c528b9"]={f:Ops.Gl.Matrix.Translate,objName:"Ops.Gl.Matrix.Translate"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Trigger.GateTrigger
+// 
+// **************************************************************
+
+Ops.Trigger.GateTrigger = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    exe = op.inTrigger('Execute'),
+    passThrough = op.inValueBool('Pass Through',true),
+    triggerOut = op.outTrigger('Trigger out');
+
+exe.onTriggered = function()
+{
+    if(passThrough.get())
+        triggerOut.trigger();
+}
+
+
+};
+
+Ops.Trigger.GateTrigger.prototype = new CABLES.Op();
+CABLES.OPS["65e8b8a2-ba13-485f-883a-2bcf377989da"]={f:Ops.Trigger.GateTrigger,objName:"Ops.Trigger.GateTrigger"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.Interpolate
+// 
+// **************************************************************
+
+Ops.Math.Interpolate = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    val1 = op.inFloat("Value 1"),
+    val2 = op.inFloat("Value 2"),
+    perc = op.inFloatSlider("Percentage"),
+    result = op.outNumber("Result");
+
+val1.onChange =
+val2.onChange =
+perc.onChange = update;
+
+function update()
+{
+    result.set((val2.get() - val1.get()) * perc.get() + val1.get());
+}
+
+
+};
+
+Ops.Math.Interpolate.prototype = new CABLES.Op();
+CABLES.OPS["d126e2c8-221e-428f-8ff4-8b8c5f6b8905"]={f:Ops.Math.Interpolate,objName:"Ops.Math.Interpolate"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.Abs
+// 
+// **************************************************************
+
+Ops.Math.Abs = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    number = op.inValue("number"),
+    result = op.outNumber("result");
+
+number.onChange = function ()
+{
+    result.set(Math.abs(number.get()));
+};
+
+
+};
+
+Ops.Math.Abs.prototype = new CABLES.Op();
+CABLES.OPS["6b5af21d-065f-44d2-9442-8b7a254753f6"]={f:Ops.Math.Abs,objName:"Ops.Math.Abs"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.String.String_v2
+// 
+// **************************************************************
+
+Ops.String.String_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    v = op.inString("value", ""),
+    result = op.outString("String");
+
+v.onChange = function ()
+{
+    if (!v.isLinked())
+        op.setUiAttrib({ "extendTitle": v.get() });
+
+    result.set(v.get());
+};
+
+
+};
+
+Ops.String.String_v2.prototype = new CABLES.Op();
+CABLES.OPS["d697ff82-74fd-4f31-8f54-295bc64e713d"]={f:Ops.String.String_v2,objName:"Ops.String.String_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Vars.VarSetNumber_v2
+// 
+// **************************************************************
+
+Ops.Vars.VarSetNumber_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const val = op.inValueFloat("Value", 0);
+op.varName = op.inDropDown("Variable", [], "", true);
+
+new CABLES.VarSetOpWrapper(op, "number", val, op.varName);
+
+
+};
+
+Ops.Vars.VarSetNumber_v2.prototype = new CABLES.Op();
+CABLES.OPS["b5249226-6095-4828-8a1c-080654e192fa"]={f:Ops.Vars.VarSetNumber_v2,objName:"Ops.Vars.VarSetNumber_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.String.GateString
+// 
+// **************************************************************
+
+Ops.String.GateString = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    valueInPort = op.inString("String In", "hello"),
+    passThroughPort = op.inValueBool("Pass Through", false),
+    inIfNot = op.inSwitch("When False", ["keep last string", "custom"], "keep last string"),
+    inCustomNot = op.inString("Custom Value"),
+    valueOutPort = op.outString("String Out", "");
+
+valueInPort.onChange =
+    passThroughPort.onChange = update;
+
+inIfNot.onChange = updateUi;
+
+function updateUi()
+{
+    inCustomNot.setUiAttribs({ "greyout": inIfNot.get() != "custom" });
+    update();
+}
+
+function update()
+{
+    if (passThroughPort.get())
+    {
+        valueOutPort.set("");
+        valueOutPort.set(valueInPort.get());
+    }
+    else
+    {
+        if (inIfNot.get() == "custom") valueOutPort.set(inCustomNot.get());
+    }
+}
+
+
+};
+
+Ops.String.GateString.prototype = new CABLES.Op();
+CABLES.OPS["0ce14933-2d91-4381-9d82-2304aae22c0e"]={f:Ops.String.GateString,objName:"Ops.String.GateString"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Vars.VarSetString_v2
+// 
+// **************************************************************
+
+Ops.Vars.VarSetString_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const val=op.inString("Value","New String");
+op.varName=op.inDropDown("Variable",[],"",true);
+
+new CABLES.VarSetOpWrapper(op,"string",val,op.varName);
+
+
+
+
+};
+
+Ops.Vars.VarSetString_v2.prototype = new CABLES.Op();
+CABLES.OPS["0b4d9229-8024-4a30-9cc0-f6653942c2e4"]={f:Ops.Vars.VarSetString_v2,objName:"Ops.Vars.VarSetString_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Ui.VizBool
+// 
+// **************************************************************
+
+Ops.Ui.VizBool = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inNum = op.inBool("Boolean", 0),
+    outBool = op.outBoolNum("Bool");
+
+op.setUiAttrib({ "height": 100, "width": 100, "resizable": true });
+
+inNum.onChange = () =>
+{
+    outBool.set(inNum.get());
+};
+
+op.renderVizLayer = (ctx, layer) =>
+{
+    if (layer.width <= 0 || layer.height <= 0) return;
+
+    ctx.fillStyle = "#222";
+    ctx.fillRect(layer.x, layer.y, layer.width, layer.height);
+
+    let isTrue = !!inNum.get();
+
+    let circle = new Path2D();
+    let radius = Math.min(layer.height, layer.width) / 2.4 * 0.8;
+    if (radius < 0)radius = 0;
+    circle.arc(layer.x + layer.width / 2, layer.y + layer.height / 2, radius, 0, 2 * Math.PI, false);
+
+    ctx.strokeStyle = "#555";
+    ctx.lineWidth = 7 * layer.scale;
+    ctx.stroke(circle);
+
+    if (isTrue)
+    {
+        if (op.uiAttribs.color)ctx.fillStyle = op.uiAttribs.color;
+        else ctx.fillStyle = "#ccc";
+
+        let circle = new Path2D();
+        circle.arc(layer.x + layer.width / 2, layer.y + layer.height / 2, radius - (ctx.lineWidth / 2), 0, 2 * Math.PI, false);
+        ctx.fill(circle);
+    }
+};
+
+
+};
+
+Ops.Ui.VizBool.prototype = new CABLES.Op();
+CABLES.OPS["cf194306-175b-416a-b90e-31ff2192a190"]={f:Ops.Ui.VizBool,objName:"Ops.Ui.VizBool"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Ui.Routing.RouteNumber
+// 
+// **************************************************************
+
+Ops.Ui.Routing.RouteNumber = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    v = op.inValueFloat("value"),
+    result = op.outNumber("result");
+
+v.onChange = exec;
+
+let wasLinked = false;
+
+op.setUiAttribs({ "display": "reroute" });
+
+function exec()
+{
+    result.set(v.get());
+}
+
+
+};
+
+Ops.Ui.Routing.RouteNumber.prototype = new CABLES.Op();
+CABLES.OPS["afff634a-b581-4449-b6f7-9ec7863c5d4d"]={f:Ops.Ui.Routing.RouteNumber,objName:"Ops.Ui.Routing.RouteNumber"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.P4Zknbo.InteractiveRectangle_v25
+// 
+// **************************************************************
+
+Ops.Patch.P4Zknbo.InteractiveRectangle_v25 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("Trigger in"),
+    trigger = op.outTrigger("Trigger out"),
+    width = op.inValue("Width", 1),
+    height = op.inValue("Height", 1),
+    inId = op.inString("ID"),
+    classPort = op.inString("Class"),
+    pivotX = op.inValueSelect("Pivot x", ["center", "left", "right"]),
+    pivotY = op.inValueSelect("Pivot y", ["center", "top", "bottom"]),
+    axis = op.inValueSelect("Axis", ["xy", "xz"]),
+    isInteractive = op.inValueBool("Is Interactive", true),
+    renderRect = op.inValueBool("Render Rectangle", true),
+    divVisible = op.inValueBool("Show Boundings", true),
+    cursorPort = op.inValueSelect("Cursor", ["auto", "crosshair", "pointer", "Hand", "move", "n-resize", "ne-resize", "e-resize", "se-resize", "s-resize", "sw-resize", "w-resize", "nw-resize", "text", "wait", "help", "none"], "pointer"),
+    active = op.inValueBool("Render", true);
+
+const geomOut = op.outObject("geometry");
+geomOut.ignoreValueSerialize = true;
+
+const
+    mouseOver = op.outBoolNum("Pointer Hover", false),
+    mouseDown = op.outBoolNum("Pointer Down", false),
+    outX = op.outNumber("Pointer X"),
+    outY = op.outNumber("Pointer Y"),
+    outTop = op.outNumber("Top"),
+    outLeft = op.outNumber("Left"),
+    outRight = op.outNumber("Right"),
+    outBottom = op.outNumber("Bottom"),
+    mouseClick = op.outTrigger("Left Click");
+
+const elementPort = op.outObject("Dom Element");
+
+active.setUiAttribs({ "title": "Active" });
+
+const cgl = op.patch.cgl;
+axis.set("xy");
+pivotX.set("center");
+pivotY.set("center");
+
+const geom = new CGL.Geometry(op.name);
+let mesh = null;
+let div = null;
+const m = mat4.create();
+const trans = mat4.create();
+const pos = vec3.create();
+const divAlign = vec3.create();
+const divAlignSize = vec3.create();
+
+axis.onChange = rebuild;
+pivotX.onChange = rebuild;
+pivotY.onChange = rebuild;
+width.onChange = rebuild;
+height.onChange = rebuild;
+cursorPort.onChange = updateCursor;
+rebuild();
+
+const modelMatrix = mat4.create();
+const identViewMatrix = mat4.create();
+const zeroVec3 = vec3.create();
+
+render.onTriggered = function ()
+{
+    if (!div)
+    {
+        setUpDiv();
+        addListeners();
+        updateDivVisibility();
+        updateIsInteractive();
+    }
+    updateDivSize();
+
+    if (active.get() && renderRect.get() && mesh) mesh.render(cgl.getShader());
+
+    trigger.trigger();
+};
+
+function rebuild()
+{
+    let w = width.get();
+    let h = height.get();
+    let x = 0;
+    let y = 0;
+
+    if (typeof w == "string")w = parseFloat(w);
+    if (typeof h == "string")h = parseFloat(h);
+
+    if (pivotX.get() == "center")
+    {
+        x = 0;
+        divAlign[0] = -w / 2;
+    }
+    if (pivotX.get() == "right")
+    {
+        x = -w / 2;
+    }
+    if (pivotX.get() == "left")
+    {
+        x = w / 2;
+    }
+
+    if (pivotY.get() == "center")
+    {
+        y = 0;
+        divAlign[1] = -h / 2;
+    }
+    if (pivotY.get() == "top") y = -h / 2;
+    if (pivotY.get() == "bottom") y = +h / 2;
+
+    const verts = [];
+    const tc = [];
+    const norms = [];
+    const indices = [];
+
+    const numRows = 1;
+    const numColumns = 1;
+
+    const stepColumn = w / numColumns;
+    const stepRow = h / numRows;
+
+    let c, r;
+
+    for (r = 0; r <= numRows; r++)
+    {
+        for (c = 0; c <= numColumns; c++)
+        {
+            verts.push(c * stepColumn - width.get() / 2 + x);
+            if (axis.get() == "xz") verts.push(0.0);
+            verts.push(r * stepRow - height.get() / 2 + y);
+            if (axis.get() == "xy") verts.push(0.0);
+
+            tc.push(c / numColumns);
+            tc.push(1.0 - r / numRows);
+
+            if (axis.get() == "xz")
+            {
+                norms.push(0);
+                norms.push(1);
+                norms.push(0);
+            }
+
+            if (axis.get() == "xy")
+            {
+                norms.push(0);
+                norms.push(0);
+                norms.push(-1);
+            }
+        }
+    }
+
+    for (c = 0; c < numColumns; c++)
+    {
+        for (r = 0; r < numRows; r++)
+        {
+            const ind = c + (numColumns + 1) * r;
+            const v1 = ind;
+            const v2 = ind + 1;
+            const v3 = ind + numColumns + 1;
+            const v4 = ind + 1 + numColumns + 1;
+
+            indices.push(v1);
+            indices.push(v3);
+            indices.push(v2);
+
+            indices.push(v2);
+            indices.push(v3);
+            indices.push(v4);
+        }
+    }
+
+    geom.clear();
+    geom.vertices = verts;
+    geom.texCoords = tc;
+    geom.verticesIndices = indices;
+    geom.vertexNormals = norms;
+
+    if (!mesh) mesh = new CGL.Mesh(cgl, geom);
+    else mesh.setGeom(geom);
+
+    geomOut.set(null);
+    geomOut.set(geom);
+}
+
+let divX = 0;
+let divY = 0;
+let divWidth = 0;
+let divHeight = 0;
+
+const mMatrix = mat4.create();
+divVisible.onChange = updateDivVisibility;
+inId.onChange = updateId;
+classPort.onChange = updateClassNames;
+
+function updateDivVisibility()
+{
+    if (div)
+    {
+        if (divVisible.get()) div.style.border = "1px solid red";
+        else div.style.border = "none";
+    }
+}
+
+function updateCursor()
+{
+    if (div)
+    {
+        div.style.cursor = cursorPort.get();
+    }
+}
+
+function updateId()
+{
+    if (div)
+    {
+        div.setAttribute("id", inId.get());
+    }
+}
+
+function updateDivSize()
+{
+    // var vp=cgl.getViewPort();
+
+    mat4.multiply(mMatrix, cgl.vMatrix, cgl.mMatrix);
+    vec3.transformMat4(pos, divAlign, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const top = cgl.canvas.styleMarginTop || 0;
+    const left = cgl.canvas.styleMarginLeft || 0;
+
+    const x1 = (trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2 + left;
+    const y1 = (trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top;
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1];
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x2 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y2 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0];
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x3 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y3 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x4 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y4 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divX = Math.min(x1, x2, x3, x4);
+    divY = Math.min(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    const xb = Math.max(x1, x2, x3, x4);
+    const yb = Math.max(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    outTop.set(divY);
+    outLeft.set(divX);
+    outRight.set(xb);
+    outBottom.set(yb);
+
+    divWidth = Math.abs(xb - divX);
+    divHeight = Math.abs(yb - divY);
+
+    divX /= op.patch.cgl.pixelDensity;
+    divY /= op.patch.cgl.pixelDensity;
+    divWidth /= op.patch.cgl.pixelDensity;
+    divHeight /= op.patch.cgl.pixelDensity;
+
+    // div.style.left=divX+'px';
+    // div.style.top=divY+'px';
+    // div.style.width=divWidth+'px';
+    // div.style.height=divHeight+'px';
+
+    const divXpx = divX + "px";
+    const divYpx = divY + "px";
+    const divWidthPx = divWidth + "px";
+    const divHeightPx = divHeight + "px";
+    if (divXpx != div.style.left) div.style.left = divXpx;
+    if (divYpx != div.style.top) div.style.top = divYpx;
+    if (div.style.width != divWidthPx) div.style.width = divWidthPx;
+    if (div.style.height != divHeightPx) div.style.height = divHeightPx;
+}
+
+function updateClassNames()
+{
+    if (div)
+    {
+        div.className = classPort.get();
+    }
+}
+
+op.onDelete = function ()
+{
+    if (div)div.remove();
+};
+
+function setUpDiv()
+{
+    if (!div)
+    {
+        div = document.createElement("div");
+        div.dataset.op = op.id;
+        div.oncontextmenu = function (e)
+        {
+            e.preventDefault();
+        };
+
+        div.style.padding = "0px";
+        div.style.position = "absolute";
+        div.style["box-sizing"] = "border-box";
+        div.style.border = "1px solid red";
+        // div.style['border-left']="1px solid blue";
+        // div.style['border-top']="1px solid green";
+        div.style["z-index"] = "500";
+
+        div.style["-webkit-user-select"] = "none";
+        div.style["user-select"] = "none";
+        div.style["-webkit-tap-highlight-color"] = "rgba(0,0,0,0)";
+        div.style["-webkit-touch-callout"] = "none";
+
+        const canvas = op.patch.cgl.canvas.parentElement;
+        canvas.appendChild(div);
+        updateCursor();
+        updateIsInteractive();
+        updateId();
+        updateClassNames();
+    }
+    updateDivSize();
+    elementPort.set(div);
+}
+
+let listenerElement = null;
+
+function onMouseMove(e)
+{
+    const offsetX = -width.get() / 2;
+    const offsetY = -height.get() / 2;
+
+    outX.set(Math.max(0.0, Math.min(1.0, e.offsetX / divWidth)));
+    outY.set(Math.max(0.0, Math.min(1.0, 1.0 - e.offsetY / divHeight)));
+}
+
+function onMouseLeave(e)
+{
+    mouseDown.set(false);
+    mouseOver.set(false);
+}
+
+function onMouseEnter(e)
+{
+    mouseOver.set(true);
+}
+
+function onMouseDown(e)
+{
+    mouseDown.set(true);
+}
+
+function onMouseUp(e)
+{
+    mouseDown.set(false);
+}
+
+function onmouseclick(e)
+{
+    mouseClick.trigger();
+}
+
+function onTouchMove(e)
+{
+    const targetEle = document.elementFromPoint(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
+
+    if (targetEle == div)
+    {
+        mouseOver.set(true);
+        if (e.touches && e.touches.length > 0)
+        {
+            const rect = div.getBoundingClientRect(); // e.target
+            const x = e.targetTouches[0].pageX - rect.left;
+            const y = e.targetTouches[0].pageY - rect.top;
+
+            const touch = e.touches[0];
+
+            outX.set(Math.max(0.0, Math.min(1.0, x / divWidth)));
+            outY.set(Math.max(0.0, Math.min(1.0, 1.0 - y / divHeight)));
+
+            onMouseMove(touch);
+        }
+    }
+    else
+    {
+        mouseOver.set(false);
+    }
+}
+
+active.onChange = updateActiveRender;
+function updateActiveRender()
+{
+    if (active.get())
+    {
+        addListeners();
+        if (div) div.style.display = "block";
+    }
+    else
+    {
+        removeListeners();
+        if (div) div.style.display = "none";
+    }
+}
+
+isInteractive.onChange = updateIsInteractive;
+function updateIsInteractive()
+{
+    if (isInteractive.get())
+    {
+        addListeners();
+        if (div)div.style["pointer-events"] = "initial";
+    }
+    else
+    {
+        removeListeners();
+        mouseDown.set(false);
+        mouseOver.set(false);
+        if (div)div.style["pointer-events"] = "none";
+    }
+}
+
+function removeListeners()
+{
+    if (listenerElement)
+    {
+        document.removeEventListener("touchmove", onTouchMove);
+        listenerElement.removeEventListener("touchend", onMouseUp);
+        listenerElement.removeEventListener("touchstart", onMouseDown);
+
+        listenerElement.removeEventListener("click", onmouseclick);
+        listenerElement.removeEventListener("mousemove", onMouseMove);
+        listenerElement.removeEventListener("mouseleave", onMouseLeave);
+        listenerElement.removeEventListener("mousedown", onMouseDown);
+        listenerElement.removeEventListener("mouseup", onMouseUp);
+        listenerElement.removeEventListener("mouseenter", onMouseEnter);
+        // listenerElement.removeEventListener('contextmenu', onClickRight);
+        listenerElement = null;
+    }
+}
+
+function addListeners()
+{
+    if (listenerElement)removeListeners();
+
+    listenerElement = div;
+
+    if (listenerElement)
+    {
+        document.addEventListener("touchmove", onTouchMove);
+        listenerElement.addEventListener("touchend", onMouseUp);
+        listenerElement.addEventListener("touchstart", onMouseDown);
+
+        listenerElement.addEventListener("click", onmouseclick);
+        listenerElement.addEventListener("mousemove", onMouseMove);
+        listenerElement.addEventListener("mouseleave", onMouseLeave);
+        listenerElement.addEventListener("mousedown", onMouseDown);
+        listenerElement.addEventListener("mouseup", onMouseUp);
+        listenerElement.addEventListener("mouseenter", onMouseEnter);
+        // listenerElement.addEventListener('contextmenu', onClickRight);
+    }
+}
+
+
+};
+
+Ops.Patch.P4Zknbo.InteractiveRectangle_v25.prototype = new CABLES.Op();
+CABLES.OPS["db1e057a-78bc-43bf-9b66-0fefc9eddfc6"]={f:Ops.Patch.P4Zknbo.InteractiveRectangle_v25,objName:"Ops.Patch.P4Zknbo.InteractiveRectangle_v25"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Vars.VarGetNumber_v2
+// 
+// **************************************************************
+
+Ops.Vars.VarGetNumber_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const val = op.outNumber("Value");
+op.varName = op.inValueSelect("Variable", [], "", true);
+
+new CABLES.VarGetOpWrapper(op, "number", op.varName, val);
+
+
+};
+
+Ops.Vars.VarGetNumber_v2.prototype = new CABLES.Op();
+CABLES.OPS["421f5b52-c0fa-47c4-8b7a-012b9e1c864a"]={f:Ops.Vars.VarGetNumber_v2,objName:"Ops.Vars.VarGetNumber_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.P4Zknbo.DisengageFlag2
+// 
+// **************************************************************
+
+Ops.Patch.P4Zknbo.DisengageFlag2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"inc_gen_ports_js":"const port_jqg7l6f5m=op.inFloat(\"jqg7l6f5m\",0);\nport_jqg7l6f5m.setUiAttribs({title:\"Boolean\",display:\"bool\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_jqg7l6f5m = addedOps[i].outNumber(\"innerOut_jqg7l6f5m\");\ninnerOut_jqg7l6f5m.set(port_jqg7l6f5m.get() );\ninnerOut_jqg7l6f5m.setUiAttribs({title:\"Boolean\"});\nport_jqg7l6f5m.on(\"change\", (a,v) => { innerOut_jqg7l6f5m.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"tjwrh5u95\",\"uiAttribs\":{\"subPatch\":\"qs9sxp2nl\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"dlvka8p7u\",\"uiAttribs\":{\"subPatch\":\"qs9sxp2nl\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"tjwrh5u95\",\"objOut\":\"dlvka8p7u\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"eck8hvwot\",\"uiAttribs\":{\"subPatch\":\"qs9sxp2nl\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_jqg7l6f5m\",\"title\":\"Boolean\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"innerOut_jqg7l6f5m\",\"objIn\":\"dlvka8p7u\",\"objOut\":\"eck8hvwot\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"7mxc7zyyb\",\"uiAttribs\":{\"subPatch\":\"qs9sxp2nl\"},\"storage\":{},\"objName\":\"Ops.Ui.SubPatchOutput\"}]}",};
+const port_jqg7l6f5m=op.inFloat("jqg7l6f5m",0);
+port_jqg7l6f5m.setUiAttribs({title:"Boolean",display:"bool",});
+
+op.initInnerPorts=function(addedOps)
+{
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
+    {
+const innerOut_jqg7l6f5m = addedOps[i].outNumber("innerOut_jqg7l6f5m");
+innerOut_jqg7l6f5m.set(port_jqg7l6f5m.get() );
+innerOut_jqg7l6f5m.setUiAttribs({title:"Boolean"});
+port_jqg7l6f5m.on("change", (a,v) => { innerOut_jqg7l6f5m.set(a); });
+
+    }
+if(addedOps[i].innerOutput)
+{
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
+    {
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
+    }
+
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
+}
+
+
+};
+
+Ops.Patch.P4Zknbo.DisengageFlag2.prototype = new CABLES.Op();
+CABLES.OPS["62217044-a409-4bb6-bbac-6b45623ed8ad"]={f:Ops.Patch.P4Zknbo.DisengageFlag2,objName:"Ops.Patch.P4Zknbo.DisengageFlag2"};
 
 
 
@@ -4254,155 +6537,6 @@ CABLES.OPS["790f3702-9833-464e-8e37-6f0f813f7e16"]={f:Ops.Gl.Texture_v2,objName:
 
 // **************************************************************
 // 
-// Ops.Gl.Matrix.Transform
-// 
-// **************************************************************
-
-Ops.Gl.Matrix.Transform = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    render = op.inTrigger("render"),
-    posX = op.inValue("posX", 0),
-    posY = op.inValue("posY", 0),
-    posZ = op.inValue("posZ", 0),
-    scale = op.inValue("scale", 1),
-    rotX = op.inValue("rotX", 0),
-    rotY = op.inValue("rotY", 0),
-    rotZ = op.inValue("rotZ", 0),
-    trigger = op.outTrigger("trigger");
-
-op.setPortGroup("Rotation", [rotX, rotY, rotZ]);
-op.setPortGroup("Position", [posX, posY, posZ]);
-op.setPortGroup("Scale", [scale]);
-op.setUiAxisPorts(posX, posY, posZ);
-
-op.toWorkPortsNeedToBeLinked(render, trigger);
-
-const vPos = vec3.create();
-const vScale = vec3.create();
-const transMatrix = mat4.create();
-mat4.identity(transMatrix);
-
-let
-    doScale = false,
-    doTranslate = false,
-    translationChanged = true,
-    scaleChanged = true,
-    rotChanged = true;
-
-rotX.onChange = rotY.onChange = rotZ.onChange = setRotChanged;
-posX.onChange = posY.onChange = posZ.onChange = setTranslateChanged;
-scale.onChange = setScaleChanged;
-
-render.onTriggered = function ()
-{
-    // if(!CGL.TextureEffect.checkOpNotInTextureEffect(op)) return;
-
-    let updateMatrix = false;
-    if (translationChanged)
-    {
-        updateTranslation();
-        updateMatrix = true;
-    }
-    if (scaleChanged)
-    {
-        updateScale();
-        updateMatrix = true;
-    }
-    if (rotChanged) updateMatrix = true;
-
-    if (updateMatrix) doUpdateMatrix();
-
-    const cg = op.patch.cg || op.patch.cgl;
-    cg.pushModelMatrix();
-    mat4.multiply(cg.mMatrix, cg.mMatrix, transMatrix);
-
-    trigger.trigger();
-    cg.popModelMatrix();
-
-    if (CABLES.UI)
-    {
-        if (!posX.isLinked() && !posY.isLinked() && !posZ.isLinked())
-        {
-            gui.setTransform(op.id, posX.get(), posY.get(), posZ.get());
-
-            if (op.isCurrentUiOp())
-                gui.setTransformGizmo(
-                    {
-                        "posX": posX,
-                        "posY": posY,
-                        "posZ": posZ,
-                    });
-        }
-    }
-};
-
-// op.transform3d = function ()
-// {
-//     return { "pos": [posX, posY, posZ] };
-// };
-
-function doUpdateMatrix()
-{
-    mat4.identity(transMatrix);
-    if (doTranslate)mat4.translate(transMatrix, transMatrix, vPos);
-
-    if (rotX.get() !== 0)mat4.rotateX(transMatrix, transMatrix, rotX.get() * CGL.DEG2RAD);
-    if (rotY.get() !== 0)mat4.rotateY(transMatrix, transMatrix, rotY.get() * CGL.DEG2RAD);
-    if (rotZ.get() !== 0)mat4.rotateZ(transMatrix, transMatrix, rotZ.get() * CGL.DEG2RAD);
-
-    if (doScale)mat4.scale(transMatrix, transMatrix, vScale);
-    rotChanged = false;
-}
-
-function updateTranslation()
-{
-    doTranslate = false;
-    if (posX.get() !== 0.0 || posY.get() !== 0.0 || posZ.get() !== 0.0) doTranslate = true;
-    vec3.set(vPos, posX.get(), posY.get(), posZ.get());
-    translationChanged = false;
-}
-
-function updateScale()
-{
-    // doScale=false;
-    // if(scale.get()!==0.0)
-    doScale = true;
-    vec3.set(vScale, scale.get(), scale.get(), scale.get());
-    scaleChanged = false;
-}
-
-function setTranslateChanged()
-{
-    translationChanged = true;
-}
-
-function setScaleChanged()
-{
-    scaleChanged = true;
-}
-
-function setRotChanged()
-{
-    rotChanged = true;
-}
-
-doUpdateMatrix();
-
-
-};
-
-Ops.Gl.Matrix.Transform.prototype = new CABLES.Op();
-CABLES.OPS["650baeb1-db2d-4781-9af6-ab4e9d4277be"]={f:Ops.Gl.Matrix.Transform,objName:"Ops.Gl.Matrix.Transform"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Gl.GradientTexture
 // 
 // **************************************************************
@@ -5511,682 +7645,6 @@ CABLES.OPS["17212e2b-d692-464c-8f8d-2d511dd3410a"]={f:Ops.Gl.ImageCompose.ImageC
 
 // **************************************************************
 // 
-// Ops.Trigger.TriggerReceive
-// 
-// **************************************************************
-
-Ops.Trigger.TriggerReceive = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const next = op.outTrigger("Triggered");
-op.varName = op.inValueSelect("Named Trigger", [], "", true);
-
-updateVarNamesDropdown();
-op.patch.addEventListener("namedTriggersChanged", updateVarNamesDropdown);
-
-let oldName = null;
-
-function doTrigger()
-{
-    next.trigger();
-}
-
-function updateVarNamesDropdown()
-{
-    if (CABLES.UI)
-    {
-        let varnames = [];
-        let vars = op.patch.namedTriggers;
-        // varnames.push('+ create new one');
-        for (let i in vars) varnames.push(i);
-        op.varName.uiAttribs.values = varnames;
-    }
-}
-
-op.varName.onChange = function ()
-{
-    if (oldName)
-    {
-        let oldCbs = op.patch.namedTriggers[oldName];
-        let a = oldCbs.indexOf(doTrigger);
-        if (a != -1) oldCbs.splice(a, 1);
-    }
-
-    op.setTitle(">" + op.varName.get());
-    op.patch.namedTriggers[op.varName.get()] = op.patch.namedTriggers[op.varName.get()] || [];
-    let cbs = op.patch.namedTriggers[op.varName.get()];
-
-    cbs.push(doTrigger);
-    oldName = op.varName.get();
-    updateError();
-    op.patch.emitEvent("opTriggerNameChanged", op, op.varName.get());
-};
-
-op.on("uiParamPanel", updateError);
-
-function updateError()
-{
-    if (!op.varName.get())
-    {
-        op.setUiError("unknowntrigger", "unknown trigger");
-    }
-    else op.setUiError("unknowntrigger", null);
-}
-
-
-};
-
-Ops.Trigger.TriggerReceive.prototype = new CABLES.Op();
-CABLES.OPS["0816c999-f2db-466b-9777-2814573574c5"]={f:Ops.Trigger.TriggerReceive,objName:"Ops.Trigger.TriggerReceive"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.TextMeshMSDF_v2
-// 
-// **************************************************************
-
-Ops.Gl.TextMeshMSDF_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={"textmeshsdf_frag":"\nUNI sampler2D tex0;\nUNI sampler2D tex1;\nUNI sampler2D tex2;\nUNI sampler2D tex3;\n\nIN vec2 texCoord;\nIN vec4 fragAttrColors;\n\nUNI vec4 color;\nUNI vec2 texSize;\n\n#ifdef BORDER\n    UNI float borderWidth;\n    UNI float borderSmooth;\n    UNI vec3 colorBorder;\n#endif\n\n#ifdef TEXTURE_COLOR\nUNI sampler2D texMulColor;\n#endif\n#ifdef TEXTURE_MASK\nUNI sampler2D texMulMask;\n#endif\n\nUNI float smoothing;\nIN float texIndex;\n\n#ifdef SHADOW\n    UNI float shadowWidth;\n#endif\n\n\nfloat median(float r, float g, float b)\n{\n    return max(min(r, g), min(max(r, g), b));\n}\n\nvoid main()\n{\n    vec4 bgColor=vec4(0.0,0.0,0.0,0.0);\n    vec4 fgColor=color;\n    float opacity=1.0;\n\n    #ifndef SDF\n        if(int(texIndex)==0) outColor = texture(tex0, texCoord);\n        if(int(texIndex)==1) outColor = texture(tex1, texCoord);\n        if(int(texIndex)==2) outColor = texture(tex2, texCoord);\n        if(int(texIndex)==3) outColor = texture(tex3, texCoord);\n\n        return;\n    #endif\n\n\n    #ifdef TEXTURE_COLOR\n        fgColor.rgb *= texture(texMulColor, vec2(0.0,0.0)).rgb; //todo texcoords from char positioning\n    #endif\n    #ifdef TEXTURE_MASK\n        opacity *= texture(texMulMask, vec2(0.0,0.0)).r; //todo texcoords from char positioning\n    #endif\n\n\n    #ifdef SHADOW\n        vec2 msdfUnit1 = texSize;\n        vec2 tcv=vec2(texCoord.x-0.002,texCoord.y-0.002);\n        vec3 smpl1;\n        if(int(texIndex)==0) smpl1 = texture(tex0, tcv).rgb;\n        if(int(texIndex)==1) smpl1 = texture(tex1, tcv).rgb;\n        if(int(texIndex)==2) smpl1 = texture(tex2, tcv).rgb;\n        if(int(texIndex)==3) smpl1 = texture(tex3, tcv).rgb;\n\n        float sigDist1 = median(smpl1.r, smpl1.g, smpl1.b) - 0.001;\n        float opacity1 = smoothstep(0.0,0.9,sigDist1*sigDist1);\n        outColor = mix(bgColor, vec4(0.0,0.0,0.0,1.0), opacity1);\n    #endif\n\n    vec2 msdfUnit = 8.0/texSize;\n    vec3 smpl;\n\n    if(int(texIndex)==0) smpl = texture(tex0, texCoord).rgb;\n    if(int(texIndex)==1) smpl = texture(tex1, texCoord).rgb;\n    if(int(texIndex)==2) smpl = texture(tex2, texCoord).rgb;\n    if(int(texIndex)==3) smpl = texture(tex3, texCoord).rgb;\n\n\n    float sigDist = median(smpl.r, smpl.g, smpl.b) - 0.5;\n    sigDist *= dot(msdfUnit, (0.5+(smoothing-0.5))/fwidth(texCoord));\n    opacity *= clamp(sigDist + 0.5, 0.0, 1.0);\n\n    #ifdef BORDER\n        float sigDist2 = median(smpl.r, smpl.g, smpl.b) - 0.01;\n        float bw=borderWidth*0.6+0.24;\n        float opacity2 = smoothstep(bw-borderSmooth,bw+borderSmooth,sigDist2*sigDist2);\n        fgColor=mix(fgColor,vec4(colorBorder,1.0),1.0-opacity2);\n    #endif\n\n    float opa=opacity*color.a;\n\n    if(opa==0.0)discard;\n\n    outColor = mix(outColor, fgColor, opa);\n\n#ifdef HAS_ATTR_COLORS\n    outColor*=fragAttrColors;\n#endif\n}\n\n","textmeshsdf_vert":"UNI sampler2D tex1;\nUNI sampler2D tex2;\nUNI sampler2D tex3;\nUNI sampler2D tex4;\n\nUNI mat4 projMatrix;\nUNI mat4 modelMatrix;\nUNI mat4 viewMatrix;\n\nIN vec3 vPosition;\nIN vec2 attrTexCoord;\nIN mat4 instMat;\nIN vec2 attrTexOffsets;\nIN vec2 attrSize;\nIN vec2 attrTcSize;\nIN float attrPage;\nIN vec4 attrColors;\n\nOUT vec2 texCoord;\nOUT float texIndex;\nOUT vec4 fragAttrColors;\n\n\n\n\nconst float mulSize=0.01;\n\nvoid main()\n{\n    texCoord=(attrTexOffsets+attrTexCoord*attrTcSize);\n    texCoord.y=1.0-texCoord.y;\n\n    mat4 instMVMat=instMat;\n    vec4 vert=vec4( vPosition, 1. );\n    vert.x*=attrSize.x*mulSize;\n    vert.y*=attrSize.y*mulSize;\n\n    fragAttrColors=attrColors;\n\n    texIndex=attrPage+0.4; // strange ios rounding errors?!\n\n    mat4 mvMatrix=viewMatrix * modelMatrix * instMVMat;\n\n    gl_Position = projMatrix * mvMatrix * vert;\n}\n",};
-// https://soimy.github.io/msdf-bmfont-xml/
-
-// antialiasing:
-// https://github.com/Chlumsky/msdfgen/issues/22
-
-const
-    render = op.inTrigger("Render"),
-    str = op.inString("Text", "cables"),
-    inFont = op.inDropDown("Font", [], "", true),
-    scale = op.inFloat("Scale", 0.25),
-
-    letterSpace = op.inFloat("Letter Spacing", 0),
-    lineHeight = op.inFloat("Line Height", 1),
-
-    align = op.inSwitch("Align", ["Left", "Center", "Right"], "Center"),
-    valign = op.inSwitch("Vertical Align", ["Zero", "Top", "Middle", "Bottom"], "Middle"),
-
-    r = op.inValueSlider("r", 1),
-    g = op.inValueSlider("g", 1),
-    b = op.inValueSlider("b", 1),
-    a = op.inValueSlider("a", 1),
-    doSDF = op.inBool("SDF", true),
-
-    smoothing = op.inValueSlider("Smoothing", 0.3),
-
-    inBorder = op.inBool("Border", false),
-    inBorderWidth = op.inFloatSlider("Border Width", 0.5),
-    inBorderSmooth = op.inFloatSlider("Smoothness", 0.25),
-    br = op.inValueSlider("Border r", 1),
-    bg = op.inValueSlider("Border g", 1),
-    bb = op.inValueSlider("Border b", 1),
-
-    inShadow = op.inBool("Shadow", false),
-
-    inTexColor = op.inTexture("Texture Color"),
-    inTexMask = op.inTexture("Texture Mask"),
-
-    inPosArr = op.inArray("Positions"),
-    inScaleArr = op.inArray("Scalings"),
-    inRotArr = op.inArray("Rotations"),
-    inColors = op.inArray("Colors"),
-
-    next = op.outTrigger("Next"),
-    outArr = op.outArray("Positions Original", null, 3),
-
-    outScales = op.outArray("Scales", null, 2),
-    outLines = op.outNumber("Num Lines"),
-
-    outWidth = op.outNumber("Width"),
-    outHeight = op.outNumber("Height"),
-    outStartY = op.outNumber("Start Y"),
-    outNumChars = op.outNumber("Num Chars");
-
-op.setPortGroup("Size", [letterSpace, lineHeight, scale]);
-op.setPortGroup("Character Transformations", [inScaleArr, inRotArr, inPosArr]);
-op.setPortGroup("Alignment", [align, valign]);
-op.setPortGroup("Color", [r, g, b, a, doSDF]);
-op.setPortGroup("Border", [br, bg, bb, inBorderSmooth, inBorderWidth, inBorder]);
-
-r.setUiAttribs({ "colorPick": true });
-br.setUiAttribs({ "colorPick": true });
-
-const cgl = op.patch.cgl;
-const fontDataVarPrefix = "font_data_";
-const substrLength = fontDataVarPrefix.length;
-const alignVec = vec3.create();
-const vScale = vec3.create();
-const shader = new CGL.Shader(cgl, "TextMeshSDF");
-shader.define("INSTANCING");
-
-let fontTexs = null;
-let fontData = null;
-let fontChars = null;
-let needUpdate = true;
-let geom = null;
-let mesh = null;
-let disabled = false;
-let valignMode = 1;
-let heightAll = 0, widthAll = 0;
-let avgHeight = 0;
-let minY, maxY, minX, maxX;
-let needsUpdateTransmats = true;
-let transMats = null;
-let offY = 0;
-
-if (cgl.glVersion == 1)
-{
-    cgl.gl.getExtension("OES_standard_derivatives");
-    shader.enableExtension("GL_OES_standard_derivatives");
-}
-
-shader.setSource(attachments.textmeshsdf_vert, attachments.textmeshsdf_frag);
-
-const
-    uniTex = new CGL.Uniform(shader, "t", "tex0", 0),
-    uniTex1 = new CGL.Uniform(shader, "t", "tex1", 1),
-    uniTex2 = new CGL.Uniform(shader, "t", "tex2", 2),
-    uniTex3 = new CGL.Uniform(shader, "t", "tex3", 3),
-    uniTexMul = new CGL.Uniform(shader, "t", "texMulColor", 4),
-    uniTexMulMask = new CGL.Uniform(shader, "t", "texMulMask", 5),
-    uniColor = new CGL.Uniform(shader, "4f", "color", r, g, b, a),
-    uniColorBorder = new CGL.Uniform(shader, "3f", "colorBorder", br, bg, bb),
-
-    uniTexSize = new CGL.Uniform(shader, "2f", "texSize", 0, 0),
-
-    uniSmoothing = new CGL.Uniform(shader, "f", "smoothing", smoothing),
-    uniborderSmooth = new CGL.Uniform(shader, "f", "borderSmooth", inBorderSmooth),
-    uniborderWidth = new CGL.Uniform(shader, "f", "borderWidth", inBorderWidth);
-
-scale.onChange = updateScale;
-
-inRotArr.onChange =
-    inPosArr.onChange =
-    inScaleArr.onChange = function () { needsUpdateTransmats = true; };
-
-inTexColor.onChange =
-inTexMask.onChange =
-inShadow.onChange =
-inBorder.onChange =
-doSDF.onChange =
-    updateDefines;
-
-inColors.onLinkChanged = () =>
-{
-    updateDefines();
-    needsUpdateTransmats = true;
-    needUpdate = true;
-};
-
-inColors.onChange = () =>
-{
-    needUpdate = true;
-    if (mesh && inColors.get() && inColors.isLinked())
-        mesh.setAttribute("attrColors", new Float32Array(inColors.get()), 4, { "instanced": true });
-};
-
-align.onChange =
-    str.onChange =
-    letterSpace.onChange =
-    lineHeight.onChange =
-    function ()
-    {
-        needUpdate = true;
-    };
-
-valign.onChange = updateAlign;
-
-op.patch.addEventListener("variablesChanged", updateFontList);
-op.patch.addEventListener("FontLoadedMSDF", updateFontList);
-
-inFont.onChange = updateFontData;
-
-updateDefines();
-updateScale();
-updateFontList();
-
-function updateDefines()
-{
-    shader.toggleDefine("SDF", doSDF.get());
-    shader.toggleDefine("SHADOW", inShadow.get());
-    shader.toggleDefine("BORDER", inBorder.get());
-    shader.toggleDefine("TEXTURE_COLOR", inTexColor.isLinked());
-    shader.toggleDefine("TEXTURE_MASK", inTexMask.isLinked());
-    shader.toggleDefine("HAS_ATTR_COLORS", inColors.isLinked());
-
-    br.setUiAttribs({ "greyout": !inBorder.get() });
-    bg.setUiAttribs({ "greyout": !inBorder.get() });
-    bb.setUiAttribs({ "greyout": !inBorder.get() });
-    inBorderSmooth.setUiAttribs({ "greyout": !inBorder.get() });
-    inBorderWidth.setUiAttribs({ "greyout": !inBorder.get() });
-}
-
-function updateFontData()
-{
-    updateFontList();
-    const varname = fontDataVarPrefix + inFont.get();
-
-    fontData = null;
-    fontTexs = null;
-    fontChars = {};
-
-    const dataVar = op.patch.getVar(varname);
-
-    if (!dataVar || !dataVar.getValue())
-    {
-        fontData = null;
-
-        // op.warn("no varname", varname);
-        return;
-    }
-
-    fontData = dataVar.getValue().data;
-
-    if (!fontData)
-    {
-        return;
-    }
-
-    const basename = dataVar.getValue().basename;
-
-    const textVar = op.patch.getVar("font_tex_" + basename);
-    if (!textVar)
-    {
-        fontTexs = null;
-        fontData = null;
-        return;
-    }
-
-    fontTexs = textVar.getValue();
-
-    for (let i = 0; i < fontData.chars.length; i++) fontChars[fontData.chars[i].char] = fontData.chars[i];
-    needUpdate = true;
-}
-
-function updateFontList()
-{
-    const vars = op.patch.getVars();
-    const names = ["..."];
-
-    for (const i in vars)
-        if (vars[i].type == "fontData")
-            names.push(i.substr(substrLength));
-
-    inFont.uiAttribs.values = names;
-}
-
-function updateScale()
-{
-    const s = scale.get();
-    vec3.set(vScale, s, s, s);
-    vec3.set(alignVec, 0, offY * s, 0);
-
-    outWidth.set(widthAll * s);
-    outHeight.set(heightAll * s);
-
-    outStartY.set((maxY + offY) * s);
-}
-
-function updateAlign()
-{
-    if (minX == undefined) return;
-    if (valign.get() == "Top") valignMode = 0;
-    else if (valign.get() == "Middle") valignMode = 1;
-    else if (valign.get() == "Bottom") valignMode = 2;
-    else if (valign.get() == "Zero") valignMode = 3;
-
-    offY = 0;
-    widthAll = (Math.abs(minX - maxX));
-    heightAll = (Math.abs(minY - maxY));
-
-    if (valignMode === 1) offY = heightAll / 2;
-    else if (valignMode === 2) offY = heightAll;
-
-    if (valignMode != 0)offY -= avgHeight;
-
-    updateScale();
-}
-
-function buildTransMats()
-{
-    needsUpdateTransmats = false;
-
-    // if(!( inPosArr.get() || inScaleArr.get() || inRotArr.get()))
-    // {
-    //     transMats=null;
-    //     return;
-    // }
-
-    const transformations = [];
-    const translates = inPosArr.get() || outArr.get();
-    const scales = inScaleArr.get();
-    const rots = inRotArr.get();
-
-    for (let i = 0; i < mesh.numInstances; i++)
-    {
-        const m = mat4.create();
-        mat4.translate(m, m, [translates[i * 3 + 0], translates[i * 3 + 1], translates[i * 3 + 2]]);
-
-        if (scales) mat4.scale(m, m, [scales[i * 3 + 0], scales[i * 3 + 1], scales[i * 3 + 2]]);
-
-        if (rots)
-        {
-            mat4.rotateX(m, m, rots[i * 3 + 0] * CGL.DEG2RAD);
-            mat4.rotateY(m, m, rots[i * 3 + 1] * CGL.DEG2RAD);
-            mat4.rotateZ(m, m, rots[i * 3 + 2] * CGL.DEG2RAD);
-        }
-
-        transformations.push(Array.prototype.slice.call(m));
-    }
-
-    transMats = [].concat.apply([], transformations);
-}
-
-render.onTriggered = function ()
-{
-    if (!fontData || !fontTexs)
-    {
-        updateFontData();
-    }
-
-    if (!fontData)
-    {
-        op.setUiError("nodata", "No font data!");
-        op.setUiError("msdfhint", "Use the FontMSDF op to create font and texture.", 0);
-    }
-    if (!fontTexs)
-    {
-        op.setUiError("nodata", "No font texture");
-        op.setUiError("msdfhint", "Use the FontMSDF op to create font and texture.", 0);
-    }
-    if (fontTexs && fontData)
-    {
-        op.setUiError("nodata", null);
-        op.setUiError("msdfhint", null);
-    }
-
-    if (needUpdate)
-    {
-        generateMesh();
-        needUpdate = false;
-    }
-
-    if (mesh && mesh.numInstances > 0 && fontTexs)
-    {
-        cgl.pushShader(shader);
-
-        cgl.setTexture(0, CGL.Texture.getEmptyTexture(cgl).tex);
-
-        if (fontTexs[0]) uniTexSize.setValue([fontTexs[0].width, fontTexs[0].height]);
-
-        if (fontTexs[0]) cgl.setTexture(0, fontTexs[0].tex);
-        else cgl.setTexture(0, CGL.Texture.getEmptyTexture(cgl).tex);
-
-        if (fontTexs[1])cgl.setTexture(1, fontTexs[1].tex);
-        else cgl.setTexture(1, CGL.Texture.getEmptyTexture(cgl).tex);
-
-        if (fontTexs[2])cgl.setTexture(2, fontTexs[2].tex);
-        else cgl.setTexture(2, CGL.Texture.getEmptyTexture(cgl).tex);
-
-        if (fontTexs[3])cgl.setTexture(3, fontTexs[3].tex);
-        else cgl.setTexture(3, CGL.Texture.getEmptyTexture(cgl).tex);
-
-        if (inTexColor.get()) cgl.setTexture(4, inTexColor.get().tex);
-        if (inTexMask.get()) cgl.setTexture(5, inTexMask.get().tex);
-
-        cgl.pushModelMatrix();
-        mat4.translate(cgl.mMatrix, cgl.mMatrix, alignVec);
-
-        if (needsUpdateTransmats) buildTransMats();
-        if (transMats) mesh.setAttribute("instMat", new Float32Array(transMats), 16, { "instanced": true });
-
-        if (!disabled)
-        {
-            mat4.scale(cgl.mMatrix, cgl.mMatrix, vScale);
-
-            mesh.render(cgl.getShader());
-        }
-
-        cgl.popModelMatrix();
-
-        // cgl.setTexture(0, null);
-        cgl.popShader();
-        // cgl.popBlendMode();
-    }
-
-    next.trigger();
-};
-
-function getChar(chStr)
-{
-    return fontChars[String(chStr)] || fontChars["?"] || fontChars._ || fontChars.X;
-}
-
-function generateMesh()
-{
-    if (!fontData || !fontChars)
-    {
-        outNumChars.set(0);
-        return;
-    }
-
-    const theString = String(str.get() + "");
-
-    if (!geom)
-    {
-        geom = new CGL.Geometry("textmesh");
-
-        geom.vertices = [
-            0.5, 0.5, 0.0,
-            -0.5, 0.5, 0.0,
-            0.5, -0.5, 0.0,
-            -0.5, -0.5, 0.0
-        ];
-
-        geom.normals = [
-            0.0, 0.0, 0.0,
-            0.0, 0.0, 0.0,
-            0.0, 0.0, 0.0,
-            0.0, 0.0, 0.0
-        ];
-
-        geom.texCoords = new Float32Array([
-            1.0, 0.0,
-            0.0, 0.0,
-            1.0, 1.0,
-            0.0, 1.0
-        ]);
-
-        geom.verticesIndices = [
-            0, 1, 2,
-            2, 1, 3
-        ];
-    }
-
-    if (mesh)mesh.dispose();
-    mesh = new CGL.Mesh(cgl, geom);
-
-    const strings = (theString).split("\n");
-    const transformations = [];
-    const tcOffsets = [];
-    const sizes = [];
-    const texPos = [];
-    const tcSizes = [];
-    const pages = [];
-    let charCounter = 0;
-    const arrPositions = [];
-
-    const mulSize = 0.01;
-
-    outLines.set(strings.length);
-    minY = 99999;
-    maxY = -99999;
-    minX = 99999;
-    maxX = -99999;
-
-    avgHeight = 0;
-
-    for (let i = 0; i < fontData.chars.length; i++)
-    {
-        if (fontData.chars[i].height) avgHeight += fontData.chars[i].height;
-    }
-    avgHeight /= fontData.chars.length;
-    avgHeight *= mulSize;
-
-    for (let s = 0; s < strings.length; s++)
-    {
-        const txt = strings[s];
-        const numChars = txt.length;
-        let lineWidth = 0;
-
-        for (let i = 0; i < numChars; i++)
-        {
-            const chStr = txt.substring(i, i + 1);
-            const char = getChar(chStr);
-            if (char) lineWidth += char.xadvance * mulSize + letterSpace.get();
-        }
-
-        let pos = 0;
-        if (align.get() == "Right") pos -= lineWidth;
-        else if (align.get() == "Center") pos -= lineWidth / 2;
-
-        for (let i = 0; i < numChars; i++)
-        {
-            const m = mat4.create();
-
-            const chStr = txt.substring(i, i + 1);
-            const char = getChar(chStr);
-
-            if (!char) continue;
-
-            pages.push(char.page || 0);
-            sizes.push(char.width, char.height);
-
-            tcOffsets.push(char.x / fontData.common.scaleW, (char.y / fontData.common.scaleH));
-
-            const charWidth = char.width / fontData.common.scaleW;
-            const charHeight = char.height / fontData.common.scaleH;
-            const charOffsetY = (char.yoffset / fontData.common.scaleH);
-            const charOffsetX = char.xoffset / fontData.common.scaleW;
-
-            if (chStr == " ") tcSizes.push(0, 0);
-            else tcSizes.push(charWidth, charHeight);
-
-            mat4.identity(m);
-
-            let adv = (char.xadvance / 2) * mulSize;
-            pos += adv;
-
-            const x = pos + (char.xoffset / 2) * mulSize;
-            const y = (s * -lineHeight.get()) + (avgHeight) - (mulSize * (char.yoffset + char.height / 2));
-
-            minX = Math.min(x - charWidth, minX);
-            maxX = Math.max(x + charWidth, maxX);
-            minY = Math.min(y - charHeight - avgHeight / 2, minY);
-            maxY = Math.max(y + charHeight + avgHeight / 2, maxY);
-
-            mat4.translate(m, m, [x, y, 0]);
-            arrPositions.push(x, y, 0);
-
-            adv = (char.xadvance / 2) * mulSize + letterSpace.get();
-
-            pos += adv;
-
-            minX = Math.min(pos - charWidth, minX);
-            maxX = Math.max(pos + charWidth, maxX);
-
-            transformations.push(Array.prototype.slice.call(m));
-
-            charCounter++;
-        }
-    }
-
-    transMats = [].concat.apply([], transformations);
-
-    disabled = false;
-    if (transMats.length == 0) disabled = true;
-
-    mesh.numInstances = transMats.length / 16;
-    outNumChars.set(mesh.numInstances);
-
-    if (mesh.numInstances == 0)
-    {
-        disabled = true;
-        return;
-    }
-
-    mesh.setAttribute("instMat", new Float32Array(transMats), 16, { "instanced": true });
-    mesh.setAttribute("attrTexOffsets", new Float32Array(tcOffsets), 2, { "instanced": true });
-    mesh.setAttribute("attrTcSize", new Float32Array(tcSizes), 2, { "instanced": true });
-    mesh.setAttribute("attrSize", new Float32Array(sizes), 2, { "instanced": true });
-    mesh.setAttribute("attrPage", new Float32Array(pages), 1, { "instanced": true });
-
-    if (inColors.isLinked())
-        mesh.setAttribute("attrColors", new Float32Array(inColors.get()), 4, { "instanced": true });
-
-    outScales.set(sizes);
-    updateAlign();
-    needsUpdateTransmats = true;
-    outArr.setRef(arrPositions);
-}
-
-
-};
-
-Ops.Gl.TextMeshMSDF_v2.prototype = new CABLES.Op();
-CABLES.OPS["b5c99363-a749-4040-884b-66f91294bcad"]={f:Ops.Gl.TextMeshMSDF_v2,objName:"Ops.Gl.TextMeshMSDF_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.Matrix.Translate
-// 
-// **************************************************************
-
-Ops.Gl.Matrix.Translate = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    render = op.inTrigger("render"),
-    trigger = op.outTrigger("trigger"),
-    x = op.inValue("x"),
-    y = op.inValue("y"),
-    z = op.inValue("z");
-
-const vec = vec3.create();
-
-render.onTriggered = function ()
-{
-    const cgl = op.patch.cg;
-
-    vec3.set(vec, x.get(), y.get(), z.get());
-    cgl.pushModelMatrix();
-    mat4.translate(cgl.mMatrix, cgl.mMatrix, vec);
-    trigger.trigger();
-    cgl.popModelMatrix();
-};
-
-
-};
-
-Ops.Gl.Matrix.Translate.prototype = new CABLES.Op();
-CABLES.OPS["1f89ba0e-e7eb-46d7-8c66-7814b7c528b9"]={f:Ops.Gl.Matrix.Translate,objName:"Ops.Gl.Matrix.Translate"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Anim.Bang
 // 
 // **************************************************************
@@ -6392,343 +7850,6 @@ function parse()
 
 Ops.Array.StringToArray_v2.prototype = new CABLES.Op();
 CABLES.OPS["c974de41-4ce4-4432-b94d-724741109c71"]={f:Ops.Array.StringToArray_v2,objName:"Ops.Array.StringToArray_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Anim.BoolAnim
-// 
-// **************************************************************
-
-Ops.Anim.BoolAnim = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const anim = new CABLES.Anim();
-
-const
-    exe = op.inTrigger("exe"),
-    bool = op.inValueBool("bool"),
-    pease = anim.createPort(op, "easing"),
-    duration = op.inValue("duration", 0.25),
-    dir = op.inValueSelect("Direction", ["Both", "Only True", "Only False"], "Both"),
-    valueFalse = op.inValue("value false", 0),
-    valueTrue = op.inValue("value true", 1),
-    next = op.outTrigger("trigger"),
-    value = op.outNumber("value"),
-    finished = op.outBoolNum("finished"),
-    finishedTrigger = op.outTrigger("Finished Trigger");
-
-const startTime = CABLES.now();
-op.toWorkPortsNeedToBeLinked(exe);
-op.setPortGroup("Animation", [duration, pease]);
-op.setPortGroup("Values", [valueFalse, valueTrue]);
-
-dir.onChange = bool.onChange = valueFalse.onChange = valueTrue.onChange = duration.onChange = setAnim;
-setAnim();
-
-function setAnim()
-{
-    if (dir.get() == "Animate Both")dir.set("Both");
-    finished.set(false);
-    const now = (CABLES.now() - startTime) / 1000;
-    const oldValue = anim.getValue(now);
-    anim.clear();
-
-    anim.setValue(now, oldValue);
-
-    if (!bool.get())
-    {
-        if (dir.get() != "Only True") anim.setValue(now + duration.get(), valueFalse.get());
-        else anim.setValue(now, valueFalse.get());
-    }
-    else
-    {
-        if (dir.get() != "Only False") anim.setValue(now + duration.get(), valueTrue.get());
-        else anim.setValue(now, valueTrue.get());
-    }
-}
-
-exe.onTriggered = function ()
-{
-    const t = (CABLES.now() - startTime) / 1000;
-    value.set(anim.getValue(t));
-
-    if (anim.hasEnded(t))
-    {
-        if (!finished.get()) finishedTrigger.trigger();
-        finished.set(true);
-    }
-
-    next.trigger();
-};
-
-
-};
-
-Ops.Anim.BoolAnim.prototype = new CABLES.Op();
-CABLES.OPS["06ad9d35-ccf5-4d31-889c-e23fa062588a"]={f:Ops.Anim.BoolAnim,objName:"Ops.Anim.BoolAnim"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.Meshes.Rectangle_v4
-// 
-// **************************************************************
-
-Ops.Gl.Meshes.Rectangle_v4 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    render = op.inTrigger("render"),
-    doRender = op.inValueBool("Render Mesh", true),
-    width = op.inValue("width", 1),
-    height = op.inValue("height", 1),
-    pivotX = op.inSwitch("pivot x", ["left", "center", "right"], "center"),
-    pivotY = op.inSwitch("pivot y", ["top", "center", "bottom"], "center"),
-    axis = op.inSwitch("axis", ["xy", "xz"], "xy"),
-    flipTcX = op.inBool("Flip TexCoord X", false),
-    flipTcY = op.inBool("Flip TexCoord Y", true),
-    nColumns = op.inValueInt("num columns", 1),
-    nRows = op.inValueInt("num rows", 1),
-    trigger = op.outTrigger("trigger"),
-    geomOut = op.outObject("geometry", null, "geometry");
-
-geomOut.ignoreValueSerialize = true;
-
-const cgl = op.patch.cgl;
-const geom = new CGL.Geometry("rectangle");
-
-doRender.setUiAttribs({ "title": "Render" });
-render.setUiAttribs({ "title": "Trigger" });
-trigger.setUiAttribs({ "title": "Next" });
-op.setPortGroup("Pivot", [pivotX, pivotY, axis]);
-op.setPortGroup("Size", [width, height]);
-op.setPortGroup("Structure", [nColumns, nRows]);
-op.toWorkPortsNeedToBeLinked(render);
-op.toWorkShouldNotBeChild("Ops.Gl.TextureEffects.ImageCompose", CABLES.OP_PORT_TYPE_TRIGGER);
-
-const AXIS_XY = 0;
-const AXIS_XZ = 1;
-
-let curAxis = AXIS_XY;
-let mesh = null;
-let needsRebuild = true;
-let doScale = true;
-
-const vScale = vec3.create();
-vec3.set(vScale, 1, 1, 1);
-
-axis.onChange =
-    pivotX.onChange =
-    pivotY.onChange =
-    flipTcX.onChange =
-    flipTcY.onChange =
-    nRows.onChange =
-    nColumns.onChange = rebuildLater;
-updateScale();
-
-width.onChange =
-    height.onChange =
-    () =>
-    {
-        if (doScale) updateScale();
-        else needsRebuild = true;
-    };
-
-function updateScale()
-{
-    if (curAxis === AXIS_XY) vec3.set(vScale, width.get(), height.get(), 1);
-    if (curAxis === AXIS_XZ) vec3.set(vScale, width.get(), 1, height.get());
-}
-
-geomOut.onLinkChanged = () =>
-{
-    doScale = !geomOut.isLinked();
-    updateScale();
-    needsRebuild = true;
-};
-
-function rebuildLater()
-{
-    needsRebuild = true;
-}
-
-render.onTriggered = () =>
-{
-    if (needsRebuild) rebuild();
-    const cg = op.patch.cg;
-    if (cg && mesh && doRender.get())
-    {
-        if (doScale)
-        {
-            cg.pushModelMatrix();
-            mat4.scale(cg.mMatrix, cg.mMatrix, vScale);
-        }
-
-        mesh.render(cg.getShader());
-
-        if (doScale) cg.popModelMatrix();
-    }
-
-    trigger.trigger();
-};
-
-op.onDelete = () =>
-{
-    if (mesh) mesh.dispose();
-    rebuildLater();
-};
-
-function rebuild()
-{
-    if (axis.get() == "xy") curAxis = AXIS_XY;
-    if (axis.get() == "xz") curAxis = AXIS_XZ;
-
-    updateScale();
-    let w = width.get();
-    let h = height.get();
-
-    if (doScale) w = h = 1;
-
-    let x = 0;
-    let y = 0;
-
-    if (pivotX.get() == "center") x = 0;
-    else if (pivotX.get() == "right") x = -w / 2;
-    else if (pivotX.get() == "left") x = +w / 2;
-
-    if (pivotY.get() == "center") y = 0;
-    else if (pivotY.get() == "top") y = -h / 2;
-    else if (pivotY.get() == "bottom") y = +h / 2;
-
-    const numRows = Math.max(1, Math.round(nRows.get()));
-    const numColumns = Math.max(1, Math.round(nColumns.get()));
-
-    const stepColumn = w / numColumns;
-    const stepRow = h / numRows;
-
-    const indices = [];
-    const tc = new Float32Array((numColumns + 1) * (numRows + 1) * 2);
-    const verts = new Float32Array((numColumns + 1) * (numRows + 1) * 3);
-    const norms = new Float32Array((numColumns + 1) * (numRows + 1) * 3);
-    const tangents = new Float32Array((numColumns + 1) * (numRows + 1) * 3);
-    const biTangents = new Float32Array((numColumns + 1) * (numRows + 1) * 3);
-
-    let idxTc = 0;
-    let idxVert = 0;
-    let idxNorms = 0;
-    let idxTangent = 0;
-    let idxBiTangent = 0;
-
-    for (let r = 0; r <= numRows; r++)
-    {
-        for (let c = 0; c <= numColumns; c++)
-        {
-            verts[idxVert++] = c * stepColumn - w / 2 + x;
-            if (curAxis == AXIS_XZ) verts[idxVert++] = 0;
-            verts[idxVert++] = r * stepRow - h / 2 + y;
-
-            if (curAxis == AXIS_XY)verts[idxVert++] = 0;
-
-            tc[idxTc++] = c / numColumns;
-            tc[idxTc++] = r / numRows;
-
-            if (curAxis == AXIS_XY) // default
-            {
-                norms[idxNorms++] = 0;
-                norms[idxNorms++] = 0;
-                norms[idxNorms++] = 1;
-
-                tangents[idxTangent++] = 1;
-                tangents[idxTangent++] = 0;
-                tangents[idxTangent++] = 0;
-
-                biTangents[idxBiTangent++] = 0;
-                biTangents[idxBiTangent++] = 1;
-                biTangents[idxBiTangent++] = 0;
-            }
-            else if (curAxis == AXIS_XZ)
-            {
-                norms[idxNorms++] = 0;
-                norms[idxNorms++] = 1;
-                norms[idxNorms++] = 0;
-
-                biTangents[idxBiTangent++] = 0;
-                biTangents[idxBiTangent++] = 0;
-                biTangents[idxBiTangent++] = 1;
-            }
-        }
-    }
-
-    indices.length = numColumns * numRows * 6;
-    let idx = 0;
-
-    for (let c = 0; c < numColumns; c++)
-    {
-        for (let r = 0; r < numRows; r++)
-        {
-            const ind = c + (numColumns + 1) * r;
-            const v1 = ind;
-            const v2 = ind + 1;
-            const v3 = ind + numColumns + 1;
-            const v4 = ind + 1 + numColumns + 1;
-
-            if (curAxis == AXIS_XY) // default
-            {
-                indices[idx++] = v1;
-                indices[idx++] = v2;
-                indices[idx++] = v3;
-
-                indices[idx++] = v3;
-                indices[idx++] = v2;
-                indices[idx++] = v4;
-            }
-            else
-            if (curAxis == AXIS_XZ)
-            {
-                indices[idx++] = v1;
-                indices[idx++] = v3;
-                indices[idx++] = v2;
-
-                indices[idx++] = v2;
-                indices[idx++] = v3;
-                indices[idx++] = v4;
-            }
-        }
-    }
-
-    if (flipTcY.get()) for (let i = 0; i < tc.length; i += 2)tc[i + 1] = 1.0 - tc[i + 1];
-    if (flipTcX.get()) for (let i = 0; i < tc.length; i += 2)tc[i] = 1.0 - tc[i];
-
-    geom.clear();
-    geom.vertices = verts;
-    geom.texCoords = tc;
-    geom.verticesIndices = indices;
-    geom.vertexNormals = norms;
-    geom.tangents = tangents;
-    geom.biTangents = biTangents;
-
-    if (op.patch.cg)
-        if (!mesh) mesh = op.patch.cg.createMesh(geom, { "opId": op.id });
-        else mesh.setGeom(geom);
-
-    geomOut.setRef(geom);
-    needsRebuild = false;
-}
-
-
-};
-
-Ops.Gl.Meshes.Rectangle_v4.prototype = new CABLES.Op();
-CABLES.OPS["cc8c3ede-7103-410b-849f-a645793cab39"]={f:Ops.Gl.Meshes.Rectangle_v4,objName:"Ops.Gl.Meshes.Rectangle_v4"};
 
 
 
@@ -6951,147 +8072,6 @@ CABLES.OPS["1bbdae06-fbb2-489b-9bcc-36c9d65bd441"]={f:Ops.Math.Multiply,objName:
 
 // **************************************************************
 // 
-// Ops.Ui.Area
-// 
-// **************************************************************
-
-Ops.Ui.Area = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const inTitle = op.inString("Title", "");
-
-inTitle.setUiAttribs({ "hidePort": true });
-
-op.setUiAttrib({ "hasArea": true });
-
-op.init =
-    inTitle.onChange =
-    op.onLoaded = update;
-
-update();
-
-function update()
-{
-    if (CABLES.UI)
-    {
-        gui.savedState.setUnSaved("areaOp");
-        op.uiAttr(
-            {
-                "comment_title": inTitle.get() || " "
-            });
-
-        op.name = inTitle.get();
-    }
-}
-
-
-};
-
-Ops.Ui.Area.prototype = new CABLES.Op();
-CABLES.OPS["38f79614-b0de-4960-8da5-2827e7f43415"]={f:Ops.Ui.Area,objName:"Ops.Ui.Area"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Math.Interpolate
-// 
-// **************************************************************
-
-Ops.Math.Interpolate = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    val1 = op.inFloat("Value 1"),
-    val2 = op.inFloat("Value 2"),
-    perc = op.inFloatSlider("Percentage"),
-    result = op.outNumber("Result");
-
-val1.onChange =
-val2.onChange =
-perc.onChange = update;
-
-function update()
-{
-    result.set((val2.get() - val1.get()) * perc.get() + val1.get());
-}
-
-
-};
-
-Ops.Math.Interpolate.prototype = new CABLES.Op();
-CABLES.OPS["d126e2c8-221e-428f-8ff4-8b8c5f6b8905"]={f:Ops.Math.Interpolate,objName:"Ops.Math.Interpolate"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Ui.Routing.RouteNumber
-// 
-// **************************************************************
-
-Ops.Ui.Routing.RouteNumber = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    v = op.inValueFloat("value"),
-    result = op.outNumber("result");
-
-v.onChange = exec;
-
-let wasLinked = false;
-
-op.setUiAttribs({ "display": "reroute" });
-
-function exec()
-{
-    result.set(v.get());
-}
-
-
-};
-
-Ops.Ui.Routing.RouteNumber.prototype = new CABLES.Op();
-CABLES.OPS["afff634a-b581-4449-b6f7-9ec7863c5d4d"]={f:Ops.Ui.Routing.RouteNumber,objName:"Ops.Ui.Routing.RouteNumber"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Vars.VarGetNumber_v2
-// 
-// **************************************************************
-
-Ops.Vars.VarGetNumber_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const val = op.outNumber("Value");
-op.varName = op.inValueSelect("Variable", [], "", true);
-
-new CABLES.VarGetOpWrapper(op, "number", op.varName, val);
-
-
-};
-
-Ops.Vars.VarGetNumber_v2.prototype = new CABLES.Op();
-CABLES.OPS["421f5b52-c0fa-47c4-8b7a-012b9e1c864a"]={f:Ops.Vars.VarGetNumber_v2,objName:"Ops.Vars.VarGetNumber_v2"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Boolean.Not
 // 
 // **************************************************************
@@ -7117,172 +8097,6 @@ bool.onChange = function ()
 
 Ops.Boolean.Not.prototype = new CABLES.Op();
 CABLES.OPS["6d123c9f-7485-4fd9-a5c2-76e59dcbeb34"]={f:Ops.Boolean.Not,objName:"Ops.Boolean.Not"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Trigger.GateTrigger
-// 
-// **************************************************************
-
-Ops.Trigger.GateTrigger = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    exe = op.inTrigger('Execute'),
-    passThrough = op.inValueBool('Pass Through',true),
-    triggerOut = op.outTrigger('Trigger out');
-
-exe.onTriggered = function()
-{
-    if(passThrough.get())
-        triggerOut.trigger();
-}
-
-
-};
-
-Ops.Trigger.GateTrigger.prototype = new CABLES.Op();
-CABLES.OPS["65e8b8a2-ba13-485f-883a-2bcf377989da"]={f:Ops.Trigger.GateTrigger,objName:"Ops.Trigger.GateTrigger"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.String.String_v2
-// 
-// **************************************************************
-
-Ops.String.String_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    v = op.inString("value", ""),
-    result = op.outString("String");
-
-v.onChange = function ()
-{
-    if (!v.isLinked())
-        op.setUiAttrib({ "extendTitle": v.get() });
-
-    result.set(v.get());
-};
-
-
-};
-
-Ops.String.String_v2.prototype = new CABLES.Op();
-CABLES.OPS["d697ff82-74fd-4f31-8f54-295bc64e713d"]={f:Ops.String.String_v2,objName:"Ops.String.String_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Vars.VarSetNumber_v2
-// 
-// **************************************************************
-
-Ops.Vars.VarSetNumber_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const val = op.inValueFloat("Value", 0);
-op.varName = op.inDropDown("Variable", [], "", true);
-
-new CABLES.VarSetOpWrapper(op, "number", val, op.varName);
-
-
-};
-
-Ops.Vars.VarSetNumber_v2.prototype = new CABLES.Op();
-CABLES.OPS["b5249226-6095-4828-8a1c-080654e192fa"]={f:Ops.Vars.VarSetNumber_v2,objName:"Ops.Vars.VarSetNumber_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.String.GateString
-// 
-// **************************************************************
-
-Ops.String.GateString = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    valueInPort = op.inString("String In", "hello"),
-    passThroughPort = op.inValueBool("Pass Through", false),
-    inIfNot = op.inSwitch("When False", ["keep last string", "custom"], "keep last string"),
-    inCustomNot = op.inString("Custom Value"),
-    valueOutPort = op.outString("String Out", "");
-
-valueInPort.onChange =
-    passThroughPort.onChange = update;
-
-inIfNot.onChange = updateUi;
-
-function updateUi()
-{
-    inCustomNot.setUiAttribs({ "greyout": inIfNot.get() != "custom" });
-    update();
-}
-
-function update()
-{
-    if (passThroughPort.get())
-    {
-        valueOutPort.set("");
-        valueOutPort.set(valueInPort.get());
-    }
-    else
-    {
-        if (inIfNot.get() == "custom") valueOutPort.set(inCustomNot.get());
-    }
-}
-
-
-};
-
-Ops.String.GateString.prototype = new CABLES.Op();
-CABLES.OPS["0ce14933-2d91-4381-9d82-2304aae22c0e"]={f:Ops.String.GateString,objName:"Ops.String.GateString"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Vars.VarSetString_v2
-// 
-// **************************************************************
-
-Ops.Vars.VarSetString_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const val=op.inString("Value","New String");
-op.varName=op.inDropDown("Variable",[],"",true);
-
-new CABLES.VarSetOpWrapper(op,"string",val,op.varName);
-
-
-
-
-};
-
-Ops.Vars.VarSetString_v2.prototype = new CABLES.Op();
-CABLES.OPS["0b4d9229-8024-4a30-9cc0-f6653942c2e4"]={f:Ops.Vars.VarSetString_v2,objName:"Ops.Vars.VarSetString_v2"};
 
 
 
@@ -11066,66 +11880,6 @@ CABLES.OPS["cf3544e4-e392-432b-89fd-fcfb5c974388"]={f:Ops.Trigger.TriggerOnce,ob
 
 // **************************************************************
 // 
-// Ops.Ui.VizBool
-// 
-// **************************************************************
-
-Ops.Ui.VizBool = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inNum = op.inBool("Boolean", 0),
-    outBool = op.outBoolNum("Bool");
-
-op.setUiAttrib({ "height": 100, "width": 100, "resizable": true });
-
-inNum.onChange = () =>
-{
-    outBool.set(inNum.get());
-};
-
-op.renderVizLayer = (ctx, layer) =>
-{
-    if (layer.width <= 0 || layer.height <= 0) return;
-
-    ctx.fillStyle = "#222";
-    ctx.fillRect(layer.x, layer.y, layer.width, layer.height);
-
-    let isTrue = !!inNum.get();
-
-    let circle = new Path2D();
-    let radius = Math.min(layer.height, layer.width) / 2.4 * 0.8;
-    if (radius < 0)radius = 0;
-    circle.arc(layer.x + layer.width / 2, layer.y + layer.height / 2, radius, 0, 2 * Math.PI, false);
-
-    ctx.strokeStyle = "#555";
-    ctx.lineWidth = 7 * layer.scale;
-    ctx.stroke(circle);
-
-    if (isTrue)
-    {
-        if (op.uiAttribs.color)ctx.fillStyle = op.uiAttribs.color;
-        else ctx.fillStyle = "#ccc";
-
-        let circle = new Path2D();
-        circle.arc(layer.x + layer.width / 2, layer.y + layer.height / 2, radius - (ctx.lineWidth / 2), 0, 2 * Math.PI, false);
-        ctx.fill(circle);
-    }
-};
-
-
-};
-
-Ops.Ui.VizBool.prototype = new CABLES.Op();
-CABLES.OPS["cf194306-175b-416a-b90e-31ff2192a190"]={f:Ops.Ui.VizBool,objName:"Ops.Ui.VizBool"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Boolean.ToggleBool_v2
 // 
 // **************************************************************
@@ -13098,941 +13852,6 @@ inTrigger.onTriggered = () =>
 
 Ops.Gl.ShaderEffects.FresnelGlow.prototype = new CABLES.Op();
 CABLES.OPS["89979937-68a6-4736-8241-3c6b748103d4"]={f:Ops.Gl.ShaderEffects.FresnelGlow,objName:"Ops.Gl.ShaderEffects.FresnelGlow"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.LayerSequence
-// 
-// **************************************************************
-
-Ops.Gl.LayerSequence = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    exe = op.inTrigger("exe"),
-    cleanup = op.inTriggerButton("Clean up connections");
-
-const
-    cgl = op.patch.cgl,
-    triggers = [],
-    num = 16;
-
-let updateTimeout = null;
-
-exe.onTriggered = triggerAll;
-cleanup.onTriggered = clean;
-cleanup.setUiAttribs({ "hidePort": true });
-cleanup.setUiAttribs({ "hideParam": true });
-
-for (let i = 0; i < num; i++)
-{
-    const p = op.outTrigger("trigger " + i);
-    triggers.push(p);
-    p.onLinkChanged = updateButton;
-}
-
-function updateButton()
-{
-    clearTimeout(updateTimeout);
-    updateTimeout = setTimeout(() =>
-    {
-        let show = false;
-        for (let i = 0; i < triggers.length; i++)
-            if (triggers[i].links.length > 1) show = true;
-
-        cleanup.setUiAttribs({ "hideParam": !show });
-
-        if (op.isCurrentUiOp()) op.refreshParams();
-    }, 60);
-}
-
-function triggerAll()
-{
-    for (let i = 0; i < triggers.length; i++)
-    {
-        if (triggers[i].isLinked())
-        {
-            cgl.gl.clear(cgl.gl.DEPTH_BUFFER_BIT);
-
-            triggers[i].trigger();
-        }
-    }
-}
-
-function clean()
-{
-    let count = 0;
-    for (let i = 0; i < triggers.length; i++)
-    {
-        let removeLinks = [];
-
-        if (triggers[i].links.length > 1)
-            for (let j = 1; j < triggers[i].links.length; j++)
-            {
-                while (triggers[count].links.length > 0) count++;
-
-                removeLinks.push(triggers[i].links[j]);
-                const otherPort = triggers[i].links[j].getOtherPort(triggers[i]);
-                op.patch.link(op, "trigger " + count, otherPort.op, otherPort.name);
-                count++;
-            }
-
-        for (let j = 0; j < removeLinks.length; j++) removeLinks[j].remove();
-    }
-    updateButton();
-}
-
-
-};
-
-Ops.Gl.LayerSequence.prototype = new CABLES.Op();
-CABLES.OPS["09c33c7e-e282-468d-93e1-b8a7a0a4c4d2"]={f:Ops.Gl.LayerSequence,objName:"Ops.Gl.LayerSequence"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.Meshes.RectangleFrame_v2
-// 
-// **************************************************************
-
-Ops.Gl.Meshes.RectangleFrame_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    render = op.inTrigger("Render"),
-    width = op.inValueFloat("Width", 1),
-    height = op.inValueFloat("Height", 1),
-    thickness = op.inValueFloat("Thickness", -0.1),
-    pivotX = op.inSwitch("pivot x", ["center", "left", "right"], "center"),
-    pivotY = op.inSwitch("pivot y", ["center", "top", "bottom"], "center"),
-
-    trigger = op.outTrigger("trigger"),
-    geomOut = op.outObject("Geometry"),
-
-    drawTop = op.inValueBool("Draw Top", true),
-    drawBottom = op.inValueBool("Draw Bottom", true),
-    drawLeft = op.inValueBool("Draw Left", true),
-    drawRight = op.inValueBool("Draw Right", true),
-    active = op.inValueBool("Active", true);
-
-op.toWorkPortsNeedToBeLinked(render);
-op.setPortGroup("Geometry", [width, height, thickness]);
-op.setPortGroup("Transform", [pivotX, pivotY]);
-op.setPortGroup("Sections", [drawTop, drawBottom, drawLeft, drawRight]);
-
-const cgl = op.patch.cgl;
-let mesh = null;
-const geom = new CGL.Geometry(op.name);
-geom.tangents = [];
-geom.biTangents = [];
-
-geomOut.ignoreValueSerialize = true;
-
-width.onChange =
-    pivotX.onChange =
-    pivotY.onChange =
-    height.onChange =
-    thickness.onChange =
-    drawTop.onChange =
-    drawBottom.onChange =
-    drawLeft.onChange =
-    drawRight.onChange = () => { mesh = null; };
-
-render.onTriggered = function ()
-{
-    if (!mesh) create();
-    if (active.get() && mesh) mesh.render(cgl.getShader());
-
-    trigger.trigger();
-};
-
-function create()
-{
-    const w = width.get();
-    const h = height.get();
-    let x = -w / 2;
-    let y = -h / 2;
-    const th = thickness.get();//* Math.min(height.get(),width.get())*-0.5;
-
-    if (pivotX.get() == "right") x = -w;
-    else if (pivotX.get() == "left") x = 0;
-
-    if (pivotY.get() == "top") y = -h;
-    else if (pivotY.get() == "bottom") y = 0;
-
-    geom.vertices.length = 0;
-    geom.vertices.push(
-        x, y, 0,
-        x + w, y, 0,
-        x + w, y + h, 0,
-        x, y + h, 0,
-        x - th, y - th, 0,
-        x + w + th, y - th, 0,
-        x + w + th, y + h + th, 0,
-        x - th, y + h + th, 0
-    );
-
-    if (geom.vertexNormals.length === 0) geom.vertexNormals = [0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1];
-    if (geom.tangents.length === 0) geom.tangents = [1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0];
-    if (geom.biTangents.length === 0) geom.biTangents = [0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0];
-
-    if (geom.verticesIndices)geom.verticesIndices.length = 0;
-    else geom.verticesIndices = [];
-
-    const vertInd = [];
-    if (drawBottom.get()) vertInd.push(0, 1, 4, 1, 5, 4);
-    if (drawRight.get()) vertInd.push(1, 2, 5, 5, 2, 6);
-    if (drawTop.get()) vertInd.push(7, 6, 3, 6, 2, 3);
-    if (drawLeft.get()) vertInd.push(0, 4, 3, 4, 7, 3);
-    geom.verticesIndices = vertInd;
-
-    if (geom.texCoords.length === 0)
-    {
-        const tc = [];
-        for (let i = 0, j = 0; i < geom.vertices.length; i += 3, j += 2)
-        {
-            tc[j] = geom.vertices[i + 0] / w - 0.5;
-            tc[j + 1] = geom.vertices[i + 1] / h - 0.5;
-        }
-        geom.texCoords = tc;
-    }
-
-    if (!mesh) mesh = new CGL.Mesh(cgl, geom);
-    else mesh.setGeom(geom);
-
-    geomOut.set(null);
-    geomOut.set(geom);
-}
-
-
-};
-
-Ops.Gl.Meshes.RectangleFrame_v2.prototype = new CABLES.Op();
-CABLES.OPS["34e4535e-a784-4474-9b6f-a7e54e26f09e"]={f:Ops.Gl.Meshes.RectangleFrame_v2,objName:"Ops.Gl.Meshes.RectangleFrame_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Math.Abs
-// 
-// **************************************************************
-
-Ops.Math.Abs = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    number = op.inValue("number"),
-    result = op.outNumber("result");
-
-number.onChange = function ()
-{
-    result.set(Math.abs(number.get()));
-};
-
-
-};
-
-Ops.Math.Abs.prototype = new CABLES.Op();
-CABLES.OPS["6b5af21d-065f-44d2-9442-8b7a254753f6"]={f:Ops.Math.Abs,objName:"Ops.Math.Abs"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Patch.P4Zknbo.InteractiveRectangle_v25
-// 
-// **************************************************************
-
-Ops.Patch.P4Zknbo.InteractiveRectangle_v25 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    render = op.inTrigger("Trigger in"),
-    trigger = op.outTrigger("Trigger out"),
-    width = op.inValue("Width", 1),
-    height = op.inValue("Height", 1),
-    inId = op.inString("ID"),
-    classPort = op.inString("Class"),
-    pivotX = op.inValueSelect("Pivot x", ["center", "left", "right"]),
-    pivotY = op.inValueSelect("Pivot y", ["center", "top", "bottom"]),
-    axis = op.inValueSelect("Axis", ["xy", "xz"]),
-    isInteractive = op.inValueBool("Is Interactive", true),
-    renderRect = op.inValueBool("Render Rectangle", true),
-    divVisible = op.inValueBool("Show Boundings", true),
-    cursorPort = op.inValueSelect("Cursor", ["auto", "crosshair", "pointer", "Hand", "move", "n-resize", "ne-resize", "e-resize", "se-resize", "s-resize", "sw-resize", "w-resize", "nw-resize", "text", "wait", "help", "none"], "pointer"),
-    active = op.inValueBool("Render", true);
-
-const geomOut = op.outObject("geometry");
-geomOut.ignoreValueSerialize = true;
-
-const
-    mouseOver = op.outBoolNum("Pointer Hover", false),
-    mouseDown = op.outBoolNum("Pointer Down", false),
-    outX = op.outNumber("Pointer X"),
-    outY = op.outNumber("Pointer Y"),
-    outTop = op.outNumber("Top"),
-    outLeft = op.outNumber("Left"),
-    outRight = op.outNumber("Right"),
-    outBottom = op.outNumber("Bottom"),
-    mouseClick = op.outTrigger("Left Click");
-
-const elementPort = op.outObject("Dom Element");
-
-active.setUiAttribs({ "title": "Active" });
-
-const cgl = op.patch.cgl;
-axis.set("xy");
-pivotX.set("center");
-pivotY.set("center");
-
-const geom = new CGL.Geometry(op.name);
-let mesh = null;
-let div = null;
-const m = mat4.create();
-const trans = mat4.create();
-const pos = vec3.create();
-const divAlign = vec3.create();
-const divAlignSize = vec3.create();
-
-axis.onChange = rebuild;
-pivotX.onChange = rebuild;
-pivotY.onChange = rebuild;
-width.onChange = rebuild;
-height.onChange = rebuild;
-cursorPort.onChange = updateCursor;
-rebuild();
-
-const modelMatrix = mat4.create();
-const identViewMatrix = mat4.create();
-const zeroVec3 = vec3.create();
-
-render.onTriggered = function ()
-{
-    if (!div)
-    {
-        setUpDiv();
-        addListeners();
-        updateDivVisibility();
-        updateIsInteractive();
-    }
-    updateDivSize();
-
-    if (active.get() && renderRect.get() && mesh) mesh.render(cgl.getShader());
-
-    trigger.trigger();
-};
-
-function rebuild()
-{
-    let w = width.get();
-    let h = height.get();
-    let x = 0;
-    let y = 0;
-
-    if (typeof w == "string")w = parseFloat(w);
-    if (typeof h == "string")h = parseFloat(h);
-
-    if (pivotX.get() == "center")
-    {
-        x = 0;
-        divAlign[0] = -w / 2;
-    }
-    if (pivotX.get() == "right")
-    {
-        x = -w / 2;
-    }
-    if (pivotX.get() == "left")
-    {
-        x = w / 2;
-    }
-
-    if (pivotY.get() == "center")
-    {
-        y = 0;
-        divAlign[1] = -h / 2;
-    }
-    if (pivotY.get() == "top") y = -h / 2;
-    if (pivotY.get() == "bottom") y = +h / 2;
-
-    const verts = [];
-    const tc = [];
-    const norms = [];
-    const indices = [];
-
-    const numRows = 1;
-    const numColumns = 1;
-
-    const stepColumn = w / numColumns;
-    const stepRow = h / numRows;
-
-    let c, r;
-
-    for (r = 0; r <= numRows; r++)
-    {
-        for (c = 0; c <= numColumns; c++)
-        {
-            verts.push(c * stepColumn - width.get() / 2 + x);
-            if (axis.get() == "xz") verts.push(0.0);
-            verts.push(r * stepRow - height.get() / 2 + y);
-            if (axis.get() == "xy") verts.push(0.0);
-
-            tc.push(c / numColumns);
-            tc.push(1.0 - r / numRows);
-
-            if (axis.get() == "xz")
-            {
-                norms.push(0);
-                norms.push(1);
-                norms.push(0);
-            }
-
-            if (axis.get() == "xy")
-            {
-                norms.push(0);
-                norms.push(0);
-                norms.push(-1);
-            }
-        }
-    }
-
-    for (c = 0; c < numColumns; c++)
-    {
-        for (r = 0; r < numRows; r++)
-        {
-            const ind = c + (numColumns + 1) * r;
-            const v1 = ind;
-            const v2 = ind + 1;
-            const v3 = ind + numColumns + 1;
-            const v4 = ind + 1 + numColumns + 1;
-
-            indices.push(v1);
-            indices.push(v3);
-            indices.push(v2);
-
-            indices.push(v2);
-            indices.push(v3);
-            indices.push(v4);
-        }
-    }
-
-    geom.clear();
-    geom.vertices = verts;
-    geom.texCoords = tc;
-    geom.verticesIndices = indices;
-    geom.vertexNormals = norms;
-
-    if (!mesh) mesh = new CGL.Mesh(cgl, geom);
-    else mesh.setGeom(geom);
-
-    geomOut.set(null);
-    geomOut.set(geom);
-}
-
-let divX = 0;
-let divY = 0;
-let divWidth = 0;
-let divHeight = 0;
-
-const mMatrix = mat4.create();
-divVisible.onChange = updateDivVisibility;
-inId.onChange = updateId;
-classPort.onChange = updateClassNames;
-
-function updateDivVisibility()
-{
-    if (div)
-    {
-        if (divVisible.get()) div.style.border = "1px solid red";
-        else div.style.border = "none";
-    }
-}
-
-function updateCursor()
-{
-    if (div)
-    {
-        div.style.cursor = cursorPort.get();
-    }
-}
-
-function updateId()
-{
-    if (div)
-    {
-        div.setAttribute("id", inId.get());
-    }
-}
-
-function updateDivSize()
-{
-    // var vp=cgl.getViewPort();
-
-    mat4.multiply(mMatrix, cgl.vMatrix, cgl.mMatrix);
-    vec3.transformMat4(pos, divAlign, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const top = cgl.canvas.styleMarginTop || 0;
-    const left = cgl.canvas.styleMarginLeft || 0;
-
-    const x1 = (trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2 + left;
-    const y1 = (trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top;
-
-    divAlignSize[0] = divAlign[0] + width.get();
-    divAlignSize[1] = divAlign[1];
-
-    vec3.transformMat4(pos, divAlignSize, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const x2 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
-    const y2 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
-
-    divAlignSize[0] = divAlign[0];
-    divAlignSize[1] = divAlign[1] + height.get();
-
-    vec3.transformMat4(pos, divAlignSize, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const x3 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
-    const y3 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
-
-    divAlignSize[0] = divAlign[0] + width.get();
-    divAlignSize[1] = divAlign[1] + height.get();
-
-    vec3.transformMat4(pos, divAlignSize, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const x4 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
-    const y4 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
-
-    divX = Math.min(x1, x2, x3, x4);
-    divY = Math.min(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
-
-    const xb = Math.max(x1, x2, x3, x4);
-    const yb = Math.max(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
-
-    outTop.set(divY);
-    outLeft.set(divX);
-    outRight.set(xb);
-    outBottom.set(yb);
-
-    divWidth = Math.abs(xb - divX);
-    divHeight = Math.abs(yb - divY);
-
-    divX /= op.patch.cgl.pixelDensity;
-    divY /= op.patch.cgl.pixelDensity;
-    divWidth /= op.patch.cgl.pixelDensity;
-    divHeight /= op.patch.cgl.pixelDensity;
-
-    // div.style.left=divX+'px';
-    // div.style.top=divY+'px';
-    // div.style.width=divWidth+'px';
-    // div.style.height=divHeight+'px';
-
-    const divXpx = divX + "px";
-    const divYpx = divY + "px";
-    const divWidthPx = divWidth + "px";
-    const divHeightPx = divHeight + "px";
-    if (divXpx != div.style.left) div.style.left = divXpx;
-    if (divYpx != div.style.top) div.style.top = divYpx;
-    if (div.style.width != divWidthPx) div.style.width = divWidthPx;
-    if (div.style.height != divHeightPx) div.style.height = divHeightPx;
-}
-
-function updateClassNames()
-{
-    if (div)
-    {
-        div.className = classPort.get();
-    }
-}
-
-op.onDelete = function ()
-{
-    if (div)div.remove();
-};
-
-function setUpDiv()
-{
-    if (!div)
-    {
-        div = document.createElement("div");
-        div.dataset.op = op.id;
-        div.oncontextmenu = function (e)
-        {
-            e.preventDefault();
-        };
-
-        div.style.padding = "0px";
-        div.style.position = "absolute";
-        div.style["box-sizing"] = "border-box";
-        div.style.border = "1px solid red";
-        // div.style['border-left']="1px solid blue";
-        // div.style['border-top']="1px solid green";
-        div.style["z-index"] = "500";
-
-        div.style["-webkit-user-select"] = "none";
-        div.style["user-select"] = "none";
-        div.style["-webkit-tap-highlight-color"] = "rgba(0,0,0,0)";
-        div.style["-webkit-touch-callout"] = "none";
-
-        const canvas = op.patch.cgl.canvas.parentElement;
-        canvas.appendChild(div);
-        updateCursor();
-        updateIsInteractive();
-        updateId();
-        updateClassNames();
-    }
-    updateDivSize();
-    elementPort.set(div);
-}
-
-let listenerElement = null;
-
-function onMouseMove(e)
-{
-    const offsetX = -width.get() / 2;
-    const offsetY = -height.get() / 2;
-
-    outX.set(Math.max(0.0, Math.min(1.0, e.offsetX / divWidth)));
-    outY.set(Math.max(0.0, Math.min(1.0, 1.0 - e.offsetY / divHeight)));
-}
-
-function onMouseLeave(e)
-{
-    mouseDown.set(false);
-    mouseOver.set(false);
-}
-
-function onMouseEnter(e)
-{
-    mouseOver.set(true);
-}
-
-function onMouseDown(e)
-{
-    mouseDown.set(true);
-}
-
-function onMouseUp(e)
-{
-    mouseDown.set(false);
-}
-
-function onmouseclick(e)
-{
-    mouseClick.trigger();
-}
-
-function onTouchMove(e)
-{
-    const targetEle = document.elementFromPoint(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
-
-    if (targetEle == div)
-    {
-        mouseOver.set(true);
-        if (e.touches && e.touches.length > 0)
-        {
-            const rect = div.getBoundingClientRect(); // e.target
-            const x = e.targetTouches[0].pageX - rect.left;
-            const y = e.targetTouches[0].pageY - rect.top;
-
-            const touch = e.touches[0];
-
-            outX.set(Math.max(0.0, Math.min(1.0, x / divWidth)));
-            outY.set(Math.max(0.0, Math.min(1.0, 1.0 - y / divHeight)));
-
-            onMouseMove(touch);
-        }
-    }
-    else
-    {
-        mouseOver.set(false);
-    }
-}
-
-active.onChange = updateActiveRender;
-function updateActiveRender()
-{
-    if (active.get())
-    {
-        addListeners();
-        if (div) div.style.display = "block";
-    }
-    else
-    {
-        removeListeners();
-        if (div) div.style.display = "none";
-    }
-}
-
-isInteractive.onChange = updateIsInteractive;
-function updateIsInteractive()
-{
-    if (isInteractive.get())
-    {
-        addListeners();
-        if (div)div.style["pointer-events"] = "initial";
-    }
-    else
-    {
-        removeListeners();
-        mouseDown.set(false);
-        mouseOver.set(false);
-        if (div)div.style["pointer-events"] = "none";
-    }
-}
-
-function removeListeners()
-{
-    if (listenerElement)
-    {
-        document.removeEventListener("touchmove", onTouchMove);
-        listenerElement.removeEventListener("touchend", onMouseUp);
-        listenerElement.removeEventListener("touchstart", onMouseDown);
-
-        listenerElement.removeEventListener("click", onmouseclick);
-        listenerElement.removeEventListener("mousemove", onMouseMove);
-        listenerElement.removeEventListener("mouseleave", onMouseLeave);
-        listenerElement.removeEventListener("mousedown", onMouseDown);
-        listenerElement.removeEventListener("mouseup", onMouseUp);
-        listenerElement.removeEventListener("mouseenter", onMouseEnter);
-        // listenerElement.removeEventListener('contextmenu', onClickRight);
-        listenerElement = null;
-    }
-}
-
-function addListeners()
-{
-    if (listenerElement)removeListeners();
-
-    listenerElement = div;
-
-    if (listenerElement)
-    {
-        document.addEventListener("touchmove", onTouchMove);
-        listenerElement.addEventListener("touchend", onMouseUp);
-        listenerElement.addEventListener("touchstart", onMouseDown);
-
-        listenerElement.addEventListener("click", onmouseclick);
-        listenerElement.addEventListener("mousemove", onMouseMove);
-        listenerElement.addEventListener("mouseleave", onMouseLeave);
-        listenerElement.addEventListener("mousedown", onMouseDown);
-        listenerElement.addEventListener("mouseup", onMouseUp);
-        listenerElement.addEventListener("mouseenter", onMouseEnter);
-        // listenerElement.addEventListener('contextmenu', onClickRight);
-    }
-}
-
-
-};
-
-Ops.Patch.P4Zknbo.InteractiveRectangle_v25.prototype = new CABLES.Op();
-CABLES.OPS["db1e057a-78bc-43bf-9b66-0fefc9eddfc6"]={f:Ops.Patch.P4Zknbo.InteractiveRectangle_v25,objName:"Ops.Patch.P4Zknbo.InteractiveRectangle_v25"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Trigger.SequenceMultiPort
-// 
-// **************************************************************
-
-Ops.Trigger.SequenceMultiPort = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inTrigs = op.inMultiPort("Input", CABLES.OP_PORT_TYPE_FUNCTION),
-    outTrigs = op.outMultiPort("Output", CABLES.OP_PORT_TYPE_FUNCTION);
-
-// op.setUiAttrib({ "resizable": true, "resizableY": false, "stretchPorts": true });
-
-inTrigs.onTriggered = (index) =>
-{
-    const ports = outTrigs.get();
-
-    for (let i = 0; i < ports.length; i++)
-    {
-        ports[i].trigger();
-    }
-};
-
-
-};
-
-Ops.Trigger.SequenceMultiPort.prototype = new CABLES.Op();
-CABLES.OPS["be066ff6-85e2-408a-9570-59fb7abff7b2"]={f:Ops.Trigger.SequenceMultiPort,objName:"Ops.Trigger.SequenceMultiPort"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Boolean.TriggerOnChangeBoolean
-// 
-// **************************************************************
-
-Ops.Boolean.TriggerOnChangeBoolean = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inBool = op.inValueBool("Value"),
-    outTrue = op.outTrigger("True"),
-    outFalse = op.outTrigger("False");
-
-inBool.onChange = function ()
-{
-    if (inBool.get()) outTrue.trigger();
-    else outFalse.trigger();
-};
-
-
-};
-
-Ops.Boolean.TriggerOnChangeBoolean.prototype = new CABLES.Op();
-CABLES.OPS["dba19c07-e3c4-4971-a991-c9e6212ca1c8"]={f:Ops.Boolean.TriggerOnChangeBoolean,objName:"Ops.Boolean.TriggerOnChangeBoolean"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Patch.P4Zknbo.DisengageFlag2
-// 
-// **************************************************************
-
-Ops.Patch.P4Zknbo.DisengageFlag2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_jqg7l6f5m=op.inFloat(\"jqg7l6f5m\",0);\nport_jqg7l6f5m.setUiAttribs({title:\"Boolean\",display:\"bool\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_jqg7l6f5m = addedOps[i].outNumber(\"innerOut_jqg7l6f5m\");\ninnerOut_jqg7l6f5m.set(port_jqg7l6f5m.get() );\ninnerOut_jqg7l6f5m.setUiAttribs({title:\"Boolean\"});\nport_jqg7l6f5m.on(\"change\", (a,v) => { innerOut_jqg7l6f5m.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"tjwrh5u95\",\"uiAttribs\":{\"subPatch\":\"qs9sxp2nl\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"dlvka8p7u\",\"uiAttribs\":{\"subPatch\":\"qs9sxp2nl\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"tjwrh5u95\",\"objOut\":\"dlvka8p7u\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"eck8hvwot\",\"uiAttribs\":{\"subPatch\":\"qs9sxp2nl\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_jqg7l6f5m\",\"title\":\"Boolean\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"innerOut_jqg7l6f5m\",\"objIn\":\"dlvka8p7u\",\"objOut\":\"eck8hvwot\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"7mxc7zyyb\",\"uiAttribs\":{\"subPatch\":\"qs9sxp2nl\"},\"storage\":{},\"objName\":\"Ops.Ui.SubPatchOutput\"}]}",};
-const port_jqg7l6f5m=op.inFloat("jqg7l6f5m",0);
-port_jqg7l6f5m.setUiAttribs({title:"Boolean",display:"bool",});
-
-op.initInnerPorts=function(addedOps)
-{
-  for(let i=0;i<addedOps.length;i++)
-  {
-    if(addedOps[i].innerInput)
-    {
-const innerOut_jqg7l6f5m = addedOps[i].outNumber("innerOut_jqg7l6f5m");
-innerOut_jqg7l6f5m.set(port_jqg7l6f5m.get() );
-innerOut_jqg7l6f5m.setUiAttribs({title:"Boolean"});
-port_jqg7l6f5m.on("change", (a,v) => { innerOut_jqg7l6f5m.set(a); });
-
-    }
-if(addedOps[i].innerOutput)
-{
-}
-}
-};
-
-const patchId = "bp2sub_" + op.id;
-
-new CABLES.SubPatchOp(op, { "subId": patchId });
-
-initializeSubpatch();
-
-function initializeSubpatch()
-{
-    const p = JSON.parse(attachments.subpatch_json);
-
-    CABLES.Patch.replaceOpIds(p,
-        {
-            "parentSubPatchId": patchId,
-            "prefixHash": patchId,
-            "oldIdAsRef": true,
-            "doNotUnlinkLostLinks": true
-        });
-
-    for (let i = 0; i < p.ops.length; i++)
-    {
-        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
-    }
-
-    op.loadDependencies(p, () =>
-    {
-        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
-        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
-        op.patch.emitEvent("subpatchExpose", patchId);
-        op.setStorage({ "blueprintVer": 2 });
-        op.patch.emitEvent("subpatchExpose", patchId);
-    });
-}
-
-
-};
-
-Ops.Patch.P4Zknbo.DisengageFlag2.prototype = new CABLES.Op();
-CABLES.OPS["62217044-a409-4bb6-bbac-6b45623ed8ad"]={f:Ops.Patch.P4Zknbo.DisengageFlag2,objName:"Ops.Patch.P4Zknbo.DisengageFlag2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Number.FilterValidNumber
-// 
-// **************************************************************
-
-Ops.Number.FilterValidNumber = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inNumber = op.inFloat("Number", 0),
-    inZero = op.inBool("Invalid when 0", false),
-    inSmaller = op.inBool("Invalid when <0", false),
-
-    outNum = op.outNumber("Last Valid Number"),
-    outValid = op.outBool("Is Valid");
-
-inZero.onChange =
-inSmaller.onChange =
-inNumber.onChange =
-    update;
-
-function update()
-{
-    const num = inNumber.get();
-
-    let r = true;
-
-    if (num === null || num === undefined || num != num) r = false;
-    if (inZero.get() && num === 0) r = false;
-    if (inSmaller.get() && num < 0) r = false;
-
-    if (r) outNum.set(num);
-
-    outValid.set(r);
-}
-
-
-};
-
-Ops.Number.FilterValidNumber.prototype = new CABLES.Op();
-CABLES.OPS["5a4db4ef-33d2-4131-9825-aa926f1f5a98"]={f:Ops.Number.FilterValidNumber,objName:"Ops.Number.FilterValidNumber"};
 
 
 
@@ -21065,6 +20884,42 @@ CABLES.OPS["a522235d-f220-46ea-bc26-13a5b20ec8c6"]={f:Ops.String.FilterValidStri
 
 // **************************************************************
 // 
+// Ops.Trigger.SequenceMultiPort
+// 
+// **************************************************************
+
+Ops.Trigger.SequenceMultiPort = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inTrigs = op.inMultiPort("Input", CABLES.OP_PORT_TYPE_FUNCTION),
+    outTrigs = op.outMultiPort("Output", CABLES.OP_PORT_TYPE_FUNCTION);
+
+// op.setUiAttrib({ "resizable": true, "resizableY": false, "stretchPorts": true });
+
+inTrigs.onTriggered = (index) =>
+{
+    const ports = outTrigs.get();
+
+    for (let i = 0; i < ports.length; i++)
+    {
+        ports[i].trigger();
+    }
+};
+
+
+};
+
+Ops.Trigger.SequenceMultiPort.prototype = new CABLES.Op();
+CABLES.OPS["be066ff6-85e2-408a-9570-59fb7abff7b2"]={f:Ops.Trigger.SequenceMultiPort,objName:"Ops.Trigger.SequenceMultiPort"};
+
+
+
+
+// **************************************************************
+// 
 // Ops.Trigger.NthTrigger_v2
 // 
 // **************************************************************
@@ -21844,155 +21699,6 @@ CABLES.OPS["cf8a883f-cf09-44a6-ba1c-7f9c1220b618"]={f:Ops.String.SwitchStringMul
 
 // **************************************************************
 // 
-// Ops.Net.WebSocket.WebSocket_v2
-// 
-// **************************************************************
-
-Ops.Net.WebSocket.WebSocket_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inUrl = op.inString("URL"),
-    outResult = op.outObject("Result"),
-    outValidJson = op.outBoolNum("Valid JSON"),
-    outConnection = op.outObject("Connection", null, "Websocket"),
-    outConnected = op.outBoolNum("Connected"),
-    outReceived = op.outTrigger("Received Data"),
-    outRaw = op.outString("Raw Data");
-
-let connection = null;
-let timeout = null;
-let connectedTo = "";
-
-inUrl.onChange = connect;
-timeout = setTimeout(checkConnection, 2000);
-
-inUrl.set();
-
-let connecting = false;
-
-function checkConnection()
-{
-    if (!outConnected.get() && !connecting)
-    {
-        // op.log("reconnect websocket...");
-        connect();
-    }
-
-    timeout = setTimeout(checkConnection, 2000);
-}
-
-op.onDelete = function ()
-{
-    if (outConnected.get())connection.close();
-    connecting = false;
-    clearTimeout(timeout);
-};
-
-function connect()
-{
-    op.setUiError("connection", null);
-    op.setUiError("jsonvalid", null);
-
-    if (outConnected.get() && connectedTo == inUrl.get()) return;
-
-    if (inUrl.get() && inUrl.get().indexOf("ws://") == -1 && inUrl.get().indexOf("wss://") == -1)
-    {
-        op.setUiError("wrongproto", "only valid protocols are ws:// or wss:// ");
-        return;
-    }
-    else
-        op.setUiError("wrongproto", null);
-
-    if (!inUrl.get() || inUrl.get() === "")
-    {
-        op.logWarn("websocket: invalid url ");
-        outConnected.set(false);
-        return;
-    }
-
-    window.WebSocket = window.WebSocket || window.MozWebSocket;
-
-    if (!window.WebSocket)
-        return op.logError("Sorry, but your browser doesn't support WebSockets.");
-
-    op.setUiError("websocket", null);
-
-    try
-    {
-        connecting = true;
-        if (connection !== null)connection.close();
-        connection = new WebSocket(inUrl.get());
-    }
-    catch (e)
-    {
-        if (e && e.message)op.setUiError("websocket", e.message);
-        op.logWarn("could not connect to", inUrl.get());
-        connecting = false;
-    }
-
-    if (connection)
-    {
-        connection.onerror = function (e)
-        {
-            connecting = false;
-
-            outConnected.set(false);
-            outConnection.set(null);
-            // op.setUiError("connection", "Error connecting to websocket server", 2);
-        };
-
-        connection.onclose = function (message)
-        {
-            connecting = false;
-            outConnected.set(false);
-            outConnection.set(null);
-        };
-
-        connection.onopen = function (message)
-        {
-            connecting = false;
-            outConnected.set(true);
-            connectedTo = inUrl.get();
-            outConnection.set(connection);
-        };
-
-        connection.onmessage = function (message)
-        {
-            op.setUiError("jsonvalid", null);
-            outRaw.set(message.data);
-            try
-            {
-                const json = JSON.parse(message.data);
-                // outResult.set(null);
-                outResult.setRef(json);
-                outValidJson.set(true);
-            }
-            catch (e)
-            {
-                op.log(e);
-                op.log("This doesn't look like a valid JSON: ", message.data);
-                op.setUiError("jsonvalid", "Received message was not valid JSON", 0);
-                outValidJson.set(false);
-            }
-            outReceived.trigger();
-        };
-    }
-}
-
-
-};
-
-Ops.Net.WebSocket.WebSocket_v2.prototype = new CABLES.Op();
-CABLES.OPS["e747dc72-8214-41ca-9aae-9041f20dd6ac"]={f:Ops.Net.WebSocket.WebSocket_v2,objName:"Ops.Net.WebSocket.WebSocket_v2"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Net.WebSocket.WebSocketSend
 // 
 // **************************************************************
@@ -22621,6 +22327,364 @@ inTrig.onTriggered = function ()
 
 Ops.Trigger.TriggerButton.prototype = new CABLES.Op();
 CABLES.OPS["21630924-39e4-4df5-9965-b9136510d156"]={f:Ops.Trigger.TriggerButton,objName:"Ops.Trigger.TriggerButton"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Json.ObjectDeleteKey
+// 
+// **************************************************************
+
+Ops.Json.ObjectDeleteKey = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inObj1 = op.inObject("Object"),
+    inKey = op.inString("Key", ""),
+    outObj = op.outObject("Object Result");
+
+inObj1.onChange = update;
+
+inKey.onChange = () =>
+{
+    op.setUiAttrib({ "extendTitle": inKey.get() });
+    update();
+};
+
+function update()
+{
+    const o = inObj1.get();
+
+    if (!o)
+    {
+        outObj.set(null);
+        return;
+    }
+
+    const newObj = JSON.parse(JSON.stringify(o));
+    delete newObj[inKey.get()];
+
+    outObj.setRef(newObj);
+}
+
+
+};
+
+Ops.Json.ObjectDeleteKey.prototype = new CABLES.Op();
+CABLES.OPS["57a80386-b565-4915-a365-61b2dccf5ccc"]={f:Ops.Json.ObjectDeleteKey,objName:"Ops.Json.ObjectDeleteKey"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Standalone.WebSocket_FastPoll
+// 
+// **************************************************************
+
+Ops.Standalone.WebSocket_FastPoll = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inUrl = op.inString("URL"),
+    outResult = op.outObject("Result"),
+    outValidJson = op.outBoolNum("Valid JSON"),
+    outConnection = op.outObject("Connection", null, "Websocket"),
+    outConnected = op.outBoolNum("Connected"),
+    outReceived = op.outTrigger("Received Data"),
+    outRaw = op.outString("Raw Data");
+
+let connection = null;
+let timeout = null;
+let connectedTo = "";
+
+inUrl.onChange = connect;
+timeout = setTimeout(checkConnection, 2000);
+
+inUrl.set();
+
+let connecting = false;
+
+function checkConnection()
+{
+    if (!outConnected.get() && !connecting)
+    {
+        // op.log("reconnect websocket...");
+        connect();
+    }
+
+    timeout = setTimeout(checkConnection, 2000);
+}
+
+op.onDelete = function ()
+{
+    if (outConnected.get())connection.close();
+    connecting = false;
+    clearTimeout(timeout);
+};
+
+function connect()
+{
+    op.setUiError("connection", null);
+    op.setUiError("jsonvalid", null);
+
+    if (outConnected.get() && connectedTo == inUrl.get()) return;
+
+    if (inUrl.get() && inUrl.get().indexOf("ws://") == -1 && inUrl.get().indexOf("wss://") == -1)
+    {
+        op.setUiError("wrongproto", "only valid protocols are ws:// or wss:// ");
+        return;
+    }
+    else
+        op.setUiError("wrongproto", null);
+
+    if (!inUrl.get() || inUrl.get() === "")
+    {
+        op.logWarn("websocket: invalid url ");
+        outConnected.set(false);
+        return;
+    }
+
+    window.WebSocket = window.WebSocket || window.MozWebSocket;
+
+    if (!window.WebSocket)
+        return op.logError("Sorry, but your browser doesn't support WebSockets.");
+
+    op.setUiError("websocket", null);
+
+    try
+    {
+        connecting = true;
+        if (connection !== null)connection.close();
+        connection = new WebSocket(inUrl.get());
+    }
+    catch (e)
+    {
+        if (e && e.message)op.setUiError("websocket", e.message);
+        op.logWarn("could not connect to", inUrl.get());
+        connecting = false;
+    }
+
+    if (connection)
+    {
+        connection.onerror = function (e)
+        {
+            connecting = false;
+
+            outConnected.set(false);
+            outConnection.set(null);
+            // op.setUiError("connection", "Error connecting to websocket server", 2);
+        };
+
+        connection.onclose = function (message)
+        {
+            connecting = false;
+            outConnected.set(false);
+            outConnection.set(null);
+        };
+
+        connection.onopen = function (message)
+        {
+            connecting = false;
+            outConnected.set(true);
+            connectedTo = inUrl.get();
+            outConnection.set(connection);
+        };
+
+        connection.onmessage = function (message)
+        {
+            op.setUiError("jsonvalid", null);
+            outRaw.set(message.data);
+            try
+            {
+                const json = JSON.parse(message.data);
+                // outResult.set(null);
+                outResult.setRef(json);
+                outValidJson.set(true);
+            }
+            catch (e)
+            {
+                op.log(e);
+                op.log("This doesn't look like a valid JSON: ", message.data);
+                op.setUiError("jsonvalid", "Received message was not valid JSON", 0);
+                outValidJson.set(false);
+            }
+            outReceived.trigger();
+        };
+    }
+}
+
+
+};
+
+Ops.Standalone.WebSocket_FastPoll.prototype = new CABLES.Op();
+CABLES.OPS["73f4832d-cece-4c02-b70c-c84ac1b6a902"]={f:Ops.Standalone.WebSocket_FastPoll,objName:"Ops.Standalone.WebSocket_FastPoll"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Vars.VarTriggerNumber
+// 
+// **************************************************************
+
+Ops.Vars.VarTriggerNumber = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    trigger = op.inTriggerButton("Trigger"),
+    val = op.inValueFloat("Value", 0),
+    next = op.outTrigger("Next");
+
+op.varName = op.inDropDown("Variable", [], "", true);
+
+new CABLES.VarSetOpWrapper(op, "number", val, op.varName, trigger, next);
+
+
+};
+
+Ops.Vars.VarTriggerNumber.prototype = new CABLES.Op();
+CABLES.OPS["2c29baf0-2af2-486d-9218-4299594ee9c1"]={f:Ops.Vars.VarTriggerNumber,objName:"Ops.Vars.VarTriggerNumber"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Trigger.TriggerCounterLoop
+// 
+// **************************************************************
+
+Ops.Trigger.TriggerCounterLoop = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const exe = op.inTriggerButton("trigger in"),
+    reset = op.inTriggerButton("reset"),
+    trigger = op.outTrigger("trigger out"),
+    num = op.outNumber("current count"),
+
+    inMinLoopValue = op.inValueInt("Loop min", 0.0),
+    inMaxLoopValue = op.inValueInt("Loop max", 4.0);
+
+let n = Math.floor(inMinLoopValue.get());
+
+// increments with each trigger and loops
+// depending on min and max loop values
+// can also work with negative numbers
+// if min is greater than max then it decrements
+// instead of incrementing
+exe.onTriggered = function ()
+{
+    let inMin = Math.floor(inMinLoopValue.get());
+    let inMax = Math.floor(inMaxLoopValue.get());
+
+    if (inMin < inMax)
+    {
+        if (n < inMin)
+        {
+            n = inMinLoopValue.get();
+        }
+        else if (n >= inMax)
+        {
+            n = inMinLoopValue.get();
+        }
+        else
+        {
+            n++;
+        }
+    }
+    else if (inMin > inMax)
+    {
+        if (n < inMax)
+        {
+            n = inMin;
+        }
+        else if (n > inMin)
+        {
+            inMin;
+        }
+        else if (n <= inMax)
+        {
+            n = inMin;
+        }
+        else
+        {
+            n--;
+        }
+    }
+    num.set(n);
+    op.setUiAttrib({ "extendTitle": n });
+    trigger.trigger();
+};
+
+reset.onTriggered = function ()
+{
+    let inMin = Math.floor(inMinLoopValue.get());
+    let inMax = Math.floor(inMaxLoopValue.get());
+
+    if (inMin < inMax)
+    {
+        n = inMin;
+    }
+    else if (inMax < inMin)
+    {
+        n = inMin;
+    }
+    else
+    {
+        n = 0;
+    }
+    op.setUiAttrib({ "extendTitle": n });
+    num.set(n);
+};
+
+
+};
+
+Ops.Trigger.TriggerCounterLoop.prototype = new CABLES.Op();
+CABLES.OPS["d3356c53-e278-433f-af0b-d8327cd99a2d"]={f:Ops.Trigger.TriggerCounterLoop,objName:"Ops.Trigger.TriggerCounterLoop"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Boolean.TriggerOnChangeBoolean
+// 
+// **************************************************************
+
+Ops.Boolean.TriggerOnChangeBoolean = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inBool = op.inValueBool("Value"),
+    outTrue = op.outTrigger("True"),
+    outFalse = op.outTrigger("False");
+
+inBool.onChange = function ()
+{
+    if (inBool.get()) outTrue.trigger();
+    else outFalse.trigger();
+};
+
+
+};
+
+Ops.Boolean.TriggerOnChangeBoolean.prototype = new CABLES.Op();
+CABLES.OPS["dba19c07-e3c4-4971-a991-c9e6212ca1c8"]={f:Ops.Boolean.TriggerOnChangeBoolean,objName:"Ops.Boolean.TriggerOnChangeBoolean"};
 
 
 

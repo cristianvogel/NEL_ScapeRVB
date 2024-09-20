@@ -25,66 +25,40 @@ export const scapeBypassFSM = fsm<bypassStates, bypassEvents>('0', {   // - defa
   }
 });
 
-
-
-export const UI_SrvbParams = ui_srvbParams({});
-function ui_srvbParams(initial) {
+export const GestureSource_SCAPE = controlSourceSCAPE('host');
+function controlSourceSCAPE( initial ) {
   let current = $state(initial);
-  return {
-    get current() {
-      return current;
-    },
-    update(newValues) {
-      current = newValues;
-    },
-    snapshot() {
-      return $state.snapshot(current);
-    }
-  };
-}
-
-type ParamData = { name: string, value: number };
-
-export const UI_ChangingParamID = ui_mouseIsChangingParamID( '' );
-function ui_mouseIsChangingParamID(initial: string) {
-  let current: string = $state(initial);
-  return {
-    get current() {
-      return current;
-    },
-    update(newValue) {
-      current = newValue;
-    },
-    snapshot() {
-      return $state.snapshot(current);
-    }
-  };
-}
-
-export const UI_NormValue = ui_normValue(0);
-function ui_normValue(initial: number) {
-  let current = $state(initial);
-  return {
-    get current() {
-      return current;
-    },
-    update(newValue) {
-      current = newValue;
-    },
-    snapshot() {
-      return $state.snapshot(current);
-    }
-  };
-}
-
-export const ControlSource = controlSource('host');
-function controlSource( initial ) {
-  let current = $state(initial);
+  let prev = initial ;
   return { 
     get current() {
       return current;
     } ,
+    get prev() {
+      return prev;
+    },
     update(newValue) {
+      prev = $snapshot(current);
+      current = newValue;
+    } ,
+    snapshot() {
+      return $state.snapshot(current);
+    }
+  }
+}
+
+export const GestureSource_SRVB = controlSourceSRVB('host');
+function controlSourceSRVB( initial ) {
+  let current = $state(initial);
+  let prev = initial ;
+  return { 
+    get current() {
+      return current;
+    } ,
+    get prev() {
+      return prev;
+    },
+    update(newValue) {
+      prev = $state.snapshot(current);
       current = newValue;
     } ,
     snapshot() {
@@ -124,21 +98,5 @@ function cablesReady(initial) {
     update(newValues) {
       current = newValues;
     },
-  };
-}
-//////////////////////
-export const HostState = hostState();
-function hostState(initial) {
-  let current = $state(initial);
-  return {
-    get current() {
-      return current;
-    },
-    update(newValues) {
-      current = newValues;
-    },
-    snapshot() {
-      return $state.snapshot(current);
-    }
   };
 }

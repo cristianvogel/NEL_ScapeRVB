@@ -1,7 +1,6 @@
 import {
-  ControlSource,
-  srvbBypassFSM,
-  scapeBypassFSM,
+  GestureSource_SCAPE,
+  GestureSource_SRVB,
   ConsoleText,
 } from "../stores/stores.svelte";
 import { MessageToHost } from "./NativeMessage.svelte";
@@ -14,21 +13,21 @@ import { MessageToHost } from "./NativeMessage.svelte";
 // in the manifest here.... todo: fix this
 export function initPatchListeners(patch) {
 
-  const ui_srvbBypass = patch.getVar("ui_bypassSRVB");
-  const ui_scapeBypass = patch.getVar("ui_bypassConvolver");
+  const ui_bypassSRVB = patch.getVar("ui_bypassSRVB");
+  const ui_bypassConvolver = patch.getVar("ui_bypassConvolver");
 
-  ///////////// special case for bypasses and scapeLength
-
-   function handleBypassChange(bypassName, bypassFSM, value ) {
-     MessageToHost.requestParamValueUpdate(bypassName, Math.round(value)  );
-  }
-  
-  ui_srvbBypass.on("change", (value) => {
-    handleBypassChange( "srvbBypass", srvbBypassFSM, value );
+  ui_bypassSRVB.on("change", (value) => {
+    if ( GestureSource_SRVB.prev === "host" ) return;
+    if ( GestureSource_SRVB.current === "ui" ) updateView( "srvbBypass", value );
   });
   
-  ui_scapeBypass.on("change", (value) => {
-    handleBypassChange( "scapeBypass", scapeBypassFSM, value);
+  ui_bypassConvolver.on("change", (value) => {
+    if ( GestureSource_SCAPE.prev === "host" ) return;
+    if ( GestureSource_SCAPE.current === "ui" ) updateView( "scapeBypass", value);
   });
 
-};
+};   
+
+function updateView(bypassName, value ) {
+     MessageToHost.updateHost( bypassName, value < 0.5 ? 0.0 : 1.0 );
+}

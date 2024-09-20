@@ -3400,7 +3400,6 @@
   function buildStructures(_refs, currStructIndex = 0) {
     {
       let series = OEIS_SEQUENCES[currStructIndex];
-      console.log(`Using series ${series} `);
       const seriesMax = series[argMax(series)];
       const sequenceAsSignals = castSequencesToRefs(series, seriesMax, _refs);
       const sd = {

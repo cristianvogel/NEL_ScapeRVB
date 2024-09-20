@@ -1,37 +1,20 @@
-
 import {
   ConsoleText,
-  ControlSource,
-  CablesReady,
-  UI_ChangingParamID,
-  srvbBypassFSM,
-  scapeBypassFSM,
+  GestureSource_SCAPE,
+  GestureSource_SRVB,
 } from "../stores/stores.svelte";
 import { REGISTERED_PARAM_NAMES } from "../stores/constants";
-import { ToggleCablesVarname, ToggleParamID } from "../types";
-
-
 
 export declare var globalThis: any;
 declare var CABLES: any;
 
-// Create WebSocket connection.
-let socketPort:number = 0;
-let connection:WebSocket;
-
-// Toggle memoization
-let memoToggle = { srvbBypass: 0, scapeBypass: 0 };
-const toggleParams: Map<ToggleParamID, ToggleCablesVarname> = new Map([
-  ["srvbBypass", "host_srvbBypass"],
-  ["scapeBypass", "host_scapeBypass"],
-  ["scapeReverse", "host_scapeReverse"],
-]);
-
-
 /* ━━━━━━━
-  * Initialize a WebSocket connection to the host.
-  * @param port - The port number to connect to.
-  */
+ * Initialize a WebSocket connection to the host.
+ * @param port - The port number to connect to.
+ */
+// Create WebSocket connection.
+let socketPort: number = 0;
+
 function initializeWebSocketConnection(port: number) {
   socketPort = port;
   try {
@@ -39,14 +22,9 @@ function initializeWebSocketConnection(port: number) {
   } catch (e) {
     console.error("Error connecting to WS: ", e);
   }
-
 }
 
-
-
 function processHostState(state: any) {
-  // ━━━━━━━
-  // Parse the state object and convert it to an array of key-value pairs
   let parsedEntries: { [key: string]: number } = {};
 
   try {
@@ -54,51 +32,29 @@ function processHostState(state: any) {
   } catch (e) {
     console.warn("Bad state received", parsedEntries);
   }
-  const hostState = parsedEntries;
- 
-  for (const name of toggleParams.keys()) {
-      handleBypassChange(
-        name,
-        name === "srvbBypass" ? srvbBypassFSM : scapeBypassFSM,
-      );
+
+  const srvbBypass = parsedEntries.srvbBypass < 0.5 ? 0 : 1;
+  const scapeBypass = parsedEntries.scapeBypass < 0.5 ? 0 : 1;
+
+  function updateView(param, boolValue) {
+    const gestureSource = param === "srvbBypass" ? GestureSource_SRVB : GestureSource_SCAPE;
+    if (gestureSource.prev !== "ui") {
+      let cablesVar = CABLES.patch.getVar("host_" + param);
+      cablesVar.setValue(boolValue);
+      gestureSource.update("host");
+    }
   }
 
-  function handleBypassChange(bypassName, bypassFSM, ) {
-    const roundedValue = Math.round( hostState[bypassName] );
-
-  //  connection.send(JSON.stringify({ "toggle": { [bypassName]: roundedValue }} ));
-
-    if ( memoToggle[bypassName] === roundedValue ) return;
-    
-    updateUI(bypassName, parseInt(bypassFSM.current));
-
-    memoToggle[bypassName] = roundedValue;
-  }
-
-  function updateUI(param, value) {
-     let cablesVar = CABLES.patch.getVar(toggleParams.get(param));
-     cablesVar.setValue(value);
-
-  }
+  updateView("srvbBypass", srvbBypass);
+  updateView("scapeBypass", scapeBypass);
 }
 
 export const MessageToHost = {
-  /** ━━━━━━━
-   * Update parameter values in the host.
-   *
-   * we are only dealing with toggles here
-   * since ws handles the rest from the native server
-   *
-   * @param paramId - The ID of the parameter to update.
-   * @param value - The new value of the parameter.
-   */
-  requestParamValueUpdate: function (paramId: string, value: number) {
-    if (
-      typeof globalThis.__postNativeMessage__ === "function" 
-    ) {
+  updateHost: function (paramId: string, value: number) {
+    if (typeof globalThis.__postNativeMessage__ === "function") {
       globalThis.__postNativeMessage__("setParameterValue", {
         paramId,
-        value,
+        value: value < 0.5 ? 0 : 1,
       });
     }
   },
@@ -164,9 +120,8 @@ export function RegisterMessagesFromHost() {
    * */
 
   globalThis.__receiveServerInfo__ = function (port: number) {
-  
     initializeWebSocketConnection(port);
-};
+  };
 
   /** ━━━━━━━
    * Handles the unlock status received from the host.

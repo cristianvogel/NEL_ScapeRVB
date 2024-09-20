@@ -2,9 +2,7 @@
   import { onMount } from "svelte";
   import {
     ConsoleText,
-    CablesReady,
-    ControlSource,
-    UI_ChangingParamID,
+    CablesReady
   } from "./stores/stores.svelte";
   import { fade } from "svelte/transition";
   import { initPatchListeners } from "./lib/PatchListeners.svelte";

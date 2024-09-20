@@ -261,7 +261,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
 function buildStructures(_refs: RefMap, currStructIndex = 0) {
   {
     let series = OEIS_SEQUENCES[currStructIndex];
-    console.log(`Using series ${series} `);
+   // console.log(`Using series ${series} `);
     // this should compute norm only on the set actually being used which is 8 elements long
     const seriesMax = series[argMax(series)];
     // convert the sequences to signals
