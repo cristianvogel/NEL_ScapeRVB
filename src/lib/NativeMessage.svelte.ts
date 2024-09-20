@@ -22,6 +22,7 @@ function initializeWebSocketConnection(port: number) {
   } catch (e) {
     console.error("Error connecting to WS: ", e);
   }
+  ConsoleText.extend("Connected to port: " + port);
 }
 
 function processHostState(state: any) {
@@ -33,16 +34,17 @@ function processHostState(state: any) {
     console.warn("Bad state received", parsedEntries);
   }
 
-  const srvbBypass = parsedEntries.srvbBypass < 0.5 ? 0 : 1;
-  const scapeBypass = parsedEntries.scapeBypass < 0.5 ? 0 : 1;
+  const srvbBypass = parsedEntries.srvbBypass > 0.5 ? 1 : 0;
+  const scapeBypass = parsedEntries.scapeBypass > 0.5 ? 1 : 0;
 
   function updateView(param, boolValue) {
-    const gestureSource = param === "srvbBypass" ? GestureSource_SRVB : GestureSource_SCAPE;
-    if (gestureSource.prev !== "ui") {
+    let gestureSource;
+    if (param === "srvbBypass") gestureSource = GestureSource_SRVB;
+    if (param === "scapeBypass") gestureSource = GestureSource_SCAPE;
+      if (gestureSource.prev === "ui") gestureSource.update("host");
       let cablesVar = CABLES.patch.getVar("host_" + param);
       cablesVar.setValue(boolValue);
-      gestureSource.update("host");
-    }
+      ConsoleText.extend(`View << ${param} to ${boolValue}`);
   }
 
   updateView("srvbBypass", srvbBypass);
@@ -54,7 +56,7 @@ export const MessageToHost = {
     if (typeof globalThis.__postNativeMessage__ === "function") {
       globalThis.__postNativeMessage__("setParameterValue", {
         paramId,
-        value: value < 0.5 ? 0 : 1,
+        value: value > 0.5 ? 1.0 : 0.0,
       });
     }
   },

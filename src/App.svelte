@@ -2,7 +2,11 @@
   import { onMount } from "svelte";
   import {
     ConsoleText,
-    CablesReady
+    CablesReady,
+    GestureSource_SRVB,
+
+    GestureSource_SCAPE
+
   } from "./stores/stores.svelte";
   import { fade } from "svelte/transition";
   import { initPatchListeners } from "./lib/PatchListeners.svelte";
@@ -38,8 +42,9 @@
         variables: {
           ext_srvbParams_object: PARAM_DEFAULTS,
         },
-      });
-    });
+      })
+    })
+  });
 
     $effect(() => {
       if (CablesReady.current) {
@@ -57,18 +62,16 @@
       }
     });
 
-    console.log("ui_params set to ", PARAM_DEFAULTS);
-    // $inspect( UI_ChangingParamID.current )
-  });
+
 </script>
 
 <canvas id="glcanvas" width="100vw" height="100vh" willReadFrequently="true"
 ></canvas>
 
 {#if CablesReady.current}
-  <pre class="console-text">{ConsoleText.current}</pre>
-  <!-- 
-  <pre class="console-text" style="bottom: 2rem;">{ConsoleText.extended}</pre> -->
+  <pre class="console-text">{ConsoleText.current} : {GestureSource_SRVB.current} : {GestureSource_SCAPE.current} </pre>
+  
+  <pre class="console-text" style="bottom: 2rem;">{ConsoleText.extended}</pre>
 {:else}
   <pre class="console-text" in:fade>Loading...</pre>
 {/if}

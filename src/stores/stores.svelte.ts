@@ -25,8 +25,8 @@ export const scapeBypassFSM = fsm<bypassStates, bypassEvents>('0', {   // - defa
   }
 });
 
-export const GestureSource_SCAPE = controlSourceSCAPE('host');
-function controlSourceSCAPE( initial ) {
+export const GestureSource_SCAPE = controlSource_SCAPE('host');
+function controlSource_SCAPE( initial ) {
   let current = $state(initial);
   let prev = initial ;
   return { 
@@ -37,7 +37,7 @@ function controlSourceSCAPE( initial ) {
       return prev;
     },
     update(newValue) {
-      prev = $snapshot(current);
+      prev = $state.snapshot(current);
       current = newValue;
     } ,
     snapshot() {
@@ -46,8 +46,8 @@ function controlSourceSCAPE( initial ) {
   }
 }
 
-export const GestureSource_SRVB = controlSourceSRVB('host');
-function controlSourceSRVB( initial ) {
+export const GestureSource_SRVB = controlSource_SRVB('host');
+function controlSource_SRVB( initial ) {
   let current = $state(initial);
   let prev = initial ;
   return { 
@@ -80,7 +80,10 @@ function consoleText(initial) {
       current = newValues;
     },
     extend(newText) {
-      extended = newText;
+      setTimeout(() => {
+        extended = '';
+      }, 3000);
+      extended = extended + ' | ' + newText;
     },
     get extended() {
       return extended;

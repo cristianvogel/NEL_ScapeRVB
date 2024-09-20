@@ -5,29 +5,49 @@ import {
 } from "../stores/stores.svelte";
 import { MessageToHost } from "./NativeMessage.svelte";
 
-
 // Function to initialize listeners for vars coming
 // via the Cables patch
 
-// be aware they have different names in the patch than 
+// be aware they have different names in the patch than
 // in the manifest here.... todo: fix this
 export function initPatchListeners(patch) {
+  const ui_srvbBypass = patch.getVar("ui_srvbBypass");
+  const ui_scapeBypass = patch.getVar("ui_scapeBypass");
+  const ui_srvbBypass_mouseEnter = patch.getVar(
+    "ui_srvbBypass_mouseEnter_string"
+  );
+  const ui_scapeBypass_mouseEnter = patch.getVar(
+    "ui_scapeBypass_mouseEnter_string"
+  );
+  try {
+    ui_scapeBypass_mouseEnter.on("change", (value) => {
+      ConsoleText.extend("scape: " + value);
+    });
 
-  const ui_bypassSRVB = patch.getVar("ui_bypassSRVB");
-  const ui_bypassConvolver = patch.getVar("ui_bypassConvolver");
+    ui_srvbBypass_mouseEnter.on("change", (value) => {
+      ConsoleText.extend("srvb: " + value);
+    });
 
-  ui_bypassSRVB.on("change", (value) => {
-    if ( GestureSource_SRVB.prev === "host" ) return;
-    if ( GestureSource_SRVB.current === "ui" ) updateView( "srvbBypass", value );
-  });
-  
-  ui_bypassConvolver.on("change", (value) => {
-    if ( GestureSource_SCAPE.prev === "host" ) return;
-    if ( GestureSource_SCAPE.current === "ui" ) updateView( "scapeBypass", value);
-  });
+    ui_srvbBypass.on("change", (value) => {
+      const boolValue = (value ?? 0.0) > 0.5 ? 1.0 : 0.0;
+      GestureSource_SRVB.update("ui");
+      updateHost("srvbBypass", GestureSource_SRVB, boolValue);
+    });
 
-};   
+    ui_scapeBypass.on("change", (value) => {
+      const boolValue = (value ?? 0.0) > 0.5 ? 1.0 : 0.0;
+      GestureSource_SCAPE.update("ui");
+      updateHost("scapeBypass", GestureSource_SCAPE, boolValue);
+    });
+  } catch (e) {
+    console.error("Error in patch listeners: " + e);
+    ConsoleText.extend("Error in patch listeners: " + e);
+  }
+}
 
-function updateView(bypassName, value ) {
-     MessageToHost.updateHost( bypassName, value < 0.5 ? 0.0 : 1.0 );
+function updateHost(bypassName, gestureSource, boolInt) {
+  if (gestureSource.current === "ui") {
+    MessageToHost.updateHost(bypassName, boolInt);
+  }
+  gestureSource.update("ui");
 }
