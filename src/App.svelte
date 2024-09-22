@@ -6,6 +6,7 @@
     GestureSource_SRVB,
     GestureSource_SCAPE,
     HostState,
+    WebSocketPort
   } from "./stores/stores.svelte";
   import { fade } from "svelte/transition";
   import { initPatchListeners } from "./lib/PatchListeners.svelte";
@@ -15,6 +16,7 @@
   } from "./lib/NativeMessage.svelte";
 
   import { PARAM_DEFAULTS } from "./stores/constants";
+  import WebSocketClient from "./lib/WebSocketClient.svelte";
 
   onMount(() => {
     RegisterMessagesFromHost();
@@ -54,13 +56,10 @@ let firstRun = true;
   if (  firstRun  && Object.keys(HostState.current).length > 0  ) {
     CABLES.patch.getVar("host_scapeReverse").setValue( HostState.snapshot.scapeReverse );
     CABLES.patch.getVar("ui_scapeReverse").setValue( HostState.snapshot.scapeReverse );
-    console.log("UI initialised. ", HostState.current);
     firstRun = false;
   }
 });
-  
 
-$inspect( firstRun );
 
   $effect(() => {
     if (ConsoleText.current.length > 0) {
@@ -72,6 +71,10 @@ $inspect( firstRun );
 </script>
 
 <canvas id="glcanvas" width="100vw" height="100vh" willReadFrequently="true"></canvas>
+
+{#if WebSocketPort.current > 1}
+<WebSocketClient port={ WebSocketPort.current } />
+{/if}
 
 {#if CablesReady.current}  
   <pre

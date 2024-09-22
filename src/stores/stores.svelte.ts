@@ -4,26 +4,20 @@
 import { bypassEvents, bypassStates } from "../types";
 import { fsm } from '@githubnext/tiny-svelte-fsm';
 /////////////////////////
+export const WebSocketPort = webSocketPort(0);
+function webSocketPort(initial) {
+  let current = $state(initial);
+  return {
+    get current() {
+      return current;
+    },
+    assign(newValue) {
+      current = newValue;
+    },
+  };
+}
 
-
-
-export const srvbBypassFSM = fsm<bypassStates, bypassEvents>('0', {
-	'0': {
-		toggle: '1'
-	},
-	'1': {
-		toggle: '0'
-	}
-});
-
-export const scapeBypassFSM = fsm<bypassStates, bypassEvents>('0', {   // - default state 
-  '0': {
-    toggle: '1'
-  },
-  '1': {
-    toggle: '0'
-  }
-});
+/////////////////////
 
 export const GestureSource_SCAPE = controlSource_SCAPE('host');
 function controlSource_SCAPE( initial ) {
@@ -140,3 +134,25 @@ function hostState(initial) {
     }
   };
 }
+
+
+//////// Deprecating
+
+
+// export const srvbBypassFSM = fsm<bypassStates, bypassEvents>('0', {
+// 	'0': {
+// 		toggle: '1'
+// 	},
+// 	'1': {
+// 		toggle: '0'
+// 	}
+// });
+
+// export const scapeBypassFSM = fsm<bypassStates, bypassEvents>('0', {   // - default state 
+//   '0': {
+//     toggle: '1'
+//   },
+//   '1': {
+//     toggle: '0'
+//   }
+// });

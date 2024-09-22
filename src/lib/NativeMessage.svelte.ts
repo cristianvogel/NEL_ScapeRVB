@@ -4,6 +4,7 @@ import {
   GestureSource_SRVB,
   GestureSource_Reverse,
   HostState,
+  WebSocketPort
 } from "../stores/stores.svelte";
 import { REGISTERED_PARAM_NAMES } from "../stores/constants";
 
@@ -15,17 +16,17 @@ declare var CABLES: any;
  * @param port - The port number to connect to.
  */
 // Create WebSocket connection.
-let socketPort: number = 0;
 
 function initializeWebSocketConnection(port: number) {
-  socketPort = port;
+  WebSocketPort.assign(  port || 0 );
   try {
     CABLES.patch.getVar("ext_serverInfo").setValue(`ws://127.0.0.1:${port}`); // we should definitely have CABLES loaded at this point
   } catch (e) {
     console.error("Error connecting to WS: ", e);
   }
+  console.log("CABLES using port ", port);
   ConsoleText.extend(
-    "Connection: " + CABLES.patch.getVar("ext_serverInfo").getValue()
+    "Connection on port: " + WebSocketPort.current + " established."
   );
 }
 
@@ -53,7 +54,7 @@ function processHostState(state: any) {
       toggleVarCables.setValue(boolValue);
     }
   }
-  
+
   HostState.update(parsedEntries);
 
   updateViewToggles("srvbBypass", srvbBypass);
