@@ -46,6 +46,27 @@ function controlSource_SCAPE( initial ) {
   }
 }
 
+export const GestureSource_Reverse = controlSource_scapeReverse('host');
+function controlSource_scapeReverse( initial ) {
+  let current = $state(initial);
+  let prev = initial ;
+  return { 
+    get current() {
+      return current;
+    } ,
+    get prev() {
+      return prev;
+    },
+    update(newValue) {
+      prev = $state.snapshot(current);
+      current = newValue;
+    } ,
+    snapshot() {
+      return $state.snapshot(current);
+    }
+  }
+}
+
 export const GestureSource_SRVB = controlSource_SRVB('host');
 function controlSource_SRVB( initial ) {
   let current = $state(initial);
@@ -101,5 +122,21 @@ function cablesReady(initial) {
     update(newValues) {
       current = newValues;
     },
+  };
+}
+///////////////
+export const HostState = hostState({});
+function hostState(initial) {
+  let current = $state(initial);
+  return {
+    get current() {
+      return current;
+    },
+    update(newValues) {
+      current = newValues;
+    },
+    get snapshot() {
+      return $state.snapshot(current);
+    }
   };
 }

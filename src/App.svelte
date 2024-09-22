@@ -4,9 +4,8 @@
     ConsoleText,
     CablesReady,
     GestureSource_SRVB,
-
-    GestureSource_SCAPE
-
+    GestureSource_SCAPE,
+    HostState,
   } from "./stores/stores.svelte";
   import { fade } from "svelte/transition";
   import { initPatchListeners } from "./lib/PatchListeners.svelte";
@@ -18,59 +17,66 @@
   import { PARAM_DEFAULTS } from "./stores/constants";
 
   onMount(() => {
+    RegisterMessagesFromHost();
+
+
     // Second setup the listener for CABLES loader
     document.addEventListener("CABLES.jsLoaded", function (event) {
       CABLES.patch = new CABLES.Patch({
-        patchFile: "MirrorScape-ui-ws/js/MirrorScape-ui-ws.json",
+        patchFile: "scape_space_ui_00/js/scape_space_ui_00.json",
         prefixAssetPath: "/assets/",
         assetPath: "/assets/",
         jsPath: "js/",
         glCanvasId: "glcanvas",
         glCanvasResizeToWindow: true,
         onError: (e) => console.error(e),
-        onPatchLoaded: () => {},
+        onPatchLoaded: () => {
+        
+        },
         onFinishedLoading: () => {
           initPatchListeners(CABLES.patch);
+          MessageToHost.requestReady();
           CablesReady.update(true);
-          console.log("UI finished loading.");
         },
         canvas: {
           willReadFrequently: true,
           alpha: true,
           premultipliedAlpha: true,
         },
-        variables: {
-          ext_srvbParams_object: PARAM_DEFAULTS,
-        },
-      })
-    })
+        variables: {  },
+      });
+    });
   });
 
-    $effect(() => {
-      if (CablesReady.current) {
-        console.log("Registering messages with host.");
-        RegisterMessagesFromHost();
-        MessageToHost.requestReady();
-      }
-    });
+let firstRun = true;
 
-    $effect(() => {
-      if (ConsoleText.current.length > 0) {
-        setTimeout(() => {
-          ConsoleText.update('');
-        }, 3000);
-      }
-    });
+ $effect(() => {
+  if (  firstRun  && Object.keys(HostState.current).length > 0  ) {
+    CABLES.patch.getVar("host_scapeReverse").setValue( HostState.snapshot.scapeReverse );
+    CABLES.patch.getVar("ui_scapeReverse").setValue( HostState.snapshot.scapeReverse );
+    console.log("UI initialised. ", HostState.current);
+    firstRun = false;
+  }
+});
+  
 
+$inspect( firstRun );
 
+  $effect(() => {
+    if (ConsoleText.current.length > 0) {
+      setTimeout(() => {
+        ConsoleText.update("");
+      }, 3000);
+    }
+  });
 </script>
 
-<canvas id="glcanvas" width="100vw" height="100vh" willReadFrequently="true"
-></canvas>
+<canvas id="glcanvas" width="100vw" height="100vh" willReadFrequently="true"></canvas>
 
-{#if CablesReady.current}
-  <pre class="console-text">{ConsoleText.current} : {GestureSource_SRVB.current} : {GestureSource_SCAPE.current} </pre>
-  
+{#if CablesReady.current}  
+  <pre
+    class="console-text">{ConsoleText.current} </pre>
+
   <pre class="console-text" style="bottom: 2rem;">{ConsoleText.extended}</pre>
 {:else}
   <pre class="console-text" in:fade>Loading...</pre>

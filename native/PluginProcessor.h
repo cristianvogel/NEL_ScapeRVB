@@ -144,79 +144,15 @@ private:
 public:
     int runWebServer();
 
-    struct ViewClientInstance : public choc::network::HTTPServer::ClientInstance
+      struct ViewClientInstance : public choc::network::HTTPServer::ClientInstance
     {
-        ViewClientInstance(EffectsPluginProcessor &processor) : processor(processor)
-        {
-            static int clientCount = 0;
-            clientID = ++clientCount;
-        }
-
-        ~ViewClientInstance()
-        {
-            sendWebSocketMessage("Closing connection to client " + std::to_string(clientID));
-        }
-
-        choc::network::HTTPContent getHTTPContent(std::string_view path) override
-        {
-            // not using HTML
-            return {};
-        }
-
-        void upgradedToWebSocket(std::string_view path) override
-        {
-        }
-
-        void handleWebSocketMessage(std::string_view message) override
-        {
-            // Convert std::string_view to std::string
-            std::string messageStr(message);
-
-            // Deserialize the message
-            auto parsed = elem::js::parseJSON(messageStr);
-
-            if (parsed.isObject())
-            {
-                auto o = parsed.getObject();
-
-                for (auto &[key, value] : o)
-                {
-                    if (key == "requestState")
-                    {
-                        // Create a new JSON-like object
-                        elem::js::Object wrappedState;
-                        // Set processor.state as the value
-                        wrappedState[processor.WS_RESPONSE_PROPERTY] = processor.state;
-                        // Serialize the new object
-                        std::string serializedState = elem::js::serialize(wrappedState);
-                        // Send the serialized string
-                        sendWebSocketMessage(serializedState);
-                        continue;
-                    }
-
-                    // ignore any params that are not host related
-                    else if (value.isNumber() && processor.parameterMap.count(key) > 0)
-                    {
-                        // Convert elem::js::Value to float
-                        float paramValue = static_cast<elem::js::Number>(value);
-                        // Convert processor.state[key] to float
-                        float stateValue = static_cast<elem::js::Number>(processor.state[key]);
-                        if (key == "srvbBypass" || key == "scapeBypass" || key == "scapeReverse")
-                        {
-                            paramValue = juce::roundToInt(paramValue);
-                            stateValue = juce::roundToInt(stateValue);
-                        }
-
-                        // If the values are different, update the state
-                        if (paramValue != stateValue)
-                        {
-                            processor.editor->setParameterValue(key, paramValue);
-                        }
-                    }
-                }
-            }
-        }
-
+        ViewClientInstance(EffectsPluginProcessor &processor);
+        ~ViewClientInstance();
+    
+        choc::network::HTTPContent getHTTPContent(std::string_view path) override;
+        void upgradedToWebSocket(std::string_view path) override;
+        void handleWebSocketMessage(std::string_view message) override;
+    
         int clientID = 0;
         EffectsPluginProcessor &processor; // Reference to the enclosing class
     };

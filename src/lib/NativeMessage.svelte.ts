@@ -2,6 +2,8 @@ import {
   ConsoleText,
   GestureSource_SCAPE,
   GestureSource_SRVB,
+  GestureSource_Reverse,
+  HostState,
 } from "../stores/stores.svelte";
 import { REGISTERED_PARAM_NAMES } from "../stores/constants";
 
@@ -22,7 +24,9 @@ function initializeWebSocketConnection(port: number) {
   } catch (e) {
     console.error("Error connecting to WS: ", e);
   }
-  ConsoleText.extend("Connected to port: " + port);
+  ConsoleText.extend(
+    "Connection: " + CABLES.patch.getVar("ext_serverInfo").getValue()
+  );
 }
 
 function processHostState(state: any) {
@@ -36,19 +40,25 @@ function processHostState(state: any) {
 
   const srvbBypass = parsedEntries.srvbBypass > 0.5 ? 1 : 0;
   const scapeBypass = parsedEntries.scapeBypass > 0.5 ? 1 : 0;
+  const scapeReverse = parsedEntries.scapeReverse > 0.5 ? 1 : 0;
 
-  function updateView(param, boolValue) {
+  function updateViewToggles(param, boolValue) {
     let gestureSource;
     if (param === "srvbBypass") gestureSource = GestureSource_SRVB;
     if (param === "scapeBypass") gestureSource = GestureSource_SCAPE;
-      if (gestureSource.prev === "ui") gestureSource.update("host");
-      let cablesVar = CABLES.patch.getVar("host_" + param);
-      cablesVar.setValue(boolValue);
-      ConsoleText.extend(`View << ${param} to ${boolValue}`);
+    if (param === "scapeReverse") gestureSource = GestureSource_Reverse;
+    if (gestureSource.prev === "ui") gestureSource.update("host");
+    let toggleVarCables = CABLES.patch.getVar("host_" + param);
+    if (toggleVarCables.getValue() !== boolValue) {
+      toggleVarCables.setValue(boolValue);
+    }
   }
+  
+  HostState.update(parsedEntries);
 
-  updateView("srvbBypass", srvbBypass);
-  updateView("scapeBypass", scapeBypass);
+  updateViewToggles("srvbBypass", srvbBypass);
+  updateViewToggles("scapeBypass", scapeBypass);
+  updateViewToggles("scapeReverse", scapeReverse);
 }
 
 export const MessageToHost = {
@@ -65,7 +75,6 @@ export const MessageToHost = {
    * Send a ready message to the host.
    */
   requestReady: function () {
-    console.log(REGISTERED_PARAM_NAMES);
     if (typeof globalThis.__postNativeMessage__ === "function") {
       globalThis.__postNativeMessage__("ready", {});
     }

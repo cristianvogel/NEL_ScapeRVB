@@ -25,7 +25,74 @@ juce::File getAssetsDirectory()
     return assetsDir;
 }
 
-//==============================================================================
+/// @brief  Constructor for the ViewClientInstance class
+/// @param processor 
+EffectsPluginProcessor::ViewClientInstance::ViewClientInstance(EffectsPluginProcessor &processor) : processor(processor)
+{
+    static int clientCount = 0;
+    clientID = ++clientCount;
+}
+
+EffectsPluginProcessor::ViewClientInstance::~ViewClientInstance()
+{
+}
+
+choc::network::HTTPContent EffectsPluginProcessor::ViewClientInstance::getHTTPContent(std::string_view path)
+{
+    // not using HTML
+    return {};
+}
+
+void EffectsPluginProcessor::ViewClientInstance::upgradedToWebSocket(std::string_view path)
+{
+}
+
+void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::string_view message)
+{
+    // Convert std::string_view to std::string
+    std::string messageStr(message);
+
+    // Deserialize the message
+    auto parsed = elem::js::parseJSON(messageStr);
+
+    if (parsed.isObject())
+    {
+        auto o = parsed.getObject();
+
+        for (auto &[key, value] : o)
+        {
+            if (key == "requestState")
+            {
+                // Create a new JSON-like object
+                elem::js::Object wrappedState;
+                // Set processor.state as the value
+                wrappedState[processor.WS_RESPONSE_PROPERTY] = processor.state;
+                // Serialize the new object
+                std::string serializedState = elem::js::serialize(wrappedState);
+                // Send the serialized string
+                sendWebSocketMessage(serializedState);
+                continue;
+            }
+
+            // update a parameter directly
+            if (value.isNumber() && processor.parameterMap.count(key) > 0)
+            {
+                // Convert elem::js::Value to float
+                float paramValue = static_cast<elem::js::Number>(value);
+                // Convert processor.state[key] to float
+                float stateValue = static_cast<elem::js::Number>(processor.state[key]);
+                if (key == "srvbBypass" || key == "scapeBypass" || key == "scapeReverse")
+                {
+                    paramValue = juce::roundToInt(paramValue);
+                    stateValue = juce::roundToInt(paramValue);      
+                }
+                processor.editor->setParameterValue(key, paramValue);
+            }
+        }
+    }
+}
+
+//======= DETAIL =======================================================================
 EffectsPluginProcessor::EffectsPluginProcessor()
     : AudioProcessor(BusesProperties()
                          .withInput("Input", juce::AudioChannelSet::stereo(), true)
@@ -75,8 +142,10 @@ EffectsPluginProcessor::EffectsPluginProcessor()
 // Destructor
 EffectsPluginProcessor::~EffectsPluginProcessor()
 {
-    // Close the server
-    server->close();
+    // Check if server is not nullptr and close the server if it is open
+    if (server != nullptr) server->close();
+        
+    
     // Remove listeners from all parameters
     for (auto &p : getParameters())
     {
@@ -152,18 +221,23 @@ void EffectsPluginProcessor::addImpulseResponsesToVirtualFileSystem(std::vector<
 int EffectsPluginProcessor::runWebServer()
 {
     auto address = "127.0.0.1";
-    // uint16_t preferredPortNum = 13755;
+#if ELEM_DEV_LOCALHOST
+    uint16_t preferredPortNum = 13755; // dev with fixed port. 0 for random port when building
+#else
+    uint16_t preferredPortNum = 0;
+#endif
     // <<...If you pass 0 for the port number, a free one will be automatically chosen...>>
     // as we don't want every plugin instance under the same server, we use a random port
     // and pass it over to the UI client
-    bool openedOK = server->open(address, 0, serverPort, [this]() -> std::unique_ptr<choc::network::HTTPServer::ClientInstance>
+    bool openedOK = server->open(address, preferredPortNum, 0,
+                                 // Create a new clientInstance for each connector..
+                                 [this]() -> std::unique_ptr<choc::network::HTTPServer::ClientInstance>
                                  {
-                                    // Create a new object for each client..
                                     clientInstance = std::make_unique<ViewClientInstance>(*this);
-                                    return std::move(clientInstance); }, [this](const std::string &error)
-                                 {
-                                    // Handle some kind of server error..
-                                    dispatchError("IO Error: ", error); });
+                                    return std::move(clientInstance); },
+                                 // Handle some kind of server error..
+                                 [this](const std::string &error) { dispatchError("WS server error: ", error); 
+                                 });
 
     if (!openedOK)
         return 1;
@@ -265,10 +339,9 @@ juce::AudioProcessorEditor *EffectsPluginProcessor::createEditor()
 
     editor->ready = [this]()
     {
-        dispatchStateChange();
         dispatchServerInfo();
+        dispatchStateChange();
     };
-
     // When setting a parameter value, we simply tell the host. This will in turn fire
     // a parameterValueChanged event, which will catch and propagate through dispatching
     // a state change event
@@ -276,14 +349,18 @@ juce::AudioProcessorEditor *EffectsPluginProcessor::createEditor()
     {
         if (parameterMap.count(paramId) > 0)
         {
-            std::visit([value](auto&& param) {
-                using T = std::decay_t<decltype(param)>;
-                if constexpr (std::is_same_v<T, juce::AudioParameterFloat*>) {
-                    param->setValueNotifyingHost(value);
-                } else if constexpr (std::is_same_v<T, juce::AudioParameterBool*>) {
-                    param->setValueNotifyingHost(static_cast<bool>(value));
-                }
-            }, parameterMap[paramId]);
+            std::visit([this, value](auto &&param)
+                       {
+            using T = std::decay_t<decltype(param)>;
+            if constexpr (std::is_same_v<T, juce::AudioParameterFloat*>) {
+                param->beginChangeGesture();
+                param->setValueNotifyingHost(value);
+                param->endChangeGesture();
+            } else if constexpr (std::is_same_v<T, juce::AudioParameterBool*>) {
+                param->beginChangeGesture();
+                param->setValueNotifyingHost(static_cast<bool>(value));
+                param->endChangeGesture();
+            } }, parameterMap[paramId]);
         }
     };
 
@@ -588,7 +665,7 @@ void EffectsPluginProcessor::dispatchStateChange()
 void EffectsPluginProcessor::dispatchServerInfo()
 {
     // Retrieve the port number
-    serverPort = getServerPort();
+    serverPort = server->getPort();
 
     // Convert the port number to a string
     // Convert the port number to a choc::value::Value
