@@ -135,6 +135,15 @@ export function RegisterMessagesFromHost() {
     initializeWebSocketConnection(port);
   };
 
+  /**
+   * Handles a confirmation of how many files were loaded
+   * @param filesLoaded - The number of files loaded
+   */
+
+  globalThis.__filesLoaded__ = function ( msg: string) {
+    console.log("Files received: " +  msg );
+  };
+
   /** ━━━━━━━
    * Handles the unlock status received from the host.
    * @param status - The unlock status string.

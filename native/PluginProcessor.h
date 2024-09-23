@@ -84,9 +84,16 @@ public:
     /** error to UI */
     void dispatchError(std::string const &name, std::string const &message);
 
+  /** log to UI */
+    void dispatchNativeLog(std::string const &name, std::string const &message);
+
+
     // server
     uint16_t serverPort = 0;
     uint16_t getServerPort() const { return serverPort; }
+    void handleBase64FileDrop(const elem::js::Array &files) ;
+
+    std::vector<juce::File> loadFromTempFolder( std::filesystem::path tempFolder );
 
 private:
     std::string REVERSE_BUFFER_PREFIX = "REVERSED_";
@@ -135,7 +142,8 @@ private:
     //=============================================
 
     std::vector<juce::File> impulseResponses;
-    void addImpulseResponsesToVirtualFileSystem(std::vector<juce::File>);
+    void addImpulseResponsesToVFS(std::vector<juce::File> &impulseResponses);
+    void addImpulseResponseToVFS(const juce::File &file);
     std::vector<juce::File> loadImpulseResponses();
     juce::AudioBuffer<float> getAudioBufferFromFile(juce::File file);
     juce::AudioFormatManager formatManager;

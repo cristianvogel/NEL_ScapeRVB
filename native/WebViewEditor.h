@@ -42,6 +42,7 @@ private:
     std::string UNLOCK_EVENT = "unlock";
     std::string HOST_INFO = "hostInfo";
     std::string SERVER_PORT = "serverInfo";
+    std::string FILES_DROPPED = "filesDropped";
 
     choc::value::Value handleSetParameterValueEvent(const choc::value::ValueView &e) const;
 

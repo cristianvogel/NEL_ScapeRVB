@@ -5,6 +5,8 @@
 #include <choc_javascript_Timer.h>
 #include <choc_StringUtilities.h>
 #include <choc_HTTPServer.h>
+#include <choc_Files.h>
+#include <choc_Base64.h>
 
 //==============================================================================
 // A quick helper for locating bundled asset files
@@ -26,7 +28,7 @@ juce::File getAssetsDirectory()
 }
 
 /// @brief  Constructor for the ViewClientInstance class
-/// @param processor 
+/// @param processor
 EffectsPluginProcessor::ViewClientInstance::ViewClientInstance(EffectsPluginProcessor &processor) : processor(processor)
 {
     static int clientCount = 0;
@@ -46,7 +48,6 @@ choc::network::HTTPContent EffectsPluginProcessor::ViewClientInstance::getHTTPCo
 
 void EffectsPluginProcessor::ViewClientInstance::upgradedToWebSocket(std::string_view path)
 {
-    
 }
 
 void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::string_view message)
@@ -76,7 +77,7 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
                 continue;
             }
 
-            if (key == "requestClientId" ) 
+            if (key == "requestClientId")
             {
                 // Create a new JSON-like object
                 elem::js::Object wrappedClientId;
@@ -86,6 +87,18 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
                 std::string serializedClientId = elem::js::serialize(wrappedClientId);
                 // Send the serialized string
                 sendWebSocketMessage(serializedClientId);
+                continue;
+            }
+
+            if (key == "filesDropped")
+            {
+                // handle an array of data:audio/wav;basee64, URIs
+                processor.handleBase64FileDrop(value.getArray());
+                // Create a new JSON-like object
+                elem::js::Object wrappedFilecount;
+                // Set processor.clientId as the value
+                wrappedFilecount["filesDropped"] = std::to_string(value.getArray().size());
+                sendWebSocketMessage(elem::js::serialize(wrappedFilecount));
                 continue;
             }
 
@@ -99,7 +112,7 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
                 if (key == "srvbBypass" || key == "scapeBypass" || key == "scapeReverse")
                 {
                     paramValue = juce::roundToInt(paramValue);
-                    stateValue = juce::roundToInt(paramValue);      
+                    stateValue = juce::roundToInt(paramValue);
                 }
                 processor.editor->setParameterValue(key, paramValue);
             }
@@ -158,9 +171,9 @@ EffectsPluginProcessor::EffectsPluginProcessor()
 EffectsPluginProcessor::~EffectsPluginProcessor()
 {
     // Check if server is not nullptr and close the server if it is open
-    if (server != nullptr) server->close();
-        
-    
+    if (server != nullptr)
+        server->close();
+
     // Remove listeners from all parameters
     for (auto &p : getParameters())
     {
@@ -169,6 +182,40 @@ EffectsPluginProcessor::~EffectsPluginProcessor()
 }
 
 //==============================================================================
+
+//==============================================================================
+void EffectsPluginProcessor::handleBase64FileDrop(const elem::js::Array &arrayOfURI)
+{
+    // Setup first layer of temp folder
+    for (size_t i = 0; i < arrayOfURI.size(); ++i)
+    {
+        choc::file::TempFile target(
+            std::string_view("com.neverenginelabs.temp"),
+            std::string_view("USER_" + std::to_string(i)),
+            std::string_view("wav"));
+
+        dispatchNativeLog("TempFile: ", (target.file).string());
+
+        // Convert arrayOfURI[i] to std::string
+        std::string uriString = choc::base64::encodeToString(arrayOfURI[i].toString());
+        std::string_view uriStringView(uriString);
+        // Write the base64 encoded string to the temp file
+        try
+        {
+            choc::file::replaceFileWithContent(target.file, uriStringView);
+        }
+        catch (const std::exception &e)
+        {
+            dispatchError("File error: ", e.what());
+        }
+
+        // update the virtual file system
+        addImpulseResponseToVFS(juce::File(target.file.string()));
+    }
+    // notify the editor that files have been loaded via ws
+    // and how many
+    sendJavascriptToUI("globalThis.__filesLoaded__(" + std::to_string(arrayOfURI.size()) + ")");
+}
 
 //==============================================================================
 // Load the impulse responses from the assets directory
@@ -192,10 +239,48 @@ std::vector<juce::File> EffectsPluginProcessor::loadImpulseResponses()
 
     return impulseResponses;
 }
+//==============================================================================
+// add only one impulse response to the runtime virtual file system
+void EffectsPluginProcessor::addImpulseResponseToVFS(const juce::File &file)
+{
+    auto buffer = juce::AudioBuffer<float>();
+    auto name = choc::text::toUpperCase(file.getFileNameWithoutExtension().toStdString()); // "Ambience_0.wav" -> "AMBIENCE_0"
 
+    std::string uri = choc::file::loadFileAsString(file.getFullPathName().toStdString());
+    dispatchNativeLog("Reading: ", file.descriptionOfSizeInBytes(file.getSize()).toStdString());
+    std::string_view uriStringView(uri);
+    std::vector<uint8_t> container;
+    choc::base64::decodeToContainer( container, uriStringView );
+
+    auto numSamples = container.size() / sizeof(float);
+
+    buffer.setSize(2, numSamples, true, false); // source files are mono, but we use the second channel for a derived 'shaped' version
+
+    std::memcpy(buffer.getWritePointer(0), container.data(), container.size());
+
+    // fade in, less ER energy from the IR, as we have a whole ER engine already
+    buffer.applyGainRamp(0, numSamples, 0.2, 1);
+    // buffer.copyFromWithRamp(1, 0, buffer.getReadPointer(0), buffer.getNumSamples(), 0.2, 1);
+    // add the gain ramped impulse response to the virtual file system
+
+    runtime->updateSharedResourceMap(
+        name,
+        buffer.getReadPointer(0),
+        numSamples);
+    // Creative touch: Reverse the IR and copy that to the other channel
+    // Get the reverse from a little way in too, so its less draggy
+    // so its easy to swap into in realtime
+    buffer.reverse(0, numSamples * 0.75);
+    buffer.copyFrom(1, 0, buffer.getReadPointer(0), numSamples * 0.75);
+    // add the shaped impulse response to the virtual file system
+    runtime->updateSharedResourceMap(
+        REVERSE_BUFFER_PREFIX + name,
+        buffer.getReadPointer(1),
+        numSamples * 0.75);
+}
 //==============================================================================
 // add each impulse response to the runtime virtual file system
-void EffectsPluginProcessor::addImpulseResponsesToVirtualFileSystem(std::vector<juce::File> impulseResponses)
+void EffectsPluginProcessor::addImpulseResponsesToVFS(std::vector<juce::File> &impulseResponses)
 {
 
     for (auto &file : impulseResponses)
@@ -251,8 +336,8 @@ int EffectsPluginProcessor::runWebServer()
                                     clientInstance = std::make_unique<ViewClientInstance>(*this);
                                     return std::move(clientInstance); },
                                  // Handle some kind of server error..
-                                 [this](const std::string &error) { dispatchError("WS server error: ", error); 
-                                 });
+                                 [this](const std::string &error)
+                                 { dispatchError("WS server error: ", error); });
 
     if (!openedOK)
         return 1;
@@ -539,7 +624,7 @@ void EffectsPluginProcessor::handleAsyncUpdate()
 
         // Add impulse responses to the virtual file system
         impulseResponses = loadImpulseResponses();
-        addImpulseResponsesToVirtualFileSystem(impulseResponses);
+        addImpulseResponsesToVFS(impulseResponses);
 
         initJavaScriptEngine();
         runtimeSwapRequired.store(false);
@@ -691,8 +776,28 @@ void EffectsPluginProcessor::dispatchServerInfo()
     sendJavascriptToUI(expr);
 }
 
-// NO END OF PROBLEMS from this logging system!
 void EffectsPluginProcessor::dispatchError(std::string const &name, std::string const &message)
+{
+    // Need the serialize here to correctly form the string script.
+    const auto expr = juce::String(jsFunctions::errorScript).replace("@", elem::js::serialize(name)).replace("%", elem::js::serialize(message)).toStdString();
+
+    // First we try to dispatch to the UI if it's available, because running this step will
+    // just involve placing a message in a queue.
+    if (!sendJavascriptToUI(expr))
+    {
+        if (errorLogQueue.size() == MAX_ERROR_LOG_QUEUE_SIZE)
+        {
+            errorLogQueue.pop();
+        }
+        errorLogQueue.push(expr);
+    }
+
+    // Next we dispatch to the local engine which will evaluate any necessary JavaScript synchronously
+    // here on the main thread
+    jsContext.evaluateExpression(expr);
+}
+
+void EffectsPluginProcessor::dispatchNativeLog(std::string const &name, std::string const &message)
 {
     // Need the serialize here to correctly form the string script.
     const auto expr = juce::String(jsFunctions::errorScript).replace("@", elem::js::serialize(name)).replace("%", elem::js::serialize(message)).toStdString();
