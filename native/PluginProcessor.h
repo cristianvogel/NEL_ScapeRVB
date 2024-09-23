@@ -354,4 +354,16 @@ namespace jsFunctions
     return true;
     })();
 )script";
+
+    inline auto vfsKeysScript = R"script(
+(function() {
+    if (typeof globalThis.__receiveVFSKeys__ !== 'function')
+        return false;
+    
+    globalThis.__receiveVFSKeys__(%);
+    return true;
+    })();
+)script";
+
+
 }

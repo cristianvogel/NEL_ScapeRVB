@@ -250,7 +250,7 @@ void EffectsPluginProcessor::addImpulseResponseToVFS(const juce::File &file)
     dispatchNativeLog("Reading: ", file.descriptionOfSizeInBytes(file.getSize()).toStdString());
     std::string_view uriStringView(uri);
     std::vector<uint8_t> container;
-    choc::base64::decodeToContainer( container, uriStringView );
+    choc::base64::decodeToContainer(container, uriStringView);
 
     auto numSamples = container.size() / sizeof(float);
 
@@ -277,6 +277,19 @@ void EffectsPluginProcessor::addImpulseResponseToVFS(const juce::File &file)
         REVERSE_BUFFER_PREFIX + name,
         buffer.getReadPointer(1),
         numSamples * 0.75);
+
+    auto vfs = runtime->getSharedResourceMapKeys();
+    // iterate vfs into an std::string
+    std::string vfsString = "[";
+    for (auto &key : vfs)
+    {
+        vfsString += "\"" + key + "\",";
+    }
+    vfsString.pop_back();
+    vfsString += "]";
+    // send the vfs to the editor
+    const auto expr = serialize(jsFunctions::vfsKeysScript, choc::value::Value (vfsString), "%");
+    sendJavascriptToUI(expr);
 }
 //==============================================================================
 // add each impulse response to the runtime virtual file system
@@ -767,7 +780,6 @@ void EffectsPluginProcessor::dispatchServerInfo()
     // Retrieve the port number
     serverPort = server->getPort();
 
-    // Convert the port number to a string
     // Convert the port number to a choc::value::Value
     const auto portValue = choc::value::createInt32(serverPort);
 

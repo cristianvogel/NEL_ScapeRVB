@@ -144,6 +144,14 @@ export function RegisterMessagesFromHost() {
     console.log("Files received: " +  msg );
   };
 
+  /**
+   * Handles a view of the current VFS keys
+   * @param vfsKeys - The VFS keys
+   */
+  globalThis.__receiveVFSKeys__ = function (vfsKeys: string) {
+    console.log("VFS keys: " + vfsKeys);
+  }
+
   /** ━━━━━━━
    * Handles the unlock status received from the host.
    * @param status - The unlock status string.
