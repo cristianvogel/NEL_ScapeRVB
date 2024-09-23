@@ -35,6 +35,7 @@ EffectsPluginProcessor::ViewClientInstance::ViewClientInstance(EffectsPluginProc
 
 EffectsPluginProcessor::ViewClientInstance::~ViewClientInstance()
 {
+    clientID = 0;
 }
 
 choc::network::HTTPContent EffectsPluginProcessor::ViewClientInstance::getHTTPContent(std::string_view path)
@@ -45,6 +46,7 @@ choc::network::HTTPContent EffectsPluginProcessor::ViewClientInstance::getHTTPCo
 
 void EffectsPluginProcessor::ViewClientInstance::upgradedToWebSocket(std::string_view path)
 {
+    
 }
 
 void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::string_view message)
@@ -71,6 +73,19 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
                 std::string serializedState = elem::js::serialize(wrappedState);
                 // Send the serialized string
                 sendWebSocketMessage(serializedState);
+                continue;
+            }
+
+            if (key == "requestClientId" ) 
+            {
+                // Create a new JSON-like object
+                elem::js::Object wrappedClientId;
+                // Set processor.clientId as the value
+                wrappedClientId["clientId"] = std::to_string(clientID);
+                // Serialize the new object
+                std::string serializedClientId = elem::js::serialize(wrappedClientId);
+                // Send the serialized string
+                sendWebSocketMessage(serializedClientId);
                 continue;
             }
 

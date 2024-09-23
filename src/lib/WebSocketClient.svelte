@@ -14,6 +14,7 @@ socket.addEventListener('open', () => {
   console.log(`Svelte component ws connection: ${socket.url}`);
   // Send a message to the server
   socket.send( JSON.stringify( { requestState: true } ) );
+  socket.send( JSON.stringify( {requestClientId: true } ) );
 });
 
 // Handle incoming messages
