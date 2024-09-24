@@ -95,6 +95,24 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
                 continue;
             }
 
+            if (key == "filePaths")
+            {
+                // handle an array of file paths
+                int index = 0;
+                for (const auto &filePath : value.getArray())
+                {
+                    if (filePath.isString())
+                    {
+                        // Convert the string to a std::filesystem::path
+                        std::filesystem::path path = filePath.toString();
+
+                        // Call the method to read audio from the path
+                        sendWebSocketMessage(path);
+                        processor.loadAudioFromFileIntoVFS(path, index++);
+                    }
+                }
+            }
+
             // update a parameter directly
             if (value.isNumber() && processor.parameterMap.count(key) > 0)
             {
@@ -149,6 +167,8 @@ EffectsPluginProcessor::EffectsPluginProcessor()
 
     // register audio file formats
     formatManager.registerBasicFormats();
+    formats.addFormat<choc::audio::FLACAudioFileFormat<false>>();
+    formats.addFormat<choc::audio::WAVAudioFileFormat<false>>();
 
     // create server
     auto ws = EffectsPluginProcessor::runWebServer();
@@ -195,38 +215,15 @@ void EffectsPluginProcessor::handleBase64FileDrop(const elem::js::Array &arrayOf
         const std::string_view uriStringView(uriString);
 
         // update the virtual file system
-        addSingleIRtoVFS(pathName, uriStringView);
+        decodeBase64toIRforVFS(pathName, uriStringView);
     }
     // notify the editor that files have been loaded via ws
     // and how many
     // sendJavascriptToUI("globalThis.__filesLoaded__(" + std::to_string(arrayOfURI.size()) + ")");
 }
-
-//==============================================================================
-// Load the impulse responses from the assets directory
-std::vector<juce::File> EffectsPluginProcessor::loadDefaultIRs()
-{
-    std::vector<juce::File> impulseResponses = {};
-
-#if ELEM_DEV_LOCALHOST
-    auto assetsDir = juce::File(juce::String("~/Programming/ProgrammingSubFolder/NEL_ScapeRVB/public/assets/impulse-responses"));
-#else
-    auto assetsDir = getAssetsDirectory().getChildFile("assets/impulse-responses");
-#endif
-    if (assetsDir.isDirectory())
-    {
-        for (auto &file : assetsDir.findChildFiles(juce::File::findFiles, true))
-        {
-            if (file.hasFileExtension(juce::String("WAV")))
-                impulseResponses.push_back(file);
-        }
-    }
-
-    return impulseResponses;
-}
 //==============================================================================
 // add only one impulse response to the runtime virtual file system
-void EffectsPluginProcessor::addSingleIRtoVFS(const std::string &name, const std::string_view &uriStringView)
+void EffectsPluginProcessor::decodeBase64toIRforVFS(const std::string &name, const std::string_view &uriStringView)
 {
     using SRC = choc::audio::sampledata::UInt8;
     using DEST = float;
@@ -270,6 +267,29 @@ void EffectsPluginProcessor::addSingleIRtoVFS(const std::string &name, const std
 
     // notify the front end of the updated VFS keys
     inspectVFS();
+}
+
+//==============================================================================
+// Load the impulse responses from the assets directory
+std::vector<juce::File> EffectsPluginProcessor::loadDefaultIRs()
+{
+    std::vector<juce::File> impulseResponses = {};
+
+#if ELEM_DEV_LOCALHOST
+    auto assetsDir = juce::File(juce::String("~/Programming/ProgrammingSubFolder/NEL_ScapeRVB/public/assets/impulse-responses"));
+#else
+    auto assetsDir = getAssetsDirectory().getChildFile("assets/impulse-responses");
+#endif
+    if (assetsDir.isDirectory())
+    {
+        for (auto &file : assetsDir.findChildFiles(juce::File::findFiles, true))
+        {
+            if (file.hasFileExtension(juce::String("WAV")))
+                impulseResponses.push_back(file);
+        }
+    }
+
+    return impulseResponses;
 }
 //==============================================================================
 void EffectsPluginProcessor::inspectVFS()
@@ -324,8 +344,55 @@ void EffectsPluginProcessor::addFolderOfIRsToVFS(std::vector<juce::File> &impuls
     }
 }
 
+//=============================================================================
+// https://forum.juce.com/t/reading-a-wav-file-into-an-array-of-samples/47449/2
+juce::AudioBuffer<float> EffectsPluginProcessor::getAudioBufferFromFile(juce::File file)
+{
+    juce::AudioBuffer<float> audioBuffer;
+    auto *reader = formatManager.createReaderFor(file);
+    audioBuffer.setSize(reader->numChannels, reader->lengthInSamples);
+    reader->read(&audioBuffer, 0, reader->lengthInSamples, 0, true, true);
+    delete reader;
+    return audioBuffer;
+}
 //==============================================================================
+void EffectsPluginProcessor::loadAudioFromFileIntoVFS(std::filesystem::path &path, int index = 0)
+{
 
+    auto in = std::make_shared<std::ifstream>(path.string());
+
+    try
+    {
+        auto reader = EffectsPluginProcessor::formats.createReader(in);
+        if (!reader)
+        {
+            throw std::runtime_error("Failed to create audio reader for " + path.string());
+            return;
+        }
+        const choc::audio::AudioFileProperties p = reader->getProperties();
+
+        dispatchNativeLog("File props:", p.getDescription());
+
+        choc::buffer::ChannelArrayBuffer<float> loadedBuffer = reader->template readEntireStream<float>();
+
+        auto numChannels = loadedBuffer.getSize().numChannels;
+        auto frameCount = loadedBuffer.getSize().numFrames;
+
+        // extract each channel into a mono buffer up to 2 channels max
+        for (decltype(numChannels) i = 0; i < numChannels; ++i)
+        {
+            auto singleChannelView = loadedBuffer.getChannel(i).data.fromChannel(0);
+            auto name = "USER_" + std::to_string(index) + ":" + std::to_string(i);
+            runtime->updateSharedResourceMap(name, singleChannelView.data, frameCount * sizeof(float));
+        }
+    }
+    catch (const std::exception &e)
+    {
+        dispatchError("Error reading audio from path: ", e.what());
+    }
+
+    inspectVFS();
+}
 //==============================================================================
 int EffectsPluginProcessor::runWebServer()
 {
@@ -926,18 +993,6 @@ void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInByt
         // an object type. How you handle it is up to you.
         dispatchError("State Error", "Failed to restore state!");
     }
-}
-
-//=============================================================================
-// https://forum.juce.com/t/reading-a-wav-file-into-an-array-of-samples/47449/2
-juce::AudioBuffer<float> EffectsPluginProcessor::getAudioBufferFromFile(juce::File file)
-{
-    juce::AudioBuffer<float> audioBuffer;
-    auto *reader = formatManager.createReaderFor(file);
-    audioBuffer.setSize(reader->numChannels, reader->lengthInSamples);
-    reader->read(&audioBuffer, 0, reader->lengthInSamples, 0, true, true);
-    delete reader;
-    return audioBuffer;
 }
 
 //==============================================================================

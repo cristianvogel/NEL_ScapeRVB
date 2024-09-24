@@ -4,6 +4,9 @@
 #include <juce_audio_processors/juce_audio_processors.h>
 #include <juce_audio_formats/juce_audio_formats.h>
 
+#include <choc_AudioFileFormat.h>
+#include <choc_AudioFileFormat_WAV.h>
+#include <choc_AudioFileFormat_FLAC.h>
 #include <choc_SampleBuffers.h>
 #include <choc_SampleBufferUtilities.h>
 #include <choc_AudioSampleData.h>
@@ -14,8 +17,6 @@
 #include <choc_StringUtilities.h>
 #include <choc_Files.h>
 #include <choc_Base64.h>
-
-
 
 #include <elem/Runtime.h>
 
@@ -94,16 +95,27 @@ public:
     /** error to UI */
     void dispatchError(std::string const &name, std::string const &message);
 
-  /** log to UI */
+    /** log to UI */
     void dispatchNativeLog(std::string const &name, std::string const &message);
-
 
     // server
     uint16_t serverPort = 0;
     uint16_t getServerPort() const { return serverPort; }
-    void handleBase64FileDrop(const elem::js::Array &files) ;
+    void handleBase64FileDrop(const elem::js::Array &files);
 
-    std::vector<juce::File> loadFromTempFolder( std::filesystem::path tempFolder );
+    // files
+
+    void decodeBase64toIRforVFS(const std::string &name, const std::string_view &uriStringView);
+    std::vector<juce::File> loadDefaultIRs();
+        void inspectVFS();
+            std::vector<juce::File> impulseResponses;
+    void addFolderOfIRsToVFS(std::vector<juce::File> &impulseResponses);
+    // todo: get better at using CHOC, port these methods over to CHOC reader
+    juce::AudioBuffer<float> getAudioBufferFromFile(juce::File file);
+    juce::AudioFormatManager formatManager;
+    // audiofile read with CHOC instead of juce
+    choc::audio::AudioFileFormatList formats;
+    void loadAudioFromFileIntoVFS(std::filesystem::path &path, int index);
 
 private:
     std::string REVERSE_BUFFER_PREFIX = "REVERSED_";
@@ -151,27 +163,21 @@ private:
 
     //=============================================
 
-    std::vector<juce::File> impulseResponses;
-    void addFolderOfIRsToVFS(std::vector<juce::File> &impulseResponses);
-    void addSingleIRtoVFS( const std::string& name, const std::string_view& base64Data); 
-    void inspectVFS();
-    std::vector<juce::File> loadDefaultIRs();
-    juce::AudioBuffer<float> getAudioBufferFromFile(juce::File file);
-    juce::AudioFormatManager formatManager;
+    
 
     //=============================================
 public:
     int runWebServer();
 
-      struct ViewClientInstance : public choc::network::HTTPServer::ClientInstance
+    struct ViewClientInstance : public choc::network::HTTPServer::ClientInstance
     {
         ViewClientInstance(EffectsPluginProcessor &processor);
         ~ViewClientInstance();
-    
+
         choc::network::HTTPContent getHTTPContent(std::string_view path) override;
         void upgradedToWebSocket(std::string_view path) override;
         void handleWebSocketMessage(std::string_view message) override;
-    
+
         int clientID = 0;
         EffectsPluginProcessor &processor; // Reference to the enclosing class
     };
@@ -375,6 +381,5 @@ namespace jsFunctions
     return true;
     })();
 )script";
-
 
 }
