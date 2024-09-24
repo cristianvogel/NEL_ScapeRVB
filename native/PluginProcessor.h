@@ -4,8 +4,18 @@
 #include <juce_audio_processors/juce_audio_processors.h>
 #include <juce_audio_formats/juce_audio_formats.h>
 
+#include <choc_SampleBuffers.h>
+#include <choc_SampleBufferUtilities.h>
+#include <choc_AudioSampleData.h>
 #include <choc_javascript.h>
 #include <choc_HTTPServer.h>
+#include <choc_javascript_QuickJS.h>
+#include <choc_javascript_Timer.h>
+#include <choc_StringUtilities.h>
+#include <choc_Files.h>
+#include <choc_Base64.h>
+
+
 
 #include <elem/Runtime.h>
 
@@ -142,9 +152,10 @@ private:
     //=============================================
 
     std::vector<juce::File> impulseResponses;
-    void addImpulseResponsesToVFS(std::vector<juce::File> &impulseResponses);
-    void addImpulseResponseToVFS(const juce::File &file);
-    std::vector<juce::File> loadImpulseResponses();
+    void addFolderOfIRsToVFS(std::vector<juce::File> &impulseResponses);
+    void addSingleIRtoVFS(const juce::File &file);
+    void inspectVFS();
+    std::vector<juce::File> loadDefaultIRs();
     juce::AudioBuffer<float> getAudioBufferFromFile(juce::File file);
     juce::AudioFormatManager formatManager;
 

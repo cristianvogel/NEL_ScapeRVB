@@ -3191,7 +3191,7 @@
   var core = new Renderer((batch) => {
     __postNativeMessage__(JSON.stringify(batch));
   });
-  var IRs = [
+  var defaultIRs = [
     // SHOULD MATCH FILE NAMES IN THE PUBLIC IR FOLDER
     { name: "LIGHT", index: 0, att: 0.65 },
     { name: "SURFACE", index: 1, att: 0.475 },
@@ -3215,7 +3215,7 @@
       ]
     );
   }
-  var ir_inputAtt = IRs.map((ir) => ir.att);
+  var ir_inputAtt = defaultIRs.map((ir) => ir.att);
   var refs = new RefMap(core);
   var HERMITE = createHermiteVecInterp();
   var defaultStructure = OEIS_SEQUENCES[0];
@@ -3236,7 +3236,7 @@
     const srvbProps = () => {
       const props = {
         key: "srvb",
-        IRs,
+        IRs: defaultIRs,
         srvbBypass: srvb.bypass,
         dryMix: shared.dryMix,
         sampleRate: shared.sampleRate,
@@ -3252,7 +3252,7 @@
     };
     const scapeProps = () => {
       const props = {
-        IRs,
+        IRs: defaultIRs,
         sampleRate: shared.sampleRate,
         scapeBypass: scape.bypass || 0,
         vectorData: scape.vectorData,
@@ -3349,7 +3349,7 @@
       }
       refs.update("dryMix", { value: shared.dryMix });
       refs.update("srvbBypass", { value: srvb.bypass });
-      IRs.forEach((item, index) => {
+      defaultIRs.forEach((item, index) => {
         for (let i = 0; i < 2; i++) {
           refs.update(`${item.name}_${i}`, {
             path: scape.reverse > 0.5 ? REVERSE_BUFFER_PREFIX + `${item.name}_${i}` : `${item.name}_${i}`,

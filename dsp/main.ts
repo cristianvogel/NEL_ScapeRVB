@@ -23,7 +23,7 @@ let core = new Renderer((batch) => {
 // Register our custom nodes
 let convolver = (_props, ...childs) => createNode("convolver", _props, childs);
 
-const IRs = [ // SHOULD MATCH FILE NAMES IN THE PUBLIC IR FOLDER
+const defaultIRs = [ // SHOULD MATCH FILE NAMES IN THE PUBLIC IR FOLDER
 
   { name: "LIGHT", index: 0, att: 0.65 },
   { name: "SURFACE", index: 1, att: 0.475 },
@@ -46,7 +46,7 @@ function createHermiteVecInterp(): Ramp<Vec> {
   );
 }
 
-let ir_inputAtt = IRs.map((ir) => ir.att);
+let ir_inputAtt = defaultIRs.map((ir) => ir.att);
 
 // Next, a RefMap for coordinating our refs
 let refs: RefMap = new RefMap(core);
@@ -99,7 +99,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     const props =  
     {
       key: "srvb",
-      IRs ,
+      IRs: defaultIRs ,
       srvbBypass: srvb.bypass,
       dryMix: shared.dryMix,
       sampleRate: shared.sampleRate,
@@ -117,7 +117,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
   const scapeProps = () => {
    const props =
    {
-    IRs,
+    IRs: defaultIRs,
     sampleRate: shared.sampleRate,
     scapeBypass: scape.bypass || 0,    
     vectorData: scape.vectorData,    
@@ -199,7 +199,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     refs.update("srvbBypass", { value: srvb.bypass }); // needed to bypass empty input when srvb is bypassed
 
     // update the convolvers
-    IRs.forEach((item, index) => {
+    defaultIRs.forEach((item, index) => {
       for (let i = 0; i < 2; i++) {
         refs.update(`${item.name}_${i}`, {
           path:

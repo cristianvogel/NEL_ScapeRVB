@@ -136,6 +136,7 @@ target_include_directories(${TARGET_NAME}
   ${CMAKE_CURRENT_SOURCE_DIR}/choc/network
   ${CMAKE_CURRENT_SOURCE_DIR}/choc/text
   ${CMAKE_CURRENT_SOURCE_DIR}/choc/memory
+  ${CMAKE_CURRENT_SOURCE_DIR}/choc/audio
   ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver
 )
 

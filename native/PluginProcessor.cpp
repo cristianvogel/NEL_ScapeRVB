@@ -1,12 +1,8 @@
 #include "PluginProcessor.h"
 #include "ConvolverNode.h"
 
-#include <choc_javascript_QuickJS.h>
-#include <choc_javascript_Timer.h>
-#include <choc_StringUtilities.h>
-#include <choc_HTTPServer.h>
-#include <choc_Files.h>
-#include <choc_Base64.h>
+
+
 
 //==============================================================================
 // A quick helper for locating bundled asset files
@@ -189,12 +185,15 @@ void EffectsPluginProcessor::handleBase64FileDrop(const elem::js::Array &arrayOf
     // Setup first layer of temp folder
     for (size_t i = 0; i < arrayOfURI.size(); ++i)
     {
+        if (i > 3)
+        {
+            dispatchError("▶︎ ", "Only 4 files can be loaded at a time.");
+            break;
+        }
+
         choc::file::TempFile target(
             std::string_view("com.neverenginelabs.temp"),
-            std::string_view("USER_" + std::to_string(i)),
-            std::string_view("wav"));
-
-        dispatchNativeLog("TempFile: ", (target.file).string());
+            std::string_view("USER_" + std::to_string(i) + ".WAV"));
 
         // Convert arrayOfURI[i] to std::string
         std::string uriString = choc::base64::encodeToString(arrayOfURI[i].toString());
@@ -206,20 +205,20 @@ void EffectsPluginProcessor::handleBase64FileDrop(const elem::js::Array &arrayOf
         }
         catch (const std::exception &e)
         {
-            dispatchError("File error: ", e.what());
+            dispatchError("▶︎  File error: ", e.what());
         }
 
         // update the virtual file system
-        addImpulseResponseToVFS(juce::File(target.file.string()));
+        addSingleIRtoVFS(juce::File(target.file.string()));
     }
     // notify the editor that files have been loaded via ws
     // and how many
-    sendJavascriptToUI("globalThis.__filesLoaded__(" + std::to_string(arrayOfURI.size()) + ")");
+    // sendJavascriptToUI("globalThis.__filesLoaded__(" + std::to_string(arrayOfURI.size()) + ")");
 }
 
 //==============================================================================
 // Load the impulse responses from the assets directory
-std::vector<juce::File> EffectsPluginProcessor::loadImpulseResponses()
+std::vector<juce::File> EffectsPluginProcessor::loadDefaultIRs()
 {
     std::vector<juce::File> impulseResponses = {};
 
@@ -232,7 +231,7 @@ std::vector<juce::File> EffectsPluginProcessor::loadImpulseResponses()
     {
         for (auto &file : assetsDir.findChildFiles(juce::File::findFiles, true))
         {
-            if (file.hasFileExtension(juce::String("wav")))
+            if (file.hasFileExtension(juce::String("WAV")))
                 impulseResponses.push_back(file);
         }
     }
@@ -241,27 +240,30 @@ std::vector<juce::File> EffectsPluginProcessor::loadImpulseResponses()
 }
 //==============================================================================
 // add only one impulse response to the runtime virtual file system
-void EffectsPluginProcessor::addImpulseResponseToVFS(const juce::File &file)
+void EffectsPluginProcessor::addSingleIRtoVFS(const juce::File &file)
 {
-    auto buffer = juce::AudioBuffer<float>();
+    using SRC = choc::audio::sampledata::UInt8;
+    using DEST = float;
+
     auto name = choc::text::toUpperCase(file.getFileNameWithoutExtension().toStdString()); // "Ambience_0.wav" -> "AMBIENCE_0"
 
     std::string uri = choc::file::loadFileAsString(file.getFullPathName().toStdString());
-    dispatchNativeLog("Reading: ", file.descriptionOfSizeInBytes(file.getSize()).toStdString());
+    dispatchNativeLog("▶︎ loading ", file.descriptionOfSizeInBytes(file.getSize()).toStdString());
     std::string_view uriStringView(uri);
-    std::vector<uint8_t> container;
-    choc::base64::decodeToContainer(container, uriStringView);
+    std::vector<u_int8_t> container;
+    choc::base64::decodeToContainer( container, uriStringView );
 
-    auto numSamples = container.size() / sizeof(float);
-
+    auto numSamples = juce::roundToInt(container.size() / sizeof(u_int8_t));
+    auto buffer = juce::AudioBuffer<DEST>();
     buffer.setSize(2, numSamples, true, false); // source files are mono, but we use the second channel for a derived 'shaped' version
 
-    std::memcpy(buffer.getWritePointer(0), container.data(), container.size());
-
-    // fade in, less ER energy from the IR, as we have a whole ER engine already
-    buffer.applyGainRamp(0, numSamples, 0.2, 1);
-    // buffer.copyFromWithRamp(1, 0, buffer.getReadPointer(0), buffer.getNumSamples(), 0.2, 1);
-    // add the gain ramped impulse response to the virtual file system
+    // Convert u_int8_t samples to float, apply gain fade, and write to buffer
+    for (int i = 0; i < numSamples; ++i)
+    {
+        float sample = SRC::read<float>(&container[i]);
+        float gain = 0.2f + (0.8f * i / numSamples); // Linear gain ramp from 0.2 to 1.0
+        buffer.setSample(0, i, sample * gain);
+    }
 
     runtime->updateSharedResourceMap(
         name,
@@ -272,12 +274,18 @@ void EffectsPluginProcessor::addImpulseResponseToVFS(const juce::File &file)
     // so its easy to swap into in realtime
     buffer.reverse(0, numSamples * 0.75);
     buffer.copyFrom(1, 0, buffer.getReadPointer(0), numSamples * 0.75);
+
     // add the shaped impulse response to the virtual file system
     runtime->updateSharedResourceMap(
         REVERSE_BUFFER_PREFIX + name,
         buffer.getReadPointer(1),
         numSamples * 0.75);
 
+    inspectVFS();
+}
+//==============================================================================
+void EffectsPluginProcessor::inspectVFS()
+{
     auto vfs = runtime->getSharedResourceMapKeys();
     // iterate vfs into an std::string
     std::string vfsString = "[";
@@ -288,12 +296,12 @@ void EffectsPluginProcessor::addImpulseResponseToVFS(const juce::File &file)
     vfsString.pop_back();
     vfsString += "]";
     // send the vfs to the editor
-    const auto expr = serialize(jsFunctions::vfsKeysScript, choc::value::Value (vfsString), "%");
+    const auto expr = serialize(jsFunctions::vfsKeysScript, choc::value::Value(vfsString), "%");
     sendJavascriptToUI(expr);
 }
 //==============================================================================
 // add each impulse response to the runtime virtual file system
-void EffectsPluginProcessor::addImpulseResponsesToVFS(std::vector<juce::File> &impulseResponses)
+void EffectsPluginProcessor::addFolderOfIRsToVFS(std::vector<juce::File> &impulseResponses)
 {
 
     for (auto &file : impulseResponses)
@@ -636,8 +644,8 @@ void EffectsPluginProcessor::handleAsyncUpdate()
                                   { return std::make_shared<ConvolverNode>(id, sampleRate, blockSize); });
 
         // Add impulse responses to the virtual file system
-        impulseResponses = loadImpulseResponses();
-        addImpulseResponsesToVFS(impulseResponses);
+        impulseResponses = loadDefaultIRs();
+        addFolderOfIRsToVFS(impulseResponses);
 
         initJavaScriptEngine();
         runtimeSwapRequired.store(false);

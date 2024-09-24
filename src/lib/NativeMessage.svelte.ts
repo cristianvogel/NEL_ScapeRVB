@@ -141,7 +141,7 @@ export function RegisterMessagesFromHost() {
    */
 
   globalThis.__filesLoaded__ = function ( msg: string) {
-    console.log("Files received: " +  msg );
+    console.log("Files received: " +  msg  );
   };
 
   /**
@@ -149,7 +149,11 @@ export function RegisterMessagesFromHost() {
    * @param vfsKeys - The VFS keys
    */
   globalThis.__receiveVFSKeys__ = function (vfsKeys: string) {
-    console.log("VFS keys: " + vfsKeys);
+
+    for (let key of vfsKeys.split(",")) {
+      console.log("VFS Key: ", key);
+    }
+    
   }
 
   /** ━━━━━━━
