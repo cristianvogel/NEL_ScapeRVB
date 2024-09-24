@@ -1,9 +1,6 @@
 #include "PluginProcessor.h"
 #include "ConvolverNode.h"
 
-
-
-
 //==============================================================================
 // A quick helper for locating bundled asset files
 juce::File getAssetsDirectory()
@@ -191,25 +188,14 @@ void EffectsPluginProcessor::handleBase64FileDrop(const elem::js::Array &arrayOf
             break;
         }
 
-        choc::file::TempFile target(
-            std::string_view("com.neverenginelabs.temp"),
-            std::string_view("USER_" + std::to_string(i) + ".WAV"));
+        std::string pathName = "USER_" + std::to_string(i); // "USER_0", "USER_1", "USER_2", "USER_3" etc
 
         // Convert arrayOfURI[i] to std::string
         std::string uriString = choc::base64::encodeToString(arrayOfURI[i].toString());
-        std::string_view uriStringView(uriString);
-        // Write the base64 encoded string to the temp file
-        try
-        {
-            choc::file::replaceFileWithContent(target.file, uriStringView);
-        }
-        catch (const std::exception &e)
-        {
-            dispatchError("▶︎  File error: ", e.what());
-        }
+        const std::string_view uriStringView(uriString);
 
         // update the virtual file system
-        addSingleIRtoVFS(juce::File(target.file.string()));
+        addSingleIRtoVFS(pathName, uriStringView);
     }
     // notify the editor that files have been loaded via ws
     // and how many
@@ -240,47 +226,49 @@ std::vector<juce::File> EffectsPluginProcessor::loadDefaultIRs()
 }
 //==============================================================================
 // add only one impulse response to the runtime virtual file system
-void EffectsPluginProcessor::addSingleIRtoVFS(const juce::File &file)
+void EffectsPluginProcessor::addSingleIRtoVFS(const std::string &name, const std::string_view &uriStringView)
 {
     using SRC = choc::audio::sampledata::UInt8;
     using DEST = float;
 
-    auto name = choc::text::toUpperCase(file.getFileNameWithoutExtension().toStdString()); // "Ambience_0.wav" -> "AMBIENCE_0"
-
-    std::string uri = choc::file::loadFileAsString(file.getFullPathName().toStdString());
-    dispatchNativeLog("▶︎ loading ", file.descriptionOfSizeInBytes(file.getSize()).toStdString());
-    std::string_view uriStringView(uri);
+    // first, decode the base64 string to an appropriate container
     std::vector<u_int8_t> container;
-    choc::base64::decodeToContainer( container, uriStringView );
+    choc::base64::decodeToContainer(container, uriStringView);
 
+    // set up a juce::AudioBuffer to hold the impulse response
     auto numSamples = juce::roundToInt(container.size() / sizeof(u_int8_t));
     auto buffer = juce::AudioBuffer<DEST>();
-    buffer.setSize(2, numSamples, true, false); // source files are mono, but we use the second channel for a derived 'shaped' version
 
-    // Convert u_int8_t samples to float, apply gain fade, and write to buffer
+    // source files are mono, but we use the second channel for a derived 'reverse' version
+    buffer.setSize(2, numSamples, true, false);
+
+    // convert u_int8_t samples to float, apply gain fade, and write to buffer
     for (int i = 0; i < numSamples; ++i)
     {
         float sample = SRC::read<float>(&container[i]);
-        float gain = 0.2f + (0.8f * i / numSamples); // Linear gain ramp from 0.2 to 1.0
+        // fade in, less ER energy from the IR, as we have a whole ER engine already
+        float gain = 0.2f + (0.8f * i / numSamples); // equivalent to juce:: buffer.applyGainRamp(0, numSamples, 0.2, 1);
+        // write the converted sample to the juce::AudioBuffer
         buffer.setSample(0, i, sample * gain);
     }
 
+    // add the shaped impulse response to the virtual file system
     runtime->updateSharedResourceMap(
         name,
         buffer.getReadPointer(0),
         numSamples);
-    // Creative touch: Reverse the IR and copy that to the other channel
-    // Get the reverse from a little way in too, so its less draggy
-    // so its easy to swap into in realtime
-    buffer.reverse(  0, juce::roundToInt (numSamples * 0.75f));
-    buffer.copyFrom( 1, 0, buffer.getReadPointer(0), juce::roundToInt (numSamples * 0.75f) );
 
-    // add the shaped impulse response to the virtual file system
+    // reverse the IR and copy that to the other channel
+    buffer.reverse(0, juce::roundToInt(numSamples * 0.75f));
+    buffer.copyFrom(1, 0, buffer.getReadPointer(0), juce::roundToInt(numSamples * 0.75f));
+
+    // then add the reverse impulse response to the virtual file system too, with a prefix
     runtime->updateSharedResourceMap(
         REVERSE_BUFFER_PREFIX + name,
         buffer.getReadPointer(1),
         numSamples * 0.75);
 
+    // notify the front end of the updated VFS keys
     inspectVFS();
 }
 //==============================================================================

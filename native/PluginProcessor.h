@@ -153,7 +153,7 @@ private:
 
     std::vector<juce::File> impulseResponses;
     void addFolderOfIRsToVFS(std::vector<juce::File> &impulseResponses);
-    void addSingleIRtoVFS(const juce::File &file);
+    void addSingleIRtoVFS( const std::string& name, const std::string_view& base64Data); 
     void inspectVFS();
     std::vector<juce::File> loadDefaultIRs();
     juce::AudioBuffer<float> getAudioBufferFromFile(juce::File file);

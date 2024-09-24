@@ -3,8 +3,6 @@
   import {
     ConsoleText,
     CablesReady,
-    GestureSource_SRVB,
-    GestureSource_SCAPE,
     HostState,
     WebSocketPort
   } from "./stores/stores.svelte";
@@ -15,7 +13,6 @@
     RegisterMessagesFromHost,
   } from "./lib/NativeMessage.svelte";
 
-  import { PARAM_DEFAULTS } from "./stores/constants";
   import WebSocketClient from "./lib/WebSocketClient.svelte";
 
   onMount(() => {
@@ -32,8 +29,9 @@
         glCanvasId: "glcanvas",
         glCanvasResizeToWindow: true,
         onError: (e) => console.error(e),
-        onPatchLoaded: () => console.log("UI loaded"),
+        onPatchLoaded: () => console.count("UI loaded"),
         onFinishedLoading: () => {
+          console.count("UI finished loading");
           initPatchListeners(CABLES.patch);
           MessageToHost.requestReady();
           CablesReady.update(true);
