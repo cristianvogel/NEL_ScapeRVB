@@ -32,9 +32,7 @@
         glCanvasId: "glcanvas",
         glCanvasResizeToWindow: true,
         onError: (e) => console.error(e),
-        onPatchLoaded: () => {
-        
-        },
+        onPatchLoaded: () => console.log("UI loaded"),
         onFinishedLoading: () => {
           initPatchListeners(CABLES.patch);
           MessageToHost.requestReady();

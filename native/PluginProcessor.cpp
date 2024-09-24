@@ -272,8 +272,8 @@ void EffectsPluginProcessor::addSingleIRtoVFS(const juce::File &file)
     // Creative touch: Reverse the IR and copy that to the other channel
     // Get the reverse from a little way in too, so its less draggy
     // so its easy to swap into in realtime
-    buffer.reverse(0, numSamples * 0.75);
-    buffer.copyFrom(1, 0, buffer.getReadPointer(0), numSamples * 0.75);
+    buffer.reverse(  0, juce::roundToInt (numSamples * 0.75f));
+    buffer.copyFrom( 1, 0, buffer.getReadPointer(0), juce::roundToInt (numSamples * 0.75f) );
 
     // add the shaped impulse response to the virtual file system
     runtime->updateSharedResourceMap(
