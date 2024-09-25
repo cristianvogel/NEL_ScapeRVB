@@ -1,6 +1,31 @@
 import { ElemNode } from "@elemaudio/core";
+import { Vec } from "@thi.ng/vectors";
 
 ////////// STATE
+interface SharedSettings {
+  sampleRate: number;
+  dryInputs: Array<ElemNode>;
+  dryMix: number;
+  position: number;
+}
+
+interface SrvbSettings {
+  structure: number;
+  size: number;
+  diffuse: number;
+  tone: number;
+  level: number;
+  structureMax: number;
+  bypass: number;
+}
+
+interface ScapeSettings {
+  reverse: number;
+  level: number;
+  ir: number;
+  vectorData: Vec;
+  bypass: number;
+}
 
 type bypassStates = '0' | '1';
 type bypassEvents = 'toggle';

@@ -2213,6 +2213,9 @@
       this._map = /* @__PURE__ */ new Map();
       this._core = core2;
     }
+    get size() {
+      return this._map.size;
+    }
     getOrCreate(name, type, props, children) {
       if (!this._map.has(name)) {
         let ref = this._core.createRef(type, props, children);
@@ -3188,16 +3191,48 @@
   );
 
   // dsp/main.ts
+  var scapeSettings;
   var core = new Renderer((batch) => {
     __postNativeMessage__(JSON.stringify(batch));
   });
-  var defaultIRs = [
-    // SHOULD MATCH FILE NAMES IN THE PUBLIC IR FOLDER
+  var blockSizes = [512, 4096];
+  var IR_Slots = [
     { name: "LIGHT", index: 0, att: 0.65 },
     { name: "SURFACE", index: 1, att: 0.475 },
     { name: "TEMPLE", index: 2, att: 0.475 },
     { name: "DEEPNESS", index: 3, att: 0.25 }
   ];
+  var IR_Refs = IR_Slots.reduce((acc, slot) => {
+    return { ...acc, ...IR_SlotRefFactory(scapeSettings, refs, slot.name, slot.index, slot.att) };
+  }, {});
+  function IR_SlotRefFactory(scapeSettings2, refs2, name, vectorIndex, scale) {
+    if (!scapeSettings2 || !refs2)
+      return;
+    return {
+      [`${name}_0`]: refs2.getOrCreate(
+        `${name}_0`,
+        "convolver",
+        {
+          path: `${name}_0`,
+          process: scapeSettings2.vectorData[vectorIndex],
+          scale,
+          blockSizes
+        },
+        [stdlib.tapIn({ name: `srvbOut:0` })]
+      ),
+      [`${name}_1`]: refs2.getOrCreate(
+        `${name}_1`,
+        "convolver",
+        {
+          path: `${name}_1`,
+          process: scapeSettings2.vectorData[vectorIndex],
+          scale,
+          blockSizes
+        },
+        [stdlib.tapIn({ name: `srvbOut:1` })]
+      )
+    };
+  }
   function createHermiteVecInterp() {
     return ramp(
       // use a vector interpolation preset with the VEC3 API
@@ -3215,7 +3250,7 @@
       ]
     );
   }
-  var ir_inputAtt = defaultIRs.map((ir) => ir.att);
+  var ir_inputAtt = IR_Slots.map((ir) => ir.att);
   var refs = new RefMap(core);
   var HERMITE = createHermiteVecInterp();
   var defaultStructure = OEIS_SEQUENCES[0];
@@ -3231,12 +3266,12 @@
   var memoized = null;
   globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     const { state, srvb, shared, scape } = parseNewState(stateReceivedFromNative);
-    const blockSizes = [512, 4096];
+    const blockSizes2 = [512, 4096];
     refs.getOrCreate("dryMix", "const", { value: shared.dryMix }, []);
     const srvbProps = () => {
       const props = {
         key: "srvb",
-        IRs: defaultIRs,
+        IRs: IR_Slots,
         srvbBypass: srvb.bypass,
         dryMix: shared.dryMix,
         sampleRate: shared.sampleRate,
@@ -3252,7 +3287,7 @@
     };
     const scapeProps = () => {
       const props = {
-        IRs: defaultIRs,
+        IRs: IR_Slots,
         sampleRate: shared.sampleRate,
         scapeBypass: scape.bypass || 0,
         vectorData: scape.vectorData,
@@ -3269,49 +3304,49 @@
         SURFACE_0: refs.getOrCreate(
           "SURFACE_0",
           "convolver",
-          { path: "SURFACE_0", process: scape.vectorData[1], scale: ir_inputAtt[1], blockSizes },
+          { path: "SURFACE_0", process: scape.vectorData[1], scale: ir_inputAtt[1], blockSizes: blockSizes2 },
           [stdlib.tapIn({ name: "srvbOut:0" })]
         ),
         SURFACE_1: refs.getOrCreate(
           "SURFACE_1",
           "convolver",
-          { path: "SURFACE_1", process: scape.vectorData[1], scale: ir_inputAtt[1], blockSizes },
+          { path: "SURFACE_1", process: scape.vectorData[1], scale: ir_inputAtt[1], blockSizes: blockSizes2 },
           [stdlib.tapIn({ name: "srvbOut:1" })]
         ),
         TEMPLE_0: refs.getOrCreate(
           "TEMPLE_0",
           "convolver",
-          { path: "TEMPLE_0", process: scape.vectorData[2], scale: ir_inputAtt[2], blockSizes },
+          { path: "TEMPLE_0", process: scape.vectorData[2], scale: ir_inputAtt[2], blockSizes: blockSizes2 },
           [stdlib.tapIn({ name: "srvbOut:0" })]
         ),
         TEMPLE_1: refs.getOrCreate(
           "TEMPLE_1",
           "convolver",
-          { path: "TEMPLE_1", process: scape.vectorData[2], scale: ir_inputAtt[2], blockSizes },
+          { path: "TEMPLE_1", process: scape.vectorData[2], scale: ir_inputAtt[2], blockSizes: blockSizes2 },
           [stdlib.tapIn({ name: "srvbOut:1" })]
         ),
         LIGHT_0: refs.getOrCreate(
           "LIGHT_0",
           "convolver",
-          { path: "LIGHT_0", process: scape.vectorData[0], scale: ir_inputAtt[0], blockSizes },
+          { path: "LIGHT_0", process: scape.vectorData[0], scale: ir_inputAtt[0], blockSizes: blockSizes2 },
           [stdlib.tapIn({ name: "srvbOut:0" })]
         ),
         LIGHT_1: refs.getOrCreate(
           "LIGHT_1",
           "convolver",
-          { path: "LIGHT_1", process: scape.vectorData[0], scale: ir_inputAtt[0], blockSizes },
+          { path: "LIGHT_1", process: scape.vectorData[0], scale: ir_inputAtt[0], blockSizes: blockSizes2 },
           [stdlib.tapIn({ name: "srvbOut:1" })]
         ),
         DEEPNESS_0: refs.getOrCreate(
           "DEEPNESS_0",
           "convolver",
-          { path: "DEEPNESS_0", process: scape.vectorData[3], scale: ir_inputAtt[3], blockSizes },
+          { path: "DEEPNESS_0", process: scape.vectorData[3], scale: ir_inputAtt[3], blockSizes: blockSizes2 },
           [stdlib.tapIn({ name: "srvbOut:0" })]
         ),
         DEEPNESS_1: refs.getOrCreate(
           "DEEPNESS_1",
           "convolver",
-          { path: "DEEPNESS_1", process: scape.vectorData[3], scale: ir_inputAtt[3], blockSizes },
+          { path: "DEEPNESS_1", process: scape.vectorData[3], scale: ir_inputAtt[3], blockSizes: blockSizes2 },
           [stdlib.tapIn({ name: "srvbOut:1" })]
         )
       };
@@ -3349,7 +3384,7 @@
       }
       refs.update("dryMix", { value: shared.dryMix });
       refs.update("srvbBypass", { value: srvb.bypass });
-      defaultIRs.forEach((item, index) => {
+      IR_Slots.forEach((item, index) => {
         for (let i = 0; i < 2; i++) {
           refs.update(`${item.name}_${i}`, {
             path: scape.reverse > 0.5 ? REVERSE_BUFFER_PREFIX + `${item.name}_${i}` : `${item.name}_${i}`,

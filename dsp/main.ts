@@ -1,16 +1,19 @@
-import { Renderer, el, createNode, ElemNode } from "@elemaudio/core";
+import { Renderer, el, createNode } from "@elemaudio/core";
 import { argMax } from "@thi.ng/arrays";
 import { RefMap } from "./RefMap";
 import SRVB from "./srvb-er";
 import { clamp, EPS } from "@thi.ng/math";
-import { equiv } from "@thi.ng/equiv";
 import { HERMITE_V, VEC3, ramp } from "@thi.ng/ramp";
 import type { Ramp } from "@thi.ng/ramp";
 import { NUM_SEQUENCES, OEIS_SEQUENCES } from "./srvb-er";
 import SCAPE from "./scape";
 import { Vec } from "@thi.ng/vectors";
-import { StructureData } from "../src/types";
+import { ScapeSettings, SharedSettings, SrvbSettings, StructureData } from "../src/types";
 import { REVERSE_BUFFER_PREFIX } from "../src/stores/constants";
+
+let scapeSettings: ScapeSettings;
+let srvbSettings: SrvbSettings;
+let sharedSettings: SharedSettings;
 
 // First, we initialize a custom Renderer instance that marshals our instruction
 // batches through the __postNativeMessage__ function to direct the underlying native
@@ -22,14 +25,48 @@ let core = new Renderer((batch) => {
 
 // Register our custom nodes
 let convolver = (_props, ...childs) => createNode("convolver", _props, childs);
-
-const defaultIRs = [ // SHOULD MATCH FILE NAMES IN THE PUBLIC IR FOLDER
-
+// MUST MATCH FILE NAMES IN THE PUBLIC IR FOLDER
+const blockSizes = [512, 4096];
+const IR_Slots = [
   { name: "LIGHT", index: 0, att: 0.65 },
   { name: "SURFACE", index: 1, att: 0.475 },
   { name: "TEMPLE", index: 2, att: 0.475 },
-  { name: "DEEPNESS", index: 3, att: 0.25},
+  { name: "DEEPNESS", index: 3, att: 0.25 },
 ];
+// Utilise a factory pattern to generate the ref updaters
+// for the Elem ref engine, otherwise it's a lot of repetition
+const IR_Refs = IR_Slots.reduce((acc, slot) => {
+  return { ...acc, ...IR_SlotRefFactory( scapeSettings, refs, slot.name, slot.index, slot.att) };
+}, {});
+
+function IR_SlotRefFactory( scapeSettings: ScapeSettings, refs:RefMap, name: string, vectorIndex: number, scale: number) {
+  if (!scapeSettings || !refs ) return;
+  return {
+    [`${name}_0`]: refs.getOrCreate(
+      `${name}_0`,
+      "convolver",
+      {
+        path: `${name}_0`,
+        process: scapeSettings.vectorData[vectorIndex],
+        scale,
+        blockSizes,
+      },
+      [el.tapIn({ name: `srvbOut:0` })]
+    ),
+    [`${name}_1`]: refs.getOrCreate(
+      `${name}_1`,
+      "convolver",
+      {
+        path: `${name}_1`,
+        process: scapeSettings.vectorData[vectorIndex],
+        scale,
+        blockSizes,
+      },
+      [el.tapIn({ name: `srvbOut:1` })]
+    ),
+  };
+}
+
 
 // create the vector interpolation ramp, used to crossfade between 4 IRs
 function createHermiteVecInterp(): Ramp<Vec> {
@@ -46,7 +83,7 @@ function createHermiteVecInterp(): Ramp<Vec> {
   );
 }
 
-let ir_inputAtt = defaultIRs.map((ir) => ir.att);
+let ir_inputAtt = IR_Slots.map((ir) => ir.att);
 
 // Next, a RefMap for coordinating our refs
 let refs: RefMap = new RefMap(core);
@@ -99,7 +136,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     const props =  
     {
       key: "srvb",
-      IRs: defaultIRs ,
+      IRs: IR_Slots ,
       srvbBypass: srvb.bypass,
       dryMix: shared.dryMix,
       sampleRate: shared.sampleRate,
@@ -117,7 +154,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
   const scapeProps = () => {
    const props =
    {
-    IRs: defaultIRs,
+    IRs: IR_Slots,
     sampleRate: shared.sampleRate,
     scapeBypass: scape.bypass || 0,    
     vectorData: scape.vectorData,    
@@ -199,7 +236,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     refs.update("srvbBypass", { value: srvb.bypass }); // needed to bypass empty input when srvb is bypassed
 
     // update the convolvers
-    defaultIRs.forEach((item, index) => {
+    IR_Slots.forEach((item, index) => {
       for (let i = 0; i < 2; i++) {
         refs.update(`${item.name}_${i}`, {
           path:
