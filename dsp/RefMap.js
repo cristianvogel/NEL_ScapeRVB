@@ -7,6 +7,10 @@ export class RefMap {
     this._core = core;
   }
 
+  get size() {
+    return this._map.size;
+  }
+  
   getOrCreate(name, type, props, children) {
     if (!this._map.has(name)) {
       let ref = this._core.createRef(type, props, children);
