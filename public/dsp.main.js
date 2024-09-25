@@ -3190,6 +3190,45 @@
     ).map((p) => [p.paramId, p.defaultValue])
   );
 
+  // dsp/OEIS-Structures.ts
+  function updateStructureConstants(refs2, srvbSettings) {
+    if (!srvbSettings || !refs2)
+      return;
+    OEIS_SEQUENCES[srvbSettings.structure].forEach((value, i) => {
+      if (value !== void 0)
+        refs2.update(`node:structureConst:${i}`, { value });
+    });
+  }
+  function buildStructures(refs2, currStructIndex = 0) {
+    {
+      let series = OEIS_SEQUENCES[currStructIndex];
+      const seriesMax = series[argMax(series)];
+      const sequenceAsSignals = castSequencesToRefs(series, seriesMax, refs2);
+      if (!sequenceAsSignals)
+        return;
+      const sd = {
+        consts: sequenceAsSignals,
+        max: seriesMax
+      };
+      return sd;
+    }
+  }
+  function castSequencesToRefs(series, seriesMax, refs2) {
+    return series.map((value, j) => {
+      let updatedValue = value;
+      if (value === null || value === void 0) {
+        updatedValue = Math.random() * seriesMax;
+      }
+      const t = refs2.getOrCreate(
+        `node:structureConst:${j}`,
+        "const",
+        { value: updatedValue, key: `key:structureConst:${j}` },
+        []
+      );
+      return t;
+    });
+  }
+
   // dsp/main.ts
   var core = new Renderer((batch) => {
     __postNativeMessage__(JSON.stringify(batch));
@@ -3229,6 +3268,16 @@
       )
     };
   }
+  function registerConvolverRefs(scape, refs2) {
+    let convolvers = {};
+    IR_Slots.forEach((item, index) => {
+      convolvers = {
+        ...convolvers,
+        ...IR_SlotRefFactory(scape, refs2, item.name, index, ir_inputAtt[index])
+      };
+    });
+    return convolvers;
+  }
   function createHermiteVecInterp() {
     return ramp(
       // use a vector interpolation preset with the VEC3 API
@@ -3261,8 +3310,9 @@
   }
   var memoized = null;
   globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
-    const { state, srvb, shared, scape } = parseNewState(stateReceivedFromNative);
-    const blockSizes2 = [512, 4096];
+    const { state, srvb, shared, scape } = parseNewState(
+      stateReceivedFromNative
+    );
     refs.getOrCreate("dryMix", "const", { value: shared.dryMix }, []);
     const srvbProps = () => {
       const props = {
@@ -3297,25 +3347,20 @@
         v3: refs.getOrCreate("v3", "const", { value: scape.vectorData[2] }, []),
         v4: refs.getOrCreate("v4", "const", { value: scape.vectorData[3] }, []),
         // render the convolvers
-        ...registerConvolverRefs()
+        ...registerConvolverRefs(scape, refs)
       };
       return props;
     };
-    function registerConvolverRefs() {
-      let convolvers = {};
-      IR_Slots.forEach((item, index) => {
-        convolvers = { ...convolvers, ...IR_SlotRefFactory(scape, refs, item.name, index, ir_inputAtt[index]) };
-      });
-      return convolvers;
-    }
     if (!memoized || shouldRender(memoized, state)) {
-      structureData = buildStructures(refs, srvb.structure);
+      structureData = buildStructures(refs, srvb.structure) || structureData;
       const graph = core.render(
         ...SCAPE(
           scapeProps(),
           shared.dryInputs,
           ...SRVB(srvbProps(), shared.dryInputs, ...structureData.consts)
-        ).map((node, i) => stdlib.add(stdlib.mul(refs.get("dryMix"), shared.dryInputs[i]), node))
+        ).map(
+          (node, i) => stdlib.add(stdlib.mul(refs.get("dryMix"), shared.dryInputs[i]), node)
+        )
       );
     } else {
       if (!srvb.bypass) {
@@ -3329,6 +3374,7 @@
         refs.update("tone", { value: srvb.tone });
         refs.update("position", { value: shared.position });
         refs.update("structureMax", { value: srvb.structureMax });
+        updateStructureConstants(refs, srvb);
       }
       if (!scape.bypass) {
         refs.update("scapeLevel", { value: scape.level });
@@ -3388,33 +3434,6 @@
       return { state: state2, srvb: srvb2, shared: shared2, scape: scape2 };
     }
   };
-  function buildStructures(_refs, currStructIndex = 0) {
-    {
-      let series = OEIS_SEQUENCES[currStructIndex];
-      const seriesMax = series[argMax(series)];
-      const sequenceAsSignals = castSequencesToRefs(series, seriesMax, _refs);
-      const sd = {
-        consts: sequenceAsSignals,
-        max: seriesMax
-      };
-      return sd;
-    }
-  }
-  function castSequencesToRefs(series, seriesMax, _refs) {
-    return series.map((value, j) => {
-      let updatedValue = value;
-      if (value === null || value === void 0) {
-        updatedValue = Math.random() * seriesMax;
-      }
-      const t = _refs.getOrCreate(
-        `node:structureConst:${j}`,
-        "const",
-        { value: updatedValue, key: `key:structureConst:${j}` },
-        []
-      );
-      return t;
-    });
-  }
   globalThis.__receiveError__ = (err) => {
     console.log(`[Elem: ${err.name}] ${err.message}`);
   };

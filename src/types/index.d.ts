@@ -27,6 +27,13 @@ interface ScapeSettings {
   bypass: number;
 }
 
+interface ProcessorSettings {
+  state: any, // todo: define final host state interface
+  shared: SharedSettings;
+  srvb: SrvbSettings;
+  scape: ScapeSettings;
+}
+
 type bypassStates = '0' | '1';
 type bypassEvents = 'toggle';
 
