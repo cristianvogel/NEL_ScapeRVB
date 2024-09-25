@@ -35,9 +35,7 @@ const IR_Slots = [
 ];
 // Utilise a factory pattern to generate the ref updaters
 // for the Elem ref engine, otherwise it's a lot of repetition
-const IR_Refs = IR_Slots.reduce((acc, slot) => {
-  return { ...acc, ...IR_SlotRefFactory( scapeSettings, refs, slot.name, slot.index, slot.att) };
-}, {});
+
 
 function IR_SlotRefFactory( scapeSettings: ScapeSettings, refs:RefMap, name: string, vectorIndex: number, scale: number) {
   if (!scapeSettings || !refs ) return;
@@ -168,24 +166,17 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     v3: refs.getOrCreate("v3", "const", { value: scape.vectorData[2] }, [ ]),
     v4: refs.getOrCreate("v4", "const", { value: scape.vectorData[3] }, [ ]),
     // render the convolvers
-    SURFACE_0: refs.getOrCreate("SURFACE_0", "convolver", 
-      { path: "SURFACE_0", process: scape.vectorData[1], scale: ir_inputAtt[1],    blockSizes }, [ el.tapIn( { name: "srvbOut:0" }) ] ),
-    SURFACE_1: refs.getOrCreate("SURFACE_1", "convolver", 
-      { path: "SURFACE_1" , process: scape.vectorData[1], scale: ir_inputAtt[1],   blockSizes }, [ el.tapIn( { name: "srvbOut:1" }) ]),
-    TEMPLE_0: refs.getOrCreate("TEMPLE_0", "convolver", 
-      { path: "TEMPLE_0", process: scape.vectorData[2], scale: ir_inputAtt[2] , blockSizes }, [ el.tapIn( { name: "srvbOut:0" }) ] ),
-    TEMPLE_1: refs.getOrCreate("TEMPLE_1", "convolver", 
-      { path: "TEMPLE_1", process: scape.vectorData[2], scale: ir_inputAtt[2] , blockSizes }, [ el.tapIn( { name: "srvbOut:1" }) ] ),
-    LIGHT_0: refs.getOrCreate("LIGHT_0", "convolver", 
-      { path: "LIGHT_0", process: scape.vectorData[0], scale: ir_inputAtt[0] , blockSizes }, [ el.tapIn( { name: "srvbOut:0" }) ] ),
-    LIGHT_1: refs.getOrCreate("LIGHT_1", "convolver", 
-      { path: "LIGHT_1", process: scape.vectorData[0], scale: ir_inputAtt[0] , blockSizes }, [ el.tapIn( { name: "srvbOut:1" }) ] ),
-    DEEPNESS_0: refs.getOrCreate("DEEPNESS_0", "convolver", 
-      { path: "DEEPNESS_0", process: scape.vectorData[3], scale: ir_inputAtt[3] ,  blockSizes }, [ el.tapIn( { name: "srvbOut:0" }) ] ),
-    DEEPNESS_1: refs.getOrCreate("DEEPNESS_1", "convolver", 
-      { path: "DEEPNESS_1", process: scape.vectorData[3], scale: ir_inputAtt[3]  , blockSizes }, [ el.tapIn( { name: "srvbOut:1" }) ] ),
+...registerConvolverRefs()
   };
   return props;
+  }
+
+  function registerConvolverRefs() {
+    let convolvers = {};
+    IR_Slots.forEach((item, index) => {
+      convolvers = { ...convolvers, ...IR_SlotRefFactory(scape, refs, item.name, index, ir_inputAtt[index]) };
+    });
+    return convolvers;
   }
 
   /**
