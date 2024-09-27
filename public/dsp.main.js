@@ -3444,6 +3444,7 @@
   globalThis.__receiveVFSKeys__ = function(vfsKeys) {
     const vfsKeysArray = vfsKeys.split(",");
     for (let key of vfsKeysArray) {
+      console.log( 'keys!' )
     }
     ;
     VFSKeys.update(vfsKeysArray);

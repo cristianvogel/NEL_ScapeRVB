@@ -15,7 +15,6 @@ import {
 } from "../src/types";
 import { REVERSE_BUFFER_PREFIX } from "../src/stores/constants";
 import { castSequencesToRefs, buildStructures, updateStructureConstants } from "./OEIS-Structures";
-import { VFSKeysNative } from "./stores.svelte.js"
 
 
 // First, we initialize a custom Renderer instance that marshals our instruction
@@ -36,9 +35,12 @@ const IR_Slots = [
   { name: "TEMPLE", index: 2, att: 0.475 },
   { name: "DEEPNESS", index: 3, att: 0.25 },
 ];
+
+let userKeys: Array<string> = []; 
+
+
 // Utilise a factory pattern to generate the ref updaters
 // for the Elem ref engine, otherwise it's a lot of repetition
-
 function IR_SlotRefFactory(
   scapeSettings: ScapeSettings,
   refs: RefMap,
@@ -120,6 +122,7 @@ let structureData: StructureData = {
 // the conditions that will trigger a full re-render of the node graph
 function shouldRender(_mem, _curr) {
   const result =
+  userKeys.length > 4 ||
     _mem === null ||
     _curr === null ||
     refs._map.size === 0 ||
@@ -298,10 +301,14 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
 //////////////////////////
 globalThis.__receiveVFSKeys__ = function (vfsKeys: string) {
   const vfsKeysArray = vfsKeys.split(",");
-  for (let key of vfsKeysArray) {
-   
-  };
-  VFSKeysNative.update(vfsKeysArray);
+
+  if ( vfsKeysArray.length > 4 ) {
+    userKeys = vfsKeysArray.filter( (k)=> k.includes( 'USER' ) );
+  }
+
+  userKeys.forEach( (key, i) => {
+    IR_Slots[i] = { ...IR_Slots[i], name: 'USER'+i }
+  });
 }
 /////////////////////////////////////////////////////////////////
 // Finally, an error callback which just logs back to native

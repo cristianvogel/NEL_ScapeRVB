@@ -1,12 +1,11 @@
-import esbuild from "esbuild";
-import esbuildSvelte from "esbuild-svelte";
+
 
 // take an optional --dev flag and set watch mode accordingly
 const watch = process.argv.includes("--dev");
 
 //build the application
 const config = {
-        entryPoints: ["dsp/main.svelte.js"],
+        entryPoints: ["dsp/main.ts"],
         outfile: "public/dsp.main.js",
         minify: false, //so the resulting code is easier to understand
         bundle: true,
