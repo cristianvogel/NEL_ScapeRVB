@@ -3183,6 +3183,13 @@
   var REGISTERED_PARAM_NAMES = HOST_PARAMS.map(
     (p) => p.paramId
   );
+  var IR_Slots = [
+    { name: "LIGHT", index: 0, att: 0.65 },
+    { name: "SURFACE", index: 1, att: 0.475 },
+    { name: "TEMPLE", index: 2, att: 0.475 },
+    { name: "DEEPNESS", index: 3, att: 0.25 }
+  ];
+  var DEFAULT_VFS_KEYS = IR_Slots.map((slot) => slot.name);
   var REVERSE_BUFFER_PREFIX = manifest_default["REVERSE-BUFFER-PREFIX"];
   var PARAM_DEFAULTS = Object.fromEntries(
     HOST_PARAMS.filter(
@@ -3234,7 +3241,7 @@
     __postNativeMessage__(JSON.stringify(batch));
   });
   var blockSizes = [512, 4096];
-  var IR_Slots = [
+  var IR_Slots2 = [
     { name: "LIGHT", index: 0, att: 0.65 },
     { name: "SURFACE", index: 1, att: 0.475 },
     { name: "TEMPLE", index: 2, att: 0.475 },
@@ -3270,7 +3277,7 @@
   }
   function registerConvolverRefs(scape, refs2) {
     let convolvers = {};
-    IR_Slots.forEach((item, index) => {
+    IR_Slots2.forEach((item, index) => {
       convolvers = {
         ...convolvers,
         ...IR_SlotRefFactory(scape, refs2, item.name, index, ir_inputAtt[index])
@@ -3295,7 +3302,7 @@
       ]
     );
   }
-  var ir_inputAtt = IR_Slots.map((ir) => ir.att);
+  var ir_inputAtt = IR_Slots2.map((ir) => ir.att);
   var refs = new RefMap(core);
   var HERMITE = createHermiteVecInterp();
   var defaultStructure = OEIS_SEQUENCES[0];
@@ -3317,7 +3324,7 @@
     const srvbProps = () => {
       const props = {
         key: "srvb",
-        IRs: IR_Slots,
+        IRs: IR_Slots2,
         srvbBypass: srvb.bypass,
         dryMix: shared.dryMix,
         sampleRate: shared.sampleRate,
@@ -3333,7 +3340,7 @@
     };
     const scapeProps = () => {
       const props = {
-        IRs: IR_Slots,
+        IRs: IR_Slots2,
         sampleRate: shared.sampleRate,
         scapeBypass: scape.bypass || 0,
         vectorData: scape.vectorData,
@@ -3386,7 +3393,7 @@
       }
       refs.update("dryMix", { value: shared.dryMix });
       refs.update("srvbBypass", { value: srvb.bypass });
-      IR_Slots.forEach((item, index) => {
+      IR_Slots2.forEach((item, index) => {
         for (let i = 0; i < 2; i++) {
           refs.update(`${item.name}_${i}`, {
             path: scape.reverse > 0.5 ? REVERSE_BUFFER_PREFIX + `${item.name}_${i}` : `${item.name}_${i}`,
@@ -3433,6 +3440,13 @@
       };
       return { state: state2, srvb: srvb2, shared: shared2, scape: scape2 };
     }
+  };
+  globalThis.__receiveVFSKeys__ = function(vfsKeys) {
+    const vfsKeysArray = vfsKeys.split(",");
+    for (let key of vfsKeysArray) {
+    }
+    ;
+    VFSKeys.update(vfsKeysArray);
   };
   globalThis.__receiveError__ = (err) => {
     console.log(`[Elem: ${err.name}] ${err.message}`);

@@ -4,7 +4,8 @@ import {
   GestureSource_SRVB,
   GestureSource_Reverse,
   HostState,
-  WebSocketPort
+  WebSocketPort,
+  VFSKeys
 } from "../stores/stores.svelte";
 import { REGISTERED_PARAM_NAMES } from "../stores/constants";
 
@@ -149,11 +150,11 @@ export function RegisterMessagesFromHost() {
    * @param vfsKeys - The VFS keys
    */
   globalThis.__receiveVFSKeys__ = function (vfsKeys: string) {
-
-    for (let key of vfsKeys.split(",")) {
+    const vfsKeysArray = vfsKeys.split(",");
+    for (let key of vfsKeysArray) {
       console.log("VFS Key: ", key);
-    }
-    
+    };
+    VFSKeys.update(vfsKeysArray);
   }
 
   /** ━━━━━━━

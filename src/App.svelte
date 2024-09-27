@@ -4,7 +4,8 @@
     ConsoleText,
     CablesReady,
     HostState,
-    WebSocketPort
+    WebSocketPort,
+    VFSKeys,
   } from "./stores/stores.svelte";
   import { fade } from "svelte/transition";
   import { initPatchListeners } from "./lib/PatchListeners.svelte";
@@ -17,7 +18,6 @@
 
   onMount(() => {
     RegisterMessagesFromHost();
-
 
     // Second setup the listener for CABLES loader
     document.addEventListener("CABLES.jsLoaded", function (event) {
@@ -41,21 +41,24 @@
           alpha: true,
           premultipliedAlpha: true,
         },
-        variables: {  },
+        variables: {},
       });
     });
   });
 
-let firstRun = true;
+  let firstRun = true;
 
- $effect(() => {
-  if (  firstRun  && Object.keys(HostState.current).length > 0  ) {
-    CABLES.patch.getVar("host_scapeReverse").setValue( HostState.snapshot.scapeReverse );
-    CABLES.patch.getVar("ui_scapeReverse").setValue( HostState.snapshot.scapeReverse );
-    firstRun = false;
-  }
-});
-
+  $effect(() => {
+    if (firstRun && Object.keys(HostState.current).length > 0) {
+      CABLES.patch
+        .getVar("host_scapeReverse")
+        .setValue(HostState.snapshot.scapeReverse);
+      CABLES.patch
+        .getVar("ui_scapeReverse")
+        .setValue(HostState.snapshot.scapeReverse);
+      firstRun = false;
+    }
+  });
 
   $effect(() => {
     if (ConsoleText.current.length > 0) {
@@ -64,17 +67,26 @@ let firstRun = true;
       }, 3000);
     }
   });
+
+  $effect(() => {
+    if (VFSKeys.count > 4) {
+    //  updateUIwithUserIRs();
+    }
+  });
+
+
 </script>
 
-<canvas id="glcanvas" width="100vw" height="100vh" willReadFrequently="true"></canvas>
+<canvas id="glcanvas" width="100vw" height="100vh" willReadFrequently="true"
+></canvas>
 
 {#if WebSocketPort.current > 1}
-<WebSocketClient port={ WebSocketPort.current } />
+  <WebSocketClient port={WebSocketPort.current} />
 {/if}
 
-{#if CablesReady.current}  
+{#if CablesReady.current}
   <pre
-    class="console-text">{ConsoleText.current} </pre>
+    class="console-text">{ConsoleText.current} || VFS count: {VFSKeys.count} </pre>
 
   <pre class="console-text" style="bottom: 2rem;">{ConsoleText.extended}</pre>
 {:else}

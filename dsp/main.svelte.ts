@@ -15,6 +15,7 @@ import {
 } from "../src/types";
 import { REVERSE_BUFFER_PREFIX } from "../src/stores/constants";
 import { castSequencesToRefs, buildStructures, updateStructureConstants } from "./OEIS-Structures";
+import { VFSKeysNative } from "./stores.svelte.js"
 
 
 // First, we initialize a custom Renderer instance that marshals our instruction
@@ -294,7 +295,14 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
   }
 }; // end of receiveStateChange
 
-
+//////////////////////////
+globalThis.__receiveVFSKeys__ = function (vfsKeys: string) {
+  const vfsKeysArray = vfsKeys.split(",");
+  for (let key of vfsKeysArray) {
+   
+  };
+  VFSKeysNative.update(vfsKeysArray);
+}
 /////////////////////////////////////////////////////////////////
 // Finally, an error callback which just logs back to native
 globalThis.__receiveError__ = (err) => {

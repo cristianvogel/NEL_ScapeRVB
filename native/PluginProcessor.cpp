@@ -226,9 +226,6 @@ void EffectsPluginProcessor::handleBase64FileDrop(const elem::js::Array &arrayOf
         // update the virtual file system
         decodeBase64toIRforVFS(pathName, uriStringView);
     }
-    // notify the editor that files have been loaded via ws
-    // and how many
-    // sendJavascriptToUI("globalThis.__filesLoaded__(" + std::to_string(arrayOfURI.size()) + ")");
 }
 //==============================================================================
 // add only one impulse response to the runtime virtual file system
@@ -376,7 +373,6 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(std::filesystem::path &pat
         if (!reader)
         {
             throw std::runtime_error("Reader failed for " + path.filename().string());
-
             return;
         }
         const choc::audio::AudioFileProperties p = reader->getProperties();
@@ -386,13 +382,16 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(std::filesystem::path &pat
         choc::buffer::ChannelArrayBuffer<float> loadedBuffer = reader->template readEntireStream<float>();
 
         auto numChannels = loadedBuffer.getSize().numChannels;
+
+        if ( numChannels < 2 || numChannels > 2 ) dispatchError("File error:", "Only 2 channel files can be used." );
+
         auto frameCount = loadedBuffer.getSize().numFrames;
 
         // extract each channel into a mono buffer up to 2 channels max
         for (decltype(numChannels) i = 0; i < numChannels; ++i)
         {
             auto singleChannelView = loadedBuffer.getChannel(i).data.fromChannel(0);
-            auto name = "USER" + std::to_string(slotIndex) + ":" + std::to_string(i);
+            auto name = "USER" + std::to_string(slotIndex) + "_" + std::to_string(i);
             runtime->updateSharedResourceMap(name, singleChannelView.data, frameCount * sizeof(float));
             auto channelRange = loadedBuffer.getChannelRange();
 
@@ -935,23 +934,7 @@ std::optional<std::string> EffectsPluginProcessor::loadDspEntryFileContents() co
     return dspEntryFileContents;
 }
 
-std::optional<std::string> EffectsPluginProcessor::loadPatchEntryFileContents() const
-{
-    // Load and evaluate our Elementary js main file
-#if ELEM_DEV_LOCALHOST
-    auto patchEntryFile = juce::URL("http://localhost:5173/patch.main.js");
-    auto patchEntryFileContents = patchEntryFile.readEntireTextStream().toStdString();
-#else
-    auto patchEntryFile = getAssetsDirectory().getChildFile(MAIN_PATCH_JS_FILE);
 
-    if (!patchEntryFile.existsAsFile())
-        return std::nullopt;
-
-    auto patchEntryFileContents = patchEntryFile.loadFileAsString().toStdString();
-#endif
-
-    return patchEntryFileContents;
-}
 
 bool EffectsPluginProcessor::sendJavascriptToUI(const std::string &expr) const
 {

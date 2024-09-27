@@ -2,7 +2,31 @@
 /// Svelte5 state stores
 
 import { bypassEvents, bypassStates } from "../types";
-import { fsm } from '@githubnext/tiny-svelte-fsm';
+import { DEFAULT_VFS_KEYS } from "./constants";
+
+
+/////////////////////////
+export const VFSKeys = vfsKeys( DEFAULT_VFS_KEYS );
+function vfsKeys(initial) {
+  let current = $state(initial);
+  return {
+    get keys() {
+      return current;
+    },
+    get count() {
+      return current.length;
+    },
+    get current() {
+      return current;
+    },
+    update(newValues: Array<string>) {
+      current = newValues;
+    },
+    prune() {
+     // not implemented
+    }
+  };
+}
 /////////////////////////
 export const WebSocketPort = webSocketPort(0);
 function webSocketPort(initial) {
@@ -135,24 +159,3 @@ function hostState(initial) {
   };
 }
 
-
-//////// Deprecating
-
-
-// export const srvbBypassFSM = fsm<bypassStates, bypassEvents>('0', {
-// 	'0': {
-// 		toggle: '1'
-// 	},
-// 	'1': {
-// 		toggle: '0'
-// 	}
-// });
-
-// export const scapeBypassFSM = fsm<bypassStates, bypassEvents>('0', {   // - default state 
-//   '0': {
-//     toggle: '1'
-//   },
-//   '1': {
-//     toggle: '0'
-//   }
-// });
