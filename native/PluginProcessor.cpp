@@ -103,11 +103,20 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
                 {
                     if (filePath.isString())
                     {
-                        // Convert the string to a std::filesystem::path
                         std::filesystem::path path = filePath.toString();
+                        std::string extension = choc::text::toLowerCase(path.extension().string());
+                        bool validExtension = choc::text::contains(extension, "wav") || choc::text::contains(extension, "flac");
 
-                        // Call the method to read audio from the path
-                        sendWebSocketMessage(path);
+                        if (!validExtension)
+                        {
+                            processor.dispatchNativeLog("File Error:", "Only WAV or FLAC audio formats supported.");
+                            continue;
+                        }
+                        if (index >= 4)
+                        {
+                            processor.dispatchNativeLog("File Error:", "Sorry, only four user files can be imported.");
+                            break;
+                        }
                         processor.loadAudioFromFileIntoVFS(path, index++);
                     }
                 }
@@ -356,7 +365,7 @@ juce::AudioBuffer<float> EffectsPluginProcessor::getAudioBufferFromFile(juce::Fi
     return audioBuffer;
 }
 //==============================================================================
-void EffectsPluginProcessor::loadAudioFromFileIntoVFS(std::filesystem::path &path, int index = 0)
+void EffectsPluginProcessor::loadAudioFromFileIntoVFS(std::filesystem::path &path, int slotIndex = 0)
 {
 
     auto in = std::make_shared<std::ifstream>(path.string());
@@ -366,7 +375,8 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(std::filesystem::path &pat
         auto reader = EffectsPluginProcessor::formats.createReader(in);
         if (!reader)
         {
-            throw std::runtime_error("Failed to create audio reader for " + path.string());
+            throw std::runtime_error("Reader failed for " + path.filename().string());
+
             return;
         }
         const choc::audio::AudioFileProperties p = reader->getProperties();
@@ -382,13 +392,27 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(std::filesystem::path &pat
         for (decltype(numChannels) i = 0; i < numChannels; ++i)
         {
             auto singleChannelView = loadedBuffer.getChannel(i).data.fromChannel(0);
-            auto name = "USER_" + std::to_string(index) + ":" + std::to_string(i);
+            auto name = "USER" + std::to_string(slotIndex) + ":" + std::to_string(i);
             runtime->updateSharedResourceMap(name, singleChannelView.data, frameCount * sizeof(float));
-        }
+            auto channelRange = loadedBuffer.getChannelRange();
+
+            // get 0.75 section, preparing for reverse
+            auto section = frameCount * 0.75;
+            // reverse the IR and copy that to the other channel
+            // loadedBuffer.reverse(0, juce::roundToInt(numSamples * 0.75f));
+            // loadedBuffer.copyFrom(1, 0, buffer.getReadPointer(0), juce::roundToInt(numSamples * 0.75f));
+
+            // then add the reverse impulse response to the virtual file system too, with a prefix
+            // runtime->updateSharedResourceMap(
+            //     REVERSE_BUFFER_PREFIX + name,
+            //     buffer.getReadPointer(1),
+            //     numSamples * 0.75);
+            // }
+        };
     }
     catch (const std::exception &e)
     {
-        dispatchError("Error reading audio from path: ", e.what());
+        dispatchNativeLog("File error:", "There was a problem reading the file " + path.filename().string());
     }
 
     inspectVFS();
