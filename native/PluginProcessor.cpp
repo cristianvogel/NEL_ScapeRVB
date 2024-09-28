@@ -312,6 +312,8 @@ void EffectsPluginProcessor::inspectVFS()
     // send the vfs to the editor
     const auto expr = serialize(jsFunctions::vfsKeysScript, choc::value::Value(vfsString), "%");
     sendJavascriptToUI(expr);
+    jsContext.evaluateExpression(expr);
+    
 }
 //==============================================================================
 // add each impulse response to the runtime virtual file system
@@ -366,7 +368,7 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(std::filesystem::path &pat
 {
 
     auto in = std::make_shared<std::ifstream>(path.string());
-
+    
     try
     {
         auto reader = EffectsPluginProcessor::formats.createReader(in);
@@ -377,7 +379,6 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(std::filesystem::path &pat
         }
         const choc::audio::AudioFileProperties p = reader->getProperties();
 
-        dispatchNativeLog("File props:", p.getDescription());
 
         choc::buffer::ChannelArrayBuffer<float> loadedBuffer = reader->template readEntireStream<float>();
 
@@ -390,13 +391,16 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(std::filesystem::path &pat
         // extract each channel into a mono buffer up to 2 channels max
         for (decltype(numChannels) i = 0; i < numChannels; ++i)
         {
-            auto singleChannelView = loadedBuffer.getChannel(i).data.fromChannel(0);
+            choc::buffer::BufferView<float, choc::buffer::MonoLayout> singleChannelView = loadedBuffer.getChannel(i);
+            if ( singleChannelView.data.stride != 1 ) dispatchError("File error:", "Stride not 1");
+            auto channelData = singleChannelView.data;
+  
             auto name = "USER" + std::to_string(slotIndex) + "_" + std::to_string(i);
-            runtime->updateSharedResourceMap(name, singleChannelView.data, frameCount * sizeof(float));
-            auto channelRange = loadedBuffer.getChannelRange();
-
+            runtime->updateSharedResourceMap(name, channelData.data, frameCount * sizeof(float));
+       
+            //auto channelRange = loadedBuffer.getChannelRange()
             // get 0.75 section, preparing for reverse
-            auto section = frameCount * 0.75;
+            // auto section = frameCount * 0.75;
             // reverse the IR and copy that to the other channel
             // loadedBuffer.reverse(0, juce::roundToInt(numSamples * 0.75f));
             // loadedBuffer.copyFrom(1, 0, buffer.getReadPointer(0), juce::roundToInt(numSamples * 0.75f));

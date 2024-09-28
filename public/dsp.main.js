@@ -2216,6 +2216,10 @@
     get size() {
       return this._map.size;
     }
+    has(name) {
+      (0, import_invariant2.default)(this._map.has(name), `Ref ${name} not found`);
+      return this._map.has(name);
+    }
     getOrCreate(name, type, props, children) {
       if (!this._map.has(name)) {
         let ref = this._core.createRef(type, props, children);
@@ -3240,14 +3244,16 @@
   var core = new Renderer((batch) => {
     __postNativeMessage__(JSON.stringify(batch));
   });
+  var refs = new RefMap(core);
   var blockSizes = [512, 4096];
-  var IR_Slots2 = [
+  var IR_Default_Slots = [
     { name: "LIGHT", index: 0, att: 0.65 },
     { name: "SURFACE", index: 1, att: 0.475 },
     { name: "TEMPLE", index: 2, att: 0.475 },
     { name: "DEEPNESS", index: 3, att: 0.25 }
   ];
-  function IR_SlotRefFactory(scapeSettings, refs2, name, vectorIndex, scale) {
+  var IR_User_Slots = [];
+  function IR_SlotRefFactory(scapeSettings, refs2, name, slotIndex, attenuation) {
     if (!scapeSettings || !refs2)
       return;
     return {
@@ -3256,8 +3262,8 @@
         "convolver",
         {
           path: `${name}_0`,
-          process: scapeSettings.vectorData[vectorIndex],
-          scale,
+          process: scapeSettings.vectorData[slotIndex],
+          scale: attenuation,
           blockSizes
         },
         [stdlib.tapIn({ name: `srvbOut:0` })]
@@ -3267,8 +3273,8 @@
         "convolver",
         {
           path: `${name}_1`,
-          process: scapeSettings.vectorData[vectorIndex],
-          scale,
+          process: scapeSettings.vectorData[slotIndex],
+          scale: attenuation,
           blockSizes
         },
         [stdlib.tapIn({ name: `srvbOut:1` })]
@@ -3277,13 +3283,49 @@
   }
   function registerConvolverRefs(scape, refs2) {
     let convolvers = {};
-    IR_Slots2.forEach((item, index) => {
+    IR_Default_Slots.forEach((item) => {
       convolvers = {
         ...convolvers,
-        ...IR_SlotRefFactory(scape, refs2, item.name, index, ir_inputAtt[index])
+        ...IR_SlotRefFactory(scape, refs2, item.name, item.index, item.att)
       };
     });
     return convolvers;
+  }
+  function parseAndUpdateIRRefs(scape, useDefaultIRs = true) {
+    const VFSPathWithReverseSwitch = (name, channel) => {
+      const selectedPath = scape.reverse > 0.5 ? REVERSE_BUFFER_PREFIX + `${name}_${channel}` : `${name}_${channel}`;
+      return selectedPath;
+    };
+    const getRefMapKey = (slotIndex, chan, refs2) => {
+      const name = `${IR_Default_Slots[slotIndex].name}_${chan}`;
+      refs2.has(name);
+      return name;
+    };
+    console.log("UpdateRefs: default -> ", IR_Default_Slots, " user -> ", IR_User_Slots);
+    if (useDefaultIRs) {
+      IR_Default_Slots.forEach((defaultIR, slotIndex) => {
+        for (let chan = 0; chan < 2; chan++) {
+          refs.update(getRefMapKey(slotIndex, chan, refs), {
+            path: VFSPathWithReverseSwitch(defaultIR.name, chan),
+            process: Math.min(scape.level, scape.vectorData[defaultIR.index]),
+            // todo: take another look at this
+            scale: defaultIR.att
+          });
+        }
+      });
+    } else {
+      IR_User_Slots.forEach((userIR, slotIndex) => {
+        for (let chan = 0; chan < 2; chan++) {
+          refs.update(getRefMapKey(slotIndex, chan, refs), {
+            path: `${IR_User_Slots[slotIndex].name}_${chan}`,
+            // todo: reverse switch
+            process: Math.min(scape.level, scape.vectorData[userIR.index]),
+            // todo: take another look at this
+            scale: userIR.att
+          });
+        }
+      });
+    }
   }
   function createHermiteVecInterp() {
     return ramp(
@@ -3302,8 +3344,6 @@
       ]
     );
   }
-  var ir_inputAtt = IR_Slots2.map((ir) => ir.att);
-  var refs = new RefMap(core);
   var HERMITE = createHermiteVecInterp();
   var defaultStructure = OEIS_SEQUENCES[0];
   var defaultMax = argMax(defaultStructure, 17);
@@ -3312,7 +3352,7 @@
     max: defaultMax
   };
   function shouldRender(_mem, _curr) {
-    const result = _mem === null || _curr === null || refs._map.size === 0 || _curr.sampleRate !== _mem?.sampleRate || Math.round(_curr.scapeBypass) !== _mem?.scapeBypass || Math.round(_curr.srvbBypass) !== _mem?.srvbBypass;
+    const result = IR_User_Slots.length > 4 || _mem === null || _curr === null || refs._map.size === 0 || _curr.sampleRate !== _mem?.sampleRate || Math.round(_curr.scapeBypass) !== _mem?.scapeBypass || Math.round(_curr.srvbBypass) !== _mem?.srvbBypass;
     return result;
   }
   var memoized = null;
@@ -3324,7 +3364,7 @@
     const srvbProps = () => {
       const props = {
         key: "srvb",
-        IRs: IR_Slots2,
+        IRs: IR_Default_Slots,
         srvbBypass: srvb.bypass,
         dryMix: shared.dryMix,
         sampleRate: shared.sampleRate,
@@ -3340,7 +3380,7 @@
     };
     const scapeProps = () => {
       const props = {
-        IRs: IR_Slots2,
+        IRs: IR_Default_Slots,
         sampleRate: shared.sampleRate,
         scapeBypass: scape.bypass || 0,
         vectorData: scape.vectorData,
@@ -3393,15 +3433,7 @@
       }
       refs.update("dryMix", { value: shared.dryMix });
       refs.update("srvbBypass", { value: srvb.bypass });
-      IR_Slots2.forEach((item, index) => {
-        for (let i = 0; i < 2; i++) {
-          refs.update(`${item.name}_${i}`, {
-            path: scape.reverse > 0.5 ? REVERSE_BUFFER_PREFIX + `${item.name}_${i}` : `${item.name}_${i}`,
-            process: Math.min(scape.level, scape.vectorData[item.index]),
-            scale: ir_inputAtt[index]
-          });
-        }
-      });
+      parseAndUpdateIRRefs(scape, IR_User_Slots.length === 0);
     }
     memoized = {
       ...state,
@@ -3442,15 +3474,16 @@
     }
   };
   globalThis.__receiveVFSKeys__ = function(vfsKeys) {
-    const vfsKeysArray = vfsKeys.split(",");
-    for (let key of vfsKeysArray) {
-      console.log( 'keys!' )
-    }
-    ;
-    VFSKeys.update(vfsKeysArray);
-  };
-  globalThis.__receiveError__ = (err) => {
-    console.log(`[Elem: ${err.name}] ${err.message}`);
+    const vfsKeysArray = JSON.parse(vfsKeys);
+    const userIRs = vfsKeysArray.filter((key) => key.includes("USER"));
+    IR_User_Slots = userIRs.map((key, index) => {
+      const [name, channel] = key.split("_");
+      const targetSlot = parseInt(name[name.length - 1]);
+      return { name, index: targetSlot, att: 0.25 };
+    });
+    IR_User_Slots = IR_User_Slots.filter(
+      (item, index, self) => index === self.findIndex((t) => t.name === item.name)
+    );
   };
   globalThis.__receiveHydrationData__ = (data) => {
     const payload = JSON.parse(data);

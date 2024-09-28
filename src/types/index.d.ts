@@ -1,6 +1,12 @@
 import { ElemNode } from "@elemaudio/core";
 import { Vec } from "@thi.ng/vectors";
 
+////////// IR
+type IRMetaData = {
+  name: string;
+  index: number;
+  att: number;
+};
 ////////// STATE
 interface SharedSettings {
   sampleRate: number;
@@ -60,11 +66,7 @@ type StructureData = {
   max: number;
 };
 
-type IRData = {
-  name: string;
-  index: number;
-  att: number;
-};
+
 ////////// DSP
 interface SRVBProps {
   size: ElemNode;
@@ -78,7 +80,7 @@ interface SRVBProps {
   structure: number;
   key: string;
   srvbBypass: number;
-  IRs: Array<IRData>;
+  IRs: Array<IRMetaData>;
   dryMix: ElemNode;
 }
 

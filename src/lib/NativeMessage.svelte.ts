@@ -151,9 +151,6 @@ export function RegisterMessagesFromHost() {
    */
   globalThis.__receiveVFSKeys__ = function (vfsKeys: string) {
     const vfsKeysArray = vfsKeys.split(",");
-    for (let key of vfsKeysArray) {
-      console.log("VFS Key: ", key);
-    };
     VFSKeys.update(vfsKeysArray);
   }
 

@@ -8,11 +8,11 @@
     "predev": "npm run clean",
     "prebuild": "npm run clean",
     "dev": "npm run dev-native && concurrently \"npm run dev-dsp\" \"vite\"",
+    
     "dev-native": "zx scripts/build-native.mjs --dev",
-    "dev-dsp": "zx scripts/build-dsp.mjs --dev",
-    "dev-ui": "vite",
+    "dev-dsp": "esbuild dsp/main.ts --watch --bundle --outfile=public/dsp.main.js",
     "build-native": "zx scripts/build-native.mjs",
-    "build-dsp": "zx scripts/build-dsp.mjs",
+    "build-dsp": "esbuild dsp/main.ts --bundle --outfile=public/dsp.main.js",
     "build-ui": "vite build",
     "build": "npm run build-dsp && npm run build-ui && npm run build-native",
     "preview": "vite preview"
