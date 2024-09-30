@@ -5,10 +5,10 @@ import { Vec } from "@thi.ng/vectors";
 
 
 type DefaultIRSlotName = 'LIGHT' | 'SURFACE' | 'TEMPLE' | 'DEEPNESS';
-type UserIRStem = 'USER0' | 'USER1' | 'USER2' | 'USER3' | `USER${number}`;
-type VFSPathStem = DefaultIRSlotName | UserIRStem;
-type DefaultIRPathWithChannel = `${DefaultIRSlotName}_${number}`;
-type UserIRPathWithChannel = `${UserIRStem}_${number}` | undefined;
+type UserVFSStem = 'USER0' | 'USER1' | 'USER2' | 'USER3' ;
+type VFSPathStem = DefaultIRSlotName | UserVFSStem;
+type DefaultVFSPathWithChannel = `${DefaultIRSlotName}_${number}`;
+type UserVFSPathWithChannel = `${UserVFSStem}_${number}` | undefined;
 
 type IRMetaData = {
   pathStem: VFSPathStem;

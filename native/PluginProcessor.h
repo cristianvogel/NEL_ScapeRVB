@@ -167,6 +167,8 @@ private:
 
     //=============================================
 public:
+    float calculateNormalisationFactor(float sumSquaredMagnitude);
+    void normaliseImpulseResponse(juce::AudioBuffer<float> &buf);
     int runWebServer();
 
     struct ViewClientInstance : public choc::network::HTTPServer::ClientInstance

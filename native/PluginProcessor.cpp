@@ -393,8 +393,8 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotI
 
         // fade in, less ER energy from the IR, as we have a whole ER engine already
         buffer.applyGainRamp(0, numSamples, 0.2, 1);
-        // buffer.copyFromWithRamp(1, 0, buffer.getReadPointer(0), buffer.getNumSamples(), 0.2, 1);
-        // add the gain ramped impulse response to the virtual file system
+
+        normaliseImpulseResponse( buffer );
 
         runtime->updateSharedResourceMap(
             name,
@@ -412,6 +412,38 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotI
     delete reader;
      inspectVFS();
 }
+
+//======================== Normalisation from JUCE convolution code
+ float EffectsPluginProcessor::calculateNormalisationFactor (float sumSquaredMagnitude)
+{
+    if (sumSquaredMagnitude < 1e-8f)
+        return 1.0f;
+
+    return 0.125f / std::sqrt (sumSquaredMagnitude);
+}
+
+ void EffectsPluginProcessor::normaliseImpulseResponse (juce::AudioBuffer<float>& buf)
+{
+    const auto numChannels = buf.getNumChannels();
+    const auto numSamples  = buf.getNumSamples();
+    const auto channelPtrs = buf.getArrayOfWritePointers();
+
+    const auto maxSumSquaredMag = std::accumulate (channelPtrs, channelPtrs + numChannels, 0.0f, [numSamples] (auto max, auto* channel)
+    {
+        return juce::jmax (max, std::accumulate (channel, channel + numSamples, 0.0f, [] (auto sum, auto samp)
+        {
+            return sum + (samp * samp);
+        }));
+    });
+
+    const auto normalisationFactor = calculateNormalisationFactor (maxSumSquaredMag);
+
+    std::for_each (channelPtrs, channelPtrs + numChannels, [normalisationFactor, numSamples] (auto* channel)
+    {
+        juce::FloatVectorOperations::multiply (channel, normalisationFactor, numSamples);
+    });
+}
+
 //==============================================================================
 int EffectsPluginProcessor::runWebServer()
 {

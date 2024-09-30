@@ -3300,11 +3300,10 @@
   }
   function parseAndUpdateIRRefs(scape, useDefaultIRs = true) {
     const VFSPathWithReverseForChannel = (slotName, channel) => {
-      let vfsPathWithChannel = `${slotName}_${channel}`;
+      let defaultPathWithChannel = `${slotName}_${channel}`;
       const slot = IR_User_Slots.get(slotName);
       const userPathWithChannel = slot !== void 0 ? `${slot.pathStem}_${channel}` : void 0;
-      const selectedPath = scape.reverse > 0.5 ? REVERSE_BUFFER_PREFIX + (userPathWithChannel || vfsPathWithChannel) : userPathWithChannel || vfsPathWithChannel;
-      console.log("Selected Path: ", selectedPath);
+      const selectedPath = scape.reverse > 0.5 ? REVERSE_BUFFER_PREFIX + (userPathWithChannel || defaultPathWithChannel) : userPathWithChannel || defaultPathWithChannel;
       return selectedPath;
     };
     const getRefForChannel = (refs2, slotName, chan) => {

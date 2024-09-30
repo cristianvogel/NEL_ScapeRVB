@@ -9,7 +9,7 @@ import { NUM_SEQUENCES, OEIS_SEQUENCES } from "./srvb-er";
 import SCAPE from "./scape";
 import { Vec } from "@thi.ng/vectors";
 import {
-  DefaultIRPathWithChannel,
+  DefaultVFSPathWithChannel,
   DefaultIRSlotName,
   IRMetaData,
   ProcessorSettings,
@@ -18,6 +18,7 @@ import {
   SRVBProps,
   StructureData,
   VFSPathStem,
+  UserVFSStem,
 } from "../src/types";
 import { DEFAULT_IR_PATHSTEMS, REVERSE_BUFFER_PREFIX } from "../src/stores/constants";
 import { castSequencesToRefs, buildStructures, updateStructureConstants } from "./OEIS-Structures";
@@ -103,16 +104,14 @@ function registerConvolverRefs(scape: ScapeSettings, refs: RefMap) {
 function parseAndUpdateIRRefs(scape: ScapeSettings, useDefaultIRs: boolean = true) {
 
   const VFSPathWithReverseForChannel = (slotName: DefaultIRSlotName, channel: number) => {
-    let vfsPathWithChannel = `${slotName}_${channel}` as DefaultIRPathWithChannel;
+    let defaultPathWithChannel = `${slotName}_${channel}` as DefaultVFSPathWithChannel;
     const slot = IR_User_Slots.get(slotName);
     const userPathWithChannel = slot !== undefined ? `${slot.pathStem}_${channel}` : undefined;
 
-
     const selectedPath = scape.reverse > 0.5
-      ? REVERSE_BUFFER_PREFIX + (userPathWithChannel || vfsPathWithChannel)
-      : userPathWithChannel || vfsPathWithChannel;
+      ? REVERSE_BUFFER_PREFIX + (userPathWithChannel || defaultPathWithChannel)
+      : userPathWithChannel || defaultPathWithChannel;
 
-      console.log('Selected Path: ', selectedPath)
     return selectedPath
   };
 
@@ -339,15 +338,13 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
 
 ////////// Handle New IRs from the VFS /////////////////////////////////
 globalThis.__receiveVFSKeys__ = function (vfsKeys: string) {
-
   const vfsKeysArray = JSON.parse(vfsKeys);
-
   const userIRs = vfsKeysArray.filter((key) => key.includes("USER") && !key.includes("REVERSE"));
-
   // go through user IRs .... if USER0 , update the pathStem of LIGHT to USER0 and so on
-  // for now, we will just use the first 4 user IRs
+  // we will just use the first 4 user IRs and assign the paths of the Default slotnames 
+  // in the Elem refmap
   for (let i = 0; i < Math.min(4, userIRs.length); i++) {
-    const userPathStem: VFSPathStem = `USER${i}`;
+    const userPathStem: VFSPathStem = `USER${i}` as UserVFSStem;
     IR_User_Slots.set( DEFAULT_IR_PATHSTEMS[i], { pathStem: userPathStem, index: i, att: 0.5 } );
   }
 }
