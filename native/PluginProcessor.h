@@ -115,7 +115,7 @@ public:
     juce::AudioFormatManager formatManager;
     // audiofile read with CHOC instead of juce
     choc::audio::AudioFileFormatList formats;
-    void loadAudioFromFileIntoVFS(std::filesystem::path &path, int index);
+    void loadAudioFromFileIntoVFS( juce::File file, int index);
 
 private:
     std::string REVERSE_BUFFER_PREFIX = "REVERSED_";

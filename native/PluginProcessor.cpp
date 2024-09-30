@@ -117,7 +117,17 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
                             processor.dispatchNativeLog("File Error:", "Sorry, only four user files can be imported.");
                             break;
                         }
-                        processor.loadAudioFromFileIntoVFS(path, index++);
+
+                        // Convert std::filesystem::path to juce::File
+                        juce::File juceFile(path.string());
+                        // Ensure juceFile is a valid file
+                        if (!juceFile.existsAsFile())
+                        {
+                            processor.dispatchNativeLog("File Error:", "File does not exist.");
+                            continue;
+                        }
+
+                        processor.loadAudioFromFileIntoVFS(juceFile, index++);
                     }
                 }
             }
@@ -313,7 +323,6 @@ void EffectsPluginProcessor::inspectVFS()
     const auto expr = serialize(jsFunctions::vfsKeysScript, choc::value::Value(vfsString), "%");
     sendJavascriptToUI(expr);
     jsContext.evaluateExpression(expr);
-    
 }
 //==============================================================================
 // add each impulse response to the runtime virtual file system
@@ -353,72 +362,55 @@ void EffectsPluginProcessor::addFolderOfIRsToVFS(std::vector<juce::File> &impuls
 }
 
 //=============================================================================
-// https://forum.juce.com/t/reading-a-wav-file-into-an-array-of-samples/47449/2
-juce::AudioBuffer<float> EffectsPluginProcessor::getAudioBufferFromFile(juce::File file)
-{
-    juce::AudioBuffer<float> audioBuffer;
-    auto *reader = formatManager.createReaderFor(file);
-    audioBuffer.setSize(reader->numChannels, reader->lengthInSamples);
-    reader->read(&audioBuffer, 0, reader->lengthInSamples, 0, true, true);
-    delete reader;
-    return audioBuffer;
-}
-//==============================================================================
-void EffectsPluginProcessor::loadAudioFromFileIntoVFS(std::filesystem::path &path, int slotIndex = 0)
+
+
+void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotIndex = 0)
 {
 
-    auto in = std::make_shared<std::ifstream>(path.string());
+    auto buffer = juce::AudioBuffer<float>();
+    auto reader = formatManager.createReaderFor(file);
+    auto numChannels = reader->numChannels;
+    buffer.setSize(2, reader->lengthInSamples);
+
+    if (numChannels < 2 || numChannels > 2)
+    {
+        dispatchError("File error:", "Only 2 channel files can be used.");
+        return;
+    }
     
-    try
+
+    for (int i = 0; i < numChannels; ++i)
     {
-        auto reader = EffectsPluginProcessor::formats.createReader(in);
-        if (!reader)
-        {
-            throw std::runtime_error("Reader failed for " + path.filename().string());
-            return;
-        }
-        const choc::audio::AudioFileProperties p = reader->getProperties();
+
+        
+        // source files are mono, but we setup the second channel for a derived 'shaped' version
+        auto name = "USER" + std::to_string(slotIndex) + "_" + std::to_string(i);
+
+        reader->read(&buffer, 0, reader->lengthInSamples, 0, true, false);
 
 
-        choc::buffer::ChannelArrayBuffer<float> loadedBuffer = reader->template readEntireStream<float>();
+        auto numSamples = buffer.getNumSamples();
 
-        auto numChannels = loadedBuffer.getSize().numChannels;
+        // fade in, less ER energy from the IR, as we have a whole ER engine already
+        buffer.applyGainRamp(0, numSamples, 0.2, 1);
+        // buffer.copyFromWithRamp(1, 0, buffer.getReadPointer(0), buffer.getNumSamples(), 0.2, 1);
+        // add the gain ramped impulse response to the virtual file system
 
-        if ( numChannels < 2 || numChannels > 2 ) dispatchError("File error:", "Only 2 channel files can be used." );
-
-        auto frameCount = loadedBuffer.getSize().numFrames;
-
-        // extract each channel into a mono buffer up to 2 channels max
-        for (decltype(numChannels) i = 0; i < numChannels; ++i)
-        {
-            choc::buffer::BufferView<float, choc::buffer::MonoLayout> singleChannelView = loadedBuffer.getChannel(i);
-            if ( singleChannelView.data.stride != 1 ) dispatchError("File error:", "Stride not 1");
-            auto channelData = singleChannelView.data;
-  
-            auto name = "USER" + std::to_string(slotIndex) + "_" + std::to_string(i);
-            runtime->updateSharedResourceMap(name, channelData.data, frameCount * sizeof(float));
-       
-            //auto channelRange = loadedBuffer.getChannelRange()
-            // get 0.75 section, preparing for reverse
-            // auto section = frameCount * 0.75;
-            // reverse the IR and copy that to the other channel
-            // loadedBuffer.reverse(0, juce::roundToInt(numSamples * 0.75f));
-            // loadedBuffer.copyFrom(1, 0, buffer.getReadPointer(0), juce::roundToInt(numSamples * 0.75f));
-
-            // then add the reverse impulse response to the virtual file system too, with a prefix
-            // runtime->updateSharedResourceMap(
-            //     REVERSE_BUFFER_PREFIX + name,
-            //     buffer.getReadPointer(1),
-            //     numSamples * 0.75);
-            // }
-        };
+        runtime->updateSharedResourceMap(
+            name,
+            buffer.getReadPointer(0),
+            numSamples);
+        // Reverse the IR and copy that to the other channel
+        buffer.reverse(0, numSamples * 0.75);
+        buffer.copyFrom(1, 0, buffer.getReadPointer(0), numSamples * 0.75);
+        // add the shaped impulse response to the virtual file system
+        runtime->updateSharedResourceMap(
+            REVERSE_BUFFER_PREFIX + name,
+            buffer.getReadPointer(1),
+            numSamples * 0.75);
     }
-    catch (const std::exception &e)
-    {
-        dispatchNativeLog("File error:", "There was a problem reading the file " + path.filename().string());
-    }
-
-    inspectVFS();
+    delete reader;
+     inspectVFS();
 }
 //==============================================================================
 int EffectsPluginProcessor::runWebServer()
@@ -937,8 +929,6 @@ std::optional<std::string> EffectsPluginProcessor::loadDspEntryFileContents() co
 
     return dspEntryFileContents;
 }
-
-
 
 bool EffectsPluginProcessor::sendJavascriptToUI(const std::string &expr) const
 {

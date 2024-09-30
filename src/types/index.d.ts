@@ -2,11 +2,20 @@ import { ElemNode } from "@elemaudio/core";
 import { Vec } from "@thi.ng/vectors";
 
 ////////// IR
+
+
+type DefaultIRSlotName = 'LIGHT' | 'SURFACE' | 'TEMPLE' | 'DEEPNESS';
+type UserIRStem = 'USER0' | 'USER1' | 'USER2' | 'USER3' | `USER${number}`;
+type VFSPathStem = DefaultIRSlotName | UserIRStem;
+type DefaultIRPathWithChannel = `${DefaultIRSlotName}_${number}`;
+type UserIRPathWithChannel = `${UserIRStem}_${number}` | undefined;
+
 type IRMetaData = {
-  name: string;
+  pathStem: VFSPathStem;
   index: number;
   att: number;
 };
+
 ////////// STATE
 interface SharedSettings {
   sampleRate: number;
@@ -47,11 +56,11 @@ type ToggleCablesVarname =
   'host_srvbBypass' |
   'host_scapeBypass' |
   'host_scapeReverse';
-  
+
 type ToggleParamID =
   'srvbBypass' |
   'scapeBypass' |
-  'scapeReverse' ;
+  'scapeReverse';
 
 type HostParams = {
   paramId: string;
@@ -75,13 +84,23 @@ interface SRVBProps {
   tone: ElemNode;
   position: ElemNode; // rounded integer behaviour
   structureMax: ElemNode; // max value of the series
+  dryMix: ElemNode;
   // non-signal data
   sampleRate: number;
   structure: number;
   key: string;
   srvbBypass: number;
-  IRs: Array<IRMetaData>;
-  dryMix: ElemNode;
+}
+
+interface ScapeProps {
+  ir: ElemNode;
+  level: ElemNode;
+  reverse: ElemNode;
+  vectorData: Vec;
+  // non-signal data
+  sampleRate: number;
+  key: string;
+  scapeBypass: number;
 }
 
 type DiffuseProps = {

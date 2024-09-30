@@ -11,6 +11,10 @@ export class RefMap {
     return this._map.size;
   }
 
+  get keys() {
+    return this._map.keys();
+  }
+  
   has (name) {
     invariant(this._map.has(name), `Ref ${name} not found`);
     return this._map.has(name);

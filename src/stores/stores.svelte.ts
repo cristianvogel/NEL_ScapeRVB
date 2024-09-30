@@ -2,11 +2,11 @@
 /// Svelte5 state stores
 
 import { bypassEvents, bypassStates } from "../types";
-import { DEFAULT_VFS_KEYS } from "./constants";
+import { DEFAULT_IR_PATHSTEMS } from "./constants";
 
 
 /////////////////////////
-export const VFSKeys = vfsKeys( DEFAULT_VFS_KEYS );
+export const VFSKeys = vfsKeys( DEFAULT_IR_PATHSTEMS );
 function vfsKeys(initial) {
   let current = $state(initial);
   return {

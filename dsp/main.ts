@@ -9,12 +9,17 @@ import { NUM_SEQUENCES, OEIS_SEQUENCES } from "./srvb-er";
 import SCAPE from "./scape";
 import { Vec } from "@thi.ng/vectors";
 import {
+  DefaultIRPathWithChannel,
+  DefaultIRSlotName,
   IRMetaData,
   ProcessorSettings,
+  ScapeProps,
   ScapeSettings,
+  SRVBProps,
   StructureData,
+  VFSPathStem,
 } from "../src/types";
-import { REVERSE_BUFFER_PREFIX } from "../src/stores/constants";
+import { DEFAULT_IR_PATHSTEMS, REVERSE_BUFFER_PREFIX } from "../src/stores/constants";
 import { castSequencesToRefs, buildStructures, updateStructureConstants } from "./OEIS-Structures";
 
 
@@ -35,43 +40,43 @@ let convolver = (_props, ...childs) => createNode("convolver", _props, childs);
 // MUST MATCH FILE NAMES IN THE PUBLIC IR FOLDER
 const blockSizes = [512, 4096];
 
-const IR_Default_Slots: Array<IRMetaData> = [
-  { name: "LIGHT", index: 0, att: 0.65 },
-  { name: "SURFACE", index: 1, att: 0.475 },
-  { name: "TEMPLE", index: 2, att: 0.475 },
-  { name: "DEEPNESS", index: 3, att: 0.25 },
-];
+const IR_Default_Slots: Map<DefaultIRSlotName, IRMetaData> = new Map([
+  ["LIGHT", { pathStem: "LIGHT", index: 0, att: 0.65 }],
+  ["SURFACE", { pathStem: "SURFACE", index: 1, att: 0.475 }],
+  ["TEMPLE", { pathStem: "TEMPLE", index: 2, att: 0.475 }],
+  ["DEEPNESS", { pathStem: "DEEPNESS", index: 3, att: 0.25 }],
+]);
 
-let IR_User_Slots: Array<IRMetaData> = []; 
+let IR_User_Slots: Map<DefaultIRSlotName, IRMetaData> = new Map();
 
 
 // Utilise a factory pattern to generate the ref updaters
-// for the Elem ref engine, otherwise it's a lot of repetition
+// for the Elem ref engine
 function IR_SlotRefFactory(
   scapeSettings: ScapeSettings,
   refs: RefMap,
-  name: string,
+  slot: DefaultIRSlotName,
   slotIndex: number,
   attenuation: number
 ) {
   if (!scapeSettings || !refs) return;
   return {
-    [`${name}_0`]: refs.getOrCreate(
-      `${name}_0`,
+    [`${slot}_0`]: refs.getOrCreate(
+      `${slot}_0`,
       "convolver",
       {
-        path: `${name}_0`,
+        path: `${slot}_0`,
         process: scapeSettings.vectorData[slotIndex],
         scale: attenuation,
         blockSizes,
       },
       [el.tapIn({ name: `srvbOut:0` })]
     ),
-    [`${name}_1`]: refs.getOrCreate(
-      `${name}_1`,
+    [`${slot}_1`]: refs.getOrCreate(
+      `${slot}_1`,
       "convolver",
       {
-        path: `${name}_1`,
+        path: `${slot}_1`,
         process: scapeSettings.vectorData[slotIndex],
         scale: attenuation,
         blockSizes,
@@ -83,58 +88,51 @@ function IR_SlotRefFactory(
 
 function registerConvolverRefs(scape: ScapeSettings, refs: RefMap) {
   let convolvers = {};
-  IR_Default_Slots.forEach((item) => {
+  IR_Default_Slots.forEach((ir, slotName) => {
     convolvers = {
       ...convolvers,
-      ...IR_SlotRefFactory(scape, refs, item.name, item.index, item.att),
+      ...IR_SlotRefFactory(scape, refs, slotName, ir.index, ir.att),
     };
   });
+
   return convolvers;
 }
 // later, the Elementary refs system will be used to
 // parse and update the VFS paths of the default and user
 // loaded impulse responses made available to the processor
-function parseAndUpdateIRRefs( scape: ScapeSettings, useDefaultIRs: boolean = true ) {
+function parseAndUpdateIRRefs(scape: ScapeSettings, useDefaultIRs: boolean = true) {
 
-  const VFSPathWithReverseSwitch = ( name: string, channel: number ) => {
+  const VFSPathWithReverseForChannel = (slotName: DefaultIRSlotName, channel: number) => {
+    let vfsPathWithChannel = `${slotName}_${channel}` as DefaultIRPathWithChannel;
+    const slot = IR_User_Slots.get(slotName);
+    const userPathWithChannel = slot !== undefined ? `${slot.pathStem}_${channel}` : undefined;
+
+
     const selectedPath = scape.reverse > 0.5
-    ? REVERSE_BUFFER_PREFIX + `${name}_${channel}`
-    : `${name}_${channel}`;
-   return selectedPath
+      ? REVERSE_BUFFER_PREFIX + (userPathWithChannel || vfsPathWithChannel)
+      : userPathWithChannel || vfsPathWithChannel;
+
+      console.log('Selected Path: ', selectedPath)
+    return selectedPath
   };
 
-  const getRefMapKey = (slotIndex: number, chan: number, refs: RefMap ) => { 
-    const name = `${IR_Default_Slots[slotIndex].name}_${chan}`;
-    refs.has( name ) // invariant will throw if the name is not found 
-    return name;
+  const getRefForChannel = (refs: RefMap, slotName: DefaultIRSlotName, chan: number) => {
+    let path = `${slotName}_${chan}`;
+    refs.has(path) // invariant will throw if the name is not found 
+    return path;
   };
 
-    console.log( 'UpdateRefs: default -> ', IR_Default_Slots, " user -> ", IR_User_Slots )
-
-
-  if (useDefaultIRs) {
-  IR_Default_Slots.forEach((defaultIR, slotIndex) => {
+  IR_Default_Slots.forEach((ir, slotName: DefaultIRSlotName) => {
     for (let chan = 0; chan < 2; chan++) {
-      refs.update( getRefMapKey( slotIndex, chan, refs ), {
-        path: VFSPathWithReverseSwitch( defaultIR.name, chan ),
-        process: Math.min(scape.level, scape.vectorData[defaultIR.index]), // todo: take another look at this
-        scale: defaultIR.att,
+      refs.update(
+        getRefForChannel(refs, slotName, chan), {
+        path: VFSPathWithReverseForChannel(slotName, chan),
+        process: Math.min(scape.level, scape.vectorData[ir.index]), // todo: take another look at this
+        scale: ir.att,
       });
     }
-  });
+  })
 
-  
-  } else {
-  IR_User_Slots.forEach((userIR, slotIndex) => {
-    for (let chan = 0; chan < 2; chan++) {
-      refs.update( getRefMapKey( slotIndex, chan, refs ), {
-        path: `${IR_User_Slots[slotIndex].name}_${chan}`,   // todo: reverse switch
-        process:  Math.min(scape.level, scape.vectorData[userIR.index]),  // todo: take another look at this
-        scale: userIR.att,
-      });
-    }
-  });
-}
 };
 
 // create the vector interpolation ramp, used to crossfade between 4 IRs
@@ -165,15 +163,15 @@ const defaultMax = argMax(defaultStructure, 17);
 let structureData: StructureData = {
   consts: castSequencesToRefs(defaultStructure, defaultMax, refs),
   max: defaultMax,
-};   
+};
 
 // the conditions that will trigger a full re-render of the node graph
 function shouldRender(_mem, _curr) {
   const result =
-  IR_User_Slots.length > 4 ||
     _mem === null ||
     _curr === null ||
     refs._map.size === 0 ||
+    !srvbProps || !scapeProps ||
     _curr.sampleRate !== _mem?.sampleRate ||
     Math.round(_curr.scapeBypass) !== _mem?.scapeBypass ||
     Math.round(_curr.srvbBypass) !== _mem?.srvbBypass;
@@ -188,56 +186,57 @@ function shouldRender(_mem, _curr) {
 //////////////////////////////
 /// ALTERED STATES //////////
 let memoized: null | any = null;
+let srvbProps = {};
+let scapeProps = {};
 
 globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
   // first parse the state
-  const { state, srvb, shared, scape }: ProcessorSettings = parseNewState(
-    stateReceivedFromNative
-  );
+  const { state, srvb, shared, scape }: ProcessorSettings = parseNewState(stateReceivedFromNative);
 
   refs.getOrCreate("dryMix", "const", { value: shared.dryMix }, []);
 
   // prettier-ignore
-  const srvbProps = () => { 
-    const props =  
-    {
-      key: "srvb",
-      IRs: IR_Default_Slots ,
-      srvbBypass: srvb.bypass,
-      dryMix: shared.dryMix,
-      sampleRate: shared.sampleRate,
-      size: refs.getOrCreate("size", "const", { value: srvb.size }, []),
-      decay: refs.getOrCreate("diffuse", "const", { value: srvb.diffuse }, []),
-      mix: refs.getOrCreate("mix", "const", { value: srvb.level, key: "effectMix" }, []),
-      tone: refs.getOrCreate("tone", "const", { value: srvb.tone }, []),
-      position: refs.getOrCreate("position", "const", { value: shared.position }, []),
-      structure: srvb.structure,
-      structureMax: refs.getOrCreate("structureMax", "const", { value: structureData.max, key: "structureMax" }, [])
-    }
-    return props;
+  srvbProps =
+  {
+    key: "srvb",
+    srvbBypass: srvb.bypass,
+    dryMix: shared.dryMix,
+    sampleRate: shared.sampleRate,
+    size: refs.getOrCreate("size", "const", { value: srvb.size }, []),
+    decay: refs.getOrCreate("diffuse", "const", { value: srvb.diffuse }, []),
+    mix: refs.getOrCreate("mix", "const", { value: srvb.level, key: "effectMix" }, []),
+    tone: refs.getOrCreate("tone", "const", { value: srvb.tone }, []),
+    position: refs.getOrCreate("position", "const", { value: shared.position }, []),
+    structure: srvb.structure,
+    structureMax: refs.getOrCreate("structureMax", "const", { value: structureData.max, key: "structureMax" }, [])
   };
   // prettier-ignore
-  const scapeProps = () => {
-   const props =
-   {
+  scapeProps =
+  {
     IRs: IR_Default_Slots,
     sampleRate: shared.sampleRate,
-    scapeBypass: scape.bypass || 0,    
-    vectorData: scape.vectorData,    
+    scapeBypass: scape.bypass || 0,
+    vectorData: scape.vectorData,
     // RefNodes from now on
-    srvbBypass: refs.getOrCreate( "srvbBypass", "const", { value: srvb.bypass }, [] ),
+    srvbBypass: refs.getOrCreate("srvbBypass", "const", { value: srvb.bypass }, []),
     scapeLevel: refs.getOrCreate("scapeLevel", "const", { value: scape.level }, []),
     scapePosition: refs.getOrCreate("scapePosition", "const", { value: shared.position }, []),
     // the Hermite vector interpolation values as signals
-    v1: refs.getOrCreate("v1", "const", { value: scape.vectorData[0] }, [ ]), 
-    v2: refs.getOrCreate("v2", "const", { value: scape.vectorData[1] }, [ ]),
-    v3: refs.getOrCreate("v3", "const", { value: scape.vectorData[2] }, [ ]),
-    v4: refs.getOrCreate("v4", "const", { value: scape.vectorData[3] }, [ ]),
-    // render the convolvers
-...registerConvolverRefs(  scape, refs )
+    v1: refs.getOrCreate("v1", "const", { value: scape.vectorData[0] }, []),
+    v2: refs.getOrCreate("v2", "const", { value: scape.vectorData[1] }, []),
+    v3: refs.getOrCreate("v3", "const", { value: scape.vectorData[2] }, []),
+    v4: refs.getOrCreate("v4", "const", { value: scape.vectorData[3] }, []),
+    ...registerConvolverRefs(scape, refs)
   };
-  return props;
+
+  function getSRVBProps() {
+    return srvbProps as SRVBProps;
   }
+
+  function getScapeProps() {
+    return scapeProps as ScapeProps;
+  }
+
 
   /**
    * ELEMENTARY
@@ -248,15 +247,19 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     // first, build structure const refs
     structureData = buildStructures(refs, srvb.structure) || structureData;
 
-    const graph = core.render(
-      ...SCAPE(
-        scapeProps(),
-        shared.dryInputs,
-        ...SRVB(srvbProps(), shared.dryInputs, ...structureData.consts)
-      ).map((node, i) =>
-        el.add(el.mul(refs.get("dryMix"), shared.dryInputs[i]), node)
+    if (srvbProps && scapeProps) {
+      const graph = core.render(
+        ...SCAPE(
+          getScapeProps(),
+          shared.dryInputs,
+          ...SRVB(
+            getSRVBProps(), shared.dryInputs, ...structureData.consts
+          )
+        ).map((node, i) =>
+          el.add(el.mul(refs.get("dryMix"), shared.dryInputs[i]), node)
+        )
       )
-    );
+    }
   } else {
     // then the rest of the refs for SRVB
     if (!srvb.bypass) {
@@ -271,7 +274,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
       refs.update("tone", { value: srvb.tone });
       refs.update("position", { value: shared.position });
       refs.update("structureMax", { value: srvb.structureMax });
-      updateStructureConstants( refs, srvb );
+      updateStructureConstants(refs, srvb);
     }
 
     if (!scape.bypass) {
@@ -282,13 +285,14 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
       refs.update("v3", { value: scape.vectorData[2] });
       refs.update("v4", { value: scape.vectorData[3] });
       refs.update("scapePosition", { value: shared.position });
+
+      // update the convolvers, switch to user IRs if they exist
+      parseAndUpdateIRRefs(scape);
     }
 
     refs.update("dryMix", { value: shared.dryMix });
     refs.update("srvbBypass", { value: srvb.bypass }); // needed to bypass empty input when srvb is bypassed
 
-    // update the convolvers, switch to user IRs if they exist
-    parseAndUpdateIRRefs( scape, IR_User_Slots.length === 0 );
   }
 
   // memoisation of nodes and non-node state
@@ -333,25 +337,19 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
   }
 }; // end of receiveStateChange
 
-//////////////////////////
+////////// Handle New IRs from the VFS /////////////////////////////////
 globalThis.__receiveVFSKeys__ = function (vfsKeys: string) {
- 
-  const vfsKeysArray = JSON.parse( vfsKeys );
 
-  const userIRs = vfsKeysArray.filter((key) => key.includes("USER"));
-  IR_User_Slots = userIRs.map((key, index) => {
-    const [name, channel] = key.split("_");
-    // get the Xfade position if the IR from the digit at the end of the name
-    const targetSlot = parseInt( name[name.length - 1] ); 
-    return { name, index: targetSlot, att: 0.25 };
-  });
+  const vfsKeysArray = JSON.parse(vfsKeys);
 
-  // remove doubles
-  IR_User_Slots = IR_User_Slots.filter(
-    (item, index, self) =>
-      index === self.findIndex((t) => t.name === item.name)
-  );
+  const userIRs = vfsKeysArray.filter((key) => key.includes("USER") && !key.includes("REVERSE"));
 
+  // go through user IRs .... if USER0 , update the pathStem of LIGHT to USER0 and so on
+  // for now, we will just use the first 4 user IRs
+  for (let i = 0; i < Math.min(4, userIRs.length); i++) {
+    const userPathStem: VFSPathStem = `USER${i}`;
+    IR_User_Slots.set( DEFAULT_IR_PATHSTEMS[i], { pathStem: userPathStem, index: i, att: 0.5 } );
+  }
 }
 /////////////////////////////////////////////////////////////////
 

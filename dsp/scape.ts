@@ -1,21 +1,20 @@
 import { el, ElemNode } from "@elemaudio/core";
-import { zero } from "@thi.ng/vectors";
-
-
+import { DefaultIRSlot, IRMetaData } from "../src/types";
 
 export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
+
 
   const srvbBypass: ElemNode = el.sm(props.srvbBypass); 
 
   ///////////////////////////////////////////
   // SCAPE DSP setup
-  const responses = props.IRs;
+  const responses: Map<DefaultIRSlot, IRMetaData> = props.IRs;
   const scapeLevel = el.sm(props.scapeLevel); // nodes
   const position = el.sm(props.scapePosition); // nodes
   const hermiteNodes: ElemNode[] = [props.v1, props.v2, props.v3, props.v4].map(
     (n) => el.sm(n)
   ); // Hermite mixer as nodes
-  const convolverNodes: Map<string, ElemNode[]> = new Map();
+  const convolverNodes: Map<DefaultIRSlot, ElemNode[]> = new Map();
   convolverNodes.set("SURFACE", [props.SURFACE_0, props.SURFACE_1]);
   convolverNodes.set("TEMPLE", [props.TEMPLE_0, props.TEMPLE_1]);
   convolverNodes.set("LIGHT", [props.LIGHT_0, props.LIGHT_1]);
@@ -32,9 +31,9 @@ export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
     _in: ElemNode
   ) {
     let mixer: ElemNode[] = [];
-    responses.forEach((response, index) => {
+    responses.forEach((response: IRMetaData, slotName: DefaultIRSlot) => {
       mixer.push(
-        el.mul( hermiteNodes[index], scapeConvolver(response.name, channel) )
+        el.mul( hermiteNodes[response.index], scapeConvolver(slotName, channel) )
       );
     });
 
@@ -42,6 +41,10 @@ export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
   }
 
   let scapeConvolver = (path, channel) => {
+    if (!convolverNodes.has(path)) {
+      console.log(`No convolver for path: ${path}`);
+      return zero;
+    }
     let selectConvolverRef = convolverNodes.get(path)![channel];
     return selectConvolverRef;
   };
