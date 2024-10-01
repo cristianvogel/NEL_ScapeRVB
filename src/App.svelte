@@ -22,7 +22,7 @@
     // Second setup the listener for CABLES loader
     document.addEventListener("CABLES.jsLoaded", function (event) {
       CABLES.patch = new CABLES.Patch({
-        patchFile: "scape_space_ui_00/js/scape_space_ui_00.json",
+        patchFile: "scape_space_ui/js/scape_space_ui_1049.json",
         prefixAssetPath: "/assets/",
         assetPath: "/assets/",
         jsPath: "js/",

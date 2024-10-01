@@ -14,7 +14,7 @@ export const IR_Slots: Array<IRMetaData> = [
   { pathStem: "DEEPNESS", index: 3, att: 0.25 },
 ];
 
-export const DEFAULT_IR_PATHSTEMS: Array<DefaultIRSlotName> = IR_Slots.map((slot) => slot.pathStem as DefaultIRSlotName);
+export const DEFAULT_IR_SLOTNAMES: Array<DefaultIRSlotName> = IR_Slots.map((slot) => slot.pathStem as DefaultIRSlotName);
 
 export const REVERSE_BUFFER_PREFIX: string = manifest["REVERSE-BUFFER-PREFIX"];
 

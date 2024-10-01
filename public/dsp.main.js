@@ -2267,6 +2267,27 @@
   // node_modules/@thi.ng/math/abs.js
   var absDiff = (a, b) => Math.abs(a - b);
 
+  // node_modules/@thi.ng/math/easing.js
+  var { cos: cos2, sin: sin2, sqrt: sqrt2 } = Math;
+  var defEaseInExp = (k) => (t) => t ** k;
+  var defEaseOutExp = (k) => (t) => 1 - (1 - t) ** k;
+  var defEaseInOutExp = (k) => {
+    const k2 = 2 ** (k - 1);
+    return (t) => t < 0.5 ? k2 * t ** k : 1 - (-2 * t + 2) ** k / 2;
+  };
+  var easeIn2 = defEaseInExp(2);
+  var easeOut2 = defEaseOutExp(2);
+  var easeInOut2 = defEaseInOutExp(2);
+  var easeIn3 = defEaseInExp(3);
+  var easeOut3 = defEaseOutExp(3);
+  var easeInOut3 = defEaseInOutExp(3);
+  var easeIn4 = defEaseInExp(4);
+  var easeOut4 = defEaseOutExp(4);
+  var easeInOut4 = defEaseInOutExp(4);
+  var easeIn5 = defEaseInExp(5);
+  var easeOut5 = defEaseOutExp(5);
+  var easeInOut5 = defEaseInOutExp(5);
+
   // node_modules/@thi.ng/math/interval.js
   var clamp = (x, min5, max5) => x < min5 ? min5 : x > max5 ? max5 : x;
 
@@ -2367,7 +2388,7 @@
     const structure = props.structure;
     const len = ins.length;
     const diffusionStageLevel = () => {
-      const baseAtt = Math.sqrt(1.2 / len);
+      const baseAtt = Math.sqrt(1 / len);
       return baseAtt;
     };
     const dels = ins.map(function(input, i) {
@@ -2432,7 +2453,8 @@
     });
   }
   function SRVB(props, inputs, ...structureArray) {
-    const { sampleRate, key, structureMax, mix: mix2, tone } = props;
+    const { sampleRate, key, structureMax, tone } = props;
+    const level = stdlib.sm(props.mix);
     const position = stdlib.sm(props.position);
     const ms2samps2 = (ms) => sampleRate * (ms / 1e3);
     const toneDial = (input, offset) => {
@@ -2491,17 +2513,17 @@
       stdlib.mul(stdlib.sub(1.05, stdlib.div(structureArray[i], structureMax)), x)
     );
     const asLeftPan = (x) => {
-      return stdlib.select(position, x, stdlib.mul(x, stdlib.db2gain(3)));
+      return stdlib.select(position, x, stdlib.mul(x, stdlib.db2gain(1.5)));
     };
     const asRightPan = (x) => {
-      return stdlib.select(position, stdlib.mul(x, stdlib.db2gain(3)), x);
+      return stdlib.select(position, stdlib.mul(x, stdlib.db2gain(1.5)), x);
     };
     let yl = feedforward(0, asLeftPan(stdlib.add(positioning(0, r0[0]), r0[2], positioning(4, r0[4]), r0[6])));
     let yr = feedforward(1, asRightPan(stdlib.add(r0[1], positioning(3, r0[3]), r0[5], positioning(7, r0[7]))));
     if (props.srvbBypass)
       return [feedforward(0, xl), feedforward(1, xr)];
     else
-      return [stdlib.mul(mix2, yl), stdlib.mul(mix2, yr)];
+      return [stdlib.mul(level, yl), stdlib.mul(level, yr)];
   }
 
   // node_modules/@thi.ng/ramp/domain.js
@@ -3111,7 +3133,7 @@
   function SCAPE(props, dryInputs, ...outputFromSRVB) {
     const srvbBypass = stdlib.sm(props.srvbBypass);
     const responses = props.IRs;
-    const scapeLevel = stdlib.sm(props.scapeLevel);
+    const scapeLevel = stdlib.sm(stdlib.mul(stdlib.db2gain(1.5), props.scapeLevel));
     const position = stdlib.sm(props.scapePosition);
     const hermiteNodes = [props.v1, props.v2, props.v3, props.v4].map(
       (n) => stdlib.sm(n)
@@ -3175,16 +3197,16 @@
     "REVERSE-BUFFER-PREFIX": "REVERSED_",
     parameters: [
       { paramId: "size", name: "Size", min: 0, max: 1, defaultValue: 0.15, isBoolean: false },
-      { paramId: "diffuse", name: "Diffuser", min: 0, max: 1, defaultValue: 0.25, isBoolean: false },
-      { paramId: "mix", name: "Reflectors", min: 0, max: 1, defaultValue: 1, isBoolean: false },
+      { paramId: "diffuse", name: "Reflections Diffuse", min: 0, max: 1, defaultValue: 0.25, isBoolean: false },
+      { paramId: "mix", name: "Reflections Level", min: 0, max: 1, defaultValue: 1, isBoolean: false },
       { paramId: "position", name: "Position", min: 0, max: 1, defaultValue: 0.5, isBoolean: false },
       { paramId: "tone", name: "Tone", min: -1, max: 1, defaultValue: 0, isBoolean: false },
       { paramId: "structure", name: "Structure", min: 0, max: 15, defaultValue: 0, step: 1, isBoolean: false },
-      { paramId: "scapeLevel", name: "Convolvers", min: 0, max: 1, defaultValue: 0, isBoolean: false },
+      { paramId: "scapeLevel", name: "Scape Level", min: 0, max: 1, defaultValue: 0, isBoolean: false },
       { paramId: "scapeLength", name: "Scape IR", min: 0, max: 1, defaultValue: 0, isBoolean: false },
-      { paramId: "scapeReverse", name: "Scape Reverse", min: 0, max: 1, defaultValue: 0, step: 1, isBoolean: true },
-      { paramId: "scapeBypass", name: "Bypass Convolvers", min: 0, max: 1, defaultValue: 0, step: 1, isBoolean: true },
-      { paramId: "srvbBypass", name: "Bypass Reflectors", min: 0, max: 1, defaultValue: 0, step: 1, isBoolean: true },
+      { paramId: "scapeReverse", name: "Scape Reverse", min: 0, max: 1, defaultValue: 0, step: 1, isBoolean: false },
+      { paramId: "scapeBypass", name: "Bypass Scape", min: 0, max: 1, defaultValue: 0, step: 1, isBoolean: false },
+      { paramId: "srvbBypass", name: "Bypass Reflectors", min: 0, max: 1, defaultValue: 0, step: 1, isBoolean: false },
       { paramId: "dryMix", name: "Dry Mix", min: 0, max: 1, defaultValue: 0, isBoolean: false }
     ]
   };
@@ -3200,7 +3222,7 @@
     { pathStem: "TEMPLE", index: 2, att: 0.475 },
     { pathStem: "DEEPNESS", index: 3, att: 0.25 }
   ];
-  var DEFAULT_IR_PATHSTEMS = IR_Slots.map((slot) => slot.pathStem);
+  var DEFAULT_IR_SLOTNAMES = IR_Slots.map((slot) => slot.pathStem);
   var REVERSE_BUFFER_PREFIX = manifest_default["REVERSE-BUFFER-PREFIX"];
   var PARAM_DEFAULTS = Object.fromEntries(
     HOST_PARAMS.filter(
@@ -3253,13 +3275,13 @@
   });
   var refs = new RefMap(core);
   var blockSizes = [512, 4096];
-  var IR_Default_Slots = /* @__PURE__ */ new Map([
-    ["LIGHT", { pathStem: "LIGHT", index: 0, att: 0.65 }],
-    ["SURFACE", { pathStem: "SURFACE", index: 1, att: 0.475 }],
-    ["TEMPLE", { pathStem: "TEMPLE", index: 2, att: 0.475 }],
-    ["DEEPNESS", { pathStem: "DEEPNESS", index: 3, att: 0.25 }]
+  var Default_IR_Map = /* @__PURE__ */ new Map([
+    ["LIGHT", { pathStem: "LIGHT", index: 0, att: 1 }],
+    ["SURFACE", { pathStem: "SURFACE", index: 1, att: 0.9 }],
+    ["TEMPLE", { pathStem: "TEMPLE", index: 2, att: 0.9 }],
+    ["DEEPNESS", { pathStem: "DEEPNESS", index: 3, att: 0.5 }]
   ]);
-  var IR_User_Slots = /* @__PURE__ */ new Map();
+  var User_IR_Map = /* @__PURE__ */ new Map();
   function IR_SlotRefFactory(scapeSettings, refs2, slot, slotIndex, attenuation) {
     if (!scapeSettings || !refs2)
       return;
@@ -3290,7 +3312,7 @@
   }
   function registerConvolverRefs(scape, refs2) {
     let convolvers = {};
-    IR_Default_Slots.forEach((ir, slotName) => {
+    Default_IR_Map.forEach((ir, slotName) => {
       convolvers = {
         ...convolvers,
         ...IR_SlotRefFactory(scape, refs2, slotName, ir.index, ir.att)
@@ -3300,26 +3322,27 @@
   }
   function parseAndUpdateIRRefs(scape, useDefaultIRs = true) {
     const VFSPathWithReverseForChannel = (slotName, channel) => {
-      let defaultPathWithChannel = `${slotName}_${channel}`;
-      const slot = IR_User_Slots.get(slotName);
-      const userPathWithChannel = slot !== void 0 ? `${slot.pathStem}_${channel}` : void 0;
-      const selectedPath = scape.reverse > 0.5 ? REVERSE_BUFFER_PREFIX + (userPathWithChannel || defaultPathWithChannel) : userPathWithChannel || defaultPathWithChannel;
-      return selectedPath;
+      const userIR = User_IR_Map.get(slotName);
+      const defaultIR = Default_IR_Map.get(slotName);
+      const vfsPathWithChannel = userIR !== void 0 ? `${userIR.pathStem}_${channel}` : `${defaultIR.pathStem}_${channel}`;
+      const reversablePathNameWithChannel = scape.reverse > 0.5 ? REVERSE_BUFFER_PREFIX + vfsPathWithChannel : vfsPathWithChannel;
+      return reversablePathNameWithChannel;
     };
     const getRefForChannel = (refs2, slotName, chan) => {
       let path = `${slotName}_${chan}`;
       refs2.has(path);
       return path;
     };
-    IR_Default_Slots.forEach((ir, slotName) => {
+    Default_IR_Map.forEach((defaultIR, slotName) => {
+      const userIR = User_IR_Map.get(slotName);
       for (let chan = 0; chan < 2; chan++) {
         refs.update(
           getRefForChannel(refs, slotName, chan),
           {
             path: VFSPathWithReverseForChannel(slotName, chan),
-            process: Math.min(scape.level, scape.vectorData[ir.index]),
+            process: Math.min(scape.level, scape.vectorData[defaultIR.index]),
             // todo: take another look at this
-            scale: ir.att
+            scale: userIR !== void 0 ? userIR.att : defaultIR.att
           }
         );
       }
@@ -3331,13 +3354,13 @@
       HERMITE_V(VEC3),
       // keyframes used for crossfading between 4 IRs
       [
-        [0, [0.707, 0, 0, 0]],
+        [0, [1, 0, 0, 0]],
         // a
-        [0.45, [0, 0.707, 0, 0]],
+        [0.45, [0, 1, 0, 0]],
         // b
-        [0.65, [0, 0, 0.707, 0]],
+        [0.65, [0, 0, 1, 0]],
         // c
-        [1, [0, 0, 0, 0.25]]
+        [1, [0, 0, 0, 1]]
         // d
       ]
     );
@@ -3366,14 +3389,14 @@
       sampleRate: shared.sampleRate,
       size: refs.getOrCreate("size", "const", { value: srvb.size }, []),
       decay: refs.getOrCreate("diffuse", "const", { value: srvb.diffuse }, []),
-      mix: refs.getOrCreate("mix", "const", { value: srvb.level, key: "effectMix" }, []),
+      mix: refs.getOrCreate("mix", "const", { value: srvb.level }, []),
       tone: refs.getOrCreate("tone", "const", { value: srvb.tone }, []),
       position: refs.getOrCreate("position", "const", { value: shared.position }, []),
       structure: srvb.structure,
       structureMax: refs.getOrCreate("structureMax", "const", { value: structureData.max, key: "structureMax" }, [])
     };
     scapeProps = {
-      IRs: IR_Default_Slots,
+      IRs: Default_IR_Map,
       sampleRate: shared.sampleRate,
       scapeBypass: scape.bypass || 0,
       vectorData: scape.vectorData,
@@ -3460,7 +3483,8 @@
         size: state2.size,
         diffuse: state2.diffuse,
         tone: clamp(state2.tone * 2 - 1, -0.99, 1),
-        level: state2.mix,
+        level: easeIn2(state2.mix),
+        // the level of the SRVB
         structureMax: Math.round(state2.structureMax) || 137,
         // handle the case where the max was not computed
         bypass: Math.round(state2.srvbBypass) || 0
@@ -3480,7 +3504,7 @@
     const userIRs = vfsKeysArray.filter((key) => key.includes("USER") && !key.includes("REVERSE"));
     for (let i = 0; i < Math.min(4, userIRs.length); i++) {
       const userPathStem = `USER${i}`;
-      IR_User_Slots.set(DEFAULT_IR_PATHSTEMS[i], { pathStem: userPathStem, index: i, att: 0.5 });
+      User_IR_Map.set(DEFAULT_IR_SLOTNAMES[i], { pathStem: userPathStem, index: i, att: 0.9 });
     }
   };
   globalThis.__receiveHydrationData__ = (data) => {

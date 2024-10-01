@@ -2,9 +2,6 @@
 /******/ 	"use strict";
 var __webpack_exports__ = {};
 
-// const subpatchInputOpName = "Ops.Ui.SubPatchInput"; // can't use defaultops js because we are in core...
-// const subpatchOutputOpName = "Ops.Ui.SubPatchOutput";
-
 const SubPatchOp = class
 {
     constructor(op, options)
@@ -12,7 +9,7 @@ const SubPatchOp = class
         options = options || {};
         this._op = op;
 
-        op.patchId = op.addInPort(new CABLES.Port(op, "patchId", CABLES.OP_PORT_TYPE_STRING, { "display": "readonly", "hidePort": true }));
+        op.patchId = op.addInPort(new CABLES.Port(op, "patchId", CABLES.OP_PORT_TYPE_STRING, { "display": "readonly", "hidePort": true, "hideParam": true }));
 
         op.setUiAttribs({ "subPatchOp": { "version": 2 } });
 
@@ -29,12 +26,7 @@ const SubPatchOp = class
         op.patchId.onChange = () =>
         {
             if (options.subId) op.patchId.value = options.subId;
-            // else op.patchId.value=CABLES.uuid();
         };
-
-        // op.patch.on("subpatchCreated", () => { this.createInOutOps(); });
-        // op.on("loadedValueSet", () => { this.createInOutOps(); });
-
 
         op.init = () =>
         {
@@ -53,8 +45,6 @@ const SubPatchOp = class
             else
             if (next)next();
         };
-
-
 
         op.on("delete", () =>
         {

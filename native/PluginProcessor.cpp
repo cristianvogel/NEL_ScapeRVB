@@ -340,9 +340,11 @@ void EffectsPluginProcessor::addFolderOfIRsToVFS(std::vector<juce::File> &impuls
 
         auto numSamples = buffer.getNumSamples();
         // fade in, less ER energy from the IR, as we have a whole ER engine already
-        buffer.applyGainRamp(0, numSamples, 0.2, 1);
+        buffer.applyGainRamp(0, numSamples, 0.5, 1);
         // buffer.copyFromWithRamp(1, 0, buffer.getReadPointer(0), buffer.getNumSamples(), 0.2, 1);
         // add the gain ramped impulse response to the virtual file system
+
+        normaliseImpulseResponse(buffer);
 
         runtime->updateSharedResourceMap(
             name,
@@ -363,7 +365,6 @@ void EffectsPluginProcessor::addFolderOfIRsToVFS(std::vector<juce::File> &impuls
 
 //=============================================================================
 
-
 void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotIndex = 0)
 {
 
@@ -377,24 +378,21 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotI
         dispatchError("File error:", "Only 2 channel files can be used.");
         return;
     }
-    
 
     for (int i = 0; i < numChannels; ++i)
     {
 
-        
         // source files are mono, but we setup the second channel for a derived 'shaped' version
         auto name = "USER" + std::to_string(slotIndex) + "_" + std::to_string(i);
 
         reader->read(&buffer, 0, reader->lengthInSamples, 0, true, false);
 
-
         auto numSamples = buffer.getNumSamples();
 
         // fade in, less ER energy from the IR, as we have a whole ER engine already
-        buffer.applyGainRamp(0, numSamples, 0.2, 1);
+        buffer.applyGainRamp(0, numSamples, 0.5, 1);
 
-        normaliseImpulseResponse( buffer );
+        normaliseImpulseResponse(buffer);
 
         runtime->updateSharedResourceMap(
             name,
@@ -410,38 +408,35 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotI
             numSamples * 0.75);
     }
     delete reader;
-     inspectVFS();
+    inspectVFS();
 }
 
 //======================== Normalisation from JUCE convolution code
- float EffectsPluginProcessor::calculateNormalisationFactor (float sumSquaredMagnitude)
+float EffectsPluginProcessor::calculateNormalisationFactor(float sumSquaredMagnitude)
 {
     if (sumSquaredMagnitude < 1e-8f)
         return 1.0f;
 
-    return 0.125f / std::sqrt (sumSquaredMagnitude);
+    return 0.125f / std::sqrt(sumSquaredMagnitude);
 }
 
- void EffectsPluginProcessor::normaliseImpulseResponse (juce::AudioBuffer<float>& buf)
+void EffectsPluginProcessor::normaliseImpulseResponse(juce::AudioBuffer<float> &buf)
 {
     const auto numChannels = buf.getNumChannels();
-    const auto numSamples  = buf.getNumSamples();
+    const auto numSamples = buf.getNumSamples();
     const auto channelPtrs = buf.getArrayOfWritePointers();
 
-    const auto maxSumSquaredMag = std::accumulate (channelPtrs, channelPtrs + numChannels, 0.0f, [numSamples] (auto max, auto* channel)
-    {
-        return juce::jmax (max, std::accumulate (channel, channel + numSamples, 0.0f, [] (auto sum, auto samp)
-        {
-            return sum + (samp * samp);
-        }));
-    });
+    const auto maxSumSquaredMag = std::accumulate(channelPtrs, channelPtrs + numChannels, 0.0f, [numSamples](auto max, auto *channel)
+                                                  { return juce::jmax(max, std::accumulate(channel, channel + numSamples, 0.0f, [](auto sum, auto samp)
+                                                                                           { return sum + (samp * samp); })); });
 
-    const auto normalisationFactor = calculateNormalisationFactor (maxSumSquaredMag);
+    const auto normalisationFactor = calculateNormalisationFactor(maxSumSquaredMag);
 
-    std::for_each (channelPtrs, channelPtrs + numChannels, [normalisationFactor, numSamples] (auto* channel)
+    if (numChannels > 0) // Ensure there is at least one channel
     {
-        juce::FloatVectorOperations::multiply (channel, normalisationFactor, numSamples);
-    });
+        auto *firstChannel = channelPtrs[0];
+        juce::FloatVectorOperations::multiply(firstChannel, normalisationFactor, numSamples);
+    }
 }
 
 //==============================================================================

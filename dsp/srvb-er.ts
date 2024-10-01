@@ -69,7 +69,7 @@ function diffuse(props: DiffuseProps, ...ins) {
  sequence data, but it loses all energy 
  */
   const diffusionStageLevel = (): number => {
-    const baseAtt = Math.sqrt(1.2 / len);
+    const baseAtt = Math.sqrt(1.0 / len);
     return baseAtt;
   };
 
@@ -159,7 +159,8 @@ function dampFDN(props: FDNProps, ...ins) {
 
 export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureArray: ElemNode[]) {
 
-  const { sampleRate, key, structureMax, mix, tone } = props;
+  const { sampleRate, key, structureMax,  tone } = props;
+  const level = el.sm(  props.mix );
   const position = el.sm( props.position) 
   const ms2samps = (ms) => sampleRate * (ms / 1000.0);
 
@@ -253,8 +254,8 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
       el.mul( el.sub( 1.05 , el.div( structureArray[i], structureMax) )  , x )
     );
 
-     const asLeftPan =  ( x: ElemNode): ElemNode => { return   el.select( position, x, el.mul(x, el.db2gain( 3 ) ) )  };
-     const asRightPan =   ( x: ElemNode): ElemNode => { return el.select( position, el.mul( x, el.db2gain( 3 ) ) , x )  };
+     const asLeftPan =  ( x: ElemNode): ElemNode => { return   el.select( position, x, el.mul(x, el.db2gain( 1.5 ) ) )  };
+     const asRightPan =   ( x: ElemNode): ElemNode => { return el.select( position, el.mul( x, el.db2gain( 1.5 ) ) , x )  };
   
     let yl = feedforward( 0,  asLeftPan( el.add(positioning(0, r0[0]), r0[2],                  positioning(4, r0[4]), r0[6] ) ) ) ;
     let yr = feedforward( 1,  asRightPan( el.add(               r0[1], positioning(3, r0[3]),   r0[5],                 positioning(7, r0[7]) ) ) );
@@ -264,6 +265,6 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
   if (props.srvbBypass) 
     return [ feedforward(0, xl) , feedforward(1, xr)  ]
   else
-    return [  el.mul( mix, yl ), el.mul( mix, yr ) ];
+    return [  el.mul( level, yl ), el.mul( level, yr ) ];
 }
   

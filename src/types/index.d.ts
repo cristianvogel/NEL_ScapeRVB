@@ -80,7 +80,7 @@ type StructureData = {
 interface SRVBProps {
   size: ElemNode;
   decay: ElemNode;
-  mix: ElemNode;
+  mix: ElemNode;   // don't try to change this to srvbLevel as this will break the UI
   tone: ElemNode;
   position: ElemNode; // rounded integer behaviour
   structureMax: ElemNode; // max value of the series

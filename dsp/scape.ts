@@ -9,11 +9,11 @@ export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
   ///////////////////////////////////////////
   // SCAPE DSP setup
   const responses: Map<DefaultIRSlotName, IRMetaData> = props.IRs;
-  const scapeLevel = el.sm(props.scapeLevel); // nodes
-  const position = el.sm(props.scapePosition); // nodes
+  const scapeLevel = el.sm( el.mul( el.db2gain(1.5), props.scapeLevel)); // Level of convolved output boosted here
+  const position = el.sm( props.scapePosition ); // nodes
   const hermiteNodes: ElemNode[] = [props.v1, props.v2, props.v3, props.v4].map(
     (n) => el.sm(n)
-  ); // Hermite mixer as nodes
+  ); // cast Hermite mixer as nodes
   const convolverNodes: Map<DefaultIRSlotName, ElemNode[]> = new Map();
   convolverNodes.set("SURFACE", [props.SURFACE_0, props.SURFACE_1]);
   convolverNodes.set("TEMPLE", [props.TEMPLE_0, props.TEMPLE_1]);
