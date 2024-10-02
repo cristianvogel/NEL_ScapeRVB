@@ -1,57 +1,94 @@
-<script >
+<script>
   import { onMount } from "svelte";
-  import { WWTimer } from "./lib/WorkerTimer.svelte";
+  import {
+    ConsoleText,
+    CablesReady,
+    HostState,
+    WebSocketPort,
+    VFSKeys,
+  } from "./stores/stores.svelte";
   import { fade } from "svelte/transition";
-  import Plugin from "./lib/Plugin.svelte";
   import { initPatchListeners } from "./lib/PatchListeners.svelte";
-  import { MessageToHost, RegisterMessagesFromHost } from "./lib/NativeMessage.svelte";
+  import {
+    MessageToHost,
+    RegisterMessagesFromHost,
+  } from "./lib/NativeMessage.svelte";
 
- // @ts-ignore
-
-  let cablesLoaded = $state(false);
-
-  const timers = [new WWTimer(500), new WWTimer(1000), new WWTimer(2000)];
-
-  let timedOut = $state(false);
+  import WebSocketClient from "./lib/WebSocketClient.svelte";
 
   onMount(() => {
-    // First setup the listener for CABLES loader
-    document.addEventListener("CABLES.jsLoaded", function () {
+    RegisterMessagesFromHost();
+
+    // Second setup the listener for CABLES loader
+    document.addEventListener("CABLES.jsLoaded", function (event) {
       CABLES.patch = new CABLES.Patch({
-        patch: CABLES.exportedPatch,
-        prefixAssetPath: "",
-        assetPath: "assets/",
+        patchFile: "scape_space_ui/js/scape_space_ui_10_recovered.json",
+        prefixAssetPath: "/assets/",
+        assetPath: "/assets/",
         jsPath: "js/",
         glCanvasId: "glcanvas",
         glCanvasResizeToWindow: true,
         onError: (e) => console.error(e),
-        onPatchLoaded: () => console.log("Patch Loaded"),
-        onFinishedLoading: initPatchListeners,
-        canvas: { alpha: true, premultipliedAlpha: true }, // make canvas transparent
+        onPatchLoaded: () => console.count("UI loaded"),
+        onFinishedLoading: () => {
+          console.count("UI finished loading");
+          initPatchListeners(CABLES.patch);
+          MessageToHost.requestReady();
+          CablesReady.update(true);
+        },
+        canvas: {
+          willReadFrequently: true,
+          alpha: true,
+          premultipliedAlpha: true,
+        },
+        variables: {},
       });
-      console.log("Patch vars ->", CABLES.patch.getVars());
-      // set state flag
-      cablesLoaded = true;
     });
-
-      // Do first engine init
-      RegisterMessagesFromHost()
-      MessageToHost.requestReady()
   });
+
+  let firstRun = true;
+
+  $effect(() => {
+    if (firstRun && Object.keys(HostState.current).length > 0) {
+      CABLES.patch
+        .getVar("host_scapeReverse")
+        .setValue(HostState.snapshot.scapeReverse);
+      CABLES.patch
+        .getVar("ui_scapeReverse")
+        .setValue(HostState.snapshot.scapeReverse);
+      firstRun = false;
+    }
+  });
+
+  $effect(() => {
+    if (ConsoleText.current.length > 0) {
+      setTimeout(() => {
+        ConsoleText.update("");
+      }, 3000);
+    }
+  });
+
+  $effect(() => {
+    if (VFSKeys.count > 4) {
+    //  updateUIwithUserIRs();
+    }
+  });
+
+
 </script>
 
-<svelte:head>
-  <script type="text/javascript" src="/cables-ui/js/patch.js" async></script>
-</svelte:head>
+<canvas id="glcanvas" width="100vw" height="100vh" willReadFrequently="true"
+></canvas>
 
-<canvas id="glcanvas" width="100vw" height="100vh"></canvas>
+{#if WebSocketPort.current > 1}
+  <WebSocketClient port={WebSocketPort.current} />
+{/if}
 
-{#if cablesLoaded}
-  {timers[2].start(() => (timedOut = true))}
-  <Plugin />
-  {#if !timedOut}
-    <pre class="console-text" out:fade>NEL SRVB v1.0</pre>
-  {/if}
+{#if CablesReady.current}
+  <pre
+    class="console-text">{ConsoleText.current} || VFS count: {VFSKeys.count} </pre>
+
+  <pre class="console-text" style="bottom: 2rem;">{ConsoleText.extended}</pre>
 {:else}
   <pre class="console-text" in:fade>Loading...</pre>
 {/if}
@@ -60,7 +97,8 @@
   .console-text {
     position: absolute;
     left: 1rem;
-    top: 1rem;
+    bottom: 7rem;
     color: chartreuse;
+    font-size: xx-small;
   }
 </style>

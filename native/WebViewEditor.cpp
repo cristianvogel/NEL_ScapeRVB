@@ -36,7 +36,7 @@ WebViewEditor::WebViewEditor(juce::AudioProcessor *proc, juce::File const &asset
     choc::ui::WebView::Options opts;
 
 #if JUCE_DEBUG
-    opts.enableDebugMode = false;
+    opts.enableDebugMode = true;
 #endif
 
 #if !ELEM_DEV_LOCALHOST
@@ -67,7 +67,7 @@ WebViewEditor::WebViewEditor(juce::AudioProcessor *proc, juce::File const &asset
 #endif
 
     addAndMakeVisible(viewContainer);
-    viewContainer.setBounds({0, 0, 905, 600});
+    viewContainer.setBounds({0, 0, 840, 480});
 
     // Install message passing handlers
     webView->bind(POST_NATIVE_MESSAGE, [=](const choc::value::ValueView &args) -> choc::value::Value
@@ -89,11 +89,6 @@ WebViewEditor::WebViewEditor(juce::AudioProcessor *proc, juce::File const &asset
                 return handleSetParameterValueEvent(args[1]);
             }
 
-            if (eventName == SET_MESH_STATE && args.size() > 1) {
-                // Take a copy of the value and pass it to the view state change handler.
-                auto value = choc::value::Value(args[1]);
-                setMeshState(value);
-            }
 
             // For Keyzy send an unlock event with an object containing the serial number
             if (eventName == UNLOCK_EVENT && args.size() > 1) {

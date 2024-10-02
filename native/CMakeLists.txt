@@ -1,16 +1,16 @@
 cmake_minimum_required(VERSION 3.15)
-project(NEL_ShifterMesh VERSION 1.01)
+project(NEL_scape|space VERSION 1.01)
 
-set(TARGET_NAME "NEL_ScapeRVB")
+set(TARGET_NAME "NEL_scape_space")
 set(ASSETS_DIR ${CMAKE_SOURCE_DIR}/../dist/)
-set(BUILD_VERSION "v0.0.1")
+set(BUILD_VERSION "v0.4.0")
 
 option(JUCE_ENABLE_MODULE_SOURCE_GROUPS "Enable Module Source Groups" ON)
 option(JUCE_BUILD_EXTRAS "Build JUCE Extras" OFF)
 option(ELEM_DEV_LOCALHOST "Run against localhost for static assets" OFF)
 
-add_subdirectory(juce)
-add_subdirectory(elementary/runtime)
+add_subdirectory(juce) # using the static non-submodule version
+add_subdirectory(elementary/runtime) # using the static non-submodule version
 
 if(WIN32)
   set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>") # Martin's famous fix ... JUCE and plugins need this
@@ -23,17 +23,17 @@ if(WIN32)
 endif()
 
 juce_add_plugin(${TARGET_NAME}
-  BUNDLE_ID "audio.neverenginelabs.NELScapeRVB"
+  BUNDLE_ID "audio.neverenginelabs.scapespace"
   COMPANY_NAME "NeverEngineLabs"
   COMPANY_WEBSITE "https://neverenginelabs.com"
   COMPANY_EMAIL "support@neverenginelabs.com"
   PLUGIN_MANUFACTURER_CODE NVLB # A four-character manufacturer id with at least one upper-case character
   PLUGIN_CODE ScRv # A unique four-character plugin id with at least one upper-case character
   COPY_PLUGIN_AFTER_BUILD FALSE # We enable this manually below after adding a copy step
-  APP_SANDBOX_ENABLED TRUE
+  APP_SANDBOX_ENABLED FALSE
   APP_SANDBOX_OPTIONS com.apple.security.network.client com.apple.security.files.user-selected.read-write
-  FORMATS AU VST3 # The formats to build. Other valid formats are: AAX Unity VST AU AUv3
-  PRODUCT_NAME "NEL_ScapeRVB_${CMAKE_OSX_ARCHITECTURES}${PC_ARCH}_${BUILD_VERSION}") # The name of the final executable, which can differ from the target name
+  FORMATS AU VST3 STANDALONE # The formats to build. Other valid formats are: AAX Unity VST AU AUv3
+  PRODUCT_NAME "NEL_scape_space_${CMAKE_OSX_ARCHITECTURES}${PC_ARCH}_${BUILD_VERSION}") # The name of the final executable, which can differ from the target name
 
 # Keyzy Client Library
 # Replace KeyzyClientLibraryX.X.X with your actual library version
@@ -80,8 +80,15 @@ elseif(APPLE)
   target_link_libraries(${TARGET_NAME} PRIVATE ${KEYZY_CLIENT_LIB})
 endif()
 
+# Find Boost libraries
+find_package(Boost REQUIRED COMPONENTS system thread)
+
+# Link Boost libraries
+target_link_libraries(${TARGET_NAME} PRIVATE Boost::system Boost::thread)
+
 target_include_directories(${TARGET_NAME} PRIVATE
-  $<BUILD_INTERFACE:${LIB_DIR}/Include>)
+  $<BUILD_INTERFACE:${LIB_DIR}/Include>
+  $<BUILD_INTERFACE:${Boost_INCLUDE_DIRS}>)
 
 # Copy static assets post build
 if(NOT ELEM_DEV_LOCALHOST)
@@ -95,14 +102,11 @@ if(NOT ELEM_DEV_LOCALHOST)
 
     add_custom_command(TARGET ${ACTIVE_TARGET} POST_BUILD
       COMMAND ${CMAKE_COMMAND} -E rm -rf "${RESOURCE_DIR}/dist"
-      COMMAND ${CMAKE_COMMAND} -E echo "Removed directory: ${RESOURCE_DIR}/dist"
+
       COMMAND ${CMAKE_COMMAND} -E make_directory "${RESOURCE_DIR}/dist"
-      COMMAND ${CMAKE_COMMAND} -E echo "Created directory: ${RESOURCE_DIR}/dist"
 
       COMMAND ${CMAKE_COMMAND} -E make_directory "${ASSETS_DIR}/assets"
-      COMMAND ${CMAKE_COMMAND} -E echo "Created directory: ${ASSETS_DIR}/assets if it didn't already exist"
       COMMAND ${CMAKE_COMMAND} -E copy_directory "${CMAKE_CURRENT_SOURCE_DIR}/../cables-ui/assets" "${ASSETS_DIR}/assets"
-      COMMAND ${CMAKE_COMMAND} -E echo "Copied directory: ${CMAKE_CURRENT_SOURCE_DIR}/../cables-ui/assets to ${ASSETS_DIR}/assets"
 
       COMMAND ${CMAKE_COMMAND} -E copy_directory "${ASSETS_DIR}" "${RESOURCE_DIR}/dist"
       COMMAND ${CMAKE_COMMAND} -E echo "Copied directory: ${ASSETS_DIR} to ${RESOURCE_DIR}/dist"
@@ -119,12 +123,22 @@ target_sources(${TARGET_NAME}
   PRIVATE
   PluginProcessor.cpp
   WebViewEditor.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/TwoStageFFTConvolver.cpp 
+  ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/AudioFFT.cpp 
+  ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/Utilities.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/FFTConvolver.cpp 
 )
 
 target_include_directories(${TARGET_NAME}
   PRIVATE
   ${CMAKE_CURRENT_SOURCE_DIR}/choc/gui
   ${CMAKE_CURRENT_SOURCE_DIR}/choc/javascript
+  ${CMAKE_CURRENT_SOURCE_DIR}/choc/containers
+  ${CMAKE_CURRENT_SOURCE_DIR}/choc/network
+  ${CMAKE_CURRENT_SOURCE_DIR}/choc/text
+  ${CMAKE_CURRENT_SOURCE_DIR}/choc/memory
+  ${CMAKE_CURRENT_SOURCE_DIR}/choc/audio
+  ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver
 )
 
 target_compile_features(${TARGET_NAME}
@@ -140,18 +154,17 @@ target_compile_definitions(${TARGET_NAME}
 target_link_libraries(${TARGET_NAME}
   PRIVATE
   juce::juce_audio_basics
-
-  # juce::juce_audio_devices
-  # juce::juce_audio_plugin_client
+  juce::juce_audio_formats
+  juce::juce_audio_devices
+  juce::juce_audio_plugin_client
   juce::juce_audio_processors
   juce::juce_audio_utils
-
-  # juce::juce_core
-  # juce::juce_data_structures
-  # juce::juce_dsp
-  # juce::juce_events
-  # juce::juce_graphics
-  # juce::juce_gui_basics
-  juce::juce_gui_extra
+  juce::juce_core
+  juce::juce_data_structures
+ # juce::juce_dsp
+  juce::juce_events
+ # juce::juce_graphics
+ # juce::juce_gui_basics
+ # juce::juce_gui_extra
   runtime
 )

@@ -2,11 +2,30 @@
 
 #include <juce_audio_basics/juce_audio_basics.h>
 #include <juce_audio_processors/juce_audio_processors.h>
+#include <juce_audio_formats/juce_audio_formats.h>
 
+#include <choc_AudioFileFormat.h>
+#include <choc_AudioFileFormat_WAV.h>
+#include <choc_AudioFileFormat_FLAC.h>
+#include <choc_SampleBuffers.h>
+#include <choc_SampleBufferUtilities.h>
+#include <choc_AudioSampleData.h>
 #include <choc_javascript.h>
+#include <choc_HTTPServer.h>
+#include <choc_javascript_QuickJS.h>
+#include <choc_javascript_Timer.h>
+#include <choc_StringUtilities.h>
+#include <choc_Files.h>
+#include <choc_Base64.h>
+#include <choc_SmallVector.h>
+
 #include <elem/Runtime.h>
 
 #include <KeyzyLicenseActivator.h>
+#include "WebViewEditor.h"
+
+class WebServer;     // Forward declaration of the WebServer class
+class WebViewEditor; // Forward declaration of WebViewEditor
 
 //==============================================================================
 class EffectsPluginProcessor
@@ -22,8 +41,10 @@ public:
     ~EffectsPluginProcessor() override;
 
     //==============================================================================
+
     juce::AudioProcessorEditor *createEditor() override;
     bool hasEditor() const override;
+    WebViewEditor *editor = nullptr;
 
     //==============================================================================
     void prepareToPlay(double sampleRate, int samplesPerBlock) override;
@@ -69,30 +90,28 @@ public:
     /** Internal helper for propagating processor state changes. */
     void dispatchStateChange();
 
-    /** INternal helper for mesh data view state changes */
-    void dispatchMeshStateChange();
+    /** Function to send info about the backend server to the View */
+    void dispatchServerInfo();
 
     /** error to UI */
     void dispatchError(std::string const &name, std::string const &message);
 
+    /** log to UI */
+    void dispatchNativeLog(std::string const &name, std::string const &message);
+
 private:
-    std::string MESH_STATE_PROPERTY = "meshState";
-
+    std::string REVERSE_BUFFER_PREFIX = "REVERSED_";
+    std::string USER_FILE_URLS = "userFileURLs";
     std::string MAIN_DSP_JS_FILE = "dsp.main.js";
-
     std::string MAIN_PATCH_JS_FILE = "patch.main.js";
-
     std::string SAMPLE_RATE_PROPERTY = "sampleRate";
-
     std::string NATIVE_MESSAGE_FUNCTION_NAME = "__postNativeMessage__";
-
     std::string LOG_FUNCTION_NAME = "__log__";
+    std::string WS_RESPONSE_PROPERTY = "NEL_STATE";
 
     // The maximum number of error messages to keep in the queue
     size_t MAX_ERROR_LOG_QUEUE_SIZE = 200;
-
     std::optional<std::string> loadDspEntryFileContents() const;
-
     std::optional<std::string> loadPatchEntryFileContents() const;
 
     /**
@@ -111,17 +130,54 @@ private:
     double lastKnownSampleRate = 0;
     int lastKnownBlockSize = 0;
 
-    //===== js stores and context  ==//
+    //===== Elementary Audio , js stores and context  ==//
     elem::js::Object state;
-    elem::js::Object meshState;
     choc::javascript::Context jsContext;
-
     juce::AudioBuffer<float> scratchBuffer;
-
     std::unique_ptr<elem::Runtime<float>> runtime;
-
-    std::map<std::string, juce::AudioParameterFloat *> parameterMap;
+    // Use std::variant to store either juce::AudioParameterFloat* or juce::AudioParameterBool*
+    std::map<std::string, std::variant<juce::AudioParameterFloat *, juce::AudioParameterBool *>> parameterMap;
     std::queue<std::string> errorLogQueue;
+
+    //=============================================
+
+public:
+    //======== User IR related , files and buffers
+    void updateStateWithFileURLs(const std::vector<juce::File> &files);
+    float calculateNormalisationFactor(float sumSquaredMagnitude);
+    void normaliseImpulseResponse(juce::AudioBuffer<float> &buf);
+    void decodeBase64toIRforVFS(const std::string &name, const std::string_view &uriStringView);
+    std::vector<juce::File> loadDefaultIRs();
+    void inspectVFS();
+    std::vector<juce::File> impulseResponses;
+    void addFolderOfIRsToVFS(std::vector<juce::File> &impulseResponses);
+    // todo: get better at using CHOC, port these methods over to CHOC reader
+    juce::AudioBuffer<float> getAudioBufferFromFile(juce::File file);
+    juce::AudioFormatManager formatManager;
+    // audiofile read using CHOC instead of juce
+    choc::audio::AudioFileFormatList formats;
+    void loadAudioFromFileIntoVFS(juce::File file, int index);
+
+    //========== Server related
+    int runWebServer();
+    struct ViewClientInstance : public choc::network::HTTPServer::ClientInstance
+    {
+        ViewClientInstance(EffectsPluginProcessor &processor);
+        ~ViewClientInstance();
+        choc::network::HTTPContent getHTTPContent(std::string_view path) override;
+        void upgradedToWebSocket(std::string_view path) override;
+        void handleWebSocketMessage(std::string_view message) override;
+        int clientID = 0;
+        EffectsPluginProcessor &processor; // Reference to the enclosing class
+    };
+    std::vector<juce::File> userIRFiles;
+    uint16_t serverPort = 0;
+    uint16_t getServerPort() const { return serverPort; }
+    void handleBase64FileDrop(const elem::js::Array &files);
+
+private:
+    std::unique_ptr<ViewClientInstance> clientInstance; // Use a smart pointer to store the client instance
+    std::unique_ptr<choc::network::HTTPServer> server;  // Use a smart pointer to manage the server
 
     //==============================================================================
     // A simple "dirty list" abstraction here for propagating realtime parameter
@@ -266,24 +322,6 @@ namespace unlock
 
 namespace jsFunctions
 {
-    inline auto consoleLogScript = R"shim(
-(function() {
-  if (typeof globalThis.console === 'undefined') {
-    globalThis.console = {
-      log(...args) {
-        __log__('[embedded:log]', ...args);
-      },
-      warn(...args) {
-          __log__('[embedded:warn]', ...args);
-      },
-      error(...args) {
-          __log__('[embedded:error]', ...args);
-      }
-    };
-  }
-})();
-    )shim";
-
     inline auto hydrateScript = R"script(
 (function() {
   if (typeof globalThis.__receiveHydrationData__ !== 'function')
@@ -304,17 +342,6 @@ namespace jsFunctions
 })();
 )script";
 
-    //// seperated for Mesh state send
-    inline auto dispatchMeshStateScript = R"script(
-(function() {
-  if (typeof globalThis.__receiveMeshStateChange__ !== 'function')
-    return false;
-
-  globalThis.__receiveMeshStateChange__(%);
-  return true;
-})();
-)script";
-
     inline auto errorScript = R"script(
 (function() {
   if (typeof globalThis.__receiveError__ !== 'function')
@@ -327,4 +354,25 @@ namespace jsFunctions
   return true;
 })();
 )script";
+
+    inline auto serverInfoScript = R"script(
+(function() {
+    if (typeof globalThis.__receiveServerInfo__ !== 'function')
+        return false;
+    
+    globalThis.__receiveServerInfo__(%);
+    return true;
+    })();
+)script";
+
+    inline auto vfsKeysScript = R"script(
+(function() {
+    if (typeof globalThis.__receiveVFSKeys__ !== 'function')
+        return false;
+    
+    globalThis.__receiveVFSKeys__(%);
+    return true;
+    })();
+)script";
+
 }

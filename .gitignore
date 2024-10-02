@@ -7,16 +7,23 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Assets
+# this is a holding folder for trying out irs
+ ir-src 
+
 # Builds
-native
+native/elementary
+native/choc
+native/juce
+native/KeyzyClientLibrary
 node_modules
 build
 dist
 *.local
-public/dsp.main.js
-public/patch.js
-public/assets
+# public/assets
 src/cables-ui
+cables-ui
+previousUI-versions
 
 # Editor directories and files
 .vscode
@@ -28,3 +35,4 @@ src/cables-ui
 *.sln
 *.sw?
 *.swp
+

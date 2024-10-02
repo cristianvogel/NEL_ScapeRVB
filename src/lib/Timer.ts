@@ -1,7 +1,7 @@
-import { setInterval, setTimeout, clearTimeout } from 'worker-timers'
+
 
 // ui related 
-export  class WWTimer {
+export  class SimpleTimer {
     // Existing members
     private startTime: number | null = null;
     private timeoutId: number | any;

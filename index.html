@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Four GL Dials</title>
+    <title>NEL-scape|space</title>
+
     <style>
       body {
         margin: 0;
@@ -16,26 +17,32 @@
         display: block;
         position: absolute;
         outline: 0;
+        
       }
 
       * {
         /* disable on touch highlights of html elements, especially on mobile! */
         -webkit-tap-highlight-color: transparent;
-        -webkit-touch-callout: none;
-        -webkit-user-select: auto;
-        -moz-user-select: none;
-        -ms-user-select: none;
-        user-select: auto;
+        -webkit-user-select: none; /* Safari */
+        user-select: none;
       }
     </style>
 
     <meta charset="utf-8" />
-    
+    <script type="text/javascript" src="scape_space_ui/js/draco_wasm_wrapper.js"></script>
+    <script type="text/javascript" src="scape_space_ui/js/draco_decoder_wasm.js"></script>
+    <script type="text/javascript" src="scape_space_ui/js/libs.core.js"></script>
+    <script type="text/javascript" src="scape_space_ui/js/cables.js"></script>
+    <script type="text/javascript" src="scape_space_ui/js/ops.js"></script>
+    <script type="text/javascript" src="scape_space_ui/js/vargetset.js"></script>
+    <script type="text/javascript" src="scape_space_ui/js/cgl_shadermodifier.js"></script>
+    <script type="text/javascript" src="scape_space_ui/js/cgl_copytexture.js"></script>
+    <script type="text/javascript" src="scape_space_ui/js/subpatchop.js"></script>
+    <script type="text/javascript" src="scape_space_ui/js/cgl_pixelreader.js"></script>
   </head>
   <body>
-
-    <div id="app"></div>
-    <script type="module" src="/src/main.ts"></script>
     
+    <div id="app"></div>
+    <script type="module" src="/src/main.ts" async="true"></script>
   </body>
 </html>

@@ -1,7 +1,5 @@
 #include "PluginProcessor.h"
-#include "WebViewEditor.h"
-
-#include <choc_javascript_QuickJS.h>
+#include "ConvolverNode.h"
 
 //==============================================================================
 // A quick helper for locating bundled asset files
@@ -22,12 +20,149 @@ juce::File getAssetsDirectory()
     return assetsDir;
 }
 
-//==============================================================================
+/// @brief  Constructor for the ViewClientInstance class
+/// @param processor
+EffectsPluginProcessor::ViewClientInstance::ViewClientInstance(EffectsPluginProcessor &processor) : processor(processor)
+{
+    static int clientCount = 0;
+    clientID = ++clientCount;
+}
+
+EffectsPluginProcessor::ViewClientInstance::~ViewClientInstance()
+{
+    clientID = 0;
+}
+
+choc::network::HTTPContent EffectsPluginProcessor::ViewClientInstance::getHTTPContent(std::string_view path)
+{
+    // not using HTML
+    return {};
+}
+
+void EffectsPluginProcessor::ViewClientInstance::upgradedToWebSocket(std::string_view path)
+{
+}
+
+void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::string_view message)
+{
+    // Convert std::string_view to std::string
+    std::string messageStr(message);
+
+    // Deserialize the message
+    auto parsed = elem::js::parseJSON(messageStr);
+
+    if (parsed.isObject())
+    {
+        auto o = parsed.getObject();
+
+        for (auto &[key, value] : o)
+        {
+            if (key == "requestState")
+            {
+                // Create a new JSON-like object
+                elem::js::Object wrappedState;
+                // Set processor.state as the value
+                wrappedState[processor.WS_RESPONSE_PROPERTY] = processor.state;
+                // Serialize the new object
+                std::string serializedState = elem::js::serialize(wrappedState);
+                // Send the serialized string
+                sendWebSocketMessage(serializedState);
+                continue;
+            }
+
+            if (key == "requestClientId")
+            {
+                // Create a new JSON-like object
+                elem::js::Object wrappedClientId;
+                // Set processor.clientId as the value
+                wrappedClientId["clientId"] = std::to_string(clientID);
+                // Serialize the new object
+                std::string serializedClientId = elem::js::serialize(wrappedClientId);
+                // Send the serialized string
+                sendWebSocketMessage(serializedClientId);
+                continue;
+            }
+
+            if (key == "filesDropped")
+            {
+                // handle an array of data:audio/wav;basee64, URIs
+                processor.handleBase64FileDrop(value.getArray());
+                // Create a new JSON-like object
+                elem::js::Object wrappedFilecount;
+                // Set processor.clientId as the value
+                wrappedFilecount["filesDropped"] = std::to_string(value.getArray().size());
+                sendWebSocketMessage(elem::js::serialize(wrappedFilecount));
+                continue;
+            }
+
+            if (key == "filePaths")
+            {
+                // handle an array of file paths
+                int index = 0;
+                for (const auto &filePath : value.getArray())
+                {
+                    if (filePath.isString())
+                    {
+                        std::filesystem::path path = filePath.toString();
+                        std::string extension = choc::text::toLowerCase(path.extension().string());
+                        bool validExtension = choc::text::contains(extension, "wav") || choc::text::contains(extension, "flac");
+
+                        if (!validExtension)
+                        {
+                            processor.dispatchNativeLog("File Error:", "Only WAV or FLAC audio formats supported.");
+                            continue;
+                        }
+                        if (index >= 4)
+                        {
+                            processor.dispatchNativeLog("File Error:", "Sorry, only four user files can be imported.");
+                            break;
+                        }
+
+                        // Convert std::filesystem::path to juce::File
+                        juce::File juceFile(path.string());
+                        // Ensure juceFile is a valid file
+                        if (!juceFile.existsAsFile())
+                        {
+                            processor.dispatchNativeLog("File Error:", "File does not exist.");
+                            continue;
+                        }
+
+                        processor.loadAudioFromFileIntoVFS(juceFile, index++);
+                        if ( processor.userIRFiles.size() == 4 )
+                        {
+                            processor.updateStateWithFileURLs( processor.userIRFiles );
+                        }
+                    }
+                }
+            }
+
+            // update a parameter directly
+            if (value.isNumber() && processor.parameterMap.count(key) > 0)
+            {
+                // Convert elem::js::Value to float
+                float paramValue = static_cast<elem::js::Number>(value);
+                // Convert processor.state[key] to float
+                float stateValue = static_cast<elem::js::Number>(processor.state[key]);
+                if (key == "srvbBypass" || key == "scapeBypass" || key == "scapeReverse")
+                {
+                    paramValue = juce::roundToInt(paramValue);
+                    stateValue = juce::roundToInt(paramValue);
+                }
+                processor.editor->setParameterValue(key, paramValue);
+            }
+        }
+    }
+}
+
+//======= DETAIL =======================================================================
 EffectsPluginProcessor::EffectsPluginProcessor()
     : AudioProcessor(BusesProperties()
                          .withInput("Input", juce::AudioChannelSet::stereo(), true)
                          .withOutput("Output", juce::AudioChannelSet::stereo(), true)),
-      jsContext(choc::javascript::createQuickJSContext())
+      jsContext(choc::javascript::createQuickJSContext()),
+      server(std::make_unique<choc::network::HTTPServer>()),
+      clientInstance(std::make_unique<ViewClientInstance>(*this))
+
 {
     // Initialize parameters from the manifest file
 #if ELEM_DEV_LOCALHOST
@@ -50,17 +185,297 @@ EffectsPluginProcessor::EffectsPluginProcessor()
     const auto parameters = manifest.getWithDefault("parameters", elem::js::Array());
     createParameters(parameters);
 
-    // The view state property has to have some value so that when state is loaded
-    // from the host, the key exists and is populated.
-   meshState.insert_or_assign(MESH_STATE_PROPERTY, "{}" );
+    // Initialize editor/view and license activator
+    editor = new WebViewEditor(this, getAssetsDirectory(), 840, 480);
+
+    // register audio file formats
+    formatManager.registerBasicFormats();
+    formats.addFormat<choc::audio::FLACAudioFileFormat<false>>();
+    formats.addFormat<choc::audio::WAVAudioFileFormat<false>>();
+
+    // create server
+    auto ws = EffectsPluginProcessor::runWebServer();
+    if (ws != 0)
+    {
+        dispatchError("Server error:", "Websocket server failed to start asio.");
+    }
+
+    serverPort = server->getPort();
 }
 
+// Destructor
 EffectsPluginProcessor::~EffectsPluginProcessor()
 {
+    // Check if server is not nullptr and close the server if it is open
+    if (server != nullptr)
+        server->close();
+
+    // Remove listeners from all parameters
     for (auto &p : getParameters())
     {
         p->removeListener(this);
+    };
+}
+
+//==============================================================================
+
+//==============================================================================
+void EffectsPluginProcessor::handleBase64FileDrop(const elem::js::Array &arrayOfURI)
+{
+    // Setup first layer of temp folder
+    for (size_t i = 0; i < arrayOfURI.size(); ++i)
+    {
+        if (i > 3)
+        {
+            dispatchError("▶︎ ", "Only 4 files can be loaded at a time.");
+            break;
+        }
+
+        std::string pathName = "USER_" + std::to_string(i); // "USER_0", "USER_1", "USER_2", "USER_3" etc
+
+        // Convert arrayOfURI[i] to std::string
+        std::string uriString = choc::base64::encodeToString(arrayOfURI[i].toString());
+        const std::string_view uriStringView(uriString);
+
+        // update the virtual file system
+        decodeBase64toIRforVFS(pathName, uriStringView);
     }
+}
+//==============================================================================
+// add only one impulse response to the runtime virtual file system
+void EffectsPluginProcessor::decodeBase64toIRforVFS(const std::string &name, const std::string_view &uriStringView)
+{
+    using SRC = choc::audio::sampledata::UInt8;
+    using DEST = float;
+
+    // first, decode the base64 string to an appropriate container
+    std::vector<u_int8_t> container;
+    choc::base64::decodeToContainer(container, uriStringView);
+
+    // set up a juce::AudioBuffer to hold the impulse response
+    auto numSamples = juce::roundToInt(container.size() / sizeof(u_int8_t));
+    auto buffer = juce::AudioBuffer<DEST>();
+
+    // source files are mono, but we use the second channel for a derived 'reverse' version
+    buffer.setSize(2, numSamples, true, false);
+
+    // convert u_int8_t samples to float, apply gain fade, and write to buffer
+    for (int i = 0; i < numSamples; ++i)
+    {
+        float sample = SRC::read<float>(&container[i]);
+        // fade in, less ER energy from the IR, as we have a whole ER engine already
+        float gain = 0.2f + (0.8f * i / numSamples); // equivalent to juce:: buffer.applyGainRamp(0, numSamples, 0.2, 1);
+        // write the converted sample to the juce::AudioBuffer
+        buffer.setSample(0, i, sample * gain);
+    }
+
+    // add the shaped impulse response to the virtual file system
+    runtime->updateSharedResourceMap(
+        name,
+        buffer.getReadPointer(0),
+        numSamples);
+
+    // reverse the IR and copy that to the other channel
+    buffer.reverse(0, juce::roundToInt(numSamples * 0.75f));
+    buffer.copyFrom(1, 0, buffer.getReadPointer(0), juce::roundToInt(numSamples * 0.75f));
+
+    // then add the reverse impulse response to the virtual file system too, with a prefix
+    runtime->updateSharedResourceMap(
+        REVERSE_BUFFER_PREFIX + name,
+        buffer.getReadPointer(1),
+        numSamples * 0.75);
+
+    // notify the front end of the updated VFS keys
+    inspectVFS();
+}
+
+//==============================================================================
+// Load the impulse responses from the assets directory
+std::vector<juce::File> EffectsPluginProcessor::loadDefaultIRs()
+{
+    std::vector<juce::File> impulseResponses = {};
+
+#if ELEM_DEV_LOCALHOST
+    auto assetsDir = juce::File(juce::String("~/Programming/ProgrammingSubFolder/NEL_ScapeRVB/public/assets/impulse-responses"));
+#else
+    auto assetsDir = getAssetsDirectory().getChildFile("assets/impulse-responses");
+#endif
+    if (assetsDir.isDirectory())
+    {
+        for (auto &file : assetsDir.findChildFiles(juce::File::findFiles, true))
+        {
+            if (file.hasFileExtension(juce::String("WAV")))
+                impulseResponses.push_back(file);
+        }
+    }
+
+    return impulseResponses;
+}
+//==============================================================================
+void EffectsPluginProcessor::inspectVFS()
+{
+    auto vfs = runtime->getSharedResourceMapKeys();
+    // iterate vfs into an std::string
+    std::string vfsString = "[";
+    for (auto &key : vfs)
+    {
+        vfsString += "\"" + key + "\",";
+    }
+    vfsString.pop_back();
+    vfsString += "]";
+    // send the vfs to the editor
+    const auto expr = serialize(jsFunctions::vfsKeysScript, choc::value::Value(vfsString), "%");
+    sendJavascriptToUI(expr);
+    jsContext.evaluateExpression(expr);
+}
+//==============================================================================
+// add each impulse response to the runtime virtual file system
+void EffectsPluginProcessor::addFolderOfIRsToVFS(std::vector<juce::File> &impulseResponses)
+{
+
+    for (auto &file : impulseResponses)
+    {
+        auto buffer = juce::AudioBuffer<float>();
+        auto reader = formatManager.createReaderFor(file);
+        buffer.setSize(2, reader->lengthInSamples);                                            // source files are mono, but we use the second channel for a derived 'shaped' version
+        auto name = choc::text::toUpperCase(file.getFileNameWithoutExtension().toStdString()); // "Ambience_0.wav" -> "AMBIENCE_0"
+        reader->read(&buffer, 0, reader->lengthInSamples, 0, true, false);
+        delete reader;
+
+        auto numSamples = buffer.getNumSamples();
+        // fade in, less ER energy from the IR, as we have a whole ER engine already
+        buffer.applyGainRamp(0, numSamples, 0.5, 1);
+        // buffer.copyFromWithRamp(1, 0, buffer.getReadPointer(0), buffer.getNumSamples(), 0.2, 1);
+        // add the gain ramped impulse response to the virtual file system
+
+        normaliseImpulseResponse(buffer);
+
+        runtime->updateSharedResourceMap(
+            name,
+            buffer.getReadPointer(0),
+            numSamples);
+        // Creative touch: Reverse the IR and copy that to the other channel
+        // Get the reverse from a little way in too, so its less draggy
+        // so its easy to swap into in realtime
+        buffer.reverse(0, numSamples * 0.75);
+        buffer.copyFrom(1, 0, buffer.getReadPointer(0), numSamples * 0.75);
+        // add the shaped impulse response to the virtual file system
+        runtime->updateSharedResourceMap(
+            REVERSE_BUFFER_PREFIX + name,
+            buffer.getReadPointer(1),
+            numSamples * 0.75);
+    }
+}
+
+//=============================================================================
+
+void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotIndex = 0)
+{
+
+    auto buffer = juce::AudioBuffer<float>();
+    auto reader = formatManager.createReaderFor(file);
+    auto numChannels = reader->numChannels;
+
+    buffer.setSize(2, reader->lengthInSamples);
+
+    if (numChannels < 2 || numChannels > 2)
+    {
+        dispatchError("File error:", "Only 2 channel files can be used.");
+        return;
+    }
+
+    for (int i = 0; i < numChannels; ++i)
+    {
+
+        // source files are mono, but we setup the second channel for a derived 'shaped' version
+        auto name = "USER" + std::to_string(slotIndex) + "_" + std::to_string(i);
+
+        reader->read(&buffer, 0, reader->lengthInSamples, 0, true, false);
+
+        auto numSamples = buffer.getNumSamples();
+
+        // fade in, less ER energy from the IR, as we have a whole ER engine already
+        buffer.applyGainRamp(0, numSamples, 0.5, 1);
+
+        normaliseImpulseResponse(buffer);
+
+        runtime->updateSharedResourceMap(
+            name,
+            buffer.getReadPointer(0),
+            numSamples);
+        // Reverse the IR and copy that to the other channel
+        buffer.reverse(0, numSamples * 0.75);
+        buffer.copyFrom(1, 0, buffer.getReadPointer(0), numSamples * 0.75);
+        // add the shaped impulse response to the virtual file system
+        runtime->updateSharedResourceMap(
+            REVERSE_BUFFER_PREFIX + name,
+            buffer.getReadPointer(1),
+            numSamples * 0.75);
+        // push the file URL into the container that will be sent to front end
+        // and kept as host state
+        userIRFiles.push_back(file);
+    }
+    delete reader;  // IMPORTANT: delete the reader to avoid memory leaks
+    // notify the front end of the updated VFS keys
+    inspectVFS();
+}
+
+//======================== Normalisation from JUCE convolution code
+float EffectsPluginProcessor::calculateNormalisationFactor(float sumSquaredMagnitude)
+{
+    if (sumSquaredMagnitude < 1e-8f)
+        return 1.0f;
+
+    return 0.125f / std::sqrt(sumSquaredMagnitude);
+}
+
+void EffectsPluginProcessor::normaliseImpulseResponse(juce::AudioBuffer<float> &buf)
+{
+    const auto numChannels = buf.getNumChannels();
+    const auto numSamples = buf.getNumSamples();
+    const auto channelPtrs = buf.getArrayOfWritePointers();
+
+    const auto maxSumSquaredMag = std::accumulate(channelPtrs, channelPtrs + numChannels, 0.0f, [numSamples](auto max, auto *channel)
+                                                  { return juce::jmax(max, std::accumulate(channel, channel + numSamples, 0.0f, [](auto sum, auto samp)
+                                                                                           { return sum + (samp * samp); })); });
+
+    const auto normalisationFactor = calculateNormalisationFactor(maxSumSquaredMag);
+
+    if (numChannels > 0) // Ensure there is at least one channel
+    {
+        auto *firstChannel = channelPtrs[0];
+        juce::FloatVectorOperations::multiply(firstChannel, normalisationFactor, numSamples);
+    }
+}
+
+//==============================================================================
+int EffectsPluginProcessor::runWebServer()
+{
+    auto address = "127.0.0.1";
+#if ELEM_DEV_LOCALHOST
+    uint16_t preferredPortNum = 13755; // dev with fixed port. 0 for random port when building
+#else
+    uint16_t preferredPortNum = 0;
+#endif
+    // <<...If you pass 0 for the port number, a free one will be automatically chosen...>>
+    // as we don't want every plugin instance under the same server, we use a random port
+    // and pass it over to the UI client
+    bool openedOK = server->open(address, preferredPortNum, 0,
+                                 // Create a new clientInstance for each connector..
+                                 [this]() -> std::unique_ptr<choc::network::HTTPServer::ClientInstance>
+                                 {
+                                    clientInstance = std::make_unique<ViewClientInstance>(*this);
+                                    return std::move(clientInstance); },
+                                 // Handle some kind of server error..
+                                 [this](const std::string &error)
+                                 { dispatchError("WS server error: ", error); });
+
+    if (!openedOK)
+        return 1;
+    // While the server is running, this thread no longer needs to be involved.
+    // you could also run the
+    // message loop or get on with other tasks.
+    return 0;
 }
 
 //==============================================================================
@@ -77,43 +492,60 @@ void EffectsPluginProcessor::createParameters(const std::vector<elem::js::Value>
         auto maxValue = parameter.getWithDefault("max", elem::js::Number(1));
         auto defaultValue = parameter.getWithDefault("defaultValue", elem::js::Number(0));
         auto step = parameter.getWithDefault("step", elem::js::Number(0));
+        auto isBoolean = parameter.getWithDefault("isBoolean", elem::js::Boolean(false));
 
-        auto *p = new juce::AudioParameterFloat(
-            juce::ParameterID(paramId, 1),
-            name,
-            {static_cast<float>(minValue), static_cast<float>(maxValue), static_cast<float>(step)},
-            static_cast<float>(defaultValue));
+        if (isBoolean)
+        {
+            auto *p = new juce::AudioParameterBool(
+                juce::ParameterID(paramId, 1),
+                name,
+                static_cast<bool>(defaultValue));
 
-        // Keep a map from parameter ID to the juce audio parameter
-        // to avoid looping over the parameter list every time one changes
-        parameterMap.insert({paramId, p});
+            // Keep a map from parameter ID to the juce audio parameter
+            // to avoid looping over the parameter list every time one changes
+            parameterMap.insert({paramId, p});
 
-        p->addListener(this);
-        addParameter(p);
+            p->addListener(this);
+            addParameter(p);
 
-        // Push a new ParameterReadout onto the list to represent this parameter
-        parameterReadouts.emplace_back(ParameterReadout{static_cast<float>(defaultValue), false});
+            // Push a new ParameterReadout onto the list to represent this parameter
+            parameterReadouts.emplace_back(ParameterReadout{static_cast<float>(defaultValue), false});
 
-        // Update our state object with the default parameter value
-        state.insert_or_assign(paramId, defaultValue);
+            // Update our state object with the default parameter value
+            state.insert_or_assign(paramId, defaultValue);
+        }
+        else
+        {
+            auto *p = new juce::AudioParameterFloat(
+                juce::ParameterID(paramId, 1),
+                name,
+                {static_cast<float>(minValue), static_cast<float>(maxValue), static_cast<float>(step)},
+                static_cast<float>(defaultValue));
+
+            // Keep a map from parameter ID to the juce audio parameter
+            // to avoid looping over the parameter list every time one changes
+            parameterMap.insert({paramId, p});
+
+            p->addListener(this);
+            addParameter(p);
+
+            // Push a new ParameterReadout onto the list to represent this parameter
+            parameterReadouts.emplace_back(ParameterReadout{static_cast<float>(defaultValue), false});
+
+            // Update our state object with the default parameter value
+            state.insert_or_assign(paramId, defaultValue);
+        }
     }
 }
 
 juce::AudioProcessorEditor *EffectsPluginProcessor::createEditor()
 {
-    const auto editor = new WebViewEditor(this, getAssetsDirectory(), 905, 600);
-    
+    editor = new WebViewEditor(this, getAssetsDirectory(), 840, 480);
 
+    // KEYZY LICENSE ACTIVATION
     // -----------
     // semi-online license activation
-    // -----------
-    // From docs:
-    // You may need to use semi-online activation without giving a serial number.
-    // First two cases are:
-    // 1- You may choose to renew weekly the offline license of the users with Semi Online activation.
-    // You don't want to ask the serial number again and again.
-    // 2- You may set Offline License Life (recommended) to 30 days. After 30 days, the offline license
-    // will be INVALID. Then you will need to activate it again without a serial number.
+
     editor->handleUnlockEvent = [this](choc::value::Value &v)
     {
         const bool hasSerial = v.hasObjectMember("serial") && v["serial"].isString() && v["serial"].getString().length() > 0;
@@ -138,11 +570,9 @@ juce::AudioProcessorEditor *EffectsPluginProcessor::createEditor()
 
     editor->ready = [this]()
     {
+        dispatchServerInfo();
         dispatchStateChange();
-        dispatchMeshStateChange();
     };
-
-    
     // When setting a parameter value, we simply tell the host. This will in turn fire
     // a parameterValueChanged event, which will catch and propagate through dispatching
     // a state change event
@@ -150,26 +580,26 @@ juce::AudioProcessorEditor *EffectsPluginProcessor::createEditor()
     {
         if (parameterMap.count(paramId) > 0)
         {
-            parameterMap[paramId]->setValueNotifyingHost(value);
+            std::visit([this, value](auto &&param)
+                       {
+            using T = std::decay_t<decltype(param)>;
+            if constexpr (std::is_same_v<T, juce::AudioParameterFloat*>) {
+                param->beginChangeGesture();
+                param->setValueNotifyingHost(value);
+                param->endChangeGesture();
+            } else if constexpr (std::is_same_v<T, juce::AudioParameterBool*>) {
+                param->beginChangeGesture();
+                param->setValueNotifyingHost(static_cast<bool>(value));
+                param->endChangeGesture();
+            } }, parameterMap[paramId]);
         }
     };
-
-    editor->setMeshState = [this](choc::value::Value &v)
-    {
-        meshState.insert_or_assign(MESH_STATE_PROPERTY, v.toString());
-        dispatchStateChange();
-      //  dispatchMeshStateChange();   <--- was causing feedback loop! 
-    };
-
-
-
 
 #if ELEM_DEV_LOCALHOST
     editor->reload = [this]()
     {
         initJavaScriptEngine();
         dispatchStateChange();
-        dispatchMeshStateChange();
     };
 
 #endif
@@ -185,7 +615,7 @@ bool EffectsPluginProcessor::hasEditor() const
 //==============================================================================
 const juce::String EffectsPluginProcessor::getName() const
 {
-    return "NEL-SRVB";
+    return "NEL-ScapeSpace";
 }
 
 bool EffectsPluginProcessor::acceptsMidi() const
@@ -310,6 +740,8 @@ void EffectsPluginProcessor::parameterGestureChanged(int, bool)
 }
 
 //==============================================================================
+// INITIALISATION HAPPENS HERE
+
 void EffectsPluginProcessor::handleAsyncUpdate()
 {
     // First things first, we check the flag to identify if we should initialize the Elementary
@@ -317,6 +749,14 @@ void EffectsPluginProcessor::handleAsyncUpdate()
     if (shouldInitialize.exchange(false))
     {
         runtime = std::make_unique<elem::Runtime<float>>(lastKnownSampleRate, lastKnownBlockSize);
+
+        runtime->registerNodeType("convolver", [](elem::NodeId const id, double sampleRate, int const blockSize)
+                                  { return std::make_shared<ConvolverNode>(id, sampleRate, blockSize); });
+
+        // Add impulse responses to the virtual file system
+        impulseResponses = loadDefaultIRs();
+        addFolderOfIRsToVFS(impulseResponses);
+        updateStateWithFileURLs(impulseResponses);
         initJavaScriptEngine();
         runtimeSwapRequired.store(false);
     }
@@ -349,9 +789,26 @@ void EffectsPluginProcessor::handleAsyncUpdate()
     dispatchStateChange();
 }
 
+void EffectsPluginProcessor::updateStateWithFileURLs(const std::vector<juce::File> &paths)
+{
+    // Convert the std::vector<juce::URL> to elem::js::Array
+    elem::js::Array fileURLs;
+    for (const auto &path : paths)
+    {
+        juce::File file(path);
+        auto localfileURL = juce::URL(  file  ) ;
+        fileURLs.push_back(elem::js::Value(localfileURL.toString(false).toStdString())); // Convert juce::File to elem::js::Value
+    }
+
+    // add the file URLS to the local state object
+    state.insert_or_assign(USER_FILE_URLS, elem::js::Value(fileURLs));
+}
+
 void EffectsPluginProcessor::initJavaScriptEngine()
 {
     jsContext = choc::javascript::createQuickJSContext();
+
+    choc::javascript::registerTimerFunctions(jsContext);
 
     // Install some native interop functions in our JavaScript environment
     jsContext.registerFunction(NATIVE_MESSAGE_FUNCTION_NAME, [this](choc::javascript::ArgumentList args)
@@ -379,6 +836,54 @@ void EffectsPluginProcessor::initJavaScriptEngine()
     // Re-hydrate from current state
     const auto expr = serialize(jsFunctions::hydrateScript, runtime->snapshot());
     jsContext.evaluateExpression(expr);
+
+    jsContext.registerFunction("__log__", [this](choc::javascript::ArgumentList args)
+                               {
+        const auto* kDispatchScript = R"script(
+(function() {
+  console.log(...JSON.parse(%));
+  return true;
+})();
+)script";
+
+        // Forward logs to the editor if it's available; then logs show up in one place.
+        //
+        // If not available, we fall back to std out.
+        if (auto* editor = static_cast<WebViewEditor*>(getActiveEditor())) {
+            auto v = choc::value::createEmptyArray();
+
+            for (size_t i = 0; i < args.numArgs; ++i) {
+                v.addArrayElement(*args[i]);
+            }
+
+            auto expr = juce::String(kDispatchScript).replace("%", elem::js::serialize(choc::json::toString(v))).toStdString();
+            editor->getWebViewPtr()->evaluateJavascript(expr);
+        } else {
+            for (size_t i = 0; i < args.numArgs; ++i) {
+                DBG(choc::json::toString(*args[i]));
+            }
+        }
+
+        return choc::value::Value(); });
+
+    // A simple shim to write various console operations to our native __log__ handler
+    jsContext.evaluateExpression(R"shim(
+(function() {
+  if (typeof globalThis.console === 'undefined') {
+    globalThis.console = {
+      log(...args) {
+        __log__('[embedded:log]', ...args);
+      },
+      warn(...args) {
+          __log__('[embedded:warn]', ...args);
+      },
+      error(...args) {
+          __log__('[embedded:error]', ...args);
+      }
+    };
+  }
+})();
+    )shim");
 }
 void EffectsPluginProcessor::dispatchStateChange()
 {
@@ -387,6 +892,7 @@ void EffectsPluginProcessor::dispatchStateChange()
     // the % character in the above block and produce a valid javascript expression.
     auto localState = state;
     localState.insert_or_assign(SAMPLE_RATE_PROPERTY, lastKnownSampleRate);
+
     const auto expr = serialize(jsFunctions::dispatchScript, localState);
     // First we try to dispatch to the UI if it's available, because running this step will
     // just involve placing a message in a queue.
@@ -403,52 +909,59 @@ void EffectsPluginProcessor::dispatchStateChange()
     }
 }
 
-void EffectsPluginProcessor::dispatchMeshStateChange()
+void EffectsPluginProcessor::dispatchServerInfo()
 {
-    // Need the double serialize here to correctly form the string script. The first
-    // serialize produces the payload we want, the second serialize ensures we can replace
-    // the % character in the above block and produce a valid javascript expression.
-    auto localState = meshState;
-    const auto expr = serialize(jsFunctions::dispatchMeshStateScript, localState);
-    // First we try to dispatch to the UI if it's available, because running this step will
-    // just involve placing a message in a queue.
+    // Retrieve the port number
+    serverPort = server->getPort();
+
+    // Convert the port number to a choc::value::Value
+    const auto portValue = choc::value::createInt32(serverPort);
+
+    // Send the server port to the UI
+    const auto expr = serialize(jsFunctions::serverInfoScript, portValue, "%");
     sendJavascriptToUI(expr);
-    // Next we dispatch to the local engine which will evaluate any necessary JavaScript synchronously
-    // here on the main thread
-    try
-    {
-        jsContext.evaluateExpression(expr);
-    }
-    catch (std::exception &e)
-    {
-        dispatchError("DSP JS:", e.what());
-    }
 }
 
-// NO END OF PROBLEMS from this logging system!
 void EffectsPluginProcessor::dispatchError(std::string const &name, std::string const &message)
 {
+    // Need the serialize here to correctly form the string script.
+    const auto expr = juce::String(jsFunctions::errorScript).replace("@", elem::js::serialize(name)).replace("%", elem::js::serialize(message)).toStdString();
 
- sendJavascriptToUI("globalThis.__log__('Native error.')");
+    // First we try to dispatch to the UI if it's available, because running this step will
+    // just involve placing a message in a queue.
+    if (!sendJavascriptToUI(expr))
+    {
+        if (errorLogQueue.size() == MAX_ERROR_LOG_QUEUE_SIZE)
+        {
+            errorLogQueue.pop();
+        }
+        errorLogQueue.push(expr);
+    }
 
+    // Next we dispatch to the local engine which will evaluate any necessary JavaScript synchronously
+    // here on the main thread
+    jsContext.evaluateExpression(expr);
+}
 
-//    // Need the serialize here to correctly form the string script.
-//    const auto expr = juce::String(jsFunctions::errorScript).replace("@", elem::js::serialize(name)).replace("%", elem::js::serialize(message)).toStdString();
-//
-//    // First we try to dispatch to the UI if it's available, because running this step will
-//    // just involve placing a message in a queue.
-//    if (!sendJavascriptToUI(expr))
-//    {
-//        if (errorLogQueue.size() == MAX_ERROR_LOG_QUEUE_SIZE)
-//        {
-//            errorLogQueue.pop();
-//        }
-//        errorLogQueue.push(expr);
-//    }
-//
-//    // Next we dispatch to the local engine which will evaluate any necessary JavaScript synchronously
-//    // here on the main thread
-//    jsContext.evaluateExpression(expr);
+void EffectsPluginProcessor::dispatchNativeLog(std::string const &name, std::string const &message)
+{
+    // Need the serialize here to correctly form the string script.
+    const auto expr = juce::String(jsFunctions::errorScript).replace("@", elem::js::serialize(name)).replace("%", elem::js::serialize(message)).toStdString();
+
+    // First we try to dispatch to the UI if it's available, because running this step will
+    // just involve placing a message in a queue.
+    if (!sendJavascriptToUI(expr))
+    {
+        if (errorLogQueue.size() == MAX_ERROR_LOG_QUEUE_SIZE)
+        {
+            errorLogQueue.pop();
+        }
+        errorLogQueue.push(expr);
+    }
+
+    // Next we dispatch to the local engine which will evaluate any necessary JavaScript synchronously
+    // here on the main thread
+    jsContext.evaluateExpression(expr);
 }
 
 std::optional<std::string> EffectsPluginProcessor::loadDspEntryFileContents() const
@@ -468,25 +981,6 @@ std::optional<std::string> EffectsPluginProcessor::loadDspEntryFileContents() co
 
     return dspEntryFileContents;
 }
-
-std::optional<std::string> EffectsPluginProcessor::loadPatchEntryFileContents() const
-{
-    // Load and evaluate our Elementary js main file
-#if ELEM_DEV_LOCALHOST
-    auto patchEntryFile = juce::URL("http://localhost:5173/patch.main.js");
-    auto patchEntryFileContents = patchEntryFile.readEntireTextStream().toStdString();
-#else
-    auto patchEntryFile = getAssetsDirectory().getChildFile(MAIN_PATCH_JS_FILE);
-
-    if (!patchEntryFile.existsAsFile())
-        return std::nullopt;
-
-    auto patchEntryFileContents = patchEntryFile.loadFileAsString().toStdString();
-#endif
-
-    return patchEntryFileContents;
-}
-
 
 bool EffectsPluginProcessor::sendJavascriptToUI(const std::string &expr) const
 {
@@ -511,17 +1005,9 @@ std::string EffectsPluginProcessor::serialize(const std::string &function, const
 //==============================================================================
 void EffectsPluginProcessor::getStateInformation(juce::MemoryBlock &destData)
 {
-
-    // serialise the secondary store for meshData
-    // then insert it into the data to be stored by the host
-    state.insert_or_assign(MESH_STATE_PROPERTY, meshState.at(MESH_STATE_PROPERTY));
-    // seriliase the whole package
     const auto serializedState = elem::js::serialize(state);
     // stash
     destData.replaceAll((void *)serializedState.c_str(), serializedState.size());
-    // remove the meshData from the active param state updates
-    // so the meshData doesn't get sent on every update
-    state.erase(MESH_STATE_PROPERTY);
 }
 
 void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInBytes)
@@ -530,6 +1016,7 @@ void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInByt
     // restore the data the host stashed previously
     const auto jsonString = std::string(static_cast<const char *>(data), sizeInBytes);
     // try to deserialise the whole stashed data string
+
     try
     {
         parsed = elem::js::parseJSON(jsonString);
@@ -545,7 +1032,7 @@ void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInByt
         auto o = parsed.getObject();
         for (auto &[key, value] : o)
         {
-            if (key != MESH_STATE_PROPERTY)
+            if (key != USER_FILE_URLS)
             {
                 if (state.count(key) > 0)
                 {
@@ -554,21 +1041,25 @@ void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInByt
             }
             else
             {
-                meshState.insert_or_assign(MESH_STATE_PROPERTY, value);
+                userIRFiles.clear();
+                auto parsedURLs = elem::js::parseJSON(value.toString()).getArray();
+                for (const auto &url : parsedURLs)
+                {
+                    auto fileURL = juce::URL( static_cast<juce::String>( url.toString() ) );
+                    userIRFiles.push_back( fileURL.getLocalFile() );
+                }
             }
+
+            dispatchStateChange();
         }
-          dispatchStateChange();
-    dispatchMeshStateChange();
     }
 
     catch (...)
     {
         // Failed to parse the incoming state, or the state we did parse was not actually
         // an object type. How you handle it is up to you.
-        dispatchError("State Error", "Failed to restore mesh!");
+        dispatchError("State Error", "Failed to restore state!");
     }
-
-  
 }
 
 //==============================================================================

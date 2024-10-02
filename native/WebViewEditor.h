@@ -5,6 +5,7 @@
 
 #include <choc_WebView.h>
 
+
 //==============================================================================
 // A simple juce::AudioProcessorEditor that holds a choc::WebView and sets the
 // WebView instance to cover the entire region of the editor.
@@ -25,7 +26,7 @@ public:
     std::function<void(choc::value::Value &)> handleUnlockEvent = [](choc::value::Value &) {};
 
     //==============================================================================
-    std::function<void(choc::value::Value &)> setMeshState = [](choc::value::Value &) {};
+
     std::function<void(const std::string &, float)> setParameterValue = [](const std::string &, float) {};
     std::function<void()> reload = []() {};
     std::function<void()> ready = []() {};
@@ -37,9 +38,11 @@ private:
     std::string READY_EVENT = "ready";
     std::string RELOAD_EVENT = "reload";
     std::string SET_PARAMETER_VALUE = "setParameterValue";
-    std::string SET_MESH_STATE = "setMeshState";
+
     std::string UNLOCK_EVENT = "unlock";
     std::string HOST_INFO = "hostInfo";
+    std::string SERVER_PORT = "serverInfo";
+    std::string FILES_DROPPED = "filesDropped";
 
     choc::value::Value handleSetParameterValueEvent(const choc::value::ValueView &e) const;
 

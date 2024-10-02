@@ -1,66 +1,74 @@
-import { ConsoleText } from "../stores/stores.svelte";
+import {
+  ConsoleText,
+  GestureSource_SCAPE,
+  GestureSource_SRVB,
+  GestureSource_Reverse,
+  HostState,
+  WebSocketPort,
+  VFSKeys
+} from "../stores/stores.svelte";
+import { REGISTERED_PARAM_NAMES } from "../stores/constants";
 
-//@ts-nocheck
 export declare var globalThis: any;
+declare var CABLES: any;
 
-
-
-/** ━━━━━━━
- * Main method for processing and denormalizing parameter values sent from the host
- * received via the `__receiveStateChange__` global function.
- * @param state - The state object received from the host.
+/* ━━━━━━━
+ * Initialize a WebSocket connection to the host.
+ * @param port - The port number to connect to.
  */
+// Create WebSocket connection.
+
+function initializeWebSocketConnection(port: number) {
+  WebSocketPort.assign(  port || 0 );
+  try {
+    CABLES.patch.getVar("ext_serverInfo").setValue(`ws://127.0.0.1:${port}`); // we should definitely have CABLES loaded at this point
+  } catch (e) {
+    console.error("Error connecting to WS: ", e);
+  }
+  console.log("CABLES using port ", port);
+  ConsoleText.extend(
+    "Connection on port: " + WebSocketPort.current + " established."
+  );
+}
 
 function processHostState(state: any) {
-  // ━━━━━━━
-  // Parse the state object and convert it to an array of key-value pairs
-  let parsedEntries: Array<[string, any]> = [];
+  let parsedEntries: { [key: string]: number } = {};
+
   try {
-    parsedEntries = Object.entries(JSON.parse(state));
+    parsedEntries = JSON.parse(state);
   } catch (e) {
     console.warn("Bad state received", parsedEntries);
   }
-  const processedEntries: Map<string, number> = new Map(parsedEntries);
- 
-  /** ━━━━━━━
-   * Finally, assign the processed entries as Map<string, number> )
-   * to the HostState store which triggers observer / subscribers
-   * across the View code updating parameter values.
-   **/
 
-  /* TODO: Assign result to Svelte5 store */
+  const srvbBypass = parsedEntries.srvbBypass > 0.5 ? 1 : 0;
+  const scapeBypass = parsedEntries.scapeBypass > 0.5 ? 1 : 0;
+  const scapeReverse = parsedEntries.scapeReverse > 0.5 ? 1 : 0;
+
+  function updateViewToggles(param, boolValue) {
+    let gestureSource;
+    if (param === "srvbBypass") gestureSource = GestureSource_SRVB;
+    if (param === "scapeBypass") gestureSource = GestureSource_SCAPE;
+    if (param === "scapeReverse") gestureSource = GestureSource_Reverse;
+    if (gestureSource.prev === "ui") gestureSource.update("host");
+    let toggleVarCables = CABLES.patch.getVar("host_" + param);
+    if (toggleVarCables.getValue() !== boolValue) {
+      toggleVarCables.setValue(boolValue);
+    }
+  }
+
+  HostState.update(parsedEntries);
+
+  updateViewToggles("srvbBypass", srvbBypass);
+  updateViewToggles("scapeBypass", scapeBypass);
+  updateViewToggles("scapeReverse", scapeReverse);
 }
 
-/** ━━━━━━━
- * Callable functions for interfacing with the Host code.
- **/
 export const MessageToHost = {
-  /** ━━━━━━━
-   * Manually get the current state key of each storage slot and serialize for
-   * persistentState storage in the host plugin. We need to stash and retrieve the view state
-   * as the WebView is destroyed when the user closes the plugin window.
-   * The solution must also work for preset store/recall originating from DAW Host.
-   **/
-  stashMeshState: function () {
-    let dataToPersist = {
-       presets: {},
-      license: 'VALID',
-    };
-    this.__setMeshStateInHost(dataToPersist);
-  },
-
-  /** ━━━━━━━
-   * Update parameter values in the host.
-   * @param paramId - The ID of the parameter to update.
-   * @param value - The new value of the parameter.
-   */
-  requestParamValueUpdate: function (paramId: string, value: number) {
+  updateHost: function (paramId: string, value: number) {
     if (typeof globalThis.__postNativeMessage__ === "function") {
-      ConsoleText.update( paramId + " ► " + value);
-      console.log('dbg', paramId, value);
       globalThis.__postNativeMessage__("setParameterValue", {
         paramId,
-        value,
+        value: value > 0.5 ? 1.0 : 0.0,
       });
     }
   },
@@ -85,16 +93,6 @@ export const MessageToHost = {
     //     // globalThis.__postNativeMessage__("unlock", { serial });
     //   }
     // }
-  },
-
-  /** ━━━━━━━
-   * Store any persistent UI state in the host.
-   * @param dataToPersist - The data to persist in the host.
-   */
-  __setMeshStateInHost: function (dataToPersist: any) {
-    if (typeof globalThis.__postNativeMessage__ === "function") {
-     // stash view secondary state 
-    }
   },
 
   /** ━━━━━━━
@@ -126,10 +124,34 @@ export function RegisterMessagesFromHost() {
    * @param state - The host state change object.
    */
   globalThis.__receiveStateChange__ = function (state: any) {
-   // processHostState(state);
-   console.log("Receive state change: ", JSON.parse(state));
+    processHostState(state);
   };
 
+  /** ━━━━━━━
+   * Handles receiving the port for this instance of the plugin.
+   * @param port - The port number.
+   * */
+
+  globalThis.__receiveServerInfo__ = function (port: number) {
+    initializeWebSocketConnection(port);
+  };
+
+  /**
+   * Handles a confirmation of how many files were loaded
+   * @param filesLoaded - The number of files loaded
+   */
+
+  globalThis.__filesLoaded__ = function ( msg: string) {
+    // not implemented
+  };
+
+  /**
+   * Handles a view of the current VFS keys
+   * @param vfsKeys - The VFS keys
+   */
+  globalThis.__receiveVFSKeys__ = function (vfsKeys: string) {
+    VFSKeys.update( JSON.parse(vfsKeys) );
+  }
 
   /** ━━━━━━━
    * Handles the unlock status received from the host.
@@ -149,7 +171,7 @@ export function RegisterMessagesFromHost() {
    * @param message - The host information object.
    */
   globalThis.__hostInfo__ = function (message: string) {
-     console.log("Got host Info: ", message);
+    console.log("Got host Info: ", message);
   };
 
   /** ━━━━━━━
@@ -158,7 +180,7 @@ export function RegisterMessagesFromHost() {
    */
   globalThis.__receiveError__ = function (error: any) {
     //ConsoleText.set("Error: " + error);
-    console.error("Error: ", error);
+    ConsoleText.update(">> " + error);
   };
 
   globalThis.__log__ = function (log: any) {
@@ -166,4 +188,3 @@ export function RegisterMessagesFromHost() {
     console.warn("Log: ", log);
   };
 }
- 
