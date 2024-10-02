@@ -151,10 +151,9 @@ public:
     void inspectVFS();
     std::vector<juce::File> impulseResponses;
     void addFolderOfIRsToVFS(std::vector<juce::File> &impulseResponses);
-    // todo: get better at using CHOC, port these methods over to CHOC reader
-    juce::AudioBuffer<float> getAudioBufferFromFile(juce::File file);
+ 
     juce::AudioFormatManager formatManager;
-    // audiofile read using CHOC instead of juce
+    // audiofile read using CHOC instead of juce :: DEPRECATING
     choc::audio::AudioFileFormatList formats;
     void loadAudioFromFileIntoVFS(juce::File file, int index);
 
