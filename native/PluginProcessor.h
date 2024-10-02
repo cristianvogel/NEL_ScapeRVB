@@ -17,6 +17,7 @@
 #include <choc_StringUtilities.h>
 #include <choc_Files.h>
 #include <choc_Base64.h>
+#include <choc_SmallVector.h>
 
 #include <elem/Runtime.h>
 
@@ -98,28 +99,9 @@ public:
     /** log to UI */
     void dispatchNativeLog(std::string const &name, std::string const &message);
 
-    // server
-    uint16_t serverPort = 0;
-    uint16_t getServerPort() const { return serverPort; }
-    void handleBase64FileDrop(const elem::js::Array &files);
-
-    // files
-
-    void decodeBase64toIRforVFS(const std::string &name, const std::string_view &uriStringView);
-    std::vector<juce::File> loadDefaultIRs();
-        void inspectVFS();
-            std::vector<juce::File> impulseResponses;
-    void addFolderOfIRsToVFS(std::vector<juce::File> &impulseResponses);
-    // todo: get better at using CHOC, port these methods over to CHOC reader
-    juce::AudioBuffer<float> getAudioBufferFromFile(juce::File file);
-    juce::AudioFormatManager formatManager;
-    // audiofile read with CHOC instead of juce
-    choc::audio::AudioFileFormatList formats;
-    void loadAudioFromFileIntoVFS( juce::File file, int index);
-
 private:
     std::string REVERSE_BUFFER_PREFIX = "REVERSED_";
-
+    std::string USER_FILE_URLS = "userFileURLs";
     std::string MAIN_DSP_JS_FILE = "dsp.main.js";
     std::string MAIN_PATCH_JS_FILE = "patch.main.js";
     std::string SAMPLE_RATE_PROPERTY = "sampleRate";
@@ -148,41 +130,50 @@ private:
     double lastKnownSampleRate = 0;
     int lastKnownBlockSize = 0;
 
-    //===== js stores and context  ==//
+    //===== Elementary Audio , js stores and context  ==//
     elem::js::Object state;
     choc::javascript::Context jsContext;
-
     juce::AudioBuffer<float> scratchBuffer;
-
     std::unique_ptr<elem::Runtime<float>> runtime;
-
     // Use std::variant to store either juce::AudioParameterFloat* or juce::AudioParameterBool*
     std::map<std::string, std::variant<juce::AudioParameterFloat *, juce::AudioParameterBool *>> parameterMap;
-
     std::queue<std::string> errorLogQueue;
 
     //=============================================
 
-    
-
-    //=============================================
 public:
+    //======== User IR related , files and buffers
+    void updateStateWithFileURLs(const std::vector<juce::File> &files);
     float calculateNormalisationFactor(float sumSquaredMagnitude);
     void normaliseImpulseResponse(juce::AudioBuffer<float> &buf);
-    int runWebServer();
+    void decodeBase64toIRforVFS(const std::string &name, const std::string_view &uriStringView);
+    std::vector<juce::File> loadDefaultIRs();
+    void inspectVFS();
+    std::vector<juce::File> impulseResponses;
+    void addFolderOfIRsToVFS(std::vector<juce::File> &impulseResponses);
+    // todo: get better at using CHOC, port these methods over to CHOC reader
+    juce::AudioBuffer<float> getAudioBufferFromFile(juce::File file);
+    juce::AudioFormatManager formatManager;
+    // audiofile read using CHOC instead of juce
+    choc::audio::AudioFileFormatList formats;
+    void loadAudioFromFileIntoVFS(juce::File file, int index);
 
+    //========== Server related
+    int runWebServer();
     struct ViewClientInstance : public choc::network::HTTPServer::ClientInstance
     {
         ViewClientInstance(EffectsPluginProcessor &processor);
         ~ViewClientInstance();
-
         choc::network::HTTPContent getHTTPContent(std::string_view path) override;
         void upgradedToWebSocket(std::string_view path) override;
         void handleWebSocketMessage(std::string_view message) override;
-
         int clientID = 0;
         EffectsPluginProcessor &processor; // Reference to the enclosing class
     };
+    std::vector<juce::File> userIRFiles;
+    uint16_t serverPort = 0;
+    uint16_t getServerPort() const { return serverPort; }
+    void handleBase64FileDrop(const elem::js::Array &files);
 
 private:
     std::unique_ptr<ViewClientInstance> clientInstance; // Use a smart pointer to store the client instance

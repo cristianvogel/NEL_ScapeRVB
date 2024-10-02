@@ -133,6 +133,7 @@ target_include_directories(${TARGET_NAME}
   PRIVATE
   ${CMAKE_CURRENT_SOURCE_DIR}/choc/gui
   ${CMAKE_CURRENT_SOURCE_DIR}/choc/javascript
+  ${CMAKE_CURRENT_SOURCE_DIR}/choc/containers
   ${CMAKE_CURRENT_SOURCE_DIR}/choc/network
   ${CMAKE_CURRENT_SOURCE_DIR}/choc/text
   ${CMAKE_CURRENT_SOURCE_DIR}/choc/memory

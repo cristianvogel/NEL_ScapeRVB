@@ -128,6 +128,10 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
                         }
 
                         processor.loadAudioFromFileIntoVFS(juceFile, index++);
+                        if ( processor.userIRFiles.size() == 4 )
+                        {
+                            processor.updateStateWithFileURLs( processor.userIRFiles );
+                        }
                     }
                 }
             }
@@ -371,6 +375,7 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotI
     auto buffer = juce::AudioBuffer<float>();
     auto reader = formatManager.createReaderFor(file);
     auto numChannels = reader->numChannels;
+
     buffer.setSize(2, reader->lengthInSamples);
 
     if (numChannels < 2 || numChannels > 2)
@@ -406,8 +411,12 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotI
             REVERSE_BUFFER_PREFIX + name,
             buffer.getReadPointer(1),
             numSamples * 0.75);
+        // push the file URL into the container that will be sent to front end
+        // and kept as host state
+        userIRFiles.push_back(file);
     }
-    delete reader;
+    delete reader;  // IMPORTANT: delete the reader to avoid memory leaks
+    // notify the front end of the updated VFS keys
     inspectVFS();
 }
 
@@ -747,7 +756,7 @@ void EffectsPluginProcessor::handleAsyncUpdate()
         // Add impulse responses to the virtual file system
         impulseResponses = loadDefaultIRs();
         addFolderOfIRsToVFS(impulseResponses);
-
+        updateStateWithFileURLs(impulseResponses);
         initJavaScriptEngine();
         runtimeSwapRequired.store(false);
     }
@@ -778,6 +787,21 @@ void EffectsPluginProcessor::handleAsyncUpdate()
     }
 
     dispatchStateChange();
+}
+
+void EffectsPluginProcessor::updateStateWithFileURLs(const std::vector<juce::File> &paths)
+{
+    // Convert the std::vector<juce::URL> to elem::js::Array
+    elem::js::Array fileURLs;
+    for (const auto &path : paths)
+    {
+        juce::File file(path);
+        auto localfileURL = juce::URL(  file  ) ;
+        fileURLs.push_back(elem::js::Value(localfileURL.toString(false).toStdString())); // Convert juce::File to elem::js::Value
+    }
+
+    // add the file URLS to the local state object
+    state.insert_or_assign(USER_FILE_URLS, elem::js::Value(fileURLs));
 }
 
 void EffectsPluginProcessor::initJavaScriptEngine()
@@ -868,6 +892,7 @@ void EffectsPluginProcessor::dispatchStateChange()
     // the % character in the above block and produce a valid javascript expression.
     auto localState = state;
     localState.insert_or_assign(SAMPLE_RATE_PROPERTY, lastKnownSampleRate);
+
     const auto expr = serialize(jsFunctions::dispatchScript, localState);
     // First we try to dispatch to the UI if it's available, because running this step will
     // just involve placing a message in a queue.
@@ -1007,12 +1032,26 @@ void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInByt
         auto o = parsed.getObject();
         for (auto &[key, value] : o)
         {
-            if (state.count(key) > 0)
+            if (key != USER_FILE_URLS)
             {
-                state.insert_or_assign(key, value);
+                if (state.count(key) > 0)
+                {
+                    state.insert_or_assign(key, value);
+                }
             }
+            else
+            {
+                userIRFiles.clear();
+                auto parsedURLs = elem::js::parseJSON(value.toString()).getArray();
+                for (const auto &url : parsedURLs)
+                {
+                    auto fileURL = juce::URL( static_cast<juce::String>( url.toString() ) );
+                    userIRFiles.push_back( fileURL.getLocalFile() );
+                }
+            }
+
+            dispatchStateChange();
         }
-        dispatchStateChange();
     }
 
     catch (...)
