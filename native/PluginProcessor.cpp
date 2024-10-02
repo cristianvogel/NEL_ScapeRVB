@@ -83,17 +83,6 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
                 continue;
             }
 
-            if (key == "filesDropped")
-            {
-                // handle an array of data:audio/wav;basee64, URIs
-                processor.handleBase64FileDrop(value.getArray());
-                // Create a new JSON-like object
-                elem::js::Object wrappedFilecount;
-                // Set processor.clientId as the value
-                wrappedFilecount["filesDropped"] = std::to_string(value.getArray().size());
-                sendWebSocketMessage(elem::js::serialize(wrappedFilecount));
-                continue;
-            }
 
             if (key == "filePaths")
             {
@@ -130,6 +119,7 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
                         processor.loadAudioFromFileIntoVFS(juceFile, index++);
                         if ( processor.userIRFiles.size() == 4 )
                         {
+                            processor.userIRFiles.clear();
                             processor.updateStateWithFileURLs( processor.userIRFiles );
                         }
                     }
@@ -219,75 +209,7 @@ EffectsPluginProcessor::~EffectsPluginProcessor()
 
 //==============================================================================
 
-//==============================================================================
-void EffectsPluginProcessor::handleBase64FileDrop(const elem::js::Array &arrayOfURI)
-{
-    // Setup first layer of temp folder
-    for (size_t i = 0; i < arrayOfURI.size(); ++i)
-    {
-        if (i > 3)
-        {
-            dispatchError("▶︎ ", "Only 4 files can be loaded at a time.");
-            break;
-        }
 
-        std::string pathName = "USER_" + std::to_string(i); // "USER_0", "USER_1", "USER_2", "USER_3" etc
-
-        // Convert arrayOfURI[i] to std::string
-        std::string uriString = choc::base64::encodeToString(arrayOfURI[i].toString());
-        const std::string_view uriStringView(uriString);
-
-        // update the virtual file system
-        decodeBase64toIRforVFS(pathName, uriStringView);
-    }
-}
-//==============================================================================
-// add only one impulse response to the runtime virtual file system
-void EffectsPluginProcessor::decodeBase64toIRforVFS(const std::string &name, const std::string_view &uriStringView)
-{
-    using SRC = choc::audio::sampledata::UInt8;
-    using DEST = float;
-
-    // first, decode the base64 string to an appropriate container
-    std::vector<u_int8_t> container;
-    choc::base64::decodeToContainer(container, uriStringView);
-
-    // set up a juce::AudioBuffer to hold the impulse response
-    auto numSamples = juce::roundToInt(container.size() / sizeof(u_int8_t));
-    auto buffer = juce::AudioBuffer<DEST>();
-
-    // source files are mono, but we use the second channel for a derived 'reverse' version
-    buffer.setSize(2, numSamples, true, false);
-
-    // convert u_int8_t samples to float, apply gain fade, and write to buffer
-    for (int i = 0; i < numSamples; ++i)
-    {
-        float sample = SRC::read<float>(&container[i]);
-        // fade in, less ER energy from the IR, as we have a whole ER engine already
-        float gain = 0.2f + (0.8f * i / numSamples); // equivalent to juce:: buffer.applyGainRamp(0, numSamples, 0.2, 1);
-        // write the converted sample to the juce::AudioBuffer
-        buffer.setSample(0, i, sample * gain);
-    }
-
-    // add the shaped impulse response to the virtual file system
-    runtime->updateSharedResourceMap(
-        name,
-        buffer.getReadPointer(0),
-        numSamples);
-
-    // reverse the IR and copy that to the other channel
-    buffer.reverse(0, juce::roundToInt(numSamples * 0.75f));
-    buffer.copyFrom(1, 0, buffer.getReadPointer(0), juce::roundToInt(numSamples * 0.75f));
-
-    // then add the reverse impulse response to the virtual file system too, with a prefix
-    runtime->updateSharedResourceMap(
-        REVERSE_BUFFER_PREFIX + name,
-        buffer.getReadPointer(1),
-        numSamples * 0.75);
-
-    // notify the front end of the updated VFS keys
-    inspectVFS();
-}
 
 //==============================================================================
 // Load the impulse responses from the assets directory
@@ -797,11 +719,11 @@ void EffectsPluginProcessor::updateStateWithFileURLs(const std::vector<juce::Fil
     {
         juce::File file(path);
         auto localfileURL = juce::URL(  file  ) ;
-        fileURLs.push_back(elem::js::Value(localfileURL.toString(false).toStdString())); // Convert juce::File to elem::js::Value
+        fileURLs.push_back(elem::js::Value(localfileURL.toString(false).toStdString())); 
     }
 
     // add the file URLS to the local state object
-    state.insert_or_assign(USER_FILE_URLS, elem::js::Value(fileURLs));
+    state.insert_or_assign( USER_FILE_URLS, elem::js::Value(fileURLs) );
 }
 
 void EffectsPluginProcessor::initJavaScriptEngine()

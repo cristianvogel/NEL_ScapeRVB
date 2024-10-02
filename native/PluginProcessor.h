@@ -146,7 +146,7 @@ public:
     void updateStateWithFileURLs(const std::vector<juce::File> &files);
     float calculateNormalisationFactor(float sumSquaredMagnitude);
     void normaliseImpulseResponse(juce::AudioBuffer<float> &buf);
-    void decodeBase64toIRforVFS(const std::string &name, const std::string_view &uriStringView);
+
     std::vector<juce::File> loadDefaultIRs();
     void inspectVFS();
     std::vector<juce::File> impulseResponses;
@@ -173,7 +173,7 @@ public:
     std::vector<juce::File> userIRFiles;
     uint16_t serverPort = 0;
     uint16_t getServerPort() const { return serverPort; }
-    void handleBase64FileDrop(const elem::js::Array &files);
+
 
 private:
     std::unique_ptr<ViewClientInstance> clientInstance; // Use a smart pointer to store the client instance
