@@ -1,6 +1,8 @@
 #pragma once
 
 #include <algorithm> // std::sort
+#include <functional> //  std::hash
+#include <future> //   std::promise and std::future
 
 #include <juce_audio_basics/juce_audio_basics.h>
 #include <juce_audio_processors/juce_audio_processors.h>
@@ -134,6 +136,7 @@ private:
 
     //===== Elementary Audio , js stores and context  ==//
     elem::js::Object state;
+    std::size_t lastStateHash = -1;
     choc::javascript::Context jsContext;
     juce::AudioBuffer<float> scratchBuffer;
     std::unique_ptr<elem::Runtime<float>> runtime;
@@ -151,10 +154,15 @@ public:
 
     std::vector<juce::File> loadDefaultIRs();
     void inspectVFS();
-    std::vector<juce::File> impulseResponses;
-    void addFolderOfIRsToVFS(std::vector<juce::File>& );
-    std::vector<juce::File> sortOrderForDefaultIRs(std::vector<juce::File>& );
- 
+    std::vector<juce::File> activeImpulseResponses;
+    void addFolderOfIRsToVFS(std::vector<juce::File> &);
+    std::vector<juce::File> sortOrderForDefaultIRs(std::vector<juce::File> &);
+
+    juce::FileChooser chooser;
+    void requestUserFiles(std::promise<bool>& promise);
+    std::vector<juce::File> userImpulseResponses;
+
+
     juce::AudioFormatManager formatManager;
     // audiofile read using CHOC instead of juce :: DEPRECATING
     choc::audio::AudioFileFormatList formats;
@@ -172,10 +180,9 @@ public:
         int clientID = 0;
         EffectsPluginProcessor &processor; // Reference to the enclosing class
     };
-    std::vector<juce::File> userIRFiles;
+  
     uint16_t serverPort = 0;
     uint16_t getServerPort() const { return serverPort; }
-
 
 private:
     std::unique_ptr<ViewClientInstance> clientInstance; // Use a smart pointer to store the client instance

@@ -16,6 +16,7 @@
 * __ext_injectedState__ ```Object```
 * __ext_normValue__ ```Number``` (default Value: `0`)
 * __ext_serverInfo__ ```String``` (default Value: `ws://127.0.0.1:13755`)
+* __ext_userFileURLs__ ```Array```
 * __host_scapeBypass__ ```Number```
 * __host_srvbBypass__ ```Number```
 * __NEL_SRVB_Metals__ ```Object```
@@ -48,6 +49,7 @@
 
 * __ui_scapeBypass_mouseEnter_string__ ```String```
 * __ui_scapeMode__ ```String```
+* __ui_sizeParamNoSmooth__ ```Number```
 * __ui_smoothedParam_diffusion__ ```Number```
 * __ui_smoothedParam_mix__ ```Number```
 * __ui_smoothedParam_size__ ```Number```

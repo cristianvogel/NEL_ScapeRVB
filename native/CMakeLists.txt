@@ -149,7 +149,9 @@ target_compile_definitions(${TARGET_NAME}
   PRIVATE
   ELEM_DEV_LOCALHOST=${ELEM_DEV_LOCALHOST}
   JUCE_VST3_CAN_REPLACE_VST2=0
-  JUCE_USE_CURL=0)
+  JUCE_USE_CURL=0
+  JUCE_MODAL_LOOPS_PERMITTED=1  # Add this line to define JUCE_MODAL_LOOPS_PERMITTED
+)
 
 target_link_libraries(${TARGET_NAME}
   PRIVATE
@@ -164,7 +166,7 @@ target_link_libraries(${TARGET_NAME}
  # juce::juce_dsp
   juce::juce_events
  # juce::juce_graphics
- # juce::juce_gui_basics
- # juce::juce_gui_extra
+ juce::juce_gui_basics
+ juce::juce_gui_extra
   runtime
 )

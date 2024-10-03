@@ -1,6 +1,7 @@
+
+
 #include "PluginProcessor.h"
 #include "ConvolverNode.h"
-
 
 //==============================================================================
 // A quick helper for locating bundled asset files
@@ -58,18 +59,7 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
 
         for (auto &[key, value] : o)
         {
-            if (key == "requestState")
-            {
-                // Create a new JSON-like object
-                elem::js::Object wrappedState;
-                // Set processor.state as the value
-                wrappedState[processor.WS_RESPONSE_PROPERTY] = processor.state;
-                // Serialize the new object
-                std::string serializedState = elem::js::serialize(wrappedState);
-                // Send the serialized string
-                sendWebSocketMessage(serializedState);
-                continue;
-            }
+          
             /**
              * @brief Handle the client ID request from the front end
              */
@@ -99,46 +89,70 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
             /**
              * @brief Handle the file paths sent from the front end
              */
-            if (key == "filePaths")
+            if (key == "selectFiles")
             {
-                int index = 0;
-                // clear out any previous references to File objects
-                processor.userIRFiles.clear();
-                for (const auto &filePath : value.getArray())
+                // first, request the user to select files
+                // and update the state with the file URLs
+                // as well as the VFS
+
+                // this is asynchronous because code needs to
+                // open a file browser on the main thread
+                // so I had to learn how to use a promise/future mechanism
+                std::promise<bool> promise;
+                std::future<bool> future = promise.get_future();
+
+                processor.requestUserFiles(promise);
+
+                // Wait for the asynchronous operation to complete
+                bool gotFiles = future.get();
+
+                if (!gotFiles)
                 {
-                    if (filePath.isString())
-                    {
-                        std::filesystem::path path = filePath.toString();
-                        std::string extension = choc::text::toLowerCase(path.extension().string());
-                        bool validExtension = choc::text::contains(extension, "wav") || choc::text::contains(extension, "flac");
-
-                        if (!validExtension)
-                        {
-                            processor.dispatchNativeLog("File Error:", "Only WAV or FLAC audio formats supported.");
-                            continue;
-                        }
-                        if (index >= 4)
-                        {
-                            processor.dispatchNativeLog("File Error:", "Sorry, only four user files can be imported.");
-                            break;
-                        }
-
-                        // Convert std::filesystem::path to juce::File
-                        juce::File juceFile(path.string());
-                        // Ensure juceFile is a valid file
-                        if (!juceFile.existsAsFile())
-                        {
-                            processor.dispatchNativeLog("File Error:", "File does not exist.");
-                            continue;
-                        }
-
-                        processor.loadAudioFromFileIntoVFS(juceFile, index++);
-                        processor.updateStateWithFileURLs(processor.userIRFiles);
-                    }
+                    processor.dispatchError("File Error:", "Sorry, please try again.");
+                    return;
                 }
+                // let's proceed to load the files into the VFS
+                // and dispatch the file URLs to the front end
+                int index = 0;
+
+                elem::js::Array fileURLs; // Create an array to hold the file URLs for serialisation
+
+                for (const juce::File &filePath : processor.userImpulseResponses)
+                {
+                    processor.loadAudioFromFileIntoVFS(filePath, index++);
+                    // Add the file URL to the seriliazable array
+                    fileURLs.push_back(filePath.getFullPathName().toStdString());
+                }        
+                processor.updateStateWithFileURLs(processor.userImpulseResponses);
+                continue;
             }
 
-            // update a parameter directly
+              /**
+             * @brief Handle a request for state
+             */
+            if (key == "requestState")
+            {
+                // Create a new JSON-like object
+                elem::js::Object wrappedState;
+                // Set processor.state as the value
+                wrappedState[processor.WS_RESPONSE_PROPERTY] = processor.state;
+                // Serialize the new object
+                std::string serializedState = elem::js::serialize(wrappedState);
+                // Compute the hash of the serialized state
+                std::size_t currentStateHash = std::hash<std::string>{}(serializedState);
+                // Only send if the state has changed
+                if (currentStateHash != processor.lastStateHash)
+                {
+                    // Send the serialized string
+                    sendWebSocketMessage(serializedState);
+                    // Update the last sent state hash
+                    processor.lastStateHash = currentStateHash;
+                }
+                continue;
+            }
+
+            // @brief Handle the parameter changes sent from the front end
+            // Here we just update the parameter directly in the processor
             if (value.isNumber() && processor.parameterMap.count(key) > 0)
             {
                 // Convert elem::js::Value to float
@@ -163,7 +177,10 @@ EffectsPluginProcessor::EffectsPluginProcessor()
                          .withOutput("Output", juce::AudioChannelSet::stereo(), true)),
       jsContext(choc::javascript::createQuickJSContext()),
       server(std::make_unique<choc::network::HTTPServer>()),
-      clientInstance(std::make_unique<ViewClientInstance>(*this))
+      clientInstance(std::make_unique<ViewClientInstance>(*this)),
+      chooser("Select exactly four stereo audio files",
+              juce::File::getSpecialLocation(juce::File::userHomeDirectory),
+              "*.wav;*.flac")
 
 {
     // Initialize parameters from the manifest file
@@ -287,7 +304,7 @@ void EffectsPluginProcessor::inspectVFS()
     jsContext.evaluateExpression(expr);
 }
 //==============================================================================
-// add each impulse response to the runtime virtual file system
+// add each default impulse response to the runtime virtual file system
 void EffectsPluginProcessor::addFolderOfIRsToVFS(std::vector<juce::File> &impulseResponses)
 {
 
@@ -324,12 +341,64 @@ void EffectsPluginProcessor::addFolderOfIRsToVFS(std::vector<juce::File> &impuls
             numSamples * 0.75);
     }
 }
+//==============================================================================
+
+void EffectsPluginProcessor::requestUserFiles(std::promise<bool> &promise)
+{
+    juce::MessageManager::callAsync([this, &promise]()
+                                    {
+    auto browsed = chooser.browseForMultipleFilesToOpen( nullptr );
+
+    if (!browsed) { promise.set_value(false); return; }
+
+    juce::Array<juce::File> selected ( chooser.getResults() );
+    // add each valid selected file to the userImpulseResponses vector
+    // should be < 10MB and WAV or FLAC to fill the current slot in the IR vector
+    int index = 0;
+    if ( selected.size() == 0 || selected.size() > 4 ) {
+                           dispatchNativeLog("File Error:", "Select EXACTLY 4 audio files.");                 
+        promise.set_value(false); return;
+    }
+
+    for (juce::File &file : selected) 
+    {                  
+        bool validExtension = file.hasFileExtension("wav;flac;WAV;FLAC");
+         if (!validExtension)
+                        {
+                            dispatchNativeLog("File Error:", "Only WAV or FLAC audio formats supported.");
+                            promise.set_value(false); return;
+                        }
+    }
+
+    userImpulseResponses.clear();
+    userImpulseResponses.resize(4); // Ensure the vector is properly sized
+    activeImpulseResponses.clear();
+    activeImpulseResponses.resize(4); // Ensure the vector is properly sized
+
+    for (juce::File &file : selected)
+    {
+        if (index == 4)
+        {
+            break;
+        }
+        if ( file.getSize() > juce::int64(10 * 1024 * 1024) ) {
+            dispatchNativeLog("File Error:", "A file size exceeds 10MB limit.");
+            promise.set_value(false); return;
+        }
+        else
+        {
+            userImpulseResponses.at(index) = file;
+            activeImpulseResponses.at(index) = file;
+            index++;
+        }
+    }
+     promise.set_value(true); });
+}
 
 //=============================================================================
 
 void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotIndex = 0)
 {
-
     auto buffer = juce::AudioBuffer<float>();
     auto reader = formatManager.createReaderFor(file);
     auto numChannels = reader->numChannels;
@@ -342,9 +411,6 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotI
         return;
     }
 
-    // push the File data into the container that gets sent to front end
-    // and kept as host state
-    userIRFiles.push_back(file);
 
     for (int i = 0; i < numChannels; ++i)
     {
@@ -612,7 +678,10 @@ int EffectsPluginProcessor::getCurrentProgram()
 }
 
 void EffectsPluginProcessor::setCurrentProgram(int /* index */) {}
-const juce::String EffectsPluginProcessor::getProgramName(int /* index */) { return {}; }
+const juce::String EffectsPluginProcessor::getProgramName(int /* index */)
+{
+    return {};
+}
 void EffectsPluginProcessor::changeProgramName(int /* index */, const juce::String & /* newName */) {}
 
 //==============================================================================
@@ -650,7 +719,6 @@ bool EffectsPluginProcessor::isBusesLayoutSupported(const AudioProcessor::BusesL
 
 void EffectsPluginProcessor::processBlock(juce::AudioBuffer<float> &buffer, juce::MidiBuffer & /* midiMessages */)
 {
-
     // If the license is invalid, we clear the buffer and return
     // if (licenseStatus != Keyzy::LicenseStatus::VALID)
     // {
@@ -715,10 +783,17 @@ void EffectsPluginProcessor::handleAsyncUpdate()
                                   { return std::make_shared<ConvolverNode>(id, sampleRate, blockSize); });
 
         // Add impulse responses to the virtual file system
-        impulseResponses = loadDefaultIRs();
-        addFolderOfIRsToVFS(impulseResponses);
+        activeImpulseResponses = loadDefaultIRs();
+        // check if userImpulseResponses has been sized
+        if (userImpulseResponses.size() == 0)
+        {
+            userImpulseResponses = activeImpulseResponses;
+        }
+
+        addFolderOfIRsToVFS(activeImpulseResponses);
         // Update the front end with the paths of the first channel of each default IR
-        updateStateWithFileURLs({impulseResponses[0], impulseResponses[2], impulseResponses[4], impulseResponses[6]});
+        updateStateWithFileURLs({activeImpulseResponses[0], activeImpulseResponses[2], activeImpulseResponses[4], activeImpulseResponses[6]});
+
         initJavaScriptEngine();
         runtimeSwapRequired.store(false);
     }
@@ -1003,12 +1078,12 @@ void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInByt
             }
             else
             {
-                userIRFiles.clear();
+                userImpulseResponses.clear();
                 auto parsedURLs = elem::js::parseJSON(value.toString()).getArray();
                 for (const auto &url : parsedURLs)
                 {
                     auto fileURL = juce::URL(static_cast<juce::String>(url.toString()));
-                    userIRFiles.push_back(fileURL.getLocalFile());
+                    userImpulseResponses.push_back(fileURL.getLocalFile());
                 }
             }
 
