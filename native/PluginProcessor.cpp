@@ -1,6 +1,7 @@
 #include "PluginProcessor.h"
 #include "ConvolverNode.h"
 
+
 //==============================================================================
 // A quick helper for locating bundled asset files
 juce::File getAssetsDirectory()
@@ -69,7 +70,9 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
                 sendWebSocketMessage(serializedState);
                 continue;
             }
-
+            /**
+             * @brief Handle the client ID request from the front end
+             */
             if (key == "requestClientId")
             {
                 // Create a new JSON-like object
@@ -82,12 +85,25 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
                 sendWebSocketMessage(serializedClientId);
                 continue;
             }
-
-
+            /**
+             * @brief Handle the IR mode state change sent from the front end  "user" | "default"
+             */
+            if (key == "irModeSwitch")
+            {
+                // todo: handle user switching from default to user IRs
+                // by switching the file URLs in the state
+                // and in the VFS
+                // from user to default and vice versa
+                continue;
+            }
+            /**
+             * @brief Handle the file paths sent from the front end
+             */
             if (key == "filePaths")
             {
-                // handle an array of file paths
                 int index = 0;
+                // clear out any previous references to File objects
+                processor.userIRFiles.clear();
                 for (const auto &filePath : value.getArray())
                 {
                     if (filePath.isString())
@@ -117,11 +133,7 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
                         }
 
                         processor.loadAudioFromFileIntoVFS(juceFile, index++);
-                        if ( processor.userIRFiles.size() == 4 )
-                        {
-                            processor.userIRFiles.clear();
-                            processor.updateStateWithFileURLs( processor.userIRFiles );
-                        }
+                        processor.updateStateWithFileURLs(processor.userIRFiles);
                     }
                 }
             }
@@ -209,8 +221,6 @@ EffectsPluginProcessor::~EffectsPluginProcessor()
 
 //==============================================================================
 
-
-
 //==============================================================================
 // Load the impulse responses from the assets directory
 std::vector<juce::File> EffectsPluginProcessor::loadDefaultIRs()
@@ -231,8 +241,34 @@ std::vector<juce::File> EffectsPluginProcessor::loadDefaultIRs()
         }
     }
 
+    return sortOrderForDefaultIRs(impulseResponses);
+}
+
+//==================================================
+std::vector<juce::File> EffectsPluginProcessor::sortOrderForDefaultIRs(std::vector<juce::File> &impulseResponses)
+{
+    // Define the desired order of keywords
+    std::vector<std::string> order = {"LIGHT", "SURFACE", "TEMPLE", "DEEPNESS"};
+
+    // Sort the files based on the specified order of keywords
+    std::sort(impulseResponses.begin(), impulseResponses.end(), [&order](const juce::File &a, const juce::File &b)
+              {
+        auto aName = a.getFileNameWithoutExtension().toStdString();
+        auto bName = b.getFileNameWithoutExtension().toStdString();
+
+        auto aPos = std::find_if(order.begin(), order.end(), [&aName](const std::string& keyword) {
+            return aName.find(keyword) != std::string::npos;
+        });
+
+        auto bPos = std::find_if(order.begin(), order.end(), [&bName](const std::string& keyword) {
+            return bName.find(keyword) != std::string::npos;
+        });
+
+        return aPos < bPos; });
+
     return impulseResponses;
 }
+
 //==============================================================================
 void EffectsPluginProcessor::inspectVFS()
 {
@@ -306,6 +342,10 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotI
         return;
     }
 
+    // push the File data into the container that gets sent to front end
+    // and kept as host state
+    userIRFiles.push_back(file);
+
     for (int i = 0; i < numChannels; ++i)
     {
 
@@ -333,11 +373,10 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotI
             REVERSE_BUFFER_PREFIX + name,
             buffer.getReadPointer(1),
             numSamples * 0.75);
-        // push the file URL into the container that will be sent to front end
-        // and kept as host state
-        userIRFiles.push_back(file);
     }
-    delete reader;  // IMPORTANT: delete the reader to avoid memory leaks
+
+    // IMPORTANT: delete the reader to avoid memory leaks
+    delete reader;
     // notify the front end of the updated VFS keys
     inspectVFS();
 }
@@ -678,7 +717,8 @@ void EffectsPluginProcessor::handleAsyncUpdate()
         // Add impulse responses to the virtual file system
         impulseResponses = loadDefaultIRs();
         addFolderOfIRsToVFS(impulseResponses);
-        updateStateWithFileURLs(impulseResponses);
+        // Update the front end with the paths of the first channel of each default IR
+        updateStateWithFileURLs({impulseResponses[0], impulseResponses[2], impulseResponses[4], impulseResponses[6]});
         initJavaScriptEngine();
         runtimeSwapRequired.store(false);
     }
@@ -718,12 +758,12 @@ void EffectsPluginProcessor::updateStateWithFileURLs(const std::vector<juce::Fil
     for (const auto &path : paths)
     {
         juce::File file(path);
-        auto localfileURL = juce::URL(  file  ) ;
-        fileURLs.push_back(elem::js::Value(localfileURL.toString(false).toStdString())); 
+        auto localfileURL = juce::URL(file);
+        fileURLs.push_back(elem::js::Value(localfileURL.toString(false).toStdString()));
     }
 
     // add the file URLS to the local state object
-    state.insert_or_assign( USER_FILE_URLS, elem::js::Value(fileURLs) );
+    state.insert_or_assign(USER_FILE_URLS, elem::js::Value(fileURLs));
 }
 
 void EffectsPluginProcessor::initJavaScriptEngine()
@@ -967,8 +1007,8 @@ void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInByt
                 auto parsedURLs = elem::js::parseJSON(value.toString()).getArray();
                 for (const auto &url : parsedURLs)
                 {
-                    auto fileURL = juce::URL( static_cast<juce::String>( url.toString() ) );
-                    userIRFiles.push_back( fileURL.getLocalFile() );
+                    auto fileURL = juce::URL(static_cast<juce::String>(url.toString()));
+                    userIRFiles.push_back(fileURL.getLocalFile());
                 }
             }
 

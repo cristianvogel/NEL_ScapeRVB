@@ -1,5 +1,7 @@
 #pragma once
 
+#include <algorithm> // std::sort
+
 #include <juce_audio_basics/juce_audio_basics.h>
 #include <juce_audio_processors/juce_audio_processors.h>
 #include <juce_audio_formats/juce_audio_formats.h>
@@ -150,7 +152,8 @@ public:
     std::vector<juce::File> loadDefaultIRs();
     void inspectVFS();
     std::vector<juce::File> impulseResponses;
-    void addFolderOfIRsToVFS(std::vector<juce::File> &impulseResponses);
+    void addFolderOfIRsToVFS(std::vector<juce::File>& );
+    std::vector<juce::File> sortOrderForDefaultIRs(std::vector<juce::File>& );
  
     juce::AudioFormatManager formatManager;
     // audiofile read using CHOC instead of juce :: DEPRECATING
