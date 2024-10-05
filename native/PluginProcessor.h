@@ -1,8 +1,9 @@
 #pragma once
 
-#include <algorithm> // std::sort
+#include <algorithm>  // std::sort
 #include <functional> //  std::hash
-#include <future> //   std::promise and std::future
+#include <future>     //   std::promise and std::future
+#include <cstring>    // Include this header for std::memcpy
 
 #include <juce_audio_basics/juce_audio_basics.h>
 #include <juce_audio_processors/juce_audio_processors.h>
@@ -153,21 +154,22 @@ public:
     void normaliseImpulseResponse(juce::AudioBuffer<float> &buf);
 
     std::vector<juce::File> loadDefaultIRs();
-    void inspectVFS();
+     void inspectVFS();
     std::vector<juce::File> activeImpulseResponses;
     void addFolderOfIRsToVFS(std::vector<juce::File> &);
     std::vector<juce::File> sortOrderForDefaultIRs(std::vector<juce::File> &);
 
     juce::FileChooser chooser;
-    void requestUserFiles(std::promise<bool>& promise);
+    void requestUserFiles(std::promise<bool> &promise);
     std::vector<juce::File> userImpulseResponses;
-
+    std::vector<std::vector<float>> userAudioData;
+    void updateStateWithBufferData();
+    std::vector<float> audioBufferToVector(const juce::AudioBuffer<float>& buffer);
 
     juce::AudioFormatManager formatManager;
     // audiofile read using CHOC instead of juce :: DEPRECATING
     choc::audio::AudioFileFormatList formats;
     void loadAudioFromFileIntoVFS(juce::File file, int index);
-
     //========== Server related
     int runWebServer();
     struct ViewClientInstance : public choc::network::HTTPServer::ClientInstance
@@ -180,7 +182,7 @@ public:
         int clientID = 0;
         EffectsPluginProcessor &processor; // Reference to the enclosing class
     };
-  
+
     uint16_t serverPort = 0;
     uint16_t getServerPort() const { return serverPort; }
 

@@ -59,7 +59,7 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
 
         for (auto &[key, value] : o)
         {
-          
+
             /**
              * @brief Handle the client ID request from the front end
              */
@@ -122,12 +122,13 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
                     processor.loadAudioFromFileIntoVFS(filePath, index++);
                     // Add the file URL to the seriliazable array
                     fileURLs.push_back(filePath.getFullPathName().toStdString());
-                }        
+                }
                 processor.updateStateWithFileURLs(processor.userImpulseResponses);
+                // processor.updateStateWithBufferData();
                 continue;
             }
 
-              /**
+            /**
              * @brief Handle a request for state
              */
             if (key == "requestState")
@@ -411,7 +412,6 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotI
         return;
     }
 
-
     for (int i = 0; i < numChannels; ++i)
     {
 
@@ -441,10 +441,48 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotI
             numSamples * 0.75);
     }
 
+    userAudioData.push_back(audioBufferToVector(buffer));
+
     // IMPORTANT: delete the reader to avoid memory leaks
     delete reader;
     // notify the front end of the updated VFS keys
     inspectVFS();
+}
+
+//======================= Function to convert the first channel of AudioBuffer to std::vector<float>
+
+std::vector<float> EffectsPluginProcessor::audioBufferToVector(const juce::AudioBuffer<float>& buffer)
+{
+    int numSamples = buffer.getNumSamples();
+
+    std::vector<float> audioData(numSamples);
+
+    const float* channelData = buffer.getReadPointer(0);
+    std::memcpy(audioData.data(), channelData, numSamples * sizeof(float));
+
+    return audioData;
+}
+
+//========================= UpdateStateWithAudioFileData
+
+// Implementation of updateStateWithBufferData
+void EffectsPluginProcessor::updateStateWithBufferData( )
+{
+    // Convert userAudioData to elem::js::Array
+    elem::js::Array jsArray;
+
+    for (const auto& channelData : userAudioData)
+    {
+        elem::js::Array channelArray;
+        for (const auto& sample : channelData)
+        {
+            channelArray.push_back(elem::js::Value(sample));
+        }
+        jsArray.push_back(channelArray);
+    }
+
+    // Add the file URLs to the local state object
+    state.insert_or_assign("userBufferData", elem::js::Value(jsArray));
 }
 
 //======================== Normalisation from JUCE convolution code
