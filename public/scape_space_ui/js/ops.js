@@ -394,72 +394,6 @@ CABLES.OPS["542fcabf-cbcc-4a8f-897c-b6b622a90b92"]={f:Ops.Patch.P4Zknbo.UI_Rever
 
 // **************************************************************
 // 
-// Ops.Patch.P4Zknbo.UI_ScapeParams
-// 
-// **************************************************************
-
-Ops.Patch.P4Zknbo.UI_ScapeParams = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"op.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"poqu2ezbj\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"value\",\"value\":\"scapeLength\"}],\"portsOut\":[{\"name\":\"String\",\"links\":[{\"portIn\":\"btagbs7z2\",\"portOut\":\"String\",\"objIn\":\"13o7f33ja\",\"objOut\":\"poqu2ezbj\"}]}],\"objName\":\"Ops.String.String_v2\"},{\"id\":\"qjdbm9836\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.05},{\"name\":\"Letter Spacing\",\"value\":-0.02},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":1},{\"name\":\"Align\",\"value\":\"Center\"},{\"name\":\"Vertical Align index\",\"value\":1},{\"name\":\"Vertical Align\",\"value\":\"Top\"},{\"name\":\"r\",\"value\":0.75},{\"name\":\"g\",\"value\":0.75},{\"name\":\"b\",\"value\":0.75},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.259},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.515},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":0},{\"name\":\"Border g\",\"value\":0.781},{\"name\":\"Border b\",\"value\":1},{\"name\":\"Shadow\",\"value\":0},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.21398632812500004},{\"name\":\"Height\",\"value\":0.05346133019179895},{\"name\":\"Start Y\",\"value\":0.026471292162698425},{\"name\":\"Num Chars\",\"value\":8}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"zwvdwgqim\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"y\",\"value\":-0.94},{\"name\":\"z\",\"value\":0.01}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"qjdbm9836\",\"objOut\":\"zwvdwgqim\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"x3x0zik0g\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Repeats\",\"value\":4},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Forward\"}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"zwvdwgqim\",\"objOut\":\"x3x0zik0g\"}]},{\"name\":\"index\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"index\",\"objIn\":\"yxkgk9vnh\",\"objOut\":\"x3x0zik0g\"},{\"portIn\":\"Index\",\"portOut\":\"index\",\"objIn\":\"ulceweutv\",\"objOut\":\"x3x0zik0g\"}]}],\"objName\":\"Ops.Trigger.Repeat_v2\"},{\"id\":\"yxkgk9vnh\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.8}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"x\",\"portOut\":\"result\",\"objIn\":\"zwvdwgqim\",\"objOut\":\"yxkgk9vnh\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"zdx91pb86\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":-1.2},{\"name\":\"y\",\"value\":0.02},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"trigger\",\"objIn\":\"x3x0zik0g\",\"objOut\":\"zdx91pb86\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"qzlyluu1x\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"scape IR\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"ulceweutv\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"String 0\",\"value\":\"light\"},{\"name\":\"String 1\",\"value\":\"surface\"},{\"name\":\"String 2\",\"value\":\"temple\"},{\"name\":\"String 3\",\"value\":\"deepness\"},{\"name\":\"String 4\",\"value\":\"\"},{\"name\":\"String 5\",\"value\":\"\"},{\"name\":\"String 6\",\"value\":\"\"},{\"name\":\"String 7\",\"value\":\"\"},{\"name\":\"String 8\",\"value\":\"\"},{\"name\":\"String 9\",\"value\":\"\"}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Text\",\"portOut\":\"Result\",\"objIn\":\"qjdbm9836\",\"objOut\":\"ulceweutv\"}]}],\"objName\":\"Ops.String.SwitchString\"},{\"id\":\"47mqa8sjd\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.33}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"result\",\"objIn\":\"rsd3kxfmj\",\"objOut\":\"47mqa8sjd\"}]}],\"objName\":\"Ops.Math.Sum\"},{\"id\":\"j33ora7db\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Named Trigger\",\"value\":\"exeNoCamera\"}],\"portsOut\":[{\"name\":\"Triggered\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"Triggered\",\"objIn\":\"y7orf9jry\",\"objOut\":\"j33ora7db\"}]}],\"objName\":\"Ops.Trigger.TriggerReceive\"},{\"id\":\"24yyr8l2c\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"value\",\"value\":\"scapeLevel\"}],\"portsOut\":[{\"name\":\"String\",\"links\":[{\"portIn\":\"btagbs7z2\",\"portOut\":\"String\",\"objIn\":\"93ac1tymi\",\"objOut\":\"24yyr8l2c\"}]}],\"objName\":\"Ops.String.String_v2\"},{\"id\":\"4ct9o2c0e\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"scape level\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"fu44mgk6q\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.4}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"result\",\"objIn\":\"jiqpk1738\",\"objOut\":\"fu44mgk6q\"}]}],\"objName\":\"Ops.Math.Sum\"},{\"id\":\"13o7f33ja\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2,\"subPatchVer\":2},\"portsIn\":[{\"name\":\"blls2amps\",\"title\":\"Trigger in\"},{\"name\":\"btagbs7z2\",\"title\":\"Class\"},{\"name\":\"lj06d561p\",\"value\":0,\"title\":\"Show Boundings\"},{\"name\":\"patchId\",\"value\":\"45wmrjbbz\"}],\"portsOut\":[{\"name\":\"nti406vwi\",\"value\":-0.5,\"title\":\"Result\"},{\"name\":\"gjvx0zyv5\",\"title\":\"value\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"gjvx0zyv5\",\"objIn\":\"47mqa8sjd\",\"objOut\":\"13o7f33ja\"}]}],\"objName\":\"Ops.Patch.P4Zknbo.SuperFancySlider\"},{\"id\":\"93ac1tymi\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2,\"subPatchVer\":2},\"portsIn\":[{\"name\":\"blls2amps\",\"title\":\"Trigger in\"},{\"name\":\"btagbs7z2\",\"title\":\"Class\"},{\"name\":\"lj06d561p\",\"value\":0,\"title\":\"Show Boundings\"},{\"name\":\"patchId\",\"value\":\"27jr1daqf\"}],\"portsOut\":[{\"name\":\"nti406vwi\",\"value\":-0.5,\"title\":\"Result\"},{\"name\":\"gjvx0zyv5\",\"title\":\"value\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"gjvx0zyv5\",\"objIn\":\"fu44mgk6q\",\"objOut\":\"93ac1tymi\"}]}],\"objName\":\"Ops.Patch.P4Zknbo.BasicSlider_v1\"},{\"id\":\"up6if1iqj\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Text\",\"value\":\"~ level\"},{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.06},{\"name\":\"Letter Spacing\",\"value\":-0.05},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":2},{\"name\":\"Align\",\"value\":\"Right\"},{\"name\":\"Vertical Align index\",\"value\":1},{\"name\":\"Vertical Align\",\"value\":\"Top\"},{\"name\":\"r\",\"value\":0.848},{\"name\":\"g\",\"value\":0.865},{\"name\":\"b\",\"value\":0.878},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.17},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.222},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":0},{\"name\":\"Border g\",\"value\":0},{\"name\":\"Border b\",\"value\":1},{\"name\":\"Shadow\",\"value\":0},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.16333593750000003},{\"name\":\"Height\",\"value\":0.08430047123015873},{\"name\":\"Start Y\",\"value\":0.031765550595238105},{\"name\":\"Num Chars\",\"value\":7}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"0rcv0x3xf\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":-1.42},{\"name\":\"y\",\"value\":-0.75},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"up6if1iqj\",\"objOut\":\"0rcv0x3xf\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"jiqpk1738\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"result\",\"objIn\":\"up6if1iqj\",\"objOut\":\"jiqpk1738\"},{\"portIn\":\"number1\",\"portOut\":\"result\",\"objIn\":\"etnlml915\",\"objOut\":\"jiqpk1738\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"alfdf2naj\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":2.7},{\"name\":\"height\",\"value\":0.05},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":9},{\"name\":\"num rows\",\"value\":3}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"iu6ax9gv9\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0.01},{\"name\":\"y\",\"value\":-0.75},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"rlkkalh3o\",\"objOut\":\"iu6ax9gv9\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"etnlml915\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":2}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"result\",\"objIn\":\"rlkkalh3o\",\"objOut\":\"etnlml915\"}]}],\"objName\":\"Ops.Math.Divide\"},{\"id\":\"yc5d8wrq3\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":2.7},{\"name\":\"height\",\"value\":0.03},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":9},{\"name\":\"num rows\",\"value\":3}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"ctw3pshx4\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0},{\"name\":\"y\",\"value\":-0.97},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"ra56nbxqh\",\"objOut\":\"ctw3pshx4\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"rsd3kxfmj\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"result\",\"objIn\":\"zcx5twsdb\",\"objOut\":\"rsd3kxfmj\"},{\"portIn\":\"a\",\"portOut\":\"result\",\"objIn\":\"9yx8hh7j1\",\"objOut\":\"rsd3kxfmj\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"zcx5twsdb\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":2}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"result\",\"objIn\":\"ra56nbxqh\",\"objOut\":\"zcx5twsdb\"},{\"portIn\":\"number1\",\"portOut\":\"result\",\"objIn\":\"mpz8r4j1x\",\"objOut\":\"zcx5twsdb\"}]}],\"objName\":\"Ops.Math.Divide\"},{\"id\":\"ra56nbxqh\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"PointSize\",\"value\":3},{\"name\":\"Size in Pixels\",\"value\":1},{\"name\":\"Random Size\",\"value\":0},{\"name\":\"Round\",\"value\":0},{\"name\":\"Round Antialias\",\"value\":0},{\"name\":\"Scale by Distance\",\"value\":0},{\"name\":\"r\",\"value\":0.772},{\"name\":\"g\",\"value\":0.15106840238933295},{\"name\":\"b\",\"value\":0.4207414807217118},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Colorize Texture\",\"value\":1},{\"name\":\"Mask Channel index\",\"value\":0},{\"name\":\"Mask Channel\",\"value\":\"R\"},{\"name\":\"Colorize Randomize\",\"value\":0},{\"name\":\"Point Size Channel index\",\"value\":0},{\"name\":\"Point Size Channel\",\"value\":\"R\"},{\"name\":\"Texture Point Size Mul\",\"value\":1},{\"name\":\"Map Size 0 index\",\"value\":0},{\"name\":\"Map Size 0\",\"value\":\"Black\"},{\"name\":\"Flip Texture\",\"value\":0},{\"name\":\"Atlas Cross Fade\",\"value\":0},{\"name\":\"Atlas Repeat X \",\"value\":1},{\"name\":\"Min Point Size\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"yc5d8wrq3\",\"objOut\":\"ra56nbxqh\"}]}],\"objName\":\"Ops.Gl.Shader.PointMaterial_v5\"},{\"id\":\"amym4jcbi\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeBypass\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"Value\",\"objIn\":\"iob483w7i\",\"objOut\":\"amym4jcbi\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"iob483w7i\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"y7orf9jry\",\"objOut\":\"iob483w7i\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"gajw2nq8x\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"bypass\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"y7orf9jry\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"iu6ax9gv9\",\"objOut\":\"y7orf9jry\"},{\"portIn\":\"blls2amps\",\"portOut\":\"Trigger out\",\"objIn\":\"93ac1tymi\",\"objOut\":\"y7orf9jry\"},{\"portIn\":\"Trigger\",\"portOut\":\"Trigger out\",\"objIn\":\"dxezaq0sb\",\"objOut\":\"y7orf9jry\"}]}],\"objName\":\"Ops.Trigger.GateTrigger\"},{\"id\":\"dxezaq0sb\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"zdx91pb86\",\"objOut\":\"dxezaq0sb\"},{\"portIn\":\"blls2amps\",\"portOut\":\"Next\",\"objIn\":\"13o7f33ja\",\"objOut\":\"dxezaq0sb\"},{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"ctw3pshx4\",\"objOut\":\"dxezaq0sb\"},{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"0rcv0x3xf\",\"objOut\":\"dxezaq0sb\"},{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"v0s7mpgd3\",\"objOut\":\"dxezaq0sb\"}]}],\"objName\":\"Ops.Ui.Routing.RouteTrigger\"},{\"id\":\"mpz8r4j1x\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":2}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"result\",\"objIn\":\"v0peg38i1\",\"objOut\":\"mpz8r4j1x\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"v0peg38i1\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.2}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"result\",\"objIn\":\"qjdbm9836\",\"objOut\":\"v0peg38i1\"}]}],\"objName\":\"Ops.Math.Sum\"},{\"id\":\"p1o94480m\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"ya8nl9f4u\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"9yx8hh7j1\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Text\",\"value\":\"~ type\"},{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.06},{\"name\":\"Letter Spacing\",\"value\":-0.05},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":2},{\"name\":\"Align\",\"value\":\"Right\"},{\"name\":\"Vertical Align index\",\"value\":1},{\"name\":\"Vertical Align\",\"value\":\"Top\"},{\"name\":\"r\",\"value\":0.848},{\"name\":\"g\",\"value\":0.865},{\"name\":\"b\",\"value\":0.878},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.17},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.222},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":0},{\"name\":\"Border g\",\"value\":0},{\"name\":\"Border b\",\"value\":1},{\"name\":\"Shadow\",\"value\":0},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.16000078125},{\"name\":\"Height\",\"value\":0.08107312748015873},{\"name\":\"Start Y\",\"value\":0.0285382068452381},{\"name\":\"Num Chars\",\"value\":6}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"v0s7mpgd3\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":-1.42},{\"name\":\"y\",\"value\":-0.92},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"9yx8hh7j1\",\"objOut\":\"v0s7mpgd3\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"rlkkalh3o\",\"uiAttribs\":{\"subPatch\":\"b4fysutmh\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"PointSize\",\"value\":4},{\"name\":\"Size in Pixels\",\"value\":1},{\"name\":\"Random Size\",\"value\":0},{\"name\":\"Round\",\"value\":0},{\"name\":\"Round Antialias\",\"value\":0},{\"name\":\"Scale by Distance\",\"value\":0},{\"name\":\"r\",\"value\":0.772},{\"name\":\"g\",\"value\":0.15106840238933295},{\"name\":\"b\",\"value\":0.4207414807217118},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Colorize Texture\",\"value\":1},{\"name\":\"Mask Channel index\",\"value\":0},{\"name\":\"Mask Channel\",\"value\":\"R\"},{\"name\":\"Colorize Randomize\",\"value\":0},{\"name\":\"Point Size Channel index\",\"value\":0},{\"name\":\"Point Size Channel\",\"value\":\"R\"},{\"name\":\"Texture Point Size Mul\",\"value\":1},{\"name\":\"Map Size 0 index\",\"value\":0},{\"name\":\"Map Size 0\",\"value\":\"Black\"},{\"name\":\"Flip Texture\",\"value\":0},{\"name\":\"Atlas Cross Fade\",\"value\":0},{\"name\":\"Atlas Repeat X \",\"value\":1},{\"name\":\"Min Point Size\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"alfdf2naj\",\"objOut\":\"rlkkalh3o\"}]}],\"objName\":\"Ops.Gl.Shader.PointMaterial_v5\"}]}",};
-op.initInnerPorts=function(addedOps)
-{
-  for(let i=0;i<addedOps.length;i++)
-  {
-    if(addedOps[i].innerInput)
-    {
-    }
-if(addedOps[i].innerOutput)
-{
-}
-}
-};
-
-const patchId = "bp2sub_" + op.id;
-
-new CABLES.SubPatchOp(op, { "subId": patchId });
-
-initializeSubpatch();
-
-function initializeSubpatch()
-{
-    const p = JSON.parse(attachments.subpatch_json);
-
-    CABLES.Patch.replaceOpIds(p,
-        {
-            "parentSubPatchId": patchId,
-            "prefixHash": patchId,
-            "oldIdAsRef": true,
-            "doNotUnlinkLostLinks": true
-        });
-
-    for (let i = 0; i < p.ops.length; i++)
-    {
-        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
-    }
-
-    op.loadDependencies(p, () =>
-    {
-        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
-        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
-        op.patch.emitEvent("subpatchExpose", patchId);
-        op.setStorage({ "blueprintVer": 2 });
-        op.patch.emitEvent("subpatchExpose", patchId);
-    });
-}
-
-
-};
-
-Ops.Patch.P4Zknbo.UI_ScapeParams.prototype = new CABLES.Op();
-CABLES.OPS["0db9c714-f1ae-4b9e-9a97-d7dee7c13dd4"]={f:Ops.Patch.P4Zknbo.UI_ScapeParams,objName:"Ops.Patch.P4Zknbo.UI_ScapeParams"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Patch.P4Zknbo.BasicSlider_v5
 // 
 // **************************************************************
@@ -2794,6 +2728,714 @@ function initializeSubpatch()
 
 Ops.Patch.P4Zknbo.DisengageFlag2.prototype = new CABLES.Op();
 CABLES.OPS["62217044-a409-4bb6-bbac-6b45623ed8ad"]={f:Ops.Patch.P4Zknbo.DisengageFlag2,objName:"Ops.Patch.P4Zknbo.DisengageFlag2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Trigger.Repeat_v2
+// 
+// **************************************************************
+
+Ops.Trigger.Repeat_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    exe=op.inTrigger("Execute"),
+    num=op.inValueInt("Repeats",5),
+    dir=op.inSwitch("Direction",['Forward','Backward'],'Forward'),
+    next=op.outTrigger("Next"),
+    idx=op.addOutPort(new CABLES.Port(op,"index"));
+
+dir.onChange=updateDir;
+updateDir();
+
+function updateDir()
+{
+    if(dir.get()=="Forward") exe.onTriggered=forward;
+    else exe.onTriggered=backward;
+}
+
+function forward()
+{
+    const max=Math.floor(num.get());
+
+    for(var i=0;i<max;i++)
+    {
+        idx.set(i);
+        next.trigger();
+    }
+}
+
+function backward()
+{
+    const numi=Math.floor(num.get());
+    for(var i=numi-1;i>-1;i--)
+    {
+        idx.set(i);
+        next.trigger();
+    }
+}
+
+
+};
+
+Ops.Trigger.Repeat_v2.prototype = new CABLES.Op();
+CABLES.OPS["a4deea80-db97-478f-ad1a-5ee30f2f47cc"]={f:Ops.Trigger.Repeat_v2,objName:"Ops.Trigger.Repeat_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.Multiply
+// 
+// **************************************************************
+
+Ops.Math.Multiply = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    number1 = op.inValueFloat("number1", 1),
+    number2 = op.inValueFloat("number2", 1),
+    result = op.outNumber("result");
+
+op.setUiAttribs({ "mathTitle": true });
+
+number1.onChange = number2.onChange = update;
+update();
+
+function update()
+{
+    const n1 = number1.get();
+    const n2 = number2.get();
+
+    result.set(n1 * n2);
+}
+
+
+};
+
+Ops.Math.Multiply.prototype = new CABLES.Op();
+CABLES.OPS["1bbdae06-fbb2-489b-9bcc-36c9d65bd441"]={f:Ops.Math.Multiply,objName:"Ops.Math.Multiply"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.String.SwitchString
+// 
+// **************************************************************
+
+Ops.String.SwitchString = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    idx=op.inValueInt("Index"),
+    result=op.outString("Result");
+
+const valuePorts=[];
+
+idx.onChange=update;
+
+for(var i=0;i<10;i++)
+{
+    var p=op.inString("String "+i);
+    valuePorts.push( p );
+    p.onChange=update;
+}
+
+function update()
+{
+    if(idx.get()>=0 && valuePorts[idx.get()])
+    {
+        result.set( valuePorts[idx.get()].get() );
+    }
+}
+
+};
+
+Ops.String.SwitchString.prototype = new CABLES.Op();
+CABLES.OPS["2a7a0c68-f7c9-4249-b19a-d2de5cb4862c"]={f:Ops.String.SwitchString,objName:"Ops.String.SwitchString"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.Sum
+// 
+// **************************************************************
+
+Ops.Math.Sum = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    number1 = op.inValueFloat("number1", 0),
+    number2 = op.inValueFloat("number2", 0),
+    result = op.outNumber("result");
+
+op.setUiAttribs({ "mathTitle": true });
+
+number1.onChange =
+number2.onChange = exec;
+exec();
+
+function exec()
+{
+    const v = number1.get() + number2.get();
+    if (!isNaN(v))
+        result.set(v);
+}
+
+
+};
+
+Ops.Math.Sum.prototype = new CABLES.Op();
+CABLES.OPS["c8fb181e-0b03-4b41-9e55-06b6267bc634"]={f:Ops.Math.Sum,objName:"Ops.Math.Sum"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.P4Zknbo.SuperFancySlider
+// 
+// **************************************************************
+
+Ops.Patch.P4Zknbo.SuperFancySlider = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"jq31ksdqs\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"value\":0,\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"value\":0,\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"dpwr1xhtc\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"kq1nhxsmt\",\"objOut\":\"dpwr1xhtc\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"m2wfys6r0\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posY\",\"value\":0},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"dpwr1xhtc\",\"objOut\":\"m2wfys6r0\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"kq1nhxsmt\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"width\",\"value\":0.017},{\"name\":\"height\",\"value\":0.05},{\"name\":\"Draw\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Triangle_v2\"},{\"id\":\"75fkjvooo\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"b4refzb4g\",\"objOut\":\"75fkjvooo\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"javiytan6\",\"objOut\":\"75fkjvooo\"},{\"portIn\":\"String In\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"xyk8stxip\",\"objOut\":\"75fkjvooo\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"javiytan6\",\"objOut\":\"75fkjvooo\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"l6887pjvj\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"4d2gb5xao\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"nc16gfgij\",\"objOut\":\"4d2gb5xao\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"4wo0oa9uf\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.49},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"dpwr1xhtc\",\"objOut\":\"4wo0oa9uf\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"l6887pjvj\",\"objOut\":\"4wo0oa9uf\"},{\"portIn\":\"Percentage\",\"portOut\":\"value\",\"objIn\":\"nafzj1zzm\",\"objOut\":\"4wo0oa9uf\"},{\"portIn\":\"Percentage\",\"portOut\":\"value\",\"objIn\":\"qnej9nqfy\",\"objOut\":\"4wo0oa9uf\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"j5ga3j8bx\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":2.7},{\"name\":\"y\",\"value\":0.62},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"javiytan6\",\"objOut\":\"j5ga3j8bx\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"},{\"id\":\"b4refzb4g\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0},{\"name\":\"y\",\"value\":-1.63},{\"name\":\"z\",\"value\":0.02}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"mhbksb88p\",\"objOut\":\"b4refzb4g\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"r17fw8h3x\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Index\",\"portOut\":\"result\",\"objIn\":\"dvvzf0u3g\",\"objOut\":\"r17fw8h3x\"},{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"zji5vqa5e\",\"objOut\":\"r17fw8h3x\"},{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"5sdncwt2d\",\"objOut\":\"r17fw8h3x\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"qkuk0tpub\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rotZ\",\"portOut\":\"result\",\"objIn\":\"m2wfys6r0\",\"objOut\":\"qkuk0tpub\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"d8bk8nqrj\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"vnctgfafe\",\"objOut\":\"d8bk8nqrj\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"5lktp0a0v\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeLength\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"rc1ypcr9g\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int scapeLength\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"vnctgfafe\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"dvvzf0u3g\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"5lktp0a0v\",\"objOut\":\"dvvzf0u3g\"},{\"portIn\":\"number1\",\"portOut\":\"Number\",\"objIn\":\"4d2gb5xao\",\"objOut\":\"dvvzf0u3g\"}]},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"zji5vqa5e\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonSlider\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"zmdwsxojp\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Value Out\",\"objIn\":\"d8bk8nqrj\",\"objOut\":\"zmdwsxojp\"},{\"portIn\":\"Number\",\"portOut\":\"Value Out\",\"objIn\":\"eqv2bw6o3\",\"objOut\":\"zmdwsxojp\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"eqv2bw6o3\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.VizNumberBar\"},{\"id\":\"xzb4a52u3\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"wamjddvel\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"xzb4a52u3\",\"objOut\":\"wamjddvel\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"javiytan6\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":1.01},{\"name\":\"Height\",\"value\":0.38},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"nc16gfgij\",\"objOut\":\"javiytan6\"}]},{\"name\":\"geometry\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"geometry\",\"objIn\":\"81kt4djpk\",\"objOut\":\"javiytan6\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"4wo0oa9uf\",\"objOut\":\"javiytan6\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"wamjddvel\",\"objOut\":\"javiytan6\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Hover\",\"objIn\":\"xyk8stxip\",\"objOut\":\"javiytan6\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"r17fw8h3x\",\"objOut\":\"javiytan6\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"zmdwsxojp\",\"objOut\":\"javiytan6\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"zmdwsxojp\",\"objOut\":\"javiytan6\"},{\"portIn\":\"Value\",\"portOut\":\"Pointer X\",\"objIn\":\"wlsua6xz7\",\"objOut\":\"javiytan6\"},{\"portIn\":\"Numbers_1\",\"portOut\":\"Pointer X\",\"objIn\":\"dvvzf0u3g\",\"objOut\":\"javiytan6\"}]},{\"name\":\"Pointer Y\",\"value\":0.22029456517496038},{\"name\":\"Top\",\"value\":848.0906119942665},{\"name\":\"Left\",\"value\":383.04607129096985},{\"name\":\"Right\",\"value\":1540.9539287090302},{\"name\":\"Bottom\",\"value\":948.1283910274506}],\"objName\":\"Ops.Patch.P4Zknbo.InteractiveRectangle_v24\"},{\"id\":\"81kt4djpk\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Translate X\",\"value\":0},{\"name\":\"Translate Y\",\"value\":0.65},{\"name\":\"Translate Z\",\"value\":-0.01},{\"name\":\"Scale X\",\"value\":2.7},{\"name\":\"Scale Y\",\"value\":0.347},{\"name\":\"Scale Z\",\"value\":1},{\"name\":\"Rotation X\",\"value\":0},{\"name\":\"Rotation Y\",\"value\":0},{\"name\":\"Rotation Z\",\"value\":0}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"Result\",\"objIn\":\"acgy6cquv\",\"objOut\":\"81kt4djpk\"}]}],\"objName\":\"Ops.Graphics.Geometry.TransformGeometry\"},{\"id\":\"5ltf1ziqz\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Render Mesh\",\"value\":1},{\"name\":\"Add Vertex Numbers\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"j5ga3j8bx\",\"objOut\":\"5ltf1ziqz\"}]}],\"objName\":\"Ops.Gl.RenderGeometry_v2\"},{\"id\":\"nafzj1zzm\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0.1},{\"name\":\"Value 2\",\"value\":0.66}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Opacity\",\"portOut\":\"Result\",\"objIn\":\"mhbksb88p\",\"objOut\":\"nafzj1zzm\"},{\"portIn\":\"Value 1\",\"portOut\":\"Result\",\"objIn\":\"qnej9nqfy\",\"objOut\":\"nafzj1zzm\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"acgy6cquv\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Smooth\",\"value\":true},{\"name\":\"Walls\",\"value\":1},{\"name\":\"Top\",\"value\":1},{\"name\":\"Bottom\",\"value\":1}],\"portsOut\":[{\"name\":\"Result Geometry\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"Result Geometry\",\"objIn\":\"5ltf1ziqz\",\"objOut\":\"acgy6cquv\"}]}],\"objName\":\"Ops.Graphics.Geometry.GeometryExtrude\"},{\"id\":\"mhbksb88p\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":1},{\"name\":\"AO Intensity\",\"value\":1},{\"name\":\"Normal Map Intensity\",\"value\":1},{\"name\":\"Repeat X\",\"value\":0.75},{\"name\":\"Repeat Y\",\"value\":1},{\"name\":\"Offset X\",\"value\":-0.32},{\"name\":\"Offset Y\",\"value\":-0.73},{\"name\":\"Double Sided\",\"value\":0},{\"name\":\"Screen Space Normals\",\"value\":0},{\"name\":\"Calc normal tangents\",\"value\":0},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"Trigger In\",\"portOut\":\"Next\",\"objIn\":\"64le7z674\",\"objOut\":\"mhbksb88p\"}]}],\"objName\":\"Ops.Gl.Shader.MatCapMaterial_v3\"},{\"id\":\"ukh3q7iz3\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":4},{\"name\":\"Height\",\"value\":16},{\"name\":\"Filter index\",\"value\":1},{\"name\":\"Filter\",\"value\":\"linear\"},{\"name\":\"Wrap index\",\"value\":0},{\"name\":\"Wrap\",\"value\":\"repeat\"},{\"name\":\"Color\",\"value\":1},{\"name\":\"Pixel Format index\",\"value\":4},{\"name\":\"Pixel Format\",\"value\":\"RGBA 8bit ubyte\"},{\"name\":\"Integer\",\"value\":0},{\"name\":\"Seed\",\"value\":0.41},{\"name\":\"Channel R\",\"value\":1},{\"name\":\"Min R\",\"value\":0},{\"name\":\"Max R\",\"value\":0.97},{\"name\":\"Channel G\",\"value\":1},{\"name\":\"Min G\",\"value\":0},{\"name\":\"Max G\",\"value\":1},{\"name\":\"Channel B\",\"value\":1},{\"name\":\"Min B\",\"value\":0},{\"name\":\"Max B\",\"value\":1},{\"name\":\"Channel A\",\"value\":1},{\"name\":\"Min A\",\"value\":0.1},{\"name\":\"Max A\",\"value\":1}],\"portsOut\":[{\"name\":\"Texture\",\"links\":[{\"portIn\":\"Diffuse\",\"portOut\":\"Texture\",\"objIn\":\"mhbksb88p\",\"objOut\":\"ukh3q7iz3\"}]},{\"name\":\"Total Pixel\",\"value\":64}],\"objName\":\"Ops.Gl.Textures.NoiseTexture\"},{\"id\":\"64le7z674\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Active\",\"value\":1},{\"name\":\"R\",\"value\":0.073},{\"name\":\"G\",\"value\":0.07784896736316682},{\"name\":\"B\",\"value\":0.07},{\"name\":\"Fresnel Exponent\",\"value\":-0.54}],\"portsOut\":[{\"name\":\"Trigger Out\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Trigger Out\",\"objIn\":\"5ltf1ziqz\",\"objOut\":\"64le7z674\"}]}],\"objName\":\"Ops.Gl.ShaderEffects.FresnelGlow\"},{\"id\":\"0x91c6yim\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Gradient\",\"value\":\"{\\\"keys\\\" : [{\\\"pos\\\":0,\\\"r\\\":0,\\\"g\\\":0,\\\"b\\\":0},{\\\"pos\\\":1,\\\"r\\\":1,\\\"g\\\":1,\\\"b\\\":1}]}\"},{\"name\":\"Direction index\",\"value\":6},{\"name\":\"Direction\",\"value\":\"Radial\"},{\"name\":\"Smoothstep\",\"value\":0},{\"name\":\"Step\",\"value\":0},{\"name\":\"Flip\",\"value\":0},{\"name\":\"sRGB\",\"value\":0},{\"name\":\"Oklab\",\"value\":0},{\"name\":\"Size\",\"value\":32},{\"name\":\"filter index\",\"value\":0},{\"name\":\"filter\",\"value\":\"nearest\"},{\"name\":\"wrap index\",\"value\":0},{\"name\":\"wrap\",\"value\":\"clamp to edge\"},{\"name\":\"Dither\",\"value\":0},{\"name\":\"Gradient Array\",\"value\":0}],\"portsOut\":[{\"name\":\"Texture\",\"links\":[{\"portIn\":\"Opacity Texture\",\"portOut\":\"Texture\",\"objIn\":\"mhbksb88p\",\"objOut\":\"0x91c6yim\"}]}],\"objName\":\"Ops.Gl.GradientTexture\"},{\"id\":\"qnej9nqfy\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 2\",\"value\":1}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Fresnel Intensity\",\"portOut\":\"Result\",\"objIn\":\"64le7z674\",\"objOut\":\"qnej9nqfy\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"wlsua6xz7\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValueOnHover\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"nc16gfgij\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"4wo0oa9uf\",\"objOut\":\"nc16gfgij\"},{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"m2wfys6r0\",\"objOut\":\"nc16gfgij\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"qkuk0tpub\",\"objOut\":\"nc16gfgij\"},{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"l6887pjvj\",\"objOut\":\"nc16gfgij\"},{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"m2wfys6r0\",\"objOut\":\"nc16gfgij\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"xyk8stxip\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"scapeLength\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"vycfn5cxp\",\"objOut\":\"xyk8stxip\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"gw29mpcm1\",\"objOut\":\"xyk8stxip\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"vycfn5cxp\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"2mxivhu1e\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_injectedState\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"9u2j8583m\",\"objOut\":\"2mxivhu1e\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"gw29mpcm1\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Numbers_0\",\"portOut\":\"Result\",\"objIn\":\"dvvzf0u3g\",\"objOut\":\"gw29mpcm1\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"9u2j8583m\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":1}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"gw29mpcm1\",\"objOut\":\"9u2j8583m\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"5sdncwt2d\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"9u2j8583m\",\"objOut\":\"5sdncwt2d\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"zoyrowfco\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"portsIn\":[{\"name\":\"Value 1\",\"value\":-0.05},{\"name\":\"Value 2\",\"value\":-1.41}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Height\",\"portOut\":\"Result\",\"objIn\":\"acgy6cquv\",\"objOut\":\"zoyrowfco\"}]}],\"storage\":{\"ref\":\"zoyrowfco\"},\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"5j4bc0e06\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_sizeParamNoSmooth\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Percentage\",\"portOut\":\"Value\",\"objIn\":\"zoyrowfco\",\"objOut\":\"5j4bc0e06\"}]}],\"storage\":{\"ref\":\"5j4bc0e06\"},\"objName\":\"Ops.Vars.VarGetNumber_v2\"}]}",};
+const port_blls2amps=op.inTrigger("blls2amps");
+port_blls2amps.setUiAttribs({title:"Trigger in",});
+
+const port_btagbs7z2=op.inString("btagbs7z2","");
+port_btagbs7z2.setUiAttribs({title:"Class",});
+
+const port_lj06d561p=op.inFloat("lj06d561p",0);
+port_lj06d561p.setUiAttribs({title:"Show Boundings",display:"bool",});
+
+const port_nti406vwi=op.outNumber("nti406vwi");
+port_nti406vwi.setUiAttribs({title:"Result",});
+
+const port_gjvx0zyv5=op.outNumber("gjvx0zyv5");
+port_gjvx0zyv5.setUiAttribs({title:"value",});
+
+op.initInnerPorts=function(addedOps)
+{
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
+    {
+const innerOut_blls2amps = addedOps[i].outTrigger("innerOut_blls2amps");
+innerOut_blls2amps.setUiAttribs({title:"Trigger in"});
+port_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };
+
+const innerOut_btagbs7z2 = addedOps[i].outString("innerOut_btagbs7z2");
+innerOut_btagbs7z2.set(port_btagbs7z2.get() );
+innerOut_btagbs7z2.setUiAttribs({title:"Class"});
+port_btagbs7z2.on("change", (a,v) => { innerOut_btagbs7z2.set(a); });
+
+const innerOut_lj06d561p = addedOps[i].outNumber("innerOut_lj06d561p");
+innerOut_lj06d561p.set(port_lj06d561p.get() );
+innerOut_lj06d561p.setUiAttribs({title:"Show Boundings"});
+port_lj06d561p.on("change", (a,v) => { innerOut_lj06d561p.set(a); });
+
+    }
+if(addedOps[i].innerOutput)
+{
+const innerIn_nti406vwi = addedOps[i].inFloat("innerIn_nti406vwi");
+innerIn_nti406vwi.setUiAttribs({title:"Result"});
+innerIn_nti406vwi.on("change", (a,v) => { port_nti406vwi.set(a); });
+
+const innerIn_gjvx0zyv5 = addedOps[i].inFloat("innerIn_gjvx0zyv5");
+innerIn_gjvx0zyv5.setUiAttribs({title:"value"});
+innerIn_gjvx0zyv5.on("change", (a,v) => { port_gjvx0zyv5.set(a); });
+
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
+    {
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
+    }
+
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
+}
+
+
+};
+
+Ops.Patch.P4Zknbo.SuperFancySlider.prototype = new CABLES.Op();
+CABLES.OPS["4758cdcf-b59d-4706-88e6-2fa754c33f04"]={f:Ops.Patch.P4Zknbo.SuperFancySlider,objName:"Ops.Patch.P4Zknbo.SuperFancySlider"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.P4Zknbo.BasicSlider_v1
+// 
+// **************************************************************
+
+Ops.Patch.P4Zknbo.BasicSlider_v1 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"mibecaqps\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"zzuotyuj8\",\"objOut\":\"mibecaqps\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"0lkifp8gr\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posY\",\"value\":0},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":-180},{\"name\":\"rotY\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"mibecaqps\",\"objOut\":\"0lkifp8gr\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"rviscpw5r\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"0lkifp8gr\",\"objOut\":\"rviscpw5r\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"ujv4mg17e\",\"objOut\":\"rviscpw5r\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"0lkifp8gr\",\"objOut\":\"rviscpw5r\"},{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"nor1x0y61\",\"objOut\":\"rviscpw5r\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"iea5ao2y2\",\"objOut\":\"rviscpw5r\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"zzuotyuj8\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"width\",\"value\":0.017},{\"name\":\"height\",\"value\":0.05},{\"name\":\"Draw\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Triangle_v2\"},{\"id\":\"gmc3o0yzj\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"zyly9dj8g\",\"objOut\":\"gmc3o0yzj\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"String In\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"g0k1dqgdc\",\"objOut\":\"gmc3o0yzj\"},{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"mzzhxzxfq\",\"objOut\":\"gmc3o0yzj\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"mzzhxzxfq\",\"objOut\":\"gmc3o0yzj\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"nor1x0y61\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"9bvbbyk9y\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"rviscpw5r\",\"objOut\":\"9bvbbyk9y\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"ujv4mg17e\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.49},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"mibecaqps\",\"objOut\":\"ujv4mg17e\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"nor1x0y61\",\"objOut\":\"ujv4mg17e\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"iea5ao2y2\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rotZ\",\"portOut\":\"result\",\"objIn\":\"0lkifp8gr\",\"objOut\":\"iea5ao2y2\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"zyly9dj8g\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0},{\"name\":\"y\",\"value\":-1.45},{\"name\":\"z\",\"value\":0.02}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bnqxchxdy\",\"objOut\":\"zyly9dj8g\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"i35qt5h52\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"leht2psro\",\"objOut\":\"i35qt5h52\"},{\"portIn\":\"Index\",\"portOut\":\"result\",\"objIn\":\"8vb7jo147\",\"objOut\":\"i35qt5h52\"},{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"mjgge74tk\",\"objOut\":\"i35qt5h52\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"7zp4rrptl\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeLevel\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"w1t4yqcfv\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int ir level\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"g0k1dqgdc\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"scapeLevel\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"ejj3oddhv\",\"objOut\":\"g0k1dqgdc\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"zwg2yqvrf\",\"objOut\":\"g0k1dqgdc\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"ejj3oddhv\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"8kcvz9igq\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"qmk2dl6c4\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_injectedState\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"gknkj3y4x\",\"objOut\":\"qmk2dl6c4\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"zwg2yqvrf\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Numbers_0\",\"portOut\":\"Result\",\"objIn\":\"8vb7jo147\",\"objOut\":\"zwg2yqvrf\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"8vb7jo147\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"7zp4rrptl\",\"objOut\":\"8vb7jo147\"},{\"portIn\":\"number1\",\"portOut\":\"Number\",\"objIn\":\"9bvbbyk9y\",\"objOut\":\"8vb7jo147\"}]},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"gknkj3y4x\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":1}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"zwg2yqvrf\",\"objOut\":\"gknkj3y4x\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"leht2psro\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"gknkj3y4x\",\"objOut\":\"leht2psro\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"mjgge74tk\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonSlider\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"ma5xd9zja\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Value Out\",\"objIn\":\"8kcvz9igq\",\"objOut\":\"ma5xd9zja\"},{\"portIn\":\"Numbers_1\",\"portOut\":\"Value Out\",\"objIn\":\"8vb7jo147\",\"objOut\":\"ma5xd9zja\"},{\"portIn\":\"Number\",\"portOut\":\"Value Out\",\"objIn\":\"o1wvr3kg9\",\"objOut\":\"ma5xd9zja\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"o1wvr3kg9\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.VizNumberBar\"},{\"id\":\"3hftipxyj\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"pk2351zm7\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"3hftipxyj\",\"objOut\":\"pk2351zm7\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"mzzhxzxfq\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":1},{\"name\":\"Height\",\"value\":0.34},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":9},{\"name\":\"Cursor\",\"value\":\"s-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"rviscpw5r\",\"objOut\":\"mzzhxzxfq\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"ujv4mg17e\",\"objOut\":\"mzzhxzxfq\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Hover\",\"objIn\":\"g0k1dqgdc\",\"objOut\":\"mzzhxzxfq\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"pk2351zm7\",\"objOut\":\"mzzhxzxfq\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"i35qt5h52\",\"objOut\":\"mzzhxzxfq\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"ma5xd9zja\",\"objOut\":\"mzzhxzxfq\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"ma5xd9zja\",\"objOut\":\"mzzhxzxfq\"},{\"portIn\":\"Value\",\"portOut\":\"Pointer X\",\"objIn\":\"tc6onu8jl\",\"objOut\":\"mzzhxzxfq\"}]},{\"name\":\"Pointer Y\",\"value\":0.875708644499907},{\"name\":\"Top\",\"value\":652.3148226737976},{\"name\":\"Left\",\"value\":396.1774400472641},{\"name\":\"Right\",\"value\":1405.822559952736},{\"name\":\"Bottom\",\"value\":716.6797173023224}],\"objName\":\"Ops.Patch.P4Zknbo.InteractiveRectangle_v24\"},{\"id\":\"tc6onu8jl\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValueOnHover\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bnqxchxdy\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{},\"portsIn\":[{\"name\":\"x\",\"value\":2.72},{\"name\":\"y\",\"value\":0.51},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"mzzhxzxfq\",\"objOut\":\"bnqxchxdy\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"}]}",};
+const port_blls2amps=op.inTrigger("blls2amps");
+port_blls2amps.setUiAttribs({title:"Trigger in",});
+
+const port_btagbs7z2=op.inString("btagbs7z2","");
+port_btagbs7z2.setUiAttribs({title:"Class",});
+
+const port_lj06d561p=op.inFloat("lj06d561p",0);
+port_lj06d561p.setUiAttribs({title:"Show Boundings",display:"bool",});
+
+const port_nti406vwi=op.outNumber("nti406vwi");
+port_nti406vwi.setUiAttribs({title:"Result",});
+
+const port_gjvx0zyv5=op.outNumber("gjvx0zyv5");
+port_gjvx0zyv5.setUiAttribs({title:"value",});
+
+op.initInnerPorts=function(addedOps)
+{
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
+    {
+const innerOut_blls2amps = addedOps[i].outTrigger("innerOut_blls2amps");
+innerOut_blls2amps.setUiAttribs({title:"Trigger in"});
+port_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };
+
+const innerOut_btagbs7z2 = addedOps[i].outString("innerOut_btagbs7z2");
+innerOut_btagbs7z2.set(port_btagbs7z2.get() );
+innerOut_btagbs7z2.setUiAttribs({title:"Class"});
+port_btagbs7z2.on("change", (a,v) => { innerOut_btagbs7z2.set(a); });
+
+const innerOut_lj06d561p = addedOps[i].outNumber("innerOut_lj06d561p");
+innerOut_lj06d561p.set(port_lj06d561p.get() );
+innerOut_lj06d561p.setUiAttribs({title:"Show Boundings"});
+port_lj06d561p.on("change", (a,v) => { innerOut_lj06d561p.set(a); });
+
+    }
+if(addedOps[i].innerOutput)
+{
+const innerIn_nti406vwi = addedOps[i].inFloat("innerIn_nti406vwi");
+innerIn_nti406vwi.setUiAttribs({title:"Result"});
+innerIn_nti406vwi.on("change", (a,v) => { port_nti406vwi.set(a); });
+
+const innerIn_gjvx0zyv5 = addedOps[i].inFloat("innerIn_gjvx0zyv5");
+innerIn_gjvx0zyv5.setUiAttribs({title:"value"});
+innerIn_gjvx0zyv5.on("change", (a,v) => { port_gjvx0zyv5.set(a); });
+
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
+    {
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
+    }
+
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
+}
+
+
+};
+
+Ops.Patch.P4Zknbo.BasicSlider_v1.prototype = new CABLES.Op();
+CABLES.OPS["55bbeb5d-4c6b-4326-83c2-e979dda40f9b"]={f:Ops.Patch.P4Zknbo.BasicSlider_v1,objName:"Ops.Patch.P4Zknbo.BasicSlider_v1"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Ui.Routing.RouteNumber
+// 
+// **************************************************************
+
+Ops.Ui.Routing.RouteNumber = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    v = op.inValueFloat("value"),
+    result = op.outNumber("result");
+
+v.onChange = exec;
+
+let wasLinked = false;
+
+op.setUiAttribs({ "display": "reroute" });
+
+function exec()
+{
+    result.set(v.get());
+}
+
+
+};
+
+Ops.Ui.Routing.RouteNumber.prototype = new CABLES.Op();
+CABLES.OPS["afff634a-b581-4449-b6f7-9ec7863c5d4d"]={f:Ops.Ui.Routing.RouteNumber,objName:"Ops.Ui.Routing.RouteNumber"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.Divide
+// 
+// **************************************************************
+
+Ops.Math.Divide = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    number1 = op.inValueFloat("number1", 1),
+    number2 = op.inValueFloat("number2", 2),
+    result = op.outNumber("result");
+
+op.setUiAttribs({ "mathTitle": true });
+
+number1.onChange = number2.onChange = exec;
+exec();
+
+function exec()
+{
+    result.set(number1.get() / number2.get());
+}
+
+
+};
+
+Ops.Math.Divide.prototype = new CABLES.Op();
+CABLES.OPS["86fcfd8c-038d-4b91-9820-a08114f6b7eb"]={f:Ops.Math.Divide,objName:"Ops.Math.Divide"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.Shader.PointMaterial_v5
+// 
+// **************************************************************
+
+Ops.Gl.Shader.PointMaterial_v5 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"pointmat_frag":"\n{{MODULES_HEAD}}\n\nUNI vec4 color;\nUNI float atlasNumX;\n\n// IN vec2 pointCoord;\nIN float ps;\nIN vec2 texCoord;\n\n#ifdef HAS_TEXTURE_DIFFUSE\n    UNI sampler2D diffTex;\n#endif\n#ifdef HAS_TEXTURE_MASK\n    UNI sampler2D texMask;\n#endif\n#ifdef HAS_TEXTURE_COLORIZE\n    IN vec4 colorize;\n#endif\n#ifdef HAS_TEXTURE_OPACITY\n    IN float opacity;\n#endif\n\n#ifdef HAS_TEXTURE_ROT\n    UNI sampler2D texRot;\n#endif\n\n\n#ifdef USE_ATLAS\n    IN float randAtlas;\n    #ifdef HAS_TEXTURE_ATLASLOOKUP\n        UNI sampler2D texAtlasLookup;\n    #endif\n#endif\n\n\n#ifdef VERTEX_COLORS\n    IN vec4 vertexColor;\n#endif\n\nvec3 lumcoeff = vec3(0.299,0.587,0.114);\n\n#define PI 3.14159265\n#define TAU (2.0*PI)\n\nvoid pR(inout vec2 p, float a)\n{\n\tp = cos(a)*p + sin(a)*vec2(p.y, -p.x);\n}\n\n\nvoid main()\n{\n    #ifdef FLIP_TEX\n        vec2 pointCoord=vec2(gl_PointCoord.x,(1.0-gl_PointCoord.y));\n    #endif\n    #ifndef FLIP_TEX\n        vec2 pointCoord=gl_PointCoord;\n    #endif\n\n    #ifdef HAS_TEXTURE_ROT\n        float r=texture(texRot,texCoord).r;\n        pointCoord-=vec2(0.5);\n        pR(pointCoord,r*TAU);\n        pointCoord+=vec2(0.5);\n    #endif\n\n    vec2 origPointCoord=pointCoord;\n\n\n    #ifdef USE_ATLAS\n\n        float atlasIdx=randAtlas;\n\n        #ifdef HAS_TEXTURE_ATLASLOOKUP\n            atlasIdx=texture(texAtlasLookup,texCoord).r;\n        #endif\n\n        #ifdef ATLAS_XFADE\n            vec2 pointCoord2=vec2(origPointCoord);\n            pointCoord2.x=origPointCoord.x/atlasNumX+ceil(atlasIdx)*(1.0/atlasNumX);\n        #endif\n\n        pointCoord.x=origPointCoord.x/atlasNumX+floor(atlasIdx)*(1.0/atlasNumX);\n\n\n    #endif\n\n    {{MODULE_BEGIN_FRAG}}\n\n    if(ps<1.0)discard;\n\n    vec4 col=color;\n\n    #ifdef HAS_TEXTURE_MASK\n        float mask;\n        #ifdef TEXTURE_MASK_R\n            mask=texture(texMask,pointCoord).r;\n        #endif\n        #ifdef TEXTURE_MASK_A\n            mask=texture(texMask,pointCoord).a;\n        #endif\n        #ifdef TEXTURE_MASK_LUMI\n        \tmask = dot(texture(texMask,pointCoord).rgb, lumcoeff);\n        #endif\n\n        #ifdef ATLAS_XFADE\n            float mask2=texture(texMask,pointCoord2).r;\n\n            #ifdef TEXTURE_MASK_A\n                mask2=texture(texMask,pointCoord2).a;\n            #endif\n            #ifdef TEXTURE_MASK_LUMI\n            \tmask2 = dot(texture(texMask,pointCoord2).rgb, lumcoeff);\n            #endif\n\n            mask=mix(mask,mask2,fract(atlasIdx));\n        #endif\n    #endif\n\n    #ifdef HAS_TEXTURE_DIFFUSE\n\n        col=texture(diffTex,pointCoord);\n\n        #ifdef ATLAS_XFADE\n            vec4 col2=texture(diffTex,pointCoord2);\n            col=mix(col,col2,fract(atlasIdx));\n        #endif\n\n        #ifdef COLORIZE_TEXTURE\n            col.rgb*=color.rgb;\n        #endif\n    #endif\n\n    col.a*=color.a;\n\n\n    #ifdef MAKE_ROUND\n\n        #ifndef MAKE_ROUNDAA\n            if ((gl_PointCoord.x-0.5)*(gl_PointCoord.x-0.5) + (gl_PointCoord.y-0.5)*(gl_PointCoord.y-0.5) > 0.25) discard; //col.a=0.0;\n        #endif\n\n        #ifdef MAKE_ROUNDAA\n            float circ=(gl_PointCoord.x-0.5)*(gl_PointCoord.x-0.5) + (gl_PointCoord.y-0.5)*(gl_PointCoord.y-0.5);\n\n            float a=smoothstep(0.25,0.25-fwidth(gl_PointCoord.x),circ);\n            if(a==0.0)discard;\n            col.a=a*color.a;\n        #endif\n    #endif\n\n    #ifdef HAS_TEXTURE_COLORIZE\n        col*=colorize;\n    #endif\n\n    #ifdef TEXTURE_COLORIZE_MUL\n        col*=color;\n    #endif\n\n    #ifdef HAS_TEXTURE_MASK\n        col.a*=mask;\n    #endif\n\n    #ifdef HAS_TEXTURE_OPACITY\n        col.a*=opacity;\n    #endif\n\n    #ifdef VERTEX_COLORS\n        col.rgb = vertexColor.rgb;\n        col.a *= vertexColor.a;\n    #endif\n\n    if (col.a <= 0.0) discard;\n\n    #ifdef HAS_TEXTURE_COLORIZE\n        col*=colorize;\n    #endif\n\n    {{MODULE_COLOR}}\n\n\n    outColor = col;\n}\n","pointmat_vert":"{{MODULES_HEAD}}\n\n\n\nIN vec3 vPosition;\nIN vec2 attrTexCoord;\nIN vec3 attrVertNormal;\nIN vec3 attrTangent;\nIN vec3 attrBiTangent;\nIN float attrPointSize;\n\n#ifdef VERTEX_COLORS\n    IN vec4 attrVertColor;\n    OUT vec4 vertexColor;\n#endif\n\nOUT vec3 norm;\nOUT float ps;\n\nOUT vec2 texCoord;\n\n\n#ifdef HAS_TEXTURES\n#endif\n\n#ifdef HAS_TEXTURE_COLORIZE\n   UNI sampler2D texColorize;\n   OUT vec4 colorize;\n#endif\n#ifdef HAS_TEXTURE_OPACITY\n    UNI sampler2D texOpacity;\n    OUT float opacity;\n#endif\n\n#ifdef HAS_TEXTURE_POINTSIZE\n   UNI sampler2D texPointSize;\n   UNI float texPointSizeMul;\n#endif\n\nUNI mat4 projMatrix;\nUNI mat4 modelMatrix;\nUNI mat4 viewMatrix;\n\nUNI float pointSize;\nUNI vec3 camPos;\n\nUNI float canvasWidth;\nUNI float canvasHeight;\nUNI float camDistMul;\nUNI float randomSize;\nUNI float minPointSize;\n\nIN float attrVertIndex;\n\nUNI float atlasNumX;\n\n#ifdef USE_ATLAS\n    OUT float randAtlas;\n#endif\n\nfloat rand(float n){return fract(sin(n) * 5711.5711123);}\n\n#define POINTMATERIAL\n\nvoid main()\n{\n    norm=attrVertNormal;\n    #ifdef PIXELSIZE\n        float psMul=1.0;\n    #endif\n\n    #ifndef PIXELSIZE\n        float psMul=sqrt(canvasWidth/canvasHeight)+0.00000000001;\n    #endif\n\n    #ifdef USE_ATLAS\n        randAtlas=atlasNumX*rand(attrVertIndex+vPosition.x);\n    #endif\n\n    vec3 tangent=attrTangent;\n    vec3 bitangent=attrBiTangent;\n\n\n    #ifdef VERTEX_COLORS\n        vertexColor=attrVertColor;\n    #endif\n\n    // #ifdef HAS_TEXTURES\n        texCoord=attrTexCoord;\n    // #endif\n\n    #ifdef HAS_TEXTURE_OPACITY\n        // opacity=texture(texOpacity,vec2(rand(attrVertIndex+texCoord.x*texCoord.y+texCoord.y+texCoord.x),rand(texCoord.y*texCoord.x-texCoord.x-texCoord.y-attrVertIndex))).r;\n        opacity=texture(texOpacity,texCoord).r;\n    #endif\n\n\n    #ifdef HAS_TEXTURE_COLORIZE\n        #ifdef RANDOM_COLORIZE\n            colorize=texture(texColorize,vec2(rand(attrVertIndex+texCoord.x*texCoord.y+texCoord.y+texCoord.x),rand(texCoord.y*texCoord.x-texCoord.x-texCoord.y-attrVertIndex)));\n        #endif\n        #ifndef RANDOM_COLORIZE\n            colorize=texture(texColorize,texCoord);\n        #endif\n    #endif\n\n\n\n\n\n    mat4 mMatrix=modelMatrix;\n    vec4 pos = vec4( vPosition, 1. );\n\n    gl_PointSize=0.0;\n\n    {{MODULE_VERTEX_POSITION}}\n\n    vec4 model=mMatrix * pos;\n\n    psMul+=rand(texCoord.x*texCoord.y+texCoord.y*3.0+texCoord.x*2.0+attrVertIndex)*randomSize;\n\n    float addPointSize=0.0;\n    #ifdef HAS_TEXTURE_POINTSIZE\n\n        #ifdef POINTSIZE_CHAN_R\n            addPointSize=texture(texPointSize,texCoord).r;\n        #endif\n        #ifdef POINTSIZE_CHAN_G\n            addPointSize=texture(texPointSize,texCoord).g;\n        #endif\n        #ifdef POINTSIZE_CHAN_B\n            addPointSize=texture(texPointSize,texCoord).b;\n        #endif\n\n        #ifdef DOTSIZEREMAPABS\n            addPointSize=1.0-(distance(addPointSize,0.5)*2.0);\n            addPointSize=addPointSize*addPointSize*addPointSize*2.0;\n        #endif\n\n        addPointSize*=texPointSizeMul;\n\n    #endif\n\n    ps=0.0;\n    #ifndef SCALE_BY_DISTANCE\n        ps = (pointSize+addPointSize+attrPointSize) * psMul;\n    #endif\n    #ifdef SCALE_BY_DISTANCE\n        float cameraDist = distance(model.xyz, camPos);\n        ps = ( (pointSize+addPointSize+attrPointSize) / cameraDist) * psMul;\n    #endif\n    ps=max(minPointSize,ps);\n    gl_PointSize += ps;\n\n\n    gl_Position = projMatrix * viewMatrix * model;\n}\n",};
+const cgl = op.patch.cgl;
+
+const
+    render = op.inTrigger("render"),
+    pointSize = op.inValueFloat("PointSize", 3),
+    inPixelSize = op.inBool("Size in Pixels", false),
+    randomSize = op.inValue("Random Size", 0),
+    makeRound = op.inValueBool("Round", true),
+    makeRoundAA = op.inValueBool("Round Antialias", false),
+    doScale = op.inValueBool("Scale by Distance", false),
+    r = op.inValueSlider("r", Math.random()),
+    g = op.inValueSlider("g", Math.random()),
+    b = op.inValueSlider("b", Math.random()),
+    a = op.inValueSlider("a", 1),
+    vertCols = op.inBool("Vertex Colors", false),
+    texture = op.inTexture("texture"),
+    textureMulColor = op.inBool("Colorize Texture"),
+    textureMask = op.inTexture("Texture Mask"),
+    texMaskChan = op.inSwitch("Mask Channel", ["R", "A", "Luminance"], "R"),
+    textureColorize = op.inTexture("Texture Colorize"),
+    colorizeRandom = op.inValueBool("Colorize Randomize", false),
+    textureOpacity = op.inTexture("Texture Opacity"),
+    texturePointSize = op.inTexture("Texture Point Size"),
+    texturePointSizeChannel = op.inSwitch("Point Size Channel", ["R", "G", "B"], "R"),
+    texturePointSizeMul = op.inFloat("Texture Point Size Mul", 1),
+    texturePointSizeMap = op.inSwitch("Map Size 0", ["Black", "Grey"], "Black"),
+    flipTex = op.inValueBool("Flip Texture", false),
+
+    inAtlasXFade = op.inBool("Atlas Cross Fade", false),
+    inAtlasRepeatX = op.inFloat("Atlas Repeat X ", 1),
+    inAtlasLookupTex = op.inTexture("Atlas Lookup"),
+    inRotTex = op.inTexture("Rotate Texture"),
+    minPointSize = op.inValueFloat("Min Point Size", 0),
+
+    trigger = op.outTrigger("trigger"),
+    shaderOut = op.outObject("shader", null, "shader");
+
+op.setPortGroup("Texture", [texture, textureMulColor, textureMask, texMaskChan, textureColorize, textureOpacity, colorizeRandom]);
+op.setPortGroup("Color", [r, g, b, a, vertCols]);
+op.setPortGroup("Size", [pointSize, randomSize, makeRound, makeRoundAA, doScale, inPixelSize, texturePointSize, texturePointSizeMul, texturePointSizeChannel, texturePointSizeMap]);
+
+op.setPortGroup("Atlas", [inAtlasRepeatX, inAtlasLookupTex, inAtlasXFade]);
+
+r.setUiAttribs({ "colorPick": true });
+
+const shader = new CGL.Shader(cgl, "PointMaterial", this);
+shader.setModules(["MODULE_VERTEX_POSITION", "MODULE_COLOR", "MODULE_BEGIN_FRAG"]);
+shader.define("MAKE_ROUND");
+
+op.toWorkPortsNeedToBeLinked(render);
+
+const
+    uniPointSize = new CGL.Uniform(shader, "f", "pointSize", pointSize),
+    texturePointSizeMulUniform = new CGL.Uniform(shader, "f", "texPointSizeMul", texturePointSizeMul),
+    uniRandomSize = new CGL.Uniform(shader, "f", "randomSize", randomSize),
+    uniMinPointSize = new CGL.Uniform(shader, "f", "minPointSize", minPointSize),
+    uniColor = new CGL.Uniform(shader, "4f", "color", r, g, b, a),
+    uniRandAtlasX = new CGL.Uniform(shader, "f", "atlasNumX", inAtlasRepeatX),
+
+    uniWidth = new CGL.Uniform(shader, "f", "canvasWidth", cgl.canvasWidth),
+    uniHeight = new CGL.Uniform(shader, "f", "canvasHeight", cgl.canvasHeight),
+    textureUniform = new CGL.Uniform(shader, "t", "diffTex"),
+    textureColorizeUniform = new CGL.Uniform(shader, "t", "texColorize"),
+    textureOpacityUniform = new CGL.Uniform(shader, "t", "texOpacity"),
+    textureColoPointSize = new CGL.Uniform(shader, "t", "texPointSize"),
+    texturePointSizeUniform = new CGL.Uniform(shader, "t", "texPointSize"),
+    textureMaskUniform = new CGL.Uniform(shader, "t", "texMask"),
+    textureAtlasLookupUniform = new CGL.Uniform(shader, "t", "texAtlasLookup"),
+    texRotUni = new CGL.Uniform(shader, "t", "texRot");
+
+shader.setSource(attachments.pointmat_vert, attachments.pointmat_frag);
+shader.glPrimitive = cgl.gl.POINTS;
+shaderOut.set(shader);
+shaderOut.ignoreValueSerialize = true;
+
+doScale.onChange =
+    inAtlasRepeatX.onChange =
+    makeRound.onChange =
+    makeRoundAA.onChange =
+    texture.onChange =
+    textureColorize.onChange =
+    textureMask.onChange =
+    colorizeRandom.onChange =
+    flipTex.onChange =
+    texMaskChan.onChange =
+    inPixelSize.onChange =
+    textureOpacity.onChange =
+    texturePointSize.onChange =
+    texturePointSizeMap.onChange =
+    texturePointSizeChannel.onChange =
+    textureMulColor.onChange =
+    inAtlasLookupTex.onLinkChanged =
+    inRotTex.onLinkChanged =
+    vertCols.onChange = updateDefines;
+
+render.onTriggered = doRender;
+updateUi();
+
+op.preRender = function ()
+{
+    if (shader)shader.bind();
+    doRender();
+};
+
+function doRender()
+{
+    uniWidth.setValue(cgl.canvasWidth);
+    uniHeight.setValue(cgl.canvasHeight);
+
+    cgl.pushShader(shader);
+    shader.popTextures();
+    if (texture.get() && !texture.get().deleted) shader.pushTexture(textureUniform, texture.get());
+    if (textureMask.get()) shader.pushTexture(textureMaskUniform, textureMask.get());
+    if (textureColorize.get()) shader.pushTexture(textureColorizeUniform, textureColorize.get());
+    if (textureOpacity.get()) shader.pushTexture(textureOpacityUniform, textureOpacity.get());
+    if (texturePointSize.get()) shader.pushTexture(texturePointSizeUniform, texturePointSize.get());
+    if (inAtlasLookupTex.get()) shader.pushTexture(textureAtlasLookupUniform, inAtlasLookupTex.get());
+    if (inRotTex.get()) shader.pushTexture(texRotUni, inRotTex.get());
+
+    trigger.trigger();
+
+    cgl.popShader();
+}
+
+function useAtlas()
+{
+    return inAtlasRepeatX.get() > 0 || inAtlasLookupTex.isLinked();
+}
+
+function updateUi()
+{
+    inAtlasRepeatX.setUiAttribs({ "greyout": !useAtlas() });
+    texMaskChan.setUiAttribs({ "greyout": !textureMask.isLinked() });
+
+    texturePointSizeChannel.setUiAttribs({ "greyout": !texturePointSize.isLinked() });
+    texturePointSizeMul.setUiAttribs({ "greyout": !texturePointSize.isLinked() });
+    texturePointSizeMap.setUiAttribs({ "greyout": !texturePointSize.isLinked() });
+}
+
+function updateDefines()
+{
+    shader.toggleDefine("USE_ATLAS", useAtlas());
+
+    shader.toggleDefine("SCALE_BY_DISTANCE", doScale.get());
+    shader.toggleDefine("MAKE_ROUND", makeRound.get());
+    shader.toggleDefine("MAKE_ROUNDAA", makeRoundAA.get());
+
+    shader.toggleDefine("ATLAS_XFADE", inAtlasXFade.get());
+
+    shader.toggleDefine("VERTEX_COLORS", vertCols.get());
+    shader.toggleDefine("RANDOM_COLORIZE", colorizeRandom.get());
+    shader.toggleDefine("HAS_TEXTURE_DIFFUSE", texture.get());
+    shader.toggleDefine("HAS_TEXTURE_MASK", textureMask.isLinked());
+    shader.toggleDefine("HAS_TEXTURE_COLORIZE", textureColorize.isLinked());
+    shader.toggleDefine("HAS_TEXTURE_OPACITY", textureOpacity.isLinked());
+    shader.toggleDefine("HAS_TEXTURE_POINTSIZE", texturePointSize.isLinked());
+    shader.toggleDefine("HAS_TEXTURE_ATLASLOOKUP", inAtlasLookupTex.isLinked());
+    shader.toggleDefine("HAS_TEXTURE_ROT", inRotTex.isLinked());
+
+    shader.toggleDefine("TEXTURE_COLORIZE_MUL", textureMulColor.get());
+
+    shader.toggleDefine("FLIP_TEX", flipTex.get());
+    shader.toggleDefine("TEXTURE_MASK_R", texMaskChan.get() == "R");
+    shader.toggleDefine("TEXTURE_MASK_A", texMaskChan.get() == "A");
+    shader.toggleDefine("TEXTURE_MASK_LUMI", texMaskChan.get() == "Luminance");
+    shader.toggleDefine("PIXELSIZE", inPixelSize.get());
+
+    shader.toggleDefine("POINTSIZE_CHAN_R", texturePointSizeChannel.get() == "R");
+    shader.toggleDefine("POINTSIZE_CHAN_G", texturePointSizeChannel.get() == "G");
+    shader.toggleDefine("POINTSIZE_CHAN_B", texturePointSizeChannel.get() == "B");
+
+    shader.toggleDefine("DOTSIZEREMAPABS", texturePointSizeMap.get() == "Grey");
+    updateUi();
+}
+
+
+};
+
+Ops.Gl.Shader.PointMaterial_v5.prototype = new CABLES.Op();
+CABLES.OPS["72a2449e-db5c-44e7-ad9f-49f3c78b8c71"]={f:Ops.Gl.Shader.PointMaterial_v5,objName:"Ops.Gl.Shader.PointMaterial_v5"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Boolean.Not
+// 
+// **************************************************************
+
+Ops.Boolean.Not = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    bool = op.inValueBool("Boolean"),
+    outbool = op.outBoolNum("Result");
+
+bool.changeAlways = true;
+
+bool.onChange = function ()
+{
+    outbool.set((!bool.get()));
+};
+
+
+};
+
+Ops.Boolean.Not.prototype = new CABLES.Op();
+CABLES.OPS["6d123c9f-7485-4fd9-a5c2-76e59dcbeb34"]={f:Ops.Boolean.Not,objName:"Ops.Boolean.Not"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Ui.Routing.RouteTrigger
+// 
+// **************************************************************
+
+Ops.Ui.Routing.RouteTrigger = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    exec = op.inTrigger("Trigger"),
+    next = op.outTrigger("Next");
+
+op.setUiAttribs({ "display": "reroute" });
+
+exec.onTriggered = () =>
+{
+    next.trigger();
+};
+
+
+};
+
+Ops.Ui.Routing.RouteTrigger.prototype = new CABLES.Op();
+CABLES.OPS["0a2dc648-3a02-4559-b9af-cf3d47701e66"]={f:Ops.Ui.Routing.RouteTrigger,objName:"Ops.Ui.Routing.RouteTrigger"};
 
 
 
@@ -7927,110 +8569,6 @@ CABLES.OPS["b250d606-f7f8-44d3-b099-c29efff2608a"]={f:Ops.Math.Compare.GreaterTh
 
 // **************************************************************
 // 
-// Ops.Math.Multiply
-// 
-// **************************************************************
-
-Ops.Math.Multiply = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    number1 = op.inValueFloat("number1", 1),
-    number2 = op.inValueFloat("number2", 1),
-    result = op.outNumber("result");
-
-op.setUiAttribs({ "mathTitle": true });
-
-number1.onChange = number2.onChange = update;
-update();
-
-function update()
-{
-    const n1 = number1.get();
-    const n2 = number2.get();
-
-    result.set(n1 * n2);
-}
-
-
-};
-
-Ops.Math.Multiply.prototype = new CABLES.Op();
-CABLES.OPS["1bbdae06-fbb2-489b-9bcc-36c9d65bd441"]={f:Ops.Math.Multiply,objName:"Ops.Math.Multiply"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Ui.Routing.RouteNumber
-// 
-// **************************************************************
-
-Ops.Ui.Routing.RouteNumber = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    v = op.inValueFloat("value"),
-    result = op.outNumber("result");
-
-v.onChange = exec;
-
-let wasLinked = false;
-
-op.setUiAttribs({ "display": "reroute" });
-
-function exec()
-{
-    result.set(v.get());
-}
-
-
-};
-
-Ops.Ui.Routing.RouteNumber.prototype = new CABLES.Op();
-CABLES.OPS["afff634a-b581-4449-b6f7-9ec7863c5d4d"]={f:Ops.Ui.Routing.RouteNumber,objName:"Ops.Ui.Routing.RouteNumber"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Boolean.Not
-// 
-// **************************************************************
-
-Ops.Boolean.Not = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    bool = op.inValueBool("Boolean"),
-    outbool = op.outBoolNum("Result");
-
-bool.changeAlways = true;
-
-bool.onChange = function ()
-{
-    outbool.set((!bool.get()));
-};
-
-
-};
-
-Ops.Boolean.Not.prototype = new CABLES.Op();
-CABLES.OPS["6d123c9f-7485-4fd9-a5c2-76e59dcbeb34"]={f:Ops.Boolean.Not,objName:"Ops.Boolean.Not"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.String.GateString
 // 
 // **************************************************************
@@ -9170,239 +9708,6 @@ CABLES.OPS["3a4b0a78-4172-41c7-8248-95cb0856ecc8"]={f:Ops.Boolean.MonoFlop,objNa
 
 // **************************************************************
 // 
-// Ops.Math.Sum
-// 
-// **************************************************************
-
-Ops.Math.Sum = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    number1 = op.inValueFloat("number1", 0),
-    number2 = op.inValueFloat("number2", 0),
-    result = op.outNumber("result");
-
-op.setUiAttribs({ "mathTitle": true });
-
-number1.onChange =
-number2.onChange = exec;
-exec();
-
-function exec()
-{
-    const v = number1.get() + number2.get();
-    if (!isNaN(v))
-        result.set(v);
-}
-
-
-};
-
-Ops.Math.Sum.prototype = new CABLES.Op();
-CABLES.OPS["c8fb181e-0b03-4b41-9e55-06b6267bc634"]={f:Ops.Math.Sum,objName:"Ops.Math.Sum"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.Shader.PointMaterial_v5
-// 
-// **************************************************************
-
-Ops.Gl.Shader.PointMaterial_v5 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={"pointmat_frag":"\n{{MODULES_HEAD}}\n\nUNI vec4 color;\nUNI float atlasNumX;\n\n// IN vec2 pointCoord;\nIN float ps;\nIN vec2 texCoord;\n\n#ifdef HAS_TEXTURE_DIFFUSE\n    UNI sampler2D diffTex;\n#endif\n#ifdef HAS_TEXTURE_MASK\n    UNI sampler2D texMask;\n#endif\n#ifdef HAS_TEXTURE_COLORIZE\n    IN vec4 colorize;\n#endif\n#ifdef HAS_TEXTURE_OPACITY\n    IN float opacity;\n#endif\n\n#ifdef HAS_TEXTURE_ROT\n    UNI sampler2D texRot;\n#endif\n\n\n#ifdef USE_ATLAS\n    IN float randAtlas;\n    #ifdef HAS_TEXTURE_ATLASLOOKUP\n        UNI sampler2D texAtlasLookup;\n    #endif\n#endif\n\n\n#ifdef VERTEX_COLORS\n    IN vec4 vertexColor;\n#endif\n\nvec3 lumcoeff = vec3(0.299,0.587,0.114);\n\n#define PI 3.14159265\n#define TAU (2.0*PI)\n\nvoid pR(inout vec2 p, float a)\n{\n\tp = cos(a)*p + sin(a)*vec2(p.y, -p.x);\n}\n\n\nvoid main()\n{\n    #ifdef FLIP_TEX\n        vec2 pointCoord=vec2(gl_PointCoord.x,(1.0-gl_PointCoord.y));\n    #endif\n    #ifndef FLIP_TEX\n        vec2 pointCoord=gl_PointCoord;\n    #endif\n\n    #ifdef HAS_TEXTURE_ROT\n        float r=texture(texRot,texCoord).r;\n        pointCoord-=vec2(0.5);\n        pR(pointCoord,r*TAU);\n        pointCoord+=vec2(0.5);\n    #endif\n\n    vec2 origPointCoord=pointCoord;\n\n\n    #ifdef USE_ATLAS\n\n        float atlasIdx=randAtlas;\n\n        #ifdef HAS_TEXTURE_ATLASLOOKUP\n            atlasIdx=texture(texAtlasLookup,texCoord).r;\n        #endif\n\n        #ifdef ATLAS_XFADE\n            vec2 pointCoord2=vec2(origPointCoord);\n            pointCoord2.x=origPointCoord.x/atlasNumX+ceil(atlasIdx)*(1.0/atlasNumX);\n        #endif\n\n        pointCoord.x=origPointCoord.x/atlasNumX+floor(atlasIdx)*(1.0/atlasNumX);\n\n\n    #endif\n\n    {{MODULE_BEGIN_FRAG}}\n\n    if(ps<1.0)discard;\n\n    vec4 col=color;\n\n    #ifdef HAS_TEXTURE_MASK\n        float mask;\n        #ifdef TEXTURE_MASK_R\n            mask=texture(texMask,pointCoord).r;\n        #endif\n        #ifdef TEXTURE_MASK_A\n            mask=texture(texMask,pointCoord).a;\n        #endif\n        #ifdef TEXTURE_MASK_LUMI\n        \tmask = dot(texture(texMask,pointCoord).rgb, lumcoeff);\n        #endif\n\n        #ifdef ATLAS_XFADE\n            float mask2=texture(texMask,pointCoord2).r;\n\n            #ifdef TEXTURE_MASK_A\n                mask2=texture(texMask,pointCoord2).a;\n            #endif\n            #ifdef TEXTURE_MASK_LUMI\n            \tmask2 = dot(texture(texMask,pointCoord2).rgb, lumcoeff);\n            #endif\n\n            mask=mix(mask,mask2,fract(atlasIdx));\n        #endif\n    #endif\n\n    #ifdef HAS_TEXTURE_DIFFUSE\n\n        col=texture(diffTex,pointCoord);\n\n        #ifdef ATLAS_XFADE\n            vec4 col2=texture(diffTex,pointCoord2);\n            col=mix(col,col2,fract(atlasIdx));\n        #endif\n\n        #ifdef COLORIZE_TEXTURE\n            col.rgb*=color.rgb;\n        #endif\n    #endif\n\n    col.a*=color.a;\n\n\n    #ifdef MAKE_ROUND\n\n        #ifndef MAKE_ROUNDAA\n            if ((gl_PointCoord.x-0.5)*(gl_PointCoord.x-0.5) + (gl_PointCoord.y-0.5)*(gl_PointCoord.y-0.5) > 0.25) discard; //col.a=0.0;\n        #endif\n\n        #ifdef MAKE_ROUNDAA\n            float circ=(gl_PointCoord.x-0.5)*(gl_PointCoord.x-0.5) + (gl_PointCoord.y-0.5)*(gl_PointCoord.y-0.5);\n\n            float a=smoothstep(0.25,0.25-fwidth(gl_PointCoord.x),circ);\n            if(a==0.0)discard;\n            col.a=a*color.a;\n        #endif\n    #endif\n\n    #ifdef HAS_TEXTURE_COLORIZE\n        col*=colorize;\n    #endif\n\n    #ifdef TEXTURE_COLORIZE_MUL\n        col*=color;\n    #endif\n\n    #ifdef HAS_TEXTURE_MASK\n        col.a*=mask;\n    #endif\n\n    #ifdef HAS_TEXTURE_OPACITY\n        col.a*=opacity;\n    #endif\n\n    #ifdef VERTEX_COLORS\n        col.rgb = vertexColor.rgb;\n        col.a *= vertexColor.a;\n    #endif\n\n    if (col.a <= 0.0) discard;\n\n    #ifdef HAS_TEXTURE_COLORIZE\n        col*=colorize;\n    #endif\n\n    {{MODULE_COLOR}}\n\n\n    outColor = col;\n}\n","pointmat_vert":"{{MODULES_HEAD}}\n\n\n\nIN vec3 vPosition;\nIN vec2 attrTexCoord;\nIN vec3 attrVertNormal;\nIN vec3 attrTangent;\nIN vec3 attrBiTangent;\nIN float attrPointSize;\n\n#ifdef VERTEX_COLORS\n    IN vec4 attrVertColor;\n    OUT vec4 vertexColor;\n#endif\n\nOUT vec3 norm;\nOUT float ps;\n\nOUT vec2 texCoord;\n\n\n#ifdef HAS_TEXTURES\n#endif\n\n#ifdef HAS_TEXTURE_COLORIZE\n   UNI sampler2D texColorize;\n   OUT vec4 colorize;\n#endif\n#ifdef HAS_TEXTURE_OPACITY\n    UNI sampler2D texOpacity;\n    OUT float opacity;\n#endif\n\n#ifdef HAS_TEXTURE_POINTSIZE\n   UNI sampler2D texPointSize;\n   UNI float texPointSizeMul;\n#endif\n\nUNI mat4 projMatrix;\nUNI mat4 modelMatrix;\nUNI mat4 viewMatrix;\n\nUNI float pointSize;\nUNI vec3 camPos;\n\nUNI float canvasWidth;\nUNI float canvasHeight;\nUNI float camDistMul;\nUNI float randomSize;\nUNI float minPointSize;\n\nIN float attrVertIndex;\n\nUNI float atlasNumX;\n\n#ifdef USE_ATLAS\n    OUT float randAtlas;\n#endif\n\nfloat rand(float n){return fract(sin(n) * 5711.5711123);}\n\n#define POINTMATERIAL\n\nvoid main()\n{\n    norm=attrVertNormal;\n    #ifdef PIXELSIZE\n        float psMul=1.0;\n    #endif\n\n    #ifndef PIXELSIZE\n        float psMul=sqrt(canvasWidth/canvasHeight)+0.00000000001;\n    #endif\n\n    #ifdef USE_ATLAS\n        randAtlas=atlasNumX*rand(attrVertIndex+vPosition.x);\n    #endif\n\n    vec3 tangent=attrTangent;\n    vec3 bitangent=attrBiTangent;\n\n\n    #ifdef VERTEX_COLORS\n        vertexColor=attrVertColor;\n    #endif\n\n    // #ifdef HAS_TEXTURES\n        texCoord=attrTexCoord;\n    // #endif\n\n    #ifdef HAS_TEXTURE_OPACITY\n        // opacity=texture(texOpacity,vec2(rand(attrVertIndex+texCoord.x*texCoord.y+texCoord.y+texCoord.x),rand(texCoord.y*texCoord.x-texCoord.x-texCoord.y-attrVertIndex))).r;\n        opacity=texture(texOpacity,texCoord).r;\n    #endif\n\n\n    #ifdef HAS_TEXTURE_COLORIZE\n        #ifdef RANDOM_COLORIZE\n            colorize=texture(texColorize,vec2(rand(attrVertIndex+texCoord.x*texCoord.y+texCoord.y+texCoord.x),rand(texCoord.y*texCoord.x-texCoord.x-texCoord.y-attrVertIndex)));\n        #endif\n        #ifndef RANDOM_COLORIZE\n            colorize=texture(texColorize,texCoord);\n        #endif\n    #endif\n\n\n\n\n\n    mat4 mMatrix=modelMatrix;\n    vec4 pos = vec4( vPosition, 1. );\n\n    gl_PointSize=0.0;\n\n    {{MODULE_VERTEX_POSITION}}\n\n    vec4 model=mMatrix * pos;\n\n    psMul+=rand(texCoord.x*texCoord.y+texCoord.y*3.0+texCoord.x*2.0+attrVertIndex)*randomSize;\n\n    float addPointSize=0.0;\n    #ifdef HAS_TEXTURE_POINTSIZE\n\n        #ifdef POINTSIZE_CHAN_R\n            addPointSize=texture(texPointSize,texCoord).r;\n        #endif\n        #ifdef POINTSIZE_CHAN_G\n            addPointSize=texture(texPointSize,texCoord).g;\n        #endif\n        #ifdef POINTSIZE_CHAN_B\n            addPointSize=texture(texPointSize,texCoord).b;\n        #endif\n\n        #ifdef DOTSIZEREMAPABS\n            addPointSize=1.0-(distance(addPointSize,0.5)*2.0);\n            addPointSize=addPointSize*addPointSize*addPointSize*2.0;\n        #endif\n\n        addPointSize*=texPointSizeMul;\n\n    #endif\n\n    ps=0.0;\n    #ifndef SCALE_BY_DISTANCE\n        ps = (pointSize+addPointSize+attrPointSize) * psMul;\n    #endif\n    #ifdef SCALE_BY_DISTANCE\n        float cameraDist = distance(model.xyz, camPos);\n        ps = ( (pointSize+addPointSize+attrPointSize) / cameraDist) * psMul;\n    #endif\n    ps=max(minPointSize,ps);\n    gl_PointSize += ps;\n\n\n    gl_Position = projMatrix * viewMatrix * model;\n}\n",};
-const cgl = op.patch.cgl;
-
-const
-    render = op.inTrigger("render"),
-    pointSize = op.inValueFloat("PointSize", 3),
-    inPixelSize = op.inBool("Size in Pixels", false),
-    randomSize = op.inValue("Random Size", 0),
-    makeRound = op.inValueBool("Round", true),
-    makeRoundAA = op.inValueBool("Round Antialias", false),
-    doScale = op.inValueBool("Scale by Distance", false),
-    r = op.inValueSlider("r", Math.random()),
-    g = op.inValueSlider("g", Math.random()),
-    b = op.inValueSlider("b", Math.random()),
-    a = op.inValueSlider("a", 1),
-    vertCols = op.inBool("Vertex Colors", false),
-    texture = op.inTexture("texture"),
-    textureMulColor = op.inBool("Colorize Texture"),
-    textureMask = op.inTexture("Texture Mask"),
-    texMaskChan = op.inSwitch("Mask Channel", ["R", "A", "Luminance"], "R"),
-    textureColorize = op.inTexture("Texture Colorize"),
-    colorizeRandom = op.inValueBool("Colorize Randomize", false),
-    textureOpacity = op.inTexture("Texture Opacity"),
-    texturePointSize = op.inTexture("Texture Point Size"),
-    texturePointSizeChannel = op.inSwitch("Point Size Channel", ["R", "G", "B"], "R"),
-    texturePointSizeMul = op.inFloat("Texture Point Size Mul", 1),
-    texturePointSizeMap = op.inSwitch("Map Size 0", ["Black", "Grey"], "Black"),
-    flipTex = op.inValueBool("Flip Texture", false),
-
-    inAtlasXFade = op.inBool("Atlas Cross Fade", false),
-    inAtlasRepeatX = op.inFloat("Atlas Repeat X ", 1),
-    inAtlasLookupTex = op.inTexture("Atlas Lookup"),
-    inRotTex = op.inTexture("Rotate Texture"),
-    minPointSize = op.inValueFloat("Min Point Size", 0),
-
-    trigger = op.outTrigger("trigger"),
-    shaderOut = op.outObject("shader", null, "shader");
-
-op.setPortGroup("Texture", [texture, textureMulColor, textureMask, texMaskChan, textureColorize, textureOpacity, colorizeRandom]);
-op.setPortGroup("Color", [r, g, b, a, vertCols]);
-op.setPortGroup("Size", [pointSize, randomSize, makeRound, makeRoundAA, doScale, inPixelSize, texturePointSize, texturePointSizeMul, texturePointSizeChannel, texturePointSizeMap]);
-
-op.setPortGroup("Atlas", [inAtlasRepeatX, inAtlasLookupTex, inAtlasXFade]);
-
-r.setUiAttribs({ "colorPick": true });
-
-const shader = new CGL.Shader(cgl, "PointMaterial", this);
-shader.setModules(["MODULE_VERTEX_POSITION", "MODULE_COLOR", "MODULE_BEGIN_FRAG"]);
-shader.define("MAKE_ROUND");
-
-op.toWorkPortsNeedToBeLinked(render);
-
-const
-    uniPointSize = new CGL.Uniform(shader, "f", "pointSize", pointSize),
-    texturePointSizeMulUniform = new CGL.Uniform(shader, "f", "texPointSizeMul", texturePointSizeMul),
-    uniRandomSize = new CGL.Uniform(shader, "f", "randomSize", randomSize),
-    uniMinPointSize = new CGL.Uniform(shader, "f", "minPointSize", minPointSize),
-    uniColor = new CGL.Uniform(shader, "4f", "color", r, g, b, a),
-    uniRandAtlasX = new CGL.Uniform(shader, "f", "atlasNumX", inAtlasRepeatX),
-
-    uniWidth = new CGL.Uniform(shader, "f", "canvasWidth", cgl.canvasWidth),
-    uniHeight = new CGL.Uniform(shader, "f", "canvasHeight", cgl.canvasHeight),
-    textureUniform = new CGL.Uniform(shader, "t", "diffTex"),
-    textureColorizeUniform = new CGL.Uniform(shader, "t", "texColorize"),
-    textureOpacityUniform = new CGL.Uniform(shader, "t", "texOpacity"),
-    textureColoPointSize = new CGL.Uniform(shader, "t", "texPointSize"),
-    texturePointSizeUniform = new CGL.Uniform(shader, "t", "texPointSize"),
-    textureMaskUniform = new CGL.Uniform(shader, "t", "texMask"),
-    textureAtlasLookupUniform = new CGL.Uniform(shader, "t", "texAtlasLookup"),
-    texRotUni = new CGL.Uniform(shader, "t", "texRot");
-
-shader.setSource(attachments.pointmat_vert, attachments.pointmat_frag);
-shader.glPrimitive = cgl.gl.POINTS;
-shaderOut.set(shader);
-shaderOut.ignoreValueSerialize = true;
-
-doScale.onChange =
-    inAtlasRepeatX.onChange =
-    makeRound.onChange =
-    makeRoundAA.onChange =
-    texture.onChange =
-    textureColorize.onChange =
-    textureMask.onChange =
-    colorizeRandom.onChange =
-    flipTex.onChange =
-    texMaskChan.onChange =
-    inPixelSize.onChange =
-    textureOpacity.onChange =
-    texturePointSize.onChange =
-    texturePointSizeMap.onChange =
-    texturePointSizeChannel.onChange =
-    textureMulColor.onChange =
-    inAtlasLookupTex.onLinkChanged =
-    inRotTex.onLinkChanged =
-    vertCols.onChange = updateDefines;
-
-render.onTriggered = doRender;
-updateUi();
-
-op.preRender = function ()
-{
-    if (shader)shader.bind();
-    doRender();
-};
-
-function doRender()
-{
-    uniWidth.setValue(cgl.canvasWidth);
-    uniHeight.setValue(cgl.canvasHeight);
-
-    cgl.pushShader(shader);
-    shader.popTextures();
-    if (texture.get() && !texture.get().deleted) shader.pushTexture(textureUniform, texture.get());
-    if (textureMask.get()) shader.pushTexture(textureMaskUniform, textureMask.get());
-    if (textureColorize.get()) shader.pushTexture(textureColorizeUniform, textureColorize.get());
-    if (textureOpacity.get()) shader.pushTexture(textureOpacityUniform, textureOpacity.get());
-    if (texturePointSize.get()) shader.pushTexture(texturePointSizeUniform, texturePointSize.get());
-    if (inAtlasLookupTex.get()) shader.pushTexture(textureAtlasLookupUniform, inAtlasLookupTex.get());
-    if (inRotTex.get()) shader.pushTexture(texRotUni, inRotTex.get());
-
-    trigger.trigger();
-
-    cgl.popShader();
-}
-
-function useAtlas()
-{
-    return inAtlasRepeatX.get() > 0 || inAtlasLookupTex.isLinked();
-}
-
-function updateUi()
-{
-    inAtlasRepeatX.setUiAttribs({ "greyout": !useAtlas() });
-    texMaskChan.setUiAttribs({ "greyout": !textureMask.isLinked() });
-
-    texturePointSizeChannel.setUiAttribs({ "greyout": !texturePointSize.isLinked() });
-    texturePointSizeMul.setUiAttribs({ "greyout": !texturePointSize.isLinked() });
-    texturePointSizeMap.setUiAttribs({ "greyout": !texturePointSize.isLinked() });
-}
-
-function updateDefines()
-{
-    shader.toggleDefine("USE_ATLAS", useAtlas());
-
-    shader.toggleDefine("SCALE_BY_DISTANCE", doScale.get());
-    shader.toggleDefine("MAKE_ROUND", makeRound.get());
-    shader.toggleDefine("MAKE_ROUNDAA", makeRoundAA.get());
-
-    shader.toggleDefine("ATLAS_XFADE", inAtlasXFade.get());
-
-    shader.toggleDefine("VERTEX_COLORS", vertCols.get());
-    shader.toggleDefine("RANDOM_COLORIZE", colorizeRandom.get());
-    shader.toggleDefine("HAS_TEXTURE_DIFFUSE", texture.get());
-    shader.toggleDefine("HAS_TEXTURE_MASK", textureMask.isLinked());
-    shader.toggleDefine("HAS_TEXTURE_COLORIZE", textureColorize.isLinked());
-    shader.toggleDefine("HAS_TEXTURE_OPACITY", textureOpacity.isLinked());
-    shader.toggleDefine("HAS_TEXTURE_POINTSIZE", texturePointSize.isLinked());
-    shader.toggleDefine("HAS_TEXTURE_ATLASLOOKUP", inAtlasLookupTex.isLinked());
-    shader.toggleDefine("HAS_TEXTURE_ROT", inRotTex.isLinked());
-
-    shader.toggleDefine("TEXTURE_COLORIZE_MUL", textureMulColor.get());
-
-    shader.toggleDefine("FLIP_TEX", flipTex.get());
-    shader.toggleDefine("TEXTURE_MASK_R", texMaskChan.get() == "R");
-    shader.toggleDefine("TEXTURE_MASK_A", texMaskChan.get() == "A");
-    shader.toggleDefine("TEXTURE_MASK_LUMI", texMaskChan.get() == "Luminance");
-    shader.toggleDefine("PIXELSIZE", inPixelSize.get());
-
-    shader.toggleDefine("POINTSIZE_CHAN_R", texturePointSizeChannel.get() == "R");
-    shader.toggleDefine("POINTSIZE_CHAN_G", texturePointSizeChannel.get() == "G");
-    shader.toggleDefine("POINTSIZE_CHAN_B", texturePointSizeChannel.get() == "B");
-
-    shader.toggleDefine("DOTSIZEREMAPABS", texturePointSizeMap.get() == "Grey");
-    updateUi();
-}
-
-
-};
-
-Ops.Gl.Shader.PointMaterial_v5.prototype = new CABLES.Op();
-CABLES.OPS["72a2449e-db5c-44e7-ad9f-49f3c78b8c71"]={f:Ops.Gl.Shader.PointMaterial_v5,objName:"Ops.Gl.Shader.PointMaterial_v5"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Gl.Meshes.Torus_v3
 // 
 // **************************************************************
@@ -9975,63 +10280,6 @@ render.onTriggered = function ()
 
 Ops.Gl.Meshes.Line.prototype = new CABLES.Op();
 CABLES.OPS["c6a0d570-a0ac-4655-b17d-74d0870b0799"]={f:Ops.Gl.Meshes.Line,objName:"Ops.Gl.Meshes.Line"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Trigger.Repeat_v2
-// 
-// **************************************************************
-
-Ops.Trigger.Repeat_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    exe=op.inTrigger("Execute"),
-    num=op.inValueInt("Repeats",5),
-    dir=op.inSwitch("Direction",['Forward','Backward'],'Forward'),
-    next=op.outTrigger("Next"),
-    idx=op.addOutPort(new CABLES.Port(op,"index"));
-
-dir.onChange=updateDir;
-updateDir();
-
-function updateDir()
-{
-    if(dir.get()=="Forward") exe.onTriggered=forward;
-    else exe.onTriggered=backward;
-}
-
-function forward()
-{
-    const max=Math.floor(num.get());
-
-    for(var i=0;i<max;i++)
-    {
-        idx.set(i);
-        next.trigger();
-    }
-}
-
-function backward()
-{
-    const numi=Math.floor(num.get());
-    for(var i=numi-1;i>-1;i--)
-    {
-        idx.set(i);
-        next.trigger();
-    }
-}
-
-
-};
-
-Ops.Trigger.Repeat_v2.prototype = new CABLES.Op();
-CABLES.OPS["a4deea80-db97-478f-ad1a-5ee30f2f47cc"]={f:Ops.Trigger.Repeat_v2,objName:"Ops.Trigger.Repeat_v2"};
 
 
 
@@ -12543,314 +12791,649 @@ CABLES.OPS["dba19c07-e3c4-4971-a991-c9e6212ca1c8"]={f:Ops.Boolean.TriggerOnChang
 
 // **************************************************************
 // 
-// Ops.String.SwitchString
+// Ops.Gl.InteractiveRectangle_v2
 // 
 // **************************************************************
 
-Ops.String.SwitchString = function()
+Ops.Gl.InteractiveRectangle_v2 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
 const attachments=op.attachments={};
 const
-    idx=op.inValueInt("Index"),
-    result=op.outString("Result");
+    render = op.inTrigger("Trigger in"),
+    trigger = op.outTrigger("Trigger out"),
+    width = op.inValue("Width", 1),
+    height = op.inValue("Height", 1),
+    inId = op.inString("ID"),
+    classPort = op.inString("Class"),
+    pivotX = op.inValueSelect("Pivot x", ["center", "left", "right"]),
+    pivotY = op.inValueSelect("Pivot y", ["center", "top", "bottom"]),
+    axis = op.inValueSelect("Axis", ["xy", "xz"]),
+    isInteractive = op.inValueBool("Is Interactive", true),
+    renderRect = op.inValueBool("Render Rectangle", true),
+    divVisible = op.inValueBool("Show Boundings", true),
+    cursorPort = op.inValueSelect("Cursor", ["auto", "crosshair", "pointer", "Hand", "move", "n-resize", "ne-resize", "e-resize", "se-resize", "s-resize", "sw-resize", "w-resize", "nw-resize", "text", "wait", "help", "none"], "pointer"),
+    active = op.inValueBool("Render", true);
 
-const valuePorts=[];
+const geomOut = op.outObject("geometry");
+geomOut.ignoreValueSerialize = true;
 
-idx.onChange=update;
+const
+    mouseOver = op.outBoolNum("Pointer Hover", false),
+    mouseDown = op.outBoolNum("Pointer Down", false),
+    outX = op.outNumber("Pointer X"),
+    outY = op.outNumber("Pointer Y"),
+    outTop = op.outNumber("Top"),
+    outLeft = op.outNumber("Left"),
+    outRight = op.outNumber("Right"),
+    outBottom = op.outNumber("Bottom"),
+    mouseClick = op.outTrigger("Left Click");
 
-for(var i=0;i<10;i++)
+const elementPort = op.outObject("Dom Element");
+
+active.setUiAttribs({ "title": "Active" });
+
+const cgl = op.patch.cgl;
+axis.set("xy");
+pivotX.set("center");
+pivotY.set("center");
+
+const geom = new CGL.Geometry(op.name);
+let mesh = null;
+let div = null;
+const m = mat4.create();
+const trans = mat4.create();
+const pos = vec3.create();
+const divAlign = vec3.create();
+const divAlignSize = vec3.create();
+
+axis.onChange = rebuild;
+pivotX.onChange = rebuild;
+pivotY.onChange = rebuild;
+width.onChange = rebuild;
+height.onChange = rebuild;
+cursorPort.onChange = updateCursor;
+rebuild();
+
+const modelMatrix = mat4.create();
+const identViewMatrix = mat4.create();
+const zeroVec3 = vec3.create();
+
+render.onTriggered = function ()
 {
-    var p=op.inString("String "+i);
-    valuePorts.push( p );
-    p.onChange=update;
+    if (!div)
+    {
+        setUpDiv();
+        addListeners();
+        updateDivVisibility();
+        updateIsInteractive();
+    }
+    updateDivSize();
+
+    if (active.get() && renderRect.get() && mesh) mesh.render(cgl.getShader());
+
+    trigger.trigger();
+};
+
+function rebuild()
+{
+    let w = width.get();
+    let h = height.get();
+    let x = 0;
+    let y = 0;
+
+    if (typeof w == "string")w = parseFloat(w);
+    if (typeof h == "string")h = parseFloat(h);
+
+    if (pivotX.get() == "center")
+    {
+        x = 0;
+        divAlign[0] = -w / 2;
+    }
+    if (pivotX.get() == "right")
+    {
+        x = -w / 2;
+    }
+    if (pivotX.get() == "left")
+    {
+        x = w / 2;
+    }
+
+    if (pivotY.get() == "center")
+    {
+        y = 0;
+        divAlign[1] = -h / 2;
+    }
+    if (pivotY.get() == "top") y = -h / 2;
+    if (pivotY.get() == "bottom") y = +h / 2;
+
+    const verts = [];
+    const tc = [];
+    const norms = [];
+    const indices = [];
+
+    const numRows = 1;
+    const numColumns = 1;
+
+    const stepColumn = w / numColumns;
+    const stepRow = h / numRows;
+
+    let c, r;
+
+    for (r = 0; r <= numRows; r++)
+    {
+        for (c = 0; c <= numColumns; c++)
+        {
+            verts.push(c * stepColumn - width.get() / 2 + x);
+            if (axis.get() == "xz") verts.push(0.0);
+            verts.push(r * stepRow - height.get() / 2 + y);
+            if (axis.get() == "xy") verts.push(0.0);
+
+            tc.push(c / numColumns);
+            tc.push(1.0 - r / numRows);
+
+            if (axis.get() == "xz")
+            {
+                norms.push(0);
+                norms.push(1);
+                norms.push(0);
+            }
+
+            if (axis.get() == "xy")
+            {
+                norms.push(0);
+                norms.push(0);
+                norms.push(-1);
+            }
+        }
+    }
+
+    for (c = 0; c < numColumns; c++)
+    {
+        for (r = 0; r < numRows; r++)
+        {
+            const ind = c + (numColumns + 1) * r;
+            const v1 = ind;
+            const v2 = ind + 1;
+            const v3 = ind + numColumns + 1;
+            const v4 = ind + 1 + numColumns + 1;
+
+            indices.push(v1);
+            indices.push(v3);
+            indices.push(v2);
+
+            indices.push(v2);
+            indices.push(v3);
+            indices.push(v4);
+        }
+    }
+
+    geom.clear();
+    geom.vertices = verts;
+    geom.texCoords = tc;
+    geom.verticesIndices = indices;
+    geom.vertexNormals = norms;
+
+    if (!mesh) mesh = new CGL.Mesh(cgl, geom);
+    else mesh.setGeom(geom);
+
+    geomOut.set(null);
+    geomOut.set(geom);
+}
+
+let divX = 0;
+let divY = 0;
+let divWidth = 0;
+let divHeight = 0;
+
+const mMatrix = mat4.create();
+divVisible.onChange = updateDivVisibility;
+inId.onChange = updateId;
+classPort.onChange = updateClassNames;
+
+function updateDivVisibility()
+{
+    if (div)
+    {
+        if (divVisible.get()) div.style.border = "1px solid red";
+        else div.style.border = "none";
+    }
+}
+
+function updateCursor()
+{
+    if (div)
+    {
+        div.style.cursor = cursorPort.get();
+    }
+}
+
+function updateId()
+{
+    if (div)
+    {
+        div.setAttribute("id", inId.get());
+    }
+}
+
+function updateDivSize()
+{
+    // var vp=cgl.getViewPort();
+
+    mat4.multiply(mMatrix, cgl.vMatrix, cgl.mMatrix);
+    vec3.transformMat4(pos, divAlign, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const top = cgl.canvas.styleMarginTop || 0;
+    const left = cgl.canvas.styleMarginLeft || 0;
+
+    const x1 = (trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2 + left;
+    const y1 = (trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top;
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1];
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x2 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y2 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0];
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x3 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y3 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x4 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y4 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divX = Math.min(x1, x2, x3, x4);
+    divY = Math.min(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    const xb = Math.max(x1, x2, x3, x4);
+    const yb = Math.max(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    outTop.set(divY);
+    outLeft.set(divX);
+    outRight.set(xb);
+    outBottom.set(yb);
+
+    divWidth = Math.abs(xb - divX);
+    divHeight = Math.abs(yb - divY);
+
+    divX /= op.patch.cgl.pixelDensity;
+    divY /= op.patch.cgl.pixelDensity;
+    divWidth /= op.patch.cgl.pixelDensity;
+    divHeight /= op.patch.cgl.pixelDensity;
+
+    // div.style.left=divX+'px';
+    // div.style.top=divY+'px';
+    // div.style.width=divWidth+'px';
+    // div.style.height=divHeight+'px';
+
+    const divXpx = divX + "px";
+    const divYpx = divY + "px";
+    const divWidthPx = divWidth + "px";
+    const divHeightPx = divHeight + "px";
+    if (divXpx != div.style.left) div.style.left = divXpx;
+    if (divYpx != div.style.top) div.style.top = divYpx;
+    if (div.style.width != divWidthPx) div.style.width = divWidthPx;
+    if (div.style.height != divHeightPx) div.style.height = divHeightPx;
+}
+
+function updateClassNames()
+{
+    if (div)
+    {
+        div.className = classPort.get();
+    }
+}
+
+op.onDelete = function ()
+{
+    if (div)div.remove();
+};
+
+function setUpDiv()
+{
+    if (!div)
+    {
+        div = document.createElement("div");
+        div.dataset.op = op.id;
+        div.oncontextmenu = function (e)
+        {
+            e.preventDefault();
+        };
+
+        div.style.padding = "0px";
+        div.style.position = "absolute";
+        div.style["box-sizing"] = "border-box";
+        div.style.border = "1px solid red";
+        // div.style['border-left']="1px solid blue";
+        // div.style['border-top']="1px solid green";
+        div.style["z-index"] = "500";
+
+        div.style["-webkit-user-select"] = "none";
+        div.style["user-select"] = "none";
+        div.style["-webkit-tap-highlight-color"] = "rgba(0,0,0,0)";
+        div.style["-webkit-touch-callout"] = "none";
+
+        const canvas = op.patch.cgl.canvas.parentElement;
+        canvas.appendChild(div);
+        updateCursor();
+        updateIsInteractive();
+        updateId();
+        updateClassNames();
+    }
+    updateDivSize();
+    elementPort.set(div);
+}
+
+let listenerElement = null;
+
+function onMouseMove(e)
+{
+    const offsetX = -width.get() / 2;
+    const offsetY = -height.get() / 2;
+
+    outX.set(Math.max(0.0, Math.min(1.0, e.offsetX / divWidth)));
+    outY.set(Math.max(0.0, Math.min(1.0, 1.0 - e.offsetY / divHeight)));
+}
+
+function onMouseLeave(e)
+{
+    mouseDown.set(false);
+    mouseOver.set(false);
+}
+
+function onMouseEnter(e)
+{
+    mouseOver.set(true);
+}
+
+function onMouseDown(e)
+{
+    mouseDown.set(true);
+}
+
+function onMouseUp(e)
+{
+    mouseDown.set(false);
+}
+
+function onmouseclick(e)
+{
+    mouseClick.trigger();
+}
+
+function onTouchMove(e)
+{
+    const targetEle = document.elementFromPoint(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
+
+    if (targetEle == div)
+    {
+        mouseOver.set(true);
+        if (e.touches && e.touches.length > 0)
+        {
+            const rect = div.getBoundingClientRect(); // e.target
+            const x = e.targetTouches[0].pageX - rect.left;
+            const y = e.targetTouches[0].pageY - rect.top;
+
+            const touch = e.touches[0];
+
+            outX.set(Math.max(0.0, Math.min(1.0, x / divWidth)));
+            outY.set(Math.max(0.0, Math.min(1.0, 1.0 - y / divHeight)));
+
+            onMouseMove(touch);
+        }
+    }
+    else
+    {
+        mouseOver.set(false);
+    }
+}
+
+active.onChange = updateActiveRender;
+function updateActiveRender()
+{
+    if (active.get())
+    {
+        addListeners();
+        if (div) div.style.display = "block";
+    }
+    else
+    {
+        removeListeners();
+        if (div) div.style.display = "none";
+    }
+}
+
+isInteractive.onChange = updateIsInteractive;
+function updateIsInteractive()
+{
+    if (isInteractive.get())
+    {
+        addListeners();
+        if (div)div.style["pointer-events"] = "initial";
+    }
+    else
+    {
+        removeListeners();
+        mouseDown.set(false);
+        mouseOver.set(false);
+        if (div)div.style["pointer-events"] = "none";
+    }
+}
+
+function removeListeners()
+{
+    if (listenerElement)
+    {
+        document.removeEventListener("touchmove", onTouchMove);
+        listenerElement.removeEventListener("touchend", onMouseUp);
+        listenerElement.removeEventListener("touchstart", onMouseDown);
+
+        listenerElement.removeEventListener("click", onmouseclick);
+        listenerElement.removeEventListener("mousemove", onMouseMove);
+        listenerElement.removeEventListener("mouseleave", onMouseLeave);
+        listenerElement.removeEventListener("mousedown", onMouseDown);
+        listenerElement.removeEventListener("mouseup", onMouseUp);
+        listenerElement.removeEventListener("mouseenter", onMouseEnter);
+        // listenerElement.removeEventListener('contextmenu', onClickRight);
+        listenerElement = null;
+    }
+}
+
+function addListeners()
+{
+    if (listenerElement)removeListeners();
+
+    listenerElement = div;
+
+    if (listenerElement)
+    {
+        document.addEventListener("touchmove", onTouchMove);
+        listenerElement.addEventListener("touchend", onMouseUp);
+        listenerElement.addEventListener("touchstart", onMouseDown);
+
+        listenerElement.addEventListener("click", onmouseclick);
+        listenerElement.addEventListener("mousemove", onMouseMove);
+        listenerElement.addEventListener("mouseleave", onMouseLeave);
+        listenerElement.addEventListener("mousedown", onMouseDown);
+        listenerElement.addEventListener("mouseup", onMouseUp);
+        listenerElement.addEventListener("mouseenter", onMouseEnter);
+        // listenerElement.addEventListener('contextmenu', onClickRight);
+    }
+}
+
+
+};
+
+Ops.Gl.InteractiveRectangle_v2.prototype = new CABLES.Op();
+CABLES.OPS["334728ca-60a2-4a42-a059-d9b5f3fe4d32"]={f:Ops.Gl.InteractiveRectangle_v2,objName:"Ops.Gl.InteractiveRectangle_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.String.NumberToString_v2
+// 
+// **************************************************************
+
+Ops.String.NumberToString_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    val = op.inValue("Number"),
+    decPlaces = op.inInt("Decimal Places", 4),
+    result = op.outString("Result");
+
+let doDec = false;
+let decm = 1;
+decPlaces.onChange = updateDecm;
+val.onChange = update;
+updateDecm();
+update();
+
+function updateDecm()
+{
+    doDec = decPlaces.get() < 100;
+    decm = Math.pow(10, decPlaces.get());
+    update();
 }
 
 function update()
 {
-    if(idx.get()>=0 && valuePorts[idx.get()])
-    {
-        result.set( valuePorts[idx.get()].get() );
-    }
-}
-
-};
-
-Ops.String.SwitchString.prototype = new CABLES.Op();
-CABLES.OPS["2a7a0c68-f7c9-4249-b19a-d2de5cb4862c"]={f:Ops.String.SwitchString,objName:"Ops.String.SwitchString"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Patch.P4Zknbo.SuperFancySlider
-// 
-// **************************************************************
-
-Ops.Patch.P4Zknbo.SuperFancySlider = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"jq31ksdqs\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"value\":0,\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"value\":0,\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"dpwr1xhtc\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"kq1nhxsmt\",\"objOut\":\"dpwr1xhtc\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"m2wfys6r0\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posY\",\"value\":0},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"dpwr1xhtc\",\"objOut\":\"m2wfys6r0\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"kq1nhxsmt\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"width\",\"value\":0.017},{\"name\":\"height\",\"value\":0.05},{\"name\":\"Draw\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Triangle_v2\"},{\"id\":\"75fkjvooo\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"b4refzb4g\",\"objOut\":\"75fkjvooo\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"javiytan6\",\"objOut\":\"75fkjvooo\"},{\"portIn\":\"String In\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"xyk8stxip\",\"objOut\":\"75fkjvooo\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"javiytan6\",\"objOut\":\"75fkjvooo\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"l6887pjvj\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"4d2gb5xao\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"nc16gfgij\",\"objOut\":\"4d2gb5xao\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"4wo0oa9uf\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.49},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"dpwr1xhtc\",\"objOut\":\"4wo0oa9uf\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"l6887pjvj\",\"objOut\":\"4wo0oa9uf\"},{\"portIn\":\"Percentage\",\"portOut\":\"value\",\"objIn\":\"nafzj1zzm\",\"objOut\":\"4wo0oa9uf\"},{\"portIn\":\"Percentage\",\"portOut\":\"value\",\"objIn\":\"qnej9nqfy\",\"objOut\":\"4wo0oa9uf\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"j5ga3j8bx\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":2.7},{\"name\":\"y\",\"value\":0.62},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"javiytan6\",\"objOut\":\"j5ga3j8bx\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"},{\"id\":\"b4refzb4g\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0},{\"name\":\"y\",\"value\":-1.63},{\"name\":\"z\",\"value\":0.02}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"mhbksb88p\",\"objOut\":\"b4refzb4g\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"r17fw8h3x\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Index\",\"portOut\":\"result\",\"objIn\":\"dvvzf0u3g\",\"objOut\":\"r17fw8h3x\"},{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"zji5vqa5e\",\"objOut\":\"r17fw8h3x\"},{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"5sdncwt2d\",\"objOut\":\"r17fw8h3x\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"qkuk0tpub\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rotZ\",\"portOut\":\"result\",\"objIn\":\"m2wfys6r0\",\"objOut\":\"qkuk0tpub\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"d8bk8nqrj\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"vnctgfafe\",\"objOut\":\"d8bk8nqrj\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"5lktp0a0v\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeLength\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"rc1ypcr9g\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int scapeLength\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"vnctgfafe\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"dvvzf0u3g\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"5lktp0a0v\",\"objOut\":\"dvvzf0u3g\"},{\"portIn\":\"number1\",\"portOut\":\"Number\",\"objIn\":\"4d2gb5xao\",\"objOut\":\"dvvzf0u3g\"}]},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"zji5vqa5e\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonSlider\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"zmdwsxojp\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Value Out\",\"objIn\":\"d8bk8nqrj\",\"objOut\":\"zmdwsxojp\"},{\"portIn\":\"Number\",\"portOut\":\"Value Out\",\"objIn\":\"eqv2bw6o3\",\"objOut\":\"zmdwsxojp\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"eqv2bw6o3\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.VizNumberBar\"},{\"id\":\"xzb4a52u3\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"wamjddvel\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"xzb4a52u3\",\"objOut\":\"wamjddvel\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"javiytan6\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":1.01},{\"name\":\"Height\",\"value\":0.38},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"nc16gfgij\",\"objOut\":\"javiytan6\"}]},{\"name\":\"geometry\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"geometry\",\"objIn\":\"81kt4djpk\",\"objOut\":\"javiytan6\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"4wo0oa9uf\",\"objOut\":\"javiytan6\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"wamjddvel\",\"objOut\":\"javiytan6\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Hover\",\"objIn\":\"xyk8stxip\",\"objOut\":\"javiytan6\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"r17fw8h3x\",\"objOut\":\"javiytan6\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"zmdwsxojp\",\"objOut\":\"javiytan6\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"zmdwsxojp\",\"objOut\":\"javiytan6\"},{\"portIn\":\"Value\",\"portOut\":\"Pointer X\",\"objIn\":\"wlsua6xz7\",\"objOut\":\"javiytan6\"},{\"portIn\":\"Numbers_1\",\"portOut\":\"Pointer X\",\"objIn\":\"dvvzf0u3g\",\"objOut\":\"javiytan6\"}]},{\"name\":\"Pointer Y\",\"value\":0.22029456517496038},{\"name\":\"Top\",\"value\":848.0906119942665},{\"name\":\"Left\",\"value\":383.04607129096985},{\"name\":\"Right\",\"value\":1540.9539287090302},{\"name\":\"Bottom\",\"value\":948.1283910274506}],\"objName\":\"Ops.Patch.P4Zknbo.InteractiveRectangle_v24\"},{\"id\":\"81kt4djpk\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Translate X\",\"value\":0},{\"name\":\"Translate Y\",\"value\":0.65},{\"name\":\"Translate Z\",\"value\":-0.01},{\"name\":\"Scale X\",\"value\":2.7},{\"name\":\"Scale Y\",\"value\":0.347},{\"name\":\"Scale Z\",\"value\":1},{\"name\":\"Rotation X\",\"value\":0},{\"name\":\"Rotation Y\",\"value\":0},{\"name\":\"Rotation Z\",\"value\":0}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"Result\",\"objIn\":\"acgy6cquv\",\"objOut\":\"81kt4djpk\"}]}],\"objName\":\"Ops.Graphics.Geometry.TransformGeometry\"},{\"id\":\"5ltf1ziqz\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Render Mesh\",\"value\":1},{\"name\":\"Add Vertex Numbers\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"j5ga3j8bx\",\"objOut\":\"5ltf1ziqz\"}]}],\"objName\":\"Ops.Gl.RenderGeometry_v2\"},{\"id\":\"nafzj1zzm\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0.1},{\"name\":\"Value 2\",\"value\":0.66}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Opacity\",\"portOut\":\"Result\",\"objIn\":\"mhbksb88p\",\"objOut\":\"nafzj1zzm\"},{\"portIn\":\"Value 1\",\"portOut\":\"Result\",\"objIn\":\"qnej9nqfy\",\"objOut\":\"nafzj1zzm\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"acgy6cquv\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Smooth\",\"value\":true},{\"name\":\"Walls\",\"value\":1},{\"name\":\"Top\",\"value\":1},{\"name\":\"Bottom\",\"value\":1}],\"portsOut\":[{\"name\":\"Result Geometry\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"Result Geometry\",\"objIn\":\"5ltf1ziqz\",\"objOut\":\"acgy6cquv\"}]}],\"objName\":\"Ops.Graphics.Geometry.GeometryExtrude\"},{\"id\":\"mhbksb88p\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":1},{\"name\":\"AO Intensity\",\"value\":1},{\"name\":\"Normal Map Intensity\",\"value\":1},{\"name\":\"Repeat X\",\"value\":0.75},{\"name\":\"Repeat Y\",\"value\":1},{\"name\":\"Offset X\",\"value\":-0.32},{\"name\":\"Offset Y\",\"value\":-0.73},{\"name\":\"Double Sided\",\"value\":0},{\"name\":\"Screen Space Normals\",\"value\":0},{\"name\":\"Calc normal tangents\",\"value\":0},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"Trigger In\",\"portOut\":\"Next\",\"objIn\":\"64le7z674\",\"objOut\":\"mhbksb88p\"}]}],\"objName\":\"Ops.Gl.Shader.MatCapMaterial_v3\"},{\"id\":\"ukh3q7iz3\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":4},{\"name\":\"Height\",\"value\":16},{\"name\":\"Filter index\",\"value\":1},{\"name\":\"Filter\",\"value\":\"linear\"},{\"name\":\"Wrap index\",\"value\":0},{\"name\":\"Wrap\",\"value\":\"repeat\"},{\"name\":\"Color\",\"value\":1},{\"name\":\"Pixel Format index\",\"value\":4},{\"name\":\"Pixel Format\",\"value\":\"RGBA 8bit ubyte\"},{\"name\":\"Integer\",\"value\":0},{\"name\":\"Seed\",\"value\":0.41},{\"name\":\"Channel R\",\"value\":1},{\"name\":\"Min R\",\"value\":0},{\"name\":\"Max R\",\"value\":0.97},{\"name\":\"Channel G\",\"value\":1},{\"name\":\"Min G\",\"value\":0},{\"name\":\"Max G\",\"value\":1},{\"name\":\"Channel B\",\"value\":1},{\"name\":\"Min B\",\"value\":0},{\"name\":\"Max B\",\"value\":1},{\"name\":\"Channel A\",\"value\":1},{\"name\":\"Min A\",\"value\":0.1},{\"name\":\"Max A\",\"value\":1}],\"portsOut\":[{\"name\":\"Texture\",\"links\":[{\"portIn\":\"Diffuse\",\"portOut\":\"Texture\",\"objIn\":\"mhbksb88p\",\"objOut\":\"ukh3q7iz3\"}]},{\"name\":\"Total Pixel\",\"value\":64}],\"objName\":\"Ops.Gl.Textures.NoiseTexture\"},{\"id\":\"64le7z674\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Active\",\"value\":1},{\"name\":\"R\",\"value\":0.073},{\"name\":\"G\",\"value\":0.07784896736316682},{\"name\":\"B\",\"value\":0.07},{\"name\":\"Fresnel Exponent\",\"value\":-0.54}],\"portsOut\":[{\"name\":\"Trigger Out\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Trigger Out\",\"objIn\":\"5ltf1ziqz\",\"objOut\":\"64le7z674\"}]}],\"objName\":\"Ops.Gl.ShaderEffects.FresnelGlow\"},{\"id\":\"0x91c6yim\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Gradient\",\"value\":\"{\\\"keys\\\" : [{\\\"pos\\\":0,\\\"r\\\":0,\\\"g\\\":0,\\\"b\\\":0},{\\\"pos\\\":1,\\\"r\\\":1,\\\"g\\\":1,\\\"b\\\":1}]}\"},{\"name\":\"Direction index\",\"value\":6},{\"name\":\"Direction\",\"value\":\"Radial\"},{\"name\":\"Smoothstep\",\"value\":0},{\"name\":\"Step\",\"value\":0},{\"name\":\"Flip\",\"value\":0},{\"name\":\"sRGB\",\"value\":0},{\"name\":\"Oklab\",\"value\":0},{\"name\":\"Size\",\"value\":32},{\"name\":\"filter index\",\"value\":0},{\"name\":\"filter\",\"value\":\"nearest\"},{\"name\":\"wrap index\",\"value\":0},{\"name\":\"wrap\",\"value\":\"clamp to edge\"},{\"name\":\"Dither\",\"value\":0},{\"name\":\"Gradient Array\",\"value\":0}],\"portsOut\":[{\"name\":\"Texture\",\"links\":[{\"portIn\":\"Opacity Texture\",\"portOut\":\"Texture\",\"objIn\":\"mhbksb88p\",\"objOut\":\"0x91c6yim\"}]}],\"objName\":\"Ops.Gl.GradientTexture\"},{\"id\":\"qnej9nqfy\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 2\",\"value\":1}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Fresnel Intensity\",\"portOut\":\"Result\",\"objIn\":\"64le7z674\",\"objOut\":\"qnej9nqfy\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"wlsua6xz7\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValueOnHover\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"nc16gfgij\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"4wo0oa9uf\",\"objOut\":\"nc16gfgij\"},{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"m2wfys6r0\",\"objOut\":\"nc16gfgij\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"qkuk0tpub\",\"objOut\":\"nc16gfgij\"},{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"l6887pjvj\",\"objOut\":\"nc16gfgij\"},{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"m2wfys6r0\",\"objOut\":\"nc16gfgij\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"xyk8stxip\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"scapeLength\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"vycfn5cxp\",\"objOut\":\"xyk8stxip\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"gw29mpcm1\",\"objOut\":\"xyk8stxip\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"vycfn5cxp\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"2mxivhu1e\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_injectedState\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"9u2j8583m\",\"objOut\":\"2mxivhu1e\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"gw29mpcm1\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Numbers_0\",\"portOut\":\"Result\",\"objIn\":\"dvvzf0u3g\",\"objOut\":\"gw29mpcm1\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"9u2j8583m\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":1}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"gw29mpcm1\",\"objOut\":\"9u2j8583m\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"5sdncwt2d\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"9u2j8583m\",\"objOut\":\"5sdncwt2d\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"zoyrowfco\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"portsIn\":[{\"name\":\"Value 1\",\"value\":-0.05},{\"name\":\"Value 2\",\"value\":-1.41}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Height\",\"portOut\":\"Result\",\"objIn\":\"acgy6cquv\",\"objOut\":\"zoyrowfco\"}]}],\"storage\":{\"ref\":\"zoyrowfco\"},\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"5j4bc0e06\",\"uiAttribs\":{\"subPatch\":\"684jq2c6j\"},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_sizeParamNoSmooth\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Percentage\",\"portOut\":\"Value\",\"objIn\":\"zoyrowfco\",\"objOut\":\"5j4bc0e06\"}]}],\"storage\":{\"ref\":\"5j4bc0e06\"},\"objName\":\"Ops.Vars.VarGetNumber_v2\"}]}",};
-const port_blls2amps=op.inTrigger("blls2amps");
-port_blls2amps.setUiAttribs({title:"Trigger in",});
-
-const port_btagbs7z2=op.inString("btagbs7z2","");
-port_btagbs7z2.setUiAttribs({title:"Class",});
-
-const port_lj06d561p=op.inFloat("lj06d561p",0);
-port_lj06d561p.setUiAttribs({title:"Show Boundings",display:"bool",});
-
-const port_nti406vwi=op.outNumber("nti406vwi");
-port_nti406vwi.setUiAttribs({title:"Result",});
-
-const port_gjvx0zyv5=op.outNumber("gjvx0zyv5");
-port_gjvx0zyv5.setUiAttribs({title:"value",});
-
-op.initInnerPorts=function(addedOps)
-{
-  for(let i=0;i<addedOps.length;i++)
-  {
-    if(addedOps[i].innerInput)
-    {
-const innerOut_blls2amps = addedOps[i].outTrigger("innerOut_blls2amps");
-innerOut_blls2amps.setUiAttribs({title:"Trigger in"});
-port_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };
-
-const innerOut_btagbs7z2 = addedOps[i].outString("innerOut_btagbs7z2");
-innerOut_btagbs7z2.set(port_btagbs7z2.get() );
-innerOut_btagbs7z2.setUiAttribs({title:"Class"});
-port_btagbs7z2.on("change", (a,v) => { innerOut_btagbs7z2.set(a); });
-
-const innerOut_lj06d561p = addedOps[i].outNumber("innerOut_lj06d561p");
-innerOut_lj06d561p.set(port_lj06d561p.get() );
-innerOut_lj06d561p.setUiAttribs({title:"Show Boundings"});
-port_lj06d561p.on("change", (a,v) => { innerOut_lj06d561p.set(a); });
-
-    }
-if(addedOps[i].innerOutput)
-{
-const innerIn_nti406vwi = addedOps[i].inFloat("innerIn_nti406vwi");
-innerIn_nti406vwi.setUiAttribs({title:"Result"});
-innerIn_nti406vwi.on("change", (a,v) => { port_nti406vwi.set(a); });
-
-const innerIn_gjvx0zyv5 = addedOps[i].inFloat("innerIn_gjvx0zyv5");
-innerIn_gjvx0zyv5.setUiAttribs({title:"value"});
-innerIn_gjvx0zyv5.on("change", (a,v) => { port_gjvx0zyv5.set(a); });
-
-}
-}
-};
-
-const patchId = "bp2sub_" + op.id;
-
-new CABLES.SubPatchOp(op, { "subId": patchId });
-
-initializeSubpatch();
-
-function initializeSubpatch()
-{
-    const p = JSON.parse(attachments.subpatch_json);
-
-    CABLES.Patch.replaceOpIds(p,
-        {
-            "parentSubPatchId": patchId,
-            "prefixHash": patchId,
-            "oldIdAsRef": true,
-            "doNotUnlinkLostLinks": true
-        });
-
-    for (let i = 0; i < p.ops.length; i++)
-    {
-        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
-    }
-
-    op.loadDependencies(p, () =>
-    {
-        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
-        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
-        op.patch.emitEvent("subpatchExpose", patchId);
-        op.setStorage({ "blueprintVer": 2 });
-        op.patch.emitEvent("subpatchExpose", patchId);
-    });
+    if (doDec)
+        result.set(String(Math.round(val.get() * decm) / decm));
+    else
+        result.set(String(val.get() || 0));
 }
 
 
 };
 
-Ops.Patch.P4Zknbo.SuperFancySlider.prototype = new CABLES.Op();
-CABLES.OPS["4758cdcf-b59d-4706-88e6-2fa754c33f04"]={f:Ops.Patch.P4Zknbo.SuperFancySlider,objName:"Ops.Patch.P4Zknbo.SuperFancySlider"};
+Ops.String.NumberToString_v2.prototype = new CABLES.Op();
+CABLES.OPS["5c6d375a-82db-4366-8013-93f56b4061a9"]={f:Ops.String.NumberToString_v2,objName:"Ops.String.NumberToString_v2"};
 
 
 
 
 // **************************************************************
 // 
-// Ops.Patch.P4Zknbo.BasicSlider_v1
+// Ops.String.Concat_v2
 // 
 // **************************************************************
 
-Ops.Patch.P4Zknbo.BasicSlider_v1 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"mibecaqps\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"zzuotyuj8\",\"objOut\":\"mibecaqps\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"0lkifp8gr\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posY\",\"value\":0},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":-180},{\"name\":\"rotY\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"mibecaqps\",\"objOut\":\"0lkifp8gr\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"rviscpw5r\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"0lkifp8gr\",\"objOut\":\"rviscpw5r\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"ujv4mg17e\",\"objOut\":\"rviscpw5r\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"0lkifp8gr\",\"objOut\":\"rviscpw5r\"},{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"nor1x0y61\",\"objOut\":\"rviscpw5r\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"iea5ao2y2\",\"objOut\":\"rviscpw5r\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"zzuotyuj8\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"width\",\"value\":0.017},{\"name\":\"height\",\"value\":0.05},{\"name\":\"Draw\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Triangle_v2\"},{\"id\":\"gmc3o0yzj\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"zyly9dj8g\",\"objOut\":\"gmc3o0yzj\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"String In\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"g0k1dqgdc\",\"objOut\":\"gmc3o0yzj\"},{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"mzzhxzxfq\",\"objOut\":\"gmc3o0yzj\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"mzzhxzxfq\",\"objOut\":\"gmc3o0yzj\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"nor1x0y61\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"9bvbbyk9y\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"rviscpw5r\",\"objOut\":\"9bvbbyk9y\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"ujv4mg17e\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.49},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"mibecaqps\",\"objOut\":\"ujv4mg17e\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"nor1x0y61\",\"objOut\":\"ujv4mg17e\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"iea5ao2y2\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rotZ\",\"portOut\":\"result\",\"objIn\":\"0lkifp8gr\",\"objOut\":\"iea5ao2y2\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"zyly9dj8g\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0},{\"name\":\"y\",\"value\":-1.45},{\"name\":\"z\",\"value\":0.02}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bnqxchxdy\",\"objOut\":\"zyly9dj8g\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"i35qt5h52\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"leht2psro\",\"objOut\":\"i35qt5h52\"},{\"portIn\":\"Index\",\"portOut\":\"result\",\"objIn\":\"8vb7jo147\",\"objOut\":\"i35qt5h52\"},{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"mjgge74tk\",\"objOut\":\"i35qt5h52\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"7zp4rrptl\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeLevel\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"w1t4yqcfv\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int ir level\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"g0k1dqgdc\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"scapeLevel\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"ejj3oddhv\",\"objOut\":\"g0k1dqgdc\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"zwg2yqvrf\",\"objOut\":\"g0k1dqgdc\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"ejj3oddhv\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"8kcvz9igq\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"qmk2dl6c4\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_injectedState\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"gknkj3y4x\",\"objOut\":\"qmk2dl6c4\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"zwg2yqvrf\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Numbers_0\",\"portOut\":\"Result\",\"objIn\":\"8vb7jo147\",\"objOut\":\"zwg2yqvrf\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"8vb7jo147\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"7zp4rrptl\",\"objOut\":\"8vb7jo147\"},{\"portIn\":\"number1\",\"portOut\":\"Number\",\"objIn\":\"9bvbbyk9y\",\"objOut\":\"8vb7jo147\"}]},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"gknkj3y4x\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":1}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"zwg2yqvrf\",\"objOut\":\"gknkj3y4x\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"leht2psro\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"gknkj3y4x\",\"objOut\":\"leht2psro\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"mjgge74tk\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonSlider\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"ma5xd9zja\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Value Out\",\"objIn\":\"8kcvz9igq\",\"objOut\":\"ma5xd9zja\"},{\"portIn\":\"Numbers_1\",\"portOut\":\"Value Out\",\"objIn\":\"8vb7jo147\",\"objOut\":\"ma5xd9zja\"},{\"portIn\":\"Number\",\"portOut\":\"Value Out\",\"objIn\":\"o1wvr3kg9\",\"objOut\":\"ma5xd9zja\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"o1wvr3kg9\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.VizNumberBar\"},{\"id\":\"3hftipxyj\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"pk2351zm7\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"3hftipxyj\",\"objOut\":\"pk2351zm7\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"mzzhxzxfq\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":1},{\"name\":\"Height\",\"value\":0.34},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":9},{\"name\":\"Cursor\",\"value\":\"s-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"rviscpw5r\",\"objOut\":\"mzzhxzxfq\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"ujv4mg17e\",\"objOut\":\"mzzhxzxfq\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Hover\",\"objIn\":\"g0k1dqgdc\",\"objOut\":\"mzzhxzxfq\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"pk2351zm7\",\"objOut\":\"mzzhxzxfq\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"i35qt5h52\",\"objOut\":\"mzzhxzxfq\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"ma5xd9zja\",\"objOut\":\"mzzhxzxfq\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"ma5xd9zja\",\"objOut\":\"mzzhxzxfq\"},{\"portIn\":\"Value\",\"portOut\":\"Pointer X\",\"objIn\":\"tc6onu8jl\",\"objOut\":\"mzzhxzxfq\"}]},{\"name\":\"Pointer Y\",\"value\":0.875708644499907},{\"name\":\"Top\",\"value\":652.3148226737976},{\"name\":\"Left\",\"value\":396.1774400472641},{\"name\":\"Right\",\"value\":1405.822559952736},{\"name\":\"Bottom\",\"value\":716.6797173023224}],\"objName\":\"Ops.Patch.P4Zknbo.InteractiveRectangle_v24\"},{\"id\":\"tc6onu8jl\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValueOnHover\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bnqxchxdy\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{},\"portsIn\":[{\"name\":\"x\",\"value\":2.72},{\"name\":\"y\",\"value\":0.51},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"mzzhxzxfq\",\"objOut\":\"bnqxchxdy\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"}]}",};
-const port_blls2amps=op.inTrigger("blls2amps");
-port_blls2amps.setUiAttribs({title:"Trigger in",});
-
-const port_btagbs7z2=op.inString("btagbs7z2","");
-port_btagbs7z2.setUiAttribs({title:"Class",});
-
-const port_lj06d561p=op.inFloat("lj06d561p",0);
-port_lj06d561p.setUiAttribs({title:"Show Boundings",display:"bool",});
-
-const port_nti406vwi=op.outNumber("nti406vwi");
-port_nti406vwi.setUiAttribs({title:"Result",});
-
-const port_gjvx0zyv5=op.outNumber("gjvx0zyv5");
-port_gjvx0zyv5.setUiAttribs({title:"value",});
-
-op.initInnerPorts=function(addedOps)
-{
-  for(let i=0;i<addedOps.length;i++)
-  {
-    if(addedOps[i].innerInput)
-    {
-const innerOut_blls2amps = addedOps[i].outTrigger("innerOut_blls2amps");
-innerOut_blls2amps.setUiAttribs({title:"Trigger in"});
-port_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };
-
-const innerOut_btagbs7z2 = addedOps[i].outString("innerOut_btagbs7z2");
-innerOut_btagbs7z2.set(port_btagbs7z2.get() );
-innerOut_btagbs7z2.setUiAttribs({title:"Class"});
-port_btagbs7z2.on("change", (a,v) => { innerOut_btagbs7z2.set(a); });
-
-const innerOut_lj06d561p = addedOps[i].outNumber("innerOut_lj06d561p");
-innerOut_lj06d561p.set(port_lj06d561p.get() );
-innerOut_lj06d561p.setUiAttribs({title:"Show Boundings"});
-port_lj06d561p.on("change", (a,v) => { innerOut_lj06d561p.set(a); });
-
-    }
-if(addedOps[i].innerOutput)
-{
-const innerIn_nti406vwi = addedOps[i].inFloat("innerIn_nti406vwi");
-innerIn_nti406vwi.setUiAttribs({title:"Result"});
-innerIn_nti406vwi.on("change", (a,v) => { port_nti406vwi.set(a); });
-
-const innerIn_gjvx0zyv5 = addedOps[i].inFloat("innerIn_gjvx0zyv5");
-innerIn_gjvx0zyv5.setUiAttribs({title:"value"});
-innerIn_gjvx0zyv5.on("change", (a,v) => { port_gjvx0zyv5.set(a); });
-
-}
-}
-};
-
-const patchId = "bp2sub_" + op.id;
-
-new CABLES.SubPatchOp(op, { "subId": patchId });
-
-initializeSubpatch();
-
-function initializeSubpatch()
-{
-    const p = JSON.parse(attachments.subpatch_json);
-
-    CABLES.Patch.replaceOpIds(p,
-        {
-            "parentSubPatchId": patchId,
-            "prefixHash": patchId,
-            "oldIdAsRef": true,
-            "doNotUnlinkLostLinks": true
-        });
-
-    for (let i = 0; i < p.ops.length; i++)
-    {
-        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
-    }
-
-    op.loadDependencies(p, () =>
-    {
-        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
-        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
-        op.patch.emitEvent("subpatchExpose", patchId);
-        op.setStorage({ "blueprintVer": 2 });
-        op.patch.emitEvent("subpatchExpose", patchId);
-    });
-}
-
-
-};
-
-Ops.Patch.P4Zknbo.BasicSlider_v1.prototype = new CABLES.Op();
-CABLES.OPS["55bbeb5d-4c6b-4326-83c2-e979dda40f9b"]={f:Ops.Patch.P4Zknbo.BasicSlider_v1,objName:"Ops.Patch.P4Zknbo.BasicSlider_v1"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Math.Divide
-// 
-// **************************************************************
-
-Ops.Math.Divide = function()
+Ops.String.Concat_v2 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
 const attachments=op.attachments={};
 const
-    number1 = op.inValueFloat("number1", 1),
-    number2 = op.inValueFloat("number2", 2),
-    result = op.outNumber("result");
+    string1 = op.inString("string1", "ABC"),
+    string2 = op.inString("string2", "XYZ"),
+    newLine = op.inValueBool("New Line", false),
+    active = op.inBool("Active", true),
+    result = op.outString("result");
 
-op.setUiAttribs({ "mathTitle": true });
+newLine.onChange =
+    string2.onChange =
+    string1.onChange =
+    active.onChange = exec;
 
-number1.onChange = number2.onChange = exec;
 exec();
 
 function exec()
 {
-    result.set(number1.get() / number2.get());
+    if (!active.get())
+    {
+        return result.set(string1.get());
+    }
+    let s1 = string1.get();
+    let s2 = string2.get();
+    if (!s1 && !s2)
+    {
+        result.set("");
+        return;
+    }
+    if (!s1)s1 = "";
+    if (!s2)s2 = "";
+
+    let nl = "";
+    if (s1 && s2 && newLine.get())nl = "\n";
+    result.set(String(s1) + nl + String(s2));
 }
 
 
 };
 
-Ops.Math.Divide.prototype = new CABLES.Op();
-CABLES.OPS["86fcfd8c-038d-4b91-9820-a08114f6b7eb"]={f:Ops.Math.Divide,objName:"Ops.Math.Divide"};
+Ops.String.Concat_v2.prototype = new CABLES.Op();
+CABLES.OPS["a52722aa-0ca9-402c-a844-b7e98a6c6e60"]={f:Ops.String.Concat_v2,objName:"Ops.String.Concat_v2"};
 
 
 
 
 // **************************************************************
 // 
-// Ops.Ui.Routing.RouteTrigger
+// Ops.Vars.VarGetString
 // 
 // **************************************************************
 
-Ops.Ui.Routing.RouteTrigger = function()
+Ops.Vars.VarGetString = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
 const attachments=op.attachments={};
-const
-    exec = op.inTrigger("Trigger"),
-    next = op.outTrigger("Next");
+var val=op.outString("Value");
+op.varName=op.inValueSelect("Variable",[],"",true);
 
-op.setUiAttribs({ "display": "reroute" });
+new CABLES.VarGetOpWrapper(op,"string",op.varName,val);
 
-exec.onTriggered = () =>
+
+};
+
+Ops.Vars.VarGetString.prototype = new CABLES.Op();
+CABLES.OPS["3ad08cfc-bce6-4175-9746-fef2817a3b12"]={f:Ops.Vars.VarGetString,objName:"Ops.Vars.VarGetString"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Vars.VarGetTexture_v2
+// 
+// **************************************************************
+
+Ops.Vars.VarGetTexture_v2 = function()
 {
-    next.trigger();
-};
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const val = op.outTexture("Value");
+op.varName = op.inValueSelect("Variable", [], "", true);
+
+new CABLES.VarGetOpWrapper(op, "object", op.varName, val);
 
 
 };
 
-Ops.Ui.Routing.RouteTrigger.prototype = new CABLES.Op();
-CABLES.OPS["0a2dc648-3a02-4559-b9af-cf3d47701e66"]={f:Ops.Ui.Routing.RouteTrigger,objName:"Ops.Ui.Routing.RouteTrigger"};
+Ops.Vars.VarGetTexture_v2.prototype = new CABLES.Op();
+CABLES.OPS["5f8ce5fc-9787-45c9-9a83-0eebd2c6de15"]={f:Ops.Vars.VarGetTexture_v2,objName:"Ops.Vars.VarGetTexture_v2"};
 
 
 
@@ -13904,655 +14487,6 @@ inTrigger.onTriggered = () =>
 
 Ops.Gl.ShaderEffects.FresnelGlow.prototype = new CABLES.Op();
 CABLES.OPS["89979937-68a6-4736-8241-3c6b748103d4"]={f:Ops.Gl.ShaderEffects.FresnelGlow,objName:"Ops.Gl.ShaderEffects.FresnelGlow"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.InteractiveRectangle_v2
-// 
-// **************************************************************
-
-Ops.Gl.InteractiveRectangle_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    render = op.inTrigger("Trigger in"),
-    trigger = op.outTrigger("Trigger out"),
-    width = op.inValue("Width", 1),
-    height = op.inValue("Height", 1),
-    inId = op.inString("ID"),
-    classPort = op.inString("Class"),
-    pivotX = op.inValueSelect("Pivot x", ["center", "left", "right"]),
-    pivotY = op.inValueSelect("Pivot y", ["center", "top", "bottom"]),
-    axis = op.inValueSelect("Axis", ["xy", "xz"]),
-    isInteractive = op.inValueBool("Is Interactive", true),
-    renderRect = op.inValueBool("Render Rectangle", true),
-    divVisible = op.inValueBool("Show Boundings", true),
-    cursorPort = op.inValueSelect("Cursor", ["auto", "crosshair", "pointer", "Hand", "move", "n-resize", "ne-resize", "e-resize", "se-resize", "s-resize", "sw-resize", "w-resize", "nw-resize", "text", "wait", "help", "none"], "pointer"),
-    active = op.inValueBool("Render", true);
-
-const geomOut = op.outObject("geometry");
-geomOut.ignoreValueSerialize = true;
-
-const
-    mouseOver = op.outBoolNum("Pointer Hover", false),
-    mouseDown = op.outBoolNum("Pointer Down", false),
-    outX = op.outNumber("Pointer X"),
-    outY = op.outNumber("Pointer Y"),
-    outTop = op.outNumber("Top"),
-    outLeft = op.outNumber("Left"),
-    outRight = op.outNumber("Right"),
-    outBottom = op.outNumber("Bottom"),
-    mouseClick = op.outTrigger("Left Click");
-
-const elementPort = op.outObject("Dom Element");
-
-active.setUiAttribs({ "title": "Active" });
-
-const cgl = op.patch.cgl;
-axis.set("xy");
-pivotX.set("center");
-pivotY.set("center");
-
-const geom = new CGL.Geometry(op.name);
-let mesh = null;
-let div = null;
-const m = mat4.create();
-const trans = mat4.create();
-const pos = vec3.create();
-const divAlign = vec3.create();
-const divAlignSize = vec3.create();
-
-axis.onChange = rebuild;
-pivotX.onChange = rebuild;
-pivotY.onChange = rebuild;
-width.onChange = rebuild;
-height.onChange = rebuild;
-cursorPort.onChange = updateCursor;
-rebuild();
-
-const modelMatrix = mat4.create();
-const identViewMatrix = mat4.create();
-const zeroVec3 = vec3.create();
-
-render.onTriggered = function ()
-{
-    if (!div)
-    {
-        setUpDiv();
-        addListeners();
-        updateDivVisibility();
-        updateIsInteractive();
-    }
-    updateDivSize();
-
-    if (active.get() && renderRect.get() && mesh) mesh.render(cgl.getShader());
-
-    trigger.trigger();
-};
-
-function rebuild()
-{
-    let w = width.get();
-    let h = height.get();
-    let x = 0;
-    let y = 0;
-
-    if (typeof w == "string")w = parseFloat(w);
-    if (typeof h == "string")h = parseFloat(h);
-
-    if (pivotX.get() == "center")
-    {
-        x = 0;
-        divAlign[0] = -w / 2;
-    }
-    if (pivotX.get() == "right")
-    {
-        x = -w / 2;
-    }
-    if (pivotX.get() == "left")
-    {
-        x = w / 2;
-    }
-
-    if (pivotY.get() == "center")
-    {
-        y = 0;
-        divAlign[1] = -h / 2;
-    }
-    if (pivotY.get() == "top") y = -h / 2;
-    if (pivotY.get() == "bottom") y = +h / 2;
-
-    const verts = [];
-    const tc = [];
-    const norms = [];
-    const indices = [];
-
-    const numRows = 1;
-    const numColumns = 1;
-
-    const stepColumn = w / numColumns;
-    const stepRow = h / numRows;
-
-    let c, r;
-
-    for (r = 0; r <= numRows; r++)
-    {
-        for (c = 0; c <= numColumns; c++)
-        {
-            verts.push(c * stepColumn - width.get() / 2 + x);
-            if (axis.get() == "xz") verts.push(0.0);
-            verts.push(r * stepRow - height.get() / 2 + y);
-            if (axis.get() == "xy") verts.push(0.0);
-
-            tc.push(c / numColumns);
-            tc.push(1.0 - r / numRows);
-
-            if (axis.get() == "xz")
-            {
-                norms.push(0);
-                norms.push(1);
-                norms.push(0);
-            }
-
-            if (axis.get() == "xy")
-            {
-                norms.push(0);
-                norms.push(0);
-                norms.push(-1);
-            }
-        }
-    }
-
-    for (c = 0; c < numColumns; c++)
-    {
-        for (r = 0; r < numRows; r++)
-        {
-            const ind = c + (numColumns + 1) * r;
-            const v1 = ind;
-            const v2 = ind + 1;
-            const v3 = ind + numColumns + 1;
-            const v4 = ind + 1 + numColumns + 1;
-
-            indices.push(v1);
-            indices.push(v3);
-            indices.push(v2);
-
-            indices.push(v2);
-            indices.push(v3);
-            indices.push(v4);
-        }
-    }
-
-    geom.clear();
-    geom.vertices = verts;
-    geom.texCoords = tc;
-    geom.verticesIndices = indices;
-    geom.vertexNormals = norms;
-
-    if (!mesh) mesh = new CGL.Mesh(cgl, geom);
-    else mesh.setGeom(geom);
-
-    geomOut.set(null);
-    geomOut.set(geom);
-}
-
-let divX = 0;
-let divY = 0;
-let divWidth = 0;
-let divHeight = 0;
-
-const mMatrix = mat4.create();
-divVisible.onChange = updateDivVisibility;
-inId.onChange = updateId;
-classPort.onChange = updateClassNames;
-
-function updateDivVisibility()
-{
-    if (div)
-    {
-        if (divVisible.get()) div.style.border = "1px solid red";
-        else div.style.border = "none";
-    }
-}
-
-function updateCursor()
-{
-    if (div)
-    {
-        div.style.cursor = cursorPort.get();
-    }
-}
-
-function updateId()
-{
-    if (div)
-    {
-        div.setAttribute("id", inId.get());
-    }
-}
-
-function updateDivSize()
-{
-    // var vp=cgl.getViewPort();
-
-    mat4.multiply(mMatrix, cgl.vMatrix, cgl.mMatrix);
-    vec3.transformMat4(pos, divAlign, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const top = cgl.canvas.styleMarginTop || 0;
-    const left = cgl.canvas.styleMarginLeft || 0;
-
-    const x1 = (trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2 + left;
-    const y1 = (trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top;
-
-    divAlignSize[0] = divAlign[0] + width.get();
-    divAlignSize[1] = divAlign[1];
-
-    vec3.transformMat4(pos, divAlignSize, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const x2 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
-    const y2 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
-
-    divAlignSize[0] = divAlign[0];
-    divAlignSize[1] = divAlign[1] + height.get();
-
-    vec3.transformMat4(pos, divAlignSize, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const x3 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
-    const y3 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
-
-    divAlignSize[0] = divAlign[0] + width.get();
-    divAlignSize[1] = divAlign[1] + height.get();
-
-    vec3.transformMat4(pos, divAlignSize, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const x4 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
-    const y4 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
-
-    divX = Math.min(x1, x2, x3, x4);
-    divY = Math.min(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
-
-    const xb = Math.max(x1, x2, x3, x4);
-    const yb = Math.max(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
-
-    outTop.set(divY);
-    outLeft.set(divX);
-    outRight.set(xb);
-    outBottom.set(yb);
-
-    divWidth = Math.abs(xb - divX);
-    divHeight = Math.abs(yb - divY);
-
-    divX /= op.patch.cgl.pixelDensity;
-    divY /= op.patch.cgl.pixelDensity;
-    divWidth /= op.patch.cgl.pixelDensity;
-    divHeight /= op.patch.cgl.pixelDensity;
-
-    // div.style.left=divX+'px';
-    // div.style.top=divY+'px';
-    // div.style.width=divWidth+'px';
-    // div.style.height=divHeight+'px';
-
-    const divXpx = divX + "px";
-    const divYpx = divY + "px";
-    const divWidthPx = divWidth + "px";
-    const divHeightPx = divHeight + "px";
-    if (divXpx != div.style.left) div.style.left = divXpx;
-    if (divYpx != div.style.top) div.style.top = divYpx;
-    if (div.style.width != divWidthPx) div.style.width = divWidthPx;
-    if (div.style.height != divHeightPx) div.style.height = divHeightPx;
-}
-
-function updateClassNames()
-{
-    if (div)
-    {
-        div.className = classPort.get();
-    }
-}
-
-op.onDelete = function ()
-{
-    if (div)div.remove();
-};
-
-function setUpDiv()
-{
-    if (!div)
-    {
-        div = document.createElement("div");
-        div.dataset.op = op.id;
-        div.oncontextmenu = function (e)
-        {
-            e.preventDefault();
-        };
-
-        div.style.padding = "0px";
-        div.style.position = "absolute";
-        div.style["box-sizing"] = "border-box";
-        div.style.border = "1px solid red";
-        // div.style['border-left']="1px solid blue";
-        // div.style['border-top']="1px solid green";
-        div.style["z-index"] = "500";
-
-        div.style["-webkit-user-select"] = "none";
-        div.style["user-select"] = "none";
-        div.style["-webkit-tap-highlight-color"] = "rgba(0,0,0,0)";
-        div.style["-webkit-touch-callout"] = "none";
-
-        const canvas = op.patch.cgl.canvas.parentElement;
-        canvas.appendChild(div);
-        updateCursor();
-        updateIsInteractive();
-        updateId();
-        updateClassNames();
-    }
-    updateDivSize();
-    elementPort.set(div);
-}
-
-let listenerElement = null;
-
-function onMouseMove(e)
-{
-    const offsetX = -width.get() / 2;
-    const offsetY = -height.get() / 2;
-
-    outX.set(Math.max(0.0, Math.min(1.0, e.offsetX / divWidth)));
-    outY.set(Math.max(0.0, Math.min(1.0, 1.0 - e.offsetY / divHeight)));
-}
-
-function onMouseLeave(e)
-{
-    mouseDown.set(false);
-    mouseOver.set(false);
-}
-
-function onMouseEnter(e)
-{
-    mouseOver.set(true);
-}
-
-function onMouseDown(e)
-{
-    mouseDown.set(true);
-}
-
-function onMouseUp(e)
-{
-    mouseDown.set(false);
-}
-
-function onmouseclick(e)
-{
-    mouseClick.trigger();
-}
-
-function onTouchMove(e)
-{
-    const targetEle = document.elementFromPoint(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
-
-    if (targetEle == div)
-    {
-        mouseOver.set(true);
-        if (e.touches && e.touches.length > 0)
-        {
-            const rect = div.getBoundingClientRect(); // e.target
-            const x = e.targetTouches[0].pageX - rect.left;
-            const y = e.targetTouches[0].pageY - rect.top;
-
-            const touch = e.touches[0];
-
-            outX.set(Math.max(0.0, Math.min(1.0, x / divWidth)));
-            outY.set(Math.max(0.0, Math.min(1.0, 1.0 - y / divHeight)));
-
-            onMouseMove(touch);
-        }
-    }
-    else
-    {
-        mouseOver.set(false);
-    }
-}
-
-active.onChange = updateActiveRender;
-function updateActiveRender()
-{
-    if (active.get())
-    {
-        addListeners();
-        if (div) div.style.display = "block";
-    }
-    else
-    {
-        removeListeners();
-        if (div) div.style.display = "none";
-    }
-}
-
-isInteractive.onChange = updateIsInteractive;
-function updateIsInteractive()
-{
-    if (isInteractive.get())
-    {
-        addListeners();
-        if (div)div.style["pointer-events"] = "initial";
-    }
-    else
-    {
-        removeListeners();
-        mouseDown.set(false);
-        mouseOver.set(false);
-        if (div)div.style["pointer-events"] = "none";
-    }
-}
-
-function removeListeners()
-{
-    if (listenerElement)
-    {
-        document.removeEventListener("touchmove", onTouchMove);
-        listenerElement.removeEventListener("touchend", onMouseUp);
-        listenerElement.removeEventListener("touchstart", onMouseDown);
-
-        listenerElement.removeEventListener("click", onmouseclick);
-        listenerElement.removeEventListener("mousemove", onMouseMove);
-        listenerElement.removeEventListener("mouseleave", onMouseLeave);
-        listenerElement.removeEventListener("mousedown", onMouseDown);
-        listenerElement.removeEventListener("mouseup", onMouseUp);
-        listenerElement.removeEventListener("mouseenter", onMouseEnter);
-        // listenerElement.removeEventListener('contextmenu', onClickRight);
-        listenerElement = null;
-    }
-}
-
-function addListeners()
-{
-    if (listenerElement)removeListeners();
-
-    listenerElement = div;
-
-    if (listenerElement)
-    {
-        document.addEventListener("touchmove", onTouchMove);
-        listenerElement.addEventListener("touchend", onMouseUp);
-        listenerElement.addEventListener("touchstart", onMouseDown);
-
-        listenerElement.addEventListener("click", onmouseclick);
-        listenerElement.addEventListener("mousemove", onMouseMove);
-        listenerElement.addEventListener("mouseleave", onMouseLeave);
-        listenerElement.addEventListener("mousedown", onMouseDown);
-        listenerElement.addEventListener("mouseup", onMouseUp);
-        listenerElement.addEventListener("mouseenter", onMouseEnter);
-        // listenerElement.addEventListener('contextmenu', onClickRight);
-    }
-}
-
-
-};
-
-Ops.Gl.InteractiveRectangle_v2.prototype = new CABLES.Op();
-CABLES.OPS["334728ca-60a2-4a42-a059-d9b5f3fe4d32"]={f:Ops.Gl.InteractiveRectangle_v2,objName:"Ops.Gl.InteractiveRectangle_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.String.NumberToString_v2
-// 
-// **************************************************************
-
-Ops.String.NumberToString_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    val = op.inValue("Number"),
-    decPlaces = op.inInt("Decimal Places", 4),
-    result = op.outString("Result");
-
-let doDec = false;
-let decm = 1;
-decPlaces.onChange = updateDecm;
-val.onChange = update;
-updateDecm();
-update();
-
-function updateDecm()
-{
-    doDec = decPlaces.get() < 100;
-    decm = Math.pow(10, decPlaces.get());
-    update();
-}
-
-function update()
-{
-    if (doDec)
-        result.set(String(Math.round(val.get() * decm) / decm));
-    else
-        result.set(String(val.get() || 0));
-}
-
-
-};
-
-Ops.String.NumberToString_v2.prototype = new CABLES.Op();
-CABLES.OPS["5c6d375a-82db-4366-8013-93f56b4061a9"]={f:Ops.String.NumberToString_v2,objName:"Ops.String.NumberToString_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.String.Concat_v2
-// 
-// **************************************************************
-
-Ops.String.Concat_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    string1 = op.inString("string1", "ABC"),
-    string2 = op.inString("string2", "XYZ"),
-    newLine = op.inValueBool("New Line", false),
-    active = op.inBool("Active", true),
-    result = op.outString("result");
-
-newLine.onChange =
-    string2.onChange =
-    string1.onChange =
-    active.onChange = exec;
-
-exec();
-
-function exec()
-{
-    if (!active.get())
-    {
-        return result.set(string1.get());
-    }
-    let s1 = string1.get();
-    let s2 = string2.get();
-    if (!s1 && !s2)
-    {
-        result.set("");
-        return;
-    }
-    if (!s1)s1 = "";
-    if (!s2)s2 = "";
-
-    let nl = "";
-    if (s1 && s2 && newLine.get())nl = "\n";
-    result.set(String(s1) + nl + String(s2));
-}
-
-
-};
-
-Ops.String.Concat_v2.prototype = new CABLES.Op();
-CABLES.OPS["a52722aa-0ca9-402c-a844-b7e98a6c6e60"]={f:Ops.String.Concat_v2,objName:"Ops.String.Concat_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Vars.VarGetString
-// 
-// **************************************************************
-
-Ops.Vars.VarGetString = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-var val=op.outString("Value");
-op.varName=op.inValueSelect("Variable",[],"",true);
-
-new CABLES.VarGetOpWrapper(op,"string",op.varName,val);
-
-
-};
-
-Ops.Vars.VarGetString.prototype = new CABLES.Op();
-CABLES.OPS["3ad08cfc-bce6-4175-9746-fef2817a3b12"]={f:Ops.Vars.VarGetString,objName:"Ops.Vars.VarGetString"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Vars.VarGetTexture_v2
-// 
-// **************************************************************
-
-Ops.Vars.VarGetTexture_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const val = op.outTexture("Value");
-op.varName = op.inValueSelect("Variable", [], "", true);
-
-new CABLES.VarGetOpWrapper(op, "object", op.varName, val);
-
-
-};
-
-Ops.Vars.VarGetTexture_v2.prototype = new CABLES.Op();
-CABLES.OPS["5f8ce5fc-9787-45c9-9a83-0eebd2c6de15"]={f:Ops.Vars.VarGetTexture_v2,objName:"Ops.Vars.VarGetTexture_v2"};
 
 
 

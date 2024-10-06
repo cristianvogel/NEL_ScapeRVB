@@ -429,10 +429,14 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotI
 
         auto numSamples = buffer.getNumSamples();
 
+        normaliseImpulseResponse(buffer);
+
+        // stash one channel of the normalised buffer data for the UI
+        if (i == 0)
+            userAudioData.push_back(reduceAudioBuffer(buffer));
+
         // fade in, less ER energy from the IR, as we have a whole ER engine already
         buffer.applyGainRamp(0, numSamples, 0.5, 1);
-
-        normaliseImpulseResponse(buffer);
 
         runtime->updateSharedResourceMap(
             name,
@@ -447,8 +451,6 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotI
             buffer.getReadPointer(1),
             numSamples * 0.75);
     }
-
-    userAudioData.push_back( reduceAudioBuffer(buffer) );
 
     // IMPORTANT: delete the reader to avoid memory leaks
     delete reader;
@@ -475,14 +477,18 @@ std::vector<float> EffectsPluginProcessor::reduceAudioBuffer(const juce::AudioBu
     juce::AudioData::Pointer<juce::AudioData::Float32, juce::AudioData::LittleEndian, juce::AudioData::NonInterleaved, juce::AudioData::Const> pointer(buffer.getReadPointer(0));
 
     // Fill the audioData vector with a strided copy of the audio buffer
-    int pointerPosition = 0;    
-    for (int i = 0;  i < audioData.size(); i++)
+    int pointerPosition = 0;
+    for (int i = 0; i < numSamples; i++)
     {
-        audioData[i] = pointer.getAsFloat();
+        const auto value = pointer.getAsFloat();
+
         pointer += stride; // Move the pointer by the stride value
         pointerPosition += stride;
         if (pointerPosition >= numSamples)
-            break; 
+            break;
+        if (abs(value) < 1.0e-4)
+            continue; // skip small values
+        audioData[i] = value;
     }
     return audioData;
 }
@@ -876,11 +882,11 @@ void EffectsPluginProcessor::updateStateWithBufferData()
         elem::js::Array channelArray;
         for (const auto &monoChannelData : fromBuffer)
         {
-            channelArray.push_back( elem::js::Value(monoChannelData) );
+            channelArray.push_back(elem::js::Value(monoChannelData));
         }
         reducedSampleDataForPlotting.push_back(channelArray);
     }
-    state.insert_or_assign(USER_REDUCED_DATA_PROPERTY, elem::js::Value( reducedSampleDataForPlotting ));
+    state.insert_or_assign(USER_REDUCED_DATA_PROPERTY, elem::js::Value(reducedSampleDataForPlotting));
 }
 
 //========================= UpdateStateWithAudioFile names
@@ -894,7 +900,7 @@ void EffectsPluginProcessor::updateStateWithFileURLs(const std::vector<juce::Fil
         auto localfileURL = juce::URL(file.withFileExtension("")).getFileName();
         fileURLs.push_back(elem::js::Value(localfileURL.toStdString()));
     }
-    state.insert_or_assign(USER_FILE_URLS, elem::js::Value( fileURLs ));
+    state.insert_or_assign(USER_FILE_URLS, elem::js::Value(fileURLs));
 }
 
 void EffectsPluginProcessor::initJavaScriptEngine()
