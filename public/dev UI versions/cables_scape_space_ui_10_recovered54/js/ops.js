@@ -23,7 +23,6 @@ Ops.Sidebar=Ops.Sidebar || {};
 Ops.Trigger=Ops.Trigger || {};
 Ops.Gl.Phong=Ops.Gl.Phong || {};
 Ops.Graphics=Ops.Graphics || {};
-Ops.WebAudio=Ops.WebAudio || {};
 Ops.Gl.Matrix=Ops.Gl.Matrix || {};
 Ops.Gl.Meshes=Ops.Gl.Meshes || {};
 Ops.Gl.Shader=Ops.Gl.Shader || {};
@@ -34,6 +33,7 @@ Ops.Math.Compare=Ops.Math.Compare || {};
 Ops.Devices.Mouse=Ops.Devices.Mouse || {};
 Ops.Net.WebSocket=Ops.Net.WebSocket || {};
 Ops.Patch.P4Zknbo=Ops.Patch.P4Zknbo || {};
+Ops.Patch.PMdgqip=Ops.Patch.PMdgqip || {};
 Ops.Gl.ImageCompose=Ops.Gl.ImageCompose || {};
 Ops.Devices.Keyboard=Ops.Devices.Keyboard || {};
 Ops.Gl.ShaderEffects=Ops.Gl.ShaderEffects || {};
@@ -22285,405 +22285,6 @@ CABLES.OPS["cc591cc3-ff23-4817-907c-e5be7d5c059d"]={f:Ops.Sidebar.SidebarText_v2
 
 // **************************************************************
 // 
-// Ops.WebAudio.AudioBufferToSplineArray
-// 
-// **************************************************************
-
-Ops.WebAudio.AudioBufferToSplineArray = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-// currently only uses mono, if we want to extract stereo data some changes in extractPeaks are needed
-
-// constants
-const SAMPLES_PER_PIXEL_MIN = 100; // might crash when this is too low
-
-function findMinMax(array)
-{
-    let min = Infinity;
-    let max = -Infinity;
-    let i = 0;
-    let len = array.length;
-    let curr;
-
-    for (; i < len; i++)
-    {
-        curr = array[i];
-        if (min > curr)
-        {
-            min = curr;
-        }
-        if (max < curr)
-        {
-            max = curr;
-        }
-    }
-
-    return {
-        "min": min,
-        "max": max
-    };
-}
-
-const cgl = op.patch.cgl;
-
-// input
-const renderPort = op.inTrigger("Render");
-const audioBufferPort = op.inObject("Audio Buffer", null, "audioBuffer");
-const inWidth = op.inFloat("Width", 1);
-const inHeight = op.inFloat("Height", 0.5);
-const samplesPerPixelPort = op.inInt("Samples Per Pixel", 10000);
-
-op.setPortGroup("Waveform Settings", [inWidth, inHeight, samplesPerPixelPort]);
-// output
-const nextPort = op.outTrigger("Next");
-const outArray = op.outArray("Array Out");
-
-// change listeners
-let updating = true;
-audioBufferPort.onChange = samplesPerPixelPort.onChange
-= inWidth.onChange = inHeight.onChange = () =>
-    {
-        if (audioBufferPort.get())
-        {
-            if (!renderPort.isLinked())
-            {
-                const audioBuffer = audioBufferPort.get();
-                if (!(audioBuffer instanceof AudioBuffer)) return;
-            }
-        }
-
-        updating = true;
-    };
-
-renderPort.onTriggered = () =>
-{
-    if (updating)
-    {
-        extractPeaks();
-        updating = false;
-    }
-    nextPort.trigger();
-};
-
-function extractPeaks()
-{
-    const audioBuffer = audioBufferPort.get();
-    if (audioBuffer)
-    {
-        op.setUiError("noBuffer", null);
-
-        if (!(audioBuffer instanceof AudioBuffer)) return;
-    }
-    else
-    {
-        op.setUiError("noBuffer", "You need to connect the \"Audio Buffer\" input for this op to work!", 0);
-    }
-
-    if (audioBuffer)
-    {
-        let samplesPerPixel = samplesPerPixelPort.get();
-        if (samplesPerPixel < SAMPLES_PER_PIXEL_MIN)
-        {
-            op.setUiError("minSamples", "The value for \"Samples Per Pixel\" is lower than the minimum value " + SAMPLES_PER_PIXEL_MIN + ". Therefore the value has been set to " + SAMPLES_PER_PIXEL_MIN + ".", 1);
-            samplesPerPixel = SAMPLES_PER_PIXEL_MIN;
-        }
-        else
-        {
-            op.setUiError("minSamples", null);
-        }
-
-        let makeMono = audioBuffer.numberOfChannels < 2; // TODO: If we make this a parameter, we have to check if the audio actually is stereo
-
-        const peaks = webaudioPeaks(audioBuffer, samplesPerPixel, makeMono);
-
-        // because we extract mono peaks we just access [0] here
-        const typedArr = peaks.data[0];
-        const regularArr = Array.prototype.slice.call(typedArr);
-        const minMax = findMinMax(regularArr);
-        const normalizedArray = [];
-        for (let i = 0; i < regularArr.length; i += 1)
-        {
-            normalizedArray.push(
-                CABLES.map(i, 0, regularArr.length - 1, -inWidth.get(), inWidth.get())
-            );
-            normalizedArray.push(
-                CABLES.map(regularArr[i], minMax.min, minMax.max, -inHeight.get(), inHeight.get())
-            );
-            normalizedArray.push(0);
-        }
-
-        outArray.set(null);
-        outArray.set(normalizedArray);
-    }
-    else
-    {
-        outArray.set(null);
-    }
-}
-
-
-};
-
-Ops.WebAudio.AudioBufferToSplineArray.prototype = new CABLES.Op();
-CABLES.OPS["0a573407-f1af-4580-ba37-1604108151bd"]={f:Ops.WebAudio.AudioBufferToSplineArray,objName:"Ops.WebAudio.AudioBufferToSplineArray"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.WebAudio.AudioBuffer_v2
-// 
-// **************************************************************
-
-Ops.WebAudio.AudioBuffer_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const cgl = op.patch.cgl;
-
-const
-    audioCtx = CABLES.WEBAUDIO.createAudioContext(op),
-    inUrlPort = op.inUrl("URL", "audio"),
-    inLoadingTask = op.inBool("Create Loading Task", true),
-    audioBufferPort = op.outObject("Audio Buffer", null, "audioBuffer"),
-    finishedLoadingPort = op.outBoolNum("Finished Loading", false),
-    sampleRatePort = op.outNumber("Sample Rate", 0),
-    lengthPort = op.outNumber("Length", 0),
-    durationPort = op.outNumber("Duration", 0),
-    numberOfChannelsPort = op.outNumber("Number of Channels", 0),
-    outLoading = op.outBool("isLoading", 0);
-
-let currentBuffer = null;
-let isLoading = false;
-let currentFileUrl = null;
-let urlToLoadNext = null;
-let clearAfterLoad = false;
-let fromData = false;
-let fromDataNew = false;
-let fileReader = new FileReader();
-let arrayBuffer = null;
-let loadingIdDataURL = 0;
-
-if (!audioBufferPort.isLinked())
-{
-    op.setUiError("notConnected", "To play back sound, connect this op to a playback operator such as SamplePlayer or AudioBufferPlayer.", 0);
-}
-else
-{
-    op.setUiError("notConnected", null);
-}
-
-audioBufferPort.onLinkChanged = () =>
-{
-    if (audioBufferPort.isLinked())
-    {
-        op.setUiError("notConnected", null);
-    }
-    else
-    {
-        op.setUiError("notConnected", "To play back sound, connect this op to a playback operator such as SamplePlayer or AudioBufferPlayer.", 0);
-    }
-};
-
-function loadAudioFile(url, loadFromData)
-{
-    currentFileUrl = url;
-    isLoading = true;
-    outLoading.set(isLoading);
-
-    if (!loadFromData)
-    {
-        const ext = url.substr(url.lastIndexOf(".") + 1);
-        if (ext === "wav")
-        {
-            op.setUiError("wavFormat", "You are using a .wav file. Make sure the .wav file is 16 bit to be supported by all browsers. Safari does not support 24 bit .wav files.", 1);
-        }
-        else
-        {
-            op.setUiError("wavFormat", null);
-        }
-
-        CABLES.WEBAUDIO.loadAudioFile(op.patch, url, onLoadFinished, onLoadFailed, inLoadingTask.get());
-    }
-    else
-    {
-        let fileBlob = dataURItoBlob(url);
-
-        if (fileBlob.type === "audio/wav")
-        {
-            op.setUiError("wavFormat", "You are using a .wav file. Make sure the .wav file is 16 bit to be supported by all browsers. Safari does not support 24 bit .wav files.", 1);
-        }
-        else
-        {
-            op.setUiError("wavFormat", null);
-        }
-
-        if (inLoadingTask.get())
-        {
-            loadingIdDataURL = cgl.patch.loading.start("audiobuffer from data-url " + op.id, url, op);
-            if (cgl.patch.isEditorMode()) gui.jobs().start({ "id": "loadaudio" + loadingIdDataURL, "title": " loading audio data url (" + op.id + ")" });
-        }
-
-        fileReader.readAsArrayBuffer(fileBlob);
-    }
-}
-
-function dataURItoBlob(dataURI)
-{
-    // convert base64 to raw binary data held in a string
-    // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
-    let byteString = atob(dataURI.split(",")[1]);
-
-    // separate out the mime component
-    let mimeString = dataURI.split(",")[0].split(":")[1].split(";")[0];
-
-    // write the bytes of the string to an ArrayBuffer
-    let ab = new ArrayBuffer(byteString.length);
-
-    // create a view into the buffer
-    let ia = new Uint8Array(ab);
-
-    // set the bytes of the buffer to the correct values
-    for (let i = 0; i < byteString.length; i++)
-    {
-        ia[i] = byteString.charCodeAt(i);
-    }
-
-    // write the ArrayBuffer to a blob, and you're done
-    let blob = new Blob([ab], { "type": mimeString });
-    return blob;
-}
-
-// change listeners
-inUrlPort.onChange = function ()
-{
-    if (inUrlPort.get())
-    {
-        fromData = String(inUrlPort.get()).indexOf("data:") == 0;
-
-        if (isLoading)
-        {
-            fromDataNew = String(inUrlPort.get()).indexOf("data:") == 0;
-            const newUrl = fromDataNew ? inUrlPort.get() : op.patch.getFilePath(inUrlPort.get());
-            if (newUrl !== currentFileUrl)
-            {
-                urlToLoadNext = newUrl;
-            }
-            else
-            {
-                urlToLoadNext = null;
-            }
-
-            clearAfterLoad = false;
-            return;
-        }
-
-        invalidateOutPorts();
-        const url = fromData ? inUrlPort.get() : op.patch.getFilePath(inUrlPort.get());
-
-        loadAudioFile(url, fromData);
-    }
-    else
-    {
-        if (isLoading)
-        {
-            clearAfterLoad = true;
-            return;
-        }
-        invalidateOutPorts();
-        op.setUiError("wavFormat", null);
-        op.setUiError("failedLoading", null);
-    }
-};
-
-fileReader.onloadend = () =>
-{
-    arrayBuffer = fileReader.result;
-    cgl.patch.loading.finished(loadingIdDataURL);
-    if (cgl.patch.isEditorMode()) gui.jobs().finish("loadaudio" + loadingIdDataURL);
-    loadFromDataURL();
-};
-
-function loadFromDataURL()
-{
-    if (arrayBuffer) audioCtx.decodeAudioData(arrayBuffer, onLoadFinished, onLoadFailed);
-}
-
-function onLoadFinished(buffer)
-{
-    isLoading = false;
-    outLoading.set(isLoading);
-
-    if (clearAfterLoad)
-    {
-        invalidateOutPorts();
-        clearAfterLoad = false;
-        return;
-    }
-
-    if (urlToLoadNext)
-    {
-        loadAudioFile(urlToLoadNext, fromDataNew);
-        urlToLoadNext = null;
-    }
-    else
-    {
-        currentBuffer = buffer;
-        lengthPort.set(buffer.length);
-        durationPort.set(buffer.duration);
-        numberOfChannelsPort.set(buffer.numberOfChannels);
-        sampleRatePort.set(buffer.sampleRate);
-        audioBufferPort.set(buffer);
-        op.setUiError("failedLoading", null);
-        finishedLoadingPort.set(true);
-        fromData = false;
-        fromDataNew = false;
-    }
-}
-
-function onLoadFailed(e)
-{
-    // op.logError("Error: Loading audio file failed: ", e);
-    op.setUiError("failedLoading", "The audio file could not be loaded. Make sure the right file URL is used.", 2);
-    isLoading = false;
-    invalidateOutPorts();
-    outLoading.set(isLoading);
-    currentBuffer = null;
-
-    if (urlToLoadNext)
-    {
-        loadAudioFile(urlToLoadNext, fromDataNew);
-        urlToLoadNext = null;
-    }
-}
-
-function invalidateOutPorts()
-{
-    lengthPort.set(0);
-    durationPort.set(0);
-    numberOfChannelsPort.set(0);
-    sampleRatePort.set(0);
-
-    audioBufferPort.set(null);
-
-    finishedLoadingPort.set(false);
-}
-
-
-};
-
-Ops.WebAudio.AudioBuffer_v2.prototype = new CABLES.Op();
-CABLES.OPS["5f1d6a2f-1c04-4744-b0fb-910825beceee"]={f:Ops.WebAudio.AudioBuffer_v2,objName:"Ops.WebAudio.AudioBuffer_v2"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.String.StringEquals
 // 
 // **************************************************************
@@ -22784,41 +22385,6 @@ function update()
 
 Ops.Html.ElementCssShadow.prototype = new CABLES.Op();
 CABLES.OPS["d57433b7-7662-4ae3-8016-e09414705f77"]={f:Ops.Html.ElementCssShadow,objName:"Ops.Html.ElementCssShadow"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Boolean.BoolByTrigger
-// 
-// **************************************************************
-
-Ops.Boolean.BoolByTrigger = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inTriggerTrue = op.inTriggerButton("True"),
-    inTriggerFalse = op.inTriggerButton("false"),
-    outResult = op.outBoolNum("Result");
-
-inTriggerTrue.onTriggered = function ()
-{
-    outResult.set(true);
-};
-
-inTriggerFalse.onTriggered = function ()
-{
-    outResult.set(false);
-};
-
-
-};
-
-Ops.Boolean.BoolByTrigger.prototype = new CABLES.Op();
-CABLES.OPS["31f65abe-9d6c-4ba6-a291-ef2de41d2087"]={f:Ops.Boolean.BoolByTrigger,objName:"Ops.Boolean.BoolByTrigger"};
 
 
 
@@ -23232,250 +22798,610 @@ CABLES.OPS["7c06a818-9c07-493a-8c4f-04eb2c7796f5"]={f:Ops.Json.ObjectGetArray_v2
 
 // **************************************************************
 // 
-// Ops.Ui.VizArrayTable_v2
+// Ops.String.Md5
 // 
 // **************************************************************
 
-Ops.Ui.VizArrayTable_v2 = function()
+Ops.String.Md5 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
 const attachments=op.attachments={};
 const
-    inArr = op.inArray("Array"),
-    inStride = op.inInt("Stride", 0),
-    inScroll = op.inFloatSlider("Scroll", 0);
-    // inScroll.get()*arr.length;//inOffset = op.inInt("Start Row", 0);
+    inStr = op.inString("String"),
+    outHAsh = op.outString("MD5 Hash");
 
-op.setUiAttrib({ "height": 200, "width": 400, "resizable": true, "vizLayerMaxZoom": 2500 });
-
-function getCellValue(v)
+function MD5(r)
 {
-    let str = "";
-
-    if (typeof v == "string")
+    let o, e, n, f = [-680876936, -389564586, 606105819, -1044525330, -176418897, 1200080426, -1473231341, -45705983, 1770035416, -1958414417, -42063, -1990404162, 1804603682, -40341101, -1502002290, 1236535329, -165796510, -1069501632, 643717713, -373897302, -701558691, 38016083, -660478335, -405537848, 568446438, -1019803690, -187363961, 1163531501, -1444681467, -51403784, 1735328473, -1926607734, -378558, -2022574463, 1839030562, -35309556, -1530992060, 1272893353, -155497632, -1094730640, 681279174, -358537222, -722521979, 76029189, -640364487, -421815835, 530742520, -995338651, -198630844, 1126891415, -1416354905, -57434055, 1700485571, -1894986606, -1051523, -2054922799, 1873313359, -30611744, -1560198380, 1309151649, -145523070, -1120210379, 718787259, -343485551], t = [o = 1732584193, e = 4023233417, ~o, ~e], c = [], a = unescape(encodeURI(r)) + "\u0080", d = a.length;
+    for (r = --d / 4 + 2 | 15, c[--r] = 8 * d; ~d;) c[d >> 2] |= a.charCodeAt(d) << 8 * d--;
+    for (let i = a = 0; i < r; i += 16)
     {
-        // if (CABLES.UTILS.isNumeric(v)) str = "\"" + v + "\"";
-        // else str = v;
-        str = "\"" + v + "\"";
+        for (d = t; a < 64; d = [n = d[3], o + ((n = d[0] + [o & e | ~o & n, n & o | ~n & e, o ^ e ^ n, e ^ (o | ~n)][d = a >> 4] + f[a] + ~~c[i | 15 & [a, 5 * a + 1, 3 * a + 5, 7 * a][d]]) << (d = [7, 12, 17, 22, 5, 9, 14, 20, 4, 11, 16, 23, 6, 10, 15, 21][4 * d + a++ % 4]) | n >>> -d), o, e]) o = 0 | d[1],
+        e = d[2];
+        for (a = 4; a;) t[--a] += d[a];
     }
-    else if (CABLES.UTILS.isNumeric(v)) str = String(Math.round(v * 10000) / 10000);
-    else if (Array.isArray(v))
-    {
-        let preview = "...";
-        if (v.length == 0) preview = "";
-        str = "[" + preview + "] (" + v.length + ")";
-    }
-    else if (typeof v == "object")
-    {
-        try
-        {
-            str = JSON.stringify(v, true, 1);
-        }
-        catch (e)
-        {
-            str = "{???}";
-        }
-    }
-    else if (v != v || v === undefined)
-    {
-        str += String(v);
-    }
-    else
-    {
-        str += String(v);
-    }
-
-    return str;
+    for (r = ""; a < 32;) r += (t[a >> 3] >> 4 * (1 ^ a++) & 15).toString(16);
+    return r;
 }
 
-op.renderVizLayer = (ctx, layer) =>
+inStr.onChange = () =>
 {
-    ctx.fillStyle = "#222";
-    ctx.fillRect(layer.x, layer.y, layer.width, layer.height);
-
-    ctx.save();
-    ctx.scale(layer.scale, layer.scale);
-
-    ctx.font = "normal 10px sourceCodePro";
-    ctx.fillStyle = "#ccc";
-
-    const arr = inArr.get() || [];
-    let stride = inStride.get() || 1;
-
-    if (inArr.get() === null) op.setUiAttrib({ "extendTitle": "null" });
-    else if (inArr.get() === undefined) op.setUiAttrib({ "extendTitle": "undefined" });
-    else op.setUiAttrib({ "extendTitle": "length: " + arr.length });
-
-    if (inArr.links.length > 0 && inArr.links[0].getOtherPort(inArr))
-        stride = inArr.links[0].getOtherPort(inArr).uiAttribs.stride || inStride.get() || 1;
-
-    if (arr.length % stride != 0)op.setUiError("stride", "stride does not fit length of array. some values may not be shown", 1);
-    else op.setUiError("stride", null);
-
-    let lines = Math.floor(layer.height / layer.scale / 10 - 1);
-    let padding = 4;
-    let offset = Math.floor((inScroll.get() * arr.length) / stride);
-
-    offset = Math.max(0, offset);
-
-    if (lines * stride > arr.length) offset = 0;
-    else offset = Math.min(arr.length - (lines * stride), (offset) * stride);
-
-    let columnsWidth = [];
-
-    for (let i = 0; i < stride; i++)columnsWidth[i] = 0;
-
-    for (let i = offset; i < offset + lines * stride; i += stride)
-    {
-        for (let s = 0; s < stride; s++)
-        {
-            const v = arr[i + s];
-
-            columnsWidth[s] = Math.max(columnsWidth[s], getCellValue(v).length);
-        }
-    }
-
-    let columsPos = [];
-    let addUpPos = 30;
-    for (let i = 0; i < stride; i++)
-    {
-        columsPos[i] = addUpPos;
-        addUpPos += (columnsWidth[i] + 1) * 7;
-    }
-
-    for (let i = offset; i < offset + lines * stride; i += stride)
-    {
-        if (i < 0) continue;
-        if (i + stride > arr.length) continue;
-
-        ctx.fillStyle = "#666";
-
-        const lineNum = (i) / stride;
-
-        if (lineNum >= 0)
-            ctx.fillText(lineNum,
-                layer.x / layer.scale + padding,
-                layer.y / layer.scale + 10 + (i - offset) / stride * 10 + padding);
-
-        for (let s = 0; s < stride; s++)
-        {
-            const v = arr[i + s];
-            let str = getCellValue(v);
-
-            ctx.fillStyle = "#ccc";
-
-            if (typeof v == "string")
-            {
-                str = v;
-            }
-            else if (CABLES.UTILS.isNumeric(v)) str = String(Math.round(v * 10000) / 10000);
-            else if (Array.isArray(v))
-            {
-                str = JSON.stringify(v);
-            }
-            else if (typeof v == "object")
-            {
-                try
-                {
-                    str = JSON.stringify(v);
-                }
-                catch (e)
-                {
-                    str = "{object}";
-                }
-            }
-            else if (v != v || v === undefined)
-            {
-                ctx.fillStyle = "#f00";
-                str = "?";
-            }
-
-            ctx.fillText(str,
-                layer.x / layer.scale + columsPos[s],
-                layer.y / layer.scale + 10 + (i - offset) / stride * 10 + padding);
-        }
-    }
-
-    if (inArr.get() === null) ctx.fillText("null", layer.x / layer.scale + 10, layer.y / layer.scale + 10 + padding);
-    else if (inArr.get() === undefined) ctx.fillText("undefined", layer.x / layer.scale + 10, layer.y / layer.scale + 10 + padding);
-
-    const gradHeight = 30;
-
-    if (layer.scale <= 0) return;
-    if (offset > 0)
-    {
-        const radGrad = ctx.createLinearGradient(0, layer.y / layer.scale + 5, 0, layer.y / layer.scale + gradHeight);
-        radGrad.addColorStop(0, "#222");
-        radGrad.addColorStop(1, "rgba(34,34,34,0.0)");
-        ctx.fillStyle = radGrad;
-        ctx.fillRect(layer.x / layer.scale, layer.y / layer.scale, 200000, gradHeight);
-    }
-
-    if (offset + lines * stride < arr.length)
-    {
-        const radGrad = ctx.createLinearGradient(0, layer.y / layer.scale + layer.height / layer.scale - gradHeight + 5, 0, layer.y / layer.scale + layer.height / layer.scale - gradHeight + gradHeight);
-        radGrad.addColorStop(1, "#222");
-        radGrad.addColorStop(0, "rgba(34,34,34,0.0)");
-        ctx.fillStyle = radGrad;
-        ctx.fillRect(layer.x / layer.scale, layer.y / layer.scale + layer.height / layer.scale - gradHeight, 200000, gradHeight);
-    }
-
-    // scroll bars
-    if ((lines * stride) / arr.length < 1)
-    {
-        let h = layer.height - 20;
-        let start = (offset) / arr.length;
-        start *= h;
-
-        ctx.fillStyle = "#000";
-        ctx.fillRect((layer.x + layer.width - 15) / layer.scale, (layer.y + 10) / layer.scale, 5 / layer.scale, h / layer.scale);
-
-        h *= (lines * stride) / arr.length;
-
-        ctx.fillStyle = "#555";
-        ctx.fillRect((layer.x + layer.width - 15) / layer.scale, (layer.y + 10 + start) / layer.scale, 5 / layer.scale, h / layer.scale);
-    }
-
-    ctx.restore();
+    outHAsh.set(MD5(inStr.get()));
 };
 
 
 };
 
-Ops.Ui.VizArrayTable_v2.prototype = new CABLES.Op();
-CABLES.OPS["6c3bf614-a734-4539-98cd-7a7d5bfc38c9"]={f:Ops.Ui.VizArrayTable_v2,objName:"Ops.Ui.VizArrayTable_v2"};
+Ops.String.Md5.prototype = new CABLES.Op();
+CABLES.OPS["cfa03ee3-81c5-4c58-9365-e60181b38b3e"]={f:Ops.String.Md5,objName:"Ops.String.Md5"};
 
 
 
 
 // **************************************************************
 // 
-// Ops.Array.ArrayChangedTrigger
+// Ops.Array.ArrayToString_v3
 // 
 // **************************************************************
 
-Ops.Array.ArrayChangedTrigger = function()
+Ops.Array.ArrayToString_v3 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
 const attachments=op.attachments={};
 const
-    inArr = op.inArray("Array"),
-    next = op.outTrigger("Changed Trigger"),
-    outArr = op.outArray("New Array");
+    inArr=op.inArray("Array"),
+    inSeperator=op.inString("Seperator",","),
+    inNewLine=op.inValueBool("New Line"),
+    outStr=op.outString("Result");
 
-inArr.onChange = function ()
+inArr.onChange=
+    outStr.onChange=
+    inSeperator.onChange=
+    inNewLine.onChange=exec;
+
+
+function exec()
 {
-    outArr.setRef(inArr.get());
+    var arr=inArr.get();
+    var result='';
+
+    var sep=inSeperator.get();
+    if(inNewLine.get())sep+='\n';
+
+    if(arr && arr.join)
+    {
+        result=arr.join(sep);
+    }
+
+    outStr.set(result);
+}
+
+};
+
+Ops.Array.ArrayToString_v3.prototype = new CABLES.Op();
+CABLES.OPS["7b539bb3-8e86-4367-9e00-a637d3cfd87a"]={f:Ops.Array.ArrayToString_v3,objName:"Ops.Array.ArrayToString_v3"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Trigger.TriggerOnChangeArray
+// 
+// **************************************************************
+
+Ops.Trigger.TriggerOnChangeArray = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inval=op.inArray("Array"),
+    next=op.outTrigger("Changed"),
+    outArr=op.outArray("Result");
+
+inval.onChange=function()
+{
+    outArr.set(inval.get());
     next.trigger();
 };
 
+};
+
+Ops.Trigger.TriggerOnChangeArray.prototype = new CABLES.Op();
+CABLES.OPS["e4ddec93-4dee-422b-a402-6a0f6e469ce6"]={f:Ops.Trigger.TriggerOnChangeArray,objName:"Ops.Trigger.TriggerOnChangeArray"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PMdgqip.RingBufferString
+// 
+// **************************************************************
+
+Ops.Patch.PMdgqip.RingBufferString = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+let DEFAULT_LENGTH = 10;
+
+const
+    inVal = op.inString("String"),
+    inWrite = op.inTriggerButton("Write"),
+    inNum = op.inValueInt("Length", DEFAULT_LENGTH),
+    inReset = op.inTriggerButton("Reset Index"),
+    outArr = op.outArray("Result"),
+    outIndex = op.outNumber("Index");
+
+let index = 0;
+let arr = [];
+inNum.onChange = updateLength;
+updateLength();
+
+function updateLength()
+{
+    arr.length = Math.floor(inNum.get());
+    for (let i = 0; i < arr.length; i++) arr[i] = 0;
+
+    outArr.setRef(arr);
+}
+
+inWrite.onTriggered = function ()
+{
+    index = Math.floor(index % inNum.get());
+    arr[index] = inVal.get();
+    outIndex.set(index);
+    outArr.setRef(arr);
+    index++;
+};
+
+inReset.onTriggered = function ()
+{
+    index = 0;
+};
+
 
 };
 
-Ops.Array.ArrayChangedTrigger.prototype = new CABLES.Op();
-CABLES.OPS["bb55860d-a186-4e39-9542-8d21185e7e12"]={f:Ops.Array.ArrayChangedTrigger,objName:"Ops.Array.ArrayChangedTrigger"};
+Ops.Patch.PMdgqip.RingBufferString.prototype = new CABLES.Op();
+CABLES.OPS["f22db63a-3fea-423b-89b6-28ee53d4cd3a"]={f:Ops.Patch.PMdgqip.RingBufferString,objName:"Ops.Patch.PMdgqip.RingBufferString"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Array.ArrayPack3Simple
+// 
+// **************************************************************
+
+Ops.Array.ArrayPack3Simple = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inArr1 = op.inArray("Array 1"),
+    inArr2 = op.inArray("Array 2"),
+    inArr3 = op.inArray("Array 3"),
+
+    outArr = op.outArray("Array out", 3),
+    outNum = op.outNumber("Num Points"),
+    outArrayLength = op.outNumber("Array length");
+
+let showingError = false;
+
+let arr = [];
+let emptyArray = [];
+let needsCalc = true;
+
+inArr1.onChange = inArr2.onChange = inArr3.onChange = update;
+
+function update()
+{
+    let array1 = inArr1.get();
+    let array2 = inArr2.get();
+    let array3 = inArr3.get();
+
+    if (!array1 && !array2 && !array3)
+    {
+        outArr.set(null);
+        outNum.set(0);
+        return;
+    }
+    let arrlen = 0;
+
+    if (!array1 || !array2 || !array3)
+    {
+        if (array1) arrlen = array1.length;
+        else if (array2) arrlen = array2.length;
+        else if (array3) arrlen = array3.length;
+
+        if (emptyArray.length != arrlen)
+            for (let i = 0; i < arrlen; i++) emptyArray[i] = 0;
+
+        if (!array1)array1 = emptyArray;
+        if (!array2)array2 = emptyArray;
+        if (!array3)array3 = emptyArray;
+    }
+
+    if ((array1.length !== array2.length) || (array2.length !== array3.length))
+    {
+        //
+        op.setUiError("arraylen", "Arrays do not have the same length !");
+        return;
+    }
+    op.setUiError("arraylen", null);
+
+    arr.length = array1.length;
+    for (let i = 0; i < array1.length; i++)
+    {
+        arr[i * 3 + 0] = array1[i];
+        arr[i * 3 + 1] = array2[i];
+        arr[i * 3 + 2] = array3[i];
+    }
+
+    needsCalc = false;
+    outArr.setRef(arr);
+    outNum.set(arr.length / 3);
+    outArrayLength.set(arr.length);
+}
+
+
+};
+
+Ops.Array.ArrayPack3Simple.prototype = new CABLES.Op();
+CABLES.OPS["9c48785b-4cac-472c-a70f-dbd3c240b782"]={f:Ops.Array.ArrayPack3Simple,objName:"Ops.Array.ArrayPack3Simple"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Array.Array_v3
+// 
+// **************************************************************
+
+Ops.Array.Array_v3 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inLength = op.inValueInt("Array length", 10),
+    modeSelect = op.inSwitch("Mode select", ["Number", "1,2,3,4", "0-1"], "Number"),
+    inDefaultValue = op.inValueFloat("Default Value"),
+    inReverse = op.inBool("Reverse", false),
+    outArr = op.outArray("Array"),
+    outArrayLength = op.outNumber("Array length out");
+
+let arr = [];
+let selectIndex = 0;
+const MODE_NUMBER = 0;
+const MODE_1_TO_4 = 1;
+const MODE_0_TO_1 = 2;
+
+modeSelect.onChange = onFilterChange;
+
+inReverse.onChange =
+    inDefaultValue.onChange =
+    inLength.onChange = reset;
+
+onFilterChange();
+reset();
+
+function onFilterChange()
+{
+    let selectedMode = modeSelect.get();
+    if (selectedMode === "Number") selectIndex = MODE_NUMBER;
+    else if (selectedMode === "1,2,3,4") selectIndex = MODE_1_TO_4;
+    else if (selectedMode === "0-1") selectIndex = MODE_0_TO_1;
+
+    inDefaultValue.setUiAttribs({ "greyout": selectIndex !== MODE_NUMBER });
+
+    op.setUiAttrib({ "extendTitle": modeSelect.get() });
+
+    reset();
+}
+
+function reset()
+{
+    arr.length = 0;
+
+    let arrLength = inLength.get();
+    let valueForArray = inDefaultValue.get();
+    let i;
+
+    // mode 0 - fill all array values with one number
+    if (selectIndex === MODE_NUMBER)
+    {
+        for (i = 0; i < arrLength; i++)
+        {
+            arr[i] = valueForArray;
+        }
+    }
+    // mode 1 Continuous number array - increments up to array length
+    else if (selectIndex === MODE_1_TO_4)
+    {
+        for (i = 0; i < arrLength; i++)
+        {
+            arr[i] = i;
+        }
+    }
+    // mode 2 Normalized array
+    else if (selectIndex === MODE_0_TO_1)
+    {
+        for (i = 0; i < arrLength; i++)
+        {
+            arr[i] = i / (arrLength - 1);
+        }
+    }
+
+    if (inReverse.get())arr = arr.reverse();
+
+    outArr.setRef(arr);
+    outArrayLength.set(arr.length);
+}
+
+
+};
+
+Ops.Array.Array_v3.prototype = new CABLES.Op();
+CABLES.OPS["e4d31a46-bf64-42a8-be34-4cbb2bbc2600"]={f:Ops.Array.Array_v3,objName:"Ops.Array.Array_v3"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Array.ArrayLength_v2
+// 
+// **************************************************************
+
+Ops.Array.ArrayLength_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    array = op.inArray("array"),
+    outLength = op.outNumber("length");
+
+outLength.ignoreValueSerialize = true;
+
+function update()
+{
+    let l = 0;
+    if (array.get()) l = array.get().length;
+    outLength.set(l);
+}
+
+array.onChange = update;
+
+
+};
+
+Ops.Array.ArrayLength_v2.prototype = new CABLES.Op();
+CABLES.OPS["6f665caa-96ed-45d8-8620-e34f0f8e062c"]={f:Ops.Array.ArrayLength_v2,objName:"Ops.Array.ArrayLength_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Array.ArrayGetArray
+// 
+// **************************************************************
+
+Ops.Array.ArrayGetArray = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inArrays = op.inArray("Array of Arrays"),
+    index = op.inValueInt("Index"),
+    result = op.outArray("Result Array");
+
+inArrays.onChange =
+index.onChange = update;
+
+function update()
+{
+    let theArray = inArrays.get();
+    if (!theArray)
+    {
+        result.set(null);
+        return;
+    }
+
+    let ind = Math.floor(index.get());
+    if (ind < 0 || ind > theArray.length - 1)
+    {
+        result.set(null);
+        op.log("index wrong");
+        return;
+    }
+
+    result.set(null);
+    result.set(theArray[ind]);
+}
+
+
+};
+
+Ops.Array.ArrayGetArray.prototype = new CABLES.Op();
+CABLES.OPS["b9d3f42b-3fbf-4522-9df2-a5c769a92d66"]={f:Ops.Array.ArrayGetArray,objName:"Ops.Array.ArrayGetArray"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Array.ArrayMath
+// 
+// **************************************************************
+
+Ops.Array.ArrayMath = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const inArray_0 = op.inArray("array 0"),
+    NumberIn = op.inValueFloat("Number for math", 0.0),
+    mathSelect = op.inSwitch("Math function", ["+", "-", "*", "/", "%", "min", "max"], "+"),
+    outArray = op.outArray("Array result"),
+    outArrayLength = op.outNumber("Array length");
+
+op.toWorkPortsNeedToBeLinked(inArray_0);
+
+let mathFunc;
+let showingError = false;
+let mathArray = [];
+
+inArray_0.onChange = NumberIn.onChange = update;
+mathSelect.onChange = onFilterChange;
+
+onFilterChange();
+
+inArray_0.onLinkChanged = () =>
+{
+    if (inArray_0) inArray_0.copyLinkedUiAttrib("stride", outArray);
+};
+
+function onFilterChange()
+{
+    let mathSelectValue = mathSelect.get();
+
+    if (mathSelectValue === "+") mathFunc = function (a, b) { return a + b; };
+    else if (mathSelectValue === "-") mathFunc = function (a, b) { return a - b; };
+    else if (mathSelectValue === "*") mathFunc = function (a, b) { return a * b; };
+    else if (mathSelectValue === "/") mathFunc = function (a, b) { return a / b; };
+    else if (mathSelectValue === "%") mathFunc = function (a, b) { return a % b; };
+    else if (mathSelectValue === "min") mathFunc = function (a, b) { return Math.min(a, b); };
+    else if (mathSelectValue === "max") mathFunc = function (a, b) { return Math.max(a, b); };
+    update();
+    op.setUiAttrib({ "extendTitle": mathSelectValue });
+}
+
+function update()
+{
+    let array0 = inArray_0.get();
+
+    mathArray.length = 0;
+
+    if (!array0)
+    {
+        outArrayLength.set(0);
+        outArray.set(null);
+        return;
+    }
+
+    let num = NumberIn.get();
+    mathArray.length = array0.length;
+
+    let i = 0;
+
+    for (i = 0; i < array0.length; i++)
+    {
+        mathArray[i] = mathFunc(array0[i], num);
+    }
+
+    outArray.setRef(mathArray);
+    outArrayLength.set(mathArray.length);
+}
+
+
+};
+
+Ops.Array.ArrayMath.prototype = new CABLES.Op();
+CABLES.OPS["c7617717-3114-452f-9625-e4fefd841e88"]={f:Ops.Array.ArrayMath,objName:"Ops.Array.ArrayMath"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Array.FilterValidArray
+// 
+// **************************************************************
+
+Ops.Array.FilterValidArray = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inArr = op.inArray("Array"),
+    inLength = op.inBool("Invalid when length is 0", true),
+
+    outArray = op.outArray("Last Valid Array"),
+    outValid = op.outBoolNum("Is Valid");
+
+inLength.onChange =
+inArr.onChange =
+    update;
+
+function update()
+{
+    const arr = inArr.get();
+
+    let r = true;
+
+    if (!arr || !arr.length) r = false;
+    else if (inLength.get() && arr.length == 0) r = false;
+
+    if (r) outArray.setRef(arr);
+
+    outValid.set(r);
+}
+
+
+};
+
+Ops.Array.FilterValidArray.prototype = new CABLES.Op();
+CABLES.OPS["f2669593-eb06-48a6-b94c-4bc243747ee1"]={f:Ops.Array.FilterValidArray,objName:"Ops.Array.FilterValidArray"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Ui.Routing.RouteArray
+// 
+// **************************************************************
+
+Ops.Ui.Routing.RouteArray = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    v = op.inArray("Array In", ""),
+    result = op.outArray("Array Out");
+
+op.setUiAttribs({ "display": "reroute" });
+v.onChange = exec;
+
+v.onLinkChanged = () =>
+{
+    v.copyLinkedUiAttrib("stride", result);
+};
+
+function exec()
+{
+    result.setRef(v.get());
+}
+
+
+};
+
+Ops.Ui.Routing.RouteArray.prototype = new CABLES.Op();
+CABLES.OPS["4a560a77-dedf-4367-841b-1d9334403c41"]={f:Ops.Ui.Routing.RouteArray,objName:"Ops.Ui.Routing.RouteArray"};
 
 
 

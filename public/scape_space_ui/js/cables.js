@@ -17226,25 +17226,24 @@ WEBAUDIO.loadAudioFile = function (patch, url, onFinished, onError, loadingTask)
         loadingId = patch.loading.start("audio", url);
         if (patch.isEditorMode()) gui.jobs().start({ "id": "loadaudio" + loadingId, "title": " loading audio (" + url + ")" });
     }
-    
-    if (!file) return;
+    const request = new XMLHttpRequest();
 
-    const reader = new FileReader();
+    if (!url) return;
 
-    reader.onload = function (event) {
+    request.open("GET", url, true);
+    request.responseType = "arraybuffer";
+
+    request.onload = function ()
+    {
         patch.loading.finished(loadingId);
         if (patch.isEditorMode()) gui.jobs().finish("loadaudio" + loadingId);
-        console.log(' audio loaded', event.target.result.length);
-        audioContext.decodeAudioData(event.target.result, onFinished, onError).catch((e) => {
+
+        audioContext.decodeAudioData(request.response, onFinished, onError).catch((e) =>
+        {
             onError(e);
         });
     };
-
-    reader.onerror = function (event) {
-        onError(event.target.error);
-    };
-
-    reader.readAsArrayBuffer(file);
+    request.send();
 };
 
 /**

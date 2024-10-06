@@ -1,10 +1,12 @@
 ## Patch Variables:
 
+* ____arrayOfUserBufferData__ ```Array```
 * ____bodyHitY__ ```Number```
 * ____currentReflectorParam__ ```String```
 * ____heightMapGeometry__ ```Object```
 * ____labelBoolAnim__ ```Number```
 * ____lensFlareTexts__ ```Texture```
+* ____newUserBlobReceived__ ```Number```
 * ____wsConnection__ ```Object```
 * ___currentDialValueInsideRepeat2D__ ```Number```
 * ___currentIndexInsideRepeat2D__ ```Number```
@@ -16,7 +18,6 @@
 * __ext_injectedState__ ```Object```
 * __ext_normValue__ ```Number``` (default Value: `0`)
 * __ext_serverInfo__ ```String``` (default Value: `ws://127.0.0.1:13755`)
-* __ext_userFileURLs__ ```Array```
 * __host_scapeBypass__ ```Number```
 * __host_srvbBypass__ ```Number```
 * __NEL_SRVB_Metals__ ```Object```

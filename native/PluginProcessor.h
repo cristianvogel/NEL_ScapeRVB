@@ -107,6 +107,7 @@ public:
 private:
     std::string REVERSE_BUFFER_PREFIX = "REVERSED_";
     std::string USER_FILE_URLS = "userFileURLs";
+    std::string USER_REDUCED_DATA_PROPERTY = "userReducedData";
     std::string MAIN_DSP_JS_FILE = "dsp.main.js";
     std::string MAIN_PATCH_JS_FILE = "patch.main.js";
     std::string SAMPLE_RATE_PROPERTY = "sampleRate";
@@ -149,7 +150,7 @@ private:
 
 public:
     //======== User IR related , files and buffers
-    void updateStateWithFileURLs(const std::vector<juce::File> &files);
+
     float calculateNormalisationFactor(float sumSquaredMagnitude);
     void normaliseImpulseResponse(juce::AudioBuffer<float> &buf);
 
@@ -164,7 +165,8 @@ public:
     std::vector<juce::File> userImpulseResponses;
     std::vector<std::vector<float>> userAudioData;
     void updateStateWithBufferData();
-    std::vector<float> audioBufferToVector(const juce::AudioBuffer<float>& buffer);
+        void updateStateWithFileURLs( const std::vector<juce::File> &paths);
+   std::vector<float> reduceAudioBuffer(const juce::AudioBuffer<float>& buffer);
 
     juce::AudioFormatManager formatManager;
     // audiofile read using CHOC instead of juce :: DEPRECATING

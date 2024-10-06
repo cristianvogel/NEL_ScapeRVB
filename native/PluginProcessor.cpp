@@ -114,17 +114,13 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
                 // let's proceed to load the files into the VFS
                 // and dispatch the file URLs to the front end
                 int index = 0;
-
-                elem::js::Array fileURLs; // Create an array to hold the file URLs for serialisation
-
                 for (const juce::File &filePath : processor.userImpulseResponses)
                 {
                     processor.loadAudioFromFileIntoVFS(filePath, index++);
-                    // Add the file URL to the seriliazable array
-                    fileURLs.push_back(filePath.getFullPathName().toStdString());
                 }
+                // then update the state with the file URLs and reduced buffer data
                 processor.updateStateWithFileURLs(processor.userImpulseResponses);
-                // processor.updateStateWithBufferData();
+                processor.updateStateWithBufferData();
                 continue;
             }
 
@@ -402,7 +398,18 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotI
 {
     auto buffer = juce::AudioBuffer<float>();
     auto reader = formatManager.createReaderFor(file);
-    auto numChannels = reader->numChannels;
+
+    if (reader == nullptr)
+    {
+        dispatchError("File error:", "Failed to create reader for the audio file.");
+        return;
+    }
+
+    // Retrieve the audio file characteristics
+    const int bitsPerSample = reader->bitsPerSample;
+    // const bool isLittleEndian = true; // always a WAV file
+    const auto numChannels = reader->numChannels;
+    const bool isFloatingPoint = reader->usesFloatingPointData;
 
     buffer.setSize(2, reader->lengthInSamples);
 
@@ -441,7 +448,7 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotI
             numSamples * 0.75);
     }
 
-    userAudioData.push_back(audioBufferToVector(buffer));
+    userAudioData.push_back( reduceAudioBuffer(buffer) );
 
     // IMPORTANT: delete the reader to avoid memory leaks
     delete reader;
@@ -451,38 +458,33 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotI
 
 //======================= Function to convert the first channel of AudioBuffer to std::vector<float>
 
-std::vector<float> EffectsPluginProcessor::audioBufferToVector(const juce::AudioBuffer<float>& buffer)
+//======================= Function to convert the first channel of AudioBuffer to std::vector<float>
+std::vector<float> EffectsPluginProcessor::reduceAudioBuffer(const juce::AudioBuffer<float> &buffer)
 {
     int numSamples = buffer.getNumSamples();
 
-    std::vector<float> audioData(numSamples);
+    // Compute the stride as a factor of the number of samples
+    int stride = 96;
+    if (stride < 1)
+        stride = 1; // Ensure stride is at least 1
 
-    const float* channelData = buffer.getReadPointer(0);
-    std::memcpy(audioData.data(), channelData, numSamples * sizeof(float));
+    // Create an std::vector<float> to hold a reduced form of the audio data
+    std::vector<float> audioData(numSamples / stride + 1);
 
-    return audioData;
-}
+    // Declare a pointer variable for floating-point data
+    juce::AudioData::Pointer<juce::AudioData::Float32, juce::AudioData::LittleEndian, juce::AudioData::NonInterleaved, juce::AudioData::Const> pointer(buffer.getReadPointer(0));
 
-//========================= UpdateStateWithAudioFileData
-
-// Implementation of updateStateWithBufferData
-void EffectsPluginProcessor::updateStateWithBufferData( )
-{
-    // Convert userAudioData to elem::js::Array
-    elem::js::Array jsArray;
-
-    for (const auto& channelData : userAudioData)
+    // Fill the audioData vector with a strided copy of the audio buffer
+    int pointerPosition = 0;    
+    for (int i = 0;  i < audioData.size(); i++)
     {
-        elem::js::Array channelArray;
-        for (const auto& sample : channelData)
-        {
-            channelArray.push_back(elem::js::Value(sample));
-        }
-        jsArray.push_back(channelArray);
+        audioData[i] = pointer.getAsFloat();
+        pointer += stride; // Move the pointer by the stride value
+        pointerPosition += stride;
+        if (pointerPosition >= numSamples)
+            break; 
     }
-
-    // Add the file URLs to the local state object
-    state.insert_or_assign("userBufferData", elem::js::Value(jsArray));
+    return audioData;
 }
 
 //======================== Normalisation from JUCE convolution code
@@ -864,6 +866,24 @@ void EffectsPluginProcessor::handleAsyncUpdate()
     dispatchStateChange();
 }
 
+//========================= UpdateStateWithAudioFileData
+void EffectsPluginProcessor::updateStateWithBufferData()
+{
+    // Convert userAudioData to elem::js::Array
+    elem::js::Array reducedSampleDataForPlotting;
+    for (const auto &fromBuffer : EffectsPluginProcessor::userAudioData)
+    {
+        elem::js::Array channelArray;
+        for (const auto &monoChannelData : fromBuffer)
+        {
+            channelArray.push_back( elem::js::Value(monoChannelData) );
+        }
+        reducedSampleDataForPlotting.push_back(channelArray);
+    }
+    state.insert_or_assign(USER_REDUCED_DATA_PROPERTY, elem::js::Value( reducedSampleDataForPlotting ));
+}
+
+//========================= UpdateStateWithAudioFile names
 void EffectsPluginProcessor::updateStateWithFileURLs(const std::vector<juce::File> &paths)
 {
     // Convert the std::vector<juce::URL> to elem::js::Array
@@ -871,12 +891,10 @@ void EffectsPluginProcessor::updateStateWithFileURLs(const std::vector<juce::Fil
     for (const auto &path : paths)
     {
         juce::File file(path);
-        auto localfileURL = juce::URL(file);
-        fileURLs.push_back(elem::js::Value(localfileURL.toString(false).toStdString()));
+        auto localfileURL = juce::URL(file.withFileExtension("")).getFileName();
+        fileURLs.push_back(elem::js::Value(localfileURL.toStdString()));
     }
-
-    // add the file URLS to the local state object
-    state.insert_or_assign(USER_FILE_URLS, elem::js::Value(fileURLs));
+    state.insert_or_assign(USER_FILE_URLS, elem::js::Value( fileURLs ));
 }
 
 void EffectsPluginProcessor::initJavaScriptEngine()
