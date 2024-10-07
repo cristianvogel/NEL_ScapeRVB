@@ -3131,19 +3131,22 @@
 
   // dsp/scape.ts
   function SCAPE(props, dryInputs, ...outputFromSRVB) {
+    const zero2 = stdlib.const({ value: 0, key: "srvb::mute" });
+    const one = stdlib.const({ value: 1, key: "srvb::unity" });
     const srvbBypass = stdlib.sm(props.srvbBypass);
+    const scapeMode = stdlib.round(props.scapeMode);
+    const unity = stdlib.select(one, one, scapeMode);
     const responses = props.IRs;
-    const scapeLevel = stdlib.sm(stdlib.mul(stdlib.db2gain(1.5), props.scapeLevel));
+    const scapeLevel = stdlib.sm(stdlib.mul(stdlib.db2gain(1.5), unity, props.scapeLevel));
     const position = stdlib.sm(props.scapePosition);
     const hermiteNodes = [props.v1, props.v2, props.v3, props.v4].map(
-      (n) => stdlib.sm(n)
+      (x) => stdlib.smooth(stdlib.tau2pole(0.05), x)
     );
     const convolverNodes = /* @__PURE__ */ new Map();
     convolverNodes.set("SURFACE", [props.SURFACE_0, props.SURFACE_1]);
     convolverNodes.set("TEMPLE", [props.TEMPLE_0, props.TEMPLE_1]);
     convolverNodes.set("LIGHT", [props.LIGHT_0, props.LIGHT_1]);
     convolverNodes.set("DEEPNESS", [props.DEEPNESS_0, props.DEEPNESS_1]);
-    const zero2 = stdlib.const({ value: 0, key: "srvb::mute" });
     function HermiteVecInterp(channel, hermiteNodes2, _in) {
       let mixer = [];
       responses.forEach((response, slotName) => {
@@ -3207,7 +3210,8 @@
       { paramId: "scapeReverse", name: "Scape Reverse", min: 0, max: 1, defaultValue: 0, step: 1, isBoolean: false },
       { paramId: "scapeBypass", name: "Bypass Scape", min: 0, max: 1, defaultValue: 0, step: 1, isBoolean: false },
       { paramId: "srvbBypass", name: "Bypass Reflectors", min: 0, max: 1, defaultValue: 0, step: 1, isBoolean: false },
-      { paramId: "dryMix", name: "Dry Mix", min: 0, max: 1, defaultValue: 0, isBoolean: false }
+      { paramId: "dryMix", name: "Dry Mix", min: 0, max: 1, defaultValue: 0, isBoolean: false },
+      { paramId: "scapeMode", name: "Scape Mode", min: 0, max: 1, defaultValue: 0, isBoolean: false }
     ]
   };
 
@@ -3279,7 +3283,7 @@
     ["LIGHT", { pathStem: "LIGHT", index: 0, att: 1 }],
     ["SURFACE", { pathStem: "SURFACE", index: 1, att: 0.9 }],
     ["TEMPLE", { pathStem: "TEMPLE", index: 2, att: 0.9 }],
-    ["DEEPNESS", { pathStem: "DEEPNESS", index: 3, att: 0.5 }]
+    ["DEEPNESS", { pathStem: "DEEPNESS", index: 3, att: 0.675 }]
   ]);
   var User_IR_Map = /* @__PURE__ */ new Map();
   function IR_SlotRefFactory(scapeSettings, refs2, slot, slotIndex, attenuation) {
@@ -3321,10 +3325,11 @@
     return convolvers;
   }
   function parseAndUpdateIRRefs(scape, useDefaultIRs = true) {
+    const mode = scape.mode;
     const VFSPathWithReverseForChannel = (slotName, channel) => {
       const userIR = User_IR_Map.get(slotName);
       const defaultIR = Default_IR_Map.get(slotName);
-      const vfsPathWithChannel = userIR !== void 0 ? `${userIR.pathStem}_${channel}` : `${defaultIR.pathStem}_${channel}`;
+      const vfsPathWithChannel = userIR !== void 0 && mode ? `${userIR.pathStem}_${channel}` : `${defaultIR.pathStem}_${channel}`;
       const reversablePathNameWithChannel = scape.reverse > 0.5 ? REVERSE_BUFFER_PREFIX + vfsPathWithChannel : vfsPathWithChannel;
       return reversablePathNameWithChannel;
     };
@@ -3342,7 +3347,7 @@
             path: VFSPathWithReverseForChannel(slotName, chan),
             process: Math.min(scape.level, scape.vectorData[defaultIR.index]),
             // todo: take another look at this
-            scale: userIR !== void 0 ? userIR.att : defaultIR.att
+            scale: userIR !== void 0 && mode ? userIR.att : defaultIR.att
           }
         );
       }
@@ -3404,6 +3409,7 @@
       srvbBypass: refs.getOrCreate("srvbBypass", "const", { value: srvb.bypass }, []),
       scapeLevel: refs.getOrCreate("scapeLevel", "const", { value: scape.level }, []),
       scapePosition: refs.getOrCreate("scapePosition", "const", { value: shared.position }, []),
+      scapeMode: refs.getOrCreate("scapeMode", "const", { value: scape.mode }, []),
       // the Hermite vector interpolation values as signals
       v1: refs.getOrCreate("v1", "const", { value: scape.vectorData[0] }, []),
       v2: refs.getOrCreate("v2", "const", { value: scape.vectorData[1] }, []),
@@ -3418,6 +3424,7 @@
       return scapeProps;
     }
     if (!memoized || shouldRender(memoized, state)) {
+      console.log("Render called");
       structureData = buildStructures(refs, srvb.structure) || structureData;
       if (srvbProps && scapeProps) {
         const graph = core.render(
@@ -3455,6 +3462,7 @@
         refs.update("v3", { value: scape.vectorData[2] });
         refs.update("v4", { value: scape.vectorData[3] });
         refs.update("scapePosition", { value: shared.position });
+        refs.update("scapeMode", { value: scape.mode });
         parseAndUpdateIRRefs(scape);
       }
       refs.update("dryMix", { value: shared.dryMix });
@@ -3468,7 +3476,8 @@
       reverse: scape.reverse,
       vectorData: scape.vectorData,
       scapeBypass: scape.bypass,
-      srvbBypass: srvb.bypass
+      srvbBypass: srvb.bypass,
+      scapeMode: scape.mode
     };
     function parseNewState(stateReceivedFromNative2) {
       const state2 = JSON.parse(stateReceivedFromNative2);
@@ -3494,7 +3503,8 @@
         level: state2.scapeLevel,
         ir: state2.scapeLength,
         vectorData: HERMITE.at(state2.scapeLength),
-        bypass: Math.round(state2.scapeBypass) || 0
+        bypass: Math.round(state2.scapeBypass) || 0,
+        mode: Math.round(state2.scapeMode) || 0
       };
       return { state: state2, srvb: srvb2, shared: shared2, scape: scape2 };
     }

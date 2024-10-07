@@ -1,6 +1,8 @@
 import manifest from "../public/manifest.json";
 import { DefaultIRSlotName, IRMetaData } from "../types";
 
+export const CURRENT_UI_VERSION: string = "scape_space_rc1";
+
 export const HOST_PARAMS = manifest.parameters;
 
 export const REGISTERED_PARAM_NAMES: Array<string> = HOST_PARAMS.map(

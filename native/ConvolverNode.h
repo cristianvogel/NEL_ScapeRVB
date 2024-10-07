@@ -75,17 +75,13 @@ public:
         // Create a new buffer for scaled input data
         std::vector<float> scaledData(numSamples);
 
-        // bypass when procFlag is close to zero
-        if (procFlag.load() < 0.00001f)
-            return (void)std::copy_n(inputData[0], numSamples, outputData);
-
+        
         // First order of business: grab the most recent convolver to use if
         // there's anything in the queue. This behavior means that changing the convolver
         // impulse response while playing will cause a discontinuity.
         while (convolverQueue.size() > 0)
             convolverQueue.pop(convolver);
-
-        if (numChannels == 0 || convolver == nullptr)
+        if (numChannels == 0 || convolver == nullptr )
             return (void)std::fill_n(outputData, numSamples, float(0));
 
         // Scale the inputData with Scalar using JUCE FloatVectorOperations

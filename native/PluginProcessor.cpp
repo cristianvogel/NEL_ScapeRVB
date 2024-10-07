@@ -3,6 +3,7 @@
 #include "PluginProcessor.h"
 #include "ConvolverNode.h"
 
+
 //==============================================================================
 // A quick helper for locating bundled asset files
 juce::File getAssetsDirectory()
@@ -827,7 +828,7 @@ void EffectsPluginProcessor::handleAsyncUpdate()
 
         runtime->registerNodeType("convolver", [](elem::NodeId const id, double sampleRate, int const blockSize)
                                   { return std::make_shared<ConvolverNode>(id, sampleRate, blockSize); });
-
+     
         // Add impulse responses to the virtual file system
         activeImpulseResponses = loadDefaultIRs();
         // check if userImpulseResponses has been sized

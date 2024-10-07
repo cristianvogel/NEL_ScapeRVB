@@ -2,12 +2,13 @@ import {
   ConsoleText,
   GestureSource_SCAPE,
   GestureSource_SRVB,
-  GestureSource_Reverse,
+  GestureSource_REVERSE,
   HostState,
   WebSocketPort,
-  VFSKeys
+  VFSKeys,
+  GestureSource_IRMode
 } from "../stores/stores.svelte";
-import { REGISTERED_PARAM_NAMES } from "../stores/constants";
+
 
 export declare var globalThis: any;
 declare var CABLES: any;
@@ -43,17 +44,31 @@ function processHostState(state: any) {
   const srvbBypass = parsedEntries.srvbBypass > 0.5 ? 1 : 0;
   const scapeBypass = parsedEntries.scapeBypass > 0.5 ? 1 : 0;
   const scapeReverse = parsedEntries.scapeReverse > 0.5 ? 1 : 0;
+  const scapeMode = parsedEntries.scapeMode > 0.5 ? 1 : 0;
 
-  function updateViewToggles(param, boolValue) {
-    let gestureSource;
-    if (param === "srvbBypass") gestureSource = GestureSource_SRVB;
-    if (param === "scapeBypass") gestureSource = GestureSource_SCAPE;
-    if (param === "scapeReverse") gestureSource = GestureSource_Reverse;
-    if (gestureSource.prev === "ui") gestureSource.update("host");
-    let toggleVarCables = CABLES.patch.getVar("host_" + param);
-    if (toggleVarCables.getValue() !== boolValue) {
-      toggleVarCables.setValue(boolValue);
-    }
+  function updateViewToggles(param: string, boolValue: 1 | 0) {
+      let gestureSource;
+      switch (param) {
+          case "srvbBypass":
+              gestureSource = GestureSource_SRVB;
+              break;
+          case "scapeBypass":
+              gestureSource = GestureSource_SCAPE;
+              break;
+          case "scapeReverse":
+              gestureSource = GestureSource_REVERSE;
+              break;
+          case "scapeMode":
+              gestureSource = GestureSource_IRMode;
+              break;
+      }
+      if (gestureSource.prev === "ui") {
+          gestureSource.update("host");
+      }
+      let toggleVarCables = CABLES.patch.getVar("host_" + param);  // The UI patch variable needs to be named host_paramName
+      if (toggleVarCables.getValue() !== boolValue) {
+          toggleVarCables.setValue( boolValue );
+      }
   }
 
   HostState.update(parsedEntries);
@@ -61,6 +76,7 @@ function processHostState(state: any) {
   updateViewToggles("srvbBypass", srvbBypass);
   updateViewToggles("scapeBypass", scapeBypass);
   updateViewToggles("scapeReverse", scapeReverse);
+  updateViewToggles("scapeMode", scapeMode);
 }
 
 export const MessageToHost = {
@@ -134,15 +150,6 @@ export function RegisterMessagesFromHost() {
 
   globalThis.__receiveServerInfo__ = function (port: number) {
     initializeWebSocketConnection(port);
-  };
-
-  /**
-   * Handles a confirmation of how many files were loaded
-   * @param filesLoaded - The number of files loaded
-   */
-
-  globalThis.__filesLoaded__ = function ( msg: string) {
-    // not implemented
   };
 
   /**
