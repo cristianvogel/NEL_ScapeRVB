@@ -22970,156 +22970,6 @@ CABLES.OPS["aa44a0e9-b9fe-4eed-93a3-38e41a91b623"]={f:Ops.Html.CSS_v3,objName:"O
 
 // **************************************************************
 // 
-// Ops.Patch.PBktIwq.Button_NEL
-// 
-// **************************************************************
-
-Ops.Patch.PBktIwq.Button_NEL = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-// inputs
-const parentPort = op.inObject("link");
-const buttonTextPort = op.inString("Text", "Button");
-
-// outputs
-const siblingsPort = op.outObject("childs");
-const buttonPressedPort = op.outTrigger("Pressed Trigger");
-
-const inGreyOut = op.inBool("Grey Out", false);
-const inVisible = op.inBool("Visible", true);
-// vars
-const el = document.createElement("div");
-el.dataset.op = op.id;
-el.classList.add("cablesEle");
-el.classList.add("sidebar__item");
-el.classList.add("sidebar--button");
-el.style.display = "grid";
-el.style.gridTemplateColumns = "0.25fr 1fr";
-el.style.alignItems = "center";
-
-// draw svg of disk load icon
-const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-svg.setAttribute("viewBox", "0 0 448 512");
-svg.setAttribute("width", "24");
-svg.setAttribute("height", "24");
-svg.style.gridColumn = "1 / 2";
-
-const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-path.setAttribute("d", "M96 0C60.7 0 32 28.7 32 64l0 224 112 0c6.1 0 11.6 3.4 14.3 8.8L176 332.2l49.7-99.4c2.7-5.4 8.3-8.8 14.3-8.8s11.6 3.4 14.3 8.8L281.9 288l70.1 0c8.8 0 16 7.2 16 16s-7.2 16-16 16l-80 0c-6.1 0-11.6-3.4-14.3-8.8L240 275.8l-49.7 99.4c-2.7 5.4-8.3 8.8-14.3 8.8s-11.6-3.4-14.3-8.8L134.1 320 32 320l0 128c0 35.3 28.7 64 64 64l256 0c35.3 0 64-28.7 64-64l0-288-128 0c-17.7 0-32-14.3-32-32L256 0 96 0zM288 0l0 128 128 0L288 0z");
-path.setAttribute("fill", "silver");
-svg.appendChild(path);
-el.appendChild(svg);
-
-
-const button = document.createElement("div");
-button.classList.add("sidebar__button-input");
-button.style.gridColumn = "2 / 3";
-el.appendChild(button);
-
-const inputText = document.createTextNode(buttonTextPort.get());
-button.appendChild(inputText);
-
-
-button.addEventListener("click", onButtonClick);
-
-op.toWorkNeedsParent("Ops.Sidebar.Sidebar");
-
-// events
-parentPort.onChange = onParentChanged;
-buttonTextPort.onChange = onButtonTextChanged;
-op.onDelete = onDelete;
-
-const greyOut = document.createElement("div");
-greyOut.classList.add("sidebar__greyout");
-greyOut.style.gridColumn = "1 / 4";
-el.appendChild(greyOut);
-greyOut.style.display = "none";
-
-inGreyOut.onChange = function ()
-{
-    greyOut.style.display = inGreyOut.get() ? "block" : "none";
-};
-
-inVisible.onChange = function ()
-{
-    el.style.display = inVisible.get() ? "grid" : "none";
-};
-
-function onButtonClick()
-{
-    buttonPressedPort.trigger();
-}
-
-function onButtonTextChanged()
-{
-    const buttonText = buttonTextPort.get();
-    button.textContent = buttonText;
-    if (CABLES.UI)
-    {
-        op.setUiAttrib({ "extendTitle": buttonText });
-    }
-}
-
-function onParentChanged()
-{
-    siblingsPort.set(null);
-    const parent = parentPort.get();
-    if (parent && parent.parentElement)
-    {
-        parent.parentElement.appendChild(el);
-        siblingsPort.set(parent);
-    }
-    else
-    { // detach
-        if (el.parentElement)
-        {
-            el.parentElement.removeChild(el);
-        }
-    }
-}
-
-function showElement(el)
-{
-    if (el)
-    {
-        el.style.display = "grid";
-    }
-}
-
-function hideElement(el)
-{
-    if (el)
-    {
-        el.style.display = "none";
-    }
-}
-
-function onDelete()
-{
-    removeElementFromDOM(el);
-}
-
-function removeElementFromDOM(el)
-{
-    if (el && el.parentNode && el.parentNode.removeChild)
-    {
-        el.parentNode.removeChild(el);
-    }
-}
-
-
-};
-
-Ops.Patch.PBktIwq.Button_NEL.prototype = new CABLES.Op();
-CABLES.OPS["e40caa69-8d39-4da3-bf3e-2a7790b0b2f8"]={f:Ops.Patch.PBktIwq.Button_NEL,objName:"Ops.Patch.PBktIwq.Button_NEL"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Sidebar.Sidebar
 // 
 // **************************************************************
@@ -23456,6 +23306,214 @@ function removeElementFromDOM(el)
 
 Ops.Sidebar.Sidebar.prototype = new CABLES.Op();
 CABLES.OPS["5a681c35-78ce-4cb3-9858-bc79c34c6819"]={f:Ops.Sidebar.Sidebar,objName:"Ops.Sidebar.Sidebar"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PBktIwq.Button_NEL
+// 
+// **************************************************************
+
+Ops.Patch.PBktIwq.Button_NEL = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+// inputs
+const parentPort = op.inObject("link");
+const buttonTextPort = op.inString("Text", "Button");
+const fill = op.inBool("On", false);
+
+const inGreyOut = op.inBool("Grey Out", false);
+const inVisible = op.inBool("Visible", true);
+
+// outputs
+const siblingsPort = op.outObject("childs");
+const buttonPressedPort = op.outTrigger("Pressed Trigger");
+
+
+// vars
+const colour = { off: "rgb(85,85,85)", on: "aquamarine" };
+
+const el = document.createElement("div");
+el.dataset.op = op.id;
+el.classList.add("cablesEle");
+el.classList.add("sidebar__item");
+el.classList.add("sidebar--button");
+el.style.display = "grid";
+el.style.gridTemplateColumns = "0.25fr 1fr";
+el.style.alignItems = "center";
+
+// draw svg of disk load icon
+const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+svg.setAttribute("viewBox", "0 0 223 80");
+svg.setAttribute("width", "100");
+svg.setAttribute("height", "40");
+svg.style.gridColumn = "1 / 2";
+
+const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+path.setAttribute("d", "M35.684,11C52.067,11 65.368,23.994 65.368,40C65.368,56.006 52.067,69 35.684,69C19.301,69 6,56.006 6,40C6,23.994 19.301,11 35.684,11ZM35.684,22.072C45.812,22.072 54.035,30.105 54.035,40C54.035,49.895 45.812,57.928 35.684,57.928C25.556,57.928 17.333,49.895 17.333,40C17.333,30.105 25.556,22.072 35.684,22.072Z");
+
+rect.setAttribute("style", "fill:" + colour.off )
+rect.setAttribute("x","63")
+rect.setAttribute("y","32")
+rect.setAttribute("width", "160")
+rect.setAttribute("height", "14")
+
+svg.appendChild(rect);
+svg.appendChild(path);
+el.appendChild(svg);
+
+
+fill.onChange = function ()
+{
+  rect.setAttribute("style", fill.get() ? "fill:"+ colour.on : "fill:" + colour.off )
+ path.setAttribute("style", fill.get() ? "stroke:"+ colour.on : "stroke:" + colour.off )
+
+}
+
+const button = document.createElement("div");
+button.classList.add("sidebar__button-input");
+button.style.gridColumn = "2 / 3";
+el.appendChild(button);
+
+const inputText = document.createTextNode(buttonTextPort.get());
+button.appendChild(inputText);
+
+
+button.addEventListener("click", onButtonClick);
+
+op.toWorkNeedsParent("Ops.Sidebar.Sidebar");
+
+// events
+parentPort.onChange = onParentChanged;
+buttonTextPort.onChange = onButtonTextChanged;
+op.onDelete = onDelete;
+
+const greyOut = document.createElement("div");
+greyOut.classList.add("sidebar__greyout");
+greyOut.style.gridColumn = "1 / 4";
+el.appendChild(greyOut);
+greyOut.style.display = "none";
+
+inGreyOut.onChange = function ()
+{
+    greyOut.style.display = inGreyOut.get() ? "block" : "none";
+};
+
+inVisible.onChange = function ()
+{
+    el.style.display = inVisible.get() ? "grid" : "none";
+};
+
+function onButtonClick()
+{
+    buttonPressedPort.trigger();
+}
+
+function onButtonTextChanged()
+{
+    const buttonText = buttonTextPort.get();
+    button.textContent = buttonText;
+    if (CABLES.UI)
+    {
+        op.setUiAttrib({ "extendTitle": buttonText });
+    }
+}
+
+function onParentChanged()
+{
+    siblingsPort.set(null);
+    const parent = parentPort.get();
+    if (parent && parent.parentElement)
+    {
+        parent.parentElement.appendChild(el);
+        siblingsPort.set(parent);
+    }
+    else
+    { // detach
+        if (el.parentElement)
+        {
+            el.parentElement.removeChild(el);
+        }
+    }
+}
+
+function showElement(el)
+{
+    if (el)
+    {
+        el.style.display = "grid";
+    }
+}
+
+function hideElement(el)
+{
+    if (el)
+    {
+        el.style.display = "none";
+    }
+}
+
+function onDelete()
+{
+    removeElementFromDOM(el);
+}
+
+function removeElementFromDOM(el)
+{
+    if (el && el.parentNode && el.parentNode.removeChild)
+    {
+        el.parentNode.removeChild(el);
+    }
+}
+
+
+};
+
+Ops.Patch.PBktIwq.Button_NEL.prototype = new CABLES.Op();
+CABLES.OPS["e40caa69-8d39-4da3-bf3e-2a7790b0b2f8"]={f:Ops.Patch.PBktIwq.Button_NEL,objName:"Ops.Patch.PBktIwq.Button_NEL"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.String.StringToNumber
+// 
+// **************************************************************
+
+Ops.String.StringToNumber = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    str = op.inString("String", 0),
+    outNum = op.outNumber("Number"),
+    outNaN = op.outBoolNum("Not a number", false);
+
+str.onChange = function ()
+{
+    outNaN.set(false);
+    let num = parseFloat(str.get());
+    if (num != num)
+    {
+        num = 0;
+        outNaN.set(true);
+    }
+
+    outNum.set(num);
+};
+
+
+};
+
+Ops.String.StringToNumber.prototype = new CABLES.Op();
+CABLES.OPS["fa36a56b-a64d-4269-9a9e-addc16493006"]={f:Ops.String.StringToNumber,objName:"Ops.String.StringToNumber"};
 
 
 

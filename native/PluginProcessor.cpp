@@ -3,7 +3,6 @@
 #include "PluginProcessor.h"
 #include "ConvolverNode.h"
 
-
 //==============================================================================
 // A quick helper for locating bundled asset files
 juce::File getAssetsDirectory()
@@ -61,7 +60,8 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
         for (auto &[key, value] : o)
         {
 
-            /**
+            /** 
+             * @name 'requestClientId'
              * @brief Handle the client ID request from the front end
              */
             if (key == "requestClientId")
@@ -76,26 +76,18 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
                 sendWebSocketMessage(serializedClientId);
                 continue;
             }
-            /**
-             * @brief Handle the IR mode state change sent from the front end  "user" | "default"
-             */
-            if (key == "irModeSwitch")
-            {
-                // todo: handle user switching from default to user IRs
-                // by switching the file URLs in the state
-                // and in the VFS
-                // from user to default and vice versa
-                continue;
-            }
-            /**
+    
+            /** 
+             * @name 'selectFiles' 
              * @brief Handle the file paths sent from the front end
+             * message will include high pass cutoff frequency choice
+             * as value.
              */
-            if (key == "selectFiles")
+            if (key == "selectFiles" && value.isNumber())
             {
                 // first, request the user to select files
                 // and update the state with the file URLs
                 // as well as the VFS
-
                 // this is asynchronous because code needs to
                 // open a file browser on the main thread
                 // so I had to learn how to use a promise/future mechanism
@@ -103,6 +95,7 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
                 std::future<bool> future = promise.get_future();
 
                 processor.requestUserFiles(promise);
+                processor.userCutoffChoice = static_cast<int>(value);
 
                 // Wait for the asynchronous operation to complete
                 bool gotFiles = future.get();
@@ -125,7 +118,8 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
                 continue;
             }
 
-            /**
+            /** 
+             * @name 'requestState' 
              * @brief Handle a request for state
              */
             if (key == "requestState")
@@ -149,7 +143,10 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
                 continue;
             }
 
-            // @brief Handle the parameter changes sent from the front end
+            /**
+             * @name ...parameter changes
+             * @brief Handle parameter changes from the front end
+             */
             // Here we just update the parameter directly in the processor
             if (value.isNumber() && processor.parameterMap.count(key) > 0)
             {
@@ -157,7 +154,7 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
                 float paramValue = static_cast<elem::js::Number>(value);
                 // Convert processor.state[key] to float
                 float stateValue = static_cast<elem::js::Number>(processor.state[key]);
-                if (key == "srvbBypass" || key == "scapeBypass" || key == "scapeReverse")
+                if (key == "srvbBypass" || key == "scapeBypass" || key == "scapeReverse" || key == "scapeMode")
                 {
                     paramValue = juce::roundToInt(paramValue);
                     stateValue = juce::roundToInt(paramValue);
@@ -317,7 +314,7 @@ void EffectsPluginProcessor::addFolderOfIRsToVFS(std::vector<juce::File> &impuls
 
         auto numSamples = buffer.getNumSamples();
         // fade in, less ER energy from the IR, as we have a whole ER engine already
-        buffer.applyGainRamp(0, numSamples, 0.5, 1);
+        buffer.applyGainRamp(0, numSamples, 0.65, 1);
         // buffer.copyFromWithRamp(1, 0, buffer.getReadPointer(0), buffer.getNumSamples(), 0.2, 1);
         // add the gain ramped impulse response to the virtual file system
 
@@ -416,7 +413,7 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotI
 
     if (numChannels < 2 || numChannels > 2)
     {
-        dispatchError("File error:", "Only 2 channel files can be used.");
+        dispatchError("File error:", "Only stereo files can be used.");
         return;
     }
 
@@ -430,6 +427,18 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotI
 
         auto numSamples = buffer.getNumSamples();
 
+        juce::dsp::ProcessSpec spec;
+        spec.sampleRate = lastKnownSampleRate;
+        spec.maximumBlockSize = numSamples;
+        spec.numChannels = 1;
+        stateVariableFilter.reset();
+        stateVariableFilter.prepare(spec);
+        stateVariableFilter.setType(juce::dsp::StateVariableTPTFilterType::highpass);
+        stateVariableFilter.setCutoffFrequency( userCutoffChoice );
+        auto outputBlock = juce::dsp::AudioBlock<float>(buffer);
+        juce::dsp::ProcessContextReplacing<float> context(outputBlock);
+        stateVariableFilter.process(context);
+
         normaliseImpulseResponse(buffer);
 
         // stash one channel of the normalised buffer data for the UI
@@ -437,7 +446,7 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotI
             userAudioData.push_back(reduceAudioBuffer(buffer));
 
         // fade in, less ER energy from the IR, as we have a whole ER engine already
-        buffer.applyGainRamp(0, numSamples, 0.5, 1);
+        buffer.applyGainRamp(0, numSamples, 0.808, 1);
 
         runtime->updateSharedResourceMap(
             name,
@@ -828,7 +837,7 @@ void EffectsPluginProcessor::handleAsyncUpdate()
 
         runtime->registerNodeType("convolver", [](elem::NodeId const id, double sampleRate, int const blockSize)
                                   { return std::make_shared<ConvolverNode>(id, sampleRate, blockSize); });
-     
+
         // Add impulse responses to the virtual file system
         activeImpulseResponses = loadDefaultIRs();
         // check if userImpulseResponses has been sized
@@ -836,7 +845,7 @@ void EffectsPluginProcessor::handleAsyncUpdate()
         {
             userImpulseResponses = activeImpulseResponses;
         }
-
+        // Add the default impulse responses to the virtual file system
         addFolderOfIRsToVFS(activeImpulseResponses);
         // Update the front end with the paths of the first channel of each default IR
         updateStateWithFileURLs({activeImpulseResponses[0], activeImpulseResponses[2], activeImpulseResponses[4], activeImpulseResponses[6]});

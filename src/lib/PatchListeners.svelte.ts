@@ -23,7 +23,7 @@ function updateHost(toggleName, gestureSource, boolInt) {
 export function initPatchListeners(patch) {
   const ui_srvbBypass = patch.getVar("ui_srvbBypass");
   const ui_scapeBypass = patch.getVar("ui_scapeBypass");
-  const ui_scapeReverse = patch.getVar("ui_scapeReverse");
+  const ui_scapeReverse = patch.getVar("ui_scapeReverse"); 
   const ui_scapeMode = patch.getVar("ui_scapeMode");
 
   try {

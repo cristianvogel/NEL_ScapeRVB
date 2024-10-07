@@ -8,6 +8,7 @@
 #include <juce_audio_basics/juce_audio_basics.h>
 #include <juce_audio_processors/juce_audio_processors.h>
 #include <juce_audio_formats/juce_audio_formats.h>
+#include <juce_dsp/juce_dsp.h>
 
 #include <choc_AudioFileFormat.h>
 #include <choc_AudioFileFormat_WAV.h>
@@ -188,7 +189,12 @@ public:
     uint16_t serverPort = 0;
     uint16_t getServerPort() const { return serverPort; }
 
-private:
+    int userCutoffChoice = 160;
+
+private:    
+
+    juce::dsp::StateVariableTPTFilter<float> stateVariableFilter; // For filtering the imported IRs
+
     std::unique_ptr<ViewClientInstance> clientInstance; // Use a smart pointer to store the client instance
     std::unique_ptr<choc::network::HTTPServer> server;  // Use a smart pointer to manage the server
 
