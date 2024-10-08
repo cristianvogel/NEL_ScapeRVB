@@ -9,6 +9,8 @@ option(JUCE_ENABLE_MODULE_SOURCE_GROUPS "Enable Module Source Groups" ON)
 option(JUCE_BUILD_EXTRAS "Build JUCE Extras" OFF)
 option(ELEM_DEV_LOCALHOST "Run against localhost for static assets" OFF)
 
+option(FFTCONVOLVER_USE_SSE "Enable SSE optimizations" ON)   # watch this i have no idea what it does
+
 add_subdirectory(juce) # using the static non-submodule version
 add_subdirectory(elementary/runtime) # using the static non-submodule version
 

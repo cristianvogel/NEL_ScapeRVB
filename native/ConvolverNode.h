@@ -80,7 +80,7 @@ public:
             auto *shiftedData = shifted.getReadPointer(0);
 
             co->reset();
-            co->init(headSize, tailSize, shiftedData,  adjustedIRLen );
+            co->init(headSize, tailSize, shiftedData,  adjustedIRLen , 1, false);
 
             convolverQueue.push(std::move(co));
         }

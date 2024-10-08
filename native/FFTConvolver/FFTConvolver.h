@@ -63,7 +63,7 @@ public:
   * @param irLen Length of the impulse response
   * @return true: Success - false: Failed
   */
-  bool init(size_t blockSize, const Sample* ir, size_t irLen);
+ bool init(size_t blockSize, const Sample* ir, size_t irLen, size_t step, bool reverse);
 
   /**
   * @brief Convolves the the given input samples and immediately outputs the result
