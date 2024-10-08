@@ -79,18 +79,15 @@ public:
             shifted.copyFrom(0, 0, ab, 0, denormOffset, adjustedIRLen);
             // 3. Update the convolver with the new data from channel 0
             auto *shiftedData = shifted.getReadPointer(0);
-
+            // set the scalar to zero to prevent processing
+            auto prev = scalar.exchange(0.0f); 
+            // do the convolver swap and init, replacing the most recent convolver in the queue
             co->init(headSize, tailSize, shiftedData, adjustedIRLen);
-
-            // Replace the most recent convolver in the queue
             std::shared_ptr<fftconvolver::TwoStageFFTConvolver> oldConvolver;
-            if (convolverQueue.size() > 0)
-            {
-                // Pop the most recent convolver
-                convolverQueue.pop(oldConvolver);
-            }
+            if (convolverQueue.size() > 0) convolverQueue.pop(oldConvolver);
             // Push the new convolver
             convolverQueue.push(std::move(co));
+            scalar.store(prev);
         }
 
         return GraphNode<float>::setProperty(key, val);
