@@ -63,7 +63,7 @@ public:
   * @param irLen Length of the impulse response
   * @return true: Success - false: Failed
   */
- bool init(size_t blockSize, const Sample* ir, size_t irLen, size_t step, bool reverse);
+  bool init(size_t blockSize, const Sample* ir, size_t irLen);
 
   /**
   * @brief Convolves the the given input samples and immediately outputs the result
@@ -71,7 +71,7 @@ public:
   * @param output The convolution result
   * @param len Number of input/output samples
   */
-  void process(const Sample* input, Sample* output, size_t len);
+  void process(const Sample* input, Sample* output, size_t len, float offset = 1.0e-5);
 
   /**
   * @brief Resets the convolver and discards the set impulse response

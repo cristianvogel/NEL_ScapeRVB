@@ -78,9 +78,7 @@ void TwoStageFFTConvolver::reset()
 bool TwoStageFFTConvolver::init(size_t headBlockSize,
                                 size_t tailBlockSize,
                                 const Sample* ir,
-                                size_t irLen, 
-                                size_t step = 1,
-                                bool reverse = false)
+                                size_t irLen)
 {
   reset();
 
@@ -110,18 +108,13 @@ bool TwoStageFFTConvolver::init(size_t headBlockSize,
   _headBlockSize = NextPowerOf2(headBlockSize);
   _tailBlockSize = NextPowerOf2(tailBlockSize);
 
-// Refuse to load small IR files in 2 stage mode
-
-   if (irLen <= 2 * _tailBlockSize)
-    return false;
-
   const size_t headIrLen = std::min(irLen, _tailBlockSize);
-  _headConvolver.init(_headBlockSize, ir, headIrLen, step, reverse);
+  _headConvolver.init(_headBlockSize, ir, headIrLen);
 
   if (irLen > _tailBlockSize)
   {
     const size_t conv1IrLen = std::min(irLen-_tailBlockSize, _tailBlockSize);
-    _tailConvolver0.init(_headBlockSize, ir+_tailBlockSize, conv1IrLen, step, reverse);
+    _tailConvolver0.init(_headBlockSize, ir+_tailBlockSize, conv1IrLen);
     _tailOutput0.resize(_tailBlockSize);
     _tailPrecalculated0.resize(_tailBlockSize);
   }
@@ -129,7 +122,7 @@ bool TwoStageFFTConvolver::init(size_t headBlockSize,
   if (irLen > 2 * _tailBlockSize)
   {
     const size_t tailIrLen = irLen - (2*_tailBlockSize);
-    _tailConvolver.init(_tailBlockSize, ir+(2*_tailBlockSize), tailIrLen, step, reverse);
+    _tailConvolver.init(_tailBlockSize, ir+(2*_tailBlockSize), tailIrLen);
     _tailOutput.resize(_tailBlockSize);
     _tailPrecalculated.resize(_tailBlockSize);
     _backgroundProcessingInput.resize(_tailBlockSize);
@@ -144,6 +137,8 @@ bool TwoStageFFTConvolver::init(size_t headBlockSize,
 
   return true;
 }
+
+
 
 
 void TwoStageFFTConvolver::process(const Sample* input, Sample* output, size_t len)

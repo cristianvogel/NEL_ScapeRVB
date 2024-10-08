@@ -26,9 +26,9 @@ public:
 
         if (key == "process")
         {
+            // optimisation for the case where there is no processing to be done
             if (!val.isNumber())
                 return elem::ReturnCode::InvalidPropertyType();
-
                  procFlag.store(float((elem::js::Number)val));
         }
 
@@ -80,7 +80,7 @@ public:
             auto *shiftedData = shifted.getReadPointer(0);
 
             co->reset();
-            co->init(headSize, tailSize, shiftedData,  adjustedIRLen , 1, false);
+            co->init(headSize, tailSize, shiftedData,  adjustedIRLen );
 
             convolverQueue.push(std::move(co));
         }
@@ -95,9 +95,7 @@ public:
         auto numChannels = ctx.numInputChannels;
         auto numSamples = ctx.numSamples;
 
-        // optimise for the case where there is no processing to be done
-        if ( procFlag.load() <= 1.0e-5 || numChannels == 0)
-            return (void)std::fill_n(outputData, numSamples, float(0));
+        
 
         // Create a new buffer for scaled input data
         std::vector<float> scaledData(numSamples);
@@ -107,7 +105,7 @@ public:
         // impulse response while playing will cause a discontinuity.
         while (convolverQueue.size() > 0)
             convolverQueue.pop(convolver);
-        if (numChannels == 0 || convolver == nullptr)
+        if (numChannels == 0 || procFlag.load() <= 1.0e-5 || numChannels == 0 || convolver == nullptr)
             return (void)std::fill_n(outputData, numSamples, float(0));
 
         // Scale the inputData with Scalar using JUCE FloatVectorOperations

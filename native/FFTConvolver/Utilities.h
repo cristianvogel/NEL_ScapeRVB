@@ -316,28 +316,11 @@ void Sum(Sample* FFTCONVOLVER_RESTRICT result,
 * @param srcSize The size of the source array
 */
 template<typename T>
-void CopyAndPad(Buffer<T>& dest, const T* src, size_t srcSize, size_t step = 1, bool reverse = false)
+void CopyAndPad(Buffer<T>& dest, const T* src, size_t srcSize)
 {
- const size_t toCopy = srcSize / step;
-  assert(dest.size() >= toCopy);
-  if(reverse)
-  {
-    T* write = dest.data();
-    for(int i = srcSize - 1; i >= 0; i -= step, ++write)
-      *write = src[i];
-  }
-  else
-  {
-     if(step == 1)
-       ::memcpy(dest.data(), src, srcSize * sizeof(T));
-     else
-     {
-        T* write = dest.data();
-        for(int i = 0; i < srcSize; i += step, ++write)
-          *write = src[i];
-     }
-  }
-  ::memset(dest.data() + toCopy, 0, (dest.size()-toCopy) * sizeof(T)); 
+  assert(dest.size() >= srcSize);
+  ::memcpy(dest.data(), src, srcSize * sizeof(T));
+  ::memset(dest.data() + srcSize, 0, (dest.size()-srcSize) * sizeof(T)); 
 }
 
 
