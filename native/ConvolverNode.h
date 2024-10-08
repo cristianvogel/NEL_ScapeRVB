@@ -16,12 +16,20 @@ public:
         elem::js::Value const &val,
         elem::SharedResourceMap<float> &resources) override
     {
-        if (key == "offset")
+        if (key == "path")
         {
-            if (!val.isNumber())
+            if (!val.isString())
                 return elem::ReturnCode::InvalidPropertyType();
-            _offset.store(int((elem::js::Number)val));
-            
+
+            if (!resources.has((elem::js::String)val))
+                return elem::ReturnCode::InvalidPropertyValue();
+
+            path = (elem::js::String)val;
+            auto ref = resources.get(path);
+            auto co = std::make_shared<fftconvolver::TwoStageFFTConvolver>();
+            co->reset();
+            co->init(headSize, tailSize, ref->data(), ref->size());
+            convolverQueue.push(std::move(co));
         }
 
         if (key == "process")
@@ -29,7 +37,7 @@ public:
             // optimisation for the case where there is no processing to be done
             if (!val.isNumber())
                 return elem::ReturnCode::InvalidPropertyType();
-                 procFlag.store(float((elem::js::Number)val));
+            procFlag.store(float((elem::js::Number)val));
         }
 
         if (key == "headSize" || key == "tailSize")
@@ -37,12 +45,10 @@ public:
 
             if (!val.isNumber())
                 return elem::ReturnCode::InvalidPropertyType();
-
             if (key == "headSize")
-                headSize = (int((elem::js::Number)val));
-
+                headSize = int((elem::js::Number)val);
             if (key == "tailSize")
-                tailSize = (int((elem::js::Number)val));
+                tailSize = int((elem::js::Number)val);
         }
 
         if (key == "scale")
@@ -52,36 +58,38 @@ public:
             scalar.store(float((elem::js::Number)val));
         }
 
-        if (key == "path")
+        if (key == "offset")
         {
-            if (!val.isString())
+            if (!val.isNumber())
                 return elem::ReturnCode::InvalidPropertyType();
-
-            if (!resources.has((elem::js::String)val))
+            if (path.empty())
                 return elem::ReturnCode::InvalidPropertyValue();
 
-            auto ref = resources.get((elem::js::String)val);
-            
+            offset = float((elem::js::Number)val);
+            auto ref = resources.get(path);
             auto co = std::make_shared<fftconvolver::TwoStageFFTConvolver>();
-
-            //  How to copy the data into a new juce::Audioblock
             // 1. Create an instance of juce::AudioBuffer
             juce::AudioBuffer<float> ab(1, ref->size());
             // then copy the data from the reference into the buffer
             ab.copyFrom(0, 0, ref->data(), ref->size());
-            auto denormOffset = ab.getNumSamples() * _offset.load() ;
-            _offset.store( static_cast<int>(denormOffset) );
-            auto adjustedIRLen =ab.getNumSamples() - denormOffset;
-
-            juce::AudioBuffer<float> shifted = juce::AudioBuffer<float>(1,  adjustedIRLen);
+            auto denormOffset = ab.getNumSamples() * offset;
+            auto adjustedIRLen = ab.getNumSamples() - denormOffset;
+            juce::AudioBuffer<float> shifted = juce::AudioBuffer<float>(1, adjustedIRLen);
             // 2. Copy a crop of data from the reference into a second buffer
-            shifted.copyFrom( 0, 0, ab, 0, denormOffset, adjustedIRLen );
+            shifted.copyFrom(0, 0, ab, 0, denormOffset, adjustedIRLen);
             // 3. Update the convolver with the new data from channel 0
             auto *shiftedData = shifted.getReadPointer(0);
 
-            co->reset();
-            co->init(headSize, tailSize, shiftedData,  adjustedIRLen );
+            co->init(headSize, tailSize, shiftedData, adjustedIRLen);
 
+            // Replace the most recent convolver in the queue
+            std::shared_ptr<fftconvolver::TwoStageFFTConvolver> oldConvolver;
+            if (convolverQueue.size() > 0)
+            {
+                // Pop the most recent convolver
+                convolverQueue.pop(oldConvolver);
+            }
+            // Push the new convolver
             convolverQueue.push(std::move(co));
         }
 
@@ -94,8 +102,6 @@ public:
         auto *outputData = ctx.outputData;
         auto numChannels = ctx.numInputChannels;
         auto numSamples = ctx.numSamples;
-
-        
 
         // Create a new buffer for scaled input data
         std::vector<float> scaledData(numSamples);
@@ -119,7 +125,8 @@ public:
     std::atomic<float> scalar = 1.0f;
     int headSize = 512;
     int tailSize = 4096;
-    std::atomic<int> _offset = 0;
+    float offset = 0;
     std::atomic<float> procFlag = 0.0f;
+    std::string path;
 
 }; // namespace elem
