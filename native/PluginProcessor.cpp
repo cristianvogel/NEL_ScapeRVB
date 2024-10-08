@@ -95,7 +95,7 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
                 std::future<bool> future = promise.get_future();
 
                 processor.requestUserFiles(promise);
-                processor.userCutoffChoice = static_cast<int>(value);
+                processor.userCutoffChoice = int((elem::js::Number)value);
 
                 // Wait for the asynchronous operation to complete
                 bool gotFiles = future.get();
