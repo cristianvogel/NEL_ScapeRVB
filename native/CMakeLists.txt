@@ -14,6 +14,15 @@ option(FFTCONVOLVER_USE_SSE "Enable SSE optimizations" ON)   # watch this i have
 add_subdirectory(juce) # using the static non-submodule version
 add_subdirectory(elementary/runtime) # using the static non-submodule version
 
+# Enable CCache
+find_program(CCACHE_PROGRAM ccache)
+if(CCACHE_PROGRAM)
+    set(CMAKE_C_COMPILER_LAUNCHER ${CCACHE_PROGRAM})
+    set(CMAKE_CXX_COMPILER_LAUNCHER ${CCACHE_PROGRAM})
+endif()
+
+
+
 if(WIN32)
   set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>") # Martin's famous fix ... JUCE and plugins need this
 
@@ -125,6 +134,7 @@ target_sources(${TARGET_NAME}
   PRIVATE
   PluginProcessor.cpp
   WebViewEditor.cpp
+  Utilities.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/TwoStageFFTConvolver.cpp 
   ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/AudioFFT.cpp 
   ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/Utilities.cpp

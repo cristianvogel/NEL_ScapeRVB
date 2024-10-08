@@ -1,6 +1,7 @@
 
 
 #include "PluginProcessor.h"
+#include "Utilities.h"
 #include "ConvolverNode.h"
 
 //==============================================================================
@@ -318,7 +319,7 @@ void EffectsPluginProcessor::addFolderOfIRsToVFS(std::vector<juce::File> &impuls
         // buffer.copyFromWithRamp(1, 0, buffer.getReadPointer(0), buffer.getNumSamples(), 0.2, 1);
         // add the gain ramped impulse response to the virtual file system
 
-        normaliseImpulseResponse(buffer);
+        nel::normaliseImpulseResponse(buffer, 0.8414 );  // -1.5 db
 
         runtime->updateSharedResourceMap(
             name,
@@ -441,7 +442,7 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotI
         juce::dsp::ProcessContextReplacing<float> context(outputBlock);
         stateVariableFilter.process(context);
 
-        normaliseImpulseResponse(buffer);
+        nel::normaliseImpulseResponse(buffer, 0.8414 );  // -1.5 db
 
         // stash one channel of the normalised buffer data for the UI
         if (i == 0)
@@ -505,33 +506,7 @@ std::vector<float> EffectsPluginProcessor::reduceAudioBuffer(const juce::AudioBu
     return audioData;
 }
 
-//======================== Normalisation from JUCE convolution code
-float EffectsPluginProcessor::calculateNormalisationFactor(float sumSquaredMagnitude)
-{
-    if (sumSquaredMagnitude < 1e-8f)
-        return 1.0f;
 
-    return 0.125f / std::sqrt(sumSquaredMagnitude);
-}
-
-void EffectsPluginProcessor::normaliseImpulseResponse(juce::AudioBuffer<float> &buf)
-{
-    const auto numChannels = buf.getNumChannels();
-    const auto numSamples = buf.getNumSamples();
-    const auto channelPtrs = buf.getArrayOfWritePointers();
-
-    const auto maxSumSquaredMag = std::accumulate(channelPtrs, channelPtrs + numChannels, 0.0f, [numSamples](auto max, auto *channel)
-                                                  { return juce::jmax(max, std::accumulate(channel, channel + numSamples, 0.0f, [](auto sum, auto samp)
-                                                                                           { return sum + (samp * samp); })); });
-
-    const auto normalisationFactor = calculateNormalisationFactor(maxSumSquaredMag);
-
-    if (numChannels > 0) // Ensure there is at least one channel
-    {
-        auto *firstChannel = channelPtrs[0];
-        juce::FloatVectorOperations::multiply(firstChannel, normalisationFactor, numSamples);
-    }
-}
 
 //==============================================================================
 int EffectsPluginProcessor::runWebServer()

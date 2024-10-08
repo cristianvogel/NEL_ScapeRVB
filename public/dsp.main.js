@@ -3137,7 +3137,7 @@
     const scapeMode = stdlib.round(props.scapeMode);
     const unity = stdlib.select(one, one, scapeMode);
     const responses = props.IRs;
-    const scapeLevel = stdlib.sm(stdlib.mul(stdlib.db2gain(1.5), unity, props.scapeLevel));
+    const scapeLevel = stdlib.sm(stdlib.mul(stdlib.db2gain(3), unity, props.scapeLevel));
     const position = stdlib.sm(props.scapePosition);
     const hermiteNodes = [props.v1, props.v2, props.v3, props.v4].map(
       (x) => stdlib.smooth(stdlib.tau2pole(0.05), x)

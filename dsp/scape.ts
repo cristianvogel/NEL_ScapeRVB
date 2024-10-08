@@ -14,7 +14,7 @@ export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
   ///////////////////////////////////////////
   // SCAPE DSP setup
   const responses: Map<DefaultIRSlotName, IRMetaData> = props.IRs;
-  const scapeLevel = el.sm( el.mul( el.db2gain(1.5), unity, props.scapeLevel)); // Level of convolved output boosted here
+  const scapeLevel = el.sm( el.mul( el.db2gain(3), unity, props.scapeLevel)); // Level of convolved output boosted here
   const position = el.sm( props.scapePosition ); // nodes
   const hermiteNodes: ElemNode[] = [props.v1, props.v2, props.v3, props.v4].map(
     (x) => el.smooth(el.tau2pole(0.05), x)
@@ -71,11 +71,11 @@ export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
   const getDrySource = ( channel: number ): ElemNode=> el.select( srvbBypass, zero, outputFromSRVB[channel] ) ;
   
   let yL = el.add(
-    el.mul(scapeLevel, asLeftPan( vectorProcessorPair( outputFromSRVB )[1])),    // crossed over
+    el.mul( scapeLevel, asLeftPan( vectorProcessorPair( outputFromSRVB )[1])),    // crossed over
     getDrySource(0)
   ); // crossfaded blend
   let yR = el.add(
-    el.mul(scapeLevel, asRightPan( vectorProcessorPair( outputFromSRVB )[0])), // crossed over
+    el.mul( scapeLevel, asRightPan( vectorProcessorPair( outputFromSRVB )[0])), // crossed over
     getDrySource(1) 
   ); // crossfaded blend
   

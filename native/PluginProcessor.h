@@ -152,9 +152,6 @@ private:
 public:
     //======== User IR related , files and buffers
 
-    float calculateNormalisationFactor(float sumSquaredMagnitude);
-    void normaliseImpulseResponse(juce::AudioBuffer<float> &buf);
-
     std::vector<juce::File> loadDefaultIRs();
      void inspectVFS();
     std::vector<juce::File> activeImpulseResponses;

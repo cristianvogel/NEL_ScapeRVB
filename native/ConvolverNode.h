@@ -1,21 +1,28 @@
 #pragma once
 
+#include <juce_dsp/juce_dsp.h>
 #include "FFTConvolver/TwoStageFFTConvolver.h"
 #include <elem/GraphNode.h>
 #include <elem/Types.h>
 #include <elem/SingleWriterSingleReaderQueue.h>
+#include "Utilities.h"
 
 class ConvolverNode : public elem::GraphNode<float>
 {
 public:
     ConvolverNode(elem::NodeId const id, double sampleRate, int const blockSize)
-        : elem::GraphNode<float>(id, sampleRate, blockSize) {}
+        : elem::GraphNode<float>(id, sampleRate, blockSize),
+          duckingWindow(blockSize, juce::dsp::WindowingFunction<float>::hann)
+    {
+        // Other initialization code
+    }
 
     int setProperty(
         std::string const &key,
         elem::js::Value const &val,
         elem::SharedResourceMap<float> &resources) override
     {
+
         if (key == "path")
         {
             if (!val.isString())
@@ -65,6 +72,7 @@ public:
             if (path.empty())
                 return elem::ReturnCode::InvalidPropertyValue();
 
+            shouldDuckAudio.store(true);
             offset = float((elem::js::Number)val);
             auto ref = resources.get(path);
             auto co = std::make_shared<fftconvolver::TwoStageFFTConvolver>();
@@ -77,17 +85,18 @@ public:
             juce::AudioBuffer<float> shifted = juce::AudioBuffer<float>(1, adjustedIRLen);
             // 2. Copy a crop of data from the reference into a second buffer
             shifted.copyFrom(0, 0, ab, 0, denormOffset, adjustedIRLen);
+            nel::normaliseImpulseResponse(shifted, 0.7079f);
             // 3. Update the convolver with the new data from channel 0
             auto *shiftedData = shifted.getReadPointer(0);
-            // set the scalar to zero to prevent processing
-            auto prev = scalar.exchange(0.0f); 
+
             // do the convolver swap and init, replacing the most recent convolver in the queue
             co->init(headSize, tailSize, shiftedData, adjustedIRLen);
             std::shared_ptr<fftconvolver::TwoStageFFTConvolver> oldConvolver;
-            if (convolverQueue.size() > 0) convolverQueue.pop(oldConvolver);
+            if (convolverQueue.size() > 0)
+                convolverQueue.pop(oldConvolver);
             // Push the new convolver
             convolverQueue.push(std::move(co));
-            scalar.store(prev);
+            shouldDuckAudio.store(false);
         }
 
         return GraphNode<float>::setProperty(key, val);
@@ -104,17 +113,29 @@ public:
         std::vector<float> scaledData(numSamples);
 
         // First order of business: grab the most recent convolver to use if
-        // there's anything in the queue. This behavior means that changing the convolver
-        // impulse response while playing will cause a discontinuity.
+        // there's anything in the queue. Try to handle discontinuities in the
+        // audio by ducking the audio with an atomic flag
         while (convolverQueue.size() > 0)
+        {
             convolverQueue.pop(convolver);
-        if (numChannels == 0 || procFlag.load() <= 1.0e-5 || numChannels == 0 || convolver == nullptr)
-            return (void)std::fill_n(outputData, numSamples, float(0));
+        }
+
+            if (convolver == nullptr || numChannels == 0 || procFlag.load() <= 1.0e-5 )
+        {
+               return (void)std::fill_n(outputData, numSamples, float(0));
+        }
+
 
         // Scale the inputData with Scalar using JUCE FloatVectorOperations
         juce::FloatVectorOperations::multiply(scaledData.data(), inputData[0], scalar.load(), numSamples);
         // now convolve the scaledData with the impulse response
         convolver->TwoStageFFTConvolver::process(scaledData.data(), outputData, numSamples);
+
+        if ( shouldDuckAudio.load() )
+        {
+            duckingWindow.multiplyWithUpsideDownWindowingTable( outputData, numSamples );
+        }
+
     }
     elem::SingleWriterSingleReaderQueue<std::shared_ptr<fftconvolver::TwoStageFFTConvolver>> convolverQueue;
     std::shared_ptr<fftconvolver::TwoStageFFTConvolver> convolver;
@@ -125,5 +146,7 @@ public:
     float offset = 0;
     std::atomic<float> procFlag = 0.0f;
     std::string path;
+    std::atomic<bool> shouldDuckAudio = false;
+    juce::dsp::WindowingFunction<float> duckingWindow;
 
 }; // namespace elem
