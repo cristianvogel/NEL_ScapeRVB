@@ -334,6 +334,8 @@ void EffectsPluginProcessor::addFolderOfIRsToVFS(std::vector<juce::File> &impuls
             REVERSE_BUFFER_PREFIX + name,
             buffer.getReadPointer(1),
             numSamples * 0.75);
+
+            
     }
 }
 //==============================================================================

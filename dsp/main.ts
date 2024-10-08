@@ -71,6 +71,7 @@ function IR_SlotRefFactory(
         process: scapeSettings.vectorData[slotIndex],
         scale: attenuation,
         blockSizes,
+        offset: scapeSettings.offset
       },
       [el.tapIn({ name: `srvbOut:0` })]
     ),
@@ -82,6 +83,7 @@ function IR_SlotRefFactory(
         process: scapeSettings.vectorData[slotIndex],
         scale: attenuation,
         blockSizes,
+        offset: scapeSettings.offset
       },
       [el.tapIn({ name: `srvbOut:1` })]
     ),
@@ -105,7 +107,6 @@ function registerConvolverRefs(scape: ScapeSettings, refs: RefMap) {
 function parseAndUpdateIRRefs(scape: ScapeSettings, useDefaultIRs: boolean = true) {
 
   const mode = scape.mode;
-
 
   const VFSPathWithReverseForChannel = (slotName: DefaultIRSlotName, channel: number) => {
     const userIR = User_IR_Map.get(slotName) as IRMetaData;
@@ -133,6 +134,7 @@ function parseAndUpdateIRRefs(scape: ScapeSettings, useDefaultIRs: boolean = tru
         path: VFSPathWithReverseForChannel(slotName, chan),
         process: Math.min(scape.level, scape.vectorData[defaultIR.index]), // todo: take another look at this
         scale: userIR !== undefined && mode ? userIR.att : defaultIR.att,
+        offset: scape.offset
       });
     }
   })
@@ -178,7 +180,7 @@ function shouldRender(_mem, _curr) {
     !srvbProps || !scapeProps ||
     _curr.sampleRate !== _mem?.sampleRate ||
     Math.round(_curr.scapeBypass) !== _mem?.scapeBypass ||
-    Math.round(_curr.srvbBypass) !== _mem?.srvbBypass;
+    Math.round(_curr.srvbBypass) !== _mem?.srvbBypass 
 
   return result;
 }
@@ -220,6 +222,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     sampleRate: shared.sampleRate,
     scapeBypass: scape.bypass || 0,
     vectorData: scape.vectorData,
+    offset: scape.offset,
     // RefNodes from now on
     srvbBypass: refs.getOrCreate("srvbBypass", "const", { value: srvb.bypass }, []),
     scapeLevel: refs.getOrCreate("scapeLevel", "const", { value: scape.level }, []),
@@ -313,6 +316,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     scapeBypass: scape.bypass,
     srvbBypass: srvb.bypass,
     scapeMode: scape.mode,
+    scapeOffset: scape.offset
   };
 
   function parseNewState(stateReceivedFromNative) {
@@ -341,6 +345,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
       vectorData: HERMITE.at(state.scapeLength),
       bypass: Math.round(state.scapeBypass) || 0,
       mode: Math.round(state.scapeMode) || 0,
+      offset: state.scapeOffset,
     };
     return { state, srvb, shared, scape };
   }

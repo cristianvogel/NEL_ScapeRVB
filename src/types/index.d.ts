@@ -41,6 +41,7 @@ interface ScapeSettings {
   vectorData: Vec;
   bypass: 1 | 0;
   mode: 1 | 0;
+  offset: number
 }
 
 interface ProcessorSettings {

@@ -3206,12 +3206,13 @@
       { paramId: "tone", name: "Tone", min: -1, max: 1, defaultValue: 0, isBoolean: false },
       { paramId: "structure", name: "Structure", min: 0, max: 15, defaultValue: 0, step: 1, isBoolean: false },
       { paramId: "scapeLevel", name: "Scape Level", min: 0, max: 1, defaultValue: 0, isBoolean: false },
+      { paramId: "scapeOffset", name: "Scape Offset", min: 0, max: 1, defaultValue: 0, isBoolean: false },
       { paramId: "scapeLength", name: "Scape IR", min: 0, max: 1, defaultValue: 0, isBoolean: false },
       { paramId: "scapeReverse", name: "Scape Reverse", min: 0, max: 1, defaultValue: 0, step: 1, isBoolean: false },
       { paramId: "scapeBypass", name: "Bypass Scape", min: 0, max: 1, defaultValue: 0, step: 1, isBoolean: false },
       { paramId: "srvbBypass", name: "Bypass Reflectors", min: 0, max: 1, defaultValue: 0, step: 1, isBoolean: false },
       { paramId: "dryMix", name: "Dry Mix", min: 0, max: 1, defaultValue: 0, isBoolean: false },
-      { paramId: "scapeMode", name: "Scape Mode", min: 0, max: 1, defaultValue: 0, isBoolean: false }
+      { paramId: "scapeMode", name: "Scape Mode", min: 0, max: 1, defaultValue: 0, step: 1, isBoolean: false }
     ]
   };
 
@@ -3297,7 +3298,8 @@
           path: `${slot}_0`,
           process: scapeSettings.vectorData[slotIndex],
           scale: attenuation,
-          blockSizes
+          blockSizes,
+          offset: scapeSettings.offset
         },
         [stdlib.tapIn({ name: `srvbOut:0` })]
       ),
@@ -3308,7 +3310,8 @@
           path: `${slot}_1`,
           process: scapeSettings.vectorData[slotIndex],
           scale: attenuation,
-          blockSizes
+          blockSizes,
+          offset: scapeSettings.offset
         },
         [stdlib.tapIn({ name: `srvbOut:1` })]
       )
@@ -3347,7 +3350,8 @@
             path: VFSPathWithReverseForChannel(slotName, chan),
             process: Math.min(scape.level, scape.vectorData[defaultIR.index]),
             // todo: take another look at this
-            scale: userIR !== void 0 && mode ? userIR.att : defaultIR.att
+            scale: userIR !== void 0 && mode ? userIR.att : defaultIR.att,
+            offset: scape.offset
           }
         );
       }
@@ -3405,6 +3409,7 @@
       sampleRate: shared.sampleRate,
       scapeBypass: scape.bypass || 0,
       vectorData: scape.vectorData,
+      offset: scape.offset,
       // RefNodes from now on
       srvbBypass: refs.getOrCreate("srvbBypass", "const", { value: srvb.bypass }, []),
       scapeLevel: refs.getOrCreate("scapeLevel", "const", { value: scape.level }, []),
@@ -3477,7 +3482,8 @@
       vectorData: scape.vectorData,
       scapeBypass: scape.bypass,
       srvbBypass: srvb.bypass,
-      scapeMode: scape.mode
+      scapeMode: scape.mode,
+      scapeOffset: scape.offset
     };
     function parseNewState(stateReceivedFromNative2) {
       const state2 = JSON.parse(stateReceivedFromNative2);
@@ -3504,7 +3510,8 @@
         ir: state2.scapeLength,
         vectorData: HERMITE.at(state2.scapeLength),
         bypass: Math.round(state2.scapeBypass) || 0,
-        mode: Math.round(state2.scapeMode) || 0
+        mode: Math.round(state2.scapeMode) || 0,
+        offset: state2.scapeOffset
       };
       return { state: state2, srvb: srvb2, shared: shared2, scape: scape2 };
     }

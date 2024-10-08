@@ -16,27 +16,33 @@ public:
         elem::js::Value const &val,
         elem::SharedResourceMap<float> &resources) override
     {
+        if (key == "offset")
+        {
+            if (!val.isNumber())
+                return elem::ReturnCode::InvalidPropertyType();
+            _offset.store(int((elem::js::Number)val));
+            
+        }
 
         if (key == "process")
         {
             if (!val.isNumber())
                 return elem::ReturnCode::InvalidPropertyType();
 
-            procFlag.store(float((elem::js::Number)val));
+                 procFlag.store(float((elem::js::Number)val));
         }
 
-        if( key == "headSize" || key == "tailSize" )
+        if (key == "headSize" || key == "tailSize")
         {
 
             if (!val.isNumber())
                 return elem::ReturnCode::InvalidPropertyType();
 
             if (key == "headSize")
-                headSize.store(int((elem::js::Number)val));
+                headSize = (int((elem::js::Number)val));
 
             if (key == "tailSize")
-                tailSize.store(int((elem::js::Number)val));
-
+                tailSize = (int((elem::js::Number)val));
         }
 
         if (key == "scale")
@@ -55,10 +61,29 @@ public:
                 return elem::ReturnCode::InvalidPropertyValue();
 
             auto ref = resources.get((elem::js::String)val);
+            
+            auto irLen = ref->size();
             auto co = std::make_shared<fftconvolver::TwoStageFFTConvolver>();
 
+            //  How to copy the data into a new juce::Audioblock
+            // 1. Create an instance of juce::AudioBuffer
+            juce::AudioBuffer<float> ab(1, irLen);
+            // then copy the data from the reference into the buffer
+            ab.copyFrom(0, 0, ref->data(), irLen);
+            auto fullIRLen = ab.getNumSamples();
+            auto denormOffset = _offset.load() * fullIRLen;
+            auto irLengthWithOffset = fullIRLen - denormOffset;
+            _offset.exchange(static_cast<int>(fmin(fullIRLen, irLengthWithOffset)));
+            auto adjustedIRLen = _offset.load();
+
+            juce::AudioBuffer<float> shifted = juce::AudioBuffer<float>(1,  adjustedIRLen);
+            // 2. Copy a crop of data from the reference into a second buffer
+            shifted.copyFrom( 0, 0, ab, 0, denormOffset, adjustedIRLen );
+            // 3. Update the convolver with the new data from channel 0
+            auto *alteredData = shifted.getReadPointer(0);
+
             co->reset();
-            co->init( headSize.load(), tailSize.load(), ref->data(), ref->size()); // possible optimisation here
+            co->init(headSize, tailSize, alteredData,  adjustedIRLen );
 
             convolverQueue.push(std::move(co));
         }
@@ -72,16 +97,20 @@ public:
         auto *outputData = ctx.outputData;
         auto numChannels = ctx.numInputChannels;
         auto numSamples = ctx.numSamples;
+
+        // optimise for the case where there is no processing to be done
+        if ( procFlag.load() <= 1.0e-5 || numChannels == 0)
+            return (void)std::fill_n(outputData, numSamples, float(0));
+
         // Create a new buffer for scaled input data
         std::vector<float> scaledData(numSamples);
 
-        
         // First order of business: grab the most recent convolver to use if
         // there's anything in the queue. This behavior means that changing the convolver
         // impulse response while playing will cause a discontinuity.
         while (convolverQueue.size() > 0)
             convolverQueue.pop(convolver);
-        if (numChannels == 0 || convolver == nullptr )
+        if (numChannels == 0 || convolver == nullptr)
             return (void)std::fill_n(outputData, numSamples, float(0));
 
         // Scale the inputData with Scalar using JUCE FloatVectorOperations
@@ -91,9 +120,11 @@ public:
     }
     elem::SingleWriterSingleReaderQueue<std::shared_ptr<fftconvolver::TwoStageFFTConvolver>> convolverQueue;
     std::shared_ptr<fftconvolver::TwoStageFFTConvolver> convolver;
-    std::atomic<float> procFlag = 0.0f;
+    //  std::atomic<float> procFlag = 0.0f;
     std::atomic<float> scalar = 1.0f;
-    std::atomic<int> headSize = 512;
-    std::atomic<int> tailSize = 4096;
+    int headSize = 512;
+    int tailSize = 4096;
+    std::atomic<int> _offset = 0;
+    std::atomic<float> procFlag = 0.0f;
 
 }; // namespace elem

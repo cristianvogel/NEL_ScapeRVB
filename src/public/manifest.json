@@ -12,11 +12,12 @@
     { "paramId": "tone", "name": "Tone", "min": -1, "max": 1, "defaultValue": 0, "isBoolean": false },
     { "paramId": "structure", "name": "Structure", "min": 0, "max": 15, "defaultValue": 0, "step": 1, "isBoolean": false },
     { "paramId": "scapeLevel", "name": "Scape Level", "min": 0, "max": 1, "defaultValue": 0, "isBoolean": false },
+    { "paramId": "scapeOffset", "name": "Scape Offset", "min": 0, "max": 1, "defaultValue": 0, "isBoolean": false },
     { "paramId": "scapeLength", "name": "Scape IR", "min": 0, "max": 1, "defaultValue": 0, "isBoolean": false },
     { "paramId": "scapeReverse", "name": "Scape Reverse", "min": 0, "max": 1, "defaultValue": 0, "step": 1, "isBoolean": false },
     { "paramId": "scapeBypass", "name": "Bypass Scape", "min": 0, "max": 1, "defaultValue": 0, "step": 1, "isBoolean": false },
     { "paramId": "srvbBypass", "name": "Bypass Reflectors", "min": 0, "max": 1, "defaultValue": 0, "step": 1, "isBoolean": false },
     { "paramId": "dryMix", "name" : "Dry Mix", "min": 0, "max": 1, "defaultValue": 0.0, "isBoolean": false },
-    { "paramId": "scapeMode", "name" : "Scape Mode", "min": 0, "max": 1, "defaultValue": 0.0, "isBoolean": false }
+    { "paramId": "scapeMode", "name" : "Scape Mode", "min": 0, "max": 1, "defaultValue": 0.0, "step": 1, "isBoolean": false }
   ]
 }
