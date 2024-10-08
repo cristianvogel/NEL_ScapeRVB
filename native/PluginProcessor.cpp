@@ -436,7 +436,7 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotI
         stateVariableFilter.reset();
         stateVariableFilter.prepare(spec);
         stateVariableFilter.setType(juce::dsp::StateVariableTPTFilterType::highpass);
-        stateVariableFilter.setCutoffFrequency( userCutoffChoice );
+        stateVariableFilter.setCutoffFrequency( userCutoffChoice  );
         auto outputBlock = juce::dsp::AudioBlock<float>(buffer);
         juce::dsp::ProcessContextReplacing<float> context(outputBlock);
         stateVariableFilter.process(context);

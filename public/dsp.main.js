@@ -3511,7 +3511,7 @@
         vectorData: HERMITE.at(state2.scapeLength),
         bypass: Math.round(state2.scapeBypass) || 0,
         mode: Math.round(state2.scapeMode) || 0,
-        offset: state2.scapeOffset
+        offset: state2.scapeOffset || 0
       };
       return { state: state2, srvb: srvb2, shared: shared2, scape: scape2 };
     }

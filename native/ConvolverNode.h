@@ -62,28 +62,25 @@ public:
 
             auto ref = resources.get((elem::js::String)val);
             
-            auto irLen = ref->size();
             auto co = std::make_shared<fftconvolver::TwoStageFFTConvolver>();
 
             //  How to copy the data into a new juce::Audioblock
             // 1. Create an instance of juce::AudioBuffer
-            juce::AudioBuffer<float> ab(1, irLen);
+            juce::AudioBuffer<float> ab(1, ref->size());
             // then copy the data from the reference into the buffer
-            ab.copyFrom(0, 0, ref->data(), irLen);
-            auto fullIRLen = ab.getNumSamples();
-            auto denormOffset = _offset.load() * fullIRLen;
-            auto irLengthWithOffset = fullIRLen - denormOffset;
-            _offset.exchange(static_cast<int>(fmin(fullIRLen, irLengthWithOffset)));
-            auto adjustedIRLen = _offset.load();
+            ab.copyFrom(0, 0, ref->data(), ref->size());
+            auto denormOffset = ab.getNumSamples() * _offset.load() ;
+            _offset.store( static_cast<int>(denormOffset) );
+            auto adjustedIRLen =ab.getNumSamples() - denormOffset;
 
             juce::AudioBuffer<float> shifted = juce::AudioBuffer<float>(1,  adjustedIRLen);
             // 2. Copy a crop of data from the reference into a second buffer
             shifted.copyFrom( 0, 0, ab, 0, denormOffset, adjustedIRLen );
             // 3. Update the convolver with the new data from channel 0
-            auto *alteredData = shifted.getReadPointer(0);
+            auto *shiftedData = shifted.getReadPointer(0);
 
             co->reset();
-            co->init(headSize, tailSize, alteredData,  adjustedIRLen );
+            co->init(headSize, tailSize, shiftedData,  adjustedIRLen );
 
             convolverQueue.push(std::move(co));
         }

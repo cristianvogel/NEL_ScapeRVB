@@ -37,7 +37,6 @@ let refs: RefMap = new RefMap(core);
 
 // Register our custom nodes
 let convolver = (_props, ...childs) => createNode("convolver", _props, childs);
-let detector = (_props, ...childs) => createNode("detector", _props, childs);
 
 // Set up the default IRs
 // MUST MATCH FILE NAMES IN THE PUBLIC IR FOLDER
@@ -345,7 +344,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
       vectorData: HERMITE.at(state.scapeLength),
       bypass: Math.round(state.scapeBypass) || 0,
       mode: Math.round(state.scapeMode) || 0,
-      offset: state.scapeOffset,
+      offset: state.scapeOffset || 0,
     };
     return { state, srvb, shared, scape };
   }
