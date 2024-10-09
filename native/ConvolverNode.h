@@ -120,22 +120,20 @@ public:
             convolverQueue.pop(convolver);
         }
 
-            if (convolver == nullptr || numChannels == 0 || procFlag.load() <= 1.0e-5 )
+        if (convolver == nullptr || numChannels == 0 || procFlag.load() <= 1.0e-5)
         {
-               return (void)std::fill_n(outputData, numSamples, float(0));
+            return (void)std::fill_n(outputData, numSamples, float(0));
         }
-
 
         // Scale the inputData with Scalar using JUCE FloatVectorOperations
         juce::FloatVectorOperations::multiply(scaledData.data(), inputData[0], scalar.load(), numSamples);
-        // now convolve the scaledData with the impulse response
-        convolver->TwoStageFFTConvolver::process(scaledData.data(), outputData, numSamples);
-
-        if ( shouldDuckAudio.load() )
+        if (shouldDuckAudio.load())
         {
-            duckingWindow.multiplyWithUpsideDownWindowingTable( outputData, numSamples );
+            duckingWindow.multiplyWithUpsideDownWindowingTable(outputData, numSamples);
+            return;
         }
-
+        // Finally convolve the scaledData with the impulse response
+        convolver->TwoStageFFTConvolver::process(scaledData.data(), outputData, numSamples);
     }
     elem::SingleWriterSingleReaderQueue<std::shared_ptr<fftconvolver::TwoStageFFTConvolver>> convolverQueue;
     std::shared_ptr<fftconvolver::TwoStageFFTConvolver> convolver;

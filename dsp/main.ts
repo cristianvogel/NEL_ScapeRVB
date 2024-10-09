@@ -49,7 +49,7 @@ const Default_IR_Map: Map<DefaultIRSlotName, IRMetaData> = new Map([
 ]);
 
 // gets populated when the user loads IRs 
-let User_IR_Map: Map<DefaultIRSlotName, IRMetaData> = new Map();
+const User_IR_Map: Map<DefaultIRSlotName, IRMetaData> = new Map();
 
 // Utilise a factory pattern to generate the ref updaters
 // for the Elem ref engine
@@ -110,7 +110,7 @@ function parseAndUpdateIRRefs(scape: ScapeSettings, useDefaultIRs: boolean = tru
   const VFSPathWithReverseForChannel = (slotName: DefaultIRSlotName, channel: number) => {
     const userIR = User_IR_Map.get(slotName) as IRMetaData;
     const defaultIR = Default_IR_Map.get(slotName) as IRMetaData;
-    const vfsPathWithChannel = userIR !== undefined && mode ? `${userIR.pathStem}_${channel}` : `${defaultIR.pathStem}_${channel}` ;
+    const vfsPathWithChannel = userIR && mode ? `${userIR.pathStem}_${channel}` : `${defaultIR.pathStem}_${channel}` ;
     const reversablePathNameWithChannel = scape.reverse > 0.5
       ? REVERSE_BUFFER_PREFIX + vfsPathWithChannel 
       : vfsPathWithChannel ;
@@ -125,6 +125,7 @@ function parseAndUpdateIRRefs(scape: ScapeSettings, useDefaultIRs: boolean = tru
 
 
   Default_IR_Map.forEach( (defaultIR, slotName: DefaultIRSlotName) => {
+
     const userIR = User_IR_Map.get(slotName);
   
     for (let chan = 0; chan < 2; chan++) {
@@ -132,7 +133,7 @@ function parseAndUpdateIRRefs(scape: ScapeSettings, useDefaultIRs: boolean = tru
         getRefForChannel(refs, slotName, chan), {
         path: VFSPathWithReverseForChannel(slotName, chan),
         process: Math.min(scape.level, scape.vectorData[defaultIR.index]), // todo: take another look at this
-        scale: userIR !== undefined && mode ? userIR.att : defaultIR.att,
+        scale: userIR && mode ? userIR.att : defaultIR.att,
         offset: scape.offset
       });
     }
@@ -351,16 +352,29 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
 }; // end of receiveStateChange
 
 ////////// Handle New IRs from the VFS /////////////////////////////////
-globalThis.__receiveVFSKeys__ = function (vfsKeys: string) {
-  const vfsKeysArray = JSON.parse(vfsKeys);
-  const userIRs = vfsKeysArray.filter((key) => key.includes("USER") && !key.includes("REVERSE"));
+globalThis.__receiveVFSKeys__ = function (vfsCurrent: string) {
+  const vfsKeysArray = JSON.parse(vfsCurrent);
+  const userVFSKeys: Array< VFSPathStem > = vfsKeysArray.filter((key) => key.includes("USER") && !key.includes("REVERSE"));
   // go through user IRs .... if USER0 , update the pathStem of LIGHT to USER0 and so on
   // we will just use the first 4 user IRs and assign the paths of the Default slotnames 
   // in the Elem refmap
-  for (let i = 0; i < Math.min(4, userIRs.length); i++) {
-    const userPathStem: VFSPathStem = `USER${i}` as UserVFSStem;
-    User_IR_Map.set( DEFAULT_IR_SLOTNAMES[i], { pathStem: userPathStem, index: i, att: 0.9 } );
+
+  const userVFSKeysCount = userVFSKeys.length;
+  console.log( 'User VFS Keys', userVFSKeys, ' checksum ->', userVFSKeysCount );
+
+ 
+
+for (let i = 0; i < userVFSKeysCount; i++) {
+  const currentSlot = Math.floor( i / 2 ); 
+  // Why? Because there are 2 stereo files per slot ( 0 and 1 each has forwards on left and reverse on right )
+  // So the schema is as below,  the stem and slot, then stem and slot + channel eg: USER0_0, USER0_1, USER1_0, USER1_1 etc
+  // the reverse keys are referenced inline by the convolvution node updaters
+    const userPathStem: VFSPathStem = `USER${currentSlot}` as UserVFSStem;
+  // therefore User_IR_Map the map should contain the pathStem and the index of the slot only
+  // USER0, USER1, USER2, USER3
+    User_IR_Map.set( DEFAULT_IR_SLOTNAMES[currentSlot], { pathStem: userPathStem, index: currentSlot, att: 0.95 } );
   }
+console.log( 'User IR Map', User_IR_Map.entries() );
 }
 /////////////////////////////////////////////////////////////////
 

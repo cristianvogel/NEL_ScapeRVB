@@ -108,13 +108,13 @@ public:
 private:
     std::string REVERSE_BUFFER_PREFIX = "REVERSED_";
     std::string USER_FILE_URLS = "userFileURLs";
-    std::string USER_REDUCED_DATA_PROPERTY = "userReducedData";
+    std::string USER_PEAKS_KEY = "userPeaks";
     std::string MAIN_DSP_JS_FILE = "dsp.main.js";
     std::string MAIN_PATCH_JS_FILE = "patch.main.js";
     std::string SAMPLE_RATE_PROPERTY = "sampleRate";
     std::string NATIVE_MESSAGE_FUNCTION_NAME = "__postNativeMessage__";
     std::string LOG_FUNCTION_NAME = "__log__";
-    std::string WS_RESPONSE_PROPERTY = "NEL_STATE";
+    std::string WS_RESPONSE_KEY = "NEL_STATE";
 
     // The maximum number of error messages to keep in the queue
     size_t MAX_ERROR_LOG_QUEUE_SIZE = 200;
@@ -139,7 +139,8 @@ private:
 
     //===== Elementary Audio , js stores and context  ==//
     elem::js::Object state;
-    std::size_t lastStateHash = -1;
+    std::size_t lastStateHash = 0;
+    int lastPeaksHash = 0;
     choc::javascript::Context jsContext;
     juce::AudioBuffer<float> scratchBuffer;
     std::unique_ptr<elem::Runtime<float>> runtime;
@@ -151,17 +152,20 @@ private:
 
 public:
     //======== User IR related , files and buffers
-
+    static elem::js::Object userData;
+    static int userFileCount;
     std::vector<juce::File> loadDefaultIRs();
-     void inspectVFS();
+    void inspectVFS();
     std::vector<juce::File> activeImpulseResponses;
     void addFolderOfIRsToVFS(std::vector<juce::File> &);
     std::vector<juce::File> sortOrderForDefaultIRs(std::vector<juce::File> &);
 
     juce::FileChooser chooser;
     void requestUserFiles(std::promise<bool> &promise);
+    void updateUserFileCounts(juce::File &file);
+    void resetImpulseResponseVectors();
     std::vector<juce::File> userImpulseResponses;
-    std::vector<std::vector<float>> userAudioData;
+    std::vector<std::vector<float>> userPeakData;
     void updateStateWithBufferData();
         void updateStateWithFileURLs( const std::vector<juce::File> &paths);
    std::vector<float> reduceAudioBuffer(const juce::AudioBuffer<float>& buffer);

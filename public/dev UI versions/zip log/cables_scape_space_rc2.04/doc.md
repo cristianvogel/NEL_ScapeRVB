@@ -1,12 +1,14 @@
 ## Patch Variables:
 
-* ____arrayOfUserBufferData__ ```Array```
+* ____arrayOfUserPeaks__ ```Array```
 * ____bodyHitY__ ```Number```
 * ____currentReflectorParam__ ```String```
 * ____heightMapGeometry__ ```Object```
 * ____labelBoolAnim__ ```Number```
 * ____lensFlareTexts__ ```Texture```
-* ____newUserBlobReceived__ ```Number```
+* ____newIRs__ ```Number```
+* ____scapeFaderViz__ ```Number```
+* ____sliderLeave__ ```Number```
 * ____wsConnection__ ```Object```
 * ___currentDialValueInsideRepeat2D__ ```Number```
 * ___currentIndexInsideRepeat2D__ ```Number```
@@ -19,8 +21,8 @@
 * __ext_normValue__ ```Number``` (default Value: `0`)
 * __ext_serverInfo__ ```String``` (default Value: `ws://127.0.0.1:13755`)
 * __ext_userFileURLs__ ```Array```
+* __ext_WS_JSONPAYLOAD__ ```Object```
 * __host_scapeBypass__ ```Number```
-* __host_scapeMode__ ```Number``` (default Value: `0`)
 * __host_srvbBypass__ ```Number```
 * __NEL_SRVB_Metals__ ```Object```
 * __ringG__ ```Number```
@@ -34,6 +36,9 @@
 
 * __ui_leftButtonIsDown__ ```Number```
 * __ui_leftButtonSlider__ ```Number```
+
+  from InteractiveRectangle::pointerDown or hover
+
 * __ui_leftButtonToggle__ ```Number```
 
   needs to set the non-gl element
@@ -46,12 +51,22 @@
 * __ui_mouseIsChangingParamID__ ```String``` (default Value: `New String`)
 * __ui_mouseOverParamID__ ```String```
 * __ui_normValue__ ```Number```
+* __ui_normValueOnHover__ ```Number```
+
+  from InteractiveRectangle::pointerDown or hover
+
 * __ui_scapeBypass__ ```Number```
 
   listened to by Svelte
 
 * __ui_scapeBypass_mouseEnter_string__ ```String```
+* __ui_scapeLength__ ```Number```
+
+  from SwitchMultiPort::out
+
 * __ui_scapeMode__ ```Number```
+* __ui_scapeOffset__ ```Number```
+* __ui_sidebarSliderMouseDown__ ```Number```
 * __ui_sizeParamNoSmooth__ ```Number```
 * __ui_smoothedParam_diffusion__ ```Number```
 * __ui_smoothedParam_mix__ ```Number```

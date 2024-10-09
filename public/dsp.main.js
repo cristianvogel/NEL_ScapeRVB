@@ -3332,7 +3332,7 @@
     const VFSPathWithReverseForChannel = (slotName, channel) => {
       const userIR = User_IR_Map.get(slotName);
       const defaultIR = Default_IR_Map.get(slotName);
-      const vfsPathWithChannel = userIR !== void 0 && mode ? `${userIR.pathStem}_${channel}` : `${defaultIR.pathStem}_${channel}`;
+      const vfsPathWithChannel = userIR && mode ? `${userIR.pathStem}_${channel}` : `${defaultIR.pathStem}_${channel}`;
       const reversablePathNameWithChannel = scape.reverse > 0.5 ? REVERSE_BUFFER_PREFIX + vfsPathWithChannel : vfsPathWithChannel;
       return reversablePathNameWithChannel;
     };
@@ -3350,7 +3350,7 @@
             path: VFSPathWithReverseForChannel(slotName, chan),
             process: Math.min(scape.level, scape.vectorData[defaultIR.index]),
             // todo: take another look at this
-            scale: userIR !== void 0 && mode ? userIR.att : defaultIR.att,
+            scale: userIR && mode ? userIR.att : defaultIR.att,
             offset: scape.offset
           }
         );
@@ -3516,13 +3516,17 @@
       return { state: state2, srvb: srvb2, shared: shared2, scape: scape2 };
     }
   };
-  globalThis.__receiveVFSKeys__ = function(vfsKeys) {
-    const vfsKeysArray = JSON.parse(vfsKeys);
-    const userIRs = vfsKeysArray.filter((key) => key.includes("USER") && !key.includes("REVERSE"));
-    for (let i = 0; i < Math.min(4, userIRs.length); i++) {
-      const userPathStem = `USER${i}`;
-      User_IR_Map.set(DEFAULT_IR_SLOTNAMES[i], { pathStem: userPathStem, index: i, att: 0.9 });
+  globalThis.__receiveVFSKeys__ = function(vfsCurrent) {
+    const vfsKeysArray = JSON.parse(vfsCurrent);
+    const userVFSKeys = vfsKeysArray.filter((key) => key.includes("USER") && !key.includes("REVERSE"));
+    const userVFSKeysCount = userVFSKeys.length;
+    console.log("User VFS Keys", userVFSKeys, " checksum ->", userVFSKeysCount);
+    for (let i = 0; i < userVFSKeysCount; i++) {
+      const currentSlot = Math.floor(i / 2);
+      const userPathStem = `USER${currentSlot}`;
+      User_IR_Map.set(DEFAULT_IR_SLOTNAMES[currentSlot], { pathStem: userPathStem, index: currentSlot, att: 0.95 });
     }
+    console.log("User IR Map", User_IR_Map.entries());
   };
   globalThis.__receiveHydrationData__ = (data) => {
     const payload = JSON.parse(data);

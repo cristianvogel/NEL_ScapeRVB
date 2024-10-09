@@ -4,6 +4,10 @@
 #include "Utilities.h"
 #include "ConvolverNode.h"
 
+//==== static defs
+elem::js::Object EffectsPluginProcessor::userData;
+int EffectsPluginProcessor::userFileCount = 0;
+
 //==============================================================================
 // A quick helper for locating bundled asset files
 juce::File getAssetsDirectory()
@@ -22,8 +26,10 @@ juce::File getAssetsDirectory()
 
     return assetsDir;
 }
-
-/// @brief  Constructor for the ViewClientInstance class
+// ▮▮▮wswswsws▮▮▮▮▮▮wswswsws▮▮▮▮▮▮wswswsws▮▮▮▮▮▮wswswsws▮▮▮▮▮▮wswswsws▮▮▮▮▮▮wswswsws
+/// @brief  Constructor for the ViewClientInstance WebSocket service
+/// that will handle messages from the front end
+/// Factor this out to a separate file without breaking everything
 /// @param processor
 EffectsPluginProcessor::ViewClientInstance::ViewClientInstance(EffectsPluginProcessor &processor) : processor(processor)
 {
@@ -50,90 +56,81 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
 {
     // Convert std::string_view to std::string
     std::string messageStr(message);
-
     // Deserialize the message
     auto parsed = elem::js::parseJSON(messageStr);
-
+    // Valid JSON-like object will have key-value pairs
     if (parsed.isObject())
     {
-        auto o = parsed.getObject();
-
-        for (auto &[key, value] : o)
+        auto socketMessage = parsed.getObject();
+        for (auto &[key, value] : socketMessage)
         {
-
-            /** 
-             * @name 'requestClientId'
-             * @brief Handle the client ID request from the front end
-             */
-            if (key == "requestClientId")
-            {
-                // Create a new JSON-like object
-                elem::js::Object wrappedClientId;
-                // Set processor.clientId as the value
-                wrappedClientId["clientId"] = std::to_string(clientID);
-                // Serialize the new object
-                std::string serializedClientId = elem::js::serialize(wrappedClientId);
-                // Send the serialized string
-                sendWebSocketMessage(serializedClientId);
-                continue;
-            }
-    
-            /** 
-             * @name 'selectFiles' 
+            /** ▮▮▮wswswsws▮▮▮▮▮▮wswswsws▮▮▮▮▮▮wswswsws▮▮▮
+             * @name 'selectFiles'
              * @brief Handle the file paths sent from the front end
              * message will include high pass cutoff frequency choice
              * as value.
              */
-            if (key == "selectFiles" && value.isNumber())
+            if (key == "selectFiles" && value.isNumber()) // the number value is the high pass cutoff frequency choice
             {
                 // first, request the user to select files
-                // and update the state with the file URLs
-                // as well as the VFS
-                // this is asynchronous because code needs to
+                // this is asynchronous because we need to
                 // open a file browser on the main thread
-                // so I had to learn how to use a promise/future mechanism
+                // ( I had to learn how to use a promise/future mechanism )
                 std::promise<bool> promise;
                 std::future<bool> future = promise.get_future();
-
+                // Begin the asynchronous operation
                 processor.requestUserFiles(promise);
-                processor.userCutoffChoice = int((elem::js::Number)value);
-
                 // Wait for the asynchronous operation to complete
                 bool gotFiles = future.get();
-
+                // If the operation failed, dispatch a vague error message, do nada
                 if (!gotFiles)
                 {
                     processor.dispatchError("File Error:", "Sorry, please try again.");
                     return;
                 }
-                // let's proceed to load the files into the VFS
+                // We should have received a high pass cutoff frequency choice as value with this key,
+                // or at least have it initialised to something sensible
+                processor.userCutoffChoice = int((elem::js::Number)value);
+                // let's proceed to load and process ( hopefullly ) AUDIO FILES into the realtime VFS
                 // and dispatch the file URLs to the front end
-                int index = 0;
                 for (const juce::File &filePath : processor.userImpulseResponses)
                 {
-                    processor.loadAudioFromFileIntoVFS(filePath, index++);
+                    processor.loadAudioFromFileIntoVFS(filePath, userFileCount);
                 }
-                // then update the state with the file URLs and reduced buffer data
+                // then update the state with the file URLs for later recall
                 processor.updateStateWithFileURLs(processor.userImpulseResponses);
+                // and generate the reduced buffer data that will be used for plotting peaks in the View
                 processor.updateStateWithBufferData();
-                continue;
             }
 
-            /** 
-             * @name 'requestState' 
+            /** ▮▮▮wswswsws▮▮▮▮▮▮wswswsws▮▮▮▮▮▮wswswsws▮▮▮
+             * @name 'requestState'
              * @brief Handle a request for state
              */
             if (key == "requestState")
             {
+                auto state = processor.state;
+                auto stateKey = processor.WS_RESPONSE_KEY;
+                auto peaksKey = processor.USER_PEAKS_KEY;
+
                 // Create a new JSON-like object
                 elem::js::Object wrappedState;
-                // Set processor.state as the value
-                wrappedState[processor.WS_RESPONSE_PROPERTY] = processor.state;
-                // Serialize the new object
+                elem::js::Object wrappedPeaks;
+
+                wrappedPeaks[peaksKey] = userData[peaksKey];
+                wrappedState[stateKey] = state;
+
+                // Serialize the wrapped state and peaks data
                 std::string serializedState = elem::js::serialize(wrappedState);
+                juce::String serializedPeaks = elem::js::serialize(wrappedPeaks);
+
                 // Compute the hash of the serialized state
                 std::size_t currentStateHash = std::hash<std::string>{}(serializedState);
-                // Only send if the state has changed
+
+                // Compute the hash of the serialized user audio data
+                int currentPeaksHash = serializedPeaks.hashCode();
+
+                // // Only send if the state has changed
                 if (currentStateHash != processor.lastStateHash)
                 {
                     // Send the serialized string
@@ -141,14 +138,23 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
                     // Update the last sent state hash
                     processor.lastStateHash = currentStateHash;
                 }
+
+                // Only send if the user audio data has changed
+                if (currentPeaksHash != processor.lastPeaksHash)
+                {
+                    // Send the serialized string
+                    sendWebSocketMessage(serializedPeaks.toStdString());
+                    // Update the last sent user audio data hash
+                    processor.lastPeaksHash = currentPeaksHash;
+                }
+
                 continue;
             }
 
-            /**
-             * @name ...parameter changes
-             * @brief Handle parameter changes from the front end
+            /** ▮▮▮wswswsws▮▮▮▮▮▮wswswsws▮▮▮▮▮▮wswswsws▮▮▮
+             * @name 'update from paramId'
+             * @brief Here we just update a parameter directly in the processor
              */
-            // Here we just update the parameter directly in the processor
             if (value.isNumber() && processor.parameterMap.count(key) > 0)
             {
                 // Convert elem::js::Value to float
@@ -233,8 +239,6 @@ EffectsPluginProcessor::~EffectsPluginProcessor()
 }
 
 //==============================================================================
-
-//==============================================================================
 // Load the impulse responses from the assets directory
 std::vector<juce::File> EffectsPluginProcessor::loadDefaultIRs()
 {
@@ -256,8 +260,48 @@ std::vector<juce::File> EffectsPluginProcessor::loadDefaultIRs()
 
     return sortOrderForDefaultIRs(impulseResponses);
 }
+//==============================================================================
+// At initialisation, add each default impulse response to the runtime virtual file system
+void EffectsPluginProcessor::addFolderOfIRsToVFS(std::vector<juce::File> &impulseResponses)
+{
+    for (auto &file : impulseResponses)
+    {
+        auto buffer = juce::AudioBuffer<float>();
+        auto reader = formatManager.createReaderFor(file);
+        buffer.setSize(2, reader->lengthInSamples);                                            // source files are mono, but we use the second channel for a derived 'shaped' version
+        auto name = choc::text::toUpperCase(file.getFileNameWithoutExtension().toStdString()); // "Ambience_0.wav" -> "AMBIENCE_0"
+        reader->read(&buffer, 0, reader->lengthInSamples, 0, true, false);
+        delete reader;
 
-//==================================================
+        auto numSamples = buffer.getNumSamples();
+        // fade in, less ER energy from the IR, as we have a whole ER engine already
+        buffer.applyGainRamp(0, numSamples, 0.65, 1);
+        // buffer.copyFromWithRamp(1, 0, buffer.getReadPointer(0), buffer.getNumSamples(), 0.2, 1);
+        // add the gain ramped impulse response to the virtual file system
+
+        nel::normaliseImpulseResponse(buffer, 0.8414); // -1.5 db
+
+        // stash one channel of the normalised buffer data for the UI
+        userPeakData.push_back(reduceAudioBuffer(buffer));
+
+        runtime->updateSharedResourceMap(
+            name,
+            buffer.getReadPointer(0),
+            numSamples);
+        // Creative touch: Reverse the IR and copy that to the other channel
+        // Get the reverse from a little way in too, so its less draggy
+        // so its easy to swap into in realtime
+        buffer.reverse(0, numSamples * 0.75);
+        buffer.copyFrom(1, 0, buffer.getReadPointer(0), numSamples * 0.75);
+        // add the shaped impulse response to the virtual file system
+        runtime->updateSharedResourceMap(
+            REVERSE_BUFFER_PREFIX + name,
+            buffer.getReadPointer(1),
+            numSamples * 0.75);
+    }
+    inspectVFS();
+}
+
 std::vector<juce::File> EffectsPluginProcessor::sortOrderForDefaultIRs(std::vector<juce::File> &impulseResponses)
 {
     // Define the desired order of keywords
@@ -282,64 +326,36 @@ std::vector<juce::File> EffectsPluginProcessor::sortOrderForDefaultIRs(std::vect
     return impulseResponses;
 }
 
-//==============================================================================
-void EffectsPluginProcessor::inspectVFS()
+//========================= UpdateStateWithAudioFileData
+void EffectsPluginProcessor::updateStateWithBufferData()
 {
-    auto vfs = runtime->getSharedResourceMapKeys();
-    // iterate vfs into an std::string
-    std::string vfsString = "[";
-    for (auto &key : vfs)
+    // Convert userAudioData to elem::js::Array
+    elem::js::Array reducedSampleDataForPlotting;
+    for (const auto &fromBuffer : EffectsPluginProcessor::userPeakData)
     {
-        vfsString += "\"" + key + "\",";
+        elem::js::Array channelArray;
+        for (const auto &monoChannelData : fromBuffer)
+        {
+            channelArray.push_back(elem::js::Value(monoChannelData));
+        }
+        reducedSampleDataForPlotting.push_back(channelArray);
     }
-    vfsString.pop_back();
-    vfsString += "]";
-    // send the vfs to the editor
-    const auto expr = serialize(jsFunctions::vfsKeysScript, choc::value::Value(vfsString), "%");
-    sendJavascriptToUI(expr);
-    jsContext.evaluateExpression(expr);
+    userData.insert_or_assign(USER_PEAKS_KEY, elem::js::Value(reducedSampleDataForPlotting));
+    dispatchStateChange();
 }
-//==============================================================================
-// add each default impulse response to the runtime virtual file system
-void EffectsPluginProcessor::addFolderOfIRsToVFS(std::vector<juce::File> &impulseResponses)
+
+void EffectsPluginProcessor::updateStateWithFileURLs(const std::vector<juce::File> &paths)
 {
-
-    for (auto &file : impulseResponses)
+    // Convert the std::vector<juce::URL> to elem::js::Array
+    elem::js::Array fileURLs;
+    for (const auto &path : paths)
     {
-        auto buffer = juce::AudioBuffer<float>();
-        auto reader = formatManager.createReaderFor(file);
-        buffer.setSize(2, reader->lengthInSamples);                                            // source files are mono, but we use the second channel for a derived 'shaped' version
-        auto name = choc::text::toUpperCase(file.getFileNameWithoutExtension().toStdString()); // "Ambience_0.wav" -> "AMBIENCE_0"
-        reader->read(&buffer, 0, reader->lengthInSamples, 0, true, false);
-        delete reader;
-
-        auto numSamples = buffer.getNumSamples();
-        // fade in, less ER energy from the IR, as we have a whole ER engine already
-        buffer.applyGainRamp(0, numSamples, 0.65, 1);
-        // buffer.copyFromWithRamp(1, 0, buffer.getReadPointer(0), buffer.getNumSamples(), 0.2, 1);
-        // add the gain ramped impulse response to the virtual file system
-
-        nel::normaliseImpulseResponse(buffer, 0.8414 );  // -1.5 db
-
-        runtime->updateSharedResourceMap(
-            name,
-            buffer.getReadPointer(0),
-            numSamples);
-        // Creative touch: Reverse the IR and copy that to the other channel
-        // Get the reverse from a little way in too, so its less draggy
-        // so its easy to swap into in realtime
-        buffer.reverse(0, numSamples * 0.75);
-        buffer.copyFrom(1, 0, buffer.getReadPointer(0), numSamples * 0.75);
-        // add the shaped impulse response to the virtual file system
-        runtime->updateSharedResourceMap(
-            REVERSE_BUFFER_PREFIX + name,
-            buffer.getReadPointer(1),
-            numSamples * 0.75);
-
-            
+        juce::File file(path);
+        auto localfileURL = juce::URL(file.withFileExtension("")).getFileName();
+        fileURLs.push_back(elem::js::Value(localfileURL.toStdString()));
     }
+    state.insert_or_assign(USER_FILE_URLS, elem::js::Value(fileURLs));
 }
-//==============================================================================
 
 void EffectsPluginProcessor::requestUserFiles(std::promise<bool> &promise)
 {
@@ -352,9 +368,9 @@ void EffectsPluginProcessor::requestUserFiles(std::promise<bool> &promise)
     juce::Array<juce::File> selected ( chooser.getResults() );
     // add each valid selected file to the userImpulseResponses vector
     // should be < 10MB and WAV or FLAC to fill the current slot in the IR vector
-    int index = 0;
+
     if ( selected.size() == 0 || selected.size() > 4 ) {
-                           dispatchNativeLog("File Error:", "Select EXACTLY 4 audio files.");                 
+                           dispatchNativeLog("File Error:", "Select 4 audio files.");                 
         promise.set_value(false); return;
     }
 
@@ -367,42 +383,50 @@ void EffectsPluginProcessor::requestUserFiles(std::promise<bool> &promise)
                             promise.set_value(false); return;
                         }
     }
-
-    userImpulseResponses.clear();
-    userImpulseResponses.resize(4); // Ensure the vector is properly sized
-    activeImpulseResponses.clear();
-    activeImpulseResponses.resize(4); // Ensure the vector is properly sized
+    
+    // if ( userImpulseResponses.size() > 4 || userImpulseResponses.size() == 0 )
+    // {
+    //     resetImpulseResponseVectors();
+    // }
 
     for (juce::File &file : selected)
     {
-        if (index == 4)
-        {
-            break;
-        }
         if ( file.getSize() > juce::int64(10 * 1024 * 1024) ) {
             dispatchNativeLog("File Error:", "A file size exceeds 10MB limit.");
             promise.set_value(false); return;
         }
         else
-        {
-            userImpulseResponses.at(index) = file;
-            activeImpulseResponses.at(index) = file;
-            index++;
+        {   
+            // ************ THIS is where we keep track of the user file count globally ************
+            updateUserFileCounts(file);
         }
     }
-     promise.set_value(true); });
+ 
+
+    promise.set_value(true); });
+}
+void EffectsPluginProcessor::updateUserFileCounts(juce::File & file)
+{
+            if (userFileCount == 4) userFileCount = 0; 
+            userImpulseResponses.at(userFileCount) = file;
+            activeImpulseResponses.at(userFileCount) = file;
+            userFileCount++;
+}
+void EffectsPluginProcessor::resetImpulseResponseVectors()
+{
+    userImpulseResponses.clear();
+    userImpulseResponses.resize(4); // Ensure the vector is properly sized
+    activeImpulseResponses.clear();
+    activeImpulseResponses.resize(4); // Ensure the vector is properly sized
 }
 
-//=============================================================================
-
-void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotIndex = 0)
+void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotIndex)
 {
     auto buffer = juce::AudioBuffer<float>();
     auto reader = formatManager.createReaderFor(file);
 
     if (reader == nullptr)
     {
-        dispatchError("File error:", "Failed to create reader for the audio file.");
         return;
     }
 
@@ -422,14 +446,13 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotI
 
     for (int i = 0; i < numChannels; ++i)
     {
-
-        // source files are mono, but we setup the second channel for a derived 'shaped' version
+        // source files are one channel, but we cunningly setup the second channel for a derived 'shaped' version
         auto name = "USER" + std::to_string(slotIndex) + "_" + std::to_string(i);
-
+        // establish the reader for the file
         reader->read(&buffer, 0, reader->lengthInSamples, 0, true, false);
-
+        // work with the buffer
         auto numSamples = buffer.getNumSamples();
-
+        // apply the high pass filter
         juce::dsp::ProcessSpec spec;
         spec.sampleRate = lastKnownSampleRate;
         spec.maximumBlockSize = numSamples;
@@ -437,20 +460,19 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotI
         stateVariableFilter.reset();
         stateVariableFilter.prepare(spec);
         stateVariableFilter.setType(juce::dsp::StateVariableTPTFilterType::highpass);
-        stateVariableFilter.setCutoffFrequency( userCutoffChoice  );
+        stateVariableFilter.setCutoffFrequency(userCutoffChoice);
         auto outputBlock = juce::dsp::AudioBlock<float>(buffer);
         juce::dsp::ProcessContextReplacing<float> context(outputBlock);
         stateVariableFilter.process(context);
-
-        nel::normaliseImpulseResponse(buffer, 0.8414 );  // -1.5 db
-
+        // normalise the result
+        nel::normaliseImpulseResponse(buffer, 0.8414); // -1.5 db
         // stash one channel of the normalised buffer data for the UI
         if (i == 0)
-            userAudioData.push_back(reduceAudioBuffer(buffer));
-
-        // fade in, less ER energy from the IR, as we have a whole ER engine already
+            userPeakData.push_back(reduceAudioBuffer(buffer));
+        // do a little fade in, less ER energy from the IR, as we have a whole ER engine already
         buffer.applyGainRamp(0, numSamples, 0.808, 1);
-
+        // add the gain ramped forward playing IR channel to the virtual file system
+        // ▮▮▮elem▮▮▮▮▮▮runtime▮▮▮▮▮▮
         runtime->updateSharedResourceMap(
             name,
             buffer.getReadPointer(0),
@@ -458,22 +480,36 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotI
         // Reverse the IR and copy that to the other channel
         buffer.reverse(0, numSamples * 0.75);
         buffer.copyFrom(1, 0, buffer.getReadPointer(0), numSamples * 0.75);
-        // add the shaped impulse response to the virtual file system
+        // Finally add the reverse impulse response to the virtual file system
+        // ▮▮▮elem▮▮▮▮▮▮runtime▮▮▮▮▮▮
         runtime->updateSharedResourceMap(
             REVERSE_BUFFER_PREFIX + name,
             buffer.getReadPointer(1),
             numSamples * 0.75);
     }
-
     // IMPORTANT: delete the reader to avoid memory leaks
     delete reader;
     // notify the front end of the updated VFS keys
     inspectVFS();
 }
 
-//======================= Function to convert the first channel of AudioBuffer to std::vector<float>
-
-//======================= Function to convert the first channel of AudioBuffer to std::vector<float>
+void EffectsPluginProcessor::inspectVFS()
+{
+    auto vfs = runtime->getSharedResourceMapKeys();
+    // iterate vfs into an std::string
+    std::string vfsString = "[";
+    for (auto &key : vfs)
+    {
+        vfsString += "\"" + key + "\",";
+    }
+    vfsString.pop_back();
+    vfsString += "]";
+    // send the vfs to the editor
+    const auto expr = serialize(jsFunctions::vfsKeysScript, choc::value::Value(vfsString), "%");
+    sendJavascriptToUI(expr);
+    jsContext.evaluateExpression(expr);
+}
+//=============== Create peaks data for the UI
 std::vector<float> EffectsPluginProcessor::reduceAudioBuffer(const juce::AudioBuffer<float> &buffer)
 {
     int numSamples = buffer.getNumSamples();
@@ -505,9 +541,6 @@ std::vector<float> EffectsPluginProcessor::reduceAudioBuffer(const juce::AudioBu
     }
     return audioData;
 }
-
-
-
 //==============================================================================
 int EffectsPluginProcessor::runWebServer()
 {
@@ -537,7 +570,6 @@ int EffectsPluginProcessor::runWebServer()
     // message loop or get on with other tasks.
     return 0;
 }
-
 //==============================================================================
 void EffectsPluginProcessor::createParameters(const std::vector<elem::js::Value> &parameters)
 {
@@ -816,6 +848,7 @@ void EffectsPluginProcessor::handleAsyncUpdate()
                                   { return std::make_shared<ConvolverNode>(id, sampleRate, blockSize); });
 
         // Add impulse responses to the virtual file system
+        resetImpulseResponseVectors(); // <-- TODO: we need to check if some stashed responses are available
         activeImpulseResponses = loadDefaultIRs();
         // check if userImpulseResponses has been sized
         if (userImpulseResponses.size() == 0)
@@ -857,37 +890,6 @@ void EffectsPluginProcessor::handleAsyncUpdate()
     }
 
     dispatchStateChange();
-}
-
-//========================= UpdateStateWithAudioFileData
-void EffectsPluginProcessor::updateStateWithBufferData()
-{
-    // Convert userAudioData to elem::js::Array
-    elem::js::Array reducedSampleDataForPlotting;
-    for (const auto &fromBuffer : EffectsPluginProcessor::userAudioData)
-    {
-        elem::js::Array channelArray;
-        for (const auto &monoChannelData : fromBuffer)
-        {
-            channelArray.push_back(elem::js::Value(monoChannelData));
-        }
-        reducedSampleDataForPlotting.push_back(channelArray);
-    }
-    state.insert_or_assign(USER_REDUCED_DATA_PROPERTY, elem::js::Value(reducedSampleDataForPlotting));
-}
-
-//========================= UpdateStateWithAudioFile names
-void EffectsPluginProcessor::updateStateWithFileURLs(const std::vector<juce::File> &paths)
-{
-    // Convert the std::vector<juce::URL> to elem::js::Array
-    elem::js::Array fileURLs;
-    for (const auto &path : paths)
-    {
-        juce::File file(path);
-        auto localfileURL = juce::URL(file.withFileExtension("")).getFileName();
-        fileURLs.push_back(elem::js::Value(localfileURL.toStdString()));
-    }
-    state.insert_or_assign(USER_FILE_URLS, elem::js::Value(fileURLs));
 }
 
 void EffectsPluginProcessor::initJavaScriptEngine()
@@ -971,6 +973,7 @@ void EffectsPluginProcessor::initJavaScriptEngine()
 })();
     )shim");
 }
+
 void EffectsPluginProcessor::dispatchStateChange()
 {
     // Need the double serialize here to correctly form the string script. The first

@@ -6,7 +6,7 @@ import { DEFAULT_IR_SLOTNAMES } from "./constants";
 
 
 /////////////////////////
-export const VFSKeys = vfsKeys( DEFAULT_IR_SLOTNAMES );
+export const VFSKeys = vfsKeys( [] );
 function vfsKeys(initial) {
   let current = $state(initial);
   return {
