@@ -571,6 +571,10 @@ int EffectsPluginProcessor::runWebServer()
     return 0;
 }
 //==============================================================================
+bool EffectsPluginProcessor::isBusesLayoutSupported(const AudioProcessor::BusesLayout &layouts) const
+{
+    return true;
+}
 void EffectsPluginProcessor::createParameters(const std::vector<elem::js::Value> &parameters)
 {
     for (const auto &parameter : parameters)
@@ -629,7 +633,6 @@ void EffectsPluginProcessor::createParameters(const std::vector<elem::js::Value>
         }
     }
 }
-
 juce::AudioProcessorEditor *EffectsPluginProcessor::createEditor()
 {
     editor = new WebViewEditor(this, getAssetsDirectory(), 840, 480);
@@ -698,58 +701,46 @@ juce::AudioProcessorEditor *EffectsPluginProcessor::createEditor()
 
     return editor;
 }
-
 bool EffectsPluginProcessor::hasEditor() const
 {
     return true;
 }
-
-//==============================================================================
 const juce::String EffectsPluginProcessor::getName() const
 {
     return "NEL-ScapeSpace";
 }
-
 bool EffectsPluginProcessor::acceptsMidi() const
 {
     return false;
 }
-
 bool EffectsPluginProcessor::producesMidi() const
 {
     return false;
 }
-
 bool EffectsPluginProcessor::isMidiEffect() const
 {
     return false;
 }
-
 double EffectsPluginProcessor::getTailLengthSeconds() const
 {
     return 3.0;
 }
-
-//==============================================================================
 int EffectsPluginProcessor::getNumPrograms()
 {
     return 1; // NB: some hosts don't cope very well if you tell them there are 0 programs,
               // so this should be at least 1, even if you're not really implementing programs.
 }
-
 int EffectsPluginProcessor::getCurrentProgram()
 {
     return 0;
 }
-
 void EffectsPluginProcessor::setCurrentProgram(int /* index */) {}
 const juce::String EffectsPluginProcessor::getProgramName(int /* index */)
 {
     return {};
 }
 void EffectsPluginProcessor::changeProgramName(int /* index */, const juce::String & /* newName */) {}
-
-//==============================================================================
+//▮▮▮▮▮▮juce▮▮▮▮▮▮elem▮▮▮▮▮▮realtime ▮▮▮▮▮▮
 void EffectsPluginProcessor::prepareToPlay(double sampleRate, int samplesPerBlock)
 {
     // Some hosts call `prepareToPlay` on the real-time thread, some call it on the main thread.
@@ -770,18 +761,11 @@ void EffectsPluginProcessor::prepareToPlay(double sampleRate, int samplesPerBloc
     // Now that the environment is set up, push our current state
     triggerAsyncUpdate();
 }
-
 void EffectsPluginProcessor::releaseResources()
 {
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
 }
-
-bool EffectsPluginProcessor::isBusesLayoutSupported(const AudioProcessor::BusesLayout &layouts) const
-{
-    return true;
-}
-
 void EffectsPluginProcessor::processBlock(juce::AudioBuffer<float> &buffer, juce::MidiBuffer & /* midiMessages */)
 {
     // If the license is invalid, we clear the buffer and return
@@ -818,7 +802,6 @@ void EffectsPluginProcessor::processBlock(juce::AudioBuffer<float> &buffer, juce
         triggerAsyncUpdate();
     }
 }
-
 void EffectsPluginProcessor::parameterValueChanged(int parameterIndex, float newValue)
 {
     // Mark the updated parameter value in the dirty list
@@ -827,14 +810,13 @@ void EffectsPluginProcessor::parameterValueChanged(int parameterIndex, float new
     readout.store({newValue, true});
     triggerAsyncUpdate();
 }
-
 void EffectsPluginProcessor::parameterGestureChanged(int, bool)
 {
     // Not implemented
 }
 
 //==============================================================================
-// INITIALISATION HAPPENS HERE
+// JS INITIALISATION HAPPENS HERE
 
 void EffectsPluginProcessor::handleAsyncUpdate()
 {
@@ -891,7 +873,6 @@ void EffectsPluginProcessor::handleAsyncUpdate()
 
     dispatchStateChange();
 }
-
 void EffectsPluginProcessor::initJavaScriptEngine()
 {
     jsContext = choc::javascript::createQuickJSContext();
@@ -973,7 +954,6 @@ void EffectsPluginProcessor::initJavaScriptEngine()
 })();
     )shim");
 }
-
 void EffectsPluginProcessor::dispatchStateChange()
 {
     // Need the double serialize here to correctly form the string script. The first
@@ -997,7 +977,6 @@ void EffectsPluginProcessor::dispatchStateChange()
         dispatchError("DSP JS:", e.what());
     }
 }
-
 void EffectsPluginProcessor::dispatchServerInfo()
 {
     // Retrieve the port number
@@ -1010,7 +989,6 @@ void EffectsPluginProcessor::dispatchServerInfo()
     const auto expr = serialize(jsFunctions::serverInfoScript, portValue, "%");
     sendJavascriptToUI(expr);
 }
-
 void EffectsPluginProcessor::dispatchError(std::string const &name, std::string const &message)
 {
     // Need the serialize here to correctly form the string script.
@@ -1031,7 +1009,6 @@ void EffectsPluginProcessor::dispatchError(std::string const &name, std::string 
     // here on the main thread
     jsContext.evaluateExpression(expr);
 }
-
 void EffectsPluginProcessor::dispatchNativeLog(std::string const &name, std::string const &message)
 {
     // Need the serialize here to correctly form the string script.
@@ -1052,7 +1029,6 @@ void EffectsPluginProcessor::dispatchNativeLog(std::string const &name, std::str
     // here on the main thread
     jsContext.evaluateExpression(expr);
 }
-
 std::optional<std::string> EffectsPluginProcessor::loadDspEntryFileContents() const
 {
     // Load and evaluate our Elementary js main file
@@ -1070,7 +1046,6 @@ std::optional<std::string> EffectsPluginProcessor::loadDspEntryFileContents() co
 
     return dspEntryFileContents;
 }
-
 bool EffectsPluginProcessor::sendJavascriptToUI(const std::string &expr) const
 {
     if (const auto *editor = dynamic_cast<WebViewEditor *>(getActiveEditor()))
@@ -1080,25 +1055,22 @@ bool EffectsPluginProcessor::sendJavascriptToUI(const std::string &expr) const
     }
     return false;
 }
-
 std::string EffectsPluginProcessor::serialize(const std::string &function, const elem::js::Object &data, const juce::String &replacementChar)
 {
     return juce::String(function).replace(replacementChar, elem::js::serialize(elem::js::serialize(data))).toStdString();
 }
-
 std::string EffectsPluginProcessor::serialize(const std::string &function, const choc::value::Value &data, const juce::String &replacementChar)
 {
     return juce::String(function).replace(replacementChar, choc::json::toString(data)).toStdString();
 }
 
-//==============================================================================
+//▮▮▮▮▮▮juce▮▮▮▮▮▮juce▮▮▮▮▮▮runtime▮▮▮▮▮▮ plugin state 
 void EffectsPluginProcessor::getStateInformation(juce::MemoryBlock &destData)
 {
     const auto serializedState = elem::js::serialize(state);
     // stash
     destData.replaceAll((void *)serializedState.c_str(), serializedState.size());
 }
-
 void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInBytes)
 {
     auto parsed = elem::js::parseJSON("{}");
@@ -1150,7 +1122,6 @@ void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInByt
         dispatchError("State Error", "Failed to restore state!");
     }
 }
-
 //==============================================================================
 // This creates new instances of the plugin..
 juce::AudioProcessor *JUCE_CALLTYPE createPluginFilter()
