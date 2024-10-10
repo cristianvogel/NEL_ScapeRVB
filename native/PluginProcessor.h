@@ -162,14 +162,13 @@ public:
     std::vector<juce::File> sortOrderForDefaultIRs(std::vector<juce::File> &);
 
     juce::FileChooser chooser;
-    void requestUserFiles(std::promise<bool> &promise);
-    void NewFunction(juce::Array<juce::File> &selected, bool &retFlag);
+    void requestUserFileSelection(std::promise<elem::js::Object> &promise);
     void updateUserFileCounts(const juce::File &file);
     void resetImpulseResponseVectors();
     std::vector<juce::File> userImpulseResponses;
     std::vector<std::vector<float>> userPeakData;
     void updateStateWithBufferData();
-        void updateStateWithFileURLs( const std::vector<juce::File> &paths);
+    void updateStateWithFileURLs( const std::vector<juce::File> &paths);
    std::vector<float> reduceAudioBuffer(const juce::AudioBuffer<float>& buffer);
 
     juce::AudioFormatManager formatManager;

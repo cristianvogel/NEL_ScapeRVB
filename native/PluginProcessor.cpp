@@ -98,36 +98,49 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
                 // this is asynchronous because we need to
                 // open a file browser on the main thread
                 // ( I had to learn how to use a promise/future mechanism )
-                std::promise<bool> promise;
-                std::future<bool> future = promise.get_future();
+                std::promise<elem::js::Object> promise;
+                std::future<elem::js::Object> future = promise.get_future();
                 // Begin the asynchronous operation
-                processor.requestUserFiles(promise);
+                processor.requestUserFileSelection(promise);
                 // Wait for the asynchronous operation to complete
-                bool gotFiles = future.get();
+                elem::js::Object gotFiles = future.get();
                 // If the operation failed, dispatch a vague error message, do nada
-                if (!gotFiles)
+                if (!gotFiles["success"])
                 {
-                    processor.dispatchError("File Error:", "Sorry, please try again.");
+                    processor.dispatchError("...", "Please try again.");
                     return;
                 }
+                // If the operation succeeded, we can proceed
+                auto files = gotFiles["files"].getArray();
                 // We should have received a high pass cutoff frequency choice as value with this key,
                 // or at least have it initialised to something sensible
                 processor.userCutoffChoice = int((elem::js::Number)value);
-                // let's proceed to load and process ( hopefullly ) AUDIO FILES into the realtime VFS
+                // Now load and process ( hopefullly ) AUDIO FILES into the realtime VFS
                 // and dispatch the file URLs to the front end
-                for (int i = 0; i < 4; i++)
+                int i = 0;
+                for ( const auto fileValue : files)
                 {
-                    auto filePath = processor.userImpulseResponses[i];
-                    if (filePath.existsAsFile())
+                    auto filePath = static_cast<juce::String>(elem::js::String(fileValue));
+                    juce::File file(filePath);
+                    if (file.existsAsFile())
                     {
-                        processor.loadAudioFromFileIntoVFS(filePath, userFileCount);
+                        // keep track of the file in the processor state
+                        processor.updateUserFileCounts(file);
+                        processor.userImpulseResponses[i] = file;
+                        processor.activeImpulseResponses[i] = file; // uncertain about this.... why are there two File ref vectors?
+                        // now do the loading and processing
+                        processor.loadAudioFromFileIntoVFS(filePath, i);
+                        // and generate the reduced buffer data that will be used for plotting peaks in the View
+                        processor.updateStateWithBufferData();
                     }
-                    // then update the state with the file URLs for later recall
-                    processor.updateStateWithFileURLs(processor.userImpulseResponses);
-                    // and generate the reduced buffer data that will be used for plotting peaks in the View
-                    processor.updateStateWithBufferData();
+                    // keep track of the file count in the processor state
+                    processor.userFileCount = i;
+                    i++;
+                    if (i > 4)
+                        break;
                 }
-                continue;
+                // Finally update the state with the file URLs for the front end
+                processor.updateStateWithFileURLs(processor.userImpulseResponses);
             }
 
             /** ▮▮▮wswswsws▮▮▮▮▮▮wswswsws▮▮▮▮▮▮wswswsws▮▮▮
@@ -198,7 +211,6 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
         }
     }
 }
-
 
 //======= DETAIL =======================================================================
 EffectsPluginProcessor::EffectsPluginProcessor()
@@ -368,22 +380,28 @@ void EffectsPluginProcessor::updateStateWithFileURLs(const std::vector<juce::Fil
     }
     state.insert_or_assign(USER_FILE_URLS, elem::js::Value(fileURLs));
 }
-void EffectsPluginProcessor::requestUserFiles(std::promise<bool> &promise)
+void EffectsPluginProcessor::requestUserFileSelection(std::promise<elem::js::Object> &promise)
 {
     juce::MessageManager::callAsync([this, &promise]()
                                     {
+    
     auto browsed = chooser.browseForMultipleFilesToOpen( nullptr );
+    elem::js::Object result;
 
-    if (!browsed) { promise.set_value(false); return; }
+    result.insert_or_assign("success", elem::js::Value(browsed));
 
     juce::Array<juce::File> selected ( chooser.getResults() );
+    elem::js::Array filesArray;
+
+    // Convert each juce::File to elem::js::Value and add to filesArray
+    for (const auto& file : selected)
+    {
+        filesArray.push_back(elem::js::Value(file.getFullPathName().toStdString()));
+    }
+    result.insert_or_assign("files", filesArray);
+
     // add each valid selected file to the userImpulseResponses vector
     // should be < 10MB and WAV or FLAC to fill the current slot in the IR vector
-
-    if ( selected.size() == 0 || selected.size() > 4 ) {
-                    dispatchNativeLog("File Error:", "Select 4 audio files.");                 
-        promise.set_value(false); return;
-    }
 
     for (juce::File &file : selected) 
     {                  
@@ -391,25 +409,18 @@ void EffectsPluginProcessor::requestUserFiles(std::promise<bool> &promise)
          if (!validExtension)
                         {
                             dispatchNativeLog("File Error:", "Only WAV or FLAC audio formats supported.");
-                            promise.set_value(false); return;
+                            result.insert_or_assign("success", elem::js::Value(false));
+                            promise.set_value( result ); return;
                         }
         if ( file.getSize() > juce::int64(10 * 1024 * 1024) ) 
                         {
                             dispatchNativeLog("File Error:", "A file size exceeds 10MB limit.");
-                            promise.set_value(false); return;
+                            result.insert_or_assign("success", elem::js::Value(false));
+                            promise.set_value( result ); return;
                         }
     }
-            // *** THIS is where we keep track of the user file count globally 
-           //  *** from the file picker async operation,
-          // *** unless we are restoring state, which is handled in
-         // *** the setStateInformation() function
-    for (juce::File &file : selected)
-    {
-        if (file.existsAsFile()) {
-            updateUserFileCounts( file );
-        }
-    }
-    promise.set_value(true); });
+    
+    promise.set_value( result ); });
 }
 void EffectsPluginProcessor::updateUserFileCounts(const juce::File &file)
 {
