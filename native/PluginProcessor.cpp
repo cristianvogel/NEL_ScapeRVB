@@ -75,6 +75,11 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
     std::string messageStr(message);
     // Deserialize the message
     auto parsed = elem::js::parseJSON(messageStr);
+    if (parsed.isNull() || parsed.isUndefined())
+    {
+        processor.dispatchError("WS Error:", "Invalid JSON received.");
+        return;
+    }
     // Valid JSON-like object will have key-value pairs
     if (parsed.isObject())
     {
@@ -110,16 +115,19 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
                 processor.userCutoffChoice = int((elem::js::Number)value);
                 // let's proceed to load and process ( hopefullly ) AUDIO FILES into the realtime VFS
                 // and dispatch the file URLs to the front end
-               for ( int i = 0; i < 4; i++ ) {          
+                for (int i = 0; i < 4; i++)
+                {
                     auto filePath = processor.userImpulseResponses[i];
                     if (filePath.existsAsFile())
                     {
                         processor.loadAudioFromFileIntoVFS(filePath, userFileCount);
                     }
-                // then update the state with the file URLs for later recall
-                processor.updateStateWithFileURLs( processor.userImpulseResponses );
-                // and generate the reduced buffer data that will be used for plotting peaks in the View
-                processor.updateStateWithBufferData();
+                    // then update the state with the file URLs for later recall
+                    processor.updateStateWithFileURLs(processor.userImpulseResponses);
+                    // and generate the reduced buffer data that will be used for plotting peaks in the View
+                    processor.updateStateWithBufferData();
+                }
+                continue;
             }
 
             /** ▮▮▮wswswsws▮▮▮▮▮▮wswswsws▮▮▮▮▮▮wswswsws▮▮▮
@@ -187,10 +195,10 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
                 }
                 processor.editor->setParameterValue(key, paramValue);
             }
-            }
         }
     }
 }
+
 
 //======= DETAIL =======================================================================
 EffectsPluginProcessor::EffectsPluginProcessor()
@@ -405,7 +413,8 @@ void EffectsPluginProcessor::requestUserFiles(std::promise<bool> &promise)
 }
 void EffectsPluginProcessor::updateUserFileCounts(const juce::File &file)
 {
-    if (userFileCount == 4) {
+    if (userFileCount == 4)
+    {
         resetImpulseResponseVectors();
     }
     userImpulseResponses.at(userFileCount) = file;
@@ -511,8 +520,8 @@ void EffectsPluginProcessor::inspectVFS()
 }
 std::vector<float> EffectsPluginProcessor::reduceAudioBuffer(const juce::AudioBuffer<float> &buffer)
 {
-        // This function reduces the audio buffer to a smaller size for plotting as peaks 
-       // in the front end. The buffer is strided by an int factor to reduce the size.
+    // This function reduces the audio buffer to a smaller size for plotting as peaks
+    // in the front end. The buffer is strided by an int factor to reduce the size.
     int numSamples = buffer.getNumSamples();
     // Compute the stride as a factor of the number of samples
     int stride = 96;
@@ -830,7 +839,7 @@ void EffectsPluginProcessor::handleAsyncUpdate()
                                   { return std::make_shared<ConvolverNode>(id, sampleRate, blockSize); });
 
         // Add impulse responses to the virtual file system
-            resetImpulseResponseVectors(); // <-- TODO: we need to check if some stashed responses are available
+        resetImpulseResponseVectors(); // <-- TODO: we need to check if some stashed responses are available
         activeImpulseResponses = loadDefaultIRs();
         // check if userImpulseResponses has been sized
         if (userImpulseResponses.size() == 0)
@@ -1141,6 +1150,7 @@ void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInByt
                     userPeakData.push_back(monoChannelData);
                 }
             }
+            // TODO: What if the user has moved files around or deleted them?
             else if (key == USER_FILE_URLS)
             {
                 auto parsedURLs = elem::js::parseJSON(value.toString()).getArray();

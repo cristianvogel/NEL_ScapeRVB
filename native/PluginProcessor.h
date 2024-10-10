@@ -112,7 +112,7 @@ private:
     std::string MAIN_DSP_JS_FILE = "dsp.main.js";
     std::string MAIN_PATCH_JS_FILE = "patch.main.js";
     std::string SAMPLE_RATE_PROPERTY = "sampleRate";
-    std::string PERSISTED_STATE_KEY = "hostState";
+    std::string PERSISTED_STATE_KEY = "NEL_STATE";
     std::string NATIVE_MESSAGE_FUNCTION_NAME = "__postNativeMessage__";
     std::string LOG_FUNCTION_NAME = "__log__";
     std::string WS_RESPONSE_KEY = "NEL_STATE";

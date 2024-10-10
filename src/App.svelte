@@ -71,11 +71,7 @@
     }
   });
 
-  $effect(() => {
-    if (VFSKeys.count > 4) {
-    //  updateUIwithUserIRs();
-    }
-  });
+
 
 
 </script>
