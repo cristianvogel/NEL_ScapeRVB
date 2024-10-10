@@ -3526,7 +3526,6 @@
       const userPathStem = `USER${currentSlot}`;
       User_IR_Map.set(DEFAULT_IR_SLOTNAMES[currentSlot], { pathStem: userPathStem, index: currentSlot, att: 0.95 });
     }
-    console.log("User IR Map", User_IR_Map.entries());
   };
   globalThis.__receiveHydrationData__ = (data) => {
     const payload = JSON.parse(data);

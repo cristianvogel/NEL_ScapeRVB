@@ -6,7 +6,7 @@
 
 //==== static defs
 elem::js::Object EffectsPluginProcessor::userData;
-int EffectsPluginProcessor::userFileCount = 0;
+int EffectsPluginProcessor::currentUserSlot = 0;
 
 //======= HELPER ==============================
 // A helper for locating bundled asset files
@@ -117,8 +117,8 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
                 processor.userCutoffChoice = int((elem::js::Number)value);
                 // Now load and process ( hopefullly ) AUDIO FILES into the realtime VFS
                 // and dispatch the file URLs to the front end
-                int i = 0;
-                for ( const auto fileValue : files)
+
+                for (const auto fileValue : files)
                 {
                     auto filePath = static_cast<juce::String>(elem::js::String(fileValue));
                     juce::File file(filePath);
@@ -126,21 +126,24 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
                     {
                         // keep track of the file in the processor state
                         processor.updateUserFileCounts(file);
-                        processor.userImpulseResponses[i] = file;
-                        processor.activeImpulseResponses[i] = file; // uncertain about this.... why are there two File ref vectors?
+                        processor.userImpulseResponses[currentUserSlot] = file;
+                        processor.activeImpulseResponses[currentUserSlot] = file; // uncertain about this.... why are there two File ref vectors?
                         // now do the loading and processing
-                        processor.loadAudioFromFileIntoVFS(filePath, i);
+                        processor.loadAudioFromFileIntoVFS(filePath, currentUserSlot);
                         // and generate the reduced buffer data that will be used for plotting peaks in the View
-                        processor.updateStateWithBufferData();
+                        processor.updateStateWithPeaksData();
+                        processor.updateStateWithFilename(file);
+                        // keep track of the file count in the processor state
+                        if (currentUserSlot == 3)
+                        {
+                            break;
+                        }
+                        else
+                        {
+                            currentUserSlot++;
+                        }
                     }
-                    // keep track of the file count in the processor state
-                    processor.userFileCount = i;
-                    i++;
-                    if (i > 4)
-                        break;
                 }
-                // Finally update the state with the file URLs for the front end
-                processor.updateStateWithFileURLs(processor.userImpulseResponses);
             }
 
             /** ▮▮▮wswswsws▮▮▮▮▮▮wswswsws▮▮▮▮▮▮wswswsws▮▮▮
@@ -151,7 +154,7 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
             {
                 auto state = processor.state;
                 auto stateKey = processor.WS_RESPONSE_KEY;
-                auto peaksKey = processor.USER_PEAKS_KEY;
+                auto peaksKey = processor.PERSISTED_USER_PEAKS;
 
                 // Create a new JSON-like object
                 elem::js::Object wrappedState;
@@ -352,7 +355,12 @@ std::vector<juce::File> EffectsPluginProcessor::sortOrderForDefaultIRs(std::vect
     return impulseResponses;
 }
 //========================= Handle User IR Files & Virtual File System ===================================
-void EffectsPluginProcessor::updateStateWithBufferData()
+
+// the peaks data is a vector of vectors of floats
+// each vector of floats is a mono channel of the audio file
+// and is pushed into the userPeakData vector during the load-in
+// see loadAudioFromFileIntoVFS() function
+void EffectsPluginProcessor::updateStateWithPeaksData()
 {
     // Convert userAudioData to elem::js::Array
     elem::js::Array reducedSampleDataForPlotting;
@@ -365,20 +373,14 @@ void EffectsPluginProcessor::updateStateWithBufferData()
         }
         reducedSampleDataForPlotting.push_back(channelArray);
     }
-    userData.insert_or_assign(USER_PEAKS_KEY, elem::js::Value(reducedSampleDataForPlotting));
+    userData.insert_or_assign(PERSISTED_USER_PEAKS, elem::js::Value(reducedSampleDataForPlotting));
     dispatchStateChange();
 }
-void EffectsPluginProcessor::updateStateWithFileURLs(const std::vector<juce::File> &paths)
+void EffectsPluginProcessor::updateStateWithFilename(const juce::File &file)
 {
-    // Convert the std::vector<juce::URL> to elem::js::Array
-    elem::js::Array fileURLs;
-    for (const auto &path : paths)
-    {
-        juce::File file(path);
-        auto localfileURL = juce::URL(file.withFileExtension("")).getFileName();
-        fileURLs.push_back(elem::js::Value(localfileURL.toStdString()));
-    }
-    state.insert_or_assign(USER_FILE_URLS, elem::js::Value(fileURLs));
+    auto localfileURL = juce::URL(file.withFileExtension("")).getFileName();
+    userIRFilenames.push_back(elem::js::Value(localfileURL.toStdString()));
+    state.insert_or_assign(PERSISTED_USER_FILE_URLS, elem::js::Value(userIRFilenames));
 }
 void EffectsPluginProcessor::requestUserFileSelection(std::promise<elem::js::Object> &promise)
 {
@@ -424,18 +426,18 @@ void EffectsPluginProcessor::requestUserFileSelection(std::promise<elem::js::Obj
 }
 void EffectsPluginProcessor::updateUserFileCounts(const juce::File &file)
 {
-    if (userFileCount == 4)
+    if (currentUserSlot > 3)
     {
         resetImpulseResponseVectors();
     }
-    userImpulseResponses.at(userFileCount) = file;
-    activeImpulseResponses.at(userFileCount) = file;
+    userImpulseResponses.at(currentUserSlot) = file;
+    activeImpulseResponses.at(currentUserSlot) = file;
     // increment the global user file count
-    userFileCount++;
+    currentUserSlot++;
 }
 void EffectsPluginProcessor::resetImpulseResponseVectors()
 {
-    userFileCount = 0;
+    currentUserSlot = 0;
     userImpulseResponses.clear();
     userImpulseResponses.resize(4); // Ensure the vector is properly sized
     activeImpulseResponses.clear();
@@ -850,17 +852,15 @@ void EffectsPluginProcessor::handleAsyncUpdate()
                                   { return std::make_shared<ConvolverNode>(id, sampleRate, blockSize); });
 
         // Add impulse responses to the virtual file system
-        resetImpulseResponseVectors(); // <-- TODO: we need to check if some stashed responses are available
         activeImpulseResponses = loadDefaultIRs();
-        // check if userImpulseResponses has been sized
-        if (userImpulseResponses.size() == 0)
-        {
-            userImpulseResponses = activeImpulseResponses;
-        }
         // Add the default impulse responses to the virtual file system
         resgisterDefaultImpulseResponsesToVFS(activeImpulseResponses);
-        // Update the front end with the paths of the first channel of each default IR
-        updateStateWithFileURLs({activeImpulseResponses[0], activeImpulseResponses[2], activeImpulseResponses[4], activeImpulseResponses[6]});
+        // Update the front end with names derived from the VFS path for first channel of each default IR
+        auto files = {activeImpulseResponses[0], activeImpulseResponses[2], activeImpulseResponses[4], activeImpulseResponses[6]};
+        for (const auto &file : files)
+        {
+            updateStateWithFilename(file);
+        }
         // Værsgo!
         initJavaScriptEngine();
         runtimeSwapRequired.store(false);
@@ -984,7 +984,7 @@ void EffectsPluginProcessor::dispatchStateChange()
     // serialize produces the payload we want, the second serialize ensures we can replace
     // the % character in the above block and produce a valid javascript expression.
     auto currentStateMap = state;
-    currentStateMap.insert_or_assign(SAMPLE_RATE_PROPERTY, lastKnownSampleRate);
+    currentStateMap.insert_or_assign(SAMPLE_RATE_KEY, lastKnownSampleRate);
     const auto expr = serialize(jsFunctions::dispatchScript, currentStateMap);
     // First we try to dispatch to the UI if it's available, because running this step will
     // just involve placing a message in a queue.
@@ -1113,8 +1113,8 @@ std::string EffectsPluginProcessor::serialize(const std::string &function, const
 void EffectsPluginProcessor::getStateInformation(juce::MemoryBlock &destData)
 {
     auto dataToPersist = elem::js::Object();
-    dataToPersist.insert_or_assign(PERSISTED_STATE_KEY, elem::js::Value(state));
-    dataToPersist.insert_or_assign(USER_PEAKS_KEY, elem::js::Value(userData[USER_PEAKS_KEY]));
+    dataToPersist.insert_or_assign(PERSISTED_HOST_PARAMETERS, elem::js::Value(state));
+    dataToPersist.insert_or_assign(PERSISTED_USER_PEAKS, elem::js::Value(userData[PERSISTED_USER_PEAKS]));
 
     const auto serialized = elem::js::serialize(dataToPersist);
 
@@ -1129,6 +1129,7 @@ void EffectsPluginProcessor::getStateInformation(juce::MemoryBlock &destData)
 // ▮▮▮▮▮▮juce▮▮▮▮▮▮ plugin state
 void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInBytes)
 {
+
     auto parsed = elem::js::parseJSON("{}");
     const auto jsonString = std::string(static_cast<const char *>(data), sizeInBytes);
     try
@@ -1136,18 +1137,22 @@ void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInByt
         parsed = elem::js::parseJSON(jsonString);
         auto persistedData = parsed.getObject();
         auto hostState = state;
+
+        // reset all the user and default IR settings
+        // before restoring the state
         resetImpulseResponseVectors();
 
         for (auto &[key, value] : persistedData)
         {
-            if (key == PERSISTED_STATE_KEY)
+            if (key == PERSISTED_HOST_PARAMETERS)
             {
                 for (auto &[paramId, setting] : value.getObject())
                 {
                     hostState.insert_or_assign(paramId, setting);
+                    dispatchNativeLog("Restoring:", "Host parameter " + paramId + " to " + elem::js::serialize(setting));
                 }
             }
-            else if (key == USER_PEAKS_KEY)
+            else if (key == PERSISTED_USER_PEAKS)
             {
                 auto parsedPeaks = value.getArray();
                 for (const auto &channel : parsedPeaks)
@@ -1161,17 +1166,7 @@ void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInByt
                     userPeakData.push_back(monoChannelData);
                 }
             }
-            // TODO: What if the user has moved files around or deleted them?
-            else if (key == USER_FILE_URLS)
-            {
-                auto parsedURLs = elem::js::parseJSON(value.toString()).getArray();
-                for (const auto &url : parsedURLs)
-                {
-                    auto fileURL = juce::URL(static_cast<juce::String>(url.toString()));
-                    userImpulseResponses.push_back(fileURL.getLocalFile());
-                    updateUserFileCounts(fileURL.getLocalFile());
-                }
-            }
+
             dispatchStateChange();
         }
     }
