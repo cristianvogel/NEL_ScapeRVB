@@ -8,8 +8,8 @@
 elem::js::Object EffectsPluginProcessor::userData;
 int EffectsPluginProcessor::userFileCount = 0;
 
-//==============================================================================
-// A quick helper for locating bundled asset files
+//======= HELPER ==============================
+// A helper for locating bundled asset files
 juce::File getAssetsDirectory()
 {
 #if JUCE_MAC
@@ -26,6 +26,27 @@ juce::File getAssetsDirectory()
 
     return assetsDir;
 }
+
+//======== HELPER =============================
+// a helper to locat persistent data directory
+juce::File getPersistentDataDirectory()
+{
+    juce::File dataDir;
+
+#if JUCE_MAC || JUCE_WINDOWS
+    dataDir = juce::File::getSpecialLocation(juce::File::userApplicationDataDirectory)
+                  .getChildFile("NeverEngineLabs");
+#else
+#error "We only support Mac and Windows here yet."
+#endif
+
+    // Create the directory if it doesn't exist
+    if (!dataDir.exists())
+        dataDir.createDirectory();
+
+    return dataDir;
+}
+
 // ▮▮▮wswswsws▮▮▮▮▮▮wswswsws▮▮▮▮▮▮wswswsws▮▮▮▮▮▮wswswsws▮▮▮▮▮▮wswswsws▮▮▮▮▮▮wswswsws
 /// @brief  Constructor for the ViewClientInstance WebSocket service
 /// that will handle messages from the front end
@@ -36,22 +57,18 @@ EffectsPluginProcessor::ViewClientInstance::ViewClientInstance(EffectsPluginProc
     static int clientCount = 0;
     clientID = ++clientCount;
 }
-
 EffectsPluginProcessor::ViewClientInstance::~ViewClientInstance()
 {
     clientID = 0;
 }
-
 choc::network::HTTPContent EffectsPluginProcessor::ViewClientInstance::getHTTPContent(std::string_view path)
 {
     // not using HTML
     return {};
 }
-
 void EffectsPluginProcessor::ViewClientInstance::upgradedToWebSocket(std::string_view path)
 {
 }
-
 void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::string_view message)
 {
     // Convert std::string_view to std::string
@@ -93,12 +110,14 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
                 processor.userCutoffChoice = int((elem::js::Number)value);
                 // let's proceed to load and process ( hopefullly ) AUDIO FILES into the realtime VFS
                 // and dispatch the file URLs to the front end
-                for (const juce::File &filePath : processor.userImpulseResponses)
-                {
-                    processor.loadAudioFromFileIntoVFS(filePath, userFileCount);
-                }
+               for ( int i = 0; i < 4; i++ ) {          
+                    auto filePath = processor.userImpulseResponses[i];
+                    if (filePath.existsAsFile())
+                    {
+                        processor.loadAudioFromFileIntoVFS(filePath, userFileCount);
+                    }
                 // then update the state with the file URLs for later recall
-                processor.updateStateWithFileURLs(processor.userImpulseResponses);
+                processor.updateStateWithFileURLs( processor.userImpulseResponses );
                 // and generate the reduced buffer data that will be used for plotting peaks in the View
                 processor.updateStateWithBufferData();
             }
@@ -168,6 +187,7 @@ void EffectsPluginProcessor::ViewClientInstance::handleWebSocketMessage(std::str
                 }
                 processor.editor->setParameterValue(key, paramValue);
             }
+            }
         }
     }
 }
@@ -223,7 +243,6 @@ EffectsPluginProcessor::EffectsPluginProcessor()
 
     serverPort = server->getPort();
 }
-
 // Destructor
 EffectsPluginProcessor::~EffectsPluginProcessor()
 {
@@ -237,9 +256,8 @@ EffectsPluginProcessor::~EffectsPluginProcessor()
         p->removeListener(this);
     };
 }
-
 //==============================================================================
-// Load the impulse responses from the assets directory
+// At initialisation, handle registering each default impulse response to the runtime virtual file system
 std::vector<juce::File> EffectsPluginProcessor::loadDefaultIRs()
 {
     std::vector<juce::File> impulseResponses = {};
@@ -257,12 +275,9 @@ std::vector<juce::File> EffectsPluginProcessor::loadDefaultIRs()
                 impulseResponses.push_back(file);
         }
     }
-
     return sortOrderForDefaultIRs(impulseResponses);
 }
-//==============================================================================
-// At initialisation, add each default impulse response to the runtime virtual file system
-void EffectsPluginProcessor::addFolderOfIRsToVFS(std::vector<juce::File> &impulseResponses)
+void EffectsPluginProcessor::resgisterDefaultImpulseResponsesToVFS(std::vector<juce::File> &impulseResponses)
 {
     for (auto &file : impulseResponses)
     {
@@ -276,19 +291,15 @@ void EffectsPluginProcessor::addFolderOfIRsToVFS(std::vector<juce::File> &impuls
         auto numSamples = buffer.getNumSamples();
         // fade in, less ER energy from the IR, as we have a whole ER engine already
         buffer.applyGainRamp(0, numSamples, 0.65, 1);
-        // buffer.copyFromWithRamp(1, 0, buffer.getReadPointer(0), buffer.getNumSamples(), 0.2, 1);
-        // add the gain ramped impulse response to the virtual file system
-
+        // normalise the impulse response
         nel::normaliseImpulseResponse(buffer, 0.8414); // -1.5 db
-
-        // stash one channel of the normalised buffer data for the UI
-        userPeakData.push_back(reduceAudioBuffer(buffer));
-
+                                                       // add the gain ramped impulse response to the virtual file system
+        // ▮▮▮elem▮▮▮runtime▮▮▮
         runtime->updateSharedResourceMap(
             name,
             buffer.getReadPointer(0),
             numSamples);
-        // Creative touch: Reverse the IR and copy that to the other channel
+        // Magic Sauce: Reverse the IR and copy that to the other channel
         // Get the reverse from a little way in too, so its less draggy
         // so its easy to swap into in realtime
         buffer.reverse(0, numSamples * 0.75);
@@ -301,32 +312,26 @@ void EffectsPluginProcessor::addFolderOfIRsToVFS(std::vector<juce::File> &impuls
     }
     inspectVFS();
 }
-
 std::vector<juce::File> EffectsPluginProcessor::sortOrderForDefaultIRs(std::vector<juce::File> &impulseResponses)
 {
     // Define the desired order of keywords
     std::vector<std::string> order = {"LIGHT", "SURFACE", "TEMPLE", "DEEPNESS"};
-
     // Sort the files based on the specified order of keywords
-    std::sort(impulseResponses.begin(), impulseResponses.end(), [&order](const juce::File &a, const juce::File &b)
+    std::sort(impulseResponses.begin(),
+              impulseResponses.end(),
+              [&order](const juce::File &a, const juce::File &b)
               {
-        auto aName = a.getFileNameWithoutExtension().toStdString();
-        auto bName = b.getFileNameWithoutExtension().toStdString();
-
-        auto aPos = std::find_if(order.begin(), order.end(), [&aName](const std::string& keyword) {
-            return aName.find(keyword) != std::string::npos;
-        });
-
-        auto bPos = std::find_if(order.begin(), order.end(), [&bName](const std::string& keyword) {
-            return bName.find(keyword) != std::string::npos;
-        });
-
-        return aPos < bPos; });
-
+                  auto aName = a.getFileNameWithoutExtension().toStdString();
+                  auto bName = b.getFileNameWithoutExtension().toStdString();
+                  auto aPos = std::find_if(order.begin(), order.end(), [&aName](const std::string &keyword)
+                                           { return aName.find(keyword) != std::string::npos; });
+                  auto bPos = std::find_if(order.begin(), order.end(), [&bName](const std::string &keyword)
+                                           { return bName.find(keyword) != std::string::npos; });
+                  return aPos < bPos;
+              });
     return impulseResponses;
 }
-
-//========================= UpdateStateWithAudioFileData
+//========================= Handle User IR Files & Virtual File System ===================================
 void EffectsPluginProcessor::updateStateWithBufferData()
 {
     // Convert userAudioData to elem::js::Array
@@ -343,7 +348,6 @@ void EffectsPluginProcessor::updateStateWithBufferData()
     userData.insert_or_assign(USER_PEAKS_KEY, elem::js::Value(reducedSampleDataForPlotting));
     dispatchStateChange();
 }
-
 void EffectsPluginProcessor::updateStateWithFileURLs(const std::vector<juce::File> &paths)
 {
     // Convert the std::vector<juce::URL> to elem::js::Array
@@ -356,7 +360,6 @@ void EffectsPluginProcessor::updateStateWithFileURLs(const std::vector<juce::Fil
     }
     state.insert_or_assign(USER_FILE_URLS, elem::js::Value(fileURLs));
 }
-
 void EffectsPluginProcessor::requestUserFiles(std::promise<bool> &promise)
 {
     juce::MessageManager::callAsync([this, &promise]()
@@ -370,7 +373,7 @@ void EffectsPluginProcessor::requestUserFiles(std::promise<bool> &promise)
     // should be < 10MB and WAV or FLAC to fill the current slot in the IR vector
 
     if ( selected.size() == 0 || selected.size() > 4 ) {
-                           dispatchNativeLog("File Error:", "Select 4 audio files.");                 
+                    dispatchNativeLog("File Error:", "Select 4 audio files.");                 
         promise.set_value(false); return;
     }
 
@@ -382,44 +385,42 @@ void EffectsPluginProcessor::requestUserFiles(std::promise<bool> &promise)
                             dispatchNativeLog("File Error:", "Only WAV or FLAC audio formats supported.");
                             promise.set_value(false); return;
                         }
+        if ( file.getSize() > juce::int64(10 * 1024 * 1024) ) 
+                        {
+                            dispatchNativeLog("File Error:", "A file size exceeds 10MB limit.");
+                            promise.set_value(false); return;
+                        }
     }
-    
-    // if ( userImpulseResponses.size() > 4 || userImpulseResponses.size() == 0 )
-    // {
-    //     resetImpulseResponseVectors();
-    // }
-
+            // *** THIS is where we keep track of the user file count globally 
+           //  *** from the file picker async operation,
+          // *** unless we are restoring state, which is handled in
+         // *** the setStateInformation() function
     for (juce::File &file : selected)
     {
-        if ( file.getSize() > juce::int64(10 * 1024 * 1024) ) {
-            dispatchNativeLog("File Error:", "A file size exceeds 10MB limit.");
-            promise.set_value(false); return;
-        }
-        else
-        {   
-            // ************ THIS is where we keep track of the user file count globally ************
-            updateUserFileCounts(file);
+        if (file.existsAsFile()) {
+            updateUserFileCounts( file );
         }
     }
- 
-
     promise.set_value(true); });
 }
-void EffectsPluginProcessor::updateUserFileCounts(juce::File & file)
+void EffectsPluginProcessor::updateUserFileCounts(const juce::File &file)
 {
-            if (userFileCount == 4) userFileCount = 0; 
-            userImpulseResponses.at(userFileCount) = file;
-            activeImpulseResponses.at(userFileCount) = file;
-            userFileCount++;
+    if (userFileCount == 4) {
+        resetImpulseResponseVectors();
+    }
+    userImpulseResponses.at(userFileCount) = file;
+    activeImpulseResponses.at(userFileCount) = file;
+    // increment the global user file count
+    userFileCount++;
 }
 void EffectsPluginProcessor::resetImpulseResponseVectors()
 {
+    userFileCount = 0;
     userImpulseResponses.clear();
     userImpulseResponses.resize(4); // Ensure the vector is properly sized
     activeImpulseResponses.clear();
     activeImpulseResponses.resize(4); // Ensure the vector is properly sized
 }
-
 void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotIndex)
 {
     auto buffer = juce::AudioBuffer<float>();
@@ -427,12 +428,11 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotI
 
     if (reader == nullptr)
     {
+        dispatchError("File error:", "Could not read " + file.getFileName().toStdString());
         return;
     }
 
-    // Retrieve the audio file characteristics
     const int bitsPerSample = reader->bitsPerSample;
-    // const bool isLittleEndian = true; // always a WAV file
     const auto numChannels = reader->numChannels;
     const bool isFloatingPoint = reader->usesFloatingPointData;
 
@@ -444,10 +444,10 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotI
         return;
     }
 
-    for (int i = 0; i < numChannels; ++i)
+    for (int channel = 0; channel < numChannels; ++channel)
     {
         // source files are one channel, but we cunningly setup the second channel for a derived 'shaped' version
-        auto name = "USER" + std::to_string(slotIndex) + "_" + std::to_string(i);
+        auto name = "USER" + std::to_string(slotIndex) + "_" + std::to_string(channel);
         // establish the reader for the file
         reader->read(&buffer, 0, reader->lengthInSamples, 0, true, false);
         // work with the buffer
@@ -467,7 +467,7 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotI
         // normalise the result
         nel::normaliseImpulseResponse(buffer, 0.8414); // -1.5 db
         // stash one channel of the normalised buffer data for the UI
-        if (i == 0)
+        if (channel == 0)
             userPeakData.push_back(reduceAudioBuffer(buffer));
         // do a little fade in, less ER energy from the IR, as we have a whole ER engine already
         buffer.applyGainRamp(0, numSamples, 0.808, 1);
@@ -477,22 +477,22 @@ void EffectsPluginProcessor::loadAudioFromFileIntoVFS(juce::File file, int slotI
             name,
             buffer.getReadPointer(0),
             numSamples);
-        // Reverse the IR and copy that to the other channel
-        buffer.reverse(0, numSamples * 0.75);
-        buffer.copyFrom(1, 0, buffer.getReadPointer(0), numSamples * 0.75);
+        // shorten the IR a bit, then reverse it and copy that to the other channel
+        auto shorterLengthForReverseIR = numSamples * 0.85;
+        buffer.reverse(0, shorterLengthForReverseIR);
+        buffer.copyFrom(1, 0, buffer.getReadPointer(0), shorterLengthForReverseIR);
         // Finally add the reverse impulse response to the virtual file system
         // ▮▮▮elem▮▮▮▮▮▮runtime▮▮▮▮▮▮
         runtime->updateSharedResourceMap(
             REVERSE_BUFFER_PREFIX + name,
             buffer.getReadPointer(1),
-            numSamples * 0.75);
+            shorterLengthForReverseIR);
     }
     // IMPORTANT: delete the reader to avoid memory leaks
     delete reader;
     // notify the front end of the updated VFS keys
     inspectVFS();
 }
-
 void EffectsPluginProcessor::inspectVFS()
 {
     auto vfs = runtime->getSharedResourceMapKeys();
@@ -509,11 +509,11 @@ void EffectsPluginProcessor::inspectVFS()
     sendJavascriptToUI(expr);
     jsContext.evaluateExpression(expr);
 }
-//=============== Create peaks data for the UI
 std::vector<float> EffectsPluginProcessor::reduceAudioBuffer(const juce::AudioBuffer<float> &buffer)
 {
+        // This function reduces the audio buffer to a smaller size for plotting as peaks 
+       // in the front end. The buffer is strided by an int factor to reduce the size.
     int numSamples = buffer.getNumSamples();
-
     // Compute the stride as a factor of the number of samples
     int stride = 96;
     if (stride < 1)
@@ -740,7 +740,7 @@ const juce::String EffectsPluginProcessor::getProgramName(int /* index */)
     return {};
 }
 void EffectsPluginProcessor::changeProgramName(int /* index */, const juce::String & /* newName */) {}
-//▮▮▮▮▮▮juce▮▮▮▮▮▮elem▮▮▮▮▮▮realtime ▮▮▮▮▮▮
+// ▮▮▮▮▮▮juce▮▮▮▮▮▮elem▮▮▮▮▮▮realtime ▮▮▮▮▮▮
 void EffectsPluginProcessor::prepareToPlay(double sampleRate, int samplesPerBlock)
 {
     // Some hosts call `prepareToPlay` on the real-time thread, some call it on the main thread.
@@ -830,7 +830,7 @@ void EffectsPluginProcessor::handleAsyncUpdate()
                                   { return std::make_shared<ConvolverNode>(id, sampleRate, blockSize); });
 
         // Add impulse responses to the virtual file system
-        resetImpulseResponseVectors(); // <-- TODO: we need to check if some stashed responses are available
+            resetImpulseResponseVectors(); // <-- TODO: we need to check if some stashed responses are available
         activeImpulseResponses = loadDefaultIRs();
         // check if userImpulseResponses has been sized
         if (userImpulseResponses.size() == 0)
@@ -838,10 +838,10 @@ void EffectsPluginProcessor::handleAsyncUpdate()
             userImpulseResponses = activeImpulseResponses;
         }
         // Add the default impulse responses to the virtual file system
-        addFolderOfIRsToVFS(activeImpulseResponses);
+        resgisterDefaultImpulseResponsesToVFS(activeImpulseResponses);
         // Update the front end with the paths of the first channel of each default IR
         updateStateWithFileURLs({activeImpulseResponses[0], activeImpulseResponses[2], activeImpulseResponses[4], activeImpulseResponses[6]});
-
+        // Værsgo!
         initJavaScriptEngine();
         runtimeSwapRequired.store(false);
     }
@@ -873,6 +873,8 @@ void EffectsPluginProcessor::handleAsyncUpdate()
 
     dispatchStateChange();
 }
+// ▮▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮
+// ▮▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮
 void EffectsPluginProcessor::initJavaScriptEngine()
 {
     jsContext = choc::javascript::createQuickJSContext();
@@ -954,15 +956,16 @@ void EffectsPluginProcessor::initJavaScriptEngine()
 })();
     )shim");
 }
+// ▮▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮
+// Main function for dispatching state changes to the front end
 void EffectsPluginProcessor::dispatchStateChange()
 {
     // Need the double serialize here to correctly form the string script. The first
     // serialize produces the payload we want, the second serialize ensures we can replace
     // the % character in the above block and produce a valid javascript expression.
-    auto localState = state;
-    localState.insert_or_assign(SAMPLE_RATE_PROPERTY, lastKnownSampleRate);
-
-    const auto expr = serialize(jsFunctions::dispatchScript, localState);
+    auto currentStateMap = state;
+    currentStateMap.insert_or_assign(SAMPLE_RATE_PROPERTY, lastKnownSampleRate);
+    const auto expr = serialize(jsFunctions::dispatchScript, currentStateMap);
     // First we try to dispatch to the UI if it's available, because running this step will
     // just involve placing a message in a queue.
     sendJavascriptToUI(expr);
@@ -977,23 +980,31 @@ void EffectsPluginProcessor::dispatchStateChange()
         dispatchError("DSP JS:", e.what());
     }
 }
+/*▮▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮
+ * @name dispatchServerInfo
+ * @brief Dispatches the server port to the UI
+ */
 void EffectsPluginProcessor::dispatchServerInfo()
 {
     // Retrieve the port number
     serverPort = server->getPort();
-
     // Convert the port number to a choc::value::Value
     const auto portValue = choc::value::createInt32(serverPort);
-
     // Send the server port to the UI
     const auto expr = serialize(jsFunctions::serverInfoScript, portValue, "%");
     sendJavascriptToUI(expr);
 }
+/*▮▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮
+ * @name dispatchError
+ * @brief Some error reporting facilities
+ */
 void EffectsPluginProcessor::dispatchError(std::string const &name, std::string const &message)
 {
     // Need the serialize here to correctly form the string script.
-    const auto expr = juce::String(jsFunctions::errorScript).replace("@", elem::js::serialize(name)).replace("%", elem::js::serialize(message)).toStdString();
-
+    const auto expr = juce::String(jsFunctions::errorScript)
+                          .replace("@", elem::js::serialize(name))
+                          .replace("%", elem::js::serialize(message))
+                          .toStdString();
     // First we try to dispatch to the UI if it's available, because running this step will
     // just involve placing a message in a queue.
     if (!sendJavascriptToUI(expr))
@@ -1004,18 +1015,17 @@ void EffectsPluginProcessor::dispatchError(std::string const &name, std::string 
         }
         errorLogQueue.push(expr);
     }
-
     // Next we dispatch to the local engine which will evaluate any necessary JavaScript synchronously
     // here on the main thread
     jsContext.evaluateExpression(expr);
 }
+/*▮▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮
+ * @name dispatchNativeLog
+ * @brief Some logging facilities
+ */
 void EffectsPluginProcessor::dispatchNativeLog(std::string const &name, std::string const &message)
 {
-    // Need the serialize here to correctly form the string script.
     const auto expr = juce::String(jsFunctions::errorScript).replace("@", elem::js::serialize(name)).replace("%", elem::js::serialize(message)).toStdString();
-
-    // First we try to dispatch to the UI if it's available, because running this step will
-    // just involve placing a message in a queue.
     if (!sendJavascriptToUI(expr))
     {
         if (errorLogQueue.size() == MAX_ERROR_LOG_QUEUE_SIZE)
@@ -1024,11 +1034,13 @@ void EffectsPluginProcessor::dispatchNativeLog(std::string const &name, std::str
         }
         errorLogQueue.push(expr);
     }
-
-    // Next we dispatch to the local engine which will evaluate any necessary JavaScript synchronously
-    // here on the main thread
     jsContext.evaluateExpression(expr);
 }
+
+/*▮▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮
+ * @name loadDspEntryFileContents
+ * @brief load the compiled dsp main.js file
+ */
 std::optional<std::string> EffectsPluginProcessor::loadDspEntryFileContents() const
 {
     // Load and evaluate our Elementary js main file
@@ -1046,6 +1058,10 @@ std::optional<std::string> EffectsPluginProcessor::loadDspEntryFileContents() co
 
     return dspEntryFileContents;
 }
+/*▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮
+ * @name sendJavascriptToUI
+ * @brief Execute js via global function bridging
+ */
 bool EffectsPluginProcessor::sendJavascriptToUI(const std::string &expr) const
 {
     if (const auto *editor = dynamic_cast<WebViewEditor *>(getActiveEditor()))
@@ -1055,6 +1071,10 @@ bool EffectsPluginProcessor::sendJavascriptToUI(const std::string &expr) const
     }
     return false;
 }
+/*▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮
+ * @name serialize
+ * @brief Serialize data for js
+ */
 std::string EffectsPluginProcessor::serialize(const std::string &function, const elem::js::Object &data, const juce::String &replacementChar)
 {
     return juce::String(function).replace(replacementChar, elem::js::serialize(elem::js::serialize(data))).toStdString();
@@ -1064,53 +1084,73 @@ std::string EffectsPluginProcessor::serialize(const std::string &function, const
     return juce::String(function).replace(replacementChar, choc::json::toString(data)).toStdString();
 }
 
-//▮▮▮▮▮▮juce▮▮▮▮▮▮juce▮▮▮▮▮▮runtime▮▮▮▮▮▮ plugin state 
+// ▮▮▮▮▮▮juce▮▮▮▮▮▮ plugin state
+//
+//  STORE
+//  state when window closes or plugin is removed
+//
+// ▮▮▮▮▮▮juce▮▮▮▮▮▮ plugin state
 void EffectsPluginProcessor::getStateInformation(juce::MemoryBlock &destData)
 {
-    const auto serializedState = elem::js::serialize(state);
-    // stash
-    destData.replaceAll((void *)serializedState.c_str(), serializedState.size());
+    auto dataToPersist = elem::js::Object();
+    dataToPersist.insert_or_assign(PERSISTED_STATE_KEY, elem::js::Value(state));
+    dataToPersist.insert_or_assign(USER_PEAKS_KEY, elem::js::Value(userData[USER_PEAKS_KEY]));
+
+    const auto serialized = elem::js::serialize(dataToPersist);
+
+    destData.replaceAll((void *)serialized.c_str(), serialized.size());
 }
+
+// ▮▮▮▮▮▮juce▮▮▮▮▮▮ plugin state
+//
+//  RESTORE
+//  state when window opens or plugin is loaded
+//
+// ▮▮▮▮▮▮juce▮▮▮▮▮▮ plugin state
 void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInBytes)
 {
     auto parsed = elem::js::parseJSON("{}");
-    // restore the data the host stashed previously
     const auto jsonString = std::string(static_cast<const char *>(data), sizeInBytes);
-    // try to deserialise the whole stashed data string
-
     try
     {
         parsed = elem::js::parseJSON(jsonString);
-    }
-    catch (...)
-    {
-        dispatchError("Stored data error:", parsed.toString());
-    }
+        auto persistedData = parsed.getObject();
+        auto hostState = state;
+        resetImpulseResponseVectors();
 
-    // try to re-assign the local stores from the stashed data
-    try
-    {
-        auto o = parsed.getObject();
-        for (auto &[key, value] : o)
+        for (auto &[key, value] : persistedData)
         {
-            if (key != USER_FILE_URLS)
+            if (key == PERSISTED_STATE_KEY)
             {
-                if (state.count(key) > 0)
+                for (auto &[paramId, setting] : value.getObject())
                 {
-                    state.insert_or_assign(key, value);
+                    hostState.insert_or_assign(paramId, setting);
                 }
             }
-            else
+            else if (key == USER_PEAKS_KEY)
             {
-                userImpulseResponses.clear();
+                auto parsedPeaks = value.getArray();
+                for (const auto &channel : parsedPeaks)
+                {
+                    auto monoChannel = channel.getArray();
+                    std::vector<float> monoChannelData;
+                    for (const auto &sample : monoChannel)
+                    {
+                        monoChannelData.push_back(float((elem::js::Number)sample));
+                    }
+                    userPeakData.push_back(monoChannelData);
+                }
+            }
+            else if (key == USER_FILE_URLS)
+            {
                 auto parsedURLs = elem::js::parseJSON(value.toString()).getArray();
                 for (const auto &url : parsedURLs)
                 {
                     auto fileURL = juce::URL(static_cast<juce::String>(url.toString()));
                     userImpulseResponses.push_back(fileURL.getLocalFile());
+                    updateUserFileCounts(fileURL.getLocalFile());
                 }
             }
-
             dispatchStateChange();
         }
     }
@@ -1119,7 +1159,7 @@ void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInByt
     {
         // Failed to parse the incoming state, or the state we did parse was not actually
         // an object type. How you handle it is up to you.
-        dispatchError("State Error", "Failed to restore state!");
+        dispatchError("Data Error:", "Failed to restore plugin state!");
     }
 }
 //==============================================================================

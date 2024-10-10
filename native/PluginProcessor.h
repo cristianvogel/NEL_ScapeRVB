@@ -112,6 +112,7 @@ private:
     std::string MAIN_DSP_JS_FILE = "dsp.main.js";
     std::string MAIN_PATCH_JS_FILE = "patch.main.js";
     std::string SAMPLE_RATE_PROPERTY = "sampleRate";
+    std::string PERSISTED_STATE_KEY = "hostState";
     std::string NATIVE_MESSAGE_FUNCTION_NAME = "__postNativeMessage__";
     std::string LOG_FUNCTION_NAME = "__log__";
     std::string WS_RESPONSE_KEY = "NEL_STATE";
@@ -157,12 +158,13 @@ public:
     std::vector<juce::File> loadDefaultIRs();
     void inspectVFS();
     std::vector<juce::File> activeImpulseResponses;
-    void addFolderOfIRsToVFS(std::vector<juce::File> &);
+    void resgisterDefaultImpulseResponsesToVFS(std::vector<juce::File> &);
     std::vector<juce::File> sortOrderForDefaultIRs(std::vector<juce::File> &);
 
     juce::FileChooser chooser;
     void requestUserFiles(std::promise<bool> &promise);
-    void updateUserFileCounts(juce::File &file);
+    void NewFunction(juce::Array<juce::File> &selected, bool &retFlag);
+    void updateUserFileCounts(const juce::File &file);
     void resetImpulseResponseVectors();
     std::vector<juce::File> userImpulseResponses;
     std::vector<std::vector<float>> userPeakData;
