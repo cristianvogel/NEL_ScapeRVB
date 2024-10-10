@@ -163,19 +163,19 @@ public:
 
     juce::FileChooser chooser;
     void requestUserFileSelection(std::promise<elem::js::Object> &promise);
-    void updateUserFileCounts(const juce::File &file);
+    void placeUserFileIntoCurrentSlot(const juce::File &file);
     void resetImpulseResponseVectors();
     std::vector<juce::File> userImpulseResponses;
     std::vector<std::vector<float>> userPeakData;
-    elem::js::Array userIRFilenames;
+    std::vector<std::string> userIRFilenames;
     void updateStateWithPeaksData();
-    void updateStateWithFilename( const juce::File& file);
+    void updateStateWithFilenames();
    std::vector<float> reduceAudioBuffer(const juce::AudioBuffer<float>& buffer);
 
     juce::AudioFormatManager formatManager;
     // audiofile read using CHOC instead of juce :: DEPRECATING
     choc::audio::AudioFileFormatList formats;
-    void loadAudioFromFileIntoVFS(juce::File file, int index);
+    void loadAudioFromCurrentSlotIntoVFS( int slot );
     //========== Server related
     int runWebServer();
     struct ViewClientInstance : public choc::network::HTTPServer::ClientInstance
