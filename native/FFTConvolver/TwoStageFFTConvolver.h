@@ -82,6 +82,8 @@ public:
   * @brief Resets the convolver and discards the set impulse response
   */
   void reset();
+
+
   
 protected:
   /**

@@ -3,14 +3,25 @@ project(NEL_scape|space VERSION 1.01)
 
 set(TARGET_NAME "NEL_scape_space")
 set(ASSETS_DIR ${CMAKE_SOURCE_DIR}/../dist/)
-set(BUILD_VERSION "v0.4.0")
+set(BUILD_VERSION "v0.5.x")
 
 option(JUCE_ENABLE_MODULE_SOURCE_GROUPS "Enable Module Source Groups" ON)
 option(JUCE_BUILD_EXTRAS "Build JUCE Extras" OFF)
 option(ELEM_DEV_LOCALHOST "Run against localhost for static assets" OFF)
 
+option(FFTCONVOLVER_USE_SSE "Enable SSE optimizations" ON)   # watch this i have no idea what it does
+
 add_subdirectory(juce) # using the static non-submodule version
 add_subdirectory(elementary/runtime) # using the static non-submodule version
+
+# Enable CCache
+find_program(CCACHE_PROGRAM ccache)
+if(CCACHE_PROGRAM)
+    set(CMAKE_C_COMPILER_LAUNCHER ${CCACHE_PROGRAM})
+    set(CMAKE_CXX_COMPILER_LAUNCHER ${CCACHE_PROGRAM})
+endif()
+
+
 
 if(WIN32)
   set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>") # Martin's famous fix ... JUCE and plugins need this
@@ -123,6 +134,7 @@ target_sources(${TARGET_NAME}
   PRIVATE
   PluginProcessor.cpp
   WebViewEditor.cpp
+  Utilities.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/TwoStageFFTConvolver.cpp 
   ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/AudioFFT.cpp 
   ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/Utilities.cpp
@@ -149,7 +161,9 @@ target_compile_definitions(${TARGET_NAME}
   PRIVATE
   ELEM_DEV_LOCALHOST=${ELEM_DEV_LOCALHOST}
   JUCE_VST3_CAN_REPLACE_VST2=0
-  JUCE_USE_CURL=0)
+  JUCE_USE_CURL=0
+  JUCE_MODAL_LOOPS_PERMITTED=1  # Add this line to define JUCE_MODAL_LOOPS_PERMITTED
+)
 
 target_link_libraries(${TARGET_NAME}
   PRIVATE
@@ -161,10 +175,10 @@ target_link_libraries(${TARGET_NAME}
   juce::juce_audio_utils
   juce::juce_core
   juce::juce_data_structures
- # juce::juce_dsp
+  juce::juce_dsp
   juce::juce_events
  # juce::juce_graphics
- # juce::juce_gui_basics
- # juce::juce_gui_extra
+ juce::juce_gui_basics
+ juce::juce_gui_extra
   runtime
 )

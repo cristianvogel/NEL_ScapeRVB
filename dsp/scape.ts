@@ -4,15 +4,20 @@ import { DefaultIRSlotName, IRMetaData } from "../src/types";
 export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
 
 
+  const zero = el.const( {value: 0, key: 'srvb::mute' } );
+  const one = el.const( {value: 1, key: 'srvb::unity' } );
+
   const srvbBypass: ElemNode = el.sm(props.srvbBypass); 
+  const scapeMode: ElemNode = el.round( props.scapeMode );
+  const unity: ElemNode = el.select( one, one, scapeMode ); // this is a hack to force a render when the scapeMode changes
 
   ///////////////////////////////////////////
   // SCAPE DSP setup
   const responses: Map<DefaultIRSlotName, IRMetaData> = props.IRs;
-  const scapeLevel = el.sm( el.mul( el.db2gain(1.5), props.scapeLevel)); // Level of convolved output boosted here
+  const scapeLevel = el.sm( el.mul( el.db2gain(3), unity, props.scapeLevel)); // Level of convolved output boosted here
   const position = el.sm( props.scapePosition ); // nodes
   const hermiteNodes: ElemNode[] = [props.v1, props.v2, props.v3, props.v4].map(
-    (n) => el.sm(n)
+    (x) => el.smooth(el.tau2pole(0.05), x)
   ); // cast Hermite mixer as nodes
   const convolverNodes: Map<DefaultIRSlotName, ElemNode[]> = new Map();
   convolverNodes.set("SURFACE", [props.SURFACE_0, props.SURFACE_1]);
@@ -23,7 +28,9 @@ export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
   ////////////////////////////////////////////
   // SCAPE DSP functions
 
-  const zero = el.const( {value: 0, key: 'srvb::mute' } );
+
+
+
   // HERMITE vector cross fader
   function HermiteVecInterp(
     channel: number,
@@ -64,16 +71,16 @@ export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
   const getDrySource = ( channel: number ): ElemNode=> el.select( srvbBypass, zero, outputFromSRVB[channel] ) ;
   
   let yL = el.add(
-    el.mul(scapeLevel, asLeftPan( vectorProcessorPair( outputFromSRVB )[1])),    // crossed over
+    el.mul( scapeLevel, asLeftPan( vectorProcessorPair( outputFromSRVB )[1])),    // crossed over
     getDrySource(0)
   ); // crossfaded blend
   let yR = el.add(
-    el.mul(scapeLevel, asRightPan( vectorProcessorPair( outputFromSRVB )[0])), // crossed over
+    el.mul( scapeLevel, asRightPan( vectorProcessorPair( outputFromSRVB )[0])), // crossed over
     getDrySource(1) 
   ); // crossfaded blend
   
  if ( props.scapeBypass ) 
   return [ getDrySource(0), getDrySource(1) ]; // bypass  
 else
-  return [yL, yR];
+  return [  yL, yR ];
 }

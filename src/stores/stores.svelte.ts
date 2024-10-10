@@ -6,7 +6,7 @@ import { DEFAULT_IR_SLOTNAMES } from "./constants";
 
 
 /////////////////////////
-export const VFSKeys = vfsKeys( DEFAULT_IR_SLOTNAMES );
+export const VFSKeys = vfsKeys( [] );
 function vfsKeys(initial) {
   let current = $state(initial);
   return {
@@ -64,8 +64,29 @@ function controlSource_SCAPE( initial ) {
   }
 }
 
-export const GestureSource_Reverse = controlSource_scapeReverse('host');
+export const GestureSource_REVERSE = controlSource_scapeReverse('host');
 function controlSource_scapeReverse( initial ) {
+  let current = $state(initial);
+  let prev = initial ;
+  return { 
+    get current() {
+      return current;
+    } ,
+    get prev() {
+      return prev;
+    },
+    update(newValue) {
+      prev = $state.snapshot(current);
+      current = newValue;
+    } ,
+    snapshot() {
+      return $state.snapshot(current);
+    }
+  }
+}
+
+export const GestureSource_IRMode = controlSource_IRMode('host');
+function controlSource_IRMode( initial ) {
   let current = $state(initial);
   let prev = initial ;
   return { 

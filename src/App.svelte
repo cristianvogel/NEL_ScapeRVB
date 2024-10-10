@@ -15,6 +15,7 @@
   } from "./lib/NativeMessage.svelte";
 
   import WebSocketClient from "./lib/WebSocketClient.svelte";
+    import { CURRENT_UI_VERSION } from "./stores/constants";
 
   onMount(() => {
     RegisterMessagesFromHost();
@@ -22,7 +23,7 @@
     // Second setup the listener for CABLES loader
     document.addEventListener("CABLES.jsLoaded", function (event) {
       CABLES.patch = new CABLES.Patch({
-        patchFile: "scape_space_ui/js/scape_space_ui_10_recovered.json",
+        patchFile: "scape_space_ui/js/" + CURRENT_UI_VERSION + ".json",
         prefixAssetPath: "/assets/",
         assetPath: "/assets/",
         jsPath: "js/",
@@ -38,10 +39,12 @@
         },
         canvas: {
           willReadFrequently: true,
-          alpha: true,
+          alpha: false,
           premultipliedAlpha: true,
         },
-        variables: {},
+        variables: {
+        
+        },
       });
     });
   });

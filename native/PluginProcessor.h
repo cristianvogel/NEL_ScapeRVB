@@ -1,8 +1,14 @@
 #pragma once
 
+#include <algorithm>  // std::sort
+#include <functional> //  std::hash
+#include <future>     //   std::promise and std::future
+#include <cstring>    // Include this header for std::memcpy
+
 #include <juce_audio_basics/juce_audio_basics.h>
 #include <juce_audio_processors/juce_audio_processors.h>
 #include <juce_audio_formats/juce_audio_formats.h>
+#include <juce_dsp/juce_dsp.h>
 
 #include <choc_AudioFileFormat.h>
 #include <choc_AudioFileFormat_WAV.h>
@@ -102,12 +108,13 @@ public:
 private:
     std::string REVERSE_BUFFER_PREFIX = "REVERSED_";
     std::string USER_FILE_URLS = "userFileURLs";
+    std::string USER_PEAKS_KEY = "userPeaks";
     std::string MAIN_DSP_JS_FILE = "dsp.main.js";
     std::string MAIN_PATCH_JS_FILE = "patch.main.js";
     std::string SAMPLE_RATE_PROPERTY = "sampleRate";
     std::string NATIVE_MESSAGE_FUNCTION_NAME = "__postNativeMessage__";
     std::string LOG_FUNCTION_NAME = "__log__";
-    std::string WS_RESPONSE_PROPERTY = "NEL_STATE";
+    std::string WS_RESPONSE_KEY = "NEL_STATE";
 
     // The maximum number of error messages to keep in the queue
     size_t MAX_ERROR_LOG_QUEUE_SIZE = 200;
@@ -132,6 +139,8 @@ private:
 
     //===== Elementary Audio , js stores and context  ==//
     elem::js::Object state;
+    std::size_t lastStateHash = 0;
+    int lastPeaksHash = 0;
     choc::javascript::Context jsContext;
     juce::AudioBuffer<float> scratchBuffer;
     std::unique_ptr<elem::Runtime<float>> runtime;
@@ -143,21 +152,28 @@ private:
 
 public:
     //======== User IR related , files and buffers
-    void updateStateWithFileURLs(const std::vector<juce::File> &files);
-    float calculateNormalisationFactor(float sumSquaredMagnitude);
-    void normaliseImpulseResponse(juce::AudioBuffer<float> &buf);
-    void decodeBase64toIRforVFS(const std::string &name, const std::string_view &uriStringView);
+    static elem::js::Object userData;
+    static int userFileCount;
     std::vector<juce::File> loadDefaultIRs();
     void inspectVFS();
-    std::vector<juce::File> impulseResponses;
-    void addFolderOfIRsToVFS(std::vector<juce::File> &impulseResponses);
-    // todo: get better at using CHOC, port these methods over to CHOC reader
-    juce::AudioBuffer<float> getAudioBufferFromFile(juce::File file);
+    std::vector<juce::File> activeImpulseResponses;
+    void addFolderOfIRsToVFS(std::vector<juce::File> &);
+    std::vector<juce::File> sortOrderForDefaultIRs(std::vector<juce::File> &);
+
+    juce::FileChooser chooser;
+    void requestUserFiles(std::promise<bool> &promise);
+    void updateUserFileCounts(juce::File &file);
+    void resetImpulseResponseVectors();
+    std::vector<juce::File> userImpulseResponses;
+    std::vector<std::vector<float>> userPeakData;
+    void updateStateWithBufferData();
+        void updateStateWithFileURLs( const std::vector<juce::File> &paths);
+   std::vector<float> reduceAudioBuffer(const juce::AudioBuffer<float>& buffer);
+
     juce::AudioFormatManager formatManager;
-    // audiofile read using CHOC instead of juce
+    // audiofile read using CHOC instead of juce :: DEPRECATING
     choc::audio::AudioFileFormatList formats;
     void loadAudioFromFileIntoVFS(juce::File file, int index);
-
     //========== Server related
     int runWebServer();
     struct ViewClientInstance : public choc::network::HTTPServer::ClientInstance
@@ -170,12 +186,16 @@ public:
         int clientID = 0;
         EffectsPluginProcessor &processor; // Reference to the enclosing class
     };
-    std::vector<juce::File> userIRFiles;
+
     uint16_t serverPort = 0;
     uint16_t getServerPort() const { return serverPort; }
-    void handleBase64FileDrop(const elem::js::Array &files);
 
-private:
+    int userCutoffChoice = 160;
+
+private:    
+
+    juce::dsp::StateVariableTPTFilter<float> stateVariableFilter; // For filtering the imported IRs
+
     std::unique_ptr<ViewClientInstance> clientInstance; // Use a smart pointer to store the client instance
     std::unique_ptr<choc::network::HTTPServer> server;  // Use a smart pointer to manage the server
 

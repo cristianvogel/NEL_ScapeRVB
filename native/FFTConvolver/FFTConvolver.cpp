@@ -144,7 +144,7 @@ bool FFTConvolver::init(size_t blockSize, const Sample* ir, size_t irLen)
 }
 
 
-void FFTConvolver::process(const Sample* input, Sample* output, size_t len)
+void FFTConvolver::process(const Sample* input, Sample* output, size_t len, float offset)
 {
   if (_segCount == 0)
   {
@@ -170,6 +170,7 @@ void FFTConvolver::process(const Sample* input, Sample* output, size_t len)
       _preMultiplied.setZero();
       for (size_t i=1; i<_segCount; ++i)
       {
+        i = i + ( (size_t) offset *  _segCount );
         const size_t indexIr = i;
         const size_t indexAudio = (_current + i) % _segCount;
         ComplexMultiplyAccumulate(_preMultiplied, *_segmentsIR[indexIr], *_segments[indexAudio]);

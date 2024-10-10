@@ -31,15 +31,17 @@ interface SrvbSettings {
   tone: number;
   level: number;
   structureMax: number;
-  bypass: number;
+  bypass: 1 | 0;
 }
 
 interface ScapeSettings {
-  reverse: number;
+  reverse: 1 | 0;
   level: number;
   ir: number;
   vectorData: Vec;
-  bypass: number;
+  bypass: 1 | 0;
+  mode: 1 | 0;
+  offset: number
 }
 
 interface ProcessorSettings {
