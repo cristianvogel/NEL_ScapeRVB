@@ -12,6 +12,7 @@ import {
 
 export declare var globalThis: any;
 declare var CABLES: any;
+let gestureSource: typeof GestureSource_SCAPE | typeof GestureSource_SRVB | typeof GestureSource_REVERSE | typeof GestureSource_IRMode;
 
 /* ━━━━━━━
  * Initialize a WebSocket connection to the host.
@@ -47,7 +48,8 @@ function processHostState(state: any) {
   const scapeMode = parsedEntries.scapeMode > 0.5 ? 1 : 0;
 
   function updateViewToggles(param: string, boolValue: 1 | 0) {
-      let gestureSource;
+      if (!gestureSource) return;
+      
       switch (param) {
           case "srvbBypass":
               gestureSource = GestureSource_SRVB;

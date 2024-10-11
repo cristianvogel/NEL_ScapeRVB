@@ -21,7 +21,7 @@
 * __ext_normValue__ ```Number``` (default Value: `0`)
 * __ext_serverInfo__ ```String``` (default Value: `ws://127.0.0.1:13755`)
 * __ext_userFileCount__ ```Number```
-* __ext_userFileURLs__ ```Array```
+* __ext_userFilenames__ ```Array```
 * __ext_WS_JSONPAYLOAD__ ```Object```
 * __host_scapeBypass__ ```Number```
 * __host_srvbBypass__ ```Number```

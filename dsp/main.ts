@@ -362,10 +362,8 @@ globalThis.__receiveVFSKeys__ = function (vfsCurrent: string) {
   const userVFSKeysCount = userVFSKeys.length;
   console.log( 'User VFS Keys', userVFSKeys, ' checksum ->', userVFSKeysCount );
 
- 
-
 for (let i = 0; i < userVFSKeysCount; i++) {
-  const currentSlot = Math.floor( i / 2 ); 
+  const currentSlot: number = (Math.floor( i / 2 )); 
   // Why? Because there are 2 stereo files per slot ( 0 and 1 each has forwards on left and reverse on right )
   // So the schema is as below,  the stem and slot, then stem and slot + channel eg: USER0_0, USER0_1, USER1_0, USER1_1 etc
   // the reverse keys are referenced inline by the convolvution node updaters
@@ -374,7 +372,6 @@ for (let i = 0; i < userVFSKeysCount; i++) {
   // USER0, USER1, USER2, USER3
     User_IR_Map.set( DEFAULT_IR_SLOTNAMES[currentSlot], { pathStem: userPathStem, index: currentSlot, att: 0.95 } );
   }
-console.log( 'User IR Map', User_IR_Map.entries() );
 }
 /////////////////////////////////////////////////////////////////
 
