@@ -1,15 +1,8 @@
 #pragma once
 
 #include <KeyzyLicenseActivator.h>
-#include <choc_AudioFileFormat.h>
-#include <choc_AudioFileFormat_FLAC.h>
-#include <choc_AudioFileFormat_WAV.h>
-#include <choc_AudioSampleData.h>
-#include <choc_Base64.h>
-#include <choc_Files.h>
 #include <choc_HTTPServer.h>
-#include <choc_SampleBufferUtilities.h>
-#include <choc_SampleBuffers.h>
+
 #include <choc_StringUtilities.h>
 #include <choc_javascript.h>
 #include <choc_javascript_QuickJS.h>
@@ -25,8 +18,8 @@
 #include <functional>  //  std::hash
 #include <future>      //   std::promise and std::future
 
-#include "Slot.h"
 #include "WebViewEditor.h"
+#include "Slot.h"
 
 class WebServer;      // Forward declaration of the WebServer class
 class WebViewEditor;  // Forward declaration of WebViewEditor
@@ -176,10 +169,6 @@ class EffectsPluginProcessor : public juce::AudioProcessor,
 
     std::array<juce::File, 8> &fetchDefaultAudioFileAssets();
     bool prepareDefaultResponseBuffers(std::array<juce::File, 8> &defaultAudioAssets);
-
-    int getSlotIndex() const;
-    void resetSlotIndex();
-    int incrementSlotIndex();
 
     std::array<juce::File, 8> sortedOrderForDefaultIRs(const std::array<juce::File, 8> &filePaths);
 

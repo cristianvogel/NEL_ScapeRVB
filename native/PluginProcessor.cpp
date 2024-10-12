@@ -1,7 +1,5 @@
 #include "PluginProcessor.h"
-
 #include "ConvolverNode.h"
-#include "Slot.h"
 #include "Utilities.h"
 
 //==== static member defs

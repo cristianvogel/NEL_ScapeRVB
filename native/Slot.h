@@ -2,19 +2,10 @@
 
 class Slot {
 public:
-    int getSlotIndex() const {
-        return currentUserSlot;
-    }
-
-    int incrementSlotIndex() {
-        return currentUserSlot++;
-    }
-
-    int resetSlotIndex() {
-        currentUserSlot = 0;
-        return 0;
-    }
-
+Slot() noexcept;
+    int getSlotIndex();
+    int incrementSlotIndex();
+    int resetSlotIndex();
 private:
-    int currentUserSlot = 0; // Initialize the slot index
+    int currentUserSlot; 
 };
