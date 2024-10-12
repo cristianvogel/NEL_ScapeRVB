@@ -168,7 +168,6 @@ target_compile_definitions(${TARGET_NAME}
 
 target_link_libraries(${TARGET_NAME}
   PRIVATE
-  runtime
   juce::juce_audio_basics
   juce::juce_audio_formats
   juce::juce_audio_devices
@@ -182,4 +181,5 @@ target_link_libraries(${TARGET_NAME}
  # juce::juce_graphics
  juce::juce_gui_basics
  juce::juce_gui_extra
+ runtime
 )
