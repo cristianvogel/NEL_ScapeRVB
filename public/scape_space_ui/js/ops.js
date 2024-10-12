@@ -23905,6 +23905,42 @@ CABLES.OPS["22b0ba21-a0c3-45a0-b0bc-2db5d770582e"]={f:Ops.Patch.PxdLHGq.SidebarS
 
 // **************************************************************
 // 
+// Ops.Math.Min_v3
+// 
+// **************************************************************
+
+Ops.Math.Min_v3 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    val1 = op.inValue("Value 1", 1),
+    val2 = op.inValue("Value 2", 2),
+    result = op.outNumber("result");
+
+val1.onChange =
+    val2.onChange = exec;
+
+exec();
+
+function exec()
+{
+    let v = Math.min(val1.get(), val2.get());
+    result.set(v);
+}
+
+
+};
+
+Ops.Math.Min_v3.prototype = new CABLES.Op();
+CABLES.OPS["24a9062d-380c-4690-8fe7-6703787fa94c"]={f:Ops.Math.Min_v3,objName:"Ops.Math.Min_v3"};
+
+
+
+
+// **************************************************************
+// 
 // Ops.Patch.PBktIwq.Button_NEL
 // 
 // **************************************************************
@@ -23928,7 +23964,7 @@ const buttonPressedPort = op.outTrigger("Pressed Trigger");
 
 
 // vars
-const colour = { "0": "rgb(85,85,85);", "1" : "yellow" , "2" : "green" , "3" : "red", "4": "aquamarine" };
+const colour = { "0": "rgb(85,85,85)", "1": "aquamarine" };
 
 const el = document.createElement("div");
 el.dataset.op = op.id;
@@ -23941,30 +23977,40 @@ el.style.alignItems = "center";
 
 // draw svg of disk load icon
 const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-svg.setAttribute("viewBox", "0 0 223 80");
-svg.setAttribute("width", "100");
-svg.setAttribute("height", "40");
+svg.setAttribute("viewBox", "0 0 50 28");
+svg.setAttribute("width", "100%");
+svg.setAttribute("height", "100%");
 svg.style.gridColumn = "1 / 2";
+const pathsData = [
+    "M7.75,13.557C7.781,16.972 10.556,19.736 13.975,19.75L13.975,26C7.106,25.986 1.531,20.421 1.5,13.557L7.75,13.557Z",
+    "M13.975,19.75C13.983,19.75 13.992,19.75 14,19.75C17.423,19.75 20.207,16.992 20.25,13.579L26.5,13.579C26.457,20.441 20.873,26 14,26C13.992,26 13.983,26 13.975,26L13.975,19.75Z",
+    "M1.5,13.557C1.5,13.538 1.5,13.519 1.5,13.5C1.5,6.637 7.043,1.059 13.892,1L13.892,7.251C10.492,7.309 7.75,10.087 7.75,13.5C7.75,13.519 7.75,13.538 7.75,13.557L1.5,13.557Z",
+    "M13.892,1C13.928,1 13.964,1 14,1C20.899,1 26.5,6.601 26.5,13.5C26.5,13.526 26.5,13.552 26.5,13.579L20.25,13.579C20.25,13.552 20.25,13.526 20.25,13.5C20.25,10.051 17.449,7.25 14,7.25C13.964,7.25 13.928,7.25 13.892,7.251L13.892,1Z"
+];
 
-const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-path.setAttribute("d", "M35.684,11C52.067,11 65.368,23.994 65.368,40C65.368,56.006 52.067,69 35.684,69C19.301,69 6,56.006 6,40C6,23.994 19.301,11 35.684,11ZM35.684,22.072C45.812,22.072 54.035,30.105 54.035,40C54.035,49.895 45.812,57.928 35.684,57.928C25.556,57.928 17.333,49.895 17.333,40C17.333,30.105 25.556,22.072 35.684,22.072Z");
+const paths = pathsData.map((d, i) => {
+    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+    path.setAttribute("d", d);
+    path.setAttribute("style", "fill:" + colour["0"]);
+    return path;
+});
 
-rect.setAttribute("style", "fill:" + colour["0"] )
-rect.setAttribute("x","63")
-rect.setAttribute("y","32")
-rect.setAttribute("width", "160")
-rect.setAttribute("height", "14")
+paths.forEach(path => svg.appendChild(path));
 
-svg.appendChild(rect);
-svg.appendChild(path);
+
+// append each svg path to the svg element
+paths.forEach(path => svg.appendChild(path));
+
+
 el.appendChild(svg);
 
 
 checksum.onChange = function ()
 {
- rect.setAttribute("style", "fill:"+colour[ checksum.get().toString() ] )
- path.setAttribute("style", "stroke:"+colour[ checksum.get().toString() ] )
+ let i= Math.round( checksum.get() );
+ paths[ i].setAttribute("style", "fill:" + colour[ 1 ]);
+ const move = [ "(-2,-2)", "(-2,2)", "(2,-2)", "(2,2)" ];
+ paths[ i ].setAttribute("transform", `translate${move[ i ]}`); // Apply translation
 }
 
 const button = document.createElement("div");

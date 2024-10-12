@@ -3,11 +3,12 @@ project(NEL_scape|space VERSION 1.01)
 
 set(TARGET_NAME "NEL_scape_space")
 set(ASSETS_DIR ${CMAKE_SOURCE_DIR}/../dist/)
-set(BUILD_VERSION "v0.5.x")
+set(BUILD_VERSION "v0.6.x")
 
 option(JUCE_ENABLE_MODULE_SOURCE_GROUPS "Enable Module Source Groups" ON)
 option(JUCE_BUILD_EXTRAS "Build JUCE Extras" OFF)
 option(ELEM_DEV_LOCALHOST "Run against localhost for static assets" OFF)
+
 
 option(FFTCONVOLVER_USE_SSE "Enable SSE optimizations" ON)   # watch this i have no idea what it does
 
@@ -162,11 +163,12 @@ target_compile_definitions(${TARGET_NAME}
   ELEM_DEV_LOCALHOST=${ELEM_DEV_LOCALHOST}
   JUCE_VST3_CAN_REPLACE_VST2=0
   JUCE_USE_CURL=0
-  JUCE_MODAL_LOOPS_PERMITTED=1  # Add this line to define JUCE_MODAL_LOOPS_PERMITTED
+  JUCE_MODAL_LOOPS_PERMITTED=1  # Allow file chooser dialog to open
 )
 
 target_link_libraries(${TARGET_NAME}
   PRIVATE
+  runtime
   juce::juce_audio_basics
   juce::juce_audio_formats
   juce::juce_audio_devices
@@ -180,5 +182,4 @@ target_link_libraries(${TARGET_NAME}
  # juce::juce_graphics
  juce::juce_gui_basics
  juce::juce_gui_extra
-  runtime
 )
