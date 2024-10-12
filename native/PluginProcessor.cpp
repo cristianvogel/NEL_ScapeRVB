@@ -1,4 +1,5 @@
 #include "PluginProcessor.h"
+
 #include "ConvolverNode.h"
 #include "Utilities.h"
 
@@ -50,12 +51,12 @@ juce::File getPersistentDataDirectory() {
 /// Factor this out to a separate file without breaking everything
 /// @param processor
 EffectsPluginProcessor::ViewClientInstance::ViewClientInstance(EffectsPluginProcessor &processor)
-
     : processor(processor) {
     static int clientCount = 0;
     clientID = ++clientCount;
 }
 EffectsPluginProcessor::ViewClientInstance::~ViewClientInstance() { clientID = 0; }
+
 choc::network::HTTPContent EffectsPluginProcessor::ViewClientInstance::getHTTPContent(std::string_view path) {
     // not using HTML
     return {};
@@ -229,7 +230,7 @@ EffectsPluginProcessor::EffectsPluginProcessor()
       server(std::make_unique<choc::network::HTTPServer>()),
       clientInstance(std::make_unique<ViewClientInstance>(*this)),
       chooser("Select up to four stereo audio files", juce::File::getSpecialLocation(juce::File::userHomeDirectory),
-              "*.wav;*.WAVE")
+              "*.wav;*.aiff")
 
 {
     // Initialize parameters from the manifest file
@@ -248,7 +249,7 @@ EffectsPluginProcessor::EffectsPluginProcessor()
 
     if (!manifest.isObject()) return;
 
-       // register audio file formats
+    // register audio file formats
     formatManager.registerBasicFormats();
 
     const auto parameters = manifest.getWithDefault("parameters", elem::js::Array());
@@ -257,10 +258,9 @@ EffectsPluginProcessor::EffectsPluginProcessor()
     // Initialize editor/view and license activator
     editor = new WebViewEditor(this, getAssetsDirectory(), 840, 480);
 
- 
-
     // then load default audio assets
-    prepareDefaultResponseBuffers(fetchDefaultAudioFileAssets());
+    choc::SmallVector<juce::File, 8> assets = fetchDefaultAudioFileAssets();
+    assert( prepareDefaultResponseBuffers(assets) == true );
 
     // create server
     auto ws = EffectsPluginProcessor::runWebServer();
@@ -285,7 +285,7 @@ EffectsPluginProcessor::~EffectsPluginProcessor() {
 // runtime virtual file system. These are already Mono channel files, with the
 // schema used throughout, LIGHT_0.WAV, LIGHT_1.WAV, SURFACE_0.WAV, SURFACE_1.WAV, etc.
 
-std::array<juce::File, 8> &EffectsPluginProcessor::fetchDefaultAudioFileAssets() {
+choc::SmallVector<juce::File, 8> EffectsPluginProcessor::fetchDefaultAudioFileAssets() {
 #if ELEM_DEV_LOCALHOST
     auto assetsDir =
         juce::File(juce::String("~/Programming/ProgrammingSubFolder/NEL_ScapeRVB/"
@@ -296,19 +296,19 @@ std::array<juce::File, 8> &EffectsPluginProcessor::fetchDefaultAudioFileAssets()
     size_t index = 0;
     if (assetsDir.isDirectory()) {
         for (juce::File &file : assetsDir.findChildFiles(juce::File::findFiles, true)) {
-            if (file.hasFileExtension(juce::String("wav")) && index < defaultSingleChannelAudioFiles.size()) {
-                defaultSingleChannelAudioFiles[index++] = file;
+            if (file.hasFileExtension(juce::String("wav")) && index < defaultMonoAudioFiles.size()) {
+                defaultMonoAudioFiles[index++] = file;
             }
         }
     }
-    return defaultSingleChannelAudioFiles;
+    return defaultMonoAudioFiles;
 }
 
-bool EffectsPluginProcessor::prepareDefaultResponseBuffers(std::array<juce::File, 8> &files) {
+bool EffectsPluginProcessor::prepareDefaultResponseBuffers(choc::SmallVector<juce::File, 8> &assetFiles) {
     // we don't need to do this by channel, as the default files are already mono split
     // there should be 8x seperate mono wavs in the plugin assets folder
     int index = 0;
-    for (juce::File &file : files) {
+    for (juce::File &file : assetFiles) {
         const auto reader = formatManager.createReaderFor(file);
         if (reader == nullptr) {
             dispatchError("File Error:", "Could not load the default audio assets.");
@@ -353,12 +353,13 @@ bool EffectsPluginProcessor::prepareDefaultResponseBuffers(std::array<juce::File
     inspectVFS();
     return true;
 }
-std::array<juce::File, 8> EffectsPluginProcessor::sortedOrderForDefaultIRs(const std::array<juce::File, 8> &files) {
+choc::SmallVector<juce::File, 8> EffectsPluginProcessor::sortedOrderForDefaultIRs(
+    const choc::SmallVector<juce::File, 8> &files) {
     // Define the desired order of keywords
-    std::array<juce::String, 4> order = {"LIGHT", "SURFACE", "TEMPLE", "DEEPNESS"};
+    std::array<std::string, 4> order ={ "LIGHT", "SURFACE", "TEMPLE", "DEEPNESS" };
 
     // Create a copy of the input files to sort
-    std::array<juce::File, 8> sortedFiles = files;
+    choc::SmallVector<juce::File, 8> sortedFiles = files;
 
     // Sort the files based on the specified order of keywords
     std::sort(sortedFiles.begin(), sortedFiles.end(), [&order](const juce::File &a, const juce::File &b) {
@@ -402,16 +403,16 @@ void EffectsPluginProcessor::updateStateWithPeaksData() {
     dispatchStateChange();
 }
 
-void EffectsPluginProcessor::updateStateWithFilenames(std::array<juce::String, 4> _filenames) {
-    elem::js::Array filenames;
-    for (juce::String &filename : _filenames) {
+void EffectsPluginProcessor::updateStateWithFilenames(choc::SmallVector<juce::String, 4> &filenames) {
+    elem::js::Array filenamesAsValue;
+    for (juce::String &filename : filenames) {
         if (filename.isEmpty()) {
             continue;
         }
-        filenames.push_back(elem::js::String(filename.toStdString()));
+        filenamesAsValue.push_back(elem::js::String(filename.toStdString()));
     }
-    state[PERSISTED_USER_FILENAMES] = elem::js::Array();
-    state.insert_or_assign(PERSISTED_USER_FILENAMES, elem::js::Value(filenames));
+   // state[PERSISTED_USER_FILENAMES] = elem::js::Array();
+    state.insert_or_assign(PERSISTED_USER_FILENAMES, elem::js::Value(filenamesAsValue));
     dispatchStateChange();
 }
 
@@ -466,11 +467,11 @@ bool EffectsPluginProcessor::assignFileAssetToCurrentSlot(const juce::File &file
         slotManager.resetSlotIndex();
     }
     try {
-        userChosenStereoAudioFiles[targetSlot] = file;
+        userStereoAudioFiles[targetSlot] = file;
     } catch (const std::exception &e) {
         // DBG the exception
     }
-    if (targetSlot < userChosenStereoAudioFiles.size() && userChosenStereoAudioFiles[targetSlot].existsAsFile()) {
+    if (targetSlot < userStereoAudioFiles.size() && userStereoAudioFiles[targetSlot].existsAsFile()) {
         dispatchStateChange();
         return true;
     } else {
@@ -742,7 +743,7 @@ void EffectsPluginProcessor::createParameters(const std::vector<elem::js::Value>
         }
     }
 }
-juce::AudioProcessorEditor* EffectsPluginProcessor::createEditor() {
+juce::AudioProcessorEditor *EffectsPluginProcessor::createEditor() {
     editor = new WebViewEditor(this, getAssetsDirectory(), 840, 480);
 
     // KEYZY LICENSE ACTIVATION

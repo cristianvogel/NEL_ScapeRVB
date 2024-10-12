@@ -7,6 +7,7 @@
 #include <choc_javascript.h>
 #include <choc_javascript_QuickJS.h>
 #include <choc_javascript_Timer.h>
+#include <choc_SmallVector.h>
 #include <elem/Runtime.h>
 #include <juce_audio_basics/juce_audio_basics.h>
 #include <juce_audio_formats/juce_audio_formats.h>
@@ -146,31 +147,29 @@ class EffectsPluginProcessor : public juce::AudioProcessor,
     //======== User IR related , files and buffers
    private:
     Slot slotManager;
-    // PLUG-IN STATE  default audio assets container, holds juce::File objects
-    std::array<juce::File, 4> userChosenStereoAudioFiles;
-    // LOCAL ASSETS   default audio assets container, holds juce::File objects
-    std::array<juce::File, 8> defaultSingleChannelAudioFiles;
+    // PLUG-IN STATE  audio asset containers, hold juce::File objects
+    choc::SmallVector<juce::File, 4> userStereoAudioFiles;
+    choc::SmallVector<juce::File, 8> defaultMonoAudioFiles;
     // VIEW STATE     peak data for the view
-    std::array<std::vector<float>, 4> peakDataForView;
+    choc::SmallVector<std::vector<float>, 4> peakDataForView;
     // VIEW STATE     filenames for the view
-    std::array<juce::String, 4> userFilenamesForView;
+    choc::SmallVector<juce::String, 4> userFilenamesForView;
     // // LOCAL ASSETS   full paths from local file system
-    // std::array<juce::File, 8> fileSystemPathsForFS;
+    // choc::SmallVector<juce::File, 8> fileSystemPathsForFS;
     // RUNTIME        Keys for Elementary VFS Map. eg:  name_0
     //                                                  name_1,
     //                                                  REVERSED_name_0
     //                                                  REVERSED_name_1
     //                                                  ...
-    std::array<juce::String, 32> vfsPathsForRealtime;
+    choc::SmallVector<juce::String, 32> vfsPathsForRealtime;
 
    public:
     static elem::js::Object userData;
-    static std::array<juce::File, 8> sortedIRPaths;
 
-    std::array<juce::File, 8> &fetchDefaultAudioFileAssets();
-    bool prepareDefaultResponseBuffers(std::array<juce::File, 8> &defaultAudioAssets);
+    choc::SmallVector<juce::File, 8> fetchDefaultAudioFileAssets();
+    bool prepareDefaultResponseBuffers( choc::SmallVector<juce::File, 8>& );
 
-    std::array<juce::File, 8> sortedOrderForDefaultIRs(const std::array<juce::File, 8> &filePaths);
+    choc::SmallVector<juce::File, 8> sortedOrderForDefaultIRs(const choc::SmallVector<juce::File, 8> &filePaths);
 
     void inspectVFS();
 
@@ -181,7 +180,7 @@ class EffectsPluginProcessor : public juce::AudioProcessor,
     bool assignFilenameToCurrentSlot(const juce::File &file);
 
     void updateStateWithPeaksData();
-    void updateStateWithFilenames(std::array<juce::String, 4>);
+    void updateStateWithFilenames(  choc::SmallVector<juce::String, 4> &filenames);
     void updateStateWithFilenames();
     std::vector<float> getReducedAudioBuffer(const juce::AudioBuffer<float> &buffer);
 
