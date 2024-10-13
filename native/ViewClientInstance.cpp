@@ -112,13 +112,9 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message) {
 }
 
 void ViewClientInstance::wrapPeaksForView(elem::js::Object &wrappedPeaks, std::string &peaksKey) {
-    std::vector<elem::js::Value> peaksData;
-    for (const auto &peakVector : processor.peakDataForView) {
-        std::vector<elem::js::Value> peakValues;
-        for (const auto &peak : peakVector) {
-            peakValues.push_back(elem::js::Value(peak));
-        }
-        peaksData.push_back(elem::js::Value(peakValues));
+    elem::js::Array v;
+    for (const auto &samples : processor.peakDataForView) {
+        v.push_back(elem::js::Value(samples));
     }
-    wrappedPeaks.insert_or_assign(peaksKey, elem::js::Value(peaksData));
+    wrappedPeaks.insert_or_assign(peaksKey, elem::js::Value(v));
 }

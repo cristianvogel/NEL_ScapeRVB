@@ -151,24 +151,26 @@ private:
     Slot slotManager;
 
 public:
+    elem::js::Object assets;
+
     // PLUG-IN STATE  audio asset containers, hold juce::File objects
     choc::SmallVector<juce::File, 4> userStereoFiles;
     choc::SmallVector<juce::File, 8> defaultMonoFiles;
     // VIEW STATE     peak data for the view
     choc::SmallVector<std::vector<float>, 4> peakDataForView;
-    // VIEW STATE     filenames for the view
-    choc::SmallVector<juce::String, 4> userFilenamesForView;
-    // RUNTIME        Keys for Elementary VFS Map. eg:  name_0
-    //                                                  name_1,
-    //                                                  REVERSED_name_0
-    //                                                  REVERSED_name_1
-    //                                                  ...
+    choc::SmallVector<juce::String, 4> filnamesForView;
+    // RUNTIME        
+    // Keys for Elementary VFS Map. eg:  
+    //   name_0
+    //   name_1,
+    //   REVERSED_name_0
+    //   REVERSED_name_1
+    //   ...
     choc::SmallVector<juce::String, 32> vfsPathsForRealtime;
-    
     static elem::js::Object userData;
 
     bool fetchDefaultAudioFileAssets();
-    bool processDefaultResponseBuffers(choc::SmallVector<juce::File, 8> &);
+    bool processDefaultResponseBuffers();
 
     choc::SmallVector<juce::File, 8> sortedOrderForDefaultIRs(const choc::SmallVector<juce::File, 8> &filePaths);
 
@@ -199,13 +201,13 @@ private:
     template <typename T, size_t N>
     choc::SmallVector<T, N> initialiseWith()
     {
-    choc::SmallVector<T, N> sVec;
-    sVec.resize(N);
-    return sVec;
-}
+        choc::SmallVector<T, N> sVec;
+        sVec.resize(N);
+        return sVec;
+    }
     juce::dsp::StateVariableTPTFilter<float> stateVariableFilter; // For filtering the imported IRs
-    std::unique_ptr<ViewClientInstance> clientInstance; // Use a smart pointer to store the client instance
-    std::unique_ptr<choc::network::HTTPServer> server;  // Use a smart pointer to manage the server
+    std::unique_ptr<ViewClientInstance> clientInstance;           // Use a smart pointer to store the client instance
+    std::unique_ptr<choc::network::HTTPServer> server;            // Use a smart pointer to manage the server
 
     //==============================================================================
     // A simple "dirty list" abstraction here for propagating realtime parameter
