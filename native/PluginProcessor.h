@@ -164,7 +164,7 @@ public:
     //                                                  REVERSED_name_1
     //                                                  ...
     choc::SmallVector<juce::String, 32> vfsPathsForRealtime;
-
+    
     static elem::js::Object userData;
 
     bool fetchDefaultAudioFileAssets();
@@ -196,8 +196,14 @@ public:
     int userCutoffChoice = 160;
 
 private:
+    template <typename T, size_t N>
+    choc::SmallVector<T, N> initialiseWith()
+    {
+    choc::SmallVector<T, N> sVec;
+    sVec.resize(N);
+    return sVec;
+}
     juce::dsp::StateVariableTPTFilter<float> stateVariableFilter; // For filtering the imported IRs
-
     std::unique_ptr<ViewClientInstance> clientInstance; // Use a smart pointer to store the client instance
     std::unique_ptr<choc::network::HTTPServer> server;  // Use a smart pointer to manage the server
 

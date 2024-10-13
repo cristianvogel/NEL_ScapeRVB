@@ -15,6 +15,8 @@ EffectsPluginProcessor::EffectsPluginProcessor()
     : AudioProcessor(BusesProperties()
                          .withInput("Input", juce::AudioChannelSet::stereo(), true)
                          .withOutput("Output", juce::AudioChannelSet::stereo(), true)),
+      userStereoFiles(initialiseWith<juce::File , 4>),
+      
       jsContext(choc::javascript::createQuickJSContext()),
       server(std::make_unique<choc::network::HTTPServer>()),
       clientInstance(std::make_unique<ViewClientInstance>(*this)),
@@ -68,6 +70,59 @@ EffectsPluginProcessor::~EffectsPluginProcessor() {
         p->removeListener(this);
     };
 }
+
+
+//====HOISTED==========================================================================
+// JS INITIALISATION HAPPENS HERE
+
+void EffectsPluginProcessor::handleAsyncUpdate() {
+    // First things first, we check the flag to identify if we should initialize
+    // the Elementary runtime and engine.
+    if (shouldInitialize.exchange(false)) {
+        elementaryRuntime = std::make_unique<elem::Runtime<float>>(lastKnownSampleRate, lastKnownBlockSize);
+
+        elementaryRuntime->registerNodeType("convolver", [](elem::NodeId const id, double sampleRate, int const blockSize) {
+            return std::make_shared<ConvolverNode>(id, sampleRate, blockSize);
+        });
+
+        slotManager.resetSlotIndex();
+        // Add the default mono impulse responses to the virtual file system... LIGHT_0, LIGHT_1 etc
+    
+        assert( processDefaultResponseBuffers( defaultMonoFiles ) == true );
+        updateStateWithFilenames();
+        updateStateWithPeaksData();
+
+        // Værsgo!
+        initJavaScriptEngine();
+        runtimeSwapRequired.store(false);
+    }
+
+    // Next we iterate over the current parameter values to update our local state
+    // object, which we in turn dispatch into the JavaScript engine
+    auto &params = getParameters();
+
+    // Reduce over the changed parameters to resolve our updated processor state
+    for (size_t i = 0; i < parameterReadouts.size(); ++i) {
+        // We atomically exchange an arbitrary value with a dirty flag false,
+        // because we know that the next time we exchange, if the dirty flag is
+        // still false, the value can be considered arbitrary. Only when we exchange
+        // and find the dirty flag true do we consider the value as having been
+        // written by the processor since we last looked.
+        auto &current = *std::next(parameterReadouts.begin(), i);
+        const auto pr = current.exchange({0.0f, false});
+
+        if (pr.dirty) {
+            if (const auto *pf = dynamic_cast<juce::AudioParameterFloat *>(params[i])) {
+                auto paramId = pf->paramID.toStdString();
+                state.insert_or_assign(paramId, static_cast<elem::js::Number>(pr.value));
+            }
+        }
+    }
+
+    dispatchStateChange();
+}
+
+
 //==============================================================================
 // At initialisation, handle registering each default impulse response to the
 // runtime virtual file system. These are already Mono channel files, with the
@@ -154,17 +209,22 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers(choc::SmallVector<juc
 
 void EffectsPluginProcessor::updateStateWithPeaksData() {
     elem::js::Array sampleDataToPlotAsValue;
+    int startSlot = slotManager.getSlotIndex();
+    int targetSlot = 0 + startSlot;
+    int bounds = EffectsPluginProcessor::peakDataForView.size();
     for (const auto &fromBuffer : EffectsPluginProcessor::peakDataForView) {
         elem::js::Array peaksAsValue;
         for (const auto &monoChannelData : fromBuffer) {
             if (fromBuffer.empty()) {
                 elem::js::Float32Array emptyArray(256, 0.0f);
-                peaksAsValue.push_back(elem::js::Value(emptyArray));
+                peaksAsValue[targetSlot] = elem::js::Value(emptyArray);
                 continue;
+            } else {
+                peaksAsValue[targetSlot] = elem::js::Value(monoChannelData);
             }
-            peaksAsValue.push_back(elem::js::Value(monoChannelData));
         }
-        sampleDataToPlotAsValue.push_back(peaksAsValue);
+        sampleDataToPlotAsValue.push_back ( peaksAsValue );
+        targetSlot = (targetSlot + 1) % bounds;
     }
     // userData[PERSISTED_USER_PEAKS] = elem::js::Array();
     userData.insert_or_assign(PERSISTED_USER_PEAKS, elem::js::Value( sampleDataToPlotAsValue ));
@@ -376,7 +436,7 @@ bool EffectsPluginProcessor::assignVFSpathToCurrentSlot(const juce::String &vfsP
         slotManager.resetSlotIndex();
     }
     try {
-        vfsPathsForRealtime[targetSlot] = vfsPath.toStdString();
+        vfsPathsForRealtime.push_back( vfsPath.toStdString() );
     } catch (const std::exception &e) {
         // DBG the exception
     }
@@ -394,7 +454,8 @@ bool EffectsPluginProcessor::assignPeaksToCurrentSlot(const juce::AudioBuffer<fl
         slotManager.resetSlotIndex();
     }
     try {
-        peakDataForView[targetSlot] = getReducedAudioBuffer(buffer);
+       peakDataForView[targetSlot] = getReducedAudioBuffer(buffer);
+      
     } catch (const std::exception &e) {
         // DBG the exception
     }
@@ -667,57 +728,8 @@ void EffectsPluginProcessor::parameterGestureChanged(int, bool) {
     // Not implemented
 }
 
-//==============================================================================
-// JS INITIALISATION HAPPENS HERE
 
-void EffectsPluginProcessor::handleAsyncUpdate() {
-    // First things first, we check the flag to identify if we should initialize
-    // the Elementary runtime and engine.
-    if (shouldInitialize.exchange(false)) {
-        elementaryRuntime = std::make_unique<elem::Runtime<float>>(lastKnownSampleRate, lastKnownBlockSize);
-
-        elementaryRuntime->registerNodeType("convolver", [](elem::NodeId const id, double sampleRate, int const blockSize) {
-            return std::make_shared<ConvolverNode>(id, sampleRate, blockSize);
-        });
-
-        slotManager.resetSlotIndex();
-        // Add the default mono impulse responses to the virtual file system... LIGHT_0, LIGHT_1 etc
-    
-        assert( processDefaultResponseBuffers( defaultMonoFiles ) == true );
-        updateStateWithFilenames();
-
-        // Værsgo!
-        initJavaScriptEngine();
-        runtimeSwapRequired.store(false);
-    }
-
-    // Next we iterate over the current parameter values to update our local state
-    // object, which we in turn dispatch into the JavaScript engine
-    auto &params = getParameters();
-
-    // Reduce over the changed parameters to resolve our updated processor state
-    for (size_t i = 0; i < parameterReadouts.size(); ++i) {
-        // We atomically exchange an arbitrary value with a dirty flag false,
-        // because we know that the next time we exchange, if the dirty flag is
-        // still false, the value can be considered arbitrary. Only when we exchange
-        // and find the dirty flag true do we consider the value as having been
-        // written by the processor since we last looked.
-        auto &current = *std::next(parameterReadouts.begin(), i);
-        const auto pr = current.exchange({0.0f, false});
-
-        if (pr.dirty) {
-            if (const auto *pf = dynamic_cast<juce::AudioParameterFloat *>(params[i])) {
-                auto paramId = pf->paramID.toStdString();
-                state.insert_or_assign(paramId, static_cast<elem::js::Number>(pr.value));
-            }
-        }
-    }
-
-    dispatchStateChange();
-}
 // ▮▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮
-// ▮▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮
-
 void EffectsPluginProcessor::initJavaScriptEngine() {
     jsContext = choc::javascript::createQuickJSContext();
 
