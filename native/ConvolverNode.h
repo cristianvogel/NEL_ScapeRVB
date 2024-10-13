@@ -85,7 +85,7 @@ public:
             juce::AudioBuffer<float> shifted = juce::AudioBuffer<float>(1, adjustedIRLen);
             // 2. Copy a crop of data from the reference into a second buffer
             shifted.copyFrom(0, 0, ab, 0, denormOffset, adjustedIRLen);
-            nel::normaliseImpulseResponse(shifted, 0.7079f);
+            util::normaliseAudioBuffer(shifted, 0.7079f);
             // 3. Update the convolver with the new data from channel 0
             auto *shiftedData = shifted.getReadPointer(0);
 
@@ -127,11 +127,11 @@ public:
 
         // Scale the inputData with Scalar using JUCE FloatVectorOperations
         juce::FloatVectorOperations::multiply(scaledData.data(), inputData[0], scalar.load(), numSamples);
-        if (shouldDuckAudio.load())
-        {
-            duckingWindow.multiplyWithUpsideDownWindowingTable(outputData, numSamples);
-            return;
-        }
+        // if (shouldDuckAudio.load())
+        // {
+        //     duckingWindow.multiplyWithUpsideDownWindowingTable(outputData, numSamples);
+        //     return;
+        // }
         // Finally convolve the scaledData with the impulse response
         convolver->TwoStageFFTConvolver::process(scaledData.data(), outputData, numSamples);
     }

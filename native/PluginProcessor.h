@@ -14,22 +14,24 @@
 #include <juce_audio_processors/juce_audio_processors.h>
 #include <juce_dsp/juce_dsp.h>
 
-#include <algorithm>   // std::sort
-#include <cstring>     // Include this header for std::memcpy
-#include <functional>  //  std::hash
-#include <future>      //   std::promise and std::future
+#include <algorithm>  // std::sort
+#include <cstring>    // Include this header for std::memcpy
+#include <functional> //  std::hash
+#include <future>     //   std::promise and std::future
 
 #include "WebViewEditor.h"
 #include "Slot.h"
+#include "ViewClientInstance.h"
 
-class WebServer;      // Forward declaration of the WebServer class
-class WebViewEditor;  // Forward declaration of WebViewEditor
+class WebServer;     // Forward declaration of the WebServer class
+class WebViewEditor; // Forward declaration of WebViewEditor
 
 //==============================================================================
 class EffectsPluginProcessor : public juce::AudioProcessor,
                                public juce::AudioProcessorParameter::Listener,
-                               private juce::AsyncUpdater {
-   public:
+                               private juce::AsyncUpdater
+{
+public:
     juce::FileChooser chooser;
     juce::AudioFormatManager formatManager;
     void createParameters(const std::vector<elem::js::Value> &parameters);
@@ -97,7 +99,7 @@ class EffectsPluginProcessor : public juce::AudioProcessor,
     /** log to UI */
     void dispatchNativeLog(std::string const &name, std::string const &message);
 
-   private:
+private:
     std::string REVERSE_BUFFER_PREFIX = "REVERSED_";
     std::string PERSISTED_USER_PEAKS = "userPeaks";
     std::string PERSISTED_HOST_PARAMETERS = "hostParameters";
@@ -138,24 +140,24 @@ class EffectsPluginProcessor : public juce::AudioProcessor,
     int lastPeaksHash = 0;
     choc::javascript::Context jsContext;
     juce::AudioBuffer<float> scratchBuffer;
-    std::unique_ptr<elem::Runtime<float>> runtime;
+    std::unique_ptr<elem::Runtime<float>> elementaryRuntime;
     std::map<std::string, std::variant<juce::AudioParameterFloat *, juce::AudioParameterBool *>> parameterMap;
     std::queue<std::string> errorLogQueue;
 
     //=============================================
 
     //======== User IR related , files and buffers
-   private:
+    friend class ViewClientInstance;
     Slot slotManager;
+
+public:
     // PLUG-IN STATE  audio asset containers, hold juce::File objects
-    choc::SmallVector<juce::File, 4> userStereoAudioFiles;
-    choc::SmallVector<juce::File, 8> defaultMonoAudioFiles;
+    choc::SmallVector<juce::File, 4> userStereoFiles;
+    choc::SmallVector<juce::File, 8> defaultMonoFiles;
     // VIEW STATE     peak data for the view
     choc::SmallVector<std::vector<float>, 4> peakDataForView;
     // VIEW STATE     filenames for the view
     choc::SmallVector<juce::String, 4> userFilenamesForView;
-    // // LOCAL ASSETS   full paths from local file system
-    // choc::SmallVector<juce::File, 8> fileSystemPathsForFS;
     // RUNTIME        Keys for Elementary VFS Map. eg:  name_0
     //                                                  name_1,
     //                                                  REVERSED_name_0
@@ -163,11 +165,10 @@ class EffectsPluginProcessor : public juce::AudioProcessor,
     //                                                  ...
     choc::SmallVector<juce::String, 32> vfsPathsForRealtime;
 
-   public:
     static elem::js::Object userData;
 
-    choc::SmallVector<juce::File, 8> fetchDefaultAudioFileAssets();
-    bool prepareDefaultResponseBuffers( choc::SmallVector<juce::File, 8>& );
+    bool fetchDefaultAudioFileAssets();
+    bool processDefaultResponseBuffers(choc::SmallVector<juce::File, 8> &);
 
     choc::SmallVector<juce::File, 8> sortedOrderForDefaultIRs(const choc::SmallVector<juce::File, 8> &filePaths);
 
@@ -180,39 +181,31 @@ class EffectsPluginProcessor : public juce::AudioProcessor,
     bool assignFilenameToCurrentSlot(const juce::File &file);
 
     void updateStateWithPeaksData();
-    void updateStateWithFilenames(  choc::SmallVector<juce::String, 4> &filenames);
+    void updateStateWithFilenames(choc::SmallVector<juce::String, 4> &filenames);
     void updateStateWithFilenames();
-    std::vector<float> getReducedAudioBuffer(const juce::AudioBuffer<float> &buffer);
 
-    bool importAudioToRuntimeVFS(juce::File &file, int slot);
+    std::vector<float> getReducedAudioBuffer(const juce::AudioBuffer<float> &buffer);
+    bool processImportedResponseBuffers(juce::File &file, int slot);
     bool importPeakDataForView(const juce::AudioBuffer<float> &buffer);
     //========== Server related
     int runWebServer();
-    struct ViewClientInstance : public choc::network::HTTPServer::ClientInstance {
-        ViewClientInstance(EffectsPluginProcessor &processor);
-        ~ViewClientInstance();
-        choc::network::HTTPContent getHTTPContent(std::string_view path) override;
-        void upgradedToWebSocket(std::string_view path) override;
-        void handleWebSocketMessage(std::string_view message) override;
-        int clientID = 0;
-        EffectsPluginProcessor &processor;  // Reference to the enclosing class
-    };
 
     uint16_t serverPort = 0;
     uint16_t getServerPort() const { return serverPort; }
 
     int userCutoffChoice = 160;
 
-   private:
-    juce::dsp::StateVariableTPTFilter<float> stateVariableFilter;  // For filtering the imported IRs
+private:
+    juce::dsp::StateVariableTPTFilter<float> stateVariableFilter; // For filtering the imported IRs
 
-    std::unique_ptr<ViewClientInstance> clientInstance;  // Use a smart pointer to store the client instance
-    std::unique_ptr<choc::network::HTTPServer> server;   // Use a smart pointer to manage the server
+    std::unique_ptr<ViewClientInstance> clientInstance; // Use a smart pointer to store the client instance
+    std::unique_ptr<choc::network::HTTPServer> server;  // Use a smart pointer to manage the server
 
     //==============================================================================
     // A simple "dirty list" abstraction here for propagating realtime parameter
     // value changes
-    struct ParameterReadout {
+    struct ParameterReadout
+    {
         float value = 0;
         bool dirty = false;
     };
@@ -233,9 +226,12 @@ class EffectsPluginProcessor : public juce::AudioProcessor,
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(EffectsPluginProcessor)
 };
 
-namespace unlock {
-inline std::string errorStatuses(Keyzy::LicenseStatus status) {
-    switch (status) {
+namespace unlock
+{
+    inline std::string errorStatuses(Keyzy::LicenseStatus status)
+    {
+        switch (status)
+        {
         case Keyzy::LicenseStatus::EXPIRED:
             return "Expired";
 
@@ -338,17 +334,18 @@ inline std::string errorStatuses(Keyzy::LicenseStatus status) {
         case Keyzy::LicenseStatus::LICENSE_NOT_EXIST_NOT_ASSIGNED_DEALER_ALREADY_DEPOSITED:
             return "The license does not exist or is not assigned to a dealer or is already deposited!";
 
-        case Keyzy::LicenseStatus::VALID:  // Just in case
+        case Keyzy::LicenseStatus::VALID: // Just in case
             return "Valid";
 
         default:
             return "Unknown";
+        }
     }
-}
-}  // namespace unlock
+} // namespace unlock
 
-namespace jsFunctions {
-inline auto hydrateScript = R"script(
+namespace jsFunctions
+{
+    inline auto hydrateScript = R"script(
 (function() {
   if (typeof globalThis.__receiveHydrationData__ !== 'function')
     return false;
@@ -358,7 +355,7 @@ inline auto hydrateScript = R"script(
 })();
 )script";
 
-inline auto dispatchScript = R"script(
+    inline auto dispatchScript = R"script(
 (function() {
   if (typeof globalThis.__receiveStateChange__ !== 'function')
     return false;
@@ -368,7 +365,7 @@ inline auto dispatchScript = R"script(
 })();
 )script";
 
-inline auto errorScript = R"script(
+    inline auto errorScript = R"script(
 (function() {
   if (typeof globalThis.__receiveError__ !== 'function')
     return false;
@@ -381,7 +378,7 @@ inline auto errorScript = R"script(
 })();
 )script";
 
-inline auto serverInfoScript = R"script(
+    inline auto serverInfoScript = R"script(
 (function() {
     if (typeof globalThis.__receiveServerInfo__ !== 'function')
         return false;
@@ -391,7 +388,7 @@ inline auto serverInfoScript = R"script(
     })();
 )script";
 
-inline auto vfsKeysScript = R"script(
+    inline auto vfsKeysScript = R"script(
 (function() {
     if (typeof globalThis.__receiveVFSKeys__ !== 'function')
         return false;
@@ -401,4 +398,4 @@ inline auto vfsKeysScript = R"script(
     })();
 )script";
 
-}  // namespace jsFunctions
+} // namespace jsFunctions
