@@ -140,7 +140,8 @@ target_sources(${TARGET_NAME}
   PluginProcessor.cpp
   WebViewEditor.cpp
   Utilities.cpp
-  Slot.cpp
+  Slot.cpp # deprecating
+  SlotName.cpp
   ViewClientInstance.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/TwoStageFFTConvolver.cpp 
   ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/AudioFFT.cpp 
@@ -162,7 +163,7 @@ target_include_directories(${TARGET_NAME}
 
 target_compile_features(${TARGET_NAME}
   PRIVATE
-  cxx_std_17)
+  cxx_std_20)
 
 target_compile_definitions(${TARGET_NAME}
   PRIVATE

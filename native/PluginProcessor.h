@@ -1,8 +1,15 @@
 #pragma once
 
+// Standard Library Headers
+#include <algorithm>  // std::sort
+#include <cstring>    // Include this header for std::memcpy
+#include <functional> //  std::hash
+#include <future>     //   std::promise and std::future
+#include <map>
+
+// Third-Party Library Headers
 #include <KeyzyLicenseActivator.h>
 #include <choc_HTTPServer.h>
-
 #include <choc_StringUtilities.h>
 #include <choc_javascript.h>
 #include <choc_javascript_QuickJS.h>
@@ -14,17 +21,21 @@
 #include <juce_audio_processors/juce_audio_processors.h>
 #include <juce_dsp/juce_dsp.h>
 
-#include <algorithm>  // std::sort
-#include <cstring>    // Include this header for std::memcpy
-#include <functional> //  std::hash
-#include <future>     //   std::promise and std::future
-
+// Project Headers
+#include "Assets.h"
 #include "WebViewEditor.h"
 #include "Slot.h"
 #include "ViewClientInstance.h"
+#include "SlotName.h"
 
-class WebServer;     // Forward declaration of the WebServer class
-class WebViewEditor; // Forward declaration of WebViewEditor
+// Local Headers
+
+
+
+
+// Forward Declarations
+class WebServer;     
+class WebViewEditor; 
 
 //==============================================================================
 class EffectsPluginProcessor : public juce::AudioProcessor,
@@ -151,43 +162,26 @@ private:
     Slot slotManager;
 
 public:
-    elem::js::Object assets;
 
-    // PLUG-IN STATE  audio asset containers, hold juce::File objects
-    choc::SmallVector<juce::File, 4> userStereoFiles;
-    choc::SmallVector<juce::File, 8> defaultMonoFiles;
-    // VIEW STATE     peak data for the view
-    choc::SmallVector<std::vector<float>, 4> peakDataForView;
-    choc::SmallVector<juce::String, 4> filnamesForView;
-    // RUNTIME        
-    // Keys for Elementary VFS Map. eg:  
-    //   name_0
-    //   name_1,
-    //   REVERSED_name_0
-    //   REVERSED_name_1
-    //   ...
-    choc::SmallVector<juce::String, 32> vfsPathsForRealtime;
-    static elem::js::Object userData;
+    std::map<SlotName, Asset> assetsMap;
+    elem::js::Object assetState;
 
     bool fetchDefaultAudioFileAssets();
     bool processDefaultResponseBuffers();
 
-    choc::SmallVector<juce::File, 8> sortedOrderForDefaultIRs(const choc::SmallVector<juce::File, 8> &filePaths);
-
-    void inspectVFS();
+    void inspectVFS( );
 
     void requestUserFileSelection(std::promise<elem::js::Object> &promise);
-    bool assignFileAssetToCurrentSlot(const juce::File &file);
-    bool assignPeaksToCurrentSlot(const juce::AudioBuffer<float> &buffer);
-    bool assignVFSpathToCurrentSlot(const juce::String &vfsPath);
-    bool assignFilenameToCurrentSlot(const juce::File &file);
+    void assignFileAssetToSlot( const SlotName &slotName, const juce::File &file);
+    void assignPeaksToSlot( const SlotName &slotName, juce::AudioBuffer<float> &buffer);
+    void assignVFSpathToSlot( const SlotName &slotName, const std::string &vfsPath);
+    void assignFilenameToSlot( const SlotName &slotName, const juce::File &file);
 
-    void updateStateWithPeaksData();
-    void updateStateWithFilenames(choc::SmallVector<juce::String, 4> &filenames);
-    void updateStateWithFilenames();
+    void updateStateWithAssetsData();
+    elem::js::Value assetsMapToValue(const std::map<SlotName, Asset> &map);
 
     std::vector<float> getReducedAudioBuffer(const juce::AudioBuffer<float> &buffer);
-    bool processImportedResponseBuffers(juce::File &file, int slot);
+    bool processImportedResponseBuffers(juce::File &file, SlotName &targetSlot);
     bool importPeakDataForView(const juce::AudioBuffer<float> &buffer);
     //========== Server related
     int runWebServer();
@@ -198,13 +192,7 @@ public:
     int userCutoffChoice = 160;
 
 private:
-    template <typename T, size_t N>
-    choc::SmallVector<T, N> initialiseWith()
-    {
-        choc::SmallVector<T, N> sVec;
-        sVec.resize(N);
-        return sVec;
-    }
+
     juce::dsp::StateVariableTPTFilter<float> stateVariableFilter; // For filtering the imported IRs
     std::unique_ptr<ViewClientInstance> clientInstance;           // Use a smart pointer to store the client instance
     std::unique_ptr<choc::network::HTTPServer> server;            // Use a smart pointer to manage the server

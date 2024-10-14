@@ -1,11 +1,9 @@
+// Local Headers
+#include "SlotName.h"
 #include "PluginProcessor.h"
 #include "ViewClientInstance.h"
-
 #include "ConvolverNode.h"
 #include "Utilities.h"
-
-//==== static member defs
-elem::js::Object EffectsPluginProcessor::userData;
 
 //======= DETAIL
 //=======================================================================
@@ -13,7 +11,7 @@ EffectsPluginProcessor::EffectsPluginProcessor()
     : AudioProcessor(BusesProperties()
                          .withInput("Input", juce::AudioChannelSet::stereo(), true)
                          .withOutput("Output", juce::AudioChannelSet::stereo(), true)),
-    
+
       jsContext(choc::javascript::createQuickJSContext()),
       server(std::make_unique<choc::network::HTTPServer>()),
       clientInstance(std::make_unique<ViewClientInstance>(*this)),
@@ -40,14 +38,10 @@ EffectsPluginProcessor::EffectsPluginProcessor()
     createParameters(parameters);
 
     // Initialise the asset data
-    userStereoFiles.resize(4);
-    defaultMonoFiles.resize(8);
-    peakDataForView.resize(4);
-    filnamesForView.resize(4);
-    vfsPathsForRealtime.resize(32);
-
-    // Populate the default IR filenames for the view
-    // filnamesForView.push_back("LIGHT", "SURFACE", "TEMPLE", "DEEPNESS");
+    assetsMap[SlotName::LIGHT] = Asset();
+    assetsMap[SlotName::SURFACE] = Asset();
+    assetsMap[SlotName::TEMPLE] = Asset();
+    assetsMap[SlotName::DEEPNESS] = Asset();
 
     // Initialize editor/view and license activator
     editor = new WebViewEditor(this, util::getAssetsDirectory(), 840, 480);
@@ -95,12 +89,10 @@ void EffectsPluginProcessor::handleAsyncUpdate()
         elementaryRuntime->registerNodeType("convolver", [](elem::NodeId const id, double sampleRate, int const blockSize)
                                             { return std::make_shared<ConvolverNode>(id, sampleRate, blockSize); });
 
-        slotManager.resetSlotIndex();
-        // Add the default mono impulse responses to the virtual file system... LIGHT_0, LIGHT_1 etc
-
+        // intialise, process and load into the runtime all 4 default IR assets
         assert(processDefaultResponseBuffers() == true);
-        updateStateWithFilenames();
-        updateStateWithPeaksData();
+        // reflect the current asset data in the state
+        updateStateWithAssetsData();
 
         // Værsgo!
         initJavaScriptEngine();
@@ -148,26 +140,40 @@ bool EffectsPluginProcessor::fetchDefaultAudioFileAssets()
 #else
     auto assetsDir = util::getAssetsDirectory().getChildFile("assets/impulse-responses");
 #endif
-    int index = 0;
-    if (assetsDir.isDirectory())
+
+    try
     {
-        auto assets = assetsDir.findChildFiles(juce::File::findFiles, true);
-        for (auto &file : assets)
+        if (assetsDir.isDirectory())
         {
-            defaultMonoFiles[index] = file;
-            index++;
+            auto assets = assetsDir.findChildFiles(juce::File::findFiles, true);
+            for (auto &file : assets)
+            {
+                SlotName slotName;
+                Asset assetInSlot;
+                assetInSlot.defaultStereoFile = file;
+                slotName = fromString(file.getFileNameWithoutExtension().toStdString());
+                assetsMap.insert_or_assign(slotName, assetInSlot);
+            }
         }
     }
-    return defaultMonoFiles.length() > 0;
+    catch (const std::exception &e)
+    {
+        std::cerr << e.what() << '\n';
+        return false;
+    }
+    return true;
 }
 
 bool EffectsPluginProcessor::processDefaultResponseBuffers()
 {
-    // we don't need to do this by channel, as the default files are already mono split
-    // there should be 8x seperate mono wavs in the plugin assets folder
-    int index = 0;
-    for (juce::File &file : EffectsPluginProcessor::defaultMonoFiles)
+    assert(elementaryRuntime != nullptr);
+
+    for (auto &kv : assetsMap)
     {
+        const SlotName &slotName = kv.first;
+        Asset &asset = kv.second;
+        juce::File &file = asset.defaultStereoFile;
+
         const auto reader = formatManager.createReaderFor(file);
         if (reader == nullptr)
         {
@@ -175,43 +181,58 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
             delete reader;
             return false;
         }
-        auto buffer = juce::AudioBuffer<float>();
 
-        buffer.setSize(2, reader->lengthInSamples); // source files are mono, but we
-                                                    // use the second channel for a
-                                                    // derived 'shaped' version
-        reader->read(&buffer, 0, reader->lengthInSamples, 0, true, false);
+        // As the source files are strictly stereo and the VFS is strictly
+        // one channel buffers, we aim to create a VFS entry for eeach
+        // state using the following naming convention:
+        // ▮▮▮elem▮▮▮▮▮▮runtime▮▮▮▮▮▮▮▮▮elem▮▮▮▮▮▮runtime▮▮▮▮▮▮
+        // GENERATED VFS ASSETS FROM EACH STEREO INPUT FILE
+        // USER0_0 :            the forward playing left channel of the stereo file
+        // USER0_1 :            the forward playing right channel of the stereo file
+        // REVERSED_USER0_0 :   the reverse playing left channel of the stereo file
+        // REVERSED_USER0_1 :   the reverse playing right channel of the stereo file
+        // ▮▮▮elem▮▮▮▮▮▮runtime▮▮▮▮▮▮▮▮▮elem▮▮▮▮▮▮runtime▮▮▮▮▮▮
+        for (int channel = 0; channel < 2; ++channel)
+        {
+            auto buffer = juce::AudioBuffer<float>();
 
-        int numSamples = buffer.getNumSamples();
-        // fade in, less ER energy from the IR, as we have a whole ER engine already
-        buffer.applyGainRamp(0, numSamples, 0.65, 1);
-        // normalise the impulse response
-        util::normaliseAudioBuffer(buffer, 0.8414); // -1.5 db
-                                                    // add the gain ramped impulse response to the virtual
-                                                    // file system
+            buffer.setSize(2, reader->lengthInSamples); // VFS buffers are one channel,
+                                                        // but we prep dual channel buffers
+                                                        // and use the second channel for a
+                                                        // reversed version of each single channel
+            reader->read(&buffer, 0, reader->lengthInSamples, 0, true, false);
 
-        // stash one channel of the normalised buffer data for Peaks in the VIEW
-        if (util::isOdd(index))
-            assignPeaksToCurrentSlot(buffer);
+            int numSamples = buffer.getNumSamples();
+            // fade in, less ER energy from the IR, as we have a whole ER engine already
+            buffer.applyGainRamp(0, numSamples, 0.65, 1);
+            // normalise the impulse response
+            util::normaliseAudioBuffer(buffer, 0.8414); // -1.5 db
+                                                        // add the gain ramped impulse response to the virtual
+                                                        // file system
 
-        // ▮▮▮elem▮▮▮runtime▮▮▮
-        juce::String vfsPathname = file.getFileNameWithoutExtension(); // "AMBIENCE_0.wav" -> "AMBIENCE_0"
+            // stash one channel of the normalised buffer data for Peaks in the VIEW
+            if (channel == 0)
+                assignPeaksToSlot(slotName, buffer);
 
-        // Populate the runtime virtual file system with the buffer
-        elementaryRuntime->updateSharedResourceMap(vfsPathname.toStdString(), buffer.getReadPointer(0), numSamples);
-
-        // Magic Sauce: Reverse the IR and copy that to the other channel
-        // Get the reverse from a little way in too, so its less draggy
-        // so its easy to swap into in realtime
-        buffer.reverse(0, numSamples * 0.75);
-        buffer.copyFrom(1, 0, buffer.getReadPointer(0), numSamples * 0.75);
-        // add the shaped impulse response to the virtual file system
-        std::string reversedVfsPathname = REVERSE_BUFFER_PREFIX + vfsPathname.toStdString();
-        elementaryRuntime->updateSharedResourceMap(reversedVfsPathname, buffer.getReadPointer(1), numSamples * 0.75);
-        // IMPORTANT: delete the reader to avoid memory leaks
-        delete reader;
-        // done, next file
-        index++;
+            // ▮▮▮elem▮▮▮runtime▮▮▮
+            juce::String vfsPathname = file.getFileNameWithoutExtension(); // "AMBIENCE_0.wav" -> "AMBIENCE_0"
+            std::string name = vfsPathname.toStdString();
+            // Populate the runtime virtual file system with the buffer
+            elementaryRuntime->updateSharedResourceMap(name, buffer.getReadPointer(0), numSamples);
+            assignVFSpathToSlot( slotName, name );
+            // Magic Sauce: Reverse the IR and copy that to the other channel
+            // Get the reverse from a little way in too, so its less draggy
+            // so its easy to swap into in realtime
+            buffer.reverse(0, numSamples * 0.75);
+            buffer.copyFrom(1, 0, buffer.getReadPointer(0), numSamples * 0.75);
+            // add the shaped impulse response to the virtual file system
+            std::string reversedVfsPathname = REVERSE_BUFFER_PREFIX + name;
+            elementaryRuntime->updateSharedResourceMap(reversedVfsPathname, buffer.getReadPointer(1), numSamples * 0.75);
+            assignVFSpathToSlot( slotName, name );
+            // IMPORTANT: delete the reader to avoid memory leaks
+            delete reader;
+            // done, next file
+        }
     }
 
     // notify the front end of the updated VFS keys
@@ -219,38 +240,9 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
     return true;
 }
 
-//========================= Handle User IR Files & Virtual File System
-//===================================
-
-// the peaks data is a vector of vectors of floats
-// each vector of floats is a mono channel of the audio file
-// and is pushed into the userPeakData vector during the load-in
-// see loadAudioFromFileIntoVFS() function
-
-void EffectsPluginProcessor::updateStateWithPeaksData()
+void EffectsPluginProcessor::updateStateWithAssetsData()
 {
-    elem::js::Array v;
-    int bounds = EffectsPluginProcessor::peakDataForView.size();
-    for (const auto &sampleData : EffectsPluginProcessor::peakDataForView )
-    {
-       v.push_back ( elem::js::Value(sampleData) );      
-    }
-    userData.insert_or_assign(PERSISTED_USER_PEAKS, elem::js::Value(v));
-}
-
-void EffectsPluginProcessor::updateStateWithFilenames(choc::SmallVector<juce::String, 4> &filenames)
-{
-    elem::js::Array v;
-    for (juce::String &filename : filenames)
-    {
-        v.push_back(elem::js::String( filename.toStdString() ));
-    }
-    state.insert_or_assign(PERSISTED_USER_FILENAMES, elem::js::Value(v));
-}
-
-void EffectsPluginProcessor::updateStateWithFilenames()
-{
-    updateStateWithFilenames(filnamesForView);
+    assetState.insert_or_assign("Assets", EffectsPluginProcessor::assetsMapToValue(assetsMap));
 }
 
 void EffectsPluginProcessor::requestUserFileSelection(std::promise<elem::js::Object> &promise)
@@ -295,62 +287,21 @@ void EffectsPluginProcessor::requestUserFileSelection(std::promise<elem::js::Obj
         promise.set_value(result); });
 }
 
-bool EffectsPluginProcessor::assignFileAssetToCurrentSlot(const juce::File &file)
+void EffectsPluginProcessor::assignFileAssetToSlot(const SlotName &slotName, const juce::File &file)
 {
-    int targetSlot = slotManager.getSlotIndex();
-    if (targetSlot > 3)
-    {
-        slotManager.resetSlotIndex();
-    }
-    try
-    {
-        userStereoFiles[targetSlot] = file;
-    }
-    catch (const std::exception &e)
-    {
-        // DBG the exception
-    }
-    if (targetSlot < userStereoFiles.size() && userStereoFiles[targetSlot].existsAsFile())
-    {
-        dispatchStateChange();
-        return true;
-    }
-    else
-    {
-        // if the file does not exist, we will not be able to load it
-        // tell the user
-        dispatchError("File error:", "Could not find " + file.getFileName().toStdString());
-        return false;
-    }
+    Asset assetInSlot = assetsMap.contains(slotName) ? assetsMap.at(slotName) : Asset();
+    assetInSlot.userStereoFile = file;
+    assetsMap.insert_or_assign(slotName, assetInSlot);
 }
 
-bool EffectsPluginProcessor::assignFilenameToCurrentSlot(const juce::File &file)
+void EffectsPluginProcessor::assignFilenameToSlot(const SlotName &slotName, const juce::File &file)
 {
-    int targetSlot = slotManager.getSlotIndex();
-    if (targetSlot > 3)
-    {
-        slotManager.resetSlotIndex();
-    }
-    try
-    {
-        filnamesForView[targetSlot] = file.getFileNameWithoutExtension().toStdString();
-    }
-    catch (const std::exception &e)
-    {
-        // DBG the exception
-    }
-    if (targetSlot < filnamesForView.size())
-    {
-        dispatchStateChange();
-        return filnamesForView[targetSlot].length() > 0;
-    }
-    else
-    {
-        return false;
-    }
+    Asset assetInSlot = assetsMap.contains(slotName) ? assetsMap.at(slotName) : Asset();
+    assetInSlot.filnameForView = file.getFileNameWithoutExtension();
+    assetsMap.insert_or_assign(slotName, assetInSlot);
 }
 
-bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, int slotIndex)
+bool EffectsPluginProcessor::processImportedResponseBuffers( juce::File &file, SlotName &targetSlot )
 {
     // Create an AudioBuffer to hold the audio data
     auto buffer = juce::AudioBuffer<float>();
@@ -388,7 +339,7 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, in
     // ▮▮▮elem▮▮▮▮▮▮runtime▮▮▮▮▮▮▮▮▮elem▮▮▮▮▮▮runtime▮▮▮▮▮▮
     for (int channel = 0; channel < numChannels; ++channel)
     {
-        auto name = "USER" + std::to_string(slotIndex) + "_" + std::to_string(channel);
+        auto name = "USER" + toString(targetSlot) + "_" + std::to_string(channel);
         // establish the reader for the file
         reader->read(&buffer, 0, reader->lengthInSamples, 0, true, false);
         // work with the buffer
@@ -409,7 +360,7 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, in
         util::normaliseAudioBuffer(buffer, 0.8414); // -1.5 db
         // stash one channel of the normalised buffer data for Peaks in the VIEW
         if (channel == 0)
-            assignPeaksToCurrentSlot(buffer);
+            assignPeaksToSlot(targetSlot, buffer);
         // do a little fade in, less ER energy from the IR, as we have a whole ER
         // engine already
         buffer.applyGainRamp(0, numSamples, 0.808, 1);
@@ -417,6 +368,7 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, in
         // ▮▮▮elem▮▮▮▮▮▮runtime▮▮▮▮▮▮
         // add the forward playing channel to the virtual file system
         elementaryRuntime->updateSharedResourceMap(name, buffer.getReadPointer(0), numSamples);
+        assignVFSpathToSlot( targetSlot, name );
         // shorten the IR a bit, then reverse it and copy that to the other channel
         auto shorterLengthForReverseIR = numSamples * 0.85;
         buffer.reverse(0, shorterLengthForReverseIR);
@@ -424,11 +376,12 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, in
         // add the reverse playing channel to the virtual file system in the Elementary runtime
         elementaryRuntime->updateSharedResourceMap(REVERSE_BUFFER_PREFIX + name, buffer.getReadPointer(1),
                                                    shorterLengthForReverseIR);
+                                                   assignVFSpathToSlot( targetSlot, REVERSE_BUFFER_PREFIX + name );
     }
     // IMPORTANT: delete the reader to avoid memory leaks
     delete reader;
     // notify the front end of the updated VFS keys
-    inspectVFS();
+    inspectVFS( );
     return 1;
 }
 
@@ -447,7 +400,6 @@ void EffectsPluginProcessor::inspectVFS()
     for (auto &key : vfs)
     {
         vfsString += "\"" + key + "\",";
-        assignVFSpathToCurrentSlot(juce::String(key.c_str()));
     }
     vfsString.pop_back();
     vfsString += "]";
@@ -457,56 +409,18 @@ void EffectsPluginProcessor::inspectVFS()
     jsContext.evaluateExpression(expr);
 }
 
-bool EffectsPluginProcessor::assignVFSpathToCurrentSlot(const juce::String &vfsPath)
+void EffectsPluginProcessor::assignVFSpathToSlot(const SlotName &slotName, const std::string &vfsPath)
 {
-    int targetSlot = slotManager.getSlotIndex();
-    if (targetSlot > 3)
-    {
-        slotManager.resetSlotIndex();
-    }
-    try
-    {
-        vfsPathsForRealtime.push_back(vfsPath.toStdString());
-    }
-    catch (const std::exception &e)
-    {
-        // DBG the exception
-    }
-    if (targetSlot < vfsPathsForRealtime.size())
-    {
-        dispatchStateChange();
-        return vfsPathsForRealtime[targetSlot].length() > 0;
-    }
-    else
-    {
-        return false;
-    }
+    Asset assetInSlot = assetsMap.contains(slotName) ? assetsMap.at(slotName) : Asset();
+    assetInSlot.vfsPathsForRealtime.push_back(vfsPath);
+    assetsMap.insert_or_assign(slotName, assetInSlot);
 }
 
-bool EffectsPluginProcessor::assignPeaksToCurrentSlot(const juce::AudioBuffer<float> &buffer)
+void EffectsPluginProcessor::assignPeaksToSlot(const SlotName &slotName, juce::AudioBuffer<float> &buffer)
 {
-    int targetSlot = slotManager.getSlotIndex();
-    if (targetSlot > 3)
-    {
-        slotManager.resetSlotIndex();
-    }
-    try
-    {
-        peakDataForView[targetSlot] = getReducedAudioBuffer(buffer);
-    }
-    catch (const std::exception &e)
-    {
-        // DBG the exception
-    }
-    if (targetSlot < peakDataForView.size())
-    {
-        dispatchStateChange();
-        return peakDataForView[targetSlot].size() > 0;
-    }
-    else
-    {
-        return false;
-    }
+    Asset assetInSlot = assetsMap.contains(slotName) ? assetsMap.at(slotName) : Asset();
+    assetInSlot.peakDataForView = getReducedAudioBuffer(buffer);
+    assetsMap.insert_or_assign(slotName, assetInSlot);
 }
 
 std::vector<float> EffectsPluginProcessor::getReducedAudioBuffer(const juce::AudioBuffer<float> &buffer)
@@ -809,6 +723,18 @@ void EffectsPluginProcessor::parameterGestureChanged(int, bool)
 }
 
 // ▮▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮
+// Function to convert std::map<SlotName, Asset> to elem::js::Value
+elem::js::Value assetsMapToValue(const std::map<SlotName, Asset> &map)
+{
+    elem::js::Object obj;
+    for (const auto &[key, value] : map)
+    {
+        obj[toString(key)] = value.toJsValue();
+    }
+    return elem::js::Value(obj);
+}
+
+// ▮▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮
 void EffectsPluginProcessor::initJavaScriptEngine()
 {
     jsContext = choc::javascript::createQuickJSContext();
@@ -1043,7 +969,6 @@ void EffectsPluginProcessor::getStateInformation(juce::MemoryBlock &destData)
 {
     auto dataToPersist = elem::js::Object();
     dataToPersist.insert_or_assign(PERSISTED_HOST_PARAMETERS, elem::js::Value(state));
-    dataToPersist.insert_or_assign(PERSISTED_USER_PEAKS, elem::js::Value(userData[PERSISTED_USER_PEAKS]));
 
     const auto serialized = elem::js::serialize(dataToPersist);
 
@@ -1077,24 +1002,11 @@ void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInByt
                 for (auto &[paramId, setting] : value.getObject())
                 {
                     hostState.insert_or_assign(paramId, setting);
-                    dispatchNativeLog("Restoring:",
-                                      "Host parameter " + paramId + " to " + elem::js::serialize(setting));
                 }
             }
             else if (key == PERSISTED_USER_PEAKS)
             {
-                auto parsedPeaks = value.getArray();
-                for (const auto &channel : parsedPeaks)
-                {
-                    auto monoChannel = channel.getArray();
-                    std::vector<float> monoChannelData;
-                    for (const auto &sample : monoChannel)
-                    {
-                        monoChannelData[slotManager.getSlotIndex()] = float((elem::js::Number)sample);
-                    }
-                    peakDataForView[slotManager.getSlotIndex()] = monoChannelData;
-                    slotManager.incrementSlotIndex();
-                }
+                // not implemented yet
             }
 
             dispatchStateChange();

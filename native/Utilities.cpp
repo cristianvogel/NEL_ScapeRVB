@@ -3,6 +3,7 @@
 
 namespace util
 {
+    
     //======================== Normalisation from JUCE convolution code
     // additional maxAbsValue parameter to allow for normalisation to a specific value
 
@@ -17,8 +18,9 @@ namespace util
                                                                                                { return sum + (samp * samp); })); });
 
         const auto normalisationFactor = calculateNormalisationFactor(maxSumSquaredMag) * maxAbsValue;
-
-        if (numChannels > 0) // Ensure there is at least one channel
+    // Ensure there is at least one channel and gain up only the first channel 
+    // as at this point, the second channel is empty
+        if (numChannels > 0) 
         {
             auto *firstChannel = channelPtrs[0];
             juce::FloatVectorOperations::multiply(firstChannel, normalisationFactor, numSamples);
