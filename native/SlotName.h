@@ -12,7 +12,7 @@ enum class SlotName {
 };
 
 std::string toString(SlotName slot);
-
+int getIndexForSlot(SlotName slot);
 SlotName fromString(const std::string& str);
 
 // Function to get the next SlotName with wrap around

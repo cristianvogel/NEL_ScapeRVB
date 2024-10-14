@@ -90,10 +90,9 @@ void EffectsPluginProcessor::handleAsyncUpdate()
                                             { return std::make_shared<ConvolverNode>(id, sampleRate, blockSize); });
 
         // intialise, process and load into the runtime all 4 default IR assets
-        assert(processDefaultResponseBuffers() == true);
+        processDefaultResponseBuffers();
         // reflect the current asset data in the state
         updateStateWithAssetsData();
-
         // Værsgo!
         initJavaScriptEngine();
         runtimeSwapRequired.store(false);
@@ -217,10 +216,9 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
             if (channel == 0)
                 assignPeaksToSlot(slotName, buffer);
 
-            // ▮▮▮elem▮▮▮runtime▮▮▮
-            juce::String vfsPathname = file.getFileNameWithoutExtension(); // "AMBIENCE_0.wav" -> "AMBIENCE_0"
-            std::string name = vfsPathname.toStdString();
-            // Populate the runtime virtual file system with the buffer
+            // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
+            juce::String vfsPathname = file.getFileNameWithoutExtension(); // "AMBIENCE.wav" -> "AMBIENCE"
+            std::string name = vfsPathname.toStdString() + '_' + std::to_string( channel );
             elementaryRuntime->updateSharedResourceMap(name, buffer.getReadPointer(0), numSamples);
             assignVFSpathToSlot(slotName, name);
             // Magic Sauce: Reverse the IR and copy that to the other channel
@@ -229,10 +227,10 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
             buffer.reverse(0, numSamples * 0.75);
             buffer.copyFrom(1, 0, buffer.getReadPointer(0), numSamples * 0.75);
             // add the shaped impulse response to the virtual file system
-            std::string reversedVfsPathname = REVERSE_BUFFER_PREFIX + name;
-            elementaryRuntime->updateSharedResourceMap(reversedVfsPathname, buffer.getReadPointer(1), numSamples * 0.75);
+            std::string reversedName = REVERSE_BUFFER_PREFIX + name;
+            elementaryRuntime->updateSharedResourceMap(reversedName, buffer.getReadPointer(1), numSamples * 0.75);
             assignVFSpathToSlot(slotName, name);
-            // IMPORTANT: delete the reader to avoid memory leaks
+           // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
            
             // done, next channel
         }
@@ -344,7 +342,7 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
     // ▮▮▮elem▮▮▮▮▮▮runtime▮▮▮▮▮▮▮▮▮elem▮▮▮▮▮▮runtime▮▮▮▮▮▮
     for (int channel = 0; channel < numChannels; ++channel)
     {
-        auto name = "USER" + toString(targetSlot) + "_" + std::to_string(channel);
+        auto name = "USER" + std::to_string( getIndexForSlot( targetSlot ) ) + "_" + std::to_string(channel);
         // establish the reader for the file
         reader->read(&buffer, 0, reader->lengthInSamples, 0, true, false);
         // work with the buffer
@@ -394,8 +392,6 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
  * Call the runtime to get its immutable
  * Map of audio buffer resources
  * then construct a JSON string of the keys.
- * We also populate all the VFS path names
- * into vfsPathsForRealtime for state to track
  */
 void EffectsPluginProcessor::inspectVFS()
 {
@@ -423,8 +419,8 @@ void EffectsPluginProcessor::assignVFSpathToSlot(const SlotName &slotName, const
 
 void EffectsPluginProcessor::assignPeaksToSlot(const SlotName &slotName, juce::AudioBuffer<float> &buffer)
 {
-    Asset assetInSlot = assetsMap.contains(slotName) ? assetsMap.at(slotName) : Asset();
-    assetInSlot.peakDataForView = getReducedAudioBuffer(buffer);
+    Asset assetInSlot = assetsMap.contains( slotName ) ? assetsMap.at( slotName )  : Asset();
+    assetInSlot.peakDataForView = getReducedAudioBuffer( buffer );
     assetsMap.insert_or_assign(slotName, assetInSlot);
 }
 
@@ -669,10 +665,8 @@ void EffectsPluginProcessor::prepareToPlay(double sampleRate, int samplesPerBloc
     {
         lastKnownSampleRate = sampleRate;
         lastKnownBlockSize = samplesPerBlock;
-
         runtimeSwapRequired.store(true);
     }
-
     // Now that the environment is set up, push our current state
     triggerAsyncUpdate();
 }

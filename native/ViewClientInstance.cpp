@@ -136,9 +136,12 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
 void ViewClientInstance::wrapPeaksForView(elem::js::Object &wrappedPeaks, std::string &peaksKey)
 {
     elem::js::Array v;
+    v.resize( processor.assetsMap.size() );
     for (const auto &assetInSlot : processor.assetsMap)
     {
-        v.push_back(elem::js::Value( assetInSlot.second.peakDataForView ));
+        SlotName slot = assetInSlot.first;
+        int index = getIndexForSlot(slot);
+        v[index] = elem::js::Value(assetInSlot.second.peakDataForView);
     }
     wrappedPeaks.insert_or_assign(peaksKey, elem::js::Value(v));
 }

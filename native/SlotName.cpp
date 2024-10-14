@@ -27,6 +27,8 @@ std::string toString(SlotName slot)
     }
 }
 
+int getIndexForSlot(SlotName slot) { return static_cast<int>(slot); }
+
 SlotName fromString(const std::string &str)
 {
     if (str == "LIGHT")
