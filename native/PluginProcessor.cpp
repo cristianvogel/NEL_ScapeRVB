@@ -148,11 +148,14 @@ bool EffectsPluginProcessor::fetchDefaultAudioFileAssets()
             auto assets = assetsDir.findChildFiles(juce::File::findFiles, true);
             for (auto &file : assets)
             {
-                SlotName slotName;
-                Asset assetInSlot;
-                assetInSlot.defaultStereoFile = file;
-                slotName = fromString(file.getFileNameWithoutExtension().toStdString());
-                assetsMap.insert_or_assign(slotName, assetInSlot);
+                if (file.getFileExtension().toLowerCase() == ".wav")
+                {
+                    SlotName slotName;
+                    Asset assetInSlot;
+                    assetInSlot.defaultStereoFile = file;
+                    slotName = fromString(file.getFileNameWithoutExtension().toStdString());
+                    assetsMap.insert_or_assign(slotName, assetInSlot);
+                }
             }
         }
     }
@@ -219,7 +222,7 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
             std::string name = vfsPathname.toStdString();
             // Populate the runtime virtual file system with the buffer
             elementaryRuntime->updateSharedResourceMap(name, buffer.getReadPointer(0), numSamples);
-            assignVFSpathToSlot( slotName, name );
+            assignVFSpathToSlot(slotName, name);
             // Magic Sauce: Reverse the IR and copy that to the other channel
             // Get the reverse from a little way in too, so its less draggy
             // so its easy to swap into in realtime
@@ -228,11 +231,13 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
             // add the shaped impulse response to the virtual file system
             std::string reversedVfsPathname = REVERSE_BUFFER_PREFIX + name;
             elementaryRuntime->updateSharedResourceMap(reversedVfsPathname, buffer.getReadPointer(1), numSamples * 0.75);
-            assignVFSpathToSlot( slotName, name );
+            assignVFSpathToSlot(slotName, name);
             // IMPORTANT: delete the reader to avoid memory leaks
-            delete reader;
-            // done, next file
+           
+            // done, next channel
         }
+        // done next asset
+        delete reader;
     }
 
     // notify the front end of the updated VFS keys
@@ -242,7 +247,7 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
 
 void EffectsPluginProcessor::updateStateWithAssetsData()
 {
-    assetState.insert_or_assign("Assets", EffectsPluginProcessor::assetsMapToValue(assetsMap));
+    assetState.insert_or_assign("Assets", assetsMapToValue(assetsMap));
 }
 
 void EffectsPluginProcessor::requestUserFileSelection(std::promise<elem::js::Object> &promise)
@@ -301,7 +306,7 @@ void EffectsPluginProcessor::assignFilenameToSlot(const SlotName &slotName, cons
     assetsMap.insert_or_assign(slotName, assetInSlot);
 }
 
-bool EffectsPluginProcessor::processImportedResponseBuffers( juce::File &file, SlotName &targetSlot )
+bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, SlotName &targetSlot)
 {
     // Create an AudioBuffer to hold the audio data
     auto buffer = juce::AudioBuffer<float>();
@@ -368,7 +373,7 @@ bool EffectsPluginProcessor::processImportedResponseBuffers( juce::File &file, S
         // ▮▮▮elem▮▮▮▮▮▮runtime▮▮▮▮▮▮
         // add the forward playing channel to the virtual file system
         elementaryRuntime->updateSharedResourceMap(name, buffer.getReadPointer(0), numSamples);
-        assignVFSpathToSlot( targetSlot, name );
+        assignVFSpathToSlot(targetSlot, name);
         // shorten the IR a bit, then reverse it and copy that to the other channel
         auto shorterLengthForReverseIR = numSamples * 0.85;
         buffer.reverse(0, shorterLengthForReverseIR);
@@ -376,12 +381,12 @@ bool EffectsPluginProcessor::processImportedResponseBuffers( juce::File &file, S
         // add the reverse playing channel to the virtual file system in the Elementary runtime
         elementaryRuntime->updateSharedResourceMap(REVERSE_BUFFER_PREFIX + name, buffer.getReadPointer(1),
                                                    shorterLengthForReverseIR);
-                                                   assignVFSpathToSlot( targetSlot, REVERSE_BUFFER_PREFIX + name );
+        assignVFSpathToSlot(targetSlot, REVERSE_BUFFER_PREFIX + name);
     }
     // IMPORTANT: delete the reader to avoid memory leaks
     delete reader;
     // notify the front end of the updated VFS keys
-    inspectVFS( );
+    inspectVFS();
     return 1;
 }
 
@@ -492,6 +497,7 @@ int EffectsPluginProcessor::runWebServer()
 }
 //==============================================================================
 bool EffectsPluginProcessor::isBusesLayoutSupported(const AudioProcessor::BusesLayout &layouts) const { return true; }
+
 void EffectsPluginProcessor::createParameters(const std::vector<elem::js::Value> &parameters)
 {
     for (const auto &parameter : parameters)
@@ -724,7 +730,7 @@ void EffectsPluginProcessor::parameterGestureChanged(int, bool)
 
 // ▮▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮
 // Function to convert std::map<SlotName, Asset> to elem::js::Value
-elem::js::Value assetsMapToValue(const std::map<SlotName, Asset> &map)
+elem::js::Value EffectsPluginProcessor::assetsMapToValue(const std::map<SlotName, Asset> &map)
 {
     elem::js::Object obj;
     for (const auto &[key, value] : map)
@@ -1020,6 +1026,7 @@ void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInByt
         dispatchError("Data Error:", "Failed to restore plugin state!");
     }
 }
+
 //==============================================================================
 // This creates new instances of the plugin..
 juce::AudioProcessor *JUCE_CALLTYPE createPluginFilter() { return new EffectsPluginProcessor(); }
