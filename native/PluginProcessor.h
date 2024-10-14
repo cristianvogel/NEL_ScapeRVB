@@ -112,7 +112,7 @@ public:
 
 private:
     std::string REVERSE_BUFFER_PREFIX = "REVERSED_";
-    std::string PERSISTED_USER_PEAKS = "userPeaks";
+ 
     std::string PERSISTED_HOST_PARAMETERS = "hostParameters";
     std::string PERSISTED_USER_FILENAMES = "userFilenames";
     std::string MAIN_DSP_JS_FILE = "dsp.main.js";
@@ -120,7 +120,10 @@ private:
     std::string SAMPLE_RATE_KEY = "sampleRate";
     std::string NATIVE_MESSAGE_FUNCTION_NAME = "__postNativeMessage__";
     std::string LOG_FUNCTION_NAME = "__log__";
-    std::string WS_RESPONSE_KEY = "NEL_STATE";
+
+    std::string WS_RESPONSE_KEY_FOR_STATE = "NEL_STATE";
+    std::string KEY_FOR_FILENAMES = "userFilenames";
+    std::string WS_RESPONSE_KEY_FOR_PEAKS = "userPeaks";
 
     // The maximum number of error messages to keep in the queue
     size_t MAX_ERROR_LOG_QUEUE_SIZE = 200;
@@ -178,6 +181,9 @@ public:
     void assignFilenameToSlot( const SlotName &slotName, const juce::File &file);
 
     void updateStateWithAssetsData();
+    void wrapPeaksForView( elem::js::Object &wrappedPeaks );
+    void wrapStateForView( elem::js::Object &wrappedState );
+
     elem::js::Value assetsMapToValue(const std::map<SlotName, Asset> &map);
 
     std::vector<float> getReducedAudioBuffer(const juce::AudioBuffer<float> &buffer);

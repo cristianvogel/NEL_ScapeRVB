@@ -410,6 +410,36 @@ void EffectsPluginProcessor::inspectVFS()
     jsContext.evaluateExpression(expr);
 }
 
+void EffectsPluginProcessor::wrapPeaksForView(elem::js::Object &wrappedPeaks)
+{
+    elem::js::Array peaks;
+    peaks.resize( assetsMap.size() );
+    for (const auto &assetInSlot : assetsMap)
+    {
+        SlotName slot = assetInSlot.first;
+        int index = getIndexForSlot(slot);
+        peaks[index] = elem::js::Value(assetInSlot.second.peakDataForView);
+    }
+    wrappedPeaks.insert_or_assign( WS_RESPONSE_KEY_FOR_PEAKS, elem::js::Value(peaks));
+}
+
+void EffectsPluginProcessor::wrapStateForView(elem::js::Object &wrappedState)
+{
+    elem::js::Object processorState = state;
+    elem::js::Array fnames;
+    fnames.resize( assetsMap.size() );
+    for (const auto &assetInSlot : assetsMap)
+    {
+        SlotName slot = assetInSlot.first;
+        int index = getIndexForSlot(slot);
+        fnames[index] = elem::js::Value(assetInSlot.second.filnameForView.toStdString());
+    }
+    processorState.insert_or_assign(KEY_FOR_FILENAMES, elem::js::Value( fnames ));
+    wrappedState.insert_or_assign(WS_RESPONSE_KEY_FOR_STATE, elem::js::Value( processorState ));
+   
+}
+
+
 void EffectsPluginProcessor::assignVFSpathToSlot(const SlotName &slotName, const std::string &vfsPath)
 {
     Asset assetInSlot = assetsMap.contains(slotName) ? assetsMap.at(slotName) : Asset();
@@ -1004,7 +1034,7 @@ void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInByt
                     hostState.insert_or_assign(paramId, setting);
                 }
             }
-            else if (key == PERSISTED_USER_PEAKS)
+            else if (key == WS_RESPONSE_KEY_FOR_PEAKS)
             {
                 // not implemented yet
             }

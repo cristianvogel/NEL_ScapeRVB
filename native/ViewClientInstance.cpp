@@ -84,30 +84,33 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                         {
                             continue;
                         }
-                        // processor.updateStateWithPeaksData();
-                        // processor.updateStateWithFilenames();
                         targetSlot = nextSlot(targetSlot);
                     }
                 }
+                processor.updateStateWithAssetsData();
                 continue;
             }
 
+            // ▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮
+            //  "requestState"
+            // ▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮
             if (key == "requestState")
             {
-                auto state = processor.state;
-                auto stateKey = processor.WS_RESPONSE_KEY;
-                auto peaksKey = processor.PERSISTED_USER_PEAKS;
                 elem::js::Object wrappedState;
                 elem::js::Object wrappedPeaks;
-                wrapPeaksForView(wrappedPeaks, peaksKey);
-                wrappedState.insert_or_assign(stateKey, state);
-                std::string serializedState = elem::js::serialize(wrappedState);
+                
+                processor.wrapStateForView(wrappedState);
+                processor.wrapPeaksForView(wrappedPeaks);
+
+                juce::String serializedState = elem::js::serialize(wrappedState);
                 juce::String serializedPeaks = elem::js::serialize(wrappedPeaks);
-                std::size_t currentStateHash = std::hash<std::string>{}(serializedState);
+
+                int currentStateHash = serializedState.hashCode();
                 int currentPeaksHash = serializedPeaks.hashCode();
+
                 if (currentStateHash != processor.lastStateHash)
                 {
-                    sendWebSocketMessage(serializedState);
+                    sendWebSocketMessage(serializedState.toStdString());
                     processor.lastStateHash = currentStateHash;
                 }
                 if (currentPeaksHash != processor.lastPeaksHash)
@@ -131,17 +134,4 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             }
         }
     }
-}
-
-void ViewClientInstance::wrapPeaksForView(elem::js::Object &wrappedPeaks, std::string &peaksKey)
-{
-    elem::js::Array v;
-    v.resize( processor.assetsMap.size() );
-    for (const auto &assetInSlot : processor.assetsMap)
-    {
-        SlotName slot = assetInSlot.first;
-        int index = getIndexForSlot(slot);
-        v[index] = elem::js::Value(assetInSlot.second.peakDataForView);
-    }
-    wrappedPeaks.insert_or_assign(peaksKey, elem::js::Value(v));
 }
