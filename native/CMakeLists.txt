@@ -140,8 +140,8 @@ target_sources(${TARGET_NAME}
   PluginProcessor.cpp
   WebViewEditor.cpp
   Utilities.cpp
-  Slot.cpp # deprecating
   SlotName.cpp
+  SlotManager.cpp
   ViewClientInstance.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/TwoStageFFTConvolver.cpp 
   ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/AudioFFT.cpp 

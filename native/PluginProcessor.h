@@ -1,4 +1,5 @@
-#pragma once
+#ifndef PLUGINPROCESSOR_H
+#define PLUGINPROCESSOR_H
 
 // Standard Library Headers
 #include <algorithm>  // std::sort
@@ -23,19 +24,19 @@
 
 // Project Headers
 
-
 // Local Headers
 #include "Assets.h"
 #include "WebViewEditor.h"
-#include "Slot.h"
 #include "ViewClientInstance.h"
+#include "SlotManager.h"
 #include "SlotName.h"
 
 
-
 // Forward Declarations
-class WebServer;     
-class WebViewEditor; 
+class WebServer;
+class WebViewEditor;
+class ViewClientInstance;
+class SlotManager;
 
 //==============================================================================
 class EffectsPluginProcessor : public juce::AudioProcessor,
@@ -110,9 +111,7 @@ public:
     /** log to UI */
     void dispatchNativeLog(std::string const &name, std::string const &message);
 
-private:
     std::string REVERSE_BUFFER_PREFIX = "REVERSED_";
- 
     std::string PERSISTED_HOST_PARAMETERS = "hostParameters";
     std::string PERSISTED_USER_FILENAMES = "userFilenames";
     std::string MAIN_DSP_JS_FILE = "dsp.main.js";
@@ -120,15 +119,9 @@ private:
     std::string SAMPLE_RATE_KEY = "sampleRate";
     std::string NATIVE_MESSAGE_FUNCTION_NAME = "__postNativeMessage__";
     std::string LOG_FUNCTION_NAME = "__log__";
-
     std::string WS_RESPONSE_KEY_FOR_STATE = "NEL_STATE";
     std::string KEY_FOR_FILENAMES = "userFilenames";
     std::string WS_RESPONSE_KEY_FOR_PEAKS = "userPeaks";
-
-    // The maximum number of error messages to keep in the queue
-    size_t MAX_ERROR_LOG_QUEUE_SIZE = 200;
-    std::optional<std::string> loadDspEntryFileContents() const;
-    std::optional<std::string> loadPatchEntryFileContents() const;
 
     /**
      *
@@ -143,66 +136,53 @@ private:
                                  const juce::String &replacementChar = "%");
 
     //==============================================================================
+
+private:
+    // The maximum number of error messages to keep in the queue
+    size_t MAX_ERROR_LOG_QUEUE_SIZE = 200;
+    std::optional<std::string> loadDspEntryFileContents() const;
+    std::optional<std::string> loadPatchEntryFileContents() const;
     std::atomic<bool> runtimeSwapRequired{false};
     std::atomic<bool> shouldInitialize{false};
     double lastKnownSampleRate = 0;
     int lastKnownBlockSize = 0;
 
     //===== Elementary Audio , js stores and context  ==//
-    elem::js::Object state;
-    std::size_t lastStateHash = 0;
-    int lastPeaksHash = 0;
     choc::javascript::Context jsContext;
     juce::AudioBuffer<float> scratchBuffer;
     std::unique_ptr<elem::Runtime<float>> elementaryRuntime;
-    std::map<std::string, std::variant<juce::AudioParameterFloat *, juce::AudioParameterBool *>> parameterMap;
     std::queue<std::string> errorLogQueue;
+
+    friend class ViewClientInstance;
+    std::map<std::string, std::variant<juce::AudioParameterFloat *, juce::AudioParameterBool *>> parameterMap;
 
     //=============================================
 
-    //======== User IR related , files and buffers
-    friend class ViewClientInstance;
-    Slot slotManager;
-
 public:
-
+    elem::js::Object state;
     std::map<SlotName, Asset> assetsMap;
     elem::js::Object assetState;
+    int userCutoffChoice = 160;
 
     bool fetchDefaultAudioFileAssets();
     bool processDefaultResponseBuffers();
-
-    void inspectVFS( );
-
+    void inspectVFS();
     void requestUserFileSelection(std::promise<elem::js::Object> &promise);
-    void assignFileAssetToSlot( const SlotName &slotName, const juce::File &file);
-    void assignPeaksToSlot( const SlotName &slotName, juce::AudioBuffer<float> &buffer);
-    void assignVFSpathToSlot( const SlotName &slotName, const std::string &vfsPath);
-    void assignFilenameToSlot( const SlotName &slotName, const juce::File &file);
-
     void updateStateWithAssetsData();
-    void wrapPeaksForView( elem::js::Object &wrappedPeaks );
-    void wrapStateForView( elem::js::Object &wrappedState );
-    void wrapFileNamesForView( elem::js::Object &wrappedFileNames );
-
     elem::js::Value assetsMapToValue(const std::map<SlotName, Asset> &map);
-
     std::vector<float> getReducedAudioBuffer(const juce::AudioBuffer<float> &buffer);
     bool processImportedResponseBuffers(juce::File &file, SlotName &targetSlot);
     bool importPeakDataForView(const juce::AudioBuffer<float> &buffer);
-    //========== Server related
-    int runWebServer();
-
-    uint16_t serverPort = 0;
-    uint16_t getServerPort() const { return serverPort; }
-
-    int userCutoffChoice = 160;
 
 private:
+    int runWebServer();
+    uint16_t serverPort = 0;
+    uint16_t getServerPort() const { return serverPort; }
 
     juce::dsp::StateVariableTPTFilter<float> stateVariableFilter; // For filtering the imported IRs
     std::unique_ptr<ViewClientInstance> clientInstance;           // Use a smart pointer to store the client instance
     std::unique_ptr<choc::network::HTTPServer> server;            // Use a smart pointer to manage the server
+    std::unique_ptr<SlotManager> slotManager;                  // Use a smart pointer to manage the slot manager
 
     //==============================================================================
     // A simple "dirty list" abstraction here for propagating realtime parameter
@@ -402,3 +382,5 @@ namespace jsFunctions
 )script";
 
 } // namespace jsFunctions
+
+#endif // PLUGINPROCESSOR_H

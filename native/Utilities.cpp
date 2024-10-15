@@ -1,5 +1,6 @@
-#include "Utilities.h"
+
 #include <numeric>
+#include "Utilities.h"
 
 namespace util
 {

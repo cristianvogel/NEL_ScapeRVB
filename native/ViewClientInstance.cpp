@@ -3,8 +3,9 @@
 #include "PluginProcessor.h"
 #include "SlotName.h"
 
+
 ViewClientInstance::ViewClientInstance(EffectsPluginProcessor &processor)
-    : processor(processor)
+    :   processor(processor)
 {
     static int clientCount = 0;
     clientID = ++clientCount;
@@ -21,7 +22,9 @@ choc::network::HTTPContent ViewClientInstance::getHTTPContent(std::string_view p
     return {};
 }
 
-void ViewClientInstance::upgradedToWebSocket(std::string_view path) {}
+void ViewClientInstance::upgradedToWebSocket(std::string_view path) {
+    //not using HTML
+}
 
 void ViewClientInstance::handleWebSocketMessage(std::string_view message)
 {
@@ -73,13 +76,12 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
 
                 for (const auto fileValue : files)
                 {
-                    int currentUserSlot = processor.slotManager.getSlotIndex();
                     juce::String filePath = juce::String(static_cast<std::string>(fileValue));
                     juce::File file(filePath);
                     if (file.existsAsFile())
                     {
-                        processor.assignFileAssetToSlot(targetSlot, file);
-                        processor.assignFilenameToSlot(targetSlot, file);
+                        processor.slotManager->assignFileAssetToSlot(targetSlot, file);
+                        processor.slotManager->assignFilenameToSlot(targetSlot, file);
                         if (!processor.processImportedResponseBuffers(file, targetSlot))
                         {
                             continue;
@@ -99,30 +101,30 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                 elem::js::Object wrappedState;
                 elem::js::Object wrappedPeaks;
                 elem::js::Object wrappedFileNames;
-                
-                processor.wrapStateForView(wrappedState);
+
+                processor.slotManager->wrapStateForView(wrappedState);
                 juce::String serializedState = elem::js::serialize(wrappedState);
 
-                processor.wrapFileNamesForView(wrappedFileNames);
+                processor.slotManager->wrapFileNamesForView(wrappedFileNames);
                 juce::String serializedFileNames = elem::js::serialize(wrappedFileNames);
 
-
+                // perfomance optimization; hash the serialized state and peaks, send only if changed
                 int currentStateHash = serializedState.hashCode();
-                // lets get the peaks change trigger from a shorter ref 
+                // lets get the peaks change trigger from a shorter ref
                 // that changes at the same time as the peaks
-                int currentPeaksHash = serializedFileNames.hashCode(); 
+                int currentPeaksHash = serializedFileNames.hashCode();
 
-                if (currentStateHash != processor.lastStateHash)
+                if (currentStateHash != processor.slotManager->lastStateHash)
                 {
                     sendWebSocketMessage(serializedState.toStdString());
-                    processor.lastStateHash = currentStateHash;
+                    processor.slotManager->lastStateHash = currentStateHash;
                 }
-                if (currentPeaksHash != processor.lastPeaksHash)
+                if (currentPeaksHash != processor.slotManager->lastPeaksHash)
                 {
-                    processor.wrapPeaksForView(wrappedPeaks);
+                    processor.slotManager->wrapPeaksForView(wrappedPeaks);
                     juce::String serializedPeaks = elem::js::serialize(wrappedPeaks);
                     sendWebSocketMessage(serializedPeaks.toStdString());
-                    processor.lastPeaksHash = currentPeaksHash;
+                    processor.slotManager->lastPeaksHash = currentPeaksHash;
                 }
                 continue;
             }

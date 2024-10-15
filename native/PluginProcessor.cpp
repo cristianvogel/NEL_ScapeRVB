@@ -14,7 +14,8 @@ EffectsPluginProcessor::EffectsPluginProcessor()
 
       jsContext(choc::javascript::createQuickJSContext()),
       server(std::make_unique<choc::network::HTTPServer>()),
-      clientInstance(std::make_unique<ViewClientInstance>(*this)),
+      slotManager(std::make_unique<SlotManager>(*this)), // Initialize SlotManager with the processor reference
+      clientInstance(std::make_unique<ViewClientInstance>(*this)), // Correct initialization
       chooser("Select up to four stereo audio files", juce::File::getSpecialLocation(juce::File::userHomeDirectory),
               "*.wav;*.aiff")
 
@@ -210,13 +211,13 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
 
             // stash one channel of the normalised buffer data for Peaks in the VIEW
             if (channel == 0)
-                assignPeaksToSlot(slotName, buffer);
+               slotManager->assignPeaksToSlot(slotName, buffer);
 
             // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
             juce::String vfsPathname = file.getFileNameWithoutExtension(); // "AMBIENCE.wav" -> "AMBIENCE"
             std::string name = vfsPathname.toStdString() + '_' + std::to_string(channel);
             elementaryRuntime->updateSharedResourceMap(name, buffer.getReadPointer(0), numSamples);
-            assignVFSpathToSlot(slotName, name);
+            slotManager->assignVFSpathToSlot(slotName, name);
             // Get the reverse from a little way, so its less draggy
             // so its easy to swap into in realtime
             int shorter = numSamples * 0.75;
@@ -225,7 +226,7 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
             std::string reversedName = REVERSE_BUFFER_PREFIX + name;
             // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
             elementaryRuntime->updateSharedResourceMap(reversedName, buffer.getReadPointer(0), shorter);
-            assignVFSpathToSlot(slotName, name);
+            slotManager->assignVFSpathToSlot(slotName, name);
             // done, next channel
         }
         // done next asset
@@ -284,19 +285,6 @@ void EffectsPluginProcessor::requestUserFileSelection(std::promise<elem::js::Obj
         promise.set_value(result); });
 }
 
-void EffectsPluginProcessor::assignFileAssetToSlot(const SlotName &slotName, const juce::File &file)
-{
-    Asset assetInSlot = assetsMap.contains(slotName) ? assetsMap.at(slotName) : Asset();
-    assetInSlot.userStereoFile = file;
-    assetsMap.insert_or_assign(slotName, assetInSlot);
-}
-
-void EffectsPluginProcessor::assignFilenameToSlot(const SlotName &slotName, const juce::File &file)
-{
-    Asset assetInSlot = assetsMap.contains(slotName) ? assetsMap.at(slotName) : Asset();
-    assetInSlot.filnameForView = file.getFileNameWithoutExtension();
-    assetsMap.insert_or_assign(slotName, assetInSlot);
-}
 
 bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, SlotName &targetSlot)
 {
@@ -351,7 +339,7 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
 
         // stash one channel of the normalised buffer data for Peaks in the VIEW
         if (channel == 0)
-            assignPeaksToSlot(targetSlot, buffer);
+           slotManager->assignPeaksToSlot(targetSlot, buffer);
 
         // apply the high pass filter
         juce::dsp::ProcessSpec spec;
@@ -369,7 +357,7 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
         // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
         auto name = "USER" + std::to_string(getIndexForSlot(targetSlot)) + "_" + std::to_string(channel);
         elementaryRuntime->updateSharedResourceMap(name, buffer.getReadPointer(0), numSamples);
-        assignVFSpathToSlot(targetSlot, name);
+        slotManager->assignVFSpathToSlot(targetSlot, name);
         // Get the reverse from a little way, so its less draggy
         // so its easy to swap into in realtime
         int shorter = numSamples * 0.75;
@@ -378,7 +366,7 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
         std::string reversedName = REVERSE_BUFFER_PREFIX + name;
         // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
         elementaryRuntime->updateSharedResourceMap(reversedName, buffer.getReadPointer(0), shorter);
-        assignVFSpathToSlot(targetSlot, name);
+        slotManager->assignVFSpathToSlot(targetSlot, name);
         // done, next channel
     }
     // IMPORTANT: delete the reader to avoid memory leaks
@@ -408,62 +396,6 @@ void EffectsPluginProcessor::inspectVFS()
     const auto expr = serialize(jsFunctions::vfsKeysScript, choc::value::Value(vfsString), "%");
     sendJavascriptToUI(expr);
     jsContext.evaluateExpression(expr);
-}
-
-void EffectsPluginProcessor::wrapPeaksForView(elem::js::Object &wrappedPeaks)
-{
-    elem::js::Array peaks;
-    peaks.resize(assetsMap.size());
-    for (const auto &assetInSlot : assetsMap)
-    {
-        SlotName slot = assetInSlot.first;
-        int index = getIndexForSlot(slot);
-        peaks[index] = elem::js::Value(assetInSlot.second.peakDataForView);
-        std::cout << "Slot " << index << " : " << toString(slot) << assetInSlot.second.filnameForView << std::endl;
-    }
-    wrappedPeaks.insert_or_assign(WS_RESPONSE_KEY_FOR_PEAKS, elem::js::Value(peaks));
-}
-
-void EffectsPluginProcessor::wrapStateForView(elem::js::Object &wrappedState)
-{
-    elem::js::Object processorState = state;
-    elem::js::Array fnames;
-    fnames.resize(assetsMap.size());
-    for (const auto &assetInSlot : assetsMap)
-    {
-        SlotName slot = assetInSlot.first;
-        int index = getIndexForSlot(slot);
-        fnames[index] = elem::js::Value(assetInSlot.second.filnameForView.toStdString());
-    }
-    processorState.insert_or_assign(KEY_FOR_FILENAMES, elem::js::Value(fnames));
-    wrappedState.insert_or_assign(WS_RESPONSE_KEY_FOR_STATE, elem::js::Value(processorState));
-}
-
-void EffectsPluginProcessor::wrapFileNamesForView(elem::js::Object &wrappedFileNames)
-{
-    elem::js::Array fnames;
-    fnames.resize(assetsMap.size());
-    for (const auto &assetInSlot : assetsMap)
-    {
-        SlotName slot = assetInSlot.first;
-        int index = getIndexForSlot(slot);
-        fnames[index] = elem::js::Value(assetInSlot.second.filnameForView.toStdString());
-    }
-    wrappedFileNames.insert_or_assign(KEY_FOR_FILENAMES, elem::js::Value(fnames));
-}
-
-void EffectsPluginProcessor::assignVFSpathToSlot(const SlotName &slotName, const std::string &vfsPath)
-{
-    Asset assetInSlot = assetsMap.contains(slotName) ? assetsMap.at(slotName) : Asset();
-    assetInSlot.vfsPathsForRealtime.push_back(vfsPath);
-    assetsMap.insert_or_assign(slotName, assetInSlot);
-}
-
-void EffectsPluginProcessor::assignPeaksToSlot(const SlotName &slotName, juce::AudioBuffer<float> &buffer)
-{
-    Asset assetInSlot = assetsMap.contains(slotName) ? assetsMap.at(slotName) : Asset();
-    assetInSlot.peakDataForView = getReducedAudioBuffer(buffer);
-    assetsMap.insert_or_assign(slotName, assetInSlot);
 }
 
 std::vector<float> EffectsPluginProcessor::getReducedAudioBuffer(const juce::AudioBuffer<float> &buffer)
@@ -1032,10 +964,6 @@ void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInByt
         parsed = elem::js::parseJSON(jsonString);
         auto persistedData = parsed.getObject();
         auto hostState = state;
-
-        // reset the slot index to ensure we start from the beginning
-        // before restoring the state
-        slotManager.resetSlotIndex();
 
         for (auto &[key, value] : persistedData)
         {
