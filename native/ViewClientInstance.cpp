@@ -98,15 +98,19 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             {
                 elem::js::Object wrappedState;
                 elem::js::Object wrappedPeaks;
+                elem::js::Object wrappedFileNames;
                 
                 processor.wrapStateForView(wrappedState);
-                processor.wrapPeaksForView(wrappedPeaks);
-
                 juce::String serializedState = elem::js::serialize(wrappedState);
-                juce::String serializedPeaks = elem::js::serialize(wrappedPeaks);
+
+                processor.wrapFileNamesForView(wrappedFileNames);
+                juce::String serializedFileNames = elem::js::serialize(wrappedFileNames);
+
 
                 int currentStateHash = serializedState.hashCode();
-                int currentPeaksHash = serializedPeaks.hashCode();
+                // lets get the peaks change trigger from a shorter ref 
+                // that changes at the same time as the peaks
+                int currentPeaksHash = serializedFileNames.hashCode(); 
 
                 if (currentStateHash != processor.lastStateHash)
                 {
@@ -115,6 +119,8 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                 }
                 if (currentPeaksHash != processor.lastPeaksHash)
                 {
+                    processor.wrapPeaksForView(wrappedPeaks);
+                    juce::String serializedPeaks = elem::js::serialize(wrappedPeaks);
                     sendWebSocketMessage(serializedPeaks.toStdString());
                     processor.lastPeaksHash = currentPeaksHash;
                 }

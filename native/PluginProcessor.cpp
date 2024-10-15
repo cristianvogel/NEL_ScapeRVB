@@ -33,7 +33,7 @@ EffectsPluginProcessor::EffectsPluginProcessor()
     // Populate the parameters from the manifest file
     const auto manifest = elem::js::parseJSON(manifestFileContents);
     if (!manifest.isObject())
-        assert(false);
+        jassert(false);
     const auto parameters = manifest.getWithDefault("parameters", elem::js::Array());
     createParameters(parameters);
 
@@ -47,7 +47,7 @@ EffectsPluginProcessor::EffectsPluginProcessor()
     editor = new WebViewEditor(this, util::getAssetsDirectory(), 840, 480);
 
     // then load default audio assets
-    assert(fetchDefaultAudioFileAssets() == true);
+    fetchDefaultAudioFileAssets();
 
     // register audio file formats
     formatManager.registerBasicFormats();
@@ -57,7 +57,7 @@ EffectsPluginProcessor::EffectsPluginProcessor()
     if (ws != 0)
     {
         dispatchError("Server error:", "Websocket server failed to start.");
-        assert(false);
+        jassert(false);
     }
 
     serverPort = server->getPort();
@@ -168,7 +168,7 @@ bool EffectsPluginProcessor::fetchDefaultAudioFileAssets()
 
 bool EffectsPluginProcessor::processDefaultResponseBuffers()
 {
-    assert(elementaryRuntime != nullptr);
+    jassert(elementaryRuntime != nullptr);
 
     for (auto &kv : assetsMap)
     {
@@ -197,11 +197,7 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
         for (int channel = 0; channel < 2; ++channel)
         {
             auto buffer = juce::AudioBuffer<float>();
-
-            buffer.setSize(2, reader->lengthInSamples); // VFS buffers are one channel,
-                                                        // but we prep dual channel buffers
-                                                        // and use the second channel for a
-                                                        // reversed version of each single channel
+            buffer.setSize(1, reader->lengthInSamples); 
             reader->read(&buffer, 0, reader->lengthInSamples, 0, true, false);
 
             int numSamples = buffer.getNumSamples();
@@ -221,17 +217,15 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
             std::string name = vfsPathname.toStdString() + '_' + std::to_string( channel );
             elementaryRuntime->updateSharedResourceMap(name, buffer.getReadPointer(0), numSamples);
             assignVFSpathToSlot(slotName, name);
-            // Magic Sauce: Reverse the IR and copy that to the other channel
-            // Get the reverse from a little way in too, so its less draggy
+             // Get the reverse from a little way, so its less draggy
             // so its easy to swap into in realtime
-            buffer.reverse(0, numSamples * 0.75);
-            buffer.copyFrom(1, 0, buffer.getReadPointer(0), numSamples * 0.75);
+            int shorter = numSamples * 0.75;
+            buffer.reverse(0, shorter);
             // add the shaped impulse response to the virtual file system
             std::string reversedName = REVERSE_BUFFER_PREFIX + name;
-            elementaryRuntime->updateSharedResourceMap(reversedName, buffer.getReadPointer(1), numSamples * 0.75);
-            assignVFSpathToSlot(slotName, name);
            // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
-           
+            elementaryRuntime->updateSharedResourceMap(reversedName, buffer.getReadPointer(0), shorter);
+            assignVFSpathToSlot(slotName, name);
             // done, next channel
         }
         // done next asset
@@ -308,6 +302,11 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
 {
     // Create an AudioBuffer to hold the audio data
     auto buffer = juce::AudioBuffer<float>();
+    // Check the userCutoffChoice is set
+    if (userCutoffChoice == 0)
+    {
+       userCutoffChoice = 160;
+    }
     // Create a reader for the file
     auto reader = formatManager.createReaderFor(file);
     // First checkpoint, if the reader is null, something went wrong
@@ -321,9 +320,8 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
     const auto numChannels = reader->numChannels;
     const bool isFloatingPoint = reader->usesFloatingPointData;
     // set the size of the buffer to 2 channels and the length of the file
-    // we only load one channel of the file at a time, but we use the second
-    // buffer channel for a derived 'reversed' version of the IR
-    buffer.setSize(2, reader->lengthInSamples);
+    // we only load one channel of the file at a time
+    buffer.setSize(1, reader->lengthInSamples);
     // Currently mono files are not supported TODO: add support for mono files
     if (numChannels < 2 || numChannels > 2)
     {
@@ -374,10 +372,10 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
         assignVFSpathToSlot(targetSlot, name);
         // shorten the IR a bit, then reverse it and copy that to the other channel
         auto shorterLengthForReverseIR = numSamples * 0.85;
+        buffer.setSize(1, shorterLengthForReverseIR);
         buffer.reverse(0, shorterLengthForReverseIR);
-        buffer.copyFrom(1, 0, buffer.getReadPointer(0), shorterLengthForReverseIR);
         // add the reverse playing channel to the virtual file system in the Elementary runtime
-        elementaryRuntime->updateSharedResourceMap(REVERSE_BUFFER_PREFIX + name, buffer.getReadPointer(1),
+        elementaryRuntime->updateSharedResourceMap(REVERSE_BUFFER_PREFIX + name, buffer.getReadPointer(0),
                                                    shorterLengthForReverseIR);
         assignVFSpathToSlot(targetSlot, REVERSE_BUFFER_PREFIX + name);
     }
@@ -396,7 +394,7 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
 void EffectsPluginProcessor::inspectVFS()
 {
     auto vfs = elementaryRuntime->getSharedResourceMapKeys();
-    // iterate vfs into an std::string
+    // iterate vfs into valid JSON
     std::string vfsString = "[";
     for (auto &key : vfs)
     {
@@ -419,6 +417,7 @@ void EffectsPluginProcessor::wrapPeaksForView(elem::js::Object &wrappedPeaks)
         SlotName slot = assetInSlot.first;
         int index = getIndexForSlot(slot);
         peaks[index] = elem::js::Value(assetInSlot.second.peakDataForView);
+        std::cout << "Slot " << index << " : " << toString(slot) << assetInSlot.second.filnameForView << std::endl;
     }
     wrappedPeaks.insert_or_assign( WS_RESPONSE_KEY_FOR_PEAKS, elem::js::Value(peaks));
 }
@@ -436,7 +435,19 @@ void EffectsPluginProcessor::wrapStateForView(elem::js::Object &wrappedState)
     }
     processorState.insert_or_assign(KEY_FOR_FILENAMES, elem::js::Value( fnames ));
     wrappedState.insert_or_assign(WS_RESPONSE_KEY_FOR_STATE, elem::js::Value( processorState ));
-   
+}
+
+void EffectsPluginProcessor::wrapFileNamesForView(elem::js::Object &wrappedFileNames)
+{
+    elem::js::Array fnames;
+    fnames.resize( assetsMap.size() );
+    for (const auto &assetInSlot : assetsMap)
+    {
+        SlotName slot = assetInSlot.first;
+        int index = getIndexForSlot(slot);
+        fnames[index] = elem::js::Value(assetInSlot.second.filnameForView.toStdString());
+    }
+    wrappedFileNames.insert_or_assign(KEY_FOR_FILENAMES, elem::js::Value(fnames));
 }
 
 

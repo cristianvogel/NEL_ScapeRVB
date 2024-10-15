@@ -183,6 +183,7 @@ public:
     void updateStateWithAssetsData();
     void wrapPeaksForView( elem::js::Object &wrappedPeaks );
     void wrapStateForView( elem::js::Object &wrappedState );
+    void wrapFileNamesForView( elem::js::Object &wrappedFileNames );
 
     elem::js::Value assetsMapToValue(const std::map<SlotName, Asset> &map);
 
