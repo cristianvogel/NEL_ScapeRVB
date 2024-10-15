@@ -197,8 +197,8 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
         for (int channel = 0; channel < 2; ++channel)
         {
             auto buffer = juce::AudioBuffer<float>();
-            buffer.setSize(1, reader->lengthInSamples); 
-            reader->read(&buffer, 0, reader->lengthInSamples, 0, true, false);
+            buffer.setSize(1, reader->lengthInSamples);
+            reader->read(&buffer, 0, reader->lengthInSamples, 0, !channel, channel);
 
             int numSamples = buffer.getNumSamples();
             // fade in, less ER energy from the IR, as we have a whole ER engine already
@@ -214,16 +214,16 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
 
             // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
             juce::String vfsPathname = file.getFileNameWithoutExtension(); // "AMBIENCE.wav" -> "AMBIENCE"
-            std::string name = vfsPathname.toStdString() + '_' + std::to_string( channel );
+            std::string name = vfsPathname.toStdString() + '_' + std::to_string(channel);
             elementaryRuntime->updateSharedResourceMap(name, buffer.getReadPointer(0), numSamples);
             assignVFSpathToSlot(slotName, name);
-             // Get the reverse from a little way, so its less draggy
+            // Get the reverse from a little way, so its less draggy
             // so its easy to swap into in realtime
             int shorter = numSamples * 0.75;
             buffer.reverse(0, shorter);
             // add the shaped impulse response to the virtual file system
             std::string reversedName = REVERSE_BUFFER_PREFIX + name;
-           // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
+            // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
             elementaryRuntime->updateSharedResourceMap(reversedName, buffer.getReadPointer(0), shorter);
             assignVFSpathToSlot(slotName, name);
             // done, next channel
@@ -305,7 +305,7 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
     // Check the userCutoffChoice is set
     if (userCutoffChoice == 0)
     {
-       userCutoffChoice = 160;
+        userCutoffChoice = 160;
     }
     // Create a reader for the file
     auto reader = formatManager.createReaderFor(file);
@@ -315,14 +315,11 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
         dispatchError("File error:", "Could not read " + file.getFileName().toStdString());
         return 0;
     }
-    // get some info about the file from the reader
     const int bitsPerSample = reader->bitsPerSample;
     const auto numChannels = reader->numChannels;
     const bool isFloatingPoint = reader->usesFloatingPointData;
-    // set the size of the buffer to 2 channels and the length of the file
-    // we only load one channel of the file at a time
-    buffer.setSize(1, reader->lengthInSamples);
-    // Currently mono files are not supported TODO: add support for mono files
+
+    //  TODO: add support for mono files
     if (numChannels < 2 || numChannels > 2)
     {
         dispatchError("File error:", "Only stereo files can be used.");
@@ -340,11 +337,22 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
     // ▮▮▮elem▮▮▮▮▮▮runtime▮▮▮▮▮▮▮▮▮elem▮▮▮▮▮▮runtime▮▮▮▮▮▮
     for (int channel = 0; channel < numChannels; ++channel)
     {
-        auto name = "USER" + std::to_string( getIndexForSlot( targetSlot ) ) + "_" + std::to_string(channel);
-        // establish the reader for the file
-        reader->read(&buffer, 0, reader->lengthInSamples, 0, true, false);
-        // work with the buffer
-        auto numSamples = buffer.getNumSamples();
+        auto buffer = juce::AudioBuffer<float>();
+        buffer.setSize(1, reader->lengthInSamples);
+        reader->read(&buffer, 0, reader->lengthInSamples, 0, !channel, channel);
+
+        int numSamples = buffer.getNumSamples();
+        // fade in, less ER energy from the IR, as we have a whole ER engine already
+        buffer.applyGainRamp(0, numSamples, 0.65, 1);
+        // normalise the impulse response
+        util::normaliseAudioBuffer(buffer, 0.8414); // -1.5 db
+                                                    // add the gain ramped impulse response to the virtual
+                                                    // file system
+
+        // stash one channel of the normalised buffer data for Peaks in the VIEW
+        if (channel == 0)
+            assignPeaksToSlot(targetSlot, buffer);
+
         // apply the high pass filter
         juce::dsp::ProcessSpec spec;
         spec.sampleRate = lastKnownSampleRate;
@@ -357,27 +365,21 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
         auto outputBlock = juce::dsp::AudioBlock<float>(buffer);
         juce::dsp::ProcessContextReplacing<float> context(outputBlock);
         stateVariableFilter.process(context);
-        // normalise the result
-        util::normaliseAudioBuffer(buffer, 0.8414); // -1.5 db
-        // stash one channel of the normalised buffer data for Peaks in the VIEW
-        if (channel == 0)
-            assignPeaksToSlot(targetSlot, buffer);
-        // do a little fade in, less ER energy from the IR, as we have a whole ER
-        // engine already
-        buffer.applyGainRamp(0, numSamples, 0.808, 1);
 
-        // ▮▮▮elem▮▮▮▮▮▮runtime▮▮▮▮▮▮
-        // add the forward playing channel to the virtual file system
+        // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
+        auto name = "USER" + std::to_string(getIndexForSlot(targetSlot)) + "_" + std::to_string(channel);
         elementaryRuntime->updateSharedResourceMap(name, buffer.getReadPointer(0), numSamples);
         assignVFSpathToSlot(targetSlot, name);
-        // shorten the IR a bit, then reverse it and copy that to the other channel
-        auto shorterLengthForReverseIR = numSamples * 0.85;
-        buffer.setSize(1, shorterLengthForReverseIR);
-        buffer.reverse(0, shorterLengthForReverseIR);
-        // add the reverse playing channel to the virtual file system in the Elementary runtime
-        elementaryRuntime->updateSharedResourceMap(REVERSE_BUFFER_PREFIX + name, buffer.getReadPointer(0),
-                                                   shorterLengthForReverseIR);
-        assignVFSpathToSlot(targetSlot, REVERSE_BUFFER_PREFIX + name);
+        // Get the reverse from a little way, so its less draggy
+        // so its easy to swap into in realtime
+        int shorter = numSamples * 0.75;
+        buffer.reverse(0, shorter);
+        // add the shaped impulse response to the virtual file system
+        std::string reversedName = REVERSE_BUFFER_PREFIX + name;
+        // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
+        elementaryRuntime->updateSharedResourceMap(reversedName, buffer.getReadPointer(0), shorter);
+        assignVFSpathToSlot(targetSlot, name);
+        // done, next channel
     }
     // IMPORTANT: delete the reader to avoid memory leaks
     delete reader;
@@ -411,7 +413,7 @@ void EffectsPluginProcessor::inspectVFS()
 void EffectsPluginProcessor::wrapPeaksForView(elem::js::Object &wrappedPeaks)
 {
     elem::js::Array peaks;
-    peaks.resize( assetsMap.size() );
+    peaks.resize(assetsMap.size());
     for (const auto &assetInSlot : assetsMap)
     {
         SlotName slot = assetInSlot.first;
@@ -419,28 +421,28 @@ void EffectsPluginProcessor::wrapPeaksForView(elem::js::Object &wrappedPeaks)
         peaks[index] = elem::js::Value(assetInSlot.second.peakDataForView);
         std::cout << "Slot " << index << " : " << toString(slot) << assetInSlot.second.filnameForView << std::endl;
     }
-    wrappedPeaks.insert_or_assign( WS_RESPONSE_KEY_FOR_PEAKS, elem::js::Value(peaks));
+    wrappedPeaks.insert_or_assign(WS_RESPONSE_KEY_FOR_PEAKS, elem::js::Value(peaks));
 }
 
 void EffectsPluginProcessor::wrapStateForView(elem::js::Object &wrappedState)
 {
     elem::js::Object processorState = state;
     elem::js::Array fnames;
-    fnames.resize( assetsMap.size() );
+    fnames.resize(assetsMap.size());
     for (const auto &assetInSlot : assetsMap)
     {
         SlotName slot = assetInSlot.first;
         int index = getIndexForSlot(slot);
         fnames[index] = elem::js::Value(assetInSlot.second.filnameForView.toStdString());
     }
-    processorState.insert_or_assign(KEY_FOR_FILENAMES, elem::js::Value( fnames ));
-    wrappedState.insert_or_assign(WS_RESPONSE_KEY_FOR_STATE, elem::js::Value( processorState ));
+    processorState.insert_or_assign(KEY_FOR_FILENAMES, elem::js::Value(fnames));
+    wrappedState.insert_or_assign(WS_RESPONSE_KEY_FOR_STATE, elem::js::Value(processorState));
 }
 
 void EffectsPluginProcessor::wrapFileNamesForView(elem::js::Object &wrappedFileNames)
 {
     elem::js::Array fnames;
-    fnames.resize( assetsMap.size() );
+    fnames.resize(assetsMap.size());
     for (const auto &assetInSlot : assetsMap)
     {
         SlotName slot = assetInSlot.first;
@@ -449,7 +451,6 @@ void EffectsPluginProcessor::wrapFileNamesForView(elem::js::Object &wrappedFileN
     }
     wrappedFileNames.insert_or_assign(KEY_FOR_FILENAMES, elem::js::Value(fnames));
 }
-
 
 void EffectsPluginProcessor::assignVFSpathToSlot(const SlotName &slotName, const std::string &vfsPath)
 {
@@ -460,8 +461,8 @@ void EffectsPluginProcessor::assignVFSpathToSlot(const SlotName &slotName, const
 
 void EffectsPluginProcessor::assignPeaksToSlot(const SlotName &slotName, juce::AudioBuffer<float> &buffer)
 {
-    Asset assetInSlot = assetsMap.contains( slotName ) ? assetsMap.at( slotName )  : Asset();
-    assetInSlot.peakDataForView = getReducedAudioBuffer( buffer );
+    Asset assetInSlot = assetsMap.contains(slotName) ? assetsMap.at(slotName) : Asset();
+    assetInSlot.peakDataForView = getReducedAudioBuffer(buffer);
     assetsMap.insert_or_assign(slotName, assetInSlot);
 }
 
