@@ -16,16 +16,6 @@ ViewClientInstance::~ViewClientInstance()
     clientID = 0;
 }
 
-choc::network::HTTPContent ViewClientInstance::getHTTPContent(std::string_view path)
-{
-    // not using HTML
-    return {};
-}
-
-void ViewClientInstance::upgradedToWebSocket(std::string_view path) {
-    //not using HTML
-}
-
 void ViewClientInstance::handleWebSocketMessage(std::string_view message)
 {
     // Convert std::string_view to std::string
@@ -48,11 +38,25 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             return;
         }
 
-        // ▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮
-        //  "selectFiles"
-        // ▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮
+
+
         for (auto &[key, hpfValue] : socketMessage)
         {
+        // ▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮ 
+        //  "resetUserSlots"                            
+        // ▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮ 
+            if (key == "resetUserSlots")
+            {
+                processor.slotManager->resetUserSlots();
+                processor.updateStateWithAssetsData();
+                processor.dispatchStateChange();    
+                continue;
+            }
+
+        
+        // ▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮ 
+        //  "selectFiles"                             
+        // ▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮ 
             if (key == "selectFiles" && hpfValue.isNumber())
             {
                 std::promise<elem::js::Object> promise;
@@ -72,7 +76,7 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                 auto files = gotFiles["files"].getArray();
                 processor.userCutoffChoice = fmin(160, int((elem::js::Number)hpfValue));
 
-                SlotName targetSlot = SlotName::LIGHT;
+                SlotName targetSlot = processor.slotManager->findFirstSlotWithoutUserStereoFile();
 
                 for (const auto fileValue : files)
                 {
@@ -80,16 +84,17 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                     juce::File file(filePath);
                     if (file.existsAsFile())
                     {
-                        processor.slotManager->assignFileAssetToSlot(targetSlot, file);
-                        processor.slotManager->assignFilenameToSlot(targetSlot, file);
                         if (!processor.processImportedResponseBuffers(file, targetSlot))
                         {
                             continue;
-                        }
+                        }                       
+                        processor.slotManager->assignFileAssetToSlot(targetSlot, file);
+                        processor.slotManager->assignFilenameToSlot(targetSlot, file);
                         targetSlot = nextSlot(targetSlot);
                     }
                 }
                 processor.updateStateWithAssetsData();
+                processor.dispatchStateChange();
                 continue;
             }
 
@@ -142,4 +147,14 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             }
         }
     }
+}
+
+choc::network::HTTPContent ViewClientInstance::getHTTPContent(std::string_view path)
+{
+    // not using HTML
+    return {};
+}
+
+void ViewClientInstance::upgradedToWebSocket(std::string_view path) {
+    //not using HTML
 }

@@ -17,9 +17,10 @@ public:
 
     // VIEW STATE     
     // peak data for the view
-    std::vector<float> peakDataForView{};
+    std::vector<float> userPeaksForView{};
+    std::vector<float> defaultPeaksForView{};
 
-    juce::String filnameForView{};
+    juce::String filenameForView{};
 
     // RUNTIME
     // Keys for Elementary VFS Map. eg:
@@ -40,9 +41,10 @@ public:
         elem::js::Object obj;
         obj["userStereoFile"] = elem::js::Value(userStereoFile.getFullPathName().toStdString());
         obj["defaultStereoFile"] = elem::js::Value(defaultStereoFile.getFullPathName().toStdString());
-        obj["filnameForView"] = elem::js::Value(filnameForView.toStdString());
+        obj["filenameForView"] = elem::js::Value(filenameForView.toStdString());
         obj["vfsPathsForRealtime"] = elem::js::Value(vfsPathsForRealtime);
-        obj["peakDataForView"] = elem::js::Value(peakDataForView);
+        obj["peakDataForView"] = elem::js::Value(userPeaksForView);
+        obj["defaultPeaksForView"] = elem::js::Value(defaultPeaksForView);
         // Add other fields as needed
         return elem::js::Value(obj);
     }

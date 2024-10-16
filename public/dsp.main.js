@@ -3356,6 +3356,8 @@
         );
       }
     });
+    if (scape.mode === 0)
+      pruneVFS();
   }
   function createHermiteVecInterp() {
     return ramp(
@@ -3527,6 +3529,8 @@
       User_IR_Map.set(DEFAULT_IR_SLOTNAMES[currentSlot], { pathStem: userPathStem, index: currentSlot, att: 0.95 });
     }
   };
+  function pruneVFS() {
+  }
   globalThis.__receiveHydrationData__ = (data) => {
     const payload = JSON.parse(data);
     const nodeMap = core._delegate.nodeMap;

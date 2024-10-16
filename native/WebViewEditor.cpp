@@ -89,6 +89,10 @@ WebViewEditor::WebViewEditor(juce::AudioProcessor *proc, juce::File const &asset
                 return handleSetParameterValueEvent(args[1]);
             }
 
+            if (eventName == PRUNE_VFS) {
+                pruneVFS();
+            }
+
 
             // For Keyzy send an unlock event with an object containing the serial number
             if (eventName == UNLOCK_EVENT && args.size() > 1) {

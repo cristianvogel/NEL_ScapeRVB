@@ -138,6 +138,8 @@ function parseAndUpdateIRRefs(scape: ScapeSettings, useDefaultIRs: boolean = tru
       });
     }
   })
+// resets the VFS , discarding previously uploaded buffers
+  if (scape.mode === 0) pruneVFS();
 
 };
 
@@ -372,6 +374,12 @@ for (let i = 0; i < userVFSKeysCount; i++) {
   // USER0, USER1, USER2, USER3
     User_IR_Map.set( DEFAULT_IR_SLOTNAMES[currentSlot], { pathStem: userPathStem, index: currentSlot, att: 0.95 } );
   }
+}
+
+ function pruneVFS() {
+  // if (typeof globalThis.__postNativeMessage__ === "function") {
+  //   globalThis.__postNativeMessage__("pruneVFS", {});
+  // }
 }
 /////////////////////////////////////////////////////////////////
 

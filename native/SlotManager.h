@@ -28,6 +28,9 @@ public:
 	void assignPeaksToSlot(const SlotName &targetSlot, juce::AudioBuffer<float> &buffer);
 	void assignFileAssetToSlot(const SlotName &targetSlot, const juce::File &file);
 	void assignFilenameToSlot(const SlotName &targetSlot, const juce::File &file);
+	SlotName findFirstSlotWithoutUserStereoFile() const;
+	void resetUserSlots();
+	
 
 private:
 	friend class ViewClientInstance;

@@ -1,4 +1,5 @@
 
+
 #include "SlotManager.h"
 #include "Assets.h"
 
@@ -12,8 +13,8 @@ void SlotManager::wrapPeaksForView(elem::js::Object &wrappedPeaks)
     {
         SlotName slot = assetInSlot.first;
         int index = getIndexForSlot(slot);
-        peaks[index] = elem::js::Value(assetInSlot.second.peakDataForView);
-        std::cout << "Slot " << index << " : " << toString(slot) << assetInSlot.second.filnameForView << std::endl;
+        peaks[index] = elem::js::Value(assetInSlot.second.userPeaksForView);
+        std::cout << "Slot " << index << " : " << toString(slot) << assetInSlot.second.filenameForView << std::endl;
     }
     wrappedPeaks.insert_or_assign( processor.WS_RESPONSE_KEY_FOR_PEAKS, elem::js::Value(peaks) );
 }
@@ -27,7 +28,7 @@ void SlotManager::wrapStateForView(elem::js::Object &wrappedState)
     {
         SlotName slot = assetInSlot.first;
         int index = getIndexForSlot(slot);
-        fnames[index] = elem::js::Value(assetInSlot.second.filnameForView.toStdString());
+        fnames[index] = elem::js::Value(assetInSlot.second.filenameForView.toStdString());
     }
     processorState.insert_or_assign( processor.KEY_FOR_FILENAMES, elem::js::Value(fnames));
     wrappedState.insert_or_assign( processor.WS_RESPONSE_KEY_FOR_STATE, elem::js::Value(processorState));
@@ -41,7 +42,7 @@ void SlotManager::wrapFileNamesForView(elem::js::Object &wrappedFileNames)
     {
         SlotName slot = assetInSlot.first;
         int index = getIndexForSlot(slot);
-        fnames[index] = elem::js::Value(assetInSlot.second.filnameForView.toStdString());
+        fnames[index] = elem::js::Value(assetInSlot.second.filenameForView.toStdString());
     }
     wrappedFileNames.insert_or_assign(processor.KEY_FOR_FILENAMES, elem::js::Value(fnames));
 }
@@ -56,9 +57,10 @@ void SlotManager::assignVFSpathToSlot(const SlotName &slotName, const std::strin
 void SlotManager::assignPeaksToSlot(const SlotName &slotName, juce::AudioBuffer<float> &buffer)
 {
     Asset assetInSlot = processor.assetsMap.contains(slotName) ? processor.assetsMap.at(slotName) : Asset();
-    assetInSlot.peakDataForView = processor.getReducedAudioBuffer(buffer);
+    assetInSlot.userPeaksForView = processor.getReducedAudioBuffer(buffer);
     processor.assetsMap.insert_or_assign(slotName, assetInSlot);
 }
+
 
 
 void SlotManager::assignFileAssetToSlot(const SlotName &slotName, const juce::File &file)
@@ -71,6 +73,35 @@ void SlotManager::assignFileAssetToSlot(const SlotName &slotName, const juce::Fi
 void SlotManager::assignFilenameToSlot(const SlotName &slotName, const juce::File &file)
 {
     Asset assetInSlot = processor.assetsMap.contains(slotName) ? processor.assetsMap.at(slotName) : Asset();
-    assetInSlot.filnameForView = file.getFileNameWithoutExtension();
+    assetInSlot.filenameForView = file.getFileNameWithoutExtension();
     processor.assetsMap.insert_or_assign(slotName, assetInSlot);
+}
+
+
+SlotName SlotManager::findFirstSlotWithoutUserStereoFile() const
+{
+    for (const auto &assetInSlot : processor.assetsMap)
+    {
+        if (assetInSlot.second.userStereoFile.getFileName().isEmpty())
+        {
+            std::cout << "Slot " << toString(assetInSlot.first) << " is  empty" << std::endl;
+            return assetInSlot.first;
+        }
+    }
+    return SlotName::LIGHT; // Return the first slot if all are filled or all empty
+}
+
+void SlotManager::resetUserSlots()
+{
+    auto emptyBuffer = juce::AudioBuffer<float>( 1, 256 );
+    emptyBuffer.clear(  );
+    for (const auto &kv : processor.assetsMap)
+    {
+        SlotName slot = kv.first;
+        Asset assetInSlot = processor.assetsMap.at(slot);
+        assetInSlot.userStereoFile = juce::File();
+        assetInSlot.filenameForView = juce::String();
+        assetInSlot.userPeaksForView = processor.getReducedAudioBuffer(emptyBuffer);
+        processor.assetsMap.insert_or_assign(slot, assetInSlot);
+    }
 }

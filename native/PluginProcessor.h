@@ -167,6 +167,7 @@ public:
     bool fetchDefaultAudioFileAssets();
     bool processDefaultResponseBuffers();
     void inspectVFS();
+    void pruneVFS();
     void requestUserFileSelection(std::promise<elem::js::Object> &promise);
     void updateStateWithAssetsData();
     elem::js::Value assetsMapToValue(const std::map<SlotName, Asset> &map);

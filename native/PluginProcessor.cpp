@@ -376,6 +376,11 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
     return 1;
 }
 
+void EffectsPluginProcessor::pruneVFS()
+{
+    elementaryRuntime->pruneSharedResourceMap();
+    inspectVFS();
+}
 /*
  * Call the runtime to get its immutable
  * Map of audio buffer resources
@@ -559,6 +564,14 @@ juce::AudioProcessorEditor *EffectsPluginProcessor::createEditor()
         dispatchServerInfo();
         dispatchStateChange();
     };
+
+    editor->pruneVFS = [this]()
+    {
+        pruneVFS();
+    };
+
+
+
     // When setting a parameter value, we simply tell the host. This will in turn
     // fire a parameterValueChanged event, which will catch and propagate through
     // dispatching a state change event
