@@ -1,30 +1,7 @@
 #include "PluginProcessor.h"
 #include "WebViewEditor.h"
 
-// A helper for reading numbers from a choc::Value, which seems to opportunistically parse
-// JSON numbers into ints or 32-bit floats whenever it wants.
-double numberFromChocValue(const choc::value::ValueView &v)
-{
-    return (
-        v.isFloat32() ? (double)v.getFloat32()
-                      : (v.isFloat64() ? v.getFloat64()
-                                       : (v.isInt32() ? (double)v.getInt32()
-                                                      : (double)v.getInt64())));
-}
 
-std::string getMimeType(std::string const &ext)
-{
-    static std::unordered_map<std::string, std::string> mimeTypes{
-        {".html", "text/html"},
-        {".js", "application/javascript"},
-        {".css", "text/css"},
-    };
-
-    if (mimeTypes.count(ext) > 0)
-        return mimeTypes.at(ext);
-
-    return "application/octet-stream";
-}
 
 //==============================================================================
 WebViewEditor::WebViewEditor(juce::AudioProcessor *proc, juce::File const &assetDirectory, int width, int height)
@@ -127,6 +104,31 @@ void WebViewEditor::executeJavascript(const std::string &script) const
 }
 
 //==============================================================================
+// A helper for reading numbers from a choc::Value, which seems to opportunistically parse
+// JSON numbers into ints or 32-bit floats whenever it wants.
+double numberFromChocValue(const choc::value::ValueView &v)
+{
+    return (
+        v.isFloat32() ? (double)v.getFloat32()
+                      : (v.isFloat64() ? v.getFloat64()
+                                       : (v.isInt32() ? (double)v.getInt32()
+                                                      : (double)v.getInt64())));
+}
+
+std::string getMimeType(std::string const &ext)
+{
+    static std::unordered_map<std::string, std::string> mimeTypes{
+        {".html", "text/html"},
+        {".js", "application/javascript"},
+        {".css", "text/css"},
+    };
+
+    if (mimeTypes.count(ext) > 0)
+        return mimeTypes.at(ext);
+
+    return "application/octet-stream";
+}
+
 choc::value::Value WebViewEditor::handleSetParameterValueEvent(const choc::value::ValueView &e) const
 {
     if (e.isObject() && e.hasObjectMember("paramId") && e.hasObjectMember("value"))

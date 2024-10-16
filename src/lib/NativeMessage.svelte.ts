@@ -97,6 +97,8 @@ export const MessageToHost = {
     }
   },
 
+
+
   /** ━━━━━━━
    * Send an unlock message to the KeyZey handler.
    * @param serial - The serial number for unlocking.

@@ -48,8 +48,7 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             if (key == "resetUserSlots")
             {
                 processor.slotManager->resetUserSlots();
-                processor.updateStateWithAssetsData();
-                processor.dispatchStateChange();    
+                processor.updateStateWithAssetsData(); 
                 continue;
             }
 

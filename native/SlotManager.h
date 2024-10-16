@@ -25,7 +25,7 @@ public:
 	void wrapStateForView(elem::js::Object &containerForWrappedState);
 	void wrapFileNamesForView(elem::js::Object &containerForWrappedFileNames);
 	void assignVFSpathToSlot(const SlotName &targetSlot, const std::string &vfsPath);
-	void assignPeaksToSlot(const SlotName &targetSlot, juce::AudioBuffer<float> &buffer);
+	void assignPeaksToSlot(const SlotName &targetSlot, juce::AudioBuffer<float> &buffer, bool defaultSlot = false);	
 	void assignFileAssetToSlot(const SlotName &targetSlot, const juce::File &file);
 	void assignFilenameToSlot(const SlotName &targetSlot, const juce::File &file);
 	SlotName findFirstSlotWithoutUserStereoFile() const;

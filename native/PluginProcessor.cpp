@@ -211,7 +211,7 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
 
             // stash one channel of the normalised buffer data for Peaks in the VIEW
             if (channel == 0)
-               slotManager->assignPeaksToSlot(slotName, buffer);
+               slotManager->assignPeaksToSlot(slotName, buffer, true);
 
             // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
             juce::String vfsPathname = file.getFileNameWithoutExtension(); // "AMBIENCE.wav" -> "AMBIENCE"
@@ -339,7 +339,7 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
 
         // stash one channel of the normalised buffer data for Peaks in the VIEW
         if (channel == 0)
-           slotManager->assignPeaksToSlot(targetSlot, buffer);
+           slotManager->assignPeaksToSlot(targetSlot, buffer, false);
 
         // apply the high pass filter
         juce::dsp::ProcessSpec spec;
@@ -378,8 +378,8 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
 
 void EffectsPluginProcessor::pruneVFS()
 {
-    elementaryRuntime->pruneSharedResourceMap();
-    inspectVFS();
+   elementaryRuntime->pruneSharedResourceMap();
+   inspectVFS();
 }
 /*
  * Call the runtime to get its immutable
@@ -568,6 +568,7 @@ juce::AudioProcessorEditor *EffectsPluginProcessor::createEditor()
     editor->pruneVFS = [this]()
     {
         pruneVFS();
+        dispatchStateChange();
     };
 
 

@@ -2,7 +2,7 @@ import { Renderer, el, createNode } from "@elemaudio/core";
 import { argMax } from "@thi.ng/arrays";
 import { RefMap } from "./RefMap";
 import SRVB from "./srvb-er";
-import { clamp, EPS, easeIn3, easeIn2 } from "@thi.ng/math";
+import { clamp, EPS, easeIn2 } from "@thi.ng/math";
 import { HERMITE_V, VEC3, ramp } from "@thi.ng/ramp";
 import type { Ramp } from "@thi.ng/ramp";
 import { NUM_SEQUENCES, OEIS_SEQUENCES } from "./srvb-er";
@@ -21,6 +21,7 @@ import {
 } from "../src/types";
 import { DEFAULT_IR_SLOTNAMES, REVERSE_BUFFER_PREFIX } from "../src/stores/constants";
 import { castSequencesToRefs, buildStructures, updateStructureConstants } from "./OEIS-Structures";
+
 
 
 // First, we initialize a custom Renderer instance that marshals our instruction
@@ -103,7 +104,7 @@ function registerConvolverRefs(scape: ScapeSettings, refs: RefMap) {
 // later, the Elementary refs system will be used to
 // parse and update the VFS paths of the default and user
 // loaded impulse responses made available to the processor
-function parseAndUpdateIRRefs(scape: ScapeSettings, useDefaultIRs: boolean = true) {
+function parseAndUpdateIRRefs(scape: ScapeSettings) {
 
   const mode = scape.mode;
 
@@ -138,8 +139,7 @@ function parseAndUpdateIRRefs(scape: ScapeSettings, useDefaultIRs: boolean = tru
       });
     }
   })
-// resets the VFS , discarding previously uploaded buffers
-  if (scape.mode === 0) pruneVFS();
+
 
 };
 
@@ -299,13 +299,18 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
       refs.update("scapeMode", { value: scape.mode });
 
       // update the convolvers, switch to user IRs if they exist
-      parseAndUpdateIRRefs(scape);
+      parseAndUpdateIRRefs( scape );
     }
 
     refs.update("dryMix", { value: shared.dryMix });
     refs.update("srvbBypass", { value: srvb.bypass }); // needed to bypass empty input when srvb is bypassed
 
   }
+
+
+  if (scape.mode === 0 && memoized?.scapeMode === 1 ) {
+    requestPruneVFS()
+   }
 
   // memoisation of nodes and non-node state
   memoized = {
@@ -376,11 +381,16 @@ for (let i = 0; i < userVFSKeysCount; i++) {
   }
 }
 
- function pruneVFS() {
-  // if (typeof globalThis.__postNativeMessage__ === "function") {
-  //   globalThis.__postNativeMessage__("pruneVFS", {});
-  // }
-}
+  /**
+   * Send a request to prune the VFS map in the runtime engine
+   */
+  function requestPruneVFS () {
+    if (typeof globalThis.__postNativeMessage__ === "function") {
+      globalThis.__postNativeMessage__("pruneVFS", {});
+    }
+  };
+
+
 /////////////////////////////////////////////////////////////////
 
 // NOTE: This is highly experimental and should not yet be relied on

@@ -3327,7 +3327,7 @@
     });
     return convolvers;
   }
-  function parseAndUpdateIRRefs(scape, useDefaultIRs = true) {
+  function parseAndUpdateIRRefs(scape) {
     const mode = scape.mode;
     const VFSPathWithReverseForChannel = (slotName, channel) => {
       const userIR = User_IR_Map.get(slotName);
@@ -3356,8 +3356,6 @@
         );
       }
     });
-    if (scape.mode === 0)
-      pruneVFS();
   }
   function createHermiteVecInterp() {
     return ramp(
@@ -3475,6 +3473,9 @@
       refs.update("dryMix", { value: shared.dryMix });
       refs.update("srvbBypass", { value: srvb.bypass });
     }
+    if (scape.mode === 0 && memoized?.scapeMode === 1) {
+      requestPruneVFS();
+    }
     memoized = {
       ...state,
       structure: srvb.structure,
@@ -3529,7 +3530,10 @@
       User_IR_Map.set(DEFAULT_IR_SLOTNAMES[currentSlot], { pathStem: userPathStem, index: currentSlot, att: 0.95 });
     }
   };
-  function pruneVFS() {
+  function requestPruneVFS() {
+    if (typeof globalThis.__postNativeMessage__ === "function") {
+      globalThis.__postNativeMessage__("pruneVFS", {});
+    }
   }
   globalThis.__receiveHydrationData__ = (data) => {
     const payload = JSON.parse(data);
