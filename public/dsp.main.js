@@ -3279,6 +3279,7 @@
     __postNativeMessage__(JSON.stringify(batch));
   });
   var refs = new RefMap(core);
+  var pruneNeeded = false;
   var blockSizes = [512, 4096];
   var Default_IR_Map = /* @__PURE__ */ new Map([
     ["LIGHT", { pathStem: "LIGHT", index: 0, att: 1 }],
@@ -3287,19 +3288,19 @@
     ["DEEPNESS", { pathStem: "DEEPNESS", index: 3, att: 0.675 }]
   ]);
   var User_IR_Map = /* @__PURE__ */ new Map();
-  function IR_SlotRefFactory(scapeSettings, refs2, slot, slotIndex, attenuation) {
-    if (!scapeSettings || !refs2)
+  function IR_SlotRefFactory(scape, refs2, slot, slotIndex, attenuation) {
+    if (!scape || !refs2)
       return;
-    return {
+    const refConstructor = {
       [`${slot}_0`]: refs2.getOrCreate(
         `${slot}_0`,
         "convolver",
         {
           path: `${slot}_0`,
-          process: scapeSettings.vectorData[slotIndex],
+          process: scape.vectorData[slotIndex],
           scale: attenuation,
           blockSizes,
-          offset: scapeSettings.offset
+          offset: scape.offset
         },
         [stdlib.tapIn({ name: `srvbOut:0` })]
       ),
@@ -3308,16 +3309,21 @@
         "convolver",
         {
           path: `${slot}_1`,
-          process: scapeSettings.vectorData[slotIndex],
+          process: scape.vectorData[slotIndex],
           scale: attenuation,
           blockSizes,
-          offset: scapeSettings.offset
+          offset: scape.offset
         },
         [stdlib.tapIn({ name: `srvbOut:1` })]
       )
     };
+    return refConstructor;
   }
   function registerConvolverRefs(scape, refs2) {
+    if (User_IR_Map.size > 0 && (scape.mode === 0 && memoized?.scapeMode === 1)) {
+      User_IR_Map.clear();
+    }
+    ;
     let convolvers = {};
     Default_IR_Map.forEach((ir, slotName) => {
       convolvers = {
@@ -3473,9 +3479,6 @@
       refs.update("dryMix", { value: shared.dryMix });
       refs.update("srvbBypass", { value: srvb.bypass });
     }
-    if (scape.mode === 0 && memoized?.scapeMode === 1) {
-      requestPruneVFS();
-    }
     memoized = {
       ...state,
       structure: srvb.structure,
@@ -3518,20 +3521,28 @@
       };
       return { state: state2, srvb: srvb2, shared: shared2, scape: scape2 };
     }
+    if (User_IR_Map.size === 0 && pruneNeeded) {
+      requestPruneVFS();
+      pruneNeeded = false;
+    }
   };
   globalThis.__receiveVFSKeys__ = function(vfsCurrent) {
     const vfsKeysArray = JSON.parse(vfsCurrent);
     const userVFSKeys = vfsKeysArray.filter((key) => key.includes("USER") && !key.includes("REVERSE"));
     const userVFSKeysCount = userVFSKeys.length;
     console.log("User VFS Keys", userVFSKeys, " checksum ->", userVFSKeysCount);
-    for (let i = 0; i < userVFSKeysCount; i++) {
-      const currentSlot = Math.floor(i / 2);
-      const userPathStem = `USER${currentSlot}`;
-      User_IR_Map.set(DEFAULT_IR_SLOTNAMES[currentSlot], { pathStem: userPathStem, index: currentSlot, att: 0.95 });
+    if (userVFSKeysCount > 0) {
+      for (let i = 0; i < userVFSKeysCount; i++) {
+        const currentSlot = Math.floor(i / 2);
+        const userPathStem = `USER${currentSlot}`;
+        User_IR_Map.set(DEFAULT_IR_SLOTNAMES[currentSlot], { pathStem: userPathStem, index: currentSlot, att: 0.95 });
+      }
     }
+    pruneNeeded = false;
   };
   function requestPruneVFS() {
     if (typeof globalThis.__postNativeMessage__ === "function") {
+      console.log("Request prune VFS");
       globalThis.__postNativeMessage__("pruneVFS", {});
     }
   }

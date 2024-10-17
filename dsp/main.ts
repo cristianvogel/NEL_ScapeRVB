@@ -41,6 +41,7 @@ let convolver = (_props, ...childs) => createNode("convolver", _props, childs);
 
 // Set up the default IRs
 // MUST MATCH FILE NAMES IN THE PUBLIC IR FOLDER
+let pruneNeeded = false;
 const blockSizes = [512, 4096];
 const Default_IR_Map: Map<DefaultIRSlotName, IRMetaData> = new Map([
   ["LIGHT", { pathStem: "LIGHT", index: 0, att: 1.0 }],
@@ -55,23 +56,24 @@ const User_IR_Map: Map<DefaultIRSlotName, IRMetaData> = new Map();
 // Utilise a factory pattern to generate the ref updaters
 // for the Elem ref engine
 function IR_SlotRefFactory(
-  scapeSettings: ScapeSettings,
+  scape: ScapeSettings,
   refs: RefMap,
   slot: DefaultIRSlotName,
   slotIndex: number,
   attenuation: number
 ) {
-  if (!scapeSettings || !refs) return;
-  return {
+  if (!scape || !refs) return;
+
+  const refConstructor = {
     [`${slot}_0`]: refs.getOrCreate(
       `${slot}_0`,
       "convolver",
       {
         path: `${slot}_0`,
-        process: scapeSettings.vectorData[slotIndex],
+        process: scape.vectorData[slotIndex],
         scale: attenuation,
         blockSizes,
-        offset: scapeSettings.offset
+        offset: scape.offset
       },
       [el.tapIn({ name: `srvbOut:0` })]
     ),
@@ -80,17 +82,23 @@ function IR_SlotRefFactory(
       "convolver",
       {
         path: `${slot}_1`,
-        process: scapeSettings.vectorData[slotIndex],
+        process: scape.vectorData[slotIndex],
         scale: attenuation,
         blockSizes,
-        offset: scapeSettings.offset
+        offset: scape.offset
       },
       [el.tapIn({ name: `srvbOut:1` })]
     ),
   };
+
+
+  return refConstructor
 }
 
 function registerConvolverRefs(scape: ScapeSettings, refs: RefMap) {
+  if (User_IR_Map.size > 0 && (scape.mode === 0 && memoized?.scapeMode === 1)) {
+    User_IR_Map.clear();
+  };
   let convolvers = {};
   Default_IR_Map.forEach((ir, slotName) => {
     convolvers = {
@@ -98,9 +106,9 @@ function registerConvolverRefs(scape: ScapeSettings, refs: RefMap) {
       ...IR_SlotRefFactory(scape, refs, slotName, ir.index, ir.att),
     };
   });
-
   return convolvers;
 }
+
 // later, the Elementary refs system will be used to
 // parse and update the VFS paths of the default and user
 // loaded impulse responses made available to the processor
@@ -111,10 +119,10 @@ function parseAndUpdateIRRefs(scape: ScapeSettings) {
   const VFSPathWithReverseForChannel = (slotName: DefaultIRSlotName, channel: number) => {
     const userIR = User_IR_Map.get(slotName) as IRMetaData;
     const defaultIR = Default_IR_Map.get(slotName) as IRMetaData;
-    const vfsPathWithChannel = userIR && mode ? `${userIR.pathStem}_${channel}` : `${defaultIR.pathStem}_${channel}` ;
+    const vfsPathWithChannel = userIR && mode ? `${userIR.pathStem}_${channel}` : `${defaultIR.pathStem}_${channel}`;
     const reversablePathNameWithChannel = scape.reverse > 0.5
-      ? REVERSE_BUFFER_PREFIX + vfsPathWithChannel 
-      : vfsPathWithChannel ;
+      ? REVERSE_BUFFER_PREFIX + vfsPathWithChannel
+      : vfsPathWithChannel;
     return reversablePathNameWithChannel
   };
 
@@ -125,10 +133,10 @@ function parseAndUpdateIRRefs(scape: ScapeSettings) {
   };
 
 
-  Default_IR_Map.forEach( (defaultIR, slotName: DefaultIRSlotName) => {
+  Default_IR_Map.forEach((defaultIR, slotName: DefaultIRSlotName) => {
 
     const userIR = User_IR_Map.get(slotName);
-  
+
     for (let chan = 0; chan < 2; chan++) {
       refs.update(
         getRefForChannel(refs, slotName, chan), {
@@ -182,7 +190,7 @@ function shouldRender(_mem, _curr) {
     !srvbProps || !scapeProps ||
     _curr.sampleRate !== _mem?.sampleRate ||
     Math.round(_curr.scapeBypass) !== _mem?.scapeBypass ||
-    Math.round(_curr.srvbBypass) !== _mem?.srvbBypass 
+    Math.round(_curr.srvbBypass) !== _mem?.srvbBypass
 
   return result;
 }
@@ -211,7 +219,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     sampleRate: shared.sampleRate,
     size: refs.getOrCreate("size", "const", { value: srvb.size }, []),
     decay: refs.getOrCreate("diffuse", "const", { value: srvb.diffuse }, []),
-    mix: refs.getOrCreate("mix", "const", { value:  srvb.level }, []),
+    mix: refs.getOrCreate("mix", "const", { value: srvb.level }, []),
     tone: refs.getOrCreate("tone", "const", { value: srvb.tone }, []),
     position: refs.getOrCreate("position", "const", { value: shared.position }, []),
     structure: srvb.structure,
@@ -254,7 +262,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
    */
   if (!memoized || shouldRender(memoized, state)) {
 
-    console.log( 'Render called' );
+    console.log('Render called');
     // first, build structure const refs
     structureData = buildStructures(refs, srvb.structure) || structureData;
 
@@ -281,10 +289,11 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
       });
       refs.update("size", { value: srvb.size });
       refs.update("diffuse", { value: srvb.diffuse });
-      refs.update("mix", { value:srvb.level });
+      refs.update("mix", { value: srvb.level });
       refs.update("tone", { value: srvb.tone });
       refs.update("position", { value: shared.position });
       refs.update("structureMax", { value: srvb.structureMax });
+      // update the reflection structure constants
       updateStructureConstants(refs, srvb);
     }
 
@@ -297,20 +306,14 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
       refs.update("v4", { value: scape.vectorData[3] });
       refs.update("scapePosition", { value: shared.position });
       refs.update("scapeMode", { value: scape.mode });
-
       // update the convolvers, switch to user IRs if they exist
-      parseAndUpdateIRRefs( scape );
+      parseAndUpdateIRRefs(scape);
     }
 
     refs.update("dryMix", { value: shared.dryMix });
     refs.update("srvbBypass", { value: srvb.bypass }); // needed to bypass empty input when srvb is bypassed
 
   }
-
-
-  if (scape.mode === 0 && memoized?.scapeMode === 1 ) {
-    requestPruneVFS()
-   }
 
   // memoisation of nodes and non-node state
   memoized = {
@@ -356,39 +359,50 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     };
     return { state, srvb, shared, scape };
   }
+
+  if (User_IR_Map.size === 0 && pruneNeeded) {
+    requestPruneVFS();
+    pruneNeeded = false;
+  }
 }; // end of receiveStateChange
 
 ////////// Handle New IRs from the VFS /////////////////////////////////
 globalThis.__receiveVFSKeys__ = function (vfsCurrent: string) {
   const vfsKeysArray = JSON.parse(vfsCurrent);
-  const userVFSKeys: Array< VFSPathStem > = vfsKeysArray.filter((key) => key.includes("USER") && !key.includes("REVERSE"));
+  const userVFSKeys: Array<VFSPathStem> = vfsKeysArray.filter((key) => key.includes("USER") && !key.includes("REVERSE"));
   // go through user IRs .... if USER0 , update the pathStem of LIGHT to USER0 and so on
   // we will just use the first 4 user IRs and assign the paths of the Default slotnames 
   // in the Elem refmap
 
+ 
   const userVFSKeysCount = userVFSKeys.length;
-  console.log( 'User VFS Keys', userVFSKeys, ' checksum ->', userVFSKeysCount );
+  console.log('User VFS Keys', userVFSKeys, ' checksum ->', userVFSKeysCount);
 
-for (let i = 0; i < userVFSKeysCount; i++) {
-  const currentSlot: number = (Math.floor( i / 2 )); 
-  // Why? Because there are 2 stereo files per slot ( 0 and 1 each has forwards on left and reverse on right )
-  // So the schema is as below,  the stem and slot, then stem and slot + channel eg: USER0_0, USER0_1, USER1_0, USER1_1 etc
-  // the reverse keys are referenced inline by the convolvution node updaters
-    const userPathStem: VFSPathStem = `USER${currentSlot}` as UserVFSStem;
-  // therefore User_IR_Map the map should contain the pathStem and the index of the slot only
-  // USER0, USER1, USER2, USER3
-    User_IR_Map.set( DEFAULT_IR_SLOTNAMES[currentSlot], { pathStem: userPathStem, index: currentSlot, att: 0.95 } );
+  if (userVFSKeysCount > 0) {
+    for (let i = 0; i < userVFSKeysCount; i++) {
+      const currentSlot: number = (Math.floor(i / 2));
+      // Why? Because there are 2 stereo files per slot ( 0 and 1 each has forwards on left and reverse on right )
+      // So the schema is as below,  the stem and slot, then stem and slot + channel eg: USER0_0, USER0_1, USER1_0, USER1_1 etc
+      // the reverse keys are referenced inline by the convolvution node updaters
+      const userPathStem: VFSPathStem = `USER${currentSlot}` as UserVFSStem;
+      // therefore User_IR_Map the map should contain the pathStem and the index of the slot only
+      // USER0, USER1, USER2, USER3
+      User_IR_Map.set(DEFAULT_IR_SLOTNAMES[currentSlot], { pathStem: userPathStem, index: currentSlot, att: 0.95 });
+    }
   }
+
+  pruneNeeded = false;
 }
 
-  /**
-   * Send a request to prune the VFS map in the runtime engine
-   */
-  function requestPruneVFS () {
-    if (typeof globalThis.__postNativeMessage__ === "function") {
-      globalThis.__postNativeMessage__("pruneVFS", {});
-    }
-  };
+/**
+ * Send a request to prune the VFS map in the runtime engine
+ */
+function requestPruneVFS() {
+  if (typeof globalThis.__postNativeMessage__ === "function") {
+    console.log('Request prune VFS');
+    globalThis.__postNativeMessage__("pruneVFS", {});
+  }
+};
 
 
 /////////////////////////////////////////////////////////////////
