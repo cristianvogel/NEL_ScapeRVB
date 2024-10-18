@@ -20,11 +20,11 @@ add_subdirectory(juce) # using the static non-submodule version
 add_subdirectory(elementary/runtime) # using the static non-submodule version
 
 # Enable CCache
-find_program(CCACHE_PROGRAM ccache)
-if(CCACHE_PROGRAM)
-    set(CMAKE_C_COMPILER_LAUNCHER ${CCACHE_PROGRAM})
-    set(CMAKE_CXX_COMPILER_LAUNCHER ${CCACHE_PROGRAM})
-endif()
+# find_program(CCACHE_PROGRAM ccache)
+# if(CCACHE_PROGRAM)
+#     set(CMAKE_C_COMPILER_LAUNCHER ${CCACHE_PROGRAM})
+#     set(CMAKE_CXX_COMPILER_LAUNCHER ${CCACHE_PROGRAM})
+# endif()
 
 
 
