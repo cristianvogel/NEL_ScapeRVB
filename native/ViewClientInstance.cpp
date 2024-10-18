@@ -3,9 +3,8 @@
 #include "PluginProcessor.h"
 #include "SlotName.h"
 
-
 ViewClientInstance::ViewClientInstance(EffectsPluginProcessor &processor)
-    :   processor(processor)
+    : processor(processor)
 {
     static int clientCount = 0;
     clientID = ++clientCount;
@@ -38,24 +37,21 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             return;
         }
 
-
-
         for (auto &[key, hpfValue] : socketMessage)
         {
-        // ▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮ 
-        //  "resetUserSlots"                            
-        // ▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮ 
+            // ▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮
+            //  "resetUserSlots"
+            // ▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮
             if (key == "resetUserSlots")
             {
                 processor.slotManager->resetUserSlots();
-                processor.updateStateWithAssetsData(); 
+                processor.updateStateWithAssetsData();
                 continue;
             }
 
-        
-        // ▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮ 
-        //  "selectFiles"                             
-        // ▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮ 
+            // ▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮
+            //  "selectFiles"
+            // ▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮
             if (key == "selectFiles" && hpfValue.isNumber())
             {
                 std::promise<elem::js::Object> promise;
@@ -86,12 +82,18 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                         if (!processor.processImportedResponseBuffers(file, targetSlot))
                         {
                             continue;
-                        }                       
+                        }
                         processor.slotManager->assignFileAssetToSlot(targetSlot, file);
                         processor.slotManager->assignFilenameToSlot(targetSlot, file);
+                        // last slot of the bank
+                        // so step to the next bank
+                        // for the VFS path history registry
+                        if ( processor.slotManager->getIndexForSlot(targetSlot) == 3)
+                            processor.USERBANK++;
                         targetSlot = nextSlot(targetSlot);
                     }
                 }
+                processor.dispatchUserBank();
                 processor.updateStateWithAssetsData();
                 processor.dispatchStateChange();
                 continue;
@@ -154,6 +156,7 @@ choc::network::HTTPContent ViewClientInstance::getHTTPContent(std::string_view p
     return {};
 }
 
-void ViewClientInstance::upgradedToWebSocket(std::string_view path) {
-    //not using HTML
+void ViewClientInstance::upgradedToWebSocket(std::string_view path)
+{
+    // not using HTML
 }

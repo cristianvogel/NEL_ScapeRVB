@@ -240,6 +240,7 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
 
 void EffectsPluginProcessor::updateStateWithAssetsData()
 {
+    // todo: will be used for persisting the state of the plugin assets
     assetState.insert_or_assign("Assets", assetsMapToValue(assetsMap));
 }
 
@@ -356,8 +357,8 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
 
         // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
         auto name = "USER" + std::to_string(getIndexForSlot(targetSlot)) + "_" + std::to_string(channel);
-        elementaryRuntime->updateSharedResourceMap(name, buffer.getReadPointer(0), numSamples);
-        slotManager->assignVFSpathToSlot(targetSlot, name);
+        elementaryRuntime->updateSharedResourceMap( prefixUserBank(name), buffer.getReadPointer(0), numSamples);
+        slotManager->assignVFSpathToSlot(targetSlot, prefixUserBank(name));
         // Get the reverse from a little way, so its less draggy
         // so its easy to swap into in realtime
         int shorter = numSamples * 0.75;
@@ -365,8 +366,9 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
         // add the shaped impulse response to the virtual file system
         std::string reversedName = REVERSE_BUFFER_PREFIX + name;
         // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
-        elementaryRuntime->updateSharedResourceMap(reversedName, buffer.getReadPointer(0), shorter);
-        slotManager->assignVFSpathToSlot(targetSlot, name);
+        elementaryRuntime->updateSharedResourceMap( prefixUserBank(reversedName), buffer.getReadPointer(0), shorter);
+        slotManager->assignVFSpathToSlot(targetSlot, prefixUserBank(reversedName));
+        dispatchUserBank();
         // done, next channel
     }
     // IMPORTANT: delete the reader to avoid memory leaks
@@ -374,6 +376,11 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
     // notify the front end of the updated VFS keys
     inspectVFS();
     return 1;
+}
+
+std::string EffectsPluginProcessor::prefixUserBank(const std::string &name )
+{
+    return "USERBANK_" + std::to_string( getUserBank() ) + "_" + name;
 }
 
 void EffectsPluginProcessor::pruneVFS()
@@ -388,7 +395,7 @@ void EffectsPluginProcessor::pruneVFS()
  */
 void EffectsPluginProcessor::inspectVFS()
 {
-    auto vfs = elementaryRuntime->getSharedResourceMapKeys();
+   auto vfs = elementaryRuntime->getSharedResourceMapKeys();
     // iterate vfs into valid JSON
     std::string vfsString = "[";
     for (auto &key : vfs)
@@ -402,6 +409,7 @@ void EffectsPluginProcessor::inspectVFS()
     sendJavascriptToUI(expr);
     jsContext.evaluateExpression(expr);
 }
+
 
 std::vector<float> EffectsPluginProcessor::getReducedAudioBuffer(const juce::AudioBuffer<float> &buffer)
 {
@@ -853,24 +861,12 @@ void EffectsPluginProcessor::dispatchServerInfo()
  * @name dispatchUserFileCount
  * @brief Dispatches the current user file count from the assetMap
  */
-void EffectsPluginProcessor::dispatchUserFileCount()
+void EffectsPluginProcessor::dispatchUserBank()
 {
-    // Retrieve the user file count
-    int userFileCount = 0;
-
-    for (const std::pair<SlotName, Asset> &entry : assetsMap)
-    {
-        const SlotName &slot = entry.first;
-        const Asset &asset = entry.second;
-        if (asset.defaultStereoFile.getFileNameWithoutExtension().length()>0 )
-        {
-            userFileCount++;
-        }
-    }
-    // Convert the user file count to a choc::value::Value
-    const auto userFileCountValue = choc::value::createInt32(userFileCount);
-    // Send the user file count to the UI
-    const auto expr = serialize(jsFunctions::userFileCountScript, userFileCountValue, "%");
+    // Retrieve the user bank
+    const auto userBankValue = choc::value::createInt32( getUserBank() );
+    // Send the user bank to the UI
+    const auto expr = serialize(jsFunctions::userBankScript, userBankValue, "%");
     sendJavascriptToUI(expr);
 }
 

@@ -22,13 +22,15 @@ public:
 
     juce::String filenameForView{};
 
-    // RUNTIME
+    // RUNTIME HISTORY
     // Keys for Elementary VFS Map. eg:
-    //   "name_0"
-    //   "name_1",
-    //   "REVERSED_name_0"
-    //   "REVERSED_name_1"
-    std::vector< std::string> vfsPathsForRealtime{};
+    //   "name0_0"
+    //   "name0_1",
+    //   "REVERSED_name0_0"
+    //   "REVERSED_name0_1"
+    // and file path history
+    std::vector< elem::js::Object > vfsPathHistory{};
+    std::vector< std::string > userPathNameHistory{};
     
     // Constructor
     Asset() = default;
@@ -38,11 +40,18 @@ public:
 
     // Convert Asset to elem::js::Value
     elem::js::Value toJsValue() const {
+
+          elem::js::Array vfsPaths;
+        for (const auto &vfsPath : vfsPathHistory)
+        {
+            vfsPaths.push_back(elem::js::Value(vfsPath));
+        }
         elem::js::Object obj;
         obj["userStereoFile"] = elem::js::Value(userStereoFile.getFullPathName().toStdString());
         obj["defaultStereoFile"] = elem::js::Value(defaultStereoFile.getFullPathName().toStdString());
+        obj["userPathNameHistory"] = elem::js::Value(userPathNameHistory);
         obj["filenameForView"] = elem::js::Value(filenameForView.toStdString());
-        obj["vfsPathsForRealtime"] = elem::js::Value(vfsPathsForRealtime);
+         obj["vfsPathHistory"] = elem::js::Value( vfsPaths );
         obj["peakDataForView"] = elem::js::Value(userPeaksForView);
         obj["defaultPeaksForView"] = elem::js::Value(defaultPeaksForView);
         // Add other fields as needed

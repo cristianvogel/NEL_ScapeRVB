@@ -31,7 +31,6 @@
 #include "SlotManager.h"
 #include "SlotName.h"
 
-
 // Forward Declarations
 class WebServer;
 class WebViewEditor;
@@ -167,6 +166,8 @@ public:
     elem::js::Object assetState;
     int userCutoffChoice = 160;
 
+    // a USERBANK is a set of 4 VFS paths generated from one stereo user file
+
     bool fetchDefaultAudioFileAssets();
     bool processDefaultResponseBuffers();
     void inspectVFS();
@@ -177,8 +178,13 @@ public:
     std::vector<float> getReducedAudioBuffer(const juce::AudioBuffer<float> &buffer);
     bool processImportedResponseBuffers(juce::File &file, SlotName &targetSlot);
     bool importPeakDataForView(const juce::AudioBuffer<float> &buffer);
+    void dispatchVFSpathHistoryForSlot(SlotName slot);
+    int getUserBank() const { return USERBANK; };
+    void dispatchUserBank();
+    std::string prefixUserBank(const std::string &name );
 
 private:
+    int USERBANK = 1;
     int runWebServer();
     uint16_t serverPort = 0;
     uint16_t getServerPort() const { return serverPort; }
@@ -186,7 +192,7 @@ private:
     juce::dsp::StateVariableTPTFilter<float> stateVariableFilter; // For filtering the imported IRs
     std::unique_ptr<ViewClientInstance> clientInstance;           // Use a smart pointer to store the client instance
     std::unique_ptr<choc::network::HTTPServer> server;            // Use a smart pointer to manage the server
-    std::unique_ptr<SlotManager> slotManager;                  // Use a smart pointer to manage the slot manager
+    std::unique_ptr<SlotManager> slotManager;                     // Use a smart pointer to manage the slot manager
 
     //==============================================================================
     // A simple "dirty list" abstraction here for propagating realtime parameter
@@ -375,12 +381,12 @@ namespace jsFunctions
     })();
 )script";
 
-    inline auto userFileCountScript = R"script(
+    inline auto userBankScript = R"script(
 (function() {
-    if (typeof globalThis.__receiveUserFileCount__ !== 'function')
+    if (typeof globalThis.__receiveUserBank__ !== 'function')
         return false;
 
-    globalThis.__receiveUserFileCount__(%);
+    globalThis.__receiveUserBank__(%);
     return true;
     })();
 )script";

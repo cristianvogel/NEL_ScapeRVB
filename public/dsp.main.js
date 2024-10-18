@@ -3279,7 +3279,7 @@
     __postNativeMessage__(JSON.stringify(batch));
   });
   var refs = new RefMap(core);
-  var pruneNeeded = false;
+  var currentUserBank = 1;
   var blockSizes = [512, 4096];
   var Default_IR_Map = /* @__PURE__ */ new Map([
     ["LIGHT", { pathStem: "LIGHT", index: 0, att: 1 }],
@@ -3338,8 +3338,14 @@
     const VFSPathWithReverseForChannel = (slotName, channel) => {
       const userIR = User_IR_Map.get(slotName);
       const defaultIR = Default_IR_Map.get(slotName);
-      const vfsPathWithChannel = userIR && mode ? `${userIR.pathStem}_${channel}` : `${defaultIR.pathStem}_${channel}`;
-      const reversablePathNameWithChannel = scape.reverse > 0.5 ? REVERSE_BUFFER_PREFIX + vfsPathWithChannel : vfsPathWithChannel;
+      let reversablePathNameWithChannel = "";
+      if (currentUserBank > 1) {
+        const vfsPathWithChannel = userIR && mode ? `USERBANK_${currentUserBank}_${userIR.pathStem}_${channel}` : `${defaultIR.pathStem}_${channel}`;
+        reversablePathNameWithChannel = scape.reverse > 0.5 ? `USERBANK_${currentUserBank}_` + REVERSE_BUFFER_PREFIX + vfsPathWithChannel : vfsPathWithChannel;
+      } else {
+        const vfsPathWithChannel = userIR && mode ? `${userIR.pathStem}_${channel}` : `${defaultIR.pathStem}_${channel}`;
+        reversablePathNameWithChannel = scape.reverse > 0.5 ? REVERSE_BUFFER_PREFIX + vfsPathWithChannel : vfsPathWithChannel;
+      }
       return reversablePathNameWithChannel;
     };
     const getRefForChannel = (refs2, slotName, chan) => {
@@ -3521,10 +3527,6 @@
       };
       return { state: state2, srvb: srvb2, shared: shared2, scape: scape2 };
     }
-    if (User_IR_Map.size === 0 && pruneNeeded) {
-      requestPruneVFS();
-      pruneNeeded = false;
-    }
   };
   globalThis.__receiveVFSKeys__ = function(vfsCurrent) {
     const vfsKeysArray = JSON.parse(vfsCurrent);
@@ -3533,19 +3535,16 @@
     console.log("User VFS Keys", userVFSKeys, " checksum ->", userVFSKeysCount);
     if (userVFSKeysCount > 0) {
       for (let i = 0; i < userVFSKeysCount; i++) {
-        const currentSlot = Math.floor(i / 2);
-        const userPathStem = `USER${currentSlot}`;
-        User_IR_Map.set(DEFAULT_IR_SLOTNAMES[currentSlot], { pathStem: userPathStem, index: currentSlot, att: 0.95 });
+        const currentSlotIndex = Math.floor(i / 2);
+        const userPathStem = `USERBANK_${currentUserBank}_USER${currentSlotIndex}`;
+        User_IR_Map.set(DEFAULT_IR_SLOTNAMES[currentSlotIndex], { pathStem: userPathStem, index: currentSlotIndex, att: 0.95 });
       }
     }
-    pruneNeeded = false;
   };
-  function requestPruneVFS() {
-    if (typeof globalThis.__postNativeMessage__ === "function") {
-      console.log("Request prune VFS");
-      globalThis.__postNativeMessage__("pruneVFS", {});
-    }
-  }
+  globalThis.__receiveUserBank__ = function(count) {
+    console.log("Current User Bank: ", count);
+    currentUserBank = count;
+  };
   globalThis.__receiveHydrationData__ = (data) => {
     const payload = JSON.parse(data);
     const nodeMap = core._delegate.nodeMap;

@@ -28,8 +28,11 @@ public:
 	void assignPeaksToSlot(const SlotName &targetSlot, juce::AudioBuffer<float> &buffer, bool defaultSlot = false);	
 	void assignFileAssetToSlot(const SlotName &targetSlot, const juce::File &file);
 	void assignFilenameToSlot(const SlotName &targetSlot, const juce::File &file);
+	std::vector<elem::js::Object> getVFSpathHistoryForSlot(const SlotName &slotName);
+	Asset getAssetFrom(const SlotName &slotName);
 	SlotName findFirstSlotWithoutUserStereoFile() const;
 	void resetUserSlots();
+	int getIndexForSlot(const SlotName &slotName) ;
 	
 
 private:

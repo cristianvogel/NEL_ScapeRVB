@@ -41,7 +41,7 @@ let convolver = (_props, ...childs) => createNode("convolver", _props, childs);
 
 // Set up the default IRs
 // MUST MATCH FILE NAMES IN THE PUBLIC IR FOLDER
-
+let currentUserBank = 1;
 const blockSizes = [512, 4096];
 const Default_IR_Map: Map<DefaultIRSlotName, IRMetaData> = new Map([
   ["LIGHT", { pathStem: "LIGHT", index: 0, att: 1.0 }],
@@ -119,10 +119,21 @@ function parseAndUpdateIRRefs(scape: ScapeSettings) {
   const VFSPathWithReverseForChannel = (slotName: DefaultIRSlotName, channel: number) => {
     const userIR = User_IR_Map.get(slotName) as IRMetaData;
     const defaultIR = Default_IR_Map.get(slotName) as IRMetaData;
-    const vfsPathWithChannel = userIR && mode ? `${userIR.pathStem}_${channel}` : `${defaultIR.pathStem}_${channel}`;
-    const reversablePathNameWithChannel = scape.reverse > 0.5
-      ? REVERSE_BUFFER_PREFIX + vfsPathWithChannel
+    let reversablePathNameWithChannel: string = "";
+   
+    if (currentUserBank > 1) {
+    const vfsPathWithChannel = userIR && mode ? `USERBANK_${currentUserBank}_${userIR.pathStem}_${channel}` : `${defaultIR.pathStem}_${channel}`;
+     reversablePathNameWithChannel = scape.reverse > 0.5
+      ? `USERBANK_${currentUserBank}_` + REVERSE_BUFFER_PREFIX + vfsPathWithChannel
       : vfsPathWithChannel;
+    } else {
+      const vfsPathWithChannel = userIR && mode ? `${userIR.pathStem}_${channel}` : `${defaultIR.pathStem}_${channel}`;
+       reversablePathNameWithChannel = scape.reverse > 0.5
+        ? REVERSE_BUFFER_PREFIX + vfsPathWithChannel
+        : vfsPathWithChannel;
+    }
+
+
     return reversablePathNameWithChannel
   };
 
@@ -380,7 +391,7 @@ globalThis.__receiveVFSKeys__ = function (vfsCurrent: string) {
       // Why? Because there are 2 stereo files per slot ( 0 and 1 each has forwards on left and reverse on right )
       // So the schema is as below,  the stem and slot, then stem and slot + channel eg: USER0_0, USER0_1, USER1_0, USER1_1 etc
       // the reverse keys are referenced inline by the convolvution node updaters
-      const userPathStem: VFSPathStem = `USER${currentSlotIndex}` as UserVFSStem;
+      const userPathStem: VFSPathStem = `USERBANK_${currentUserBank}_USER${currentSlotIndex}` as UserVFSStem;
       // therefore User_IR_Map the map should contain the pathStem and the index of the slot only
       // USER0, USER1, USER2, USER3
       User_IR_Map.set(DEFAULT_IR_SLOTNAMES[currentSlotIndex], { pathStem: userPathStem, index: currentSlotIndex, att: 0.95 });
@@ -389,8 +400,9 @@ globalThis.__receiveVFSKeys__ = function (vfsCurrent: string) {
 }
 
 
-globalThis.__receiveUserFileCount__ = function (count: number) {
-  console.log('User File Count', count);
+globalThis.__receiveUserBank__ = function (count: number) {
+  console.log('Current User Bank: ', count);
+  currentUserBank = count;
 }
 
 /////////////////////////////////////////////////////////////////
