@@ -727,7 +727,7 @@ void EffectsPluginProcessor::initJavaScriptEngine()
 {
     jsContext = choc::javascript::createQuickJSContext();
 
-    choc::javascript::registerTimerFunctions(jsContext);
+  //  choc::javascript::registerTimerFunctions(jsContext);
 
     // Install some native interop functions in our JavaScript environment
     jsContext.registerFunction(NATIVE_MESSAGE_FUNCTION_NAME, [this](choc::javascript::ArgumentList args)
@@ -848,6 +848,33 @@ void EffectsPluginProcessor::dispatchServerInfo()
     const auto expr = serialize(jsFunctions::serverInfoScript, portValue, "%");
     sendJavascriptToUI(expr);
 }
+
+/*▮▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮
+ * @name dispatchUserFileCount
+ * @brief Dispatches the current user file count from the assetMap
+ */
+void EffectsPluginProcessor::dispatchUserFileCount()
+{
+    // Retrieve the user file count
+    int userFileCount = 0;
+
+    for (const std::pair<SlotName, Asset> &entry : assetsMap)
+    {
+        const SlotName &slot = entry.first;
+        const Asset &asset = entry.second;
+        if (asset.defaultStereoFile.getFileNameWithoutExtension().length()>0 )
+        {
+            userFileCount++;
+        }
+    }
+    // Convert the user file count to a choc::value::Value
+    const auto userFileCountValue = choc::value::createInt32(userFileCount);
+    // Send the user file count to the UI
+    const auto expr = serialize(jsFunctions::userFileCountScript, userFileCountValue, "%");
+    sendJavascriptToUI(expr);
+}
+
+
 /*▮▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮
  * @name dispatchError
  * @brief Some error reporting facilities

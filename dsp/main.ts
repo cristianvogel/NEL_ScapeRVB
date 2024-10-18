@@ -41,7 +41,7 @@ let convolver = (_props, ...childs) => createNode("convolver", _props, childs);
 
 // Set up the default IRs
 // MUST MATCH FILE NAMES IN THE PUBLIC IR FOLDER
-let pruneNeeded = false;
+
 const blockSizes = [512, 4096];
 const Default_IR_Map: Map<DefaultIRSlotName, IRMetaData> = new Map([
   ["LIGHT", { pathStem: "LIGHT", index: 0, att: 1.0 }],
@@ -360,10 +360,6 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     return { state, srvb, shared, scape };
   }
 
-  if (User_IR_Map.size === 0 && pruneNeeded) {
-    requestPruneVFS();
-    pruneNeeded = false;
-  }
 }; // end of receiveStateChange
 
 ////////// Handle New IRs from the VFS /////////////////////////////////
@@ -380,30 +376,22 @@ globalThis.__receiveVFSKeys__ = function (vfsCurrent: string) {
 
   if (userVFSKeysCount > 0) {
     for (let i = 0; i < userVFSKeysCount; i++) {
-      const currentSlot: number = (Math.floor(i / 2));
+      const currentSlotIndex: number = (Math.floor(i / 2));
       // Why? Because there are 2 stereo files per slot ( 0 and 1 each has forwards on left and reverse on right )
       // So the schema is as below,  the stem and slot, then stem and slot + channel eg: USER0_0, USER0_1, USER1_0, USER1_1 etc
       // the reverse keys are referenced inline by the convolvution node updaters
-      const userPathStem: VFSPathStem = `USER${currentSlot}` as UserVFSStem;
+      const userPathStem: VFSPathStem = `USER${currentSlotIndex}` as UserVFSStem;
       // therefore User_IR_Map the map should contain the pathStem and the index of the slot only
       // USER0, USER1, USER2, USER3
-      User_IR_Map.set(DEFAULT_IR_SLOTNAMES[currentSlot], { pathStem: userPathStem, index: currentSlot, att: 0.95 });
+      User_IR_Map.set(DEFAULT_IR_SLOTNAMES[currentSlotIndex], { pathStem: userPathStem, index: currentSlotIndex, att: 0.95 });
     }
   }
-
-  pruneNeeded = false;
 }
 
-/**
- * Send a request to prune the VFS map in the runtime engine
- */
-function requestPruneVFS() {
-  if (typeof globalThis.__postNativeMessage__ === "function") {
-    console.log('Request prune VFS');
-    globalThis.__postNativeMessage__("pruneVFS", {});
-  }
-};
 
+globalThis.__receiveUserFileCount__ = function (count: number) {
+  console.log('User File Count', count);
+}
 
 /////////////////////////////////////////////////////////////////
 

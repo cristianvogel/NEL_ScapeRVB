@@ -105,6 +105,9 @@ public:
     /** Function to send info about the backend server to the View */
     void dispatchServerInfo();
 
+    /** User file count */
+    void dispatchUserFileCount();
+
     /** error to UI */
     void dispatchError(std::string const &name, std::string const &message);
 
@@ -368,6 +371,16 @@ namespace jsFunctions
         return false;
     
     globalThis.__receiveServerInfo__(%);
+    return true;
+    })();
+)script";
+
+    inline auto userFileCountScript = R"script(
+(function() {
+    if (typeof globalThis.__receiveUserFileCount__ !== 'function')
+        return false;
+
+    globalThis.__receiveUserFileCount__(%);
     return true;
     })();
 )script";
