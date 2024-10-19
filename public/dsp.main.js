@@ -3566,6 +3566,7 @@
         User_IR_Map.set(DEFAULT_IR_SLOTNAMES[slotIndex % 4], { pathStem: userPathStem, slotIndex: slotIndex % 4, att: 0.95 });
       }
     }
+    console.log("VFS->", vfsKeysArray);
   };
   globalThis.__receiveHydrationData__ = (data) => {
     const payload = JSON.parse(data);

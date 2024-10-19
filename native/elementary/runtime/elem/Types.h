@@ -168,7 +168,7 @@ namespace elem
     template <typename FloatType>
     void SharedResourceMap<FloatType>::prune() {
         for (auto it = imms.cbegin(); it != imms.cend(); /* no increment */) {
-            if (it->second.use_count() == 1) {
+             if (it->second.use_count() == 1 && it->first.find("USER") != std::string::npos) {
                 imms.erase(it++);
             } else {
                 it++;

@@ -61,13 +61,11 @@ export function parseAndUpdateIRRefs(scape: ScapeSettings, shared: SharedSetting
 
   Slots.forEach((slot, slotName: SlotName) => {
     for (let chan = 0; chan < 2; chan++) {
-
       const path = getActivePathName(slotName, chan);
       const ref = getRef(refs, slotName, chan);
       const scale = getScale(slotName, chan);
       const offset = scape.offset;
       const process = Math.min(scape.level, scape.vectorData[slot.slotIndex]); // todo: take another look at this
-
 
       // test for null or undefined
       if (ref === null || ref === undefined) return;
@@ -85,5 +83,4 @@ export function parseAndUpdateIRRefs(scape: ScapeSettings, shared: SharedSetting
       });
     }
   });
-}
-;
+};

@@ -123,8 +123,7 @@ SlotName SlotManager::findFirstSlotWithoutUserStereoFile() const
 void SlotManager::resetUserSlots()
 {
     // not resetting history 
-    auto emptyBuffer = juce::AudioBuffer<float>(1, 256);
-    emptyBuffer.clear();
+
     for (const auto &kv : processor.assetsMap)
     {
         SlotName slot = kv.first;
@@ -134,4 +133,5 @@ void SlotManager::resetUserSlots()
         assetInSlot.userPeaksForView = assetInSlot.defaultPeaksForView;
         processor.assetsMap.insert_or_assign(slot, assetInSlot);
     }
+    processor.pruneVFS();
 }

@@ -384,8 +384,9 @@ std::string EffectsPluginProcessor::prefixUserBank(const std::string &name )
 
 void EffectsPluginProcessor::pruneVFS()
 {
-  // elementaryRuntime->pruneSharedResourceMap();
-   inspectVFS();
+
+    elementaryRuntime->pruneSharedResourceMap();
+
 }
 /*
  * Call the runtime to get its immutable
