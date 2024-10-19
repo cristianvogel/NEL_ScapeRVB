@@ -29,7 +29,7 @@ public:
                 return elem::ReturnCode::InvalidPropertyType();
 
             if (!resources.has((elem::js::String)val))
-                return elem::ReturnCode::InvalidPropertyValue();
+                return elem::ReturnCode::InvalidPropertyValue(); //USERBANK_1_USER2_0
 
             path = (elem::js::String)val;
             auto ref = resources.get(path);

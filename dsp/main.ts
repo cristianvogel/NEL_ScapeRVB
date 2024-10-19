@@ -9,8 +9,8 @@ import { NUM_SEQUENCES, OEIS_SEQUENCES } from "./srvb-er";
 import SCAPE from "./scape";
 import { Vec } from "@thi.ng/vectors";
 import {
-  DefaultIRSlotName,
-  IRMetaData,
+  DefaultIRSlotName as SlotName,
+  IRMetaData as SlotData,
   ProcessorSettings,
   ScapeProps,
   ScapeSettings,
@@ -18,9 +18,12 @@ import {
   StructureData,
   VFSPathStem,
   UserVFSStem,
+  SrvbSettings,
+  SharedSettings,
 } from "../src/types";
-import { DEFAULT_IR_SLOTNAMES, REVERSE_BUFFER_PREFIX } from "../src/stores/constants";
+import { DEFAULT_IR_SLOTNAMES } from "../src/stores/constants";
 import { castSequencesToRefs, buildStructures, updateStructureConstants } from "./OEIS-Structures";
+import { parseAndUpdateIRRefs } from "./parseAndUpdateIRRefs";
 
 
 
@@ -34,42 +37,43 @@ let core = new Renderer((batch) => {
 
 
 // Next, a RefMap for coordinating our refs
-let refs: RefMap = new RefMap(core);
+export let refs: RefMap = new RefMap(core);
 
 // Register our custom nodes
 let convolver = (_props, ...childs) => createNode("convolver", _props, childs);
 
 // Set up the default IRs
-// MUST MATCH FILE NAMES IN THE PUBLIC IR FOLDER
-let currentUserBank = 1;
+export let vfsPathHistory = new Array<string>();
+
 const blockSizes = [512, 4096];
-const Default_IR_Map: Map<DefaultIRSlotName, IRMetaData> = new Map([
-  ["LIGHT", { pathStem: "LIGHT", index: 0, att: 1.0 }],
-  ["SURFACE", { pathStem: "SURFACE", index: 1, att: 0.9 }],
-  ["TEMPLE", { pathStem: "TEMPLE", index: 2, att: 0.9 }],
-  ["DEEPNESS", { pathStem: "DEEPNESS", index: 3, att: 0.675 }],
+// MUST MATCH FILE NAMES IN THE PUBLIC IR FOLDER
+export const Slots: Map<SlotName, SlotData> = new Map([
+  ["LIGHT", { pathStem: "LIGHT", slotIndex: 0, att: 1.0 }],
+  ["SURFACE", { pathStem: "SURFACE", slotIndex: 1, att: 0.9 }],
+  ["TEMPLE", { pathStem: "TEMPLE", slotIndex: 2, att: 0.9 }],
+  ["DEEPNESS", { pathStem: "DEEPNESS", slotIndex: 3, att: 0.675 }],
 ]);
 
 // gets populated when the user loads IRs 
-const User_IR_Map: Map<DefaultIRSlotName, IRMetaData> = new Map();
+export const User_IR_Map: Map<SlotName, SlotData> = new Map();
 
 // Utilise a factory pattern to generate the ref updaters
 // for the Elem ref engine
 function IR_SlotRefFactory(
   scape: ScapeSettings,
   refs: RefMap,
-  slot: DefaultIRSlotName,
+  slotName: SlotName,
   slotIndex: number,
   attenuation: number
 ) {
   if (!scape || !refs) return;
 
   const refConstructor = {
-    [`${slot}_0`]: refs.getOrCreate(
-      `${slot}_0`,
+    [`${slotName}_0`]: refs.getOrCreate(
+      `${slotName}_0`,
       "convolver",
       {
-        path: `${slot}_0`,
+        path: `${slotName}_0`,
         process: scape.vectorData[slotIndex],
         scale: attenuation,
         blockSizes,
@@ -77,11 +81,11 @@ function IR_SlotRefFactory(
       },
       [el.tapIn({ name: `srvbOut:0` })]
     ),
-    [`${slot}_1`]: refs.getOrCreate(
-      `${slot}_1`,
+    [`${slotName}_1`]: refs.getOrCreate(
+      `${slotName}_1`,
       "convolver",
       {
-        path: `${slot}_1`,
+        path: `${slotName}_1`,
         process: scape.vectorData[slotIndex],
         scale: attenuation,
         blockSizes,
@@ -96,71 +100,15 @@ function IR_SlotRefFactory(
 }
 
 function registerConvolverRefs(scape: ScapeSettings, refs: RefMap) {
-  if (User_IR_Map.size > 0 && (scape.mode === 0 && memoized?.scapeMode === 1)) {
-    User_IR_Map.clear();
-  };
   let convolvers = {};
-  Default_IR_Map.forEach((ir, slotName) => {
+  Slots.forEach((slotData, slotName) => {
     convolvers = {
       ...convolvers,
-      ...IR_SlotRefFactory(scape, refs, slotName, ir.index, ir.att),
+      ...IR_SlotRefFactory(scape, refs, slotName, slotData.slotIndex, slotData.att),
     };
   });
   return convolvers;
 }
-
-// later, the Elementary refs system will be used to
-// parse and update the VFS paths of the default and user
-// loaded impulse responses made available to the processor
-function parseAndUpdateIRRefs(scape: ScapeSettings) {
-
-  const mode = scape.mode;
-
-  const VFSPathWithReverseForChannel = (slotName: DefaultIRSlotName, channel: number) => {
-    const userIR = User_IR_Map.get(slotName) as IRMetaData;
-    const defaultIR = Default_IR_Map.get(slotName) as IRMetaData;
-    let reversablePathNameWithChannel: string = "";
-   
-    if (currentUserBank > 1) {
-    const vfsPathWithChannel = userIR && mode ? `USERBANK_${currentUserBank}_${userIR.pathStem}_${channel}` : `${defaultIR.pathStem}_${channel}`;
-     reversablePathNameWithChannel = scape.reverse > 0.5
-      ? `USERBANK_${currentUserBank}_` + REVERSE_BUFFER_PREFIX + vfsPathWithChannel
-      : vfsPathWithChannel;
-    } else {
-      const vfsPathWithChannel = userIR && mode ? `${userIR.pathStem}_${channel}` : `${defaultIR.pathStem}_${channel}`;
-       reversablePathNameWithChannel = scape.reverse > 0.5
-        ? REVERSE_BUFFER_PREFIX + vfsPathWithChannel
-        : vfsPathWithChannel;
-    }
-
-
-    return reversablePathNameWithChannel
-  };
-
-  const getRefForChannel = (refs: RefMap, slotName: DefaultIRSlotName, chan: number) => {
-    let path = `${slotName}_${chan}`;
-    refs.has(path) // invariant will throw if the name is not found 
-    return path;
-  };
-
-
-  Default_IR_Map.forEach((defaultIR, slotName: DefaultIRSlotName) => {
-
-    const userIR = User_IR_Map.get(slotName);
-
-    for (let chan = 0; chan < 2; chan++) {
-      refs.update(
-        getRefForChannel(refs, slotName, chan), {
-        path: VFSPathWithReverseForChannel(slotName, chan),
-        process: Math.min(scape.level, scape.vectorData[defaultIR.index]), // todo: take another look at this
-        scale: userIR && mode ? userIR.att : defaultIR.att,
-        offset: scape.offset
-      });
-    }
-  })
-
-
-};
 
 // create the vector interpolation ramp, used to crossfade between 4 IRs
 function createHermiteVecInterp(): Ramp<Vec> {
@@ -239,7 +187,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
   // prettier-ignore
   scapeProps =
   {
-    IRs: Default_IR_Map,
+    IRs: Slots,
     sampleRate: shared.sampleRate,
     scapeBypass: scape.bypass || 0,
     vectorData: scape.vectorData,
@@ -318,7 +266,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
       refs.update("scapePosition", { value: shared.position });
       refs.update("scapeMode", { value: scape.mode });
       // update the convolvers, switch to user IRs if they exist
-      parseAndUpdateIRRefs(scape);
+      parseAndUpdateIRRefs(scape, shared);
     }
 
     refs.update("dryMix", { value: shared.dryMix });
@@ -337,36 +285,38 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     scapeBypass: scape.bypass,
     srvbBypass: srvb.bypass,
     scapeMode: scape.mode,
-    scapeOffset: scape.offset
+    scapeOffset: scape.offset,
+    userBank: scape.userBank,
   };
 
   function parseNewState(stateReceivedFromNative) {
     const state = JSON.parse(stateReceivedFromNative);
     // interpreted state captured out into respective processor properties.
     // any adjustments should be done here before rendering to the graph
-    const shared = {
+    const shared: SharedSettings = {
       sampleRate: state.sampleRate,
       dryInputs: [el.in({ channel: 0 }), el.in({ channel: 1 })],
       dryMix: state.dryMix,
       position: clamp(state.position, EPS, 1),
     };
-    const srvb = {
+    const srvb: SrvbSettings = {
       structure: Math.round((state.structure || 0) * NUM_SEQUENCES),
       size: state.size,
       diffuse: state.diffuse,
       tone: clamp(state.tone * 2 - 1, -0.99, 1),
       level: easeIn2(state.mix),   // the level of the SRVB
       structureMax: Math.round(state.structureMax) || 137, // handle the case where the max was not computed
-      bypass: Math.round(state.srvbBypass) || 0,
+      bypass: (Math.round(state.srvbBypass) || 0) as 1 | 0,
     };
-    const scape = {
-      reverse: Math.round(state.scapeReverse),
+    const scape: ScapeSettings = {
+      reverse: Math.round(state.scapeReverse) as 1 | 0,
       level: state.scapeLevel,
       ir: state.scapeLength,
       vectorData: HERMITE.at(state.scapeLength),
-      bypass: Math.round(state.scapeBypass) || 0,
-      mode: Math.round(state.scapeMode) || 0,
+      bypass: (Math.round(state.scapeBypass) || 0) as 1 | 0,
+      mode: (Math.round(state.scapeMode) || 0) as 1 | 0,
       offset: state.scapeOffset || 0,
+      userBank: state.userBank
     };
     return { state, srvb, shared, scape };
   }
@@ -381,29 +331,22 @@ globalThis.__receiveVFSKeys__ = function (vfsCurrent: string) {
   // we will just use the first 4 user IRs and assign the paths of the Default slotnames 
   // in the Elem refmap
 
- 
   const userVFSKeysCount = userVFSKeys.length;
-  console.log('User VFS Keys', userVFSKeys, ' checksum ->', userVFSKeysCount);
 
   if (userVFSKeysCount > 0) {
     for (let i = 0; i < userVFSKeysCount; i++) {
-      const currentSlotIndex: number = (Math.floor(i / 2));
+      const slotIndex: number = (Math.floor(i / 2));
       // Why? Because there are 2 stereo files per slot ( 0 and 1 each has forwards on left and reverse on right )
       // So the schema is as below,  the stem and slot, then stem and slot + channel eg: USER0_0, USER0_1, USER1_0, USER1_1 etc
-      // the reverse keys are referenced inline by the convolvution node updaters
-      const userPathStem: VFSPathStem = `USERBANK_${currentUserBank}_USER${currentSlotIndex}` as UserVFSStem;
+      // the reverse keys are referenced inline by the convolution node updaters
+      const userPathStem: VFSPathStem = `USER${slotIndex % 4}` as UserVFSStem;
       // therefore User_IR_Map the map should contain the pathStem and the index of the slot only
       // USER0, USER1, USER2, USER3
-      User_IR_Map.set(DEFAULT_IR_SLOTNAMES[currentSlotIndex], { pathStem: userPathStem, index: currentSlotIndex, att: 0.95 });
+      User_IR_Map.set(DEFAULT_IR_SLOTNAMES[slotIndex % 4], { pathStem: userPathStem, slotIndex: slotIndex % 4, att: 0.95 });
     }
   }
 }
 
-
-globalThis.__receiveUserBank__ = function (count: number) {
-  console.log('Current User Bank: ', count);
-  currentUserBank = count;
-}
 
 /////////////////////////////////////////////////////////////////
 

@@ -119,6 +119,7 @@ public:
     std::string MAIN_DSP_JS_FILE = "dsp.main.js";
     std::string MAIN_PATCH_JS_FILE = "patch.main.js";
     std::string SAMPLE_RATE_KEY = "sampleRate";
+    std::string USER_BANK_KEY = "userBank";
     std::string NATIVE_MESSAGE_FUNCTION_NAME = "__postNativeMessage__";
     std::string LOG_FUNCTION_NAME = "__log__";
     std::string WS_RESPONSE_KEY_FOR_STATE = "NEL_STATE";
@@ -180,11 +181,12 @@ public:
     bool importPeakDataForView(const juce::AudioBuffer<float> &buffer);
     void dispatchVFSpathHistoryForSlot(SlotName slot);
     int getUserBank() const { return USERBANK; };
+    int incrementUserBank() { USERBANK++; return USERBANK; };
     void dispatchUserBank();
     std::string prefixUserBank(const std::string &name );
 
 private:
-    int USERBANK = 1;
+    int USERBANK = 0;
     int runWebServer();
     uint16_t serverPort = 0;
     uint16_t getServerPort() const { return serverPort; }

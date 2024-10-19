@@ -25,7 +25,7 @@ void SlotManager::wrapPeaksForView(elem::js::Object &wrappedPeaks)
         SlotName slot = assetInSlot.first;
         int index = getIndexForSlot(slot);
         peaks[index] = elem::js::Value(assetInSlot.second.userPeaksForView);
-        std::cout << "Slot " << index << " : " << toString(slot) << assetInSlot.second.filenameForView << std::endl;
+        std::cout << "Slot " << index << " : " << toString(slot) << " : " << assetInSlot.second.filenameForView << std::endl;
     }
     wrappedPeaks.insert_or_assign(processor.WS_RESPONSE_KEY_FOR_PEAKS, elem::js::Value(peaks));
 }

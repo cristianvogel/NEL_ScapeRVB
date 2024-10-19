@@ -147,6 +147,7 @@ target_sources(${TARGET_NAME}
   ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/AudioFFT.cpp 
   ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/Utilities.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/FFTConvolver.cpp 
+  ConvolverNode.h
 )
 
 target_include_directories(${TARGET_NAME}

@@ -10,10 +10,10 @@ export const REGISTERED_PARAM_NAMES: Array<string> = HOST_PARAMS.map(
 );
 
 export const IR_Slots: Array<IRMetaData> = [
-  { pathStem: "LIGHT", index: 0, att: 0.65 },
-  { pathStem: "SURFACE", index: 1, att: 0.475 },
-  { pathStem: "TEMPLE", index: 2, att: 0.475 },
-  { pathStem: "DEEPNESS", index: 3, att: 0.25 },
+  { pathStem: "LIGHT", slotIndex: 0, att: 0.65 },
+  { pathStem: "SURFACE", slotIndex: 1, att: 0.475 },
+  { pathStem: "TEMPLE", slotIndex: 2, att: 0.475 },
+  { pathStem: "DEEPNESS", slotIndex: 3, att: 0.25 },
 ];
 
 export const DEFAULT_IR_SLOTNAMES: Array<DefaultIRSlotName> = IR_Slots.map((slot) => slot.pathStem as DefaultIRSlotName);

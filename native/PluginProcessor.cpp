@@ -123,9 +123,9 @@ void EffectsPluginProcessor::handleAsyncUpdate()
             }
         }
     }
-
+    state.insert_or_assign(USER_BANK_KEY, static_cast<elem::js::Number>(getUserBank()));
     dispatchStateChange();
-}
+} 
 
 //==============================================================================
 // At initialisation, handle registering each default impulse response to the
@@ -215,7 +215,7 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
 
             // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
             juce::String vfsPathname = file.getFileNameWithoutExtension(); // "AMBIENCE.wav" -> "AMBIENCE"
-            std::string name = vfsPathname.toStdString() + '_' + std::to_string(channel);
+            std::string name = vfsPathname.toStdString() + '_' + std::to_string(channel) ;
             elementaryRuntime->updateSharedResourceMap(name, buffer.getReadPointer(0), numSamples);
             slotManager->assignVFSpathToSlot(slotName, name);
             // Get the reverse from a little way, so its less draggy
@@ -356,19 +356,18 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
         stateVariableFilter.process(context);
 
         // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
-        auto name = "USER" + std::to_string(getIndexForSlot(targetSlot)) + "_" + std::to_string(channel);
-        elementaryRuntime->updateSharedResourceMap( prefixUserBank(name), buffer.getReadPointer(0), numSamples);
-        slotManager->assignVFSpathToSlot(targetSlot, prefixUserBank(name));
+        auto name = prefixUserBank( "USER" + std::to_string(getIndexForSlot(targetSlot)) + "_" + std::to_string(channel) );
+        elementaryRuntime->updateSharedResourceMap( name, buffer.getReadPointer(0), numSamples);
+        slotManager->assignVFSpathToSlot(targetSlot, name);
         // Get the reverse from a little way, so its less draggy
         // so its easy to swap into in realtime
         int shorter = numSamples * 0.75;
         buffer.reverse(0, shorter);
         // add the shaped impulse response to the virtual file system
-        std::string reversedName = REVERSE_BUFFER_PREFIX + name;
+        std::string reversedName = REVERSE_BUFFER_PREFIX + name ;
         // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
-        elementaryRuntime->updateSharedResourceMap( prefixUserBank(reversedName), buffer.getReadPointer(0), shorter);
-        slotManager->assignVFSpathToSlot(targetSlot, prefixUserBank(reversedName));
-        dispatchUserBank();
+        elementaryRuntime->updateSharedResourceMap( reversedName, buffer.getReadPointer(0), shorter);
+        slotManager->assignVFSpathToSlot(targetSlot, reversedName);
         // done, next channel
     }
     // IMPORTANT: delete the reader to avoid memory leaks
@@ -385,7 +384,7 @@ std::string EffectsPluginProcessor::prefixUserBank(const std::string &name )
 
 void EffectsPluginProcessor::pruneVFS()
 {
-   elementaryRuntime->pruneSharedResourceMap();
+  // elementaryRuntime->pruneSharedResourceMap();
    inspectVFS();
 }
 /*
@@ -708,7 +707,6 @@ void EffectsPluginProcessor::parameterValueChanged(int parameterIndex, float new
 {
     // Mark the updated parameter value in the dirty list
     auto &readout = *std::next(parameterReadouts.begin(), parameterIndex);
-
     readout.store({newValue, true});
     triggerAsyncUpdate();
 }
@@ -860,14 +858,12 @@ void EffectsPluginProcessor::dispatchServerInfo()
 /*▮▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮
  * @name dispatchUserFileCount
  * @brief Dispatches the current user file count from the assetMap
+ * 
+ * wasn't working, moving userBank int to state object
  */
 void EffectsPluginProcessor::dispatchUserBank()
 {
-    // Retrieve the user bank
-    const auto userBankValue = choc::value::createInt32( getUserBank() );
-    // Send the user bank to the UI
-    const auto expr = serialize(jsFunctions::userBankScript, userBankValue, "%");
-    sendJavascriptToUI(expr);
+  // DEPRECATED
 }
 
 
