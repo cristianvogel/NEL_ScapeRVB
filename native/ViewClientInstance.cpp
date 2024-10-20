@@ -110,16 +110,16 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
 
                 processor.slotManager->wrapStateForView(wrappedState);
                 juce::String serializedState = elem::js::serialize(wrappedState);
-
-                processor.slotManager->wrapFileNamesForView(wrappedFileNames);
-                juce::String serializedFileNames = elem::js::serialize(wrappedFileNames);
+              
 
                 // perfomance optimization; hash the serialized state and peaks, send only if changed
-                int currentStateHash = serializedState.hashCode();
-                // lets get the peaks change trigger from a shorter ref
-                // that changes at the same time as the peaks
-                int currentPeaksHash = serializedFileNames.hashCode();
+                // use filename change as hash rather than peaks, cos its massive
+                processor.slotManager->wrapFileNamesForView(wrappedFileNames);
+                juce::String serializedFilenames = elem::js::serialize(wrappedFileNames);
 
+                int currentStateHash = serializedState.hashCode();
+                int currentPeaksHash = serializedFilenames.hashCode();
+                
                 if (currentStateHash != processor.slotManager->lastStateHash)
                 {
                     sendWebSocketMessage(serializedState.toStdString());

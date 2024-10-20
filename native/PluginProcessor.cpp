@@ -817,19 +817,19 @@ void EffectsPluginProcessor::initJavaScriptEngine()
 }
 // ▮▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮
 // Main function for dispatching state changes to the front end
-
+// since using WebSockets to sync state, this function
+// only really handles the Bypass toggles and the
+// Reverse toggle. Everything else is handled by the
+// WebSocket server responding to a requestState message
+// from the front end.
 void EffectsPluginProcessor::dispatchStateChange()
 {
-    // Need the double serialize here to correctly form the string script. The
-    // first serialize produces the payload we want, the second serialize ensures
-    // we can replace the % character in the above block and produce a valid
-    // javascript expression.
     auto currentStateMap = state;
     currentStateMap.insert_or_assign(SAMPLE_RATE_KEY, lastKnownSampleRate);
     const auto expr = serialize(jsFunctions::dispatchScript, currentStateMap);
     // First we try to dispatch to the UI if it's available, because running this
     // step will just involve placing a message in a queue.
-    sendJavascriptToUI(expr);
+    sendJavascriptToUI(expr); 
     // Next we dispatch to the local engine which will evaluate any necessary
     // JavaScript synchronously here on the main thread
     try

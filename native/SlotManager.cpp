@@ -19,13 +19,21 @@ int SlotManager::getIndexForSlot(const SlotName &slotName)
 void SlotManager::wrapPeaksForView(elem::js::Object &wrappedPeaks)
 {
     elem::js::Array peaks;
-    peaks.resize(processor.assetsMap.size());
+    if ( peaks.size() != 4) peaks.resize( 4 );
+    
     for (const auto &assetInSlot : processor.assetsMap)
     {
+        bool isDefault = false;
+         auto peakData = assetInSlot.second.userPeaksForView;
         SlotName slot = assetInSlot.first;
         int index = getIndexForSlot(slot);
-        peaks[index] = elem::js::Value(assetInSlot.second.userPeaksForView);
-        std::cout << "Slot " << index << " : " << toString(slot) << " : " << assetInSlot.second.filenameForView << std::endl;
+        if ( peakData.size() == 0 )
+        {
+            isDefault = true;
+            peakData = assetInSlot.second.defaultPeaksForView;
+        }   
+        peaks[index] = elem::js::Value( peakData );
+        std::cout << "Slot " << index << " : " << toString(slot) << " : " << assetInSlot.second.filenameForView << " using " <<  (isDefault ? " default " : " user ") << " peaks." << std::endl;
     }
     wrappedPeaks.insert_or_assign(processor.WS_RESPONSE_KEY_FOR_PEAKS, elem::js::Value(peaks));
 }
