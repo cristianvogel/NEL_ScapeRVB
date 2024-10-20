@@ -39,19 +39,10 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
 
         for (auto &[key, hpfValue] : socketMessage)
         {
-            // ▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮
-            //  "resetUserSlots"
-            // ▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮
-            if (key == "resetUserSlots")
-            {
-                processor.slotManager->resetUserSlots();
-                processor.updateStateWithAssetsData();
-                continue;
-            } // end resetUserSlots
-
-            // ▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮
-            //  "selectFiles"
-            // ▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮
+            // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
+            //  "selectFiles" Opens file picker,                      //
+            //  handles file selection, and assigns files to slots    //  
+            // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
             if (key == "selectFiles" && hpfValue.isNumber())
             {
                 std::promise<elem::js::Object> promise;
@@ -99,9 +90,9 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                 continue;
             } // end selectFiles
 
-            // ▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮
-            //  "requestState"
-            // ▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮
+            // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
+            // ▮▮ "'requestState" called frequently from front end  ▮ //
+            // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
             if (key == "requestState")
             {
                 elem::js::Object wrappedState;
@@ -110,10 +101,7 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
 
                 processor.slotManager->wrapStateForView(wrappedState);
                 juce::String serializedState = elem::js::serialize(wrappedState);
-              
-    
-               
-                // ========================= perfomance optimization ======================== //
+                // ============ perfomance optimization ======================== 
                 // hash the serialized state and peaks, send only if changed
                 // use filename change as hash not peaks, cos its less data to work with
                 processor.slotManager->wrapFileNamesForView(wrappedFileNames);
@@ -136,9 +124,21 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                 }
                 continue;
             } // end requestState
+
+
+            // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
+            // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ "resetUserSlots" ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
+            // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
+
+            if (key == "resetUserSlots")
+            {
+                processor.slotManager->resetUserSlots();
+                processor.updateStateWithAssetsData();
+                continue;
+            } // end resetUserSlots
             
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
-            // ▮▮▮▮▮▮▮ simple parameter update from front end ▮▮▮▮▮▮▮ //
+            // ▮▮▮▮▮▮▮ simple parameter update request        ▮▮▮▮▮▮▮ //
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
             if (hpfValue.isNumber() && processor.parameterMap.count(key) > 0)
             {
