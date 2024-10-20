@@ -14,11 +14,8 @@ export declare var globalThis: any;
 declare var CABLES: any;
 let gestureSource: typeof GestureSource_SCAPE | typeof GestureSource_SRVB | typeof GestureSource_REVERSE | typeof GestureSource_IRMode;
 
-/* ━━━━━━━
- * Initialize a WebSocket connection to the host.
- * @param port - The port number to connect to.
- */
-// Create WebSocket connection.
+
+// ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ WebSocket Server Setup ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
 
 function initializeWebSocketConnection(port: number) {
   WebSocketPort.assign(  port || 0 );
@@ -99,6 +96,8 @@ export const MessageToHost = {
       globalThis.__postNativeMessage__("ready", {});
     }
   },
+
+
 
   /** ━━━━━━━
    * Send an unlock message to the KeyZey handler.

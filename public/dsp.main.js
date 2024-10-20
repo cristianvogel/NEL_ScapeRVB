@@ -3151,7 +3151,7 @@
       let mixer = [];
       responses.forEach((response, slotName) => {
         mixer.push(
-          stdlib.mul(hermiteNodes2[response.index], scapeConvolver(slotName, channel))
+          stdlib.mul(hermiteNodes2[response.slotIndex], scapeConvolver(slotName, channel))
         );
       });
       return stdlib.add(...mixer);
@@ -3222,10 +3222,10 @@
     (p) => p.paramId
   );
   var IR_Slots = [
-    { pathStem: "LIGHT", index: 0, att: 0.65 },
-    { pathStem: "SURFACE", index: 1, att: 0.475 },
-    { pathStem: "TEMPLE", index: 2, att: 0.475 },
-    { pathStem: "DEEPNESS", index: 3, att: 0.25 }
+    { pathStem: "LIGHT", slotIndex: 0, att: 0.65 },
+    { pathStem: "SURFACE", slotIndex: 1, att: 0.475 },
+    { pathStem: "TEMPLE", slotIndex: 2, att: 0.475 },
+    { pathStem: "DEEPNESS", slotIndex: 3, att: 0.25 }
   ];
   var DEFAULT_IR_SLOTNAMES = IR_Slots.map((slot) => slot.pathStem);
   var REVERSE_BUFFER_PREFIX = manifest_default["REVERSE-BUFFER-PREFIX"];
@@ -3274,88 +3274,125 @@
     });
   }
 
+  // dsp/parseAndUpdateIRRefs.ts
+  function parseAndUpdateIRRefs(scape, shared) {
+    const mode = scape.mode;
+    const currentUserBank = Math.max(0, scape.userBank - 1);
+    const prefixUserBank = (name) => {
+      return "USERBANK_" + currentUserBank + "_" + name;
+    };
+    const getActivePathName = (slotName, channel) => {
+      const propsDefaultIR = Slots.get(slotName);
+      const propsUserIR = User_IR_Map.get(slotName);
+      const usingUserIR = propsUserIR && mode;
+      let composedPath;
+      let vfsPathWithChannel = `${propsDefaultIR?.pathStem}_${channel}`;
+      if (usingUserIR) {
+        vfsPathWithChannel = prefixUserBank(`${propsUserIR.pathStem}_${channel}`);
+      }
+      composedPath = scape.reverse > 0.5 ? REVERSE_BUFFER_PREFIX + vfsPathWithChannel : vfsPathWithChannel;
+      if (!vfsPathHistory.includes(composedPath)) {
+        vfsPathHistory.push(composedPath);
+      }
+      return composedPath;
+    };
+    const getScale = (slotName, chan = 0) => {
+      const userIR = User_IR_Map.get(slotName);
+      const defaultIR = Slots.get(slotName);
+      const usingUserIR = userIR && mode;
+      const panPosition = shared.position;
+      let result = usingUserIR ? userIR.att : defaultIR.att;
+      return result;
+    };
+    const getRef = (refs2, slotName, chan) => {
+      let path = `${slotName}_${chan}`;
+      refs2.has(path);
+      return path;
+    };
+    Slots.forEach((slot, slotName) => {
+      for (let chan = 0; chan < 2; chan++) {
+        const path = getActivePathName(slotName, chan);
+        const ref = getRef(refs, slotName, chan);
+        const scale = getScale(slotName, chan);
+        const offset = scape.offset;
+        const process2 = Math.min(scape.level, scape.vectorData[slot.slotIndex]);
+        if (ref === null || ref === void 0)
+          return;
+        if (path === null || path === void 0)
+          return;
+        if (scale === null || scale === void 0)
+          return;
+        if (offset === null || offset === void 0)
+          return;
+        if (process2 === null || process2 === void 0)
+          return;
+        refs.update(
+          ref,
+          {
+            path,
+            process: process2,
+            scale,
+            offset
+          }
+        );
+      }
+    });
+  }
+
   // dsp/main.ts
   var core = new Renderer((batch) => {
     __postNativeMessage__(JSON.stringify(batch));
   });
   var refs = new RefMap(core);
+  var vfsPathHistory = new Array();
   var blockSizes = [512, 4096];
-  var Default_IR_Map = /* @__PURE__ */ new Map([
-    ["LIGHT", { pathStem: "LIGHT", index: 0, att: 1 }],
-    ["SURFACE", { pathStem: "SURFACE", index: 1, att: 0.9 }],
-    ["TEMPLE", { pathStem: "TEMPLE", index: 2, att: 0.9 }],
-    ["DEEPNESS", { pathStem: "DEEPNESS", index: 3, att: 0.675 }]
+  var Slots = /* @__PURE__ */ new Map([
+    ["LIGHT", { pathStem: "LIGHT", slotIndex: 0, att: 1 }],
+    ["SURFACE", { pathStem: "SURFACE", slotIndex: 1, att: 0.9 }],
+    ["TEMPLE", { pathStem: "TEMPLE", slotIndex: 2, att: 0.9 }],
+    ["DEEPNESS", { pathStem: "DEEPNESS", slotIndex: 3, att: 0.675 }]
   ]);
   var User_IR_Map = /* @__PURE__ */ new Map();
-  function IR_SlotRefFactory(scapeSettings, refs2, slot, slotIndex, attenuation) {
-    if (!scapeSettings || !refs2)
+  function IR_SlotRefFactory(scape, refs2, slotName, slotIndex, attenuation) {
+    if (!scape || !refs2)
       return;
-    return {
-      [`${slot}_0`]: refs2.getOrCreate(
-        `${slot}_0`,
+    const refConstructor = {
+      [`${slotName}_0`]: refs2.getOrCreate(
+        `${slotName}_0`,
         "convolver",
         {
-          path: `${slot}_0`,
-          process: scapeSettings.vectorData[slotIndex],
+          path: `${slotName}_0`,
+          process: scape.vectorData[slotIndex],
           scale: attenuation,
           blockSizes,
-          offset: scapeSettings.offset
+          offset: scape.offset
         },
         [stdlib.tapIn({ name: `srvbOut:0` })]
       ),
-      [`${slot}_1`]: refs2.getOrCreate(
-        `${slot}_1`,
+      [`${slotName}_1`]: refs2.getOrCreate(
+        `${slotName}_1`,
         "convolver",
         {
-          path: `${slot}_1`,
-          process: scapeSettings.vectorData[slotIndex],
+          path: `${slotName}_1`,
+          process: scape.vectorData[slotIndex],
           scale: attenuation,
           blockSizes,
-          offset: scapeSettings.offset
+          offset: scape.offset
         },
         [stdlib.tapIn({ name: `srvbOut:1` })]
       )
     };
+    return refConstructor;
   }
   function registerConvolverRefs(scape, refs2) {
     let convolvers = {};
-    Default_IR_Map.forEach((ir, slotName) => {
+    Slots.forEach((slotData, slotName) => {
       convolvers = {
         ...convolvers,
-        ...IR_SlotRefFactory(scape, refs2, slotName, ir.index, ir.att)
+        ...IR_SlotRefFactory(scape, refs2, slotName, slotData.slotIndex, slotData.att)
       };
     });
     return convolvers;
-  }
-  function parseAndUpdateIRRefs(scape, useDefaultIRs = true) {
-    const mode = scape.mode;
-    const VFSPathWithReverseForChannel = (slotName, channel) => {
-      const userIR = User_IR_Map.get(slotName);
-      const defaultIR = Default_IR_Map.get(slotName);
-      const vfsPathWithChannel = userIR && mode ? `${userIR.pathStem}_${channel}` : `${defaultIR.pathStem}_${channel}`;
-      const reversablePathNameWithChannel = scape.reverse > 0.5 ? REVERSE_BUFFER_PREFIX + vfsPathWithChannel : vfsPathWithChannel;
-      return reversablePathNameWithChannel;
-    };
-    const getRefForChannel = (refs2, slotName, chan) => {
-      let path = `${slotName}_${chan}`;
-      refs2.has(path);
-      return path;
-    };
-    Default_IR_Map.forEach((defaultIR, slotName) => {
-      const userIR = User_IR_Map.get(slotName);
-      for (let chan = 0; chan < 2; chan++) {
-        refs.update(
-          getRefForChannel(refs, slotName, chan),
-          {
-            path: VFSPathWithReverseForChannel(slotName, chan),
-            process: Math.min(scape.level, scape.vectorData[defaultIR.index]),
-            // todo: take another look at this
-            scale: userIR && mode ? userIR.att : defaultIR.att,
-            offset: scape.offset
-          }
-        );
-      }
-    });
   }
   function createHermiteVecInterp() {
     return ramp(
@@ -3405,7 +3442,7 @@
       structureMax: refs.getOrCreate("structureMax", "const", { value: structureData.max, key: "structureMax" }, [])
     };
     scapeProps = {
-      IRs: Default_IR_Map,
+      IRs: Slots,
       sampleRate: shared.sampleRate,
       scapeBypass: scape.bypass || 0,
       vectorData: scape.vectorData,
@@ -3468,7 +3505,7 @@
         refs.update("v4", { value: scape.vectorData[3] });
         refs.update("scapePosition", { value: shared.position });
         refs.update("scapeMode", { value: scape.mode });
-        parseAndUpdateIRRefs(scape);
+        parseAndUpdateIRRefs(scape, shared);
       }
       refs.update("dryMix", { value: shared.dryMix });
       refs.update("srvbBypass", { value: srvb.bypass });
@@ -3483,7 +3520,8 @@
       scapeBypass: scape.bypass,
       srvbBypass: srvb.bypass,
       scapeMode: scape.mode,
-      scapeOffset: scape.offset
+      scapeOffset: scape.offset,
+      userBank: scape.userBank
     };
     function parseNewState(stateReceivedFromNative2) {
       const state2 = JSON.parse(stateReceivedFromNative2);
@@ -3511,7 +3549,8 @@
         vectorData: HERMITE.at(state2.scapeLength),
         bypass: Math.round(state2.scapeBypass) || 0,
         mode: Math.round(state2.scapeMode) || 0,
-        offset: state2.scapeOffset || 0
+        offset: state2.scapeOffset || 0,
+        userBank: state2.userBank
       };
       return { state: state2, srvb: srvb2, shared: shared2, scape: scape2 };
     }
@@ -3520,12 +3559,14 @@
     const vfsKeysArray = JSON.parse(vfsCurrent);
     const userVFSKeys = vfsKeysArray.filter((key) => key.includes("USER") && !key.includes("REVERSE"));
     const userVFSKeysCount = userVFSKeys.length;
-    console.log("User VFS Keys", userVFSKeys, " checksum ->", userVFSKeysCount);
-    for (let i = 0; i < userVFSKeysCount; i++) {
-      const currentSlot = Math.floor(i / 2);
-      const userPathStem = `USER${currentSlot}`;
-      User_IR_Map.set(DEFAULT_IR_SLOTNAMES[currentSlot], { pathStem: userPathStem, index: currentSlot, att: 0.95 });
+    if (userVFSKeysCount > 0) {
+      for (let i = 0; i < userVFSKeysCount; i++) {
+        const slotIndex = Math.floor(i / 2);
+        const userPathStem = `USER${slotIndex % 4}`;
+        User_IR_Map.set(DEFAULT_IR_SLOTNAMES[slotIndex % 4], { pathStem: userPathStem, slotIndex: slotIndex % 4, att: 0.95 });
+      }
     }
+    console.log("VFS->", vfsKeysArray);
   };
   globalThis.__receiveHydrationData__ = (data) => {
     const payload = JSON.parse(data);

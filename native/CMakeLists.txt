@@ -3,14 +3,18 @@ project(NEL_scape|space VERSION 1.01)
 
 set(TARGET_NAME "NEL_scape_space")
 set(ASSETS_DIR ${CMAKE_SOURCE_DIR}/../dist/)
-set(BUILD_VERSION "v0.6.x")
+set(BUILD_VERSION "v0.8.x")
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+option(JUCE_BUILD_EXAMPLES "Build JUCE Examples" OFF)
+option(JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED "Use Global Module Settings" ON)
 option(JUCE_ENABLE_MODULE_SOURCE_GROUPS "Enable Module Source Groups" ON)
 option(JUCE_BUILD_EXTRAS "Build JUCE Extras" OFF)
 option(ELEM_DEV_LOCALHOST "Run against localhost for static assets" OFF)
 
 
 option(FFTCONVOLVER_USE_SSE "Enable SSE optimizations" ON)   # watch this i have no idea what it does
+
 
 add_subdirectory(juce) # using the static non-submodule version
 add_subdirectory(elementary/runtime) # using the static non-submodule version
@@ -136,10 +140,15 @@ target_sources(${TARGET_NAME}
   PluginProcessor.cpp
   WebViewEditor.cpp
   Utilities.cpp
+  SlotName.cpp
+  SlotManager.cpp
+  ViewClientInstance.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/TwoStageFFTConvolver.cpp 
   ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/AudioFFT.cpp 
   ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/Utilities.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/FFTConvolver.cpp 
+  ConvolverNode.h
+  UserBankManager.h
 )
 
 target_include_directories(${TARGET_NAME}
@@ -156,7 +165,7 @@ target_include_directories(${TARGET_NAME}
 
 target_compile_features(${TARGET_NAME}
   PRIVATE
-  cxx_std_17)
+  cxx_std_20)
 
 target_compile_definitions(${TARGET_NAME}
   PRIVATE

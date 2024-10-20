@@ -30,6 +30,7 @@ public:
     std::function<void(const std::string &, float)> setParameterValue = [](const std::string &, float) {};
     std::function<void()> reload = []() {};
     std::function<void()> ready = []() {};
+    std::function<void()> pruneVFS = []() {};
 
     void executeJavascript(const std::string &script) const;
 
@@ -42,7 +43,7 @@ private:
     std::string UNLOCK_EVENT = "unlock";
     std::string HOST_INFO = "hostInfo";
     std::string SERVER_PORT = "serverInfo";
-    std::string FILES_DROPPED = "filesDropped";
+    std::string PRUNE_VFS = "pruneVFS";
 
     choc::value::Value handleSetParameterValueEvent(const choc::value::ValueView &e) const;
 

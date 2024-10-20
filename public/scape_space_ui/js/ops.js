@@ -20741,155 +20741,6 @@ CABLES.OPS["21630924-39e4-4df5-9965-b9136510d156"]={f:Ops.Trigger.TriggerButton,
 
 // **************************************************************
 // 
-// Ops.Standalone.WebSocket_FastPoll
-// 
-// **************************************************************
-
-Ops.Standalone.WebSocket_FastPoll = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inUrl = op.inString("URL"),
-    outResult = op.outObject("Result"),
-    outValidJson = op.outBoolNum("Valid JSON"),
-    outConnection = op.outObject("Connection", null, "Websocket"),
-    outConnected = op.outBoolNum("Connected"),
-    outReceived = op.outTrigger("Received Data"),
-    outRaw = op.outString("Raw Data");
-
-let connection = null;
-let timeout = null;
-let connectedTo = "";
-
-inUrl.onChange = connect;
-timeout = setTimeout(checkConnection, 500);
-
-inUrl.set();
-
-let connecting = false;
-
-function checkConnection()
-{
-    if (!outConnected.get() && !connecting)
-    {
-        // op.log("reconnect websocket...");
-        connect();
-    }
-
-    timeout = setTimeout(checkConnection, 500);
-}
-
-op.onDelete = function ()
-{
-    if (outConnected.get())connection.close();
-    connecting = false;
-    clearTimeout(timeout);
-};
-
-function connect()
-{
-    op.setUiError("connection", null);
-    op.setUiError("jsonvalid", null);
-
-    if (outConnected.get() && connectedTo == inUrl.get()) return;
-
-    if (inUrl.get() && inUrl.get().indexOf("ws://") == -1 && inUrl.get().indexOf("wss://") == -1)
-    {
-        op.setUiError("wrongproto", "only valid protocols are ws:// or wss:// ");
-        return;
-    }
-    else
-        op.setUiError("wrongproto", null);
-
-    if (!inUrl.get() || inUrl.get() === "")
-    {
-        op.logWarn("websocket: invalid url ");
-        outConnected.set(false);
-        return;
-    }
-
-    window.WebSocket = window.WebSocket || window.MozWebSocket;
-
-    if (!window.WebSocket)
-        return op.logError("Sorry, but your browser doesn't support WebSockets.");
-
-    op.setUiError("websocket", null);
-
-    try
-    {
-        connecting = true;
-        if (connection !== null)connection.close();
-        connection = new WebSocket(inUrl.get());
-    }
-    catch (e)
-    {
-        if (e && e.message)op.setUiError("websocket", e.message);
-        op.logWarn("could not connect to", inUrl.get());
-        connecting = false;
-    }
-
-    if (connection)
-    {
-        connection.onerror = function (e)
-        {
-            connecting = false;
-
-            outConnected.set(false);
-            outConnection.set(null);
-            // op.setUiError("connection", "Error connecting to websocket server", 2);
-        };
-
-        connection.onclose = function (message)
-        {
-            connecting = false;
-            outConnected.set(false);
-            outConnection.set(null);
-        };
-
-        connection.onopen = function (message)
-        {
-            connecting = false;
-            outConnected.set(true);
-            connectedTo = inUrl.get();
-            outConnection.set(connection);
-        };
-
-        connection.onmessage = function (message)
-        {
-            op.setUiError("jsonvalid", null);
-            outRaw.set(message.data);
-            try
-            {
-                const json = JSON.parse(message.data);
-                // outResult.set(null);
-                outResult.setRef(json);
-                outValidJson.set(true);
-            }
-            catch (e)
-            {
-                op.log(e);
-                op.log("This doesn't look like a valid JSON: ", message.data);
-                op.setUiError("jsonvalid", "Received message was not valid JSON", 0);
-                outValidJson.set(false);
-            }
-            outReceived.trigger();
-        };
-    }
-}
-
-
-};
-
-Ops.Standalone.WebSocket_FastPoll.prototype = new CABLES.Op();
-CABLES.OPS["73f4832d-cece-4c02-b70c-c84ac1b6a902"]={f:Ops.Standalone.WebSocket_FastPoll,objName:"Ops.Standalone.WebSocket_FastPoll"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Json.FilterValidObject
 // 
 // **************************************************************
@@ -23039,129 +22890,6 @@ CABLES.OPS["fa36a56b-a64d-4269-9a9e-addc16493006"]={f:Ops.String.StringToNumber,
 
 // **************************************************************
 // 
-// Ops.String.Md5
-// 
-// **************************************************************
-
-Ops.String.Md5 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inStr = op.inString("String"),
-    outHAsh = op.outString("MD5 Hash");
-
-function MD5(r)
-{
-    let o, e, n, f = [-680876936, -389564586, 606105819, -1044525330, -176418897, 1200080426, -1473231341, -45705983, 1770035416, -1958414417, -42063, -1990404162, 1804603682, -40341101, -1502002290, 1236535329, -165796510, -1069501632, 643717713, -373897302, -701558691, 38016083, -660478335, -405537848, 568446438, -1019803690, -187363961, 1163531501, -1444681467, -51403784, 1735328473, -1926607734, -378558, -2022574463, 1839030562, -35309556, -1530992060, 1272893353, -155497632, -1094730640, 681279174, -358537222, -722521979, 76029189, -640364487, -421815835, 530742520, -995338651, -198630844, 1126891415, -1416354905, -57434055, 1700485571, -1894986606, -1051523, -2054922799, 1873313359, -30611744, -1560198380, 1309151649, -145523070, -1120210379, 718787259, -343485551], t = [o = 1732584193, e = 4023233417, ~o, ~e], c = [], a = unescape(encodeURI(r)) + "\u0080", d = a.length;
-    for (r = --d / 4 + 2 | 15, c[--r] = 8 * d; ~d;) c[d >> 2] |= a.charCodeAt(d) << 8 * d--;
-    for (let i = a = 0; i < r; i += 16)
-    {
-        for (d = t; a < 64; d = [n = d[3], o + ((n = d[0] + [o & e | ~o & n, n & o | ~n & e, o ^ e ^ n, e ^ (o | ~n)][d = a >> 4] + f[a] + ~~c[i | 15 & [a, 5 * a + 1, 3 * a + 5, 7 * a][d]]) << (d = [7, 12, 17, 22, 5, 9, 14, 20, 4, 11, 16, 23, 6, 10, 15, 21][4 * d + a++ % 4]) | n >>> -d), o, e]) o = 0 | d[1],
-        e = d[2];
-        for (a = 4; a;) t[--a] += d[a];
-    }
-    for (r = ""; a < 32;) r += (t[a >> 3] >> 4 * (1 ^ a++) & 15).toString(16);
-    return r;
-}
-
-inStr.onChange = () =>
-{
-    outHAsh.set(MD5(inStr.get()));
-};
-
-
-};
-
-Ops.String.Md5.prototype = new CABLES.Op();
-CABLES.OPS["cfa03ee3-81c5-4c58-9365-e60181b38b3e"]={f:Ops.String.Md5,objName:"Ops.String.Md5"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Array.ArrayToString_v3
-// 
-// **************************************************************
-
-Ops.Array.ArrayToString_v3 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inArr=op.inArray("Array"),
-    inSeperator=op.inString("Seperator",","),
-    inNewLine=op.inValueBool("New Line"),
-    outStr=op.outString("Result");
-
-inArr.onChange=
-    outStr.onChange=
-    inSeperator.onChange=
-    inNewLine.onChange=exec;
-
-
-function exec()
-{
-    var arr=inArr.get();
-    var result='';
-
-    var sep=inSeperator.get();
-    if(inNewLine.get())sep+='\n';
-
-    if(arr && arr.join)
-    {
-        result=arr.join(sep);
-    }
-
-    outStr.set(result);
-}
-
-};
-
-Ops.Array.ArrayToString_v3.prototype = new CABLES.Op();
-CABLES.OPS["7b539bb3-8e86-4367-9e00-a637d3cfd87a"]={f:Ops.Array.ArrayToString_v3,objName:"Ops.Array.ArrayToString_v3"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Trigger.TriggerOnChangeString
-// 
-// **************************************************************
-
-Ops.Trigger.TriggerOnChangeString = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inval = op.inString("String"),
-    next = op.outTrigger("Changed"),
-    outStr = op.outString("Result");
-
-outStr.ignoreValueSerialize = true;
-
-inval.onChange = function ()
-{
-    outStr.set(inval.get());
-    next.trigger();
-};
-
-
-};
-
-Ops.Trigger.TriggerOnChangeString.prototype = new CABLES.Op();
-CABLES.OPS["319d07e0-5cbe-4bc1-89fb-a934fd41b0c4"]={f:Ops.Trigger.TriggerOnChangeString,objName:"Ops.Trigger.TriggerOnChangeString"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Boolean.BoolByTrigger
 // 
 // **************************************************************
@@ -23905,36 +23633,707 @@ CABLES.OPS["22b0ba21-a0c3-45a0-b0bc-2db5d770582e"]={f:Ops.Patch.PxdLHGq.SidebarS
 
 // **************************************************************
 // 
-// Ops.Math.Min_v3
+// Ops.Array.ArrayChangedTrigger
 // 
 // **************************************************************
 
-Ops.Math.Min_v3 = function()
+Ops.Array.ArrayChangedTrigger = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
 const attachments=op.attachments={};
 const
-    val1 = op.inValue("Value 1", 1),
-    val2 = op.inValue("Value 2", 2),
-    result = op.outNumber("result");
+    inArr = op.inArray("Array"),
+    next = op.outTrigger("Changed Trigger"),
+    outArr = op.outArray("New Array");
 
-val1.onChange =
-    val2.onChange = exec;
-
-exec();
-
-function exec()
+inArr.onChange = function ()
 {
-    let v = Math.min(val1.get(), val2.get());
-    result.set(v);
+    outArr.setRef(inArr.get());
+    next.trigger();
+};
+
+
+};
+
+Ops.Array.ArrayChangedTrigger.prototype = new CABLES.Op();
+CABLES.OPS["bb55860d-a186-4e39-9542-8d21185e7e12"]={f:Ops.Array.ArrayChangedTrigger,objName:"Ops.Array.ArrayChangedTrigger"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Array.RotateArray
+// 
+// **************************************************************
+
+Ops.Array.RotateArray = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const inArray = op.inArray("Array in");
+const count = op.inValueInt("Rotate amount", 0);
+const outArray = op.outArray("ArrayOut");
+
+let newArr = [];
+outArray.set(newArr);
+
+count.onChange =
+inArray.onChange = function ()
+{
+    let arr = inArray.get();
+    if (!arr) return;
+
+    let rotateIndex = -count.get();
+
+    newArr = rotate(inArray.get(), rotateIndex, 0);
+    outArray.set(null);
+    outArray.set(newArr);
+};
+
+// https://gist.github.com/aubergene/7ecfe624199e68f60258
+function rotate(array, n, guard)
+{
+    let head, tail;
+    n = (n === null) || guard ? 1 : n;
+    n %= array.length;
+    tail = array.slice(n) || [];
+
+    if (!tail || !tail.concat) return [];
+
+    head = array.slice(0, n) || [];
+    return tail.concat(head);
 }
 
 
 };
 
-Ops.Math.Min_v3.prototype = new CABLES.Op();
-CABLES.OPS["24a9062d-380c-4690-8fe7-6703787fa94c"]={f:Ops.Math.Min_v3,objName:"Ops.Math.Min_v3"};
+Ops.Array.RotateArray.prototype = new CABLES.Op();
+CABLES.OPS["e435d07b-8545-4469-befb-868510adcb76"]={f:Ops.Array.RotateArray,objName:"Ops.Array.RotateArray"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Json.ObjectSetString_v2
+// 
+// **************************************************************
+
+Ops.Json.ObjectSetString_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inObject = op.inObject("Object"),
+    outObject = op.outObject("Result Object"),
+    inKey = op.inString("Key"),
+    inValue = op.inString("Value");
+
+inObject.onChange =
+    inValue.onChange = update;
+
+inKey.setUiAttribs({ "stringTrim": true, "minLength": 1 });
+
+inKey.onChange = () =>
+{
+    op.setUiAttrib({ "extendTitle": inKey.get() });
+    update();
+};
+
+function update()
+{
+    let obj = inObject.get();
+    if (!obj) obj = {};
+
+    const key = inKey.get();
+
+    const newObj = JSON.parse(JSON.stringify(obj));
+
+    if (key) newObj[key] = inValue.get();
+
+    outObject.setRef(newObj);
+}
+
+
+};
+
+Ops.Json.ObjectSetString_v2.prototype = new CABLES.Op();
+CABLES.OPS["1ed8f375-c3d7-4662-88c7-1afbc3dc6129"]={f:Ops.Json.ObjectSetString_v2,objName:"Ops.Json.ObjectSetString_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Net.WebSocket.WebSocket_v2
+// 
+// **************************************************************
+
+Ops.Net.WebSocket.WebSocket_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inUrl = op.inString("URL"),
+    outResult = op.outObject("Result"),
+    outValidJson = op.outBoolNum("Valid JSON"),
+    outConnection = op.outObject("Connection", null, "Websocket"),
+    outConnected = op.outBoolNum("Connected"),
+    outReceived = op.outTrigger("Received Data"),
+    outRaw = op.outString("Raw Data");
+
+let connection = null;
+let timeout = null;
+let connectedTo = "";
+
+inUrl.onChange = connect;
+timeout = setTimeout(checkConnection, 2000);
+
+inUrl.set();
+
+let connecting = false;
+
+function checkConnection()
+{
+    if (!outConnected.get() && !connecting)
+    {
+        // op.log("reconnect websocket...");
+        connect();
+    }
+
+    timeout = setTimeout(checkConnection, 2000);
+}
+
+op.onDelete = function ()
+{
+    if (outConnected.get())connection.close();
+    connecting = false;
+    clearTimeout(timeout);
+};
+
+function connect()
+{
+    op.setUiError("connection", null);
+    op.setUiError("jsonvalid", null);
+
+    if (outConnected.get() && connectedTo == inUrl.get()) return;
+
+    if (inUrl.get() && inUrl.get().indexOf("ws://") == -1 && inUrl.get().indexOf("wss://") == -1)
+    {
+        op.setUiError("wrongproto", "only valid protocols are ws:// or wss:// ");
+        return;
+    }
+    else
+        op.setUiError("wrongproto", null);
+
+    if (!inUrl.get() || inUrl.get() === "")
+    {
+        op.logWarn("websocket: invalid url ");
+        outConnected.set(false);
+        return;
+    }
+
+    window.WebSocket = window.WebSocket || window.MozWebSocket;
+
+    if (!window.WebSocket)
+        return op.logError("Sorry, but your browser doesn't support WebSockets.");
+
+    op.setUiError("websocket", null);
+
+    try
+    {
+        connecting = true;
+        if (connection !== null)connection.close();
+        connection = new WebSocket(inUrl.get());
+    }
+    catch (e)
+    {
+        if (e && e.message)op.setUiError("websocket", e.message);
+        op.logWarn("could not connect to", inUrl.get());
+        connecting = false;
+    }
+
+    if (connection)
+    {
+        connection.onerror = function (e)
+        {
+            connecting = false;
+
+            outConnected.set(false);
+            outConnection.set(null);
+            // op.setUiError("connection", "Error connecting to websocket server", 2);
+        };
+
+        connection.onclose = function (message)
+        {
+            connecting = false;
+            outConnected.set(false);
+            outConnection.set(null);
+        };
+
+        connection.onopen = function (message)
+        {
+            connecting = false;
+            outConnected.set(true);
+            connectedTo = inUrl.get();
+            outConnection.set(connection);
+        };
+
+        connection.onmessage = function (message)
+        {
+            op.setUiError("jsonvalid", null);
+            outRaw.set(message.data);
+            try
+            {
+                const json = JSON.parse(message.data);
+                // outResult.set(null);
+                outResult.setRef(json);
+                outValidJson.set(true);
+            }
+            catch (e)
+            {
+                op.log(e);
+                op.log("This doesn't look like a valid JSON: ", message.data);
+                op.setUiError("jsonvalid", "Received message was not valid JSON", 0);
+                outValidJson.set(false);
+            }
+            outReceived.trigger();
+        };
+    }
+}
+
+
+};
+
+Ops.Net.WebSocket.WebSocket_v2.prototype = new CABLES.Op();
+CABLES.OPS["e747dc72-8214-41ca-9aae-9041f20dd6ac"]={f:Ops.Net.WebSocket.WebSocket_v2,objName:"Ops.Net.WebSocket.WebSocket_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PxdLHGq.CountEmptyStringElements
+// 
+// **************************************************************
+
+Ops.Patch.PxdLHGq.CountEmptyStringElements = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    exec = op.inTrigger("Trigger"),
+    arr = op.inArray("Array"),
+    result = op.outNumber("Result");
+
+let count = 0;
+
+exec.onTriggered = () => {
+    if (!arr.get()) return;
+
+    count = 0; // Reset count each time the trigger is executed
+
+    for (let str of arr.get()) {
+        if (str.length > 0) count++;
+    }
+
+    result.set(count);
+};
+
+};
+
+Ops.Patch.PxdLHGq.CountEmptyStringElements.prototype = new CABLES.Op();
+CABLES.OPS["7b72a958-c864-4ca1-a961-f7bf805df6b3"]={f:Ops.Patch.PxdLHGq.CountEmptyStringElements,objName:"Ops.Patch.PxdLHGq.CountEmptyStringElements"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Ui.VizArrayGraph
+// 
+// **************************************************************
+
+Ops.Ui.VizArrayGraph = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inArr = op.inArray("Array Numbers"),
+    inCurve = op.inBool("Curve", false);
+
+op.setUiAttrib({ "height": 100, "width": 200, "resizable": true });
+
+const padding = 10;
+
+op.renderVizLayer = (ctx, layer) =>
+{
+    ctx.fillStyle = "#222";
+    ctx.fillRect(
+        layer.x, layer.y,
+        layer.width, layer.height);
+
+    const arr = inArr.get();
+    if (!arr) return;
+
+    const colors = ["#d1838e", "#95d183", "#7AC4E0", "#9091D6", "#FFC395", "#F0D165", "#63A8E8", "#D183BF", "#CF5D9D", "#66C984", "#D66AA6", "#515151"];
+
+    let stride = 1;
+
+    if (inArr.links.length > 0 && inArr.links[0].getOtherPort(inArr))
+        stride = inArr.links[0].getOtherPort(inArr).uiAttribs.stride || 1;
+
+    let max = -Number.MAX_VALUE;
+    let min = Number.MAX_VALUE;
+    let num = arr.length;
+    let mulX = layer.width / ((num - stride) / stride);
+
+    for (let i = 0; i < arr.length; i++)
+    {
+        let v = arr[i];
+
+        min = Math.min(v, min);
+        max = Math.max(v, max);
+    }
+
+    const step = mulX / (stride);
+
+    let off = 0;
+    if (inCurve.get())off = mulX / 2;
+    for (let i = -stride; i < arr.length; i += stride)
+    {
+        if (i / stride % 2 == 0) ctx.fillStyle = "#222";
+        else ctx.fillStyle = "#333";
+
+        ctx.fillRect(layer.x + i * step + off, layer.y, mulX, layer.height);
+    }
+
+    {
+        ctx.lineWidth = 2;
+        ctx.strokeStyle = "#444";
+        ctx.beginPath();
+        let y = CABLES.map(0, min, max, layer.height - 3, 3) + layer.y;
+        ctx.moveTo(layer.x, y);
+        ctx.lineTo(layer.x + layer.width, y);
+        ctx.stroke();
+    }
+
+    if (inCurve.get())
+        for (let st = 0; st < stride; st++)
+        {
+            ctx.lineWidth = 2;
+            ctx.strokeStyle = colors[st];
+
+            ctx.beginPath();
+
+            for (let i = st; i < arr.length; i += stride)
+            {
+                let y = arr[i];
+
+                y = CABLES.map(y, min, max, layer.height - 3, 3);
+                y += layer.y;
+                if (i === st)ctx.moveTo(layer.x, y);
+                else ctx.lineTo(layer.x + (i - st) / stride * mulX, y);
+            }
+
+            ctx.stroke();
+        }
+
+    if (!inCurve.get())
+    {
+        // if(stride!=1)ctx.globalAlpha = 0.6;
+
+        for (let st = 0; st < stride; st++)
+        {
+            for (let i = st; i < arr.length; i += stride)
+            {
+                let y = arr[i];
+
+                ctx.fillStyle = colors[st];
+
+                y = CABLES.map(y, min, max, layer.height - 3, 3);
+                const y0 = CABLES.map(0, min, max, layer.height - 3, 3);
+
+                const ymin = Math.min(y, y0);
+                const ymax = Math.max(y, y0);
+
+                ctx.fillRect(layer.x + (i - st) / stride * mulX + st * step, layer.y + ymin, step, (ymax - ymin));
+            }
+        }
+
+        // ctx.globalAlpha = 1.0;
+    }
+};
+
+
+};
+
+Ops.Ui.VizArrayGraph.prototype = new CABLES.Op();
+CABLES.OPS["afc587e0-d2a9-455d-821e-325065740de1"]={f:Ops.Ui.VizArrayGraph,objName:"Ops.Ui.VizArrayGraph"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Ui.VizArrayTable_v2
+// 
+// **************************************************************
+
+Ops.Ui.VizArrayTable_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inArr = op.inArray("Array"),
+    inStride = op.inInt("Stride", 0),
+    inScroll = op.inFloatSlider("Scroll", 0);
+    // inScroll.get()*arr.length;//inOffset = op.inInt("Start Row", 0);
+
+op.setUiAttrib({ "height": 200, "width": 400, "resizable": true, "vizLayerMaxZoom": 2500 });
+
+function getCellValue(v)
+{
+    let str = "";
+
+    if (typeof v == "string")
+    {
+        // if (CABLES.UTILS.isNumeric(v)) str = "\"" + v + "\"";
+        // else str = v;
+        str = "\"" + v + "\"";
+    }
+    else if (CABLES.UTILS.isNumeric(v)) str = String(Math.round(v * 10000) / 10000);
+    else if (Array.isArray(v))
+    {
+        let preview = "...";
+        if (v.length == 0) preview = "";
+        str = "[" + preview + "] (" + v.length + ")";
+    }
+    else if (typeof v == "object")
+    {
+        try
+        {
+            str = JSON.stringify(v, true, 1);
+        }
+        catch (e)
+        {
+            str = "{???}";
+        }
+    }
+    else if (v != v || v === undefined)
+    {
+        str += String(v);
+    }
+    else
+    {
+        str += String(v);
+    }
+
+    return str;
+}
+
+op.renderVizLayer = (ctx, layer) =>
+{
+    ctx.fillStyle = "#222";
+    ctx.fillRect(layer.x, layer.y, layer.width, layer.height);
+
+    ctx.save();
+    ctx.scale(layer.scale, layer.scale);
+
+    ctx.font = "normal 10px sourceCodePro";
+    ctx.fillStyle = "#ccc";
+
+    const arr = inArr.get() || [];
+    let stride = inStride.get() || 1;
+
+    if (inArr.get() === null) op.setUiAttrib({ "extendTitle": "null" });
+    else if (inArr.get() === undefined) op.setUiAttrib({ "extendTitle": "undefined" });
+    else op.setUiAttrib({ "extendTitle": "length: " + arr.length });
+
+    if (inArr.links.length > 0 && inArr.links[0].getOtherPort(inArr))
+        stride = inArr.links[0].getOtherPort(inArr).uiAttribs.stride || inStride.get() || 1;
+
+    if (arr.length % stride != 0)op.setUiError("stride", "stride does not fit length of array. some values may not be shown", 1);
+    else op.setUiError("stride", null);
+
+    let lines = Math.floor(layer.height / layer.scale / 10 - 1);
+    let padding = 4;
+    let offset = Math.floor((inScroll.get() * arr.length) / stride);
+
+    offset = Math.max(0, offset);
+
+    if (lines * stride > arr.length) offset = 0;
+    else offset = Math.min(arr.length - (lines * stride), (offset) * stride);
+
+    let columnsWidth = [];
+
+    for (let i = 0; i < stride; i++)columnsWidth[i] = 0;
+
+    for (let i = offset; i < offset + lines * stride; i += stride)
+    {
+        for (let s = 0; s < stride; s++)
+        {
+            const v = arr[i + s];
+
+            columnsWidth[s] = Math.max(columnsWidth[s], getCellValue(v).length);
+        }
+    }
+
+    let columsPos = [];
+    let addUpPos = 30;
+    for (let i = 0; i < stride; i++)
+    {
+        columsPos[i] = addUpPos;
+        addUpPos += (columnsWidth[i] + 1) * 7;
+    }
+
+    for (let i = offset; i < offset + lines * stride; i += stride)
+    {
+        if (i < 0) continue;
+        if (i + stride > arr.length) continue;
+
+        ctx.fillStyle = "#666";
+
+        const lineNum = (i) / stride;
+
+        if (lineNum >= 0)
+            ctx.fillText(lineNum,
+                layer.x / layer.scale + padding,
+                layer.y / layer.scale + 10 + (i - offset) / stride * 10 + padding);
+
+        for (let s = 0; s < stride; s++)
+        {
+            const v = arr[i + s];
+            let str = getCellValue(v);
+
+            ctx.fillStyle = "#ccc";
+
+            if (typeof v == "string")
+            {
+                str = v;
+            }
+            else if (CABLES.UTILS.isNumeric(v)) str = String(Math.round(v * 10000) / 10000);
+            else if (Array.isArray(v))
+            {
+                str = JSON.stringify(v);
+            }
+            else if (typeof v == "object")
+            {
+                try
+                {
+                    str = JSON.stringify(v);
+                }
+                catch (e)
+                {
+                    str = "{object}";
+                }
+            }
+            else if (v != v || v === undefined)
+            {
+                ctx.fillStyle = "#f00";
+                str = "?";
+            }
+
+            ctx.fillText(str,
+                layer.x / layer.scale + columsPos[s],
+                layer.y / layer.scale + 10 + (i - offset) / stride * 10 + padding);
+        }
+    }
+
+    if (inArr.get() === null) ctx.fillText("null", layer.x / layer.scale + 10, layer.y / layer.scale + 10 + padding);
+    else if (inArr.get() === undefined) ctx.fillText("undefined", layer.x / layer.scale + 10, layer.y / layer.scale + 10 + padding);
+
+    const gradHeight = 30;
+
+    if (layer.scale <= 0) return;
+    if (offset > 0)
+    {
+        const radGrad = ctx.createLinearGradient(0, layer.y / layer.scale + 5, 0, layer.y / layer.scale + gradHeight);
+        radGrad.addColorStop(0, "#222");
+        radGrad.addColorStop(1, "rgba(34,34,34,0.0)");
+        ctx.fillStyle = radGrad;
+        ctx.fillRect(layer.x / layer.scale, layer.y / layer.scale, 200000, gradHeight);
+    }
+
+    if (offset + lines * stride < arr.length)
+    {
+        const radGrad = ctx.createLinearGradient(0, layer.y / layer.scale + layer.height / layer.scale - gradHeight + 5, 0, layer.y / layer.scale + layer.height / layer.scale - gradHeight + gradHeight);
+        radGrad.addColorStop(1, "#222");
+        radGrad.addColorStop(0, "rgba(34,34,34,0.0)");
+        ctx.fillStyle = radGrad;
+        ctx.fillRect(layer.x / layer.scale, layer.y / layer.scale + layer.height / layer.scale - gradHeight, 200000, gradHeight);
+    }
+
+    // scroll bars
+    if ((lines * stride) / arr.length < 1)
+    {
+        let h = layer.height - 20;
+        let start = (offset) / arr.length;
+        start *= h;
+
+        ctx.fillStyle = "#000";
+        ctx.fillRect((layer.x + layer.width - 15) / layer.scale, (layer.y + 10) / layer.scale, 5 / layer.scale, h / layer.scale);
+
+        h *= (lines * stride) / arr.length;
+
+        ctx.fillStyle = "#555";
+        ctx.fillRect((layer.x + layer.width - 15) / layer.scale, (layer.y + 10 + start) / layer.scale, 5 / layer.scale, h / layer.scale);
+    }
+
+    ctx.restore();
+};
+
+
+};
+
+Ops.Ui.VizArrayTable_v2.prototype = new CABLES.Op();
+CABLES.OPS["6c3bf614-a734-4539-98cd-7a7d5bfc38c9"]={f:Ops.Ui.VizArrayTable_v2,objName:"Ops.Ui.VizArrayTable_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PxdLHGq.CountValidElementsInArray
+// 
+// **************************************************************
+
+Ops.Patch.PxdLHGq.CountValidElementsInArray = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    exec = op.inTrigger("Trigger"),
+    arr = op.inArray("Array"),
+    result = op.outNumber("Result");
+
+let count = 0;
+
+exec.onTriggered = () => {
+    if (!arr.get()) return;
+
+    count = 0; // Reset count each time the trigger is executed
+
+    for (let arrEl of arr.get()) {
+        if (arrEl.length > 0) count++;
+    }
+
+    result.set(count);
+};
+
+};
+
+Ops.Patch.PxdLHGq.CountValidElementsInArray.prototype = new CABLES.Op();
+CABLES.OPS["ff256324-41b0-43e6-acc0-526c4538b83b"]={f:Ops.Patch.PxdLHGq.CountValidElementsInArray,objName:"Ops.Patch.PxdLHGq.CountValidElementsInArray"};
 
 
 
@@ -23954,6 +24353,7 @@ const attachments=op.attachments={};
 const parentPort = op.inObject("link");
 const buttonTextPort = op.inString("Text", "Button");
 const checksum = op.inValue("Checksum", 0);
+const update = op.inTrigger("update");
 
 const inGreyOut = op.inBool("Grey Out", false);
 const inVisible = op.inBool("Visible", true);
@@ -23964,7 +24364,7 @@ const buttonPressedPort = op.outTrigger("Pressed Trigger");
 
 
 // vars
-const colour = { "0": "rgb(85,85,85)", "1": "aquamarine" };
+const colors = ["rgba(85,85,85,0.5)", "aquamarine"];
 
 const el = document.createElement("div");
 el.dataset.op = op.id;
@@ -23973,45 +24373,63 @@ el.classList.add("sidebar__item");
 el.classList.add("sidebar--button");
 el.style.display = "grid";
 el.style.gridTemplateColumns = "0.25fr 1fr";
-el.style.alignItems = "center";
+el.style.alignItems = "start";
+el.style.alignContent = "stretch";
+el.style.height = "75px";
+el.style.paddingLeft = "5px";
 
-// draw svg of disk load icon
+
+// draw svg
 const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-svg.setAttribute("viewBox", "0 0 50 28");
+svg.setAttribute("viewBox", "0 0 100 100");
 svg.setAttribute("width", "100%");
-svg.setAttribute("height", "100%");
+svg.setAttribute("height", "150%");
 svg.style.gridColumn = "1 / 2";
-const pathsData = [
-    "M7.75,13.557C7.781,16.972 10.556,19.736 13.975,19.75L13.975,26C7.106,25.986 1.531,20.421 1.5,13.557L7.75,13.557Z",
-    "M13.975,19.75C13.983,19.75 13.992,19.75 14,19.75C17.423,19.75 20.207,16.992 20.25,13.579L26.5,13.579C26.457,20.441 20.873,26 14,26C13.992,26 13.983,26 13.975,26L13.975,19.75Z",
-    "M1.5,13.557C1.5,13.538 1.5,13.519 1.5,13.5C1.5,6.637 7.043,1.059 13.892,1L13.892,7.251C10.492,7.309 7.75,10.087 7.75,13.5C7.75,13.519 7.75,13.538 7.75,13.557L1.5,13.557Z",
-    "M13.892,1C13.928,1 13.964,1 14,1C20.899,1 26.5,6.601 26.5,13.5C26.5,13.526 26.5,13.552 26.5,13.579L20.25,13.579C20.25,13.552 20.25,13.526 20.25,13.5C20.25,10.051 17.449,7.25 14,7.25C13.964,7.25 13.928,7.25 13.892,7.251L13.892,1Z"
-];
-
-const paths = pathsData.map((d, i) => {
-    const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
-    path.setAttribute("d", d);
-    path.setAttribute("style", "fill:" + colour["0"]);
-    return path;
-});
-
-paths.forEach(path => svg.appendChild(path));
 
 
-// append each svg path to the svg element
-paths.forEach(path => svg.appendChild(path));
+
+const quadrants = [];
 
 
-el.appendChild(svg);
+for (let i = 0; i < 4; i++) {
+    const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    rect.setAttribute("x", [ "0", "25", "50", "75" ][i]);
+    rect.setAttribute("y", "0");
 
-
-checksum.onChange = function ()
-{
- let i= Math.round( checksum.get() );
- paths[ i].setAttribute("style", "fill:" + colour[ 1 ]);
- const move = [ "(-2,-2)", "(-2,2)", "(2,-2)", "(2,2)" ];
- paths[ i ].setAttribute("transform", `translate${move[ i ]}`); // Apply translation
+    rect.setAttribute("width", "20");
+    rect.setAttribute("height", "20");
+    rect.setAttribute("fill", colors[0]);
+    rect.setAttribute("rx", "50"); // Round the corners with a radius of 10
+    rect.setAttribute("ry", "50"); // Round the corners with a radius of 10
+    rect.style.display = "block";
+    quadrants.push(rect);
+    svg.appendChild(rect);
 }
+
+svg.setAttribute("transform", "translate(-2.5, -17)")
+
+
+function showQuadrant( index ) {
+    if (index < 0 || index > quadrants.length) return;
+    quadrants.forEach((quad, i) => {
+        quad.style.fill = i <= index - 1 || index === 4 ? colors[1] : colors[0];
+    });
+}
+
+
+updateSegments();
+
+function updateSegments () {
+
+el.appendChild( svg );
+showQuadrant( Math.round( checksum.get() ) )
+
+ }
+
+ checksum.onChange = updateSegments;
+
+
+update.onTriggered = updateSegments;
 
 const button = document.createElement("div");
 button.classList.add("sidebar__button-input");

@@ -1,41 +1,50 @@
-#pragma once
+#ifndef PLUGINPROCESSOR_H
+#define PLUGINPROCESSOR_H
 
+// Standard Library Headers
+#include <algorithm>  // std::sort
+#include <cstring>    // Include this header for std::memcpy
+#include <functional> //  std::hash
+#include <future>     //   std::promise and std::future
+#include <map>
+
+// Third-Party Library Headers
 #include <KeyzyLicenseActivator.h>
-#include <choc_AudioFileFormat.h>
-#include <choc_AudioFileFormat_FLAC.h>
-#include <choc_AudioFileFormat_WAV.h>
-#include <choc_AudioSampleData.h>
-#include <choc_Base64.h>
-#include <choc_Files.h>
 #include <choc_HTTPServer.h>
-#include <choc_SampleBufferUtilities.h>
-#include <choc_SampleBuffers.h>
 #include <choc_StringUtilities.h>
 #include <choc_javascript.h>
 #include <choc_javascript_QuickJS.h>
 #include <choc_javascript_Timer.h>
+#include <choc_SmallVector.h>
 #include <elem/Runtime.h>
 #include <juce_audio_basics/juce_audio_basics.h>
 #include <juce_audio_formats/juce_audio_formats.h>
 #include <juce_audio_processors/juce_audio_processors.h>
 #include <juce_dsp/juce_dsp.h>
 
-#include <algorithm>   // std::sort
-#include <cstring>     // Include this header for std::memcpy
-#include <functional>  //  std::hash
-#include <future>      //   std::promise and std::future
+// Project Headers
 
-#include "Slot.h"
+// Local Headers
+#include "Assets.h"
 #include "WebViewEditor.h"
+#include "ViewClientInstance.h"
+#include "SlotManager.h"
+#include "SlotName.h"
+#include "UserBankManager.h"
 
-class WebServer;      // Forward declaration of the WebServer class
-class WebViewEditor;  // Forward declaration of WebViewEditor
+// Forward Declarations
+class WebServer;
+class WebViewEditor;
+class ViewClientInstance;
+class SlotManager;
+class UserBankManager;
 
 //==============================================================================
 class EffectsPluginProcessor : public juce::AudioProcessor,
                                public juce::AudioProcessorParameter::Listener,
-                               private juce::AsyncUpdater {
-   public:
+                               private juce::AsyncUpdater
+{
+public:
     juce::FileChooser chooser;
     juce::AudioFormatManager formatManager;
     void createParameters(const std::vector<elem::js::Value> &parameters);
@@ -97,28 +106,28 @@ class EffectsPluginProcessor : public juce::AudioProcessor,
     /** Function to send info about the backend server to the View */
     void dispatchServerInfo();
 
+    /** User file count */
+    void dispatchUserFileCount();
+
     /** error to UI */
     void dispatchError(std::string const &name, std::string const &message);
 
     /** log to UI */
     void dispatchNativeLog(std::string const &name, std::string const &message);
 
-   private:
     std::string REVERSE_BUFFER_PREFIX = "REVERSED_";
-    std::string PERSISTED_USER_PEAKS = "userPeaks";
     std::string PERSISTED_HOST_PARAMETERS = "hostParameters";
+    std::string PERSISTED_ASSETMAP = "assetMap";
     std::string PERSISTED_USER_FILENAMES = "userFilenames";
     std::string MAIN_DSP_JS_FILE = "dsp.main.js";
     std::string MAIN_PATCH_JS_FILE = "patch.main.js";
     std::string SAMPLE_RATE_KEY = "sampleRate";
+    std::string USER_BANK_KEY = "userBank";
     std::string NATIVE_MESSAGE_FUNCTION_NAME = "__postNativeMessage__";
     std::string LOG_FUNCTION_NAME = "__log__";
-    std::string WS_RESPONSE_KEY = "NEL_STATE";
-
-    // The maximum number of error messages to keep in the queue
-    size_t MAX_ERROR_LOG_QUEUE_SIZE = 200;
-    std::optional<std::string> loadDspEntryFileContents() const;
-    std::optional<std::string> loadPatchEntryFileContents() const;
+    std::string WS_RESPONSE_KEY_FOR_STATE = "NEL_STATE";
+    std::string KEY_FOR_FILENAMES = "userFilenames";
+    std::string WS_RESPONSE_KEY_FOR_PEAKS = "userPeaks";
 
     /**
      *
@@ -133,98 +142,68 @@ class EffectsPluginProcessor : public juce::AudioProcessor,
                                  const juce::String &replacementChar = "%");
 
     //==============================================================================
+
+private:
+    // The maximum number of error messages to keep in the queue
+    size_t MAX_ERROR_LOG_QUEUE_SIZE = 200;
+    std::optional<std::string> loadDspEntryFileContents() const;
+    std::optional<std::string> loadPatchEntryFileContents() const;
     std::atomic<bool> runtimeSwapRequired{false};
     std::atomic<bool> shouldInitialize{false};
     double lastKnownSampleRate = 0;
     int lastKnownBlockSize = 0;
 
     //===== Elementary Audio , js stores and context  ==//
-    elem::js::Object state;
-    std::size_t lastStateHash = 0;
-    int lastPeaksHash = 0;
     choc::javascript::Context jsContext;
     juce::AudioBuffer<float> scratchBuffer;
-    std::unique_ptr<elem::Runtime<float>> runtime;
-    std::map<std::string, std::variant<juce::AudioParameterFloat *, juce::AudioParameterBool *>> parameterMap;
+    std::unique_ptr<elem::Runtime<float>> elementaryRuntime;
     std::queue<std::string> errorLogQueue;
+
+    friend class ViewClientInstance;
+    std::map<std::string, std::variant<juce::AudioParameterFloat *, juce::AudioParameterBool *>> parameterMap;
 
     //=============================================
 
-    //======== User IR related , files and buffers
-   private:
-    Slot slotManager;
-    // PLUG-IN STATE  default audio assets container, holds juce::File objects
-    std::array<juce::File, 4> userChosenStereoAudioFiles;
-    // LOCAL ASSETS   default audio assets container, holds juce::File objects
-    std::array<juce::File, 8> defaultSingleChannelAudioFiles;
-    // VIEW STATE     peak data for the view
-    std::array<std::vector<float>, 4> peakDataForView;
-    // VIEW STATE     filenames for the view
-    std::array<juce::String, 4> userFilenamesForView;
-    // // LOCAL ASSETS   full paths from local file system
-    // std::array<juce::File, 8> fileSystemPathsForFS;
-    // RUNTIME        Keys for Elementary VFS Map. eg:  name_0
-    //                                                  name_1,
-    //                                                  REVERSED_name_0
-    //                                                  REVERSED_name_1
-    //                                                  ...
-    std::array<juce::String, 32> vfsPathsForRealtime;
+public:
+    elem::js::Object state;
+    std::map<SlotName, Asset> assetsMap;
+    elem::js::Object assetState;
+    int userCutoffChoice = 160;
 
-   public:
-    static elem::js::Object userData;
-    static std::array<juce::File, 8> sortedIRPaths;
+    // a USERBANK is a set of 4 VFS paths generated from one stereo user file
 
-    std::array<juce::File, 8> &fetchDefaultAudioFileAssets();
-    bool prepareDefaultResponseBuffers(std::array<juce::File, 8> &defaultAudioAssets);
-
-    int getSlotIndex() const;
-    void resetSlotIndex();
-    int incrementSlotIndex();
-
-    std::array<juce::File, 8> sortedOrderForDefaultIRs(const std::array<juce::File, 8> &filePaths);
-
+    bool fetchDefaultAudioFileAssets();
+    bool processDefaultResponseBuffers();
     void inspectVFS();
-
+    void pruneVFS();
     void requestUserFileSelection(std::promise<elem::js::Object> &promise);
-    bool assignFileAssetToCurrentSlot(const juce::File &file);
-    bool assignPeaksToCurrentSlot(const juce::AudioBuffer<float> &buffer);
-    bool assignVFSpathToCurrentSlot(const juce::String &vfsPath);
-    bool assignFilenameToCurrentSlot(const juce::File &file);
-
-    void updateStateWithPeaksData();
-    void updateStateWithFilenames(std::array<juce::String, 4>);
-    void updateStateWithFilenames();
+    void updateStateWithAssetsData();
+    elem::js::Value assetsMapToValue(const std::map<SlotName, Asset> &map);
     std::vector<float> getReducedAudioBuffer(const juce::AudioBuffer<float> &buffer);
-
-    bool importAudioToRuntimeVFS(juce::File &file, int slot);
+    bool processImportedResponseBuffers(juce::File &file, SlotName &targetSlot);
     bool importPeakDataForView(const juce::AudioBuffer<float> &buffer);
-    //========== Server related
-    int runWebServer();
-    struct ViewClientInstance : public choc::network::HTTPServer::ClientInstance {
-        ViewClientInstance(EffectsPluginProcessor &processor);
-        ~ViewClientInstance();
-        choc::network::HTTPContent getHTTPContent(std::string_view path) override;
-        void upgradedToWebSocket(std::string_view path) override;
-        void handleWebSocketMessage(std::string_view message) override;
-        int clientID = 0;
-        EffectsPluginProcessor &processor;  // Reference to the enclosing class
-    };
+    void dispatchVFSpathHistoryForSlot(SlotName slot);
+  
+    vfs::UserBankManager userBankManager;
+    void dispatchUserBank();
+    std::string prefixUserBank(const std::string &name );
 
+private:
+    int USERBANK = 0;
+    int runWebServer();
     uint16_t serverPort = 0;
     uint16_t getServerPort() const { return serverPort; }
 
-    int userCutoffChoice = 160;
-
-   private:
-    juce::dsp::StateVariableTPTFilter<float> stateVariableFilter;  // For filtering the imported IRs
-
-    std::unique_ptr<ViewClientInstance> clientInstance;  // Use a smart pointer to store the client instance
-    std::unique_ptr<choc::network::HTTPServer> server;   // Use a smart pointer to manage the server
+    juce::dsp::StateVariableTPTFilter<float> stateVariableFilter; // For filtering the imported IRs
+    std::unique_ptr<ViewClientInstance> clientInstance;           // Use a smart pointer to store the client instance
+    std::unique_ptr<choc::network::HTTPServer> server;            // Use a smart pointer to manage the server
+    std::unique_ptr<SlotManager> slotManager;                     // Use a smart pointer to manage the slot manager
 
     //==============================================================================
     // A simple "dirty list" abstraction here for propagating realtime parameter
     // value changes
-    struct ParameterReadout {
+    struct ParameterReadout
+    {
         float value = 0;
         bool dirty = false;
     };
@@ -245,9 +224,12 @@ class EffectsPluginProcessor : public juce::AudioProcessor,
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(EffectsPluginProcessor)
 };
 
-namespace unlock {
-inline std::string errorStatuses(Keyzy::LicenseStatus status) {
-    switch (status) {
+namespace unlock
+{
+    inline std::string errorStatuses(Keyzy::LicenseStatus status)
+    {
+        switch (status)
+        {
         case Keyzy::LicenseStatus::EXPIRED:
             return "Expired";
 
@@ -350,17 +332,18 @@ inline std::string errorStatuses(Keyzy::LicenseStatus status) {
         case Keyzy::LicenseStatus::LICENSE_NOT_EXIST_NOT_ASSIGNED_DEALER_ALREADY_DEPOSITED:
             return "The license does not exist or is not assigned to a dealer or is already deposited!";
 
-        case Keyzy::LicenseStatus::VALID:  // Just in case
+        case Keyzy::LicenseStatus::VALID: // Just in case
             return "Valid";
 
         default:
             return "Unknown";
+        }
     }
-}
-}  // namespace unlock
+} // namespace unlock
 
-namespace jsFunctions {
-inline auto hydrateScript = R"script(
+namespace jsFunctions
+{
+    inline auto hydrateScript = R"script(
 (function() {
   if (typeof globalThis.__receiveHydrationData__ !== 'function')
     return false;
@@ -370,7 +353,7 @@ inline auto hydrateScript = R"script(
 })();
 )script";
 
-inline auto dispatchScript = R"script(
+    inline auto dispatchScript = R"script(
 (function() {
   if (typeof globalThis.__receiveStateChange__ !== 'function')
     return false;
@@ -380,7 +363,7 @@ inline auto dispatchScript = R"script(
 })();
 )script";
 
-inline auto errorScript = R"script(
+    inline auto errorScript = R"script(
 (function() {
   if (typeof globalThis.__receiveError__ !== 'function')
     return false;
@@ -393,7 +376,7 @@ inline auto errorScript = R"script(
 })();
 )script";
 
-inline auto serverInfoScript = R"script(
+    inline auto serverInfoScript = R"script(
 (function() {
     if (typeof globalThis.__receiveServerInfo__ !== 'function')
         return false;
@@ -403,7 +386,17 @@ inline auto serverInfoScript = R"script(
     })();
 )script";
 
-inline auto vfsKeysScript = R"script(
+    inline auto userBankScript = R"script(
+(function() {
+    if (typeof globalThis.__receiveUserBank__ !== 'function')
+        return false;
+
+    globalThis.__receiveUserBank__(%);
+    return true;
+    })();
+)script";
+
+    inline auto vfsKeysScript = R"script(
 (function() {
     if (typeof globalThis.__receiveVFSKeys__ !== 'function')
         return false;
@@ -413,4 +406,6 @@ inline auto vfsKeysScript = R"script(
     })();
 )script";
 
-}  // namespace jsFunctions
+} // namespace jsFunctions
+
+#endif // PLUGINPROCESSOR_H

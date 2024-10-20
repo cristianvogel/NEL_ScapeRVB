@@ -40,7 +40,7 @@ export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
     let mixer: ElemNode[] = [];
     responses.forEach((response: IRMetaData, slotName: DefaultIRSlotName) => {
       mixer.push(
-        el.mul( hermiteNodes[response.index], scapeConvolver(slotName, channel) )
+        el.mul( hermiteNodes[response.slotIndex], scapeConvolver(slotName, channel) )
       );
     });
 

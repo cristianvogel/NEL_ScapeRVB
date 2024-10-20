@@ -2,8 +2,11 @@
 
 #include <juce_audio_basics/juce_audio_basics.h>
 
-namespace nel
+namespace util
 {
-    void normaliseImpulseResponse(juce::AudioBuffer<float> &buf, float maxAbsValue);
+    void normaliseAudioBuffer(juce::AudioBuffer<float> &buf, float maxAbsValue);
     float calculateNormalisationFactor(float maxSumSquaredMag);
-}
+    juce::File getAssetsDirectory();
+    juce::File getPersistentDataDirectory();
+    bool isOdd(int num);
+} // namespace util

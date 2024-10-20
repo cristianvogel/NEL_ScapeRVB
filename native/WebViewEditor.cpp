@@ -1,6 +1,8 @@
-#include "PluginProcessor.h"
-#include "WebViewEditor.h"
 
+#include "WebViewEditor.h"
+#include "PluginProcessor.h"
+
+//==============================================================================
 // A helper for reading numbers from a choc::Value, which seems to opportunistically parse
 // JSON numbers into ints or 32-bit floats whenever it wants.
 double numberFromChocValue(const choc::value::ValueView &v)
@@ -40,7 +42,7 @@ WebViewEditor::WebViewEditor(juce::AudioProcessor *proc, juce::File const &asset
 #endif
 
 #if !ELEM_DEV_LOCALHOST
-    opts.enableDebugMode = true;
+    opts.enableDebugMode = false;
     opts.fetchResource = [=](const choc::ui::WebView::Options::Path &p) -> std::optional<choc::ui::WebView::Options::Resource>
     {
         auto relPath = "." + (p == "/" ? "/index.html" : p);
@@ -89,6 +91,10 @@ WebViewEditor::WebViewEditor(juce::AudioProcessor *proc, juce::File const &asset
                 return handleSetParameterValueEvent(args[1]);
             }
 
+            if (eventName == PRUNE_VFS) {
+                pruneVFS();
+            }
+
 
             // For Keyzy send an unlock event with an object containing the serial number
             if (eventName == UNLOCK_EVENT && args.size() > 1) {
@@ -122,7 +128,7 @@ void WebViewEditor::executeJavascript(const std::string &script) const
     webView->evaluateJavascript(script);
 }
 
-//==============================================================================
+
 choc::value::Value WebViewEditor::handleSetParameterValueEvent(const choc::value::ValueView &e) const
 {
     if (e.isObject() && e.hasObjectMember("paramId") && e.hasObjectMember("value"))

@@ -12,7 +12,6 @@ lerna-debug.log*
  ir-src 
 
 # Builds
-native/elementary
 native/choc
 native/juce
 native/KeyzyClientLibrary

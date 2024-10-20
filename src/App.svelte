@@ -67,7 +67,7 @@
     if (ConsoleText.current.length > 0) {
       setTimeout(() => {
         ConsoleText.update("");
-      }, 3000);
+      },6000);
     }
   });
 

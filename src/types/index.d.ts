@@ -5,14 +5,14 @@ import { Vec } from "@thi.ng/vectors";
 
 
 type DefaultIRSlotName = 'LIGHT' | 'SURFACE' | 'TEMPLE' | 'DEEPNESS';
-type UserVFSStem = 'USER0' | 'USER1' | 'USER2' | 'USER3' ;
+type UserVFSStem = `USER${number}`;
 type VFSPathStem = DefaultIRSlotName | UserVFSStem;
 type DefaultVFSPathWithChannel = `${DefaultIRSlotName}_${number}`;
 type UserVFSPathWithChannel = `${UserVFSStem}_${number}` | undefined;
 
 type IRMetaData = {
   pathStem: VFSPathStem;
-  index: number;
+  slotIndex: number;
   att: number;
 };
 
@@ -41,7 +41,8 @@ interface ScapeSettings {
   vectorData: Vec;
   bypass: 1 | 0;
   mode: 1 | 0;
-  offset: number
+  offset: number;
+  userBank: number;
 }
 
 interface ProcessorSettings {
