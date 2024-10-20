@@ -4,8 +4,8 @@
     ConsoleText,
     CablesReady,
     HostState,
-    WebSocketPort,
     VFSKeys,
+    WebSocketPort,
   } from "./stores/stores.svelte";
   import { fade } from "svelte/transition";
   import { initPatchListeners } from "./lib/PatchListeners.svelte";
@@ -76,22 +76,24 @@
 
 </script>
 
-<canvas id="glcanvas" width="100vw" height="100vh" willReadFrequently="true"
-></canvas>
 
-{#if WebSocketPort.current > 1}
-  <WebSocketClient port={WebSocketPort.current} />
-{/if}
+
+<canvas id="glcanvas" width="10vw" height="10vh" willReadFrequently="true"></canvas>
+
+<!-- NOT NEEDED ON MAC
+{#if WebSocketPort.current > 0} 
+<WebSocketClient port = { WebSocketPort.current } />
+{/if} -->
 
 {#if CablesReady.current}
-  <pre
-    class="console-text">{ConsoleText.current} || VFS count: {VFSKeys.count} </pre>
-
+  <pre class="console-text">VFS: {VFSKeys.count} || {ConsoleText.current} </pre>
   <pre class="console-text" style="bottom: 2rem;">{ConsoleText.extended}</pre>
 {:else}
   <pre class="console-text" in:fade>Loading...</pre>
 {/if}
 
+
+ 
 <style>
   .console-text {
     position: absolute;
@@ -99,5 +101,6 @@
     bottom: 7rem;
     color: chartreuse;
     font-size: xx-small;
+    z-index: 137;
   }
 </style>

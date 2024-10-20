@@ -30,12 +30,12 @@ function vfsKeys(initial) {
 /////////////////////////
 export const WebSocketPort = webSocketPort(0);
 function webSocketPort(initial) {
-  let current = $state(initial);
+  let current: number = $state(initial);
   return {
     get current() {
       return current;
     },
-    assign(newValue) {
+    set(newValue: number) {
       current = newValue;
     },
   };
