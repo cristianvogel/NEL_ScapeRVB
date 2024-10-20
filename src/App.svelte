@@ -78,7 +78,7 @@
 
 
 
-<canvas id="glcanvas" width="10vw" height="10vh" willReadFrequently="true"></canvas>
+<canvas id="glcanvas" width="100vw" height="100vh" willReadFrequently="true"></canvas>
 
 <!-- NOT NEEDED ON MAC
 {#if WebSocketPort.current > 0} 
