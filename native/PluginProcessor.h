@@ -117,6 +117,7 @@ public:
 
     std::string REVERSE_BUFFER_PREFIX = "REVERSED_";
     std::string PERSISTED_HOST_PARAMETERS = "hostParameters";
+    std::string PERSISTED_ASSETMAP = "assetMap";
     std::string PERSISTED_USER_FILENAMES = "userFilenames";
     std::string MAIN_DSP_JS_FILE = "dsp.main.js";
     std::string MAIN_PATCH_JS_FILE = "patch.main.js";

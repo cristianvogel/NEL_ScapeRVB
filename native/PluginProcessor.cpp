@@ -242,7 +242,7 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
 void EffectsPluginProcessor::updateStateWithAssetsData()
 {
     // todo: will be used for persisting the state of the plugin assets
-    assetState.insert_or_assign("Assets", assetsMapToValue(assetsMap));
+    assetState.insert_or_assign(PERSISTED_ASSETMAP, assetsMapToValue(assetsMap));
 }
 
 void EffectsPluginProcessor::requestUserFileSelection(std::promise<elem::js::Object> &promise)
@@ -720,6 +720,7 @@ void EffectsPluginProcessor::parameterGestureChanged(int, bool)
 
 // ▮▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮
 // Function to convert std::map<SlotName, Asset> to elem::js::Value
+// do we need to stash the peaks?
 elem::js::Value EffectsPluginProcessor::assetsMapToValue(const std::map<SlotName, Asset> &map)
 {
     elem::js::Object obj;
@@ -976,11 +977,13 @@ std::string EffectsPluginProcessor::serialize(const std::string &function, const
 
 void EffectsPluginProcessor::getStateInformation(juce::MemoryBlock &destData)
 {
+
     auto dataToPersist = elem::js::Object();
     dataToPersist.insert_or_assign(PERSISTED_HOST_PARAMETERS, elem::js::Value(state));
+    dataToPersist.insert_or_assign(PERSISTED_ASSETMAP, assetState);
 
     const auto serialized = elem::js::serialize(dataToPersist);
-
+    
     destData.replaceAll((void *)serialized.c_str(), serialized.size());
 }
 
@@ -998,7 +1001,6 @@ void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInByt
     {
         parsed = elem::js::parseJSON(jsonString);
         auto persistedData = parsed.getObject();
-        auto hostState = state;
 
         for (auto &[key, value] : persistedData)
         {
@@ -1006,16 +1008,16 @@ void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInByt
             {
                 for (auto &[paramId, setting] : value.getObject())
                 {
-                    hostState.insert_or_assign(paramId, setting);
+                    state.insert_or_assign(paramId, setting);
                 }
             }
-            else if (key == WS_RESPONSE_KEY_FOR_PEAKS)
+            else if (key == PERSISTED_ASSETMAP)
             {
-                // not implemented yet
+                assetState = value.getObject();
+                
             }
-
-            dispatchStateChange();
         }
+        dispatchStateChange();
     }
 
     catch (...)

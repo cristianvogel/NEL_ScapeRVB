@@ -56,7 +56,6 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                 }
                 if (gotFiles["files"].isArray() == false)
                 {
-                    processor.dispatchError("File error:", "No files selected.");
                     continue;
                 }
                 auto files = gotFiles["files"].getArray();
@@ -83,8 +82,7 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                             processor.userBankManager.incrementUserBank();
                         targetSlot = nextSlot(targetSlot);
                     }
-                }
-                
+                }             
                 processor.updateStateWithAssetsData();
                 processor.dispatchStateChange();
                 continue;
