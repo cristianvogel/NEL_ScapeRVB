@@ -47,7 +47,7 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                 processor.slotManager->resetUserSlots();
                 processor.updateStateWithAssetsData();
                 continue;
-            }
+            } // end resetUserSlots
 
             // ▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮
             //  "selectFiles"
@@ -97,7 +97,7 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                 processor.updateStateWithAssetsData();
                 processor.dispatchStateChange();
                 continue;
-            }
+            } // end selectFiles
 
             // ▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮▮▮▮▮wswsws▮▮▮▮
             //  "requestState"
@@ -112,11 +112,10 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                 juce::String serializedState = elem::js::serialize(wrappedState);
               
     
-                // ========================================================================== //
+               
                 // ========================= perfomance optimization ======================== //
-                // ========================================================================== //
                 // hash the serialized state and peaks, send only if changed
-                //  use filename change as hash not peaks, cos its less data to work with
+                // use filename change as hash not peaks, cos its less data to work with
                 processor.slotManager->wrapFileNamesForView(wrappedFileNames);
                 juce::String serializedFilenames = elem::js::serialize(wrappedFileNames);
 
@@ -136,8 +135,11 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                     processor.slotManager->lastPeaksHash = currentPeaksHash;
                 }
                 continue;
-            }
-
+            } // end requestState
+            
+            // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
+            // ▮▮▮▮▮▮▮ simple parameter update from front end ▮▮▮▮▮▮▮ //
+            // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
             if (hpfValue.isNumber() && processor.parameterMap.count(key) > 0)
             {
                 float paramValue = static_cast<elem::js::Number>(hpfValue);
@@ -149,7 +151,7 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                 }
                 processor.editor->setParameterValue(key, paramValue);
             }
-        }
+        }// end parameter update
     }
 }
 
