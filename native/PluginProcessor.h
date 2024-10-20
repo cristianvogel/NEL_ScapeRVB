@@ -30,12 +30,14 @@
 #include "ViewClientInstance.h"
 #include "SlotManager.h"
 #include "SlotName.h"
+#include "UserBankManager.h"
 
 // Forward Declarations
 class WebServer;
 class WebViewEditor;
 class ViewClientInstance;
 class SlotManager;
+class UserBankManager;
 
 //==============================================================================
 class EffectsPluginProcessor : public juce::AudioProcessor,
@@ -180,8 +182,8 @@ public:
     bool processImportedResponseBuffers(juce::File &file, SlotName &targetSlot);
     bool importPeakDataForView(const juce::AudioBuffer<float> &buffer);
     void dispatchVFSpathHistoryForSlot(SlotName slot);
-    int getUserBank() const { return USERBANK; };
-    int incrementUserBank() { USERBANK++; return USERBANK; };
+  
+    vfs::UserBankManager userBankManager;
     void dispatchUserBank();
     std::string prefixUserBank(const std::string &name );
 

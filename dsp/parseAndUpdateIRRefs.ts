@@ -12,7 +12,11 @@ import { RefMap } from "./RefMap";
 export function parseAndUpdateIRRefs(scape: ScapeSettings, shared: SharedSettings) {
 
   const mode = scape.mode;
- const currentUserBank = scape.userBank - 1;
+  // at this point, 
+  // userbank has to be decremented by 1 to match the user IRs
+  // but also clipped to 0 to prevent negative values
+  // todo: move this logic to UserBankManager
+ const currentUserBank = Math.max( 0, scape.userBank - 1);
 
   const prefixUserBank = (name: string) => {
     return "USERBANK_" + currentUserBank + "_" + name;

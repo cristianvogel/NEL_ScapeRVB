@@ -89,7 +89,7 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                         // so step to the next bank
                         // for the VFS path history registry
                         if ( processor.slotManager->getIndexForSlot(targetSlot) == 3)
-                            processor.incrementUserBank();
+                            processor.userBankManager.incrementUserBank();
                         targetSlot = nextSlot(targetSlot);
                     }
                 }

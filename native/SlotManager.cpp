@@ -133,5 +133,6 @@ void SlotManager::resetUserSlots()
         assetInSlot.userPeaksForView = assetInSlot.defaultPeaksForView;
         processor.assetsMap.insert_or_assign(slot, assetInSlot);
     }
+    processor.userBankManager.resetUserBank();
     processor.pruneVFS();
 }

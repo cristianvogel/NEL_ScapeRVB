@@ -3277,7 +3277,7 @@
   // dsp/parseAndUpdateIRRefs.ts
   function parseAndUpdateIRRefs(scape, shared) {
     const mode = scape.mode;
-    const currentUserBank = scape.userBank - 1;
+    const currentUserBank = Math.max(0, scape.userBank - 1);
     const prefixUserBank = (name) => {
       return "USERBANK_" + currentUserBank + "_" + name;
     };

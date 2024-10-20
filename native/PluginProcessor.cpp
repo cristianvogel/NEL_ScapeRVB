@@ -1,5 +1,6 @@
 // Local Headers
 #include "SlotName.h"
+#include "UserBankManager.h"
 #include "PluginProcessor.h"
 #include "ViewClientInstance.h"
 #include "ConvolverNode.h"
@@ -123,7 +124,7 @@ void EffectsPluginProcessor::handleAsyncUpdate()
             }
         }
     }
-    state.insert_or_assign(USER_BANK_KEY, static_cast<elem::js::Number>(getUserBank()));
+    state.insert_or_assign(USER_BANK_KEY, static_cast<elem::js::Number>(userBankManager.getUserBank()));
     dispatchStateChange();
 } 
 
@@ -379,7 +380,7 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
 
 std::string EffectsPluginProcessor::prefixUserBank(const std::string &name )
 {
-    return "USERBANK_" + std::to_string( getUserBank() ) + "_" + name;
+    return "USERBANK_" + std::to_string( userBankManager.getUserBank() ) + "_" + name;
 }
 
 void EffectsPluginProcessor::pruneVFS()
