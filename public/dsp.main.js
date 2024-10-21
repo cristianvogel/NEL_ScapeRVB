@@ -2531,9 +2531,9 @@
       const scanDt = scanSequence(props.position, OEIS_NORMALISED[props.structure]);
       const scanG = scanSequence(props.position, OEIS_NORMALISED[props.structure].reverse());
       return stdlib.delay(
-        { key: `downmix:${i}`, size: ms2samps2(137) },
+        { key: `downmix:${i}`, size: ms2samps2(55) },
         // delay time normalised by structure
-        scanDt,
+        stdlib.mul(stdlib.sub(1.05, props.size), scanDt),
         // minimum feedback
         0,
         // node input, normalised by structure
@@ -2555,7 +2555,7 @@
     const _xr = stdlib.dcblock(xr);
     const mid = stdlib.mul(0.5, stdlib.add(_xl, _xr));
     const side = stdlib.mul(0.5, stdlib.sub(_xl, _xr));
-    const four = [mid, side, xl, xr].map((x, i) => {
+    const four = [xl, xr, mid, side].map((x, i) => {
       return structurePositioning(toneDial(x, structureArray[i * 2 % structureArray.length]), i);
     });
     const eight = [...four, ...four.map((x, i) => {

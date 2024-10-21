@@ -207,9 +207,9 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
     const scanDt = scanSequence( props.position, OEIS_NORMALISED[props.structure]) ;
     const scanG = scanSequence( props.position, OEIS_NORMALISED[props.structure].reverse());
     return el.delay(
-      { key: `downmix:${i}`, size: ms2samps(137) },
+      { key: `downmix:${i}`, size: ms2samps(55) },
       // delay time normalised by structure
-      scanDt,
+      el.mul( el.sub( 1.05, props.size),  scanDt ),
       // minimum feedback
       0, 
       // node input, normalised by structure
@@ -239,7 +239,7 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
   // Upmix to eight channels
   const mid = el.mul(0.5, el.add(_xl, _xr));
   const side = el.mul(0.5, el.sub(_xl, _xr));
-  const four: ElemNode [] = [ mid, side, xl, xr].map((x, i) => { 
+  const four: ElemNode [] = [ xl, xr, mid, side ].map((x, i) => { 
     return structurePositioning( toneDial(x, structureArray[(i * 2) % structureArray.length]), i ) 
   });
 
