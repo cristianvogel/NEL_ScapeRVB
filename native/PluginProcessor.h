@@ -181,8 +181,10 @@ public:
     elem::js::Value assetsMapToValue(const std::map<SlotName, Asset> &map);
     std::vector<float> getReducedAudioBuffer(const juce::AudioBuffer<float> &buffer);
     bool processImportedResponseBuffers(juce::File &file, SlotName &targetSlot);
+    void processPersistedAssetState(const elem::js::Object &assetState);
     bool importPeakDataForView(const juce::AudioBuffer<float> &buffer);
     void dispatchVFSpathHistoryForSlot(SlotName slot);
+   std::map<SlotName, Asset> convertToAssetMap(const elem::js::Object &assetStateObject);
   
     vfs::UserBankManager userBankManager;
     void dispatchUserBank();
