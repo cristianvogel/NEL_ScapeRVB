@@ -2332,6 +2332,51 @@
     }
   };
 
+  // dsp/OEIS-Structures.ts
+  function normalizeSequences(sequences) {
+    return sequences.map((sequence) => {
+      const max5 = Math.max(...sequence);
+      return sequence.map((value) => value / max5);
+    });
+  }
+  function updateStructureConstants(refs2, srvbSettings) {
+    if (!srvbSettings || !refs2)
+      return;
+    OEIS_SEQUENCES[srvbSettings.structure].forEach((value, i) => {
+      if (value !== void 0)
+        refs2.update(`node:structureConst:${i}`, { value });
+    });
+  }
+  function buildStructures(refs2, currStructIndex = 0) {
+    {
+      let series = OEIS_SEQUENCES[currStructIndex];
+      const seriesMax = series[argMax(series)];
+      const sequenceAsSignals = castSequencesToRefs(series, seriesMax, refs2);
+      if (!sequenceAsSignals)
+        return;
+      const sd = {
+        consts: sequenceAsSignals,
+        max: seriesMax
+      };
+      return sd;
+    }
+  }
+  function castSequencesToRefs(series, seriesMax, refs2) {
+    return series.map((value, j) => {
+      let updatedValue = value;
+      if (value === null || value === void 0) {
+        updatedValue = Math.random() * seriesMax;
+      }
+      const t = refs2.getOrCreate(
+        `node:structureConst:${j}`,
+        "const",
+        { value: updatedValue, key: `key:structureConst:${j}` },
+        []
+      );
+      return t;
+    });
+  }
+
   // dsp/srvb-er.ts
   var smush = new Smush32(3405691582);
   var OEIS_SEQUENCES_16 = [
@@ -2370,9 +2415,7 @@
   ];
   var OEIS_SEQUENCES = OEIS_SEQUENCES_16.map((seq3) => seq3.slice(0, 8));
   var NUM_SEQUENCES = OEIS_SEQUENCES.length - 1;
-  var seededNormMinMax = Array.from({ length: 8 }).map(
-    () => smush.normMinMax(0.01, 1.618)
-  );
+  var OEIS_NORMALISED = normalizeSequences(OEIS_SEQUENCES);
   var H8 = [
     [1, 1, 1, 1, 1, 1, 1, 1],
     [1, -1, 1, -1, 1, -1, 1, -1],
@@ -2482,14 +2525,42 @@
       );
     };
     const [xl, xr] = inputs;
-    const feedforward = (channel, _x) => stdlib.tapOut({ name: "srvbOut:" + channel }, _x);
+    const feedforward = (channel, _x) => stdlib.tapOut({ name: "srvbOut:" + channel }, stdlib.tanh(_x));
     const zero2 = stdlib.const({ value: 0, key: "mute::srvb" });
+    let structurePositioning = (x, i) => {
+      const scanDt = scanSequence(props.position, OEIS_NORMALISED[props.structure]);
+      const scanG = scanSequence(props.position, OEIS_NORMALISED[props.structure].reverse());
+      return stdlib.delay(
+        { key: `downmix:${i}`, size: ms2samps2(137) },
+        // delay time normalised by structure
+        scanDt,
+        // minimum feedback
+        0,
+        // node input, normalised by structure
+        stdlib.mul(scanG, x)
+      );
+    };
+    const scanSequence = (index, values) => {
+      let result = stdlib.const({ key: `NORMOEIS_-1`, value: values[values.length - 1] });
+      for (let i = values.length - 2; i >= 0; i--) {
+        result = stdlib.select(
+          index,
+          stdlib.const({ key: `NORMOEIS_${i}`, value: values[i] }),
+          result
+        );
+      }
+      return result;
+    };
     const _xl = stdlib.dcblock(xl);
     const _xr = stdlib.dcblock(xr);
     const mid = stdlib.mul(0.5, stdlib.add(_xl, _xr));
     const side = stdlib.mul(0.5, stdlib.sub(_xl, _xr));
-    const four = [_xl, _xr, mid, side].map((x, i) => toneDial(x, structureArray[i * 2 % structureArray.length]));
-    const eight = [...four, ...four.map((x, i) => stdlib.mul(1, x))];
+    const four = [mid, side, xl, xr].map((x, i) => {
+      return structurePositioning(toneDial(x, structureArray[i * 2 % structureArray.length]), i);
+    });
+    const eight = [...four, ...four.map((x, i) => {
+      return x;
+    })];
     const d1 = diffuse(
       { structure: structureArray, structureMax, maxLengthSamp: ms2samps2(43) },
       ...eight
@@ -2506,20 +2577,17 @@
       },
       ...d1
     );
-    let positioning = (i, x) => stdlib.delay(
-      { key: `downmix:${i}`, size: ms2samps2(137) },
-      stdlib.sm(stdlib.sub(1, stdlib.abs(stdlib.sin(stdlib.mul(Math.PI * 2, [position, stdlib.sub(1, position)][i % 2]))))),
-      0,
-      stdlib.mul(stdlib.sub(1.05, stdlib.div(structureArray[i], structureMax)), x)
-    );
+    let pos = (i, x) => {
+      return stdlib.mul(x, stdlib.sin(i * 360));
+    };
     const asLeftPan = (x) => {
       return stdlib.select(position, x, stdlib.mul(x, stdlib.db2gain(1.5)));
     };
     const asRightPan = (x) => {
       return stdlib.select(position, stdlib.mul(x, stdlib.db2gain(1.5)), x);
     };
-    let yl = feedforward(0, asLeftPan(stdlib.add(positioning(0, r0[0]), r0[2], positioning(4, r0[4]), r0[6])));
-    let yr = feedforward(1, asRightPan(stdlib.add(r0[1], positioning(3, r0[3]), r0[5], positioning(7, r0[7]))));
+    let yl = feedforward(0, asLeftPan(stdlib.add(pos(0, r0[0]), pos(2, r0[2]), pos(4, r0[4]), pos(6, r0[6]))));
+    let yr = feedforward(1, asRightPan(stdlib.add(pos(1, r0[1]), pos(3, r0[3]), pos(5, r0[5]), pos(7, r0[7]))));
     if (props.srvbBypass)
       return [feedforward(0, xl), feedforward(1, xr)];
     else
@@ -3176,12 +3244,12 @@
     };
     const getDrySource = (channel) => stdlib.select(srvbBypass, zero2, outputFromSRVB[channel]);
     let yL = stdlib.add(
-      stdlib.mul(scapeLevel, asLeftPan(vectorProcessorPair(outputFromSRVB)[1])),
+      stdlib.mul(stdlib.db2gain(6), scapeLevel, asLeftPan(vectorProcessorPair(outputFromSRVB)[1])),
       // crossed over
       getDrySource(0)
     );
     let yR = stdlib.add(
-      stdlib.mul(scapeLevel, asRightPan(vectorProcessorPair(outputFromSRVB)[0])),
+      stdlib.mul(stdlib.db2gain(6), scapeLevel, asRightPan(vectorProcessorPair(outputFromSRVB)[0])),
       // crossed over
       getDrySource(1)
     );
@@ -3234,45 +3302,6 @@
       (p) => p.paramId !== "srvbBypass" && p.paramId !== "scapeBypass"
     ).map((p) => [p.paramId, p.defaultValue])
   );
-
-  // dsp/OEIS-Structures.ts
-  function updateStructureConstants(refs2, srvbSettings) {
-    if (!srvbSettings || !refs2)
-      return;
-    OEIS_SEQUENCES[srvbSettings.structure].forEach((value, i) => {
-      if (value !== void 0)
-        refs2.update(`node:structureConst:${i}`, { value });
-    });
-  }
-  function buildStructures(refs2, currStructIndex = 0) {
-    {
-      let series = OEIS_SEQUENCES[currStructIndex];
-      const seriesMax = series[argMax(series)];
-      const sequenceAsSignals = castSequencesToRefs(series, seriesMax, refs2);
-      if (!sequenceAsSignals)
-        return;
-      const sd = {
-        consts: sequenceAsSignals,
-        max: seriesMax
-      };
-      return sd;
-    }
-  }
-  function castSequencesToRefs(series, seriesMax, refs2) {
-    return series.map((value, j) => {
-      let updatedValue = value;
-      if (value === null || value === void 0) {
-        updatedValue = Math.random() * seriesMax;
-      }
-      const t = refs2.getOrCreate(
-        `node:structureConst:${j}`,
-        "const",
-        { value: updatedValue, key: `key:structureConst:${j}` },
-        []
-      );
-      return t;
-    });
-  }
 
   // dsp/parseAndUpdateIRRefs.ts
   function parseAndUpdateIRRefs(scape, shared) {
@@ -3337,6 +3366,12 @@
         );
       }
     });
+  }
+
+  // src/utils/utils.ts
+  function remapPosition(value) {
+    const clampedValue = clamp(value, EPS, 1);
+    return easeIn2(1 - (1 - 2 * Math.abs(clampedValue - 0.5)));
   }
 
   // dsp/main.ts
@@ -3437,7 +3472,7 @@
       decay: refs.getOrCreate("diffuse", "const", { value: srvb.diffuse }, []),
       mix: refs.getOrCreate("mix", "const", { value: srvb.level }, []),
       tone: refs.getOrCreate("tone", "const", { value: srvb.tone }, []),
-      position: refs.getOrCreate("position", "const", { value: shared.position }, []),
+      position: refs.getOrCreate("position", "const", { value: srvb.position }, []),
       structure: srvb.structure,
       structureMax: refs.getOrCreate("structureMax", "const", { value: structureData.max, key: "structureMax" }, [])
     };
@@ -3450,7 +3485,7 @@
       // RefNodes from now on
       srvbBypass: refs.getOrCreate("srvbBypass", "const", { value: srvb.bypass }, []),
       scapeLevel: refs.getOrCreate("scapeLevel", "const", { value: scape.level }, []),
-      scapePosition: refs.getOrCreate("scapePosition", "const", { value: shared.position }, []),
+      scapePosition: refs.getOrCreate("scapePosition", "const", { value: scape.position }, []),
       scapeMode: refs.getOrCreate("scapeMode", "const", { value: scape.mode }, []),
       // the Hermite vector interpolation values as signals
       v1: refs.getOrCreate("v1", "const", { value: scape.vectorData[0] }, []),
@@ -3485,17 +3520,15 @@
       }
     } else {
       if (!srvb.bypass) {
-        OEIS_SEQUENCES[srvb.structure].forEach((value, i) => {
-          if (value !== void 0)
-            refs.update(`node:structureConst:${i}`, { value });
-        });
         refs.update("size", { value: srvb.size });
         refs.update("diffuse", { value: srvb.diffuse });
         refs.update("mix", { value: srvb.level });
         refs.update("tone", { value: srvb.tone });
-        refs.update("position", { value: shared.position });
+        refs.update("position", { value: srvb.position });
         refs.update("structureMax", { value: srvb.structureMax });
-        updateStructureConstants(refs, srvb);
+        if (srvb.structure !== memoized.structure) {
+          updateStructureConstants(refs, srvb);
+        }
       }
       if (!scape.bypass) {
         refs.update("scapeLevel", { value: scape.level });
@@ -3503,7 +3536,7 @@
         refs.update("v2", { value: scape.vectorData[1] });
         refs.update("v3", { value: scape.vectorData[2] });
         refs.update("v4", { value: scape.vectorData[3] });
-        refs.update("scapePosition", { value: shared.position });
+        refs.update("scapePosition", { value: scape.position });
         refs.update("scapeMode", { value: scape.mode });
         parseAndUpdateIRRefs(scape, shared);
       }
@@ -3528,8 +3561,7 @@
       const shared2 = {
         sampleRate: state2.sampleRate,
         dryInputs: [stdlib.in({ channel: 0 }), stdlib.in({ channel: 1 })],
-        dryMix: state2.dryMix,
-        position: clamp(state2.position, EPS, 1)
+        dryMix: state2.dryMix
       };
       const srvb2 = {
         structure: Math.round((state2.structure || 0) * NUM_SEQUENCES),
@@ -3537,20 +3569,23 @@
         diffuse: state2.diffuse,
         tone: clamp(state2.tone * 2 - 1, -0.99, 1),
         level: easeIn2(state2.mix),
-        // the level of the SRVB
+        // DEPRECATING STRUCTURE MAX
+        // doing the normalisation inside SRVB
         structureMax: Math.round(state2.structureMax) || 137,
         // handle the case where the max was not computed
-        bypass: Math.round(state2.srvbBypass) || 0
+        bypass: Math.round(state2.srvbBypass) || 0,
+        position: remapPosition(state2.position)
       };
       const scape2 = {
         reverse: Math.round(state2.scapeReverse),
-        level: state2.scapeLevel,
+        level: state2.scapeLevel * 1.5,
         ir: state2.scapeLength,
         vectorData: HERMITE.at(state2.scapeLength),
         bypass: Math.round(state2.scapeBypass) || 0,
         mode: Math.round(state2.scapeMode) || 0,
         offset: state2.scapeOffset || 0,
-        userBank: state2.userBank
+        userBank: state2.userBank,
+        position: state2.position
       };
       return { state: state2, srvb: srvb2, shared: shared2, scape: scape2 };
     }

@@ -24,6 +24,7 @@ import {
 import { DEFAULT_IR_SLOTNAMES } from "../src/stores/constants";
 import { castSequencesToRefs, buildStructures, updateStructureConstants } from "./OEIS-Structures";
 import { parseAndUpdateIRRefs } from "./parseAndUpdateIRRefs";
+import { remapPosition } from "../src/utils/utils";
 
 
 
@@ -180,7 +181,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     decay: refs.getOrCreate("diffuse", "const", { value: srvb.diffuse }, []),
     mix: refs.getOrCreate("mix", "const", { value: srvb.level }, []),
     tone: refs.getOrCreate("tone", "const", { value: srvb.tone }, []),
-    position: refs.getOrCreate("position", "const", { value: shared.position }, []),
+    position: refs.getOrCreate("position", "const", { value: srvb.position }, []),
     structure: srvb.structure,
     structureMax: refs.getOrCreate("structureMax", "const", { value: structureData.max, key: "structureMax" }, [])
   };
@@ -195,7 +196,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     // RefNodes from now on
     srvbBypass: refs.getOrCreate("srvbBypass", "const", { value: srvb.bypass }, []),
     scapeLevel: refs.getOrCreate("scapeLevel", "const", { value: scape.level }, []),
-    scapePosition: refs.getOrCreate("scapePosition", "const", { value: shared.position }, []),
+    scapePosition: refs.getOrCreate("scapePosition", "const", { value: scape.position }, []),
     scapeMode: refs.getOrCreate("scapeMode", "const", { value: scape.mode }, []),
     // the Hermite vector interpolation values as signals
     v1: refs.getOrCreate("v1", "const", { value: scape.vectorData[0] }, []),
@@ -233,7 +234,8 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
           ...SRVB(
             getSRVBProps(), shared.dryInputs, ...structureData.consts
           )
-        ).map((node, i) =>
+        )
+        .map((node, i) =>
           el.add(el.mul(refs.get("dryMix"), shared.dryInputs[i]), node)
         )
       )
@@ -241,19 +243,17 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
   } else {
     // then the rest of the refs for SRVB
     if (!srvb.bypass) {
-      // update the structure consts, should match the refs names set up by handleStructureChange
-      OEIS_SEQUENCES[srvb.structure].forEach((value, i) => {
-        if (value !== undefined)
-          refs.update(`node:structureConst:${i}`, { value });
-      });
+
       refs.update("size", { value: srvb.size });
       refs.update("diffuse", { value: srvb.diffuse });
       refs.update("mix", { value: srvb.level });
       refs.update("tone", { value: srvb.tone });
-      refs.update("position", { value: shared.position });
+      refs.update("position", { value: srvb.position });
       refs.update("structureMax", { value: srvb.structureMax });
-      // update the reflection structure constants
-      updateStructureConstants(refs, srvb);
+      if (srvb.structure !== memoized.structure) {
+        // update the reflection structure constants
+        updateStructureConstants(refs, srvb);
+      }
     }
 
     if (!scape.bypass) {
@@ -263,7 +263,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
       refs.update("v2", { value: scape.vectorData[1] });
       refs.update("v3", { value: scape.vectorData[2] });
       refs.update("v4", { value: scape.vectorData[3] });
-      refs.update("scapePosition", { value: shared.position });
+      refs.update("scapePosition", { value: scape.position });
       refs.update("scapeMode", { value: scape.mode });
       // update the convolvers, switch to user IRs if they exist
       parseAndUpdateIRRefs(scape, shared);
@@ -297,26 +297,30 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
       sampleRate: state.sampleRate,
       dryInputs: [el.in({ channel: 0 }), el.in({ channel: 1 })],
       dryMix: state.dryMix,
-      position: clamp(state.position, EPS, 1),
+
     };
     const srvb: SrvbSettings = {
       structure: Math.round((state.structure || 0) * NUM_SEQUENCES),
       size: state.size,
       diffuse: state.diffuse,
       tone: clamp(state.tone * 2 - 1, -0.99, 1),
-      level: easeIn2(state.mix),   // the level of the SRVB
+      level: easeIn2(state.mix),  
+      // DEPRECATING STRUCTURE MAX
+      // doing the normalisation inside SRVB
       structureMax: Math.round(state.structureMax) || 137, // handle the case where the max was not computed
       bypass: (Math.round(state.srvbBypass) || 0) as 1 | 0,
+      position: remapPosition(state.position)
     };
     const scape: ScapeSettings = {
       reverse: Math.round(state.scapeReverse) as 1 | 0,
-      level: state.scapeLevel,
+      level: state.scapeLevel * 1.5,
       ir: state.scapeLength,
       vectorData: HERMITE.at(state.scapeLength),
       bypass: (Math.round(state.scapeBypass) || 0) as 1 | 0,
       mode: (Math.round(state.scapeMode) || 0) as 1 | 0,
       offset: state.scapeOffset || 0,
-      userBank: state.userBank
+      userBank: state.userBank,
+      position: state.position
     };
     return { state, srvb, shared, scape };
   }

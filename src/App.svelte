@@ -15,7 +15,7 @@
   } from "./lib/NativeMessage.svelte";
 
   import WebSocketClient from "./lib/WebSocketClient.svelte";
-    import { CURRENT_UI_VERSION } from "./stores/constants";
+  import { CURRENT_UI_VERSION } from "./stores/constants";
 
   onMount(() => {
     RegisterMessagesFromHost();
@@ -42,9 +42,7 @@
           alpha: false,
           premultipliedAlpha: true,
         },
-        variables: {
-        
-        },
+        variables: {},
       });
     });
   });
@@ -67,18 +65,13 @@
     if (ConsoleText.current.length > 0) {
       setTimeout(() => {
         ConsoleText.update("");
-      },6000);
+      }, 6000);
     }
   });
-
-
-
-
 </script>
 
-
-
-<canvas id="glcanvas" width="100vw" height="100vh" willReadFrequently="true"></canvas>
+<canvas id="glcanvas" width="100vw" height="100vh" willReadFrequently="true"
+></canvas>
 
 <!-- NOT NEEDED ON MAC
 {#if WebSocketPort.current > 0} 
@@ -92,8 +85,6 @@
   <pre class="console-text" in:fade>Loading...</pre>
 {/if}
 
-
- 
 <style>
   .console-text {
     position: absolute;

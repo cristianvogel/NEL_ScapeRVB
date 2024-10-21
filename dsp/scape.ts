@@ -71,11 +71,11 @@ export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
   const getDrySource = ( channel: number ): ElemNode=> el.select( srvbBypass, zero, outputFromSRVB[channel] ) ;
   
   let yL = el.add(
-    el.mul( scapeLevel, asLeftPan( vectorProcessorPair( outputFromSRVB )[1])),    // crossed over
+     el.mul( el.db2gain(6), scapeLevel, asLeftPan( vectorProcessorPair( outputFromSRVB )[1])) ,    // crossed over
     getDrySource(0)
   ); // crossfaded blend
   let yR = el.add(
-    el.mul( scapeLevel, asRightPan( vectorProcessorPair( outputFromSRVB )[0])), // crossed over
+    el.mul( el.db2gain(6), scapeLevel, asRightPan( vectorProcessorPair( outputFromSRVB )[0])) , // crossed over
     getDrySource(1) 
   ); // crossfaded blend
   

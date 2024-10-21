@@ -21,7 +21,6 @@ interface SharedSettings {
   sampleRate: number;
   dryInputs: Array<ElemNode>;
   dryMix: number;
-  position: number;
 }
 
 interface SrvbSettings {
@@ -32,6 +31,7 @@ interface SrvbSettings {
   level: number;
   structureMax: number;
   bypass: 1 | 0;
+  position: number;
 }
 
 interface ScapeSettings {
@@ -43,6 +43,7 @@ interface ScapeSettings {
   mode: 1 | 0;
   offset: number;
   userBank: number;
+  position: number;
 }
 
 interface ProcessorSettings {
