@@ -67,14 +67,23 @@ EffectsPluginProcessor::EffectsPluginProcessor()
 // Destructor
 EffectsPluginProcessor::~EffectsPluginProcessor()
 {
-    // Check if server is not nullptr and close the server if it is open
-    if (server != nullptr)
-        server->close();
-    // Remove listeners from all parameters
-    for (auto &p : getParameters())
+  for (auto &p : getParameters())
     {
         p->removeListener(this);
-    };
+    }
+    // Ensure clientInstance is properly released
+    if (clientInstance) {
+        clientInstance.reset();
+    }
+
+    // Ensure server is properly closed and released
+    if (server) {
+        server->close();
+    }
+    // Ensure slotManager is properly released
+    slotManager.reset();
+    // Ensure WebView is properly released
+    editor = nullptr;
 }
 
 //====HOISTED==========================================================================
@@ -995,11 +1004,11 @@ void EffectsPluginProcessor::getStateInformation(juce::MemoryBlock &destData)
 // ▮▮▮▮▮▮juce▮▮▮▮▮▮ plugin state
 void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInBytes)
 {
-    auto parsed = elem::js::parseJSON("{}");
+  
     const auto jsonString = std::string(static_cast<const char *>(data), sizeInBytes);
     try
     {
-        parsed = elem::js::parseJSON(jsonString);
+        auto parsed = elem::js::parseJSON(jsonString);
         auto persistedData = parsed.getObject();
 
         for (auto &[key, value] : persistedData)
@@ -1013,8 +1022,8 @@ void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInByt
             }
             else if (key == PERSISTED_ASSETMAP)
             {
-                assetState = value.getObject();
-                
+                assetState = value.getObject();          
+                std::cout << "Restored asset state: " << std::endl; 
             }
         }
         dispatchStateChange();

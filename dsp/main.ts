@@ -150,8 +150,7 @@ function shouldRender(_mem, _curr) {
     !srvbProps || !scapeProps ||
     _curr.sampleRate !== _mem?.sampleRate ||
     Math.round(_curr.scapeBypass) !== _mem?.scapeBypass ||
-    Math.round(_curr.srvbBypass) !== _mem?.srvbBypass
-
+    Math.round(_curr.srvbBypass) !== _mem?.srvbBypass 
   return result;
 }
 //
