@@ -40,13 +40,7 @@ void SlotManager::wrapPeaksForView(elem::js::Object &wrappedPeaks)
 
 void SlotManager::wrapStateForView(elem::js::Object &wrappedState)
 {
-
-    // check if processor.state is uninitialized
-    if ( !processor.editor )
-    {
-        return;
-    }
-
+    if ( !processor.editor ) return;
     elem::js::Object processorState = processor.state;
 
     elem::js::Array fnames;

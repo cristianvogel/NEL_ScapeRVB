@@ -12,11 +12,20 @@ ViewClientInstance::ViewClientInstance(EffectsPluginProcessor &processor)
 
 ViewClientInstance::~ViewClientInstance()
 {
+    stop(); // We need to manually stop the client instance
     clientID = 0;
+}
+
+void ViewClientInstance::stop()
+{
+    running.store(false); // Set running flag to false
+    // Ensure no methods are called from viewClientInstance after this point
 }
 
 void ViewClientInstance::handleWebSocketMessage(std::string_view message)
 {
+     if (!running || processor.isSuspended() ) return; // Check running flag before processing
+
     // Convert std::string_view to std::string
     std::string messageStr(message);
     // Deserialize the message

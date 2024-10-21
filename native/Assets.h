@@ -51,10 +51,31 @@ public:
         obj["defaultStereoFile"] = elem::js::Value(defaultStereoFile.getFullPathName().toStdString());
         obj["userPathNameHistory"] = elem::js::Value(userPathNameHistory);
         obj["filenameForView"] = elem::js::Value(filenameForView.toStdString());
-         obj["vfsPathHistory"] = elem::js::Value( vfsPaths );
+        obj["vfsPathHistory"] = elem::js::Value( vfsPaths );
         obj["peakDataForView"] = elem::js::Value(userPeaksForView);
         obj["defaultPeaksForView"] = elem::js::Value(defaultPeaksForView);
         // Add other fields as needed
         return elem::js::Value(obj);
     }
+
+        // Convert from elem::js::Value to Asset
+        // specialised for asset state restoration
+    static Asset fromJsValue(const elem::js::Value& value) {
+        Asset asset;
+
+        if (value.isObject()) {
+            const auto& obj = value.getObject();
+
+            if (obj.count("userStereoFile") > 0 && obj.at("userStereoFile").isString()) {
+                asset.userStereoFile = juce::File(obj.at("userStereoFile").toString());
+            }
+
+            if (obj.count("filenameForView") > 0 && obj.at("filenameForView").isString()) {
+                asset.filenameForView = juce::String(obj.at("filenameForView").toString());
+            }
+        }
+
+        return asset;
+    }
+
 };

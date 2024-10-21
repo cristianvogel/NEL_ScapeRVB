@@ -25,8 +25,8 @@ if (os.platform() === 'darwin') {
       await $`cmake --build . --config ${buildType} -j 4`;
 
     // Uncomment the following lines if you need to build for x86_64 as well
-    // await $`cmake  -DCMAKE_BUILD_TYPE=${buildType} -DCMAKE_INSTALL_PREFIX=./out/ -DCMAKE_TOOLCHAIN_FILE=${rootDir}/toolchain.cmake -DCMAKE_OSX_DEPLOYMENT_TARGET=10.15 -DCMAKE_OSX_ARCHITECTURES="x86_64" ${devFlag} ../..`;
-    //  await $`cmake --build . --config ${buildType} -j 4`;
+     await $`cmake  -DCMAKE_BUILD_TYPE=${buildType} -DCMAKE_INSTALL_PREFIX=./out/ -DCMAKE_TOOLCHAIN_FILE=${rootDir}/toolchain.cmake -DCMAKE_OSX_DEPLOYMENT_TARGET=10.15 -DCMAKE_OSX_ARCHITECTURES="x86_64" ${devFlag} ../..`;
+     await $`cmake --build . --config ${buildType} -j 4`;
 
 } else if (os.platform() === 'win32') {
     // Windows specific code

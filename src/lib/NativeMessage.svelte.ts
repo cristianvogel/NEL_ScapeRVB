@@ -18,16 +18,15 @@ let gestureSource: typeof GestureSource_SCAPE | typeof GestureSource_SRVB | type
 // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ WebSocket Server Setup ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
 
 function initializeWebSocketConnection(port: number) {
-  WebSocketPort.assign(  port || 0 );
+
   try {
     CABLES.patch.getVar("ext_serverInfo").setValue(`ws://127.0.0.1:${port}`); // we should definitely have CABLES loaded at this point
   } catch (e) {
     console.error("Error connecting to WS: ", e);
   }
-  console.log("CABLES using port ", port);
-  ConsoleText.extend(
-    "Connection on port: " + WebSocketPort.current + " established."
-  );
+ ConsoleText.extend("UI connected on port " + port);
+
+ WebSocketPort.set(  port as number );
 }
 
 function processHostState(state: any) {
@@ -149,8 +148,8 @@ export function RegisterMessagesFromHost() {
    * @param port - The port number.
    * */
 
-  globalThis.__receiveServerInfo__ = function (port: number) {
-    initializeWebSocketConnection(port);
+  globalThis.__receiveServerInfo__ = function (port: string) {
+    initializeWebSocketConnection( parseInt(port) );
   };
 
   /**

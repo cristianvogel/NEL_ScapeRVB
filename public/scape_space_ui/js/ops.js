@@ -21,6 +21,7 @@ Ops.Devices=Ops.Devices || {};
 Ops.Gl.GLTF=Ops.Gl.GLTF || {};
 Ops.Sidebar=Ops.Sidebar || {};
 Ops.Trigger=Ops.Trigger || {};
+Ops.Website=Ops.Website || {};
 Ops.Gl.Phong=Ops.Gl.Phong || {};
 Ops.Graphics=Ops.Graphics || {};
 Ops.Gl.Matrix=Ops.Gl.Matrix || {};
@@ -24535,6 +24536,75 @@ function removeElementFromDOM(el)
 
 Ops.Patch.PBktIwq.Button_NEL.prototype = new CABLES.Op();
 CABLES.OPS["e40caa69-8d39-4da3-bf3e-2a7790b0b2f8"]={f:Ops.Patch.PBktIwq.Button_NEL,objName:"Ops.Patch.PBktIwq.Button_NEL"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Website.LocalStorageString
+// 
+// **************************************************************
+
+Ops.Website.LocalStorageString = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inKey = op.inString("Key"),
+    inValue = op.inString("String", ""),
+    inStore = op.inTriggerButton("Store"),
+    outValue = op.outString("Stored String"),
+    outSupported = op.outBool("Storage Support", true);
+
+const localStorageSupport = !!window.localStorage;
+if (!localStorageSupport)
+{
+    op.logError("your browser does not support or blocks access to localStorage, output will be inValue!");
+    outSupported.set(false);
+}
+
+updateOutput();
+inKey.onChange = updateOutput;
+inStore.onTriggered = storeValue;
+
+function getKey()
+{
+    return (op.patch.namespace || "") + inKey.get();
+}
+
+function updateOutput()
+{
+    if (localStorageSupport)
+    {
+        outValue.set(window.localStorage.getItem(getKey()));
+    }
+    else
+    {
+        outValue.set(inValue.get());
+    }
+}
+
+function storeValue()
+{
+    const val = inValue.get();
+    if (localStorageSupport)
+    {
+        window.localStorage.setItem(getKey(), val);
+    }
+    else
+    {
+        op.warn("not storing to localstorage, missing browsersupport!");
+    }
+    outValue.set(val);
+}
+
+
+};
+
+Ops.Website.LocalStorageString.prototype = new CABLES.Op();
+CABLES.OPS["f908fc2e-70b6-4ca4-8afd-4302b35ff570"]={f:Ops.Website.LocalStorageString,objName:"Ops.Website.LocalStorageString"};
 
 
 

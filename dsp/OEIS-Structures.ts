@@ -12,6 +12,13 @@ import { SrvbSettings, StructureData } from "../src/types";
 import { RefMap } from "./RefMap";
 import { OEIS_SEQUENCES } from "./srvb-er";
 
+export function normalizeSequences(sequences: number[][]): number[][] {
+  return sequences.map(sequence => {
+    const max = Math.max(...sequence);
+    return sequence.map(value => value / max);
+  });
+}
+
 /*
  * OEIS_SEQUENCES is an array of arrays of number sequences.
  * Here we update the el.const values pertaining to this 'Structure' effect

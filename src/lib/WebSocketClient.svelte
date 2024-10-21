@@ -1,28 +1,20 @@
 <script lang="ts">
-  import { ConsoleText, WebSocketPort } from "../stores/stores.svelte";
-  import { onDestroy } from 'svelte';
+  import { ConsoleText } from "../stores/stores.svelte";
 
-let { port } = $props();
+  let { port } = $props();
+  // Create a new WebSocket connection
+  const socket = new WebSocket(`ws://127.0.0.1:${port}`);
+  let repeatedSend: NodeJS.Timeout;
 
+  function handleMessage(event) {
+    // const message = JSON.parse(event.data);
+  }
 
+  socket.addEventListener("open", (event) => {
+    console.log("Svelte:: WS connection " + socket.readyState);
+  });
 
-// Create a new WebSocket connection
-const socket = new WebSocket(`ws://localhost:${port}`);
+  socket.addEventListener("message", handleMessage);
 
-// Handle WebSocket open event
-socket.addEventListener('open', () => {
-  console.log(`Svelte component ws connection: ${socket.url}`);
-  // Send a message to the server
-  socket.send( JSON.stringify( { requestState: true } ) );
-  socket.send( JSON.stringify( {requestClientId: true } ) );
-});
-
-// Handle incoming messages
-socket.addEventListener('message', (event) => {
- ConsoleText.extend(`Svelte rcv from ws`);
- console.log( event.data );
-});
-
-
-
+  ConsoleText.extend("Svelte WS Client mounted");
 </script>

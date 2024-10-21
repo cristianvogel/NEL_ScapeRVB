@@ -15,7 +15,7 @@ EffectsPluginProcessor::EffectsPluginProcessor()
 
       jsContext(choc::javascript::createQuickJSContext()),
       server(std::make_unique<choc::network::HTTPServer>()),
-      slotManager(std::make_unique<SlotManager>(*this)), // Initialize SlotManager with the processor reference
+      slotManager(std::make_unique<SlotManager>(*this)),           // Initialize SlotManager with the processor reference
       clientInstance(std::make_unique<ViewClientInstance>(*this)), // Correct initialization
       chooser("Select up to four stereo audio files", juce::File::getSpecialLocation(juce::File::userHomeDirectory),
               "*.wav;*.aiff")
@@ -67,14 +67,25 @@ EffectsPluginProcessor::EffectsPluginProcessor()
 // Destructor
 EffectsPluginProcessor::~EffectsPluginProcessor()
 {
-    // Check if server is not nullptr and close the server if it is open
-    if (server != nullptr)
-        server->close();
-    // Remove listeners from all parameters
     for (auto &p : getParameters())
     {
         p->removeListener(this);
-    };
+    }
+    // Ensure clientInstance is properly released
+    if (clientInstance)
+    {
+        clientInstance.reset();
+    }
+
+    // Ensure server is properly closed and released
+    if (server)
+    {
+        server->close();
+    }
+    // Ensure slotManager is properly released
+    slotManager.reset();
+    // Ensure WebView is properly released
+    editor = nullptr;
 }
 
 //====HOISTED==========================================================================
@@ -126,7 +137,7 @@ void EffectsPluginProcessor::handleAsyncUpdate()
     }
     state.insert_or_assign(USER_BANK_KEY, static_cast<elem::js::Number>(userBankManager.getUserBank()));
     dispatchStateChange();
-} 
+}
 
 //==============================================================================
 // At initialisation, handle registering each default impulse response to the
@@ -212,11 +223,11 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
 
             // stash one channel of the normalised buffer data for Peaks in the VIEW
             if (channel == 0)
-               slotManager->assignPeaksToSlot(slotName, buffer, true);
+                slotManager->assignPeaksToSlot(slotName, buffer, true);
 
             // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
             juce::String vfsPathname = file.getFileNameWithoutExtension(); // "AMBIENCE.wav" -> "AMBIENCE"
-            std::string name = vfsPathname.toStdString() + '_' + std::to_string(channel) ;
+            std::string name = vfsPathname.toStdString() + '_' + std::to_string(channel);
             elementaryRuntime->updateSharedResourceMap(name, buffer.getReadPointer(0), numSamples);
             slotManager->assignVFSpathToSlot(slotName, name);
             // Get the reverse from a little way, so its less draggy
@@ -287,7 +298,6 @@ void EffectsPluginProcessor::requestUserFileSelection(std::promise<elem::js::Obj
         promise.set_value(result); });
 }
 
-
 bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, SlotName &targetSlot)
 {
     // Create an AudioBuffer to hold the audio data
@@ -341,7 +351,7 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
 
         // stash one channel of the normalised buffer data for Peaks in the VIEW
         if (channel == 0)
-           slotManager->assignPeaksToSlot(targetSlot, buffer, false);
+            slotManager->assignPeaksToSlot(targetSlot, buffer, false);
 
         // apply the high pass filter
         juce::dsp::ProcessSpec spec;
@@ -357,17 +367,17 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
         stateVariableFilter.process(context);
 
         // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
-        auto name = prefixUserBank( "USER" + std::to_string(getIndexForSlot(targetSlot)) + "_" + std::to_string(channel) );
-        elementaryRuntime->updateSharedResourceMap( name, buffer.getReadPointer(0), numSamples);
+        auto name = prefixUserBank("USER" + std::to_string(getIndexForSlot(targetSlot)) + "_" + std::to_string(channel));
+        elementaryRuntime->updateSharedResourceMap(name, buffer.getReadPointer(0), numSamples);
         slotManager->assignVFSpathToSlot(targetSlot, name);
         // Get the reverse from a little way, so its less draggy
         // so its easy to swap into in realtime
         int shorter = numSamples * 0.75;
         buffer.reverse(0, shorter);
         // add the shaped impulse response to the virtual file system
-        std::string reversedName = REVERSE_BUFFER_PREFIX + name ;
+        std::string reversedName = REVERSE_BUFFER_PREFIX + name;
         // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
-        elementaryRuntime->updateSharedResourceMap( reversedName, buffer.getReadPointer(0), shorter);
+        elementaryRuntime->updateSharedResourceMap(reversedName, buffer.getReadPointer(0), shorter);
         slotManager->assignVFSpathToSlot(targetSlot, reversedName);
         // done, next channel
     }
@@ -378,16 +388,15 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
     return 1;
 }
 
-std::string EffectsPluginProcessor::prefixUserBank(const std::string &name )
+std::string EffectsPluginProcessor::prefixUserBank(const std::string &name)
 {
-    return "USERBANK_" + std::to_string( userBankManager.getUserBank() ) + "_" + name;
+    return "USERBANK_" + std::to_string(userBankManager.getUserBank()) + "_" + name;
 }
 
 void EffectsPluginProcessor::pruneVFS()
 {
 
     elementaryRuntime->pruneSharedResourceMap();
-
 }
 /*
  * Call the runtime to get its immutable
@@ -396,7 +405,7 @@ void EffectsPluginProcessor::pruneVFS()
  */
 void EffectsPluginProcessor::inspectVFS()
 {
-   auto vfs = elementaryRuntime->getSharedResourceMapKeys();
+    auto vfs = elementaryRuntime->getSharedResourceMapKeys();
     // iterate vfs into valid JSON
     std::string vfsString = "[";
     for (auto &key : vfs)
@@ -410,7 +419,6 @@ void EffectsPluginProcessor::inspectVFS()
     sendJavascriptToUI(expr);
     jsContext.evaluateExpression(expr);
 }
-
 
 std::vector<float> EffectsPluginProcessor::getReducedAudioBuffer(const juce::AudioBuffer<float> &buffer)
 {
@@ -580,8 +588,6 @@ juce::AudioProcessorEditor *EffectsPluginProcessor::createEditor()
         dispatchStateChange();
     };
 
-
-
     // When setting a parameter value, we simply tell the host. This will in turn
     // fire a parameterValueChanged event, which will catch and propagate through
     // dispatching a state change event
@@ -736,7 +742,7 @@ void EffectsPluginProcessor::initJavaScriptEngine()
 {
     jsContext = choc::javascript::createQuickJSContext();
 
-  //  choc::javascript::registerTimerFunctions(jsContext);
+    //  choc::javascript::registerTimerFunctions(jsContext);
 
     // Install some native interop functions in our JavaScript environment
     jsContext.registerFunction(NATIVE_MESSAGE_FUNCTION_NAME, [this](choc::javascript::ArgumentList args)
@@ -830,7 +836,7 @@ void EffectsPluginProcessor::dispatchStateChange()
     const auto expr = serialize(jsFunctions::dispatchScript, currentStateMap);
     // First we try to dispatch to the UI if it's available, because running this
     // step will just involve placing a message in a queue.
-    sendJavascriptToUI(expr); 
+    sendJavascriptToUI(expr);
     // Next we dispatch to the local engine which will evaluate any necessary
     // JavaScript synchronously here on the main thread
     try
@@ -861,14 +867,13 @@ void EffectsPluginProcessor::dispatchServerInfo()
 /*▮▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮
  * @name dispatchUserFileCount
  * @brief Dispatches the current user file count from the assetMap
- * 
+ *
  * wasn't working, moving userBank int to state object
  */
 void EffectsPluginProcessor::dispatchUserBank()
 {
-  // DEPRECATED
+    // DEPRECATED
 }
-
 
 /*▮▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮
  * @name dispatchError
@@ -983,7 +988,7 @@ void EffectsPluginProcessor::getStateInformation(juce::MemoryBlock &destData)
     dataToPersist.insert_or_assign(PERSISTED_ASSETMAP, assetState);
 
     const auto serialized = elem::js::serialize(dataToPersist);
-    
+
     destData.replaceAll((void *)serialized.c_str(), serialized.size());
 }
 
@@ -995,11 +1000,11 @@ void EffectsPluginProcessor::getStateInformation(juce::MemoryBlock &destData)
 // ▮▮▮▮▮▮juce▮▮▮▮▮▮ plugin state
 void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInBytes)
 {
-    auto parsed = elem::js::parseJSON("{}");
+
     const auto jsonString = std::string(static_cast<const char *>(data), sizeInBytes);
     try
     {
-        parsed = elem::js::parseJSON(jsonString);
+        auto parsed = elem::js::parseJSON(jsonString);
         auto persistedData = parsed.getObject();
 
         for (auto &[key, value] : persistedData)
@@ -1014,10 +1019,11 @@ void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInByt
             else if (key == PERSISTED_ASSETMAP)
             {
                 assetState = value.getObject();
-                
+                if (assetState.size())
+                    processPersistedAssetState(assetState);
             }
+            dispatchStateChange();
         }
-        dispatchStateChange();
     }
 
     catch (...)
@@ -1028,6 +1034,70 @@ void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInByt
     }
 }
 
+// Function to convert elem::js::Object to std::map<SlotName, Asset>
+std::map<SlotName, Asset> EffectsPluginProcessor::convertToAssetMap(const elem::js::Object &assetStateObject)
+{
+    const auto wrapper = assetStateObject.at("assetMap");
+    std::map<SlotName, Asset> assetMap;
+    try
+    {
+        for (const auto &entry : assetStateObject)
+        {
+            const std::string &key = entry.first;
+            const elem::js::Value &value = entry.second;
+            SlotName slotName = fromString(key);
+            Asset asset = Asset::fromJsValue(value);
+            assetMap.insert_or_assign(slotName, asset);
+        }
+    }
+    catch (const std::invalid_argument &e)
+    {
+        std::cerr << "Slotname is wrong.."  << std::endl;
+    }
+return assetMap;
+}
+
+void EffectsPluginProcessor::processPersistedAssetState(const elem::js::Object &assetStateObject)
+{
+    std::map<SlotName, Asset> assetMap = convertToAssetMap(assetStateObject);
+    std::vector<juce::File> userStereoFiles;
+    auto assetState = std::vector<Asset>();
+    SlotName slotname = SlotName::LIGHT;
+
+    // Iterate through assetState to collect userStereoFile paths
+    for (const std::pair<SlotName, Asset> &entry : assetMap)
+    {
+        slotname = entry.first;
+        const Asset &asset = entry.second;
+
+        if (asset.userStereoFile.existsAsFile())
+        {
+            std::cout << "Slot: " << toString(slotname) << ", File: " << asset.userStereoFile.getFullPathName().toStdString() << std::endl;
+
+            userStereoFiles.push_back(juce::File{asset.userStereoFile});
+        }
+    }
+    SlotName targetSlot = slotname;
+
+    for (juce::File file : userStereoFiles)
+    {
+        if (!processImportedResponseBuffers(file, targetSlot))
+        {
+            std::cout << "Failed to process restored buffers" << std::endl;
+            continue;
+        }
+        slotManager->assignFileAssetToSlot(targetSlot, file);
+        slotManager->assignFilenameToSlot(targetSlot, file);
+        // last slot of the bank
+        // so step to the next bank
+        // for the VFS path history registry
+        if (slotManager->getIndexForSlot(targetSlot) == 3)
+            userBankManager.incrementUserBank();
+        targetSlot = nextSlot(targetSlot);
+    }
+    state.insert_or_assign("scapeMode", 1.0);
+    dispatchStateChange();
+}
 //==============================================================================
 // This creates new instances of the plugin..
 juce::AudioProcessor *JUCE_CALLTYPE createPluginFilter() { return new EffectsPluginProcessor(); }
