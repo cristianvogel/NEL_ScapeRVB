@@ -13,7 +13,6 @@ ViewClientInstance::ViewClientInstance(EffectsPluginProcessor &processor)
 ViewClientInstance::~ViewClientInstance()
 {
     stop(); // We need to manually stop the client instance
-    clientID = 0;
 }
 
 void ViewClientInstance::stop()
@@ -24,7 +23,7 @@ void ViewClientInstance::stop()
 
 void ViewClientInstance::handleWebSocketMessage(std::string_view message)
 {
-     if (!running || processor.isSuspended() ) return; // Check running flag before processing
+     if ( !running.load() || processor.isSuspended() ) return; // Check running flag before processing
 
     // Convert std::string_view to std::string
     std::string messageStr(message);
@@ -102,6 +101,8 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
             if (key == "requestState")
             {
+                if (!processor.editor) return;
+                
                 elem::js::Object wrappedState;
                 elem::js::Object wrappedPeaks;
                 elem::js::Object wrappedFileNames;
