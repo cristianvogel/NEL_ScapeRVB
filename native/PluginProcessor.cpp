@@ -67,25 +67,21 @@ EffectsPluginProcessor::EffectsPluginProcessor()
 // Destructor
 EffectsPluginProcessor::~EffectsPluginProcessor()
 {
+    // First explicitly close the front end, so it
+    // stops sending messages to the Web Socket
+    editor = nullptr;
+    // Ensure server is properly closed and released
+    // Ensure clientInstance is properly released
+ 
+    clientInstance.reset();
+    
+        server->close();
+        server.reset();
+    
     for (auto &p : getParameters())
     {
         p->removeListener(this);
     }
-    // Ensure clientInstance is properly released
-    if (clientInstance)
-    {
-        clientInstance.reset();
-    }
-
-    // Ensure server is properly closed and released
-    if (server)
-    {
-        server->close();
-    }
-    // Ensure slotManager is properly released
-    slotManager.reset();
-    // Ensure WebView is properly released
-    editor = nullptr;
 }
 
 //====HOISTED==========================================================================
@@ -183,6 +179,8 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
 {
     jassert(elementaryRuntime != nullptr);
 
+    lastKnownSampleRate = getSampleRate();
+    
     for (auto &kv : assetsMap)
     {
         const SlotName &slotName = kv.first;
@@ -300,10 +298,13 @@ void EffectsPluginProcessor::requestUserFileSelection(std::promise<elem::js::Obj
 
 bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, SlotName &targetSlot)
 {
+    
+    lastKnownSampleRate = getSampleRate();
+    
     // Create an AudioBuffer to hold the audio data
     auto buffer = juce::AudioBuffer<float>();
     // Check the userCutoffChoice is set
-    if (userCutoffChoice == 0)
+    if (!userCutoffChoice)
     {
         userCutoffChoice = 160;
     }
@@ -355,7 +356,7 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
 
         // apply the high pass filter
         juce::dsp::ProcessSpec spec;
-        spec.sampleRate = lastKnownSampleRate;
+        spec.sampleRate = getSampleRate();
         spec.maximumBlockSize = numSamples;
         spec.numChannels = 1;
         stateVariableFilter.reset();
@@ -1037,24 +1038,34 @@ void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInByt
 // Function to convert elem::js::Object to std::map<SlotName, Asset>
 std::map<SlotName, Asset> EffectsPluginProcessor::convertToAssetMap(const elem::js::Object &assetStateObject)
 {
-    const auto wrapper = assetStateObject.at("assetMap");
+
     std::map<SlotName, Asset> assetMap;
-    try
+    // Ensure assetStateObject contains the expected key
+    if (!assetStateObject.contains(PERSISTED_ASSETMAP))
     {
-        for (const auto &entry : assetStateObject)
-        {
-            const std::string &key = entry.first;
-            const elem::js::Value &value = entry.second;
-            SlotName slotName = fromString(key);
-            Asset asset = Asset::fromJsValue(value);
-            assetMap.insert_or_assign(slotName, asset);
-        }
+        std::cerr << "PERSISTED_ASSETMAP key not found in assetStateObject" << std::endl;
+        return assetMap;
     }
-    catch (const std::invalid_argument &e)
+
+    const auto &wrapper = assetStateObject.at(PERSISTED_ASSETMAP);
+
+    // Ensure wrapper is an object
+    if (!wrapper.isObject())
     {
-        std::cerr << "Slotname is wrong.."  << std::endl;
+        std::cerr << "PERSISTED_ASSETMAP is not an object" << std::endl;
+        return assetMap;
     }
-return assetMap;
+    const auto &wrapperObject = wrapper.getObject();
+    for (const auto &entry : wrapperObject)
+    {
+
+        const std::string &key = entry.first;
+        const elem::js::Value &value = entry.second;
+        SlotName slotName = fromString(key);
+        Asset asset = Asset::fromJsValue(value);
+        assetMap.insert_or_assign(slotName, asset);
+    }
+    return assetMap;
 }
 
 void EffectsPluginProcessor::processPersistedAssetState(const elem::js::Object &assetStateObject)
@@ -1069,11 +1080,10 @@ void EffectsPluginProcessor::processPersistedAssetState(const elem::js::Object &
     {
         slotname = entry.first;
         const Asset &asset = entry.second;
-
+      
         if (asset.userStereoFile.existsAsFile())
         {
-            std::cout << "Slot: " << toString(slotname) << ", File: " << asset.userStereoFile.getFullPathName().toStdString() << std::endl;
-
+            std::cout << "Restoring ▶︎ Slot: " << toString(slotname) << ", File: " << asset.userStereoFile.getFileName().toStdString() << std::endl;
             userStereoFiles.push_back(juce::File{asset.userStereoFile});
         }
     }
@@ -1096,7 +1106,6 @@ void EffectsPluginProcessor::processPersistedAssetState(const elem::js::Object &
         targetSlot = nextSlot(targetSlot);
     }
     state.insert_or_assign("scapeMode", 1.0);
-    dispatchStateChange();
 }
 //==============================================================================
 // This creates new instances of the plugin..

@@ -20,7 +20,7 @@ class SlotManager
 {
 public:
 	SlotManager(EffectsPluginProcessor &processor);
-
+	~SlotManager() = default;
 	void wrapPeaksForView(elem::js::Object &containerForWrappedPeaks);
 	void wrapStateForView(elem::js::Object &containerForWrappedState);
 	void wrapFileNamesForView(elem::js::Object &containerForWrappedFileNames);
