@@ -179,6 +179,8 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
 {
     jassert(elementaryRuntime != nullptr);
 
+    lastKnownSampleRate = getSampleRate();
+    
     for (auto &kv : assetsMap)
     {
         const SlotName &slotName = kv.first;
@@ -296,10 +298,13 @@ void EffectsPluginProcessor::requestUserFileSelection(std::promise<elem::js::Obj
 
 bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, SlotName &targetSlot)
 {
+    
+    lastKnownSampleRate = getSampleRate();
+    
     // Create an AudioBuffer to hold the audio data
     auto buffer = juce::AudioBuffer<float>();
     // Check the userCutoffChoice is set
-    if (userCutoffChoice == 0)
+    if (!userCutoffChoice)
     {
         userCutoffChoice = 160;
     }
@@ -351,7 +356,7 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
 
         // apply the high pass filter
         juce::dsp::ProcessSpec spec;
-        spec.sampleRate = lastKnownSampleRate;
+        spec.sampleRate = getSampleRate();
         spec.maximumBlockSize = numSamples;
         spec.numChannels = 1;
         stateVariableFilter.reset();

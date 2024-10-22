@@ -21419,28 +21419,6 @@ CABLES.OPS["074034c9-9698-4984-897a-849bcb2b9b62"]={f:Ops.Array.ArrayPushString,
 
 // **************************************************************
 // 
-// Ops.Array.EmptyArray
-// 
-// **************************************************************
-
-Ops.Array.EmptyArray = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const result = op.outArray("Result", []);
-
-
-};
-
-Ops.Array.EmptyArray.prototype = new CABLES.Op();
-CABLES.OPS["4b5d1e60-460d-41be-8de0-e70b75801b70"]={f:Ops.Array.EmptyArray,objName:"Ops.Array.EmptyArray"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Html.TransformElement
 // 
 // **************************************************************
@@ -22847,6 +22825,28 @@ function removeElementFromDOM(el)
 
 Ops.Sidebar.Sidebar.prototype = new CABLES.Op();
 CABLES.OPS["5a681c35-78ce-4cb3-9858-bc79c34c6819"]={f:Ops.Sidebar.Sidebar,objName:"Ops.Sidebar.Sidebar"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Array.EmptyArray
+// 
+// **************************************************************
+
+Ops.Array.EmptyArray = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const result = op.outArray("Result", []);
+
+
+};
+
+Ops.Array.EmptyArray.prototype = new CABLES.Op();
+CABLES.OPS["4b5d1e60-460d-41be-8de0-e70b75801b70"]={f:Ops.Array.EmptyArray,objName:"Ops.Array.EmptyArray"};
 
 
 
