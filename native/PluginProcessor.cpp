@@ -226,7 +226,7 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
             // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
             juce::String vfsPathname = file.getFileNameWithoutExtension(); // "AMBIENCE.wav" -> "AMBIENCE"
             std::string name = vfsPathname.toStdString() + '_' + std::to_string(channel);
-            elementaryRuntime->updateSharedResourceMap(name, buffer.getReadPointer(0), numSamples);
+            if ( elementaryRuntime ) elementaryRuntime->updateSharedResourceMap(name, buffer.getReadPointer(0), numSamples);
             slotManager->assignVFSpathToSlot(slotName, name);
             // Get the reverse from a little way, so its less draggy
             // so its easy to swap into in realtime
@@ -235,7 +235,7 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
             // add the shaped impulse response to the virtual file system
             std::string reversedName = REVERSE_BUFFER_PREFIX + name;
             // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
-            elementaryRuntime->updateSharedResourceMap(reversedName, buffer.getReadPointer(0), shorter);
+            if ( elementaryRuntime ) elementaryRuntime->updateSharedResourceMap(reversedName, buffer.getReadPointer(0), shorter);
             slotManager->assignVFSpathToSlot(slotName, name);
             // done, next channel
         }
@@ -369,7 +369,8 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
 
         // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
         auto name = prefixUserBank("USER" + std::to_string(getIndexForSlot(targetSlot)) + "_" + std::to_string(channel));
-        elementaryRuntime->updateSharedResourceMap(name, buffer.getReadPointer(0), numSamples);
+        std::cout << "Runtime is loaded?" << elementaryRuntime << std::endl;
+      elementaryRuntime->updateSharedResourceMap(name, buffer.getReadPointer(0), numSamples);
         slotManager->assignVFSpathToSlot(targetSlot, name);
         // Get the reverse from a little way, so its less draggy
         // so its easy to swap into in realtime
@@ -378,7 +379,7 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
         // add the shaped impulse response to the virtual file system
         std::string reversedName = REVERSE_BUFFER_PREFIX + name;
         // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
-        elementaryRuntime->updateSharedResourceMap(reversedName, buffer.getReadPointer(0), shorter);
+        if ( elementaryRuntime ) elementaryRuntime->updateSharedResourceMap(reversedName, buffer.getReadPointer(0), shorter);
         slotManager->assignVFSpathToSlot(targetSlot, reversedName);
         // done, next channel
     }
@@ -406,6 +407,7 @@ void EffectsPluginProcessor::pruneVFS()
  */
 void EffectsPluginProcessor::inspectVFS()
 {
+    if ( elementaryRuntime == nullptr ) return;
     auto vfs = elementaryRuntime->getSharedResourceMapKeys();
     // iterate vfs into valid JSON
     std::string vfsString = "[";
@@ -1071,39 +1073,49 @@ std::map<SlotName, Asset> EffectsPluginProcessor::convertToAssetMap(const elem::
 void EffectsPluginProcessor::processPersistedAssetState(const elem::js::Object &assetStateObject)
 {
     std::map<SlotName, Asset> assetMap = convertToAssetMap(assetStateObject);
-    std::vector<juce::File> userStereoFiles;
     auto assetState = std::vector<Asset>();
-    SlotName slotname = SlotName::LIGHT;
+    SlotName targetSlot = SlotName::LIGHT;
+    juce::File file;
 
+    shouldInitialize.store( true );
+    handleAsyncUpdate();
+
+       // Create a promise and future to wait for elementaryRuntime to be initialized
+    std::promise<void> promise;
+    std::future<void> future = promise.get_future();
+
+    // Launch a thread to check for elementaryRuntime initialization
+    std::thread([this, &promise]() {
+
+        while (elementaryRuntime == nullptr) {
+            std::this_thread::sleep_for(std::chrono::milliseconds(10)); // Sleep for a short duration
+        }
+        promise.set_value(); // Set the promise value once elementaryRuntime is initialized
+    }).detach();
+
+    // Wait for the future to be set
+    future.wait();
+    
+   
     // Iterate through assetState to collect userStereoFile paths
     for (const std::pair<SlotName, Asset> &entry : assetMap)
     {
-        slotname = entry.first;
+        targetSlot = entry.first;
         const Asset &asset = entry.second;
       
         if (asset.userStereoFile.existsAsFile())
         {
-            std::cout << "Restoring ▶︎ Slot: " << toString(slotname) << ", File: " << asset.userStereoFile.getFileName().toStdString() << std::endl;
-            userStereoFiles.push_back(juce::File{asset.userStereoFile});
+            std::cout << "Restoring ▶︎ Slot: " << toString(targetSlot) << ", File: " << asset.userStereoFile.getFileName().toStdString() << std::endl;
+            file = juce::File{asset.userStereoFile};
         }
-    }
-    SlotName targetSlot = slotname;
-
-    for (juce::File file : userStereoFiles)
-    {
-        if (!processImportedResponseBuffers(file, targetSlot))
+    
+        if (!processImportedResponseBuffers(file, targetSlot))                                              
         {
             std::cout << "Failed to process restored buffers" << std::endl;
             continue;
         }
         slotManager->assignFileAssetToSlot(targetSlot, file);
         slotManager->assignFilenameToSlot(targetSlot, file);
-        // last slot of the bank
-        // so step to the next bank
-        // for the VFS path history registry
-        if (slotManager->getIndexForSlot(targetSlot) == 3)
-            userBankManager.incrementUserBank();
-        targetSlot = nextSlot(targetSlot);
     }
     state.insert_or_assign("scapeMode", 1.0);
 }

@@ -31,7 +31,7 @@ public:
 	std::vector<elem::js::Object> getVFSpathHistoryForSlot(const SlotName &slotName);
 	Asset getAssetFrom(const SlotName &slotName);
 	SlotName findFirstSlotWithoutUserStereoFile() const;
-	void resetUserSlots();
+	void resetUserSlots( bool pruneVFS = false );
 	int getIndexForSlot(const SlotName &slotName) ;
 	
 
