@@ -1,8 +1,7 @@
-import { el } from "@elemaudio/core";
+
 import {
   GestureSource_SCAPE,
   GestureSource_SRVB,
-  ConsoleText,
   GestureSource_REVERSE,
   GestureSource_IRMode,
 } from "../stores/stores.svelte";
@@ -16,6 +15,7 @@ function updateHost(toggleName, gestureSource, boolInt) {
   }
   gestureSource.update("ui");
 }
+
 
 // Function to initialize listeners for vars coming
 // via the Cables patch

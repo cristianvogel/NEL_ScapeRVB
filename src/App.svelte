@@ -1,20 +1,17 @@
 <script>
   import { onMount } from "svelte";
   import {
-    ConsoleText,
     CablesReady,
-    HostState,
-    VFSKeys,
-    WebSocketPort,
+    ConsoleText,
+    HostState
   } from "./stores/stores.svelte";
-  import { fade } from "svelte/transition";
+
   import { initPatchListeners } from "./lib/PatchListeners.svelte";
   import {
     MessageToHost,
     RegisterMessagesFromHost,
   } from "./lib/NativeMessage.svelte";
 
-  import WebSocketClient from "./lib/WebSocketClient.svelte";
   import { CURRENT_UI_VERSION } from "./stores/constants";
 
   onMount(() => {
@@ -42,15 +39,19 @@
           alpha: false,
           premultipliedAlpha: true,
         },
-        variables: {},
+        variables: {
+          "ext_consoleMessage" : `𝌺 ${CURRENT_UI_VERSION} <br> Welcome.` 
+        },
       });
     });
   });
 
   let firstRun = true;
+  let getUserConsole = () => {};
 
   $effect(() => {
-    if (firstRun && Object.keys(HostState.current).length > 0) {
+    if (CablesReady.current && firstRun && Object.keys(HostState.current).length > 0) {
+      getUserConsole = ()=> CABLES.patch.getVar("ext_consoleMessage");
       CABLES.patch
         .getVar("host_scapeReverse")
         .setValue(HostState.snapshot.scapeReverse);
@@ -61,13 +62,12 @@
     }
   });
 
-  $effect(() => {
-    if (ConsoleText.current.length > 0) {
-      setTimeout(() => {
-        ConsoleText.update("");
-      }, 6000);
+  $effect(()=> {
+    if ( CablesReady.current && ConsoleText.current.length > 0) {
+      getUserConsole().setValue(ConsoleText.snapshot);
     }
   });
+
 </script>
 
 <canvas id="glcanvas" width="100vw" height="100vh" willReadFrequently="true"
@@ -79,19 +79,36 @@
 {/if} -->
 
 {#if CablesReady.current}
-  <pre class="console-text">VFS: {VFSKeys.count} || {ConsoleText.current} </pre>
-  <pre class="console-text" style="bottom: 2rem;">{ConsoleText.extended}</pre>
+<!-- ready! -->
 {:else}
-  <pre class="console-text" in:fade>Loading...</pre>
+<div class="loading-bar"></div>
 {/if}
 
 <style>
-  .console-text {
+ .loading-bar {
+    width: 100%;
+    margin-top: 2px;
+    height: 2px;
+    background-color: rgba(191, 192, 191, 0.75);
+    position: fixed;
+    overflow: hidden;
+  }
+
+  .loading-bar::before {
+    content: '';
     position: absolute;
-    left: 1rem;
-    bottom: 7rem;
-    color: chartreuse;
-    font-size: xx-small;
-    z-index: 137;
+    width: 50%;
+    height: 100%;
+    background-color: #111;
+    animation: loading 1s infinite;
+  }
+
+  @keyframes loading {
+    0% {
+      left: -50%;
+    }
+    100% {
+      left: 100%;
+    }
   }
 </style>
