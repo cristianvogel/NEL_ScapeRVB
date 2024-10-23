@@ -2,7 +2,7 @@
 /// Svelte5 state stores
 
 import { bypassEvents, bypassStates } from "../types";
-import { DEFAULT_IR_SLOTNAMES } from "./constants";
+import { DEFAULT_IR_SLOTNAMES  } from "./constants";
 
 
 /////////////////////////
@@ -128,22 +128,31 @@ function controlSource_SRVB( initial ) {
 }
 
 //////////////////////
-export const ConsoleText = consoleText("_");
+
+export const ConsoleText = consoleText("");
 function consoleText(initial) {
   let current = $state(initial);
   let extended = $state(initial);
+ 
   return {
     get current(): string {
       return current;
     },
     update(newValues) {
+      // after 3 seconds , reset the console text
+      setTimeout(() => {
+        current = "";
+      }, 3000);
       current = newValues;
+    },
+    get snapshot() {
+      return $state.snapshot(current);
     },
     extend(newText) {
       setTimeout(() => {
-        extended = '';
+        current = "";
       }, 3000);
-      extended = extended + ' | ' + newText;
+    current = ( '<em>'+extended + newText+'</em>');
     },
     get extended() {
       return extended;

@@ -38,7 +38,6 @@ Ops.Patch.PBktIwq=Ops.Patch.PBktIwq || {};
 Ops.Patch.PxdLHGq=Ops.Patch.PxdLHGq || {};
 Ops.Gl.ImageCompose=Ops.Gl.ImageCompose || {};
 Ops.Array.PointArray=Ops.Array.PointArray || {};
-Ops.Devices.Keyboard=Ops.Devices.Keyboard || {};
 Ops.Gl.ShaderEffects=Ops.Gl.ShaderEffects || {};
 Ops.Graphics.Geometry=Ops.Graphics.Geometry || {};
 
@@ -17695,337 +17694,6 @@ CABLES.OPS["f5c8c433-ce13-49c4-9a33-74e98f110ed0"]={f:Ops.Number.TriggerOnChange
 
 // **************************************************************
 // 
-// Ops.Devices.Keyboard.KeyPressLearn
-// 
-// **************************************************************
-
-Ops.Devices.Keyboard.KeyPressLearn = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const learnedKeyCode = op.inValueInt("key code");
-const canvasOnly = op.inValueBool("canvas only", true);
-const modKey = op.inValueSelect("Mod Key", ["none", "alt"], "none");
-const inEnable = op.inValueBool("Enabled", true);
-const preventDefault = op.inValueBool("Prevent Default");
-const learn = op.inTriggerButton("learn");
-const onPress = op.outTrigger("on press");
-const onRelease = op.outTrigger("on release");
-const outPressed = op.outBoolNum("Pressed", false);
-const outKey = op.outString("Key");
-
-const cgl = op.patch.cgl;
-let learning = false;
-
-modKey.onChange = learnedKeyCode.onChange = updateKeyName;
-
-function onKeyDown(e)
-{
-    if (learning)
-    {
-        learnedKeyCode.set(e.keyCode);
-        if (CABLES.UI)
-        {
-            op.refreshParams();
-        }
-        // op.log("Learned key code: " + learnedKeyCode.get());
-        learning = false;
-        removeListeners();
-        addListener();
-
-        if (CABLES.UI)gui.emitEvent("portValueEdited", op, learnedKeyCode, learnedKeyCode.get());
-    }
-    else
-    {
-        if (e.keyCode == learnedKeyCode.get())
-        {
-            if (modKey.get() == "alt")
-            {
-                if (e.altKey === true)
-                {
-                    onPress.trigger();
-                    outPressed.set(true);
-                    if (preventDefault.get())e.preventDefault();
-                }
-            }
-            else
-            {
-                onPress.trigger();
-                outPressed.set(true);
-                if (preventDefault.get())e.preventDefault();
-            }
-        }
-    }
-}
-
-function onKeyUp(e)
-{
-    if (e.keyCode == learnedKeyCode.get())
-    {
-        let doTrigger = true;
-        if (modKey.get() == "alt" && e.altKey != true) doTrigger = false;
-
-        if (doTrigger)
-        {
-            onRelease.trigger();
-            outPressed.set(false);
-        }
-    }
-}
-
-op.onDelete = function ()
-{
-    cgl.canvas.removeEventListener("keyup", onKeyUp, false);
-    cgl.canvas.removeEventListener("keydown", onKeyDown, false);
-    document.removeEventListener("keyup", onKeyUp, false);
-    document.removeEventListener("keydown", onKeyDown, false);
-};
-
-learn.onTriggered = function ()
-{
-    // op.log("Listening for key...");
-    learning = true;
-    addDocumentListener();
-
-    setTimeout(function ()
-    {
-        learning = false;
-        removeListeners();
-        addListener();
-    }, 3000);
-};
-
-function addListener()
-{
-    if (canvasOnly.get()) addCanvasListener();
-    else addDocumentListener();
-}
-
-function removeListeners()
-{
-    document.removeEventListener("keydown", onKeyDown, false);
-    document.removeEventListener("keyup", onKeyUp, false);
-    cgl.canvas.removeEventListener("keydown", onKeyDown, false);
-    cgl.canvas.removeEventListener("keyup", onKeyUp, false);
-    outPressed.set(false);
-}
-
-function addCanvasListener()
-{
-    if (!CABLES.UTILS.isNumeric(cgl.canvas.getAttribute("tabindex"))) cgl.canvas.setAttribute("tabindex", 1);
-
-    cgl.canvas.addEventListener("keydown", onKeyDown, false);
-    cgl.canvas.addEventListener("keyup", onKeyUp, false);
-}
-
-function addDocumentListener()
-{
-    document.addEventListener("keydown", onKeyDown, false);
-    document.addEventListener("keyup", onKeyUp, false);
-}
-
-inEnable.onChange = function ()
-{
-    if (!inEnable.get())
-    {
-        removeListeners();
-    }
-    else
-    {
-        addListener();
-    }
-};
-
-canvasOnly.onChange = function ()
-{
-    removeListeners();
-    addListener();
-};
-
-function updateKeyName()
-{
-    let keyName = CABLES.keyCodeToName(learnedKeyCode.get());
-    const modKeyName = modKey.get();
-    if (modKeyName && modKeyName !== "none")
-    {
-        keyName = modKeyName.charAt(0).toUpperCase() + modKeyName.slice(1) + "-" + keyName;
-    }
-    op.setUiAttribs({ "extendTitle": keyName });
-    outKey.set(keyName);
-}
-
-addCanvasListener();
-
-
-};
-
-Ops.Devices.Keyboard.KeyPressLearn.prototype = new CABLES.Op();
-CABLES.OPS["f069c0db-4051-4eae-989e-6ef7953787fd"]={f:Ops.Devices.Keyboard.KeyPressLearn,objName:"Ops.Devices.Keyboard.KeyPressLearn"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Boolean.ToggleBool_v2
-// 
-// **************************************************************
-
-Ops.Boolean.ToggleBool_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    trigger = op.inTriggerButton("trigger"),
-    reset = op.inTriggerButton("reset"),
-    inDefault = op.inBool("Default", false),
-    next = op.outTrigger("Next"),
-    outBool = op.outBoolNum("result");
-
-let theBool = false;
-
-op.onLoadedValueSet = () =>
-{
-    theBool = inDefault.get();
-    outBool.set(inDefault.get());
-    next.trigger();
-};
-
-trigger.onTriggered = function ()
-{
-    theBool = !theBool;
-    outBool.set(theBool);
-    next.trigger();
-};
-
-reset.onTriggered = function ()
-{
-    theBool = inDefault.get();
-    outBool.set(theBool);
-    next.trigger();
-};
-
-
-};
-
-Ops.Boolean.ToggleBool_v2.prototype = new CABLES.Op();
-CABLES.OPS["4313d9bb-96b6-43bc-9190-6068cfb2593c"]={f:Ops.Boolean.ToggleBool_v2,objName:"Ops.Boolean.ToggleBool_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Patch.P4Zknbo.Console_v2
-// 
-// **************************************************************
-
-Ops.Patch.P4Zknbo.Console_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    visible = op.inValueBool("visible", true),
-    inClear = op.inTriggerButton("Clear"),
-    outEle = op.outObject("Element", null, "element");
-
-let eleLog = null;
-let canvas = op.patch.cgl.canvas.parentElement;
-
-let oldLog = console.log;
-let oldLogError = console.error;
-let oldLogWarn = console.warn;
-
-console.log = thelog;
-console.error = thelog;
-console.warn = thelog;
-
-addElement();
-
-op.onDelete = function ()
-{
-    removeElement();
-    console.log = oldLog;
-    console.error = oldLogError;
-    console.warn = oldLogWarn;
-};
-
-visible.onChange = function ()
-{
-    if (visible.get()) eleLog.style.display = "block";
-    else eleLog.style.display = "none";
-};
-
-function addElement()
-{
-    if (eleLog)removeElement();
-    eleLog = document.createElement("div");
-    eleLog.style.padding = "0px";
-    eleLog.style.position = "absolute";
-    eleLog.style.overflow = "scroll";
-    if (CABLES.UI)
-    {
-        eleLog.style.width = "60%";
-        eleLog.style.height = "50%";
-    }
-    else
-    {
-        eleLog.style.width = "50vw";
-        eleLog.style.height = "50vh";
-    }
-    eleLog.style["background-color"] = "rgba(0,0,0,0.74)";
-    eleLog.style["box-sizing"] = "border-box";
-    eleLog.style.padding = "10px";
-    eleLog.style["z-index"] = "9999";
-    eleLog.style.color = "#1f1";
-
-    canvas.appendChild(eleLog);
-}
-
-function removeElement()
-{
-    canvas.removeChild(eleLog);
-    eleLog = null;
-}
-
-function thelog()
-{
-    if (!eleLog)addElement();
-    oldLog.apply(console, arguments);
-
-    try
-    {
-        let html = "<code style=\"display:block;overflow:hidden;margin-top:3px;border-bottom:1px solid #000;padding:3px;\">";
-        for (let i = 0; i < arguments.length; i++)
-        {
-            if (typeof arguments[i] == "object") html += (JSON && JSON.stringify ? JSON.stringify(arguments[i], undefined, 2) : arguments[i]) + " ";
-            else html += arguments[i] + " ";
-        }
-        eleLog.innerHTML += html + "</code>";
-    }
-    catch (e) {}
-    eleLog.scrollTop = eleLog.scrollHeight;
-}
-
-inClear.onTriggered = () =>
-{
-    eleLog.innerHTML = "";
-};
-
-
-};
-
-Ops.Patch.P4Zknbo.Console_v2.prototype = new CABLES.Op();
-CABLES.OPS["d7be570f-250a-440b-8eaf-c443d7b33b76"]={f:Ops.Patch.P4Zknbo.Console_v2,objName:"Ops.Patch.P4Zknbo.Console_v2"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.String.ParseInt_v2
 // 
 // **************************************************************
@@ -24605,6 +24273,550 @@ function storeValue()
 
 Ops.Website.LocalStorageString.prototype = new CABLES.Op();
 CABLES.OPS["f908fc2e-70b6-4ca4-8afd-4302b35ff570"]={f:Ops.Website.LocalStorageString,objName:"Ops.Website.LocalStorageString"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Html.Element_v2
+// 
+// **************************************************************
+
+Ops.Html.Element_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inText = op.inString("Text", ""),
+    inPos = op.inSwitch("Position", ["Absolute", "Static", "Relative", "Fixed"], "Absolute"),
+    // inInteractive = op.inValueBool("Interactive", false),
+    inInteractive = op.inSwitch("Interactive", ["True", "False", "No Pointer Events"], "True"),
+
+    inSetSize = op.inValueBool("Set Size", true),
+    inWidth = op.inFloat("Width", 100),
+    inHeight = op.inFloat("Height", 100),
+    inOverflow = op.inSwitch("Overflow", ["Visible", "Hidden", "Scroll", "Auto"], "Hidden"),
+
+    inStyle = op.inStringEditor("Inline Style", "", "inline-css"),
+    inClass = op.inString("CSS Class"),
+    inBlacklist = op.inString("Disable CSS Props"),
+
+    inDisplay = op.inDropDown("Display", ["None", "Block", "Inline", "inline-block", "flex", "inline-flex", "grid", "inline-grid", "flow-root"], "Block"),
+    inOpacity = op.inFloatSlider("Opacity", 1),
+    inPropagation = op.inValueBool("Propagate Click-Events", true),
+
+    outElement = op.outObject("DOM Element", null, "element"),
+    outHover = op.outBoolNum("Hovering"),
+    outClicked = op.outTrigger("Clicked");
+
+op.setPortGroup("Area", [inWidth, inHeight, inSetSize, inOverflow]);
+op.setPortGroup("CSS", [inClass, inStyle, inBlacklist]);
+
+let listenerElement = null;
+let oldStr = null;
+let prevDisplay = "block";
+let div = null;
+
+const canvas = op.patch.cgl.canvas.parentElement;
+
+createElement();
+
+inClass.onChange = updateClass;
+inText.onChange = updateText;
+
+inDisplay.onChange =
+    inOpacity.onChange =
+    inPos.onChange =
+    inWidth.onChange =
+    inHeight.onChange =
+    inOverflow.onChange =
+    inSetSize.onChange =
+    inHeight.onChange =
+    inStyle.onChange = updateStyle;
+
+inInteractive.onChange = updateInteractive;
+
+updateText();
+updateStyle();
+warning();
+updateInteractive();
+
+let oldClassesStr = "";
+op.onDelete = removeElement;
+
+outElement.onLinkChanged = updateStyle;
+
+inInteractive.onLinkChanged =
+outClicked.onLinkChanged = () =>
+{
+    op.setUiError("interactiveProblem", null);
+    if (outClicked.isLinked() && !isInteractive())
+        op.setUiError("interactiveProblem", "Interactive should be activated when linking clicked port");
+};
+
+function createElement()
+{
+    div = op.patch.getDocument().createElement("div");
+    div.dataset.op = op.id;
+    div.classList.add("cablesEle");
+
+    canvas.appendChild(div);
+    outElement.set(div);
+}
+
+function removeElement()
+{
+    if (div) removeClasses();
+    if (div && div.parentNode) div.parentNode.removeChild(div);
+    oldStr = null;
+    div = null;
+}
+
+function updateText()
+{
+    let str = inText.get();
+
+    if (oldStr === str) return;
+    oldStr = str;
+
+    if (div.innerHTML != str) div.innerHTML = str;
+    // outElement.setRef(div);
+}
+
+function updateStyle()
+{
+    if (!div) return;
+
+    div.setAttribute("style", inStyle.get());
+
+    div.style.position = inPos.get().toLowerCase();
+
+    div.style.overflow = inOverflow.get().toLowerCase();
+    div.style.display = inDisplay.get();
+    div.style.opacity = inOpacity.get();
+    if (inInteractive.get() == "No Pointer Events")div.style.pointerEvents = "none";
+
+    if (inSetSize.get())
+    {
+        div.style.width = inWidth.get() + "px";
+        div.style.height = inHeight.get() + "px";
+    }
+    else
+    {
+        div.style.width = "";
+        div.style.height = "";
+    }
+
+    outElement.setRef(div);
+
+    if (!div.parentElement) canvas.appendChild(div);
+
+    warning();
+}
+
+function removeClasses()
+{
+    if (!div) return;
+
+    const classes = (inClass.get() || "").split(" ");
+    for (let i = 0; i < classes.length; i++)
+    {
+        if (classes[i]) div.classList.remove(classes[i]);
+    }
+    oldClassesStr = "";
+}
+
+function updateClass()
+{
+    const classes = (inClass.get() || "").split(" ");
+    const oldClasses = (oldClassesStr || "").split(" ");
+
+    let found = false;
+
+    for (let i = 0; i < oldClasses.length; i++)
+    {
+        if (
+            oldClasses[i] &&
+            classes.indexOf(oldClasses[i].trim()) == -1)
+        {
+            found = true;
+            div.classList.remove(oldClasses[i]);
+        }
+    }
+
+    for (let i = 0; i < classes.length; i++)
+    {
+        if (classes[i])
+        {
+            div.classList.add(classes[i].trim());
+        }
+    }
+
+    oldClassesStr = inClass.get();
+    warning();
+}
+
+function onMouseEnter(e)
+{
+    outHover.set(true);
+}
+
+function onMouseLeave(e)
+{
+    outHover.set(false);
+}
+
+function onMouseClick(e)
+{
+    if (!inPropagation.get()) e.stopPropagation();
+    outClicked.trigger();
+}
+
+function isInteractive()
+{
+    return inInteractive.get() != "No Pointer Events";
+}
+
+function updateInteractive()
+{
+    op.setUiError("interactiveProblem", null);
+
+    removeListeners();
+    if (isInteractive()) addListeners();
+    updateStyle();
+}
+
+function removeListeners()
+{
+    if (listenerElement)
+    {
+        listenerElement.removeEventListener("pointerdown", onMouseClick);
+        listenerElement.removeEventListener("pointerleave", onMouseLeave);
+        listenerElement.removeEventListener("pointerenter", onMouseEnter);
+        listenerElement = null;
+    }
+}
+
+function addListeners()
+{
+    if (listenerElement)removeListeners();
+
+    listenerElement = div;
+
+    if (listenerElement)
+    {
+        listenerElement.addEventListener("pointerdown", onMouseClick);
+        listenerElement.addEventListener("pointerleave", onMouseLeave);
+        listenerElement.addEventListener("pointerenter", onMouseEnter);
+    }
+}
+
+op.addEventListener("onEnabledChange", (enabled) =>
+{
+    removeElement();
+    if (!enabled) return;
+
+    createElement();
+    updateStyle();
+    updateClass();
+    updateText();
+    updateInteractive();
+});
+
+function warning()
+{
+    if (inClass.get() && inStyle.get())
+    {
+        op.setUiError("error", "Element uses external and inline CSS", 1);
+    }
+    else
+    {
+        op.setUiError("error", null);
+    }
+}
+
+
+};
+
+Ops.Html.Element_v2.prototype = new CABLES.Op();
+CABLES.OPS["a0d2cc80-0b2f-4422-ba2d-c903ac9ca297"]={f:Ops.Html.Element_v2,objName:"Ops.Html.Element_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Html.ElementFadeInOut
+// 
+// **************************************************************
+
+Ops.Html.ElementFadeInOut = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"fadeInOut_css":"\n.CABLES_animFadedOut_$CLASSES_ID\n{\n    display:none !important;\n    opacity:0;\n}\n\n.CABLES_animFadeOut_$CLASSES_ID\n{\n    animation: CABLES_keysFadeOut_$CLASSES_ID $LENGTHs normal forwards ease-in-out;\n}\n\n.CABLES_animFadeIn_$CLASSES_ID\n{\n    animation: CABLES_keysFadeIn_$CLASSES_ID $LENGTHs normal forwards ease-in-out;\n}\n\n@keyframes CABLES_keysFadeIn_$CLASSES_ID {\n    from { opacity: 0; }\n    to   { opacity: $FULLOPACITY; }\n}\n\n@keyframes CABLES_keysFadeOut_$CLASSES_ID {\n    from { opacity: $FULLOPACITY; }\n    to   { opacity: 0; }\n}\n",};
+const
+    inEle = op.inObject("HTML Element"),
+    inVisible = op.inValueBool("Visible", true),
+    inDuration = op.inValue("Duration", 0.25),
+    inOpacity = op.inValue("Opacity", 1),
+    outEle = op.outObject("PassThrough", null, "element"),
+    outShowing = op.outBoolNum("Is Showing", false);
+
+let theTimeout = null;
+let oldEle = null;
+let loaded = true;
+const oldvis = null;
+loaded = true;
+
+inDuration.onChange =
+    inOpacity.onChange = update;
+
+inVisible.onChange =
+    inEle.onChange = updateVisibility;
+
+let styleEle = null;
+const eleId = "css_" + CABLES.uuid();
+const cssClassesId = CABLES.shortId();
+
+const animFadeInClass = "CABLES_animFadeIn_" + cssClassesId;
+const animFadedOutClass = "CABLES_animFadedOut_" + cssClassesId;
+const animFadeOutClass = "CABLES_animFadeOut_" + cssClassesId;
+
+update();
+
+op.onLoaded = function ()
+{
+    loaded = true;
+    updateVisibility();
+    outShowing.set(inVisible.get());
+};
+
+inEle.onChange =
+outEle.onLinkChanged =
+inEle.onLinkChanged = () =>
+{
+    outEle.setRef(inEle.get());
+    updateVisibility();
+};
+
+function updateVisibility()
+{
+    const ele = inEle.get();
+
+    if (!loaded)
+    {
+        setTimeout(updateVisibility, 50);
+        return;
+    }
+
+    if (styleEle && ele)
+    {
+        // if (ele == oldEle) return;
+        // oldEle = ele;
+        if (inVisible.get())
+        {
+            outShowing.set(true);
+            if (ele && ele.classList && !ele.classList.contains(animFadeInClass))
+            {
+                clearTimeout(theTimeout);
+                ele.classList.remove(animFadedOutClass);
+                ele.classList.remove(animFadeOutClass);
+                ele.classList.add(animFadeInClass);
+                theTimeout = setTimeout(function ()
+                {
+                    ele.classList.remove(animFadeInClass);
+                    outShowing.set(true);
+                }, inDuration.get() * 1000);
+            }
+        }
+        else
+        {
+            outShowing.set(true);
+            if (ele && ele.classList && !ele.classList.contains(animFadedOutClass))
+            {
+                clearTimeout(theTimeout);
+                ele.classList.remove(animFadeInClass);
+                ele.classList.add(animFadeOutClass);
+                theTimeout = setTimeout(function ()
+                {
+                    ele.classList.add(animFadedOutClass);
+                    outShowing.set(false);
+                }, inDuration.get() * 1000);
+            }
+        }
+    }
+    else
+    {
+        // op.logError("no html element");
+    }
+}
+
+function getCssContent()
+{
+    let css = attachments.fadeInOut_css;
+
+    while (css.indexOf("$LENGTH") > -1)css = css.replace("$LENGTH", inDuration.get());
+    while (css.indexOf("$FULLOPACITY") > -1)css = css.replace("$FULLOPACITY", inOpacity.get());
+    while (css.indexOf("$CLASSES_ID") > -1)css = css.replace("$CLASSES_ID", cssClassesId);
+
+    return css;
+}
+
+function update()
+{
+    styleEle = document.getElementById(eleId);
+
+    if (styleEle)
+    {
+        styleEle.textContent = getCssContent();
+    }
+    else
+    {
+        styleEle = document.createElement("style");
+        styleEle.type = "text/css";
+        styleEle.id = eleId;
+        styleEle.classList.add("cablesEle");
+        styleEle.textContent = getCssContent();
+
+        const head = document.getElementsByTagName("body")[0];
+        head.appendChild(styleEle);
+    }
+}
+
+op.onDelete = function ()
+{
+    const ele = inEle.get();
+
+    if (ele && ele.classList)
+    {
+        ele.classList.remove(animFadeInClass);
+        ele.classList.remove(animFadedOutClass);
+        ele.classList.remove(animFadeOutClass);
+    }
+
+    styleEle = document.getElementById(eleId);
+    if (styleEle)styleEle.remove();
+};
+
+
+};
+
+Ops.Html.ElementFadeInOut.prototype = new CABLES.Op();
+CABLES.OPS["392e65eb-4ebe-4adb-8711-e4cfe059c6c9"]={f:Ops.Html.ElementFadeInOut,objName:"Ops.Html.ElementFadeInOut"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Trigger.TriggerOnChangeString
+// 
+// **************************************************************
+
+Ops.Trigger.TriggerOnChangeString = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inval = op.inString("String"),
+    next = op.outTrigger("Changed"),
+    outStr = op.outString("Result");
+
+outStr.ignoreValueSerialize = true;
+
+inval.onChange = function ()
+{
+    outStr.set(inval.get());
+    next.trigger();
+};
+
+
+};
+
+Ops.Trigger.TriggerOnChangeString.prototype = new CABLES.Op();
+CABLES.OPS["319d07e0-5cbe-4bc1-89fb-a934fd41b0c4"]={f:Ops.Trigger.TriggerOnChangeString,objName:"Ops.Trigger.TriggerOnChangeString"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Anim.AnimNumber
+// 
+// **************************************************************
+
+Ops.Anim.AnimNumber = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    exe = op.inTrigger("exe"),
+    inValue = op.inValue("Value"),
+    duration = op.inValueFloat("duration"),
+    next = op.outTrigger("Next"),
+    result = op.outNumber("result"),
+    finished = op.outTrigger("Finished");
+
+const anim = new CABLES.Anim();
+anim.createPort(op, "easing", init);
+
+anim.loop = false;
+duration.set(0.5);
+
+duration.onChange =
+    inValue.onChange = init;
+
+let lastTime = 0;
+let startTime = 0;
+let offset = 0;
+
+let firsttime = true;
+
+function init()
+{
+    startTime = performance.now();
+    anim.clear(CABLES.now() / 1000.0);
+
+    if (firsttime) anim.setValue(CABLES.now() / 1000.0, inValue.get());
+
+    anim.setValue(duration.get() + CABLES.now() / 1000.0, inValue.get(), triggerFinished);
+
+    firsttime = false;
+}
+
+function triggerFinished()
+{
+    finished.trigger();
+}
+
+exe.onTriggered = function ()
+{
+    let t = CABLES.now() / 1000;
+
+    if (performance.now() - lastTime > 300)
+    {
+        firsttime = true;
+        init();
+    }
+
+    lastTime = performance.now();
+
+    let v = anim.getValue(t);
+
+    result.set(v);
+    next.trigger();
+};
+
+
+};
+
+Ops.Anim.AnimNumber.prototype = new CABLES.Op();
+CABLES.OPS["e5b0b016-9663-4c9d-9365-f54ae3c5fbb6"]={f:Ops.Anim.AnimNumber,objName:"Ops.Anim.AnimNumber"};
 
 
 
