@@ -3,7 +3,7 @@ project(NEL_scape|space VERSION 1.01)
 
 set(TARGET_NAME "NEL_scape_space")
 set(ASSETS_DIR ${CMAKE_SOURCE_DIR}/../dist/)
-set(BUILD_VERSION "v0.8.2")
+set(BUILD_VERSION "v0.8.3")
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 option(JUCE_BUILD_EXAMPLES "Build JUCE Examples" OFF)
