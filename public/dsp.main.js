@@ -1,3 +1,4 @@
+"use strict";
 (() => {
   var __create = Object.create;
   var __defProp = Object.defineProperty;
@@ -3285,6 +3286,8 @@
   };
 
   // src/stores/constants.ts
+  var BUILD_VERSION = "v0.8.4-beta";
+  var CURRENT_UI_VERSION = `scape_space_${BUILD_VERSION}`;
   var HOST_PARAMS = manifest_default.parameters;
   var REGISTERED_PARAM_NAMES = HOST_PARAMS.map(
     (p) => p.paramId
@@ -3383,7 +3386,7 @@
   var blockSizes = [512, 4096];
   var Slots = /* @__PURE__ */ new Map([
     ["LIGHT", { pathStem: "LIGHT", slotIndex: 0, att: 1 }],
-    ["SURFACE", { pathStem: "SURFACE", slotIndex: 1, att: 0.9 }],
+    ["SURFACE", { pathStem: "SURFACE", slotIndex: 1, att: 0.96 }],
     ["TEMPLE", { pathStem: "TEMPLE", slotIndex: 2, att: 0.9 }],
     ["DEEPNESS", { pathStem: "DEEPNESS", slotIndex: 3, att: 0.675 }]
   ]);

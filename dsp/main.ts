@@ -50,7 +50,7 @@ const blockSizes = [512, 4096];
 // MUST MATCH FILE NAMES IN THE PUBLIC IR FOLDER
 export const Slots: Map<SlotName, SlotData> = new Map([
   ["LIGHT", { pathStem: "LIGHT", slotIndex: 0, att: 1.0 }],
-  ["SURFACE", { pathStem: "SURFACE", slotIndex: 1, att: 0.9 }],
+  ["SURFACE", { pathStem: "SURFACE", slotIndex: 1, att: 0.96 }],
   ["TEMPLE", { pathStem: "TEMPLE", slotIndex: 2, att: 0.9 }],
   ["DEEPNESS", { pathStem: "DEEPNESS", slotIndex: 3, att: 0.675 }],
 ]);

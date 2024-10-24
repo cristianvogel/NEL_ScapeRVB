@@ -14,7 +14,7 @@ class WebViewEditor : public juce::AudioProcessorEditor
 public:
     //==============================================================================
     WebViewEditor(juce::AudioProcessor *proc, juce::File const &assetDirectory, int width, int height);
-  
+    ~WebViewEditor() override;
    //==============================================================================
     choc::ui::WebView* getWebViewPtr();
     //==============================================================================

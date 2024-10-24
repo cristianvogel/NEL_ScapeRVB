@@ -109,6 +109,12 @@ WebViewEditor::WebViewEditor(juce::AudioProcessor *proc, juce::File const &asset
     webView->navigate("http://localhost:5173");
 #endif
 }
+
+WebViewEditor::~WebViewEditor()
+{
+    // Clean up resources if necessary
+    webView.reset();
+}
 choc::ui::WebView *WebViewEditor::getWebViewPtr()
 {
     return webView.get();
