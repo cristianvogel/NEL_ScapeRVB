@@ -1,3 +1,4 @@
+"use strict";
 (() => {
   var __create = Object.create;
   var __defProp = Object.defineProperty;
@@ -3285,6 +3286,8 @@
   };
 
   // src/stores/constants.ts
+  var BUILD_VERSION = "v0.8.4-beta";
+  var CURRENT_UI_VERSION = `scape_space_${BUILD_VERSION}`;
   var HOST_PARAMS = manifest_default.parameters;
   var REGISTERED_PARAM_NAMES = HOST_PARAMS.map(
     (p) => p.paramId

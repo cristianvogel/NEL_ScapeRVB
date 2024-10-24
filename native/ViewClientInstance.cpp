@@ -23,7 +23,8 @@ void ViewClientInstance::stop()
 
 void ViewClientInstance::handleWebSocketMessage(std::string_view message)
 {
-     if ( !running.load() || processor.isSuspended() ) return; // Check running flag before processing
+    if (!running.load() || processor.isSuspended())
+        return; // Check running flag before processing
 
     // Convert std::string_view to std::string
     std::string messageStr(message);
@@ -49,54 +50,15 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
         {
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
             //  "selectFiles" Opens file picker,                      //
-            //  handles file selection, and assigns files to slots    //  
+            //  handles file selection, and assigns files to slots    //
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
-            if (key == "selectFiles" && hpfValue.isNumber())
+            if (key == "selectFiles" && hpfValue.isNumber() )
             {
-                std::promise<elem::js::Object> promise;
-                std::future<elem::js::Object> future = promise.get_future();
-                processor.requestUserFileSelection(promise);
-                elem::js::Object gotFiles = future.get();
-                if (static_cast<bool>(gotFiles["success"]) == false)
-                {
-                    processor.dispatchError("File error:", "No files loaded.");
+                int retFlag = 0;
+                int filterCutoff = elem::js::Number( hpfValue );
+                userFileUploadHandler(filterCutoff, retFlag);
+                if (retFlag != 1)
                     continue;
-                }
-                if (gotFiles["files"].isArray() == false)
-                {
-                    continue;
-                }
-                auto files = gotFiles["files"].getArray();
-                processor.userCutoffChoice = fmin(160, int((elem::js::Number)hpfValue));
-
-                SlotName targetSlot = processor.slotManager->findFirstSlotWithoutUserStereoFile();
-
-                for (const auto fileValue : files)
-                {
-                    juce::String filePath = juce::String(static_cast<std::string>(fileValue));
-                    juce::File file(filePath);
-                    if (file.existsAsFile())
-                    {
-                        if (!processor.processImportedResponseBuffers(file, targetSlot))
-                        {
-                            continue;
-                        }
-                        processor.slotManager->assignFileAssetToSlot(targetSlot, file);
-                        processor.slotManager->assignFilenameToSlot(targetSlot, file);
-                        // last slot of the bank
-                        // so step to the next bank
-                        // for the VFS path history registry
-                        if ( processor.slotManager->getIndexForSlot(targetSlot) == 3)
-                           {
-                             processor.userBankManager.incrementUserBank();
-                             processor.slotManager->resetUserSlots( true );
-                           }
-                        targetSlot = nextSlot(targetSlot);
-                    }
-                }             
-                processor.updateStateWithAssetsData();
-                processor.dispatchStateChange();
-                continue;
             } // end selectFiles
 
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
@@ -104,15 +66,16 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
             if (key == "requestState")
             {
-                if (!processor.editor) return;
-                
+                if (!processor.editor)
+                    return;
+
                 elem::js::Object wrappedState;
                 elem::js::Object wrappedPeaks;
                 elem::js::Object wrappedFileNames;
 
                 processor.slotManager->wrapStateForView(wrappedState);
                 juce::String serializedState = elem::js::serialize(wrappedState);
-                // ============ perfomance optimization ======================== 
+                // ============ perfomance optimization ========================
                 // hash the serialized state and peaks, send only if changed
                 // use filename change as hash not peaks, cos its less data to work with
                 processor.slotManager->wrapFileNamesForView(wrappedFileNames);
@@ -120,7 +83,7 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
 
                 int currentStateHash = serializedState.hashCode();
                 int currentPeaksHash = serializedFilenames.hashCode();
-                
+
                 if (currentStateHash != processor.slotManager->lastStateHash)
                 {
                     sendWebSocketMessage(serializedState.toStdString());
@@ -136,18 +99,17 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                 continue;
             } // end requestState
 
-
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ "resetUserSlots" ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
 
             if (key == "resetUserSlots")
             {
-                processor.slotManager->resetUserSlots( false );
+                processor.slotManager->resetUserSlots(false);
                 processor.updateStateWithAssetsData();
                 continue;
             } // end resetUserSlots
-            
+
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
             // ▮▮▮▮▮▮▮ simple parameter update request        ▮▮▮▮▮▮▮ //
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
@@ -162,8 +124,77 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                 }
                 processor.editor->setParameterValue(key, paramValue);
             }
-        }// end parameter update
+        } // end parameter update
     }
+}
+
+void ViewClientInstance::userFileUploadHandler( const int &hpfValue, int &retFlag)
+{
+    processor.userCutoffChoice = hpfValue;
+    std::promise<elem::js::Object> promise;
+    std::future<elem::js::Object> future = promise.get_future();
+
+    // begin async file selection
+     processor.requestUserFileSelection(promise);
+    // get the future back
+    
+    elem::js::Object gotFiles = future.get();
+
+    uploadStatus = gotFiles["status"].isNumber() ? elem::js::Number( gotFiles["status"] ) : 0;
+
+    // Failed
+    if ( gotFiles["success"].isBool() && elem::js::Boolean(gotFiles["success"])  == false )
+    {
+        processor.dispatchError("[ Import Error ]", errorStatuses( uploadStatus ));
+        {
+            retFlag = 0;
+            return ;
+        };
+    }
+
+    auto files = gotFiles["files"].getArray();
+
+    if (files.empty())
+    {
+        processor.dispatchError("[ Import Error ]", errorStatuses(static_cast<int>(ScapeError::UNKNOWN_ERROR)));
+        {
+            retFlag = 0;
+            return ;
+        };
+    }
+ 
+    // Success
+    SlotName targetSlot = processor.slotManager->findFirstSlotWithoutUserStereoFile();
+
+    for (const auto fileValue : files)
+    {
+        juce::String filePath = juce::String(static_cast<std::string>(fileValue));
+        juce::File file(filePath);
+        if (file.existsAsFile())
+        {
+            if (!processor.processImportedResponseBuffers(file, targetSlot))
+            {
+                continue;
+            }
+            processor.slotManager->assignFileAssetToSlot(targetSlot, file);
+            processor.slotManager->assignFilenameToSlot(targetSlot, file);
+            // last slot of the bank
+            // so step to the next bank
+            // for the VFS path history registry
+            if (processor.slotManager->getIndexForSlot(targetSlot) == 3)
+            {
+                processor.userBankManager.incrementUserBank();
+                processor.slotManager->resetUserSlots(true);
+            }
+            targetSlot = nextSlot(targetSlot);
+        }
+    }
+    processor.updateStateWithAssetsData();
+    processor.dispatchStateChange();
+    {
+        retFlag = 1;
+        return;
+    };
 }
 
 choc::network::HTTPContent ViewClientInstance::getHTTPContent(std::string_view path)

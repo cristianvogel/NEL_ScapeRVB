@@ -72,12 +72,12 @@ EffectsPluginProcessor::~EffectsPluginProcessor()
     editor = nullptr;
     // Ensure server is properly closed and released
     // Ensure clientInstance is properly released
- 
+
     clientInstance.reset();
-    
-        server->close();
-        server.reset();
-    
+
+    server->close();
+    server.reset();
+
     for (auto &p : getParameters())
     {
         p->removeListener(this);
@@ -180,7 +180,7 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
     jassert(elementaryRuntime != nullptr);
 
     lastKnownSampleRate = getSampleRate();
-    
+
     for (auto &kv : assetsMap)
     {
         const SlotName &slotName = kv.first;
@@ -226,7 +226,8 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
             // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
             juce::String vfsPathname = file.getFileNameWithoutExtension(); // "AMBIENCE.wav" -> "AMBIENCE"
             std::string name = vfsPathname.toStdString() + '_' + std::to_string(channel);
-            if ( elementaryRuntime ) elementaryRuntime->updateSharedResourceMap(name, buffer.getReadPointer(0), numSamples);
+            if (elementaryRuntime)
+                elementaryRuntime->updateSharedResourceMap(name, buffer.getReadPointer(0), numSamples);
             slotManager->assignVFSpathToSlot(slotName, name);
             // Get the reverse from a little way, so its less draggy
             // so its easy to swap into in realtime
@@ -235,7 +236,8 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
             // add the shaped impulse response to the virtual file system
             std::string reversedName = REVERSE_BUFFER_PREFIX + name;
             // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
-            if ( elementaryRuntime ) elementaryRuntime->updateSharedResourceMap(reversedName, buffer.getReadPointer(0), shorter);
+            if (elementaryRuntime)
+                elementaryRuntime->updateSharedResourceMap(reversedName, buffer.getReadPointer(0), shorter);
             slotManager->assignVFSpathToSlot(slotName, name);
             // done, next channel
         }
@@ -261,8 +263,8 @@ void EffectsPluginProcessor::requestUserFileSelection(std::promise<elem::js::Obj
         bool browsed = chooser.browseForMultipleFilesToOpen(nullptr);
         elem::js::Object result;
 
-        result.insert_or_assign("success", elem::js::Value(browsed));
-
+        result.insert_or_assign("success", elem::js::Boolean( browsed ));
+       
         juce::Array<juce::File> selected(chooser.getResults());
 
         // Create an elem::js::Array to hold the file paths
@@ -270,27 +272,33 @@ void EffectsPluginProcessor::requestUserFileSelection(std::promise<elem::js::Obj
 
         for (const auto &file : selected) {
             juce::String filePath = file.getFullPathName();
-            selectedFilesAsValue.push_back(elem::js::Value(filePath.toStdString()));
+            selectedFilesAsValue.push_back(elem::js::String(filePath.toStdString()));
         }
-
-        // should be < 10MB and WAV to fill the current slot
+        // Fail
         for (juce::File &file : selected) {
             bool validExtension = file.hasFileExtension("wav;WAV;aiff;AIFF");
             if (!validExtension) {
-                dispatchNativeLog("File Error:", "Only WAV or AIF audio format supported.");
-                result.insert_or_assign("success", elem::js::Value(false));
+                result.insert_or_assign("success", elem::js::Boolean(false));
                 result.insert_or_assign("files", selectedFilesAsValue);
+                result.insert_or_assign("status", 
+                    elem::js::Number(static_cast<int>(ScapeError::FILETYPE_NOT_SUPPORTED)));
                 promise.set_value(result);
                 return;
             }
+
             if (file.getSize() > juce::int64(10 * 1024 * 1024)) {
-                dispatchNativeLog("File Error:", "A file size exceeds 10MB limit.");
-                result.insert_or_assign("success", elem::js::Value(false));
+                 result.insert_or_assign("success", elem::js::Boolean(false));
                 result.insert_or_assign("files", selectedFilesAsValue);
+                result.insert_or_assign("status", 
+                    elem::js::Number( static_cast<int>(ScapeError::FILESIZE_EXCEEDED)));
                 promise.set_value(result);
                 return;
             }
+            // Success
             result.insert_or_assign("files", selectedFilesAsValue);
+            result.insert_or_assign("status", 
+                elem::js::Number( static_cast<int>(ScapeError::OK)));
+            result.insert_or_assign("success", elem::js::Boolean(true));
         }
 
         promise.set_value(result); });
@@ -298,9 +306,9 @@ void EffectsPluginProcessor::requestUserFileSelection(std::promise<elem::js::Obj
 
 bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, SlotName &targetSlot)
 {
-    
+
     lastKnownSampleRate = getSampleRate();
-    
+
     // Create an AudioBuffer to hold the audio data
     auto buffer = juce::AudioBuffer<float>();
     // Check the userCutoffChoice is set
@@ -370,7 +378,7 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
         // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
         auto name = prefixUserBank("USER" + std::to_string(getIndexForSlot(targetSlot)) + "_" + std::to_string(channel));
         std::cout << "Runtime is loaded?" << elementaryRuntime << std::endl;
-      elementaryRuntime->updateSharedResourceMap(name, buffer.getReadPointer(0), numSamples);
+        elementaryRuntime->updateSharedResourceMap(name, buffer.getReadPointer(0), numSamples);
         slotManager->assignVFSpathToSlot(targetSlot, name);
         // Get the reverse from a little way, so its less draggy
         // so its easy to swap into in realtime
@@ -379,7 +387,8 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
         // add the shaped impulse response to the virtual file system
         std::string reversedName = REVERSE_BUFFER_PREFIX + name;
         // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
-        if ( elementaryRuntime ) elementaryRuntime->updateSharedResourceMap(reversedName, buffer.getReadPointer(0), shorter);
+        if (elementaryRuntime)
+            elementaryRuntime->updateSharedResourceMap(reversedName, buffer.getReadPointer(0), shorter);
         slotManager->assignVFSpathToSlot(targetSlot, reversedName);
         // done, next channel
     }
@@ -407,7 +416,8 @@ void EffectsPluginProcessor::pruneVFS()
  */
 void EffectsPluginProcessor::inspectVFS()
 {
-    if ( elementaryRuntime == nullptr ) return;
+    if (elementaryRuntime == nullptr)
+        return;
     auto vfs = elementaryRuntime->getSharedResourceMapKeys();
     // iterate vfs into valid JSON
     std::string vfsString = "[";
@@ -1077,39 +1087,40 @@ void EffectsPluginProcessor::processPersistedAssetState(const elem::js::Object &
     SlotName targetSlot = SlotName::LIGHT;
     juce::File file;
 
-    shouldInitialize.store( true );
+    shouldInitialize.store(true);
     handleAsyncUpdate();
 
-       // Create a promise and future to wait for elementaryRuntime to be initialized
+    // Create a promise and future to wait for elementaryRuntime to be initialized
     std::promise<void> promise;
     std::future<void> future = promise.get_future();
 
     // Launch a thread to check for elementaryRuntime initialization
-    std::thread([this, &promise]() {
-
-        while (elementaryRuntime == nullptr) {
-            std::this_thread::sleep_for(std::chrono::milliseconds(10)); // Sleep for a short duration
-        }
-        promise.set_value(); // Set the promise value once elementaryRuntime is initialized
-    }).detach();
+    std::thread([this, &promise]()
+                {
+                    while (elementaryRuntime == nullptr)
+                    {
+                        std::this_thread::sleep_for(std::chrono::milliseconds(10)); // Sleep for a short duration
+                    }
+                    promise.set_value(); // Set the promise value once elementaryRuntime is initialized
+                })
+        .detach();
 
     // Wait for the future to be set
     future.wait();
-    
-   
+
     // Iterate through assetState to collect userStereoFile paths
     for (const std::pair<SlotName, Asset> &entry : assetMap)
     {
         targetSlot = entry.first;
         const Asset &asset = entry.second;
-      
+
         if (asset.userStereoFile.existsAsFile())
         {
             std::cout << "Restoring ▶︎ Slot: " << toString(targetSlot) << ", File: " << asset.userStereoFile.getFileName().toStdString() << std::endl;
             file = juce::File{asset.userStereoFile};
         }
-    
-        if (!processImportedResponseBuffers(file, targetSlot))                                              
+
+        if (!processImportedResponseBuffers(file, targetSlot))
         {
             std::cout << "Failed to process restored buffers" << std::endl;
             continue;
