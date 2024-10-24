@@ -46,7 +46,7 @@ inline std::string errorStatuses( int status )
 switch (status)
 {
     case static_cast<int>(ScapeError::FILESIZE_EXCEEDED):
-        return "Each file cannot exceed 10MB";
+        return "Each file cannot exceed 5MB";
     case static_cast<int>(ScapeError::FILETYPE_NOT_SUPPORTED):
         return "Only WAV and AIFF files are supported";
     case static_cast<int>(ScapeError::FILE_NOT_SELECTED):

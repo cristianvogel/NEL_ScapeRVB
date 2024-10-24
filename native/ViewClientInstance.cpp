@@ -55,6 +55,7 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             if (key == "selectFiles" && hpfValue.isNumber() )
             {
                 int retFlag = 0;
+                uploadStatus = 0; 
                 int filterCutoff = elem::js::Number( hpfValue );
                 userFileUploadHandler(filterCutoff, retFlag);
                 if (retFlag != 1)

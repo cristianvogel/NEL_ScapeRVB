@@ -69,15 +69,12 @@ EffectsPluginProcessor::~EffectsPluginProcessor()
 {
     // First explicitly close the front end, so it
     // stops sending messages to the Web Socket
-    editor = nullptr;
-    // Ensure server is properly closed and released
+    editor = nullptr;   
     // Ensure clientInstance is properly released
-
     clientInstance.reset();
-
+    // Ensure server is properly closed and released
     server->close();
-    server.reset();
-
+    // Remove all listeners from params, standard JUCE pattern
     for (auto &p : getParameters())
     {
         p->removeListener(this);
@@ -286,7 +283,7 @@ void EffectsPluginProcessor::requestUserFileSelection(std::promise<elem::js::Obj
                 return;
             }
 
-            if (file.getSize() > juce::int64(10 * 1024 * 1024)) {
+            if (file.getSize() > juce::int64(5 * 1024 * 1024)) {
                  result.insert_or_assign("success", elem::js::Boolean(false));
                 result.insert_or_assign("files", selectedFilesAsValue);
                 result.insert_or_assign("status", 
@@ -705,7 +702,7 @@ void EffectsPluginProcessor::processBlock(juce::AudioBuffer<float> &buffer, juce
     scratchBuffer.makeCopyOf(buffer, true);
 
     // Process the elementary runtime
-    if (elementaryRuntime != nullptr && !runtimeSwapRequired)
+    if (elementaryRuntime != nullptr && !runtimeSwapRequired )
 
     {
         elementaryRuntime->process(const_cast<const float **>(scratchBuffer.getArrayOfWritePointers()),

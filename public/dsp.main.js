@@ -3386,7 +3386,7 @@
   var blockSizes = [512, 4096];
   var Slots = /* @__PURE__ */ new Map([
     ["LIGHT", { pathStem: "LIGHT", slotIndex: 0, att: 1 }],
-    ["SURFACE", { pathStem: "SURFACE", slotIndex: 1, att: 0.9 }],
+    ["SURFACE", { pathStem: "SURFACE", slotIndex: 1, att: 0.96 }],
     ["TEMPLE", { pathStem: "TEMPLE", slotIndex: 2, att: 0.9 }],
     ["DEEPNESS", { pathStem: "DEEPNESS", slotIndex: 3, att: 0.675 }]
   ]);

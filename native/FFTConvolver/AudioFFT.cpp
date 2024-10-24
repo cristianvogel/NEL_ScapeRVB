@@ -157,6 +157,7 @@ namespace audiofft
     virtual void ifft(float* data, const float* re, const float* im) override
     {
       // Convert into the format as required by the Ooura FFT
+        
       {
         double* b = _buffer.data();
         double* bEnd = b + _size;
