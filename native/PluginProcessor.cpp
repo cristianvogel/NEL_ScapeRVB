@@ -225,7 +225,7 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
             std::string name = vfsPathname.toStdString() + '_' + std::to_string(channel);
             if (elementaryRuntime)
                 elementaryRuntime->updateSharedResourceMap(name, buffer.getReadPointer(0), numSamples);
-            slotManager->assignVFSpathToSlot(slotName, name);
+
             // Get the reverse from a little way, so its less draggy
             // so its easy to swap into in realtime
             int shorter = numSamples * 0.75;
@@ -235,7 +235,7 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
             // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
             if (elementaryRuntime)
                 elementaryRuntime->updateSharedResourceMap(reversedName, buffer.getReadPointer(0), shorter);
-            slotManager->assignVFSpathToSlot(slotName, name);
+
             slotManager->assignDefaultFilenameToSlot(slotName);
             // done, next channel
         }
@@ -417,7 +417,7 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
         auto name = prefixUserBank("USER" + std::to_string(getIndexForSlot(targetSlot)) + "_" + std::to_string(channel));
         std::cout << "Runtime is loaded? ptr:" << elementaryRuntime << std::endl;
         elementaryRuntime->updateSharedResourceMap(name, buffer.getReadPointer(0), numSamples);
-        slotManager->assignVFSpathToSlot(targetSlot, name);
+
         // Get the reverse from a little way, so its less draggy
         // so its easy to swap into in realtime
         int shorter = numSamples * 0.75;
@@ -430,7 +430,6 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
             elementaryRuntime->updateSharedResourceMap(reversedName, buffer.getReadPointer(0), shorter);
             inspectVFS();
         }
-        slotManager->assignVFSpathToSlot(targetSlot, reversedName);
         // done, next channel
     }
     // IMPORTANT: delete the reader to avoid memory leaks

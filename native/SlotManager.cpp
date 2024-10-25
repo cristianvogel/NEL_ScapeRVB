@@ -21,14 +21,6 @@ void SlotManager::updateState(const SlotName &slotName, Asset &assetInSlot)
     processor.assetsMap.insert_or_assign(slotName, assetInSlot);
 }
 
-void SlotManager::assignVFSpathToSlot(const SlotName &slotName, const std::string &vfsPath)
-{
-    Asset assetInSlot = getAssetFrom(slotName);
-    elem::js::Object vfsPathEntry;
-    vfsPathEntry.insert_or_assign(vfsPath, elem::js::Value(vfsPath));
-    assetInSlot.vfsPathHistory.push_back(vfsPathEntry);
-    processor.assetsMap.insert_or_assign(slotName, assetInSlot);
-}
 
 void SlotManager::assignPeaksToSlot(const SlotName &slotName, juce::AudioBuffer<float> &buffer, bool defaultSlot)
 {
@@ -129,12 +121,6 @@ void SlotManager::wrapFileNamesForView(elem::js::Object &wrappedFileNames)
         fnames[index] = elem::js::Value(assetInSlot.second.filenameForView.toStdString());
     }
     wrappedFileNames.insert_or_assign(processor.KEY_FOR_FILENAMES, elem::js::Value(fnames));
-}
-
-std::vector<elem::js::Object> SlotManager::getVFSpathHistoryForSlot(const SlotName &slotName)
-{
-    Asset assetInSlot = getAssetFrom(slotName);
-    return assetInSlot.vfsPathHistory;
 }
 
 SlotName SlotManager::findFirstSlotWithoutUserStereoFile() const

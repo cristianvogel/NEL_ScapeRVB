@@ -57,13 +57,6 @@ public:
      * @param pruneVFS Whether to prune the VFS.
      */
     void switchSlotsTo(bool customScape, bool pruneVFS);
-    
-    /**
-     * @brief Assigns a VFS path to a slot.
-     * @param targetSlot The target slot.
-     * @param vfsPath The VFS path to assign.
-     */
-    void assignVFSpathToSlot(const SlotName &targetSlot, const std::string &vfsPath);
 
     /**
      * @brief Assigns peaks data to a slot.
@@ -124,12 +117,6 @@ public:
      */
     void assignDefaultFilenameToSlot(const SlotName &targetSlot);
 
-    /**
-     * @brief Gets the VFS path history for a slot.
-     * @param slotName The slot name.
-     * @return A vector of VFS path history objects.
-     */
-    std::vector<elem::js::Object> getVFSpathHistoryForSlot(const SlotName &slotName);
 
     /**
      * @brief Gets the asset from a slot.
