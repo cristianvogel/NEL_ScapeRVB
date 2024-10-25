@@ -149,12 +149,12 @@ void SlotManager::switchSlotsTo(bool customScape, bool pruneVFS)
         SlotName slot = kv.first;
         Asset assetInSlot = processor.assetsMap.at(slot);
 
-        if (customScape)
-            assign(slot, Asset::Props::filenameForView, assetInSlot.userStereoFile);
-        else
+        if (customScape){
+            assign(slot, Asset::Props::filenameForView, assetInSlot.userStereoFile);     
+         } else {
             assign(slot, Asset::Props::filenameForView, assetInSlot.defaultStereoFile);
+         }
 
-        assetInSlot.userPeaksForView = customScape ? assetInSlot.userPeaksForView : assetInSlot.defaultPeaksForView;
         lastPeaksHash = 0;
         lastStateHash = 0;
         processor.assetsMap.insert_or_assign(slot, assetInSlot);
