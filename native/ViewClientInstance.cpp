@@ -23,7 +23,7 @@ void ViewClientInstance::stop()
 
 void ViewClientInstance::handleWebSocketMessage(std::string_view message)
 {
-    if (!running.load() || processor.isSuspended())
+    if (!running.load() || processor.isSuspended() || processor.editor == nullptr )
         return; // Check running flag before processing
 
     // Convert std::string_view to std::string
@@ -112,7 +112,7 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             } // end resetUserSlots
 
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
-            // ▮▮▮▮▮▮▮ simple parameter update request        ▮▮▮▮▮▮▮ //
+            // ▮▮▮▮▮▮▮ simple parameter update request       ▮▮▮▮▮▮▮ //
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
             if (hpfValue.isNumber() && processor.parameterMap.count(key) > 0)
             {

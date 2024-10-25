@@ -101,7 +101,7 @@ public:
                 return elem::ReturnCode::InvalidPropertyValue();
 
             shouldDuckAudio.store(true);
-            offset = float((elem::js::Number)val);
+            offset = fmin( 0.9, static_cast<float>( (elem::js::Number) val) );
             auto ref = resources.get(path);
             auto co = std::make_shared<fftconvolver::TwoStageFFTConvolver>();
             // 1. Create an instance of juce::AudioBuffer
