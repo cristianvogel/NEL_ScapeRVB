@@ -52,6 +52,13 @@ public:
     void wrapFileNamesForView(elem::js::Object &containerForWrappedFileNames);
 
     /**
+     * @brief Switches slots to a custom scape.
+     * @param customScape Whether to switch to custom scapes or default scapes
+     * @param pruneVFS Whether to prune the VFS.
+     */
+    void switchSlotsTo(bool customScape, bool pruneVFS);
+    
+    /**
      * @brief Assigns a VFS path to a slot.
      * @param targetSlot The target slot.
      * @param vfsPath The VFS path to assign.

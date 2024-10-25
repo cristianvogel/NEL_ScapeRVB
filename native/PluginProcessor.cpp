@@ -408,7 +408,6 @@ std::string EffectsPluginProcessor::prefixUserBank(const std::string &name)
 
 void EffectsPluginProcessor::pruneVFS()
 {
-
     elementaryRuntime->pruneSharedResourceMap();
 }
 /*

@@ -101,15 +101,26 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             } // end requestState
 
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
-            // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ "resetUserSlots" ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
+            // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ "factory" ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
 
-            if (key == "resetUserSlots")
+            if (key == "factory")
             {
-                processor.slotManager->resetUserSlots(false);
+                processor.slotManager->switchSlotsTo(false, false);
                 processor.updateStateWithAssetsData();
                 continue;
-            } // end resetUserSlots
+            } // end switchToDefaultSlots
+
+            // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
+            // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ "custom" ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
+            // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
+
+            if (key == "custom")
+            {
+                processor.slotManager->switchSlotsTo(true, false);
+                processor.updateStateWithAssetsData();
+                continue;
+            } // end switchToUserSlots
 
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
             // ▮▮▮▮▮▮▮ simple parameter update request       ▮▮▮▮▮▮▮ //
@@ -118,6 +129,7 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             {
                 float paramValue = static_cast<elem::js::Number>(hpfValue);
                 float stateValue = static_cast<elem::js::Number>(processor.state[key]);
+                // handle boolean ints here
                 if (key == "srvbBypass" || key == "scapeBypass" || key == "scapeReverse" || key == "scapeMode")
                 {
                     paramValue = juce::roundToInt(paramValue);
@@ -155,7 +167,7 @@ void ViewClientInstance::userFileUploadHandler( const int &hpfValue, int &retFla
 
     auto files = gotFiles["files"].getArray();
     
-    if ( files.size() >= 4) processor.slotManager->resetUserSlots(true);
+    if ( files.size() >= 4) processor.pruneVFS();
 
     if (files.empty())
     {

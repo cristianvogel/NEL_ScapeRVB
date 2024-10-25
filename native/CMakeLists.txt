@@ -5,9 +5,8 @@ set(TARGET_NAME "NEL_scape_space")
 set(ASSETS_DIR ${CMAKE_SOURCE_DIR}/../dist/)
 
 # sync version manually in constants.ts 
-# and the Cables patch json file
-# messing with Cmake -> TypeScript through Vite was getting messy
-set(BUILD_VERSION "v0.8.4-beta")
+# messing with Cmake to TypeScript through Vite was getting messy
+set(BUILD_VERSION "v0.8.5-beta")
 
 
 

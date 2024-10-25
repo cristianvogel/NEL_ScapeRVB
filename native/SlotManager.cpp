@@ -164,21 +164,21 @@ SlotName SlotManager::findFirstSlotWithoutUserStereoFile() const
     return SlotName::LIGHT; // Return the first slot if all are filled or all empty
 }
 
-void SlotManager::resetUserSlots(bool pruneVFS)
+void SlotManager::switchSlotsTo( bool customScape, bool pruneVFS)
 {
-    // not resetting history
-
     for (const auto &kv : processor.assetsMap)
     {
         SlotName slot = kv.first;
         Asset assetInSlot = processor.assetsMap.at(slot);
 
-        // assetInSlot.userStereoFile = juce::File();
-        assetInSlot.filenameForView = assetInSlot.;
-        if (!pruneVFS)
-        {
-            assetInSlot.userPeaksForView = assetInSlot.defaultPeaksForView;
-        }
+        assetInSlot.userFilenameForView =  customScape ? 
+            assetInSlot.userStereoFile.getFileNameWithoutExtension() :  
+            assetInSlot.defaultFilenameForView;
+
+        assetInSlot.userPeaksForView = customScape ?
+            assetInSlot.userPeaksForView :
+            assetInSlot.defaultPeaksForView;
+
         processor.assetsMap.insert_or_assign(slot, assetInSlot);
     }
 
@@ -188,3 +188,4 @@ void SlotManager::resetUserSlots(bool pruneVFS)
         processor.userBankManager.resetUserBank();
     }
 }
+
