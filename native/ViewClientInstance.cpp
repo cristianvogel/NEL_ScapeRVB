@@ -108,6 +108,7 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             {
                 processor.slotManager->switchSlotsTo(false, false);
                 processor.updateStateWithAssetsData();
+                std::cout << "switching to factory slots" << std::endl;
                 continue;
             } // end switchToDefaultSlots
 
