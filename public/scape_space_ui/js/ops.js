@@ -24820,6 +24820,86 @@ CABLES.OPS["e5b0b016-9663-4c9d-9365-f54ae3c5fbb6"]={f:Ops.Anim.AnimNumber,objNam
 
 
 
+
+// **************************************************************
+// 
+// Ops.String.Lowercase_v2
+// 
+// **************************************************************
+
+Ops.String.Lowercase_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inStr = op.inString("String"),
+    outStr = op.outString("Result", "");
+
+inStr.onChange = function ()
+{
+    if (inStr.get() == 0)outStr.set("");
+    else outStr.set((inStr.get() || "").toLowerCase());
+};
+
+
+};
+
+Ops.String.Lowercase_v2.prototype = new CABLES.Op();
+CABLES.OPS["bff9c3d9-e63a-46d2-a59f-932c715aceab"]={f:Ops.String.Lowercase_v2,objName:"Ops.String.Lowercase_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Trigger.DelayedTrigger
+// 
+// **************************************************************
+
+Ops.Trigger.DelayedTrigger = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    exe = op.inTrigger("exe"),
+    delay = op.inValueFloat("delay", 1),
+    cancel = op.inTriggerButton("Cancel"),
+    next = op.outTrigger("next"),
+    outDelaying = op.outBool("Delaying");
+
+let lastTimeout = null;
+
+cancel.onTriggered = function ()
+{
+    if (lastTimeout)clearTimeout(lastTimeout);
+    lastTimeout = null;
+};
+
+exe.onTriggered = function ()
+{
+    outDelaying.set(true);
+    if (lastTimeout)clearTimeout(lastTimeout);
+
+    lastTimeout = setTimeout(
+        function ()
+        {
+            outDelaying.set(false);
+            lastTimeout = null;
+            next.trigger();
+        },
+        delay.get() * 1000);
+};
+
+
+};
+
+Ops.Trigger.DelayedTrigger.prototype = new CABLES.Op();
+CABLES.OPS["f4ff66b0-8500-46f7-9117-832aea0c2750"]={f:Ops.Trigger.DelayedTrigger,objName:"Ops.Trigger.DelayedTrigger"};
+
+
+
 window.addEventListener('load', function(event) {
 CABLES.jsLoaded=new Event('CABLES.jsLoaded');
 document.dispatchEvent(CABLES.jsLoaded);
