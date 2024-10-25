@@ -154,6 +154,8 @@ void ViewClientInstance::userFileUploadHandler( const int &hpfValue, int &retFla
     }
 
     auto files = gotFiles["files"].getArray();
+    
+    if ( files.size() >= 4) processor.slotManager->resetUserSlots(true);
 
     if (files.empty())
     {
@@ -185,7 +187,6 @@ void ViewClientInstance::userFileUploadHandler( const int &hpfValue, int &retFla
             if (processor.slotManager->getIndexForSlot(targetSlot) == 3)
             {
                 processor.userBankManager.incrementUserBank();
-                processor.slotManager->resetUserSlots(true);
             }
             targetSlot = nextSlot(targetSlot);
         }

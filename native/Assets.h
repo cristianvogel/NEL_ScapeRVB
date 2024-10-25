@@ -10,6 +10,17 @@
 class Asset
 {
 public:
+    enum class Props {
+        userStereoFile,
+        defaultStereoFile,
+        userPathNameHistory,
+        userFilenameForView,
+        vfsPathHistory,
+        userPeaksForView,
+        defaultPeaksForView,
+        defaultFilenameForView
+    };
+
     // PLUG-IN STATE  
     // audio asset containers, hold juce::File objects
     juce::File userStereoFile{};
@@ -20,7 +31,8 @@ public:
     std::vector<float> userPeaksForView{};
     std::vector<float> defaultPeaksForView{};
 
-    juce::String filenameForView{};
+    juce::String userFilenameForView{};
+    juce::String defaultFilenameForView{};
 
     // RUNTIME HISTORY
     // Keys for Elementary VFS Map. eg:
@@ -50,7 +62,8 @@ public:
         obj["userStereoFile"] = elem::js::Value(userStereoFile.getFullPathName().toStdString());
         obj["defaultStereoFile"] = elem::js::Value(defaultStereoFile.getFullPathName().toStdString());
         obj["userPathNameHistory"] = elem::js::Value(userPathNameHistory);
-        obj["filenameForView"] = elem::js::Value(filenameForView.toStdString());
+        obj["userFilenameForView"] = elem::js::Value(userFilenameForView.toStdString());
+        obj["defaultFilenameForView"] = elem::js::Value(defaultFilenameForView.toStdString());
         obj["vfsPathHistory"] = elem::js::Value( vfsPaths );
         obj["peakDataForView"] = elem::js::Value(userPeaksForView);
         obj["defaultPeaksForView"] = elem::js::Value(defaultPeaksForView);
@@ -70,8 +83,8 @@ public:
                 asset.userStereoFile = juce::File(obj.at("userStereoFile").toString());
             }
 
-            if (obj.count("filenameForView") > 0 && obj.at("filenameForView").isString()) {
-                asset.filenameForView = juce::String(obj.at("filenameForView").toString());
+            if (obj.count("userFilenameForView") > 0 && obj.at("userFilenameForView").isString()) {
+                asset.userFilenameForView = juce::String(obj.at("userFilenameForView").toString());
             }
         }
 

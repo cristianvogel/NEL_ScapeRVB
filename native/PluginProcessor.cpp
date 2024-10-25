@@ -69,7 +69,7 @@ EffectsPluginProcessor::~EffectsPluginProcessor()
 {
     // First explicitly close the front end, so it
     // stops sending messages to the Web Socket
-    editor = nullptr;   
+    editor = nullptr;
     // Ensure clientInstance is properly released
     clientInstance.reset();
     // Ensure server is properly closed and released
@@ -187,7 +187,7 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
         const auto reader = formatManager.createReaderFor(file);
         if (reader == nullptr)
         {
-            dispatchError("File Error:", "Could not load the default audio assets.");
+            dispatchError("Plugin Error:", "Please contact support");
             delete reader;
             return false;
         }
@@ -236,6 +236,7 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
             if (elementaryRuntime)
                 elementaryRuntime->updateSharedResourceMap(reversedName, buffer.getReadPointer(0), shorter);
             slotManager->assignVFSpathToSlot(slotName, name);
+            slotManager->assignDefaultFilenameToSlot(slotName);
             // done, next channel
         }
         // done next asset
@@ -352,8 +353,8 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
         buffer.applyGainRamp(0, numSamples, 0.65, 1);
         // normalise the impulse response
         util::normaliseAudioBuffer(buffer, 0.8414); // -1.5 db
-                                                    // add the gain ramped impulse response to the virtual
-                                                    // file system
+        // add the gain ramped impulse response to the virtual
+        // file system
 
         // stash one channel of the normalised buffer data for Peaks in the VIEW
         if (channel == 0)
@@ -374,7 +375,7 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
 
         // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
         auto name = prefixUserBank("USER" + std::to_string(getIndexForSlot(targetSlot)) + "_" + std::to_string(channel));
-        std::cout << "Runtime is loaded?" << elementaryRuntime << std::endl;
+        std::cout << "Runtime is loaded? ptr:" << elementaryRuntime << std::endl;
         elementaryRuntime->updateSharedResourceMap(name, buffer.getReadPointer(0), numSamples);
         slotManager->assignVFSpathToSlot(targetSlot, name);
         // Get the reverse from a little way, so its less draggy
@@ -385,7 +386,11 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
         std::string reversedName = REVERSE_BUFFER_PREFIX + name;
         // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
         if (elementaryRuntime)
+        {
+
             elementaryRuntime->updateSharedResourceMap(reversedName, buffer.getReadPointer(0), shorter);
+            inspectVFS();
+        }
         slotManager->assignVFSpathToSlot(targetSlot, reversedName);
         // done, next channel
     }
@@ -413,9 +418,17 @@ void EffectsPluginProcessor::pruneVFS()
  */
 void EffectsPluginProcessor::inspectVFS()
 {
+
     if (elementaryRuntime == nullptr)
         return;
     auto vfs = elementaryRuntime->getSharedResourceMapKeys();
+    // debug
+    std::cout << "VFS Keys: ";
+    for (const auto &key : vfs)
+    {
+        std::cout << key << " ";
+    }
+    std::cout << std::endl;
     // iterate vfs into valid JSON
     std::string vfsString = "[";
     for (auto &key : vfs)
@@ -702,7 +715,7 @@ void EffectsPluginProcessor::processBlock(juce::AudioBuffer<float> &buffer, juce
     scratchBuffer.makeCopyOf(buffer, true);
 
     // Process the elementary runtime
-    if (elementaryRuntime != nullptr && !runtimeSwapRequired )
+    if (elementaryRuntime != nullptr && !runtimeSwapRequired)
 
     {
         elementaryRuntime->process(const_cast<const float **>(scratchBuffer.getArrayOfWritePointers()),
