@@ -12,7 +12,10 @@ import {
 
 export declare var globalThis: any;
 declare var CABLES: any;
-let gestureSource: typeof GestureSource_SCAPE | typeof GestureSource_SRVB | typeof GestureSource_REVERSE | typeof GestureSource_IRMode;
+let gestureSource: typeof GestureSource_SCAPE | 
+typeof GestureSource_SRVB | 
+typeof GestureSource_REVERSE | 
+typeof GestureSource_IRMode;
 
 
 // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ WebSocket Server Setup ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
@@ -24,7 +27,7 @@ function initializeWebSocketConnection(port: number) {
   } catch (e) {
     console.error("Error connecting to WS: ", e);
   }
- ConsoleText.extend("UI connected on port " + port);
+ //ConsoleText.extend("UI connected on port " + port);
 
  WebSocketPort.set(  port as number );
 }

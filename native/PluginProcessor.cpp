@@ -468,14 +468,17 @@ void EffectsPluginProcessor::inspectVFS()
     {
         const SlotName &slotName = kv.first;
         const Asset &asset = kv.second;
-        std::cout << "Slot: " << toString(slotName) 
+        std::cout << "Slot: ━━━━ " << toString(slotName) << " ━━━━ "
         << " defaultStereoFile: " << asset.defaultStereoFile.getFileName() 
-        << " , " 
+        << std::endl
         << " userStereoFile: " << asset.userStereoFile.getFileName()
-        << " , "
+        << std::endl
         << " filenameForView: " << asset.filenameForView.toStdString()
-        << " , "
+        << std::endl
         << " peaksForView: " << asset.userPeaksForView.size()
+        << std::endl
+        << " default: " << asset.defaultPeaksForView.size()
+        << " user: " << asset.userPeaksForView.size()
         << std::endl;
     }
 
@@ -1165,7 +1168,10 @@ void EffectsPluginProcessor::processPersistedAssetState(const elem::js::Object &
 
         if (asset.userStereoFile.existsAsFile())
         {
-            std::cout << "Restoring ▶︎ Slot: " << toString(targetSlot) << ", File: " << asset.userStereoFile.getFileName().toStdString() << std::endl;
+            std::cout << "Restoring ▶︎ Slot: " << toString(targetSlot) 
+            << ", File: " 
+            << asset.userStereoFile.getFileName().toStdString() 
+            << std::endl;
             file = juce::File{asset.userStereoFile};
         }
 

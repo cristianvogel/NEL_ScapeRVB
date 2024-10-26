@@ -18,7 +18,8 @@
     #define ELEM_DBG(x)
   #else
     #include <iostream>
-    // #define ELEM_DBG(x) std::cout << "[Debug]" << x << std::endl;
+     #define ELEM_DBG(x) 
+     // #define ELEM_DBG(x) std::cout << "[Debug]" << x << std::endl;
     #define ELEM_DBG(x) 
   #endif
 #endif

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(NEL_scape|space VERSION 1.01)
+project(NEL_scape_space VERSION 1.01)
 
 set(TARGET_NAME "NEL_scape_space")
 set(ASSETS_DIR ${CMAKE_SOURCE_DIR}/../dist/)
@@ -8,8 +8,6 @@ set(ASSETS_DIR ${CMAKE_SOURCE_DIR}/../dist/)
 # messing with Cmake to TypeScript through Vite was getting messy
 set(BUILD_VERSION "v0.8.5-beta")
 
-
-
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
 option(JUCE_BUILD_EXAMPLES "Build JUCE Examples" OFF)
@@ -17,10 +15,7 @@ option(JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED "Use Global Module Settings" ON)
 option(JUCE_ENABLE_MODULE_SOURCE_GROUPS "Enable Module Source Groups" ON)
 option(JUCE_BUILD_EXTRAS "Build JUCE Extras" OFF)
 option(ELEM_DEV_LOCALHOST "Run against localhost for static assets" OFF)
-
-
 option(FFTCONVOLVER_USE_SSE "Enable SSE optimizations" ON)   # watch this i have no idea what it does
-
 
 add_subdirectory(juce) # using the static non-submodule version
 add_subdirectory(elementary/runtime) # using the static non-submodule version
@@ -32,7 +27,12 @@ if(CCACHE_PROGRAM)
     set(CMAKE_CXX_COMPILER_LAUNCHER ${CCACHE_PROGRAM})
 endif()
 
-
+# Set build type
+set(CMAKE_BUILD_TYPE Debug) # Options: Debug, Release, RelWithDebInfo, MinSizeRel
+if(CMAKE_BUILD_TYPE STREQUAL "Release")
+    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -s")
+    set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -s")
+endif()
 
 if(WIN32)
   set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>") # Martin's famous fix ... JUCE and plugins need this

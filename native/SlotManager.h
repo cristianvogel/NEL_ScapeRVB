@@ -73,6 +73,13 @@ public:
      */
     void assignFileAssetToSlot(const SlotName &targetSlot, const juce::File &file);
 
+
+    /**
+     * @brief Assigns a default filename to a slot.
+     * @param targetSlot The target slot.
+     */
+    void assignDefaultFilenameToSlot(const SlotName &targetSlot);
+
     /**
      * @brief Assigns a filename to a slot.
      * @param targetSlot The target slot.
@@ -81,22 +88,15 @@ public:
     void assignFilenameToSlot(const SlotName &targetSlot, const juce::File &file);
 
     /**
-     * @brief Assigns a property to a slot.
+     * @brief Assigns a juce::File property to a slot.
      * @param slotName The slot name.
      * @param property The property to assign.
-     * @param file The file associated with the property.
+     * @param file The data associated with the property.
      */
     void assign(const SlotName &slotName, const Asset::Props property, const juce::File &file);
 
     /**
-     * @brief Updates the asset entry at the current slot in the Processor assetMap 
-     * @param slotName The slot name.
-     * @param assetInSlot The asset in the slot.
-     */
-    void updateState(const SlotName &slotName, Asset &assetInSlot);
-
-    /**
-     * @brief Assigns a property to a slot.
+     * @brief Assigns an std::string property to a slot.
      * @param slotName The slot name.
      * @param property The property to assign.
      * @param value The string value associated with the property.
@@ -104,7 +104,7 @@ public:
     void assign(const SlotName &slotName, const Asset::Props property, const std::string &value);
 
     /**
-     * @brief Assigns a property to a slot.
+     * @brief Assigns a juce::AudioBuffer property to a slot.
      * @param slotName The slot name.
      * @param property The property to assign.
      * @param buffer The audio buffer associated with the property.
@@ -112,11 +112,20 @@ public:
     void assign(const SlotName &slotName, const Asset::Props property, const juce::AudioBuffer<float> &buffer);
 
     /**
-     * @brief Assigns a default filename to a slot.
-     * @param targetSlot The target slot.
+     * @brief Assigns a std::vector<float> property to a slot.
+     * @param slotName The slot name.
+     * @param property The property to assign.
+     * @param peaks The peaks data associated with the property.
      */
-    void assignDefaultFilenameToSlot(const SlotName &targetSlot);
+    void assign(const SlotName &slotName, const Asset::Props property, const std::vector<float> &peaks);
 
+
+    /**
+     * @brief Updates the asset entry at the current slot in the Processor assetMap 
+     * @param slotName The slot name.
+     * @param assetInSlot The asset in the slot.
+     */
+    void updateState(const SlotName &slotName, Asset &assetInSlot);
 
     /**
      * @brief Gets the asset from a slot.
@@ -149,6 +158,7 @@ private:
     EffectsPluginProcessor &processor; ///< Reference to the EffectsPluginProcessor.
     std::size_t lastStateHash = 0; ///< Last state hash.
     int lastPeaksHash = 0; ///< Last peaks hash.
+    bool peaksDirty = false; ///< Whether the peaks are dirty.
 };
 
 #endif // SLOTMANAGER_H

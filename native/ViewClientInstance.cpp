@@ -70,32 +70,28 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                 if (!processor.editor)
                     return;
 
-                elem::js::Object wrappedState;
-                elem::js::Object wrappedPeaks;
-                elem::js::Object wrappedFileNames;
-
-                processor.slotManager->wrapStateForView(wrappedState);
-                juce::String serializedState = elem::js::serialize(wrappedState);
+                elem::js::Object stateContainer;
+                elem::js::Object peaksContainer;
                 // ============ perfomance optimization ========================
                 // hash the serialized state and peaks, send only if changed
-                // use filename change as hash not peaks, cos its less data to work with
-                processor.slotManager->wrapFileNamesForView(wrappedFileNames);
-                juce::String serializedFilenames = elem::js::serialize(wrappedFileNames);
 
+                processor.slotManager->wrapStateForView(stateContainer);
+                juce::String serializedState = elem::js::serialize(stateContainer);
                 int currentStateHash = serializedState.hashCode();
-                int currentPeaksHash = serializedFilenames.hashCode();
+
 
                 if (currentStateHash != processor.slotManager->lastStateHash)
                 {
                     sendWebSocketMessage(serializedState.toStdString());
                     processor.slotManager->lastStateHash = currentStateHash;
                 }
-                if (currentPeaksHash != processor.slotManager->lastPeaksHash)
+                if (processor.slotManager->peaksDirty )
                 {
-                    processor.slotManager->wrapPeaksForView(wrappedPeaks);
-                    juce::String serializedPeaks = elem::js::serialize(wrappedPeaks);
+                    std::cout << "wrapping and sending peaks to View.." << std::endl;
+                    processor.slotManager->wrapPeaksForView(peaksContainer);
+                    juce::String serializedPeaks = elem::js::serialize(peaksContainer);
                     sendWebSocketMessage(serializedPeaks.toStdString());
-                    processor.slotManager->lastPeaksHash = currentPeaksHash;
+                    processor.slotManager->peaksDirty = false;
                 }
                 continue;
             } // end requestState
@@ -120,6 +116,7 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             {
                 processor.slotManager->switchSlotsTo(true, false);
                 processor.updateStateWithAssetsData();
+                std::cout << "switching to custom slots" << std::endl;
                 continue;
             } // end switchToUserSlots
 

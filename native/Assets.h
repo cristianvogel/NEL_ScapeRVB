@@ -16,6 +16,7 @@ public:
         filenameForView,
         userPeaksForView,
         defaultPeaksForView,
+        currentPeakDataInView,
         defaultFilenameForView
     };
 
@@ -28,6 +29,7 @@ public:
     // peak data for the view
     std::vector<float> userPeaksForView{};
     std::vector<float> defaultPeaksForView{};
+    std::vector<float> currentPeakDataInView{};
 
     juce::String filenameForView{};
     juce::String defaultFilenameForView{};
@@ -73,12 +75,17 @@ public:
 
     //Method for property assignment of std::vector<float> types
     void setProperty(Props property, const std::vector<float> &peaks) {
+
         switch (property) {
             case Props::userPeaksForView:
+                    std::cout<<"Set current view peaks"<<std::endl;
                 userPeaksForView = peaks;
                 break;
             case Props::defaultPeaksForView:
                 defaultPeaksForView = peaks;
+                break;
+            case Props::currentPeakDataInView:
+                currentPeakDataInView = peaks;
                 break;
             default:
                 break;
@@ -87,7 +94,6 @@ public:
 
     // Convert Asset to elem::js::Value
     elem::js::Value toJsValue() const {
-
         elem::js::Object obj;
         obj["userStereoFile"] = elem::js::Value(userStereoFile.getFullPathName().toStdString());
         obj["defaultStereoFile"] = elem::js::Value(defaultStereoFile.getFullPathName().toStdString());
@@ -95,7 +101,7 @@ public:
         obj["defaultFilenameForView"] = elem::js::Value(defaultFilenameForView.toStdString());
         obj["userPeaksForView"] = elem::js::Value(userPeaksForView);
         obj["defaultPeaksForView"] = elem::js::Value(defaultPeaksForView);
-        // Add other fields as needed
+        // don't think we need to save currentPeakDataInView, as its derived from the other peaks
         return elem::js::Value(obj);
     }
 

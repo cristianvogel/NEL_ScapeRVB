@@ -21,7 +21,6 @@ void SlotManager::updateState(const SlotName &slotName, Asset &assetInSlot)
     processor.assetsMap.insert_or_assign(slotName, assetInSlot);
 }
 
-
 void SlotManager::assignPeaksToSlot(const SlotName &slotName, juce::AudioBuffer<float> &buffer, bool defaultSlot)
 {
     if (defaultSlot)
@@ -32,6 +31,7 @@ void SlotManager::assignPeaksToSlot(const SlotName &slotName, juce::AudioBuffer<
     {
         assign(slotName, Asset::Props::userPeaksForView, buffer);
     }
+    peaksDirty = true;
 }
 
 void SlotManager::assignFileAssetToSlot(const SlotName &slotName, const juce::File &file)
@@ -66,28 +66,56 @@ void SlotManager::assign(const SlotName &slotName, Asset::Props property, const 
 void SlotManager::assign(const SlotName &slotName, Asset::Props property, const juce::AudioBuffer<float> &buffer)
 {
     Asset assetInSlot = getAssetFrom(slotName);
-    assetInSlot.setProperty(property, processor.getReducedAudioBuffer(buffer));
+
+    if (property == Asset::Props::userPeaksForView)
+    {
+        assetInSlot.setProperty(Asset::Props::userPeaksForView, processor.getReducedAudioBuffer(buffer));
+    }
+    else
+    {
+        assetInSlot.setProperty(Asset::Props::defaultPeaksForView, processor.getReducedAudioBuffer(buffer));
+    }
+    peaksDirty = true;
     updateState(slotName, assetInSlot);
 }
 
-void SlotManager::wrapPeaksForView(elem::js::Object &wrappedPeaks)
+void SlotManager::assign(const SlotName &slotName, Asset::Props property, const std::vector<float> &peaks)
+{
+    Asset assetInSlot = getAssetFrom(slotName);
+    assetInSlot.setProperty(Asset::Props::currentPeakDataInView, peaks);
+    peaksDirty = true;
+    updateState(slotName, assetInSlot);
+}
+
+void SlotManager::wrapPeaksForView(elem::js::Object &peaksContainer)
 {
     elem::js::Array peaks;
     if (peaks.size() != 4)
         peaks.resize(4);
 
     for (const auto &assetInSlot : processor.assetsMap)
-    {
-        auto peakData = assetInSlot.second.userPeaksForView;
+    {   
         SlotName slot = assetInSlot.first;
-        int index = getIndexForSlot(slot);
-        if (peakData.size() == 0)
+        const auto user = assetInSlot.second.userPeaksForView;
+        const auto factory = assetInSlot.second.defaultPeaksForView;
+
+        if (elem::js::Number(processor.state.at("scapeMode")) == 1 )
         {
-            peakData = assetInSlot.second.defaultPeaksForView;
+            assign(assetInSlot.first, Asset::Props::currentPeakDataInView, user);
         }
-        peaks[index] = elem::js::Value(peakData);
+        else
+        {
+            assign(assetInSlot.first, Asset::Props::currentPeakDataInView, factory);
+        }
+
+        auto current = assetInSlot.second.currentPeakDataInView;
+
+        std::cout << "wrapping peaks for view from " << current.size() << std::endl;
+
+        int index = getIndexForSlot(slot);
+        peaks[index] = elem::js::Value(current);
     }
-    wrappedPeaks.insert_or_assign(processor.WS_RESPONSE_KEY_FOR_PEAKS, elem::js::Value(peaks));
+    peaksContainer.insert_or_assign(processor.WS_RESPONSE_KEY_FOR_PEAKS, elem::js::Value(peaks));
 }
 
 void SlotManager::wrapStateForView(elem::js::Object &wrappedState)
@@ -149,22 +177,27 @@ void SlotManager::switchSlotsTo(bool customScape, bool pruneVFS)
         SlotName slot = kv.first;
         Asset assetInSlot = processor.assetsMap.at(slot);
 
-        if (customScape){
-            assign(slot, Asset::Props::filenameForView, assetInSlot.userStereoFile);     
-         } else {
+        if (customScape)
+        {
+            assign(slot, Asset::Props::filenameForView, assetInSlot.userStereoFile);
+            assign(slot, Asset::Props::currentPeakDataInView, assetInSlot.userPeaksForView);
+        }
+        else
+        {
             assign(slot, Asset::Props::filenameForView, assetInSlot.defaultStereoFile);
-         }
+            assign(slot, Asset::Props::currentPeakDataInView, assetInSlot.defaultPeaksForView);
+        }
 
-        lastPeaksHash = 0;
-        lastStateHash = 0;
+        lastPeaksHash = -1;
+        lastStateHash = -1;
         processor.assetsMap.insert_or_assign(slot, assetInSlot);
     }
 
     if (pruneVFS)
     {
         processor.pruneVFS();
-        lastPeaksHash = 0;
-        lastStateHash = 0;
+        lastPeaksHash = -1;
+        lastStateHash = -1;
         processor.userBankManager.resetUserBank();
     }
 }
