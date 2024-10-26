@@ -16,17 +16,14 @@ import {
   ScapeSettings,
   SRVBProps,
   StructureData,
-  VFSPathStem,
-  UserVFSStem,
   SrvbSettings,
   SharedSettings,
 } from "../src/types";
-import { DEFAULT_IR_SLOTNAMES } from "../src/stores/constants";
 import { castSequencesToRefs, buildStructures, updateStructureConstants } from "./OEIS-Structures";
 import { parseAndUpdateIRRefs } from "./parseAndUpdateIRRefs";
 import { remapPosition } from "../src/utils/utils";
 
-
+let currentVFSKeys: Array<string> = [];
 
 // First, we initialize a custom Renderer instance that marshals our instruction
 // batches through the __postNativeMessage__ function to direct the underlying native
@@ -40,7 +37,9 @@ let core = new Renderer((batch) => {
 // Next, a RefMap for coordinating our refs
 export let refs: RefMap = new RefMap(core);
 
-// Register our custom nodes
+// Register our custom Convolver node with Elementary runtime.
+// TS will show it is not being used, but it is being used in the SCAPE
+// so DO NOT DELETE THIS
 let convolver = (_props, ...childs) => createNode("convolver", _props, childs);
 
 // Set up the default IRs
@@ -56,7 +55,7 @@ export const Slots: Map<SlotName, SlotData> = new Map([
 ]);
 
 // gets populated when the user loads IRs 
-export const User_IR_Map: Map<SlotName, SlotData> = new Map();
+// export const User_IR_Map: Map<SlotName, SlotData> = new Map();
 
 // Utilise a factory pattern to generate the ref updaters
 // for the Elem ref engine
@@ -265,7 +264,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
       refs.update("scapePosition", { value: scape.position });
       refs.update("scapeMode", { value: scape.mode });
       // update the convolvers, switch to user IRs if they exist
-      parseAndUpdateIRRefs(scape, shared);
+      parseAndUpdateIRRefs(currentVFSKeys, scape, shared);
     }
 
     refs.update("dryMix", { value: shared.dryMix });
@@ -319,37 +318,20 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
       mode: (Math.round(state.scapeMode) || 0) as 1 | 0,
       offset: state.scapeOffset || 0,
       userBank: state.userBank,
-      position: state.position
+      position: state.position,
+      hasUserSlots: currentVFSKeys.find((key) => key.includes( "USERBANK")) ? true : false,
     };
     return { state, srvb, shared, scape };
   }
 
 }; // end of receiveStateChange
 
-////////// Handle New IRs from the VFS /////////////////////////////////
+////////// Handle updated VFS /////////////////////////////////
 globalThis.__receiveVFSKeys__ = function (vfsCurrent: string) {
-  const vfsKeysArray = JSON.parse(vfsCurrent);
-  const userVFSKeys: Array<VFSPathStem> = vfsKeysArray.filter((key) => key.includes("USER") && !key.includes("REVERSE"));
-  // go through user IRs .... if USER0 , update the pathStem of LIGHT to USER0 and so on
-  // we will just use the first 4 user IRs and assign the paths of the Default slotnames 
-  // in the Elem refmap
-
-  const userVFSKeysCount = userVFSKeys.length;
-
-  if (userVFSKeysCount > 0) {
-    for (let i = 0; i < userVFSKeysCount; i++) {
-      const slotIndex: number = (Math.floor(i / 2));
-      // Why? Because there are 2 stereo files per slot ( 0 and 1 each has forwards on left and reverse on right )
-      // So the schema is as below,  the stem and slot, then stem and slot + channel eg: USER0_0, USER0_1, USER1_0, USER1_1 etc
-      // the reverse keys are referenced inline by the convolution node updaters
-      const userPathStem: VFSPathStem = `USER${slotIndex % 4}` as UserVFSStem;
-      // therefore User_IR_Map the map should contain the pathStem and the index of the slot only
-      // USER0, USER1, USER2, USER3
-      User_IR_Map.set(DEFAULT_IR_SLOTNAMES[slotIndex % 4], { pathStem: userPathStem, slotIndex: slotIndex % 4, att: 0.95 });
-    }
+  const parsedArray: Array<string> = JSON.parse(vfsCurrent);
+  if (parsedArray.length > 0) {
+    currentVFSKeys = parsedArray;
   }
-
-  console.log('VFS->', vfsKeysArray);
 }
 
 

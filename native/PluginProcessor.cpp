@@ -192,16 +192,6 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
             return false;
         }
 
-        // As the source files are strictly stereo and the VFS is strictly
-        // one channel buffers, we aim to create a VFS entry for eeach
-        // state using the following naming convention:
-        // ▮▮▮elem▮▮▮▮▮▮runtime▮▮▮▮▮▮▮▮▮elem▮▮▮▮▮▮runtime▮▮▮▮▮▮
-        // GENERATED VFS ASSETS FROM EACH STEREO INPUT FILE
-        // USER0_0 :            the forward playing left channel of the stereo file
-        // USER0_1 :            the forward playing right channel of the stereo file
-        // REVERSED_USER0_0 :   the reverse playing left channel of the stereo file
-        // REVERSED_USER0_1 :   the reverse playing right channel of the stereo file
-        // ▮▮▮elem▮▮▮▮▮▮runtime▮▮▮▮▮▮▮▮▮elem▮▮▮▮▮▮runtime▮▮▮▮▮▮
         for (int channel = 0; channel < 2; ++channel)
         {
             auto buffer = juce::AudioBuffer<float>();
@@ -374,10 +364,10 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
     // state using the following naming convention:
     // ▮▮▮elem▮▮▮▮▮▮runtime▮▮▮▮▮▮▮▮▮elem▮▮▮▮▮▮runtime▮▮▮▮▮▮
     // GENERATED VFS ASSETS FROM EACH STEREO INPUT FILE
-    // USER0_0 :            the forward playing left channel of the stereo file
-    // USER0_1 :            the forward playing right channel of the stereo file
-    // REVERSED_USER0_0 :   the reverse playing left channel of the stereo file
-    // REVERSED_USER0_1 :   the reverse playing right channel of the stereo file
+    // USERBANK_{userBank}_{slotName}_0 :            the forward playing left channel of the stereo file
+    // USERBANK_{userBank}_{slotName}_1 :            the forward playing right channel of the stereo file
+    // REVERSED_USERBANK_{userBank}_{slotName}_0:   the reverse playing left channel of the stereo file
+    // REVERSED_USERBANK_{userBank}_{slotName}_1 :   the reverse playing right channel of the stereo file
 
     // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
     // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ DSP ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
@@ -414,8 +404,8 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
         stateVariableFilter.process(context);
 
         // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
-        auto name = prefixUserBank("USER" + std::to_string(getIndexForSlot(targetSlot)) + "_" + std::to_string(channel));
-        std::cout << "Runtime is loaded? ptr:" << elementaryRuntime << std::endl;
+        auto name = prefixUserBank( toString(targetSlot) + "_" + std::to_string(channel));
+
         elementaryRuntime->updateSharedResourceMap(name, buffer.getReadPointer(0), numSamples);
 
         // Get the reverse from a little way, so its less draggy
@@ -460,25 +450,34 @@ void EffectsPluginProcessor::inspectVFS()
         return;
     auto vfs = elementaryRuntime->getSharedResourceMapKeys();
 
-    // debug only
-    // std::cout << "VFS Keys: "; for (const auto &key : vfs) { std::cout << key << " ";}std::cout << std::endl;
-
     // log assets map
     for (const auto &kv : assetsMap)
     {
         const SlotName &slotName = kv.first;
         const Asset &asset = kv.second;
+        
+        std::vector<std::string> activeVFSPaths;
+        for (const auto &key : vfs)
+        {
+            if (key.find(toString(slotName)) != std::string::npos)
+            {
+                activeVFSPaths.push_back(key);
+            }
+        }
+
         std::cout << "Slot: ━━━━ " << toString(slotName) << " ━━━━ "
         << " defaultStereoFile: " << asset.defaultStereoFile.getFileName() 
         << std::endl
         << " userStereoFile: " << asset.userStereoFile.getFileName()
         << std::endl
-        << " filenameForView: " << asset.filenameForView.toStdString()
+        << " activeResourcePaths: " << elem::js::serialize( activeVFSPaths )
         << std::endl
-        << " peaksForView: " << asset.userPeaksForView.size()
+        << " filenameForView: " << asset.filenameForView
         << std::endl
-        << " default: " << asset.defaultPeaksForView.size()
-        << " user: " << asset.userPeaksForView.size()
+        << " currentPeaks checksum: " << asset.userPeaksForView.size()
+        << std::endl
+        << " ∑ default: " << asset.defaultPeaksForView.size()
+        << " ∑ user: " << asset.userPeaksForView.size()
         << std::endl;
     }
 

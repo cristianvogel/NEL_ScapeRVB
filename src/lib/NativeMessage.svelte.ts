@@ -5,7 +5,6 @@ import {
   GestureSource_REVERSE,
   HostState,
   WebSocketPort,
-  VFSKeys,
   GestureSource_IRMode
 } from "../stores/stores.svelte";
 
@@ -155,13 +154,6 @@ export function RegisterMessagesFromHost() {
     initializeWebSocketConnection( parseInt(port) );
   };
 
-  /**
-   * Handles a view of the current VFS keys
-   * @param vfsKeys - The VFS keys
-   */
-  globalThis.__receiveVFSKeys__ = function (vfsKeys: string) {
-    VFSKeys.update( JSON.parse(vfsKeys) );
-  }
 
   /** ━━━━━━━
    * Handles the unlock status received from the host.

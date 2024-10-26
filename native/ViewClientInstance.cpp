@@ -73,12 +73,11 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                 elem::js::Object stateContainer;
                 elem::js::Object peaksContainer;
                 // ============ perfomance optimization ========================
-                // hash the serialized state and peaks, send only if changed
+                // hash the serialized state, send only if changed
 
                 processor.slotManager->wrapStateForView(stateContainer);
                 juce::String serializedState = elem::js::serialize(stateContainer);
                 int currentStateHash = serializedState.hashCode();
-
 
                 if (currentStateHash != processor.slotManager->lastStateHash)
                 {
@@ -194,10 +193,9 @@ void ViewClientInstance::userFileUploadHandler( const int &hpfValue, int &retFla
             // last slot of the bank
             // so step to the next bank
             // for the VFS path history registry
-            if (processor.slotManager->getIndexForSlot(targetSlot) == 3)
-            {
+           
                 processor.userBankManager.incrementUserBank();
-            }
+            
             targetSlot = nextSlot(targetSlot);
         }
     }

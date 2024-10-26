@@ -3307,43 +3307,35 @@
   );
 
   // dsp/parseAndUpdateIRRefs.ts
-  function parseAndUpdateIRRefs(scape, shared) {
+  function parseAndUpdateIRRefs(currentVFSKeys2, scape, shared) {
+    let composedPath;
     const mode = scape.mode;
-    const currentUserBank = Math.max(0, scape.userBank - 1);
-    const prefixUserBank = (name) => {
-      return "USERBANK_" + currentUserBank + "_" + name;
-    };
-    const getActivePathName = (slotName, channel) => {
-      const propsDefaultIR = Slots.get(slotName);
-      const propsUserIR = User_IR_Map.get(slotName);
-      const usingUserIR = propsUserIR && mode;
-      let composedPath;
-      let vfsPathWithChannel = `${propsDefaultIR?.pathStem}_${channel}`;
-      if (usingUserIR) {
-        vfsPathWithChannel = prefixUserBank(`${propsUserIR.pathStem}_${channel}`);
+    let vfsPathWithChannel;
+    let usingUserIR = mode && scape.hasUserSlots;
+    const getPath = (slotName, chan) => {
+      if (usingUserIR && resourceExistsForSlot(currentVFSKeys2, slotName, chan)) {
+        let userBank = getHighestBankSuffix(slotName, currentVFSKeys2);
+        vfsPathWithChannel = `USERBANK_${userBank}_${slotName}_${chan}`;
+      } else {
+        vfsPathWithChannel = `${slotName}_${chan}`;
       }
       composedPath = scape.reverse > 0.5 ? REVERSE_BUFFER_PREFIX + vfsPathWithChannel : vfsPathWithChannel;
-      if (!vfsPathHistory.includes(composedPath)) {
-        vfsPathHistory.push(composedPath);
-      }
+      console.log("Composed VFS Path: ", composedPath);
       return composedPath;
     };
     const getScale = (slotName, chan = 0) => {
-      const userIR = User_IR_Map.get(slotName);
       const defaultIR = Slots.get(slotName);
-      const usingUserIR = userIR && mode;
-      const panPosition = shared.position;
-      let result = usingUserIR ? userIR.att : defaultIR.att;
+      let result = usingUserIR ? 0.95 : defaultIR.att;
       return result;
     };
     const getRef = (refs2, slotName, chan) => {
-      let path = `${slotName}_${chan}`;
-      refs2.has(path);
-      return path;
+      let ref = `${slotName}_${chan}`;
+      refs2.has(ref);
+      return ref;
     };
     Slots.forEach((slot, slotName) => {
       for (let chan = 0; chan < 2; chan++) {
-        const path = getActivePathName(slotName, chan);
+        const path = getPath(slotName, chan);
         const ref = getRef(refs, slotName, chan);
         const scale = getScale(slotName, chan);
         const offset = scape.offset;
@@ -3370,6 +3362,28 @@
       }
     });
   }
+  function getHighestBankSuffix(slotName, entries) {
+    let highestSuffix = 0;
+    let suffix = 0;
+    entries.forEach((entry) => {
+      if (entry.includes("USERBANK_") && !entry.includes("REVERSED") && entry.includes(`_${slotName}_`)) {
+        suffix = parseInt(entry.split("USERBANK_")[1].split("_")[0].charAt(0));
+      }
+      if (suffix > highestSuffix) {
+        highestSuffix = suffix;
+      }
+    });
+    return highestSuffix;
+  }
+  function resourceExistsForSlot(currentVFSKeys2, slotName, chan) {
+    let result = false;
+    currentVFSKeys2.forEach((key) => {
+      if (key.includes(`USERBANK_`) && key.includes(`${slotName}_${chan}`)) {
+        result = true;
+      }
+    });
+    return result;
+  }
 
   // src/utils/utils.ts
   function remapPosition(value) {
@@ -3378,6 +3392,7 @@
   }
 
   // dsp/main.ts
+  var currentVFSKeys = [];
   var core = new Renderer((batch) => {
     __postNativeMessage__(JSON.stringify(batch));
   });
@@ -3390,7 +3405,6 @@
     ["TEMPLE", { pathStem: "TEMPLE", slotIndex: 2, att: 0.9 }],
     ["DEEPNESS", { pathStem: "DEEPNESS", slotIndex: 3, att: 0.675 }]
   ]);
-  var User_IR_Map = /* @__PURE__ */ new Map();
   function IR_SlotRefFactory(scape, refs2, slotName, slotIndex, attenuation) {
     if (!scape || !refs2)
       return;
@@ -3541,7 +3555,7 @@
         refs.update("v4", { value: scape.vectorData[3] });
         refs.update("scapePosition", { value: scape.position });
         refs.update("scapeMode", { value: scape.mode });
-        parseAndUpdateIRRefs(scape, shared);
+        parseAndUpdateIRRefs(currentVFSKeys, scape, shared);
       }
       refs.update("dryMix", { value: shared.dryMix });
       refs.update("srvbBypass", { value: srvb.bypass });
@@ -3588,23 +3602,17 @@
         mode: Math.round(state2.scapeMode) || 0,
         offset: state2.scapeOffset || 0,
         userBank: state2.userBank,
-        position: state2.position
+        position: state2.position,
+        hasUserSlots: currentVFSKeys.find((key) => key.includes("USERBANK")) ? true : false
       };
       return { state: state2, srvb: srvb2, shared: shared2, scape: scape2 };
     }
   };
   globalThis.__receiveVFSKeys__ = function(vfsCurrent) {
-    const vfsKeysArray = JSON.parse(vfsCurrent);
-    const userVFSKeys = vfsKeysArray.filter((key) => key.includes("USER") && !key.includes("REVERSE"));
-    const userVFSKeysCount = userVFSKeys.length;
-    if (userVFSKeysCount > 0) {
-      for (let i = 0; i < userVFSKeysCount; i++) {
-        const slotIndex = Math.floor(i / 2);
-        const userPathStem = `USER${slotIndex % 4}`;
-        User_IR_Map.set(DEFAULT_IR_SLOTNAMES[slotIndex % 4], { pathStem: userPathStem, slotIndex: slotIndex % 4, att: 0.95 });
-      }
+    const parsedArray = JSON.parse(vfsCurrent);
+    if (parsedArray.length > 0) {
+      currentVFSKeys = parsedArray;
     }
-    console.log("VFS->", vfsKeysArray);
   };
   globalThis.__receiveHydrationData__ = (data) => {
     const payload = JSON.parse(data);
