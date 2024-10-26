@@ -69,7 +69,7 @@ EffectsPluginProcessor::~EffectsPluginProcessor()
 {
     // First explicitly close the front end, so it
     // stops sending messages to the Web Socket
-    editor = nullptr;   
+    editor = nullptr;
     // Ensure clientInstance is properly released
     clientInstance.reset();
     // Ensure server is properly closed and released
@@ -187,21 +187,11 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
         const auto reader = formatManager.createReaderFor(file);
         if (reader == nullptr)
         {
-            dispatchError("File Error:", "Could not load the default audio assets.");
+            dispatchError("Plugin Error:", "Please contact support");
             delete reader;
             return false;
         }
 
-        // As the source files are strictly stereo and the VFS is strictly
-        // one channel buffers, we aim to create a VFS entry for eeach
-        // state using the following naming convention:
-        // ▮▮▮elem▮▮▮▮▮▮runtime▮▮▮▮▮▮▮▮▮elem▮▮▮▮▮▮runtime▮▮▮▮▮▮
-        // GENERATED VFS ASSETS FROM EACH STEREO INPUT FILE
-        // USER0_0 :            the forward playing left channel of the stereo file
-        // USER0_1 :            the forward playing right channel of the stereo file
-        // REVERSED_USER0_0 :   the reverse playing left channel of the stereo file
-        // REVERSED_USER0_1 :   the reverse playing right channel of the stereo file
-        // ▮▮▮elem▮▮▮▮▮▮runtime▮▮▮▮▮▮▮▮▮elem▮▮▮▮▮▮runtime▮▮▮▮▮▮
         for (int channel = 0; channel < 2; ++channel)
         {
             auto buffer = juce::AudioBuffer<float>();
@@ -225,7 +215,7 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
             std::string name = vfsPathname.toStdString() + '_' + std::to_string(channel);
             if (elementaryRuntime)
                 elementaryRuntime->updateSharedResourceMap(name, buffer.getReadPointer(0), numSamples);
-            slotManager->assignVFSpathToSlot(slotName, name);
+
             // Get the reverse from a little way, so its less draggy
             // so its easy to swap into in realtime
             int shorter = numSamples * 0.75;
@@ -235,7 +225,8 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
             // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
             if (elementaryRuntime)
                 elementaryRuntime->updateSharedResourceMap(reversedName, buffer.getReadPointer(0), shorter);
-            slotManager->assignVFSpathToSlot(slotName, name);
+
+            slotManager->assignDefaultFilenameToSlot(slotName);
             // done, next channel
         }
         // done next asset
@@ -267,38 +258,73 @@ void EffectsPluginProcessor::requestUserFileSelection(std::promise<elem::js::Obj
         // Create an elem::js::Array to hold the file paths
         elem::js::Array selectedFilesAsValue;
 
-        for (const auto &file : selected) {
-            juce::String filePath = file.getFullPathName();
-            selectedFilesAsValue.push_back(elem::js::String(filePath.toStdString()));
-        }
-        // Fail
-        for (juce::File &file : selected) {
-            bool validExtension = file.hasFileExtension("wav;WAV;aiff;AIFF");
-            if (!validExtension) {
-                result.insert_or_assign("success", elem::js::Boolean(false));
-                result.insert_or_assign("files", selectedFilesAsValue);
-                result.insert_or_assign("status", 
-                    elem::js::Number(static_cast<int>(ScapeError::FILETYPE_NOT_SUPPORTED)));
-                promise.set_value(result);
-                return;
-            }
-
-            if (file.getSize() > juce::int64(5 * 1024 * 1024)) {
-                 result.insert_or_assign("success", elem::js::Boolean(false));
-                result.insert_or_assign("files", selectedFilesAsValue);
-                result.insert_or_assign("status", 
-                    elem::js::Number( static_cast<int>(ScapeError::FILESIZE_EXCEEDED)));
-                promise.set_value(result);
-                return;
-            }
-            // Success
-            result.insert_or_assign("files", selectedFilesAsValue);
-            result.insert_or_assign("status", 
-                elem::js::Number( static_cast<int>(ScapeError::OK)));
-            result.insert_or_assign("success", elem::js::Boolean(true));
-        }
+        validateUserUpload(selected, selectedFilesAsValue, result);
 
         promise.set_value(result); });
+}
+
+void EffectsPluginProcessor::validateUserUpload(juce::Array<juce::File> &selected, elem::js::Array &selectedFilesAsValue, elem::js::Object &result)
+{
+    for (const auto &file : selected)
+    {
+        juce::String filePath = file.getFullPathName();
+        selectedFilesAsValue.push_back(elem::js::String(filePath.toStdString()));
+    }
+
+    // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
+    // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ REJECTED ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
+    // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
+    for (juce::File &file : selected)
+    {
+        bool validExtension = file.hasFileExtension("wav;WAV;aiff;AIFF");
+        if (!validExtension)
+        {
+            result.insert_or_assign("success", elem::js::Boolean(false));
+            result.insert_or_assign("files", selectedFilesAsValue);
+            result.insert_or_assign("status",
+                                    elem::js::Number(static_cast<int>(ScapeError::FILETYPE_NOT_SUPPORTED)));
+            return;
+        }
+
+        if (file.existsAsFile() == false)
+        {
+            result.insert_or_assign("success", elem::js::Boolean(false));
+            result.insert_or_assign("files", selectedFilesAsValue);
+            result.insert_or_assign("status",
+                                    elem::js::Number(static_cast<int>(ScapeError::FILE_NOT_FOUND)));
+            return;
+        }
+
+        if (file.getSize() > juce::int64(5 * 1024 * 1024))
+        {
+            result.insert_or_assign("success", elem::js::Boolean(false));
+            result.insert_or_assign("files", selectedFilesAsValue);
+            result.insert_or_assign("status",
+                                    elem::js::Number(static_cast<int>(ScapeError::FILESIZE_EXCEEDED)));
+            return;
+        }
+
+        if (file.getFileNameWithoutExtension().containsWholeWord("TEMPLE") ||
+            file.getFileNameWithoutExtension().containsWholeWord("SURFACE") ||
+            file.getFileNameWithoutExtension().containsWholeWord("DEEPNESS") ||
+            file.getFileNameWithoutExtension().containsWholeWord("LIGHT"))
+        {
+            result.insert_or_assign("success", elem::js::Boolean(false));
+            result.insert_or_assign("files", selectedFilesAsValue);
+            result.insert_or_assign("status",
+                                    elem::js::Number(static_cast<int>(ScapeError::DO_NOT_OVERWRITE_DEFAULTS)));
+            return;
+        }
+
+        // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
+        // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ JOY OF JOYS ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
+        // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
+        result.insert_or_assign("files", selectedFilesAsValue);
+        result.insert_or_assign("status",
+                                elem::js::Number(static_cast<int>(ScapeError::JOY_OF_JOYS)));
+        result.insert_or_assign("success", elem::js::Boolean(true));
+        return;
+    }
 }
 
 bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, SlotName &targetSlot)
@@ -318,29 +344,34 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
     // First checkpoint, if the reader is null, something went wrong
     if (reader == nullptr)
     {
-        dispatchError("File error:", "Could not read " + file.getFileName().toStdString());
+        dispatchError("File error:", errorStatuses(static_cast<int>(ScapeError::FILE_NOT_READABLE)));
         return 0;
     }
     const int bitsPerSample = reader->bitsPerSample;
     const auto numChannels = reader->numChannels;
     const bool isFloatingPoint = reader->usesFloatingPointData;
-
     //  TODO: add support for mono files
     if (numChannels < 2 || numChannels > 2)
     {
-        dispatchError("File error:", "Only stereo files can be used.");
+        dispatchError("File error:", errorStatuses(static_cast<int>(ScapeError::FILE_NOT_STEREO)));
         return 0;
     }
+    // Now we can register the asset with the targetslot
+    slotManager->assignFileAssetToSlot(targetSlot, file);
+    slotManager->assignFilenameToSlot(targetSlot, file);
     // As the source files are strictly stereo and the VFS is strictly
     // one channel buffers, we aim to create a VFS entry for eeach
     // state using the following naming convention:
     // ▮▮▮elem▮▮▮▮▮▮runtime▮▮▮▮▮▮▮▮▮elem▮▮▮▮▮▮runtime▮▮▮▮▮▮
     // GENERATED VFS ASSETS FROM EACH STEREO INPUT FILE
-    // USER0_0 :            the forward playing left channel of the stereo file
-    // USER0_1 :            the forward playing right channel of the stereo file
-    // REVERSED_USER0_0 :   the reverse playing left channel of the stereo file
-    // REVERSED_USER0_1 :   the reverse playing right channel of the stereo file
-    // ▮▮▮elem▮▮▮▮▮▮runtime▮▮▮▮▮▮▮▮▮elem▮▮▮▮▮▮runtime▮▮▮▮▮▮
+    // USERBANK_{userBank}_{slotName}_0 :            the forward playing left channel of the stereo file
+    // USERBANK_{userBank}_{slotName}_1 :            the forward playing right channel of the stereo file
+    // REVERSED_USERBANK_{userBank}_{slotName}_0:   the reverse playing left channel of the stereo file
+    // REVERSED_USERBANK_{userBank}_{slotName}_1 :   the reverse playing right channel of the stereo file
+
+    // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
+    // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ DSP ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
+    // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
     for (int channel = 0; channel < numChannels; ++channel)
     {
         auto buffer = juce::AudioBuffer<float>();
@@ -352,8 +383,8 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
         buffer.applyGainRamp(0, numSamples, 0.65, 1);
         // normalise the impulse response
         util::normaliseAudioBuffer(buffer, 0.8414); // -1.5 db
-                                                    // add the gain ramped impulse response to the virtual
-                                                    // file system
+        // add the gain ramped impulse response to the virtual
+        // file system
 
         // stash one channel of the normalised buffer data for Peaks in the VIEW
         if (channel == 0)
@@ -373,10 +404,10 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
         stateVariableFilter.process(context);
 
         // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
-        auto name = prefixUserBank("USER" + std::to_string(getIndexForSlot(targetSlot)) + "_" + std::to_string(channel));
-        std::cout << "Runtime is loaded?" << elementaryRuntime << std::endl;
+        auto name = prefixUserBank( toString(targetSlot) + "_" + std::to_string(channel));
+
         elementaryRuntime->updateSharedResourceMap(name, buffer.getReadPointer(0), numSamples);
-        slotManager->assignVFSpathToSlot(targetSlot, name);
+
         // Get the reverse from a little way, so its less draggy
         // so its easy to swap into in realtime
         int shorter = numSamples * 0.75;
@@ -385,8 +416,10 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
         std::string reversedName = REVERSE_BUFFER_PREFIX + name;
         // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
         if (elementaryRuntime)
+        {
             elementaryRuntime->updateSharedResourceMap(reversedName, buffer.getReadPointer(0), shorter);
-        slotManager->assignVFSpathToSlot(targetSlot, reversedName);
+            inspectVFS();
+        }
         // done, next channel
     }
     // IMPORTANT: delete the reader to avoid memory leaks
@@ -403,7 +436,6 @@ std::string EffectsPluginProcessor::prefixUserBank(const std::string &name)
 
 void EffectsPluginProcessor::pruneVFS()
 {
-
     elementaryRuntime->pruneSharedResourceMap();
 }
 /*
@@ -413,9 +445,42 @@ void EffectsPluginProcessor::pruneVFS()
  */
 void EffectsPluginProcessor::inspectVFS()
 {
+
     if (elementaryRuntime == nullptr)
         return;
     auto vfs = elementaryRuntime->getSharedResourceMapKeys();
+
+    // log assets map
+    for (const auto &kv : assetsMap)
+    {
+        const SlotName &slotName = kv.first;
+        const Asset &asset = kv.second;
+        
+        std::vector<std::string> activeVFSPaths;
+        for (const auto &key : vfs)
+        {
+            if (key.find(toString(slotName)) != std::string::npos)
+            {
+                activeVFSPaths.push_back(key);
+            }
+        }
+
+        std::cout << "Slot: ━━━━ " << toString(slotName) << " ━━━━ "
+        << " defaultStereoFile: " << asset.defaultStereoFile.getFileName() 
+        << std::endl
+        << " userStereoFile: " << asset.userStereoFile.getFileName()
+        << std::endl
+        << " activeResourcePaths: " << elem::js::serialize( activeVFSPaths )
+        << std::endl
+        << " filenameForView: " << asset.filenameForView
+        << std::endl
+        << " currentPeaks checksum: " << asset.userPeaksForView.size()
+        << std::endl
+        << " ∑ default: " << asset.defaultPeaksForView.size()
+        << " ∑ user: " << asset.userPeaksForView.size()
+        << std::endl;
+    }
+
     // iterate vfs into valid JSON
     std::string vfsString = "[";
     for (auto &key : vfs)
@@ -429,7 +494,7 @@ void EffectsPluginProcessor::inspectVFS()
     sendJavascriptToUI(expr);
     jsContext.evaluateExpression(expr);
 }
-
+//============= Peaks generator for the front end ========================
 std::vector<float> EffectsPluginProcessor::getReducedAudioBuffer(const juce::AudioBuffer<float> &buffer)
 {
     // This function reduces the audio buffer to a smaller size for plotting as
@@ -465,8 +530,7 @@ std::vector<float> EffectsPluginProcessor::getReducedAudioBuffer(const juce::Aud
     }
     return audioData;
 }
-//==============================================================================
-
+//============== FRONT END IS CONNECTED VIA WEBSOCKET SERVER ================
 int EffectsPluginProcessor::runWebServer()
 {
     auto address = "127.0.0.1";
@@ -499,7 +563,6 @@ int EffectsPluginProcessor::runWebServer()
 }
 //==============================================================================
 bool EffectsPluginProcessor::isBusesLayoutSupported(const AudioProcessor::BusesLayout &layouts) const { return true; }
-
 void EffectsPluginProcessor::createParameters(const std::vector<elem::js::Value> &parameters)
 {
     for (const auto &parameter : parameters)
@@ -638,30 +701,20 @@ juce::AudioProcessorEditor *EffectsPluginProcessor::createEditor()
 
     return editor;
 }
-
 bool EffectsPluginProcessor::hasEditor() const { return true; }
-
 const juce::String EffectsPluginProcessor::getName() const { return "NEL-ScapeSpace"; }
-
 bool EffectsPluginProcessor::acceptsMidi() const { return false; }
-
 bool EffectsPluginProcessor::producesMidi() const { return false; }
-
 bool EffectsPluginProcessor::isMidiEffect() const { return false; }
-
 double EffectsPluginProcessor::getTailLengthSeconds() const { return 3.0; }
-
 int EffectsPluginProcessor::getNumPrograms()
 {
     return 1; // NB: some hosts don't cope very well if you tell them there are 0
               // programs, so this should be at least 1, even if you're not really
               // implementing programs.
 }
-
 int EffectsPluginProcessor::getCurrentProgram() { return 0; }
-
 void EffectsPluginProcessor::setCurrentProgram(int /* index */) {}
-
 const juce::String EffectsPluginProcessor::getProgramName(int /* index */) { return {}; }
 void EffectsPluginProcessor::changeProgramName(int /* index */, const juce::String & /* newName */) {}
 // ▮▮▮▮▮▮juce▮▮▮▮▮▮elem▮▮▮▮▮▮realtime ▮▮▮▮▮▮
@@ -689,6 +742,7 @@ void EffectsPluginProcessor::releaseResources()
     // When playback stops, you can use this as an opportunity to free up any
     // spare memory, etc.
 }
+
 void EffectsPluginProcessor::processBlock(juce::AudioBuffer<float> &buffer, juce::MidiBuffer & /* midiMessages */)
 {
     // If the license is invalid, we clear the buffer and return
@@ -702,7 +756,7 @@ void EffectsPluginProcessor::processBlock(juce::AudioBuffer<float> &buffer, juce
     scratchBuffer.makeCopyOf(buffer, true);
 
     // Process the elementary runtime
-    if (elementaryRuntime != nullptr && !runtimeSwapRequired )
+    if (elementaryRuntime != nullptr && !runtimeSwapRequired)
 
     {
         elementaryRuntime->process(const_cast<const float **>(scratchBuffer.getArrayOfWritePointers()),
@@ -1113,7 +1167,10 @@ void EffectsPluginProcessor::processPersistedAssetState(const elem::js::Object &
 
         if (asset.userStereoFile.existsAsFile())
         {
-            std::cout << "Restoring ▶︎ Slot: " << toString(targetSlot) << ", File: " << asset.userStereoFile.getFileName().toStdString() << std::endl;
+            std::cout << "Restoring ▶︎ Slot: " << toString(targetSlot) 
+            << ", File: " 
+            << asset.userStereoFile.getFileName().toStdString() 
+            << std::endl;
             file = juce::File{asset.userStereoFile};
         }
 

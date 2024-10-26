@@ -5,14 +5,16 @@ import {
   GestureSource_REVERSE,
   HostState,
   WebSocketPort,
-  VFSKeys,
   GestureSource_IRMode
 } from "../stores/stores.svelte";
 
 
 export declare var globalThis: any;
 declare var CABLES: any;
-let gestureSource: typeof GestureSource_SCAPE | typeof GestureSource_SRVB | typeof GestureSource_REVERSE | typeof GestureSource_IRMode;
+let gestureSource: typeof GestureSource_SCAPE | 
+typeof GestureSource_SRVB | 
+typeof GestureSource_REVERSE | 
+typeof GestureSource_IRMode;
 
 
 // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ WebSocket Server Setup ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
@@ -24,7 +26,7 @@ function initializeWebSocketConnection(port: number) {
   } catch (e) {
     console.error("Error connecting to WS: ", e);
   }
- ConsoleText.extend("UI connected on port " + port);
+ //ConsoleText.extend("UI connected on port " + port);
 
  WebSocketPort.set(  port as number );
 }
@@ -152,13 +154,6 @@ export function RegisterMessagesFromHost() {
     initializeWebSocketConnection( parseInt(port) );
   };
 
-  /**
-   * Handles a view of the current VFS keys
-   * @param vfsKeys - The VFS keys
-   */
-  globalThis.__receiveVFSKeys__ = function (vfsKeys: string) {
-    VFSKeys.update( JSON.parse(vfsKeys) );
-  }
 
   /** ━━━━━━━
    * Handles the unlock status received from the host.

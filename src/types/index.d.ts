@@ -44,6 +44,7 @@ interface ScapeSettings {
   offset: number;
   userBank: number;
   position: number;
+  hasUserSlots: boolean;
 }
 
 interface ProcessorSettings {

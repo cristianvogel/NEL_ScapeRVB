@@ -17,7 +17,7 @@ public:
     choc::network::HTTPContent getHTTPContent(std::string_view path);
     void upgradedToWebSocket(std::string_view path);
     void handleWebSocketMessage(std::string_view message);
-    void userFileUploadHandler(const int& hpfValue, int& retFlag);
+    void userFileUploadHandler(const int &hpfValue, int &retFlag);
 
 private:
     int clientID;
@@ -28,23 +28,25 @@ public:
     enum class ErrorType
     {
         UNKNOWN_ERROR,
-        OK,
+        JOY_OF_JOYS,
         FILESIZE_EXCEEDED,
         FILETYPE_NOT_SUPPORTED,
         FILE_NOT_SELECTED,
         FILE_NOT_FOUND,
         FILE_NOT_READABLE,
-    };    
+        FILE_NOT_STEREO,
+        DO_NOT_OVERWRITE_DEFAULTS
+    };
     int uploadStatus = static_cast<int>(ErrorType::UNKNOWN_ERROR);
 };
 
 // Type alias for casting ErrorType to int
 using ScapeError = ViewClientInstance::ErrorType;
 
-inline std::string errorStatuses( int status )
+inline std::string errorStatuses(int status)
 {
-switch (status)
-{
+    switch (status)
+    {
     case static_cast<int>(ScapeError::FILESIZE_EXCEEDED):
         return "Each file cannot exceed 5MB";
     case static_cast<int>(ScapeError::FILETYPE_NOT_SUPPORTED):
@@ -55,11 +57,15 @@ switch (status)
         return "File not found";
     case static_cast<int>(ScapeError::FILE_NOT_READABLE):
         return "File not readable";
-    case static_cast<int>(ScapeError::OK):
-        return "OK";
+    case static_cast<int>(ScapeError::FILE_NOT_STEREO):
+        return "File must be stereo";
+    case static_cast<int>(ScapeError::DO_NOT_OVERWRITE_DEFAULTS):
+        return "File cannot be called TEMPLE, SURFACE, DEEPNESS or LIGHT";
+    case static_cast<int>(ScapeError::JOY_OF_JOYS):
+        return "Joy of Joys";
     default:
         return "Nothing was imported.";
-}
+    }
 }
 
 #endif // VIEWCLIENTINSTANCE_H

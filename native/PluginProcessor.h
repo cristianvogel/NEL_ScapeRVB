@@ -177,6 +177,7 @@ public:
     void inspectVFS();
     void pruneVFS();
     void requestUserFileSelection(std::promise<elem::js::Object> &promise);
+    void validateUserUpload(juce::Array<juce::File> &selected, elem::js::Array &selectedFilesAsValue, elem::js::Object &result );
     void updateStateWithAssetsData();
     elem::js::Value assetsMapToValue(const std::map<SlotName, Asset> &map);
     std::vector<float> getReducedAudioBuffer(const juce::AudioBuffer<float> &buffer);

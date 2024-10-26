@@ -23,7 +23,7 @@ void ViewClientInstance::stop()
 
 void ViewClientInstance::handleWebSocketMessage(std::string_view message)
 {
-    if (!running.load() || processor.isSuspended())
+    if (!running.load() || processor.isSuspended() || processor.editor == nullptr )
         return; // Check running flag before processing
 
     // Convert std::string_view to std::string
@@ -70,54 +70,63 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                 if (!processor.editor)
                     return;
 
-                elem::js::Object wrappedState;
-                elem::js::Object wrappedPeaks;
-                elem::js::Object wrappedFileNames;
-
-                processor.slotManager->wrapStateForView(wrappedState);
-                juce::String serializedState = elem::js::serialize(wrappedState);
+                elem::js::Object stateContainer;
+                elem::js::Object peaksContainer;
                 // ============ perfomance optimization ========================
-                // hash the serialized state and peaks, send only if changed
-                // use filename change as hash not peaks, cos its less data to work with
-                processor.slotManager->wrapFileNamesForView(wrappedFileNames);
-                juce::String serializedFilenames = elem::js::serialize(wrappedFileNames);
+                // hash the serialized state, send only if changed
 
+                processor.slotManager->wrapStateForView(stateContainer);
+                juce::String serializedState = elem::js::serialize(stateContainer);
                 int currentStateHash = serializedState.hashCode();
-                int currentPeaksHash = serializedFilenames.hashCode();
 
                 if (currentStateHash != processor.slotManager->lastStateHash)
                 {
                     sendWebSocketMessage(serializedState.toStdString());
                     processor.slotManager->lastStateHash = currentStateHash;
                 }
-                if (currentPeaksHash != processor.slotManager->lastPeaksHash)
+                if (processor.slotManager->peaksDirty )
                 {
-                    processor.slotManager->wrapPeaksForView(wrappedPeaks);
-                    juce::String serializedPeaks = elem::js::serialize(wrappedPeaks);
+                    std::cout << "wrapping and sending peaks to View.." << std::endl;
+                    processor.slotManager->wrapPeaksForView(peaksContainer);
+                    juce::String serializedPeaks = elem::js::serialize(peaksContainer);
                     sendWebSocketMessage(serializedPeaks.toStdString());
-                    processor.slotManager->lastPeaksHash = currentPeaksHash;
+                    processor.slotManager->peaksDirty = false;
                 }
                 continue;
             } // end requestState
 
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
-            // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ "resetUserSlots" ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
+            // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ "factory" ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
 
-            if (key == "resetUserSlots")
+            if (key == "factory")
             {
-                processor.slotManager->resetUserSlots(false);
+                processor.slotManager->switchSlotsTo(false, false);
                 processor.updateStateWithAssetsData();
+                std::cout << "switching to factory slots" << std::endl;
                 continue;
-            } // end resetUserSlots
+            } // end switchToDefaultSlots
 
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
-            // ▮▮▮▮▮▮▮ simple parameter update request        ▮▮▮▮▮▮▮ //
+            // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ "custom" ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
+            // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
+
+            if (key == "custom")
+            {
+                processor.slotManager->switchSlotsTo(true, false);
+                processor.updateStateWithAssetsData();
+                std::cout << "switching to custom slots" << std::endl;
+                continue;
+            } // end switchToUserSlots
+
+            // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
+            // ▮▮▮▮▮▮▮ simple parameter update request       ▮▮▮▮▮▮▮ //
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
             if (hpfValue.isNumber() && processor.parameterMap.count(key) > 0)
             {
                 float paramValue = static_cast<elem::js::Number>(hpfValue);
                 float stateValue = static_cast<elem::js::Number>(processor.state[key]);
+                // handle boolean ints here
                 if (key == "srvbBypass" || key == "scapeBypass" || key == "scapeReverse" || key == "scapeMode")
                 {
                     paramValue = juce::roundToInt(paramValue);
@@ -154,6 +163,8 @@ void ViewClientInstance::userFileUploadHandler( const int &hpfValue, int &retFla
     }
 
     auto files = gotFiles["files"].getArray();
+    
+    if ( files.size() >= 4) processor.pruneVFS();
 
     if (files.empty())
     {
@@ -182,11 +193,9 @@ void ViewClientInstance::userFileUploadHandler( const int &hpfValue, int &retFla
             // last slot of the bank
             // so step to the next bank
             // for the VFS path history registry
-            if (processor.slotManager->getIndexForSlot(targetSlot) == 3)
-            {
+           
                 processor.userBankManager.incrementUserBank();
-                processor.slotManager->resetUserSlots(true);
-            }
+            
             targetSlot = nextSlot(targetSlot);
         }
     }

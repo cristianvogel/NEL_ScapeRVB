@@ -23587,44 +23587,6 @@ CABLES.OPS["e747dc72-8214-41ca-9aae-9041f20dd6ac"]={f:Ops.Net.WebSocket.WebSocke
 
 // **************************************************************
 // 
-// Ops.Patch.PxdLHGq.CountEmptyStringElements
-// 
-// **************************************************************
-
-Ops.Patch.PxdLHGq.CountEmptyStringElements = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    exec = op.inTrigger("Trigger"),
-    arr = op.inArray("Array"),
-    result = op.outNumber("Result");
-
-let count = 0;
-
-exec.onTriggered = () => {
-    if (!arr.get()) return;
-
-    count = 0; // Reset count each time the trigger is executed
-
-    for (let str of arr.get()) {
-        if (str.length > 0) count++;
-    }
-
-    result.set(count);
-};
-
-};
-
-Ops.Patch.PxdLHGq.CountEmptyStringElements.prototype = new CABLES.Op();
-CABLES.OPS["7b72a958-c864-4ca1-a961-f7bf805df6b3"]={f:Ops.Patch.PxdLHGq.CountEmptyStringElements,objName:"Ops.Patch.PxdLHGq.CountEmptyStringElements"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Ui.VizArrayGraph
 // 
 // **************************************************************
@@ -24817,6 +24779,91 @@ exe.onTriggered = function ()
 
 Ops.Anim.AnimNumber.prototype = new CABLES.Op();
 CABLES.OPS["e5b0b016-9663-4c9d-9365-f54ae3c5fbb6"]={f:Ops.Anim.AnimNumber,objName:"Ops.Anim.AnimNumber"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PxdLHGq.CountEmptyStringElements
+// 
+// **************************************************************
+
+Ops.Patch.PxdLHGq.CountEmptyStringElements = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    exec = op.inTrigger("Trigger"),
+    arr = op.inArray("Array"),
+    result = op.outNumber("Result");
+
+let count = 0;
+
+exec.onTriggered = () => {
+    if (!arr.get()) return;
+
+    count = 0; // Reset count each time the trigger is executed
+
+    for (let str of arr.get()) {
+        if (str.includes( "SURFACE" ) || str.includes("LIGHT") || str.includes("TEMPLE") || str.includes("DEEPNESS")) continue;
+        if (str.length > 0) count++
+    }
+
+    result.set(count);
+};
+
+};
+
+Ops.Patch.PxdLHGq.CountEmptyStringElements.prototype = new CABLES.Op();
+CABLES.OPS["7b72a958-c864-4ca1-a961-f7bf805df6b3"]={f:Ops.Patch.PxdLHGq.CountEmptyStringElements,objName:"Ops.Patch.PxdLHGq.CountEmptyStringElements"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Trigger.TriggerLimiter
+// 
+// **************************************************************
+
+Ops.Trigger.TriggerLimiter = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inTriggerPort = op.inTrigger("In Trigger"),
+    timePort = op.inValue("Milliseconds", 300),
+    outTriggerPort = op.outTrigger("Out Trigger"),
+    progress = op.outNumber("Progress");
+
+let lastTriggerTime = 0;
+
+// change listeners
+inTriggerPort.onTriggered = function ()
+{
+    const now = CABLES.now();
+    let prog = (now - lastTriggerTime) / timePort.get();
+
+    if (prog > 1.0)prog = 1.0;
+    if (prog < 0.0)prog = 0.0;
+
+    progress.set(prog);
+
+    if (now >= lastTriggerTime + timePort.get())
+    {
+        lastTriggerTime = now;
+        outTriggerPort.trigger();
+    }
+};
+
+
+};
+
+Ops.Trigger.TriggerLimiter.prototype = new CABLES.Op();
+CABLES.OPS["47641d85-9f81-4287-8aa2-35753b0727e0"]={f:Ops.Trigger.TriggerLimiter,objName:"Ops.Trigger.TriggerLimiter"};
 
 
 
