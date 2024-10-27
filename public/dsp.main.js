@@ -2473,8 +2473,6 @@
     };
     const dels = ins.map(function(input, i) {
       return stdlib.add(
-        // two many instances of the filter, moving to output
-        //  toneDial(input, structure[i]),
         input,
         stdlib.mul(
           1 + EPS,
@@ -2595,8 +2593,28 @@
     const asRightPan = (x) => {
       return stdlib.select(position, stdlib.mul(x, stdlib.db2gain(1.5)), x);
     };
-    let yl = feedforward(0, asLeftPan(stdlib.add(pos(0, r0[0]), pos(2, r0[2]), pos(4, r0[4]), pos(6, r0[6]))));
-    let yr = feedforward(1, asRightPan(stdlib.add(pos(1, r0[1]), pos(3, r0[3]), pos(5, r0[5]), pos(7, r0[7]))));
+    let yl = feedforward(
+      0,
+      asLeftPan(
+        stdlib.add(
+          pos(0, r0[0]),
+          pos(2, r0[2]),
+          pos(4, r0[4]),
+          pos(6, r0[6])
+        )
+      )
+    );
+    let yr = feedforward(
+      1,
+      asRightPan(
+        stdlib.add(
+          pos(1, r0[1]),
+          pos(3, r0[3]),
+          pos(5, r0[5]),
+          pos(7, r0[7])
+        )
+      )
+    );
     if (props.srvbBypass)
       return [feedforward(0, xl), feedforward(1, xr)];
     else
@@ -3328,7 +3346,6 @@
         vfsPathWithChannel = `${slotName}_${chan}`;
       }
       composedPath = scape.reverse > 0.5 ? REVERSE_BUFFER_PREFIX + vfsPathWithChannel : vfsPathWithChannel;
-      console.log("Composed VFS Path: ", composedPath);
       return composedPath;
     };
     const getScale = (slotName, chan = 0) => {

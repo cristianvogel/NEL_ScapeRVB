@@ -1,5 +1,5 @@
 //@ts-check
-
+//@prettier-ignore
 import { el, ElemNode } from "@elemaudio/core";
 import { EPS } from "@thi.ng/math";
 import { normal, Smush32 } from "@thi.ng/random";
@@ -127,8 +127,6 @@ function dampFDN(props: FDNProps, ...ins) {
   // of killing the decay time too quickly. Towards the bottom, not much damping.
   const dels = ins.map(function (input, i) {
     return el.add(
-      // two many instances of the filter, moving to output
-      //  toneDial(input, structure[i]),
       input,
       el.mul(
         1 + EPS,
@@ -145,15 +143,13 @@ function dampFDN(props: FDNProps, ...ins) {
       })
     );
   });
-
   return mix.map(function (mm, i) {
     const ms2samps = (ms: number): number => sampleRate * (ms / 1000.0);
 
     const delayScale = el.mul(
       el.add(1.0, el.sm(size)),
-      el.ms2samps(el.smooth(el.tau2pole(i * 0.25), structure[i % structure.length]))
+      el.ms2samps( el.smooth( el.tau2pole(i * 0.25), structure[i % structure.length] ) )
     );
-
     return el.tapOut(
       { name: `srvb:fdn${i}` },
       el.delay({ size: ms2samps(137) }, delayScale, 0.0, mm)
@@ -178,13 +174,14 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
   const ms2samps = (ms) => sampleRate * (ms / 1000.0);
 
 
-  // Higher level DSP functions
+// Tone Dial
   const toneDial = (input, offset: ElemNode) => {
     const dial = el.smooth(el.tau2pole(0.5), el.le(tone, 0));
     const fcLPF = el.add(
       48,
       el.mul(el.add(12000, offset), el.sub(1, el.abs(tone)))
     );
+
     return el.select(
       dial,
       // darker
@@ -204,11 +201,13 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
     );
   };
 
+
+
   // xl , xr -- bypass to unprocessed inputs
   const [xl, xr] = inputs;
-  const feedforward = (channel, _x) => el.tapOut({ name: "srvbOut:" + channel }, el.tanh(_x));
+  const feedforward = ( channel, _x ) => el.tapOut({ name: "srvbOut:" + channel }, el.tanh(_x));
+ 
   const zero = el.const({ value: 0, key: "mute::srvb" });
-
 
   let structurePositioning =  (x: ElemNode, i: number): ElemNode => {
     const scanDt = scanSequence( props.position, OEIS_NORMALISED[props.structure]) ;
@@ -295,17 +294,44 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
   let pos = (i, x: ElemNode): ElemNode => { return el.mul( x, el.sin( i * 360 ) )  };
 
 
-  const asLeftPan = (x: ElemNode): ElemNode => { return el.select(position, x, el.mul(x, el.db2gain(1.5))) };
-  const asRightPan = (x: ElemNode): ElemNode => { return el.select(position, el.mul(x, el.db2gain(1.5)), x) };
+  const asLeftPan = (x: ElemNode): ElemNode => { return el.select( position, x, el.mul(x, el.db2gain(1.5))    ) };
+  const asRightPan = (x: ElemNode): ElemNode =>{ return el.select( position,    el.mul(x, el.db2gain(1.5)), x ) };
 
-   let yl = feedforward(0, asLeftPan(el.add(pos(0, r0[0]), pos( 2,  r0[2]), pos(4, r0[4]), pos( 6, r0[6] ) )));
-  let yr = feedforward(1, asRightPan(el.add(pos(1, r0[1]), pos( 3,  r0[3]), pos(5, r0[5]), pos( 7, r0[7] ) )));
+   let yl = 
+   feedforward(0, 
+    asLeftPan(
+      el.add(
+      pos( 0, r0[0] ), 
+      pos( 2, r0[2] ), 
+      pos( 4, r0[4] ), 
+      pos( 6, r0[6] ) 
+    ))
+  );
 
+    let yr =
+    feedforward(1, 
+      asRightPan(
+        el.add(
+        pos( 1, r0[1] ), 
+        pos( 3, r0[3] ), 
+        pos( 5, r0[5] ), 
+        pos( 7, r0[7] ) 
+      ))
+    );
 
+    // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
+  // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ REFLECTORS DSP ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
+// ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
+// This is the output section of the graph              
+// and also the "Start" of the DSP program.
+// You read it from here.
+// Everything cascades from here, because Elementary
+// is a functional graph language.
 
-  // reflections
   if (props.srvbBypass)
-    return [feedforward(0, xl), feedforward(1, xr)]
+    // if the bypass is on, we feedforward the input to the convolver section
+    return [  feedforward(  0, xl ), feedforward( 1, xr )   ]
   else
-    return [el.mul(level, yl), el.mul(level, yr)];
+    // otherwise, we feedforward the processed signal, with a mix level for this section
+    return [    el.mul( level, yl ),   el.mul( level, yr )   ];
 }

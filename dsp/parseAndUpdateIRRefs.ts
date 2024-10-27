@@ -32,7 +32,7 @@ export function parseAndUpdateIRRefs(currentVFSKeys: Array<string>, scape: Scape
       ? REVERSE_BUFFER_PREFIX + vfsPathWithChannel
       : vfsPathWithChannel;
 
-      console.log('Composed VFS Path: ', composedPath);
+      // console.log('Composed VFS Path: ', composedPath);
     return composedPath;
   };
 
