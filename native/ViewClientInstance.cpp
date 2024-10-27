@@ -190,9 +190,7 @@ void ViewClientInstance::userFileUploadHandler( const int &hpfValue, int &retFla
             }
             processor.slotManager->assignFileAssetToSlot(targetSlot, file);
             processor.slotManager->assignFilenameToSlot(targetSlot, file);
-            // last slot of the bank
-            // so step to the next bank
-            // for the VFS path history registry
+
            
                 processor.userBankManager.incrementUserBank();
             
