@@ -2427,26 +2427,31 @@
     [1, 1, -1, -1, -1, -1, 1, 1],
     [1, -1, -1, 1, -1, 1, 1, -1]
   ];
+  var baseAttenuation = () => {
+    const len = 8;
+    const baseAtt = Math.sqrt(1 / len);
+    return baseAtt;
+  };
   function diffuse(props, ...ins) {
     const { maxLengthSamp } = props;
     const structure = props.structure;
     const len = ins.length;
-    const diffusionStageLevel = () => {
-      const baseAtt = Math.sqrt(1 / len);
-      return baseAtt;
-    };
     const dels = ins.map(function(input, i) {
+      const delaySize = maxLengthSamp;
+      const delayKey = `srvb-diff:${i}`;
+      const delayTime = structure[i % structure.length];
+      const feedback = 0;
       return stdlib.delay(
-        { size: maxLengthSamp, key: `srvb-diff:${i}` },
-        stdlib.smooth(stdlib.tau2pole(i * 0.21), structure[i % structure.length]),
-        0,
+        { size: delaySize, key: delayKey },
+        delayTime,
+        feedback,
         input
       );
     });
-    return H8.map(function(row, i) {
+    return H8.map(function(row, rowIndex) {
       return stdlib.add(
-        ...row.map(function(col, j) {
-          return stdlib.mul(col, diffusionStageLevel(), dels[j]);
+        ...row.map(function(col, colIndex) {
+          return stdlib.mul(col, baseAttenuation(), dels[colIndex]);
         })
       );
     });
@@ -2458,12 +2463,13 @@
     const structure = props.structureArray;
     const structureMax = props.structureMax;
     const tapDelayLevel = (i) => {
-      const baseAtt = Math.sqrt(1 / len);
-      const normStruct = stdlib.max(
+      const normalizedStructure = stdlib.max(
         stdlib.db2gain(-35),
+        // Ensure the minimum gain is -35 dB
         stdlib.sub(1 + EPS, stdlib.div(structure[i % structure.length], structureMax))
+        // Normalize the structure value
       );
-      return stdlib.min(stdlib.db2gain(-0.5), stdlib.mul(normStruct, baseAtt));
+      return stdlib.min(stdlib.db2gain(-0.5), stdlib.mul(normalizedStructure, baseAttenuation()));
     };
     const dels = ins.map(function(input, i) {
       return stdlib.add(
@@ -2559,7 +2565,7 @@
     const four = [xl, xr, mid, side].map((x, i) => {
       return structurePositioning(toneDial(x, structureArray[i * 2 % structureArray.length]), i);
     });
-    const eight = [...four, ...four.map((x, i) => {
+    const eight = [...four, ...four.map((x, _i) => {
       return x;
     })];
     const d1 = diffuse(

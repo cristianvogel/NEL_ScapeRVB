@@ -55,36 +55,44 @@ const H8 = [
   [1, -1, -1, 1, -1, 1, 1, -1],
 ];
 
-
-// A diffusion step expecting exactly 8 input channels with
-// a maximum diffusion time of 500ms
-function diffuse(props: DiffuseProps, ...ins) {
-  const { maxLengthSamp } = props;
-  const structure: Array<ElemNode> = props.structure;
-
-  const len = ins.length; // 8
-
-  /* 
- keep this one uniform, have tried using the 
- sequence data, but it loses all energy 
- */
-  const diffusionStageLevel = (): number => {
+  // Keep this one uniform, have tried using the sequence data, but it loses all energy
+  const baseAttenuation = (): number => {
+    const len = 8; // number of inputs
     const baseAtt = Math.sqrt(1.0 / len);
     return baseAtt;
   };
+  
+// A diffusion step expecting exactly 8 input channels
+function diffuse(props: DiffuseProps, ...ins) {
+  const { maxLengthSamp } = props;
+  const structure: Array<ElemNode> = props.structure;
+  const len = ins.length; // 8 inputs
+
+
+
 
   const dels = ins.map(function (input, i) {
+    const delaySize = maxLengthSamp;
+    const delayKey = `srvb-diff:${i}`;
+    const delayTime = structure[i % structure.length];
+    const feedback = 0;
+
     return el.delay(
-      { size: maxLengthSamp, key: `srvb-diff:${i}` },
-      el.smooth(el.tau2pole(i * 0.21), structure[i % structure.length]),
-      0,
+      { size: delaySize, key: delayKey },
+      delayTime,
+      feedback,
       input
     );
   });
-  return H8.map(function (row, i) {
+
+  // Apply the Hadamard matrix to the delayed signals to achieve diffusion
+  return H8.map(function (row, rowIndex) {
+    // For each row in the Hadamard matrix, create a new element node
     return el.add(
-      ...row.map(function (col, j) {
-        return el.mul(col, diffusionStageLevel(), dels[j]);
+      ...row.map(function (col, colIndex) {
+        // Multiply each element in the row by the corresponding delayed signal
+        // and a diffusion stage level
+        return el.mul(col, baseAttenuation(), dels[colIndex]);
       })
     );
   });
@@ -99,19 +107,23 @@ function dampFDN(props: FDNProps, ...ins) {
   const structureMax: ElemNode = props.structureMax;
 
   /**
+   * Calculates the normalized scaling factor for the taps based on the structure.
+   * The shortest taps will be the loudest.
    *
-   * normalised scale the level of the taps according
-   * to the structure. Shortest, loudest...
-   *
+   * @param i - The index of the current tap.
+   * @returns The scaling factor for the tap delay.
    */
-  const tapDelayLevel = (i: number) => {
-    const baseAtt = Math.sqrt(1 / len);
-    const normStruct = el.max(
-      el.db2gain(-35),
-      el.sub(1 + EPS, el.div(structure[i % structure.length], structureMax))
+  const tapDelayLevel = (i: number): ElemNode => {
+
+    // Normalize the structure value for the current tap index
+    const normalizedStructure = el.max(
+      el.db2gain(-35), // Ensure the minimum gain is -35 dB
+      el.sub(1 + EPS, el.div(structure[i % structure.length], structureMax)) // Normalize the structure value
     );
-    // this will help the taps not explode but have enough energy
-    return el.min(el.db2gain(-0.5), el.mul(normStruct, baseAtt));
+
+    // Calculate the final scaling factor by multiplying the normalized structure value with the base attenuation
+    // Ensure the maximum gain is -0.5 dB to prevent the taps from exploding while maintaining enough energy
+    return el.min(el.db2gain(-0.5), el.mul(normalizedStructure, baseAttenuation()));
   };
 
   //const md = modDepth;
@@ -243,7 +255,7 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
     return structurePositioning( toneDial(x, structureArray[(i * 2) % structureArray.length]), i ) 
   });
 
-  const eight: ElemNode [] = [...four, ...four.map((x, i) => { return x })];  
+  const eight: ElemNode [] = [...four, ...four.map((x, _i) => { return x })];  
   // Diffusion over 8 channels using 'structure' sequence for timing coefficients
   const d1: ElemNode [] = diffuse(
     { structure: structureArray, structureMax, maxLengthSamp: ms2samps(43) },
