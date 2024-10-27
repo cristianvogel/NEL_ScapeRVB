@@ -2427,15 +2427,13 @@
     [1, 1, -1, -1, -1, -1, 1, 1],
     [1, -1, -1, 1, -1, 1, 1, -1]
   ];
-  var baseAttenuation = () => {
-    const len = 8;
-    const baseAtt = Math.sqrt(1 / len);
+  var baseAttenuation = (n = 8) => {
+    const baseAtt = Math.sqrt(1 / n);
     return baseAtt;
   };
   function diffuse(props, ...ins) {
     const { maxLengthSamp } = props;
     const structure = props.structure;
-    const len = ins.length;
     const dels = ins.map(function(input, i) {
       const delaySize = maxLengthSamp;
       const delayKey = `srvb-diff:${i}`;
@@ -2457,7 +2455,6 @@
     });
   }
   function dampFDN(props, ...ins) {
-    const len = ins.length / 2;
     const { size, decay } = props;
     const { sampleRate } = props;
     const structure = props.structureArray;
@@ -2466,10 +2463,13 @@
       const normalizedStructure = stdlib.max(
         stdlib.db2gain(-35),
         // Ensure the minimum gain is -35 dB
-        stdlib.sub(1 + EPS, stdlib.div(structure[i % structure.length], structureMax))
+        stdlib.sub(
+          1 + EPS,
+          stdlib.div(structure[i % structure.length], structureMax)
+        )
         // Normalize the structure value
       );
-      return stdlib.min(stdlib.db2gain(-0.5), stdlib.mul(normalizedStructure, baseAttenuation()));
+      return stdlib.min(stdlib.db2gain(-0.5), stdlib.mul(normalizedStructure, baseAttenuation(4)));
     };
     const dels = ins.map(function(input, i) {
       return stdlib.add(
@@ -2479,7 +2479,9 @@
         stdlib.mul(
           1 + EPS,
           decay,
-          stdlib.smooth(25e-4, stdlib.tapIn({ name: `srvb:fdn${i}` }))
+          // TWEAK to add more  linear spread
+          stdlib.smooth(25e-4 + i * [1e-4, -1e-4, -137e-6, 137e-6][i % 4], stdlib.tapIn({ name: `srvb:fdn${i}` }))
+          // the decay time coefficient
         )
       );
     });

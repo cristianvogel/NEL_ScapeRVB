@@ -56,27 +56,22 @@ const H8 = [
 ];
 
   // Keep this one uniform, have tried using the sequence data, but it loses all energy
-  const baseAttenuation = (): number => {
-    const len = 8; // number of inputs
-    const baseAtt = Math.sqrt(1.0 / len);
+  const baseAttenuation = ( n:number = 8 ): number => {
+    const baseAtt = Math.sqrt(1.0 / n);
     return baseAtt;
   };
   
-// A diffusion step expecting exactly 8 input channels
+// Diffusion expecting delaying 8 input channels
 function diffuse(props: DiffuseProps, ...ins) {
+
   const { maxLengthSamp } = props;
   const structure: Array<ElemNode> = props.structure;
-  const len = ins.length; // 8 inputs
-
-
-
 
   const dels = ins.map(function (input, i) {
     const delaySize = maxLengthSamp;
     const delayKey = `srvb-diff:${i}`;
     const delayTime = structure[i % structure.length];
     const feedback = 0;
-
     return el.delay(
       { size: delaySize, key: delayKey },
       delayTime,
@@ -91,7 +86,7 @@ function diffuse(props: DiffuseProps, ...ins) {
     return el.add(
       ...row.map(function (col, colIndex) {
         // Multiply each element in the row by the corresponding delayed signal
-        // and a diffusion stage level
+        // and the base attenuation
         return el.mul(col, baseAttenuation(), dels[colIndex]);
       })
     );
@@ -100,7 +95,7 @@ function diffuse(props: DiffuseProps, ...ins) {
 
 // An eight channel feedback delay network
 function dampFDN(props: FDNProps, ...ins) {
-  const len = ins.length / 2;
+
   const { size, decay } = props;
   const { sampleRate } = props;
   const structure: Array<ElemNode> = props.structureArray;
@@ -118,15 +113,14 @@ function dampFDN(props: FDNProps, ...ins) {
     // Normalize the structure value for the current tap index
     const normalizedStructure = el.max(
       el.db2gain(-35), // Ensure the minimum gain is -35 dB
-      el.sub(1 + EPS, el.div(structure[i % structure.length], structureMax)) // Normalize the structure value
+      el.sub(1 + EPS, 
+        el.div( structure[i % structure.length], structureMax )) // Normalize the structure value
     );
 
     // Calculate the final scaling factor by multiplying the normalized structure value with the base attenuation
     // Ensure the maximum gain is -0.5 dB to prevent the taps from exploding while maintaining enough energy
-    return el.min(el.db2gain(-0.5), el.mul(normalizedStructure, baseAttenuation()));
+    return el.min(el.db2gain(-0.5), el.mul(normalizedStructure, baseAttenuation( 4 )));
   };
-
-  //const md = modDepth;
 
   // The unity-gain one pole lowpass here is tuned to taste along
   // the range [0.001, 0.5]. Towards the top of the range, we get into the region
@@ -139,7 +133,8 @@ function dampFDN(props: FDNProps, ...ins) {
       el.mul(
         1 + EPS,
         decay,
-        el.smooth(0.0025, el.tapIn({ name: `srvb:fdn${i}` }))
+        // TWEAK to add more  linear spread
+        el.smooth(0.0025 + ( i * [ 0.0001, -0.0001, -0.000137, 0.000137][i%4] ), el.tapIn({ name: `srvb:fdn${i}` })) // the decay time coefficient
       )
     );
   });
