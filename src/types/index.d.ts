@@ -32,6 +32,7 @@ interface SrvbSettings {
   structureMax: number;
   bypass: 1 | 0;
   position: number;
+  positionAsNumber: number;
 }
 
 interface ScapeSettings {
@@ -91,6 +92,7 @@ interface SRVBProps {
   structureMax: ElemNode; // max value of the series
   dryMix: ElemNode;
   // non-signal data
+  positionAsNumber: number;
   sampleRate: number;
   structure: number;
   key: string;

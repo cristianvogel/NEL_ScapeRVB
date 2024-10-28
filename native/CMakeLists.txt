@@ -10,6 +10,7 @@ set(BUILD_VERSION "v0.8.6-beta")
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
+
 option(JUCE_BUILD_EXAMPLES "Build JUCE Examples" OFF)
 option(JUCE_GLOBAL_MODULE_SETTINGS_INCLUDED "Use Global Module Settings" ON)
 option(JUCE_ENABLE_MODULE_SOURCE_GROUPS "Enable Module Source Groups" ON)
@@ -21,18 +22,12 @@ add_subdirectory(juce) # using the static non-submodule version
 add_subdirectory(elementary/runtime) # using the static non-submodule version
 
 # Enable CCache
-find_program(CCACHE_PROGRAM ccache)
-if(CCACHE_PROGRAM)
-    set(CMAKE_C_COMPILER_LAUNCHER ${CCACHE_PROGRAM})
-    set(CMAKE_CXX_COMPILER_LAUNCHER ${CCACHE_PROGRAM})
-endif()
+# find_program(CCACHE_PROGRAM ccache)
+# if(CCACHE_PROGRAM)
+#     set(CMAKE_C_COMPILER_LAUNCHER ${CCACHE_PROGRAM})
+#     set(CMAKE_CXX_COMPILER_LAUNCHER ${CCACHE_PROGRAM})
+# endif()
 
-# Set build type
-set(CMAKE_BUILD_TYPE Debug) # Options: Debug, Release, RelWithDebInfo, MinSizeRel
-if(CMAKE_BUILD_TYPE STREQUAL "Release")
-    set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -s")
-    set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -s")
-endif()
 
 if(WIN32)
   set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>") # Martin's famous fix ... JUCE and plugins need this
@@ -54,7 +49,7 @@ juce_add_plugin(${TARGET_NAME}
   COPY_PLUGIN_AFTER_BUILD FALSE # We enable this manually below after adding a copy step
   APP_SANDBOX_ENABLED FALSE
   APP_SANDBOX_OPTIONS com.apple.security.network.client com.apple.security.files.user-selected.read-write
-  FORMATS AU VST3 STANDALONE # The formats to build. Other valid formats are: AAX Unity VST AU AUv3
+  FORMATS AU VST3  # The formats to build. Other valid formats are: AAX Unity VST AU AUv3
   PRODUCT_NAME "NEL_scape_space_${CMAKE_OSX_ARCHITECTURES}${PC_ARCH}_${BUILD_VERSION}") # The name of the final executable, which can differ from the target name
 
 # Keyzy Client Library
@@ -143,18 +138,19 @@ endif()
 
 target_sources(${TARGET_NAME}
   PRIVATE
-  PluginProcessor.cpp
-  WebViewEditor.cpp
-  Utilities.cpp
-  SlotName.cpp
-  SlotManager.cpp
-  ViewClientInstance.cpp
+
   ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/TwoStageFFTConvolver.cpp 
   ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/AudioFFT.cpp 
   ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/Utilities.cpp
   ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/FFTConvolver.cpp 
-  ConvolverNode.h
-  UserBankManager.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/ConvolverNode.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/UserBankManager.h
+  ${CMAKE_CURRENT_SOURCE_DIR}/PluginProcessor.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/WebViewEditor.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/Utilities.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/SlotName.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/SlotManager.cpp
+  ${CMAKE_CURRENT_SOURCE_DIR}/ViewClientInstance.cpp
 )
 
 target_include_directories(${TARGET_NAME}

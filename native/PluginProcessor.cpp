@@ -1,4 +1,5 @@
 // Local Headers
+// ReSharper disable All
 #include "SlotName.h"
 #include "UserBankManager.h"
 #include "PluginProcessor.h"
@@ -268,7 +269,7 @@ void EffectsPluginProcessor::validateUserUpload(juce::Array<juce::File> &selecte
     for (const auto &file : selected)
     {
         juce::String filePath = file.getFullPathName();
-        selectedFilesAsValue.push_back(elem::js::String(filePath.toStdString()));
+        selectedFilesAsValue.emplace_back(elem::js::String(filePath.toStdString()));
     }
 
     // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
@@ -345,16 +346,14 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
     if (reader == nullptr)
     {
         dispatchError("File error:", errorStatuses(static_cast<int>(ScapeError::FILE_NOT_READABLE)));
-        return 0;
+        return false;
     }
-    const int bitsPerSample = reader->bitsPerSample;
     const auto numChannels = reader->numChannels;
-    const bool isFloatingPoint = reader->usesFloatingPointData;
     //  TODO: add support for mono files
     if (numChannels < 2 || numChannels > 2)
     {
         dispatchError("File error:", errorStatuses(static_cast<int>(ScapeError::FILE_NOT_STEREO)));
-        return 0;
+        return false;
     }
     // Now we can register the asset with the targetslot
     slotManager->assignFileAssetToSlot(targetSlot, file);
@@ -374,24 +373,24 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
     // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
     for (int channel = 0; channel < numChannels; ++channel)
     {
-        auto buffer = juce::AudioBuffer<float>();
-        buffer.setSize(1, reader->lengthInSamples);
-        reader->read(&buffer, 0, reader->lengthInSamples, 0, !channel, channel);
+        auto userBuffer = juce::AudioBuffer<float>();
+        userBuffer.setSize(1, reader->lengthInSamples);
+        reader->read(&userBuffer, 0, reader->lengthInSamples, 0, !channel, channel);
 
-        int numSamples = buffer.getNumSamples();
+        int numSamples = userBuffer.getNumSamples();
         // fade in, less ER energy from the IR, as we have a whole ER engine already
-        buffer.applyGainRamp(0, numSamples, 0.65, 1);
+        userBuffer.applyGainRamp(0, numSamples, 0.65, 1);
         // normalise the impulse response
-        util::normaliseAudioBuffer(buffer, 0.8414); // -1.5 db
+        util::normaliseAudioBuffer(userBuffer, 0.8414); // -1.5 db
         // add the gain ramped impulse response to the virtual
         // file system
 
         // stash one channel of the normalised buffer data for Peaks in the VIEW
         if (channel == 0)
-            slotManager->assignPeaksToSlot(targetSlot, buffer, false);
+            slotManager->assignPeaksToSlot(targetSlot, userBuffer, false);
 
         // apply the high pass filter
-        juce::dsp::ProcessSpec spec;
+        juce::dsp::ProcessSpec spec{};
         spec.sampleRate = getSampleRate();
         spec.maximumBlockSize = numSamples;
         spec.numChannels = 1;
@@ -399,25 +398,25 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
         stateVariableFilter.prepare(spec);
         stateVariableFilter.setType(juce::dsp::StateVariableTPTFilterType::highpass);
         stateVariableFilter.setCutoffFrequency(userCutoffChoice);
-        auto outputBlock = juce::dsp::AudioBlock<float>(buffer);
+        auto outputBlock = juce::dsp::AudioBlock<float>(userBuffer);
         juce::dsp::ProcessContextReplacing<float> context(outputBlock);
         stateVariableFilter.process(context);
 
         // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
         auto name = prefixUserBank( toString(targetSlot) + "_" + std::to_string(channel));
 
-        elementaryRuntime->updateSharedResourceMap(name, buffer.getReadPointer(0), numSamples);
+        elementaryRuntime->updateSharedResourceMap(name, userBuffer.getReadPointer(0), numSamples);
 
         // Get the reverse from a little way, so its less draggy
         // so its easy to swap into in realtime
         int shorter = numSamples * 0.75;
-        buffer.reverse(0, shorter);
+        userBuffer.reverse(0, shorter);
         // add the shaped impulse response to the virtual file system
         std::string reversedName = REVERSE_BUFFER_PREFIX + name;
         // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
         if (elementaryRuntime)
         {
-            elementaryRuntime->updateSharedResourceMap(reversedName, buffer.getReadPointer(0), shorter);
+            elementaryRuntime->updateSharedResourceMap(reversedName, userBuffer.getReadPointer(0), shorter);
             inspectVFS();
         }
         // done, next channel
@@ -426,10 +425,10 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(juce::File &file, Sl
     delete reader;
     // notify the front end of the updated VFS keys
     inspectVFS();
-    return 1;
+    return true;
 }
 
-std::string EffectsPluginProcessor::prefixUserBank(const std::string &name)
+std::string EffectsPluginProcessor::prefixUserBank(const std::string &name) const
 {
     return "USERBANK_" + std::to_string(userBankManager.getUserBank()) + "_" + name;
 }
@@ -629,7 +628,7 @@ juce::AudioProcessorEditor *EffectsPluginProcessor::createEditor()
     editor->handleUnlockEvent = [this](choc::value::Value &v)
     {
         const bool hasSerial =
-            v.hasObjectMember("serial") && v["serial"].isString() && v["serial"].getString().length() > 0;
+            v.hasObjectMember("serial") && v["serial"].isString() && !v["serial"].getString().empty();
         bool shouldActivate = licenseStatus != Keyzy::LicenseStatus::VALID;
 
         if (!hasSerial && shouldActivate)
@@ -798,7 +797,7 @@ elem::js::Value EffectsPluginProcessor::assetsMapToValue(const std::map<SlotName
     {
         obj[toString(key)] = value.toJsValue();
     }
-    return elem::js::Value(obj);
+    return obj;
 }
 
 // ▮▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮
@@ -848,7 +847,7 @@ void EffectsPluginProcessor::initJavaScriptEngine()
         // one place.
         //
         // If not available, we fall back to std out.
-        if (auto *editor = static_cast<WebViewEditor *>(getActiveEditor())) {
+        if (auto *editor = dynamic_cast<WebViewEditor *>(getActiveEditor())) {
             auto v = choc::value::createEmptyArray();
 
             for (size_t i = 0; i < args.numArgs; ++i) {
@@ -895,6 +894,7 @@ void EffectsPluginProcessor::initJavaScriptEngine()
 // from the front end.
 void EffectsPluginProcessor::dispatchStateChange()
 {
+    dispatchPositionValue();
     auto currentStateMap = state;
     currentStateMap.insert_or_assign(SAMPLE_RATE_KEY, lastKnownSampleRate);
     const auto expr = serialize(jsFunctions::dispatchScript, currentStateMap);
@@ -927,6 +927,23 @@ void EffectsPluginProcessor::dispatchServerInfo()
     const auto expr = serialize(jsFunctions::serverInfoScript, portValue, "%");
     sendJavascriptToUI(expr);
 }
+
+
+
+/* experiment */
+void EffectsPluginProcessor::dispatchPositionValue()
+{
+    // get the parameter value of the position parameter
+    auto position = state["position"];
+    std::cout << "position: " << position << std::endl;
+    // Convert the position value to a choc::value::Value
+    const auto positionValue = choc::value::createFloat32(elem::js::Number(position));
+    // Send the position value to the UI
+    const auto expr = serialize(jsFunctions::positionValueScript, positionValue, "%");
+    sendJavascriptToUI(expr);
+}
+
+
 
 /*▮▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮
  * @name dispatchUserFileCount
@@ -1083,7 +1100,7 @@ void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInByt
             else if (key == PERSISTED_ASSETMAP)
             {
                 assetState = value.getObject();
-                if (assetState.size())
+                if (!assetState.empty())
                     processPersistedAssetState(assetState);
             }
             dispatchStateChange();
@@ -1099,7 +1116,7 @@ void EffectsPluginProcessor::setStateInformation(const void *data, int sizeInByt
 }
 
 // Function to convert elem::js::Object to std::map<SlotName, Asset>
-std::map<SlotName, Asset> EffectsPluginProcessor::convertToAssetMap(const elem::js::Object &assetStateObject)
+std::map<SlotName, Asset> EffectsPluginProcessor::convertToAssetMap(const elem::js::Object &assetStateObject) const
 {
 
     std::map<SlotName, Asset> assetMap;
@@ -1160,7 +1177,7 @@ void EffectsPluginProcessor::processPersistedAssetState(const elem::js::Object &
     future.wait();
 
     // Iterate through assetState to collect userStereoFile paths
-    for (const std::pair<SlotName, Asset> &entry : assetMap)
+    for (const std::pair<SlotName, Asset> entry : assetMap)
     {
         targetSlot = entry.first;
         const Asset &asset = entry.second;
