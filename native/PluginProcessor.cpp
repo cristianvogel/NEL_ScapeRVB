@@ -806,7 +806,7 @@ void EffectsPluginProcessor::initJavaScriptEngine()
 {
     jsContext = choc::javascript::createQuickJSContext();
 
-    //  choc::javascript::registerTimerFunctions(jsContext);
+    choc::javascript::registerConsoleFunctions(jsContext);
 
     // Install some native interop functions in our JavaScript environment
     jsContext.registerFunction(NATIVE_MESSAGE_FUNCTION_NAME, [this](choc::javascript::ArgumentList args)
