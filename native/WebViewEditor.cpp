@@ -42,7 +42,7 @@ WebViewEditor::WebViewEditor(juce::AudioProcessor *proc, juce::File const &asset
 #endif
 
 #if !ELEM_DEV_LOCALHOST
-    opts.enableDebugMode = false;
+    opts.enableDebugMode = true;
     opts.fetchResource = [=](const choc::ui::WebView::Options::Path &p) -> std::optional<choc::ui::WebView::Options::Resource>
     {
         auto relPath = "." + (p == "/" ? "/index.html" : p);

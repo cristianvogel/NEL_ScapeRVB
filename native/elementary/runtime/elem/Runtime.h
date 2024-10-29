@@ -19,6 +19,7 @@
   #else
     #include <iostream>
 
+
      #define ELEM_DBG(x) std::cout << "[Debug]" << x << std::endl;
 
   #endif

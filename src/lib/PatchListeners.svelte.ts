@@ -6,10 +6,11 @@ import {
   GestureSource_IRMode,
 } from "../stores/stores.svelte";
 import { MessageToHost } from "./NativeMessage.svelte";
+import {ProxyStateObject} from "svelte/src/internal/client/types";
 
 // Function to update the host with a new value
 // and update the gesture source for those pesky bool vars
-function updateHost(toggleName, gestureSource, boolInt) {
+function updateHost(toggleName: string, gestureSource: ProxyStateObject, boolInt: number) {
   if (gestureSource.current === "ui") {
     MessageToHost.updateHost(toggleName, boolInt);
   }
@@ -19,8 +20,10 @@ function updateHost(toggleName, gestureSource, boolInt) {
 
 // Function to initialize listeners for vars coming
 // via the Cables patch
+
+
 // Note that the vars are named in the Cables patch
-export function initPatchListeners(patch) {
+export function initPatchListeners(patch: CablesPatch) {
   const ui_srvbBypass = patch.getVar("ui_srvbBypass");
   const ui_scapeBypass = patch.getVar("ui_scapeBypass");
   const ui_scapeReverse = patch.getVar("ui_scapeReverse"); 

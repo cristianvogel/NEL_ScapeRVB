@@ -13,6 +13,7 @@ lerna-debug.log*
 
 # Builds
 native/choc
+native/cmake-build-debug
 native/juce
 native/KeyzyClientLibrary
 node_modules

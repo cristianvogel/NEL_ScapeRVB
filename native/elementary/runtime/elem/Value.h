@@ -6,9 +6,8 @@
 #include <vector>
 #include <functional>
 
-namespace elem
-{
-namespace js
+
+namespace elem::js
 {
 
     //==============================================================================
@@ -216,5 +215,4 @@ namespace js
     }
 
 
-} // namespace js
-} // namespace elem
+} // namespace elem::js
