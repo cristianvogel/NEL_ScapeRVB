@@ -46,7 +46,7 @@ export function buildStructures(refs: RefMap, currStructIndex = 0) {
     const sequenceAsSignals = castSequencesToRefs(series, seriesMax, refs);
     if (!sequenceAsSignals) return;
     const sd: StructureData = {
-      consts: sequenceAsSignals,
+      nodes: sequenceAsSignals,
       max: seriesMax,
     };
     return sd;

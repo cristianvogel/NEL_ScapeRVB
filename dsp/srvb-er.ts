@@ -93,7 +93,7 @@ function diffuse(props: DiffuseProps, ...ins) {
 // An eight channel feedback delay network
 function dampFDN(props: FDNProps, ...ins) {
   const len = ins.length / 2;
-  const { size, decay } = props;
+  const { size, decay, position } = props;
   const { sampleRate } = props;
   const structure: Array<ElemNode> = props.structureArray;
   const structureMax: ElemNode = props.structureMax;
@@ -144,7 +144,7 @@ function dampFDN(props: FDNProps, ...ins) {
 
     const delayScale = el.mul(
       el.add(1.0, el.sm(size)),
-      el.ms2samps(el.smooth(el.tau2pole(i * 0.25), structure[i % structure.length]))
+      el.ms2samps(el.smooth(el.tau2pole(i * 0.25), el.mul( 7, position, structure[i % structure.length] ))) // !
     );
 
     return el.tapOut(
@@ -280,6 +280,7 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
       tone: props.tone,
       size: props.size,
       decay: el.mul(props.decay, 0.7),
+      position: props.position,
     },
     ...d1
   );

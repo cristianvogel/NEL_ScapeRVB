@@ -31,8 +31,6 @@ export function parseAndUpdateIRRefs(currentVFSKeys: Array<string>, scape: Scape
     composedPath = scape.reverse > 0.5
       ? REVERSE_BUFFER_PREFIX + vfsPathWithChannel
       : vfsPathWithChannel;
-
-      console.log('Composed VFS Path: ', composedPath);
     return composedPath;
   };
 

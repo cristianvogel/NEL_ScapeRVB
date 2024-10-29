@@ -2162,6 +2162,19 @@
   // node_modules/@thi.ng/arrays/peek.js
   var peek = (buf) => buf[buf.length - 1];
 
+  // node_modules/@thi.ng/arrays/rotate.js
+  var rotate = (buf, num) => {
+    if (!(num = __distance(buf, num)))
+      return buf;
+    if (num < 0) {
+      buf.push(...buf.splice(0, -num));
+    } else {
+      buf.unshift(...buf.splice(-num));
+    }
+    return buf;
+  };
+  var __distance = (buf, num) => buf.length ? (num | 0) % buf.length : 0;
+
   // node_modules/@thi.ng/random/arandom.js
   var INV_MAX = 1 / 2 ** 32;
   var ARandom = class {
@@ -2356,7 +2369,7 @@
       if (!sequenceAsSignals)
         return;
       const sd = {
-        consts: sequenceAsSignals,
+        nodes: sequenceAsSignals,
         max: seriesMax
       };
       return sd;
@@ -2453,7 +2466,7 @@
   }
   function dampFDN(props, ...ins) {
     const len = ins.length / 2;
-    const { size, decay } = props;
+    const { size, decay, position } = props;
     const { sampleRate } = props;
     const structure = props.structureArray;
     const structureMax = props.structureMax;
@@ -2488,7 +2501,8 @@
       const ms2samps2 = (ms) => sampleRate * (ms / 1e3);
       const delayScale = stdlib.mul(
         stdlib.add(1, stdlib.sm(size)),
-        stdlib.ms2samps(stdlib.smooth(stdlib.tau2pole(i * 0.25), structure[i % structure.length]))
+        stdlib.ms2samps(stdlib.smooth(stdlib.tau2pole(i * 0.25), stdlib.mul(7, position, structure[i % structure.length])))
+        //!
       );
       return stdlib.tapOut(
         { name: `srvb:fdn${i}` },
@@ -2574,7 +2588,8 @@
         structureMax,
         tone: props.tone,
         size: props.size,
-        decay: stdlib.mul(props.decay, 0.7)
+        decay: stdlib.mul(props.decay, 0.7),
+        position: props.position
       },
       ...d1
     );
@@ -3320,7 +3335,6 @@
         vfsPathWithChannel = `${slotName}_${chan}`;
       }
       composedPath = scape.reverse > 0.5 ? REVERSE_BUFFER_PREFIX + vfsPathWithChannel : vfsPathWithChannel;
-      console.log("Composed VFS Path: ", composedPath);
       return composedPath;
     };
     const getScale = (slotName, chan = 0) => {
@@ -3467,7 +3481,7 @@
   var defaultStructure = OEIS_SEQUENCES[0];
   var defaultMax = argMax(defaultStructure, 17);
   var structureData = {
-    consts: castSequencesToRefs(defaultStructure, defaultMax, refs),
+    nodes: castSequencesToRefs(defaultStructure, defaultMax, refs),
     max: defaultMax
   };
   function shouldRender(_mem, _curr) {
@@ -3521,6 +3535,7 @@
       console.log("Render called");
       if (srvb.structure !== memoized?.structure) {
         structureData = buildStructures(refs, srvb.structure) || structureData;
+        structureData.nodes = rotate(structureData.nodes, srvb.position * -16);
       }
       if (srvbProps && scapeProps) {
         const graph = core.render(
@@ -3530,7 +3545,7 @@
             ...SRVB(
               getSRVBProps(),
               shared.dryInputs,
-              ...structureData.consts
+              ...structureData.nodes
             )
           ).map(
             (node, i) => stdlib.add(stdlib.mul(refs.get("dryMix"), shared.dryInputs[i]), node)
@@ -3573,8 +3588,7 @@
       srvbBypass: srvb.bypass,
       scapeMode: scape.mode,
       scapeOffset: scape.offset,
-      userBank: scape.userBank,
-      structureData
+      userBank: scape.userBank
     };
     function parseNewState(stateReceivedFromNative2) {
       const state2 = JSON.parse(stateReceivedFromNative2);

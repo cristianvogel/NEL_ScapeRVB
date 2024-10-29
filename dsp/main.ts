@@ -1,5 +1,5 @@
 import { Renderer, el, createNode } from "@elemaudio/core";
-import { argMax } from "@thi.ng/arrays";
+import { argMax, rotate } from "@thi.ng/arrays";
 import { RefMap } from "./RefMap";
 import SRVB from "./srvb-er";
 import { clamp, EPS, easeIn2 } from "@thi.ng/math";
@@ -136,7 +136,7 @@ const HERMITE: Ramp<Vec> = createHermiteVecInterp();
 const defaultStructure = OEIS_SEQUENCES[0];
 const defaultMax = argMax(defaultStructure, 17);
 let structureData: StructureData = {
-  consts: castSequencesToRefs(defaultStructure, defaultMax, refs),
+  nodes: castSequencesToRefs(defaultStructure, defaultMax, refs),
   max: defaultMax,
 };
 
@@ -224,15 +224,18 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     // first, build structure const refs if needed
     if ( srvb.structure !== memoized?.structure) {
       structureData = buildStructures(refs, srvb.structure) || structureData;
-    }
+      // express the position as a rotation of the structure
+      structureData.nodes = rotate(  structureData.nodes, srvb.position * -16 )
+    } 
 
+    // Here is the main graph call
     if (srvbProps && scapeProps) {
       const graph = core.render(
         ...SCAPE(
           getScapeProps(),
           shared.dryInputs,
           ...SRVB(
-            getSRVBProps(), shared.dryInputs, ...structureData.consts
+            getSRVBProps(), shared.dryInputs, ...structureData.nodes
           )
         )
         .map((node, i) =>
@@ -287,7 +290,6 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     scapeMode: scape.mode,
     scapeOffset: scape.offset,
     userBank: scape.userBank,
-    structureData: structureData
   };
 
   function parseNewState(stateReceivedFromNative) {

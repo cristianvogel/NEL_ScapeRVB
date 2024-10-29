@@ -76,7 +76,7 @@ type HostParams = {
 };
 
 type StructureData = {
-  consts: Array<ElemNode>;
+  nodes: Array<ElemNode>;
   max: number;
 };
 
@@ -122,6 +122,7 @@ type FDNProps = {
   tone: ElemNode;
   size: ElemNode;
   decay: ElemNode;
+  position: ElemNode;
   modDepth?: ElemNode;
 };
 
