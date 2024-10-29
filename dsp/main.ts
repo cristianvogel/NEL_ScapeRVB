@@ -21,7 +21,7 @@ import {
 } from "../src/types";
 import { castSequencesToRefs, buildStructures, updateStructureConstants } from "./OEIS-Structures";
 import { parseAndUpdateIRRefs } from "./parseAndUpdateIRRefs";
-import { remapPosition } from "../src/utils/utils";
+import { remapPosition, sumArray } from "../src/utils/utils";
 
 let currentVFSKeys: Array<string> = [];
 
@@ -221,8 +221,10 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
   if (!memoized || shouldRender(memoized, state)) {
 
     console.log('Render called');
-    // first, build structure const refs
-    structureData = buildStructures(refs, srvb.structure) || structureData;
+    // first, build structure const refs if needed
+    if ( srvb.structure !== memoized?.structure) {
+      structureData = buildStructures(refs, srvb.structure) || structureData;
+    }
 
     if (srvbProps && scapeProps) {
       const graph = core.render(
@@ -285,6 +287,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     scapeMode: scape.mode,
     scapeOffset: scape.offset,
     userBank: scape.userBank,
+    structureData: structureData
   };
 
   function parseNewState(stateReceivedFromNative) {

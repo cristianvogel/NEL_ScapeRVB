@@ -3519,7 +3519,9 @@
     }
     if (!memoized || shouldRender(memoized, state)) {
       console.log("Render called");
-      structureData = buildStructures(refs, srvb.structure) || structureData;
+      if (srvb.structure !== memoized?.structure) {
+        structureData = buildStructures(refs, srvb.structure) || structureData;
+      }
       if (srvbProps && scapeProps) {
         const graph = core.render(
           ...SCAPE(
@@ -3571,7 +3573,8 @@
       srvbBypass: srvb.bypass,
       scapeMode: scape.mode,
       scapeOffset: scape.offset,
-      userBank: scape.userBank
+      userBank: scape.userBank,
+      structureData
     };
     function parseNewState(stateReceivedFromNative2) {
       const state2 = JSON.parse(stateReceivedFromNative2);
