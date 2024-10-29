@@ -14,7 +14,7 @@
 #include <choc_StringUtilities.h>
 #include <choc_javascript.h>
 #include <choc_javascript_QuickJS.h>
-#include <choc_javascript_Timer.h>
+#include <choc_javascript_Console.h>
 #include <choc_SmallVector.h>
 #include <elem/Runtime.h>
 #include <juce_audio_basics/juce_audio_basics.h>
