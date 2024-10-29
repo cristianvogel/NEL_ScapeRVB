@@ -103,12 +103,14 @@ function dampFDN(props: FDNProps, ...ins) {
    * normalised scale the level of the taps according
    * to the structure. Shortest, loudest...
    *
-   */
-  const tapDelayLevel = (i: number) => {
+   */ 
+  const tapDelayLevel = (i: number) => { 
     const baseAtt = Math.sqrt(1 / len);
     const normStruct = el.max(
       el.db2gain(-35),
-      el.sub(1 + EPS, el.div(structure[i % structure.length], structureMax))
+     el.sub(1 + EPS, el.div(structure[i % structure.length], structureMax))
+
+     // el.sub(  el.add( 1 , el.mul( el.noise() , -1.0e-4 )) , el.div(structure[i % structure.length], structureMax))  // more magic dust
     );
     // this will help the taps not explode but have enough energy
     return el.min(el.db2gain(-0.5), el.mul(normStruct, baseAtt));

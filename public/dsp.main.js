@@ -2475,6 +2475,7 @@
       const normStruct = stdlib.max(
         stdlib.db2gain(-35),
         stdlib.sub(1 + EPS, stdlib.div(structure[i % structure.length], structureMax))
+        // el.sub(  el.add( 1 , el.mul( el.noise() , -1.0e-4 )) , el.div(structure[i % structure.length], structureMax))  // more magic dust
       );
       return stdlib.min(stdlib.db2gain(-0.5), stdlib.mul(normStruct, baseAtt));
     };
@@ -2502,7 +2503,7 @@
       const delayScale = stdlib.mul(
         stdlib.add(1, stdlib.sm(size)),
         stdlib.ms2samps(stdlib.smooth(stdlib.tau2pole(i * 0.25), stdlib.mul(7, position, structure[i % structure.length])))
-        //!
+        // !
       );
       return stdlib.tapOut(
         { name: `srvb:fdn${i}` },
