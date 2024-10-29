@@ -9,6 +9,13 @@ import {DiffuseProps, FDNProps, SRVBProps} from "../src/types";
 import {normalizeSequences} from "./OEIS-Structures";
 
 let positionMeasured = 0;
+
+// @ts-ignore
+globalThis.__receiveStateChange__ = function (state: any) {
+    positionMeasured = JSON.parse( state )["position"];
+    console.log( "pos:", positionMeasured)
+ };
+
 // THese number seies are from the OEIS and all sound really cool
 const smush = new Smush32(0xcafebabe);
 const OEIS_SEQUENCES_16 = [
@@ -216,8 +223,8 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
 
     let structurePositioning = (x: ElemNode, i: number): ElemNode => {
         // const scanDt = scanSequence( foldback01(positionAsNumber + ( i / 7 )), OEIS_NORMALISED[props.structure]) ;
-        const scanDt: ElemNode = scanSequence(el.meter(props.position), OEIS_NORMALISED[props.structure]),
-            scanG: ElemNode = scanSequence(el.meter(props.position), OEIS_NORMALISED[props.structure].reverse());
+        const scanDt: ElemNode = scanSequence( props.position, OEIS_NORMALISED[props.structure]),
+            scanG: ElemNode = scanSequence( props.position, OEIS_NORMALISED[props.structure].reverse());
         return el.delay(
             {key: `down-mix:${i}`, size: ms2samps(55)},
             // delay time normalised by structure
@@ -229,7 +236,7 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
         );
     };
 
-    const scanSequence = (position: ElemNode, values: number[]): ElemNode => {
+    const scanSequence = ( position: ElemNode, values: number[]): ElemNode => {
         const index: number = positionMeasured;
         const stops: Frame<number>[] = [
             [0, values[0]],
@@ -266,28 +273,7 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
         {structure: structureArray, structureMax, maxLengthSamp: ms2samps(43)},
         ...eight
     );
-    // const d2 = diffuse(
-    //   { structure: structureArray, structureMax , maxLengthSamp: ms2samps(97) },
-    //   ...d1
-    // );
-    // const d3 = diffuse(
-    //   { structure: structureArray, structureMax , maxLengthSamp: ms2samps(117) },
-    //   ...d2
-    // );
-
-    // Reverb network
-    // const d4: ElemNode[] = dampFDN(
-    //   {
-    //     name: `${key}:d4`,
-    //     sampleRate,
-    //     structureArray,
-    //     structureMax,
-    //     tone: props.tone,
-    //     size: props.size,
-    //     decay: 0.004,
-    //   },
-    //   ...d1
-    // );
+   
     let r0: ElemNode[] = dampFDN(
         {
             name: `r0:`,
@@ -325,10 +311,4 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
         return [el.mul(level, yl), el.mul(level, yr)];
 }
 
-////////// Handle updated VFS /////////////////////////////////
-// @ts-ignore
-globalThis.__receivePositionValue__ = function (value: any) {
-    const parsed: number = JSON.parse(value);
-    positionMeasured = parsed;
-    console.log(`Received position value: ${parsed}`);
-}
+
