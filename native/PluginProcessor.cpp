@@ -7,6 +7,7 @@
 #include "ConvolverNode.h"
 #include "Utilities.h"
 
+
 //======= DETAIL
 //=======================================================================
 EffectsPluginProcessor::EffectsPluginProcessor()
