@@ -169,7 +169,7 @@ public:
     std::map<SlotName, Asset> assetsMap;
     elem::js::Object assetState;
     int userCutoffChoice = 160;
-    bool userFilesWereImported = false;
+    std::atomic<bool> userFilesWereImported = false;
 
     // a USERBANK is a set of 4 VFS paths generated from one stereo user file
 

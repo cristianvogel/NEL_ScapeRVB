@@ -6,8 +6,8 @@ import { normal, Smush32 } from "@thi.ng/random";
 import { DiffuseProps, FDNProps, SRVBProps } from "../src/types";
 import { normalizeSequences } from "./OEIS-Structures";
 
-// THese number seies are from the OEIS and all sound really cool
-const smush = new Smush32(0xcafebabe);
+// These number series are from the OEIS and all sound really cool
+
 const OEIS_SEQUENCES_16 = [
   [39, 31, 23, 17, 34, 68, 76, 63, 50, 37, 28, 20, 55, 110, 123, 102], // A035506		Stolarsky array read by antidiagonals.  ⭐️⭐️⭐️⭐️
   [16, 22, 31, 40, 52, 68, 90, 121, 152, 192, 244, 312, 402, 523, 644, 796], //  A007604		a(n) = a(n-1) + a(n-1-(number of odd terms so far))
@@ -27,7 +27,7 @@ const OEIS_SEQUENCES_16 = [
   [17, 43, 16, 44, 15, 45, 14, 46, 79, 113, 78, 114, 77, 39, 78, 38], // A005132		Recamán's sequence
 ];
 // crop down to sequences of 8
-export const OEIS_SEQUENCES = OEIS_SEQUENCES_16.map((seq) => seq.slice(0, 8));
+export const OEIS_SEQUENCES = OEIS_SEQUENCES_16.map((seq) => seq.slice(0, 15));
 
 export const NUM_SEQUENCES = OEIS_SEQUENCES.length - 1;
 
@@ -58,7 +58,7 @@ const H8 = [
 
 // A diffusion step expecting exactly 8 input channels with
 // a maximum diffusion time of 500ms
-function diffuse(props: DiffuseProps, ...ins) {
+function diffuse(props: DiffuseProps, ...ins: ElemNode[]) {
   const { maxLengthSamp } = props;
   const structure: Array<ElemNode> = props.structure;
 
@@ -91,7 +91,7 @@ function diffuse(props: DiffuseProps, ...ins) {
 }
 
 // An eight channel feedback delay network
-function dampFDN(props: FDNProps, ...ins) {
+function dampFDN(props: FDNProps, ...ins: ElemNode[]) {
   const len = ins.length / 2;
   const { size, decay, position } = props;
   const { sampleRate } = props;
@@ -170,11 +170,11 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
   const { sampleRate, key, structureMax, tone } = props;
   const level = el.sm(props.mix);
   const position = el.sm(props.position)
-  const ms2samps = (ms) => sampleRate * (ms / 1000.0);
+  const ms2samps = (ms: number) => sampleRate * (ms / 1000.0);
 
 
   // Higher level DSP functions
-  const toneDial = (input, offset: ElemNode) => {
+  const toneDial = (input: ElemNode, offset: ElemNode) => {
     const dial = el.smooth(el.tau2pole(0.5), el.le(tone, 0));
     const fcLPF = el.add(
       48,
@@ -201,7 +201,7 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
 
   // xl , xr -- bypass to unprocessed inputs
   const [xl, xr] = inputs;
-  const feedforward = (channel, _x) => el.tapOut({ name: "srvbOut:" + channel }, el.tanh(_x));
+  const feedforward = (channel: string | number, _x: ElemNode) => el.tapOut({ name: "srvbOut:" + channel }, el.tanh(_x));
   const zero = el.const({ value: 0, key: "mute::srvb" });
 
 
@@ -288,7 +288,7 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
   );
 
   // interleaved dimensional Downmix ( optimised to build the spatial delays when needed )
-  let pos = (i, x: ElemNode): ElemNode => { return el.mul( x, el.sin( i * 360 ) )  };
+  let pos = (i: number, x: ElemNode): ElemNode => { return el.mul( x, el.sin( i * 360 ) )  };
 
 
   const asLeftPan = (x: ElemNode): ElemNode => { return el.select(position, x, el.mul(x, el.db2gain(1.5))) };

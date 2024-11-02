@@ -108,7 +108,7 @@ void EffectsPluginProcessor::handleAsyncUpdate()
         runtimeSwapRequired.store(false);
     }
 
-    if ( userFilesWereImported )
+    if ( userFilesWereImported.exchange(false) )
     {
         for (const auto& [slotName, asset ] : assetsMap )
         {
@@ -116,7 +116,6 @@ void EffectsPluginProcessor::handleAsyncUpdate()
             juce::File file =  asset.userStereoFile;
             processImportedResponseBuffers( file, targetSlot);
         }
-        userFilesWereImported = false;
     }
 
     // Next we iterate over the current parameter values to update our local state
@@ -329,7 +328,7 @@ void EffectsPluginProcessor::validateUserUpload(juce::Array<juce::File>& selecte
                                 static_cast<elem::js::Number>(static_cast<int>(ScapeError::JOY_OF_JOYS)));
         result.insert_or_assign("success", true);
     }
-        userFilesWereImported = true;
+        userFilesWereImported.store(true);
 }
 
 bool EffectsPluginProcessor::processImportedResponseBuffers(const juce::File& file, const SlotName& targetSlot)
