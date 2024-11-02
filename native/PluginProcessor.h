@@ -194,7 +194,7 @@ public:
 
 private:
     int USERBANK = 0;
-    int runWebServer();
+    void runWebServer();
     uint16_t serverPort = 0;
     uint16_t getServerPort() const { return serverPort; }
 

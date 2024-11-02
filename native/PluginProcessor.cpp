@@ -54,21 +54,12 @@ EffectsPluginProcessor::EffectsPluginProcessor()
 
     // register audio file formats
     formatManager.registerBasicFormats();
-
-
-    // create the backend WebSocket server for front end communication
-    auto ws = EffectsPluginProcessor::runWebServer();
-    if (ws == 1)
-    {
-        dispatchError("Server error:", "Websocket server failed to start.");
-        jassert(false);
-    }
-    serverPort = server->getPort();
 }
 
 // Destructor
 EffectsPluginProcessor::~EffectsPluginProcessor()
 {
+
     // First explicitly close the front end, so it
     // stops sending messages to the Web Socket
     editor = nullptr;
@@ -76,6 +67,7 @@ EffectsPluginProcessor::~EffectsPluginProcessor()
     clientInstance.reset();
     // Ensure server is properly closed and released
     server->close();
+
     // Remove all listeners from params, standard JUCE pattern
     for (auto& p : getParameters())
     {
@@ -529,7 +521,8 @@ std::vector<float> EffectsPluginProcessor::getReducedAudioBuffer(const juce::Aud
 }
 
 //============== FRONT END IS CONNECTED VIA WEBSOCKET SERVER ================
-int EffectsPluginProcessor::runWebServer()
+// We launch that when the WebView calls ready()
+void EffectsPluginProcessor::runWebServer()
 {
     auto address = "127.0.0.1";
 #if ELEM_DEV_LOCALHOST
@@ -551,15 +544,14 @@ int EffectsPluginProcessor::runWebServer()
         // Handle some kind of server error..
         [this](const std::string& error)
         {
-            dispatchError("WS server error: ", error);
+            dispatchError("Error: ", error);
         });
 
     if (!openedOK)
-        return 1;
-    // While the server is running, this thread no longer needs to be involved.
-    // you could also run the
-    // message loop or get on with other tasks.
-    return 0;
+    {
+        dispatchError("Error:", "Could not connect with UI.");
+    }
+
 }
 
 //==============================================================================
@@ -623,23 +615,23 @@ void EffectsPluginProcessor::createParameters(const std::vector<elem::js::Value>
 
 juce::AudioProcessorEditor* EffectsPluginProcessor::createEditor()
 {
-    editor = new WebViewEditor(this, util::getAssetsDirectory(), 840, 480);
+    editor = new WebViewEditor(this, util::getAssetsDirectory(), 840 * 1.25, 480 * 1.25);
 
     // KEYZY LICENSE ACTIVATION
     // -----------
     // semi-online license activation
 
-    editor->handleUnlockEvent = [this](choc::value::Value& v)
+    editor->handleUnlockEvent = [this](const choc::value::Value& v)
     {
         const bool hasSerial =
             v.hasObjectMember("serial") && v["serial"].isString() && v["serial"].getString().length() > 0;
-        bool shouldActivate = licenseStatus != Keyzy::LicenseStatus::VALID;
+        const bool shouldActivate = licenseStatus != Keyzy::LicenseStatus::VALID;
 
         if (!hasSerial && shouldActivate)
         {
             licenseStatus = licenseActivator.activateSemiOnline();
         }
-        else if (hasSerial && shouldActivate && hasSerial)
+        else if (hasSerial && shouldActivate)
         {
             const auto serial = v["serial"].getString();
             licenseStatus = licenseActivator.activateSemiOnline(serial.data());
@@ -647,13 +639,14 @@ juce::AudioProcessorEditor* EffectsPluginProcessor::createEditor()
 
         sendJavascriptToUI("globalThis.__onUnlock__('" + unlock::errorStatuses(licenseStatus) + "')");
         // also send back the current host info
-        juce::PluginHostType hostType;
-        std::string hostDescription = static_cast<const char*>(hostType.getHostDescription());
+        const juce::PluginHostType hostType;
+        const std::string hostDescription = static_cast<const char*>(hostType.getHostDescription());
         sendJavascriptToUI("globalThis.__hostInfo__('" + hostDescription + "')");
     };
 
     editor->ready = [this]()
     {
+        runWebServer();
         dispatchServerInfo();
         dispatchStateChange();
     };
@@ -664,12 +657,18 @@ juce::AudioProcessorEditor* EffectsPluginProcessor::createEditor()
         dispatchStateChange();
     };
 
+    editor->closeServer = [this]()
+    {
+        server->close();
+    };
+
+
     // When setting a parameter value, we simply tell the host. This will in turn
     // fire a parameterValueChanged event, which will catch and propagate through
     // dispatching a state change event
     editor->setParameterValue = [this](const std::string& paramId, float value)
     {
-        if (parameterMap.count(paramId) > 0)
+        if (parameterMap.contains(paramId))
         {
             std::visit(
                 [this, value](auto&& param)
@@ -922,9 +921,6 @@ void EffectsPluginProcessor::dispatchStateChange()
     auto currentStateMap = state;
     currentStateMap.insert_or_assign(SAMPLE_RATE_KEY, lastKnownSampleRate);
     const auto expr = serialize(jsFunctions::dispatchScript, currentStateMap);
-    // First we try to dispatch to the UI if it's available, because running this
-    // step will just involve placing a message in a queue.
-    sendJavascriptToUI(expr);
     // Next we dispatch to the local engine which will evaluate any necessary
     // JavaScript synchronously here on the main thread
     try
@@ -950,7 +946,7 @@ void EffectsPluginProcessor::dispatchServerInfo()
     const auto portValue = choc::value::createInt32(serverPort);
     // Send the server port to the UI
     const auto expr = serialize(jsFunctions::serverInfoScript, portValue, "%");
-    sendJavascriptToUI(expr);
+    if (!sendJavascriptToUI(expr)) jsContext.evaluateExpression(expr);
 }
 
 /*▮▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮

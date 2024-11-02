@@ -1,10 +1,9 @@
 //@ts-check
 
-import { el, ElemNode } from "@elemaudio/core";
-import { EPS } from "@thi.ng/math";
-import { normal, Smush32 } from "@thi.ng/random";
-import { DiffuseProps, FDNProps, SRVBProps } from "../src/types";
-import { normalizeSequences } from "./OEIS-Structures";
+import {el, ElemNode} from "@elemaudio/core";
+import {EPS} from "@thi.ng/math";
+import {DiffuseProps, FDNProps, SRVBProps} from "../src/types";
+import {normalizeSequences} from "./OEIS-Structures";
 
 // These number series are from the OEIS and all sound really cool
 
@@ -69,11 +68,10 @@ function diffuse(props: DiffuseProps, ...ins: ElemNode[]) {
  sequence data, but it loses all energy 
  */
   const diffusionStageLevel = (): number => {
-    const baseAtt = Math.sqrt(1.0 / len);
-    return baseAtt;
+    return Math.sqrt(1.0 / len);
   };
 
-  const dels = ins.map(function (input, i) {
+  const delays = ins.map(function (input, i) {
     return el.delay(
       { size: maxLengthSamp, key: `srvb-diff:${i}` },
       el.smooth(el.tau2pole(i * 0.21), structure[i % structure.length]),
@@ -84,7 +82,7 @@ function diffuse(props: DiffuseProps, ...ins: ElemNode[]) {
   return H8.map(function (row, i) {
     return el.add(
       ...row.map(function (col, j) {
-        return el.mul(col, diffusionStageLevel(), dels[j]);
+        return el.mul(col, diffusionStageLevel(), delays[j]);
       })
     );
   });
@@ -221,10 +219,10 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
 
   // constructor function to create a cascading el.select 
  const scanSequence = (index: ElemNode, values: number[]): ElemNode => {
-  let result: ElemNode = el.const( {key:`NORMOEIS_-1`, value: values[values.length - 1]} );
+  let result: ElemNode = el.const( {key:`OEIS_Sequence-1`, value: values[values.length - 1]} );
   for (let i = values.length - 2; i >= 0; i--) {
     result = el.select( index, 
-      el.const( {key: `NORMOEIS_${i}`, value: values[i]}), 
+      el.const( {key: `OEIS_Sequence-${i}`, value: values[i]}),
       result
     );
   }

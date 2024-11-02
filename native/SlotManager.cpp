@@ -69,11 +69,11 @@ void SlotManager::assign(const SlotName &slotName, Asset::Props property, const 
 
     if (property == Asset::Props::userPeaksForView)
     {
-        assetInSlot.setProperty(Asset::Props::userPeaksForView, processor.getReducedAudioBuffer(buffer));
+        assetInSlot.setProperty(Asset::Props::userPeaksForView, EffectsPluginProcessor::getReducedAudioBuffer(buffer));
     }
     else
     {
-        assetInSlot.setProperty(Asset::Props::defaultPeaksForView, processor.getReducedAudioBuffer(buffer));
+        assetInSlot.setProperty(Asset::Props::defaultPeaksForView, EffectsPluginProcessor::getReducedAudioBuffer(buffer));
     }
     peaksDirty = true;
     updateState(slotName, assetInSlot);
@@ -99,7 +99,7 @@ void SlotManager::wrapPeaksForView(elem::js::Object &peaksContainer)
         const auto user = assetInSlot.second.userPeaksForView;
         const auto factory = assetInSlot.second.defaultPeaksForView;
 
-        if (elem::js::Number(processor.state.at("scapeMode")) == 1 )
+        if (static_cast<elem::js::Number>(processor.state.at("scapeMode")) == 1 )
         {
             assign(assetInSlot.first, Asset::Props::currentPeakDataInView, user);
         }
@@ -128,7 +128,7 @@ void SlotManager::wrapStateForView(elem::js::Object &wrappedState)
     {
         const SlotName slot = assetInSlot.first;
         int index = getIndexForSlot(slot);
-        if (assetInSlot.second.filenameForView.length() == 0)
+        if (assetInSlot.second.filenameForView.empty())
         {
             assetInSlot.second.filenameForView = assetInSlot.second.defaultFilenameForView;
         }

@@ -69,7 +69,7 @@ WebViewEditor::WebViewEditor(juce::AudioProcessor *proc, juce::File const &asset
 #endif
 
     addAndMakeVisible(viewContainer);
-    viewContainer.setBounds({0, 0, 840, 480});
+    viewContainer.setBounds({0, 0, static_cast<int>(840 * 1.25), static_cast<int>(480 * 1.25)});
 
     // Install message passing handlers
     webView->bind(POST_NATIVE_MESSAGE, [=](const choc::value::ValueView &args) -> choc::value::Value
@@ -78,7 +78,7 @@ WebViewEditor::WebViewEditor(juce::AudioProcessor *proc, juce::File const &asset
             const auto eventName = args[0].getString();
 
             // When the webView loads it should send a message telling us that it has established
-            // its message-passing hooks and is ready for a state dispatch
+            // its message-passing hooks and is ready for a server connection and state dispatch
             if (eventName == READY_EVENT) {
                 ready();
             }
@@ -93,6 +93,12 @@ WebViewEditor::WebViewEditor(juce::AudioProcessor *proc, juce::File const &asset
 
             if (eventName == PRUNE_VFS) {
                 pruneVFS();
+            }
+
+            // DEPRECATE: front end will never need to cut itself off from the server, right?
+            if (eventName == CLOSE_SERVER)
+            {
+                closeServer();
             }
 
 
@@ -112,7 +118,7 @@ WebViewEditor::WebViewEditor(juce::AudioProcessor *proc, juce::File const &asset
 
 WebViewEditor::~WebViewEditor()
 {
-    // Clean up resources if necessary
+    closeServer();
     webView.reset();
 }
 choc::ui::WebView *WebViewEditor::getWebViewPtr()

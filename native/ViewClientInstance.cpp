@@ -100,7 +100,6 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             if (key == "factory")
             {
                 processor.slotManager->switchSlotsTo(false, false);
-                processor.updateStateWithAssetsData();
                 std::cout << "switching to factory slots" << std::endl;
                 retFlag = 0;
             } // end switchToDefaultSlots
@@ -112,7 +111,6 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             if (key == "custom")
             {
                 processor.slotManager->switchSlotsTo(true, false);
-                processor.updateStateWithAssetsData();
                 std::cout << "switching to custom slots" << std::endl;
             } // end switchToUserSlots
 

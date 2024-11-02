@@ -21,6 +21,7 @@ public:
     void paint(juce::Graphics &g) override;
     void resized() override;
 
+
     //==============================================================================
     // Keyzy
     std::function<void(choc::value::Value &)> handleUnlockEvent = [](choc::value::Value &) {};
@@ -30,6 +31,7 @@ public:
     std::function<void(const std::string &, float)> setParameterValue = [](const std::string &, float) {};
     std::function<void()> reload = []() {};
     std::function<void()> ready = []() {};
+    std::function<void()> closeServer = []() {};
     std::function<void()> pruneVFS = []() {};
 
     void executeJavascript(const std::string &script) const;
@@ -39,7 +41,7 @@ private:
     std::string READY_EVENT = "ready";
     std::string RELOAD_EVENT = "reload";
     std::string SET_PARAMETER_VALUE = "setParameterValue";
-
+    std::string CLOSE_SERVER = "closeServer";
     std::string UNLOCK_EVENT = "unlock";
     std::string HOST_INFO = "hostInfo";
     std::string SERVER_PORT = "serverInfo";
