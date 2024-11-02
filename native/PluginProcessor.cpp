@@ -530,6 +530,11 @@ void EffectsPluginProcessor::runWebServer()
 #else
     uint16_t preferredPortNum = 0;
 #endif
+    if (server && server->isOpen())
+    {
+        std::cout << "Web server was already open." << std::endl;
+        return;
+    }
     // <<...If you pass 0 for the port number, a free one will be automatically
     // chosen...>> as we don't want every plugin instance under the same server,
     // we use a random port and pass it over to the UI client
@@ -551,6 +556,8 @@ void EffectsPluginProcessor::runWebServer()
     {
         dispatchError("Error:", "Could not connect with UI.");
     }
+
+    std::cout << "Web server is running on port " << std::to_string( serverPort ) << std::endl;
 
 }
 
