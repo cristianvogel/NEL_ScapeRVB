@@ -21,6 +21,8 @@ public:
 
 private:
     int clientID;
+    int retFlag = 0;
+    std::atomic<bool> chooserIsOpen = false;
     EffectsPluginProcessor &processor;
     std::atomic<bool> running = true; // Flag to indicate if the instance is running
 

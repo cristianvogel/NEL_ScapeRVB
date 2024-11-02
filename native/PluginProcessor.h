@@ -169,19 +169,20 @@ public:
     std::map<SlotName, Asset> assetsMap;
     elem::js::Object assetState;
     int userCutoffChoice = 160;
+    bool userFilesWereImported = false;
 
     // a USERBANK is a set of 4 VFS paths generated from one stereo user file
 
     bool fetchDefaultAudioFileAssets();
     bool processDefaultResponseBuffers();
     void inspectVFS();
-    void pruneVFS();
+    void pruneVFS() const;
     void requestUserFileSelection(std::promise<elem::js::Object> &promise);
-    void validateUserUpload(juce::Array<juce::File> &selected, elem::js::Array &selectedFilesAsValue, elem::js::Object &result );
+     void validateUserUpload(juce::Array<juce::File> &selected, elem::js::Array &selectedFilesAsValue, elem::js::Object &result );
     void updateStateWithAssetsData();
     elem::js::Value assetsMapToValue(const std::map<SlotName, Asset> &map);
-    std::vector<float> getReducedAudioBuffer(const juce::AudioBuffer<float> &buffer);
-    bool processImportedResponseBuffers(juce::File &file, SlotName &targetSlot);
+    static std::vector<float> getReducedAudioBuffer(const juce::AudioBuffer<float> &buffer);
+    bool processImportedResponseBuffers(const juce::File &file, const SlotName &targetSlot);
     void processPersistedAssetState(const elem::js::Object &assetState);
     bool importPeakDataForView(const juce::AudioBuffer<float> &buffer);
     void dispatchVFSpathHistoryForSlot(SlotName slot);
@@ -189,7 +190,7 @@ public:
   
     vfs::UserBankManager userBankManager;
     void dispatchUserBank();
-    std::string prefixUserBank(const std::string &name );
+    std::string prefixUserBank(const std::string &name ) const;
 
 private:
     int USERBANK = 0;

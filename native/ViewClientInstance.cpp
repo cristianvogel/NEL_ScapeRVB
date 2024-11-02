@@ -8,6 +8,7 @@ ViewClientInstance::ViewClientInstance(EffectsPluginProcessor &processor)
 {
     static int clientCount = 0;
     clientID = ++clientCount;
+
 }
 
 ViewClientInstance::~ViewClientInstance()
@@ -54,12 +55,10 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
             if (key == "selectFiles" && hpfValue.isNumber() )
             {
-                int retFlag = 0;
+                if (chooserIsOpen.load()) continue;
                 uploadStatus = 0; 
-                int filterCutoff = elem::js::Number( hpfValue );
+                int filterCutoff = static_cast<elem::js::Number>(hpfValue);
                 userFileUploadHandler(filterCutoff, retFlag);
-                if (retFlag != 1)
-                    continue;
             } // end selectFiles
 
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
@@ -67,12 +66,11 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
             if (key == "requestState")
             {
-                if (!processor.editor)
+                if (!processor.editor || chooserIsOpen.load() )
                     return;
 
                 elem::js::Object stateContainer;
-                elem::js::Object peaksContainer;
-                // ============ perfomance optimization ========================
+                // ============ performance optimization ========================
                 // hash the serialized state, send only if changed
 
                 processor.slotManager->wrapStateForView(stateContainer);
@@ -86,13 +84,13 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                 }
                 if (processor.slotManager->peaksDirty )
                 {
+                    elem::js::Object peaksContainer;
                     std::cout << "wrapping and sending peaks to View.." << std::endl;
                     processor.slotManager->wrapPeaksForView(peaksContainer);
                     juce::String serializedPeaks = elem::js::serialize(peaksContainer);
                     sendWebSocketMessage(serializedPeaks.toStdString());
                     processor.slotManager->peaksDirty = false;
                 }
-                continue;
             } // end requestState
 
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
@@ -104,7 +102,7 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                 processor.slotManager->switchSlotsTo(false, false);
                 processor.updateStateWithAssetsData();
                 std::cout << "switching to factory slots" << std::endl;
-                continue;
+                retFlag = 0;
             } // end switchToDefaultSlots
 
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
@@ -116,13 +114,12 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                 processor.slotManager->switchSlotsTo(true, false);
                 processor.updateStateWithAssetsData();
                 std::cout << "switching to custom slots" << std::endl;
-                continue;
             } // end switchToUserSlots
 
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
             // ▮▮▮▮▮▮▮ simple parameter update request       ▮▮▮▮▮▮▮ //
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
-            if (hpfValue.isNumber() && processor.parameterMap.count(key) > 0)
+            if (hpfValue.isNumber() && processor.parameterMap.contains(key) && !chooserIsOpen.load())
             {
                 float paramValue = static_cast<elem::js::Number>(hpfValue);
                 float stateValue = static_cast<elem::js::Number>(processor.state[key]);
@@ -138,6 +135,21 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
     }
 }
 
+void EffectsPluginProcessor::requestUserFileSelection(std::promise<elem::js::Object> &promise)
+{
+    juce::MessageManager::callAsync([this, &promise]()
+                                    {
+                                        const bool browsed = chooser.browseForMultipleFilesToOpen(nullptr);
+                                        elem::js::Object result;
+                                        result.insert_or_assign("success", static_cast<elem::js::Boolean>(browsed));
+                                        juce::Array<juce::File> selected(chooser.getResults());
+                                        // Create an elem::js::Array to hold the file paths
+                                        elem::js::Array selectedFilesAsValue;
+                                        validateUserUpload(selected, selectedFilesAsValue, result);
+                                        promise.set_value(result);
+                                    });
+}
+
 void ViewClientInstance::userFileUploadHandler( const int &hpfValue, int &retFlag)
 {
     processor.userCutoffChoice = hpfValue;
@@ -145,15 +157,17 @@ void ViewClientInstance::userFileUploadHandler( const int &hpfValue, int &retFla
     std::future<elem::js::Object> future = promise.get_future();
 
     // begin async file selection
+    chooserIsOpen.store(true);
      processor.requestUserFileSelection(promise);
     // get the future back
     
     elem::js::Object gotFiles = future.get();
 
-    uploadStatus = gotFiles["status"].isNumber() ? elem::js::Number( gotFiles["status"] ) : 0;
+    chooserIsOpen.store(false);
+    uploadStatus = gotFiles["status"].isNumber() ? static_cast<elem::js::Number>(gotFiles["status"]) : 0;
 
     // Failed
-    if ( gotFiles["success"].isBool() && elem::js::Boolean(gotFiles["success"])  == false )
+    if ( gotFiles["success"].isBool() && static_cast<elem::js::Boolean>(gotFiles["success"])  == false )
     {
         processor.dispatchError("[ Import Error ]", errorStatuses( uploadStatus ));
         {
@@ -164,7 +178,7 @@ void ViewClientInstance::userFileUploadHandler( const int &hpfValue, int &retFla
 
     auto files = gotFiles["files"].getArray();
     
-    if ( files.size() >= 4) processor.pruneVFS();
+    if ( files.size() > 4) processor.pruneVFS();
 
     if (files.empty())
     {
@@ -178,31 +192,22 @@ void ViewClientInstance::userFileUploadHandler( const int &hpfValue, int &retFla
     // Success
     SlotName targetSlot = processor.slotManager->findFirstSlotWithoutUserStereoFile();
 
-    for (const auto fileValue : files)
+    for (const auto& fileValue : files)
     {
         juce::String filePath = juce::String(static_cast<std::string>(fileValue));
         juce::File file(filePath);
         if (file.existsAsFile())
         {
-            if (!processor.processImportedResponseBuffers(file, targetSlot))
-            {
-                continue;
-            }
-            processor.slotManager->assignFileAssetToSlot(targetSlot, file);
+            processor.slotManager->assignFileHookToSlot(targetSlot, file);
             processor.slotManager->assignFilenameToSlot(targetSlot, file);
-
-           
-                processor.userBankManager.incrementUserBank();
-            
+            processor.userBankManager.incrementUserBank();
             targetSlot = nextSlot(targetSlot);
         }
     }
-    processor.updateStateWithAssetsData();
-    processor.dispatchStateChange();
-    {
+        processor.updateStateWithAssetsData();
+
         retFlag = 1;
-        return;
-    };
+
 }
 
 choc::network::HTTPContent ViewClientInstance::getHTTPContent(std::string_view path)

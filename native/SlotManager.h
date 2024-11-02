@@ -67,11 +67,11 @@ public:
     void assignPeaksToSlot(const SlotName &targetSlot, juce::AudioBuffer<float> &buffer, bool defaultSlot = false);
 
     /**
-     * @brief Assigns a file asset to a slot.
+     * @brief Assigns a juce::File hook to a slot.
      * @param targetSlot The target slot.
      * @param file The file to assign.
      */
-    void assignFileAssetToSlot(const SlotName &targetSlot, const juce::File &file);
+    void assignFileHookToSlot(const SlotName &targetSlot, const juce::File &file);
 
 
     /**

@@ -126,12 +126,12 @@ public:
         {
             const auto &obj = value.getObject();
 
-            if (obj.count("userStereoFile") > 0 && obj.at("userStereoFile").isString())
+            if (obj.contains("userStereoFile") && obj.at("userStereoFile").isString())
             {
                 asset.userStereoFile = juce::File(obj.at("userStereoFile").toString());
             }
 
-            if (obj.count("filenameForView") > 0 && obj.at("filenameForView").isString())
+            if (obj.contains("filenameForView") && obj.at("filenameForView").isString())
             {
                 asset.filenameForView = obj.at("filenameForView").toString();
             }

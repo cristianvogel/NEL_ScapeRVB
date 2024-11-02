@@ -34,7 +34,7 @@ void SlotManager::assignPeaksToSlot(const SlotName &slotName, juce::AudioBuffer<
     peaksDirty = true;
 }
 
-void SlotManager::assignFileAssetToSlot(const SlotName &slotName, const juce::File &file)
+void SlotManager::assignFileHookToSlot(const SlotName &slotName, const juce::File &file)
 {
     assign(slotName, Asset::Props::userStereoFile, file);
 }
