@@ -164,7 +164,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
   const { state, srvb, shared, scape } = parseNewState(stateReceivedFromNative) as ProcessorSettings;
 
   refs.getOrCreate("dryMix", "const", { value: shared.dryMix }, []);
-  // prettier-ignore
+
   srvbProps =
   {
     key: "srvb",
@@ -179,7 +179,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     structure: srvb.structure,
     structureMax: refs.getOrCreate("structureMax", "const", { value: structureData.max, key: "structureMax" }, [])
   };
-  // prettier-ignore
+
   scapeProps =
   {
     IRs: Slots,
@@ -234,10 +234,12 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
             getSRVBProps(), shared.dryInputs, ...structureData.nodes
           )
         )
-        .map((node, i) =>
-          el.add(el.mul(refs.get("dryMix"), shared.dryInputs[i]), node)
+        .map((node, i) => {
+              return el.add(el.mul(refs.get("dryMix"), shared.dryInputs[i]), node);
+            }
         )
       )
+      console.log('Graph updated:' , Object.entries(graph));
     }
   } else {
     // then the rest of the refs for SRVB

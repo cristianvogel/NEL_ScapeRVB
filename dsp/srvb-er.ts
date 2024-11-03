@@ -33,16 +33,18 @@ export const NUM_SEQUENCES = OEIS_SEQUENCES.length - 1;
 
 const OEIS_NORMALISED: number[][] = normalizeSequences(OEIS_SEQUENCES);
 
-// A size 8 Hadamard matrix constructed using Numpy and Scipy.
-//
-// The Hadamard matrix satisfies the property H*H^T = nI, where n is the size
-// of the matrix, I the identity, and H^T the transpose of H. Therefore, we have
-// orthogonality and stability in the feedback path if we scale according to (1 / n)
-// along the diagonal, which we do internally by multiplying each matrix element
-// by Math.sqrt(1 / n), which yields the identity as above.
-//
-// @see https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.linalg.hadamard.html
-// @see https://nhigham.com/2020/04/10/what-is-a-hadamard-matrix/
+/*
+ A size 8 Hadamard matrix constructed using Numpy and Scipy.
+
+ The Hadamard matrix satisfies the property H*H^T = nI, where n is the size
+ of the matrix, I is the identity, and H^T the transpose of H. Therefore, we have
+ orthogonality and stability in the feedback path if we scale according to (1 / n)
+ along the diagonal, which we do internally by multiplying each matrix element
+ by Math.sqrt(1 / n), which yields the identity as above.
+
+ @see https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.linalg.hadamard.html
+ @see https://nhigham.com/2020/04/10/what-is-a-hadamard-matrix/
+*/
 const H8 = [
   [1, 1, 1, 1, 1, 1, 1, 1],
   [1, -1, 1, -1, 1, -1, 1, -1],
@@ -55,18 +57,16 @@ const H8 = [
 ];
 
 
-// A diffusion step expecting exactly 8 input channels with
-// a maximum diffusion time of 500ms
+/*
+ A diffusion step expecting exactly 8 input channels with
+ a maximum diffusion time of 500ms
+*/
 function diffuse(props: DiffuseProps, ...ins: ElemNode[]) {
   const { maxLengthSamp } = props;
   const structure: Array<ElemNode> = props.structure;
 
   const len = ins.length; // 8
 
-  /* 
- keep this one uniform, have tried using the 
- sequence data, but it loses all energy 
- */
   const diffusionStageLevel = (): number => {
     return Math.sqrt(1.0 / len);
   };
@@ -119,9 +119,9 @@ function dampFDN(props: FDNProps, ...ins: ElemNode[]) {
   // The unity-gain one pole lowpass here is tuned to taste along
   // the range [0.001, 0.5]. Towards the top of the range, we get into the region
   // of killing the decay time too quickly. Towards the bottom, not much damping.
-  const dels = ins.map(function (input, i) {
+  const delaysWithTapInserts = ins.map(function (input, i) {
     return el.add(
-      // two many instances of the filter, moving to output
+      // too many instances of the filter, moving to output
       //  toneDial(input, structure[i]),
       input,
       el.mul(
@@ -134,7 +134,7 @@ function dampFDN(props: FDNProps, ...ins: ElemNode[]) {
   let mix = H8.map(function (row, i) {
     return el.add(
       ...row.map(function (col, j) {
-        return el.mul(col, tapDelayLevel(i), dels[j]);
+        return el.mul(col, tapDelayLevel(i), delaysWithTapInserts[j]);
       })
     );
   });
@@ -165,7 +165,7 @@ function dampFDN(props: FDNProps, ...ins: ElemNode[]) {
 
 export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureArray: ElemNode[]) {
 
-  const { sampleRate, key, structureMax, tone } = props;
+  const { sampleRate, structureMax, tone } = props;
   const level = el.sm(props.mix);
   const position = el.sm(props.position)
   const ms2samps = (ms: number) => sampleRate * (ms / 1000.0);
@@ -197,10 +197,8 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
     );
   };
 
-  // xl , xr -- bypass to unprocessed inputs
   const [xl, xr] = inputs;
   const feedforward = (channel: string | number, _x: ElemNode) => el.tapOut({ name: "srvbOut:" + channel }, el.tanh(_x));
-  const zero = el.const({ value: 0, key: "mute::srvb" });
 
 
   let structurePositioning =  (x: ElemNode, i: number): ElemNode => {

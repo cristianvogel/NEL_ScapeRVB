@@ -1,7 +1,7 @@
-import { el, ElemNode } from "@elemaudio/core";
-import { DefaultIRSlotName, IRMetaData } from "../src/types";
+import {el, ElemNode} from "@elemaudio/core";
+import {DefaultIRSlotName, IRMetaData} from "../src/types";
 
-export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
+export default function SCAPE(props: any, dryInputs: ElemNode[], ...outputFromSRVB: ElemNode[]) {
 
 
   const zero = el.const( {value: 0, key: 'srvb::mute' } );
@@ -47,13 +47,12 @@ export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
     return el.add(...mixer);
   }
 
-  let scapeConvolver = (path, channel) => {
+  let scapeConvolver = (path: DefaultIRSlotName, channel: number) => {
     if (!convolverNodes.has(path)) {
       console.log(`No convolver for path: ${path}`);
       return zero;
     }
-    let selectConvolverRef = convolverNodes.get(path)![channel];
-    return selectConvolverRef;
+    return convolverNodes.get(path)![channel];
   };
 
   let vectorProcessorPair = (_inputs: ElemNode[]) => [
@@ -73,11 +72,11 @@ export default function SCAPE(props, dryInputs, ...outputFromSRVB: ElemNode[]) {
   let yL = el.add(
      el.mul( el.db2gain(6), scapeLevel, asLeftPan( vectorProcessorPair( outputFromSRVB )[1])) ,    // crossed over
     getDrySource(0)
-  ); // crossfaded blend
+  ); // cross-faded blend
   let yR = el.add(
     el.mul( el.db2gain(6), scapeLevel, asRightPan( vectorProcessorPair( outputFromSRVB )[0])) , // crossed over
     getDrySource(1) 
-  ); // crossfaded blend
+  ); // cross-faded blend
   
  if ( props.scapeBypass ) 
   return [ getDrySource(0), getDrySource(1) ]; // bypass  
