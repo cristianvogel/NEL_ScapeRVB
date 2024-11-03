@@ -17,7 +17,7 @@
   onMount(() => {
     RegisterMessagesFromHost();
 
-    // Second setup the listener for CABLES loader
+    // Second set up the listener for CABLES loader
     document.addEventListener("CABLES.jsLoaded", function (event) {
       CABLES.patch = new CABLES.Patch({
         patchFile: "scape_space_ui/js/" + CURRENT_UI_VERSION + ".json",

@@ -180,7 +180,7 @@ public:
     void requestUserFileSelection(std::promise<elem::js::Object> &promise);
      void validateUserUpload(juce::Array<juce::File> &selected, elem::js::Array &selectedFilesAsValue, elem::js::Object &result );
     void updateStateWithAssetsData();
-    elem::js::Value assetsMapToValue(const std::map<SlotName, Asset> &map);
+    static elem::js::Value assetsMapToValue(const std::map<SlotName, Asset> &map);
     static std::vector<float> getReducedAudioBuffer(const juce::AudioBuffer<float> &buffer);
     bool processImportedResponseBuffers(const juce::File &file, const SlotName &targetSlot);
     void processPersistedAssetState(const elem::js::Object &assetState);
@@ -189,7 +189,6 @@ public:
    std::map<SlotName, Asset> convertToAssetMap(const elem::js::Object &assetStateObject);
   
     vfs::UserBankManager userBankManager;
-    void dispatchUserBank();
     std::string prefixUserBank(const std::string &name ) const;
 
 private:

@@ -549,15 +549,21 @@ void EffectsPluginProcessor::runWebServer()
         // Handle some kind of server error..
         [this](const std::string& error)
         {
-            dispatchError("Error: ", error);
+            /*
+            ⚡︎ Undefined Behaviour ⚡︎
+            js context seems to be dead
+            dispatching JS error crashes BitWig but not Reaper
+               // dispatchError("Error: ", error);
+            */
+            std::cout << "Web server error: " << error << std::endl;
         });
 
     if (!openedOK)
     {
-        dispatchError("Error:", "Could not connect with UI.");
+        std::cout << "Error: Could not connect with UI." << std::endl;
     }
 
-    std::cout << "Web server is running on port " << std::to_string( serverPort ) << std::endl;
+    std::cout << "Web server is running on port " << std::to_string( server->getPort() ) << std::endl;
 
 }
 
@@ -956,16 +962,7 @@ void EffectsPluginProcessor::dispatchServerInfo()
     if (!sendJavascriptToUI(expr)) jsContext.evaluateExpression(expr);
 }
 
-/*▮▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮
- * @name dispatchUserFileCount
- * @brief Dispatches the current user file count from the assetMap
- *
- * wasn't working, moving userBank int to state object
- */
-void EffectsPluginProcessor::dispatchUserBank()
-{
-    // DEPRECATED
-}
+
 
 /*▮▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮
  * @name dispatchError
@@ -973,7 +970,6 @@ void EffectsPluginProcessor::dispatchUserBank()
  */
 void EffectsPluginProcessor::dispatchError(std::string const& name, std::string const& message)
 {
-    // Need the serialize here to correctly form the string script.
     const auto expr = juce::String(jsFunctions::errorScript)
                       .replace("@", elem::js::serialize(name))
                       .replace("%", elem::js::serialize(message))

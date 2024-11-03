@@ -12,6 +12,7 @@ lerna-debug.log*
  ir-src 
 
 # Builds
+cmake-build-debug
 native/choc
 native/juce
 native/KeyzyClientLibrary

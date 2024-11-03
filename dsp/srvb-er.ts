@@ -116,7 +116,7 @@ function dampFDN(props: FDNProps, ...ins: ElemNode[]) {
 
   //const md = modDepth;
 
-  // The unity-gain one pole lowpass here is tuned to taste along
+  // The unity-gain one pole low pass here is tuned to taste along
   // the range [0.001, 0.5]. Towards the top of the range, we get into the region
   // of killing the decay time too quickly. Towards the bottom, not much damping.
   const delaysWithTapInserts = ins.map(function (input, i) {
@@ -201,31 +201,31 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
   const feedforward = (channel: string | number, _x: ElemNode) => el.tapOut({ name: "srvbOut:" + channel }, el.tanh(_x));
 
 
-  let structurePositioning =  (x: ElemNode, i: number): ElemNode => {
-    const scanDt = scanSequence( props.position, OEIS_NORMALISED[props.structure]) ;
-    const scanG = scanSequence( props.position, OEIS_NORMALISED[props.structure].reverse());
-    return el.delay(
-      { key: `downmix:${i}`, size: ms2samps(55) },
-      // delay time normalised by structure
-      el.mul( el.sub( 1.05, props.size),  scanDt ),
-      // minimum feedback
-      0, 
-      // node input, normalised by structure
-      el.mul(scanG, x) 
-    );
-  };
-
-  // constructor function to create a cascading el.select 
- const scanSequence = (index: ElemNode, values: number[]): ElemNode => {
-  let result: ElemNode = el.const( {key:`OEIS_Sequence-1`, value: values[values.length - 1]} );
-  for (let i = values.length - 2; i >= 0; i--) {
-    result = el.select( index, 
-      el.const( {key: `OEIS_Sequence-${i}`, value: values[i]}),
-      result
-    );
-  }
-  return result;
-};
+//   let structurePositioning =  (x: ElemNode, i: number): ElemNode => {
+//     const scanDt = scanSequence( props.position, OEIS_NORMALISED[props.structure]) ;
+//     const scanG = scanSequence( props.position, OEIS_NORMALISED[props.structure].reverse());
+//     return el.delay(
+//       { key: `downmix:${i}`, size: ms2samps(55) },
+//       // delay time normalised by structure
+//       el.mul( el.sub( 1.05, props.size),  scanDt ),
+//       // minimum feedback
+//       0,
+//       // node input, normalised by structure
+//       el.mul(scanG, x)
+//     );
+//   };
+//
+//   // constructor function to create a cascading el.select
+//  const scanSequence = (index: ElemNode, values: number[]): ElemNode => {
+//   let result: ElemNode = el.const( {key:`OEIS_Sequence-1`, value: values[values.length - 1]} );
+//   for (let i = values.length - 2; i >= 0; i--) {
+//     result = el.select( index,
+//       el.const( {key: `OEIS_Sequence-${i}`, value: values[i]}),
+//       result
+//     );
+//   }
+//   return result;
+// };
 
 
 
@@ -238,7 +238,8 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
   const mid = el.mul(0.5, el.add(_xl, _xr));
   const side = el.mul(0.5, el.sub(_xl, _xr));
   const four: ElemNode [] = [ xl, xr, mid, side ].map((x, i) => { 
-    return structurePositioning( toneDial(x, structureArray[(i * 2) % structureArray.length]), i ) 
+    // return structurePositioning( toneDial(x, structureArray[(i * 2) % structureArray.length]), i )
+    return  toneDial(x, structureArray[(i * 2) % structureArray.length])
   });
 
   const eight: ElemNode [] = [...four, ...four.map((x, i) => { return x })];  

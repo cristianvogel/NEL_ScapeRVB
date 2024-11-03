@@ -2175,37 +2175,6 @@
   };
   var __distance = (buf, num) => buf.length ? (num | 0) % buf.length : 0;
 
-  // node_modules/@thi.ng/random/arandom.js
-  var INV_MAX = 1 / 2 ** 32;
-  var ARandom = class {
-    float(norm2 = 1) {
-      return this.int() * INV_MAX * norm2;
-    }
-    probability(p) {
-      return this.float() < p;
-    }
-    norm(norm2 = 1) {
-      return (this.int() * INV_MAX - 0.5) * 2 * norm2;
-    }
-    normMinMax(min5, max5) {
-      const x = this.minmax(min5, max5);
-      return this.float() < 0.5 ? x : -x;
-    }
-    minmax(min5, max5) {
-      return this.float() * (max5 - min5) + min5;
-    }
-    minmaxInt(min5, max5) {
-      min5 |= 0;
-      const range2 = (max5 | 0) - min5;
-      return range2 ? min5 + this.int() % range2 : min5;
-    }
-    minmaxUint(min5, max5) {
-      min5 >>>= 0;
-      const range2 = (max5 >>> 0) - min5;
-      return range2 ? min5 + this.int() % range2 : min5;
-    }
-  };
-
   // node_modules/@thi.ng/errors/illegal-arity.js
   var IllegalArityError = defError(() => "illegal arity");
   var illegalArity = (n) => {
@@ -2220,12 +2189,17 @@
     throw new UnsupportedOperationError(msg);
   };
 
-  // dsp/RefMap.js
+  // dsp/RefMap.ts
   var import_invariant2 = __toESM(require_browser(), 1);
   var RefMap = class {
+    _map;
+    _core;
     constructor(core2) {
       this._map = /* @__PURE__ */ new Map();
       this._core = core2;
+    }
+    get map() {
+      return this._map;
     }
     get size() {
       return this._map.size;
@@ -2311,41 +2285,6 @@
   // node_modules/@thi.ng/math/mix.js
   var mix = (a, b, t) => a + (b - a) * t;
 
-  // node_modules/@thi.ng/random/constants.js
-  var DEFAULT_SEED_32 = 3737844653;
-  var DEFAULT_SEED_128 = [
-    3737844653,
-    799659867,
-    3827263459,
-    1552149530
-  ];
-  var DEFAULT_SEED_160 = [...DEFAULT_SEED_128, 4137311345];
-
-  // node_modules/@thi.ng/random/smush32.js
-  var Smush32 = class extends ARandom {
-    buffer;
-    constructor(seed = DEFAULT_SEED_32) {
-      super();
-      this.buffer = new Uint32Array([seed, 0]);
-    }
-    copy() {
-      const gen = new Smush32();
-      gen.buffer.set(this.buffer);
-      return gen;
-    }
-    seed(s) {
-      this.buffer.set([s, 0]);
-      return this;
-    }
-    int() {
-      const b = this.buffer;
-      const m = 1540483477;
-      const k = b[1]++ * m >>> 0;
-      const s = b[0] = (k ^ k >> 24 ^ b[0] * m >>> 0) * m >>> 0;
-      return (s ^ s >>> 13) >>> 0;
-    }
-  };
-
   // dsp/OEIS-Structures.ts
   function normalizeSequences(sequences) {
     return sequences.map((sequence) => {
@@ -2392,7 +2331,6 @@
   }
 
   // dsp/srvb-er.ts
-  var smush = new Smush32(3405691582);
   var OEIS_SEQUENCES_16 = [
     [39, 31, 23, 17, 34, 68, 76, 63, 50, 37, 28, 20, 55, 110, 123, 102],
     // A035506		Stolarsky array read by antidiagonals.  ⭐️⭐️⭐️⭐️
@@ -2427,7 +2365,7 @@
     [17, 43, 16, 44, 15, 45, 14, 46, 79, 113, 78, 114, 77, 39, 78, 38]
     // A005132		Recamán's sequence
   ];
-  var OEIS_SEQUENCES = OEIS_SEQUENCES_16.map((seq3) => seq3.slice(0, 8));
+  var OEIS_SEQUENCES = OEIS_SEQUENCES_16.map((seq3) => seq3.slice(0, 15));
   var NUM_SEQUENCES = OEIS_SEQUENCES.length - 1;
   var OEIS_NORMALISED = normalizeSequences(OEIS_SEQUENCES);
   var H8 = [
@@ -2445,10 +2383,9 @@
     const structure = props.structure;
     const len = ins.length;
     const diffusionStageLevel = () => {
-      const baseAtt = Math.sqrt(1 / len);
-      return baseAtt;
+      return Math.sqrt(1 / len);
     };
-    const dels = ins.map(function(input, i) {
+    const delays = ins.map(function(input, i) {
       return stdlib.delay(
         { size: maxLengthSamp, key: `srvb-diff:${i}` },
         stdlib.smooth(stdlib.tau2pole(i * 0.21), structure[i % structure.length]),
@@ -2459,7 +2396,7 @@
     return H8.map(function(row, i) {
       return stdlib.add(
         ...row.map(function(col, j) {
-          return stdlib.mul(col, diffusionStageLevel(), dels[j]);
+          return stdlib.mul(col, diffusionStageLevel(), delays[j]);
         })
       );
     });
@@ -2479,9 +2416,9 @@
       );
       return stdlib.min(stdlib.db2gain(-0.5), stdlib.mul(normStruct, baseAtt));
     };
-    const dels = ins.map(function(input, i) {
+    const delaysWithTapInserts = ins.map(function(input, i) {
       return stdlib.add(
-        // two many instances of the filter, moving to output
+        // too many instances of the filter, moving to output
         //  toneDial(input, structure[i]),
         input,
         stdlib.mul(
@@ -2494,7 +2431,7 @@
     let mix2 = H8.map(function(row, i) {
       return stdlib.add(
         ...row.map(function(col, j) {
-          return stdlib.mul(col, tapDelayLevel(i), dels[j]);
+          return stdlib.mul(col, tapDelayLevel(i), delaysWithTapInserts[j]);
         })
       );
     });
@@ -2512,7 +2449,7 @@
     });
   }
   function SRVB(props, inputs, ...structureArray) {
-    const { sampleRate, key, structureMax, tone } = props;
+    const { sampleRate, structureMax, tone } = props;
     const level = stdlib.sm(props.mix);
     const position = stdlib.sm(props.position);
     const ms2samps2 = (ms) => sampleRate * (ms / 1e3);
@@ -2542,37 +2479,12 @@
     };
     const [xl, xr] = inputs;
     const feedforward = (channel, _x) => stdlib.tapOut({ name: "srvbOut:" + channel }, stdlib.tanh(_x));
-    const zero2 = stdlib.const({ value: 0, key: "mute::srvb" });
-    let structurePositioning = (x, i) => {
-      const scanDt = scanSequence(props.position, OEIS_NORMALISED[props.structure]);
-      const scanG = scanSequence(props.position, OEIS_NORMALISED[props.structure].reverse());
-      return stdlib.delay(
-        { key: `downmix:${i}`, size: ms2samps2(55) },
-        // delay time normalised by structure
-        stdlib.mul(stdlib.sub(1.05, props.size), scanDt),
-        // minimum feedback
-        0,
-        // node input, normalised by structure
-        stdlib.mul(scanG, x)
-      );
-    };
-    const scanSequence = (index, values) => {
-      let result = stdlib.const({ key: `NORMOEIS_-1`, value: values[values.length - 1] });
-      for (let i = values.length - 2; i >= 0; i--) {
-        result = stdlib.select(
-          index,
-          stdlib.const({ key: `NORMOEIS_${i}`, value: values[i] }),
-          result
-        );
-      }
-      return result;
-    };
     const _xl = stdlib.dcblock(xl);
     const _xr = stdlib.dcblock(xr);
     const mid = stdlib.mul(0.5, stdlib.add(_xl, _xr));
     const side = stdlib.mul(0.5, stdlib.sub(_xl, _xr));
     const four = [xl, xr, mid, side].map((x, i) => {
-      return structurePositioning(toneDial(x, structureArray[i * 2 % structureArray.length]), i);
+      return toneDial(x, structureArray[i * 2 % structureArray.length]);
     });
     const eight = [...four, ...four.map((x, i) => {
       return x;
@@ -3246,8 +3158,7 @@
         console.log(`No convolver for path: ${path}`);
         return zero2;
       }
-      let selectConvolverRef = convolverNodes.get(path)[channel];
-      return selectConvolverRef;
+      return convolverNodes.get(path)[channel];
     };
     let vectorProcessorPair = (_inputs) => [
       HermiteVecInterp(0, hermiteNodes, _inputs[0]),
@@ -3423,7 +3334,7 @@
   function IR_SlotRefFactory(scape, refs2, slotName, slotIndex, attenuation) {
     if (!scape || !refs2)
       return;
-    const refConstructor = {
+    return {
       [`${slotName}_0`]: refs2.getOrCreate(
         `${slotName}_0`,
         "convolver",
@@ -3449,7 +3360,6 @@
         [stdlib.tapIn({ name: `srvbOut:1` })]
       )
     };
-    return refConstructor;
   }
   function registerConvolverRefs(scape, refs2) {
     let convolvers = {};
@@ -3485,9 +3395,8 @@
     nodes: castSequencesToRefs(defaultStructure, defaultMax, refs),
     max: defaultMax
   };
-  function shouldRender(_mem, _curr) {
-    const result = _mem === null || _curr === null || refs._map.size === 0 || !srvbProps || !scapeProps || _curr.sampleRate !== _mem?.sampleRate || Math.round(_curr.scapeBypass) !== _mem?.scapeBypass || Math.round(_curr.srvbBypass) !== _mem?.srvbBypass;
-    return result;
+  function shouldRender(previous, current) {
+    return previous === null || current === null || refs.map.size === 0 || !srvbProps || !scapeProps || current.sampleRate !== previous?.sampleRate || Math.round(current.scapeBypass) !== previous?.scapeBypass || Math.round(current.srvbBypass) !== previous?.srvbBypass;
   }
   var memoized = null;
   var srvbProps = {};
@@ -3549,9 +3458,12 @@
               ...structureData.nodes
             )
           ).map(
-            (node, i) => stdlib.add(stdlib.mul(refs.get("dryMix"), shared.dryInputs[i]), node)
+            (node, i) => {
+              return stdlib.add(stdlib.mul(refs.get("dryMix"), shared.dryInputs[i]), node);
+            }
           )
         );
+        console.log("Graph updated:", Object.entries(graph));
       }
     } else {
       if (!srvb.bypass) {
@@ -3621,7 +3533,7 @@
         offset: state2.scapeOffset || 0,
         userBank: state2.userBank,
         position: state2.position,
-        hasUserSlots: currentVFSKeys.find((key) => key.includes("USERBANK")) ? true : false
+        hasUserSlots: !!currentVFSKeys.find((key) => key.includes("USERBANK"))
       };
       return { state: state2, srvb: srvb2, shared: shared2, scape: scape2 };
     }
