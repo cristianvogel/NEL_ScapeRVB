@@ -1,8 +1,20 @@
 import { ElemNode } from "@elemaudio/core";
 import { Vec } from "@thi.ng/vectors";
 
-////////// IR
+////////// ELEM
 
+interface RefProps {
+  value?: number;
+  key?: string;
+  path?: string;
+  process?: number;
+  scale?: number;
+  blockSizes?: number[];
+  offset?: number;
+}
+
+
+////////// IR
 
 type DefaultIRSlotName = 'LIGHT' | 'SURFACE' | 'TEMPLE' | 'DEEPNESS';
 type UserVFSStem = `USER${number}`;
@@ -17,6 +29,9 @@ type IRMetaData = {
 };
 
 ////////// STATE
+
+type JSONString = string;
+
 interface SharedSettings {
   sampleRate: number;
   dryInputs: Array<ElemNode>;

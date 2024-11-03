@@ -1,34 +1,34 @@
-import { Renderer, el, createNode } from "@elemaudio/core";
-import { argMax, rotate } from "@thi.ng/arrays";
-import { RefMap } from "./RefMap";
-import SRVB from "./srvb-er";
-import { clamp, EPS, easeIn2 } from "@thi.ng/math";
-import { HERMITE_V, VEC3, ramp } from "@thi.ng/ramp";
-import type { Ramp } from "@thi.ng/ramp";
-import { NUM_SEQUENCES, OEIS_SEQUENCES } from "./srvb-er";
+import {createNode, el, ElemNode, Renderer} from "@elemaudio/core";
+import {argMax, rotate} from "@thi.ng/arrays";
+import {RefMap} from "./RefMap";
+import SRVB, {NUM_SEQUENCES, OEIS_SEQUENCES} from "./srvb-er";
+import {clamp, easeIn2} from "@thi.ng/math";
+import type {Ramp} from "@thi.ng/ramp";
+import {HERMITE_V, ramp, VEC3} from "@thi.ng/ramp";
 import SCAPE from "./scape";
-import { Vec } from "@thi.ng/vectors";
+import {Vec} from "@thi.ng/vectors";
 import {
   DefaultIRSlotName as SlotName,
   IRMetaData as SlotData,
+  JSONString,
   ProcessorSettings,
   ScapeProps,
   ScapeSettings,
-  SRVBProps,
-  StructureData,
-  SrvbSettings,
   SharedSettings,
+  SRVBProps,
+  SrvbSettings,
+  StructureData,
 } from "../src/types";
-import { castSequencesToRefs, buildStructures, updateStructureConstants } from "./OEIS-Structures";
-import { parseAndUpdateIRRefs } from "./parseAndUpdateIRRefs";
-import { remapPosition, sumArray } from "../src/utils/utils";
+import {buildStructures, castSequencesToRefs, updateStructureConstants} from "./OEIS-Structures";
+import {parseAndUpdateIRRefs} from "./parseAndUpdateIRRefs";
+import {remapPosition} from "../src/utils/utils";
 
 let currentVFSKeys: Array<string> = [];
 
 // First, we initialize a custom Renderer instance that marshals our instruction
 // batches through the __postNativeMessage__ function to direct the underlying native
 // engine.
-let core = new Renderer((batch) => {
+let core = new Renderer((batch: any) => {
   //@ts-ignore
   __postNativeMessage__(JSON.stringify(batch));
 });
@@ -40,7 +40,7 @@ export let refs: RefMap = new RefMap(core);
 // Register our custom Convolver node with Elementary runtime.
 // TS will show it is not being used, but it is being used in the SCAPE
 // so DO NOT DELETE THIS
-let convolver = (_props, ...childs) => createNode("convolver", _props, childs);
+let convolver = (_props: any, ...childs: ElemNode[]) => createNode("convolver", _props, childs);
 
 // Set up the default IRs
 export let vfsPathHistory = new Array<string>();
@@ -68,35 +68,32 @@ function IR_SlotRefFactory(
 ) {
   if (!scape || !refs) return;
 
-  const refConstructor = {
+  return {
     [`${slotName}_0`]: refs.getOrCreate(
-      `${slotName}_0`,
-      "convolver",
-      {
-        path: `${slotName}_0`,
-        process: scape.vectorData[slotIndex],
-        scale: attenuation,
-        blockSizes,
-        offset: scape.offset
-      },
-      [el.tapIn({ name: `srvbOut:0` })]
+        `${slotName}_0`,
+        "convolver",
+        {
+          path: `${slotName}_0`,
+          process: scape.vectorData[slotIndex],
+          scale: attenuation,
+          blockSizes,
+          offset: scape.offset
+        },
+        [el.tapIn({name: `srvbOut:0`})]
     ),
     [`${slotName}_1`]: refs.getOrCreate(
-      `${slotName}_1`,
-      "convolver",
-      {
-        path: `${slotName}_1`,
-        process: scape.vectorData[slotIndex],
-        scale: attenuation,
-        blockSizes,
-        offset: scape.offset
-      },
-      [el.tapIn({ name: `srvbOut:1` })]
+        `${slotName}_1`,
+        "convolver",
+        {
+          path: `${slotName}_1`,
+          process: scape.vectorData[slotIndex],
+          scale: attenuation,
+          blockSizes,
+          offset: scape.offset
+        },
+        [el.tapIn({name: `srvbOut:1`})]
     ),
-  };
-
-
-  return refConstructor
+  }
 }
 
 function registerConvolverRefs(scape: ScapeSettings, refs: RefMap) {
@@ -141,16 +138,14 @@ let structureData: StructureData = {
 };
 
 // the conditions that will trigger a full re-render of the node graph
-function shouldRender(_mem, _curr) {
-  const result =
-    _mem === null ||
-    _curr === null ||
-    refs._map.size === 0 ||
-    !srvbProps || !scapeProps ||
-    _curr.sampleRate !== _mem?.sampleRate ||
-    Math.round(_curr.scapeBypass) !== _mem?.scapeBypass ||
-    Math.round(_curr.srvbBypass) !== _mem?.srvbBypass 
-  return result;
+function shouldRender(previous: any, current: any) {
+  return previous === null ||
+      current === null ||
+      refs.map.size === 0 ||
+      !srvbProps || !scapeProps ||
+      current.sampleRate !== previous?.sampleRate ||
+      Math.round(current.scapeBypass) !== previous?.scapeBypass ||
+      Math.round(current.srvbBypass) !== previous?.srvbBypass;
 }
 //
 // Here we will receive updated state from the native side
@@ -163,6 +158,7 @@ let memoized: null | any = null;
 let srvbProps = {};
 let scapeProps = {};
 
+// @ts-ignore
 globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
   // first parse the state
   const { state, srvb, shared, scape } = parseNewState(stateReceivedFromNative) as ProcessorSettings;
@@ -277,7 +273,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
 
   }
 
-  // memoisation of nodes and non-node state
+  // memoization of nodes and non-node state
   memoized = {
     ...state,
     structure: srvb.structure,
@@ -292,7 +288,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     userBank: scape.userBank,
   };
 
-  function parseNewState(stateReceivedFromNative) {
+  function parseNewState(stateReceivedFromNative: JSONString) {
     const state = JSON.parse(stateReceivedFromNative);
     // interpreted state captured out into respective processor properties.
     // any adjustments should be done here before rendering to the graph
@@ -324,7 +320,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
       offset: state.scapeOffset || 0,
       userBank: state.userBank,
       position: state.position,
-      hasUserSlots: currentVFSKeys.find((key) => key.includes( "USERBANK")) ? true : false,
+      hasUserSlots: !!currentVFSKeys.find((key) => key.includes("USERBANK")),
     };
     return { state, srvb, shared, scape };
   }
@@ -332,7 +328,8 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
 }; // end of receiveStateChange
 
 ////////// Handle updated VFS /////////////////////////////////
-globalThis.__receiveVFSKeys__ = function (vfsCurrent: string) {
+// @ts-ignore
+globalThis.__receiveVFSKeys__ = function (vfsCurrent: JSONString) {
   const parsedArray: Array<string> = JSON.parse(vfsCurrent);
   if (parsedArray.length > 0) {
     currentVFSKeys = parsedArray;
@@ -344,7 +341,8 @@ globalThis.__receiveVFSKeys__ = function (vfsCurrent: string) {
 
 // NOTE: This is highly experimental and should not yet be relied on
 // as a consistent feature.
-globalThis.__receiveHydrationData__ = (data) => {
+// @ts-ignore
+globalThis.__receiveHydrationData__ = (data: JSONString) => {
   const payload = JSON.parse(data);
   //@ts-ignore
   const nodeMap = core._delegate.nodeMap;
