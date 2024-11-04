@@ -47,7 +47,7 @@ class EffectsPluginProcessor : public juce::AudioProcessor,
 public:
     juce::FileChooser chooser;
     juce::AudioFormatManager formatManager;
-    void createParameters(const std::vector<elem::js::Value> &parameters);
+    void createParameters(const std::vector<elem::js::Value>& parameters);
 
     //==============================================================================
     EffectsPluginProcessor();
@@ -55,17 +55,17 @@ public:
 
     //==============================================================================
 
-    juce::AudioProcessorEditor *createEditor() override;
+    juce::AudioProcessorEditor* createEditor() override;
     bool hasEditor() const override;
-    WebViewEditor *editor = nullptr;
+    WebViewEditor* editor = nullptr;
 
     //==============================================================================
     void prepareToPlay(double sampleRate, int samplesPerBlock) override;
     void releaseResources() override;
 
-    bool isBusesLayoutSupported(const juce::AudioProcessor::BusesLayout &layouts) const override;
+    bool isBusesLayoutSupported(const juce::AudioProcessor::BusesLayout& layouts) const override;
 
-    void processBlock(juce::AudioBuffer<float> &, juce::MidiBuffer &) override;
+    void processBlock(juce::AudioBuffer<float>&, juce::MidiBuffer&) override;
 
     //==============================================================================
     const juce::String getName() const override;
@@ -80,11 +80,11 @@ public:
     int getCurrentProgram() override;
     void setCurrentProgram(int index) override;
     const juce::String getProgramName(int index) override;
-    void changeProgramName(int index, const juce::String &newName) override;
+    void changeProgramName(int index, const juce::String& newName) override;
 
     //==============================================================================
-    void getStateInformation(juce::MemoryBlock &destData) override;
-    void setStateInformation(const void *data, int sizeInBytes) override;
+    void getStateInformation(juce::MemoryBlock& destData) override;
+    void setStateInformation(const void* data, int sizeInBytes) override;
 
     //==============================================================================
     /** Implement the AudioProcessorParameter::Listener interface. */
@@ -110,10 +110,10 @@ public:
     void dispatchUserFileCount();
 
     /** error to UI */
-    void dispatchError(std::string const &name, std::string const &message);
+    void dispatchError(std::string const& name, std::string const& message);
 
     /** log to UI */
-    void dispatchNativeLog(std::string const &name, std::string const &message);
+    void dispatchNativeLog(std::string const& name, std::string const& message);
 
     std::string REVERSE_BUFFER_PREFIX = "REVERSED_";
     std::string PERSISTED_HOST_PARAMETERS = "hostParameters";
@@ -134,12 +134,12 @@ public:
      * @param expr javascript expression to evaluate in the view context
      * @return true if the view exists, false if not
      */
-    bool sendJavascriptToUI(const std::string &expr) const;
+    bool sendJavascriptToUI(const std::string& expr) const;
 
-    static std::string serialize(const std::string &function, const elem::js::Object &data,
-                                 const juce::String &replacementChar = "%");
-    static std::string serialize(const std::string &function, const choc::value::Value &data,
-                                 const juce::String &replacementChar = "%");
+     std::string serialize(const std::string& function, const elem::js::Object& data,
+                                 const juce::String& replacementChar = "%");
+     std::string serialize(const std::string& function, const choc::value::Value& data,
+                                 const juce::String& replacementChar = "%");
 
     //==============================================================================
 
@@ -160,7 +160,7 @@ private:
     std::queue<std::string> errorLogQueue;
 
     friend class ViewClientInstance;
-    std::map<std::string, std::variant<juce::AudioParameterFloat *, juce::AudioParameterBool *>> parameterMap;
+    std::map<std::string, std::variant<juce::AudioParameterFloat*, juce::AudioParameterBool*>> parameterMap;
 
     //=============================================
 
@@ -177,19 +177,20 @@ public:
     bool processDefaultResponseBuffers();
     void inspectVFS();
     void pruneVFS() const;
-    void requestUserFileSelection(std::promise<elem::js::Object> &promise);
-     void validateUserUpload(juce::Array<juce::File> &selected, elem::js::Array &selectedFilesAsValue, elem::js::Object &result );
+    void requestUserFileSelection(std::promise<elem::js::Object>& promise);
+    void validateUserUpload(juce::Array<juce::File>& selected, elem::js::Array& selectedFilesAsValue,
+                            elem::js::Object& result);
     void updateStateWithAssetsData();
-    static elem::js::Value assetsMapToValue(const std::map<SlotName, Asset> &map);
-    static std::vector<float> getReducedAudioBuffer(const juce::AudioBuffer<float> &buffer);
-    bool processImportedResponseBuffers(const juce::File &file, const SlotName &targetSlot);
-    void processPersistedAssetState(const elem::js::Object &assetState);
-    bool importPeakDataForView(const juce::AudioBuffer<float> &buffer);
+    elem::js::Value assetsMapToValue(const std::map<SlotName, Asset>& map);
+    std::vector<float> getReducedAudioBuffer(const juce::AudioBuffer<float>& buffer);
+    bool processImportedResponseBuffers(const juce::File& file, const SlotName& targetSlot);
+    void processPersistedAssetState(const elem::js::Object& assetState);
+    bool importPeakDataForView(const juce::AudioBuffer<float>& buffer);
     void dispatchVFSpathHistoryForSlot(SlotName slot);
-   std::map<SlotName, Asset> convertToAssetMap(const elem::js::Object &assetStateObject);
-  
+    std::map<SlotName, Asset> convertToAssetMap(const elem::js::Object& assetStateObject) const;
+
     vfs::UserBankManager userBankManager;
-    std::string prefixUserBank(const std::string &name ) const;
+    std::string prefixUserBank(const std::string& name) const;
 
 private:
     int USERBANK = 0;
@@ -198,9 +199,9 @@ private:
     uint16_t getServerPort() const { return serverPort; }
 
     juce::dsp::StateVariableTPTFilter<float> stateVariableFilter; // For filtering the imported IRs
-    std::unique_ptr<ViewClientInstance> clientInstance;           // Use a smart pointer to store the client instance
-    std::unique_ptr<choc::network::HTTPServer> server;            // Use a smart pointer to manage the server
-    std::unique_ptr<SlotManager> slotManager;                     // Use a smart pointer to manage the slot manager
+    std::unique_ptr<ViewClientInstance> clientInstance; // Use a smart pointer to store the client instance
+    std::unique_ptr<choc::network::HTTPServer> server; // Use a smart pointer to manage the server
+    std::unique_ptr<SlotManager> slotManager; // Use a smart pointer to manage the slot manager
 
     //==============================================================================
     // A simple "dirty list" abstraction here for propagating realtime parameter
@@ -218,8 +219,10 @@ private:
     // Keyzy License Activator
     //     Keyzy::ProductData productData{"YOUR_APP_ID", "YOUR_API_KEY", "YOUR_PRODUCT_CODE", "YOUR_CRYPTION_KEY"};
 
-    Keyzy::ProductData productData{"JXgnTvml", "Q4PbXdKz6riNP3eVxOrj53aBRM9QIyB6LmF1QU5b",
-                                   "01afc290-0c82-11ef-8629-07468c68230b", "3qKlXJ2vnkxbQhhSgpW1D7Qi6YNIOIhz"};
+    Keyzy::ProductData productData{
+        "JXgnTvml", "Q4PbX--------1QU5b",
+        "01a---------30b", "3qKlXJ2---------------YNIOIhz"
+    };
     Keyzy::KeyzyLicenseActivator licenseActivator{productData};
     Keyzy::LicenseStatus licenseStatus = Keyzy::LicenseStatus::NOT_AUTHORIZED;
 
@@ -383,7 +386,7 @@ namespace jsFunctions
 (function() {
     if (typeof globalThis.__receiveServerInfo__ !== 'function')
         return false;
-    
+
     globalThis.__receiveServerInfo__(%);
     return true;
     })();
@@ -403,12 +406,11 @@ namespace jsFunctions
 (function() {
     if (typeof globalThis.__receiveVFSKeys__ !== 'function')
         return false;
-    
+
     globalThis.__receiveVFSKeys__(%);
     return true;
     })();
 )script";
-
 } // namespace jsFunctions
 
 #endif // PLUGINPROCESSOR_H

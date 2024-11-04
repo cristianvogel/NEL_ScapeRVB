@@ -94,12 +94,12 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             } // end requestState
 
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
-            // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ "factory" ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
+            // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ "reset to factory" ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
 
             if (key == "factory")
             {
-                processor.slotManager->switchSlotsTo(false, false);
+                processor.slotManager->switchSlotsTo(false, true);
                 std::cout << "switching to factory slots" << std::endl;
                 retFlag = 0;
             } // end switchToDefaultSlots
@@ -188,11 +188,11 @@ void ViewClientInstance::userFileUploadHandler( const int &hpfValue, int &retFla
     }
  
     // Success
-    SlotName targetSlot = processor.slotManager->findFirstSlotWithoutUserStereoFile();
+    SlotName targetSlot = processor.slotManager->get_and_step_target_slot_name();
 
     for (const auto& fileValue : files)
     {
-        juce::String filePath = juce::String(static_cast<std::string>(fileValue));
+        auto filePath = juce::String(static_cast<std::string>(fileValue));
         juce::File file(filePath);
         if (file.existsAsFile())
         {

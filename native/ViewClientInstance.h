@@ -3,21 +3,24 @@
 
 #include <choc_HTTPServer.h>
 
+
 // Forward declaration of EffectsPluginProcessor
 class EffectsPluginProcessor;
 
 class ViewClientInstance : public choc::network::HTTPServer::ClientInstance
 {
 public:
-    ViewClientInstance(EffectsPluginProcessor &processor);
-    ~ViewClientInstance();
+    explicit ViewClientInstance(EffectsPluginProcessor &processor);
+    ~ViewClientInstance() override;
 
     void stop(); // Custom stop method
 
-    choc::network::HTTPContent getHTTPContent(std::string_view path);
-    void upgradedToWebSocket(std::string_view path);
-    void handleWebSocketMessage(std::string_view message);
+    choc::network::HTTPContent getHTTPContent(std::string_view path) override;
+    void upgradedToWebSocket(std::string_view path) override;
+    void handleWebSocketMessage(std::string_view message) override;
     void userFileUploadHandler(const int &hpfValue, int &retFlag);
+
+
 
 private:
     int clientID;

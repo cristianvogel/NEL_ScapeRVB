@@ -16,8 +16,7 @@
 class EffectsPluginProcessor;
 
 /**
- * @class SlotManager
- * @brief Manages slots and assets for the EffectsPluginProcessor.
+ * @brief Manages slots within the EffectsPluginProcessor.
  */
 class SlotManager
 {
@@ -26,7 +25,7 @@ public:
      * @brief Constructs a SlotManager with a reference to the EffectsPluginProcessor.
      * @param processor Reference to the EffectsPluginProcessor.
      */
-    SlotManager(EffectsPluginProcessor &processor);
+    explicit SlotManager(EffectsPluginProcessor& processor);
 
     /**
      * @brief Default destructor.
@@ -37,19 +36,19 @@ public:
      * @brief Wraps peaks data for view.
      * @param containerForWrappedPeaks Container for the wrapped peaks data.
      */
-    void wrapPeaksForView(elem::js::Object &containerForWrappedPeaks);
+    void wrapPeaksForView(elem::js::Object& containerForWrappedPeaks);
 
     /**
      * @brief Wraps state data for view.
      * @param containerForWrappedState Container for the wrapped state data.
      */
-    void wrapStateForView(elem::js::Object &containerForWrappedState);
+    void wrapStateForView(elem::js::Object& containerForWrappedState) const;
 
     /**
      * @brief Wraps file names for view.
      * @param containerForWrappedFileNames Container for the wrapped file names.
      */
-    void wrapFileNamesForView(elem::js::Object &containerForWrappedFileNames);
+    void wrapFileNamesForView(elem::js::Object& containerForWrappedFileNames) const;
 
     /**
      * @brief Switches slots to a custom scape.
@@ -64,28 +63,29 @@ public:
      * @param buffer The audio buffer containing the peaks data.
      * @param defaultSlot Whether this is the default slot.
      */
-    void assignPeaksToSlot(const SlotName &targetSlot, juce::AudioBuffer<float> &buffer, bool defaultSlot = false);
+    void assignPeaksToSlot(const SlotName& targetSlot, const juce::AudioBuffer<float>& buffer,
+                           bool defaultSlot = false);
 
     /**
      * @brief Assigns a juce::File hook to a slot.
      * @param targetSlot The target slot.
      * @param file The file to assign.
      */
-    void assignFileHookToSlot(const SlotName &targetSlot, const juce::File &file);
+    void assignFileHookToSlot(const SlotName& targetSlot, const juce::File& file) const;
 
 
     /**
      * @brief Assigns a default filename to a slot.
      * @param targetSlot The target slot.
      */
-    void assignDefaultFilenameToSlot(const SlotName &targetSlot);
+    void assignDefaultFilenameToSlot(const SlotName& targetSlot) const;
 
     /**
      * @brief Assigns a filename to a slot.
      * @param targetSlot The target slot.
      * @param file The file containing the filename.
      */
-    void assignFilenameToSlot(const SlotName &targetSlot, const juce::File &file);
+    void assignFilenameToSlot(const SlotName& targetSlot, const juce::File& file) const;
 
     /**
      * @brief Assigns a juce::File property to a slot.
@@ -93,7 +93,7 @@ public:
      * @param property The property to assign.
      * @param file The data associated with the property.
      */
-    void assign(const SlotName &slotName, const Asset::Props property, const juce::File &file);
+    void assign(const SlotName& slotName, Asset::Props property, const juce::File& file) const;
 
     /**
      * @brief Assigns an std::string property to a slot.
@@ -101,7 +101,7 @@ public:
      * @param property The property to assign.
      * @param value The string value associated with the property.
      */
-    void assign(const SlotName &slotName, const Asset::Props property, const std::string &value);
+    void assign(const SlotName& slotName, Asset::Props property, const std::string& value) const;
 
     /**
      * @brief Assigns a juce::AudioBuffer property to a slot.
@@ -109,7 +109,7 @@ public:
      * @param property The property to assign.
      * @param buffer The audio buffer associated with the property.
      */
-    void assign(const SlotName &slotName, const Asset::Props property, const juce::AudioBuffer<float> &buffer);
+    void assign(const SlotName& slotName, Asset::Props property, const juce::AudioBuffer<float>& buffer);
 
     /**
      * @brief Assigns a std::vector<float> property to a slot.
@@ -117,28 +117,28 @@ public:
      * @param property The property to assign.
      * @param peaks The peaks data associated with the property.
      */
-    void assign(const SlotName &slotName, const Asset::Props property, const std::vector<float> &peaks);
+    void assign(const SlotName& slotName, Asset::Props property, const std::vector<float>& peaks);
 
 
     /**
-     * @brief Updates the asset entry at the current slot in the Processor assetMap 
+     * @brief Updates the asset entry at the current slot in the Processor assetMap
      * @param slotName The slot name.
      * @param assetInSlot The asset in the slot.
      */
-    void updateState(const SlotName &slotName, Asset &assetInSlot);
+    void updateState(const SlotName& slotName, Asset& assetInSlot) const;
 
     /**
      * @brief Gets the asset from a slot.
      * @param slotName The slot name.
      * @return The asset in the slot.
      */
-    Asset getAssetFrom(const SlotName &slotName);
+    Asset getAssetFrom(const SlotName& slotName) const;
 
     /**
      * @brief Finds the first slot without a user stereo file.
      * @return The first slot without a user stereo file.
      */
-    SlotName findFirstSlotWithoutUserStereoFile() const;
+    SlotName get_and_step_target_slot_name();
 
     /**
      * @brief Resets the user slots.
@@ -151,14 +151,19 @@ public:
      * @param slotName The slot name.
      * @return The index of the slot.
      */
-    int getIndexForSlot(const SlotName &slotName);
+     int getIndexForSlot(const SlotName& slotName) const;
+
+
+    int stepToNextTargetSlotIndex();
+    int getCurrentTargetSlotIndex() const;
 
 private:
     friend class ViewClientInstance;
-    EffectsPluginProcessor &processor; ///< Reference to the EffectsPluginProcessor.
+    EffectsPluginProcessor& processor; ///< Reference to the EffectsPluginProcessor.
     std::size_t lastStateHash = 0; ///< Last state hash.
     int lastPeaksHash = 0; ///< Last peaks hash.
     bool peaksDirty = false; ///< Whether the peaks are dirty.
+    int targetSlotIndex = -1;
 };
 
 #endif // SLOTMANAGER_H

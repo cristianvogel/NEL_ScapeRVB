@@ -249,7 +249,6 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
 
 void EffectsPluginProcessor::updateStateWithAssetsData()
 {
-    // todo: will be used for persisting the state of the plugin assets
     assetState.insert_or_assign(PERSISTED_ASSETMAP, assetsMapToValue(assetsMap));
 }
 
@@ -877,7 +876,7 @@ void EffectsPluginProcessor::initJavaScriptEngine()
         // one place.
         //
         // If not available, we fall back to std out.
-        if (auto* editor = static_cast<WebViewEditor*>(getActiveEditor()))
+        if (auto* editor = dynamic_cast<WebViewEditor*>(getActiveEditor()))
         {
             auto v = choc::value::createEmptyArray();
 
@@ -1109,8 +1108,11 @@ void EffectsPluginProcessor::setStateInformation(const void* data, int sizeInByt
             else if (key == PERSISTED_ASSETMAP)
             {
                 assetState = value.getObject();
-                if (assetState.size())
+                if (!assetState.empty())
+                {
+                    pruneVFS();
                     processPersistedAssetState(assetState);
+                }
             }
             dispatchStateChange();
         }
@@ -1125,7 +1127,7 @@ void EffectsPluginProcessor::setStateInformation(const void* data, int sizeInByt
 }
 
 // Function to convert elem::js::Object to std::map<SlotName, Asset>
-std::map<SlotName, Asset> EffectsPluginProcessor::convertToAssetMap(const elem::js::Object& assetStateObject)
+std::map<SlotName, Asset> EffectsPluginProcessor::convertToAssetMap(const elem::js::Object& assetStateObject) const
 {
     std::map<SlotName, Asset> assetMap;
     // Ensure assetStateObject contains the expected key

@@ -8,10 +8,10 @@
 double numberFromChocValue(const choc::value::ValueView &v)
 {
     return (
-        v.isFloat32() ? (double)v.getFloat32()
+        v.isFloat32() ? static_cast<double>(v.getFloat32())
                       : (v.isFloat64() ? v.getFloat64()
-                                       : (v.isInt32() ? (double)v.getInt32()
-                                                      : (double)v.getInt64())));
+                                       : (v.isInt32() ? static_cast<double>(v.getInt32())
+                                                      : static_cast<double>(v.getInt64()))));
 }
 
 std::string getMimeType(std::string const &ext)
