@@ -157,7 +157,7 @@ namespace elem
 
     template <typename FloatType>
     bool SharedResourceMap<FloatType>::has (std::string const& p) {
-        return imms.count(p) > 0;
+        return imms.contains(p);
     }
 
     template <typename FloatType>
@@ -171,7 +171,7 @@ namespace elem
              if (it->second.use_count() == 1 && it->first.find("USER") != std::string::npos) {
                 imms.erase(it++);
             } else {
-                it++;
+                ++it;
             }
         }
     }
@@ -183,7 +183,7 @@ namespace elem
 
     template <typename FloatType>
     MutableSharedResourceBuffer<FloatType> const& SharedResourceMap<FloatType>::getOrCreateMutable (std::string const& p, size_t blockSize) {
-        if (muts.count(p) > 0) {
+        if (muts.contains(p)) {
             return muts.at(p);
         }
 

@@ -4,6 +4,8 @@ import {el, ElemNode} from "@elemaudio/core";
 import {EPS} from "@thi.ng/math";
 import {DiffuseProps, FDNProps, SRVBProps} from "../src/types";
 import {normalizeSequences} from "./OEIS-Structures";
+import {rotate} from "@thi.ng/arrays";
+import {t} from "../native/elementary/js/packages/core/src/NodeRepr.gen";
 
 // These number series are from the OEIS and all sound really cool
 
@@ -61,8 +63,13 @@ const H8 = [
  A diffusion step expecting exactly 8 input channels with
  a maximum diffusion time of 500ms
 */
-function diffuse(props: DiffuseProps, ...ins: ElemNode[]) {
-  const { maxLengthSamp } = props;
+function diffuse(props: {
+  structureIndex: number;
+  maxLengthSamp: number;
+  structureMax: ElemNode | number;
+  structure: ElemNode[]
+}, ...ins: ElemNode[]) {
+  const { maxLengthSamp, structureIndex } = props;
   const structure: Array<ElemNode> = props.structure;
 
   const len = ins.length; // 8
@@ -80,6 +87,7 @@ function diffuse(props: DiffuseProps, ...ins: ElemNode[]) {
     );
   });
   return H8.map(function (row, i) {
+    rotate(row, structureIndex)
     return el.add(
       ...row.map(function (col, j) {
         return el.mul(col, diffusionStageLevel(), delays[j]);
@@ -91,10 +99,10 @@ function diffuse(props: DiffuseProps, ...ins: ElemNode[]) {
 // An eight channel feedback delay network
 function dampFDN(props: FDNProps, ...ins: ElemNode[]) {
   const len = ins.length / 2;
-  const { size, decay, position } = props;
-  const { sampleRate } = props;
+  const { size, decay, position  } = props;
+  const { sampleRate, structureIndex } = props
   const structure: Array<ElemNode> = props.structureArray;
-  const structureMax: ElemNode = props.structureMax;
+  const structureMax: ElemNode = props.structureMax as ElemNode;
 
   /**
    *
@@ -132,14 +140,15 @@ function dampFDN(props: FDNProps, ...ins: ElemNode[]) {
   });
   let mix = H8.map(function (row, i) {
     return el.add(
-      ...row.map(function (col, j) {
+
+      ...  rotate(row, structureIndex).map(function (col, j) {
         return el.mul(col, tapDelayLevel(i), delaysWithTapInserts[j]);
       })
     );
   });
 
   return mix.map(function (mm, i) {
-    const ms2samps = (ms: number): number => sampleRate * (ms / 1000.0);
+    const ms2samps = (ms: number): number => sampleRate as number * (ms / 1000.0);
 
     const delayScale = el.mul(
       el.add(1.0, el.sm(size)),
@@ -164,11 +173,11 @@ function dampFDN(props: FDNProps, ...ins: ElemNode[]) {
 
 export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureArray: ElemNode[]) {
 
-  const { sampleRate, structureMax, tone } = props;
+  const { sampleRate, structureMax, tone, structure } = props;
   const level = el.sm(props.mix);
   const position = el.sm(props.position)
   const ms2samps = (ms: number) => sampleRate * (ms / 1000.0);
-
+  const structureIndex:number = structure;
 
   // Higher level DSP functions
   const toneDial = (input: ElemNode, offset: ElemNode) => {
@@ -233,7 +242,7 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
   const _xl = el.dcblock(xl);
   const _xr = el.dcblock(xr); 
   // Build Matrix inputs...
-  // Upmix to eight channels
+  // Up mix to eight channels
   const mid = el.mul(0.5, el.add(_xl, _xr));
   const side = el.mul(0.5, el.sub(_xl, _xr));
   const four: ElemNode [] = [ xl, xr, mid, side ].map((x, i) => { 
@@ -244,7 +253,10 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
   const eight: ElemNode [] = [...four, ...four.map((x, i) => { return x })];  
   // Diffusion over 8 channels using 'structure' sequence for timing coefficients
   const d1: ElemNode [] = diffuse(
-    { structure: structureArray, structureMax, maxLengthSamp: ms2samps(43) },
+    { structure: structureArray,
+      structureMax,
+      structureIndex,
+      maxLengthSamp: ms2samps(43) },
     ...eight
   );
   // const d2 = diffuse(
@@ -273,6 +285,7 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
     {
       name: `r0:`,
       sampleRate,
+      structureIndex,
       structureArray,
       structureMax,
       tone: props.tone,

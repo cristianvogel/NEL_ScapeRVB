@@ -19,7 +19,7 @@ await fs.ensureDir(buildDir);
 cd(buildDir);
 
 let buildType = argv.dev ? 'Debug' : 'Release';
-let devFlag = argv.dev ? '-ELEM_DEV_LOCALHOST=1' : '';
+let devFlag = argv.dev ? '-DELEM_DEV_LOCALHOST=1' : '';
 
 if (os.platform() === 'darwin') {
     // macOS specific code // -G Xcode for Xcode project

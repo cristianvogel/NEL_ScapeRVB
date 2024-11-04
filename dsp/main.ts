@@ -145,7 +145,8 @@ function shouldRender(previous: any, current: any) {
       !srvbProps || !scapeProps ||
       current.sampleRate !== previous?.sampleRate ||
       Math.round(current.scapeBypass) !== previous?.scapeBypass ||
-      Math.round(current.srvbBypass) !== previous?.srvbBypass;
+      Math.round(current.srvbBypass) !== previous?.srvbBypass ||
+      Math.round(current.structure) !== previous?.structure
 }
 //
 // Here we will receive updated state from the native side

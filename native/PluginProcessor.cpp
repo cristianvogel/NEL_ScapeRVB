@@ -39,19 +39,15 @@ EffectsPluginProcessor::EffectsPluginProcessor()
         jassert(false);
     const auto parameters = manifest.getWithDefault("parameters", elem::js::Array());
     createParameters(parameters);
-
     // Initialise the asset data
     assetsMap[SlotName::LIGHT] = Asset();
     assetsMap[SlotName::SURFACE] = Asset();
     assetsMap[SlotName::TEMPLE] = Asset();
     assetsMap[SlotName::DEEPNESS] = Asset();
-
     // Initialize editor/view and license activator
     editor = new WebViewEditor(this, util::getAssetsDirectory(), 840, 480);
-
     // then load default audio assets
     fetchDefaultAudioFileAssets();
-
     // register audio file formats
     formatManager.registerBasicFormats();
 }
@@ -94,7 +90,6 @@ void EffectsPluginProcessor::handleAsyncUpdate()
 
         // initialise, process and load into the runtime all 4 default IR assets
         processDefaultResponseBuffers();
-
         // Værsgo!
         initJavaScriptEngine();
         runtimeSwapRequired.store(false);
@@ -187,11 +182,10 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
 
     lastKnownSampleRate = getSampleRate();
 
-    for (auto& kv : assetsMap)
+    for (auto& [slot_name, asset_data] : assetsMap)
     {
-        const SlotName& slotName = kv.first;
-        Asset& asset = kv.second;
-        juce::File& file = asset.defaultStereoFile;
+
+        juce::File& file = asset_data.defaultStereoFile;
 
         const auto reader = formatManager.createReaderFor(file);
         if (reader == nullptr)
@@ -217,7 +211,7 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
 
             // stash one channel of the normalised buffer data for Peaks in the VIEW
             if (channel == 0)
-                slotManager->assignPeaksToSlot(slotName, buffer, true);
+                slotManager->assignPeaksToSlot(slot_name, buffer, true);
 
             // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
             juce::String vfsPathname = file.getFileNameWithoutExtension(); // "AMBIENCE.wav" -> "AMBIENCE"
@@ -225,8 +219,7 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
             if (elementaryRuntime)
                 elementaryRuntime->updateSharedResourceMap(name, buffer.getReadPointer(0), numSamples);
 
-            // Get the reverse from a little way, so its less draggy
-            // so its easy to swap into in realtime
+            // Get the reverse from a little way, so its less dragged out
             int shorter = numSamples * 0.75;
             buffer.reverse(0, shorter);
             // add the shaped impulse response to the virtual file system
@@ -235,7 +228,7 @@ bool EffectsPluginProcessor::processDefaultResponseBuffers()
             if (elementaryRuntime)
                 elementaryRuntime->updateSharedResourceMap(reversedName, buffer.getReadPointer(0), shorter);
 
-            slotManager->assignDefaultFilenameToSlot(slotName);
+            slotManager->assignDefaultFilenameToSlot(slot_name);
             // done, next channel
         }
         // done next asset
@@ -320,12 +313,12 @@ void EffectsPluginProcessor::validateUserUpload(juce::Array<juce::File>& selecte
         result.insert_or_assign("success", true);
     }
         userFilesWereImported.store(true);
+        state.insert_or_assign("scapeMode", 1.0);
 }
 
 bool EffectsPluginProcessor::processImportedResponseBuffers(const juce::File& file, const SlotName& targetSlot)
 {
     lastKnownSampleRate = getSampleRate();
-
     // Create an AudioBuffer to hold the audio data
     auto buffer = juce::AudioBuffer<float>();
     // Check the userCutoffChoice is set
@@ -334,21 +327,22 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(const juce::File& fi
         userCutoffChoice = 160;
     }
     // Create a reader for the file
-    auto reader = formatManager.createReaderFor(file);
+    const auto reader = formatManager.createReaderFor(file);
     // First checkpoint, if the reader is null, something went wrong
     if (reader == nullptr)
     {
         dispatchError("File error:", errorStatuses(static_cast<int>(ScapeError::FILE_NOT_READABLE)));
-        return 0;
+        delete reader;
+        return false;
     }
-    const int bitsPerSample = reader->bitsPerSample;
+
     const auto numChannels = reader->numChannels;
-    const bool isFloatingPoint = reader->usesFloatingPointData;
+
     //  TODO: add support for mono files
     if (numChannels < 2 || numChannels > 2)
     {
         dispatchError("File error:", errorStatuses(static_cast<int>(ScapeError::FILE_NOT_STEREO)));
-        return 0;
+        return false;
     }
 
     // As the source files are strictly stereo and the VFS is strictly
@@ -401,9 +395,7 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(const juce::File& fi
         {
             elementaryRuntime->updateSharedResourceMap(name, container.getReadPointer(0), numSamples);
         }
-        // Get the reverse from a little way, so its less draggy
-        // so its easy to swap into in realtime
-        int shorter = numSamples * 0.75;
+        const int shorter = numSamples * 0.75;
         container.reverse(0, shorter);
         // add the shaped impulse response to the virtual file system
         std::string reversedName = REVERSE_BUFFER_PREFIX + name;
@@ -418,7 +410,7 @@ bool EffectsPluginProcessor::processImportedResponseBuffers(const juce::File& fi
     delete reader;
     // notify the front end of the updated VFS keys
     inspectVFS();
-    return 1;
+    return true;
 }
 
 std::string EffectsPluginProcessor::prefixUserBank(const std::string& name) const
@@ -576,15 +568,16 @@ void EffectsPluginProcessor::createParameters(const std::vector<elem::js::Value>
         if (!parameter.isObject())
             continue;
 
-        auto paramId = parameter.getWithDefault("paramId", elem::js::String("unknown"));
-        auto name = parameter.getWithDefault("name", elem::js::String("Unknown"));
-        auto minValue = parameter.getWithDefault("min", elem::js::Number(0));
-        auto maxValue = parameter.getWithDefault("max", elem::js::Number(1));
-        auto defaultValue = parameter.getWithDefault("defaultValue", elem::js::Number(0));
-        auto step = parameter.getWithDefault("step", elem::js::Number(0));
-        auto isBoolean = parameter.getWithDefault("isBoolean", elem::js::Boolean(false));
+        const auto paramId = parameter.getWithDefault("paramId", elem::js::String("unknown"));
+        const auto name = parameter.getWithDefault("name", elem::js::String("Unknown"));
+        const auto minValue = parameter.getWithDefault("min", static_cast<elem::js::Number>(0));
+        const auto maxValue = parameter.getWithDefault("max", static_cast<elem::js::Number>(1));
+        const auto defaultValue = parameter.getWithDefault("defaultValue", static_cast<elem::js::Number>(0.5));
+        const auto step = parameter.getWithDefault("step", static_cast<elem::js::Number>(0));
 
-        if (isBoolean)
+        // DEPRECATED :not using boolean host params, they were not functioning
+        // as expected.
+        if (const auto isBoolean = parameter.getWithDefault("isBoolean", false))
         {
             auto* p =
                 new juce::AudioParameterBool(juce::ParameterID(paramId, 1), name, static_cast<bool>(defaultValue));
@@ -607,7 +600,7 @@ void EffectsPluginProcessor::createParameters(const std::vector<elem::js::Value>
             auto* p = new juce::AudioParameterFloat(
                 juce::ParameterID(paramId, 1), name,
                 {static_cast<float>(minValue), static_cast<float>(maxValue), static_cast<float>(step)},
-                static_cast<float>(defaultValue));
+                static_cast<float>( defaultValue ));
 
             // Keep a map from parameter ID to the juce audio parameter
             // to avoid looping over the parameter list every time one changes
@@ -617,7 +610,7 @@ void EffectsPluginProcessor::createParameters(const std::vector<elem::js::Value>
             addParameter(p);
 
             // Push a new ParameterReadout onto the list to represent this parameter
-            parameterReadouts.emplace_back(ParameterReadout{static_cast<float>(defaultValue), false});
+            parameterReadouts.emplace_back(ParameterReadout{static_cast<float>(defaultValue), true});
 
             // Update our state object with the default parameter value
             state.insert_or_assign(paramId, defaultValue);

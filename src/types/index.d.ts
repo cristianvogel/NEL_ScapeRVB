@@ -44,7 +44,7 @@ interface SrvbSettings {
   diffuse: number;
   tone: number;
   level: number;
-  structureMax: number;
+  structureMax?: number;
   bypass: 1 | 0;
   position: number;
 }
@@ -131,9 +131,10 @@ type DiffuseProps = {
 };
 type FDNProps = {
   name: string;
-  sampleRate: number;
+  sampleRate?: number;
+  structureIndex: number;
   structureArray: Array<ElemNode>;
-  structureMax: ElemNode;
+  structureMax?: ElemNode;
   tone: ElemNode;
   size: ElemNode;
   decay: ElemNode;
