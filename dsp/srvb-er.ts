@@ -100,7 +100,6 @@ function dampFDN(props: FDNProps, ...ins: ElemNode[]) {
    *
    * normalised scale the level of the taps according
    * to the structure. Shortest, loudest...
-   *
    */ 
   const tapDelayLevel = (i: number) => { 
     const baseAtt = Math.sqrt(1 / len);
