@@ -4,8 +4,8 @@ import path from 'path';
 import fs from 'fs-extra';
 import { $ } from 'zx';
 
-let rootDir = await path.resolve(__dirname, '..');
-let buildDir = await path.join(rootDir, 'native', 'build', 'scripted');
+let rootDir =  path.resolve(__dirname, '..');
+let buildDir =  path.join(rootDir, 'native', 'build', 'scripted');
 
 echo(`Root directory: ${rootDir}`);
 echo(`Build directory: ${buildDir}`);

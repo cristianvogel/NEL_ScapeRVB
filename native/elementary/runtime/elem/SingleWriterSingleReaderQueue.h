@@ -15,7 +15,7 @@ namespace elem
     {
     public:
         //==============================================================================
-        SingleWriterSingleReaderQueue(size_t capacity = 32)
+        SingleWriterSingleReaderQueue(size_t capacity = 32) // was 32
             : maxElements(capacity), indexMask(capacity - 1)
         {
             // We need the queue length to be non-zero and a power of two so

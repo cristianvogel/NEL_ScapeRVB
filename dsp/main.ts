@@ -21,7 +21,7 @@ import {
 } from "../src/types";
 import {buildStructures, castSequencesToRefs, updateStructureConstants} from "./OEIS-Structures";
 import {parseAndUpdateIRRefs} from "./parseAndUpdateIRRefs";
-import {remapPosition} from "../src/utils/utils";
+import {reflectAround} from "../src/utils/utils";
 
 let currentVFSKeys: Array<string> = [];
 
@@ -246,12 +246,12 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     // then the rest of the refs for SRVB
     if (!srvb.bypass) {
 
-      refs.update("size", { value: srvb.size });
-      refs.update("diffuse", { value: srvb.diffuse });
-      refs.update("mix", { value: srvb.level });
-      refs.update("tone", { value: srvb.tone });
-      refs.update("position", { value: srvb.position });
-      refs.update("structureMax", { value: srvb.structureMax });
+      refs.update("size", {value: srvb.size});
+      refs.update("diffuse", {value: srvb.diffuse});
+      refs.update("mix", {value: srvb.level});
+      refs.update("tone", {value: srvb.tone});
+      refs.update("position", {value: srvb.position});
+      refs.update("structureMax", {value: srvb.structureMax});
       if (srvb.structure !== memoized.structure) {
         // update the reflection structure constants
         updateStructureConstants(refs, srvb);
@@ -260,36 +260,35 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
 
     if (!scape.bypass) {
       // and the scape refs
-      refs.update("scapeLevel", { value: scape.level });
-      refs.update("v1", { value: scape.vectorData[0] });
-      refs.update("v2", { value: scape.vectorData[1] });
-      refs.update("v3", { value: scape.vectorData[2] });
-      refs.update("v4", { value: scape.vectorData[3] });
-      refs.update("scapePosition", { value: scape.position });
-      refs.update("scapeMode", { value: scape.mode });
+      refs.update("scapeLevel", {value: scape.level});
+      refs.update("v1", {value: scape.vectorData[0]});
+      refs.update("v2", {value: scape.vectorData[1]});
+      refs.update("v3", {value: scape.vectorData[2]});
+      refs.update("v4", {value: scape.vectorData[3]});
+      refs.update("scapePosition", {value: scape.position});
+      refs.update("scapeMode", {value: scape.mode});
       // update the convolvers, switch to user IRs if they exist
       parseAndUpdateIRRefs(currentVFSKeys, scape, shared);
     }
 
-    refs.update("dryMix", { value: shared.dryMix });
-    refs.update("srvbBypass", { value: srvb.bypass }); // needed to bypass empty input when srvb is bypassed
+    refs.update("dryMix", {value: shared.dryMix});
+    refs.update("srvbBypass", {value: srvb.bypass}); // needed to bypass empty input when srvb is bypassed
 
+
+    // memoization of nodes and non-node state
+    memoized = {
+      structure: srvb.structure,
+      scapeLength: scape.ir,
+      structureMax: srvb.structureMax,
+      reverse: scape.reverse,
+      vectorData: scape.vectorData,
+      scapeBypass: scape.bypass,
+      srvbBypass: srvb.bypass,
+      scapeMode: scape.mode,
+      scapeOffset: scape.offset,
+      userBank: scape.userBank,
+    };
   }
-
-  // memoization of nodes and non-node state
-  memoized = {
-    ...state,
-    structure: srvb.structure,
-    scapeLength: scape.ir,
-    structureMax: srvb.structureMax,
-    reverse: scape.reverse,
-    vectorData: scape.vectorData,
-    scapeBypass: scape.bypass,
-    srvbBypass: srvb.bypass,
-    scapeMode: scape.mode,
-    scapeOffset: scape.offset,
-    userBank: scape.userBank,
-  };
 
   function parseNewState(stateReceivedFromNative: JSONString) {
     const state = JSON.parse(stateReceivedFromNative);
@@ -299,10 +298,9 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
       sampleRate: state.sampleRate,
       dryInputs: [el.in({ channel: 0 }), el.in({ channel: 1 })],
       dryMix: state.dryMix,
-
     };
     const srvb: SrvbSettings = {
-      structure: Math.round((state.structure || 0) * NUM_SEQUENCES),
+      structure: Math.floor((state.structure || 0) * NUM_SEQUENCES), // 0 - 15
       size: state.size,
       diffuse: state.diffuse,
       tone: clamp(state.tone * 2 - 1, -0.99, 1),
@@ -311,7 +309,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
       // doing the normalisation inside SRVB
       structureMax: Math.round(state.structureMax) || 137, // handle the case where the max was not computed
       bypass: (Math.round(state.srvbBypass) || 0) as 1 | 0,
-      position: remapPosition(state.position)
+      position: reflectAround(state.position)
     };
     const scape: ScapeSettings = {
       reverse: Math.round(state.scapeReverse) as 1 | 0,

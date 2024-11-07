@@ -123,6 +123,12 @@ interface ScapeProps {
   scapeBypass: number;
 }
 
+interface SharedProps {
+  sampleRate: number;
+  dryInputs: ElemNode[];
+  dryMix: ElemNode
+}
+
 type DiffuseProps = {
   seededNormMinMax?: number;
   structure: Array<ElemNode>;

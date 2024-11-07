@@ -5,7 +5,7 @@ import {EPS} from "@thi.ng/math";
 import {DiffuseProps, FDNProps, SRVBProps} from "../src/types";
 import {normalizeSequences} from "./OEIS-Structures";
 import {rotate} from "@thi.ng/arrays";
-import {t} from "../native/elementary/js/packages/core/src/NodeRepr.gen";
+
 
 // These number series are from the OEIS and all sound really cool
 
@@ -30,7 +30,7 @@ const OEIS_SEQUENCES_16 = [
 // crop down to sequences of 8
 export const OEIS_SEQUENCES = OEIS_SEQUENCES_16.map((seq) => seq.slice(0, 15));
 
-export const NUM_SEQUENCES = OEIS_SEQUENCES.length - 1;
+export const NUM_SEQUENCES = OEIS_SEQUENCES.length;
 
 
 const OEIS_NORMALISED: number[][] = normalizeSequences(OEIS_SEQUENCES);
@@ -114,8 +114,6 @@ function dampFDN(props: FDNProps, ...ins: ElemNode[]) {
     const normStruct = el.max(
       el.db2gain(-35),
      el.sub(1 + EPS, el.div(structure[i % structure.length], structureMax))
-
-     // el.sub(  el.add( 1 , el.mul( el.noise() , -1.0e-4 )) , el.div(structure[i % structure.length], structureMax))  // more magic dust
     );
     // this will help the taps not explode but have enough energy
     return el.min(el.db2gain(-0.5), el.mul(normStruct, baseAtt));
@@ -172,10 +170,9 @@ function dampFDN(props: FDNProps, ...ins: ElemNode[]) {
  */
 
 export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureArray: ElemNode[]) {
-
   const { sampleRate, structureMax, tone, structure } = props;
+  const position = el.sm(props.position);
   const level = el.sm(props.mix);
-  const position = el.sm(props.position)
   const ms2samps = (ms: number) => sampleRate * (ms / 1000.0);
   const structureIndex:number = structure;
 
@@ -209,6 +206,95 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
   const feedforward = (channel: string | number, _x: ElemNode) => el.tapOut({ name: "srvbOut:" + channel }, el.tanh(_x));
 
 
+
+
+  // input attenuation
+  const _xl = el.dcblock(xl);
+  const _xr = el.dcblock(xr); 
+  // Build Matrix inputs...
+  // Up mix to eight channels
+  const mid = el.mul(0.5, el.add(_xl, _xr));
+  const side = el.mul(0.5, el.sub(_xl, _xr));
+  const four: ElemNode [] = [ xl, xr, mid, side ].map((x, i) => { 
+    // return structurePositioning( toneDial(x, structureArray[(i * 2) % structureArray.length]), i )
+    return  toneDial(x, structureArray[(i * 2) % structureArray.length])
+  });
+
+  const eight: ElemNode [] = [...four, ...four.map((x, i) => { return x })];  
+  // Diffusion over 8 channels using 'structure' sequence for timing coefficients
+  const d1: ElemNode [] = diffuse(
+    { structure: structureArray,
+      structureMax,
+      structureIndex,
+      maxLengthSamp: ms2samps(43) },
+    ...eight
+  );
+
+  let r0: ElemNode[] = dampFDN(
+    {
+      name: `r0:`,
+      sampleRate,
+      structureIndex,
+      structureArray,
+      structureMax,
+      tone: props.tone,
+      size: props.size,
+      decay: el.mul(props.decay, 0.7),
+      position,
+    },
+    ...d1
+  );
+
+  // interleaved dimensional Downmix ( optimised to build the spatial delays when needed )
+  let pos = (i: number, x: ElemNode): ElemNode => { return el.mul( x, el.sin( i * 360 ) )  };
+
+
+  const asLeftPan = (x: ElemNode): ElemNode => { return el.select(position, x, el.mul(x, el.db2gain(1.5))) };
+  const asRightPan = (x: ElemNode): ElemNode => { return el.select(position, el.mul(x, el.db2gain(1.5)), x) };
+
+   let yl = feedforward(0, asLeftPan(el.add(pos(0, r0[0]), pos( 2,  r0[2]), pos(4, r0[4]), pos( 6, r0[6] ) )));
+  let yr = feedforward(1, asRightPan(el.add(pos(1, r0[1]), pos( 3,  r0[3]), pos(5, r0[5]), pos( 7, r0[7] ) )));
+
+
+
+  // reflections
+  if (props.srvbBypass)
+    return [feedforward(0, xl), feedforward(1, xr)]
+  else
+    return [el.mul(level, yl), el.mul(level, yr)];
+}
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////// DEPRECATED
+// const d2 = diffuse(
+//   { structure: structureArray, structureMax , maxLengthSamp: ms2samps(97) },
+//   ...d1
+// );
+// const d3 = diffuse(
+//   { structure: structureArray, structureMax , maxLengthSamp: ms2samps(117) },
+//   ...d2
+// );
+// Reverb network
+// const d4: ElemNode[] = dampFDN(
+//   {
+//     name: `${key}:d4`,
+//     sampleRate,
+//     structureArray,
+//     structureMax,
+//     tone: props.tone,
+//     size: props.size,
+//     decay: 0.004,
+//   },
+//   ...d1
+// );
 //   let structurePositioning =  (x: ElemNode, i: number): ElemNode => {
 //     const scanDt = scanSequence( props.position, OEIS_NORMALISED[props.structure]) ;
 //     const scanG = scanSequence( props.position, OEIS_NORMALISED[props.structure].reverse());
@@ -235,82 +321,3 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
 //   return result;
 // };
 
-
-
-
-  // input attenuation
-  const _xl = el.dcblock(xl);
-  const _xr = el.dcblock(xr); 
-  // Build Matrix inputs...
-  // Up mix to eight channels
-  const mid = el.mul(0.5, el.add(_xl, _xr));
-  const side = el.mul(0.5, el.sub(_xl, _xr));
-  const four: ElemNode [] = [ xl, xr, mid, side ].map((x, i) => { 
-    // return structurePositioning( toneDial(x, structureArray[(i * 2) % structureArray.length]), i )
-    return  toneDial(x, structureArray[(i * 2) % structureArray.length])
-  });
-
-  const eight: ElemNode [] = [...four, ...four.map((x, i) => { return x })];  
-  // Diffusion over 8 channels using 'structure' sequence for timing coefficients
-  const d1: ElemNode [] = diffuse(
-    { structure: structureArray,
-      structureMax,
-      structureIndex,
-      maxLengthSamp: ms2samps(43) },
-    ...eight
-  );
-  // const d2 = diffuse(
-  //   { structure: structureArray, structureMax , maxLengthSamp: ms2samps(97) },
-  //   ...d1
-  // );
-  // const d3 = diffuse(
-  //   { structure: structureArray, structureMax , maxLengthSamp: ms2samps(117) },
-  //   ...d2
-  // );
-
-  // Reverb network
-  // const d4: ElemNode[] = dampFDN(
-  //   {
-  //     name: `${key}:d4`,
-  //     sampleRate,
-  //     structureArray,
-  //     structureMax,
-  //     tone: props.tone,
-  //     size: props.size,
-  //     decay: 0.004,
-  //   },
-  //   ...d1
-  // );
-  let r0: ElemNode[] = dampFDN(
-    {
-      name: `r0:`,
-      sampleRate,
-      structureIndex,
-      structureArray,
-      structureMax,
-      tone: props.tone,
-      size: props.size,
-      decay: el.mul(props.decay, 0.7),
-      position: props.position,
-    },
-    ...d1
-  );
-
-  // interleaved dimensional Downmix ( optimised to build the spatial delays when needed )
-  let pos = (i: number, x: ElemNode): ElemNode => { return el.mul( x, el.sin( i * 360 ) )  };
-
-
-  const asLeftPan = (x: ElemNode): ElemNode => { return el.select(position, x, el.mul(x, el.db2gain(1.5))) };
-  const asRightPan = (x: ElemNode): ElemNode => { return el.select(position, el.mul(x, el.db2gain(1.5)), x) };
-
-   let yl = feedforward(0, asLeftPan(el.add(pos(0, r0[0]), pos( 2,  r0[2]), pos(4, r0[4]), pos( 6, r0[6] ) )));
-  let yr = feedforward(1, asRightPan(el.add(pos(1, r0[1]), pos( 3,  r0[3]), pos(5, r0[5]), pos( 7, r0[7] ) )));
-
-
-
-  // reflections
-  if (props.srvbBypass)
-    return [feedforward(0, xl), feedforward(1, xr)]
-  else
-    return [el.mul(level, yl), el.mul(level, yr)];
-}

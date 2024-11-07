@@ -120,11 +120,11 @@ public:
             co->init(headSize, tailSize, shiftedData, adjustedIRLen);
             // really not sure if I have to pop the oldConvolver node
             // from the stack?
-            std::shared_ptr<fftconvolver::TwoStageFFTConvolver> oldConvolver;
-            if (convolverQueue.size() > 0)
-            {
-                convolverQueue.pop(oldConvolver);
-            }
+            // std::shared_ptr<fftconvolver::TwoStageFFTConvolver> oldConvolver;
+            // if (convolverQueue.size() > 0)
+            // {
+            //     convolverQueue.pop(oldConvolver);
+            // }
             // Push the new convolver in all cases
             convolverQueue.push(std::move(co));
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //

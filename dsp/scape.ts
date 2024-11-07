@@ -2,7 +2,7 @@ import {el, ElemNode} from "@elemaudio/core";
 import {DefaultIRSlotName, IRMetaData} from "../src/types";
 
 export default function SCAPE(props: any, dryInputs: ElemNode[], ...outputFromSRVB: ElemNode[]) {
-
+  console.log("SCAPE", props, dryInputs, outputFromSRVB);
 
   const zero = el.const( {value: 0, key: 'srvb::mute' } );
   const one = el.const( {value: 1, key: 'srvb::unity' } );
