@@ -6,7 +6,7 @@ import {
   DefaultIRSlotName as SlotName,
   IRMetaData as SlotData
 } from "../src/types";
-import { Slots, refs } from "./main";
+import { defaultSlotData, refs } from "./main";
 import { RefMap } from "./RefMap";
 
 // later, the Elementary refs system will be used to
@@ -35,7 +35,7 @@ export function parseAndUpdateIRRefs(currentVFSKeys: Array<string>, scape: Scape
   };
 
   const getScale = (slotName: SlotName, chan: number = 0) => {
-    const defaultIR = Slots.get(slotName) as SlotData;
+    const defaultIR = defaultSlotData.get(slotName) as SlotData;
     //  const panPosition = shared.position; // possibly use this to pan the IRs
     let result = usingUserIR ? 0.95 : defaultIR.att;
     return result;
@@ -48,7 +48,7 @@ export function parseAndUpdateIRRefs(currentVFSKeys: Array<string>, scape: Scape
   };
 
 
-  Slots.forEach((slot, slotName: SlotName) => {
+  defaultSlotData.forEach((slot, slotName: SlotName) => {
     for (let chan = 0; chan < 2; chan++) {
       const path = getPath(slotName, chan);
       const ref = getRef(refs, slotName, chan);
