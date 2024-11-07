@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "clean": "rimraf dist",
-    "predev": "npm run clean && cpy public/manifest.json src/public/",
-    "prebuild": "npm run clean && cpy public/manifest.json src/public/",
+    "predev": "npm run clean",
+    "prebuild": "npm run clean",
     "dev": "npm run dev-native && concurrently \"npm run dev-dsp\" \"vite\"",
     "devx": "npm run dev-nativeX && concurrently \"npm run dev-dsp\" \"vite\"",
     "dev-nativeX": "zx scripts/build-native-XCode.mjs --dev",
