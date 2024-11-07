@@ -3325,13 +3325,53 @@
     return easeIn2(1 - (1 - 2 * Math.abs(clampedValue - 0.5)));
   }
 
+  // dsp/parseState.ts
+  function parseNewState(stateReceivedFromNative, HERMITE2, currentVFSKeys2) {
+    const state = JSON.parse(stateReceivedFromNative);
+    const shared = {
+      sampleRate: state.sampleRate,
+      dryInputs: [stdlib.in({ channel: 0 }), stdlib.in({ channel: 1 })],
+      dryMix: state.dryMix
+    };
+    const srvb = {
+      structure: Math.floor((state.structure || 0) * 16),
+      size: state.size,
+      diffuse: state.diffuse,
+      tone: clamp(state.tone * 2 - 1, -0.99, 1),
+      level: easeIn2(state.mix),
+      // DEPRECATING STRUCTURE MAX
+      // doing the normalisation inside SRVB
+      structureMax: Math.round(state.structureMax) || 137,
+      // handle the case where the max was not computed
+      bypass: Math.round(state.srvbBypass) || 0,
+      position: remapPosition(state.position)
+    };
+    const scape = {
+      reverse: Math.round(state.scapeReverse),
+      level: state.scapeLevel * 1.5,
+      ir: state.scapeLength,
+      vectorData: HERMITE2.at(state.scapeLength),
+      bypass: Math.round(state.scapeBypass) || 0,
+      mode: Math.round(state.scapeMode) || 0,
+      offset: state.scapeOffset || 0,
+      userBank: state.userBank,
+      position: state.position,
+      hasUserSlots: !!currentVFSKeys2.find((key) => key.includes("USERBANK"))
+    };
+    return { state, srvb, shared, scape };
+  }
+
   // dsp/main.ts
   var currentVFSKeys = [];
   var core = new Renderer((batch) => {
     __postNativeMessage__(JSON.stringify(batch));
   });
+  var renderCount = 0;
   var refs = new RefMap(core);
   var vfsPathHistory = new Array();
+  var memoized = null;
+  var srvbProps = {};
+  var scapeProps = {};
   var blockSizes = [512, 4096];
   var Slots = /* @__PURE__ */ new Map([
     ["LIGHT", { pathStem: "LIGHT", slotIndex: 0, att: 1 }],
@@ -3403,15 +3443,17 @@
     nodes: castSequencesToRefs(defaultStructure, defaultMax, refs),
     max: defaultMax
   };
-  function shouldRender(previous, current) {
-    return previous === null || current === null || refs.map.size === 0 || !srvbProps || !scapeProps || current.sampleRate !== previous?.sampleRate || Math.round(current.scapeBypass) !== previous?.scapeBypass || Math.round(current.srvbBypass) !== previous?.srvbBypass || Math.round(current.structure) !== previous?.structure;
+  function getSRVBProps() {
+    return srvbProps;
   }
-  var memoized = null;
-  var srvbProps = {};
-  var scapeProps = {};
+  function getScapeProps() {
+    return scapeProps;
+  }
+  function shouldRender(previous, current) {
+    return renderCount === 0 || refs.map.size === 0 || !srvbProps || !scapeProps || current.sampleRate !== previous?.sampleRate || Math.round(current.scapeBypass) !== previous?.scapeBypass || Math.round(current.srvbBypass) !== previous?.srvbBypass || Math.round(current.structure) !== previous?.structure;
+  }
   globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
-    const { state, srvb, shared, scape } = parseNewState(stateReceivedFromNative);
-    refs.getOrCreate("dryMix", "const", { value: shared.dryMix }, []);
+    const { state, srvb, shared, scape } = parseNewState(stateReceivedFromNative, HERMITE, currentVFSKeys);
     srvbProps = {
       key: "srvb",
       srvbBypass: srvb.bypass,
@@ -3443,14 +3485,9 @@
       v4: refs.getOrCreate("v4", "const", { value: scape.vectorData[3] }, []),
       ...registerConvolverRefs(scape, refs)
     };
-    function getSRVBProps() {
-      return srvbProps;
-    }
-    function getScapeProps() {
-      return scapeProps;
-    }
-    if (!memoized || shouldRender(memoized, state)) {
-      console.log("Render called");
+    refs.getOrCreate("dryMix", "const", { value: shared.dryMix }, []);
+    if (shouldRender(memoized, state)) {
+      console.log("Memoized:", memoized);
       if (srvb.structure !== memoized?.structure) {
         structureData = buildStructures(refs, srvb.structure) || structureData;
         structureData.nodes = rotate(structureData.nodes, srvb.position * -16);
@@ -3511,40 +3548,7 @@
       scapeOffset: scape.offset,
       userBank: scape.userBank
     };
-    function parseNewState(stateReceivedFromNative2) {
-      const state2 = JSON.parse(stateReceivedFromNative2);
-      const shared2 = {
-        sampleRate: state2.sampleRate,
-        dryInputs: [stdlib.in({ channel: 0 }), stdlib.in({ channel: 1 })],
-        dryMix: state2.dryMix
-      };
-      const srvb2 = {
-        structure: Math.round((state2.structure || 0) * NUM_SEQUENCES),
-        size: state2.size,
-        diffuse: state2.diffuse,
-        tone: clamp(state2.tone * 2 - 1, -0.99, 1),
-        level: easeIn2(state2.mix),
-        // DEPRECATING STRUCTURE MAX
-        // doing the normalisation inside SRVB
-        structureMax: Math.round(state2.structureMax) || 137,
-        // handle the case where the max was not computed
-        bypass: Math.round(state2.srvbBypass) || 0,
-        position: remapPosition(state2.position)
-      };
-      const scape2 = {
-        reverse: Math.round(state2.scapeReverse),
-        level: state2.scapeLevel * 1.5,
-        ir: state2.scapeLength,
-        vectorData: HERMITE.at(state2.scapeLength),
-        bypass: Math.round(state2.scapeBypass) || 0,
-        mode: Math.round(state2.scapeMode) || 0,
-        offset: state2.scapeOffset || 0,
-        userBank: state2.userBank,
-        position: state2.position,
-        hasUserSlots: !!currentVFSKeys.find((key) => key.includes("USERBANK"))
-      };
-      return { state: state2, srvb: srvb2, shared: shared2, scape: scape2 };
-    }
+    renderCount++;
   };
   globalThis.__receiveVFSKeys__ = function(vfsCurrent) {
     const parsedArray = JSON.parse(vfsCurrent);

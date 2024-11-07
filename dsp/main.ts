@@ -1,8 +1,8 @@
 import {createNode, el, ElemNode, Renderer} from "@elemaudio/core";
 import {argMax, rotate} from "@thi.ng/arrays";
 import {RefMap} from "./RefMap";
-import SRVB, {NUM_SEQUENCES, OEIS_SEQUENCES} from "./srvb-er";
-import {clamp, easeIn2} from "@thi.ng/math";
+import SRVB, { OEIS_SEQUENCES} from "./srvb-er";
+
 import type {Ramp} from "@thi.ng/ramp";
 import {HERMITE_V, ramp, VEC3} from "@thi.ng/ramp";
 import SCAPE from "./scape";
@@ -21,7 +21,8 @@ import {
 } from "../src/types";
 import {buildStructures, castSequencesToRefs, updateStructureConstants} from "./OEIS-Structures";
 import {parseAndUpdateIRRefs} from "./parseAndUpdateIRRefs";
-import {remapPosition} from "../src/utils/utils";
+import { parseNewState } from "./parseState";
+
 
 let currentVFSKeys: Array<string> = [];
 
@@ -32,7 +33,7 @@ let core = new Renderer((batch: any) => {
   //@ts-ignore
   __postNativeMessage__(JSON.stringify(batch));
 });
-
+let renderCount = 0;
 
 // Next, a RefMap for coordinating our refs
 export let refs: RefMap = new RefMap(core);
@@ -44,6 +45,10 @@ let convolver = (_props: any, ...childs: ElemNode[]) => createNode("convolver", 
 
 // Set up the default IRs
 export let vfsPathHistory = new Array<string>();
+
+let memoized: null | any = null;
+let srvbProps = {};
+let scapeProps = {};
 
 const blockSizes = [512, 4096];
 // MUST MATCH FILE NAMES IN THE PUBLIC IR FOLDER
@@ -122,8 +127,6 @@ function createHermiteVecInterp(): Ramp<Vec> {
   );
 }
 
-
-
 // the Hermite vector interpolation ramp
 const HERMITE: Ramp<Vec> = createHermiteVecInterp();
 //--------------- /
@@ -137,10 +140,17 @@ let structureData: StructureData = {
   max: defaultMax,
 };
 
+function getSRVBProps() {
+  return srvbProps as SRVBProps;
+}
+
+function getScapeProps() {
+  return scapeProps as ScapeProps;
+}
+
 // the conditions that will trigger a full re-render of the node graph
 function shouldRender(previous: any, current: any) {
-  return previous === null ||
-      current === null ||
+  return renderCount === 0 ||
       refs.map.size === 0 ||
       !srvbProps || !scapeProps ||
       current.sampleRate !== previous?.sampleRate ||
@@ -148,23 +158,18 @@ function shouldRender(previous: any, current: any) {
       Math.round(current.srvbBypass) !== previous?.srvbBypass ||
       Math.round(current.structure) !== previous?.structure
 }
+
+
 //
 // Here we will receive updated state from the native side
 // All js in dsp/main is running natively in the CHOC QuickJS context
 // There is also a globalThis.__receiveStateChange__ listener in
-// NativeMessage.svelte easier to debug and see the state changes
+// NativeMessage.svelte which is handling the booleans
 //////////////////////////////
-/// ALTERED STATES //////////
-let memoized: null | any = null;
-let srvbProps = {};
-let scapeProps = {};
-
 // @ts-ignore
 globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
   // first parse the state
-  const { state, srvb, shared, scape } = parseNewState(stateReceivedFromNative) as ProcessorSettings;
-
-  refs.getOrCreate("dryMix", "const", { value: shared.dryMix }, []);
+  const { state, srvb, shared, scape } = parseNewState(stateReceivedFromNative, HERMITE, currentVFSKeys) as ProcessorSettings;
 
   srvbProps =
   {
@@ -201,30 +206,22 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     ...registerConvolverRefs(scape, refs)
   };
 
-  function getSRVBProps() {
-    return srvbProps as SRVBProps;
-  }
-
-  function getScapeProps() {
-    return scapeProps as ScapeProps;
-  }
-
+  refs.getOrCreate("dryMix", "const", { value: shared.dryMix }, []);
 
   /**
    * ELEMENTARY
    * GRAPH
    * RENDERER
    */
-  if (!memoized || shouldRender(memoized, state)) {
+  if ( shouldRender(memoized, state) ) {
 
-    console.log('Render called');
+    console.log('Memoized:', memoized);
     // first, build structure const refs if needed
-    if ( srvb.structure !== memoized?.structure) {
+    if ( srvb.structure !== memoized?.structure) { 
       structureData = buildStructures(refs, srvb.structure) || structureData;
       // express the position as a rotation of the structure
       structureData.nodes = rotate(  structureData.nodes, srvb.position * -16 )
     } 
-
     // Here is the main graph call
     if (srvbProps && scapeProps) {
       const graph = core.render(
@@ -243,9 +240,8 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
       console.log('Graph updated:' , Object.entries(graph));
     }
   } else {
-    // then the rest of the refs for SRVB
+    // else just update the rest of the previously graph-registered refs
     if (!srvb.bypass) {
-
       refs.update("size", { value: srvb.size });
       refs.update("diffuse", { value: srvb.diffuse });
       refs.update("mix", { value: srvb.level });
@@ -257,7 +253,6 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
         updateStructureConstants(refs, srvb);
       }
     }
-
     if (!scape.bypass) {
       // and the scape refs
       refs.update("scapeLevel", { value: scape.level });
@@ -270,14 +265,13 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
       // update the convolvers, switch to user IRs if they exist
       parseAndUpdateIRRefs(currentVFSKeys, scape, shared);
     }
-
     refs.update("dryMix", { value: shared.dryMix });
     refs.update("srvbBypass", { value: srvb.bypass }); // needed to bypass empty input when srvb is bypassed
-
   }
-
-  // memoization of nodes and non-node state
-  memoized = {
+   // memoization of nodes and non-node state
+   // MUST happen outside of the whole render block
+   // inlcuding the else block
+   memoized = {
     ...state,
     structure: srvb.structure,
     scapeLength: scape.ir,
@@ -290,43 +284,7 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
     scapeOffset: scape.offset,
     userBank: scape.userBank,
   };
-
-  function parseNewState(stateReceivedFromNative: JSONString) {
-    const state = JSON.parse(stateReceivedFromNative);
-    // interpreted state captured out into respective processor properties.
-    // any adjustments should be done here before rendering to the graph
-    const shared: SharedSettings = {
-      sampleRate: state.sampleRate,
-      dryInputs: [el.in({ channel: 0 }), el.in({ channel: 1 })],
-      dryMix: state.dryMix,
-
-    };
-    const srvb: SrvbSettings = {
-      structure: Math.round((state.structure || 0) * NUM_SEQUENCES),
-      size: state.size,
-      diffuse: state.diffuse,
-      tone: clamp(state.tone * 2 - 1, -0.99, 1),
-      level: easeIn2(state.mix),  
-      // DEPRECATING STRUCTURE MAX
-      // doing the normalisation inside SRVB
-      structureMax: Math.round(state.structureMax) || 137, // handle the case where the max was not computed
-      bypass: (Math.round(state.srvbBypass) || 0) as 1 | 0,
-      position: remapPosition(state.position)
-    };
-    const scape: ScapeSettings = {
-      reverse: Math.round(state.scapeReverse) as 1 | 0,
-      level: state.scapeLevel * 1.5,
-      ir: state.scapeLength,
-      vectorData: HERMITE.at(state.scapeLength),
-      bypass: (Math.round(state.scapeBypass) || 0) as 1 | 0,
-      mode: (Math.round(state.scapeMode) || 0) as 1 | 0,
-      offset: state.scapeOffset || 0,
-      userBank: state.userBank,
-      position: state.position,
-      hasUserSlots: !!currentVFSKeys.find((key) => key.includes("USERBANK")),
-    };
-    return { state, srvb, shared, scape };
-  }
+  renderCount++;
 
 }; // end of receiveStateChange
 
