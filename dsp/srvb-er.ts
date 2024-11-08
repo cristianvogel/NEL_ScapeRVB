@@ -206,20 +206,25 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
   };
 
   const [xl, xr] = inputs;
-  const feedforward = (channel: string | number, _x: ElemNode) => el.tapOut({ name: "srvbOut:" + channel }, el.tanh(_x));
+  const feedforward = (channel: string | number, _x: ElemNode) => el.tapOut({ name: "srvbOut:" + channel }, _x);
 
-  // input attenuation
+  // input 
   const _xl = el.dcblock(xl);
-  const _xr = el.dcblock(xr); 
+  const _xr = el.dcblock(xr);
+
   // Build Matrix inputs...
   // Up mix to eight channels
   const mid = el.mul(0.5, el.add(_xl, _xr));
   const side = el.mul(0.5, el.sub(_xl, _xr));
   const four: ElemNode [] = [ xl, xr, mid, side ].map((x, i) => { 
-    return  toneDial(x, structureArray[(i * 2) % structureArray.length])
+    // return  toneDial(x, structureArray[(i * 2) % structureArray.length])
+    return x;
   });
 
-  const eight: ElemNode [] = [...four, ...four.map((x, i) => { return x })];  
+  const eight: ElemNode [] = [...four, ...four.map((x, i) => { 
+
+    return el.mul( el.db2gain(-4.5), x);
+  })];  
   // Diffusion over 8 channels using 'structure' sequence for timing coefficients
   const d1: ElemNode [] = diffuse(
     { structureArray,
@@ -245,14 +250,17 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
   );
 
   // interleaved dimensional Downmix ( optimised to build the spatial delays when needed )
-  let pos = (i: number, x: ElemNode): ElemNode => { return el.mul( x, el.sin( i * 360 ) )  };
+  let pos = (i: number, x: ElemNode): ElemNode => { 
+    const _x = el.mul( x, Math.sin(i + structureIndex * 360 ) )  ;
+    return _x;
+  };
 
 
   const asLeftPan = (x: ElemNode): ElemNode => { return el.select(position, x, el.mul(x, el.db2gain(1.5))) };
   const asRightPan = (x: ElemNode): ElemNode => { return el.select(position, el.mul(x, el.db2gain(1.5)), x) };
 
-   let yl = feedforward(0, asLeftPan(el.add(pos(0, r0[0]), pos( 2,  r0[2]), pos(4, r0[4]), pos( 6, r0[6] ) )));
-  let yr = feedforward(1, asRightPan(el.add(pos(1, r0[1]), pos( 3,  r0[3]), pos(5, r0[5]), pos( 7, r0[7] ) )));
+   let yl = toneDial( feedforward(0, asLeftPan(el.add(pos(0, r0[0]), pos( 2,  r0[2]), pos(4, r0[4]), pos( 6, r0[6] ) ))), structureArray[3]);
+  let yr = toneDial( feedforward(1, asRightPan(el.add(pos(1, r0[1]), pos( 3,  r0[3]), pos(5, r0[5]), pos( 7, r0[7] ) ))), structureArray[2]);
 
 
 

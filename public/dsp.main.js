@@ -2486,16 +2486,16 @@
       );
     };
     const [xl, xr] = inputs;
-    const feedforward = (channel, _x) => stdlib.tapOut({ name: "srvbOut:" + channel }, stdlib.tanh(_x));
+    const feedforward = (channel, _x) => stdlib.tapOut({ name: "srvbOut:" + channel }, _x);
     const _xl = stdlib.dcblock(xl);
     const _xr = stdlib.dcblock(xr);
     const mid = stdlib.mul(0.5, stdlib.add(_xl, _xr));
     const side = stdlib.mul(0.5, stdlib.sub(_xl, _xr));
     const four = [xl, xr, mid, side].map((x, i) => {
-      return toneDial(x, structureArray[i * 2 % structureArray.length]);
+      return x;
     });
     const eight = [...four, ...four.map((x, i) => {
-      return x;
+      return stdlib.mul(stdlib.db2gain(-4.5), x);
     })];
     const d1 = diffuse(
       {
@@ -2521,7 +2521,8 @@
       ...d1
     );
     let pos = (i, x) => {
-      return stdlib.mul(x, stdlib.sin(i * 360));
+      const _x = stdlib.mul(x, Math.sin(i + structureIndex * 360));
+      return _x;
     };
     const asLeftPan = (x) => {
       return stdlib.select(position, x, stdlib.mul(x, stdlib.db2gain(1.5)));
@@ -2529,8 +2530,8 @@
     const asRightPan = (x) => {
       return stdlib.select(position, stdlib.mul(x, stdlib.db2gain(1.5)), x);
     };
-    let yl = feedforward(0, asLeftPan(stdlib.add(pos(0, r0[0]), pos(2, r0[2]), pos(4, r0[4]), pos(6, r0[6]))));
-    let yr = feedforward(1, asRightPan(stdlib.add(pos(1, r0[1]), pos(3, r0[3]), pos(5, r0[5]), pos(7, r0[7]))));
+    let yl = toneDial(feedforward(0, asLeftPan(stdlib.add(pos(0, r0[0]), pos(2, r0[2]), pos(4, r0[4]), pos(6, r0[6])))), structureArray[3]);
+    let yr = toneDial(feedforward(1, asRightPan(stdlib.add(pos(1, r0[1]), pos(3, r0[3]), pos(5, r0[5]), pos(7, r0[7])))), structureArray[2]);
     if (props.srvbBypass)
       return [feedforward(0, xl), feedforward(1, xr)];
     else
