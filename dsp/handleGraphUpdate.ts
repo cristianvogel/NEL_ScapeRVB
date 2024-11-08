@@ -29,7 +29,7 @@ let memoized: null | any;
 let renderCount = 0;
 let currentVFSKeys: Array<string>;
 let refs: RefMap;
-let structureData: StructureData;
+let structureData: StructureData = { nodes: [], max: 0 };
 
 // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
 // ▮▮▮▮▮▮▮▮ Handle updated state from the backend ▮▮▮▮▮▮▮ //
@@ -43,8 +43,8 @@ export function handleStateChange(_state, _currentVFSKeys, _refs: RefMap) {
     // then get or create the props for the DSP
     const { srvbProps, scapeProps } = getOrCreatePropsForDSP(srvb, shared, scape);
     console.log('got or created props...'    );
-    structureData = structureSetup( refs );
-    console.log('structure was setup');
+    structureData = structureSetup( refs, structureData );
+
     // now render or re-hydrate the graph
     // ▮▮▮▮▮▮▮▮▮▮▮ Elementary Audio Graph Renderer ▮▮▮▮▮▮▮▮▮▮ //
  
@@ -52,7 +52,7 @@ export function handleStateChange(_state, _currentVFSKeys, _refs: RefMap) {
 
         console.log('Render: ' + renderCount);
         updateMemoizedState(state, srvb, shared, scape);
-        adjustStructurePosition(srvb);
+        adjustStructurePosition(refs, srvb, structureData);
         renderAudioGraph(shared, srvbProps, scapeProps);
     } else {
         updateSignalRefs(srvb, scape, shared);
@@ -81,12 +81,13 @@ function createHermiteVecInterp(): Ramp<Vec> {
 // the Hermite vector interpolation ramp
 const HERMITE: Ramp<Vec> = createHermiteVecInterp();
 
+
 //////////////////////////////////////////////////////////////////////
 // setup the structure data
-function structureSetup(_refs: RefMap) {
+function structureSetup(_refs: RefMap, structureData?: StructureData) {
     const defaultStructure = OEIS_SEQUENCES[0];
     const defaultMax = argMax(defaultStructure, 17);
-    let structureData: StructureData = {
+    structureData = {
         nodes: castSequencesToRefs(defaultStructure, defaultMax, _refs),
         max: defaultMax,
     };
@@ -146,12 +147,14 @@ function updateMemoizedState(state, srvb, shared, scape) {
     };
 }
 
-function adjustStructurePosition(srvb: SrvbSettings) {
+// This function mutates structureData in place
+function adjustStructurePosition(refs: RefMap, srvb: SrvbSettings, structureData: StructureData) {
     if (srvb.structure !== memoized?.structure) {
-        structureData = buildStructures(refs, srvb.structure) || structureData;
+        structureData = buildStructures(refs, srvb.structure);
         // express the position as a rotation of the structure
         structureData.nodes = rotate(structureData.nodes, srvb.position * -16);
     }
+    return structureData;
 }
 
 function shouldRender(previous: any, current: any, renderCount: number) {

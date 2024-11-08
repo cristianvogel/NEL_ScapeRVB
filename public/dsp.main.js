@@ -2305,8 +2305,6 @@
       let series = OEIS_SEQUENCES[currStructIndex];
       const seriesMax = series[argMax(series)];
       const sequenceAsSignals = castSequencesToRefs(series, seriesMax, _refs);
-      if (!sequenceAsSignals)
-        return;
       const sd = {
         nodes: sequenceAsSignals,
         max: seriesMax
@@ -2380,7 +2378,7 @@
   ];
   function diffuse(props, ...ins) {
     const { maxLengthSamp, structureIndex } = props;
-    const structure = props.structure;
+    const structure = props.structureArray;
     const len = ins.length;
     const diffusionStageLevel = () => {
       return Math.sqrt(1 / len);
@@ -2493,7 +2491,7 @@
     })];
     const d1 = diffuse(
       {
-        structure: structureArray,
+        structureArray,
         structureMax,
         structureIndex,
         maxLengthSamp: ms2samps2(43)
@@ -3386,19 +3384,18 @@
   var renderCount = 0;
   var currentVFSKeys;
   var refs2;
-  var structureData;
+  var structureData = { nodes: [], max: 0 };
   function handleStateChange(_state, _currentVFSKeys, _refs) {
     currentVFSKeys = _currentVFSKeys;
     refs2 = _refs;
     const { state, srvb, shared, scape } = parseNewState(_state);
     const { srvbProps, scapeProps } = getOrCreatePropsForDSP(srvb, shared, scape);
     console.log("got or created props...");
-    structureData = structureSetup(refs2);
-    console.log("structure was setup");
+    structureData = structureSetup(refs2, structureData);
     if (shouldRender(memoized, state, renderCount)) {
       console.log("Render: " + renderCount);
       updateMemoizedState(state, srvb, shared, scape);
-      adjustStructurePosition(srvb);
+      adjustStructurePosition(refs2, srvb, structureData);
       renderAudioGraph(shared, srvbProps, scapeProps);
     } else {
       updateSignalRefs(srvb, scape, shared);
@@ -3422,10 +3419,10 @@
     );
   }
   var HERMITE = createHermiteVecInterp();
-  function structureSetup(_refs) {
+  function structureSetup(_refs, structureData2) {
     const defaultStructure = OEIS_SEQUENCES[0];
     const defaultMax = argMax(defaultStructure, 17);
-    let structureData2 = {
+    structureData2 = {
       nodes: castSequencesToRefs(defaultStructure, defaultMax, _refs),
       max: defaultMax
     };
@@ -3481,11 +3478,12 @@
       userBank: scape.userBank
     };
   }
-  function adjustStructurePosition(srvb) {
+  function adjustStructurePosition(refs4, srvb, structureData2) {
     if (srvb.structure !== memoized?.structure) {
-      structureData = buildStructures(refs2, srvb.structure) || structureData;
-      structureData.nodes = rotate(structureData.nodes, srvb.position * -16);
+      structureData2 = buildStructures(refs4, srvb.structure);
+      structureData2.nodes = rotate(structureData2.nodes, srvb.position * -16);
     }
+    return structureData2;
   }
   function shouldRender(previous, current, renderCount2) {
     const result = renderCount2 === 0 || current === null || refs2.map.size === 0 || current.sampleRate !== previous?.sampleRate || Math.round(current.scapeBypass) !== previous?.scapeBypass || Math.round(current.srvbBypass) !== previous?.srvbBypass || roundedStructureValue(current.structure) !== previous?.structure;

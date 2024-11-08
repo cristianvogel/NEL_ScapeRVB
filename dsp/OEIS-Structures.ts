@@ -43,7 +43,7 @@ export function buildStructures(_refs: RefMap, currStructIndex = 0) {
     const seriesMax = series[argMax(series)];
     // convert the sequences to signals
     const sequenceAsSignals = castSequencesToRefs(series, seriesMax, _refs);
-    if (!sequenceAsSignals) return;
+    // create a structure data object
     const sd: StructureData = {
       nodes: sequenceAsSignals,
       max: seriesMax,
