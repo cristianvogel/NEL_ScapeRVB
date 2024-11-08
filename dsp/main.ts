@@ -23,15 +23,7 @@ globalThis.__receiveStateChange__ = (rawState: JSONString) => {
   handleStateChange(rawState, currentVFSKeys, refs);
 }
 
-// ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
-// ▮▮▮▮▮▮ Handle updated VFS keys from the backend ▮▮▮▮▮▮ //
-// ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
-globalThis.__receiveVFSKeys__ = function (vfsCurrent: JSONString) {
-  const parsedArray: Array<string> = JSON.parse(vfsCurrent);
-  if (parsedArray.length > 0) {
-      currentVFSKeys = parsedArray;
-  }
-}
+
 
 
 

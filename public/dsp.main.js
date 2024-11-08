@@ -3385,6 +3385,13 @@
   var currentVFSKeys;
   var refs2;
   var structureData = { nodes: [], max: 0 };
+  globalThis.__receiveVFSKeys__ = function(vfsCurrent) {
+    const parsedArray = JSON.parse(vfsCurrent);
+    console.log("Received VFS keys: ", parsedArray);
+    if (parsedArray.length > 0) {
+      currentVFSKeys = parsedArray;
+    }
+  };
   function handleStateChange(_state, _currentVFSKeys, _refs) {
     currentVFSKeys = _currentVFSKeys;
     refs2 = _refs;
@@ -3550,7 +3557,6 @@
       structure: srvb.structure,
       structureMax: refs2.getOrCreate("structureMax", "const", { value: structureData.max, key: "structureMax" }, [])
     };
-    console.log("srvbProps created");
     const scapeProps = {
       key: "scape",
       IRs: Slots,
@@ -3571,7 +3577,6 @@
       v4: refs2.getOrCreate("v4", "const", { value: scape.vectorData[3] }, []),
       ...registerConvolverRefs(scape, refs2)
     };
-    console.log("scapeProps created");
     return { srvbProps, scapeProps };
   }
 
@@ -3583,12 +3588,6 @@
   var currentVFSKeys2 = [];
   globalThis.__receiveStateChange__ = (rawState) => {
     handleStateChange(rawState, currentVFSKeys2, refs3);
-  };
-  globalThis.__receiveVFSKeys__ = function(vfsCurrent) {
-    const parsedArray = JSON.parse(vfsCurrent);
-    if (parsedArray.length > 0) {
-      currentVFSKeys2 = parsedArray;
-    }
   };
   globalThis.__receiveHydrationData__ = (data) => {
     const payload = JSON.parse(data);

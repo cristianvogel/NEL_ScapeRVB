@@ -32,6 +32,17 @@ let refs: RefMap;
 let structureData: StructureData = { nodes: [], max: 0 };
 
 // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
+// ▮▮▮▮▮▮ Handle updated VFS keys from the backend ▮▮▮▮▮▮ //
+// ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
+globalThis.__receiveVFSKeys__ = function (vfsCurrent: JSONString) {
+    const parsedArray: Array<string> = JSON.parse(vfsCurrent);
+    console.log("Received VFS keys: ", parsedArray);
+    if (parsedArray.length > 0) {
+        currentVFSKeys = parsedArray;
+    }
+  }
+
+// ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
 // ▮▮▮▮▮▮▮▮ Handle updated state from the backend ▮▮▮▮▮▮▮ //
 // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
 export function handleStateChange(_state, _currentVFSKeys, _refs: RefMap) {
@@ -237,7 +248,7 @@ function getOrCreatePropsForDSP(srvb: SrvbSettings, shared: SharedSettings, scap
         structure: srvb.structure,
         structureMax: refs.getOrCreate("structureMax", "const", { value: structureData.max, key: "structureMax" }, [])
     };
-    console.log('srvbProps created');
+
     const scapeProps: ScapePropsWithConvolvers =
     {
         key: "scape",
@@ -259,7 +270,6 @@ function getOrCreatePropsForDSP(srvb: SrvbSettings, shared: SharedSettings, scap
         v4: refs.getOrCreate("v4", "const", { value: scape.vectorData[3] }, []),
         ...registerConvolverRefs(scape, refs)
     };
-    console.log('scapeProps created');
     return { srvbProps, scapeProps };
 }
 
