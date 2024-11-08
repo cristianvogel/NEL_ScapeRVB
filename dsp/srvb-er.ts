@@ -2,10 +2,10 @@
 
 import {el, ElemNode} from "@elemaudio/core";
 import {EPS} from "@thi.ng/math";
-import {DiffuseProps, FDNProps, SRVBProps} from "../src/types";
+import { FDNProps, SRVBProps} from "../src/types";
 import {normalizeSequences} from "./OEIS-Structures";
 import {rotate} from "@thi.ng/arrays";
-import {t} from "../native/elementary/js/packages/core/src/NodeRepr.gen";
+
 
 // These number series are from the OEIS and all sound really cool
 
@@ -67,10 +67,10 @@ function diffuse(props: {
   structureIndex: number;
   maxLengthSamp: number;
   structureMax: ElemNode | number;
-  structure: ElemNode[]
+  structureArray: ElemNode[]
 }, ...ins: ElemNode[]) {
   const { maxLengthSamp, structureIndex } = props;
-  const structure: Array<ElemNode> = props.structure;
+  const structure: Array<ElemNode> = props.structureArray;
 
   const len = ins.length; // 8
 
@@ -208,36 +208,6 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
   const [xl, xr] = inputs;
   const feedforward = (channel: string | number, _x: ElemNode) => el.tapOut({ name: "srvbOut:" + channel }, el.tanh(_x));
 
-
-//   let structurePositioning =  (x: ElemNode, i: number): ElemNode => {
-//     const scanDt = scanSequence( props.position, OEIS_NORMALISED[props.structure]) ;
-//     const scanG = scanSequence( props.position, OEIS_NORMALISED[props.structure].reverse());
-//     return el.delay(
-//       { key: `downmix:${i}`, size: ms2samps(55) },
-//       // delay time normalised by structure
-//       el.mul( el.sub( 1.05, props.size),  scanDt ),
-//       // minimum feedback
-//       0,
-//       // node input, normalised by structure
-//       el.mul(scanG, x)
-//     );
-//   };
-//
-//   // constructor function to create a cascading el.select
-//  const scanSequence = (index: ElemNode, values: number[]): ElemNode => {
-//   let result: ElemNode = el.const( {key:`OEIS_Sequence-1`, value: values[values.length - 1]} );
-//   for (let i = values.length - 2; i >= 0; i--) {
-//     result = el.select( index,
-//       el.const( {key: `OEIS_Sequence-${i}`, value: values[i]}),
-//       result
-//     );
-//   }
-//   return result;
-// };
-
-
-
-
   // input attenuation
   const _xl = el.dcblock(xl);
   const _xr = el.dcblock(xr); 
@@ -246,41 +216,19 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
   const mid = el.mul(0.5, el.add(_xl, _xr));
   const side = el.mul(0.5, el.sub(_xl, _xr));
   const four: ElemNode [] = [ xl, xr, mid, side ].map((x, i) => { 
-    // return structurePositioning( toneDial(x, structureArray[(i * 2) % structureArray.length]), i )
     return  toneDial(x, structureArray[(i * 2) % structureArray.length])
   });
 
   const eight: ElemNode [] = [...four, ...four.map((x, i) => { return x })];  
   // Diffusion over 8 channels using 'structure' sequence for timing coefficients
   const d1: ElemNode [] = diffuse(
-    { structure: structureArray,
+    { structureArray,
       structureMax,
       structureIndex,
       maxLengthSamp: ms2samps(43) },
     ...eight
   );
-  // const d2 = diffuse(
-  //   { structure: structureArray, structureMax , maxLengthSamp: ms2samps(97) },
-  //   ...d1
-  // );
-  // const d3 = diffuse(
-  //   { structure: structureArray, structureMax , maxLengthSamp: ms2samps(117) },
-  //   ...d2
-  // );
-
-  // Reverb network
-  // const d4: ElemNode[] = dampFDN(
-  //   {
-  //     name: `${key}:d4`,
-  //     sampleRate,
-  //     structureArray,
-  //     structureMax,
-  //     tone: props.tone,
-  //     size: props.size,
-  //     decay: 0.004,
-  //   },
-  //   ...d1
-  // );
+  
   let r0: ElemNode[] = dampFDN(
     {
       name: `r0:`,
@@ -314,3 +262,30 @@ export default function SRVB(props: SRVBProps, inputs: ElemNode[], ...structureA
   else
     return [el.mul(level, yl), el.mul(level, yr)];
 }
+
+
+
+
+/// deprecated
+// const d2 = diffuse(
+  //   { structure: structureArray, structureMax , maxLengthSamp: ms2samps(97) },
+  //   ...d1
+  // );
+  // const d3 = diffuse(
+  //   { structure: structureArray, structureMax , maxLengthSamp: ms2samps(117) },
+  //   ...d2
+  // );
+
+  // Reverb network
+  // const d4: ElemNode[] = dampFDN(
+  //   {
+  //     name: `${key}:d4`,
+  //     sampleRate,
+  //     structureArray,
+  //     structureMax,
+  //     tone: props.tone,
+  //     size: props.size,
+  //     decay: 0.004,
+  //   },
+  //   ...d1
+  // );

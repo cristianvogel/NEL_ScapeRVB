@@ -112,16 +112,43 @@ interface SRVBProps {
   srvbBypass: number;
 }
 
+type Convolvers = {
+  'LIGHT_0': ElemNode;
+  'LIGHT_1': ElemNode;
+  'SURFACE_0': ElemNode;
+  'SURFACE_1': ElemNode;
+  'TEMPLE_0': ElemNode;
+  'TEMPLE_1': ElemNode;
+  'DEEPNESS_0': ElemNode;
+  'DEEPNESS_1': ElemNode;
+}
+
+
 interface ScapeProps {
-  ir: ElemNode;
-  level: ElemNode;
+  srvbBypass: ElemNode;
+  scapeLevel: ElemNode;
   reverse: ElemNode;
   vectorData: Vec;
-  // non-signal data
   sampleRate: number;
+  offset: number;
+  scapePosition: ElemNode;
+  scapeMode: ElemNode;
+  v1: ElemNode;
+  v2: ElemNode;
+  v3: ElemNode;
+  v4: ElemNode;
+  IRs: Map<SlotName, IRMetaData>
   key: string;
   scapeBypass: number;
 }
+
+interface SharedProps {
+  sampleRate: number;
+  dryInputs: ElemNode[];
+  dryMix: ElemNode
+}
+
+type ScapePropsWithConvolvers = ScapeProps & Convolvers;
 
 type DiffuseProps = {
   seededNormMinMax?: number;

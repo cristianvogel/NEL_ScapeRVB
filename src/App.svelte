@@ -16,7 +16,7 @@
 
   onMount(() => {
     RegisterMessagesFromHost();
-
+    MessageToHost.requestReady();
     // Second set up the listener for CABLES loader
     document.addEventListener("CABLES.jsLoaded", function (event) {
       CABLES.patch = new CABLES.Patch({
@@ -31,7 +31,6 @@
         onFinishedLoading: () => {
           console.count("UI finished loading");
           initPatchListeners(CABLES.patch);
-          MessageToHost.requestReady();
           CablesReady.update(true);
         },
         canvas: {
@@ -89,7 +88,7 @@
     width: 100%;
     margin-top: 2px;
     height: 2px;
-    background-color: rgba(191, 192, 191, 0.75);
+    background-color: rgba(10, 72, 10, 0.75);
     position: fixed;
     overflow: hidden;
   }

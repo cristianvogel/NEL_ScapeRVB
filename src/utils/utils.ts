@@ -1,4 +1,5 @@
 import { clamp, EPS, easeIn2 } from "@thi.ng/math";
+import { NUM_SEQUENCES } from "../../dsp/srvb-er";
 
 // 1 -> 1
 // 0.5 -> 0
@@ -15,3 +16,6 @@ export function  sumArray  (arr: number[]): number  {
   }
   return sum;
 };
+export function roundedStructureValue(hostValue01: number) {
+  return Math.floor(hostValue01 * NUM_SEQUENCES);
+}
