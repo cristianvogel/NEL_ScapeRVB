@@ -122,6 +122,7 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                 processor.clear_userFiles_in_assets_map();
                 processor.slotManager->switchSlotsTo(false, true);
                 std::cout << "resetting slots" << std::endl;
+                retFlag = 0;
             } // end reset
 
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //

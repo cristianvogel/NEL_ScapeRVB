@@ -6,6 +6,7 @@ OP AUTHORS:
 - DRACO Compression Loader by three.js (https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/DRACOLoader.js)
 - Photoshop math GLSL shaders by Romain Dura (https://mouaif.wordpress.com/2009/01/05/photoshop-math-with-glsl-shaders/)
 - ops by cables user andro (https://cables.gl/user/andro)
+- ops by cables user cristianvogel (https://cables.gl/user/cristianvogel)
 - ops by cables user tim (https://cables.gl/user/tim)
 - cables by undefined development (http://undev.studio)
 - glmatrix by toji (https://github.com/toji/gl-matrix)

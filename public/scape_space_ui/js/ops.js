@@ -48,6 +48,460 @@ Ops.Extension.Deprecated=Ops.Extension.Deprecated || {};
 
 // **************************************************************
 // 
+// Ops.Patch.P4Zknbo.SubPatch1
+// 
+// **************************************************************
+
+Ops.Patch.P4Zknbo.SubPatch1 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"inc_gen_ports_js":"const port_9fkoygcno=op.inTrigger(\"9fkoygcno\");\nport_9fkoygcno.setUiAttribs({title:\"Render\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_9fkoygcno = addedOps[i].outTrigger(\"innerOut_9fkoygcno\");\ninnerOut_9fkoygcno.setUiAttribs({title:\"Render\"});\nport_9fkoygcno.onTriggered = () => { innerOut_9fkoygcno.trigger(); };\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"85rseo930\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"data\",\"value\":\"\"},{\"name\":\"glb File\",\"value\":\"/assets/66c8bba9b731425e29f47a4a/NEL-Logo.draco.glb\",\"display\":\"file\"},{\"name\":\"Draw\",\"value\":1},{\"name\":\"Camera index\",\"value\":0},{\"name\":\"Camera\",\"value\":\"None\"},{\"name\":\"Animation\",\"value\":\"\"},{\"name\":\"Center index\",\"value\":2},{\"name\":\"Center\",\"value\":\"XZ\"},{\"name\":\"Rescale\",\"value\":1},{\"name\":\"Rescale Size\",\"value\":2},{\"name\":\"Time\",\"value\":0},{\"name\":\"Sync to timeline\",\"value\":0},{\"name\":\"Loop\",\"value\":1},{\"name\":\"Normals Format index\",\"value\":0},{\"name\":\"Normals Format\",\"value\":\"XYZ\"},{\"name\":\"Vertices Format index\",\"value\":0},{\"name\":\"Vertices Format\",\"value\":\"XYZ\"},{\"name\":\"Calc Normals index\",\"value\":0},{\"name\":\"Calc Normals\",\"value\":\"Auto\"},{\"name\":\"Hide Nodes\",\"value\":0},{\"name\":\"Use Material Properties\",\"value\":0},{\"name\":\"Active\",\"value\":1}],\"portsOut\":[{\"name\":\"Generator\",\"value\":\"Khronos glTF Blender I/O v4.2.60\"},{\"name\":\"GLTF Version\",\"value\":2},{\"name\":\"Anim Length\",\"value\":0},{\"name\":\"Anim Time\",\"value\":0},{\"name\":\"Loading\",\"value\":false}],\"objName\":\"Ops.Gl.GLTF.GltfScene_v4\"},{\"id\":\"nbmadl6p6\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"Material Name\",\"value\":\"mat0\"}],\"portsOut\":[{\"name\":\"Material\",\"links\":[{\"portIn\":\"Materials\",\"portOut\":\"Material\",\"objIn\":\"85rseo930\",\"objOut\":\"nbmadl6p6\"}]}],\"objName\":\"Ops.Gl.GLTF.GltfSetMaterial\"},{\"id\":\"ymzn2u1wr\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"Material Name\",\"value\":\"Material.001\"}],\"portsOut\":[{\"name\":\"Material\",\"links\":[{\"portIn\":\"Materials\",\"portOut\":\"Material\",\"objIn\":\"85rseo930\",\"objOut\":\"ymzn2u1wr\"}]}],\"objName\":\"Ops.Gl.GLTF.GltfSetMaterial\"},{\"id\":\"6wtj1mxj5\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_9fkoygcno\",\"title\":\"Render\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"innerOut_9fkoygcno\",\"objIn\":\"alz1qp4y2\",\"objOut\":\"6wtj1mxj5\"},{\"portIn\":\"Render\",\"portOut\":\"innerOut_9fkoygcno\",\"objIn\":\"ce52znu67\",\"objOut\":\"6wtj1mxj5\"},{\"portIn\":\"render\",\"portOut\":\"innerOut_9fkoygcno\",\"objIn\":\"mgntydb26\",\"objOut\":\"6wtj1mxj5\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"lt3kjnr3e\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"alz1qp4y2\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":0.514},{\"name\":\"b\",\"value\":0.262},{\"name\":\"Opacity\",\"value\":1},{\"name\":\"AO Intensity\",\"value\":1},{\"name\":\"Normal Map Intensity\",\"value\":0.812},{\"name\":\"Repeat X\",\"value\":1},{\"name\":\"Repeat Y\",\"value\":1},{\"name\":\"Offset X\",\"value\":0},{\"name\":\"Offset Y\",\"value\":0.02},{\"name\":\"Screen Space Normals\",\"value\":0},{\"name\":\"Calc normal tangents\",\"value\":1},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"}],\"portsOut\":[{\"name\":\"Shader\",\"links\":[{\"portIn\":\"Shader\",\"portOut\":\"Shader\",\"objIn\":\"ymzn2u1wr\",\"objOut\":\"alz1qp4y2\"}]}],\"objName\":\"Ops.Gl.Shader.MatCapMaterial_v3\"},{\"id\":\"ce52znu67\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":0.22},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.262},{\"name\":\"Opacity\",\"value\":1},{\"name\":\"AO Intensity\",\"value\":1},{\"name\":\"Normal Map Intensity\",\"value\":0.118},{\"name\":\"Repeat X\",\"value\":1},{\"name\":\"Repeat Y\",\"value\":1},{\"name\":\"Offset X\",\"value\":0},{\"name\":\"Offset Y\",\"value\":0},{\"name\":\"Screen Space Normals\",\"value\":0},{\"name\":\"Calc normal tangents\",\"value\":1},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"}],\"portsOut\":[{\"name\":\"Shader\",\"links\":[{\"portIn\":\"Shader\",\"portOut\":\"Shader\",\"objIn\":\"nbmadl6p6\",\"objOut\":\"ce52znu67\"}]}],\"objName\":\"Ops.Gl.Shader.MatCapMaterial_v3\"},{\"id\":\"96qgwcwln\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"File\",\"value\":\"/assets/6697c3b245eb5d333bae2007/NEL_SRVB.webp\",\"display\":\"file\"},{\"name\":\"Filter index\",\"value\":2},{\"name\":\"Filter\",\"value\":\"mipmap\"},{\"name\":\"Wrap index\",\"value\":0},{\"name\":\"Wrap\",\"value\":\"repeat\"},{\"name\":\"Anisotropic index\",\"value\":0},{\"name\":\"Anisotropic\",\"value\":\"0\"},{\"name\":\"Data Format index\",\"value\":3},{\"name\":\"Data Format\",\"value\":\"RGBA\"},{\"name\":\"Flip\",\"value\":0},{\"name\":\"Pre Multiplied Alpha\",\"value\":0},{\"name\":\"Active\",\"value\":1},{\"name\":\"Save Memory\",\"value\":1},{\"name\":\"Add Cachebuster\",\"value\":0}],\"portsOut\":[{\"name\":\"Texture\",\"links\":[{\"portIn\":\"Normal\",\"portOut\":\"Texture\",\"objIn\":\"alz1qp4y2\",\"objOut\":\"96qgwcwln\"},{\"portIn\":\"Normal\",\"portOut\":\"Texture\",\"objIn\":\"ce52znu67\",\"objOut\":\"96qgwcwln\"}]},{\"name\":\"Width\",\"value\":256},{\"name\":\"Height\",\"value\":256},{\"name\":\"Aspect Ratio\",\"value\":1},{\"name\":\"Loaded\",\"value\":1},{\"name\":\"Loading\",\"value\":0}],\"objName\":\"Ops.Gl.Texture_v2\"},{\"id\":\"mgntydb26\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"posX\",\"value\":0},{\"name\":\"posY\",\"value\":-0.56},{\"name\":\"posZ\",\"value\":0.16},{\"name\":\"scale\",\"value\":1},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"85rseo930\",\"objOut\":\"mgntydb26\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"}]}",};
+const port_9fkoygcno=op.inTrigger("9fkoygcno");
+port_9fkoygcno.setUiAttribs({title:"Render",});
+
+op.initInnerPorts=function(addedOps)
+{
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
+    {
+const innerOut_9fkoygcno = addedOps[i].outTrigger("innerOut_9fkoygcno");
+innerOut_9fkoygcno.setUiAttribs({title:"Render"});
+port_9fkoygcno.onTriggered = () => { innerOut_9fkoygcno.trigger(); };
+
+    }
+if(addedOps[i].innerOutput)
+{
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
+    {
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
+    }
+
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
+}
+
+
+};
+
+Ops.Patch.P4Zknbo.SubPatch1.prototype = new CABLES.Op();
+CABLES.OPS["f5436c37-3e2b-43e6-a951-208e02171dc3"]={f:Ops.Patch.P4Zknbo.SubPatch1,objName:"Ops.Patch.P4Zknbo.SubPatch1"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.P4Zknbo.SubPatch3
+// 
+// **************************************************************
+
+Ops.Patch.P4Zknbo.SubPatch3 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"inc_gen_ports_js":"const port_alrh6hig4=op.inTrigger(\"alrh6hig4\");\nport_alrh6hig4.setUiAttribs({title:\"render\",});\n\nconst port_8dittifdh=op.inTrigger(\"8dittifdh\");\nport_8dittifdh.setUiAttribs({title:\"Render\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_alrh6hig4 = addedOps[i].outTrigger(\"innerOut_alrh6hig4\");\ninnerOut_alrh6hig4.setUiAttribs({title:\"render\"});\nport_alrh6hig4.onTriggered = () => { innerOut_alrh6hig4.trigger(); };\n\nconst innerOut_8dittifdh = addedOps[i].outTrigger(\"innerOut_8dittifdh\");\ninnerOut_8dittifdh.setUiAttribs({title:\"Render\"});\nport_8dittifdh.onTriggered = () => { innerOut_8dittifdh.trigger(); };\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"5samfghd8\",\"uiAttribs\":{\"subPatch\":\"on1ynf3wi\"},\"storage\":{},\"portsIn\":[{\"name\":\"data\",\"value\":\"\"},{\"name\":\"glb File\",\"value\":\"/assets/66c8bba9b731425e29f47a4a/tetragram_fixed_material.draco.glb\",\"display\":\"file\"},{\"name\":\"Draw\",\"value\":1},{\"name\":\"Camera index\",\"value\":0},{\"name\":\"Camera\",\"value\":\"None\"},{\"name\":\"Animation\",\"value\":\"\"},{\"name\":\"Center index\",\"value\":1},{\"name\":\"Center\",\"value\":\"XYZ\"},{\"name\":\"Rescale\",\"value\":1},{\"name\":\"Rescale Size\",\"value\":0.15},{\"name\":\"Time\",\"value\":0},{\"name\":\"Sync to timeline\",\"value\":0},{\"name\":\"Loop\",\"value\":1},{\"name\":\"Normals Format index\",\"value\":0},{\"name\":\"Normals Format\",\"value\":\"XYZ\"},{\"name\":\"Vertices Format index\",\"value\":0},{\"name\":\"Vertices Format\",\"value\":\"XYZ\"},{\"name\":\"Calc Normals index\",\"value\":2},{\"name\":\"Calc Normals\",\"value\":\"Never\"},{\"name\":\"Hide Nodes\",\"value\":0},{\"name\":\"Use Material Properties\",\"value\":0},{\"name\":\"Active\",\"value\":1}],\"portsOut\":[{\"name\":\"Generator\",\"value\":\"Khronos glTF Blender I/O v4.2.60\"},{\"name\":\"GLTF Version\",\"value\":2},{\"name\":\"Anim Length\",\"value\":0},{\"name\":\"Anim Time\",\"value\":0},{\"name\":\"Loading\",\"value\":false}],\"objName\":\"Ops.Gl.GLTF.GltfScene_v4\"},{\"id\":\"rmprhecho\",\"uiAttribs\":{\"subPatch\":\"on1ynf3wi\"},\"storage\":{},\"portsIn\":[{\"name\":\"posX\",\"value\":-1.74},{\"name\":\"posY\",\"value\":0.97},{\"name\":\"posZ\",\"value\":0.05},{\"name\":\"scale\",\"value\":0.98},{\"name\":\"rotX\",\"value\":13},{\"name\":\"rotY\",\"value\":60.5},{\"name\":\"rotZ\",\"value\":-15}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"69e8cxa7e\",\"objOut\":\"rmprhecho\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"z1zbpc5ex\",\"uiAttribs\":{\"subPatch\":\"on1ynf3wi\"},\"storage\":{},\"portsIn\":[{\"name\":\"Material Name\",\"value\":\"Material_0.001\"}],\"portsOut\":[{\"name\":\"Material\",\"links\":[{\"portIn\":\"Materials\",\"portOut\":\"Material\",\"objIn\":\"5samfghd8\",\"objOut\":\"z1zbpc5ex\"}]}],\"objName\":\"Ops.Gl.GLTF.GltfSetMaterial\"},{\"id\":\"znj0gtwab\",\"uiAttribs\":{\"subPatch\":\"on1ynf3wi\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":1},{\"name\":\"Opacity\",\"value\":1},{\"name\":\"AO Intensity\",\"value\":1},{\"name\":\"Normal Map Intensity\",\"value\":0.361},{\"name\":\"Repeat X\",\"value\":0},{\"name\":\"Repeat Y\",\"value\":0},{\"name\":\"Offset X\",\"value\":0},{\"name\":\"Offset Y\",\"value\":0},{\"name\":\"Screen Space Normals\",\"value\":0},{\"name\":\"Calc normal tangents\",\"value\":1},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"}],\"portsOut\":[{\"name\":\"Shader\",\"links\":[{\"portIn\":\"Shader\",\"portOut\":\"Shader\",\"objIn\":\"z1zbpc5ex\",\"objOut\":\"znj0gtwab\"}]}],\"objName\":\"Ops.Gl.Shader.MatCapMaterial_v3\"},{\"id\":\"13dxix11f\",\"uiAttribs\":{\"subPatch\":\"on1ynf3wi\"},\"storage\":{},\"portsIn\":[{\"name\":\"Gradient\",\"value\":\"{\\\"keys\\\":[{\\\"pos\\\":0,\\\"posy\\\":0.5,\\\"r\\\":0.19606043020884192,\\\"g\\\":0.9551041666666666,\\\"b\\\":0.30280095564822357},{\\\"pos\\\":0,\\\"posy\\\":0.5,\\\"r\\\":0.19606043020884192,\\\"g\\\":0.9551041666666666,\\\"b\\\":0.30280095564822357},{\\\"pos\\\":0.25,\\\"posy\\\":0.7,\\\"r\\\":0.24755528330802917,\\\"g\\\":0.5961175041362186,\\\"b\\\":0.6089322916666666},{\\\"pos\\\":1,\\\"posy\\\":0.5,\\\"r\\\":0.9515885416666666,\\\"g\\\":0.01916651725769043,\\\"b\\\":0.643597891729076},{\\\"pos\\\":1,\\\"posy\\\":0.5,\\\"r\\\":0.9515885416666666,\\\"g\\\":0.01916651725769043,\\\"b\\\":0.643597891729076}]}\"},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"X\"},{\"name\":\"Smoothstep\",\"value\":0},{\"name\":\"Step\",\"value\":1},{\"name\":\"Flip\",\"value\":1},{\"name\":\"sRGB\",\"value\":0},{\"name\":\"Oklab\",\"value\":0},{\"name\":\"Size\",\"value\":8},{\"name\":\"filter index\",\"value\":0},{\"name\":\"filter\",\"value\":\"nearest\"},{\"name\":\"wrap index\",\"value\":0},{\"name\":\"wrap\",\"value\":\"clamp to edge\"},{\"name\":\"Gradient Array\",\"value\":0}],\"portsOut\":[{\"name\":\"Texture\",\"links\":[{\"portIn\":\"Normal\",\"portOut\":\"Texture\",\"objIn\":\"znj0gtwab\",\"objOut\":\"13dxix11f\"}]}],\"objName\":\"Ops.Gl.GradientTexture\"},{\"id\":\"69e8cxa7e\",\"uiAttribs\":{\"subPatch\":\"on1ynf3wi\"},\"storage\":{},\"portsIn\":[{\"name\":\"scale\",\"value\":0.76},{\"name\":\"x\",\"value\":0.99},{\"name\":\"y\",\"value\":1.79},{\"name\":\"z\",\"value\":0.47}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"5samfghd8\",\"objOut\":\"69e8cxa7e\"}]}],\"objName\":\"Ops.Gl.Matrix.Scale\"},{\"id\":\"r9gyvdkvh\",\"uiAttribs\":{\"subPatch\":\"on1ynf3wi\"},\"storage\":{},\"portsIn\":[{\"name\":\"Frequency\",\"value\":1},{\"name\":\"Type index\",\"value\":0},{\"name\":\"Type\",\"value\":\"sine\"},{\"name\":\"Phase\",\"value\":0},{\"name\":\"Range Min\",\"value\":0},{\"name\":\"Range Max\",\"value\":1}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pos\",\"portOut\":\"Result\",\"objIn\":\"qe82kxn0g\",\"objOut\":\"r9gyvdkvh\"}]}],\"objName\":\"Ops.Anim.LFO_v2\"},{\"id\":\"bmv9fqxjh\",\"uiAttribs\":{\"subPatch\":\"on1ynf3wi\"},\"storage\":{},\"portsIn\":[{\"name\":\"Speed\",\"value\":0.05},{\"name\":\"Play\",\"value\":1},{\"name\":\"Sync to timeline\",\"value\":0}],\"portsOut\":[{\"name\":\"Time\",\"links\":[{\"portIn\":\"Time\",\"portOut\":\"Time\",\"objIn\":\"r9gyvdkvh\",\"objOut\":\"bmv9fqxjh\"}]}],\"objName\":\"Ops.Anim.Timer_v2\"},{\"id\":\"we5n3qi4s\",\"uiAttribs\":{\"subPatch\":\"on1ynf3wi\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_alrh6hig4\",\"title\":\"render\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_alrh6hig4\",\"objIn\":\"rmprhecho\",\"objOut\":\"we5n3qi4s\"}]},{\"name\":\"innerOut_8dittifdh\",\"title\":\"Render\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"innerOut_8dittifdh\",\"objIn\":\"znj0gtwab\",\"objOut\":\"we5n3qi4s\"},{\"portIn\":\"Render\",\"portOut\":\"innerOut_8dittifdh\",\"objIn\":\"kan5jvxj9\",\"objOut\":\"we5n3qi4s\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"aqkj0fxy7\",\"uiAttribs\":{\"subPatch\":\"on1ynf3wi\"},\"storage\":{},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"qe82kxn0g\",\"uiAttribs\":{\"subPatch\":\"on1ynf3wi\"},\"storage\":{},\"portsIn\":[{\"name\":\"Blend Mode index\",\"value\":18},{\"name\":\"Blend Mode\",\"value\":\"Math Add\"},{\"name\":\"Alpha Mask index\",\"value\":0},{\"name\":\"Alpha Mask\",\"value\":\"Off\"},{\"name\":\"Amount\",\"value\":1},{\"name\":\"Width\",\"value\":1},{\"name\":\"Type index\",\"value\":3},{\"name\":\"Type\",\"value\":\"Radial\"},{\"name\":\"Smoothstep\",\"value\":0},{\"name\":\"sRGB\",\"value\":0},{\"name\":\"color space index\",\"value\":0},{\"name\":\"color space\",\"value\":\"RGB\"},{\"name\":\"r\",\"value\":0.19606043020884192},{\"name\":\"g\",\"value\":0.9551},{\"name\":\"b\",\"value\":0.3028},{\"name\":\"r2\",\"value\":0.247},{\"name\":\"g2\",\"value\":0.596},{\"name\":\"b2\",\"value\":0.608},{\"name\":\"r3\",\"value\":0.951},{\"name\":\"g3\",\"value\":0.0191},{\"name\":\"b3\",\"value\":0.6436}],\"objName\":\"Ops.Gl.ImageCompose.Gradient_v2\"},{\"id\":\"kan5jvxj9\",\"uiAttribs\":{\"subPatch\":\"on1ynf3wi\"},\"storage\":{},\"portsIn\":[{\"name\":\"Size index\",\"value\":0},{\"name\":\"Size\",\"value\":\"Auto\"},{\"name\":\"Width\",\"value\":640},{\"name\":\"Height\",\"value\":480},{\"name\":\"Filter index\",\"value\":1},{\"name\":\"Filter\",\"value\":\"linear\"},{\"name\":\"Wrap index\",\"value\":1},{\"name\":\"Wrap\",\"value\":\"repeat\"},{\"name\":\"Anisotropic index\",\"value\":0},{\"name\":\"Anisotropic\",\"value\":\"0\"},{\"name\":\"Pixel Format index\",\"value\":9},{\"name\":\"Pixel Format\",\"value\":\"RGBA 16bit float\"},{\"name\":\"R\",\"value\":0},{\"name\":\"G\",\"value\":0},{\"name\":\"B\",\"value\":0},{\"name\":\"A\",\"value\":0}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"Next\",\"objIn\":\"qe82kxn0g\",\"objOut\":\"kan5jvxj9\"}]},{\"name\":\"texture_out\",\"links\":[{\"portIn\":\"MatCap\",\"portOut\":\"texture_out\",\"objIn\":\"znj0gtwab\",\"objOut\":\"kan5jvxj9\"}]},{\"name\":\"Aspect Ratio\",\"value\":1.917312661498708},{\"name\":\"Texture Width\",\"value\":1484},{\"name\":\"Texture Height\",\"value\":774}],\"objName\":\"Ops.Gl.ImageCompose.ImageCompose_v4\"}]}",};
+const port_alrh6hig4=op.inTrigger("alrh6hig4");
+port_alrh6hig4.setUiAttribs({title:"render",});
+
+const port_8dittifdh=op.inTrigger("8dittifdh");
+port_8dittifdh.setUiAttribs({title:"Render",});
+
+op.initInnerPorts=function(addedOps)
+{
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
+    {
+const innerOut_alrh6hig4 = addedOps[i].outTrigger("innerOut_alrh6hig4");
+innerOut_alrh6hig4.setUiAttribs({title:"render"});
+port_alrh6hig4.onTriggered = () => { innerOut_alrh6hig4.trigger(); };
+
+const innerOut_8dittifdh = addedOps[i].outTrigger("innerOut_8dittifdh");
+innerOut_8dittifdh.setUiAttribs({title:"Render"});
+port_8dittifdh.onTriggered = () => { innerOut_8dittifdh.trigger(); };
+
+    }
+if(addedOps[i].innerOutput)
+{
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
+    {
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
+    }
+
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
+}
+
+
+};
+
+Ops.Patch.P4Zknbo.SubPatch3.prototype = new CABLES.Op();
+CABLES.OPS["4da89f73-5632-419e-9ff2-aca4b0372d4d"]={f:Ops.Patch.P4Zknbo.SubPatch3,objName:"Ops.Patch.P4Zknbo.SubPatch3"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.P4Zknbo.UI_Structure
+// 
+// **************************************************************
+
+Ops.Patch.P4Zknbo.UI_Structure = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"inc_gen_ports_js":"op.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"7pv6px8kl\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Named Trigger\",\"value\":\"exeNoCamera\"}],\"portsOut\":[{\"name\":\"Triggered\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"Triggered\",\"objIn\":\"vtx3kdots\",\"objOut\":\"7pv6px8kl\"},{\"portIn\":\"render\",\"portOut\":\"Triggered\",\"objIn\":\"r4pg00ot6\",\"objOut\":\"7pv6px8kl\"}]}],\"objName\":\"Ops.Trigger.TriggerReceive\"},{\"id\":\"qwzkex2mf\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posX\",\"value\":0.79},{\"name\":\"posY\",\"value\":0.9},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":1},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"9iz4vsufy\",\"objOut\":\"qwzkex2mf\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"9iz4vsufy\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Text\",\"value\":\"* structure\"},{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.06},{\"name\":\"Letter Spacing\",\"value\":-0.04},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":0},{\"name\":\"Align\",\"value\":\"Left\"},{\"name\":\"Vertical Align index\",\"value\":1},{\"name\":\"Vertical Align\",\"value\":\"Top\"},{\"name\":\"r\",\"value\":0.9},{\"name\":\"g\",\"value\":0.9},{\"name\":\"b\",\"value\":0.9},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.17},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.5},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":1},{\"name\":\"Border g\",\"value\":1},{\"name\":\"Border b\",\"value\":1},{\"name\":\"Shadow\",\"value\":1},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"yozybluvg\",\"objOut\":\"9iz4vsufy\"}]},{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.29631796875000005},{\"name\":\"Height\",\"value\":0.09154265873015872},{\"name\":\"Start Y\",\"value\":0.0390077380952381},{\"name\":\"Num Chars\",\"value\":11}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"xmzih69c3\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Letter Spacing\",\"value\":-0.05},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":0},{\"name\":\"Align\",\"value\":\"Left\"},{\"name\":\"Vertical Align index\",\"value\":1},{\"name\":\"Vertical Align\",\"value\":\"Top\"},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.25},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.5},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":1},{\"name\":\"Border g\",\"value\":1},{\"name\":\"Border b\",\"value\":1},{\"name\":\"Shadow\",\"value\":1},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.25098750000000003},{\"name\":\"Height\",\"value\":0.07645148809523811},{\"name\":\"Start Y\",\"value\":0.044420982142857154},{\"name\":\"Num Chars\",\"value\":6}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"yozybluvg\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0.36},{\"name\":\"y\",\"value\":0},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"xmzih69c3\",\"objOut\":\"yozybluvg\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"tar3btg8u\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1.25},{\"name\":\"y\",\"value\":0.89},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"ddbwtw92m\",\"objOut\":\"tar3btg8u\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"9kmdl5kt6\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Duration\",\"value\":0.5},{\"name\":\"Invert\",\"value\":0}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Random Seed \",\"portOut\":\"Value\",\"objIn\":\"9yj1qxwv2\",\"objOut\":\"9kmdl5kt6\"},{\"portIn\":\"number1\",\"portOut\":\"Value\",\"objIn\":\"5j4rgs1dl\",\"objOut\":\"9kmdl5kt6\"}]}],\"objName\":\"Ops.Anim.Bang\"},{\"id\":\"lsg3s6g7p\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Text\",\"portOut\":\"result\",\"objIn\":\"xmzih69c3\",\"objOut\":\"lsg3s6g7p\"}]}],\"objName\":\"Ops.Array.ArrayGetString\"},{\"id\":\"rkgwiogce\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"text\",\"value\":\"A035506\\nA007604\\nA227413\\nA000040\\nA052330\\nA000607\\nA01401\\nA064356\\nA096441\\nA000009\\nA199535\\nA000010\\nA316667\\nA111133\\nA000124\\nA005132\"},{\"name\":\"separator\",\"value\":\" \"},{\"name\":\"Numbers\",\"value\":0},{\"name\":\"Trim\",\"value\":1},{\"name\":\"Split Lines\",\"value\":1}],\"portsOut\":[{\"name\":\"array\",\"links\":[{\"portIn\":\"array\",\"portOut\":\"array\",\"objIn\":\"lsg3s6g7p\",\"objOut\":\"rkgwiogce\"}]},{\"name\":\"length\",\"value\":16}],\"objName\":\"Ops.Array.StringToArray_v2\"},{\"id\":\"r4pg00ot6\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0.79},{\"name\":\"y\",\"value\":0.83},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"h91q6l7xz\",\"objOut\":\"r4pg00ot6\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"5jfi2ldid\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.125},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"value\",\"objIn\":\"i7bypy19z\",\"objOut\":\"5jfi2ldid\"},{\"portIn\":\"Percentage\",\"portOut\":\"value\",\"objIn\":\"774o0ka8f\",\"objOut\":\"5jfi2ldid\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"h91q6l7xz\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":4.91},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":1},{\"name\":\"num rows\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"9yj1qxwv2\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Num Values\",\"value\":24},{\"name\":\"Mode index\",\"value\":0},{\"name\":\"Mode\",\"value\":\"A\"},{\"name\":\"Integer\",\"value\":0},{\"name\":\"Last == First\",\"value\":0},{\"name\":\"Min A\",\"value\":0},{\"name\":\"Min B\",\"value\":-1},{\"name\":\"Max B\",\"value\":1},{\"name\":\"Min C\",\"value\":-1},{\"name\":\"Max C\",\"value\":1},{\"name\":\"Min D\",\"value\":-1},{\"name\":\"Max D\",\"value\":1}],\"portsOut\":[{\"name\":\"Array Out\",\"links\":[{\"portIn\":\"Rotations\",\"portOut\":\"Array Out\",\"objIn\":\"xmzih69c3\",\"objOut\":\"9yj1qxwv2\"}]},{\"name\":\"Chunks Amount\",\"value\":24},{\"name\":\"Array length\",\"value\":24}],\"objName\":\"Ops.Array.RandomNumbersArray_v4\"},{\"id\":\"5j4rgs1dl\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.0001}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"result\",\"objIn\":\"20lmpxljk\",\"objOut\":\"5j4rgs1dl\"}]}],\"objName\":\"Ops.Math.Compare.GreaterThan\"},{\"id\":\"20lmpxljk\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":360}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Max A\",\"portOut\":\"result\",\"objIn\":\"9yj1qxwv2\",\"objOut\":\"20lmpxljk\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"kg4hq93gw\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"structure\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"wwd3jj5yw\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0.003},{\"name\":\"Value 2\",\"value\":0.01}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"height\",\"portOut\":\"Result\",\"objIn\":\"h91q6l7xz\",\"objOut\":\"wwd3jj5yw\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"w5q635vjo\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0.9},{\"name\":\"Value 2\",\"value\":1}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"Result\",\"objIn\":\"xmzih69c3\",\"objOut\":\"w5q635vjo\"},{\"portIn\":\"g\",\"portOut\":\"Result\",\"objIn\":\"xmzih69c3\",\"objOut\":\"w5q635vjo\"},{\"portIn\":\"b\",\"portOut\":\"Result\",\"objIn\":\"xmzih69c3\",\"objOut\":\"w5q635vjo\"},{\"portIn\":\"r\",\"portOut\":\"Result\",\"objIn\":\"xmzih69c3\",\"objOut\":\"w5q635vjo\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"gm34fgofc\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0.09},{\"name\":\"Value 2\",\"value\":0.11}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Scale\",\"portOut\":\"Result\",\"objIn\":\"xmzih69c3\",\"objOut\":\"gm34fgofc\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"i7bypy19z\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Percentage\",\"portOut\":\"result\",\"objIn\":\"w5q635vjo\",\"objOut\":\"i7bypy19z\"},{\"portIn\":\"Percentage\",\"portOut\":\"result\",\"objIn\":\"gm34fgofc\",\"objOut\":\"i7bypy19z\"},{\"portIn\":\"Percentage\",\"portOut\":\"result\",\"objIn\":\"wwd3jj5yw\",\"objOut\":\"i7bypy19z\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"qhn9qwlq3\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_srvbBypass\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"Value\",\"objIn\":\"ghjb3kmav\",\"objOut\":\"qhn9qwlq3\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"ghjb3kmav\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"vtx3kdots\",\"objOut\":\"ghjb3kmav\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"1dn1txzpk\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"bypass\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"vtx3kdots\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"qwzkex2mf\",\"objOut\":\"vtx3kdots\"},{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"tar3btg8u\",\"objOut\":\"vtx3kdots\"}]}],\"objName\":\"Ops.Trigger.GateTrigger\"},{\"id\":\"774o0ka8f\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0.6},{\"name\":\"Value 2\",\"value\":1}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"Result\",\"objIn\":\"9iz4vsufy\",\"objOut\":\"774o0ka8f\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"9r1zgvvos\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"value\",\"value\":\"structure\"}],\"portsOut\":[{\"name\":\"String\",\"links\":[{\"portIn\":\"String In\",\"portOut\":\"String\",\"objIn\":\"69gs9z12s\",\"objOut\":\"9r1zgvvos\"},{\"portIn\":\"ID\",\"portOut\":\"String\",\"objIn\":\"ddbwtw92m\",\"objOut\":\"9r1zgvvos\"}]}],\"objName\":\"Ops.String.String_v2\"},{\"id\":\"42q45utdp\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Index\",\"portOut\":\"result\",\"objIn\":\"jpyad2gwo\",\"objOut\":\"42q45utdp\"},{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"jsk659b4b\",\"objOut\":\"42q45utdp\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"df01he2vg\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_structure\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"r2jb4fhd1\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int structure\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"69gs9z12s\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"structure\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"vwb9u8uqi\",\"objOut\":\"69gs9z12s\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"xtu118zv4\",\"objOut\":\"69gs9z12s\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"vwb9u8uqi\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"d2jhvop05\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"1mcqhoi4f\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_injectedState\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"4w5ob6pse\",\"objOut\":\"1mcqhoi4f\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"xtu118zv4\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"A\",\"portOut\":\"Result\",\"objIn\":\"skg9dd1m0\",\"objOut\":\"xtu118zv4\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"jpyad2gwo\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"value\":7},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"4w5ob6pse\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":1}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"xtu118zv4\",\"objOut\":\"4w5ob6pse\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"jsk659b4b\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonSlider\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"5je3z73yo\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"wqn6vopce\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"ddbwtw92m\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":0.56},{\"name\":\"Height\",\"value\":0.12},{\"name\":\"Class\",\"value\":\"\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":0},{\"name\":\"Pivot y\",\"value\":\"center\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Render Rectangle\",\"value\":0},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":2},{\"name\":\"Cursor\",\"value\":\"pointer\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"update\",\"portOut\":\"Trigger out\",\"objIn\":\"9kmdl5kt6\",\"objOut\":\"ddbwtw92m\"},{\"portIn\":\"exe\",\"portOut\":\"Trigger out\",\"objIn\":\"5jfi2ldid\",\"objOut\":\"ddbwtw92m\"},{\"portIn\":\"Exe\",\"portOut\":\"Trigger out\",\"objIn\":\"j8nugz0wm\",\"objOut\":\"ddbwtw92m\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"5jfi2ldid\",\"objOut\":\"ddbwtw92m\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"3yzcrcevr\",\"objOut\":\"ddbwtw92m\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"o0j8hf328\",\"objOut\":\"ddbwtw92m\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"42q45utdp\",\"objOut\":\"ddbwtw92m\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"69gs9z12s\",\"objOut\":\"ddbwtw92m\"}]},{\"name\":\"Pointer X\",\"value\":0.6598792209143872},{\"name\":\"Pointer Y\",\"value\":0.05248155729882975},{\"name\":\"Top\",\"value\":46.6350531578064},{\"name\":\"Left\",\"value\":816.9936943054199},{\"name\":\"Right\",\"value\":974.5982933044434},{\"name\":\"Bottom\",\"value\":80.40748286247253},{\"name\":\"Left Click\",\"links\":[{\"portIn\":\"Bang\",\"portOut\":\"Left Click\",\"objIn\":\"9kmdl5kt6\",\"objOut\":\"ddbwtw92m\"},{\"portIn\":\"Increment\",\"portOut\":\"Left Click\",\"objIn\":\"6jujy6h6l\",\"objOut\":\"ddbwtw92m\"}]}],\"objName\":\"Ops.Patch.P4Zknbo.InteractiveRectangle_v2\"},{\"id\":\"1grps8bf8\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"3yzcrcevr\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"1grps8bf8\",\"objOut\":\"3yzcrcevr\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"6jujy6h6l\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{},\"portsIn\":[{\"name\":\"Limit\",\"value\":0},{\"name\":\"Length\",\"value\":16},{\"name\":\"Mode index\",\"value\":0},{\"name\":\"Mode\",\"value\":\"Rewind\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"Value\",\"objIn\":\"uea6m2qxe\",\"objOut\":\"6jujy6h6l\"}]}],\"objName\":\"Ops.Math.Incrementor\"},{\"id\":\"skg9dd1m0\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"B\",\"value\":1},{\"name\":\"C\",\"value\":2},{\"name\":\"D\",\"value\":3},{\"name\":\"Expression\",\"value\":\"Math.floor((Math.round(a * 10000) / 10000) * 16)\"}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"Result\",\"objIn\":\"j8nugz0wm\",\"objOut\":\"skg9dd1m0\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"vxom0rbvo\",\"objOut\":\"skg9dd1m0\"},{\"portIn\":\"Default\",\"portOut\":\"Result\",\"objIn\":\"6jujy6h6l\",\"objOut\":\"skg9dd1m0\"}]},{\"name\":\"Expression Valid\",\"value\":true}],\"objName\":\"Ops.Math.MathExpression\"},{\"id\":\"uea6m2qxe\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":16},{\"name\":\"pingpong\",\"value\":0}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Numbers_1\",\"portOut\":\"result\",\"objIn\":\"jpyad2gwo\",\"objOut\":\"uea6m2qxe\"},{\"portIn\":\"index\",\"portOut\":\"result\",\"objIn\":\"lsg3s6g7p\",\"objOut\":\"uea6m2qxe\"},{\"portIn\":\"Number\",\"portOut\":\"result\",\"objIn\":\"txbhxl3wi\",\"objOut\":\"uea6m2qxe\"},{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"df01he2vg\",\"objOut\":\"uea6m2qxe\"},{\"portIn\":\"A\",\"portOut\":\"result\",\"objIn\":\"lk9lwm27k\",\"objOut\":\"uea6m2qxe\"}]}],\"objName\":\"Ops.Math.Modulo\"},{\"id\":\"o0j8hf328\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"4w5ob6pse\",\"objOut\":\"o0j8hf328\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"txbhxl3wi\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{},\"objName\":\"Ops.Ui.VizNumberBar\"},{\"id\":\"j8nugz0wm\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{},\"portsOut\":[{\"name\":\"then\",\"links\":[{\"portIn\":\"Trigger\",\"portOut\":\"then\",\"objIn\":\"g4qyrizaq\",\"objOut\":\"j8nugz0wm\"}]}],\"objName\":\"Ops.Boolean.IfFalseThen\"},{\"id\":\"g4qyrizaq\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{},\"portsIn\":[{\"name\":\"Duration\",\"value\":0.05},{\"name\":\"Value True\",\"value\":1},{\"name\":\"Value False\",\"value\":0}],\"portsOut\":[{\"name\":\"Activated\",\"links\":[{\"portIn\":\"Reset\",\"portOut\":\"Activated\",\"objIn\":\"6jujy6h6l\",\"objOut\":\"g4qyrizaq\"}]},{\"name\":\"Result\",\"value\":0}],\"objName\":\"Ops.Boolean.MonoFlop\"},{\"id\":\"vxom0rbvo\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":1}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Numbers_0\",\"portOut\":\"result\",\"objIn\":\"jpyad2gwo\",\"objOut\":\"vxom0rbvo\"}]}],\"objName\":\"Ops.Math.Sum\"},{\"id\":\"lk9lwm27k\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{},\"portsIn\":[{\"name\":\"B\",\"value\":1},{\"name\":\"C\",\"value\":2},{\"name\":\"D\",\"value\":3},{\"name\":\"Expression\",\"value\":\"( a  / 15 )\"}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"d2jhvop05\",\"objOut\":\"lk9lwm27k\"}]},{\"name\":\"Expression Valid\",\"value\":true}],\"objName\":\"Ops.Math.MathExpression\"}]}",};
+op.initInnerPorts=function(addedOps)
+{
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
+    {
+    }
+if(addedOps[i].innerOutput)
+{
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
+    {
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
+    }
+
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
+}
+
+
+};
+
+Ops.Patch.P4Zknbo.UI_Structure.prototype = new CABLES.Op();
+CABLES.OPS["334f382a-e0ce-42a7-806a-a2a6ca8fa997"]={f:Ops.Patch.P4Zknbo.UI_Structure,objName:"Ops.Patch.P4Zknbo.UI_Structure"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.P4Zknbo.UI_Position
+// 
+// **************************************************************
+
+Ops.Patch.P4Zknbo.UI_Position = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"inc_gen_ports_js":"op.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"jbik4wp5s\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Named Trigger\",\"value\":\"exeNoCamera\"}],\"portsOut\":[{\"name\":\"Triggered\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"Triggered\",\"objIn\":\"fgvzdrim4\",\"objOut\":\"jbik4wp5s\"},{\"portIn\":\"Execute\",\"portOut\":\"Triggered\",\"objIn\":\"7gw7i08xf\",\"objOut\":\"jbik4wp5s\"}]}],\"objName\":\"Ops.Trigger.TriggerReceive\"},{\"id\":\"f7xudijnv\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"value\",\"value\":\"position\"}],\"portsOut\":[{\"name\":\"String\",\"links\":[{\"portIn\":\"btagbs7z2\",\"portOut\":\"String\",\"objIn\":\"e2twu2yjj\",\"objOut\":\"f7xudijnv\"}]}],\"objName\":\"Ops.String.String_v2\"},{\"id\":\"x5lahy950\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Text\",\"value\":\"* position\"},{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.06},{\"name\":\"Letter Spacing\",\"value\":-0.04},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":1},{\"name\":\"Align\",\"value\":\"Center\"},{\"name\":\"Vertical Align index\",\"value\":2},{\"name\":\"Vertical Align\",\"value\":\"Middle\"},{\"name\":\"r\",\"value\":0.75},{\"name\":\"g\",\"value\":0.75},{\"name\":\"b\",\"value\":0.75},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.17},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.222},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":0},{\"name\":\"Border g\",\"value\":0},{\"name\":\"Border b\",\"value\":1},{\"name\":\"Shadow\",\"value\":0},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.26200078125},{\"name\":\"Height\",\"value\":0.09154265873015872},{\"name\":\"Start Y\",\"value\":0.04224890873015873},{\"name\":\"Num Chars\",\"value\":10}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"taxdsh3o1\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":-1.34},{\"name\":\"y\",\"value\":1.05},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"x5lahy950\",\"objOut\":\"taxdsh3o1\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"fch2ndufn\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"position\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"h9qj105dd\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.33}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"result\",\"objIn\":\"x5lahy950\",\"objOut\":\"h9qj105dd\"}]}],\"objName\":\"Ops.Math.Sum\"},{\"id\":\"xi60ma3be\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"PointSize\",\"value\":8},{\"name\":\"Size in Pixels\",\"value\":1},{\"name\":\"Random Size\",\"value\":0},{\"name\":\"Round\",\"value\":1},{\"name\":\"Round Antialias\",\"value\":1},{\"name\":\"Scale by Distance\",\"value\":1},{\"name\":\"r\",\"value\":0.833},{\"name\":\"g\",\"value\":0.762},{\"name\":\"b\",\"value\":0.71},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Colorize Texture\",\"value\":0},{\"name\":\"Mask Channel index\",\"value\":2},{\"name\":\"Mask Channel\",\"value\":\"Luminance\"},{\"name\":\"Colorize Randomize\",\"value\":0},{\"name\":\"Point Size Channel index\",\"value\":0},{\"name\":\"Point Size Channel\",\"value\":\"R\"},{\"name\":\"Texture Point Size Mul\",\"value\":1},{\"name\":\"Map Size 0 index\",\"value\":0},{\"name\":\"Map Size 0\",\"value\":\"Black\"},{\"name\":\"Flip Texture\",\"value\":0},{\"name\":\"Atlas Cross Fade\",\"value\":0},{\"name\":\"Atlas Repeat X \",\"value\":1},{\"name\":\"Min Point Size\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"yq4omky6n\",\"objOut\":\"xi60ma3be\"}]}],\"objName\":\"Ops.Gl.Shader.PointMaterial_v5\"},{\"id\":\"1dg91q366\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_srvbBypass\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"Value\",\"objIn\":\"jq99pb4tq\",\"objOut\":\"1dg91q366\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"jq99pb4tq\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"fgvzdrim4\",\"objOut\":\"jq99pb4tq\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"br8cj6s0d\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"bypass\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"fgvzdrim4\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"taxdsh3o1\",\"objOut\":\"fgvzdrim4\"},{\"portIn\":\"Execute\",\"portOut\":\"Trigger out\",\"objIn\":\"tthnus5kf\",\"objOut\":\"fgvzdrim4\"},{\"portIn\":\"blls2amps\",\"portOut\":\"Trigger out\",\"objIn\":\"e2twu2yjj\",\"objOut\":\"fgvzdrim4\"}]}],\"objName\":\"Ops.Trigger.GateTrigger\"},{\"id\":\"amnzh9zod\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"3y5hk0uss\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"6kesvd73l\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"posX\",\"value\":-0.545},{\"name\":\"posY\",\"value\":0.91},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.2},{\"name\":\"rotX\",\"value\":-90},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"6pt6ghlh5\",\"objOut\":\"6kesvd73l\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"fqp72cg1u\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"sides\",\"value\":32},{\"name\":\"outerRadius\",\"value\":0.61},{\"name\":\"Draw\",\"value\":1,\"title\":\"Render mesh\"}],\"objName\":\"Ops.Gl.Meshes.Torus_v3\"},{\"id\":\"6pt6ghlh5\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"scale\",\"value\":1},{\"name\":\"x\",\"value\":3.88},{\"name\":\"y\",\"value\":1.56},{\"name\":\"z\",\"value\":-0.38}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"xi60ma3be\",\"objOut\":\"6pt6ghlh5\"}]}],\"objName\":\"Ops.Gl.Matrix.Scale\"},{\"id\":\"vbejauafm\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"Gradient\",\"value\":\"{\\\"keys\\\":[{\\\"pos\\\":0,\\\"posy\\\":0.53,\\\"r\\\":1,\\\"g\\\":1,\\\"b\\\":1},{\\\"pos\\\":0.0068359375,\\\"posy\\\":0.53,\\\"r\\\":1,\\\"g\\\":1,\\\"b\\\":1},{\\\"pos\\\":0.177734375,\\\"posy\\\":0.58,\\\"r\\\":0.05153645833333331,\\\"g\\\":0.05153645833333331,\\\"b\\\":0.05153645833333331},{\\\"pos\\\":0.7578125,\\\"posy\\\":0.61,\\\"r\\\":0,\\\"g\\\":0,\\\"b\\\":0},{\\\"pos\\\":1,\\\"posy\\\":0.6,\\\"r\\\":1,\\\"g\\\":1,\\\"b\\\":1},{\\\"pos\\\":1,\\\"posy\\\":0.6,\\\"r\\\":1,\\\"g\\\":1,\\\"b\\\":1}]}\"},{\"name\":\"Direction index\",\"value\":3},{\"name\":\"Direction\",\"value\":\"YY\"},{\"name\":\"Smoothstep\",\"value\":1},{\"name\":\"Step\",\"value\":0},{\"name\":\"Flip\",\"value\":0},{\"name\":\"sRGB\",\"value\":1},{\"name\":\"Oklab\",\"value\":0},{\"name\":\"Size\",\"value\":32},{\"name\":\"filter index\",\"value\":1},{\"name\":\"filter\",\"value\":\"linear\"},{\"name\":\"wrap index\",\"value\":0},{\"name\":\"wrap\",\"value\":\"clamp to edge\"},{\"name\":\"Dither\",\"value\":0},{\"name\":\"Gradient Array\",\"value\":0}],\"portsOut\":[{\"name\":\"Texture\",\"links\":[{\"portIn\":\"Texture Opacity\",\"portOut\":\"Texture\",\"objIn\":\"xi60ma3be\",\"objOut\":\"vbejauafm\"}]}],\"objName\":\"Ops.Gl.GradientTexture\"},{\"id\":\"v9suy4c4f\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"old min\",\"value\":0.6},{\"name\":\"old max\",\"value\":1},{\"name\":\"new min\",\"value\":0},{\"name\":\"new max\",\"value\":1},{\"name\":\"Easing index\",\"value\":0},{\"name\":\"Easing\",\"value\":\"Linear\"},{\"name\":\"Clamp\",\"value\":1}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"gxhq3pwx7\",\"objOut\":\"v9suy4c4f\"}]}],\"objName\":\"Ops.Math.MapRange\"},{\"id\":\"cybcf0sv2\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"Frequency\",\"value\":0.5},{\"name\":\"Type index\",\"value\":0},{\"name\":\"Type\",\"value\":\"sine\"},{\"name\":\"Phase\",\"value\":0},{\"name\":\"Range Min\",\"value\":-45},{\"name\":\"Range Max\",\"value\":45}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"kcosi4ebg\",\"objOut\":\"cybcf0sv2\"}]}],\"objName\":\"Ops.Anim.LFO_v3\"},{\"id\":\"q0fv1nz6l\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"Speed\",\"value\":0.005},{\"name\":\"Play\",\"value\":1},{\"name\":\"Sync to timeline\",\"value\":0}],\"portsOut\":[{\"name\":\"Time\",\"links\":[{\"portIn\":\"Time\",\"portOut\":\"Time\",\"objIn\":\"cybcf0sv2\",\"objOut\":\"q0fv1nz6l\"}]}],\"objName\":\"Ops.Anim.Timer_v2\"},{\"id\":\"kcosi4ebg\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":360}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Strength\",\"portOut\":\"result\",\"objIn\":\"yq4omky6n\",\"objOut\":\"kcosi4ebg\"}]}],\"objName\":\"Ops.Math.Sum\"},{\"id\":\"yq4omky6n\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"Size\",\"value\":1.4},{\"name\":\"Smooth\",\"value\":1},{\"name\":\"x\",\"value\":-0.5},{\"name\":\"y\",\"value\":0.15},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"fqp72cg1u\",\"objOut\":\"yq4omky6n\"}]}],\"objName\":\"Ops.Gl.ShaderEffects.AreaRotate_v2\"},{\"id\":\"gxhq3pwx7\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"Min\",\"value\":0},{\"name\":\"Max\",\"value\":1},{\"name\":\"Easing index\",\"value\":17},{\"name\":\"Easing\",\"value\":\"Quint Out\"}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"Result\",\"objIn\":\"xi60ma3be\",\"objOut\":\"gxhq3pwx7\"}]}],\"objName\":\"Ops.Math.Ease\"},{\"id\":\"m7j2x3brg\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"old min\",\"value\":0.6},{\"name\":\"old max\",\"value\":1},{\"name\":\"new min\",\"value\":0.5},{\"name\":\"new max\",\"value\":2},{\"name\":\"Easing index\",\"value\":0},{\"name\":\"Easing\",\"value\":\"Linear\"},{\"name\":\"Clamp\",\"value\":1}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"result\",\"objIn\":\"2g0mjc3ba\",\"objOut\":\"m7j2x3brg\"}]}],\"objName\":\"Ops.Math.MapRange\"},{\"id\":\"ckxpr6aan\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"posX\",\"value\":-0.55},{\"name\":\"posY\",\"value\":0.94},{\"name\":\"posZ\",\"value\":-0.04},{\"name\":\"scale\",\"value\":1},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"lmn69jznm\",\"objOut\":\"ckxpr6aan\"},{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"9m6v4vl97\",\"objOut\":\"ckxpr6aan\"},{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"cfz08ghpj\",\"objOut\":\"ckxpr6aan\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"tomh1nu5h\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"X 1\",\"value\":0},{\"name\":\"Y 1\",\"value\":-0.08},{\"name\":\"Z 1\",\"value\":0},{\"name\":\"X 2\",\"value\":0},{\"name\":\"Y 2\",\"value\":0},{\"name\":\"Z 2\",\"value\":0}],\"objName\":\"Ops.Gl.Meshes.Line\"},{\"id\":\"n3btni6ih\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"Repeats\",\"value\":11},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Forward\"}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"cb4ehf83s\",\"objOut\":\"n3btni6ih\"}]},{\"name\":\"index\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"index\",\"objIn\":\"ixn0r0yzl\",\"objOut\":\"n3btni6ih\"}]}],\"objName\":\"Ops.Trigger.Repeat_v2\"},{\"id\":\"cb4ehf83s\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"y\",\"value\":0.04},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"tomh1nu5h\",\"objOut\":\"cb4ehf83s\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"ixn0r0yzl\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"old min\",\"value\":0},{\"name\":\"old max\",\"value\":14},{\"name\":\"new min\",\"value\":0.5},{\"name\":\"new max\",\"value\":1},{\"name\":\"Easing index\",\"value\":0},{\"name\":\"Easing\",\"value\":\"Linear\"},{\"name\":\"Clamp\",\"value\":1}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"88ug8x3np\",\"objOut\":\"ixn0r0yzl\"}]}],\"objName\":\"Ops.Math.MapRange\"},{\"id\":\"wo90cqydk\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"posX\",\"value\":-1.02},{\"name\":\"posY\",\"value\":0},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":1},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"trigger\",\"objIn\":\"n3btni6ih\",\"objOut\":\"wo90cqydk\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"lmn69jznm\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"scale\",\"value\":1},{\"name\":\"x\",\"value\":1.6},{\"name\":\"y\",\"value\":1},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"wo90cqydk\",\"objOut\":\"lmn69jznm\"}]}],\"objName\":\"Ops.Gl.Matrix.Scale\"},{\"id\":\"88ug8x3np\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"Min\",\"value\":0},{\"name\":\"Max\",\"value\":1},{\"name\":\"Easing index\",\"value\":6},{\"name\":\"Easing\",\"value\":\"Cubic In Out\"}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"x\",\"portOut\":\"Result\",\"objIn\":\"cb4ehf83s\",\"objOut\":\"88ug8x3np\"}]}],\"objName\":\"Ops.Math.Ease\"},{\"id\":\"5hz8aki6v\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"X 1\",\"value\":0},{\"name\":\"Y 1\",\"value\":-0.08},{\"name\":\"Z 1\",\"value\":0},{\"name\":\"X 2\",\"value\":0},{\"name\":\"Y 2\",\"value\":0},{\"name\":\"Z 2\",\"value\":0}],\"objName\":\"Ops.Gl.Meshes.Line\"},{\"id\":\"so6k9psr3\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"Repeats\",\"value\":11},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Forward\"}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"z727w9xkx\",\"objOut\":\"so6k9psr3\"}]},{\"name\":\"index\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"index\",\"objIn\":\"rxfxsnt2w\",\"objOut\":\"so6k9psr3\"}]}],\"objName\":\"Ops.Trigger.Repeat_v2\"},{\"id\":\"z727w9xkx\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"y\",\"value\":0.04},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"5hz8aki6v\",\"objOut\":\"z727w9xkx\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"rxfxsnt2w\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"old min\",\"value\":0},{\"name\":\"old max\",\"value\":14},{\"name\":\"new min\",\"value\":0.5},{\"name\":\"new max\",\"value\":1},{\"name\":\"Easing index\",\"value\":0},{\"name\":\"Easing\",\"value\":\"Linear\"},{\"name\":\"Clamp\",\"value\":1}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"su3pkday4\",\"objOut\":\"rxfxsnt2w\"}]}],\"objName\":\"Ops.Math.MapRange\"},{\"id\":\"u7hwor4gv\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"posX\",\"value\":1.02},{\"name\":\"posY\",\"value\":0},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":1},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":180},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"trigger\",\"objIn\":\"so6k9psr3\",\"objOut\":\"u7hwor4gv\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"9m6v4vl97\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"scale\",\"value\":1},{\"name\":\"x\",\"value\":1.6},{\"name\":\"y\",\"value\":1},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"u7hwor4gv\",\"objOut\":\"9m6v4vl97\"}]}],\"objName\":\"Ops.Gl.Matrix.Scale\"},{\"id\":\"su3pkday4\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"Min\",\"value\":0},{\"name\":\"Max\",\"value\":1},{\"name\":\"Easing index\",\"value\":6},{\"name\":\"Easing\",\"value\":\"Cubic In Out\"}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"x\",\"portOut\":\"Result\",\"objIn\":\"z727w9xkx\",\"objOut\":\"su3pkday4\"}]}],\"objName\":\"Ops.Math.Ease\"},{\"id\":\"cfz08ghpj\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"X 1\",\"value\":0},{\"name\":\"Y 1\",\"value\":-0.08},{\"name\":\"Z 1\",\"value\":0},{\"name\":\"X 2\",\"value\":0},{\"name\":\"Y 2\",\"value\":0.08},{\"name\":\"Z 2\",\"value\":0}],\"objName\":\"Ops.Gl.Meshes.Line\"},{\"id\":\"2g0mjc3ba\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":0.959},{\"name\":\"g\",\"value\":0.9422887035464338},{\"name\":\"b\",\"value\":0.852},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"ckxpr6aan\",\"objOut\":\"2g0mjc3ba\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"tthnus5kf\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"6kesvd73l\",\"objOut\":\"tthnus5kf\"}]}],\"objName\":\"Ops.Trigger.GateTrigger\"},{\"id\":\"e2twu2yjj\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{\"blueprintVer\":2,\"subPatchVer\":2},\"portsIn\":[{\"name\":\"blls2amps\",\"title\":\"Trigger in\"},{\"name\":\"btagbs7z2\",\"title\":\"Class\"},{\"name\":\"lj06d561p\",\"value\":0,\"title\":\"Show Boundings\"},{\"name\":\"patchId\",\"value\":\"v99isckv2\"}],\"portsOut\":[{\"name\":\"nti406vwi\",\"value\":0.1866593360900879,\"title\":\"Result\"},{\"name\":\"gjvx0zyv5\",\"title\":\"value\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"gjvx0zyv5\",\"objIn\":\"h9qj105dd\",\"objOut\":\"e2twu2yjj\"},{\"portIn\":\"value\",\"portOut\":\"gjvx0zyv5\",\"objIn\":\"v9suy4c4f\",\"objOut\":\"e2twu2yjj\"},{\"portIn\":\"value\",\"portOut\":\"gjvx0zyv5\",\"objIn\":\"m7j2x3brg\",\"objOut\":\"e2twu2yjj\"}]},{\"name\":\"h2l1ydpiy\",\"title\":\"Hover\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"h2l1ydpiy\",\"objIn\":\"tthnus5kf\",\"objOut\":\"e2twu2yjj\"},{\"portIn\":\"Boolean\",\"portOut\":\"h2l1ydpiy\",\"objIn\":\"65s996ny5\",\"objOut\":\"e2twu2yjj\"}]}],\"objName\":\"Ops.Patch.P4Zknbo.BasicSlider_v3\"},{\"id\":\"7gw7i08xf\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"2g0mjc3ba\",\"objOut\":\"7gw7i08xf\"}]}],\"objName\":\"Ops.Trigger.GateTrigger\"},{\"id\":\"65s996ny5\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"7gw7i08xf\",\"objOut\":\"65s996ny5\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"irmmcclbz\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_smoothedParam_mix\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Percentage\",\"portOut\":\"Value\",\"objIn\":\"xbujzat90\",\"objOut\":\"irmmcclbz\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"xbujzat90\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"Value 1\",\"value\":2},{\"name\":\"Value 2\",\"value\":32}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"number\",\"portOut\":\"Result\",\"objIn\":\"vcf0tlct8\",\"objOut\":\"xbujzat90\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"vcf0tlct8\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"Decimal Places\",\"value\":0}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rings\",\"portOut\":\"result\",\"objIn\":\"fqp72cg1u\",\"objOut\":\"vcf0tlct8\"}]}],\"objName\":\"Ops.Math.Round\"},{\"id\":\"urekbae5m\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_smoothedParam_size\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Percentage\",\"portOut\":\"Value\",\"objIn\":\"4iiujwgso\",\"objOut\":\"urekbae5m\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"4iiujwgso\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0.3},{\"name\":\"Value 2\",\"value\":1.09}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"innerRadius\",\"portOut\":\"Result\",\"objIn\":\"fqp72cg1u\",\"objOut\":\"4iiujwgso\"}]}],\"objName\":\"Ops.Math.Interpolate\"}]}",};
+op.initInnerPorts=function(addedOps)
+{
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
+    {
+    }
+if(addedOps[i].innerOutput)
+{
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
+    {
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
+    }
+
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
+}
+
+
+};
+
+Ops.Patch.P4Zknbo.UI_Position.prototype = new CABLES.Op();
+CABLES.OPS["d6f57134-d5ce-4192-a435-25e9ee14a19d"]={f:Ops.Patch.P4Zknbo.UI_Position,objName:"Ops.Patch.P4Zknbo.UI_Position"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.P4Zknbo.UI_Reverse
+// 
+// **************************************************************
+
+Ops.Patch.P4Zknbo.UI_Reverse = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"inc_gen_ports_js":"op.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"qghiiy95s\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Named Trigger\",\"value\":\"exeNoCamera\"}],\"portsOut\":[{\"name\":\"Triggered\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"Triggered\",\"objIn\":\"tid23z5y9\",\"objOut\":\"qghiiy95s\"}]}],\"objName\":\"Ops.Trigger.TriggerReceive\"},{\"id\":\"7utel4c7y\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1.56},{\"name\":\"y\",\"value\":-0.91},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"wjdkfrc11\",\"objOut\":\"7utel4c7y\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"16otblnj7\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":2.35},{\"name\":\"y\",\"value\":-1.41},{\"name\":\"z\",\"value\":-1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"y8y68olnn\",\"objOut\":\"16otblnj7\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"y8y68olnn\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.18},{\"name\":\"g\",\"value\":0.87},{\"name\":\"b\",\"value\":0.7},{\"name\":\"a\",\"value\":0.639},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":1},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":1},{\"name\":\"Tex Offset Y\",\"value\":1},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"update\",\"portOut\":\"trigger\",\"objIn\":\"4rj53xcrb\",\"objOut\":\"y8y68olnn\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"emr97oqar\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":9},{\"name\":\"easing\",\"value\":\"Expo In Out\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"trigger\",\"objIn\":\"sagw7b55r\",\"objOut\":\"emr97oqar\"},{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"kvlx2oltj\",\"objOut\":\"emr97oqar\"}]},{\"name\":\"value\",\"links\":[{\"portIn\":\"Percentage\",\"portOut\":\"value\",\"objIn\":\"zw7w6mo0c\",\"objOut\":\"emr97oqar\"}]},{\"name\":\"finished\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"finished\",\"objIn\":\"eyg6ioae6\",\"objOut\":\"emr97oqar\"}]}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"texsus5w1\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"radius\",\"value\":0.5},{\"name\":\"segments\",\"value\":3},{\"name\":\"percent\",\"value\":1},{\"name\":\"steps\",\"value\":0},{\"name\":\"invertSteps\",\"value\":1},{\"name\":\"mapping index\",\"value\":1},{\"name\":\"mapping\",\"value\":\"round\"},{\"name\":\"Spline\",\"value\":0},{\"name\":\"Draw\",\"value\":0,\"title\":\"Render mesh\"}],\"portsOut\":[{\"name\":\"geometry\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"geometry\",\"objIn\":\"u5vhr44jp\",\"objOut\":\"texsus5w1\"}]}],\"objName\":\"Ops.Gl.Meshes.Circle_v3\"},{\"id\":\"mhkszyupz\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"direction\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"u5vhr44jp\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Translate X\",\"value\":0},{\"name\":\"Translate Y\",\"value\":0.03},{\"name\":\"Translate Z\",\"value\":0},{\"name\":\"Rotation X\",\"value\":0},{\"name\":\"Rotation Z\",\"value\":0}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"Result\",\"objIn\":\"a7obygjuu\",\"objOut\":\"u5vhr44jp\"}]}],\"objName\":\"Ops.Graphics.Geometry.TransformGeometry\"},{\"id\":\"a7obygjuu\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Render Mesh\",\"value\":1},{\"name\":\"Add Vertex Numbers\",\"value\":1}],\"objName\":\"Ops.Gl.RenderGeometry_v2\"},{\"id\":\"sagw7b55r\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"texsus5w1\",\"objOut\":\"sagw7b55r\"}]}],\"objName\":\"Ops.Trigger.GateTrigger\"},{\"id\":\"eyg6ioae6\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"bool 1\",\"portOut\":\"Result\",\"objIn\":\"c3tlwlzty\",\"objOut\":\"eyg6ioae6\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"wjfsknozl\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":8},{\"name\":\"easing\",\"value\":\"Expo Out\"},{\"name\":\"duration\",\"value\":2},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0},{\"name\":\"value true\",\"value\":180}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"a7obygjuu\",\"objOut\":\"wjfsknozl\"}]},{\"name\":\"value\",\"links\":[{\"portIn\":\"Rotation Y\",\"portOut\":\"value\",\"objIn\":\"u5vhr44jp\",\"objOut\":\"wjfsknozl\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"4ic99bue4\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"value\",\"value\":0.3}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Scale X\",\"portOut\":\"result\",\"objIn\":\"u5vhr44jp\",\"objOut\":\"4ic99bue4\"},{\"portIn\":\"Scale Y\",\"portOut\":\"result\",\"objIn\":\"u5vhr44jp\",\"objOut\":\"4ic99bue4\"},{\"portIn\":\"Scale Z\",\"portOut\":\"result\",\"objIn\":\"u5vhr44jp\",\"objOut\":\"4ic99bue4\"}]}],\"objName\":\"Ops.Number.Number\"},{\"id\":\"vnufzl0gr\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__directionHover\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"4rj53xcrb\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Duration\",\"value\":0.1},{\"name\":\"Invert\",\"value\":0}],\"portsOut\":[{\"name\":\"Trigger Out\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"Trigger Out\",\"objIn\":\"wjfsknozl\",\"objOut\":\"4rj53xcrb\"}]},{\"name\":\"Value\",\"links\":[{\"portIn\":\"bool 2\",\"portOut\":\"Value\",\"objIn\":\"c3tlwlzty\",\"objOut\":\"4rj53xcrb\"}]}],\"objName\":\"Ops.Anim.Bang\"},{\"id\":\"c3tlwlzty\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"bool 3\",\"value\":0},{\"name\":\"bool 4\",\"value\":0},{\"name\":\"bool 5\",\"value\":0},{\"name\":\"bool 6\",\"value\":0},{\"name\":\"bool 7\",\"value\":0},{\"name\":\"bool 8\",\"value\":0},{\"name\":\"bool 9\",\"value\":0},{\"name\":\"bool 10\",\"value\":0}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"sagw7b55r\",\"objOut\":\"c3tlwlzty\"}]}],\"objName\":\"Ops.Boolean.Or\"},{\"id\":\"645zi03vl\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Named Trigger\",\"value\":\"mainExe\"}],\"portsOut\":[{\"name\":\"Triggered\",\"links\":[{\"portIn\":\"Exec\",\"portOut\":\"Triggered\",\"objIn\":\"3j312q09a\",\"objOut\":\"645zi03vl\"}]}],\"objName\":\"Ops.Trigger.TriggerReceive\"},{\"id\":\"3j312q09a\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"Bang\",\"portOut\":\"Next\",\"objIn\":\"4rj53xcrb\",\"objOut\":\"3j312q09a\"}]},{\"name\":\"Was Triggered\",\"value\":1}],\"objName\":\"Ops.Trigger.TriggerOnce\"},{\"id\":\"hh1bw1t8x\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Text\",\"value\":\"mirror\"},{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.06},{\"name\":\"Letter Spacing\",\"value\":0},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":1},{\"name\":\"Align\",\"value\":\"Center\"},{\"name\":\"Vertical Align index\",\"value\":2},{\"name\":\"Vertical Align\",\"value\":\"Middle\"},{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":1},{\"name\":\"a\",\"value\":1},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.147},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.085},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":0},{\"name\":\"Border g\",\"value\":0.107},{\"name\":\"Border b\",\"value\":0.196},{\"name\":\"Shadow\",\"value\":0},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.1596796875},{\"name\":\"Height\",\"value\":0.056864533730158734},{\"name\":\"Start Y\",\"value\":0.017550471230158737},{\"name\":\"Num Chars\",\"value\":6}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"kvlx2oltj\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posX\",\"value\":-0.06},{\"name\":\"posY\",\"value\":0},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":1.12},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"hh1bw1t8x\",\"objOut\":\"kvlx2oltj\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"zw7w6mo0c\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0.8},{\"name\":\"Value 2\",\"value\":-1}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"innerRadius\",\"portOut\":\"Result\",\"objIn\":\"texsus5w1\",\"objOut\":\"zw7w6mo0c\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"ujqk5fpaf\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0},{\"name\":\"Value 2\",\"value\":180},{\"name\":\"Percentage\",\"value\":0}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"rotY\",\"portOut\":\"Result\",\"objIn\":\"kvlx2oltj\",\"objOut\":\"ujqk5fpaf\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"1pqb89bjc\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeBypass\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"Value\",\"objIn\":\"tz85ej408\",\"objOut\":\"1pqb89bjc\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"tid23z5y9\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"16otblnj7\",\"objOut\":\"tid23z5y9\"},{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"7utel4c7y\",\"objOut\":\"tid23z5y9\"}]}],\"objName\":\"Ops.Trigger.GateTrigger\"},{\"id\":\"tz85ej408\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"tid23z5y9\",\"objOut\":\"tz85ej408\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"cygi82km5\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"zbffut3f0\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"8ozh9kadw\",\"objOut\":\"zbffut3f0\"},{\"portIn\":\"Index\",\"portOut\":\"result\",\"objIn\":\"0vu10mt62\",\"objOut\":\"zbffut3f0\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"nfsa96rhl\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"value\",\"value\":\"scapeReverse\"}],\"portsOut\":[{\"name\":\"String\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String\",\"objIn\":\"cygi82km5\",\"objOut\":\"nfsa96rhl\"},{\"portIn\":\"String In\",\"portOut\":\"String\",\"objIn\":\"t14aqlug4\",\"objOut\":\"nfsa96rhl\"},{\"portIn\":\"ID\",\"portOut\":\"String\",\"objIn\":\"wjdkfrc11\",\"objOut\":\"nfsa96rhl\"}]}],\"objName\":\"Ops.String.String_v2\"},{\"id\":\"vu19d3bul\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Bool\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Bool\",\"objIn\":\"td9wlsg43\",\"objOut\":\"vu19d3bul\"}]}],\"objName\":\"Ops.Ui.VizBool\"},{\"id\":\"8ozh9kadw\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonToggle\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"90vhc52nh\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeReverse\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"9r76qflhv\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int rev\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"t14aqlug4\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"scapeReverse\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"qvj2rc5yc\",\"objOut\":\"t14aqlug4\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"qvj2rc5yc\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeReverse_mouseEnter_string\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"td9wlsg43\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeReverse\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"0vu10mt62\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_0\",\"value\":0},{\"name\":\"Numbers_1\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"90vhc52nh\",\"objOut\":\"0vu10mt62\"}]},{\"name\":\"Num Values\",\"value\":1}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"o11gp8oqj\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"l212r4h3a\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"wjdkfrc11\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":0.18},{\"name\":\"Height\",\"value\":0.3},{\"name\":\"Class\",\"value\":\"\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":0},{\"name\":\"Pivot y\",\"value\":\"center\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Render Rectangle\",\"value\":0},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":2},{\"name\":\"Cursor\",\"value\":\"pointer\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"Trigger out\",\"objIn\":\"emr97oqar\",\"objOut\":\"wjdkfrc11\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"emr97oqar\",\"objOut\":\"wjdkfrc11\"},{\"portIn\":\"Value\",\"portOut\":\"Pointer Hover\",\"objIn\":\"vnufzl0gr\",\"objOut\":\"wjdkfrc11\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bapp6utku\",\"objOut\":\"wjdkfrc11\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Hover\",\"objIn\":\"t14aqlug4\",\"objOut\":\"wjdkfrc11\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Hover\",\"objIn\":\"om0mg2x2d\",\"objOut\":\"wjdkfrc11\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"zbffut3f0\",\"objOut\":\"wjdkfrc11\"}]},{\"name\":\"Pointer X\",\"value\":0.43427912988118217},{\"name\":\"Pointer Y\",\"value\":0.028793380943673674},{\"name\":\"Top\",\"value\":527.8919612169266},{\"name\":\"Left\",\"value\":957.7120399475098},{\"name\":\"Right\",\"value\":1008.3707027435303},{\"name\":\"Bottom\",\"value\":612.3230167627335},{\"name\":\"Left Click\",\"links\":[{\"portIn\":\"trigger in\",\"portOut\":\"Left Click\",\"objIn\":\"lykqgog3v\",\"objOut\":\"wjdkfrc11\"}]}],\"objName\":\"Ops.Patch.P4Zknbo.InteractiveRectangle_v23\"},{\"id\":\"11sr8l1sw\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bapp6utku\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"11sr8l1sw\",\"objOut\":\"bapp6utku\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"fzdh5f3dx\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{},\"portsOut\":[{\"name\":\"Bool\",\"value\":0}],\"objName\":\"Ops.Ui.VizBool\"},{\"id\":\"om0mg2x2d\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{},\"portsIn\":[{\"name\":\"String In\",\"value\":\"enter\"},{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"leave\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"2taefvu7i\",\"objOut\":\"om0mg2x2d\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"2taefvu7i\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeReverse_mouseEnter_string\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"pf3tzra6p\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"host_scapeReverse\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"Value\",\"objIn\":\"fzdh5f3dx\",\"objOut\":\"pf3tzra6p\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"0dafyebwa\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{},\"portsIn\":[{\"name\":\"Value\",\"value\":0},{\"name\":\"Variable\",\"value\":\"host_scapeReverse\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"6871qjb4g\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2,\"ref\":\"6871qjb4g\"},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"host_scapeReverse\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Value\",\"objIn\":\"10k0ten5d\",\"objOut\":\"6871qjb4g\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"crxc9gthe\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"host_scapeReverse\"}],\"storage\":{\"ref\":\"crxc9gthe\"},\"objName\":\"Ops.Vars.VarTriggerNumber\"},{\"id\":\"c8109m2kz\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"portsIn\":[{\"name\":\"Loop min\",\"value\":0},{\"name\":\"Loop max\",\"value\":1}],\"portsOut\":[{\"name\":\"current count\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"current count\",\"objIn\":\"vu19d3bul\",\"objOut\":\"c8109m2kz\"},{\"portIn\":\"bool\",\"portOut\":\"current count\",\"objIn\":\"wjfsknozl\",\"objOut\":\"c8109m2kz\"}]}],\"storage\":{\"ref\":\"c8109m2kz\"},\"objName\":\"Ops.Trigger.TriggerCounterLoop\"},{\"id\":\"10k0ten5d\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"portsOut\":[{\"name\":\"True\",\"links\":[{\"portIn\":\"trigger in\",\"portOut\":\"True\",\"objIn\":\"c8109m2kz\",\"objOut\":\"10k0ten5d\"}]},{\"name\":\"False\",\"links\":[{\"portIn\":\"reset\",\"portOut\":\"False\",\"objIn\":\"c8109m2kz\",\"objOut\":\"10k0ten5d\"}]}],\"storage\":{\"ref\":\"10k0ten5d\"},\"objName\":\"Ops.Boolean.TriggerOnChangeBoolean\"},{\"id\":\"lykqgog3v\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"portsIn\":[{\"name\":\"Loop min\",\"value\":0},{\"name\":\"Loop max\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger out\",\"links\":[{\"portIn\":\"Trigger\",\"portOut\":\"trigger out\",\"objIn\":\"crxc9gthe\",\"objOut\":\"lykqgog3v\"}]},{\"name\":\"current count\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"current count\",\"objIn\":\"crxc9gthe\",\"objOut\":\"lykqgog3v\"}]}],\"storage\":{\"ref\":\"lykqgog3v\"},\"objName\":\"Ops.Trigger.TriggerCounterLoop\"}]}",};
+op.initInnerPorts=function(addedOps)
+{
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
+    {
+    }
+if(addedOps[i].innerOutput)
+{
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
+    {
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
+    }
+
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
+}
+
+
+};
+
+Ops.Patch.P4Zknbo.UI_Reverse.prototype = new CABLES.Op();
+CABLES.OPS["542fcabf-cbcc-4a8f-897c-b6b622a90b92"]={f:Ops.Patch.P4Zknbo.UI_Reverse,objName:"Ops.Patch.P4Zknbo.UI_Reverse"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.P4Zknbo.BasicSlider_v5
+// 
+// **************************************************************
+
+Ops.Patch.P4Zknbo.BasicSlider_v5 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"b5jmw6pne\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":0.24},{\"name\":\"Height\",\"value\":1},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":0},{\"name\":\"Pivot y\",\"value\":\"center\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Render Rectangle\",\"value\":0},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"7picyzk8b\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"geometry\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"geometry\",\"objIn\":\"mngezvib8\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Hover\",\"objIn\":\"s1gixysdm\",\"objOut\":\"b5jmw6pne\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"at2p512yk\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"okfe0jjro\",\"objOut\":\"b5jmw6pne\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"dr5mvrobr\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"Pointer X\",\"value\":0.22676901543163624},{\"name\":\"Pointer Y\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer Y\",\"objIn\":\"dr5mvrobr\",\"objOut\":\"b5jmw6pne\"},{\"portIn\":\"Value\",\"portOut\":\"Pointer Y\",\"objIn\":\"3rgu57nny\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"Top\",\"value\":123.45288813114166},{\"name\":\"Left\",\"value\":1503.669083893299},{\"name\":\"Right\",\"value\":1591.8645543456078},{\"name\":\"Bottom\",\"value\":682.0242273807526}],\"objName\":\"Ops.Gl.InteractiveRectangle_v2\"},{\"id\":\"uryzrh2kd\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"7gzmyju3f\",\"objOut\":\"uryzrh2kd\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"7picyzk8b\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"f0zxrdgdl\",\"objOut\":\"7picyzk8b\"},{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"1hn64zsny\",\"objOut\":\"7picyzk8b\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"r1trdmnoo\",\"objOut\":\"7picyzk8b\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"cgqxkp1dw\",\"objOut\":\"7picyzk8b\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"hhgw84tqq\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"izi14m4jj\",\"objOut\":\"hhgw84tqq\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"b5jmw6pne\",\"objOut\":\"hhgw84tqq\"},{\"portIn\":\"String In\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"uej7igfhs\",\"objOut\":\"hhgw84tqq\"}]},{\"name\":\"innerOut_lj06d561p\",\"value\":0,\"title\":\"Show Boundings\"}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"r1trdmnoo\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"f0zxrdgdl\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":6},{\"name\":\"easing\",\"value\":\"Cubic In Out\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.7},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"oi1e3c961\",\"objOut\":\"f0zxrdgdl\"}]},{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"uryzrh2kd\",\"objOut\":\"f0zxrdgdl\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"r1trdmnoo\",\"objOut\":\"f0zxrdgdl\"},{\"portIn\":\"Percentage\",\"portOut\":\"value\",\"objIn\":\"s3bh58foh\",\"objOut\":\"f0zxrdgdl\"},{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"tsxnsqish\",\"objOut\":\"f0zxrdgdl\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"izi14m4jj\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1.76},{\"name\":\"y\",\"value\":0.013},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"jtfgofit6\",\"objOut\":\"izi14m4jj\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"7gzmyju3f\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":0.07},{\"name\":\"height\",\"value\":0.01},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":1},{\"name\":\"num rows\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"okfe0jjro\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"5vxvxqmq8\",\"objOut\":\"okfe0jjro\"},{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"cqxu3tj4o\",\"objOut\":\"okfe0jjro\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"q95osg3jr\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_dryMix\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"dmhn9643j\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int dry mix\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"uej7igfhs\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"dryMix\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"4ken8jo2h\",\"objOut\":\"uej7igfhs\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"2kcwcw99k\",\"objOut\":\"uej7igfhs\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"4ken8jo2h\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"905qrz86p\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"kzejscdk9\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_injectedState\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"xp3womx4e\",\"objOut\":\"kzejscdk9\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"2kcwcw99k\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Numbers_1\",\"portOut\":\"Result\",\"objIn\":\"yyj0dn3hl\",\"objOut\":\"2kcwcw99k\"},{\"portIn\":\"Number\",\"portOut\":\"Result\",\"objIn\":\"vrog0zpzu\",\"objOut\":\"2kcwcw99k\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"5vxvxqmq8\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonSlider\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"yyj0dn3hl\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"q95osg3jr\",\"objOut\":\"yyj0dn3hl\"},{\"portIn\":\"number1\",\"portOut\":\"Number\",\"objIn\":\"toobytwr4\",\"objOut\":\"yyj0dn3hl\"},{\"portIn\":\"Number\",\"portOut\":\"Number\",\"objIn\":\"xc4wr3qpm\",\"objOut\":\"yyj0dn3hl\"},{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"7picyzk8b\",\"objOut\":\"yyj0dn3hl\"}]},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"xp3womx4e\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":1}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"2kcwcw99k\",\"objOut\":\"xp3womx4e\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"cqxu3tj4o\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Index\",\"portOut\":\"Result\",\"objIn\":\"yyj0dn3hl\",\"objOut\":\"cqxu3tj4o\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"xp3womx4e\",\"objOut\":\"cqxu3tj4o\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"jf5tu10qy\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"905qrz86p\",\"objOut\":\"jf5tu10qy\"},{\"portIn\":\"Numbers_0\",\"portOut\":\"result\",\"objIn\":\"yyj0dn3hl\",\"objOut\":\"jf5tu10qy\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"75ly7ofzk\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Decimal Places\",\"value\":0}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"string1\",\"portOut\":\"Result\",\"objIn\":\"2jmmqaj8y\",\"objOut\":\"75ly7ofzk\"}]}],\"objName\":\"Ops.String.NumberToString_v2\"},{\"id\":\"oi1e3c961\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0.01},{\"name\":\"y\",\"value\":0.64},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"tsxnsqish\",\"objOut\":\"oi1e3c961\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"834yak1b2\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"digits\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"toobytwr4\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":100}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Number\",\"portOut\":\"result\",\"objIn\":\"75ly7ofzk\",\"objOut\":\"toobytwr4\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"2jmmqaj8y\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"string2\",\"value\":\"%\"},{\"name\":\"New Line\",\"value\":0},{\"name\":\"Active\",\"value\":1}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Text\",\"portOut\":\"result\",\"objIn\":\"tsxnsqish\",\"objOut\":\"2jmmqaj8y\"}]}],\"objName\":\"Ops.String.Concat_v2\"},{\"id\":\"xc4wr3qpm\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.VizNumberBar\"},{\"id\":\"utf80cj50\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"portsOut\":[{\"name\":\"Value\",\"value\":\"disengage\"}],\"objName\":\"Ops.Vars.VarGetString\"},{\"id\":\"s1gixysdm\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"result\",\"objIn\":\"f0zxrdgdl\",\"objOut\":\"s1gixysdm\"},{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"uej7igfhs\",\"objOut\":\"s1gixysdm\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"dr5mvrobr\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Value Out\",\"objIn\":\"jf5tu10qy\",\"objOut\":\"dr5mvrobr\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"1hn64zsny\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posX\",\"value\":0},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":1},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"uryzrh2kd\",\"objOut\":\"1hn64zsny\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"jtfgofit6\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.651},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.912},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":0.05},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":-0.04},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"0d2yvn3ee\",\"objOut\":\"jtfgofit6\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"cgqxkp1dw\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"posY\",\"portOut\":\"result\",\"objIn\":\"1hn64zsny\",\"objOut\":\"cgqxkp1dw\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"mngezvib8\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Translate X\",\"value\":0.44},{\"name\":\"Translate Y\",\"value\":0.06},{\"name\":\"Translate Z\",\"value\":-0.5},{\"name\":\"Scale X\",\"value\":0.35},{\"name\":\"Scale Y\",\"value\":1.85},{\"name\":\"Scale Z\",\"value\":1},{\"name\":\"Rotation X\",\"value\":0},{\"name\":\"Rotation Y\",\"value\":0},{\"name\":\"Rotation Z\",\"value\":0}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"Result\",\"objIn\":\"0d2yvn3ee\",\"objOut\":\"mngezvib8\"}]}],\"objName\":\"Ops.Graphics.Geometry.TransformGeometry\"},{\"id\":\"0d2yvn3ee\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Render Mesh\",\"value\":1},{\"name\":\"Add Vertex Numbers\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"qntdf46e3\",\"objOut\":\"0d2yvn3ee\"}]}],\"objName\":\"Ops.Gl.RenderGeometry_v2\"},{\"id\":\"oedh2oj3o\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__lensFlareTexts\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"texture\",\"portOut\":\"Value\",\"objIn\":\"jtfgofit6\",\"objOut\":\"oedh2oj3o\"}]}],\"objName\":\"Ops.Vars.VarGetTexture_v2\"},{\"id\":\"qntdf46e3\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1},{\"name\":\"y\",\"value\":1.52},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"b5jmw6pne\",\"objOut\":\"qntdf46e3\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"},{\"id\":\"s3bh58foh\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":-2},{\"name\":\"Value 2\",\"value\":2}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Result\",\"objIn\":\"7knaraxdk\",\"objOut\":\"s3bh58foh\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"ac4vtthkl\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"at2p512yk\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"ac4vtthkl\",\"objOut\":\"at2p512yk\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"3rgu57nny\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValueOnHover\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"tsxnsqish\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{},\"portsIn\":[{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.06},{\"name\":\"Letter Spacing\",\"value\":0},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":1},{\"name\":\"Align\",\"value\":\"Center\"},{\"name\":\"Vertical Align index\",\"value\":2},{\"name\":\"Vertical Align\",\"value\":\"Middle\"},{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":1},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.3},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.5},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":1},{\"name\":\"Border g\",\"value\":1},{\"name\":\"Border b\",\"value\":1},{\"name\":\"Shadow\",\"value\":0},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.1137515625},{\"name\":\"Height\",\"value\":0.05096765873015873},{\"name\":\"Start Y\",\"value\":0.012567658730158734},{\"name\":\"Num Chars\",\"value\":3}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"7knaraxdk\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"result\",\"objIn\":\"jtfgofit6\",\"objOut\":\"7knaraxdk\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"vrog0zpzu\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{},\"objName\":\"Ops.Ui.VizNumberBar\"}]}",};
+const port_blls2amps=op.inTrigger("blls2amps");
+port_blls2amps.setUiAttribs({title:"Trigger in",});
+
+const port_btagbs7z2=op.inString("btagbs7z2","");
+port_btagbs7z2.setUiAttribs({title:"Class",});
+
+const port_lj06d561p=op.inFloat("lj06d561p",0);
+port_lj06d561p.setUiAttribs({title:"Show Boundings",display:"bool",});
+
+const port_nti406vwi=op.outNumber("nti406vwi");
+port_nti406vwi.setUiAttribs({title:"Result",});
+
+const port_gjvx0zyv5=op.outNumber("gjvx0zyv5");
+port_gjvx0zyv5.setUiAttribs({title:"value",});
+
+op.initInnerPorts=function(addedOps)
+{
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
+    {
+const innerOut_blls2amps = addedOps[i].outTrigger("innerOut_blls2amps");
+innerOut_blls2amps.setUiAttribs({title:"Trigger in"});
+port_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };
+
+const innerOut_btagbs7z2 = addedOps[i].outString("innerOut_btagbs7z2");
+innerOut_btagbs7z2.set(port_btagbs7z2.get() );
+innerOut_btagbs7z2.setUiAttribs({title:"Class"});
+port_btagbs7z2.on("change", (a,v) => { innerOut_btagbs7z2.set(a); });
+
+const innerOut_lj06d561p = addedOps[i].outNumber("innerOut_lj06d561p");
+innerOut_lj06d561p.set(port_lj06d561p.get() );
+innerOut_lj06d561p.setUiAttribs({title:"Show Boundings"});
+port_lj06d561p.on("change", (a,v) => { innerOut_lj06d561p.set(a); });
+
+    }
+if(addedOps[i].innerOutput)
+{
+const innerIn_nti406vwi = addedOps[i].inFloat("innerIn_nti406vwi");
+innerIn_nti406vwi.setUiAttribs({title:"Result"});
+innerIn_nti406vwi.on("change", (a,v) => { port_nti406vwi.set(a); });
+
+const innerIn_gjvx0zyv5 = addedOps[i].inFloat("innerIn_gjvx0zyv5");
+innerIn_gjvx0zyv5.setUiAttribs({title:"value"});
+innerIn_gjvx0zyv5.on("change", (a,v) => { port_gjvx0zyv5.set(a); });
+
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
+    {
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
+    }
+
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
+}
+
+
+};
+
+Ops.Patch.P4Zknbo.BasicSlider_v5.prototype = new CABLES.Op();
+CABLES.OPS["a69c9b2a-f8c4-4806-aacb-2033c1fd98d0"]={f:Ops.Patch.P4Zknbo.BasicSlider_v5,objName:"Ops.Patch.P4Zknbo.BasicSlider_v5"};
+
+
+
+
+// **************************************************************
+// 
 // Ops.Gl.LayerSequence
 // 
 // **************************************************************
@@ -1696,6 +2150,503 @@ CABLES.OPS["cf194306-175b-416a-b90e-31ff2192a190"]={f:Ops.Ui.VizBool,objName:"Op
 
 // **************************************************************
 // 
+// Ops.Patch.P4Zknbo.InteractiveRectangle_v25
+// 
+// **************************************************************
+
+Ops.Patch.P4Zknbo.InteractiveRectangle_v25 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("Trigger in"),
+    trigger = op.outTrigger("Trigger out"),
+    width = op.inValue("Width", 1),
+    height = op.inValue("Height", 1),
+    inId = op.inString("ID"),
+    classPort = op.inString("Class"),
+    pivotX = op.inValueSelect("Pivot x", ["center", "left", "right"]),
+    pivotY = op.inValueSelect("Pivot y", ["center", "top", "bottom"]),
+    axis = op.inValueSelect("Axis", ["xy", "xz"]),
+    isInteractive = op.inValueBool("Is Interactive", true),
+    renderRect = op.inValueBool("Render Rectangle", true),
+    divVisible = op.inValueBool("Show Boundings", true),
+    cursorPort = op.inValueSelect("Cursor", ["auto", "crosshair", "pointer", "Hand", "move", "n-resize", "ne-resize", "e-resize", "se-resize", "s-resize", "sw-resize", "w-resize", "nw-resize", "text", "wait", "help", "none"], "pointer"),
+    active = op.inValueBool("Render", true);
+
+const geomOut = op.outObject("geometry");
+geomOut.ignoreValueSerialize = true;
+
+const
+    mouseOver = op.outBoolNum("Pointer Hover", false),
+    mouseDown = op.outBoolNum("Pointer Down", false),
+    outX = op.outNumber("Pointer X"),
+    outY = op.outNumber("Pointer Y"),
+    outTop = op.outNumber("Top"),
+    outLeft = op.outNumber("Left"),
+    outRight = op.outNumber("Right"),
+    outBottom = op.outNumber("Bottom"),
+    mouseClick = op.outTrigger("Left Click");
+
+const elementPort = op.outObject("Dom Element");
+
+active.setUiAttribs({ "title": "Active" });
+
+const cgl = op.patch.cgl;
+axis.set("xy");
+pivotX.set("center");
+pivotY.set("center");
+
+const geom = new CGL.Geometry(op.name);
+let mesh = null;
+let div = null;
+const m = mat4.create();
+const trans = mat4.create();
+const pos = vec3.create();
+const divAlign = vec3.create();
+const divAlignSize = vec3.create();
+
+axis.onChange = rebuild;
+pivotX.onChange = rebuild;
+pivotY.onChange = rebuild;
+width.onChange = rebuild;
+height.onChange = rebuild;
+cursorPort.onChange = updateCursor;
+rebuild();
+
+const modelMatrix = mat4.create();
+const identViewMatrix = mat4.create();
+const zeroVec3 = vec3.create();
+
+render.onTriggered = function ()
+{
+    if (!div)
+    {
+        setUpDiv();
+        addListeners();
+        updateDivVisibility();
+        updateIsInteractive();
+    }
+    updateDivSize();
+
+    if (active.get() && renderRect.get() && mesh) mesh.render(cgl.getShader());
+
+    trigger.trigger();
+};
+
+function rebuild()
+{
+    let w = width.get();
+    let h = height.get();
+    let x = 0;
+    let y = 0;
+
+    if (typeof w == "string")w = parseFloat(w);
+    if (typeof h == "string")h = parseFloat(h);
+
+    if (pivotX.get() == "center")
+    {
+        x = 0;
+        divAlign[0] = -w / 2;
+    }
+    if (pivotX.get() == "right")
+    {
+        x = -w / 2;
+    }
+    if (pivotX.get() == "left")
+    {
+        x = w / 2;
+    }
+
+    if (pivotY.get() == "center")
+    {
+        y = 0;
+        divAlign[1] = -h / 2;
+    }
+    if (pivotY.get() == "top") y = -h / 2;
+    if (pivotY.get() == "bottom") y = +h / 2;
+
+    const verts = [];
+    const tc = [];
+    const norms = [];
+    const indices = [];
+
+    const numRows = 1;
+    const numColumns = 1;
+
+    const stepColumn = w / numColumns;
+    const stepRow = h / numRows;
+
+    let c, r;
+
+    for (r = 0; r <= numRows; r++)
+    {
+        for (c = 0; c <= numColumns; c++)
+        {
+            verts.push(c * stepColumn - width.get() / 2 + x);
+            if (axis.get() == "xz") verts.push(0.0);
+            verts.push(r * stepRow - height.get() / 2 + y);
+            if (axis.get() == "xy") verts.push(0.0);
+
+            tc.push(c / numColumns);
+            tc.push(1.0 - r / numRows);
+
+            if (axis.get() == "xz")
+            {
+                norms.push(0);
+                norms.push(1);
+                norms.push(0);
+            }
+
+            if (axis.get() == "xy")
+            {
+                norms.push(0);
+                norms.push(0);
+                norms.push(-1);
+            }
+        }
+    }
+
+    for (c = 0; c < numColumns; c++)
+    {
+        for (r = 0; r < numRows; r++)
+        {
+            const ind = c + (numColumns + 1) * r;
+            const v1 = ind;
+            const v2 = ind + 1;
+            const v3 = ind + numColumns + 1;
+            const v4 = ind + 1 + numColumns + 1;
+
+            indices.push(v1);
+            indices.push(v3);
+            indices.push(v2);
+
+            indices.push(v2);
+            indices.push(v3);
+            indices.push(v4);
+        }
+    }
+
+    geom.clear();
+    geom.vertices = verts;
+    geom.texCoords = tc;
+    geom.verticesIndices = indices;
+    geom.vertexNormals = norms;
+
+    if (!mesh) mesh = new CGL.Mesh(cgl, geom);
+    else mesh.setGeom(geom);
+
+    geomOut.set(null);
+    geomOut.set(geom);
+}
+
+let divX = 0;
+let divY = 0;
+let divWidth = 0;
+let divHeight = 0;
+
+const mMatrix = mat4.create();
+divVisible.onChange = updateDivVisibility;
+inId.onChange = updateId;
+classPort.onChange = updateClassNames;
+
+function updateDivVisibility()
+{
+    if (div)
+    {
+        if (divVisible.get()) div.style.border = "1px solid red";
+        else div.style.border = "none";
+    }
+}
+
+function updateCursor()
+{
+    if (div)
+    {
+        div.style.cursor = cursorPort.get();
+    }
+}
+
+function updateId()
+{
+    if (div)
+    {
+        div.setAttribute("id", inId.get());
+    }
+}
+
+function updateDivSize()
+{
+    // var vp=cgl.getViewPort();
+
+    mat4.multiply(mMatrix, cgl.vMatrix, cgl.mMatrix);
+    vec3.transformMat4(pos, divAlign, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const top = cgl.canvas.styleMarginTop || 0;
+    const left = cgl.canvas.styleMarginLeft || 0;
+
+    const x1 = (trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2 + left;
+    const y1 = (trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top;
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1];
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x2 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y2 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0];
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x3 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y3 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x4 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y4 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divX = Math.min(x1, x2, x3, x4);
+    divY = Math.min(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    const xb = Math.max(x1, x2, x3, x4);
+    const yb = Math.max(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    outTop.set(divY);
+    outLeft.set(divX);
+    outRight.set(xb);
+    outBottom.set(yb);
+
+    divWidth = Math.abs(xb - divX);
+    divHeight = Math.abs(yb - divY);
+
+    divX /= op.patch.cgl.pixelDensity;
+    divY /= op.patch.cgl.pixelDensity;
+    divWidth /= op.patch.cgl.pixelDensity;
+    divHeight /= op.patch.cgl.pixelDensity;
+
+    // div.style.left=divX+'px';
+    // div.style.top=divY+'px';
+    // div.style.width=divWidth+'px';
+    // div.style.height=divHeight+'px';
+
+    const divXpx = divX + "px";
+    const divYpx = divY + "px";
+    const divWidthPx = divWidth + "px";
+    const divHeightPx = divHeight + "px";
+    if (divXpx != div.style.left) div.style.left = divXpx;
+    if (divYpx != div.style.top) div.style.top = divYpx;
+    if (div.style.width != divWidthPx) div.style.width = divWidthPx;
+    if (div.style.height != divHeightPx) div.style.height = divHeightPx;
+}
+
+function updateClassNames()
+{
+    if (div)
+    {
+        div.className = classPort.get();
+    }
+}
+
+op.onDelete = function ()
+{
+    if (div)div.remove();
+};
+
+function setUpDiv()
+{
+    if (!div)
+    {
+        div = document.createElement("div");
+        div.dataset.op = op.id;
+        div.oncontextmenu = function (e)
+        {
+            e.preventDefault();
+        };
+
+        div.style.padding = "0px";
+        div.style.position = "absolute";
+        div.style["box-sizing"] = "border-box";
+        div.style.border = "1px solid red";
+        // div.style['border-left']="1px solid blue";
+        // div.style['border-top']="1px solid green";
+        div.style["z-index"] = "500";
+
+        div.style["-webkit-user-select"] = "none";
+        div.style["user-select"] = "none";
+        div.style["-webkit-tap-highlight-color"] = "rgba(0,0,0,0)";
+        div.style["-webkit-touch-callout"] = "none";
+
+        const canvas = op.patch.cgl.canvas.parentElement;
+        canvas.appendChild(div);
+        updateCursor();
+        updateIsInteractive();
+        updateId();
+        updateClassNames();
+    }
+    updateDivSize();
+    elementPort.set(div);
+}
+
+let listenerElement = null;
+
+function onMouseMove(e)
+{
+    const offsetX = -width.get() / 2;
+    const offsetY = -height.get() / 2;
+
+    outX.set(Math.max(0.0, Math.min(1.0, e.offsetX / divWidth)));
+    outY.set(Math.max(0.0, Math.min(1.0, 1.0 - e.offsetY / divHeight)));
+}
+
+function onMouseLeave(e)
+{
+    mouseDown.set(false);
+    mouseOver.set(false);
+}
+
+function onMouseEnter(e)
+{
+    mouseOver.set(true);
+}
+
+function onMouseDown(e)
+{
+    mouseDown.set(true);
+}
+
+function onMouseUp(e)
+{
+    mouseDown.set(false);
+}
+
+function onmouseclick(e)
+{
+    mouseClick.trigger();
+}
+
+function onTouchMove(e)
+{
+    const targetEle = document.elementFromPoint(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
+
+    if (targetEle == div)
+    {
+        mouseOver.set(true);
+        if (e.touches && e.touches.length > 0)
+        {
+            const rect = div.getBoundingClientRect(); // e.target
+            const x = e.targetTouches[0].pageX - rect.left;
+            const y = e.targetTouches[0].pageY - rect.top;
+
+            const touch = e.touches[0];
+
+            outX.set(Math.max(0.0, Math.min(1.0, x / divWidth)));
+            outY.set(Math.max(0.0, Math.min(1.0, 1.0 - y / divHeight)));
+
+            onMouseMove(touch);
+        }
+    }
+    else
+    {
+        mouseOver.set(false);
+    }
+}
+
+active.onChange = updateActiveRender;
+function updateActiveRender()
+{
+    if (active.get())
+    {
+        addListeners();
+        if (div) div.style.display = "block";
+    }
+    else
+    {
+        removeListeners();
+        if (div) div.style.display = "none";
+    }
+}
+
+isInteractive.onChange = updateIsInteractive;
+function updateIsInteractive()
+{
+    if (isInteractive.get())
+    {
+        addListeners();
+        if (div)div.style["pointer-events"] = "initial";
+    }
+    else
+    {
+        removeListeners();
+        mouseDown.set(false);
+        mouseOver.set(false);
+        if (div)div.style["pointer-events"] = "none";
+    }
+}
+
+function removeListeners()
+{
+    if (listenerElement)
+    {
+        document.removeEventListener("touchmove", onTouchMove);
+        listenerElement.removeEventListener("touchend", onMouseUp);
+        listenerElement.removeEventListener("touchstart", onMouseDown);
+
+        listenerElement.removeEventListener("click", onmouseclick);
+        listenerElement.removeEventListener("mousemove", onMouseMove);
+        listenerElement.removeEventListener("mouseleave", onMouseLeave);
+        listenerElement.removeEventListener("mousedown", onMouseDown);
+        listenerElement.removeEventListener("mouseup", onMouseUp);
+        listenerElement.removeEventListener("mouseenter", onMouseEnter);
+        // listenerElement.removeEventListener('contextmenu', onClickRight);
+        listenerElement = null;
+    }
+}
+
+function addListeners()
+{
+    if (listenerElement)removeListeners();
+
+    listenerElement = div;
+
+    if (listenerElement)
+    {
+        document.addEventListener("touchmove", onTouchMove);
+        listenerElement.addEventListener("touchend", onMouseUp);
+        listenerElement.addEventListener("touchstart", onMouseDown);
+
+        listenerElement.addEventListener("click", onmouseclick);
+        listenerElement.addEventListener("mousemove", onMouseMove);
+        listenerElement.addEventListener("mouseleave", onMouseLeave);
+        listenerElement.addEventListener("mousedown", onMouseDown);
+        listenerElement.addEventListener("mouseup", onMouseUp);
+        listenerElement.addEventListener("mouseenter", onMouseEnter);
+        // listenerElement.addEventListener('contextmenu', onClickRight);
+    }
+}
+
+
+};
+
+Ops.Patch.P4Zknbo.InteractiveRectangle_v25.prototype = new CABLES.Op();
+CABLES.OPS["db1e057a-78bc-43bf-9b66-0fefc9eddfc6"]={f:Ops.Patch.P4Zknbo.InteractiveRectangle_v25,objName:"Ops.Patch.P4Zknbo.InteractiveRectangle_v25"};
+
+
+
+
+// **************************************************************
+// 
 // Ops.Vars.VarGetNumber_v2
 // 
 // **************************************************************
@@ -1715,6 +2666,80 @@ new CABLES.VarGetOpWrapper(op, "number", op.varName, val);
 
 Ops.Vars.VarGetNumber_v2.prototype = new CABLES.Op();
 CABLES.OPS["421f5b52-c0fa-47c4-8b7a-012b9e1c864a"]={f:Ops.Vars.VarGetNumber_v2,objName:"Ops.Vars.VarGetNumber_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.P4Zknbo.DisengageFlag2
+// 
+// **************************************************************
+
+Ops.Patch.P4Zknbo.DisengageFlag2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"inc_gen_ports_js":"const port_jqg7l6f5m=op.inFloat(\"jqg7l6f5m\",0);\nport_jqg7l6f5m.setUiAttribs({title:\"Boolean\",display:\"bool\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_jqg7l6f5m = addedOps[i].outNumber(\"innerOut_jqg7l6f5m\");\ninnerOut_jqg7l6f5m.set(port_jqg7l6f5m.get() );\ninnerOut_jqg7l6f5m.setUiAttribs({title:\"Boolean\"});\nport_jqg7l6f5m.on(\"change\", (a,v) => { innerOut_jqg7l6f5m.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"tjwrh5u95\",\"uiAttribs\":{\"subPatch\":\"qs9sxp2nl\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"dlvka8p7u\",\"uiAttribs\":{\"subPatch\":\"qs9sxp2nl\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"tjwrh5u95\",\"objOut\":\"dlvka8p7u\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"eck8hvwot\",\"uiAttribs\":{\"subPatch\":\"qs9sxp2nl\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_jqg7l6f5m\",\"title\":\"Boolean\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"innerOut_jqg7l6f5m\",\"objIn\":\"dlvka8p7u\",\"objOut\":\"eck8hvwot\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"7mxc7zyyb\",\"uiAttribs\":{\"subPatch\":\"qs9sxp2nl\"},\"storage\":{},\"objName\":\"Ops.Ui.SubPatchOutput\"}]}",};
+const port_jqg7l6f5m=op.inFloat("jqg7l6f5m",0);
+port_jqg7l6f5m.setUiAttribs({title:"Boolean",display:"bool",});
+
+op.initInnerPorts=function(addedOps)
+{
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
+    {
+const innerOut_jqg7l6f5m = addedOps[i].outNumber("innerOut_jqg7l6f5m");
+innerOut_jqg7l6f5m.set(port_jqg7l6f5m.get() );
+innerOut_jqg7l6f5m.setUiAttribs({title:"Boolean"});
+port_jqg7l6f5m.on("change", (a,v) => { innerOut_jqg7l6f5m.set(a); });
+
+    }
+if(addedOps[i].innerOutput)
+{
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
+    {
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
+    }
+
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
+}
+
+
+};
+
+Ops.Patch.P4Zknbo.DisengageFlag2.prototype = new CABLES.Op();
+CABLES.OPS["62217044-a409-4bb6-bbac-6b45623ed8ad"]={f:Ops.Patch.P4Zknbo.DisengageFlag2,objName:"Ops.Patch.P4Zknbo.DisengageFlag2"};
 
 
 
@@ -1890,6 +2915,109 @@ function exec()
 
 Ops.Math.Sum.prototype = new CABLES.Op();
 CABLES.OPS["c8fb181e-0b03-4b41-9e55-06b6267bc634"]={f:Ops.Math.Sum,objName:"Ops.Math.Sum"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.P4Zknbo.BasicSlider_v1
+// 
+// **************************************************************
+
+Ops.Patch.P4Zknbo.BasicSlider_v1 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"mibecaqps\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"zzuotyuj8\",\"objOut\":\"mibecaqps\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"0lkifp8gr\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posY\",\"value\":0},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":-180},{\"name\":\"rotY\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"mibecaqps\",\"objOut\":\"0lkifp8gr\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"rviscpw5r\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"0lkifp8gr\",\"objOut\":\"rviscpw5r\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"ujv4mg17e\",\"objOut\":\"rviscpw5r\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"0lkifp8gr\",\"objOut\":\"rviscpw5r\"},{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"nor1x0y61\",\"objOut\":\"rviscpw5r\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"iea5ao2y2\",\"objOut\":\"rviscpw5r\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"zzuotyuj8\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"width\",\"value\":0.017},{\"name\":\"height\",\"value\":0.05},{\"name\":\"Draw\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Triangle_v2\"},{\"id\":\"gmc3o0yzj\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"zyly9dj8g\",\"objOut\":\"gmc3o0yzj\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"String In\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"g0k1dqgdc\",\"objOut\":\"gmc3o0yzj\"},{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"mzzhxzxfq\",\"objOut\":\"gmc3o0yzj\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"mzzhxzxfq\",\"objOut\":\"gmc3o0yzj\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"nor1x0y61\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"9bvbbyk9y\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"rviscpw5r\",\"objOut\":\"9bvbbyk9y\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"ujv4mg17e\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.49},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"mibecaqps\",\"objOut\":\"ujv4mg17e\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"nor1x0y61\",\"objOut\":\"ujv4mg17e\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"iea5ao2y2\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rotZ\",\"portOut\":\"result\",\"objIn\":\"0lkifp8gr\",\"objOut\":\"iea5ao2y2\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"zyly9dj8g\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0},{\"name\":\"y\",\"value\":-1.45},{\"name\":\"z\",\"value\":0.02}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bnqxchxdy\",\"objOut\":\"zyly9dj8g\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"i35qt5h52\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"leht2psro\",\"objOut\":\"i35qt5h52\"},{\"portIn\":\"Index\",\"portOut\":\"result\",\"objIn\":\"8vb7jo147\",\"objOut\":\"i35qt5h52\"},{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"mjgge74tk\",\"objOut\":\"i35qt5h52\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"7zp4rrptl\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeLevel\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"w1t4yqcfv\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int ir level\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"g0k1dqgdc\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"scapeLevel\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"ejj3oddhv\",\"objOut\":\"g0k1dqgdc\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"zwg2yqvrf\",\"objOut\":\"g0k1dqgdc\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"ejj3oddhv\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"8kcvz9igq\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"qmk2dl6c4\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_injectedState\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"gknkj3y4x\",\"objOut\":\"qmk2dl6c4\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"zwg2yqvrf\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Numbers_0\",\"portOut\":\"Result\",\"objIn\":\"8vb7jo147\",\"objOut\":\"zwg2yqvrf\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"8vb7jo147\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"7zp4rrptl\",\"objOut\":\"8vb7jo147\"},{\"portIn\":\"number1\",\"portOut\":\"Number\",\"objIn\":\"9bvbbyk9y\",\"objOut\":\"8vb7jo147\"}]},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"gknkj3y4x\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":1}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"zwg2yqvrf\",\"objOut\":\"gknkj3y4x\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"leht2psro\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"gknkj3y4x\",\"objOut\":\"leht2psro\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"mjgge74tk\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonSlider\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"ma5xd9zja\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Value Out\",\"objIn\":\"8kcvz9igq\",\"objOut\":\"ma5xd9zja\"},{\"portIn\":\"Numbers_1\",\"portOut\":\"Value Out\",\"objIn\":\"8vb7jo147\",\"objOut\":\"ma5xd9zja\"},{\"portIn\":\"Number\",\"portOut\":\"Value Out\",\"objIn\":\"o1wvr3kg9\",\"objOut\":\"ma5xd9zja\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"o1wvr3kg9\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.VizNumberBar\"},{\"id\":\"3hftipxyj\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"pk2351zm7\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"3hftipxyj\",\"objOut\":\"pk2351zm7\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"mzzhxzxfq\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":1},{\"name\":\"Height\",\"value\":0.34},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":9},{\"name\":\"Cursor\",\"value\":\"s-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"rviscpw5r\",\"objOut\":\"mzzhxzxfq\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"ujv4mg17e\",\"objOut\":\"mzzhxzxfq\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Hover\",\"objIn\":\"g0k1dqgdc\",\"objOut\":\"mzzhxzxfq\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"pk2351zm7\",\"objOut\":\"mzzhxzxfq\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"i35qt5h52\",\"objOut\":\"mzzhxzxfq\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"ma5xd9zja\",\"objOut\":\"mzzhxzxfq\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"ma5xd9zja\",\"objOut\":\"mzzhxzxfq\"},{\"portIn\":\"Value\",\"portOut\":\"Pointer X\",\"objIn\":\"tc6onu8jl\",\"objOut\":\"mzzhxzxfq\"}]},{\"name\":\"Pointer Y\",\"value\":0.875708644499907},{\"name\":\"Top\",\"value\":652.3148226737976},{\"name\":\"Left\",\"value\":396.1774400472641},{\"name\":\"Right\",\"value\":1405.822559952736},{\"name\":\"Bottom\",\"value\":716.6797173023224}],\"objName\":\"Ops.Patch.P4Zknbo.InteractiveRectangle_v24\"},{\"id\":\"tc6onu8jl\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValueOnHover\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bnqxchxdy\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{},\"portsIn\":[{\"name\":\"x\",\"value\":2.72},{\"name\":\"y\",\"value\":0.51},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"mzzhxzxfq\",\"objOut\":\"bnqxchxdy\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"}]}",};
+const port_blls2amps=op.inTrigger("blls2amps");
+port_blls2amps.setUiAttribs({title:"Trigger in",});
+
+const port_btagbs7z2=op.inString("btagbs7z2","");
+port_btagbs7z2.setUiAttribs({title:"Class",});
+
+const port_lj06d561p=op.inFloat("lj06d561p",0);
+port_lj06d561p.setUiAttribs({title:"Show Boundings",display:"bool",});
+
+const port_nti406vwi=op.outNumber("nti406vwi");
+port_nti406vwi.setUiAttribs({title:"Result",});
+
+const port_gjvx0zyv5=op.outNumber("gjvx0zyv5");
+port_gjvx0zyv5.setUiAttribs({title:"value",});
+
+op.initInnerPorts=function(addedOps)
+{
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
+    {
+const innerOut_blls2amps = addedOps[i].outTrigger("innerOut_blls2amps");
+innerOut_blls2amps.setUiAttribs({title:"Trigger in"});
+port_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };
+
+const innerOut_btagbs7z2 = addedOps[i].outString("innerOut_btagbs7z2");
+innerOut_btagbs7z2.set(port_btagbs7z2.get() );
+innerOut_btagbs7z2.setUiAttribs({title:"Class"});
+port_btagbs7z2.on("change", (a,v) => { innerOut_btagbs7z2.set(a); });
+
+const innerOut_lj06d561p = addedOps[i].outNumber("innerOut_lj06d561p");
+innerOut_lj06d561p.set(port_lj06d561p.get() );
+innerOut_lj06d561p.setUiAttribs({title:"Show Boundings"});
+port_lj06d561p.on("change", (a,v) => { innerOut_lj06d561p.set(a); });
+
+    }
+if(addedOps[i].innerOutput)
+{
+const innerIn_nti406vwi = addedOps[i].inFloat("innerIn_nti406vwi");
+innerIn_nti406vwi.setUiAttribs({title:"Result"});
+innerIn_nti406vwi.on("change", (a,v) => { port_nti406vwi.set(a); });
+
+const innerIn_gjvx0zyv5 = addedOps[i].inFloat("innerIn_gjvx0zyv5");
+innerIn_gjvx0zyv5.setUiAttribs({title:"value"});
+innerIn_gjvx0zyv5.on("change", (a,v) => { port_gjvx0zyv5.set(a); });
+
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
+    {
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
+    }
+
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
+}
+
+
+};
+
+Ops.Patch.P4Zknbo.BasicSlider_v1.prototype = new CABLES.Op();
+CABLES.OPS["55bbeb5d-4c6b-4326-83c2-e979dda40f9b"]={f:Ops.Patch.P4Zknbo.BasicSlider_v1,objName:"Ops.Patch.P4Zknbo.BasicSlider_v1"};
 
 
 
@@ -2670,6 +3798,503 @@ op.renderVizLayer = (ctx, layer) =>
 
 Ops.Ui.VizNumberBar.prototype = new CABLES.Op();
 CABLES.OPS["37575d2e-4ba6-4d2b-b00c-c503666867c5"]={f:Ops.Ui.VizNumberBar,objName:"Ops.Ui.VizNumberBar"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.P4Zknbo.InteractiveRectangle_v24
+// 
+// **************************************************************
+
+Ops.Patch.P4Zknbo.InteractiveRectangle_v24 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("Trigger in"),
+    trigger = op.outTrigger("Trigger out"),
+    width = op.inValue("Width", 1),
+    height = op.inValue("Height", 1),
+    inId = op.inString("ID"),
+    classPort = op.inString("Class"),
+    pivotX = op.inValueSelect("Pivot x", ["center", "left", "right"]),
+    pivotY = op.inValueSelect("Pivot y", ["center", "top", "bottom"]),
+    axis = op.inValueSelect("Axis", ["xy", "xz"]),
+    isInteractive = op.inValueBool("Is Interactive", true),
+    renderRect = op.inValueBool("Render Rectangle", true),
+    divVisible = op.inValueBool("Show Boundings", true),
+    cursorPort = op.inValueSelect("Cursor", ["auto", "crosshair", "pointer", "Hand", "move", "n-resize", "ne-resize", "e-resize", "se-resize", "s-resize", "sw-resize", "w-resize", "nw-resize", "text", "wait", "help", "none"], "pointer"),
+    active = op.inValueBool("Render", true);
+
+const geomOut = op.outObject("geometry");
+geomOut.ignoreValueSerialize = true;
+
+const
+    mouseOver = op.outBoolNum("Pointer Hover", false),
+    mouseDown = op.outBoolNum("Pointer Down", false),
+    outX = op.outNumber("Pointer X"),
+    outY = op.outNumber("Pointer Y"),
+    outTop = op.outNumber("Top"),
+    outLeft = op.outNumber("Left"),
+    outRight = op.outNumber("Right"),
+    outBottom = op.outNumber("Bottom"),
+    mouseClick = op.outTrigger("Left Click");
+
+const elementPort = op.outObject("Dom Element");
+
+active.setUiAttribs({ "title": "Active" });
+
+const cgl = op.patch.cgl;
+axis.set("xy");
+pivotX.set("center");
+pivotY.set("center");
+
+const geom = new CGL.Geometry(op.name);
+let mesh = null;
+let div = null;
+const m = mat4.create();
+const trans = mat4.create();
+const pos = vec3.create();
+const divAlign = vec3.create();
+const divAlignSize = vec3.create();
+
+axis.onChange = rebuild;
+pivotX.onChange = rebuild;
+pivotY.onChange = rebuild;
+width.onChange = rebuild;
+height.onChange = rebuild;
+cursorPort.onChange = updateCursor;
+rebuild();
+
+const modelMatrix = mat4.create();
+const identViewMatrix = mat4.create();
+const zeroVec3 = vec3.create();
+
+render.onTriggered = function ()
+{
+    if (!div)
+    {
+        setUpDiv();
+        addListeners();
+        updateDivVisibility();
+        updateIsInteractive();
+    }
+    updateDivSize();
+
+    if (active.get() && renderRect.get() && mesh) mesh.render(cgl.getShader());
+
+    trigger.trigger();
+};
+
+function rebuild()
+{
+    let w = width.get();
+    let h = height.get();
+    let x = 0;
+    let y = 0;
+
+    if (typeof w == "string")w = parseFloat(w);
+    if (typeof h == "string")h = parseFloat(h);
+
+    if (pivotX.get() == "center")
+    {
+        x = 0;
+        divAlign[0] = -w / 2;
+    }
+    if (pivotX.get() == "right")
+    {
+        x = -w / 2;
+    }
+    if (pivotX.get() == "left")
+    {
+        x = w / 2;
+    }
+
+    if (pivotY.get() == "center")
+    {
+        y = 0;
+        divAlign[1] = -h / 2;
+    }
+    if (pivotY.get() == "top") y = -h / 2;
+    if (pivotY.get() == "bottom") y = +h / 2;
+
+    const verts = [];
+    const tc = [];
+    const norms = [];
+    const indices = [];
+
+    const numRows = 1;
+    const numColumns = 1;
+
+    const stepColumn = w / numColumns;
+    const stepRow = h / numRows;
+
+    let c, r;
+
+    for (r = 0; r <= numRows; r++)
+    {
+        for (c = 0; c <= numColumns; c++)
+        {
+            verts.push(c * stepColumn - width.get() / 2 + x);
+            if (axis.get() == "xz") verts.push(0.0);
+            verts.push(r * stepRow - height.get() / 2 + y);
+            if (axis.get() == "xy") verts.push(0.0);
+
+            tc.push(c / numColumns);
+            tc.push(1.0 - r / numRows);
+
+            if (axis.get() == "xz")
+            {
+                norms.push(0);
+                norms.push(1);
+                norms.push(0);
+            }
+
+            if (axis.get() == "xy")
+            {
+                norms.push(0);
+                norms.push(0);
+                norms.push(-1);
+            }
+        }
+    }
+
+    for (c = 0; c < numColumns; c++)
+    {
+        for (r = 0; r < numRows; r++)
+        {
+            const ind = c + (numColumns + 1) * r;
+            const v1 = ind;
+            const v2 = ind + 1;
+            const v3 = ind + numColumns + 1;
+            const v4 = ind + 1 + numColumns + 1;
+
+            indices.push(v1);
+            indices.push(v3);
+            indices.push(v2);
+
+            indices.push(v2);
+            indices.push(v3);
+            indices.push(v4);
+        }
+    }
+
+    geom.clear();
+    geom.vertices = verts;
+    geom.texCoords = tc;
+    geom.verticesIndices = indices;
+    geom.vertexNormals = norms;
+
+    if (!mesh) mesh = new CGL.Mesh(cgl, geom);
+    else mesh.setGeom(geom);
+
+    geomOut.set(null);
+    geomOut.set(geom);
+}
+
+let divX = 0;
+let divY = 0;
+let divWidth = 0;
+let divHeight = 0;
+
+const mMatrix = mat4.create();
+divVisible.onChange = updateDivVisibility;
+inId.onChange = updateId;
+classPort.onChange = updateClassNames;
+
+function updateDivVisibility()
+{
+    if (div)
+    {
+        if (divVisible.get()) div.style.border = "1px solid red";
+        else div.style.border = "none";
+    }
+}
+
+function updateCursor()
+{
+    if (div)
+    {
+        div.style.cursor = cursorPort.get();
+    }
+}
+
+function updateId()
+{
+    if (div)
+    {
+        div.setAttribute("id", inId.get());
+    }
+}
+
+function updateDivSize()
+{
+    // var vp=cgl.getViewPort();
+
+    mat4.multiply(mMatrix, cgl.vMatrix, cgl.mMatrix);
+    vec3.transformMat4(pos, divAlign, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const top = cgl.canvas.styleMarginTop || 0;
+    const left = cgl.canvas.styleMarginLeft || 0;
+
+    const x1 = (trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2 + left;
+    const y1 = (trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top;
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1];
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x2 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y2 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0];
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x3 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y3 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x4 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y4 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divX = Math.min(x1, x2, x3, x4);
+    divY = Math.min(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    const xb = Math.max(x1, x2, x3, x4);
+    const yb = Math.max(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    outTop.set(divY);
+    outLeft.set(divX);
+    outRight.set(xb);
+    outBottom.set(yb);
+
+    divWidth = Math.abs(xb - divX);
+    divHeight = Math.abs(yb - divY);
+
+    divX /= op.patch.cgl.pixelDensity;
+    divY /= op.patch.cgl.pixelDensity;
+    divWidth /= op.patch.cgl.pixelDensity;
+    divHeight /= op.patch.cgl.pixelDensity;
+
+    // div.style.left=divX+'px';
+    // div.style.top=divY+'px';
+    // div.style.width=divWidth+'px';
+    // div.style.height=divHeight+'px';
+
+    const divXpx = divX + "px";
+    const divYpx = divY + "px";
+    const divWidthPx = divWidth + "px";
+    const divHeightPx = divHeight + "px";
+    if (divXpx != div.style.left) div.style.left = divXpx;
+    if (divYpx != div.style.top) div.style.top = divYpx;
+    if (div.style.width != divWidthPx) div.style.width = divWidthPx;
+    if (div.style.height != divHeightPx) div.style.height = divHeightPx;
+}
+
+function updateClassNames()
+{
+    if (div)
+    {
+        div.className = classPort.get();
+    }
+}
+
+op.onDelete = function ()
+{
+    if (div)div.remove();
+};
+
+function setUpDiv()
+{
+    if (!div)
+    {
+        div = document.createElement("div");
+        div.dataset.op = op.id;
+        div.oncontextmenu = function (e)
+        {
+            e.preventDefault();
+        };
+
+        div.style.padding = "0px";
+        div.style.position = "absolute";
+        div.style["box-sizing"] = "border-box";
+        div.style.border = "1px solid red";
+        // div.style['border-left']="1px solid blue";
+        // div.style['border-top']="1px solid green";
+        div.style["z-index"] = "500";
+
+        div.style["-webkit-user-select"] = "none";
+        div.style["user-select"] = "none";
+        div.style["-webkit-tap-highlight-color"] = "rgba(0,0,0,0)";
+        div.style["-webkit-touch-callout"] = "none";
+
+        const canvas = op.patch.cgl.canvas.parentElement;
+        canvas.appendChild(div);
+        updateCursor();
+        updateIsInteractive();
+        updateId();
+        updateClassNames();
+    }
+    updateDivSize();
+    elementPort.set(div);
+}
+
+let listenerElement = null;
+
+function onMouseMove(e)
+{
+    const offsetX = -width.get() / 2;
+    const offsetY = -height.get() / 2;
+
+    outX.set(Math.max(0.0, Math.min(1.0, e.offsetX / divWidth)));
+    outY.set(Math.max(0.0, Math.min(1.0, 1.0 - e.offsetY / divHeight)));
+}
+
+function onMouseLeave(e)
+{
+    mouseDown.set(false);
+    mouseOver.set(false);
+}
+
+function onMouseEnter(e)
+{
+    mouseOver.set(true);
+}
+
+function onMouseDown(e)
+{
+    mouseDown.set(true);
+}
+
+function onMouseUp(e)
+{
+    mouseDown.set(false);
+}
+
+function onmouseclick(e)
+{
+    mouseClick.trigger();
+}
+
+function onTouchMove(e)
+{
+    const targetEle = document.elementFromPoint(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
+
+    if (targetEle == div)
+    {
+        mouseOver.set(true);
+        if (e.touches && e.touches.length > 0)
+        {
+            const rect = div.getBoundingClientRect(); // e.target
+            const x = e.targetTouches[0].pageX - rect.left;
+            const y = e.targetTouches[0].pageY - rect.top;
+
+            const touch = e.touches[0];
+
+            outX.set(Math.max(0.0, Math.min(1.0, x / divWidth)));
+            outY.set(Math.max(0.0, Math.min(1.0, 1.0 - y / divHeight)));
+
+            onMouseMove(touch);
+        }
+    }
+    else
+    {
+        mouseOver.set(false);
+    }
+}
+
+active.onChange = updateActiveRender;
+function updateActiveRender()
+{
+    if (active.get())
+    {
+        addListeners();
+        if (div) div.style.display = "block";
+    }
+    else
+    {
+        removeListeners();
+        if (div) div.style.display = "none";
+    }
+}
+
+isInteractive.onChange = updateIsInteractive;
+function updateIsInteractive()
+{
+    if (isInteractive.get())
+    {
+        addListeners();
+        if (div)div.style["pointer-events"] = "initial";
+    }
+    else
+    {
+        removeListeners();
+        mouseDown.set(false);
+        mouseOver.set(false);
+        if (div)div.style["pointer-events"] = "none";
+    }
+}
+
+function removeListeners()
+{
+    if (listenerElement)
+    {
+        document.removeEventListener("touchmove", onTouchMove);
+        listenerElement.removeEventListener("touchend", onMouseUp);
+        listenerElement.removeEventListener("touchstart", onMouseDown);
+
+        listenerElement.removeEventListener("click", onmouseclick);
+        listenerElement.removeEventListener("mousemove", onMouseMove);
+        listenerElement.removeEventListener("mouseleave", onMouseLeave);
+        listenerElement.removeEventListener("mousedown", onMouseDown);
+        listenerElement.removeEventListener("mouseup", onMouseUp);
+        listenerElement.removeEventListener("mouseenter", onMouseEnter);
+        // listenerElement.removeEventListener('contextmenu', onClickRight);
+        listenerElement = null;
+    }
+}
+
+function addListeners()
+{
+    if (listenerElement)removeListeners();
+
+    listenerElement = div;
+
+    if (listenerElement)
+    {
+        document.addEventListener("touchmove", onTouchMove);
+        listenerElement.addEventListener("touchend", onMouseUp);
+        listenerElement.addEventListener("touchstart", onMouseDown);
+
+        listenerElement.addEventListener("click", onmouseclick);
+        listenerElement.addEventListener("mousemove", onMouseMove);
+        listenerElement.addEventListener("mouseleave", onMouseLeave);
+        listenerElement.addEventListener("mousedown", onMouseDown);
+        listenerElement.addEventListener("mouseup", onMouseUp);
+        listenerElement.addEventListener("mouseenter", onMouseEnter);
+        // listenerElement.addEventListener('contextmenu', onClickRight);
+    }
+}
+
+
+};
+
+Ops.Patch.P4Zknbo.InteractiveRectangle_v24.prototype = new CABLES.Op();
+CABLES.OPS["90cdf708-4629-4ee1-be2e-a623d1c8ee27"]={f:Ops.Patch.P4Zknbo.InteractiveRectangle_v24,objName:"Ops.Patch.P4Zknbo.InteractiveRectangle_v24"};
 
 
 
@@ -4367,1873 +5992,6 @@ function update()
 
 Ops.Json.GateObject.prototype = new CABLES.Op();
 CABLES.OPS["95e04331-49d6-42da-81d8-5a75261ab22f"]={f:Ops.Json.GateObject,objName:"Ops.Json.GateObject"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.ClearColor
-// 
-// **************************************************************
-
-Ops.Gl.ClearColor = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    render = op.inTrigger("render"),
-    trigger = op.outTrigger("trigger"),
-    r = op.inFloatSlider("r", 0.1),
-    g = op.inFloatSlider("g", 0.1),
-    b = op.inFloatSlider("b", 0.1),
-    a = op.inFloatSlider("a", 1);
-
-r.setUiAttribs({ "colorPick": true });
-
-const cgl = op.patch.cgl;
-
-render.onTriggered = function ()
-{
-    cgl.gl.clearColor(r.get(), g.get(), b.get(), a.get());
-    cgl.gl.clear(cgl.gl.COLOR_BUFFER_BIT | cgl.gl.DEPTH_BUFFER_BIT);
-    trigger.trigger();
-};
-
-
-};
-
-Ops.Gl.ClearColor.prototype = new CABLES.Op();
-CABLES.OPS["19b441eb-9f63-4f35-ba08-b87841517c4d"]={f:Ops.Gl.ClearColor,objName:"Ops.Gl.ClearColor"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Trigger.TriggerSend
-// 
-// **************************************************************
-
-Ops.Trigger.TriggerSend = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const trigger = op.inTriggerButton("Trigger");
-op.varName = op.inValueSelect("Named Trigger", [], "", true);
-
-op.varName.onChange = updateName;
-
-trigger.onTriggered = doTrigger;
-
-op.patch.addEventListener("namedTriggersChanged", updateVarNamesDropdown);
-
-updateVarNamesDropdown();
-
-function updateVarNamesDropdown()
-{
-    if (CABLES.UI)
-    {
-        let varnames = [];
-        const vars = op.patch.namedTriggers;
-        varnames.push("+ create new one");
-        for (const i in vars) varnames.push(i);
-        varnames = varnames.sort();
-        op.varName.uiAttribs.values = varnames;
-    }
-}
-
-function updateName()
-{
-    if (CABLES.UI)
-    {
-        if (op.varName.get() == "+ create new one")
-        {
-            new CABLES.UI.ModalDialog({
-                "prompt": true,
-                "title": "New Trigger",
-                "text": "Enter a name for the new trigger",
-                "promptValue": "",
-                "promptOk": (str) =>
-                {
-                    op.varName.set(str);
-                    op.patch.namedTriggers[str] = op.patch.namedTriggers[str] || [];
-                    updateVarNamesDropdown();
-                }
-            });
-            return;
-        }
-
-        op.refreshParams();
-    }
-
-    if (!op.patch.namedTriggers[op.varName.get()])
-    {
-        op.patch.namedTriggers[op.varName.get()] = op.patch.namedTriggers[op.varName.get()] || [];
-        op.patch.emitEvent("namedTriggersChanged");
-    }
-
-    op.setTitle(">" + op.varName.get());
-
-    op.refreshParams();
-    op.patch.emitEvent("opTriggerNameChanged", op, op.varName.get());
-}
-
-function doTrigger()
-{
-    const arr = op.patch.namedTriggers[op.varName.get()];
-    // fire an event even if noone is receiving this trigger
-    // this way TriggerReceiveFilter can still handle it
-    op.patch.emitEvent("namedTriggerSent", op.varName.get());
-
-    if (!arr)
-    {
-        op.setUiError("unknowntrigger", "unknown trigger");
-        return;
-    }
-    else op.setUiError("unknowntrigger", null);
-
-    for (let i = 0; i < arr.length; i++)
-    {
-        arr[i]();
-    }
-}
-
-
-};
-
-Ops.Trigger.TriggerSend.prototype = new CABLES.Op();
-CABLES.OPS["ce1eaf2b-943b-4dc0-ab5e-ee11b63c9ed0"]={f:Ops.Trigger.TriggerSend,objName:"Ops.Trigger.TriggerSend"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Trigger.Repeat2d
-// 
-// **************************************************************
-
-Ops.Trigger.Repeat2d = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    exe = op.inTrigger("exe"),
-    numx = op.inValueInt("num x", 5),
-    numy = op.inValueInt("num y", 5),
-    mul = op.inValueFloat("mul", 1),
-    center = op.inValueBool("center"),
-    trigger = op.outTrigger("trigger"),
-    outX = op.outNumber("x"),
-    outY = op.outNumber("y"),
-    idx = op.outNumber("index"),
-    total = op.outNumber("total iterations");
-
-exe.onTriggered = function ()
-{
-    let subX = 0;
-    let subY = 0;
-    const m = mul.get();
-    const nx = numx.get();
-    const ny = numy.get();
-
-    if (center.get())
-    {
-        subX = ((nx - 1) * m) / 2.0;
-        subY = ((ny - 1) * m) / 2.0;
-    }
-
-    for (let y = 0; y < ny; y++)
-    {
-        outY.set((y * m) - subY);
-        for (let x = 0; x < nx; x++)
-        {
-            outX.set((x * m) - subX);
-            idx.set(x + y * nx);
-            trigger.trigger();
-        }
-    }
-    total.set(numx.get() * numy.get());
-};
-
-
-};
-
-Ops.Trigger.Repeat2d.prototype = new CABLES.Op();
-CABLES.OPS["79934693-5887-4173-8b48-3e3a18fcf225"]={f:Ops.Trigger.Repeat2d,objName:"Ops.Trigger.Repeat2d"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Math.Compare.Equals
-// 
-// **************************************************************
-
-Ops.Math.Compare.Equals = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    number1 = op.inValue("number1", 1),
-    number2 = op.inValue("number2", 1),
-    result = op.outBoolNum("result");
-
-number1.onChange =
-    number2.onChange = exec;
-exec();
-
-function exec()
-{
-    result.set(number1.get() == number2.get());
-}
-
-
-};
-
-Ops.Math.Compare.Equals.prototype = new CABLES.Op();
-CABLES.OPS["4dd3cc55-eebc-4187-9d4e-2e053a956fab"]={f:Ops.Math.Compare.Equals,objName:"Ops.Math.Compare.Equals"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Array.ArrayGetNumber
-// 
-// **************************************************************
-
-Ops.Array.ArrayGetNumber = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    array = op.inArray("array"),
-    index = op.inValueInt("index"),
-    valueInvalid = op.inFloat("Value Invalid Index", 0),
-    value = op.outNumber("value"),
-    outValidIndex = op.outBoolNum("Valid Index", true);
-
-array.ignoreValueSerialize = true;
-
-index.onChange = array.onChange = update;
-
-function update()
-{
-    if (array.get())
-    {
-        const input = array.get()[index.get()];
-        if (isNaN(input))
-        {
-            value.set(valueInvalid.get());
-            outValidIndex.set(false);
-        }
-        else
-        {
-            outValidIndex.set(true);
-            value.set(parseFloat(input));
-        }
-    }
-}
-
-
-};
-
-Ops.Array.ArrayGetNumber.prototype = new CABLES.Op();
-CABLES.OPS["d1189078-70cf-437d-9a37-b2ebe89acdaf"]={f:Ops.Array.ArrayGetNumber,objName:"Ops.Array.ArrayGetNumber"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Vars.VarGetArray_v2
-// 
-// **************************************************************
-
-Ops.Vars.VarGetArray_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const val = op.outArray("Value");
-op.varName = op.inValueSelect("Variable", [], "", true);
-
-new CABLES.VarGetOpWrapper(op, "array", op.varName, val);
-
-
-};
-
-Ops.Vars.VarGetArray_v2.prototype = new CABLES.Op();
-CABLES.OPS["afa79294-aa9c-43bc-a49a-cade000a1de5"]={f:Ops.Vars.VarGetArray_v2,objName:"Ops.Vars.VarGetArray_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.Matrix.Camera
-// 
-// **************************************************************
-
-Ops.Gl.Matrix.Camera = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const render = op.inTrigger("render");
-const trigger = op.outTrigger("trigger");
-
-/* Inputs */
-// projection | prespective & ortogonal
-const projectionMode = op.inValueSelect("projection mode", ["prespective", "ortogonal"], "prespective");
-const zNear = op.inValue("frustum near", 0.01);
-const zFar = op.inValue("frustum far", 5000.0);
-
-const fov = op.inValue("fov", 45);
-const autoAspect = op.inValueBool("Auto Aspect Ratio", true);
-const aspect = op.inValue("Aspect Ratio", 1);
-
-// look at camera
-const eyeX = op.inValue("eye X", 0);
-const eyeY = op.inValue("eye Y", 0);
-const eyeZ = op.inValue("eye Z", 5);
-
-const centerX = op.inValue("center X", 0);
-const centerY = op.inValue("center Y", 0);
-const centerZ = op.inValue("center Z", 0);
-
-// camera transform and movements
-const posX = op.inValue("truck", 0);
-const posY = op.inValue("boom", 0);
-const posZ = op.inValue("dolly", 0);
-
-const rotX = op.inValue("tilt", 0);
-const rotY = op.inValue("pan", 0);
-const rotZ = op.inValue("roll", 0);
-
-/* Outputs */
-const outAsp = op.outNumber("Aspect");
-const outArr = op.outArray("Look At Array");
-
-/* logic */
-const cgl = op.patch.cgl;
-
-let asp = 0;
-
-const vUp = vec3.create();
-const vEye = vec3.create();
-const vCenter = vec3.create();
-const transMatrix = mat4.create();
-mat4.identity(transMatrix);
-
-const arr = [];
-
-// Transform and move
-const vPos = vec3.create();
-const transMatrixMove = mat4.create();
-mat4.identity(transMatrixMove);
-
-let updateCameraMovementMatrix = true;
-
-render.onTriggered = function ()
-{
-    if (cgl.frameStore.shadowPass) return trigger.trigger();
-
-    // Aspect ration
-    if (!autoAspect.get()) asp = aspect.get();
-    else asp = cgl.getViewPort()[2] / cgl.getViewPort()[3];
-    outAsp.set(asp);
-
-    // translation (truck, boom, dolly)
-    cgl.pushViewMatrix();
-
-    if (updateCameraMovementMatrix)
-    {
-        mat4.identity(transMatrixMove);
-
-        vec3.set(vPos, posX.get(), posY.get(), posZ.get());
-        if (posX.get() !== 0.0 || posY.get() !== 0.0 || posZ.get() !== 0.0)
-            mat4.translate(transMatrixMove, transMatrixMove, vPos);
-
-        if (rotX.get() !== 0)
-            mat4.rotateX(transMatrixMove, transMatrixMove, rotX.get() * CGL.DEG2RAD);
-        if (rotY.get() !== 0)
-            mat4.rotateY(transMatrixMove, transMatrixMove, rotY.get() * CGL.DEG2RAD);
-        if (rotZ.get() !== 0)
-            mat4.rotateZ(transMatrixMove, transMatrixMove, rotZ.get() * CGL.DEG2RAD);
-
-        updateCameraMovementMatrix = false;
-    }
-
-    mat4.multiply(cgl.vMatrix, cgl.vMatrix, transMatrixMove);
-
-    // projection (prespective / ortogonal)
-    cgl.pushPMatrix();
-
-    // look at
-    cgl.pushViewMatrix();
-
-    if (projectionMode.get() == "prespective")
-    {
-        mat4.perspective(
-            cgl.pMatrix,
-            fov.get() * 0.0174533,
-            asp,
-            zNear.get(),
-            zFar.get()
-        );
-    }
-    else if (projectionMode.get() == "ortogonal")
-    {
-        mat4.ortho(
-            cgl.pMatrix,
-            -1 * (fov.get() / 14),
-            1 * (fov.get() / 14),
-            -1 * (fov.get() / 14) / asp,
-            1 * (fov.get() / 14) / asp,
-            zNear.get(),
-            zFar.get()
-        );
-    }
-
-    arr[0] = eyeX.get();
-    arr[1] = eyeY.get();
-    arr[2] = eyeZ.get();
-
-    arr[3] = centerX.get();
-    arr[4] = centerY.get();
-    arr[5] = centerZ.get();
-
-    arr[6] = 0;
-    arr[7] = 1;
-    arr[8] = 0;
-
-    outArr.setRef(arr);
-
-    vec3.set(vUp, 0, 1, 0);
-    vec3.set(vEye, eyeX.get(), eyeY.get(), eyeZ.get());
-    vec3.set(vCenter, centerX.get(), centerY.get(), centerZ.get());
-
-    mat4.lookAt(transMatrix, vEye, vCenter, vUp);
-
-    mat4.multiply(cgl.vMatrix, cgl.vMatrix, transMatrix);
-
-    trigger.trigger();
-
-    cgl.popViewMatrix();
-    cgl.popPMatrix();
-
-    cgl.popViewMatrix();
-
-    // GUI for dolly, boom and truck
-    if (op.isCurrentUiOp())
-        gui.setTransformGizmo({
-            "posX": posX,
-            "posY": posY,
-            "posZ": posZ
-        });
-};
-
-const updateUI = function ()
-{
-    if (!autoAspect.get())
-    {
-        aspect.setUiAttribs({ "greyout": false });
-    }
-    else
-    {
-        aspect.setUiAttribs({ "greyout": true });
-    }
-};
-
-const cameraMovementChanged = function ()
-{
-    updateCameraMovementMatrix = true;
-};
-
-// listeners
-posX.onChange = cameraMovementChanged;
-posY.onChange = cameraMovementChanged;
-posZ.onChange = cameraMovementChanged;
-
-rotX.onChange = cameraMovementChanged;
-rotY.onChange = cameraMovementChanged;
-rotZ.onChange = cameraMovementChanged;
-
-autoAspect.onChange = updateUI;
-updateUI();
-
-
-};
-
-Ops.Gl.Matrix.Camera.prototype = new CABLES.Op();
-CABLES.OPS["b24dbfdc-485c-49d2-92a1-7258efd9239a"]={f:Ops.Gl.Matrix.Camera,objName:"Ops.Gl.Matrix.Camera"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Math.Ease
-// 
-// **************************************************************
-
-Ops.Math.Ease = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inVal = op.inValue("Value"),
-    inMin = op.inValue("Min", 0),
-    inMax = op.inValue("Max", 1),
-    result = op.outNumber("Result"),
-    anim = new CABLES.Anim();
-
-anim.createPort(op, "Easing", updateAnimEasing);
-anim.setValue(0, 0);
-anim.setValue(1, 1);
-
-op.onLoaded = inMin.onChange = inMax.onChange = updateMinMax;
-
-function updateMinMax()
-{
-    anim.keys[0].time = anim.keys[0].value = Math.min(inMin.get(), inMax.get());
-    anim.keys[1].time = anim.keys[1].value = Math.max(inMin.get(), inMax.get());
-}
-
-function updateAnimEasing()
-{
-    anim.keys[0].setEasing(anim.defaultEasing);
-}
-
-inVal.onChange = function ()
-{
-    const r = anim.getValue(inVal.get());
-    result.set(r);
-};
-
-
-};
-
-Ops.Math.Ease.prototype = new CABLES.Op();
-CABLES.OPS["8f6e4a08-33e6-408f-ac4a-198bd03b417b"]={f:Ops.Math.Ease,objName:"Ops.Math.Ease"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.Texture_v2
-// 
-// **************************************************************
-
-Ops.Gl.Texture_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    filename = op.inUrl("File", [".jpg", ".png", ".webp", ".jpeg", ".avif"]),
-    tfilter = op.inSwitch("Filter", ["nearest", "linear", "mipmap"]),
-    wrap = op.inValueSelect("Wrap", ["repeat", "mirrored repeat", "clamp to edge"], "clamp to edge"),
-    aniso = op.inSwitch("Anisotropic", ["0", "1", "2", "4", "8", "16"], "0"),
-    dataFrmt = op.inSwitch("Data Format", ["R", "RG", "RGB", "RGBA", "SRGBA"], "RGBA"),
-    flip = op.inValueBool("Flip", false),
-    unpackAlpha = op.inValueBool("Pre Multiplied Alpha", false),
-    active = op.inValueBool("Active", true),
-    inFreeMemory = op.inBool("Save Memory", true),
-    textureOut = op.outTexture("Texture"),
-    addCacheBust = op.inBool("Add Cachebuster", false),
-    inReload = op.inTriggerButton("Reload"),
-    width = op.outNumber("Width"),
-    height = op.outNumber("Height"),
-    ratio = op.outNumber("Aspect Ratio"),
-    loaded = op.outBoolNum("Loaded", 0),
-    loading = op.outBoolNum("Loading", 0);
-
-const cgl = op.patch.cgl;
-
-op.toWorkPortsNeedToBeLinked(textureOut);
-op.setPortGroup("Size", [width, height]);
-
-let loadedFilename = null;
-let loadingId = null;
-let tex = null;
-let cgl_filter = CGL.Texture.FILTER_MIPMAP;
-let cgl_wrap = CGL.Texture.WRAP_REPEAT;
-let cgl_aniso = 0;
-let timedLoader = 0;
-
-unpackAlpha.setUiAttribs({ "hidePort": true });
-unpackAlpha.onChange =
-    filename.onChange =
-    dataFrmt.onChange =
-    addCacheBust.onChange =
-    flip.onChange = reloadSoon;
-aniso.onChange = tfilter.onChange = onFilterChange;
-wrap.onChange = onWrapChange;
-
-tfilter.set("mipmap");
-wrap.set("repeat");
-
-textureOut.set(CGL.Texture.getEmptyTexture(cgl));
-
-inReload.onTriggered = reloadSoon;
-
-active.onChange = function ()
-{
-    if (active.get())
-    {
-        if (loadedFilename != filename.get() || !tex) reloadSoon();
-        else textureOut.set(tex);
-    }
-    else
-    {
-        textureOut.set(CGL.Texture.getEmptyTexture(cgl));
-        width.set(CGL.Texture.getEmptyTexture(cgl).width);
-        height.set(CGL.Texture.getEmptyTexture(cgl).height);
-        if (tex)tex.delete();
-        op.setUiAttrib({ "extendTitle": "" });
-        tex = null;
-    }
-};
-
-const setTempTexture = function ()
-{
-    const t = CGL.Texture.getTempTexture(cgl);
-    textureOut.set(t);
-};
-
-function reloadSoon(nocache)
-{
-    clearTimeout(timedLoader);
-    timedLoader = setTimeout(function ()
-    {
-        realReload(nocache);
-    }, 1);
-}
-
-function getPixelFormat()
-{
-    if (dataFrmt.get() == "R") return CGL.Texture.PFORMATSTR_R8UB;
-    if (dataFrmt.get() == "RG") return CGL.Texture.PFORMATSTR_RG8UB;
-    if (dataFrmt.get() == "RGB") return CGL.Texture.PFORMATSTR_RGB8UB;
-    if (dataFrmt.get() == "SRGBA") return CGL.Texture.PFORMATSTR_SRGBA8;
-
-    return CGL.Texture.PFORMATSTR_RGBA8UB;
-}
-
-function realReload(nocache)
-{
-    op.checkMainloopExists();
-    if (!active.get()) return;
-    if (loadingId)loadingId = cgl.patch.loading.finished(loadingId);
-
-    loadingId = cgl.patch.loading.start(op.objName, filename.get(), op);
-
-    let url = op.patch.getFilePath(String(filename.get()));
-
-    if (addCacheBust.get() || nocache === true) url = CABLES.cacheBust(url);
-
-    if (String(filename.get()).indexOf("data:") == 0) url = filename.get();
-
-    let needsRefresh = false;
-    loadedFilename = filename.get();
-
-    if ((filename.get() && filename.get().length > 1))
-    {
-        loaded.set(false);
-        loading.set(true);
-
-        const fileToLoad = filename.get();
-
-        op.setUiAttrib({ "extendTitle": CABLES.basename(url) });
-        if (needsRefresh) op.refreshParams();
-
-        cgl.patch.loading.addAssetLoadingTask(() =>
-        {
-            op.setUiError("urlerror", null);
-            CGL.Texture.load(cgl, url, function (err, newTex)
-            {
-                cgl.checkFrameStarted("texture inittexture");
-
-                if (filename.get() != fileToLoad)
-                {
-                    loadingId = cgl.patch.loading.finished(loadingId);
-                    return;
-                }
-
-                if (tex)tex.delete();
-
-                if (err)
-                {
-                    const t = CGL.Texture.getErrorTexture(cgl);
-                    textureOut.setRef(t);
-
-                    op.setUiError("urlerror", "could not load texture: \"" + filename.get() + "\"", 2);
-                    loadingId = cgl.patch.loading.finished(loadingId);
-                    return;
-                }
-
-                // textureOut.setRef(newTex);
-
-                width.set(newTex.width);
-                height.set(newTex.height);
-                ratio.set(newTex.width / newTex.height);
-
-                // if (!newTex.isPowerOfTwo()) op.setUiError("npot", "Texture dimensions not power of two! - Texture filtering will not work in WebGL 1.", 0);
-                // else op.setUiError("npot", null);
-
-                tex = newTex;
-                // textureOut.set(null);
-                textureOut.setRef(tex);
-
-                loading.set(false);
-                loaded.set(true);
-
-                if (inFreeMemory.get()) tex.image = null;
-
-                if (loadingId)
-                {
-                    loadingId = cgl.patch.loading.finished(loadingId);
-                }
-                op.checkMainloopExists();
-            }, {
-                "anisotropic": cgl_aniso,
-                "wrap": cgl_wrap,
-                "flip": flip.get(),
-                "unpackAlpha": unpackAlpha.get(),
-                "pixelFormat": getPixelFormat(),
-                "filter": cgl_filter
-            });
-
-            op.checkMainloopExists();
-        });
-    }
-    else
-    {
-        setTempTexture();
-        loadingId = cgl.patch.loading.finished(loadingId);
-    }
-}
-
-function onFilterChange()
-{
-    if (tfilter.get() == "nearest") cgl_filter = CGL.Texture.FILTER_NEAREST;
-    else if (tfilter.get() == "linear") cgl_filter = CGL.Texture.FILTER_LINEAR;
-    else if (tfilter.get() == "mipmap") cgl_filter = CGL.Texture.FILTER_MIPMAP;
-    else if (tfilter.get() == "Anisotropic") cgl_filter = CGL.Texture.FILTER_ANISOTROPIC;
-    aniso.setUiAttribs({ "greyout": cgl_filter != CGL.Texture.FILTER_MIPMAP });
-
-    cgl_aniso = parseFloat(aniso.get());
-
-    reloadSoon();
-}
-
-function onWrapChange()
-{
-    if (wrap.get() == "repeat") cgl_wrap = CGL.Texture.WRAP_REPEAT;
-    if (wrap.get() == "mirrored repeat") cgl_wrap = CGL.Texture.WRAP_MIRRORED_REPEAT;
-    if (wrap.get() == "clamp to edge") cgl_wrap = CGL.Texture.WRAP_CLAMP_TO_EDGE;
-
-    reloadSoon();
-}
-
-op.onFileChanged = function (fn)
-{
-    if (filename.get() && filename.get().indexOf(fn) > -1)
-    {
-        textureOut.set(CGL.Texture.getEmptyTexture(op.patch.cgl));
-        textureOut.set(CGL.Texture.getTempTexture(cgl));
-        realReload(true);
-    }
-};
-
-
-};
-
-Ops.Gl.Texture_v2.prototype = new CABLES.Op();
-CABLES.OPS["790f3702-9833-464e-8e37-6f0f813f7e16"]={f:Ops.Gl.Texture_v2,objName:"Ops.Gl.Texture_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.String.NumberToString_v2
-// 
-// **************************************************************
-
-Ops.String.NumberToString_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    val = op.inValue("Number"),
-    decPlaces = op.inInt("Decimal Places", 4),
-    result = op.outString("Result");
-
-let doDec = false;
-let decm = 1;
-decPlaces.onChange = updateDecm;
-val.onChange = update;
-updateDecm();
-update();
-
-function updateDecm()
-{
-    doDec = decPlaces.get() < 100;
-    decm = Math.pow(10, decPlaces.get());
-    update();
-}
-
-function update()
-{
-    if (doDec)
-        result.set(String(Math.round(val.get() * decm) / decm));
-    else
-        result.set(String(val.get() || 0));
-}
-
-
-};
-
-Ops.String.NumberToString_v2.prototype = new CABLES.Op();
-CABLES.OPS["5c6d375a-82db-4366-8013-93f56b4061a9"]={f:Ops.String.NumberToString_v2,objName:"Ops.String.NumberToString_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.Matrix.TransformView
-// 
-// **************************************************************
-
-Ops.Gl.Matrix.TransformView = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    render = op.inTrigger("render"),
-    posX = op.inValueFloat("posX"),
-    posY = op.inValueFloat("posY"),
-    posZ = op.inValueFloat("posZ"),
-    scale = op.inValueFloat("scale"),
-    rotX = op.inValueFloat("rotX"),
-    rotY = op.inValueFloat("rotY"),
-    rotZ = op.inValueFloat("rotZ"),
-    trigger = op.outTrigger("trigger");
-
-op.setPortGroup("Position", [posX, posY, posZ]);
-op.setPortGroup("Scale", [scale]);
-op.setPortGroup("Rotation", [rotX, rotZ, rotY]);
-
-const vPos = vec3.create();
-const vScale = vec3.create();
-const transMatrix = mat4.create();
-mat4.identity(transMatrix);
-
-let doScale = false;
-let doTranslate = false;
-
-let translationChanged = true;
-let didScaleChanged = true;
-let didRotChanged = true;
-
-render.onTriggered = function ()
-{
-    const cg = op.patch.cgl;
-
-    let updateMatrix = false;
-    if (translationChanged)
-    {
-        updateTranslation();
-        updateMatrix = true;
-    }
-    if (didScaleChanged)
-    {
-        updateScale();
-        updateMatrix = true;
-    }
-    if (didRotChanged)
-    {
-        updateMatrix = true;
-    }
-    if (updateMatrix)doUpdateMatrix();
-
-    cg.pushViewMatrix();
-    mat4.multiply(cg.vMatrix, cg.vMatrix, transMatrix);
-
-    trigger.trigger();
-    cg.popViewMatrix();
-
-    if (op.isCurrentUiOp())
-        gui.setTransformGizmo(
-            {
-                "posX": posX,
-                "posY": posY,
-                "posZ": posZ,
-            });
-};
-
-op.transform3d = function ()
-{
-    return {
-        "pos": [posX, posY, posZ]
-    };
-};
-
-function doUpdateMatrix()
-{
-    mat4.identity(transMatrix);
-    if (doTranslate)mat4.translate(transMatrix, transMatrix, vPos);
-
-    if (rotX.get() !== 0)mat4.rotateX(transMatrix, transMatrix, rotX.get() * CGL.DEG2RAD);
-    if (rotY.get() !== 0)mat4.rotateY(transMatrix, transMatrix, rotY.get() * CGL.DEG2RAD);
-    if (rotZ.get() !== 0)mat4.rotateZ(transMatrix, transMatrix, rotZ.get() * CGL.DEG2RAD);
-
-    if (doScale)mat4.scale(transMatrix, transMatrix, vScale);
-    rotChanged = false;
-}
-
-function updateTranslation()
-{
-    doTranslate = false;
-    if (posX.get() !== 0.0 || posY.get() !== 0.0 || posZ.get() !== 0.0) doTranslate = true;
-    vec3.set(vPos, posX.get(), posY.get(), posZ.get());
-    translationChanged = false;
-}
-
-function updateScale()
-{
-    doScale = false;
-    if (scale.get() !== 0.0)doScale = true;
-    vec3.set(vScale, scale.get(), scale.get(), scale.get());
-    scaleChanged = false;
-}
-
-function translateChanged()
-{
-    translationChanged = true;
-}
-
-function scaleChanged()
-{
-    didScaleChanged = true;
-}
-
-function rotChanged()
-{
-    didRotChanged = true;
-}
-
-rotX.onChange =
-rotY.onChange =
-rotZ.onChange = rotChanged;
-
-scale.onChange = scaleChanged;
-
-posX.onChange =
-posY.onChange =
-posZ.onChange = translateChanged;
-
-rotX.set(0.0);
-rotY.set(0.0);
-rotZ.set(0.0);
-
-scale.set(1.0);
-
-posX.set(0.0);
-posY.set(0.0);
-posZ.set(0.0);
-
-doUpdateMatrix();
-
-
-};
-
-Ops.Gl.Matrix.TransformView.prototype = new CABLES.Op();
-CABLES.OPS["0b3e04f7-323e-4ac8-8a22-a21e2f36e0e9"]={f:Ops.Gl.Matrix.TransformView,objName:"Ops.Gl.Matrix.TransformView"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Math.SmootherStep
-// 
-// **************************************************************
-
-Ops.Math.SmootherStep = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    val = op.inValueFloat("val", 0),
-    min = op.inValueFloat("min", 0),
-    max = op.inValueFloat("max", 1),
-    result = op.outNumber("result");
-
-val.onChange = max.onChange = min.onChange = exec;
-exec();
-
-function exec()
-{
-    let x = Math.max(0, Math.min(1, (val.get() - min.get()) / (max.get() - min.get())));
-    result.set(x * x * x * (x * (x * 6 - 15) + 10) * (max.get() - min.get())); // smootherstep
-}
-
-
-};
-
-Ops.Math.SmootherStep.prototype = new CABLES.Op();
-CABLES.OPS["c66da84f-ff2f-45de-b3c2-557bdf1cb946"]={f:Ops.Math.SmootherStep,objName:"Ops.Math.SmootherStep"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.String.StringCompose_v3
-// 
-// **************************************************************
-
-Ops.String.StringCompose_v3 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    format=op.inString('Format',"hello $a, $b $c und $d"),
-    a=op.inString('String A','world'),
-    b=op.inString('String B',1),
-    c=op.inString('String C',2),
-    d=op.inString('String D',3),
-    e=op.inString('String E'),
-    f=op.inString('String F'),
-    result=op.outString("Result");
-
-format.onChange=
-    a.onChange=
-    b.onChange=
-    c.onChange=
-    d.onChange=
-    e.onChange=
-    f.onChange=update;
-
-update();
-
-function update()
-{
-    var str=format.get()||'';
-    if(typeof str!='string')
-        str='';
-
-    str = str.replace(/\$a/g, a.get());
-    str = str.replace(/\$b/g, b.get());
-    str = str.replace(/\$c/g, c.get());
-    str = str.replace(/\$d/g, d.get());
-    str = str.replace(/\$e/g, e.get());
-    str = str.replace(/\$f/g, f.get());
-
-    result.set(str);
-}
-
-};
-
-Ops.String.StringCompose_v3.prototype = new CABLES.Op();
-CABLES.OPS["6afea9f4-728d-4f3c-9e75-62ddc1448bf0"]={f:Ops.String.StringCompose_v3,objName:"Ops.String.StringCompose_v3"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Array.StringToArray_v2
-// 
-// **************************************************************
-
-Ops.Array.StringToArray_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const text = op.inStringEditor("text", "1,2,3"),
-    separator = op.inString("separator", ","),
-    toNumber = op.inValueBool("Numbers", true),
-    trim = op.inValueBool("Trim", true),
-    splitNewLines = op.inBool("Split Lines", false),
-    arr = op.outArray("array"),
-    parsed = op.outTrigger("Parsed"),
-    len = op.outNumber("length");
-
-text.setUiAttribs({ "ignoreBigPort": true });
-
-text.onChange = separator.onChange = toNumber.onChange = trim.onChange = parse;
-
-splitNewLines.onChange = () =>
-{
-    separator.setUiAttribs({ "greyout": splitNewLines.get() });
-    parse();
-};
-
-parse();
-
-function parse()
-{
-    if (!text.get())
-    {
-        arr.set(null);
-        arr.set([]);
-        len.set(0);
-        return;
-    }
-
-    let textInput = text.get();
-    if (trim.get() && textInput)
-    {
-        textInput = textInput.replace(/^\s+|\s+$/g, "");
-        textInput = textInput.trim();
-    }
-
-    let r;
-    let sep = separator.get();
-    if (separator.get() === "\\n") sep = "\n";
-    if (splitNewLines.get()) r = textInput.split("\n");
-    else r = textInput.split(sep);
-
-    if (r[r.length - 1] === "") r.length -= 1;
-
-    len.set(r.length);
-
-    if (trim.get())
-    {
-        for (let i = 0; i < r.length; i++)
-        {
-            r[i] = r[i].replace(/^\s+|\s+$/g, "");
-            r[i] = r[i].trim();
-        }
-    }
-
-    op.setUiError("notnum", null);
-    if (toNumber.get())
-    {
-        let hasStrings = false;
-        for (let i = 0; i < r.length; i++)
-        {
-            r[i] = Number(r[i]);
-            if (!CABLES.UTILS.isNumeric(r[i]))
-            {
-                hasStrings = true;
-            }
-        }
-        if (hasStrings)
-        {
-            op.setUiError("notnum", "Parse Error / Not all values numerical!", 1);
-        }
-    }
-
-    arr.setRef(r);
-    parsed.trigger();
-}
-
-
-};
-
-Ops.Array.StringToArray_v2.prototype = new CABLES.Op();
-CABLES.OPS["c974de41-4ce4-4432-b94d-724741109c71"]={f:Ops.Array.StringToArray_v2,objName:"Ops.Array.StringToArray_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Array.ArrayGetString
-// 
-// **************************************************************
-
-Ops.Array.ArrayGetString = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    array = op.inArray("array"),
-    index = op.inValueInt("index"),
-    result = op.outString("result");
-
-array.ignoreValueSerialize = true;
-
-index.onChange = update;
-
-array.onChange = function ()
-{
-    update();
-};
-
-function update()
-{
-    const arr = array.get();
-    if (arr) result.set(arr[index.get()]);
-}
-
-
-};
-
-Ops.Array.ArrayGetString.prototype = new CABLES.Op();
-CABLES.OPS["be8f16c0-0c8a-48a2-a92b-45dbf88c76c1"]={f:Ops.Array.ArrayGetString,objName:"Ops.Array.ArrayGetString"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.RenderToTexture_v3
-// 
-// **************************************************************
-
-Ops.Gl.RenderToTexture_v3 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    render = op.inTrigger("render"),
-    inSize = op.inSwitch("Size", ["Canvas", "Manual"], "Canvas"),
-    width = op.inValueInt("texture width", 512),
-    height = op.inValueInt("texture height", 512),
-    aspect = op.inBool("Auto Aspect", true),
-    tfilter = op.inSwitch("filter", ["nearest", "linear", "mipmap"], "linear"),
-    twrap = op.inSwitch("Wrap", ["Clamp", "Repeat", "Mirror"], "Repeat"),
-    msaa = op.inSwitch("MSAA", ["none", "2x", "4x", "8x"], "none"),
-    trigger = op.outTrigger("trigger"),
-    tex = op.outTexture("texture"),
-    texDepth = op.outTexture("textureDepth"),
-    inPixelFormat = op.inDropDown("Pixel Format", CGL.Texture.PIXELFORMATS, CGL.Texture.PFORMATSTR_RGBA8UB),
-    depth = op.inValueBool("Depth", true),
-    clear = op.inValueBool("Clear", true);
-
-const cgl = op.patch.cgl;
-let fb = null;
-let reInitFb = true;
-
-op.setPortGroup("Size", [inSize, width, height, aspect]);
-
-inPixelFormat.onChange =
-    depth.onChange =
-    clear.onChange =
-    tfilter.onChange =
-    twrap.onChange =
-    msaa.onChange = initFbLater;
-
-inSize.onChange = updateUi;
-
-render.onTriggered =
-    op.preRender = doRender;
-
-updateUi();
-
-function updateUi()
-{
-    width.setUiAttribs({ "greyout": inSize.get() != "Manual" });
-    height.setUiAttribs({ "greyout": inSize.get() != "Manual" });
-    aspect.setUiAttribs({ "greyout": inSize.get() != "Manual" });
-}
-
-function initFbLater()
-{
-    reInitFb = true;
-}
-
-function doRender()
-{
-    CGL.TextureEffect.checkOpNotInTextureEffect(op);
-
-    if (!fb || reInitFb)
-    {
-        if (fb) fb.delete();
-
-        let selectedWrap = CGL.Texture.WRAP_REPEAT;
-        if (twrap.get() == "Clamp") selectedWrap = CGL.Texture.WRAP_CLAMP_TO_EDGE;
-        else if (twrap.get() == "Mirror") selectedWrap = CGL.Texture.WRAP_MIRRORED_REPEAT;
-
-        let selectFilter = CGL.Texture.FILTER_NEAREST;
-        if (tfilter.get() == "nearest") selectFilter = CGL.Texture.FILTER_NEAREST;
-        else if (tfilter.get() == "linear") selectFilter = CGL.Texture.FILTER_LINEAR;
-        else if (tfilter.get() == "mipmap") selectFilter = CGL.Texture.FILTER_MIPMAP;
-
-        if (inPixelFormat.get().indexOf("loat") && tfilter.get() == "mipmap") op.setUiError("fpmipmap", "Can't use mipmap and float texture at the same time");
-        else op.setUiError("fpmipmap", null);
-
-        if (cgl.glVersion >= 2)
-        {
-            let ms = true;
-            let msSamples = 4;
-
-            if (msaa.get() == "none")
-            {
-                msSamples = 0;
-                ms = false;
-            }
-            if (msaa.get() == "2x") msSamples = 2;
-            if (msaa.get() == "4x") msSamples = 4;
-            if (msaa.get() == "8x") msSamples = 8;
-
-            fb = new CGL.Framebuffer2(cgl, 8, 8,
-                {
-                    "name": "render2texture " + op.id,
-                    "pixelFormat": inPixelFormat.get(),
-                    "multisampling": ms,
-                    "multisamplingSamples": msSamples,
-                    "wrap": selectedWrap,
-                    "filter": selectFilter,
-                    "depth": depth.get(),
-                    "clear": clear.get()
-                });
-        }
-        else
-        {
-            fb = new CGL.Framebuffer(cgl, 8, 8, { "isFloatingPointTexture": false, "clear": clear.get() });
-        }
-
-        if (fb && fb.valid)
-        {
-            texDepth.set(fb.getTextureDepth());
-            reInitFb = false;
-        }
-        else
-        {
-            fb = null;
-            reInitFb = true;
-        }
-    }
-
-    let setAspect = aspect.get();
-
-    if (inSize.get() == "Canvas")
-    {
-        setAspect = true;
-        width.set(op.patch.cgl.checkTextureSize(cgl.canvasWidth));
-        height.set(op.patch.cgl.checkTextureSize(cgl.canvasHeight));
-    }
-
-    if (fb.getWidth() != op.patch.cgl.checkTextureSize(width.get()) || fb.getHeight() != op.patch.cgl.checkTextureSize(height.get()))
-    {
-        fb.setSize(
-            op.patch.cgl.checkTextureSize(width.get()),
-            op.patch.cgl.checkTextureSize(height.get()));
-    }
-
-    fb.renderStart(cgl);
-
-    cgl.pushViewPort(0, 0, width.get(), height.get());
-
-    if (setAspect) mat4.perspective(cgl.pMatrix, 45, width.get() / height.get(), 0.1, 1000.0);
-
-    trigger.trigger();
-    fb.renderEnd(cgl);
-
-    cgl.popViewPort();
-
-    texDepth.setRef(fb.getTextureDepth());
-    tex.setRef(fb.getTextureColor());
-}
-
-//
-
-
-};
-
-Ops.Gl.RenderToTexture_v3.prototype = new CABLES.Op();
-CABLES.OPS["41eec5c7-c480-477a-be81-04c3efac8357"]={f:Ops.Gl.RenderToTexture_v3,objName:"Ops.Gl.RenderToTexture_v3"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Anim.Timer_v2
-// 
-// **************************************************************
-
-Ops.Anim.Timer_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inSpeed = op.inValue("Speed", 1),
-    playPause = op.inValueBool("Play", true),
-    reset = op.inTriggerButton("Reset"),
-    inSyncTimeline = op.inValueBool("Sync to timeline", false),
-    outTime = op.outNumber("Time");
-
-op.setPortGroup("Controls", [playPause, reset, inSpeed]);
-
-const timer = new CABLES.Timer();
-let lastTime = null;
-let time = 0;
-let syncTimeline = false;
-
-playPause.onChange = setState;
-setState();
-
-function setState()
-{
-    if (playPause.get())
-    {
-        timer.play();
-        op.patch.addOnAnimFrame(op);
-    }
-    else
-    {
-        timer.pause();
-        op.patch.removeOnAnimFrame(op);
-    }
-}
-
-reset.onTriggered = doReset;
-
-function doReset()
-{
-    time = 0;
-    lastTime = null;
-    timer.setTime(0);
-    outTime.set(0);
-}
-
-inSyncTimeline.onChange = function ()
-{
-    syncTimeline = inSyncTimeline.get();
-    playPause.setUiAttribs({ "greyout": syncTimeline });
-    reset.setUiAttribs({ "greyout": syncTimeline });
-};
-
-op.onAnimFrame = function (tt, frameNum, deltaMs)
-{
-    if (timer.isPlaying())
-    {
-        if (CABLES.overwriteTime !== undefined)
-        {
-            outTime.set(CABLES.overwriteTime * inSpeed.get());
-        }
-        else
-
-        if (syncTimeline)
-        {
-            outTime.set(tt * inSpeed.get());
-        }
-        else
-        {
-            timer.update();
-
-            const timerVal = timer.get();
-
-            if (lastTime === null)
-            {
-                lastTime = timerVal;
-                return;
-            }
-
-            const t = Math.abs(timerVal - lastTime);
-            lastTime = timerVal;
-
-            time += t * inSpeed.get();
-            if (time != time)time = 0;
-            outTime.set(time);
-        }
-    }
-};
-
-
-};
-
-Ops.Anim.Timer_v2.prototype = new CABLES.Op();
-CABLES.OPS["aac7f721-208f-411a-adb3-79adae2e471a"]={f:Ops.Anim.Timer_v2,objName:"Ops.Anim.Timer_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Anim.LFO_v2
-// 
-// **************************************************************
-
-Ops.Anim.LFO_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    time = op.inValue("Time"),
-    speed = op.inFloat("Frequency", 1),
-    type = op.inValueSelect("Type", ["sine", "triangle", "ramp up", "ramp down", "square"], "sine"),
-    phase = op.inValue("Phase", 0),
-    rangeMin = op.inValue("Range Min", -1),
-    rangeMax = op.inValue("Range Max", 1),
-    result = op.outNumber("Result");
-
-let v = 0;
-type.onChange = updateType;
-
-updateType();
-
-const PI2 = Math.PI / 2;
-
-function updateType()
-{
-    if (type.get() == "sine") time.onChange = sine;
-    if (type.get() == "ramp up") time.onChange = rampUp;
-    if (type.get() == "ramp down") time.onChange = rampDown;
-    if (type.get() == "square") time.onChange = square;
-    if (type.get() == "triangle") time.onChange = triangle;
-}
-
-function updateTime()
-{
-    return (time.get() * speed.get()) + phase.get();
-}
-
-function square()
-{
-    let t = updateTime() + 0.5;
-    v = t % 2.0;
-    if (v <= 1.0)v = -1;
-    else v = 1;
-    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
-    result.set(v);
-}
-
-function rampUp()
-{
-    let t = (updateTime() + 1);
-    t *= 0.5;
-    v = t % 1.0;
-    v -= 0.5;
-    v *= 2.0;
-    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
-    result.set(v);
-}
-
-function rampDown()
-{
-    let t = updateTime();
-    v = t % 1.0;
-    v -= 0.5;
-    v *= -2.0;
-    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
-    result.set(v);
-}
-
-function triangle()
-{
-    let t = updateTime();
-    v = t % 2.0;
-    if (v > 1) v = 2.0 - v;
-    v -= 0.5;
-    v *= 2.0;
-    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
-    result.set(v);
-}
-
-function sine()
-{
-    let t = updateTime() * Math.PI - (PI2);
-    v = Math.sin((t));
-    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
-    result.set(v);
-}
-
-
-};
-
-Ops.Anim.LFO_v2.prototype = new CABLES.Op();
-CABLES.OPS["621f3334-f428-4310-b0da-66eb8259df33"]={f:Ops.Anim.LFO_v2,objName:"Ops.Anim.LFO_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.GLTF.GltfDracoCompression
-// 
-// **************************************************************
-
-Ops.Gl.GLTF.GltfDracoCompression = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-class DracoDecoderClass
-{
-    constructor()
-    {
-        this.workerLimit = 4;
-        this.workerPool = [];
-        this.workerNextTaskID = 1;
-        this.workerSourceURL = "";
-
-        this.config = {
-            "wasm": Uint8Array.from(atob(DracoDecoderWASM), (c) => { return c.charCodeAt(0); }),
-            "wrapper": DracoWASMWrapperCode,
-            "decoderSettings": {},
-        };
-
-        const dracoWorker = this._DracoWorker.toString();
-        const workerCode = dracoWorker.substring(dracoWorker.indexOf("{") + 1, dracoWorker.lastIndexOf("}"));
-
-        const jsContent = this.config.wrapper;
-        const body = [
-            "/* draco decoder */",
-            jsContent,
-            "",
-            "/* worker */",
-            workerCode
-        ].join("\n");
-
-        this.workerSourceURL = URL.createObjectURL(new Blob([body]));
-    }
-
-    _getWorker(taskID, taskCost)
-    {
-        if (this.workerPool.length < this.workerLimit)
-        {
-            const worker = new Worker(this.workerSourceURL);
-            worker._callbacks = {};
-            worker._taskCosts = {};
-            worker._taskLoad = 0;
-            worker.postMessage({ "type": "init", "decoderConfig": this.config });
-            worker.onmessage = (e) =>
-            {
-                const message = e.data;
-
-                switch (message.type)
-                {
-                case "done":
-                    worker._callbacks[message.taskID].finishedCallback(message.geometry);
-                    break;
-
-                case "error":
-                    worker._callbacks[message.taskID].errorCallback(message);
-                    break;
-
-                default:
-                    op.error("THREE.DRACOLoader: Unexpected message, \"" + message.type + "\"");
-                }
-                this._releaseTask(worker, message.taskID);
-            };
-            this.workerPool.push(worker);
-        }
-        else
-        {
-            this.workerPool.sort(function (a, b)
-            {
-                return a._taskLoad > b._taskLoad ? -1 : 1;
-            });
-        }
-
-        const worker = this.workerPool[this.workerPool.length - 1];
-        worker._taskCosts[taskID] = taskCost;
-        worker._taskLoad += taskCost;
-        return worker;
-    }
-
-    decodeGeometry(buffer, finishedCallback, errorCallback = null)
-    {
-        const taskID = this.workerNextTaskID++;
-        const taskCost = buffer.byteLength;
-
-        const worker = this._getWorker(taskID, taskCost);
-        worker._callbacks[taskID] = { finishedCallback, errorCallback };
-        worker.postMessage({ "type": "decode", "taskID": taskID, buffer }, [buffer]);
-    }
-
-    _releaseTask(worker, taskID)
-    {
-        worker._taskLoad -= worker._taskCosts[taskID];
-        delete worker._callbacks[taskID];
-        delete worker._taskCosts[taskID];
-    }
-
-    _DracoWorker()
-    {
-        let pendingDecoder;
-
-        onmessage = function (e)
-        {
-            const message = e.data;
-            switch (message.type)
-            {
-            case "init":
-                const decoderConfig = message.decoderConfig;
-                const moduleConfig = decoderConfig.decoderSettings;
-                pendingDecoder = new Promise(function (resolve)
-                {
-                    moduleConfig.onModuleLoaded = function (draco)
-                    {
-                        // Module is Promise-like. Wrap before resolving to avoid loop.
-                        resolve({ "draco": draco });
-                    };
-                    moduleConfig.wasmBinary = decoderConfig.wasm;
-                    DracoDecoderModule(moduleConfig); // eslint-disable-line no-undef
-                });
-                break;
-            case "decode":
-                pendingDecoder.then((module) =>
-                {
-                    const draco = module.draco;
-
-                    const f = new draco.Decoder();
-                    const dataBuff = new Int8Array(message.buffer);
-
-                    const geometryType = f.GetEncodedGeometryType(dataBuff);
-                    const buffer = new draco.DecoderBuffer();
-                    buffer.Init(dataBuff, dataBuff.byteLength);
-
-                    let outputGeometry = new draco.Mesh();
-                    const status = f.DecodeBufferToMesh(buffer, outputGeometry);
-                    const attribute = f.GetAttributeByUniqueId(outputGeometry, 1);
-                    const geometry = dracoAttributes(draco, f, outputGeometry, geometryType, name);
-
-                    this.postMessage({ "type": "done", "taskID": message.taskID, "geometry": geometry });
-
-                    draco.destroy(f);
-                    draco.destroy(buffer);
-                });
-                break;
-            }
-        };
-
-        let dracoAttributes = function (draco, decoder, dracoGeometry, geometryType, name)
-        {
-            const attributeIDs = {
-                "position": draco.POSITION,
-                "normal": draco.NORMAL,
-                "color": draco.COLOR,
-                "uv": draco.TEX_COORD,
-                "joints": draco.GENERIC,
-                "weights": draco.GENERIC,
-            };
-            const attributeTypes = {
-                "position": "Float32Array",
-                "normal": "Float32Array",
-                "color": "Float32Array",
-                "weights": "Float32Array",
-                "joints": "Uint8Array",
-                "uv": "Float32Array"
-            };
-
-            const geometry = {
-                "index": null,
-                "attributes": []
-            };
-
-            let count = 0;
-            for (const attributeName in attributeIDs)
-            {
-                const attributeType = attributeTypes[attributeName];
-                let attributeID = decoder.GetAttributeId(dracoGeometry, attributeIDs[attributeName]);
-
-                count++;
-                if (attributeID != -1)
-                {
-                    let attribute = decoder.GetAttribute(dracoGeometry, attributeID);
-                    geometry.attributes.push(decodeAttribute(draco, decoder, dracoGeometry, attributeName, attributeType, attribute));
-                }
-            }
-
-            if (geometryType === draco.TRIANGULAR_MESH) geometry.index = decodeIndex(draco, decoder, dracoGeometry);
-            else op.warn("unknown draco geometryType", geometryType);
-
-            draco.destroy(dracoGeometry);
-            return geometry;
-        };
-
-        let decodeIndex = function (draco, decoder, dracoGeometry)
-        {
-            const numFaces = dracoGeometry.num_faces();
-            const numIndices = numFaces * 3;
-            const byteLength = numIndices * 4;
-            const ptr = draco._malloc(byteLength);
-
-            decoder.GetTrianglesUInt32Array(dracoGeometry, byteLength, ptr);
-            const index = new Uint32Array(draco.HEAPF32.buffer, ptr, numIndices).slice();
-
-            draco._free(ptr);
-
-            return {
-                "array": index,
-                "itemSize": 1
-            };
-        };
-
-        let decodeAttribute = function (draco, decoder, dracoGeometry, attributeName, attributeType, attribute)
-        {
-            let bytesPerElement = 4;
-            if (attributeType === "Float32Array") bytesPerElement = 4;
-            else if (attributeType === "Uint8Array") bytesPerElement = 1;
-            else op.warn("unknown attrtype bytesPerElement", attributeType);
-
-            const numComponents = attribute.num_components();
-            const numPoints = dracoGeometry.num_points();
-            const numValues = numPoints * numComponents;
-            const byteLength = numValues * bytesPerElement;
-            const dataType = getDracoDataType(draco, attributeType);
-            const ptr = draco._malloc(byteLength);
-            let array = null;
-
-            decoder.GetAttributeDataArrayForAllPoints(dracoGeometry, attribute, dataType, byteLength, ptr);
-
-            if (attributeType === "Float32Array") array = new Float32Array(draco.HEAPF32.buffer, ptr, numValues).slice();
-            else if (attributeType === "Uint8Array") array = new Uint8Array(draco.HEAPF32.buffer, ptr, numValues).slice();
-            else op.warn("unknown attrtype", attributeType);
-
-            draco._free(ptr);
-
-            return {
-                "name": attributeName,
-                "array": array,
-                "itemSize": numComponents
-            };
-        };
-
-        let getDracoDataType = function (draco, attributeType)
-        {
-            switch (attributeType)
-            {
-            case "Float32Array": return draco.DT_FLOAT32;
-            case "Int8Array": return draco.DT_INT8;
-            case "Int16Array": return draco.DT_INT16;
-            case "Int32Array": return draco.DT_INT32;
-            case "Uint8Array": return draco.DT_UINT8;
-            case "Uint16Array": return draco.DT_UINT16;
-            case "Uint32Array": return draco.DT_UINT32;
-            }
-        };
-    }
-}
-
-window.DracoDecoder = new DracoDecoderClass();
-
-
-};
-
-Ops.Gl.GLTF.GltfDracoCompression.prototype = new CABLES.Op();
-CABLES.OPS["4ecdc2ef-a242-4548-ad74-13f617119a64"]={f:Ops.Gl.GLTF.GltfDracoCompression,objName:"Ops.Gl.GLTF.GltfDracoCompression"};
 
 
 
@@ -9296,6 +9054,6580 @@ CABLES.OPS["baf968ea-e4df-4fca-9cda-e6ddd38a4200"]={f:Ops.Gl.GLTF.GltfSetMateria
 
 // **************************************************************
 // 
+// Ops.Ui.SubPatchInput
+// 
+// **************************************************************
+
+Ops.Ui.SubPatchInput = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+op.innerInput = true;
+
+const goto = op.inTriggerButton("Goto SubPatchOp");
+goto.setUiAttribs({ "hidePort": true });
+goto.onTriggered = () =>
+{
+    const parent = op.patch.getSubPatchOuterOp(op.uiAttribs.subPatch);
+    gui.patchView.centerSelectOp(parent.id);
+};
+
+
+};
+
+Ops.Ui.SubPatchInput.prototype = new CABLES.Op();
+CABLES.OPS["c4e4e933-136e-479e-8de8-0b35b75d9217"]={f:Ops.Ui.SubPatchInput,objName:"Ops.Ui.SubPatchInput"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Ui.SubPatchOutput
+// 
+// **************************************************************
+
+Ops.Ui.SubPatchOutput = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+op.innerOutput = true;
+
+
+};
+
+Ops.Ui.SubPatchOutput.prototype = new CABLES.Op();
+CABLES.OPS["02d45073-7936-4830-81ad-59a162febf1f"]={f:Ops.Ui.SubPatchOutput,objName:"Ops.Ui.SubPatchOutput"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.Texture_v2
+// 
+// **************************************************************
+
+Ops.Gl.Texture_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    filename = op.inUrl("File", [".jpg", ".png", ".webp", ".jpeg", ".avif"]),
+    tfilter = op.inSwitch("Filter", ["nearest", "linear", "mipmap"]),
+    wrap = op.inValueSelect("Wrap", ["repeat", "mirrored repeat", "clamp to edge"], "clamp to edge"),
+    aniso = op.inSwitch("Anisotropic", ["0", "1", "2", "4", "8", "16"], "0"),
+    dataFrmt = op.inSwitch("Data Format", ["R", "RG", "RGB", "RGBA", "SRGBA"], "RGBA"),
+    flip = op.inValueBool("Flip", false),
+    unpackAlpha = op.inValueBool("Pre Multiplied Alpha", false),
+    active = op.inValueBool("Active", true),
+    inFreeMemory = op.inBool("Save Memory", true),
+    textureOut = op.outTexture("Texture"),
+    addCacheBust = op.inBool("Add Cachebuster", false),
+    inReload = op.inTriggerButton("Reload"),
+    width = op.outNumber("Width"),
+    height = op.outNumber("Height"),
+    ratio = op.outNumber("Aspect Ratio"),
+    loaded = op.outBoolNum("Loaded", 0),
+    loading = op.outBoolNum("Loading", 0);
+
+const cgl = op.patch.cgl;
+
+op.toWorkPortsNeedToBeLinked(textureOut);
+op.setPortGroup("Size", [width, height]);
+
+let loadedFilename = null;
+let loadingId = null;
+let tex = null;
+let cgl_filter = CGL.Texture.FILTER_MIPMAP;
+let cgl_wrap = CGL.Texture.WRAP_REPEAT;
+let cgl_aniso = 0;
+let timedLoader = 0;
+
+unpackAlpha.setUiAttribs({ "hidePort": true });
+unpackAlpha.onChange =
+    filename.onChange =
+    dataFrmt.onChange =
+    addCacheBust.onChange =
+    flip.onChange = reloadSoon;
+aniso.onChange = tfilter.onChange = onFilterChange;
+wrap.onChange = onWrapChange;
+
+tfilter.set("mipmap");
+wrap.set("repeat");
+
+textureOut.set(CGL.Texture.getEmptyTexture(cgl));
+
+inReload.onTriggered = reloadSoon;
+
+active.onChange = function ()
+{
+    if (active.get())
+    {
+        if (loadedFilename != filename.get() || !tex) reloadSoon();
+        else textureOut.set(tex);
+    }
+    else
+    {
+        textureOut.set(CGL.Texture.getEmptyTexture(cgl));
+        width.set(CGL.Texture.getEmptyTexture(cgl).width);
+        height.set(CGL.Texture.getEmptyTexture(cgl).height);
+        if (tex)tex.delete();
+        op.setUiAttrib({ "extendTitle": "" });
+        tex = null;
+    }
+};
+
+const setTempTexture = function ()
+{
+    const t = CGL.Texture.getTempTexture(cgl);
+    textureOut.set(t);
+};
+
+function reloadSoon(nocache)
+{
+    clearTimeout(timedLoader);
+    timedLoader = setTimeout(function ()
+    {
+        realReload(nocache);
+    }, 1);
+}
+
+function getPixelFormat()
+{
+    if (dataFrmt.get() == "R") return CGL.Texture.PFORMATSTR_R8UB;
+    if (dataFrmt.get() == "RG") return CGL.Texture.PFORMATSTR_RG8UB;
+    if (dataFrmt.get() == "RGB") return CGL.Texture.PFORMATSTR_RGB8UB;
+    if (dataFrmt.get() == "SRGBA") return CGL.Texture.PFORMATSTR_SRGBA8;
+
+    return CGL.Texture.PFORMATSTR_RGBA8UB;
+}
+
+function realReload(nocache)
+{
+    op.checkMainloopExists();
+    if (!active.get()) return;
+    if (loadingId)loadingId = cgl.patch.loading.finished(loadingId);
+
+    loadingId = cgl.patch.loading.start(op.objName, filename.get(), op);
+
+    let url = op.patch.getFilePath(String(filename.get()));
+
+    if (addCacheBust.get() || nocache === true) url = CABLES.cacheBust(url);
+
+    if (String(filename.get()).indexOf("data:") == 0) url = filename.get();
+
+    let needsRefresh = false;
+    loadedFilename = filename.get();
+
+    if ((filename.get() && filename.get().length > 1))
+    {
+        loaded.set(false);
+        loading.set(true);
+
+        const fileToLoad = filename.get();
+
+        op.setUiAttrib({ "extendTitle": CABLES.basename(url) });
+        if (needsRefresh) op.refreshParams();
+
+        cgl.patch.loading.addAssetLoadingTask(() =>
+        {
+            op.setUiError("urlerror", null);
+            CGL.Texture.load(cgl, url, function (err, newTex)
+            {
+                cgl.checkFrameStarted("texture inittexture");
+
+                if (filename.get() != fileToLoad)
+                {
+                    loadingId = cgl.patch.loading.finished(loadingId);
+                    return;
+                }
+
+                if (tex)tex.delete();
+
+                if (err)
+                {
+                    const t = CGL.Texture.getErrorTexture(cgl);
+                    textureOut.setRef(t);
+
+                    op.setUiError("urlerror", "could not load texture: \"" + filename.get() + "\"", 2);
+                    loadingId = cgl.patch.loading.finished(loadingId);
+                    return;
+                }
+
+                // textureOut.setRef(newTex);
+
+                width.set(newTex.width);
+                height.set(newTex.height);
+                ratio.set(newTex.width / newTex.height);
+
+                // if (!newTex.isPowerOfTwo()) op.setUiError("npot", "Texture dimensions not power of two! - Texture filtering will not work in WebGL 1.", 0);
+                // else op.setUiError("npot", null);
+
+                tex = newTex;
+                // textureOut.set(null);
+                textureOut.setRef(tex);
+
+                loading.set(false);
+                loaded.set(true);
+
+                if (inFreeMemory.get()) tex.image = null;
+
+                if (loadingId)
+                {
+                    loadingId = cgl.patch.loading.finished(loadingId);
+                }
+                op.checkMainloopExists();
+            }, {
+                "anisotropic": cgl_aniso,
+                "wrap": cgl_wrap,
+                "flip": flip.get(),
+                "unpackAlpha": unpackAlpha.get(),
+                "pixelFormat": getPixelFormat(),
+                "filter": cgl_filter
+            });
+
+            op.checkMainloopExists();
+        });
+    }
+    else
+    {
+        setTempTexture();
+        loadingId = cgl.patch.loading.finished(loadingId);
+    }
+}
+
+function onFilterChange()
+{
+    if (tfilter.get() == "nearest") cgl_filter = CGL.Texture.FILTER_NEAREST;
+    else if (tfilter.get() == "linear") cgl_filter = CGL.Texture.FILTER_LINEAR;
+    else if (tfilter.get() == "mipmap") cgl_filter = CGL.Texture.FILTER_MIPMAP;
+    else if (tfilter.get() == "Anisotropic") cgl_filter = CGL.Texture.FILTER_ANISOTROPIC;
+    aniso.setUiAttribs({ "greyout": cgl_filter != CGL.Texture.FILTER_MIPMAP });
+
+    cgl_aniso = parseFloat(aniso.get());
+
+    reloadSoon();
+}
+
+function onWrapChange()
+{
+    if (wrap.get() == "repeat") cgl_wrap = CGL.Texture.WRAP_REPEAT;
+    if (wrap.get() == "mirrored repeat") cgl_wrap = CGL.Texture.WRAP_MIRRORED_REPEAT;
+    if (wrap.get() == "clamp to edge") cgl_wrap = CGL.Texture.WRAP_CLAMP_TO_EDGE;
+
+    reloadSoon();
+}
+
+op.onFileChanged = function (fn)
+{
+    if (filename.get() && filename.get().indexOf(fn) > -1)
+    {
+        textureOut.set(CGL.Texture.getEmptyTexture(op.patch.cgl));
+        textureOut.set(CGL.Texture.getTempTexture(cgl));
+        realReload(true);
+    }
+};
+
+
+};
+
+Ops.Gl.Texture_v2.prototype = new CABLES.Op();
+CABLES.OPS["790f3702-9833-464e-8e37-6f0f813f7e16"]={f:Ops.Gl.Texture_v2,objName:"Ops.Gl.Texture_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.Matrix.Scale
+// 
+// **************************************************************
+
+Ops.Gl.Matrix.Scale = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("render"),
+    scale = op.inValueFloat("scale", 1.0),
+    scaleX = op.inValueFloat("x", 1),
+    scaleY = op.inValueFloat("y", 1),
+    scaleZ = op.inValueFloat("z", 1),
+    trigger = op.outTrigger("trigger");
+
+op.setPortGroup("Axis", [scaleX, scaleY, scaleZ]);
+
+const vScale = vec3.create();
+
+scaleX.onChange =
+    scaleY.onChange =
+    scaleZ.onChange =
+    scale.onChange = scaleChanged;
+
+scaleChanged();
+
+render.onTriggered = function ()
+{
+    const cgl = op.patch.cg || op.patch.cgl;
+    cgl.pushModelMatrix();
+    mat4.scale(cgl.mMatrix, cgl.mMatrix, vScale);
+    trigger.trigger();
+    cgl.popModelMatrix();
+};
+
+function scaleChanged()
+{
+    const s = scale.get();
+    vec3.set(vScale, s * scaleX.get(), s * scaleY.get(), s * scaleZ.get());
+}
+
+
+};
+
+Ops.Gl.Matrix.Scale.prototype = new CABLES.Op();
+CABLES.OPS["50e7f565-0cdb-47ca-912b-87c04e2f00e3"]={f:Ops.Gl.Matrix.Scale,objName:"Ops.Gl.Matrix.Scale"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Anim.LFO_v2
+// 
+// **************************************************************
+
+Ops.Anim.LFO_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    time = op.inValue("Time"),
+    speed = op.inFloat("Frequency", 1),
+    type = op.inValueSelect("Type", ["sine", "triangle", "ramp up", "ramp down", "square"], "sine"),
+    phase = op.inValue("Phase", 0),
+    rangeMin = op.inValue("Range Min", -1),
+    rangeMax = op.inValue("Range Max", 1),
+    result = op.outNumber("Result");
+
+let v = 0;
+type.onChange = updateType;
+
+updateType();
+
+const PI2 = Math.PI / 2;
+
+function updateType()
+{
+    if (type.get() == "sine") time.onChange = sine;
+    if (type.get() == "ramp up") time.onChange = rampUp;
+    if (type.get() == "ramp down") time.onChange = rampDown;
+    if (type.get() == "square") time.onChange = square;
+    if (type.get() == "triangle") time.onChange = triangle;
+}
+
+function updateTime()
+{
+    return (time.get() * speed.get()) + phase.get();
+}
+
+function square()
+{
+    let t = updateTime() + 0.5;
+    v = t % 2.0;
+    if (v <= 1.0)v = -1;
+    else v = 1;
+    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
+    result.set(v);
+}
+
+function rampUp()
+{
+    let t = (updateTime() + 1);
+    t *= 0.5;
+    v = t % 1.0;
+    v -= 0.5;
+    v *= 2.0;
+    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
+    result.set(v);
+}
+
+function rampDown()
+{
+    let t = updateTime();
+    v = t % 1.0;
+    v -= 0.5;
+    v *= -2.0;
+    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
+    result.set(v);
+}
+
+function triangle()
+{
+    let t = updateTime();
+    v = t % 2.0;
+    if (v > 1) v = 2.0 - v;
+    v -= 0.5;
+    v *= 2.0;
+    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
+    result.set(v);
+}
+
+function sine()
+{
+    let t = updateTime() * Math.PI - (PI2);
+    v = Math.sin((t));
+    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
+    result.set(v);
+}
+
+
+};
+
+Ops.Anim.LFO_v2.prototype = new CABLES.Op();
+CABLES.OPS["621f3334-f428-4310-b0da-66eb8259df33"]={f:Ops.Anim.LFO_v2,objName:"Ops.Anim.LFO_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Anim.Timer_v2
+// 
+// **************************************************************
+
+Ops.Anim.Timer_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inSpeed = op.inValue("Speed", 1),
+    playPause = op.inValueBool("Play", true),
+    reset = op.inTriggerButton("Reset"),
+    inSyncTimeline = op.inValueBool("Sync to timeline", false),
+    outTime = op.outNumber("Time");
+
+op.setPortGroup("Controls", [playPause, reset, inSpeed]);
+
+const timer = new CABLES.Timer();
+let lastTime = null;
+let time = 0;
+let syncTimeline = false;
+
+playPause.onChange = setState;
+setState();
+
+function setState()
+{
+    if (playPause.get())
+    {
+        timer.play();
+        op.patch.addOnAnimFrame(op);
+    }
+    else
+    {
+        timer.pause();
+        op.patch.removeOnAnimFrame(op);
+    }
+}
+
+reset.onTriggered = doReset;
+
+function doReset()
+{
+    time = 0;
+    lastTime = null;
+    timer.setTime(0);
+    outTime.set(0);
+}
+
+inSyncTimeline.onChange = function ()
+{
+    syncTimeline = inSyncTimeline.get();
+    playPause.setUiAttribs({ "greyout": syncTimeline });
+    reset.setUiAttribs({ "greyout": syncTimeline });
+};
+
+op.onAnimFrame = function (tt, frameNum, deltaMs)
+{
+    if (timer.isPlaying())
+    {
+        if (CABLES.overwriteTime !== undefined)
+        {
+            outTime.set(CABLES.overwriteTime * inSpeed.get());
+        }
+        else
+
+        if (syncTimeline)
+        {
+            outTime.set(tt * inSpeed.get());
+        }
+        else
+        {
+            timer.update();
+
+            const timerVal = timer.get();
+
+            if (lastTime === null)
+            {
+                lastTime = timerVal;
+                return;
+            }
+
+            const t = Math.abs(timerVal - lastTime);
+            lastTime = timerVal;
+
+            time += t * inSpeed.get();
+            if (time != time)time = 0;
+            outTime.set(time);
+        }
+    }
+};
+
+
+};
+
+Ops.Anim.Timer_v2.prototype = new CABLES.Op();
+CABLES.OPS["aac7f721-208f-411a-adb3-79adae2e471a"]={f:Ops.Anim.Timer_v2,objName:"Ops.Anim.Timer_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.ImageCompose.Gradient_v2
+// 
+// **************************************************************
+
+Ops.Gl.ImageCompose.Gradient_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"gradient_frag":"IN vec2 texCoord;\nUNI float amount;\nUNI float pos;\nUNI float width;\n\nUNI vec3 colA;\nUNI vec3 colB;\nUNI vec3 colC;\nUNI sampler2D tex;\n\n{{CGL.BLENDMODES3}}\n\n\n\n\nvec3 lin2srgb( vec3 cl )\n{\n\tcl = clamp( cl, 0.0, 1.0 );\n\tvec3 c_lo = 12.92 * cl;\n\tvec3 c_hi = 1.055 * pow(cl,vec3(0.41666,0.41666,0.41666)) - 0.055;\n\treturn vec3( (cl.r<0.0031308) ? c_lo.r : c_hi.r,\n                (cl.g<0.0031308) ? c_lo.g : c_hi.g,\n                (cl.b<0.0031308) ? c_lo.b : c_hi.b );\n}\n\nvec3 oklab_mix( vec3 colA, vec3 colB, float h )\n{\n    // https://www.shadertoy.com/view/ttcyRS\n    // https://bottosson.github.io/posts/oklab\n    const mat3 kCONEtoLMS = mat3(\n         0.4121656120,  0.2118591070,  0.0883097947,\n         0.5362752080,  0.6807189584,  0.2818474174,\n         0.0514575653,  0.1074065790,  0.6302613616);\n    const mat3 kLMStoCONE = mat3(\n         4.0767245293, -1.2681437731, -0.0041119885,\n        -3.3072168827,  2.6093323231, -0.7034763098,\n         0.2307590544, -0.3411344290,  1.7068625689);\n\n    // rgb to cone (arg of pow can't be negative)\n    vec3 lmsA = pow( kCONEtoLMS*colA, vec3(1.0/3.0) );\n    vec3 lmsB = pow( kCONEtoLMS*colB, vec3(1.0/3.0) );\n    // lerp\n    vec3 lms = mix( lmsA, lmsB, h );\n    // gain in the middle (no oaklab anymore, but looks better?)\n    #ifdef OKLABGAIN\n  lms *= 1.0+0.2*h*(1.0-h);\n  #endif\n    // cone to rgb\n    return kLMStoCONE*(lms*lms*lms);\n}\n\n\nvoid main()\n{\n    vec4 base=texture(tex,texCoord);\n    vec4 col;\n    float ax=texCoord.x;\n\n    #ifdef GRAD_Y\n        ax=texCoord.y;\n    #endif\n    #ifdef GRAD_XY\n        ax=(texCoord.x+texCoord.y)/2.0;\n    #endif\n    #ifdef GRAD_RADIAL\n        ax=distance(texCoord,vec2(0.5,0.5))*2.0;\n    #endif\n\n    ax=((ax-0.5)*width)+0.5;\nax=clamp(ax,0.0,1.0);\n\n    #ifndef GRAD_SMOOTHSTEP\n        if(ax<=pos) col = vec4(MIXER(colA, colB, ax*1.0/pos),1.0);\n        else col = vec4(MIXER(colB, colC, min(1.0,(ax-pos)*1.0/(1.0-pos))),1.0);\n    #endif\n\n    #ifdef GRAD_SMOOTHSTEP\n        if(ax<=pos) col = vec4(MIXER(colA, colB, smoothstep(0.0,1.0,ax*1.0/pos)),1.0);\n        else col = vec4(MIXER(colB, colC, smoothstep(0.0,1.0,min(1.0,(ax-pos)*1.0/(1.0-pos)))),1.0);\n    #endif\n\n    #ifdef SRGB\n        col.rgb=lin2srgb(col.rgb);\n    #endif\n\n    outColor=cgl_blendPixel(base,col,amount);\n}",};
+const
+    render = op.inTrigger("Render"),
+    blendMode = CGL.TextureEffect.AddBlendSelect(op, "Blend Mode", "normal"),
+    maskAlpha = CGL.TextureEffect.AddBlendAlphaMask(op),
+    amount = op.inValueSlider("Amount", 1),
+    width = op.inValue("Width", 1),
+    gType = op.inSwitch("Type", ["X", "Y", "XY", "Radial"], "X"),
+    pos1 = op.inValueSlider("Pos", 0.5),
+    smoothStep = op.inValueBool("Smoothstep", true),
+    inSrgb = op.inValueBool("sRGB", false),
+    inColSpace = op.inSwitch("color space", ["RGB", "Oklab", "OklabG"], "RGB"),
+
+    r = op.inValueSlider("r", Math.random()),
+    g = op.inValueSlider("g", Math.random()),
+    b = op.inValueSlider("b", Math.random()),
+
+    r2 = op.inValueSlider("r2", Math.random()),
+    g2 = op.inValueSlider("g2", Math.random()),
+    b2 = op.inValueSlider("b2", Math.random()),
+
+    r3 = op.inValueSlider("r3", Math.random()),
+    g3 = op.inValueSlider("g3", Math.random()),
+    b3 = op.inValueSlider("b3", Math.random()),
+
+    randomize = op.inTriggerButton("Randomize"),
+    next = op.outTrigger("Next");
+
+r.setUiAttribs({ "colorPick": true });
+r2.setUiAttribs({ "colorPick": true });
+r3.setUiAttribs({ "colorPick": true });
+
+op.setPortGroup("Blending", [blendMode, amount]);
+op.setPortGroup("Color A", [r, g, b]);
+op.setPortGroup("Color B", [r2, g2, b2]);
+op.setPortGroup("Color C", [r3, g3, b3]);
+
+const cgl = op.patch.cgl;
+const shader = new CGL.Shader(cgl, "gradient");
+
+shader.setSource(shader.getDefaultVertexShader(), attachments.gradient_frag);
+const amountUniform = new CGL.Uniform(shader, "f", "amount", amount);
+const uniPos = new CGL.Uniform(shader, "f", "pos", pos1);
+const uniWidth = new CGL.Uniform(shader, "f", "width", width);
+const textureUniform = new CGL.Uniform(shader, "t", "tex", 0);
+let r3uniform, r2uniform, runiform;
+
+r2.onChange = g2.onChange = b2.onChange = updateCol2;
+r3.onChange = g3.onChange = b3.onChange = updateCol3;
+r.onChange = g.onChange = b.onChange = updateCol;
+
+r2.onLinkChanged = g2.onLinkChanged = b2.onLinkChanged =
+r3.onLinkChanged = g3.onLinkChanged = b3.onLinkChanged =
+r.onLinkChanged = g.onLinkChanged = b.onLinkChanged = updateUi;
+
+updateCol();
+updateCol2();
+updateCol3();
+updateDefines();
+
+inSrgb.onChange =
+inColSpace.onChange =
+smoothStep.onChange =
+    gType.onChange = updateDefines;
+
+function updateUi()
+{
+    randomize.setUiAttribs({ "greyout": r2.isLinked() || g2.isLinked() || b2.isLinked() || r3.isLinked() || g3.isLinked() || b3.isLinked() || r.isLinked() || g.isLinked() || b.isLinked() });
+}
+
+function updateDefines()
+{
+    // shader.toggleDefine("OKLABGAIN", inoklabGain.get());
+    shader.toggleDefine("SRGB", inSrgb.get());
+
+    shader.define("MIXER", (inColSpace.get() + "").indexOf("Oklab") > -1 ? "oklab_mix" : "mix");
+    shader.toggleDefine("OKLABGAIN", (inColSpace.get() + "").indexOf("OklabG") > -1);
+
+    shader.toggleDefine("GRAD_SMOOTHSTEP", smoothStep.get());
+    shader.toggleDefine("GRAD_X", gType.get() == "X");
+    shader.toggleDefine("GRAD_XY", gType.get() == "XY");
+    shader.toggleDefine("GRAD_Y", gType.get() == "Y");
+    shader.toggleDefine("GRAD_RADIAL", gType.get() == "Radial");
+}
+
+CGL.TextureEffect.setupBlending(op, shader, blendMode, amount, maskAlpha);
+
+randomize.onTriggered = function ()
+{
+    r.set(Math.random());
+    g.set(Math.random());
+    b.set(Math.random());
+
+    r2.set(Math.random());
+    g2.set(Math.random());
+    b2.set(Math.random());
+
+    r3.set(Math.random());
+    g3.set(Math.random());
+    b3.set(Math.random());
+
+    op.refreshParams();
+};
+
+function updateCol()
+{
+    const colA = [r.get(), g.get(), b.get()];
+    if (!runiform) runiform = new CGL.Uniform(shader, "3f", "colA", colA);
+    else runiform.setValue(colA);
+}
+
+function updateCol2()
+{
+    const colB = [r2.get(), g2.get(), b2.get()];
+    if (!r2uniform) r2uniform = new CGL.Uniform(shader, "3f", "colB", colB);
+    else r2uniform.setValue(colB);
+}
+
+function updateCol3()
+{
+    const colC = [r3.get(), g3.get(), b3.get()];
+    if (!r3uniform) r3uniform = new CGL.Uniform(shader, "3f", "colC", colC);
+    else r3uniform.setValue(colC);
+}
+
+render.onTriggered = function ()
+{
+    if (!CGL.TextureEffect.checkOpInEffect(op)) return;
+
+    cgl.pushShader(shader);
+    cgl.currentTextureEffect.bind();
+    cgl.setTexture(0, cgl.currentTextureEffect.getCurrentSourceTexture().tex);
+    cgl.currentTextureEffect.finish();
+    cgl.popShader();
+
+    next.trigger();
+};
+
+
+};
+
+Ops.Gl.ImageCompose.Gradient_v2.prototype = new CABLES.Op();
+CABLES.OPS["c8a9408a-75e5-481f-99a7-6aa7ca88bebc"]={f:Ops.Gl.ImageCompose.Gradient_v2,objName:"Ops.Gl.ImageCompose.Gradient_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.ImageCompose.ImageCompose_v4
+// 
+// **************************************************************
+
+Ops.Gl.ImageCompose.ImageCompose_v4 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"imgcomp_frag":"IN vec2 texCoord;\nUNI vec4 bgColor;\nUNI sampler2D tex;\n#ifdef USE_UVTEX\nUNI sampler2D UVTex;\n#endif\n\nvoid main()\n{\n\n    #ifndef USE_TEX\n        outColor=bgColor;\n    #endif\n    #ifdef USE_TEX\n        #ifndef USE_UVTEX\n        outColor=texture(tex,texCoord);\n        #else\n        outColor=texture(tex,texture(UVTex,texCoord).xy);\n        #endif\n    #endif\n\n\n\n}\n",};
+const
+    cgl = op.patch.cgl,
+    render = op.inTrigger("Render"),
+    inTex = op.inTexture("Base Texture"),
+    inUVTex = op.inTexture("UV Texture"),
+    inSize = op.inSwitch("Size", ["Auto", "Canvas", "Manual"], "Auto"),
+    width = op.inValueInt("Width", 640),
+    height = op.inValueInt("Height", 480),
+    inFilter = op.inSwitch("Filter", ["nearest", "linear", "mipmap"], "linear"),
+    inWrap = op.inValueSelect("Wrap", ["clamp to edge", "repeat", "mirrored repeat"], "repeat"),
+    aniso = op.inSwitch("Anisotropic", ["0", "1", "2", "4", "8", "16"], "0"),
+
+    inPixelFormat = op.inDropDown("Pixel Format", CGL.Texture.PIXELFORMATS, CGL.Texture.PFORMATSTR_RGBA8UB),
+
+    inClear = op.inBool("Clear", true),
+    r = op.inValueSlider("R", 0),
+    g = op.inValueSlider("G", 0),
+    b = op.inValueSlider("B", 0),
+    a = op.inValueSlider("A", 0),
+
+    trigger = op.outTrigger("Next"),
+    texOut = op.outTexture("texture_out", CGL.Texture.getEmptyTexture(cgl)),
+    outRatio = op.outNumber("Aspect Ratio"),
+    outWidth = op.outNumber("Texture Width"),
+    outHeight = op.outNumber("Texture Height");
+
+op.setPortGroup("Texture Size", [inSize, width, height]);
+op.setPortGroup("Texture Parameters", [inWrap, aniso, inFilter, inPixelFormat]);
+
+r.setUiAttribs({ "colorPick": true });
+op.setPortGroup("Color", [r, g, b, a, inClear]);
+
+op.toWorkPortsNeedToBeLinked(render);
+
+const prevViewPort = [0, 0, 0, 0];
+let effect = null;
+let tex = null;
+let reInitEffect = true;
+let isFloatTex = false;
+let copyShader = null;
+let copyShaderTexUni = null;
+let copyShaderUVTexUni = null;
+let copyShaderRGBAUni = null;
+
+inWrap.onChange =
+inFilter.onChange =
+aniso.onChange =
+inPixelFormat.onChange = reInitLater;
+
+inTex.onLinkChanged =
+inClear.onChange =
+    inSize.onChange =
+    inUVTex.onChange = updateUi;
+
+render.onTriggered =
+    op.preRender = doRender;
+
+updateUi();
+
+function initEffect()
+{
+    if (effect)effect.delete();
+    if (tex)tex.delete();
+    tex = null;
+    effect = new CGL.TextureEffect(cgl, { "isFloatingPointTexture": CGL.Texture.isPixelFormatFloat(inPixelFormat.get()), "name": op.name });
+
+    const cgl_aniso = Math.min(cgl.maxAnisotropic, parseFloat(aniso.get()));
+
+    tex = new CGL.Texture(cgl,
+        {
+            "anisotropic": cgl_aniso,
+            "name": "image_compose_v2_" + op.id,
+            "pixelFormat": inPixelFormat.get(),
+            "filter": getFilter(),
+            "wrap": getWrap(),
+            "width": getWidth(),
+            "height": getHeight()
+        });
+
+    effect.setSourceTexture(tex);
+
+    outWidth.set(getWidth());
+    outHeight.set(getHeight());
+    outRatio.set(getWidth() / getHeight());
+
+    texOut.set(CGL.Texture.getEmptyTexture(cgl));
+
+    reInitEffect = false;
+    updateUi();
+}
+
+function getFilter()
+{
+    if (inFilter.get() == "nearest") return CGL.Texture.FILTER_NEAREST;
+    else if (inFilter.get() == "linear") return CGL.Texture.FILTER_LINEAR;
+    else if (inFilter.get() == "mipmap") return CGL.Texture.FILTER_MIPMAP;
+}
+
+function getWrap()
+{
+    if (inWrap.get() == "repeat") return CGL.Texture.WRAP_REPEAT;
+    else if (inWrap.get() == "mirrored repeat") return CGL.Texture.WRAP_MIRRORED_REPEAT;
+    else if (inWrap.get() == "clamp to edge") return CGL.Texture.WRAP_CLAMP_TO_EDGE;
+}
+
+function getWidth()
+{
+    let x = 0;
+    if (inTex.get() && inSize.get() == "Auto") x = inTex.get().width;
+    else if (inSize.get() == "Auto" || inSize.get() == "Canvas") x = cgl.canvasWidth;
+    else if (inSize.get() == "ViewPort") x = cgl.getViewPort()[2];
+    else x = Math.ceil(width.get());
+    return op.patch.cgl.checkTextureSize(x);
+}
+
+function getHeight()
+{
+    let x = 0;
+
+    if (inTex.get() && inSize.get() == "Auto") x = inTex.get().height;
+    else if (inSize.get() == "Auto" || inSize.get() == "Canvas") x = cgl.canvasHeight;
+    else if (inSize.get() == "ViewPort") x = cgl.getViewPort()[3];
+    else x = Math.ceil(height.get());
+    return op.patch.cgl.checkTextureSize(x);
+}
+
+function reInitLater()
+{
+    reInitEffect = true;
+}
+
+function updateResolution()
+{
+    if ((
+        getWidth() != tex.width ||
+        getHeight() != tex.height ||
+        // tex.anisotropic != parseFloat(aniso.get()) ||
+        // tex.isFloatingPoint() != CGL.Texture.isPixelFormatFloat(inPixelFormat.get()) ||
+        tex.pixelFormat != inPixelFormat.get() ||
+        tex.filter != getFilter() ||
+        tex.wrap != getWrap()
+    ) && (getWidth() !== 0 && getHeight() !== 0))
+    {
+        initEffect();
+        effect.setSourceTexture(tex);
+        texOut.set(CGL.Texture.getEmptyTexture(cgl));
+        texOut.set(tex);
+        updateResolutionInfo();
+        checkTypes();
+    }
+}
+
+function updateResolutionInfo()
+{
+    let info = null;
+
+    if (inSize.get() == "Manual")
+    {
+        info = null;
+    }
+    else if (inSize.get() == "Auto")
+    {
+        if (inTex.get()) info = "Input Texture";
+        else info = "Canvas Size";
+
+        info += ": " + getWidth() + " x " + getHeight();
+    }
+
+    let changed = false;
+    changed = inSize.uiAttribs.info != info;
+    inSize.setUiAttribs({ "info": info });
+    if (changed)op.refreshParams();
+}
+
+function updateDefines()
+{
+    if (copyShader)copyShader.toggleDefine("USE_TEX", inTex.isLinked() || !inClear.get());
+    if (copyShader)copyShader.toggleDefine("USE_UVTEX", inUVTex.isLinked());
+}
+
+function updateUi()
+{
+    aniso.setUiAttribs({ "greyout": getFilter() != CGL.Texture.FILTER_MIPMAP });
+
+    r.setUiAttribs({ "greyout": inTex.isLinked() });
+    b.setUiAttribs({ "greyout": inTex.isLinked() });
+    g.setUiAttribs({ "greyout": inTex.isLinked() });
+    a.setUiAttribs({ "greyout": inTex.isLinked() });
+
+    inClear.setUiAttribs({ "greyout": inTex.isLinked() });
+    width.setUiAttribs({ "greyout": inSize.get() != "Manual" });
+    height.setUiAttribs({ "greyout": inSize.get() != "Manual" });
+
+    // width.setUiAttribs({ "hideParam": inSize.get() != "Manual" });
+    // height.setUiAttribs({ "hideParam": inSize.get() != "Manual" });
+
+    if (tex)
+        if (CGL.Texture.isPixelFormatFloat(inPixelFormat.get()) && getFilter() == CGL.Texture.FILTER_MIPMAP) op.setUiError("fpmipmap", "Don't use mipmap and 32bit at the same time, many systems do not support this.");
+        else op.setUiError("fpmipmap", null);
+
+    updateResolutionInfo();
+    updateDefines();
+    checkTypes();
+}
+
+function checkTypes()
+{
+    if (tex)
+        if (inTex.isLinked() && inTex.get() && (tex.isFloatingPoint() != inTex.get().isFloatingPoint()))
+            op.setUiError("textypediff", "Warning: Mixing floating point and non floating point texture can result in data/precision loss", 1);
+        else
+            op.setUiError("textypediff", null);
+}
+
+op.preRender = () =>
+{
+    doRender();
+};
+
+function copyTexture()
+{
+    if (!copyShader)
+    {
+        copyShader = new CGL.Shader(cgl, "copytextureshader");
+        copyShader.setSource(copyShader.getDefaultVertexShader(), attachments.imgcomp_frag);
+        copyShaderTexUni = new CGL.Uniform(copyShader, "t", "tex", 0);
+        copyShaderUVTexUni = new CGL.Uniform(copyShader, "t", "UVTex", 1);
+        copyShaderRGBAUni = new CGL.Uniform(copyShader, "4f", "bgColor", r, g, b, a);
+        updateDefines();
+    }
+
+    cgl.pushShader(copyShader);
+    cgl.currentTextureEffect.bind();
+
+    if (inTex.get()) cgl.setTexture(0, inTex.get().tex);
+    else if (!inClear.get() && texOut.get()) cgl.setTexture(0, texOut.get().tex);
+    if (inUVTex.get()) cgl.setTexture(1, inUVTex.get().tex);
+
+    cgl.currentTextureEffect.finish();
+    cgl.popShader();
+}
+
+function doRender()
+{
+    if (!effect || reInitEffect) initEffect();
+
+    cgl.pushBlend(false);
+
+    updateResolution();
+
+    const oldEffect = cgl.currentTextureEffect;
+    cgl.currentTextureEffect = effect;
+    cgl.currentTextureEffect.imgCompVer = 3;
+    cgl.currentTextureEffect.width = width.get();
+    cgl.currentTextureEffect.height = height.get();
+    effect.setSourceTexture(tex);
+
+    effect.startEffect(inTex.get() || CGL.Texture.getEmptyTexture(cgl, isFloatTex), true);
+    copyTexture();
+
+    trigger.trigger();
+
+    cgl.pushViewPort(0, 0, width.get(), height.get());
+
+    effect.endEffect();
+    texOut.setRef(effect.getCurrentSourceTexture());
+
+    cgl.popViewPort();
+
+    cgl.popBlend();
+    cgl.currentTextureEffect = oldEffect;
+}
+
+
+};
+
+Ops.Gl.ImageCompose.ImageCompose_v4.prototype = new CABLES.Op();
+CABLES.OPS["17212e2b-d692-464c-8f8d-2d511dd3410a"]={f:Ops.Gl.ImageCompose.ImageCompose_v4,objName:"Ops.Gl.ImageCompose.ImageCompose_v4"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Anim.Bang
+// 
+// **************************************************************
+
+Ops.Anim.Bang = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inUpdate = op.inTrigger("update"),
+    inBang = op.inTriggerButton("Bang"),
+    inDuration = op.inValue("Duration", 0.1),
+    invert = op.inBool("Invert", false),
+    outTrigger = op.outTrigger("Trigger Out"),
+    outValue = op.outNumber("Value");
+
+const anim = new CABLES.Anim();
+let startTime = CABLES.now();
+op.toWorkPortsNeedToBeLinked(inUpdate);
+
+let needsReset = false;
+
+inBang.onTriggered = function ()
+{
+    needsReset = true;
+};
+
+inUpdate.onTriggered = function ()
+{
+    if (needsReset)
+    {
+        startTime = CABLES.now();
+        anim.clear();
+        anim.setValue(0, 1);
+        anim.setValue(inDuration.get(), 0);
+        needsReset = false;
+    }
+
+    const elapsed = (CABLES.now() - startTime) / 1000;
+    if (elapsed <= inDuration.get())
+    {
+        const v = anim.getValue(elapsed);
+        if (invert.get()) outValue.set(1.0 - v);
+        else outValue.set(v);
+    }
+    else
+    {
+        if (invert.get())
+        {
+            outValue.set(1.0);
+        }
+        else
+        {
+            outValue.set(0);
+        }
+    }
+
+    outTrigger.trigger();
+};
+
+
+};
+
+Ops.Anim.Bang.prototype = new CABLES.Op();
+CABLES.OPS["92ca45a7-5b4b-4238-956e-23d79bdc659f"]={f:Ops.Anim.Bang,objName:"Ops.Anim.Bang"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Array.ArrayGetString
+// 
+// **************************************************************
+
+Ops.Array.ArrayGetString = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    array = op.inArray("array"),
+    index = op.inValueInt("index"),
+    result = op.outString("result");
+
+array.ignoreValueSerialize = true;
+
+index.onChange = update;
+
+array.onChange = function ()
+{
+    update();
+};
+
+function update()
+{
+    const arr = array.get();
+    if (arr) result.set(arr[index.get()]);
+}
+
+
+};
+
+Ops.Array.ArrayGetString.prototype = new CABLES.Op();
+CABLES.OPS["be8f16c0-0c8a-48a2-a92b-45dbf88c76c1"]={f:Ops.Array.ArrayGetString,objName:"Ops.Array.ArrayGetString"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Array.StringToArray_v2
+// 
+// **************************************************************
+
+Ops.Array.StringToArray_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const text = op.inStringEditor("text", "1,2,3"),
+    separator = op.inString("separator", ","),
+    toNumber = op.inValueBool("Numbers", true),
+    trim = op.inValueBool("Trim", true),
+    splitNewLines = op.inBool("Split Lines", false),
+    arr = op.outArray("array"),
+    parsed = op.outTrigger("Parsed"),
+    len = op.outNumber("length");
+
+text.setUiAttribs({ "ignoreBigPort": true });
+
+text.onChange = separator.onChange = toNumber.onChange = trim.onChange = parse;
+
+splitNewLines.onChange = () =>
+{
+    separator.setUiAttribs({ "greyout": splitNewLines.get() });
+    parse();
+};
+
+parse();
+
+function parse()
+{
+    if (!text.get())
+    {
+        arr.set(null);
+        arr.set([]);
+        len.set(0);
+        return;
+    }
+
+    let textInput = text.get();
+    if (trim.get() && textInput)
+    {
+        textInput = textInput.replace(/^\s+|\s+$/g, "");
+        textInput = textInput.trim();
+    }
+
+    let r;
+    let sep = separator.get();
+    if (separator.get() === "\\n") sep = "\n";
+    if (splitNewLines.get()) r = textInput.split("\n");
+    else r = textInput.split(sep);
+
+    if (r[r.length - 1] === "") r.length -= 1;
+
+    len.set(r.length);
+
+    if (trim.get())
+    {
+        for (let i = 0; i < r.length; i++)
+        {
+            r[i] = r[i].replace(/^\s+|\s+$/g, "");
+            r[i] = r[i].trim();
+        }
+    }
+
+    op.setUiError("notnum", null);
+    if (toNumber.get())
+    {
+        let hasStrings = false;
+        for (let i = 0; i < r.length; i++)
+        {
+            r[i] = Number(r[i]);
+            if (!CABLES.UTILS.isNumeric(r[i]))
+            {
+                hasStrings = true;
+            }
+        }
+        if (hasStrings)
+        {
+            op.setUiError("notnum", "Parse Error / Not all values numerical!", 1);
+        }
+    }
+
+    arr.setRef(r);
+    parsed.trigger();
+}
+
+
+};
+
+Ops.Array.StringToArray_v2.prototype = new CABLES.Op();
+CABLES.OPS["c974de41-4ce4-4432-b94d-724741109c71"]={f:Ops.Array.StringToArray_v2,objName:"Ops.Array.StringToArray_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Array.RandomNumbersArray_v4
+// 
+// **************************************************************
+
+Ops.Array.RandomNumbersArray_v4 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    numValues = op.inValueInt("Num Values", 100),
+    inModeSwitch = op.inSwitch("Mode", ["A", "AB", "ABC", "ABCD"], "A"),
+    inSeed = op.inValueFloat("Random Seed ", 0),
+    inInteger = op.inBool("Integer", false),
+    inClosed = op.inValueBool("Last == First"),
+    outValues = op.outArray("Array Out"),
+    outTotalPoints = op.outNumber("Chunks Amount"),
+    outArrayLength = op.outNumber("Array length");
+
+const letters = ["A", "B", "C", "D"];
+const arr = [];
+
+const inArray = letters.map(function (value)
+{
+    return {
+        "min": op.inValueFloat("Min " + value, -1),
+        "max": op.inValueFloat("Max " + value, 1),
+    };
+});
+
+for (let i = 0; i < inArray.length; i += 1)
+{
+    const portObj = inArray[i];
+    const keys = Object.keys(portObj);
+
+    op.setPortGroup("Value Range " + letters[i], keys.map(function (key) { return portObj[key]; }));
+
+    if (i > 0) keys.forEach(function (key) { portObj[key].setUiAttribs({ "greyout": true }); });
+}
+
+inModeSwitch.onChange = function ()
+{
+    const mode = inModeSwitch.get();
+    const modes = inModeSwitch.uiAttribs.values;
+
+    outValues.setUiAttribs({ "stride": inModeSwitch.get().length });
+
+    const index = modes.indexOf(mode);
+
+    inArray.forEach(function (portObj, i)
+    {
+        const keys = Object.keys(portObj);
+        keys.forEach(function (key, j)
+        {
+            if (i <= index) portObj[key].setUiAttribs({ "greyout": false });
+            else portObj[key].setUiAttribs({ "greyout": true });
+        });
+    });
+    init();
+};
+
+outValues.ignoreValueSerialize = true;
+
+inClosed.onChange =
+    numValues.onChange =
+    inSeed.onChange =
+    inInteger.onChange = init;
+
+const minMaxArray = [];
+
+init();
+
+function init()
+{
+    const mode = inModeSwitch.get();
+    const modes = inModeSwitch.uiAttribs.values;
+    const index = modes.indexOf(mode);
+
+    const n = Math.floor(Math.abs(numValues.get()));
+    Math.randomSeed = inSeed.get();
+
+    op.setUiAttrib({ "extendTitle": n + "*" + mode.length });
+
+    const dimension = index + 1;
+    const length = n * dimension;
+
+    arr.length = length;
+    const tupleLength = length / dimension;
+    const isInteger = inInteger.get();
+
+    // optimization: we only need to fetch the max min for each component once
+    for (let i = 0; i < dimension; i += 1)
+    {
+        const portObj = inArray[i];
+        const max = portObj.max.get();
+        const min = portObj.min.get();
+        minMaxArray[i] = [min, max];
+    }
+
+    for (let j = 0; j < tupleLength; j += 1)
+    {
+        for (let k = 0; k < dimension; k += 1)
+        {
+            const min = minMaxArray[k][0];
+            const max = minMaxArray[k][1];
+            const index = j * dimension + k;
+
+            if (isInteger) arr[index] = Math.floor(Math.seededRandom() * ((max + 1) - min) + min);
+            else arr[index] = Math.seededRandom() * (max - min) + min;
+        }
+    }
+
+    if (inClosed.get() && arr.length > dimension)
+    {
+        for (let i = 0; i < dimension; i++)
+            arr[arr.length - 3 + i] = arr[i];
+    }
+
+    outValues.setRef(arr);
+    outTotalPoints.set(arr.length / dimension);
+    outArrayLength.set(arr.length);
+}
+
+// assign change handler
+inArray.forEach(function (obj)
+{
+    Object.keys(obj).forEach(function (key)
+    {
+        const x = obj[key];
+        x.onChange = init;
+    });
+});
+
+
+};
+
+Ops.Array.RandomNumbersArray_v4.prototype = new CABLES.Op();
+CABLES.OPS["8a9fa2c6-c229-49a9-9dc8-247001539217"]={f:Ops.Array.RandomNumbersArray_v4,objName:"Ops.Array.RandomNumbersArray_v4"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.Compare.GreaterThan
+// 
+// **************************************************************
+
+Ops.Math.Compare.GreaterThan = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    number1 = op.inValueFloat("number1"),
+    number2 = op.inValueFloat("number2"),
+    result = op.outBoolNum("result");
+
+op.setUiAttribs({ "mathTitle": true });
+
+number1.onChange = number2.onChange = exec;
+
+function exec()
+{
+    result.set(number1.get() > number2.get());
+}
+
+
+};
+
+Ops.Math.Compare.GreaterThan.prototype = new CABLES.Op();
+CABLES.OPS["b250d606-f7f8-44d3-b099-c29efff2608a"]={f:Ops.Math.Compare.GreaterThan,objName:"Ops.Math.Compare.GreaterThan"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.P4Zknbo.InteractiveRectangle_v2
+// 
+// **************************************************************
+
+Ops.Patch.P4Zknbo.InteractiveRectangle_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("Trigger in"),
+    trigger = op.outTrigger("Trigger out"),
+    width = op.inValue("Width", 1),
+    height = op.inValue("Height", 1),
+    inId = op.inString("ID"),
+    classPort = op.inString("Class"),
+    pivotX = op.inValueSelect("Pivot x", ["center", "left", "right"]),
+    pivotY = op.inValueSelect("Pivot y", ["center", "top", "bottom"]),
+    axis = op.inValueSelect("Axis", ["xy", "xz"]),
+    isInteractive = op.inValueBool("Is Interactive", true),
+    renderRect = op.inValueBool("Render Rectangle", true),
+    divVisible = op.inValueBool("Show Boundings", true),
+    cursorPort = op.inValueSelect("Cursor", ["auto", "crosshair", "pointer", "Hand", "move", "n-resize", "ne-resize", "e-resize", "se-resize", "s-resize", "sw-resize", "w-resize", "nw-resize", "text", "wait", "help", "none"], "pointer"),
+    active = op.inValueBool("Render", true);
+
+const geomOut = op.outObject("geometry");
+geomOut.ignoreValueSerialize = true;
+
+const
+    mouseOver = op.outBoolNum("Pointer Hover", false),
+    mouseDown = op.outBoolNum("Pointer Down", false),
+    outX = op.outNumber("Pointer X"),
+    outY = op.outNumber("Pointer Y"),
+    outTop = op.outNumber("Top"),
+    outLeft = op.outNumber("Left"),
+    outRight = op.outNumber("Right"),
+    outBottom = op.outNumber("Bottom"),
+    mouseClick = op.outTrigger("Left Click");
+
+const elementPort = op.outObject("Dom Element");
+
+active.setUiAttribs({ "title": "Active" });
+
+const cgl = op.patch.cgl;
+axis.set("xy");
+pivotX.set("center");
+pivotY.set("center");
+
+const geom = new CGL.Geometry(op.name);
+let mesh = null;
+let div = null;
+const m = mat4.create();
+const trans = mat4.create();
+const pos = vec3.create();
+const divAlign = vec3.create();
+const divAlignSize = vec3.create();
+
+axis.onChange = rebuild;
+pivotX.onChange = rebuild;
+pivotY.onChange = rebuild;
+width.onChange = rebuild;
+height.onChange = rebuild;
+cursorPort.onChange = updateCursor;
+rebuild();
+
+const modelMatrix = mat4.create();
+const identViewMatrix = mat4.create();
+const zeroVec3 = vec3.create();
+
+render.onTriggered = function ()
+{
+    if (!div)
+    {
+        setUpDiv();
+        addListeners();
+        updateDivVisibility();
+        updateIsInteractive();
+    }
+    updateDivSize();
+
+    if (active.get() && renderRect.get() && mesh) mesh.render(cgl.getShader());
+
+    trigger.trigger();
+};
+
+function rebuild()
+{
+    let w = width.get();
+    let h = height.get();
+    let x = 0;
+    let y = 0;
+
+    if (typeof w == "string")w = parseFloat(w);
+    if (typeof h == "string")h = parseFloat(h);
+
+    if (pivotX.get() == "center")
+    {
+        x = 0;
+        divAlign[0] = -w / 2;
+    }
+    if (pivotX.get() == "right")
+    {
+        x = -w / 2;
+    }
+    if (pivotX.get() == "left")
+    {
+        x = w / 2;
+    }
+
+    if (pivotY.get() == "center")
+    {
+        y = 0;
+        divAlign[1] = -h / 2;
+    }
+    if (pivotY.get() == "top") y = -h / 2;
+    if (pivotY.get() == "bottom") y = +h / 2;
+
+    const verts = [];
+    const tc = [];
+    const norms = [];
+    const indices = [];
+
+    const numRows = 1;
+    const numColumns = 1;
+
+    const stepColumn = w / numColumns;
+    const stepRow = h / numRows;
+
+    let c, r;
+
+    for (r = 0; r <= numRows; r++)
+    {
+        for (c = 0; c <= numColumns; c++)
+        {
+            verts.push(c * stepColumn - width.get() / 2 + x);
+            if (axis.get() == "xz") verts.push(0.0);
+            verts.push(r * stepRow - height.get() / 2 + y);
+            if (axis.get() == "xy") verts.push(0.0);
+
+            tc.push(c / numColumns);
+            tc.push(1.0 - r / numRows);
+
+            if (axis.get() == "xz")
+            {
+                norms.push(0);
+                norms.push(1);
+                norms.push(0);
+            }
+
+            if (axis.get() == "xy")
+            {
+                norms.push(0);
+                norms.push(0);
+                norms.push(-1);
+            }
+        }
+    }
+
+    for (c = 0; c < numColumns; c++)
+    {
+        for (r = 0; r < numRows; r++)
+        {
+            const ind = c + (numColumns + 1) * r;
+            const v1 = ind;
+            const v2 = ind + 1;
+            const v3 = ind + numColumns + 1;
+            const v4 = ind + 1 + numColumns + 1;
+
+            indices.push(v1);
+            indices.push(v3);
+            indices.push(v2);
+
+            indices.push(v2);
+            indices.push(v3);
+            indices.push(v4);
+        }
+    }
+
+    geom.clear();
+    geom.vertices = verts;
+    geom.texCoords = tc;
+    geom.verticesIndices = indices;
+    geom.vertexNormals = norms;
+
+    if (!mesh) mesh = new CGL.Mesh(cgl, geom);
+    else mesh.setGeom(geom);
+
+    geomOut.set(null);
+    geomOut.set(geom);
+}
+
+let divX = 0;
+let divY = 0;
+let divWidth = 0;
+let divHeight = 0;
+
+const mMatrix = mat4.create();
+divVisible.onChange = updateDivVisibility;
+inId.onChange = updateId;
+classPort.onChange = updateClassNames;
+
+function updateDivVisibility()
+{
+    if (div)
+    {
+        if (divVisible.get()) div.style.border = "1px solid red";
+        else div.style.border = "none";
+    }
+}
+
+function updateCursor()
+{
+    if (div)
+    {
+        div.style.cursor = cursorPort.get();
+    }
+}
+
+function updateId()
+{
+    if (div)
+    {
+        div.setAttribute("id", inId.get());
+    }
+}
+
+function updateDivSize()
+{
+    // var vp=cgl.getViewPort();
+
+    mat4.multiply(mMatrix, cgl.vMatrix, cgl.mMatrix);
+    vec3.transformMat4(pos, divAlign, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const top = cgl.canvas.styleMarginTop || 0;
+    const left = cgl.canvas.styleMarginLeft || 0;
+
+    const x1 = (trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2 + left;
+    const y1 = (trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top;
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1];
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x2 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y2 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0];
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x3 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y3 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x4 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y4 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divX = Math.min(x1, x2, x3, x4);
+    divY = Math.min(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    const xb = Math.max(x1, x2, x3, x4);
+    const yb = Math.max(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    outTop.set(divY);
+    outLeft.set(divX);
+    outRight.set(xb);
+    outBottom.set(yb);
+
+    divWidth = Math.abs(xb - divX);
+    divHeight = Math.abs(yb - divY);
+
+    divX /= op.patch.cgl.pixelDensity;
+    divY /= op.patch.cgl.pixelDensity;
+    divWidth /= op.patch.cgl.pixelDensity;
+    divHeight /= op.patch.cgl.pixelDensity;
+
+    // div.style.left=divX+'px';
+    // div.style.top=divY+'px';
+    // div.style.width=divWidth+'px';
+    // div.style.height=divHeight+'px';
+
+    const divXpx = divX + "px";
+    const divYpx = divY + "px";
+    const divWidthPx = divWidth + "px";
+    const divHeightPx = divHeight + "px";
+    if (divXpx != div.style.left) div.style.left = divXpx;
+    if (divYpx != div.style.top) div.style.top = divYpx;
+    if (div.style.width != divWidthPx) div.style.width = divWidthPx;
+    if (div.style.height != divHeightPx) div.style.height = divHeightPx;
+}
+
+function updateClassNames()
+{
+    if (div)
+    {
+        div.className = classPort.get();
+    }
+}
+
+op.onDelete = function ()
+{
+    if (div)div.remove();
+};
+
+function setUpDiv()
+{
+    if (!div)
+    {
+        div = document.createElement("div");
+        div.dataset.op = op.id;
+        div.oncontextmenu = function (e)
+        {
+            e.preventDefault();
+        };
+
+        div.style.padding = "0px";
+        div.style.position = "absolute";
+        div.style["box-sizing"] = "border-box";
+        div.style.border = "1px solid red";
+        // div.style['border-left']="1px solid blue";
+        // div.style['border-top']="1px solid green";
+        div.style["z-index"] = "500";
+
+        div.style["-webkit-user-select"] = "none";
+        div.style["user-select"] = "none";
+        div.style["-webkit-tap-highlight-color"] = "rgba(0,0,0,0)";
+        div.style["-webkit-touch-callout"] = "none";
+
+        const canvas = op.patch.cgl.canvas.parentElement;
+        canvas.appendChild(div);
+        updateCursor();
+        updateIsInteractive();
+        updateId();
+        updateClassNames();
+    }
+    updateDivSize();
+    elementPort.set(div);
+}
+
+let listenerElement = null;
+
+function onMouseMove(e)
+{
+    const offsetX = -width.get() / 2;
+    const offsetY = -height.get() / 2;
+
+    outX.set(Math.max(0.0, Math.min(1.0, e.offsetX / divWidth)));
+    outY.set(Math.max(0.0, Math.min(1.0, 1.0 - e.offsetY / divHeight)));
+}
+
+function onMouseLeave(e)
+{
+    mouseDown.set(false);
+    mouseOver.set(false);
+}
+
+function onMouseEnter(e)
+{
+    mouseOver.set(true);
+}
+
+function onMouseDown(e)
+{
+    mouseDown.set(true);
+}
+
+function onMouseUp(e)
+{
+    mouseDown.set(false);
+}
+
+function onmouseclick(e)
+{
+    mouseClick.trigger();
+}
+
+function onTouchMove(e)
+{
+    const targetEle = document.elementFromPoint(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
+
+    if (targetEle == div)
+    {
+        mouseOver.set(true);
+        if (e.touches && e.touches.length > 0)
+        {
+            const rect = div.getBoundingClientRect(); // e.target
+            const x = e.targetTouches[0].pageX - rect.left;
+            const y = e.targetTouches[0].pageY - rect.top;
+
+            const touch = e.touches[0];
+
+            outX.set(Math.max(0.0, Math.min(1.0, x / divWidth)));
+            outY.set(Math.max(0.0, Math.min(1.0, 1.0 - y / divHeight)));
+
+            onMouseMove(touch);
+        }
+    }
+    else
+    {
+        mouseOver.set(false);
+    }
+}
+
+active.onChange = updateActiveRender;
+function updateActiveRender()
+{
+    if (active.get())
+    {
+        addListeners();
+        if (div) div.style.display = "block";
+    }
+    else
+    {
+        removeListeners();
+        if (div) div.style.display = "none";
+    }
+}
+
+isInteractive.onChange = updateIsInteractive;
+function updateIsInteractive()
+{
+    if (isInteractive.get())
+    {
+        addListeners();
+        if (div)div.style["pointer-events"] = "initial";
+    }
+    else
+    {
+        removeListeners();
+        mouseDown.set(false);
+        mouseOver.set(false);
+        if (div)div.style["pointer-events"] = "none";
+    }
+}
+
+function removeListeners()
+{
+    if (listenerElement)
+    {
+        document.removeEventListener("touchmove", onTouchMove);
+        listenerElement.removeEventListener("touchend", onMouseUp);
+        listenerElement.removeEventListener("touchstart", onMouseDown);
+
+        listenerElement.removeEventListener("click", onmouseclick);
+        listenerElement.removeEventListener("mousemove", onMouseMove);
+        listenerElement.removeEventListener("mouseleave", onMouseLeave);
+        listenerElement.removeEventListener("mousedown", onMouseDown);
+        listenerElement.removeEventListener("mouseup", onMouseUp);
+        listenerElement.removeEventListener("mouseenter", onMouseEnter);
+        // listenerElement.removeEventListener('contextmenu', onClickRight);
+        listenerElement = null;
+    }
+}
+
+function addListeners()
+{
+    if (listenerElement)removeListeners();
+
+    listenerElement = div;
+
+    if (listenerElement)
+    {
+        document.addEventListener("touchmove", onTouchMove);
+        listenerElement.addEventListener("touchend", onMouseUp);
+        listenerElement.addEventListener("touchstart", onMouseDown);
+
+        listenerElement.addEventListener("click", onmouseclick);
+        listenerElement.addEventListener("mousemove", onMouseMove);
+        listenerElement.addEventListener("mouseleave", onMouseLeave);
+        listenerElement.addEventListener("mousedown", onMouseDown);
+        listenerElement.addEventListener("mouseup", onMouseUp);
+        listenerElement.addEventListener("mouseenter", onMouseEnter);
+        // listenerElement.addEventListener('contextmenu', onClickRight);
+    }
+}
+
+
+};
+
+Ops.Patch.P4Zknbo.InteractiveRectangle_v2.prototype = new CABLES.Op();
+CABLES.OPS["0e42dbb3-a8c2-4321-89ca-d545645dce5b"]={f:Ops.Patch.P4Zknbo.InteractiveRectangle_v2,objName:"Ops.Patch.P4Zknbo.InteractiveRectangle_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.Incrementor
+// 
+// **************************************************************
+
+Ops.Math.Incrementor = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    increment = op.inTriggerButton("Increment"),
+    decrement = op.inTriggerButton("Decrement"),
+    inLimit = op.inBool("Limit", false),
+    inLength = op.inValueInt("Length"),
+    inMode = op.inSwitch("Mode", ["Rewind", "Stop at Max"], "Rewind"),
+    inDefault = op.inValueInt("Default", 0),
+    reset = op.inTriggerButton("Reset"),
+    outChanged = op.outTrigger("Changed"),
+    value = op.outNumber("Value"),
+    outRestarted = op.outTrigger("Restarted");
+
+const MODE_REWIND = 0;
+const MODE_STOP = 1;
+value.ignoreValueSerialize = true;
+inLength.set(10);
+let val = 0;
+let mode = MODE_REWIND;
+value.set(0);
+
+inLength.onTriggered = reset;
+inDefault.onChange = doReset;
+reset.onTriggered = doReset;
+inLimit.onChange = updateUi;
+
+updateUi();
+
+inMode.onChange = () =>
+{
+    if (inMode.get() == "Rewind")
+    {
+        mode = MODE_REWIND;
+    }
+    if (inMode.get() == "Stop at Max")
+    {
+        mode = MODE_STOP;
+    }
+};
+
+function updateUi()
+{
+    inLength.setUiAttribs({ "greyout": !inLimit.get() });
+    inMode.setUiAttribs({ "greyout": !inLimit.get() });
+}
+
+function doReset()
+{
+    value.set(null);
+    val = inDefault.get();
+    value.set(val);
+    outRestarted.trigger();
+}
+
+decrement.onTriggered = function ()
+{
+    val--;
+    if (inLimit.get())
+    {
+        if (mode == MODE_REWIND && val < 0)val = inLength.get() - 1;
+        if (mode == MODE_STOP && val < 0)val = 0;
+    }
+    value.set(val);
+
+    outChanged.trigger();
+};
+
+increment.onTriggered = function ()
+{
+    val++;
+    if (inLimit.get())
+    {
+        if (mode == MODE_REWIND && val >= inLength.get())
+        {
+            val = 0;
+            outRestarted.trigger();
+        }
+        if (mode == MODE_STOP && val >= inLength.get())val = inLength.get() - 1;
+    }
+
+    value.set(val);
+
+    outChanged.trigger();
+};
+
+
+};
+
+Ops.Math.Incrementor.prototype = new CABLES.Op();
+CABLES.OPS["45cc0011-ada8-4423-8f5b-39a3810b8389"]={f:Ops.Math.Incrementor,objName:"Ops.Math.Incrementor"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.MathExpression
+// 
+// **************************************************************
+
+Ops.Math.MathExpression = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const inA = op.inFloat("A", 0);
+const inB = op.inFloat("B", 1);
+const inC = op.inFloat("C", 2);
+const inD = op.inFloat("D", 3);
+op.setPortGroup("Parameters", [inA, inB, inC, inD]);
+const inExpression = op.inString("Expression", "a*(b+c+d)");
+op.setPortGroup("Expression", [inExpression]);
+const outResult = op.outNumber("Result");
+const outExpressionIsValid = op.outBool("Expression Valid");
+
+let currentFunction = inExpression.get();
+let functionValid = false;
+
+const createFunction = () =>
+{
+    try
+    {
+        currentFunction = new Function("m", "a", "b", "c", "d", `with(m) { return ${inExpression.get()} }`);
+        functionValid = true;
+        evaluateFunction();
+        outExpressionIsValid.set(functionValid);
+    }
+    catch (e)
+    {
+        functionValid = false;
+        outExpressionIsValid.set(functionValid);
+        if (e instanceof ReferenceError || e instanceof SyntaxError) return;
+    }
+};
+
+const evaluateFunction = () =>
+{
+    if (functionValid)
+    {
+        outResult.set(currentFunction(Math, inA.get(), inB.get(), inC.get(), inD.get()));
+        if (!inExpression.get()) outResult.set(0);
+    }
+
+    outExpressionIsValid.set(functionValid);
+};
+
+
+inA.onChange = inB.onChange = inC.onChange = inD.onChange = evaluateFunction;
+inExpression.onChange = createFunction;
+createFunction();
+
+
+};
+
+Ops.Math.MathExpression.prototype = new CABLES.Op();
+CABLES.OPS["d2343a1e-64ea-45b2-99ed-46e167bbdcd3"]={f:Ops.Math.MathExpression,objName:"Ops.Math.MathExpression"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.Modulo
+// 
+// **************************************************************
+
+Ops.Math.Modulo = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    number1 = op.inValueFloat("number1", 1),
+    number2 = op.inValueFloat("number2", 2),
+    pingpong = op.inValueBool("pingpong"),
+    result = op.outNumber("result");
+
+let calculateFunction = calculateModule;
+
+number1.onChange =
+number2.onChange = exec;
+
+pingpong.onChange = updatePingPong;
+
+exec();
+
+function exec()
+{
+    let n2 = number2.get();
+    let n1 = number1.get();
+
+    result.set(calculateFunction(n1, n2));
+}
+
+function calculateModule(n1, n2)
+{
+    let re = ((n1 % n2) + n2) % n2;
+    if (re != re) re = 0;
+    return re;
+}
+
+function calculatePingPong(i, n)
+{
+    let cycle = 2 * n;
+    i %= cycle;
+    if (i >= n) return cycle - i;
+    else return i;
+}
+
+function updatePingPong()
+{
+    if (pingpong.get()) calculateFunction = calculatePingPong;
+    else calculateFunction = calculateModule;
+}
+
+
+};
+
+Ops.Math.Modulo.prototype = new CABLES.Op();
+CABLES.OPS["ebc13b25-3705-4265-8f06-5f985b6a7bb1"]={f:Ops.Math.Modulo,objName:"Ops.Math.Modulo"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Boolean.IfFalseThen
+// 
+// **************************************************************
+
+Ops.Boolean.IfFalseThen = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    exe = op.inTrigger("Exe"),
+    boolean = op.inValueBool("Boolean", false),
+    triggerThen = op.outTrigger("then"),
+    triggerElse = op.outTrigger("else");
+
+boolean.onChange = execBool;
+exe.onTriggered = exec;
+
+function execBool()
+{
+    if (exe.isLinked()) return;
+    exec();
+}
+
+function exec()
+{
+    if (!boolean.get()) triggerThen.trigger();
+    else triggerElse.trigger();
+}
+
+
+};
+
+Ops.Boolean.IfFalseThen.prototype = new CABLES.Op();
+CABLES.OPS["91cf65f1-94ac-423f-a536-af71eed08440"]={f:Ops.Boolean.IfFalseThen,objName:"Ops.Boolean.IfFalseThen"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Boolean.MonoFlop
+// 
+// **************************************************************
+
+Ops.Boolean.MonoFlop = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    trigger = op.inTriggerButton("Trigger"),
+    duration = op.inValue("Duration", 1),
+    valueTrue = op.inValue("Value True", 1),
+    valueFalse = op.inValue("Value False", 0),
+    resetButton = op.inTriggerButton("Reset"),
+    outAct = op.outTrigger("Activated"),
+    outEnded = op.outTrigger("Ended"),
+    result = op.outBoolNum("Result", false);
+
+let lastTimeout = -1;
+
+resetButton.onTriggered = function ()
+{
+    result.set(valueFalse.get());
+
+    clearTimeout(lastTimeout);
+};
+
+trigger.onTriggered = function ()
+{
+    if (result.get() == valueFalse.get())outAct.trigger();
+    result.set(valueTrue.get());
+
+    clearTimeout(lastTimeout);
+    lastTimeout = setTimeout(function ()
+    {
+        result.set(valueFalse.get());
+        outEnded.trigger();
+    }, duration.get() * 1000);
+};
+
+
+};
+
+Ops.Boolean.MonoFlop.prototype = new CABLES.Op();
+CABLES.OPS["3a4b0a78-4172-41c7-8248-95cb0856ecc8"]={f:Ops.Boolean.MonoFlop,objName:"Ops.Boolean.MonoFlop"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.Meshes.Torus_v3
+// 
+// **************************************************************
+
+Ops.Gl.Meshes.Torus_v3 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("render"),
+    sides = op.inValue("sides", 32),
+    rings = op.inValue("rings", 32),
+    innerRadius = op.inValue("innerRadius", 0.25),
+    outerRadius = op.inValue("outerRadius", 0.5),
+    indraw = op.inBool("Draw", true),
+    trigger = op.outTrigger("trigger"),
+    geomOut = op.outObject("geometry");
+
+indraw.setUiAttribs({ "title": "Render mesh" });
+
+const UP = vec3.fromValues(0, 1, 0), RIGHT = vec3.fromValues(1, 0, 0);
+let tmpNormal = vec3.create(), tmpVec = vec3.create();
+
+geomOut.ignoreValueSerialize = true;
+
+let cgl = op.patch.cg || op.patch.cgl;
+let mesh = null;
+let geom = null;
+let j = 0, i = 0, idx = 0;
+let needsUpdate = true;
+
+rings.onChange =
+sides.onChange =
+innerRadius.onChange =
+outerRadius.onChange = function ()
+{
+    needsUpdate = true;
+};
+
+render.onTriggered = function ()
+{
+    if (needsUpdate) updateMesh();
+    if (indraw.get() && mesh !== null) mesh.render(cgl.getShader());
+
+    trigger.trigger();
+};
+
+function updateMesh()
+{
+    let nrings = Math.round(rings.get()) + 1;
+    let nsides = Math.round(sides.get()) + 1;
+    if (nrings < 3)nrings = 3;
+    if (nsides < 3)nsides = 3;
+    let r = innerRadius.get();
+    let r2 = outerRadius.get();
+    generateTorus(r, r2, nrings, nsides);
+    needsUpdate = false;
+}
+
+function circleTable(n, flip)
+{
+    let i;
+
+    /* Table size, the sign of n flips the circle direction */
+    let size = Math.abs(n);
+
+    /* Determine the angle between samples */
+    let angle = 2 * Math.PI / (n - 1);
+    if (flip) angle = -angle;
+
+    /* Allocate memory for n samples, plus duplicate of first entry at the end */
+    let sint = [];
+    let cost = [];
+
+    sint[0] = 0;
+    cost[0] = 1;
+
+    /* Compute cos and sin around the circle */
+    for (i = 1; i < size - 1; i++)
+    {
+        sint[i] = Math.sin(angle * i);
+        cost[i] = Math.cos(angle * i);
+    }
+
+    sint[size - 1] = 0;
+    cost[size - 1] = 1;
+
+    return { "cost": cost, "sint": sint };
+}
+
+function generateTorus(iradius, oradius, nRings, nSides)
+{
+    let table1 = circleTable(nRings, false);
+    let table2 = circleTable(nSides, true);
+    let t;
+
+    geom = new CGL.Geometry("torus");
+    let tangents = [];
+    let biTangents = [];
+    let vertexNormals = [];
+    let tc = [];
+
+    for (j = 0; j < nRings; j++)
+    {
+        for (i = 0; i < nSides; i++)
+        {
+            let offset = 3 * (j * nSides + i);
+            let offset2 = 2 * (j * nSides + i);
+
+            geom.vertices[offset] = table1.cost[j] * (oradius + table2.cost[i] * iradius);
+            geom.vertices[offset + 1] = table1.sint[j] * (oradius + table2.cost[i] * iradius);
+            geom.vertices[offset + 2] = table2.sint[i] * iradius;
+
+            vertexNormals[offset] = tmpNormal[0] = table1.cost[j] * table2.cost[i];
+            vertexNormals[offset + 1] = tmpNormal[1] = table1.sint[j] * table2.cost[i];
+            vertexNormals[offset + 2] = tmpNormal[2] = table2.sint[i];
+
+            if (Math.abs(tmpNormal[1]) == 1) t = RIGHT;
+            else t = UP;
+
+            vec3.cross(tmpVec, tmpNormal, t);
+            vec3.normalize(tmpVec, tmpVec);
+            tangents[offset] = tmpVec[0];
+            tangents[offset + 1] = tmpVec[1];
+            tangents[offset + 2] = tmpVec[2];
+            vec3.cross(tmpVec, tmpVec, tmpNormal);
+            biTangents[offset] = tmpVec[0];
+            biTangents[offset + 1] = tmpVec[1];
+            biTangents[offset + 2] = tmpVec[2];
+
+            tc[offset2] = j / (nRings - 1);
+            tc[offset2 + 1] = i / (nSides - 1);
+        }
+    }
+
+    for (j = 0, idx = 0; j < nRings - 1; j++)
+    {
+        for (i = 0; i < nSides - 1; i++)
+        {
+            let offset = j * nSides + i;
+            geom.verticesIndices[idx++] = offset;
+            geom.verticesIndices[idx++] = offset + 1;
+            geom.verticesIndices[idx++] = offset + nSides;
+
+            geom.verticesIndices[idx++] = offset + 1;
+            geom.verticesIndices[idx++] = offset + nSides + 1;
+            geom.verticesIndices[idx++] = offset + nSides;
+        }
+    }
+
+    if (geom.biTangents.length == biTangents.length)geom.biTangents.set(biTangents);
+    else geom.biTangents = new Float32Array(biTangents);
+
+    if (geom.tangents.length == tangents.length)geom.tangents.set(tangents);
+    else geom.tangents = new Float32Array(tangents);
+
+    if (geom.vertexNormals.length == vertexNormals.length)geom.vertexNormals.set(vertexNormals);
+    else geom.vertexNormals = new Float32Array(vertexNormals);
+
+    geom.setTexCoords(tc);
+
+    geomOut.setRef(geom);
+
+    if (!mesh) mesh = op.patch.cg.createMesh(geom, { "opId": op.id });
+    // if (!mesh)mesh = new CGL.Mesh(cgl, geom);
+    else mesh.setGeom(geom);
+}
+
+
+};
+
+Ops.Gl.Meshes.Torus_v3.prototype = new CABLES.Op();
+CABLES.OPS["bfe60760-6cf6-43d0-96da-b4848c2b146a"]={f:Ops.Gl.Meshes.Torus_v3,objName:"Ops.Gl.Meshes.Torus_v3"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.MapRange
+// 
+// **************************************************************
+
+Ops.Math.MapRange = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    v = op.inValueFloat("value", 0),
+    old_min = op.inValueFloat("old min", 0),
+    old_max = op.inValueFloat("old max", 1),
+    new_min = op.inValueFloat("new min", 0),
+    new_max = op.inValueFloat("new max", 1),
+    easing = op.inValueSelect("Easing", ["Linear", "Smoothstep", "Smootherstep"], "Linear"),
+    inClamp = op.inBool("Clamp", true),
+    result = op.outNumber("result", 0);
+
+op.setPortGroup("Input Range", [old_min, old_max]);
+op.setPortGroup("Output Range", [new_min, new_max]);
+
+let doClamp = true;
+let ease = 0;
+let r = 0;
+
+v.onChange =
+    old_min.onChange =
+    old_max.onChange =
+    new_min.onChange =
+    new_max.onChange = exec;
+
+exec();
+
+inClamp.onChange =
+() =>
+{
+    doClamp = inClamp.get();
+    exec();
+};
+
+easing.onChange = function ()
+{
+    if (easing.get() == "Smoothstep") ease = 1;
+    else if (easing.get() == "Smootherstep") ease = 2;
+    else ease = 0;
+};
+
+function exec()
+{
+    const nMin = new_min.get();
+    const nMax = new_max.get();
+    const oMin = old_min.get();
+    const oMax = old_max.get();
+    let x = v.get();
+
+    if (doClamp)
+    {
+        if (x >= Math.max(oMax, oMin))
+        {
+            result.set(nMax);
+            return;
+        }
+        else
+        if (x <= Math.min(oMax, oMin))
+        {
+            result.set(nMin);
+            return;
+        }
+    }
+
+    let reverseInput = false;
+    const oldMin = Math.min(oMin, oMax);
+    const oldMax = Math.max(oMin, oMax);
+    if (oldMin != oMin) reverseInput = true;
+
+    let reverseOutput = false;
+    const newMin = Math.min(nMin, nMax);
+    const newMax = Math.max(nMin, nMax);
+    if (newMin != nMin) reverseOutput = true;
+
+    let portion = 0;
+
+    if (reverseInput) portion = (oldMax - x) * (newMax - newMin) / (oldMax - oldMin);
+    else portion = (x - oldMin) * (newMax - newMin) / (oldMax - oldMin);
+
+    if (reverseOutput) r = newMax - portion;
+    else r = portion + newMin;
+
+    if (ease === 0)
+    {
+        result.set(r);
+    }
+    else
+    if (ease == 1)
+    {
+        x = Math.max(0, Math.min(1, (r - nMin) / (nMax - nMin)));
+        result.set(nMin + x * x * (3 - 2 * x) * (nMax - nMin)); // smoothstep
+    }
+    else
+    if (ease == 2)
+    {
+        x = Math.max(0, Math.min(1, (r - nMin) / (nMax - nMin)));
+        result.set(nMin + x * x * x * (x * (x * 6 - 15) + 10) * (nMax - nMin)); // smootherstep
+    }
+}
+
+
+};
+
+Ops.Math.MapRange.prototype = new CABLES.Op();
+CABLES.OPS["2617b407-60a0-4ff6-b4a7-18136cfa7817"]={f:Ops.Math.MapRange,objName:"Ops.Math.MapRange"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Anim.LFO_v3
+// 
+// **************************************************************
+
+Ops.Anim.LFO_v3 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    time = op.inValue("Time"),
+    speed = op.inFloat("Frequency", 1),
+    type = op.inValueSelect("Type", ["sine", "triangle", "ramp up", "ramp down", "square"], "sine"),
+    phase = op.inValue("Phase", 0),
+    rangeMin = op.inValue("Range Min", -1),
+    rangeMax = op.inValue("Range Max", 1),
+    result = op.outNumber("Result");
+
+let v = 0;
+type.onChange = updateType;
+
+updateType();
+
+const PI2 = Math.PI / 2;
+
+function updateType()
+{
+    if (type.get() == "sine") time.onChange = sine;
+    if (type.get() == "ramp up") time.onChange = rampUp;
+    if (type.get() == "ramp down") time.onChange = rampDown;
+    if (type.get() == "square") time.onChange = square;
+    if (type.get() == "triangle") time.onChange = triangle;
+}
+
+function updateTime()
+{
+    return (time.get() * speed.get()) + phase.get();
+}
+
+function square()
+{
+    let t = updateTime() + 0.5;
+    v = t % 2.0;
+    if (v <= 1.0)v = -1;
+    else v = 1;
+    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
+    result.set(v);
+}
+
+function rampUp()
+{
+    let t = (updateTime() + 1);
+    v = t % 1.0;
+    v -= 0.5;
+    v *= 2.0;
+    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
+    result.set(v);
+}
+
+function rampDown()
+{
+    let t = updateTime();
+    v = t % 1.0;
+    v -= 0.5;
+    v *= -2.0;
+    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
+    result.set(v);
+}
+
+function triangle()
+{
+    let t = updateTime();
+    v = t % 2.0;
+    if (v > 1) v = 2.0 - v;
+    v -= 0.5;
+    v *= 2.0;
+    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
+    result.set(v);
+}
+
+function sine()
+{
+    let t = updateTime() * Math.PI - (PI2);
+    v = Math.sin((t));
+    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
+    result.set(v);
+}
+
+
+};
+
+Ops.Anim.LFO_v3.prototype = new CABLES.Op();
+CABLES.OPS["5bdbe26b-dea3-4266-850c-1b66ed29936e"]={f:Ops.Anim.LFO_v3,objName:"Ops.Anim.LFO_v3"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.ShaderEffects.AreaRotate_v2
+// 
+// **************************************************************
+
+Ops.Gl.ShaderEffects.AreaRotate_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"area_rotate_vert":"\n\nvec4 MOD_scaler(vec4 pos,mat4 modelMatrix)\n{\n    vec3 forcePos=vec3(MOD_x,MOD_y,MOD_z);\n    vec3 vecToOrigin=(modelMatrix*pos).xyz-forcePos;\n    float dist=abs(length(vecToOrigin));\n    float distAlpha = (MOD_size - dist) ;\n\n    if(MOD_smooth) distAlpha=smoothstep(0.0,MOD_size,distAlpha);\n\n    // pos.xyz*=(1.0+(distAlpha*MOD_strength));\n\n    mat3 rotation = mat3(\n        vec3( cos(MOD_strength*distAlpha),  sin(MOD_strength*distAlpha),  0.0),\n        vec3(-sin(MOD_strength*distAlpha),  cos(MOD_strength*distAlpha),  0.0),\n        vec3(        0.0,         0.0,  1.0)\n    );\n    pos =vec4(rotation * pos.xyz, 1.0);\n\n\n    return pos;\n}\n",};
+const
+    render = op.inTrigger("render"),
+    inSize = op.inValue("Size", 1),
+    inStrength = op.inValue("Strength", 1),
+    inSmooth = op.inValueBool("Smooth", true),
+    x = op.inValue("x"),
+    y = op.inValue("y"),
+    z = op.inValue("z"),
+    next = op.outTrigger("trigger");
+
+const cgl = op.patch.cgl;
+const srcBodyVert = ""
+    .endl() + "pos=MOD_scaler(pos,mMatrix);"
+    .endl();
+
+const mod = new CGL.ShaderModifier(cgl, op.name, { "opId": op.id });
+
+mod.addModule({
+    "priority": 2,
+    "title": "vert" + op.name,
+    "name": "MODULE_VERTEX_POSITION",
+    "srcHeadVert": attachments.area_rotate_vert,
+    "srcBodyVert": srcBodyVert
+});
+
+mod.addUniform("f", "MOD_x", x);
+mod.addUniform("f", "MOD_y", y);
+mod.addUniform("f", "MOD_z", z);
+
+mod.addUniform("f", "MOD_size", inSize);
+mod.addUniform("f", "MOD_strength", inStrength);
+mod.addUniform("b", "MOD_smooth", inSmooth);
+
+
+render.onTriggered = function ()
+{
+    if (!cgl.getShader())
+    {
+        next.trigger();
+        return;
+    }
+
+    if (op.isCurrentUiOp()) gui.setTransformGizmo({ "posX": x, "posY": y, "posZ": z });
+
+    mod.bind();
+    next.trigger();
+    mod.unbind();
+};
+
+
+};
+
+Ops.Gl.ShaderEffects.AreaRotate_v2.prototype = new CABLES.Op();
+CABLES.OPS["ebfd3f0c-7a58-44d3-aba0-72d91fafd7ae"]={f:Ops.Gl.ShaderEffects.AreaRotate_v2,objName:"Ops.Gl.ShaderEffects.AreaRotate_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.Ease
+// 
+// **************************************************************
+
+Ops.Math.Ease = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inVal = op.inValue("Value"),
+    inMin = op.inValue("Min", 0),
+    inMax = op.inValue("Max", 1),
+    result = op.outNumber("Result"),
+    anim = new CABLES.Anim();
+
+anim.createPort(op, "Easing", updateAnimEasing);
+anim.setValue(0, 0);
+anim.setValue(1, 1);
+
+op.onLoaded = inMin.onChange = inMax.onChange = updateMinMax;
+
+function updateMinMax()
+{
+    anim.keys[0].time = anim.keys[0].value = Math.min(inMin.get(), inMax.get());
+    anim.keys[1].time = anim.keys[1].value = Math.max(inMin.get(), inMax.get());
+}
+
+function updateAnimEasing()
+{
+    anim.keys[0].setEasing(anim.defaultEasing);
+}
+
+inVal.onChange = function ()
+{
+    const r = anim.getValue(inVal.get());
+    result.set(r);
+};
+
+
+};
+
+Ops.Math.Ease.prototype = new CABLES.Op();
+CABLES.OPS["8f6e4a08-33e6-408f-ac4a-198bd03b417b"]={f:Ops.Math.Ease,objName:"Ops.Math.Ease"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.Meshes.Line
+// 
+// **************************************************************
+
+Ops.Gl.Meshes.Line = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("Render"),
+    x1 = op.inValue("X 1"),
+    y1 = op.inValue("Y 1"),
+    z1 = op.inValue("Z 1"),
+    x2 = op.inValue("X 2", 1),
+    y2 = op.inValue("Y 2", 1),
+    z2 = op.inValue("Z 2", 1),
+    next = op.outTrigger("Next"),
+    outArr = op.outArray("Array");
+
+const cgl = op.patch.cgl;
+const arr = [0, 0, 0, 0, 0, 0];
+const geom = new CGL.Geometry("simplespline");
+geom.vertices = [x1.get(), y1.get(), z1.get(), x2.get(), y2.get(), x2.get()];
+const mesh = new CGL.Mesh(cgl, geom, { "glPrimitive": cgl.gl.LINES });
+
+let changed = true;
+
+x1.onChange = function () { arr[0] = geom.vertices[0] = x1.get(); changed = true; };
+y1.onChange = function () { arr[1] = geom.vertices[1] = y1.get(); changed = true; };
+z1.onChange = function () { arr[2] = geom.vertices[2] = z1.get(); changed = true; };
+
+x2.onChange = function () { arr[3] = geom.vertices[3] = x2.get(); changed = true; };
+y2.onChange = function () { arr[4] = geom.vertices[4] = y2.get(); changed = true; };
+z2.onChange = function () { arr[5] = geom.vertices[5] = z2.get(); changed = true; };
+
+render.onTriggered = function ()
+{
+    if (changed)
+    {
+        mesh.updateVertices(geom);
+        outArr.setRef(arr);
+        changed = false;
+    }
+
+    let shader = cgl.getShader();
+    mesh.render(shader);
+
+    next.trigger();
+};
+
+
+};
+
+Ops.Gl.Meshes.Line.prototype = new CABLES.Op();
+CABLES.OPS["c6a0d570-a0ac-4655-b17d-74d0870b0799"]={f:Ops.Gl.Meshes.Line,objName:"Ops.Gl.Meshes.Line"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.P4Zknbo.BasicSlider_v3
+// 
+// **************************************************************
+
+Ops.Patch.P4Zknbo.BasicSlider_v3 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nconst port_h2l1ydpiy=op.outNumber(\"h2l1ydpiy\");\nport_h2l1ydpiy.setUiAttribs({title:\"Hover\",});\nport_h2l1ydpiy.setUiAttribs({\"values\":[\"\"]});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\nconst innerIn_h2l1ydpiy = addedOps[i].inFloat(\"innerIn_h2l1ydpiy\");\ninnerIn_h2l1ydpiy.setUiAttribs({title:\"Hover\"});\ninnerIn_h2l1ydpiy.on(\"change\", (a,v) => { port_h2l1ydpiy.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"uk3um0kyc\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"pv9fy1u1s\",\"objOut\":\"uk3um0kyc\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"vwwgjlizf\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posY\",\"value\":0.005},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Exec\",\"portOut\":\"trigger\",\"objIn\":\"ns66cci5h\",\"objOut\":\"vwwgjlizf\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"b9fhb990j\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"vwwgjlizf\",\"objOut\":\"b9fhb990j\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"xnap82xfe\",\"objOut\":\"b9fhb990j\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"ak207xc99\",\"objOut\":\"b9fhb990j\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"kdn6btjb3\",\"objOut\":\"b9fhb990j\"},{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"vwwgjlizf\",\"objOut\":\"b9fhb990j\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"v8j7nipl3\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"om399w808\",\"objOut\":\"v8j7nipl3\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"String In\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"6tpfx1h1e\",\"objOut\":\"v8j7nipl3\"},{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"c2lnrba6b\",\"objOut\":\"v8j7nipl3\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"c2lnrba6b\",\"objOut\":\"v8j7nipl3\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"ak207xc99\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"},{\"name\":\"innerIn_h2l1ydpiy\",\"title\":\"Hover\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"sp5jwe5ep\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"b9fhb990j\",\"objOut\":\"sp5jwe5ep\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"xnap82xfe\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.6},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"uk3um0kyc\",\"objOut\":\"xnap82xfe\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"ak207xc99\",\"objOut\":\"xnap82xfe\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"kdn6btjb3\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rotZ\",\"portOut\":\"result\",\"objIn\":\"vwwgjlizf\",\"objOut\":\"kdn6btjb3\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"ipgrn686s\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":-0.32},{\"name\":\"y\",\"value\":0.92},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"c2lnrba6b\",\"objOut\":\"ipgrn686s\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"pv9fy1u1s\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":0.02},{\"name\":\"height\",\"value\":0.07},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":1},{\"name\":\"num rows\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"ns66cci5h\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"uk3um0kyc\",\"objOut\":\"ns66cci5h\"}]}],\"objName\":\"Ops.Gl.Matrix.Billboard\"},{\"id\":\"om399w808\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1.73},{\"name\":\"y\",\"value\":1},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"ipgrn686s\",\"objOut\":\"om399w808\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"},{\"id\":\"ixcr22c6p\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_position\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"sp21nyh4q\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int position\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"6tpfx1h1e\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"position\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"k5cx9t2w0\",\"objOut\":\"6tpfx1h1e\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"nzy2b7ut8\",\"objOut\":\"6tpfx1h1e\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"k5cx9t2w0\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"ipyawra4a\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"baridp3mz\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_injectedState\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"l84gnznq4\",\"objOut\":\"baridp3mz\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"nzy2b7ut8\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Number\",\"portOut\":\"Result\",\"objIn\":\"f2to9w0p5\",\"objOut\":\"nzy2b7ut8\"},{\"portIn\":\"Numbers_1\",\"portOut\":\"Result\",\"objIn\":\"typa3qfai\",\"objOut\":\"nzy2b7ut8\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"u4ssrgqtd\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"qc7y3s0cx\",\"objOut\":\"u4ssrgqtd\"},{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"q1fyo45tl\",\"objOut\":\"u4ssrgqtd\"},{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"6tpfx1h1e\",\"objOut\":\"u4ssrgqtd\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"qc7y3s0cx\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonSlider\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"typa3qfai\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"Number\",\"objIn\":\"sp5jwe5ep\",\"objOut\":\"typa3qfai\"},{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"ixcr22c6p\",\"objOut\":\"typa3qfai\"}]},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"l84gnznq4\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":0}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"nzy2b7ut8\",\"objOut\":\"l84gnznq4\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"q1fyo45tl\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"l84gnznq4\",\"objOut\":\"q1fyo45tl\"},{\"portIn\":\"Index\",\"portOut\":\"Result\",\"objIn\":\"typa3qfai\",\"objOut\":\"q1fyo45tl\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"c2lnrba6b\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":1.04},{\"name\":\"Height\",\"value\":0.24},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"b9fhb990j\",\"objOut\":\"c2lnrba6b\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"xnap82xfe\",\"objOut\":\"c2lnrba6b\"},{\"portIn\":\"jqg7l6f5m\",\"portOut\":\"Pointer Hover\",\"objIn\":\"4lgk8235o\",\"objOut\":\"c2lnrba6b\"},{\"portIn\":\"innerIn_h2l1ydpiy\",\"portOut\":\"Pointer Hover\",\"objIn\":\"ak207xc99\",\"objOut\":\"c2lnrba6b\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"u4ssrgqtd\",\"objOut\":\"c2lnrba6b\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"iaaozqt73\",\"objOut\":\"c2lnrba6b\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Pointer X\",\"objIn\":\"t24b96xwy\",\"objOut\":\"c2lnrba6b\"},{\"portIn\":\"Numbers_0\",\"portOut\":\"Pointer X\",\"objIn\":\"typa3qfai\",\"objOut\":\"c2lnrba6b\"},{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"iaaozqt73\",\"objOut\":\"c2lnrba6b\"}]},{\"name\":\"Pointer Y\",\"value\":0.0475698468205169},{\"name\":\"Top\",\"value\":27.819621562957764},{\"name\":\"Left\",\"value\":366.9763829112053},{\"name\":\"Right\",\"value\":1028.1485039144754},{\"name\":\"Bottom\",\"value\":116.01506531238556}],\"objName\":\"Ops.Patch.P4Zknbo.InteractiveRectangle_v22\"},{\"id\":\"5ybabstd4\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"glassy\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"t24b96xwy\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValueOnHover\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"4lgk8235o\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2,\"subPatchVer\":2},\"portsIn\":[{\"name\":\"jqg7l6f5m\",\"title\":\"Boolean\"},{\"name\":\"patchId\",\"value\":\"ww64iitoy\"}],\"objName\":\"Ops.Patch.P4Zknbo.DisengageFlag\"},{\"id\":\"f2to9w0p5\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{},\"objName\":\"Ops.Ui.VizNumberBar\"},{\"id\":\"iaaozqt73\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Value Out\",\"objIn\":\"ipyawra4a\",\"objOut\":\"iaaozqt73\"}]}],\"objName\":\"Ops.Number.GateNumber\"}]}",};
+const port_blls2amps=op.inTrigger("blls2amps");
+port_blls2amps.setUiAttribs({title:"Trigger in",});
+
+const port_btagbs7z2=op.inString("btagbs7z2","");
+port_btagbs7z2.setUiAttribs({title:"Class",});
+
+const port_lj06d561p=op.inFloat("lj06d561p",0);
+port_lj06d561p.setUiAttribs({title:"Show Boundings",display:"bool",});
+
+const port_nti406vwi=op.outNumber("nti406vwi");
+port_nti406vwi.setUiAttribs({title:"Result",});
+
+const port_gjvx0zyv5=op.outNumber("gjvx0zyv5");
+port_gjvx0zyv5.setUiAttribs({title:"value",});
+
+const port_h2l1ydpiy=op.outNumber("h2l1ydpiy");
+port_h2l1ydpiy.setUiAttribs({title:"Hover",});
+port_h2l1ydpiy.setUiAttribs({"values":[""]});
+
+op.initInnerPorts=function(addedOps)
+{
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
+    {
+const innerOut_blls2amps = addedOps[i].outTrigger("innerOut_blls2amps");
+innerOut_blls2amps.setUiAttribs({title:"Trigger in"});
+port_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };
+
+const innerOut_btagbs7z2 = addedOps[i].outString("innerOut_btagbs7z2");
+innerOut_btagbs7z2.set(port_btagbs7z2.get() );
+innerOut_btagbs7z2.setUiAttribs({title:"Class"});
+port_btagbs7z2.on("change", (a,v) => { innerOut_btagbs7z2.set(a); });
+
+const innerOut_lj06d561p = addedOps[i].outNumber("innerOut_lj06d561p");
+innerOut_lj06d561p.set(port_lj06d561p.get() );
+innerOut_lj06d561p.setUiAttribs({title:"Show Boundings"});
+port_lj06d561p.on("change", (a,v) => { innerOut_lj06d561p.set(a); });
+
+    }
+if(addedOps[i].innerOutput)
+{
+const innerIn_nti406vwi = addedOps[i].inFloat("innerIn_nti406vwi");
+innerIn_nti406vwi.setUiAttribs({title:"Result"});
+innerIn_nti406vwi.on("change", (a,v) => { port_nti406vwi.set(a); });
+
+const innerIn_gjvx0zyv5 = addedOps[i].inFloat("innerIn_gjvx0zyv5");
+innerIn_gjvx0zyv5.setUiAttribs({title:"value"});
+innerIn_gjvx0zyv5.on("change", (a,v) => { port_gjvx0zyv5.set(a); });
+
+const innerIn_h2l1ydpiy = addedOps[i].inFloat("innerIn_h2l1ydpiy");
+innerIn_h2l1ydpiy.setUiAttribs({title:"Hover"});
+innerIn_h2l1ydpiy.on("change", (a,v) => { port_h2l1ydpiy.set(a); });
+
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
+    {
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
+    }
+
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
+}
+
+
+};
+
+Ops.Patch.P4Zknbo.BasicSlider_v3.prototype = new CABLES.Op();
+CABLES.OPS["3ce2ea3c-8e3e-4b77-965d-de9b6f3ffa56"]={f:Ops.Patch.P4Zknbo.BasicSlider_v3,objName:"Ops.Patch.P4Zknbo.BasicSlider_v3"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.Round
+// 
+// **************************************************************
+
+Ops.Math.Round = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    number1 = op.inValueFloat("number"),
+    decPlaces = op.inInt("Decimal Places", 0),
+    result = op.outNumber("result");
+
+let decm = 0;
+
+number1.onChange = exec;
+decPlaces.onChange = updateDecm;
+
+updateDecm();
+
+function updateDecm()
+{
+    decm = Math.pow(10, decPlaces.get());
+    exec();
+}
+
+function exec()
+{
+    result.set(Math.round(number1.get() * decm) / decm);
+}
+
+
+};
+
+Ops.Math.Round.prototype = new CABLES.Op();
+CABLES.OPS["1a1ef636-6d02-42ba-ae1e-627b917d0d2b"]={f:Ops.Math.Round,objName:"Ops.Math.Round"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.Matrix.Billboard
+// 
+// **************************************************************
+
+Ops.Gl.Matrix.Billboard = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const exec = op.inTrigger("Exec");
+const next = op.outTrigger("Next");
+
+const cgl = op.patch.cgl;
+
+let mm = mat4.create();
+let mv = mat4.create();
+let m = mat4.create();
+let mempty = mat4.create();
+
+exec.onTriggered = function ()
+{
+    mat4.invert(mm, cgl.mMatrix);
+    mat4.invert(mv, cgl.vMatrix);
+
+    mat4.mul(mm, mm, mv);
+
+    mm[12] = 0;
+    mm[13] = 0;
+    mm[14] = 0;
+
+    cgl.pushModelMatrix();
+    cgl.pushViewMatrix();
+    mat4.mul(cgl.mMatrix, cgl.mMatrix, mm);
+    next.trigger();
+    cgl.popViewMatrix();
+    cgl.popModelMatrix();
+};
+
+
+};
+
+Ops.Gl.Matrix.Billboard.prototype = new CABLES.Op();
+CABLES.OPS["d41e676e-d8a7-4a1e-8abf-f1bddfc982d5"]={f:Ops.Gl.Matrix.Billboard,objName:"Ops.Gl.Matrix.Billboard"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.P4Zknbo.InteractiveRectangle_v22
+// 
+// **************************************************************
+
+Ops.Patch.P4Zknbo.InteractiveRectangle_v22 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("Trigger in"),
+    trigger = op.outTrigger("Trigger out"),
+    width = op.inValue("Width", 1),
+    height = op.inValue("Height", 1),
+    inId = op.inString("ID"),
+    classPort = op.inString("Class"),
+    pivotX = op.inValueSelect("Pivot x", ["center", "left", "right"]),
+    pivotY = op.inValueSelect("Pivot y", ["center", "top", "bottom"]),
+    axis = op.inValueSelect("Axis", ["xy", "xz"]),
+    isInteractive = op.inValueBool("Is Interactive", true),
+    renderRect = op.inValueBool("Render Rectangle", true),
+    divVisible = op.inValueBool("Show Boundings", true),
+    cursorPort = op.inValueSelect("Cursor", ["auto", "crosshair", "pointer", "Hand", "move", "n-resize", "ne-resize", "e-resize", "se-resize", "s-resize", "sw-resize", "w-resize", "nw-resize", "text", "wait", "help", "none"], "pointer"),
+    active = op.inValueBool("Render", true);
+
+const geomOut = op.outObject("geometry");
+geomOut.ignoreValueSerialize = true;
+
+const
+    mouseOver = op.outBoolNum("Pointer Hover", false),
+    mouseDown = op.outBoolNum("Pointer Down", false),
+    outX = op.outNumber("Pointer X"),
+    outY = op.outNumber("Pointer Y"),
+    outTop = op.outNumber("Top"),
+    outLeft = op.outNumber("Left"),
+    outRight = op.outNumber("Right"),
+    outBottom = op.outNumber("Bottom"),
+    mouseClick = op.outTrigger("Left Click");
+
+const elementPort = op.outObject("Dom Element");
+
+active.setUiAttribs({ "title": "Active" });
+
+const cgl = op.patch.cgl;
+axis.set("xy");
+pivotX.set("center");
+pivotY.set("center");
+
+const geom = new CGL.Geometry(op.name);
+let mesh = null;
+let div = null;
+const m = mat4.create();
+const trans = mat4.create();
+const pos = vec3.create();
+const divAlign = vec3.create();
+const divAlignSize = vec3.create();
+
+axis.onChange = rebuild;
+pivotX.onChange = rebuild;
+pivotY.onChange = rebuild;
+width.onChange = rebuild;
+height.onChange = rebuild;
+cursorPort.onChange = updateCursor;
+rebuild();
+
+const modelMatrix = mat4.create();
+const identViewMatrix = mat4.create();
+const zeroVec3 = vec3.create();
+
+render.onTriggered = function ()
+{
+    if (!div)
+    {
+        setUpDiv();
+        addListeners();
+        updateDivVisibility();
+        updateIsInteractive();
+    }
+    updateDivSize();
+
+    if (active.get() && renderRect.get() && mesh) mesh.render(cgl.getShader());
+
+    trigger.trigger();
+};
+
+function rebuild()
+{
+    let w = width.get();
+    let h = height.get();
+    let x = 0;
+    let y = 0;
+
+    if (typeof w == "string")w = parseFloat(w);
+    if (typeof h == "string")h = parseFloat(h);
+
+    if (pivotX.get() == "center")
+    {
+        x = 0;
+        divAlign[0] = -w / 2;
+    }
+    if (pivotX.get() == "right")
+    {
+        x = -w / 2;
+    }
+    if (pivotX.get() == "left")
+    {
+        x = w / 2;
+    }
+
+    if (pivotY.get() == "center")
+    {
+        y = 0;
+        divAlign[1] = -h / 2;
+    }
+    if (pivotY.get() == "top") y = -h / 2;
+    if (pivotY.get() == "bottom") y = +h / 2;
+
+    const verts = [];
+    const tc = [];
+    const norms = [];
+    const indices = [];
+
+    const numRows = 1;
+    const numColumns = 1;
+
+    const stepColumn = w / numColumns;
+    const stepRow = h / numRows;
+
+    let c, r;
+
+    for (r = 0; r <= numRows; r++)
+    {
+        for (c = 0; c <= numColumns; c++)
+        {
+            verts.push(c * stepColumn - width.get() / 2 + x);
+            if (axis.get() == "xz") verts.push(0.0);
+            verts.push(r * stepRow - height.get() / 2 + y);
+            if (axis.get() == "xy") verts.push(0.0);
+
+            tc.push(c / numColumns);
+            tc.push(1.0 - r / numRows);
+
+            if (axis.get() == "xz")
+            {
+                norms.push(0);
+                norms.push(1);
+                norms.push(0);
+            }
+
+            if (axis.get() == "xy")
+            {
+                norms.push(0);
+                norms.push(0);
+                norms.push(-1);
+            }
+        }
+    }
+
+    for (c = 0; c < numColumns; c++)
+    {
+        for (r = 0; r < numRows; r++)
+        {
+            const ind = c + (numColumns + 1) * r;
+            const v1 = ind;
+            const v2 = ind + 1;
+            const v3 = ind + numColumns + 1;
+            const v4 = ind + 1 + numColumns + 1;
+
+            indices.push(v1);
+            indices.push(v3);
+            indices.push(v2);
+
+            indices.push(v2);
+            indices.push(v3);
+            indices.push(v4);
+        }
+    }
+
+    geom.clear();
+    geom.vertices = verts;
+    geom.texCoords = tc;
+    geom.verticesIndices = indices;
+    geom.vertexNormals = norms;
+
+    if (!mesh) mesh = new CGL.Mesh(cgl, geom);
+    else mesh.setGeom(geom);
+
+    geomOut.set(null);
+    geomOut.set(geom);
+}
+
+let divX = 0;
+let divY = 0;
+let divWidth = 0;
+let divHeight = 0;
+
+const mMatrix = mat4.create();
+divVisible.onChange = updateDivVisibility;
+inId.onChange = updateId;
+classPort.onChange = updateClassNames;
+
+function updateDivVisibility()
+{
+    if (div)
+    {
+        if (divVisible.get()) div.style.border = "1px solid red";
+        else div.style.border = "none";
+    }
+}
+
+function updateCursor()
+{
+    if (div)
+    {
+        div.style.cursor = cursorPort.get();
+    }
+}
+
+function updateId()
+{
+    if (div)
+    {
+        div.setAttribute("id", inId.get());
+    }
+}
+
+function updateDivSize()
+{
+    // var vp=cgl.getViewPort();
+
+    mat4.multiply(mMatrix, cgl.vMatrix, cgl.mMatrix);
+    vec3.transformMat4(pos, divAlign, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const top = cgl.canvas.styleMarginTop || 0;
+    const left = cgl.canvas.styleMarginLeft || 0;
+
+    const x1 = (trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2 + left;
+    const y1 = (trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top;
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1];
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x2 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y2 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0];
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x3 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y3 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x4 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y4 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divX = Math.min(x1, x2, x3, x4);
+    divY = Math.min(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    const xb = Math.max(x1, x2, x3, x4);
+    const yb = Math.max(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    outTop.set(divY);
+    outLeft.set(divX);
+    outRight.set(xb);
+    outBottom.set(yb);
+
+    divWidth = Math.abs(xb - divX);
+    divHeight = Math.abs(yb - divY);
+
+    divX /= op.patch.cgl.pixelDensity;
+    divY /= op.patch.cgl.pixelDensity;
+    divWidth /= op.patch.cgl.pixelDensity;
+    divHeight /= op.patch.cgl.pixelDensity;
+
+    // div.style.left=divX+'px';
+    // div.style.top=divY+'px';
+    // div.style.width=divWidth+'px';
+    // div.style.height=divHeight+'px';
+
+    const divXpx = divX + "px";
+    const divYpx = divY + "px";
+    const divWidthPx = divWidth + "px";
+    const divHeightPx = divHeight + "px";
+    if (divXpx != div.style.left) div.style.left = divXpx;
+    if (divYpx != div.style.top) div.style.top = divYpx;
+    if (div.style.width != divWidthPx) div.style.width = divWidthPx;
+    if (div.style.height != divHeightPx) div.style.height = divHeightPx;
+}
+
+function updateClassNames()
+{
+    if (div)
+    {
+        div.className = classPort.get();
+    }
+}
+
+op.onDelete = function ()
+{
+    if (div)div.remove();
+};
+
+function setUpDiv()
+{
+    if (!div)
+    {
+        div = document.createElement("div");
+        div.dataset.op = op.id;
+        div.oncontextmenu = function (e)
+        {
+            e.preventDefault();
+        };
+
+        div.style.padding = "0px";
+        div.style.position = "absolute";
+        div.style["box-sizing"] = "border-box";
+        div.style.border = "1px solid red";
+        // div.style['border-left']="1px solid blue";
+        // div.style['border-top']="1px solid green";
+        div.style["z-index"] = "500";
+
+        div.style["-webkit-user-select"] = "none";
+        div.style["user-select"] = "none";
+        div.style["-webkit-tap-highlight-color"] = "rgba(0,0,0,0)";
+        div.style["-webkit-touch-callout"] = "none";
+
+        const canvas = op.patch.cgl.canvas.parentElement;
+        canvas.appendChild(div);
+        updateCursor();
+        updateIsInteractive();
+        updateId();
+        updateClassNames();
+    }
+    updateDivSize();
+    elementPort.set(div);
+}
+
+let listenerElement = null;
+
+function onMouseMove(e)
+{
+    const offsetX = -width.get() / 2;
+    const offsetY = -height.get() / 2;
+
+    outX.set(Math.max(0.0, Math.min(1.0, e.offsetX / divWidth)));
+    outY.set(Math.max(0.0, Math.min(1.0, 1.0 - e.offsetY / divHeight)));
+}
+
+function onMouseLeave(e)
+{
+    mouseDown.set(false);
+    mouseOver.set(false);
+}
+
+function onMouseEnter(e)
+{
+    mouseOver.set(true);
+}
+
+function onMouseDown(e)
+{
+    mouseDown.set(true);
+}
+
+function onMouseUp(e)
+{
+    mouseDown.set(false);
+}
+
+function onmouseclick(e)
+{
+    mouseClick.trigger();
+}
+
+function onTouchMove(e)
+{
+    const targetEle = document.elementFromPoint(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
+
+    if (targetEle == div)
+    {
+        mouseOver.set(true);
+        if (e.touches && e.touches.length > 0)
+        {
+            const rect = div.getBoundingClientRect(); // e.target
+            const x = e.targetTouches[0].pageX - rect.left;
+            const y = e.targetTouches[0].pageY - rect.top;
+
+            const touch = e.touches[0];
+
+            outX.set(Math.max(0.0, Math.min(1.0, x / divWidth)));
+            outY.set(Math.max(0.0, Math.min(1.0, 1.0 - y / divHeight)));
+
+            onMouseMove(touch);
+        }
+    }
+    else
+    {
+        mouseOver.set(false);
+    }
+}
+
+active.onChange = updateActiveRender;
+function updateActiveRender()
+{
+    if (active.get())
+    {
+        addListeners();
+        if (div) div.style.display = "block";
+    }
+    else
+    {
+        removeListeners();
+        if (div) div.style.display = "none";
+    }
+}
+
+isInteractive.onChange = updateIsInteractive;
+function updateIsInteractive()
+{
+    if (isInteractive.get())
+    {
+        addListeners();
+        if (div)div.style["pointer-events"] = "initial";
+    }
+    else
+    {
+        removeListeners();
+        mouseDown.set(false);
+        mouseOver.set(false);
+        if (div)div.style["pointer-events"] = "none";
+    }
+}
+
+function removeListeners()
+{
+    if (listenerElement)
+    {
+        document.removeEventListener("touchmove", onTouchMove);
+        listenerElement.removeEventListener("touchend", onMouseUp);
+        listenerElement.removeEventListener("touchstart", onMouseDown);
+
+        listenerElement.removeEventListener("click", onmouseclick);
+        listenerElement.removeEventListener("mousemove", onMouseMove);
+        listenerElement.removeEventListener("mouseleave", onMouseLeave);
+        listenerElement.removeEventListener("mousedown", onMouseDown);
+        listenerElement.removeEventListener("mouseup", onMouseUp);
+        listenerElement.removeEventListener("mouseenter", onMouseEnter);
+        // listenerElement.removeEventListener('contextmenu', onClickRight);
+        listenerElement = null;
+    }
+}
+
+function addListeners()
+{
+    if (listenerElement)removeListeners();
+
+    listenerElement = div;
+
+    if (listenerElement)
+    {
+        document.addEventListener("touchmove", onTouchMove);
+        listenerElement.addEventListener("touchend", onMouseUp);
+        listenerElement.addEventListener("touchstart", onMouseDown);
+
+        listenerElement.addEventListener("click", onmouseclick);
+        listenerElement.addEventListener("mousemove", onMouseMove);
+        listenerElement.addEventListener("mouseleave", onMouseLeave);
+        listenerElement.addEventListener("mousedown", onMouseDown);
+        listenerElement.addEventListener("mouseup", onMouseUp);
+        listenerElement.addEventListener("mouseenter", onMouseEnter);
+        // listenerElement.addEventListener('contextmenu', onClickRight);
+    }
+}
+
+
+};
+
+Ops.Patch.P4Zknbo.InteractiveRectangle_v22.prototype = new CABLES.Op();
+CABLES.OPS["e7b5e668-7bb2-4224-9c2f-46015ba41497"]={f:Ops.Patch.P4Zknbo.InteractiveRectangle_v22,objName:"Ops.Patch.P4Zknbo.InteractiveRectangle_v22"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.P4Zknbo.DisengageFlag
+// 
+// **************************************************************
+
+Ops.Patch.P4Zknbo.DisengageFlag = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"inc_gen_ports_js":"const port_jqg7l6f5m=op.inFloat(\"jqg7l6f5m\",0);\nport_jqg7l6f5m.setUiAttribs({title:\"Boolean\",display:\"bool\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_jqg7l6f5m = addedOps[i].outNumber(\"innerOut_jqg7l6f5m\");\ninnerOut_jqg7l6f5m.set(port_jqg7l6f5m.get() );\ninnerOut_jqg7l6f5m.setUiAttribs({title:\"Boolean\"});\nport_jqg7l6f5m.on(\"change\", (a,v) => { innerOut_jqg7l6f5m.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"tjwrh5u95\",\"uiAttribs\":{\"subPatch\":\"ynlymowkj\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"dlvka8p7u\",\"uiAttribs\":{\"subPatch\":\"ynlymowkj\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"tjwrh5u95\",\"objOut\":\"dlvka8p7u\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"eck8hvwot\",\"uiAttribs\":{\"subPatch\":\"ynlymowkj\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_jqg7l6f5m\",\"title\":\"Boolean\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"innerOut_jqg7l6f5m\",\"objIn\":\"dlvka8p7u\",\"objOut\":\"eck8hvwot\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"7mxc7zyyb\",\"uiAttribs\":{\"subPatch\":\"ynlymowkj\"},\"storage\":{},\"objName\":\"Ops.Ui.SubPatchOutput\"}]}",};
+const port_jqg7l6f5m=op.inFloat("jqg7l6f5m",0);
+port_jqg7l6f5m.setUiAttribs({title:"Boolean",display:"bool",});
+
+op.initInnerPorts=function(addedOps)
+{
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
+    {
+const innerOut_jqg7l6f5m = addedOps[i].outNumber("innerOut_jqg7l6f5m");
+innerOut_jqg7l6f5m.set(port_jqg7l6f5m.get() );
+innerOut_jqg7l6f5m.setUiAttribs({title:"Boolean"});
+port_jqg7l6f5m.on("change", (a,v) => { innerOut_jqg7l6f5m.set(a); });
+
+    }
+if(addedOps[i].innerOutput)
+{
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
+    {
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
+    }
+
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
+}
+
+
+};
+
+Ops.Patch.P4Zknbo.DisengageFlag.prototype = new CABLES.Op();
+CABLES.OPS["d3d25a0e-a7e1-43f1-a005-8b7062db8e3a"]={f:Ops.Patch.P4Zknbo.DisengageFlag,objName:"Ops.Patch.P4Zknbo.DisengageFlag"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.Meshes.Circle_v3
+// 
+// **************************************************************
+
+Ops.Gl.Meshes.Circle_v3 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("render"),
+    radius = op.inValue("radius", 0.5),
+    innerRadius = op.inValueSlider("innerRadius", 0),
+    segments = op.inValueInt("segments", 40),
+    percent = op.inValueSlider("percent", 1),
+    steps = op.inValue("steps", 0),
+    invertSteps = op.inValueBool("invertSteps", false),
+    mapping = op.inSwitch("mapping", ["flat", "round"]),
+    drawSpline = op.inValueBool("Spline", false),
+    inDraw = op.inValueBool("Draw", true),
+    trigger = op.outTrigger("trigger"),
+    geomOut = op.outObject("geometry", null, "geometry");
+
+op.setPortGroup("Size", [radius, innerRadius]);
+op.setPortGroup("Display", [percent, steps, invertSteps]);
+op.toWorkShouldNotBeChild("Ops.Gl.TextureEffects.ImageCompose", CABLES.OP_PORT_TYPE_FUNCTION);
+
+inDraw.setUiAttribs({ "title": "Render mesh" });
+
+mapping.set("flat");
+
+mapping.onChange =
+    segments.onChange =
+    radius.onChange =
+    innerRadius.onChange =
+    percent.onChange =
+    steps.onChange =
+    invertSteps.onChange =
+    drawSpline.onChange = calcLater;
+
+geomOut.ignoreValueSerialize = true;
+const cgl = op.patch.cgl;
+
+let geom = new CGL.Geometry("circle");
+let mesh = null;
+const lastSegs = -1;
+
+let oldPrim = 0;
+let shader = null;
+let needsCalc = true;
+
+render.onTriggered = renderMesh;
+
+op.preRender = () =>
+{
+    renderMesh();
+};
+
+render.onLinkChanged = function ()
+{
+    if (!render.isLinked()) geomOut.set(null);
+    else geomOut.setRef(geom);
+};
+
+function renderMesh()
+{
+    if (!op.patch.cg) return;
+    if (needsCalc)calc();
+
+    if (!CGL.TextureEffect.checkOpNotInTextureEffect(op)) return;
+
+    shader = op.patch.cg.getShader();
+    if (!shader) return;
+    oldPrim = shader.glPrimitive;
+
+    if (drawSpline.get()) shader.glPrimitive = cgl.gl.LINE_STRIP;
+
+    if (inDraw.get() && mesh)
+    {
+        // mesh.instances = 3;
+        mesh.render(shader);
+    }
+    trigger.trigger();
+
+    shader.glPrimitive = oldPrim;
+}
+
+function calc()
+{
+    const segs = Math.max(3, Math.floor(segments.get()));
+
+    geom.clear();
+
+    const faces = [];
+    const texCoords = [];
+    const vertexNormals = [];
+    const tangents = [];
+    const biTangents = [];
+
+    let i = 0, degInRad = 0;
+    let oldPosX = 0, oldPosY = 0;
+    let oldPosXTexCoord = 0, oldPosYTexCoord = 0;
+
+    let oldPosXIn = 0, oldPosYIn = 0;
+    let oldPosXTexCoordIn = 0, oldPosYTexCoordIn = 0;
+
+    let posxTexCoordIn = 0, posyTexCoordIn = 0;
+    let posxTexCoord = 0, posyTexCoord = 0;
+    let posx = 0, posy = 0;
+
+    const perc = Math.max(0.0, percent.get());
+    const verts = [];
+
+    if (drawSpline.get())
+    {
+        let lastX = 0;
+        let lastY = 0;
+        const tc = [];
+        for (i = 0; i <= segs * perc; i++)
+        {
+            degInRad = (360 / segs) * i * CGL.DEG2RAD;
+            posx = Math.cos(degInRad) * radius.get();
+            posy = Math.sin(degInRad) * radius.get();
+
+            posyTexCoord = 0.5;
+
+            if (i > 0)
+            {
+                verts.push(lastX);
+                verts.push(lastY);
+                verts.push(0);
+                posxTexCoord = 1.0 - (i - 1) / segs;
+
+                tc.push(posxTexCoord, posyTexCoord);
+            }
+            verts.push(posx);
+            verts.push(posy);
+            verts.push(0);
+
+            lastX = posx;
+            lastY = posy;
+        }
+        geom.setPointVertices(verts);
+    }
+    else
+    if (innerRadius.get() <= 0)
+    {
+        for (i = 0; i <= segs * perc; i++)
+        {
+            degInRad = (360 / segs) * i * CGL.DEG2RAD;
+            posx = Math.cos(degInRad) * radius.get();
+            posy = Math.sin(degInRad) * radius.get();
+
+            if (mapping.get() == "flat")
+            {
+                posxTexCoord = (Math.cos(degInRad) + 1.0) / 2;
+                posyTexCoord = 1.0 - (Math.sin(degInRad) + 1.0) / 2;
+                posxTexCoordIn = 0.5;
+                posyTexCoordIn = 0.5;
+            }
+            else if (mapping.get() == "round")
+            {
+                posxTexCoord = 1.0 - i / segs;
+                posyTexCoord = 0;
+                posxTexCoordIn = posxTexCoord;
+                posyTexCoordIn = 1;
+            }
+
+            faces.push(
+                [0, 0, 0],
+                [oldPosX, oldPosY, 0],
+                [posx, posy, 0]
+            );
+
+            texCoords.push(
+                posxTexCoordIn, posyTexCoordIn, oldPosXTexCoord, oldPosYTexCoord, posxTexCoord, posyTexCoord
+            );
+            vertexNormals.push(0, 0, 1, 0, 0, 1, 0, 0, 1);
+            tangents.push(1, 0, 0, 1, 0, 0, 1, 0, 0);
+            biTangents.push(0, -1, 0, 0, -1, 0, 0, -1, 0);
+
+            oldPosXTexCoord = posxTexCoord;
+            oldPosYTexCoord = posyTexCoord;
+
+            oldPosX = posx;
+            oldPosY = posy;
+        }
+
+        geom = CGL.Geometry.buildFromFaces(faces, "circle");
+        geom.vertexNormals = vertexNormals;
+        geom.tangents = tangents;
+        geom.biTangents = biTangents;
+        geom.texCoords = texCoords;
+    }
+    else
+    {
+        let count = 0;
+        const numSteps = segs * perc;
+        const pos = 0;
+
+        for (i = 0; i <= numSteps; i++)
+        {
+            count++;
+
+            degInRad = (360 / segs) * i * CGL.DEG2RAD;
+            posx = Math.cos(degInRad) * radius.get();
+            posy = Math.sin(degInRad) * radius.get();
+
+            const posxIn = Math.cos(degInRad) * innerRadius.get() * radius.get();
+            const posyIn = Math.sin(degInRad) * innerRadius.get() * radius.get();
+
+            if (mapping.get() == "round")
+            {
+                posxTexCoord = 1.0 - i / segs;
+                posyTexCoord = 0;
+                posxTexCoordIn = posxTexCoord;
+                posyTexCoordIn = 1;
+            }
+
+            if (steps.get() === 0.0 ||
+                (count % parseInt(steps.get(), 10) === 0 && !invertSteps.get()) ||
+                (count % parseInt(steps.get(), 10) !== 0 && invertSteps.get()))
+            {
+                faces.push(
+                    [posxIn, posyIn, 0],
+                    [oldPosX, oldPosY, 0],
+                    [posx, posy, 0]
+                );
+
+                faces.push(
+                    [oldPosXIn, oldPosYIn, 0],
+                    [oldPosX, oldPosY, 0],
+                    [posxIn, posyIn, 0]
+                );
+
+                texCoords.push(
+                    posxTexCoord, 0, oldPosXTexCoord, 0, posxTexCoordIn, 1, posxTexCoord, 1, oldPosXTexCoord, 0, oldPosXTexCoordIn, 1);
+
+                vertexNormals.push(
+                    0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1
+                );
+                tangents.push(
+                    1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0
+                );
+                biTangents.push(
+                    0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1
+                );
+            }
+
+            oldPosXTexCoordIn = posxTexCoordIn;
+            oldPosYTexCoordIn = posyTexCoordIn;
+
+            oldPosXTexCoord = posxTexCoord;
+            oldPosYTexCoord = posyTexCoord;
+
+            oldPosX = posx;
+            oldPosY = posy;
+
+            oldPosXIn = posxIn;
+            oldPosYIn = posyIn;
+        }
+
+        geom = CGL.Geometry.buildFromFaces(faces, "circle");
+        geom.vertexNormals = vertexNormals;
+        geom.tangents = tangents;
+        geom.biTangents = biTangents;
+
+        if (mapping.get() == "flat") geom.mapTexCoords2d();
+        else geom.texCoords = texCoords;
+    }
+
+    geomOut.setRef(geom);
+
+    if (geom.vertices.length == 0) return;
+    if (mesh) mesh.dispose();
+    mesh = null;
+    if (op.patch.cg)
+        mesh = op.patch.cg.createMesh(geom, { "opId": op.id });
+    needsCalc = false;
+}
+
+function calcLater()
+{
+    needsCalc = true;
+}
+
+op.onDelete = function ()
+{
+    if (mesh)mesh.dispose();
+};
+
+
+};
+
+Ops.Gl.Meshes.Circle_v3.prototype = new CABLES.Op();
+CABLES.OPS["ae07830b-91c3-4cbe-a7d6-d3b737392c16"]={f:Ops.Gl.Meshes.Circle_v3,objName:"Ops.Gl.Meshes.Circle_v3"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Number.Number
+// 
+// **************************************************************
+
+Ops.Number.Number = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    v = op.inValueFloat("value"),
+    result = op.outNumber("result");
+
+v.onChange = exec;
+
+function exec()
+{
+    result.set(Number(v.get()));
+}
+
+
+};
+
+Ops.Number.Number.prototype = new CABLES.Op();
+CABLES.OPS["8fb2bb5d-665a-4d0a-8079-12710ae453be"]={f:Ops.Number.Number,objName:"Ops.Number.Number"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Boolean.Or
+// 
+// **************************************************************
+
+Ops.Boolean.Or = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    bool0 = op.inValueBool("bool 1"),
+    bool1 = op.inValueBool("bool 2"),
+    bool2 = op.inValueBool("bool 3"),
+    bool3 = op.inValueBool("bool 4"),
+    bool4 = op.inValueBool("bool 5"),
+    bool5 = op.inValueBool("bool 6"),
+    bool6 = op.inValueBool("bool 7"),
+    bool7 = op.inValueBool("bool 8"),
+    bool8 = op.inValueBool("bool 9"),
+    bool9 = op.inValueBool("bool 10"),
+    result = op.outBoolNum("result");
+
+bool0.onChange =
+    bool1.onChange =
+    bool2.onChange =
+    bool3.onChange =
+    bool4.onChange =
+    bool5.onChange =
+    bool6.onChange =
+    bool7.onChange =
+    bool8.onChange =
+    bool9.onChange = exec;
+
+function exec()
+{
+    result.set(bool0.get() || bool1.get() || bool2.get() || bool3.get() || bool4.get() || bool5.get() || bool6.get() || bool7.get() || bool8.get() || bool9.get());
+}
+
+
+};
+
+Ops.Boolean.Or.prototype = new CABLES.Op();
+CABLES.OPS["b3b36238-4592-4e11-afe3-8361c4fd6be5"]={f:Ops.Boolean.Or,objName:"Ops.Boolean.Or"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Trigger.TriggerOnce
+// 
+// **************************************************************
+
+Ops.Trigger.TriggerOnce = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    exe = op.inTriggerButton("Exec"),
+    reset = op.inTriggerButton("Reset"),
+    next = op.outTrigger("Next"),
+    outTriggered = op.outBoolNum("Was Triggered");
+
+let triggered = false;
+
+op.toWorkPortsNeedToBeLinked(exe);
+
+reset.onTriggered = function ()
+{
+    triggered = false;
+    outTriggered.set(triggered);
+};
+
+exe.onTriggered = function ()
+{
+    if (triggered) return;
+
+    triggered = true;
+    next.trigger();
+    outTriggered.set(triggered);
+};
+
+
+};
+
+Ops.Trigger.TriggerOnce.prototype = new CABLES.Op();
+CABLES.OPS["cf3544e4-e392-432b-89fd-fcfb5c974388"]={f:Ops.Trigger.TriggerOnce,objName:"Ops.Trigger.TriggerOnce"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.P4Zknbo.InteractiveRectangle_v23
+// 
+// **************************************************************
+
+Ops.Patch.P4Zknbo.InteractiveRectangle_v23 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("Trigger in"),
+    trigger = op.outTrigger("Trigger out"),
+    width = op.inValue("Width", 1),
+    height = op.inValue("Height", 1),
+    inId = op.inString("ID"),
+    classPort = op.inString("Class"),
+    pivotX = op.inValueSelect("Pivot x", ["center", "left", "right"]),
+    pivotY = op.inValueSelect("Pivot y", ["center", "top", "bottom"]),
+    axis = op.inValueSelect("Axis", ["xy", "xz"]),
+    isInteractive = op.inValueBool("Is Interactive", true),
+    renderRect = op.inValueBool("Render Rectangle", true),
+    divVisible = op.inValueBool("Show Boundings", true),
+    cursorPort = op.inValueSelect("Cursor", ["auto", "crosshair", "pointer", "Hand", "move", "n-resize", "ne-resize", "e-resize", "se-resize", "s-resize", "sw-resize", "w-resize", "nw-resize", "text", "wait", "help", "none"], "pointer"),
+    active = op.inValueBool("Render", true);
+
+const geomOut = op.outObject("geometry");
+geomOut.ignoreValueSerialize = true;
+
+const
+    mouseOver = op.outBoolNum("Pointer Hover", false),
+    mouseDown = op.outBoolNum("Pointer Down", false),
+    outX = op.outNumber("Pointer X"),
+    outY = op.outNumber("Pointer Y"),
+    outTop = op.outNumber("Top"),
+    outLeft = op.outNumber("Left"),
+    outRight = op.outNumber("Right"),
+    outBottom = op.outNumber("Bottom"),
+    mouseClick = op.outTrigger("Left Click");
+
+const elementPort = op.outObject("Dom Element");
+
+active.setUiAttribs({ "title": "Active" });
+
+const cgl = op.patch.cgl;
+axis.set("xy");
+pivotX.set("center");
+pivotY.set("center");
+
+const geom = new CGL.Geometry(op.name);
+let mesh = null;
+let div = null;
+const m = mat4.create();
+const trans = mat4.create();
+const pos = vec3.create();
+const divAlign = vec3.create();
+const divAlignSize = vec3.create();
+
+axis.onChange = rebuild;
+pivotX.onChange = rebuild;
+pivotY.onChange = rebuild;
+width.onChange = rebuild;
+height.onChange = rebuild;
+cursorPort.onChange = updateCursor;
+rebuild();
+
+const modelMatrix = mat4.create();
+const identViewMatrix = mat4.create();
+const zeroVec3 = vec3.create();
+
+render.onTriggered = function ()
+{
+    if (!div)
+    {
+        setUpDiv();
+        addListeners();
+        updateDivVisibility();
+        updateIsInteractive();
+    }
+    updateDivSize();
+
+    if (active.get() && renderRect.get() && mesh) mesh.render(cgl.getShader());
+
+    trigger.trigger();
+};
+
+function rebuild()
+{
+    let w = width.get();
+    let h = height.get();
+    let x = 0;
+    let y = 0;
+
+    if (typeof w == "string")w = parseFloat(w);
+    if (typeof h == "string")h = parseFloat(h);
+
+    if (pivotX.get() == "center")
+    {
+        x = 0;
+        divAlign[0] = -w / 2;
+    }
+    if (pivotX.get() == "right")
+    {
+        x = -w / 2;
+    }
+    if (pivotX.get() == "left")
+    {
+        x = w / 2;
+    }
+
+    if (pivotY.get() == "center")
+    {
+        y = 0;
+        divAlign[1] = -h / 2;
+    }
+    if (pivotY.get() == "top") y = -h / 2;
+    if (pivotY.get() == "bottom") y = +h / 2;
+
+    const verts = [];
+    const tc = [];
+    const norms = [];
+    const indices = [];
+
+    const numRows = 1;
+    const numColumns = 1;
+
+    const stepColumn = w / numColumns;
+    const stepRow = h / numRows;
+
+    let c, r;
+
+    for (r = 0; r <= numRows; r++)
+    {
+        for (c = 0; c <= numColumns; c++)
+        {
+            verts.push(c * stepColumn - width.get() / 2 + x);
+            if (axis.get() == "xz") verts.push(0.0);
+            verts.push(r * stepRow - height.get() / 2 + y);
+            if (axis.get() == "xy") verts.push(0.0);
+
+            tc.push(c / numColumns);
+            tc.push(1.0 - r / numRows);
+
+            if (axis.get() == "xz")
+            {
+                norms.push(0);
+                norms.push(1);
+                norms.push(0);
+            }
+
+            if (axis.get() == "xy")
+            {
+                norms.push(0);
+                norms.push(0);
+                norms.push(-1);
+            }
+        }
+    }
+
+    for (c = 0; c < numColumns; c++)
+    {
+        for (r = 0; r < numRows; r++)
+        {
+            const ind = c + (numColumns + 1) * r;
+            const v1 = ind;
+            const v2 = ind + 1;
+            const v3 = ind + numColumns + 1;
+            const v4 = ind + 1 + numColumns + 1;
+
+            indices.push(v1);
+            indices.push(v3);
+            indices.push(v2);
+
+            indices.push(v2);
+            indices.push(v3);
+            indices.push(v4);
+        }
+    }
+
+    geom.clear();
+    geom.vertices = verts;
+    geom.texCoords = tc;
+    geom.verticesIndices = indices;
+    geom.vertexNormals = norms;
+
+    if (!mesh) mesh = new CGL.Mesh(cgl, geom);
+    else mesh.setGeom(geom);
+
+    geomOut.set(null);
+    geomOut.set(geom);
+}
+
+let divX = 0;
+let divY = 0;
+let divWidth = 0;
+let divHeight = 0;
+
+const mMatrix = mat4.create();
+divVisible.onChange = updateDivVisibility;
+inId.onChange = updateId;
+classPort.onChange = updateClassNames;
+
+function updateDivVisibility()
+{
+    if (div)
+    {
+        if (divVisible.get()) div.style.border = "1px solid red";
+        else div.style.border = "none";
+    }
+}
+
+function updateCursor()
+{
+    if (div)
+    {
+        div.style.cursor = cursorPort.get();
+    }
+}
+
+function updateId()
+{
+    if (div)
+    {
+        div.setAttribute("id", inId.get());
+    }
+}
+
+function updateDivSize()
+{
+    // var vp=cgl.getViewPort();
+
+    mat4.multiply(mMatrix, cgl.vMatrix, cgl.mMatrix);
+    vec3.transformMat4(pos, divAlign, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const top = cgl.canvas.styleMarginTop || 0;
+    const left = cgl.canvas.styleMarginLeft || 0;
+
+    const x1 = (trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2 + left;
+    const y1 = (trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top;
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1];
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x2 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y2 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0];
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x3 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y3 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x4 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y4 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divX = Math.min(x1, x2, x3, x4);
+    divY = Math.min(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    const xb = Math.max(x1, x2, x3, x4);
+    const yb = Math.max(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    outTop.set(divY);
+    outLeft.set(divX);
+    outRight.set(xb);
+    outBottom.set(yb);
+
+    divWidth = Math.abs(xb - divX);
+    divHeight = Math.abs(yb - divY);
+
+    divX /= op.patch.cgl.pixelDensity;
+    divY /= op.patch.cgl.pixelDensity;
+    divWidth /= op.patch.cgl.pixelDensity;
+    divHeight /= op.patch.cgl.pixelDensity;
+
+    // div.style.left=divX+'px';
+    // div.style.top=divY+'px';
+    // div.style.width=divWidth+'px';
+    // div.style.height=divHeight+'px';
+
+    const divXpx = divX + "px";
+    const divYpx = divY + "px";
+    const divWidthPx = divWidth + "px";
+    const divHeightPx = divHeight + "px";
+    if (divXpx != div.style.left) div.style.left = divXpx;
+    if (divYpx != div.style.top) div.style.top = divYpx;
+    if (div.style.width != divWidthPx) div.style.width = divWidthPx;
+    if (div.style.height != divHeightPx) div.style.height = divHeightPx;
+}
+
+function updateClassNames()
+{
+    if (div)
+    {
+        div.className = classPort.get();
+    }
+}
+
+op.onDelete = function ()
+{
+    if (div)div.remove();
+};
+
+function setUpDiv()
+{
+    if (!div)
+    {
+        div = document.createElement("div");
+        div.dataset.op = op.id;
+        div.oncontextmenu = function (e)
+        {
+            e.preventDefault();
+        };
+
+        div.style.padding = "0px";
+        div.style.position = "absolute";
+        div.style["box-sizing"] = "border-box";
+        div.style.border = "1px solid red";
+        // div.style['border-left']="1px solid blue";
+        // div.style['border-top']="1px solid green";
+        div.style["z-index"] = "500";
+
+        div.style["-webkit-user-select"] = "none";
+        div.style["user-select"] = "none";
+        div.style["-webkit-tap-highlight-color"] = "rgba(0,0,0,0)";
+        div.style["-webkit-touch-callout"] = "none";
+
+        const canvas = op.patch.cgl.canvas.parentElement;
+        canvas.appendChild(div);
+        updateCursor();
+        updateIsInteractive();
+        updateId();
+        updateClassNames();
+    }
+    updateDivSize();
+    elementPort.set(div);
+}
+
+let listenerElement = null;
+
+function onMouseMove(e)
+{
+    const offsetX = -width.get() / 2;
+    const offsetY = -height.get() / 2;
+
+    outX.set(Math.max(0.0, Math.min(1.0, e.offsetX / divWidth)));
+    outY.set(Math.max(0.0, Math.min(1.0, 1.0 - e.offsetY / divHeight)));
+}
+
+function onMouseLeave(e)
+{
+    mouseDown.set(false);
+    mouseOver.set(false);
+}
+
+function onMouseEnter(e)
+{
+    mouseOver.set(true);
+}
+
+function onMouseDown(e)
+{
+    mouseDown.set(true);
+}
+
+function onMouseUp(e)
+{
+    mouseDown.set(false);
+}
+
+function onmouseclick(e)
+{
+    mouseClick.trigger();
+}
+
+function onTouchMove(e)
+{
+    const targetEle = document.elementFromPoint(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
+
+    if (targetEle == div)
+    {
+        mouseOver.set(true);
+        if (e.touches && e.touches.length > 0)
+        {
+            const rect = div.getBoundingClientRect(); // e.target
+            const x = e.targetTouches[0].pageX - rect.left;
+            const y = e.targetTouches[0].pageY - rect.top;
+
+            const touch = e.touches[0];
+
+            outX.set(Math.max(0.0, Math.min(1.0, x / divWidth)));
+            outY.set(Math.max(0.0, Math.min(1.0, 1.0 - y / divHeight)));
+
+            onMouseMove(touch);
+        }
+    }
+    else
+    {
+        mouseOver.set(false);
+    }
+}
+
+active.onChange = updateActiveRender;
+function updateActiveRender()
+{
+    if (active.get())
+    {
+        addListeners();
+        if (div) div.style.display = "block";
+    }
+    else
+    {
+        removeListeners();
+        if (div) div.style.display = "none";
+    }
+}
+
+isInteractive.onChange = updateIsInteractive;
+function updateIsInteractive()
+{
+    if (isInteractive.get())
+    {
+        addListeners();
+        if (div)div.style["pointer-events"] = "initial";
+    }
+    else
+    {
+        removeListeners();
+        mouseDown.set(false);
+        mouseOver.set(false);
+        if (div)div.style["pointer-events"] = "none";
+    }
+}
+
+function removeListeners()
+{
+    if (listenerElement)
+    {
+        document.removeEventListener("touchmove", onTouchMove);
+        listenerElement.removeEventListener("touchend", onMouseUp);
+        listenerElement.removeEventListener("touchstart", onMouseDown);
+
+        listenerElement.removeEventListener("click", onmouseclick);
+        listenerElement.removeEventListener("mousemove", onMouseMove);
+        listenerElement.removeEventListener("mouseleave", onMouseLeave);
+        listenerElement.removeEventListener("mousedown", onMouseDown);
+        listenerElement.removeEventListener("mouseup", onMouseUp);
+        listenerElement.removeEventListener("mouseenter", onMouseEnter);
+        // listenerElement.removeEventListener('contextmenu', onClickRight);
+        listenerElement = null;
+    }
+}
+
+function addListeners()
+{
+    if (listenerElement)removeListeners();
+
+    listenerElement = div;
+
+    if (listenerElement)
+    {
+        document.addEventListener("touchmove", onTouchMove);
+        listenerElement.addEventListener("touchend", onMouseUp);
+        listenerElement.addEventListener("touchstart", onMouseDown);
+
+        listenerElement.addEventListener("click", onmouseclick);
+        listenerElement.addEventListener("mousemove", onMouseMove);
+        listenerElement.addEventListener("mouseleave", onMouseLeave);
+        listenerElement.addEventListener("mousedown", onMouseDown);
+        listenerElement.addEventListener("mouseup", onMouseUp);
+        listenerElement.addEventListener("mouseenter", onMouseEnter);
+        // listenerElement.addEventListener('contextmenu', onClickRight);
+    }
+}
+
+
+};
+
+Ops.Patch.P4Zknbo.InteractiveRectangle_v23.prototype = new CABLES.Op();
+CABLES.OPS["b470a61b-ca19-4ff7-b16f-a6dd0749e811"]={f:Ops.Patch.P4Zknbo.InteractiveRectangle_v23,objName:"Ops.Patch.P4Zknbo.InteractiveRectangle_v23"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Vars.VarTriggerNumber
+// 
+// **************************************************************
+
+Ops.Vars.VarTriggerNumber = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    trigger = op.inTriggerButton("Trigger"),
+    val = op.inValueFloat("Value", 0),
+    next = op.outTrigger("Next");
+
+op.varName = op.inDropDown("Variable", [], "", true);
+
+new CABLES.VarSetOpWrapper(op, "number", val, op.varName, trigger, next);
+
+
+};
+
+Ops.Vars.VarTriggerNumber.prototype = new CABLES.Op();
+CABLES.OPS["2c29baf0-2af2-486d-9218-4299594ee9c1"]={f:Ops.Vars.VarTriggerNumber,objName:"Ops.Vars.VarTriggerNumber"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Trigger.TriggerCounterLoop
+// 
+// **************************************************************
+
+Ops.Trigger.TriggerCounterLoop = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const exe = op.inTriggerButton("trigger in"),
+    reset = op.inTriggerButton("reset"),
+    trigger = op.outTrigger("trigger out"),
+    num = op.outNumber("current count"),
+
+    inMinLoopValue = op.inValueInt("Loop min", 0.0),
+    inMaxLoopValue = op.inValueInt("Loop max", 4.0);
+
+let n = Math.floor(inMinLoopValue.get());
+
+// increments with each trigger and loops
+// depending on min and max loop values
+// can also work with negative numbers
+// if min is greater than max then it decrements
+// instead of incrementing
+exe.onTriggered = function ()
+{
+    let inMin = Math.floor(inMinLoopValue.get());
+    let inMax = Math.floor(inMaxLoopValue.get());
+
+    if (inMin < inMax)
+    {
+        if (n < inMin)
+        {
+            n = inMinLoopValue.get();
+        }
+        else if (n >= inMax)
+        {
+            n = inMinLoopValue.get();
+        }
+        else
+        {
+            n++;
+        }
+    }
+    else if (inMin > inMax)
+    {
+        if (n < inMax)
+        {
+            n = inMin;
+        }
+        else if (n > inMin)
+        {
+            inMin;
+        }
+        else if (n <= inMax)
+        {
+            n = inMin;
+        }
+        else
+        {
+            n--;
+        }
+    }
+    num.set(n);
+    op.setUiAttrib({ "extendTitle": n });
+    trigger.trigger();
+};
+
+reset.onTriggered = function ()
+{
+    let inMin = Math.floor(inMinLoopValue.get());
+    let inMax = Math.floor(inMaxLoopValue.get());
+
+    if (inMin < inMax)
+    {
+        n = inMin;
+    }
+    else if (inMax < inMin)
+    {
+        n = inMin;
+    }
+    else
+    {
+        n = 0;
+    }
+    op.setUiAttrib({ "extendTitle": n });
+    num.set(n);
+};
+
+
+};
+
+Ops.Trigger.TriggerCounterLoop.prototype = new CABLES.Op();
+CABLES.OPS["d3356c53-e278-433f-af0b-d8327cd99a2d"]={f:Ops.Trigger.TriggerCounterLoop,objName:"Ops.Trigger.TriggerCounterLoop"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Boolean.TriggerOnChangeBoolean
+// 
+// **************************************************************
+
+Ops.Boolean.TriggerOnChangeBoolean = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inBool = op.inValueBool("Value"),
+    outTrue = op.outTrigger("True"),
+    outFalse = op.outTrigger("False");
+
+inBool.onChange = function ()
+{
+    if (inBool.get()) outTrue.trigger();
+    else outFalse.trigger();
+};
+
+
+};
+
+Ops.Boolean.TriggerOnChangeBoolean.prototype = new CABLES.Op();
+CABLES.OPS["dba19c07-e3c4-4971-a991-c9e6212ca1c8"]={f:Ops.Boolean.TriggerOnChangeBoolean,objName:"Ops.Boolean.TriggerOnChangeBoolean"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.InteractiveRectangle_v2
+// 
+// **************************************************************
+
+Ops.Gl.InteractiveRectangle_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("Trigger in"),
+    trigger = op.outTrigger("Trigger out"),
+    width = op.inValue("Width", 1),
+    height = op.inValue("Height", 1),
+    inId = op.inString("ID"),
+    classPort = op.inString("Class"),
+    pivotX = op.inValueSelect("Pivot x", ["center", "left", "right"]),
+    pivotY = op.inValueSelect("Pivot y", ["center", "top", "bottom"]),
+    axis = op.inValueSelect("Axis", ["xy", "xz"]),
+    isInteractive = op.inValueBool("Is Interactive", true),
+    renderRect = op.inValueBool("Render Rectangle", true),
+    divVisible = op.inValueBool("Show Boundings", true),
+    cursorPort = op.inValueSelect("Cursor", ["auto", "crosshair", "pointer", "Hand", "move", "n-resize", "ne-resize", "e-resize", "se-resize", "s-resize", "sw-resize", "w-resize", "nw-resize", "text", "wait", "help", "none"], "pointer"),
+    active = op.inValueBool("Render", true);
+
+const geomOut = op.outObject("geometry");
+geomOut.ignoreValueSerialize = true;
+
+const
+    mouseOver = op.outBoolNum("Pointer Hover", false),
+    mouseDown = op.outBoolNum("Pointer Down", false),
+    outX = op.outNumber("Pointer X"),
+    outY = op.outNumber("Pointer Y"),
+    outTop = op.outNumber("Top"),
+    outLeft = op.outNumber("Left"),
+    outRight = op.outNumber("Right"),
+    outBottom = op.outNumber("Bottom"),
+    mouseClick = op.outTrigger("Left Click");
+
+const elementPort = op.outObject("Dom Element");
+
+active.setUiAttribs({ "title": "Active" });
+
+const cgl = op.patch.cgl;
+axis.set("xy");
+pivotX.set("center");
+pivotY.set("center");
+
+const geom = new CGL.Geometry(op.name);
+let mesh = null;
+let div = null;
+const m = mat4.create();
+const trans = mat4.create();
+const pos = vec3.create();
+const divAlign = vec3.create();
+const divAlignSize = vec3.create();
+
+axis.onChange = rebuild;
+pivotX.onChange = rebuild;
+pivotY.onChange = rebuild;
+width.onChange = rebuild;
+height.onChange = rebuild;
+cursorPort.onChange = updateCursor;
+rebuild();
+
+const modelMatrix = mat4.create();
+const identViewMatrix = mat4.create();
+const zeroVec3 = vec3.create();
+
+render.onTriggered = function ()
+{
+    if (!div)
+    {
+        setUpDiv();
+        addListeners();
+        updateDivVisibility();
+        updateIsInteractive();
+    }
+    updateDivSize();
+
+    if (active.get() && renderRect.get() && mesh) mesh.render(cgl.getShader());
+
+    trigger.trigger();
+};
+
+function rebuild()
+{
+    let w = width.get();
+    let h = height.get();
+    let x = 0;
+    let y = 0;
+
+    if (typeof w == "string")w = parseFloat(w);
+    if (typeof h == "string")h = parseFloat(h);
+
+    if (pivotX.get() == "center")
+    {
+        x = 0;
+        divAlign[0] = -w / 2;
+    }
+    if (pivotX.get() == "right")
+    {
+        x = -w / 2;
+    }
+    if (pivotX.get() == "left")
+    {
+        x = w / 2;
+    }
+
+    if (pivotY.get() == "center")
+    {
+        y = 0;
+        divAlign[1] = -h / 2;
+    }
+    if (pivotY.get() == "top") y = -h / 2;
+    if (pivotY.get() == "bottom") y = +h / 2;
+
+    const verts = [];
+    const tc = [];
+    const norms = [];
+    const indices = [];
+
+    const numRows = 1;
+    const numColumns = 1;
+
+    const stepColumn = w / numColumns;
+    const stepRow = h / numRows;
+
+    let c, r;
+
+    for (r = 0; r <= numRows; r++)
+    {
+        for (c = 0; c <= numColumns; c++)
+        {
+            verts.push(c * stepColumn - width.get() / 2 + x);
+            if (axis.get() == "xz") verts.push(0.0);
+            verts.push(r * stepRow - height.get() / 2 + y);
+            if (axis.get() == "xy") verts.push(0.0);
+
+            tc.push(c / numColumns);
+            tc.push(1.0 - r / numRows);
+
+            if (axis.get() == "xz")
+            {
+                norms.push(0);
+                norms.push(1);
+                norms.push(0);
+            }
+
+            if (axis.get() == "xy")
+            {
+                norms.push(0);
+                norms.push(0);
+                norms.push(-1);
+            }
+        }
+    }
+
+    for (c = 0; c < numColumns; c++)
+    {
+        for (r = 0; r < numRows; r++)
+        {
+            const ind = c + (numColumns + 1) * r;
+            const v1 = ind;
+            const v2 = ind + 1;
+            const v3 = ind + numColumns + 1;
+            const v4 = ind + 1 + numColumns + 1;
+
+            indices.push(v1);
+            indices.push(v3);
+            indices.push(v2);
+
+            indices.push(v2);
+            indices.push(v3);
+            indices.push(v4);
+        }
+    }
+
+    geom.clear();
+    geom.vertices = verts;
+    geom.texCoords = tc;
+    geom.verticesIndices = indices;
+    geom.vertexNormals = norms;
+
+    if (!mesh) mesh = new CGL.Mesh(cgl, geom);
+    else mesh.setGeom(geom);
+
+    geomOut.set(null);
+    geomOut.set(geom);
+}
+
+let divX = 0;
+let divY = 0;
+let divWidth = 0;
+let divHeight = 0;
+
+const mMatrix = mat4.create();
+divVisible.onChange = updateDivVisibility;
+inId.onChange = updateId;
+classPort.onChange = updateClassNames;
+
+function updateDivVisibility()
+{
+    if (div)
+    {
+        if (divVisible.get()) div.style.border = "1px solid red";
+        else div.style.border = "none";
+    }
+}
+
+function updateCursor()
+{
+    if (div)
+    {
+        div.style.cursor = cursorPort.get();
+    }
+}
+
+function updateId()
+{
+    if (div)
+    {
+        div.setAttribute("id", inId.get());
+    }
+}
+
+function updateDivSize()
+{
+    // var vp=cgl.getViewPort();
+
+    mat4.multiply(mMatrix, cgl.vMatrix, cgl.mMatrix);
+    vec3.transformMat4(pos, divAlign, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const top = cgl.canvas.styleMarginTop || 0;
+    const left = cgl.canvas.styleMarginLeft || 0;
+
+    const x1 = (trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2 + left;
+    const y1 = (trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top;
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1];
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x2 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y2 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0];
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x3 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y3 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x4 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y4 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divX = Math.min(x1, x2, x3, x4);
+    divY = Math.min(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    const xb = Math.max(x1, x2, x3, x4);
+    const yb = Math.max(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    outTop.set(divY);
+    outLeft.set(divX);
+    outRight.set(xb);
+    outBottom.set(yb);
+
+    divWidth = Math.abs(xb - divX);
+    divHeight = Math.abs(yb - divY);
+
+    divX /= op.patch.cgl.pixelDensity;
+    divY /= op.patch.cgl.pixelDensity;
+    divWidth /= op.patch.cgl.pixelDensity;
+    divHeight /= op.patch.cgl.pixelDensity;
+
+    // div.style.left=divX+'px';
+    // div.style.top=divY+'px';
+    // div.style.width=divWidth+'px';
+    // div.style.height=divHeight+'px';
+
+    const divXpx = divX + "px";
+    const divYpx = divY + "px";
+    const divWidthPx = divWidth + "px";
+    const divHeightPx = divHeight + "px";
+    if (divXpx != div.style.left) div.style.left = divXpx;
+    if (divYpx != div.style.top) div.style.top = divYpx;
+    if (div.style.width != divWidthPx) div.style.width = divWidthPx;
+    if (div.style.height != divHeightPx) div.style.height = divHeightPx;
+}
+
+function updateClassNames()
+{
+    if (div)
+    {
+        div.className = classPort.get();
+    }
+}
+
+op.onDelete = function ()
+{
+    if (div)div.remove();
+};
+
+function setUpDiv()
+{
+    if (!div)
+    {
+        div = document.createElement("div");
+        div.dataset.op = op.id;
+        div.oncontextmenu = function (e)
+        {
+            e.preventDefault();
+        };
+
+        div.style.padding = "0px";
+        div.style.position = "absolute";
+        div.style["box-sizing"] = "border-box";
+        div.style.border = "1px solid red";
+        // div.style['border-left']="1px solid blue";
+        // div.style['border-top']="1px solid green";
+        div.style["z-index"] = "500";
+
+        div.style["-webkit-user-select"] = "none";
+        div.style["user-select"] = "none";
+        div.style["-webkit-tap-highlight-color"] = "rgba(0,0,0,0)";
+        div.style["-webkit-touch-callout"] = "none";
+
+        const canvas = op.patch.cgl.canvas.parentElement;
+        canvas.appendChild(div);
+        updateCursor();
+        updateIsInteractive();
+        updateId();
+        updateClassNames();
+    }
+    updateDivSize();
+    elementPort.set(div);
+}
+
+let listenerElement = null;
+
+function onMouseMove(e)
+{
+    const offsetX = -width.get() / 2;
+    const offsetY = -height.get() / 2;
+
+    outX.set(Math.max(0.0, Math.min(1.0, e.offsetX / divWidth)));
+    outY.set(Math.max(0.0, Math.min(1.0, 1.0 - e.offsetY / divHeight)));
+}
+
+function onMouseLeave(e)
+{
+    mouseDown.set(false);
+    mouseOver.set(false);
+}
+
+function onMouseEnter(e)
+{
+    mouseOver.set(true);
+}
+
+function onMouseDown(e)
+{
+    mouseDown.set(true);
+}
+
+function onMouseUp(e)
+{
+    mouseDown.set(false);
+}
+
+function onmouseclick(e)
+{
+    mouseClick.trigger();
+}
+
+function onTouchMove(e)
+{
+    const targetEle = document.elementFromPoint(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
+
+    if (targetEle == div)
+    {
+        mouseOver.set(true);
+        if (e.touches && e.touches.length > 0)
+        {
+            const rect = div.getBoundingClientRect(); // e.target
+            const x = e.targetTouches[0].pageX - rect.left;
+            const y = e.targetTouches[0].pageY - rect.top;
+
+            const touch = e.touches[0];
+
+            outX.set(Math.max(0.0, Math.min(1.0, x / divWidth)));
+            outY.set(Math.max(0.0, Math.min(1.0, 1.0 - y / divHeight)));
+
+            onMouseMove(touch);
+        }
+    }
+    else
+    {
+        mouseOver.set(false);
+    }
+}
+
+active.onChange = updateActiveRender;
+function updateActiveRender()
+{
+    if (active.get())
+    {
+        addListeners();
+        if (div) div.style.display = "block";
+    }
+    else
+    {
+        removeListeners();
+        if (div) div.style.display = "none";
+    }
+}
+
+isInteractive.onChange = updateIsInteractive;
+function updateIsInteractive()
+{
+    if (isInteractive.get())
+    {
+        addListeners();
+        if (div)div.style["pointer-events"] = "initial";
+    }
+    else
+    {
+        removeListeners();
+        mouseDown.set(false);
+        mouseOver.set(false);
+        if (div)div.style["pointer-events"] = "none";
+    }
+}
+
+function removeListeners()
+{
+    if (listenerElement)
+    {
+        document.removeEventListener("touchmove", onTouchMove);
+        listenerElement.removeEventListener("touchend", onMouseUp);
+        listenerElement.removeEventListener("touchstart", onMouseDown);
+
+        listenerElement.removeEventListener("click", onmouseclick);
+        listenerElement.removeEventListener("mousemove", onMouseMove);
+        listenerElement.removeEventListener("mouseleave", onMouseLeave);
+        listenerElement.removeEventListener("mousedown", onMouseDown);
+        listenerElement.removeEventListener("mouseup", onMouseUp);
+        listenerElement.removeEventListener("mouseenter", onMouseEnter);
+        // listenerElement.removeEventListener('contextmenu', onClickRight);
+        listenerElement = null;
+    }
+}
+
+function addListeners()
+{
+    if (listenerElement)removeListeners();
+
+    listenerElement = div;
+
+    if (listenerElement)
+    {
+        document.addEventListener("touchmove", onTouchMove);
+        listenerElement.addEventListener("touchend", onMouseUp);
+        listenerElement.addEventListener("touchstart", onMouseDown);
+
+        listenerElement.addEventListener("click", onmouseclick);
+        listenerElement.addEventListener("mousemove", onMouseMove);
+        listenerElement.addEventListener("mouseleave", onMouseLeave);
+        listenerElement.addEventListener("mousedown", onMouseDown);
+        listenerElement.addEventListener("mouseup", onMouseUp);
+        listenerElement.addEventListener("mouseenter", onMouseEnter);
+        // listenerElement.addEventListener('contextmenu', onClickRight);
+    }
+}
+
+
+};
+
+Ops.Gl.InteractiveRectangle_v2.prototype = new CABLES.Op();
+CABLES.OPS["334728ca-60a2-4a42-a059-d9b5f3fe4d32"]={f:Ops.Gl.InteractiveRectangle_v2,objName:"Ops.Gl.InteractiveRectangle_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.String.NumberToString_v2
+// 
+// **************************************************************
+
+Ops.String.NumberToString_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    val = op.inValue("Number"),
+    decPlaces = op.inInt("Decimal Places", 4),
+    result = op.outString("Result");
+
+let doDec = false;
+let decm = 1;
+decPlaces.onChange = updateDecm;
+val.onChange = update;
+updateDecm();
+update();
+
+function updateDecm()
+{
+    doDec = decPlaces.get() < 100;
+    decm = Math.pow(10, decPlaces.get());
+    update();
+}
+
+function update()
+{
+    if (doDec)
+        result.set(String(Math.round(val.get() * decm) / decm));
+    else
+        result.set(String(val.get() || 0));
+}
+
+
+};
+
+Ops.String.NumberToString_v2.prototype = new CABLES.Op();
+CABLES.OPS["5c6d375a-82db-4366-8013-93f56b4061a9"]={f:Ops.String.NumberToString_v2,objName:"Ops.String.NumberToString_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.String.Concat_v2
+// 
+// **************************************************************
+
+Ops.String.Concat_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    string1 = op.inString("string1", "ABC"),
+    string2 = op.inString("string2", "XYZ"),
+    newLine = op.inValueBool("New Line", false),
+    active = op.inBool("Active", true),
+    result = op.outString("result");
+
+newLine.onChange =
+    string2.onChange =
+    string1.onChange =
+    active.onChange = exec;
+
+exec();
+
+function exec()
+{
+    if (!active.get())
+    {
+        return result.set(string1.get());
+    }
+    let s1 = string1.get();
+    let s2 = string2.get();
+    if (!s1 && !s2)
+    {
+        result.set("");
+        return;
+    }
+    if (!s1)s1 = "";
+    if (!s2)s2 = "";
+
+    let nl = "";
+    if (s1 && s2 && newLine.get())nl = "\n";
+    result.set(String(s1) + nl + String(s2));
+}
+
+
+};
+
+Ops.String.Concat_v2.prototype = new CABLES.Op();
+CABLES.OPS["a52722aa-0ca9-402c-a844-b7e98a6c6e60"]={f:Ops.String.Concat_v2,objName:"Ops.String.Concat_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Vars.VarGetString
+// 
+// **************************************************************
+
+Ops.Vars.VarGetString = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+var val=op.outString("Value");
+op.varName=op.inValueSelect("Variable",[],"",true);
+
+new CABLES.VarGetOpWrapper(op,"string",op.varName,val);
+
+
+};
+
+Ops.Vars.VarGetString.prototype = new CABLES.Op();
+CABLES.OPS["3ad08cfc-bce6-4175-9746-fef2817a3b12"]={f:Ops.Vars.VarGetString,objName:"Ops.Vars.VarGetString"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Vars.VarGetTexture_v2
+// 
+// **************************************************************
+
+Ops.Vars.VarGetTexture_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const val = op.outTexture("Value");
+op.varName = op.inValueSelect("Variable", [], "", true);
+
+new CABLES.VarGetOpWrapper(op, "object", op.varName, val);
+
+
+};
+
+Ops.Vars.VarGetTexture_v2.prototype = new CABLES.Op();
+CABLES.OPS["5f8ce5fc-9787-45c9-9a83-0eebd2c6de15"]={f:Ops.Vars.VarGetTexture_v2,objName:"Ops.Vars.VarGetTexture_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.Meshes.Triangle_v2
+// 
+// **************************************************************
+
+Ops.Gl.Meshes.Triangle_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("render"),
+    trigger = op.outTrigger("trigger"),
+    sizeW = op.inValueFloat("width", 1),
+    sizeH = op.inValueFloat("height", 1),
+    draw = op.inValueBool("Draw", true),
+    geom = new CGL.Geometry("triangle"),
+    geomOut = op.outObject("geometry");
+
+geomOut.ignoreValueSerialize = true;
+
+op.toWorkPortsNeedToBeLinked(render);
+op.setPortGroup("Size", [sizeW, sizeH]);
+
+const cgl = op.patch.cgl;
+let mesh = null;
+sizeW.onChange = sizeH.onChange = () => { mesh = null; };
+
+render.onLinkChanged = () =>
+{
+    if (!render.isLinked()) geomOut.set(null);
+    else create();
+};
+
+render.onTriggered = function ()
+{
+    if (!mesh)create();
+    if (draw.get() && mesh)mesh.render(cgl.getShader());
+    trigger.trigger();
+};
+
+function create()
+{
+    geom.vertices = [
+        0.0, sizeH.get(), 0.0,
+        -sizeW.get(), -sizeH.get(), 0.0,
+        sizeW.get(), -sizeH.get(), 0.0
+    ];
+
+    geom.vertexNormals = [
+        0.0, 0.0, 1.0,
+        0.0, 0.0, 1.0,
+        0.0, 0.0, 1.0
+    ];
+    geom.tangents = [
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0
+    ];
+    geom.biTangents = [
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0
+    ];
+
+    geom.texCoords = [
+        0.5, 0.0,
+        1.0, 1.0,
+        0.0, 1.0,
+    ];
+
+    geom.verticesIndices = [
+        0, 1, 2
+    ];
+
+    mesh = new CGL.Mesh(cgl, geom);
+    geomOut.setRef(geom);
+}
+
+
+};
+
+Ops.Gl.Meshes.Triangle_v2.prototype = new CABLES.Op();
+CABLES.OPS["ef522d4a-9712-4063-8a99-c6b409f26456"]={f:Ops.Gl.Meshes.Triangle_v2,objName:"Ops.Gl.Meshes.Triangle_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.ClearColor
+// 
+// **************************************************************
+
+Ops.Gl.ClearColor = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("render"),
+    trigger = op.outTrigger("trigger"),
+    r = op.inFloatSlider("r", 0.1),
+    g = op.inFloatSlider("g", 0.1),
+    b = op.inFloatSlider("b", 0.1),
+    a = op.inFloatSlider("a", 1);
+
+r.setUiAttribs({ "colorPick": true });
+
+const cgl = op.patch.cgl;
+
+render.onTriggered = function ()
+{
+    cgl.gl.clearColor(r.get(), g.get(), b.get(), a.get());
+    cgl.gl.clear(cgl.gl.COLOR_BUFFER_BIT | cgl.gl.DEPTH_BUFFER_BIT);
+    trigger.trigger();
+};
+
+
+};
+
+Ops.Gl.ClearColor.prototype = new CABLES.Op();
+CABLES.OPS["19b441eb-9f63-4f35-ba08-b87841517c4d"]={f:Ops.Gl.ClearColor,objName:"Ops.Gl.ClearColor"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Trigger.TriggerSend
+// 
+// **************************************************************
+
+Ops.Trigger.TriggerSend = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const trigger = op.inTriggerButton("Trigger");
+op.varName = op.inValueSelect("Named Trigger", [], "", true);
+
+op.varName.onChange = updateName;
+
+trigger.onTriggered = doTrigger;
+
+op.patch.addEventListener("namedTriggersChanged", updateVarNamesDropdown);
+
+updateVarNamesDropdown();
+
+function updateVarNamesDropdown()
+{
+    if (CABLES.UI)
+    {
+        let varnames = [];
+        const vars = op.patch.namedTriggers;
+        varnames.push("+ create new one");
+        for (const i in vars) varnames.push(i);
+        varnames = varnames.sort();
+        op.varName.uiAttribs.values = varnames;
+    }
+}
+
+function updateName()
+{
+    if (CABLES.UI)
+    {
+        if (op.varName.get() == "+ create new one")
+        {
+            new CABLES.UI.ModalDialog({
+                "prompt": true,
+                "title": "New Trigger",
+                "text": "Enter a name for the new trigger",
+                "promptValue": "",
+                "promptOk": (str) =>
+                {
+                    op.varName.set(str);
+                    op.patch.namedTriggers[str] = op.patch.namedTriggers[str] || [];
+                    updateVarNamesDropdown();
+                }
+            });
+            return;
+        }
+
+        op.refreshParams();
+    }
+
+    if (!op.patch.namedTriggers[op.varName.get()])
+    {
+        op.patch.namedTriggers[op.varName.get()] = op.patch.namedTriggers[op.varName.get()] || [];
+        op.patch.emitEvent("namedTriggersChanged");
+    }
+
+    op.setTitle(">" + op.varName.get());
+
+    op.refreshParams();
+    op.patch.emitEvent("opTriggerNameChanged", op, op.varName.get());
+}
+
+function doTrigger()
+{
+    const arr = op.patch.namedTriggers[op.varName.get()];
+    // fire an event even if noone is receiving this trigger
+    // this way TriggerReceiveFilter can still handle it
+    op.patch.emitEvent("namedTriggerSent", op.varName.get());
+
+    if (!arr)
+    {
+        op.setUiError("unknowntrigger", "unknown trigger");
+        return;
+    }
+    else op.setUiError("unknowntrigger", null);
+
+    for (let i = 0; i < arr.length; i++)
+    {
+        arr[i]();
+    }
+}
+
+
+};
+
+Ops.Trigger.TriggerSend.prototype = new CABLES.Op();
+CABLES.OPS["ce1eaf2b-943b-4dc0-ab5e-ee11b63c9ed0"]={f:Ops.Trigger.TriggerSend,objName:"Ops.Trigger.TriggerSend"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Trigger.Repeat2d
+// 
+// **************************************************************
+
+Ops.Trigger.Repeat2d = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    exe = op.inTrigger("exe"),
+    numx = op.inValueInt("num x", 5),
+    numy = op.inValueInt("num y", 5),
+    mul = op.inValueFloat("mul", 1),
+    center = op.inValueBool("center"),
+    trigger = op.outTrigger("trigger"),
+    outX = op.outNumber("x"),
+    outY = op.outNumber("y"),
+    idx = op.outNumber("index"),
+    total = op.outNumber("total iterations");
+
+exe.onTriggered = function ()
+{
+    let subX = 0;
+    let subY = 0;
+    const m = mul.get();
+    const nx = numx.get();
+    const ny = numy.get();
+
+    if (center.get())
+    {
+        subX = ((nx - 1) * m) / 2.0;
+        subY = ((ny - 1) * m) / 2.0;
+    }
+
+    for (let y = 0; y < ny; y++)
+    {
+        outY.set((y * m) - subY);
+        for (let x = 0; x < nx; x++)
+        {
+            outX.set((x * m) - subX);
+            idx.set(x + y * nx);
+            trigger.trigger();
+        }
+    }
+    total.set(numx.get() * numy.get());
+};
+
+
+};
+
+Ops.Trigger.Repeat2d.prototype = new CABLES.Op();
+CABLES.OPS["79934693-5887-4173-8b48-3e3a18fcf225"]={f:Ops.Trigger.Repeat2d,objName:"Ops.Trigger.Repeat2d"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.Compare.Equals
+// 
+// **************************************************************
+
+Ops.Math.Compare.Equals = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    number1 = op.inValue("number1", 1),
+    number2 = op.inValue("number2", 1),
+    result = op.outBoolNum("result");
+
+number1.onChange =
+    number2.onChange = exec;
+exec();
+
+function exec()
+{
+    result.set(number1.get() == number2.get());
+}
+
+
+};
+
+Ops.Math.Compare.Equals.prototype = new CABLES.Op();
+CABLES.OPS["4dd3cc55-eebc-4187-9d4e-2e053a956fab"]={f:Ops.Math.Compare.Equals,objName:"Ops.Math.Compare.Equals"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Array.ArrayGetNumber
+// 
+// **************************************************************
+
+Ops.Array.ArrayGetNumber = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    array = op.inArray("array"),
+    index = op.inValueInt("index"),
+    valueInvalid = op.inFloat("Value Invalid Index", 0),
+    value = op.outNumber("value"),
+    outValidIndex = op.outBoolNum("Valid Index", true);
+
+array.ignoreValueSerialize = true;
+
+index.onChange = array.onChange = update;
+
+function update()
+{
+    if (array.get())
+    {
+        const input = array.get()[index.get()];
+        if (isNaN(input))
+        {
+            value.set(valueInvalid.get());
+            outValidIndex.set(false);
+        }
+        else
+        {
+            outValidIndex.set(true);
+            value.set(parseFloat(input));
+        }
+    }
+}
+
+
+};
+
+Ops.Array.ArrayGetNumber.prototype = new CABLES.Op();
+CABLES.OPS["d1189078-70cf-437d-9a37-b2ebe89acdaf"]={f:Ops.Array.ArrayGetNumber,objName:"Ops.Array.ArrayGetNumber"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Vars.VarGetArray_v2
+// 
+// **************************************************************
+
+Ops.Vars.VarGetArray_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const val = op.outArray("Value");
+op.varName = op.inValueSelect("Variable", [], "", true);
+
+new CABLES.VarGetOpWrapper(op, "array", op.varName, val);
+
+
+};
+
+Ops.Vars.VarGetArray_v2.prototype = new CABLES.Op();
+CABLES.OPS["afa79294-aa9c-43bc-a49a-cade000a1de5"]={f:Ops.Vars.VarGetArray_v2,objName:"Ops.Vars.VarGetArray_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.Matrix.Camera
+// 
+// **************************************************************
+
+Ops.Gl.Matrix.Camera = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const render = op.inTrigger("render");
+const trigger = op.outTrigger("trigger");
+
+/* Inputs */
+// projection | prespective & ortogonal
+const projectionMode = op.inValueSelect("projection mode", ["prespective", "ortogonal"], "prespective");
+const zNear = op.inValue("frustum near", 0.01);
+const zFar = op.inValue("frustum far", 5000.0);
+
+const fov = op.inValue("fov", 45);
+const autoAspect = op.inValueBool("Auto Aspect Ratio", true);
+const aspect = op.inValue("Aspect Ratio", 1);
+
+// look at camera
+const eyeX = op.inValue("eye X", 0);
+const eyeY = op.inValue("eye Y", 0);
+const eyeZ = op.inValue("eye Z", 5);
+
+const centerX = op.inValue("center X", 0);
+const centerY = op.inValue("center Y", 0);
+const centerZ = op.inValue("center Z", 0);
+
+// camera transform and movements
+const posX = op.inValue("truck", 0);
+const posY = op.inValue("boom", 0);
+const posZ = op.inValue("dolly", 0);
+
+const rotX = op.inValue("tilt", 0);
+const rotY = op.inValue("pan", 0);
+const rotZ = op.inValue("roll", 0);
+
+/* Outputs */
+const outAsp = op.outNumber("Aspect");
+const outArr = op.outArray("Look At Array");
+
+/* logic */
+const cgl = op.patch.cgl;
+
+let asp = 0;
+
+const vUp = vec3.create();
+const vEye = vec3.create();
+const vCenter = vec3.create();
+const transMatrix = mat4.create();
+mat4.identity(transMatrix);
+
+const arr = [];
+
+// Transform and move
+const vPos = vec3.create();
+const transMatrixMove = mat4.create();
+mat4.identity(transMatrixMove);
+
+let updateCameraMovementMatrix = true;
+
+render.onTriggered = function ()
+{
+    if (cgl.frameStore.shadowPass) return trigger.trigger();
+
+    // Aspect ration
+    if (!autoAspect.get()) asp = aspect.get();
+    else asp = cgl.getViewPort()[2] / cgl.getViewPort()[3];
+    outAsp.set(asp);
+
+    // translation (truck, boom, dolly)
+    cgl.pushViewMatrix();
+
+    if (updateCameraMovementMatrix)
+    {
+        mat4.identity(transMatrixMove);
+
+        vec3.set(vPos, posX.get(), posY.get(), posZ.get());
+        if (posX.get() !== 0.0 || posY.get() !== 0.0 || posZ.get() !== 0.0)
+            mat4.translate(transMatrixMove, transMatrixMove, vPos);
+
+        if (rotX.get() !== 0)
+            mat4.rotateX(transMatrixMove, transMatrixMove, rotX.get() * CGL.DEG2RAD);
+        if (rotY.get() !== 0)
+            mat4.rotateY(transMatrixMove, transMatrixMove, rotY.get() * CGL.DEG2RAD);
+        if (rotZ.get() !== 0)
+            mat4.rotateZ(transMatrixMove, transMatrixMove, rotZ.get() * CGL.DEG2RAD);
+
+        updateCameraMovementMatrix = false;
+    }
+
+    mat4.multiply(cgl.vMatrix, cgl.vMatrix, transMatrixMove);
+
+    // projection (prespective / ortogonal)
+    cgl.pushPMatrix();
+
+    // look at
+    cgl.pushViewMatrix();
+
+    if (projectionMode.get() == "prespective")
+    {
+        mat4.perspective(
+            cgl.pMatrix,
+            fov.get() * 0.0174533,
+            asp,
+            zNear.get(),
+            zFar.get()
+        );
+    }
+    else if (projectionMode.get() == "ortogonal")
+    {
+        mat4.ortho(
+            cgl.pMatrix,
+            -1 * (fov.get() / 14),
+            1 * (fov.get() / 14),
+            -1 * (fov.get() / 14) / asp,
+            1 * (fov.get() / 14) / asp,
+            zNear.get(),
+            zFar.get()
+        );
+    }
+
+    arr[0] = eyeX.get();
+    arr[1] = eyeY.get();
+    arr[2] = eyeZ.get();
+
+    arr[3] = centerX.get();
+    arr[4] = centerY.get();
+    arr[5] = centerZ.get();
+
+    arr[6] = 0;
+    arr[7] = 1;
+    arr[8] = 0;
+
+    outArr.setRef(arr);
+
+    vec3.set(vUp, 0, 1, 0);
+    vec3.set(vEye, eyeX.get(), eyeY.get(), eyeZ.get());
+    vec3.set(vCenter, centerX.get(), centerY.get(), centerZ.get());
+
+    mat4.lookAt(transMatrix, vEye, vCenter, vUp);
+
+    mat4.multiply(cgl.vMatrix, cgl.vMatrix, transMatrix);
+
+    trigger.trigger();
+
+    cgl.popViewMatrix();
+    cgl.popPMatrix();
+
+    cgl.popViewMatrix();
+
+    // GUI for dolly, boom and truck
+    if (op.isCurrentUiOp())
+        gui.setTransformGizmo({
+            "posX": posX,
+            "posY": posY,
+            "posZ": posZ
+        });
+};
+
+const updateUI = function ()
+{
+    if (!autoAspect.get())
+    {
+        aspect.setUiAttribs({ "greyout": false });
+    }
+    else
+    {
+        aspect.setUiAttribs({ "greyout": true });
+    }
+};
+
+const cameraMovementChanged = function ()
+{
+    updateCameraMovementMatrix = true;
+};
+
+// listeners
+posX.onChange = cameraMovementChanged;
+posY.onChange = cameraMovementChanged;
+posZ.onChange = cameraMovementChanged;
+
+rotX.onChange = cameraMovementChanged;
+rotY.onChange = cameraMovementChanged;
+rotZ.onChange = cameraMovementChanged;
+
+autoAspect.onChange = updateUI;
+updateUI();
+
+
+};
+
+Ops.Gl.Matrix.Camera.prototype = new CABLES.Op();
+CABLES.OPS["b24dbfdc-485c-49d2-92a1-7258efd9239a"]={f:Ops.Gl.Matrix.Camera,objName:"Ops.Gl.Matrix.Camera"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.Matrix.TransformView
+// 
+// **************************************************************
+
+Ops.Gl.Matrix.TransformView = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("render"),
+    posX = op.inValueFloat("posX"),
+    posY = op.inValueFloat("posY"),
+    posZ = op.inValueFloat("posZ"),
+    scale = op.inValueFloat("scale"),
+    rotX = op.inValueFloat("rotX"),
+    rotY = op.inValueFloat("rotY"),
+    rotZ = op.inValueFloat("rotZ"),
+    trigger = op.outTrigger("trigger");
+
+op.setPortGroup("Position", [posX, posY, posZ]);
+op.setPortGroup("Scale", [scale]);
+op.setPortGroup("Rotation", [rotX, rotZ, rotY]);
+
+const vPos = vec3.create();
+const vScale = vec3.create();
+const transMatrix = mat4.create();
+mat4.identity(transMatrix);
+
+let doScale = false;
+let doTranslate = false;
+
+let translationChanged = true;
+let didScaleChanged = true;
+let didRotChanged = true;
+
+render.onTriggered = function ()
+{
+    const cg = op.patch.cgl;
+
+    let updateMatrix = false;
+    if (translationChanged)
+    {
+        updateTranslation();
+        updateMatrix = true;
+    }
+    if (didScaleChanged)
+    {
+        updateScale();
+        updateMatrix = true;
+    }
+    if (didRotChanged)
+    {
+        updateMatrix = true;
+    }
+    if (updateMatrix)doUpdateMatrix();
+
+    cg.pushViewMatrix();
+    mat4.multiply(cg.vMatrix, cg.vMatrix, transMatrix);
+
+    trigger.trigger();
+    cg.popViewMatrix();
+
+    if (op.isCurrentUiOp())
+        gui.setTransformGizmo(
+            {
+                "posX": posX,
+                "posY": posY,
+                "posZ": posZ,
+            });
+};
+
+op.transform3d = function ()
+{
+    return {
+        "pos": [posX, posY, posZ]
+    };
+};
+
+function doUpdateMatrix()
+{
+    mat4.identity(transMatrix);
+    if (doTranslate)mat4.translate(transMatrix, transMatrix, vPos);
+
+    if (rotX.get() !== 0)mat4.rotateX(transMatrix, transMatrix, rotX.get() * CGL.DEG2RAD);
+    if (rotY.get() !== 0)mat4.rotateY(transMatrix, transMatrix, rotY.get() * CGL.DEG2RAD);
+    if (rotZ.get() !== 0)mat4.rotateZ(transMatrix, transMatrix, rotZ.get() * CGL.DEG2RAD);
+
+    if (doScale)mat4.scale(transMatrix, transMatrix, vScale);
+    rotChanged = false;
+}
+
+function updateTranslation()
+{
+    doTranslate = false;
+    if (posX.get() !== 0.0 || posY.get() !== 0.0 || posZ.get() !== 0.0) doTranslate = true;
+    vec3.set(vPos, posX.get(), posY.get(), posZ.get());
+    translationChanged = false;
+}
+
+function updateScale()
+{
+    doScale = false;
+    if (scale.get() !== 0.0)doScale = true;
+    vec3.set(vScale, scale.get(), scale.get(), scale.get());
+    scaleChanged = false;
+}
+
+function translateChanged()
+{
+    translationChanged = true;
+}
+
+function scaleChanged()
+{
+    didScaleChanged = true;
+}
+
+function rotChanged()
+{
+    didRotChanged = true;
+}
+
+rotX.onChange =
+rotY.onChange =
+rotZ.onChange = rotChanged;
+
+scale.onChange = scaleChanged;
+
+posX.onChange =
+posY.onChange =
+posZ.onChange = translateChanged;
+
+rotX.set(0.0);
+rotY.set(0.0);
+rotZ.set(0.0);
+
+scale.set(1.0);
+
+posX.set(0.0);
+posY.set(0.0);
+posZ.set(0.0);
+
+doUpdateMatrix();
+
+
+};
+
+Ops.Gl.Matrix.TransformView.prototype = new CABLES.Op();
+CABLES.OPS["0b3e04f7-323e-4ac8-8a22-a21e2f36e0e9"]={f:Ops.Gl.Matrix.TransformView,objName:"Ops.Gl.Matrix.TransformView"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.SmootherStep
+// 
+// **************************************************************
+
+Ops.Math.SmootherStep = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    val = op.inValueFloat("val", 0),
+    min = op.inValueFloat("min", 0),
+    max = op.inValueFloat("max", 1),
+    result = op.outNumber("result");
+
+val.onChange = max.onChange = min.onChange = exec;
+exec();
+
+function exec()
+{
+    let x = Math.max(0, Math.min(1, (val.get() - min.get()) / (max.get() - min.get())));
+    result.set(x * x * x * (x * (x * 6 - 15) + 10) * (max.get() - min.get())); // smootherstep
+}
+
+
+};
+
+Ops.Math.SmootherStep.prototype = new CABLES.Op();
+CABLES.OPS["c66da84f-ff2f-45de-b3c2-557bdf1cb946"]={f:Ops.Math.SmootherStep,objName:"Ops.Math.SmootherStep"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.String.StringCompose_v3
+// 
+// **************************************************************
+
+Ops.String.StringCompose_v3 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    format=op.inString('Format',"hello $a, $b $c und $d"),
+    a=op.inString('String A','world'),
+    b=op.inString('String B',1),
+    c=op.inString('String C',2),
+    d=op.inString('String D',3),
+    e=op.inString('String E'),
+    f=op.inString('String F'),
+    result=op.outString("Result");
+
+format.onChange=
+    a.onChange=
+    b.onChange=
+    c.onChange=
+    d.onChange=
+    e.onChange=
+    f.onChange=update;
+
+update();
+
+function update()
+{
+    var str=format.get()||'';
+    if(typeof str!='string')
+        str='';
+
+    str = str.replace(/\$a/g, a.get());
+    str = str.replace(/\$b/g, b.get());
+    str = str.replace(/\$c/g, c.get());
+    str = str.replace(/\$d/g, d.get());
+    str = str.replace(/\$e/g, e.get());
+    str = str.replace(/\$f/g, f.get());
+
+    result.set(str);
+}
+
+};
+
+Ops.String.StringCompose_v3.prototype = new CABLES.Op();
+CABLES.OPS["6afea9f4-728d-4f3c-9e75-62ddc1448bf0"]={f:Ops.String.StringCompose_v3,objName:"Ops.String.StringCompose_v3"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.RenderToTexture_v3
+// 
+// **************************************************************
+
+Ops.Gl.RenderToTexture_v3 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("render"),
+    inSize = op.inSwitch("Size", ["Canvas", "Manual"], "Canvas"),
+    width = op.inValueInt("texture width", 512),
+    height = op.inValueInt("texture height", 512),
+    aspect = op.inBool("Auto Aspect", true),
+    tfilter = op.inSwitch("filter", ["nearest", "linear", "mipmap"], "linear"),
+    twrap = op.inSwitch("Wrap", ["Clamp", "Repeat", "Mirror"], "Repeat"),
+    msaa = op.inSwitch("MSAA", ["none", "2x", "4x", "8x"], "none"),
+    trigger = op.outTrigger("trigger"),
+    tex = op.outTexture("texture"),
+    texDepth = op.outTexture("textureDepth"),
+    inPixelFormat = op.inDropDown("Pixel Format", CGL.Texture.PIXELFORMATS, CGL.Texture.PFORMATSTR_RGBA8UB),
+    depth = op.inValueBool("Depth", true),
+    clear = op.inValueBool("Clear", true);
+
+const cgl = op.patch.cgl;
+let fb = null;
+let reInitFb = true;
+
+op.setPortGroup("Size", [inSize, width, height, aspect]);
+
+inPixelFormat.onChange =
+    depth.onChange =
+    clear.onChange =
+    tfilter.onChange =
+    twrap.onChange =
+    msaa.onChange = initFbLater;
+
+inSize.onChange = updateUi;
+
+render.onTriggered =
+    op.preRender = doRender;
+
+updateUi();
+
+function updateUi()
+{
+    width.setUiAttribs({ "greyout": inSize.get() != "Manual" });
+    height.setUiAttribs({ "greyout": inSize.get() != "Manual" });
+    aspect.setUiAttribs({ "greyout": inSize.get() != "Manual" });
+}
+
+function initFbLater()
+{
+    reInitFb = true;
+}
+
+function doRender()
+{
+    CGL.TextureEffect.checkOpNotInTextureEffect(op);
+
+    if (!fb || reInitFb)
+    {
+        if (fb) fb.delete();
+
+        let selectedWrap = CGL.Texture.WRAP_REPEAT;
+        if (twrap.get() == "Clamp") selectedWrap = CGL.Texture.WRAP_CLAMP_TO_EDGE;
+        else if (twrap.get() == "Mirror") selectedWrap = CGL.Texture.WRAP_MIRRORED_REPEAT;
+
+        let selectFilter = CGL.Texture.FILTER_NEAREST;
+        if (tfilter.get() == "nearest") selectFilter = CGL.Texture.FILTER_NEAREST;
+        else if (tfilter.get() == "linear") selectFilter = CGL.Texture.FILTER_LINEAR;
+        else if (tfilter.get() == "mipmap") selectFilter = CGL.Texture.FILTER_MIPMAP;
+
+        if (inPixelFormat.get().indexOf("loat") && tfilter.get() == "mipmap") op.setUiError("fpmipmap", "Can't use mipmap and float texture at the same time");
+        else op.setUiError("fpmipmap", null);
+
+        if (cgl.glVersion >= 2)
+        {
+            let ms = true;
+            let msSamples = 4;
+
+            if (msaa.get() == "none")
+            {
+                msSamples = 0;
+                ms = false;
+            }
+            if (msaa.get() == "2x") msSamples = 2;
+            if (msaa.get() == "4x") msSamples = 4;
+            if (msaa.get() == "8x") msSamples = 8;
+
+            fb = new CGL.Framebuffer2(cgl, 8, 8,
+                {
+                    "name": "render2texture " + op.id,
+                    "pixelFormat": inPixelFormat.get(),
+                    "multisampling": ms,
+                    "multisamplingSamples": msSamples,
+                    "wrap": selectedWrap,
+                    "filter": selectFilter,
+                    "depth": depth.get(),
+                    "clear": clear.get()
+                });
+        }
+        else
+        {
+            fb = new CGL.Framebuffer(cgl, 8, 8, { "isFloatingPointTexture": false, "clear": clear.get() });
+        }
+
+        if (fb && fb.valid)
+        {
+            texDepth.set(fb.getTextureDepth());
+            reInitFb = false;
+        }
+        else
+        {
+            fb = null;
+            reInitFb = true;
+        }
+    }
+
+    let setAspect = aspect.get();
+
+    if (inSize.get() == "Canvas")
+    {
+        setAspect = true;
+        width.set(op.patch.cgl.checkTextureSize(cgl.canvasWidth));
+        height.set(op.patch.cgl.checkTextureSize(cgl.canvasHeight));
+    }
+
+    if (fb.getWidth() != op.patch.cgl.checkTextureSize(width.get()) || fb.getHeight() != op.patch.cgl.checkTextureSize(height.get()))
+    {
+        fb.setSize(
+            op.patch.cgl.checkTextureSize(width.get()),
+            op.patch.cgl.checkTextureSize(height.get()));
+    }
+
+    fb.renderStart(cgl);
+
+    cgl.pushViewPort(0, 0, width.get(), height.get());
+
+    if (setAspect) mat4.perspective(cgl.pMatrix, 45, width.get() / height.get(), 0.1, 1000.0);
+
+    trigger.trigger();
+    fb.renderEnd(cgl);
+
+    cgl.popViewPort();
+
+    texDepth.setRef(fb.getTextureDepth());
+    tex.setRef(fb.getTextureColor());
+}
+
+//
+
+
+};
+
+Ops.Gl.RenderToTexture_v3.prototype = new CABLES.Op();
+CABLES.OPS["41eec5c7-c480-477a-be81-04c3efac8357"]={f:Ops.Gl.RenderToTexture_v3,objName:"Ops.Gl.RenderToTexture_v3"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.GLTF.GltfDracoCompression
+// 
+// **************************************************************
+
+Ops.Gl.GLTF.GltfDracoCompression = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+class DracoDecoderClass
+{
+    constructor()
+    {
+        this.workerLimit = 4;
+        this.workerPool = [];
+        this.workerNextTaskID = 1;
+        this.workerSourceURL = "";
+
+        this.config = {
+            "wasm": Uint8Array.from(atob(DracoDecoderWASM), (c) => { return c.charCodeAt(0); }),
+            "wrapper": DracoWASMWrapperCode,
+            "decoderSettings": {},
+        };
+
+        const dracoWorker = this._DracoWorker.toString();
+        const workerCode = dracoWorker.substring(dracoWorker.indexOf("{") + 1, dracoWorker.lastIndexOf("}"));
+
+        const jsContent = this.config.wrapper;
+        const body = [
+            "/* draco decoder */",
+            jsContent,
+            "",
+            "/* worker */",
+            workerCode
+        ].join("\n");
+
+        this.workerSourceURL = URL.createObjectURL(new Blob([body]));
+    }
+
+    _getWorker(taskID, taskCost)
+    {
+        if (this.workerPool.length < this.workerLimit)
+        {
+            const worker = new Worker(this.workerSourceURL);
+            worker._callbacks = {};
+            worker._taskCosts = {};
+            worker._taskLoad = 0;
+            worker.postMessage({ "type": "init", "decoderConfig": this.config });
+            worker.onmessage = (e) =>
+            {
+                const message = e.data;
+
+                switch (message.type)
+                {
+                case "done":
+                    worker._callbacks[message.taskID].finishedCallback(message.geometry);
+                    break;
+
+                case "error":
+                    worker._callbacks[message.taskID].errorCallback(message);
+                    break;
+
+                default:
+                    op.error("THREE.DRACOLoader: Unexpected message, \"" + message.type + "\"");
+                }
+                this._releaseTask(worker, message.taskID);
+            };
+            this.workerPool.push(worker);
+        }
+        else
+        {
+            this.workerPool.sort(function (a, b)
+            {
+                return a._taskLoad > b._taskLoad ? -1 : 1;
+            });
+        }
+
+        const worker = this.workerPool[this.workerPool.length - 1];
+        worker._taskCosts[taskID] = taskCost;
+        worker._taskLoad += taskCost;
+        return worker;
+    }
+
+    decodeGeometry(buffer, finishedCallback, errorCallback = null)
+    {
+        const taskID = this.workerNextTaskID++;
+        const taskCost = buffer.byteLength;
+
+        const worker = this._getWorker(taskID, taskCost);
+        worker._callbacks[taskID] = { finishedCallback, errorCallback };
+        worker.postMessage({ "type": "decode", "taskID": taskID, buffer }, [buffer]);
+    }
+
+    _releaseTask(worker, taskID)
+    {
+        worker._taskLoad -= worker._taskCosts[taskID];
+        delete worker._callbacks[taskID];
+        delete worker._taskCosts[taskID];
+    }
+
+    _DracoWorker()
+    {
+        let pendingDecoder;
+
+        onmessage = function (e)
+        {
+            const message = e.data;
+            switch (message.type)
+            {
+            case "init":
+                const decoderConfig = message.decoderConfig;
+                const moduleConfig = decoderConfig.decoderSettings;
+                pendingDecoder = new Promise(function (resolve)
+                {
+                    moduleConfig.onModuleLoaded = function (draco)
+                    {
+                        // Module is Promise-like. Wrap before resolving to avoid loop.
+                        resolve({ "draco": draco });
+                    };
+                    moduleConfig.wasmBinary = decoderConfig.wasm;
+                    DracoDecoderModule(moduleConfig); // eslint-disable-line no-undef
+                });
+                break;
+            case "decode":
+                pendingDecoder.then((module) =>
+                {
+                    const draco = module.draco;
+
+                    const f = new draco.Decoder();
+                    const dataBuff = new Int8Array(message.buffer);
+
+                    const geometryType = f.GetEncodedGeometryType(dataBuff);
+                    const buffer = new draco.DecoderBuffer();
+                    buffer.Init(dataBuff, dataBuff.byteLength);
+
+                    let outputGeometry = new draco.Mesh();
+                    const status = f.DecodeBufferToMesh(buffer, outputGeometry);
+                    const attribute = f.GetAttributeByUniqueId(outputGeometry, 1);
+                    const geometry = dracoAttributes(draco, f, outputGeometry, geometryType, name);
+
+                    this.postMessage({ "type": "done", "taskID": message.taskID, "geometry": geometry });
+
+                    draco.destroy(f);
+                    draco.destroy(buffer);
+                });
+                break;
+            }
+        };
+
+        let dracoAttributes = function (draco, decoder, dracoGeometry, geometryType, name)
+        {
+            const attributeIDs = {
+                "position": draco.POSITION,
+                "normal": draco.NORMAL,
+                "color": draco.COLOR,
+                "uv": draco.TEX_COORD,
+                "joints": draco.GENERIC,
+                "weights": draco.GENERIC,
+            };
+            const attributeTypes = {
+                "position": "Float32Array",
+                "normal": "Float32Array",
+                "color": "Float32Array",
+                "weights": "Float32Array",
+                "joints": "Uint8Array",
+                "uv": "Float32Array"
+            };
+
+            const geometry = {
+                "index": null,
+                "attributes": []
+            };
+
+            let count = 0;
+            for (const attributeName in attributeIDs)
+            {
+                const attributeType = attributeTypes[attributeName];
+                let attributeID = decoder.GetAttributeId(dracoGeometry, attributeIDs[attributeName]);
+
+                count++;
+                if (attributeID != -1)
+                {
+                    let attribute = decoder.GetAttribute(dracoGeometry, attributeID);
+                    geometry.attributes.push(decodeAttribute(draco, decoder, dracoGeometry, attributeName, attributeType, attribute));
+                }
+            }
+
+            if (geometryType === draco.TRIANGULAR_MESH) geometry.index = decodeIndex(draco, decoder, dracoGeometry);
+            else op.warn("unknown draco geometryType", geometryType);
+
+            draco.destroy(dracoGeometry);
+            return geometry;
+        };
+
+        let decodeIndex = function (draco, decoder, dracoGeometry)
+        {
+            const numFaces = dracoGeometry.num_faces();
+            const numIndices = numFaces * 3;
+            const byteLength = numIndices * 4;
+            const ptr = draco._malloc(byteLength);
+
+            decoder.GetTrianglesUInt32Array(dracoGeometry, byteLength, ptr);
+            const index = new Uint32Array(draco.HEAPF32.buffer, ptr, numIndices).slice();
+
+            draco._free(ptr);
+
+            return {
+                "array": index,
+                "itemSize": 1
+            };
+        };
+
+        let decodeAttribute = function (draco, decoder, dracoGeometry, attributeName, attributeType, attribute)
+        {
+            let bytesPerElement = 4;
+            if (attributeType === "Float32Array") bytesPerElement = 4;
+            else if (attributeType === "Uint8Array") bytesPerElement = 1;
+            else op.warn("unknown attrtype bytesPerElement", attributeType);
+
+            const numComponents = attribute.num_components();
+            const numPoints = dracoGeometry.num_points();
+            const numValues = numPoints * numComponents;
+            const byteLength = numValues * bytesPerElement;
+            const dataType = getDracoDataType(draco, attributeType);
+            const ptr = draco._malloc(byteLength);
+            let array = null;
+
+            decoder.GetAttributeDataArrayForAllPoints(dracoGeometry, attribute, dataType, byteLength, ptr);
+
+            if (attributeType === "Float32Array") array = new Float32Array(draco.HEAPF32.buffer, ptr, numValues).slice();
+            else if (attributeType === "Uint8Array") array = new Uint8Array(draco.HEAPF32.buffer, ptr, numValues).slice();
+            else op.warn("unknown attrtype", attributeType);
+
+            draco._free(ptr);
+
+            return {
+                "name": attributeName,
+                "array": array,
+                "itemSize": numComponents
+            };
+        };
+
+        let getDracoDataType = function (draco, attributeType)
+        {
+            switch (attributeType)
+            {
+            case "Float32Array": return draco.DT_FLOAT32;
+            case "Int8Array": return draco.DT_INT8;
+            case "Int16Array": return draco.DT_INT16;
+            case "Int32Array": return draco.DT_INT32;
+            case "Uint8Array": return draco.DT_UINT8;
+            case "Uint16Array": return draco.DT_UINT16;
+            case "Uint32Array": return draco.DT_UINT32;
+            }
+        };
+    }
+}
+
+window.DracoDecoder = new DracoDecoderClass();
+
+
+};
+
+Ops.Gl.GLTF.GltfDracoCompression.prototype = new CABLES.Op();
+CABLES.OPS["4ecdc2ef-a242-4548-ad74-13f617119a64"]={f:Ops.Gl.GLTF.GltfDracoCompression,objName:"Ops.Gl.GLTF.GltfDracoCompression"};
+
+
+
+
+// **************************************************************
+// 
 // Ops.Vars.VarSetObject_v2
 // 
 // **************************************************************
@@ -9801,72 +16133,6 @@ CABLES.OPS["e28a489c-46b6-4279-928c-6b0cbaaaae2a"]={f:Ops.Array.GateArray_v2,obj
 
 // **************************************************************
 // 
-// Ops.Math.MathExpression
-// 
-// **************************************************************
-
-Ops.Math.MathExpression = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const inA = op.inFloat("A", 0);
-const inB = op.inFloat("B", 1);
-const inC = op.inFloat("C", 2);
-const inD = op.inFloat("D", 3);
-op.setPortGroup("Parameters", [inA, inB, inC, inD]);
-const inExpression = op.inString("Expression", "a*(b+c+d)");
-op.setPortGroup("Expression", [inExpression]);
-const outResult = op.outNumber("Result");
-const outExpressionIsValid = op.outBool("Expression Valid");
-
-let currentFunction = inExpression.get();
-let functionValid = false;
-
-const createFunction = () =>
-{
-    try
-    {
-        currentFunction = new Function("m", "a", "b", "c", "d", `with(m) { return ${inExpression.get()} }`);
-        functionValid = true;
-        evaluateFunction();
-        outExpressionIsValid.set(functionValid);
-    }
-    catch (e)
-    {
-        functionValid = false;
-        outExpressionIsValid.set(functionValid);
-        if (e instanceof ReferenceError || e instanceof SyntaxError) return;
-    }
-};
-
-const evaluateFunction = () =>
-{
-    if (functionValid)
-    {
-        outResult.set(currentFunction(Math, inA.get(), inB.get(), inC.get(), inD.get()));
-        if (!inExpression.get()) outResult.set(0);
-    }
-
-    outExpressionIsValid.set(functionValid);
-};
-
-
-inA.onChange = inB.onChange = inC.onChange = inD.onChange = evaluateFunction;
-inExpression.onChange = createFunction;
-createFunction();
-
-
-};
-
-Ops.Math.MathExpression.prototype = new CABLES.Op();
-CABLES.OPS["d2343a1e-64ea-45b2-99ed-46e167bbdcd3"]={f:Ops.Math.MathExpression,objName:"Ops.Math.MathExpression"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Trigger.TriggerCounter
 // 
 // **************************************************************
@@ -9917,109 +16183,6 @@ CABLES.OPS["e640619f-235c-4543-bbf8-b358e0283180"]={f:Ops.Trigger.TriggerCounter
 
 // **************************************************************
 // 
-// Ops.Gl.Matrix.Scale
-// 
-// **************************************************************
-
-Ops.Gl.Matrix.Scale = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    render = op.inTrigger("render"),
-    scale = op.inValueFloat("scale", 1.0),
-    scaleX = op.inValueFloat("x", 1),
-    scaleY = op.inValueFloat("y", 1),
-    scaleZ = op.inValueFloat("z", 1),
-    trigger = op.outTrigger("trigger");
-
-op.setPortGroup("Axis", [scaleX, scaleY, scaleZ]);
-
-const vScale = vec3.create();
-
-scaleX.onChange =
-    scaleY.onChange =
-    scaleZ.onChange =
-    scale.onChange = scaleChanged;
-
-scaleChanged();
-
-render.onTriggered = function ()
-{
-    const cgl = op.patch.cg || op.patch.cgl;
-    cgl.pushModelMatrix();
-    mat4.scale(cgl.mMatrix, cgl.mMatrix, vScale);
-    trigger.trigger();
-    cgl.popModelMatrix();
-};
-
-function scaleChanged()
-{
-    const s = scale.get();
-    vec3.set(vScale, s * scaleX.get(), s * scaleY.get(), s * scaleZ.get());
-}
-
-
-};
-
-Ops.Gl.Matrix.Scale.prototype = new CABLES.Op();
-CABLES.OPS["50e7f565-0cdb-47ca-912b-87c04e2f00e3"]={f:Ops.Gl.Matrix.Scale,objName:"Ops.Gl.Matrix.Scale"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.Matrix.Billboard
-// 
-// **************************************************************
-
-Ops.Gl.Matrix.Billboard = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const exec = op.inTrigger("Exec");
-const next = op.outTrigger("Next");
-
-const cgl = op.patch.cgl;
-
-let mm = mat4.create();
-let mv = mat4.create();
-let m = mat4.create();
-let mempty = mat4.create();
-
-exec.onTriggered = function ()
-{
-    mat4.invert(mm, cgl.mMatrix);
-    mat4.invert(mv, cgl.vMatrix);
-
-    mat4.mul(mm, mm, mv);
-
-    mm[12] = 0;
-    mm[13] = 0;
-    mm[14] = 0;
-
-    cgl.pushModelMatrix();
-    cgl.pushViewMatrix();
-    mat4.mul(cgl.mMatrix, cgl.mMatrix, mm);
-    next.trigger();
-    cgl.popViewMatrix();
-    cgl.popModelMatrix();
-};
-
-
-};
-
-Ops.Gl.Matrix.Billboard.prototype = new CABLES.Op();
-CABLES.OPS["d41e676e-d8a7-4a1e-8abf-f1bddfc982d5"]={f:Ops.Gl.Matrix.Billboard,objName:"Ops.Gl.Matrix.Billboard"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Gl.Matrix.TranslateView
 // 
 // **************************************************************
@@ -10053,299 +16216,6 @@ render.onTriggered=function()
 
 Ops.Gl.Matrix.TranslateView.prototype = new CABLES.Op();
 CABLES.OPS["b15472e2-b895-4dde-95c3-239fa5e08afc"]={f:Ops.Gl.Matrix.TranslateView,objName:"Ops.Gl.Matrix.TranslateView"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.ImageCompose.ImageCompose_v4
-// 
-// **************************************************************
-
-Ops.Gl.ImageCompose.ImageCompose_v4 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={"imgcomp_frag":"IN vec2 texCoord;\nUNI vec4 bgColor;\nUNI sampler2D tex;\n#ifdef USE_UVTEX\nUNI sampler2D UVTex;\n#endif\n\nvoid main()\n{\n\n    #ifndef USE_TEX\n        outColor=bgColor;\n    #endif\n    #ifdef USE_TEX\n        #ifndef USE_UVTEX\n        outColor=texture(tex,texCoord);\n        #else\n        outColor=texture(tex,texture(UVTex,texCoord).xy);\n        #endif\n    #endif\n\n\n\n}\n",};
-const
-    cgl = op.patch.cgl,
-    render = op.inTrigger("Render"),
-    inTex = op.inTexture("Base Texture"),
-    inUVTex = op.inTexture("UV Texture"),
-    inSize = op.inSwitch("Size", ["Auto", "Canvas", "Manual"], "Auto"),
-    width = op.inValueInt("Width", 640),
-    height = op.inValueInt("Height", 480),
-    inFilter = op.inSwitch("Filter", ["nearest", "linear", "mipmap"], "linear"),
-    inWrap = op.inValueSelect("Wrap", ["clamp to edge", "repeat", "mirrored repeat"], "repeat"),
-    aniso = op.inSwitch("Anisotropic", ["0", "1", "2", "4", "8", "16"], "0"),
-
-    inPixelFormat = op.inDropDown("Pixel Format", CGL.Texture.PIXELFORMATS, CGL.Texture.PFORMATSTR_RGBA8UB),
-
-    inClear = op.inBool("Clear", true),
-    r = op.inValueSlider("R", 0),
-    g = op.inValueSlider("G", 0),
-    b = op.inValueSlider("B", 0),
-    a = op.inValueSlider("A", 0),
-
-    trigger = op.outTrigger("Next"),
-    texOut = op.outTexture("texture_out", CGL.Texture.getEmptyTexture(cgl)),
-    outRatio = op.outNumber("Aspect Ratio"),
-    outWidth = op.outNumber("Texture Width"),
-    outHeight = op.outNumber("Texture Height");
-
-op.setPortGroup("Texture Size", [inSize, width, height]);
-op.setPortGroup("Texture Parameters", [inWrap, aniso, inFilter, inPixelFormat]);
-
-r.setUiAttribs({ "colorPick": true });
-op.setPortGroup("Color", [r, g, b, a, inClear]);
-
-op.toWorkPortsNeedToBeLinked(render);
-
-const prevViewPort = [0, 0, 0, 0];
-let effect = null;
-let tex = null;
-let reInitEffect = true;
-let isFloatTex = false;
-let copyShader = null;
-let copyShaderTexUni = null;
-let copyShaderUVTexUni = null;
-let copyShaderRGBAUni = null;
-
-inWrap.onChange =
-inFilter.onChange =
-aniso.onChange =
-inPixelFormat.onChange = reInitLater;
-
-inTex.onLinkChanged =
-inClear.onChange =
-    inSize.onChange =
-    inUVTex.onChange = updateUi;
-
-render.onTriggered =
-    op.preRender = doRender;
-
-updateUi();
-
-function initEffect()
-{
-    if (effect)effect.delete();
-    if (tex)tex.delete();
-    tex = null;
-    effect = new CGL.TextureEffect(cgl, { "isFloatingPointTexture": CGL.Texture.isPixelFormatFloat(inPixelFormat.get()), "name": op.name });
-
-    const cgl_aniso = Math.min(cgl.maxAnisotropic, parseFloat(aniso.get()));
-
-    tex = new CGL.Texture(cgl,
-        {
-            "anisotropic": cgl_aniso,
-            "name": "image_compose_v2_" + op.id,
-            "pixelFormat": inPixelFormat.get(),
-            "filter": getFilter(),
-            "wrap": getWrap(),
-            "width": getWidth(),
-            "height": getHeight()
-        });
-
-    effect.setSourceTexture(tex);
-
-    outWidth.set(getWidth());
-    outHeight.set(getHeight());
-    outRatio.set(getWidth() / getHeight());
-
-    texOut.set(CGL.Texture.getEmptyTexture(cgl));
-
-    reInitEffect = false;
-    updateUi();
-}
-
-function getFilter()
-{
-    if (inFilter.get() == "nearest") return CGL.Texture.FILTER_NEAREST;
-    else if (inFilter.get() == "linear") return CGL.Texture.FILTER_LINEAR;
-    else if (inFilter.get() == "mipmap") return CGL.Texture.FILTER_MIPMAP;
-}
-
-function getWrap()
-{
-    if (inWrap.get() == "repeat") return CGL.Texture.WRAP_REPEAT;
-    else if (inWrap.get() == "mirrored repeat") return CGL.Texture.WRAP_MIRRORED_REPEAT;
-    else if (inWrap.get() == "clamp to edge") return CGL.Texture.WRAP_CLAMP_TO_EDGE;
-}
-
-function getWidth()
-{
-    let x = 0;
-    if (inTex.get() && inSize.get() == "Auto") x = inTex.get().width;
-    else if (inSize.get() == "Auto" || inSize.get() == "Canvas") x = cgl.canvasWidth;
-    else if (inSize.get() == "ViewPort") x = cgl.getViewPort()[2];
-    else x = Math.ceil(width.get());
-    return op.patch.cgl.checkTextureSize(x);
-}
-
-function getHeight()
-{
-    let x = 0;
-
-    if (inTex.get() && inSize.get() == "Auto") x = inTex.get().height;
-    else if (inSize.get() == "Auto" || inSize.get() == "Canvas") x = cgl.canvasHeight;
-    else if (inSize.get() == "ViewPort") x = cgl.getViewPort()[3];
-    else x = Math.ceil(height.get());
-    return op.patch.cgl.checkTextureSize(x);
-}
-
-function reInitLater()
-{
-    reInitEffect = true;
-}
-
-function updateResolution()
-{
-    if ((
-        getWidth() != tex.width ||
-        getHeight() != tex.height ||
-        // tex.anisotropic != parseFloat(aniso.get()) ||
-        // tex.isFloatingPoint() != CGL.Texture.isPixelFormatFloat(inPixelFormat.get()) ||
-        tex.pixelFormat != inPixelFormat.get() ||
-        tex.filter != getFilter() ||
-        tex.wrap != getWrap()
-    ) && (getWidth() !== 0 && getHeight() !== 0))
-    {
-        initEffect();
-        effect.setSourceTexture(tex);
-        texOut.set(CGL.Texture.getEmptyTexture(cgl));
-        texOut.set(tex);
-        updateResolutionInfo();
-        checkTypes();
-    }
-}
-
-function updateResolutionInfo()
-{
-    let info = null;
-
-    if (inSize.get() == "Manual")
-    {
-        info = null;
-    }
-    else if (inSize.get() == "Auto")
-    {
-        if (inTex.get()) info = "Input Texture";
-        else info = "Canvas Size";
-
-        info += ": " + getWidth() + " x " + getHeight();
-    }
-
-    let changed = false;
-    changed = inSize.uiAttribs.info != info;
-    inSize.setUiAttribs({ "info": info });
-    if (changed)op.refreshParams();
-}
-
-function updateDefines()
-{
-    if (copyShader)copyShader.toggleDefine("USE_TEX", inTex.isLinked() || !inClear.get());
-    if (copyShader)copyShader.toggleDefine("USE_UVTEX", inUVTex.isLinked());
-}
-
-function updateUi()
-{
-    aniso.setUiAttribs({ "greyout": getFilter() != CGL.Texture.FILTER_MIPMAP });
-
-    r.setUiAttribs({ "greyout": inTex.isLinked() });
-    b.setUiAttribs({ "greyout": inTex.isLinked() });
-    g.setUiAttribs({ "greyout": inTex.isLinked() });
-    a.setUiAttribs({ "greyout": inTex.isLinked() });
-
-    inClear.setUiAttribs({ "greyout": inTex.isLinked() });
-    width.setUiAttribs({ "greyout": inSize.get() != "Manual" });
-    height.setUiAttribs({ "greyout": inSize.get() != "Manual" });
-
-    // width.setUiAttribs({ "hideParam": inSize.get() != "Manual" });
-    // height.setUiAttribs({ "hideParam": inSize.get() != "Manual" });
-
-    if (tex)
-        if (CGL.Texture.isPixelFormatFloat(inPixelFormat.get()) && getFilter() == CGL.Texture.FILTER_MIPMAP) op.setUiError("fpmipmap", "Don't use mipmap and 32bit at the same time, many systems do not support this.");
-        else op.setUiError("fpmipmap", null);
-
-    updateResolutionInfo();
-    updateDefines();
-    checkTypes();
-}
-
-function checkTypes()
-{
-    if (tex)
-        if (inTex.isLinked() && inTex.get() && (tex.isFloatingPoint() != inTex.get().isFloatingPoint()))
-            op.setUiError("textypediff", "Warning: Mixing floating point and non floating point texture can result in data/precision loss", 1);
-        else
-            op.setUiError("textypediff", null);
-}
-
-op.preRender = () =>
-{
-    doRender();
-};
-
-function copyTexture()
-{
-    if (!copyShader)
-    {
-        copyShader = new CGL.Shader(cgl, "copytextureshader");
-        copyShader.setSource(copyShader.getDefaultVertexShader(), attachments.imgcomp_frag);
-        copyShaderTexUni = new CGL.Uniform(copyShader, "t", "tex", 0);
-        copyShaderUVTexUni = new CGL.Uniform(copyShader, "t", "UVTex", 1);
-        copyShaderRGBAUni = new CGL.Uniform(copyShader, "4f", "bgColor", r, g, b, a);
-        updateDefines();
-    }
-
-    cgl.pushShader(copyShader);
-    cgl.currentTextureEffect.bind();
-
-    if (inTex.get()) cgl.setTexture(0, inTex.get().tex);
-    else if (!inClear.get() && texOut.get()) cgl.setTexture(0, texOut.get().tex);
-    if (inUVTex.get()) cgl.setTexture(1, inUVTex.get().tex);
-
-    cgl.currentTextureEffect.finish();
-    cgl.popShader();
-}
-
-function doRender()
-{
-    if (!effect || reInitEffect) initEffect();
-
-    cgl.pushBlend(false);
-
-    updateResolution();
-
-    const oldEffect = cgl.currentTextureEffect;
-    cgl.currentTextureEffect = effect;
-    cgl.currentTextureEffect.imgCompVer = 3;
-    cgl.currentTextureEffect.width = width.get();
-    cgl.currentTextureEffect.height = height.get();
-    effect.setSourceTexture(tex);
-
-    effect.startEffect(inTex.get() || CGL.Texture.getEmptyTexture(cgl, isFloatTex), true);
-    copyTexture();
-
-    trigger.trigger();
-
-    cgl.pushViewPort(0, 0, width.get(), height.get());
-
-    effect.endEffect();
-    texOut.setRef(effect.getCurrentSourceTexture());
-
-    cgl.popViewPort();
-
-    cgl.popBlend();
-    cgl.currentTextureEffect = oldEffect;
-}
-
-
-};
-
-Ops.Gl.ImageCompose.ImageCompose_v4.prototype = new CABLES.Op();
-CABLES.OPS["17212e2b-d692-464c-8f8d-2d511dd3410a"]={f:Ops.Gl.ImageCompose.ImageCompose_v4,objName:"Ops.Gl.ImageCompose.ImageCompose_v4"};
 
 
 
@@ -10523,31 +16393,6 @@ function reload()
 
 Ops.Gl.Meshes.HeightMap.prototype = new CABLES.Op();
 CABLES.OPS["81264799-d92b-4b71-a3f1-ad1da8331e62"]={f:Ops.Gl.Meshes.HeightMap,objName:"Ops.Gl.Meshes.HeightMap"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Vars.VarGetString
-// 
-// **************************************************************
-
-Ops.Vars.VarGetString = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-var val=op.outString("Value");
-op.varName=op.inValueSelect("Variable",[],"",true);
-
-new CABLES.VarGetOpWrapper(op,"string",op.varName,val);
-
-
-};
-
-Ops.Vars.VarGetString.prototype = new CABLES.Op();
-CABLES.OPS["3ad08cfc-bce6-4175-9746-fef2817a3b12"]={f:Ops.Vars.VarGetString,objName:"Ops.Vars.VarGetString"};
 
 
 
@@ -11179,51 +17024,6 @@ CABLES.OPS["5ff7c643-cbea-44cc-9f34-fb18a44bcfff"]={f:Ops.Gl.Meshes.SplineMeshMa
 
 // **************************************************************
 // 
-// Ops.Trigger.TriggerOnce
-// 
-// **************************************************************
-
-Ops.Trigger.TriggerOnce = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    exe = op.inTriggerButton("Exec"),
-    reset = op.inTriggerButton("Reset"),
-    next = op.outTrigger("Next"),
-    outTriggered = op.outBoolNum("Was Triggered");
-
-let triggered = false;
-
-op.toWorkPortsNeedToBeLinked(exe);
-
-reset.onTriggered = function ()
-{
-    triggered = false;
-    outTriggered.set(triggered);
-};
-
-exe.onTriggered = function ()
-{
-    if (triggered) return;
-
-    triggered = true;
-    next.trigger();
-    outTriggered.set(triggered);
-};
-
-
-};
-
-Ops.Trigger.TriggerOnce.prototype = new CABLES.Op();
-CABLES.OPS["cf3544e4-e392-432b-89fd-fcfb5c974388"]={f:Ops.Trigger.TriggerOnce,objName:"Ops.Trigger.TriggerOnce"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Boolean.BoolToNumber_v2
 // 
 // **************************************************************
@@ -11410,101 +17210,6 @@ number1.onChange = exec;
 
 Ops.Math.Ceil.prototype = new CABLES.Op();
 CABLES.OPS["15ba7aa9-b1c3-4b20-b6bf-b52a3ba8c8c5"]={f:Ops.Math.Ceil,objName:"Ops.Math.Ceil"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Number.Number
-// 
-// **************************************************************
-
-Ops.Number.Number = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    v = op.inValueFloat("value"),
-    result = op.outNumber("result");
-
-v.onChange = exec;
-
-function exec()
-{
-    result.set(Number(v.get()));
-}
-
-
-};
-
-Ops.Number.Number.prototype = new CABLES.Op();
-CABLES.OPS["8fb2bb5d-665a-4d0a-8079-12710ae453be"]={f:Ops.Number.Number,objName:"Ops.Number.Number"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Math.Modulo
-// 
-// **************************************************************
-
-Ops.Math.Modulo = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    number1 = op.inValueFloat("number1", 1),
-    number2 = op.inValueFloat("number2", 2),
-    pingpong = op.inValueBool("pingpong"),
-    result = op.outNumber("result");
-
-let calculateFunction = calculateModule;
-
-number1.onChange =
-number2.onChange = exec;
-
-pingpong.onChange = updatePingPong;
-
-exec();
-
-function exec()
-{
-    let n2 = number2.get();
-    let n1 = number1.get();
-
-    result.set(calculateFunction(n1, n2));
-}
-
-function calculateModule(n1, n2)
-{
-    let re = ((n1 % n2) + n2) % n2;
-    if (re != re) re = 0;
-    return re;
-}
-
-function calculatePingPong(i, n)
-{
-    let cycle = 2 * n;
-    i %= cycle;
-    if (i >= n) return cycle - i;
-    else return i;
-}
-
-function updatePingPong()
-{
-    if (pingpong.get()) calculateFunction = calculatePingPong;
-    else calculateFunction = calculateModule;
-}
-
-
-};
-
-Ops.Math.Modulo.prototype = new CABLES.Op();
-CABLES.OPS["ebc13b25-3705-4265-8f06-5f985b6a7bb1"]={f:Ops.Math.Modulo,objName:"Ops.Math.Modulo"};
 
 
 
@@ -12490,55 +18195,6 @@ CABLES.OPS["c7e5e545-c8a1-4fef-85c2-45422b947f0d"]={f:Ops.Devices.Mouse.MouseBut
 
 // **************************************************************
 // 
-// Ops.Boolean.Or
-// 
-// **************************************************************
-
-Ops.Boolean.Or = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    bool0 = op.inValueBool("bool 1"),
-    bool1 = op.inValueBool("bool 2"),
-    bool2 = op.inValueBool("bool 3"),
-    bool3 = op.inValueBool("bool 4"),
-    bool4 = op.inValueBool("bool 5"),
-    bool5 = op.inValueBool("bool 6"),
-    bool6 = op.inValueBool("bool 7"),
-    bool7 = op.inValueBool("bool 8"),
-    bool8 = op.inValueBool("bool 9"),
-    bool9 = op.inValueBool("bool 10"),
-    result = op.outBoolNum("result");
-
-bool0.onChange =
-    bool1.onChange =
-    bool2.onChange =
-    bool3.onChange =
-    bool4.onChange =
-    bool5.onChange =
-    bool6.onChange =
-    bool7.onChange =
-    bool8.onChange =
-    bool9.onChange = exec;
-
-function exec()
-{
-    result.set(bool0.get() || bool1.get() || bool2.get() || bool3.get() || bool4.get() || bool5.get() || bool6.get() || bool7.get() || bool8.get() || bool9.get());
-}
-
-
-};
-
-Ops.Boolean.Or.prototype = new CABLES.Op();
-CABLES.OPS["b3b36238-4592-4e11-afe3-8361c4fd6be5"]={f:Ops.Boolean.Or,objName:"Ops.Boolean.Or"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Gl.FontMSDF_v2
 // 
 // **************************************************************
@@ -13398,31 +19054,6 @@ CABLES.OPS["4ea2d7b0-ca74-45db-962b-4d1965ac20c0"]={f:Ops.Ui.VizTexture,objName:
 
 // **************************************************************
 // 
-// Ops.Vars.VarGetTexture_v2
-// 
-// **************************************************************
-
-Ops.Vars.VarGetTexture_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const val = op.outTexture("Value");
-op.varName = op.inValueSelect("Variable", [], "", true);
-
-new CABLES.VarGetOpWrapper(op, "object", op.varName, val);
-
-
-};
-
-Ops.Vars.VarGetTexture_v2.prototype = new CABLES.Op();
-CABLES.OPS["5f8ce5fc-9787-45c9-9a83-0eebd2c6de15"]={f:Ops.Vars.VarGetTexture_v2,objName:"Ops.Vars.VarGetTexture_v2"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Json.SwitchObjectMultiPort
 // 
 // **************************************************************
@@ -13923,124 +19554,6 @@ CABLES.OPS["b0472a1d-db16-4ba6-8787-f300fbdc77bb"]={f:Ops.Gl.MainLoop,objName:"O
 
 // **************************************************************
 // 
-// Ops.Math.MapRange
-// 
-// **************************************************************
-
-Ops.Math.MapRange = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    v = op.inValueFloat("value", 0),
-    old_min = op.inValueFloat("old min", 0),
-    old_max = op.inValueFloat("old max", 1),
-    new_min = op.inValueFloat("new min", 0),
-    new_max = op.inValueFloat("new max", 1),
-    easing = op.inValueSelect("Easing", ["Linear", "Smoothstep", "Smootherstep"], "Linear"),
-    inClamp = op.inBool("Clamp", true),
-    result = op.outNumber("result", 0);
-
-op.setPortGroup("Input Range", [old_min, old_max]);
-op.setPortGroup("Output Range", [new_min, new_max]);
-
-let doClamp = true;
-let ease = 0;
-let r = 0;
-
-v.onChange =
-    old_min.onChange =
-    old_max.onChange =
-    new_min.onChange =
-    new_max.onChange = exec;
-
-exec();
-
-inClamp.onChange =
-() =>
-{
-    doClamp = inClamp.get();
-    exec();
-};
-
-easing.onChange = function ()
-{
-    if (easing.get() == "Smoothstep") ease = 1;
-    else if (easing.get() == "Smootherstep") ease = 2;
-    else ease = 0;
-};
-
-function exec()
-{
-    const nMin = new_min.get();
-    const nMax = new_max.get();
-    const oMin = old_min.get();
-    const oMax = old_max.get();
-    let x = v.get();
-
-    if (doClamp)
-    {
-        if (x >= Math.max(oMax, oMin))
-        {
-            result.set(nMax);
-            return;
-        }
-        else
-        if (x <= Math.min(oMax, oMin))
-        {
-            result.set(nMin);
-            return;
-        }
-    }
-
-    let reverseInput = false;
-    const oldMin = Math.min(oMin, oMax);
-    const oldMax = Math.max(oMin, oMax);
-    if (oldMin != oMin) reverseInput = true;
-
-    let reverseOutput = false;
-    const newMin = Math.min(nMin, nMax);
-    const newMax = Math.max(nMin, nMax);
-    if (newMin != nMin) reverseOutput = true;
-
-    let portion = 0;
-
-    if (reverseInput) portion = (oldMax - x) * (newMax - newMin) / (oldMax - oldMin);
-    else portion = (x - oldMin) * (newMax - newMin) / (oldMax - oldMin);
-
-    if (reverseOutput) r = newMax - portion;
-    else r = portion + newMin;
-
-    if (ease === 0)
-    {
-        result.set(r);
-    }
-    else
-    if (ease == 1)
-    {
-        x = Math.max(0, Math.min(1, (r - nMin) / (nMax - nMin)));
-        result.set(nMin + x * x * (3 - 2 * x) * (nMax - nMin)); // smoothstep
-    }
-    else
-    if (ease == 2)
-    {
-        x = Math.max(0, Math.min(1, (r - nMin) / (nMax - nMin)));
-        result.set(nMin + x * x * x * (x * (x * 6 - 15) + 10) * (nMax - nMin)); // smootherstep
-    }
-}
-
-
-};
-
-Ops.Math.MapRange.prototype = new CABLES.Op();
-CABLES.OPS["2617b407-60a0-4ff6-b4a7-18136cfa7817"]={f:Ops.Math.MapRange,objName:"Ops.Math.MapRange"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Math.Accumulator
 // 
 // **************************************************************
@@ -14410,40 +19923,6 @@ CABLES.OPS["4533060f-3cd4-4572-ac78-dad0710a3f7a"]={f:Ops.Ui.VizTrigger,objName:
 
 // **************************************************************
 // 
-// Ops.Math.Compare.GreaterThan
-// 
-// **************************************************************
-
-Ops.Math.Compare.GreaterThan = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    number1 = op.inValueFloat("number1"),
-    number2 = op.inValueFloat("number2"),
-    result = op.outBoolNum("result");
-
-op.setUiAttribs({ "mathTitle": true });
-
-number1.onChange = number2.onChange = exec;
-
-function exec()
-{
-    result.set(number1.get() > number2.get());
-}
-
-
-};
-
-Ops.Math.Compare.GreaterThan.prototype = new CABLES.Op();
-CABLES.OPS["b250d606-f7f8-44d3-b099-c29efff2608a"]={f:Ops.Math.Compare.GreaterThan,objName:"Ops.Math.Compare.GreaterThan"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.String.SwitchStringMultiPort
 // 
 // **************************************************************
@@ -14798,6 +20277,160 @@ CABLES.OPS["7c96fee9-4c2f-45e1-a41b-096b06d286b8"]={f:Ops.Trigger.IsTriggered,ob
 
 // **************************************************************
 // 
+// Ops.Standalone.MouseButtonsWindow
+// 
+// **************************************************************
+
+Ops.Standalone.MouseButtonsWindow = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    mouseClickLeft = op.outTrigger("Click Left"),
+    mouseClickRight = op.outTrigger("Click Right"),
+    mouseDoubleClick = op.outTrigger("Double Click"),
+    mouseDownLeft = op.outBoolNum("Button pressed Left", false),
+    mouseDownMiddle = op.outBoolNum("Button pressed Middle", false),
+    mouseDownRight = op.outBoolNum("Button pressed Right", false),
+    triggerMouseDownLeft = op.outTrigger("Mouse Down Left"),
+    triggerMouseDownMiddle = op.outTrigger("Mouse Down Middle"),
+    triggerMouseDownRight = op.outTrigger("Mouse Down Right"),
+    triggerMouseUpLeft = op.outTrigger("Mouse Up Left"),
+    triggerMouseUpMiddle = op.outTrigger("Mouse Up Middle"),
+    triggerMouseUpRight = op.outTrigger("Mouse Up Right"),
+    area = op.inValueSelect("Area", ["Canvas", "Document", "Window"], "Window"),
+    active = op.inValueBool("Active", true);
+
+const cgl = op.patch.cgl;
+let listenerElement = null;
+area.onChange = updateListeners;
+op.onDelete = removeListeners;
+updateListeners();
+
+function onMouseDown(e)
+{
+    if (e.which == 1)
+    {
+        mouseDownLeft.set(true);
+        triggerMouseDownLeft.trigger();
+    }
+    else if (e.which == 2)
+    {
+        mouseDownMiddle.set(true);
+        triggerMouseDownMiddle.trigger();
+    }
+    else if (e.which == 3)
+    {
+        mouseDownRight.set(true);
+        triggerMouseDownRight.trigger();
+    }
+}
+
+function onMouseUp(e)
+{
+    if (e.which == 1)
+    {
+        mouseDownLeft.set(false);
+        triggerMouseUpLeft.trigger();
+    }
+    else if (e.which == 2)
+    {
+        mouseDownMiddle.set(false);
+        triggerMouseUpMiddle.trigger();
+    }
+    else if (e.which == 3)
+    {
+        mouseDownRight.set(false);
+        triggerMouseUpRight.trigger();
+    }
+}
+
+function onClickRight(e)
+{
+    mouseClickRight.trigger();
+    e.preventDefault();
+}
+
+function onDoubleClick(e)
+{
+    mouseDoubleClick.trigger();
+}
+
+function onmouseclick(e)
+{
+    mouseClickLeft.trigger();
+}
+
+function ontouchstart(event)
+{
+    if (event.touches && event.touches.length > 0)
+    {
+        event.touches[0].which = 1;
+        onMouseDown(event.touches[0]);
+    }
+}
+
+function ontouchend(event)
+{
+    onMouseUp({ "which": 1 });
+}
+
+function removeListeners()
+{
+    if (!listenerElement) return;
+    listenerElement.removeEventListener("touchend", ontouchend);
+    listenerElement.removeEventListener("touchcancel", ontouchend);
+    listenerElement.removeEventListener("touchstart", ontouchstart);
+    listenerElement.removeEventListener("dblclick", onDoubleClick);
+    listenerElement.removeEventListener("click", onmouseclick);
+    listenerElement.removeEventListener("mousedown", onMouseDown);
+    listenerElement.removeEventListener("mouseup", onMouseUp);
+    listenerElement.removeEventListener("contextmenu", onClickRight);
+    listenerElement.removeEventListener("mouseleave", onMouseUp);
+    listenerElement = null;
+}
+
+function addListeners()
+{
+    if (listenerElement)removeListeners();
+
+    listenerElement = cgl.canvas;
+    if (area.get() == "Document") listenerElement = document.body;
+    if (area.get() == "Window") listenerElement = globalThis.window;
+
+    listenerElement.addEventListener("touchend", ontouchend);
+    listenerElement.addEventListener("touchcancel", ontouchend);
+    listenerElement.addEventListener("touchstart", ontouchstart);
+    listenerElement.addEventListener("dblclick", onDoubleClick);
+    listenerElement.addEventListener("click", onmouseclick);
+    listenerElement.addEventListener("mousedown", onMouseDown);
+    listenerElement.addEventListener("mouseup", onMouseUp);
+    listenerElement.addEventListener("contextmenu", onClickRight);
+    listenerElement.addEventListener("mouseleave", onMouseUp);
+}
+
+op.onLoaded = updateListeners;
+
+active.onChange = updateListeners;
+
+function updateListeners()
+{
+    removeListeners();
+    if (active.get()) addListeners();
+}
+
+
+};
+
+Ops.Standalone.MouseButtonsWindow.prototype = new CABLES.Op();
+CABLES.OPS["cd56f931-c03b-4fb6-8070-871d3597e8a9"]={f:Ops.Standalone.MouseButtonsWindow,objName:"Ops.Standalone.MouseButtonsWindow"};
+
+
+
+
+// **************************************************************
+// 
 // Ops.Json.ObjectGetObject_v2
 // 
 // **************************************************************
@@ -14846,58 +20479,6 @@ function update()
 
 Ops.Json.ObjectGetObject_v2.prototype = new CABLES.Op();
 CABLES.OPS["d1dfa305-89db-4ca1-b0ac-2d6321d76ae8"]={f:Ops.Json.ObjectGetObject_v2,objName:"Ops.Json.ObjectGetObject_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Boolean.MonoFlop
-// 
-// **************************************************************
-
-Ops.Boolean.MonoFlop = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    trigger = op.inTriggerButton("Trigger"),
-    duration = op.inValue("Duration", 1),
-    valueTrue = op.inValue("Value True", 1),
-    valueFalse = op.inValue("Value False", 0),
-    resetButton = op.inTriggerButton("Reset"),
-    outAct = op.outTrigger("Activated"),
-    outEnded = op.outTrigger("Ended"),
-    result = op.outBoolNum("Result", false);
-
-let lastTimeout = -1;
-
-resetButton.onTriggered = function ()
-{
-    result.set(valueFalse.get());
-
-    clearTimeout(lastTimeout);
-};
-
-trigger.onTriggered = function ()
-{
-    if (result.get() == valueFalse.get())outAct.trigger();
-    result.set(valueTrue.get());
-
-    clearTimeout(lastTimeout);
-    lastTimeout = setTimeout(function ()
-    {
-        result.set(valueFalse.get());
-        outEnded.trigger();
-    }, duration.get() * 1000);
-};
-
-
-};
-
-Ops.Boolean.MonoFlop.prototype = new CABLES.Op();
-CABLES.OPS["3a4b0a78-4172-41c7-8248-95cb0856ecc8"]={f:Ops.Boolean.MonoFlop,objName:"Ops.Boolean.MonoFlop"};
 
 
 
@@ -14965,166 +20546,6 @@ inTrig.onTriggered = function ()
 
 Ops.Trigger.TriggerButton.prototype = new CABLES.Op();
 CABLES.OPS["21630924-39e4-4df5-9965-b9136510d156"]={f:Ops.Trigger.TriggerButton,objName:"Ops.Trigger.TriggerButton"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Vars.VarTriggerNumber
-// 
-// **************************************************************
-
-Ops.Vars.VarTriggerNumber = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    trigger = op.inTriggerButton("Trigger"),
-    val = op.inValueFloat("Value", 0),
-    next = op.outTrigger("Next");
-
-op.varName = op.inDropDown("Variable", [], "", true);
-
-new CABLES.VarSetOpWrapper(op, "number", val, op.varName, trigger, next);
-
-
-};
-
-Ops.Vars.VarTriggerNumber.prototype = new CABLES.Op();
-CABLES.OPS["2c29baf0-2af2-486d-9218-4299594ee9c1"]={f:Ops.Vars.VarTriggerNumber,objName:"Ops.Vars.VarTriggerNumber"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Trigger.TriggerCounterLoop
-// 
-// **************************************************************
-
-Ops.Trigger.TriggerCounterLoop = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const exe = op.inTriggerButton("trigger in"),
-    reset = op.inTriggerButton("reset"),
-    trigger = op.outTrigger("trigger out"),
-    num = op.outNumber("current count"),
-
-    inMinLoopValue = op.inValueInt("Loop min", 0.0),
-    inMaxLoopValue = op.inValueInt("Loop max", 4.0);
-
-let n = Math.floor(inMinLoopValue.get());
-
-// increments with each trigger and loops
-// depending on min and max loop values
-// can also work with negative numbers
-// if min is greater than max then it decrements
-// instead of incrementing
-exe.onTriggered = function ()
-{
-    let inMin = Math.floor(inMinLoopValue.get());
-    let inMax = Math.floor(inMaxLoopValue.get());
-
-    if (inMin < inMax)
-    {
-        if (n < inMin)
-        {
-            n = inMinLoopValue.get();
-        }
-        else if (n >= inMax)
-        {
-            n = inMinLoopValue.get();
-        }
-        else
-        {
-            n++;
-        }
-    }
-    else if (inMin > inMax)
-    {
-        if (n < inMax)
-        {
-            n = inMin;
-        }
-        else if (n > inMin)
-        {
-            inMin;
-        }
-        else if (n <= inMax)
-        {
-            n = inMin;
-        }
-        else
-        {
-            n--;
-        }
-    }
-    num.set(n);
-    op.setUiAttrib({ "extendTitle": n });
-    trigger.trigger();
-};
-
-reset.onTriggered = function ()
-{
-    let inMin = Math.floor(inMinLoopValue.get());
-    let inMax = Math.floor(inMaxLoopValue.get());
-
-    if (inMin < inMax)
-    {
-        n = inMin;
-    }
-    else if (inMax < inMin)
-    {
-        n = inMin;
-    }
-    else
-    {
-        n = 0;
-    }
-    op.setUiAttrib({ "extendTitle": n });
-    num.set(n);
-};
-
-
-};
-
-Ops.Trigger.TriggerCounterLoop.prototype = new CABLES.Op();
-CABLES.OPS["d3356c53-e278-433f-af0b-d8327cd99a2d"]={f:Ops.Trigger.TriggerCounterLoop,objName:"Ops.Trigger.TriggerCounterLoop"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Boolean.TriggerOnChangeBoolean
-// 
-// **************************************************************
-
-Ops.Boolean.TriggerOnChangeBoolean = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inBool = op.inValueBool("Value"),
-    outTrue = op.outTrigger("True"),
-    outFalse = op.outTrigger("False");
-
-inBool.onChange = function ()
-{
-    if (inBool.get()) outTrue.trigger();
-    else outFalse.trigger();
-};
-
-
-};
-
-Ops.Boolean.TriggerOnChangeBoolean.prototype = new CABLES.Op();
-CABLES.OPS["dba19c07-e3c4-4971-a991-c9e6212ca1c8"]={f:Ops.Boolean.TriggerOnChangeBoolean,objName:"Ops.Boolean.TriggerOnChangeBoolean"};
 
 
 
@@ -15199,6 +20620,52 @@ function exec()
 
 Ops.Boolean.And.prototype = new CABLES.Op();
 CABLES.OPS["c26e6ce0-8047-44bb-9bc8-5a4f911ed8ad"]={f:Ops.Boolean.And,objName:"Ops.Boolean.And"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.P4Zknbo.ArrayOfSrvbValuesFromMap
+// 
+// **************************************************************
+
+Ops.Patch.P4Zknbo.ArrayOfSrvbValuesFromMap = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+// SRVB params handler
+
+let uiVars = {
+    "size": 0.2,
+    "diffuse": 0,
+    "mix": 0.15,
+    "tone": 0.15,
+};
+
+const
+    srcObj = op.inObject("Object"),
+    result = op.outArray("Result");
+
+srcObj.onChange = () =>
+{
+    if (!srcObj.get()) return;
+    const src = srcObj.get();
+
+    result.set([
+        src.mix,
+        src.diffuse,
+        src.tone,
+        src.size
+    ]);
+};
+
+
+};
+
+Ops.Patch.P4Zknbo.ArrayOfSrvbValuesFromMap.prototype = new CABLES.Op();
+CABLES.OPS["8b905906-ea16-42d7-b77c-c5685e063a36"]={f:Ops.Patch.P4Zknbo.ArrayOfSrvbValuesFromMap,objName:"Ops.Patch.P4Zknbo.ArrayOfSrvbValuesFromMap"};
 
 
 
@@ -15500,503 +20967,6 @@ function addListeners()
 
 Ops.Devices.Mouse.Mouse_v3.prototype = new CABLES.Op();
 CABLES.OPS["6d1edbc0-088a-43d7-9156-918fb3d7f24b"]={f:Ops.Devices.Mouse.Mouse_v3,objName:"Ops.Devices.Mouse.Mouse_v3"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.InteractiveRectangle_v2
-// 
-// **************************************************************
-
-Ops.Gl.InteractiveRectangle_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    render = op.inTrigger("Trigger in"),
-    trigger = op.outTrigger("Trigger out"),
-    width = op.inValue("Width", 1),
-    height = op.inValue("Height", 1),
-    inId = op.inString("ID"),
-    classPort = op.inString("Class"),
-    pivotX = op.inValueSelect("Pivot x", ["center", "left", "right"]),
-    pivotY = op.inValueSelect("Pivot y", ["center", "top", "bottom"]),
-    axis = op.inValueSelect("Axis", ["xy", "xz"]),
-    isInteractive = op.inValueBool("Is Interactive", true),
-    renderRect = op.inValueBool("Render Rectangle", true),
-    divVisible = op.inValueBool("Show Boundings", true),
-    cursorPort = op.inValueSelect("Cursor", ["auto", "crosshair", "pointer", "Hand", "move", "n-resize", "ne-resize", "e-resize", "se-resize", "s-resize", "sw-resize", "w-resize", "nw-resize", "text", "wait", "help", "none"], "pointer"),
-    active = op.inValueBool("Render", true);
-
-const geomOut = op.outObject("geometry");
-geomOut.ignoreValueSerialize = true;
-
-const
-    mouseOver = op.outBoolNum("Pointer Hover", false),
-    mouseDown = op.outBoolNum("Pointer Down", false),
-    outX = op.outNumber("Pointer X"),
-    outY = op.outNumber("Pointer Y"),
-    outTop = op.outNumber("Top"),
-    outLeft = op.outNumber("Left"),
-    outRight = op.outNumber("Right"),
-    outBottom = op.outNumber("Bottom"),
-    mouseClick = op.outTrigger("Left Click");
-
-const elementPort = op.outObject("Dom Element");
-
-active.setUiAttribs({ "title": "Active" });
-
-const cgl = op.patch.cgl;
-axis.set("xy");
-pivotX.set("center");
-pivotY.set("center");
-
-const geom = new CGL.Geometry(op.name);
-let mesh = null;
-let div = null;
-const m = mat4.create();
-const trans = mat4.create();
-const pos = vec3.create();
-const divAlign = vec3.create();
-const divAlignSize = vec3.create();
-
-axis.onChange = rebuild;
-pivotX.onChange = rebuild;
-pivotY.onChange = rebuild;
-width.onChange = rebuild;
-height.onChange = rebuild;
-cursorPort.onChange = updateCursor;
-rebuild();
-
-const modelMatrix = mat4.create();
-const identViewMatrix = mat4.create();
-const zeroVec3 = vec3.create();
-
-render.onTriggered = function ()
-{
-    if (!div)
-    {
-        setUpDiv();
-        addListeners();
-        updateDivVisibility();
-        updateIsInteractive();
-    }
-    updateDivSize();
-
-    if (active.get() && renderRect.get() && mesh) mesh.render(cgl.getShader());
-
-    trigger.trigger();
-};
-
-function rebuild()
-{
-    let w = width.get();
-    let h = height.get();
-    let x = 0;
-    let y = 0;
-
-    if (typeof w == "string")w = parseFloat(w);
-    if (typeof h == "string")h = parseFloat(h);
-
-    if (pivotX.get() == "center")
-    {
-        x = 0;
-        divAlign[0] = -w / 2;
-    }
-    if (pivotX.get() == "right")
-    {
-        x = -w / 2;
-    }
-    if (pivotX.get() == "left")
-    {
-        x = w / 2;
-    }
-
-    if (pivotY.get() == "center")
-    {
-        y = 0;
-        divAlign[1] = -h / 2;
-    }
-    if (pivotY.get() == "top") y = -h / 2;
-    if (pivotY.get() == "bottom") y = +h / 2;
-
-    const verts = [];
-    const tc = [];
-    const norms = [];
-    const indices = [];
-
-    const numRows = 1;
-    const numColumns = 1;
-
-    const stepColumn = w / numColumns;
-    const stepRow = h / numRows;
-
-    let c, r;
-
-    for (r = 0; r <= numRows; r++)
-    {
-        for (c = 0; c <= numColumns; c++)
-        {
-            verts.push(c * stepColumn - width.get() / 2 + x);
-            if (axis.get() == "xz") verts.push(0.0);
-            verts.push(r * stepRow - height.get() / 2 + y);
-            if (axis.get() == "xy") verts.push(0.0);
-
-            tc.push(c / numColumns);
-            tc.push(1.0 - r / numRows);
-
-            if (axis.get() == "xz")
-            {
-                norms.push(0);
-                norms.push(1);
-                norms.push(0);
-            }
-
-            if (axis.get() == "xy")
-            {
-                norms.push(0);
-                norms.push(0);
-                norms.push(-1);
-            }
-        }
-    }
-
-    for (c = 0; c < numColumns; c++)
-    {
-        for (r = 0; r < numRows; r++)
-        {
-            const ind = c + (numColumns + 1) * r;
-            const v1 = ind;
-            const v2 = ind + 1;
-            const v3 = ind + numColumns + 1;
-            const v4 = ind + 1 + numColumns + 1;
-
-            indices.push(v1);
-            indices.push(v3);
-            indices.push(v2);
-
-            indices.push(v2);
-            indices.push(v3);
-            indices.push(v4);
-        }
-    }
-
-    geom.clear();
-    geom.vertices = verts;
-    geom.texCoords = tc;
-    geom.verticesIndices = indices;
-    geom.vertexNormals = norms;
-
-    if (!mesh) mesh = new CGL.Mesh(cgl, geom);
-    else mesh.setGeom(geom);
-
-    geomOut.set(null);
-    geomOut.set(geom);
-}
-
-let divX = 0;
-let divY = 0;
-let divWidth = 0;
-let divHeight = 0;
-
-const mMatrix = mat4.create();
-divVisible.onChange = updateDivVisibility;
-inId.onChange = updateId;
-classPort.onChange = updateClassNames;
-
-function updateDivVisibility()
-{
-    if (div)
-    {
-        if (divVisible.get()) div.style.border = "1px solid red";
-        else div.style.border = "none";
-    }
-}
-
-function updateCursor()
-{
-    if (div)
-    {
-        div.style.cursor = cursorPort.get();
-    }
-}
-
-function updateId()
-{
-    if (div)
-    {
-        div.setAttribute("id", inId.get());
-    }
-}
-
-function updateDivSize()
-{
-    // var vp=cgl.getViewPort();
-
-    mat4.multiply(mMatrix, cgl.vMatrix, cgl.mMatrix);
-    vec3.transformMat4(pos, divAlign, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const top = cgl.canvas.styleMarginTop || 0;
-    const left = cgl.canvas.styleMarginLeft || 0;
-
-    const x1 = (trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2 + left;
-    const y1 = (trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top;
-
-    divAlignSize[0] = divAlign[0] + width.get();
-    divAlignSize[1] = divAlign[1];
-
-    vec3.transformMat4(pos, divAlignSize, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const x2 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
-    const y2 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
-
-    divAlignSize[0] = divAlign[0];
-    divAlignSize[1] = divAlign[1] + height.get();
-
-    vec3.transformMat4(pos, divAlignSize, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const x3 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
-    const y3 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
-
-    divAlignSize[0] = divAlign[0] + width.get();
-    divAlignSize[1] = divAlign[1] + height.get();
-
-    vec3.transformMat4(pos, divAlignSize, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const x4 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
-    const y4 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
-
-    divX = Math.min(x1, x2, x3, x4);
-    divY = Math.min(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
-
-    const xb = Math.max(x1, x2, x3, x4);
-    const yb = Math.max(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
-
-    outTop.set(divY);
-    outLeft.set(divX);
-    outRight.set(xb);
-    outBottom.set(yb);
-
-    divWidth = Math.abs(xb - divX);
-    divHeight = Math.abs(yb - divY);
-
-    divX /= op.patch.cgl.pixelDensity;
-    divY /= op.patch.cgl.pixelDensity;
-    divWidth /= op.patch.cgl.pixelDensity;
-    divHeight /= op.patch.cgl.pixelDensity;
-
-    // div.style.left=divX+'px';
-    // div.style.top=divY+'px';
-    // div.style.width=divWidth+'px';
-    // div.style.height=divHeight+'px';
-
-    const divXpx = divX + "px";
-    const divYpx = divY + "px";
-    const divWidthPx = divWidth + "px";
-    const divHeightPx = divHeight + "px";
-    if (divXpx != div.style.left) div.style.left = divXpx;
-    if (divYpx != div.style.top) div.style.top = divYpx;
-    if (div.style.width != divWidthPx) div.style.width = divWidthPx;
-    if (div.style.height != divHeightPx) div.style.height = divHeightPx;
-}
-
-function updateClassNames()
-{
-    if (div)
-    {
-        div.className = classPort.get();
-    }
-}
-
-op.onDelete = function ()
-{
-    if (div)div.remove();
-};
-
-function setUpDiv()
-{
-    if (!div)
-    {
-        div = document.createElement("div");
-        div.dataset.op = op.id;
-        div.oncontextmenu = function (e)
-        {
-            e.preventDefault();
-        };
-
-        div.style.padding = "0px";
-        div.style.position = "absolute";
-        div.style["box-sizing"] = "border-box";
-        div.style.border = "1px solid red";
-        // div.style['border-left']="1px solid blue";
-        // div.style['border-top']="1px solid green";
-        div.style["z-index"] = "500";
-
-        div.style["-webkit-user-select"] = "none";
-        div.style["user-select"] = "none";
-        div.style["-webkit-tap-highlight-color"] = "rgba(0,0,0,0)";
-        div.style["-webkit-touch-callout"] = "none";
-
-        const canvas = op.patch.cgl.canvas.parentElement;
-        canvas.appendChild(div);
-        updateCursor();
-        updateIsInteractive();
-        updateId();
-        updateClassNames();
-    }
-    updateDivSize();
-    elementPort.set(div);
-}
-
-let listenerElement = null;
-
-function onMouseMove(e)
-{
-    const offsetX = -width.get() / 2;
-    const offsetY = -height.get() / 2;
-
-    outX.set(Math.max(0.0, Math.min(1.0, e.offsetX / divWidth)));
-    outY.set(Math.max(0.0, Math.min(1.0, 1.0 - e.offsetY / divHeight)));
-}
-
-function onMouseLeave(e)
-{
-    mouseDown.set(false);
-    mouseOver.set(false);
-}
-
-function onMouseEnter(e)
-{
-    mouseOver.set(true);
-}
-
-function onMouseDown(e)
-{
-    mouseDown.set(true);
-}
-
-function onMouseUp(e)
-{
-    mouseDown.set(false);
-}
-
-function onmouseclick(e)
-{
-    mouseClick.trigger();
-}
-
-function onTouchMove(e)
-{
-    const targetEle = document.elementFromPoint(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
-
-    if (targetEle == div)
-    {
-        mouseOver.set(true);
-        if (e.touches && e.touches.length > 0)
-        {
-            const rect = div.getBoundingClientRect(); // e.target
-            const x = e.targetTouches[0].pageX - rect.left;
-            const y = e.targetTouches[0].pageY - rect.top;
-
-            const touch = e.touches[0];
-
-            outX.set(Math.max(0.0, Math.min(1.0, x / divWidth)));
-            outY.set(Math.max(0.0, Math.min(1.0, 1.0 - y / divHeight)));
-
-            onMouseMove(touch);
-        }
-    }
-    else
-    {
-        mouseOver.set(false);
-    }
-}
-
-active.onChange = updateActiveRender;
-function updateActiveRender()
-{
-    if (active.get())
-    {
-        addListeners();
-        if (div) div.style.display = "block";
-    }
-    else
-    {
-        removeListeners();
-        if (div) div.style.display = "none";
-    }
-}
-
-isInteractive.onChange = updateIsInteractive;
-function updateIsInteractive()
-{
-    if (isInteractive.get())
-    {
-        addListeners();
-        if (div)div.style["pointer-events"] = "initial";
-    }
-    else
-    {
-        removeListeners();
-        mouseDown.set(false);
-        mouseOver.set(false);
-        if (div)div.style["pointer-events"] = "none";
-    }
-}
-
-function removeListeners()
-{
-    if (listenerElement)
-    {
-        document.removeEventListener("touchmove", onTouchMove);
-        listenerElement.removeEventListener("touchend", onMouseUp);
-        listenerElement.removeEventListener("touchstart", onMouseDown);
-
-        listenerElement.removeEventListener("click", onmouseclick);
-        listenerElement.removeEventListener("mousemove", onMouseMove);
-        listenerElement.removeEventListener("mouseleave", onMouseLeave);
-        listenerElement.removeEventListener("mousedown", onMouseDown);
-        listenerElement.removeEventListener("mouseup", onMouseUp);
-        listenerElement.removeEventListener("mouseenter", onMouseEnter);
-        // listenerElement.removeEventListener('contextmenu', onClickRight);
-        listenerElement = null;
-    }
-}
-
-function addListeners()
-{
-    if (listenerElement)removeListeners();
-
-    listenerElement = div;
-
-    if (listenerElement)
-    {
-        document.addEventListener("touchmove", onTouchMove);
-        listenerElement.addEventListener("touchend", onMouseUp);
-        listenerElement.addEventListener("touchstart", onMouseDown);
-
-        listenerElement.addEventListener("click", onmouseclick);
-        listenerElement.addEventListener("mousemove", onMouseMove);
-        listenerElement.addEventListener("mouseleave", onMouseLeave);
-        listenerElement.addEventListener("mousedown", onMouseDown);
-        listenerElement.addEventListener("mouseup", onMouseUp);
-        listenerElement.addEventListener("mouseenter", onMouseEnter);
-        // listenerElement.addEventListener('contextmenu', onClickRight);
-    }
-}
-
-
-};
-
-Ops.Gl.InteractiveRectangle_v2.prototype = new CABLES.Op();
-CABLES.OPS["334728ca-60a2-4a42-a059-d9b5f3fe4d32"]={f:Ops.Gl.InteractiveRectangle_v2,objName:"Ops.Gl.InteractiveRectangle_v2"};
 
 
 
@@ -16456,6 +21426,97 @@ op.addEventListener("onEnabledChange", function (enabled)
 
 Ops.Html.CSS.TransformElement.prototype = new CABLES.Op();
 CABLES.OPS["caca0307-d460-47df-8674-b7d2601239ab"]={f:Ops.Html.CSS.TransformElement,objName:"Ops.Html.CSS.TransformElement"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Standalone.SideBarStyle
+// 
+// **************************************************************
+
+Ops.Standalone.SideBarStyle = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const parentPort = op.inObject("link"),
+    inWidth = op.inInt("Width", 220),
+    inBorderRadius = op.inFloat("Round Corners", 10),
+    inColorSpecial = op.inString("Special Color", "#07f78c"),
+    // inPositionX = op.inInt("Position X", 200),
+    // inPositionY = op.inInt("Position Y", 200),
+    siblingsPort = op.outObject("childs"),
+    elemOut = op.outObject("Element");
+
+inColorSpecial.onChange =
+inBorderRadius.onChange =
+inWidth.onChange = setStyle;
+// inPositionY.onChange = setStyle;
+// inPositionX.onChange = setStyle;
+
+parentPort.onChange = onParentChanged;
+op.onDelete = onDelete;
+
+op.toWorkNeedsParent("Ops.Sidebar.Sidebar");
+
+let sideBarEle = null;
+
+function setStyle()
+{
+    if (!sideBarEle) return;
+
+
+    sideBarEle.style.setProperty("--sidebar-width", inWidth.get() + "px");
+
+    sideBarEle.style.setProperty("--sidebar-color", inColorSpecial.get());
+
+    sideBarEle.style.setProperty("--sidebar-border-radius", Math.round(inBorderRadius.get()) + "px");
+
+    // sideBarEle.style.setProperty( "top", inPositionY.get() + "px");
+    //  sideBarEle.style.setProperty( "left", inPositionX.get() + "px");
+    op.patch.emitEvent("sidebarStylesChanged");
+}
+
+function onParentChanged()
+{
+    siblingsPort.set(null);
+    const parent = parentPort.get();
+    if (parent && parent.parentElement)
+    {
+        siblingsPort.set(parent);
+        sideBarEle = parent.parentElement.parentElement;
+        elemOut.set(sideBarEle);
+        setStyle();
+    }
+    else
+    {
+        sideBarEle = null;
+    }
+}
+
+function showElement(el)
+{
+    if (!el) return;
+    el.style.display = "block";
+}
+
+function hideElement(el)
+{
+    if (!el) return;
+    el.style.display = "none";
+}
+
+function onDelete()
+{
+}
+
+
+};
+
+Ops.Standalone.SideBarStyle.prototype = new CABLES.Op();
+CABLES.OPS["0c482c61-3781-4880-aef5-53a41530075b"]={f:Ops.Standalone.SideBarStyle,objName:"Ops.Standalone.SideBarStyle"};
 
 
 
@@ -17646,308 +22707,6 @@ CABLES.OPS["fa36a56b-a64d-4269-9a9e-addc16493006"]={f:Ops.String.StringToNumber,
 
 // **************************************************************
 // 
-// Ops.Gl.Meshes.Circle_v3
-// 
-// **************************************************************
-
-Ops.Gl.Meshes.Circle_v3 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    render = op.inTrigger("render"),
-    radius = op.inValue("radius", 0.5),
-    innerRadius = op.inValueSlider("innerRadius", 0),
-    segments = op.inValueInt("segments", 40),
-    percent = op.inValueSlider("percent", 1),
-    steps = op.inValue("steps", 0),
-    invertSteps = op.inValueBool("invertSteps", false),
-    mapping = op.inSwitch("mapping", ["flat", "round"]),
-    drawSpline = op.inValueBool("Spline", false),
-    inDraw = op.inValueBool("Draw", true),
-    trigger = op.outTrigger("trigger"),
-    geomOut = op.outObject("geometry", null, "geometry");
-
-op.setPortGroup("Size", [radius, innerRadius]);
-op.setPortGroup("Display", [percent, steps, invertSteps]);
-op.toWorkShouldNotBeChild("Ops.Gl.TextureEffects.ImageCompose", CABLES.OP_PORT_TYPE_FUNCTION);
-
-inDraw.setUiAttribs({ "title": "Render mesh" });
-
-mapping.set("flat");
-
-mapping.onChange =
-    segments.onChange =
-    radius.onChange =
-    innerRadius.onChange =
-    percent.onChange =
-    steps.onChange =
-    invertSteps.onChange =
-    drawSpline.onChange = calcLater;
-
-geomOut.ignoreValueSerialize = true;
-const cgl = op.patch.cgl;
-
-let geom = new CGL.Geometry("circle");
-let mesh = null;
-const lastSegs = -1;
-
-let oldPrim = 0;
-let shader = null;
-let needsCalc = true;
-
-render.onTriggered = renderMesh;
-
-op.preRender = () =>
-{
-    renderMesh();
-};
-
-render.onLinkChanged = function ()
-{
-    if (!render.isLinked()) geomOut.set(null);
-    else geomOut.setRef(geom);
-};
-
-function renderMesh()
-{
-    if (!op.patch.cg) return;
-    if (needsCalc)calc();
-
-    if (!CGL.TextureEffect.checkOpNotInTextureEffect(op)) return;
-
-    shader = op.patch.cg.getShader();
-    if (!shader) return;
-    oldPrim = shader.glPrimitive;
-
-    if (drawSpline.get()) shader.glPrimitive = cgl.gl.LINE_STRIP;
-
-    if (inDraw.get() && mesh)
-    {
-        // mesh.instances = 3;
-        mesh.render(shader);
-    }
-    trigger.trigger();
-
-    shader.glPrimitive = oldPrim;
-}
-
-function calc()
-{
-    const segs = Math.max(3, Math.floor(segments.get()));
-
-    geom.clear();
-
-    const faces = [];
-    const texCoords = [];
-    const vertexNormals = [];
-    const tangents = [];
-    const biTangents = [];
-
-    let i = 0, degInRad = 0;
-    let oldPosX = 0, oldPosY = 0;
-    let oldPosXTexCoord = 0, oldPosYTexCoord = 0;
-
-    let oldPosXIn = 0, oldPosYIn = 0;
-    let oldPosXTexCoordIn = 0, oldPosYTexCoordIn = 0;
-
-    let posxTexCoordIn = 0, posyTexCoordIn = 0;
-    let posxTexCoord = 0, posyTexCoord = 0;
-    let posx = 0, posy = 0;
-
-    const perc = Math.max(0.0, percent.get());
-    const verts = [];
-
-    if (drawSpline.get())
-    {
-        let lastX = 0;
-        let lastY = 0;
-        const tc = [];
-        for (i = 0; i <= segs * perc; i++)
-        {
-            degInRad = (360 / segs) * i * CGL.DEG2RAD;
-            posx = Math.cos(degInRad) * radius.get();
-            posy = Math.sin(degInRad) * radius.get();
-
-            posyTexCoord = 0.5;
-
-            if (i > 0)
-            {
-                verts.push(lastX);
-                verts.push(lastY);
-                verts.push(0);
-                posxTexCoord = 1.0 - (i - 1) / segs;
-
-                tc.push(posxTexCoord, posyTexCoord);
-            }
-            verts.push(posx);
-            verts.push(posy);
-            verts.push(0);
-
-            lastX = posx;
-            lastY = posy;
-        }
-        geom.setPointVertices(verts);
-    }
-    else
-    if (innerRadius.get() <= 0)
-    {
-        for (i = 0; i <= segs * perc; i++)
-        {
-            degInRad = (360 / segs) * i * CGL.DEG2RAD;
-            posx = Math.cos(degInRad) * radius.get();
-            posy = Math.sin(degInRad) * radius.get();
-
-            if (mapping.get() == "flat")
-            {
-                posxTexCoord = (Math.cos(degInRad) + 1.0) / 2;
-                posyTexCoord = 1.0 - (Math.sin(degInRad) + 1.0) / 2;
-                posxTexCoordIn = 0.5;
-                posyTexCoordIn = 0.5;
-            }
-            else if (mapping.get() == "round")
-            {
-                posxTexCoord = 1.0 - i / segs;
-                posyTexCoord = 0;
-                posxTexCoordIn = posxTexCoord;
-                posyTexCoordIn = 1;
-            }
-
-            faces.push(
-                [0, 0, 0],
-                [oldPosX, oldPosY, 0],
-                [posx, posy, 0]
-            );
-
-            texCoords.push(
-                posxTexCoordIn, posyTexCoordIn, oldPosXTexCoord, oldPosYTexCoord, posxTexCoord, posyTexCoord
-            );
-            vertexNormals.push(0, 0, 1, 0, 0, 1, 0, 0, 1);
-            tangents.push(1, 0, 0, 1, 0, 0, 1, 0, 0);
-            biTangents.push(0, -1, 0, 0, -1, 0, 0, -1, 0);
-
-            oldPosXTexCoord = posxTexCoord;
-            oldPosYTexCoord = posyTexCoord;
-
-            oldPosX = posx;
-            oldPosY = posy;
-        }
-
-        geom = CGL.Geometry.buildFromFaces(faces, "circle");
-        geom.vertexNormals = vertexNormals;
-        geom.tangents = tangents;
-        geom.biTangents = biTangents;
-        geom.texCoords = texCoords;
-    }
-    else
-    {
-        let count = 0;
-        const numSteps = segs * perc;
-        const pos = 0;
-
-        for (i = 0; i <= numSteps; i++)
-        {
-            count++;
-
-            degInRad = (360 / segs) * i * CGL.DEG2RAD;
-            posx = Math.cos(degInRad) * radius.get();
-            posy = Math.sin(degInRad) * radius.get();
-
-            const posxIn = Math.cos(degInRad) * innerRadius.get() * radius.get();
-            const posyIn = Math.sin(degInRad) * innerRadius.get() * radius.get();
-
-            if (mapping.get() == "round")
-            {
-                posxTexCoord = 1.0 - i / segs;
-                posyTexCoord = 0;
-                posxTexCoordIn = posxTexCoord;
-                posyTexCoordIn = 1;
-            }
-
-            if (steps.get() === 0.0 ||
-                (count % parseInt(steps.get(), 10) === 0 && !invertSteps.get()) ||
-                (count % parseInt(steps.get(), 10) !== 0 && invertSteps.get()))
-            {
-                faces.push(
-                    [posxIn, posyIn, 0],
-                    [oldPosX, oldPosY, 0],
-                    [posx, posy, 0]
-                );
-
-                faces.push(
-                    [oldPosXIn, oldPosYIn, 0],
-                    [oldPosX, oldPosY, 0],
-                    [posxIn, posyIn, 0]
-                );
-
-                texCoords.push(
-                    posxTexCoord, 0, oldPosXTexCoord, 0, posxTexCoordIn, 1, posxTexCoord, 1, oldPosXTexCoord, 0, oldPosXTexCoordIn, 1);
-
-                vertexNormals.push(
-                    0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1
-                );
-                tangents.push(
-                    1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0, 1, 0, 0
-                );
-                biTangents.push(
-                    0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1, 0, 0, -1
-                );
-            }
-
-            oldPosXTexCoordIn = posxTexCoordIn;
-            oldPosYTexCoordIn = posyTexCoordIn;
-
-            oldPosXTexCoord = posxTexCoord;
-            oldPosYTexCoord = posyTexCoord;
-
-            oldPosX = posx;
-            oldPosY = posy;
-
-            oldPosXIn = posxIn;
-            oldPosYIn = posyIn;
-        }
-
-        geom = CGL.Geometry.buildFromFaces(faces, "circle");
-        geom.vertexNormals = vertexNormals;
-        geom.tangents = tangents;
-        geom.biTangents = biTangents;
-
-        if (mapping.get() == "flat") geom.mapTexCoords2d();
-        else geom.texCoords = texCoords;
-    }
-
-    geomOut.setRef(geom);
-
-    if (geom.vertices.length == 0) return;
-    if (mesh) mesh.dispose();
-    mesh = null;
-    if (op.patch.cg)
-        mesh = op.patch.cg.createMesh(geom, { "opId": op.id });
-    needsCalc = false;
-}
-
-function calcLater()
-{
-    needsCalc = true;
-}
-
-op.onDelete = function ()
-{
-    if (mesh)mesh.dispose();
-};
-
-
-};
-
-Ops.Gl.Meshes.Circle_v3.prototype = new CABLES.Op();
-CABLES.OPS["ae07830b-91c3-4cbe-a7d6-d3b737392c16"]={f:Ops.Gl.Meshes.Circle_v3,objName:"Ops.Gl.Meshes.Circle_v3"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Boolean.BoolByTrigger
 // 
 // **************************************************************
@@ -18343,6 +23102,354 @@ CABLES.OPS["ef15195a-760b-4ac5-9630-322b0ba7b722"]={f:Ops.String.StringEquals,ob
 
 // **************************************************************
 // 
+// Ops.Patch.PxdLHGq.SidebarSlider_v3
+// 
+// **************************************************************
+
+Ops.Patch.PxdLHGq.SidebarSlider_v3 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+// constants
+const STEP_DEFAULT = 0.00001;
+
+// inputs
+const parentPort = op.inObject("link");
+const labelPort = op.inString("Text", "Slider");
+const minPort = op.inValue("Min", 0);
+const maxPort = op.inValue("Max", 1);
+const stepPort = op.inValue("Step", STEP_DEFAULT);
+const labelSuffix = op.inString("Suffix", "");
+
+const inGreyOut = op.inBool("Grey Out", false);
+const inVisible = op.inBool("Visible", true);
+
+const inputValuePort = op.inValue("Input", 0.5);
+const setDefaultValueButtonPort = op.inTriggerButton("Set Default");
+const reset = op.inTriggerButton("Reset");
+
+let parent = null;
+
+const defaultValuePort = op.inValue("Default", 0.5);
+defaultValuePort.setUiAttribs({ "hidePort": true, "greyout": true });
+
+// outputs
+const siblingsPort = op.outObject("childs");
+const valuePort = op.outNumber("Result", defaultValuePort.get());
+const interactionPort = op.outObject("Interaction", {  });
+
+op.toWorkNeedsParent("Ops.Sidebar.Sidebar");
+op.setPortGroup("Range", [minPort, maxPort, stepPort]);
+op.setPortGroup("Display", [inGreyOut, inVisible]);
+
+// vars
+const el = document.createElement("div");
+el.addEventListener("dblclick", function ()
+{
+    valuePort.set(parseFloat(defaultValuePort.get()));
+    inputValuePort.set(parseFloat(defaultValuePort.get()));
+    setValueFieldValue(defaultValuePort.get());
+    interactionPort.set( { "type": "dblclick", "value": parseFloat(defaultValuePort.get()) });
+});
+
+el.addEventListener("mouseenter", function ()
+{
+    interactionPort.set( { "type": "hover", "value": parseFloat(valuePort.get()), "paramId": "scapeOffset"});
+});
+
+el.addEventListener("mousedown", function ()
+{
+    interactionPort.set( { "type": "mousedown", "value": parseFloat(valuePort.get()), "paramId": "scapeOffset"});
+});
+
+
+el.addEventListener("mouseleave", function ()
+{
+    interactionPort.set( { "type": "leave", "value": parseFloat(valuePort.get()), "paramId": "disengage"});
+})
+
+el.dataset.op = op.id;
+el.classList.add("cablesEle");
+
+el.classList.add("sidebar__item");
+el.classList.add("sidebar__slider");
+el.classList.add("sidebar__reloadable");
+
+op.patch.on("sidebarStylesChanged", () => { updateActiveTrack(); });
+
+const label = document.createElement("div");
+label.classList.add("sidebar__item-label");
+
+const greyOut = document.createElement("div");
+greyOut.classList.add("sidebar__greyout");
+el.appendChild(greyOut);
+greyOut.style.display = "none";
+
+const labelText = document.createTextNode(labelPort.get());
+label.appendChild(labelText);
+el.appendChild(label);
+
+const value = document.createElement("input");
+value.value = defaultValuePort.get();
+value.classList.add("sidebar__text-input-input");
+value.setAttribute("type", "text");
+value.oninput = onTextInputChanged;
+el.appendChild(value);
+
+const suffixEle = document.createElement("span");
+// setValueFieldValue(defaultValuePort).get();
+// value.setAttribute("type", "text");
+// value.oninput = onTextInputChanged;
+
+el.appendChild(suffixEle);
+
+labelSuffix.onChange = () =>
+{
+    suffixEle.innerHTML = labelSuffix.get();
+};
+
+const inputWrapper = document.createElement("div");
+inputWrapper.classList.add("sidebar__slider-input-wrapper");
+el.appendChild(inputWrapper);
+
+const activeTrack = document.createElement("div");
+activeTrack.classList.add("sidebar__slider-input-active-track");
+inputWrapper.appendChild(activeTrack);
+const input = document.createElement("input");
+input.classList.add("sidebar__slider-input");
+input.setAttribute("min", minPort.get());
+input.setAttribute("max", maxPort.get());
+input.setAttribute("type", "range");
+input.setAttribute("step", stepPort.get());
+input.setAttribute("value", defaultValuePort.get());
+input.style.display = "block"; /* needed because offsetWidth returns 0 otherwise */
+inputWrapper.appendChild(input);
+
+updateActiveTrack();
+input.addEventListener("input", onSliderInput);
+
+// events
+parentPort.onChange = onParentChanged;
+labelPort.onChange = onLabelTextChanged;
+inputValuePort.onChange = onInputValuePortChanged;
+defaultValuePort.onChange = onDefaultValueChanged;
+setDefaultValueButtonPort.onTriggered = onSetDefaultValueButtonPress;
+minPort.onChange = onMinPortChange;
+maxPort.onChange = onMaxPortChange;
+stepPort.onChange = stepPortChanged;
+op.onDelete = onDelete;
+
+// op.onLoadedValueSet=function()
+op.onLoaded = op.onInit = function ()
+{
+    if (op.patch.config.sidebar)
+    {
+        op.patch.config.sidebar[labelPort.get()];
+        valuePort.set(op.patch.config.sidebar[labelPort.get()]);
+    }
+    else
+    {
+        valuePort.set(parseFloat(defaultValuePort.get()));
+        inputValuePort.set(parseFloat(defaultValuePort.get()));
+        // onInputValuePortChanged();
+    }
+};
+
+reset.onTriggered = function ()
+{
+    const newValue = parseFloat(defaultValuePort.get());
+    valuePort.set(newValue);
+    setValueFieldValue(newValue);
+    setInputFieldValue(newValue);
+    inputValuePort.set(newValue);
+    updateActiveTrack();
+};
+
+inGreyOut.onChange = function ()
+{
+    greyOut.style.display = inGreyOut.get() ? "block" : "none";
+};
+
+inVisible.onChange = function ()
+{
+    el.style.display = inVisible.get() ? "block" : "none";
+};
+
+function onTextInputChanged(ev)
+{
+    let newValue = parseFloat(ev.target.value);
+    if (isNaN(newValue)) newValue = 0;
+    const min = minPort.get();
+    const max = maxPort.get();
+    if (newValue < min) { newValue = min; }
+    else if (newValue > max) { newValue = max; }
+    // setInputFieldValue(newValue);
+    valuePort.set(newValue);
+    updateActiveTrack();
+    inputValuePort.set(newValue);
+    op.refreshParams();
+}
+
+function onInputValuePortChanged()
+{
+    let newValue = parseFloat(inputValuePort.get());
+    const minValue = minPort.get();
+    const maxValue = maxPort.get();
+    if (newValue > maxValue) { newValue = maxValue; }
+    else if (newValue < minValue) { newValue = minValue; }
+    // setValueFieldValue(newValue);
+    setInputFieldValue(newValue);
+    valuePort.set(newValue);
+    updateActiveTrack();
+}
+
+function onSetDefaultValueButtonPress()
+{
+    let newValue = parseFloat(inputValuePort.get());
+    const minValue = minPort.get();
+    const maxValue = maxPort.get();
+    if (newValue > maxValue) { newValue = maxValue; }
+    else if (newValue < minValue) { newValue = minValue; }
+    setValueFieldValue(newValue);
+    setInputFieldValue(newValue);
+    valuePort.set(newValue);
+    defaultValuePort.set(newValue);
+    op.refreshParams();
+
+    updateActiveTrack();
+}
+
+function onSliderInput(ev)
+{
+    ev.preventDefault();
+    ev.stopPropagation();
+    setValueFieldValue(ev.target.value);
+    const inputFloat = parseFloat(ev.target.value);
+    valuePort.set(inputFloat);
+    inputValuePort.set(inputFloat);
+    op.refreshParams();
+
+    updateActiveTrack();
+    interactionPort.set( { "type": "input", "value": inputFloat, "paramId": "scapeOffset" });
+    return false;
+}
+
+function stepPortChanged()
+{
+    const step = stepPort.get();
+    input.setAttribute("step", step);
+    updateActiveTrack();
+}
+
+function updateActiveTrack(val)
+{
+    let valueToUse = parseFloat(input.value);
+    if (typeof val !== "undefined") valueToUse = val;
+    let availableWidth = activeTrack.parentElement.getBoundingClientRect().width || 220;
+    if (parent) availableWidth = parseInt(getComputedStyle(parent.parentElement).getPropertyValue("--sidebar-width")) - 20;
+
+    const trackWidth = CABLES.map(
+        valueToUse,
+        parseFloat(input.min),
+        parseFloat(input.max),
+        0,
+        availableWidth - 16 /* subtract slider thumb width */
+    );
+    activeTrack.style.width = trackWidth + "px";
+}
+
+function onMinPortChange()
+{
+    const min = minPort.get();
+    input.setAttribute("min", min);
+    updateActiveTrack();
+}
+
+function onMaxPortChange()
+{
+    const max = maxPort.get();
+    input.setAttribute("max", max);
+    updateActiveTrack();
+}
+
+function onDefaultValueChanged()
+{
+    const defaultValue = defaultValuePort.get();
+    valuePort.set(parseFloat(defaultValue));
+    onMinPortChange();
+    onMaxPortChange();
+    setInputFieldValue(defaultValue);
+    setValueFieldValue(defaultValue);
+
+    updateActiveTrack(defaultValue); // needs to be passed as argument, is this async?
+}
+
+function onLabelTextChanged()
+{
+    const labelText = labelPort.get();
+    label.textContent = labelText;
+    if (CABLES.UI) op.setUiAttrib({ "extendTitle": labelText });
+}
+
+function onParentChanged()
+{
+    siblingsPort.set(null);
+    parent = parentPort.get();
+    if (parent && parent.parentElement)
+    {
+        parent.parentElement.appendChild(el);
+        siblingsPort.set(parent);
+    }
+    else if (el.parentElement) el.parentElement.removeChild(el);
+
+    updateActiveTrack();
+}
+
+function setValueFieldValue(v)
+{
+    value.value = v;
+}
+
+function setInputFieldValue(v)
+{
+    input.value = v;
+}
+
+function showElement(el)
+{
+    if (el)el.style.display = "block";
+
+}
+
+function hideElement(el)
+{
+    if (el)el.style.display = "none";
+
+}
+
+function onDelete()
+{
+    removeElementFromDOM(el);
+
+}
+
+function removeElementFromDOM(el)
+{
+    if (el && el.parentNode && el.parentNode.removeChild) el.parentNode.removeChild(el);
+}
+
+
+};
+
+Ops.Patch.PxdLHGq.SidebarSlider_v3.prototype = new CABLES.Op();
+CABLES.OPS["22b0ba21-a0c3-45a0-b0bc-2db5d770582e"]={f:Ops.Patch.PxdLHGq.SidebarSlider_v3,objName:"Ops.Patch.PxdLHGq.SidebarSlider_v3"};
+
+
+
+
+// **************************************************************
+// 
 // Ops.Extension.Deprecated.ArrayChangedTrigger
 // 
 // **************************************************************
@@ -18422,49 +23529,6 @@ function rotate(array, n, guard)
 
 Ops.Array.RotateArray.prototype = new CABLES.Op();
 CABLES.OPS["e435d07b-8545-4469-befb-868510adcb76"]={f:Ops.Array.RotateArray,objName:"Ops.Array.RotateArray"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Math.Round
-// 
-// **************************************************************
-
-Ops.Math.Round = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    number1 = op.inValueFloat("number"),
-    decPlaces = op.inInt("Decimal Places", 0),
-    result = op.outNumber("result");
-
-let decm = 0;
-
-number1.onChange = exec;
-decPlaces.onChange = updateDecm;
-
-updateDecm();
-
-function updateDecm()
-{
-    decm = Math.pow(10, decPlaces.get());
-    exec();
-}
-
-function exec()
-{
-    result.set(Math.round(number1.get() * decm) / decm);
-}
-
-
-};
-
-Ops.Math.Round.prototype = new CABLES.Op();
-CABLES.OPS["1a1ef636-6d02-42ba-ae1e-627b917d0d2b"]={f:Ops.Math.Round,objName:"Ops.Math.Round"};
 
 
 
@@ -19048,6 +24112,207 @@ exec.onTriggered = () => {
 
 Ops.Patch.PxdLHGq.CountValidElementsInArray.prototype = new CABLES.Op();
 CABLES.OPS["ff256324-41b0-43e6-acc0-526c4538b83b"]={f:Ops.Patch.PxdLHGq.CountValidElementsInArray,objName:"Ops.Patch.PxdLHGq.CountValidElementsInArray"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PBktIwq.Button_NEL
+// 
+// **************************************************************
+
+Ops.Patch.PBktIwq.Button_NEL = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+// inputs
+const parentPort = op.inObject("link");
+const buttonTextPort = op.inString("Text", "Button");
+const checksum = op.inValue("Checksum", 0);
+const update = op.inTrigger("update");
+
+const inGreyOut = op.inBool("Grey Out", false);
+const inVisible = op.inBool("Visible", true);
+
+// outputs
+const siblingsPort = op.outObject("childs");
+const buttonPressedPort = op.outTrigger("Pressed Trigger");
+
+
+// vars
+const colors = ["rgba(85,85,85,0.5)", "aquamarine"];
+
+const el = document.createElement("div");
+el.dataset.op = op.id;
+el.classList.add("cablesEle");
+el.classList.add("sidebar__item");
+el.classList.add("sidebar--button");
+el.style.display = "grid";
+el.style.gridTemplateColumns = "0.25fr 1fr";
+el.style.alignItems = "start";
+el.style.alignContent = "stretch";
+el.style.height = "75px";
+el.style.paddingLeft = "5px";
+
+
+// draw svg
+const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+svg.setAttribute("viewBox", "0 0 100 100");
+svg.setAttribute("width", "100%");
+svg.setAttribute("height", "150%");
+svg.style.gridColumn = "1 / 2";
+
+
+
+const quadrants = [];
+
+
+for (let i = 0; i < 4; i++) {
+    const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+    rect.setAttribute("x", [ "0", "25", "50", "75" ][i]);
+    rect.setAttribute("y", "0");
+
+    rect.setAttribute("width", "20");
+    rect.setAttribute("height", "20");
+    rect.setAttribute("fill", colors[0]);
+    rect.setAttribute("rx", "50"); // Round the corners with a radius of 10
+    rect.setAttribute("ry", "50"); // Round the corners with a radius of 10
+    rect.style.display = "block";
+    quadrants.push(rect);
+    svg.appendChild(rect);
+}
+
+svg.setAttribute("transform", "translate(-2.5, -17)")
+
+
+function showQuadrant( index ) {
+    if (index < 0 || index > quadrants.length) return;
+    quadrants.forEach((quad, i) => {
+        quad.style.fill = i <= index - 1 || index === 4 ? colors[1] : colors[0];
+    });
+}
+
+
+updateSegments();
+
+function updateSegments () {
+
+el.appendChild( svg );
+showQuadrant( Math.round( checksum.get() ) )
+
+ }
+
+ checksum.onChange = updateSegments;
+
+
+update.onTriggered = updateSegments;
+
+const button = document.createElement("div");
+button.classList.add("sidebar__button-input");
+button.style.gridColumn = "2 / 3";
+el.appendChild(button);
+
+const inputText = document.createTextNode(buttonTextPort.get());
+button.appendChild(inputText);
+
+
+button.addEventListener("click", onButtonClick);
+
+op.toWorkNeedsParent("Ops.Sidebar.Sidebar");
+
+// events
+parentPort.onChange = onParentChanged;
+buttonTextPort.onChange = onButtonTextChanged;
+op.onDelete = onDelete;
+
+
+const greyOut = document.createElement("div");
+greyOut.classList.add("sidebar__greyout");
+greyOut.style.gridColumn = "1 / 4";
+el.appendChild(greyOut);
+greyOut.style.display = "none";
+
+inGreyOut.onChange = function ()
+{
+    greyOut.style.display = inGreyOut.get() ? "block" : "none";
+};
+
+inVisible.onChange = function ()
+{
+    el.style.display = inVisible.get() ? "grid" : "none";
+};
+
+function onButtonClick()
+{
+    buttonPressedPort.trigger();
+}
+
+function onButtonTextChanged()
+{
+    const buttonText = buttonTextPort.get();
+    button.textContent = buttonText;
+    if (CABLES.UI)
+    {
+        op.setUiAttrib({ "extendTitle": buttonText });
+    }
+}
+
+function onParentChanged()
+{
+    siblingsPort.set(null);
+    const parent = parentPort.get();
+    if (parent && parent.parentElement)
+    {
+        parent.parentElement.appendChild(el);
+        siblingsPort.set(parent);
+    }
+    else
+    { // detach
+        if (el.parentElement)
+        {
+            el.parentElement.removeChild(el);
+        }
+    }
+}
+
+function showElement(el)
+{
+    if (el)
+    {
+        el.style.display = "grid";
+    }
+}
+
+function hideElement(el)
+{
+    if (el)
+    {
+        el.style.display = "none";
+    }
+}
+
+function onDelete()
+{
+    removeElementFromDOM(el);
+}
+
+function removeElementFromDOM(el)
+{
+    if (el && el.parentNode && el.parentNode.removeChild)
+    {
+        el.parentNode.removeChild(el);
+    }
+}
+
+
+
+
+};
+
+Ops.Patch.PBktIwq.Button_NEL.prototype = new CABLES.Op();
+CABLES.OPS["e40caa69-8d39-4da3-bf3e-2a7790b0b2f8"]={f:Ops.Patch.PBktIwq.Button_NEL,objName:"Ops.Patch.PBktIwq.Button_NEL"};
 
 
 
