@@ -10,6 +10,7 @@ import {
     JSONString,
     ProcessorSettings,
     ScapeProps,
+    ScapePropsWithConvolvers,
     ScapeSettings,
     SharedSettings,
     SRVBProps,
@@ -19,49 +20,40 @@ import {
 import { buildStructures, castSequencesToRefs, updateStructureConstants } from "./OEIS-Structures";
 import { parseAndUpdateIRRefs } from "./parseAndUpdateIRRefs";
 import { remapPosition, roundedStructureValue } from "../src/utils/utils";
-import { refs, core } from "./main";
+import { core } from "./main";
 import { registerConvolverRefs, Slots } from "./convolverFactory";
+import { RefMap } from "./RefMap";
 
-let currentVFSKeys: Array<string> = [];
+
 let memoized: null | any;
-let srvbProps;
-let scapeProps;
 let renderCount = 0;
-
-export let vfsPathHistory = new Array<string>();
-export function getSRVBProps() {
-    return srvbProps as SRVBProps;
-}
-export function getScapeProps() {
-    return scapeProps as ScapeProps;
-}
-
-// ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
-// ▮▮▮▮▮▮ Handle updated VFS keys from the backend ▮▮▮▮▮▮ //
-// ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
-globalThis.__receiveVFSKeys__ = function (vfsCurrent: JSONString) {
-    const parsedArray: Array<string> = JSON.parse(vfsCurrent);
-    if (parsedArray.length > 0) {
-        currentVFSKeys = parsedArray;
-    }
-}
+let currentVFSKeys: Array<string>;
+let refs: RefMap;
+let structureData: StructureData;
 
 // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
 // ▮▮▮▮▮▮▮▮ Handle updated state from the backend ▮▮▮▮▮▮▮ //
 // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
-globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
-    // first parse the state
-    const { state, srvb, shared, scape } = parseNewState(stateReceivedFromNative) as ProcessorSettings;
+export function handleStateChange(_state, _currentVFSKeys, _refs: RefMap) {
+    // update the local vars
+    currentVFSKeys = _currentVFSKeys;
+    refs = _refs;
+    //  parse the state
+    const { state, srvb, shared, scape } = parseNewState(_state) as ProcessorSettings;
     // then get or create the props for the DSP
-    getOrCreatePropsForDSP(srvb, shared, scape);
-
+    const { srvbProps, scapeProps } = getOrCreatePropsForDSP(srvb, shared, scape);
+    console.log('got or created props...'    );
+    structureData = structureSetup( refs );
+    console.log('structure was setup');
     // now render or re-hydrate the graph
     // ▮▮▮▮▮▮▮▮▮▮▮ Elementary Audio Graph Renderer ▮▮▮▮▮▮▮▮▮▮ //
-    if (!memoized || shouldRender(memoized, state, renderCount)) {
+ 
+    if (shouldRender(memoized, state, renderCount)) {
+
         console.log('Render: ' + renderCount);
         updateMemoizedState(state, srvb, shared, scape);
         adjustStructurePosition(srvb);
-        renderAudioGraph(getScapeProps, shared, getSRVBProps);
+        renderAudioGraph(shared, srvbProps, scapeProps);
     } else {
         updateSignalRefs(srvb, scape, shared);
     }
@@ -74,39 +66,41 @@ globalThis.__receiveStateChange__ = (stateReceivedFromNative) => {
 // create the vector interpolation ramp, used to crossfade between 4 IRs
 function createHermiteVecInterp(): Ramp<Vec> {
     return ramp(
-      // use a vector interpolation preset with the VEC3 API
-      HERMITE_V(VEC3),
-      // keyframes used for crossfading between 4 IRs
-      [
-        [0.0, [1.0, 0, 0, 0]], // a
-        [0.45, [0, 1.0, 0, 0]], // b
-        [0.65, [0, 0, 1.0, 0]], // c
-        [1.0, [0, 0, 0, 1.0]], // d
-      ]
+        // use a vector interpolation preset with the VEC3 API
+        HERMITE_V(VEC3),
+        // keyframes used for crossfading between 4 IRs
+        [
+            [0.0, [1.0, 0, 0, 0]], // a
+            [0.45, [0, 1.0, 0, 0]], // b
+            [0.65, [0, 0, 1.0, 0]], // c
+            [1.0, [0, 0, 0, 1.0]], // d
+        ]
     );
-  }
-  
-  // the Hermite vector interpolation ramp
-  const HERMITE: Ramp<Vec> = createHermiteVecInterp();
+}
 
-  //////////////////////////////////////////////////////////////////////
-  // setup the structure data
-const defaultStructure = OEIS_SEQUENCES[0];
-const defaultMax = argMax(defaultStructure, 17);
-let structureData: StructureData = {
-  nodes: castSequencesToRefs(defaultStructure, defaultMax, refs),
-  max: defaultMax,
-};
-  
-function parseNewState(stateReceivedFromNative: JSONString) {
-    const state = JSON.parse(stateReceivedFromNative);
+// the Hermite vector interpolation ramp
+const HERMITE: Ramp<Vec> = createHermiteVecInterp();
+
+//////////////////////////////////////////////////////////////////////
+// setup the structure data
+function structureSetup(_refs: RefMap) {
+    const defaultStructure = OEIS_SEQUENCES[0];
+    const defaultMax = argMax(defaultStructure, 17);
+    let structureData: StructureData = {
+        nodes: castSequencesToRefs(defaultStructure, defaultMax, _refs),
+        max: defaultMax,
+    };
+    return structureData;
+}
+
+function parseNewState(rawState: JSONString) {
+    const state = JSON.parse(rawState);
     // interpreted state captured out into respective processor properties.
     // any adjustments should be done here before rendering to the graph
     const shared: SharedSettings = {
         sampleRate: state.sampleRate,
         dryInputs: [el.in({ channel: 0 }), el.in({ channel: 1 })],
         dryMix: state.dryMix,
-
     };
     const srvb: SrvbSettings = {
         structure: Math.round((state.structure || 0) * NUM_SEQUENCES),
@@ -160,34 +154,31 @@ function adjustStructurePosition(srvb: SrvbSettings) {
     }
 }
 
- function shouldRender(previous: any, current: any, renderCount: number) {
-    console.log('current structure', roundedStructureValue(current.structure));
-    console.log('previous', previous);
+function shouldRender(previous: any, current: any, renderCount: number) {
     const result =
-      renderCount === 0 ||
-      current === null ||
-      refs.map.size === 0 ||
-      current.sampleRate !== previous?.sampleRate ||
-      Math.round(current.scapeBypass) !== previous?.scapeBypass ||
-      Math.round(current.srvbBypass) !== previous?.srvbBypass ||
-      roundedStructureValue(current.structure) !== previous?.structure;
+        renderCount === 0 ||
+        current === null ||
+        refs.map.size === 0 ||
+        current.sampleRate !== previous?.sampleRate ||
+        Math.round(current.scapeBypass) !== previous?.scapeBypass ||
+        Math.round(current.srvbBypass) !== previous?.srvbBypass ||
+        roundedStructureValue(current.structure) !== previous?.structure;
     return result;
-  }
+}
 
-function renderAudioGraph(getScapeProps: () => ScapeProps, shared: SharedSettings, getSRVBProps: () => SRVBProps) {
+function renderAudioGraph(shared: SharedSettings, srvbProps: SRVBProps, scapeProps: ScapeProps) {
     if (srvbProps && scapeProps) {
         const graph = core.render(
             ...SCAPE(
-                getScapeProps(),
+                scapeProps,
                 shared.dryInputs,
                 ...SRVB(
-                    getSRVBProps(), shared.dryInputs, ...structureData.nodes
+                    srvbProps, shared.dryInputs, ...structureData.nodes
                 )
+            ).map((node, i) => {
+                return el.add(el.mul(refs.get("dryMix"), shared.dryInputs[i]), node);
+            }
             )
-                .map((node, i) => {
-                    return el.add(el.mul(refs.get("dryMix"), shared.dryInputs[i]), node);
-                }
-                )
         );
         console.log('Graph updated');
         renderCount++;
@@ -196,7 +187,6 @@ function renderAudioGraph(getScapeProps: () => ScapeProps, shared: SharedSetting
 
 function updateSignalRefs(srvb: SrvbSettings, scape: ScapeSettings, shared: SharedSettings) {
     if (!srvb.bypass) {
-
         refs.update("size", { value: srvb.size });
         refs.update("diffuse", { value: srvb.diffuse });
         refs.update("mix", { value: srvb.level });
@@ -219,7 +209,7 @@ function updateSignalRefs(srvb: SrvbSettings, scape: ScapeSettings, shared: Shar
         refs.update("scapePosition", { value: scape.position });
         refs.update("scapeMode", { value: scape.mode });
         // update the convolvers, switch to user IRs if they exist
-        parseAndUpdateIRRefs(currentVFSKeys, scape, shared);
+        parseAndUpdateIRRefs(refs, currentVFSKeys, scape, shared);
     }
 
     refs.update("dryMix", { value: shared.dryMix });
@@ -230,7 +220,7 @@ function getOrCreatePropsForDSP(srvb: SrvbSettings, shared: SharedSettings, scap
 
     refs.getOrCreate("dryMix", "const", { value: shared.dryMix }, []);
 
-    srvbProps =
+   const srvbProps: SRVBProps =
     {
         key: "srvb",
         srvbBypass: srvb.bypass,
@@ -244,14 +234,16 @@ function getOrCreatePropsForDSP(srvb: SrvbSettings, shared: SharedSettings, scap
         structure: srvb.structure,
         structureMax: refs.getOrCreate("structureMax", "const", { value: structureData.max, key: "structureMax" }, [])
     };
-
-    scapeProps =
+    console.log('srvbProps created');
+    const scapeProps: ScapePropsWithConvolvers =
     {
+        key: "scape",
         IRs: Slots,
         sampleRate: shared.sampleRate,
         scapeBypass: scape.bypass || 0,
         vectorData: scape.vectorData,
-        offset: scape.offset,
+        offset: scape.offset || 0,
+        reverse: scape.reverse || 0,
         // RefNodes from now on
         srvbBypass: refs.getOrCreate("srvbBypass", "const", { value: srvb.bypass }, []),
         scapeLevel: refs.getOrCreate("scapeLevel", "const", { value: scape.level }, []),
@@ -264,5 +256,7 @@ function getOrCreatePropsForDSP(srvb: SrvbSettings, shared: SharedSettings, scap
         v4: refs.getOrCreate("v4", "const", { value: scape.vectorData[3] }, []),
         ...registerConvolverRefs(scape, refs)
     };
+    console.log('scapeProps created');
+    return { srvbProps, scapeProps };
 }
 

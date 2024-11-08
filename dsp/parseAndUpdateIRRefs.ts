@@ -6,14 +6,22 @@ import {
   DefaultIRSlotName as SlotName,
   IRMetaData as SlotData
 } from "../src/types";
-import { Slots, refs } from "./main";
-import { RefMap } from "./RefMap";
 
+import { RefMap } from "./RefMap";
+import { Slots } from "./convolverFactory";
+
+let refs: RefMap;
 // later, the Elementary refs system will be used to
 // parse and update the VFS paths of the default and user
 // loaded impulse responses made available to the processor
-export function parseAndUpdateIRRefs(currentVFSKeys: Array<string>, scape: ScapeSettings, shared: SharedSettings) {
-
+export function parseAndUpdateIRRefs(
+  _refs: RefMap,
+  currentVFSKeys: Array<string>, 
+  scape: ScapeSettings, 
+  shared: SharedSettings) 
+{
+  if (currentVFSKeys.length === 0 || !scape) return;
+  refs = _refs;
   let composedPath: string;
   const mode = scape.mode;
   let vfsPathWithChannel: string;

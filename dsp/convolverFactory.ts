@@ -2,6 +2,7 @@ import { el } from "@elemaudio/core";
 import {
     ScapeSettings, DefaultIRSlotName as SlotName,
     IRMetaData as SlotData,
+    Convolvers,
 } from "../src/types";
 import { RefMap } from "./RefMap";
 
@@ -60,5 +61,5 @@ export function registerConvolverRefs(scape: ScapeSettings, refs: RefMap) {
             ...IR_SlotRefFactory(scape, refs, slotName, slotData.slotIndex, slotData.att),
         };
     });
-    return convolvers;
+    return <Convolvers>convolvers;
 }
