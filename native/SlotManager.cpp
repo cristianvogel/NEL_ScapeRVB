@@ -192,5 +192,6 @@ void SlotManager::switchSlotsTo(const bool customScape, const bool pruneVFS)
         processor.pruneVFS();
         lastStateHash = -1;
         processor.userBankManager.resetUserBank();
+        peaksDirty = true;
     }
 }

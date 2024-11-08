@@ -3227,8 +3227,8 @@
   };
 
   // src/stores/constants.ts
-  var BUILD_VERSION = "v0.8.7-beta";
-  var CURRENT_UI_VERSION = `scape_space_${BUILD_VERSION}`;
+  var BUILD_VERSION = "v0.8.8-beta";
+  var CURRENT_UI_VERSION = `cables_scape_space_${BUILD_VERSION}`;
   var HOST_PARAMS = manifest_default.parameters;
   var REGISTERED_PARAM_NAMES = HOST_PARAMS.map(
     (p) => p.paramId

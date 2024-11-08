@@ -7,9 +7,10 @@ var __webpack_exports__ = {};
 
 class Logger
 {
-    constructor(initiator)
+    constructor(initiator, options)
     {
         this.initiator = initiator;
+        this._options = options;
     }
 
     stack(t)
@@ -37,8 +38,18 @@ class Logger
 
     error()
     {
-        if ((CABLES.UI && CABLES.UI.logFilter.filterLog({ "initiator": this.initiator, "level": 2 }, ...arguments)) || !CABLES.logSilent)
+        if ((CABLES.UI && CABLES.UI.logFilter.filterLog({ "initiator": this.initiator, "level": 2 }, ...arguments)) || !CABLES.UI)
+        {
             console.error("[" + this.initiator + "]", ...arguments);
+        }
+
+        if (!CABLES.UI && this._options && this._options.onError)
+        {
+            this._options.onError(this.initiator, ...arguments);
+            // console.log("emitevent onerror...");
+            // CABLES.patch.emitEvent("onError", this.initiator, ...arguments);
+            // CABLES.logErrorConsole("[" + this.initiator + "]", ...arguments);
+        }
     }
 
     errorGui()

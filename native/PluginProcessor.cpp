@@ -8,6 +8,7 @@
 
 
 
+
 //======= DETAIL
 //=======================================================================
 EffectsPluginProcessor::EffectsPluginProcessor()
@@ -39,12 +40,8 @@ EffectsPluginProcessor::EffectsPluginProcessor()
         jassert(false);
     const auto parameters = manifest.getWithDefault("parameters", elem::js::Array());
     createParameters(parameters);
-    // Initialise the asset data
-    assetsMap[SlotName::LIGHT] = Asset();
-    assetsMap[SlotName::SURFACE] = Asset();
-    assetsMap[SlotName::TEMPLE] = Asset();
-    assetsMap[SlotName::DEEPNESS] = Asset();
-    // Initialize editor/view and license activator
+    initialise_assets_map();
+   // run the famous CHOC WebView
     editor = new WebViewEditor(this, util::getAssetsDirectory(), 840, 480);
     // then load default audio assets
     fetchDefaultAudioFileAssets();
@@ -68,6 +65,32 @@ EffectsPluginProcessor::~EffectsPluginProcessor()
     for (auto& p : getParameters())
     {
         p->removeListener(this);
+    }
+}
+
+void EffectsPluginProcessor::initialise_assets_map()
+{
+    // Initial slot
+    auto slot = SlotName::LIGHT;
+
+    while (slot != SlotName::LAST)
+    {
+        assetsMap[slot] = Asset();
+        slot = nextSlotNoWrap(slot);
+    }
+}
+
+void EffectsPluginProcessor::clear_userFiles_in_assets_map()
+{
+    // Initial slot
+    auto slot = SlotName::LIGHT;
+
+    while (slot != SlotName::LAST)
+    {
+        assetsMap[slot].setProperty( Asset::Props::userStereoFile, juce::File() );
+        assetsMap[slot].setProperty( Asset::Props::filenameForView, "");
+        assetsMap[slot].setProperty( Asset::Props::userPeaksForView, std::vector<float>{});
+        slot = nextSlotNoWrap(slot);
     }
 }
 
@@ -421,6 +444,7 @@ std::string EffectsPluginProcessor::prefixUserBank(const std::string& name) cons
 void EffectsPluginProcessor::pruneVFS() const
 {
     if (elementaryRuntime) elementaryRuntime->pruneSharedResourceMap();
+   // assetsMap.clearUserSlots();
 }
 
 /*

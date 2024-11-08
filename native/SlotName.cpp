@@ -42,12 +42,18 @@ SlotName fromString(const std::string &str)
     throw std::invalid_argument("Invalid SlotName string");
 }
 
-SlotName nextSlot(SlotName slot)
+SlotName nextSlot(SlotName slot, const bool wrap)
 {
     int next = static_cast<int>(slot) + 1;
-    if (next > static_cast<int>(SlotName::DEEPNESS))
+    if (next > static_cast<int>(SlotName::DEEPNESS) && wrap)
     {
         next = static_cast<int>(SlotName::LIGHT); // Wrap around to the first slot
     }
+    return static_cast<SlotName>(next);
+}
+
+SlotName nextSlotNoWrap(SlotName slot)
+{
+    int next = static_cast<int>(slot) + 1;
     return static_cast<SlotName>(next);
 }
