@@ -31,42 +31,36 @@ let currentVFSKeys: Array<string>;
 let refs: RefMap;
 let structureData: StructureData = { nodes: [], max: 0 };
 
-// ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
-// ▮▮▮▮▮▮ Handle updated VFS keys from the backend ▮▮▮▮▮▮ //
-// ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
-globalThis.__receiveVFSKeys__ = function (vfsCurrent: JSONString) {
-    const parsedArray: Array<string> = JSON.parse(vfsCurrent);
-    console.log("Received VFS keys: ", parsedArray);
-    if (parsedArray.length > 0) {
-        currentVFSKeys = parsedArray;
-    }
-  }
 
 // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
 // ▮▮▮▮▮▮▮▮ Handle updated state from the backend ▮▮▮▮▮▮▮ //
 // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
-export function handleStateChange(_state, _currentVFSKeys, _refs: RefMap) {
+export function handleStateChange(_refs: RefMap, rawJSON: JSONString ) {
+    
     // update the local vars
-    currentVFSKeys = _currentVFSKeys;
     refs = _refs;
+    currentVFSKeys = refs.vfsKeys;
+    
     //  parse the state
-    const { state, srvb, shared, scape } = parseNewState(_state) as ProcessorSettings;
+    const { state, srvb, shared, scape } = parseNewState( refs, rawJSON) as ProcessorSettings;
+    console.log('STATE::0');
     // then get or create the props for the DSP
     const { srvbProps, scapeProps } = getOrCreatePropsForDSP(srvb, shared, scape);
-    console.log('got or created props...'    );
+    console.log('STATE::1');
+    // setup the structure series
     structureData = structureSetup( refs, structureData );
-
+    console.log('STATE::2');
     // now render or re-hydrate the graph
     // ▮▮▮▮▮▮▮▮▮▮▮ Elementary Audio Graph Renderer ▮▮▮▮▮▮▮▮▮▮ //
  
     if (shouldRender(memoized, state, renderCount)) {
-
-        console.log('Render: ' + renderCount);
+        console.log('STATE::Render: ' + renderCount);
         updateMemoizedState(state, srvb, shared, scape);
         adjustStructurePosition(refs, srvb, structureData);
         renderAudioGraph(shared, srvbProps, scapeProps);
     } else {
-        updateSignalRefs(srvb, scape, shared);
+        console.log('STATE::UPDATE');
+        updateSignalRefs( refs, srvb, scape, shared);
     }
 };
 
@@ -105,8 +99,9 @@ function structureSetup(_refs: RefMap, structureData?: StructureData) {
     return structureData;
 }
 
-function parseNewState(rawState: JSONString) {
+function parseNewState(_refs: RefMap, rawState: JSONString) {
     const state = JSON.parse(rawState);
+    refs = _refs;
     // interpreted state captured out into respective processor properties.
     // any adjustments should be done here before rendering to the graph
     const shared: SharedSettings = {
@@ -114,7 +109,12 @@ function parseNewState(rawState: JSONString) {
         dryInputs: [el.in({ channel: 0 }), el.in({ channel: 1 })],
         dryMix: state.dryMix,
     };
+    console.log('STATE::shared');
+
+    refs.vfsKeys = state.vfsKeys;
+
     const srvb: SrvbSettings = {
+        vfsKeys: refs.vfsKeys,
         structure: Math.round((state.structure || 0) * NUM_SEQUENCES),
         size: state.size,
         diffuse: state.diffuse,
@@ -126,6 +126,7 @@ function parseNewState(rawState: JSONString) {
         bypass: (Math.round(state.srvbBypass) || 0) as 1 | 0,
         position: remapPosition(state.position)
     };
+    console.log('STATE::srvb');
     const scape: ScapeSettings = {
         reverse: Math.round(state.scapeReverse) as 1 | 0,
         level: state.scapeLevel * 1.5,
@@ -136,8 +137,9 @@ function parseNewState(rawState: JSONString) {
         offset: state.scapeOffset || 0,
         userBank: state.userBank,
         position: state.position,
-        hasUserSlots: !!currentVFSKeys.find((key) => key.includes("USERBANK")),
+        hasUserSlots: currentVFSKeys?.some((key) => key.includes("USERBANK"))
     };
+    console.log('STATE::scape');
     return { state, srvb, shared, scape };
 }
 
@@ -171,7 +173,6 @@ function adjustStructurePosition(refs: RefMap, srvb: SrvbSettings, structureData
 function shouldRender(previous: any, current: any, renderCount: number) {
     const result =
         renderCount === 0 ||
-        current === null ||
         refs.map.size === 0 ||
         current.sampleRate !== previous?.sampleRate ||
         Math.round(current.scapeBypass) !== previous?.scapeBypass ||
@@ -181,6 +182,7 @@ function shouldRender(previous: any, current: any, renderCount: number) {
 }
 
 function renderAudioGraph(shared: SharedSettings, srvbProps: SRVBProps, scapeProps: ScapeProps) {
+  
     if (srvbProps && scapeProps) {
         const graph = core.render(
             ...SCAPE(
@@ -199,7 +201,8 @@ function renderAudioGraph(shared: SharedSettings, srvbProps: SRVBProps, scapePro
     }
 }
 
-function updateSignalRefs(srvb: SrvbSettings, scape: ScapeSettings, shared: SharedSettings) {
+function updateSignalRefs(_refs:RefMap, srvb: SrvbSettings, scape: ScapeSettings, shared: SharedSettings) {
+    refs = _refs;
     if (!srvb.bypass) {
         refs.update("size", { value: srvb.size });
         refs.update("diffuse", { value: srvb.diffuse });
@@ -223,7 +226,7 @@ function updateSignalRefs(srvb: SrvbSettings, scape: ScapeSettings, shared: Shar
         refs.update("scapePosition", { value: scape.position });
         refs.update("scapeMode", { value: scape.mode });
         // update the convolvers, switch to user IRs if they exist
-        parseAndUpdateIRRefs(refs, currentVFSKeys, scape, shared);
+        parseAndUpdateIRRefs(refs, currentVFSKeys, scape);
     }
 
     refs.update("dryMix", { value: shared.dryMix });

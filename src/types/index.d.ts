@@ -39,6 +39,7 @@ interface SharedSettings {
 }
 
 interface SrvbSettings {
+  vfsKeys: Array<string>;
   structure: number;
   size: number;
   diffuse: number;

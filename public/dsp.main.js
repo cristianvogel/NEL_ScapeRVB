@@ -2086,9 +2086,17 @@
   var RefMap = class {
     _map;
     _core;
+    _vfsKeys = [];
     constructor(core2) {
       this._map = /* @__PURE__ */ new Map();
       this._core = core2;
+      this._vfsKeys = [];
+    }
+    get vfsKeys() {
+      return this._vfsKeys;
+    }
+    set vfsKeys(keys) {
+      this._vfsKeys = keys;
     }
     get map() {
       return this._map;
@@ -3219,8 +3227,8 @@
   };
 
   // src/stores/constants.ts
-  var BUILD_VERSION = "v0.8.7-beta";
-  var CURRENT_UI_VERSION = `scape_space_${BUILD_VERSION}`;
+  var BUILD_VERSION = "v0.8.8-beta";
+  var CURRENT_UI_VERSION = `cables_scape_space_${BUILD_VERSION}`;
   var HOST_PARAMS = manifest_default.parameters;
   var REGISTERED_PARAM_NAMES = HOST_PARAMS.map(
     (p) => p.paramId
@@ -3290,8 +3298,9 @@
 
   // dsp/parseAndUpdateIRRefs.ts
   var refs;
-  function parseAndUpdateIRRefs(_refs, currentVFSKeys3, scape, shared) {
-    if (currentVFSKeys3.length === 0 || !scape)
+  function parseAndUpdateIRRefs(_refs, currentVFSKeys2, scape) {
+    console.log("SCAPE::parseAndUpdateIRRefs", { currentVFSKeys: currentVFSKeys2, scape });
+    if (currentVFSKeys2.length === 0 || !scape)
       return;
     refs = _refs;
     let composedPath;
@@ -3299,8 +3308,8 @@
     let vfsPathWithChannel;
     let usingUserIR = mode && scape.hasUserSlots;
     const getPath = (slotName, chan) => {
-      if (usingUserIR && resourceExistsForSlot(currentVFSKeys3, slotName, chan)) {
-        let userBank = getHighestBankSuffix(slotName, currentVFSKeys3);
+      if (usingUserIR && resourceExistsForSlot(currentVFSKeys2, slotName, chan)) {
+        let userBank = getHighestBankSuffix(slotName, currentVFSKeys2);
         vfsPathWithChannel = `USERBANK_${userBank}_${slotName}_${chan}`;
       } else {
         vfsPathWithChannel = `${slotName}_${chan}`;
@@ -3325,6 +3334,7 @@
         const scale = getScale(slotName, chan);
         const offset = scape.offset;
         const process2 = Math.min(scape.level, scape.vectorData[slot.slotIndex]);
+        console.log("SCAPE::parseAndUpdateIRRefs", { ref, path, scale, offset, process: process2 });
         if (ref === null || ref === void 0)
           return;
         if (path === null || path === void 0)
@@ -3360,13 +3370,14 @@
     });
     return highestSuffix;
   }
-  function resourceExistsForSlot(currentVFSKeys3, slotName, chan) {
+  function resourceExistsForSlot(currentVFSKeys2, slotName, chan) {
     let result = false;
-    currentVFSKeys3.forEach((key) => {
+    currentVFSKeys2.forEach((key) => {
       if (key.includes(`USERBANK_`) && key.includes(`${slotName}_${chan}`)) {
         result = true;
       }
     });
+    console.log("SCAPE::resourceExistsForSlot", result);
     return result;
   }
 
@@ -3385,27 +3396,23 @@
   var currentVFSKeys;
   var refs2;
   var structureData = { nodes: [], max: 0 };
-  globalThis.__receiveVFSKeys__ = function(vfsCurrent) {
-    const parsedArray = JSON.parse(vfsCurrent);
-    console.log("Received VFS keys: ", parsedArray);
-    if (parsedArray.length > 0) {
-      currentVFSKeys = parsedArray;
-    }
-  };
-  function handleStateChange(_state, _currentVFSKeys, _refs) {
-    currentVFSKeys = _currentVFSKeys;
+  function handleStateChange(_refs, rawJSON) {
     refs2 = _refs;
-    const { state, srvb, shared, scape } = parseNewState(_state);
+    currentVFSKeys = refs2.vfsKeys;
+    const { state, srvb, shared, scape } = parseNewState(refs2, rawJSON);
+    console.log("STATE::0");
     const { srvbProps, scapeProps } = getOrCreatePropsForDSP(srvb, shared, scape);
-    console.log("got or created props...");
+    console.log("STATE::1");
     structureData = structureSetup(refs2, structureData);
+    console.log("STATE::2");
     if (shouldRender(memoized, state, renderCount)) {
-      console.log("Render: " + renderCount);
+      console.log("STATE::Render: " + renderCount);
       updateMemoizedState(state, srvb, shared, scape);
       adjustStructurePosition(refs2, srvb, structureData);
       renderAudioGraph(shared, srvbProps, scapeProps);
     } else {
-      updateSignalRefs(srvb, scape, shared);
+      console.log("STATE::UPDATE");
+      updateSignalRefs(refs2, srvb, scape, shared);
     }
   }
   function createHermiteVecInterp() {
@@ -3435,14 +3442,18 @@
     };
     return structureData2;
   }
-  function parseNewState(rawState) {
+  function parseNewState(_refs, rawState) {
     const state = JSON.parse(rawState);
+    refs2 = _refs;
     const shared = {
       sampleRate: state.sampleRate,
       dryInputs: [stdlib.in({ channel: 0 }), stdlib.in({ channel: 1 })],
       dryMix: state.dryMix
     };
+    console.log("STATE::shared");
+    refs2.vfsKeys = state.vfsKeys;
     const srvb = {
+      vfsKeys: refs2.vfsKeys,
       structure: Math.round((state.structure || 0) * NUM_SEQUENCES),
       size: state.size,
       diffuse: state.diffuse,
@@ -3455,6 +3466,7 @@
       bypass: Math.round(state.srvbBypass) || 0,
       position: remapPosition(state.position)
     };
+    console.log("STATE::srvb");
     const scape = {
       reverse: Math.round(state.scapeReverse),
       level: state.scapeLevel * 1.5,
@@ -3465,8 +3477,9 @@
       offset: state.scapeOffset || 0,
       userBank: state.userBank,
       position: state.position,
-      hasUserSlots: !!currentVFSKeys.find((key) => key.includes("USERBANK"))
+      hasUserSlots: currentVFSKeys?.some((key) => key.includes("USERBANK"))
     };
+    console.log("STATE::scape");
     return { state, srvb, shared, scape };
   }
   function updateMemoizedState(state, srvb, shared, scape) {
@@ -3493,7 +3506,7 @@
     return structureData2;
   }
   function shouldRender(previous, current, renderCount2) {
-    const result = renderCount2 === 0 || current === null || refs2.map.size === 0 || current.sampleRate !== previous?.sampleRate || Math.round(current.scapeBypass) !== previous?.scapeBypass || Math.round(current.srvbBypass) !== previous?.srvbBypass || roundedStructureValue(current.structure) !== previous?.structure;
+    const result = renderCount2 === 0 || refs2.map.size === 0 || current.sampleRate !== previous?.sampleRate || Math.round(current.scapeBypass) !== previous?.scapeBypass || Math.round(current.srvbBypass) !== previous?.srvbBypass || roundedStructureValue(current.structure) !== previous?.structure;
     return result;
   }
   function renderAudioGraph(shared, srvbProps, scapeProps) {
@@ -3517,7 +3530,8 @@
       renderCount++;
     }
   }
-  function updateSignalRefs(srvb, scape, shared) {
+  function updateSignalRefs(_refs, srvb, scape, shared) {
+    refs2 = _refs;
     if (!srvb.bypass) {
       refs2.update("size", { value: srvb.size });
       refs2.update("diffuse", { value: srvb.diffuse });
@@ -3537,7 +3551,7 @@
       refs2.update("v4", { value: scape.vectorData[3] });
       refs2.update("scapePosition", { value: scape.position });
       refs2.update("scapeMode", { value: scape.mode });
-      parseAndUpdateIRRefs(refs2, currentVFSKeys, scape, shared);
+      parseAndUpdateIRRefs(refs2, currentVFSKeys, scape);
     }
     refs2.update("dryMix", { value: shared.dryMix });
     refs2.update("srvbBypass", { value: srvb.bypass });
@@ -3582,12 +3596,11 @@
 
   // dsp/main.ts
   var core = new Renderer((batch) => {
-    __postNativeMessage__(JSON.stringify(batch));
+    globalThis.__postNativeMessage__(JSON.stringify(batch));
   });
   var refs3 = new RefMap(core);
-  var currentVFSKeys2 = [];
-  globalThis.__receiveStateChange__ = (rawState) => {
-    handleStateChange(rawState, currentVFSKeys2, refs3);
+  globalThis.__receiveStateChange__ = function(rawState) {
+    handleStateChange(refs3, rawState);
   };
   globalThis.__receiveHydrationData__ = (data) => {
     const payload = JSON.parse(data);

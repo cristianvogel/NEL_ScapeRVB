@@ -8,6 +8,7 @@
 
 
 
+
 //======= DETAIL
 //=======================================================================
 EffectsPluginProcessor::EffectsPluginProcessor()
@@ -39,12 +40,8 @@ EffectsPluginProcessor::EffectsPluginProcessor()
         jassert(false);
     const auto parameters = manifest.getWithDefault("parameters", elem::js::Array());
     createParameters(parameters);
-    // Initialise the asset data
-    assetsMap[SlotName::LIGHT] = Asset();
-    assetsMap[SlotName::SURFACE] = Asset();
-    assetsMap[SlotName::TEMPLE] = Asset();
-    assetsMap[SlotName::DEEPNESS] = Asset();
-    // Initialize editor/view and license activator
+    initialise_assets_map();
+   // run the famous CHOC WebView
     editor = new WebViewEditor(this, util::getAssetsDirectory(), 840, 480);
     // then load default audio assets
     fetchDefaultAudioFileAssets();
@@ -68,6 +65,32 @@ EffectsPluginProcessor::~EffectsPluginProcessor()
     for (auto& p : getParameters())
     {
         p->removeListener(this);
+    }
+}
+
+void EffectsPluginProcessor::initialise_assets_map()
+{
+    // Initial slot
+    auto slot = SlotName::LIGHT;
+
+    while (slot != SlotName::LAST)
+    {
+        assetsMap[slot] = Asset();
+        slot = nextSlotNoWrap(slot);
+    }
+}
+
+void EffectsPluginProcessor::clear_userFiles_in_assets_map()
+{
+    // Initial slot
+    auto slot = SlotName::LIGHT;
+
+    while (slot != SlotName::LAST)
+    {
+        assetsMap[slot].setProperty( Asset::Props::userStereoFile, juce::File() );
+        assetsMap[slot].setProperty( Asset::Props::filenameForView, "");
+        assetsMap[slot].setProperty( Asset::Props::userPeaksForView, std::vector<float>{});
+        slot = nextSlotNoWrap(slot);
     }
 }
 
@@ -421,6 +444,7 @@ std::string EffectsPluginProcessor::prefixUserBank(const std::string& name) cons
 void EffectsPluginProcessor::pruneVFS() const
 {
     if (elementaryRuntime) elementaryRuntime->pruneSharedResourceMap();
+   // assetsMap.clearUserSlots();
 }
 
 /*
@@ -433,19 +457,21 @@ void EffectsPluginProcessor::inspectVFS()
     if (elementaryRuntime == nullptr)
         return;
     auto vfs = elementaryRuntime->getSharedResourceMapKeys();
-
-    // log assets map
+    std::vector<std::string> keys;
+    // get the assets map
+    // to the front end the easy way
+    // stashing it in the state object
     for (const auto& kv : assetsMap)
     {
         const SlotName& slotName = kv.first;
         const Asset& asset = kv.second;
 
-        std::vector<std::string> activeVFSPaths;
+        
         for (const auto& key : vfs)
         {
             if (key.find(toString(slotName)) != std::string::npos)
             {
-                activeVFSPaths.push_back(key);
+                keys.push_back(key);
             }
         }
 
@@ -454,7 +480,7 @@ void EffectsPluginProcessor::inspectVFS()
             << std::endl
             << " userStereoFile: " << asset.userStereoFile.getFileName()
             << std::endl
-            << " activeResourcePaths: " << elem::js::serialize(activeVFSPaths)
+            << " activeResourcePaths: " << elem::js::serialize(keys)
             << std::endl
             << " filenameForView: " << asset.filenameForView
             << std::endl
@@ -465,17 +491,9 @@ void EffectsPluginProcessor::inspectVFS()
             << std::endl;
     }
 
-    // iterate vfs into valid JSON
-    std::string vfsString = "[";
-    for (const std::string& key : vfs)
-    {
-        vfsString += "\"" + key + "\",";
-    }
-    vfsString.pop_back();
-    vfsString += "]";
-    // send the vfs to the editor
-    const auto expr = serialize(jsFunctions::vfsKeysScript, choc::value::Value(vfsString), "%");
-    jsContext.evaluateExpression(expr);
+    // add the keys to the state object
+    // which will get sent with the next state update
+    state.insert_or_assign(VFS_KEYS, keys);
 }
 
 //============= Peaks generator for the front end ========================

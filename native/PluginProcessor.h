@@ -128,6 +128,7 @@ public:
     std::string WS_RESPONSE_KEY_FOR_STATE = "NEL_STATE";
     std::string KEY_FOR_FILENAMES = "userFilenames";
     std::string WS_RESPONSE_KEY_FOR_PEAKS = "userPeaks";
+    std::string VFS_KEYS = "vfsKeys";
 
     /**
      *
@@ -136,10 +137,10 @@ public:
      */
     bool sendJavascriptToUI(const std::string& expr) const;
 
-     std::string serialize(const std::string& function, const elem::js::Object& data,
-                                 const juce::String& replacementChar = "%");
-     std::string serialize(const std::string& function, const choc::value::Value& data,
-                                 const juce::String& replacementChar = "%");
+    std::string serialize(const std::string& function, const elem::js::Object& data,
+                          const juce::String& replacementChar = "%");
+    std::string serialize(const std::string& function, const choc::value::Value& data,
+                          const juce::String& replacementChar = "%");
 
     //==============================================================================
 
@@ -171,8 +172,9 @@ public:
     int userCutoffChoice = 160;
     std::atomic<bool> userFilesWereImported = false;
 
-    // a USERBANK is a set of 4 VFS paths generated from one stereo user file
 
+    void initialise_assets_map();
+    void clear_userFiles_in_assets_map();
     bool fetchDefaultAudioFileAssets();
     bool processDefaultResponseBuffers();
     void inspectVFS();
