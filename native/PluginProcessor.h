@@ -128,6 +128,7 @@ public:
     std::string WS_RESPONSE_KEY_FOR_STATE = "NEL_STATE";
     std::string KEY_FOR_FILENAMES = "userFilenames";
     std::string WS_RESPONSE_KEY_FOR_PEAKS = "userPeaks";
+    std::string VFS_KEYS = "vfsKeys";
 
     /**
      *

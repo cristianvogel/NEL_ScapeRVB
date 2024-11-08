@@ -20,12 +20,7 @@ option(FFTCONVOLVER_USE_SSE "Enable SSE optimizations" ON)   # watch this i have
 add_subdirectory(juce) # using the static non-submodule version
 add_subdirectory(elementary/runtime) # using the static non-submodule version
 
-# Enable CCache
-find_program(CCACHE_PROGRAM ccache)
-if(CCACHE_PROGRAM)
-    set(CMAKE_C_COMPILER_LAUNCHER ${CCACHE_PROGRAM})
-    set(CMAKE_CXX_COMPILER_LAUNCHER ${CCACHE_PROGRAM})
-endif()
+
 
 # Set build type
 set(CMAKE_BUILD_TYPE Debug) # Options: Debug, Release, RelWithDebInfo, MinSizeRel

@@ -433,19 +433,21 @@ void EffectsPluginProcessor::inspectVFS()
     if (elementaryRuntime == nullptr)
         return;
     auto vfs = elementaryRuntime->getSharedResourceMapKeys();
-
-    // log assets map
+    std::vector<std::string> keys;
+    // get the assets map
+    // to the front end the easy way
+    // stashing it in the state object
     for (const auto& kv : assetsMap)
     {
         const SlotName& slotName = kv.first;
         const Asset& asset = kv.second;
 
-        std::vector<std::string> activeVFSPaths;
+        
         for (const auto& key : vfs)
         {
             if (key.find(toString(slotName)) != std::string::npos)
             {
-                activeVFSPaths.push_back(key);
+                keys.push_back(key);
             }
         }
 
@@ -454,7 +456,7 @@ void EffectsPluginProcessor::inspectVFS()
             << std::endl
             << " userStereoFile: " << asset.userStereoFile.getFileName()
             << std::endl
-            << " activeResourcePaths: " << elem::js::serialize(activeVFSPaths)
+            << " activeResourcePaths: " << elem::js::serialize(keys)
             << std::endl
             << " filenameForView: " << asset.filenameForView
             << std::endl
@@ -465,17 +467,9 @@ void EffectsPluginProcessor::inspectVFS()
             << std::endl;
     }
 
-    // iterate vfs into valid JSON
-    std::string vfsString = "[";
-    for (const std::string& key : vfs)
-    {
-        vfsString += "\"" + key + "\",";
-    }
-    vfsString.pop_back();
-    vfsString += "]";
-    // send the vfs to the editor
-    const auto expr = serialize(jsFunctions::vfsKeysScript, choc::value::Value(vfsString), "%");
-    jsContext.evaluateExpression(expr);
+    // add the keys to the state object
+    // which will get sent with the next state update
+    state.insert_or_assign(VFS_KEYS, keys);
 }
 
 //============= Peaks generator for the front end ========================

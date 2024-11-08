@@ -20,7 +20,7 @@
     #include <iostream>
 
      #define ELEM_DBG(x) std::cout << "[Elem]" << x << std::endl;
-
+        
   #endif
 #endif
 
@@ -296,7 +296,7 @@ namespace elem
         auto const nodeId = static_cast<int32_t>((js::Number) a1);
         auto const prop = (js::String) a2;
 
-        ELEM_DBG("[Native] setProperty " << nodeIdToHex(nodeId) << " " << prop << " " << v.toString());
+     //   ELEM_DBG("[Native] setProperty " << nodeIdToHex(nodeId) << " " << prop << " " << v.toString());
 
         if (nodeTable.find(nodeId) == nodeTable.end())
             return ReturnCode::NodeNotFound();
@@ -316,7 +316,7 @@ namespace elem
         auto const parentId = static_cast<int32_t>((js::Number) a1);
         auto const childId = static_cast<int32_t>((js::Number) a2);
 
-        ELEM_DBG("[Native] appendChild " << nodeIdToHex(childId) << " to parent " << nodeIdToHex(parentId));
+     //   ELEM_DBG("[Native] appendChild " << nodeIdToHex(childId) << " to parent " << nodeIdToHex(parentId));
 
         if (nodeTable.find(parentId) == nodeTable.end() || edgeTable.find(parentId) == edgeTable.end())
             return ReturnCode::NodeNotFound();
@@ -339,7 +339,7 @@ namespace elem
                 return ReturnCode::InvalidInstructionFormat();
 
             int32_t nodeId = static_cast<int32_t>((js::Number) v);
-            ELEM_DBG("[Native] activateRoot " << nodeIdToHex(nodeId));
+          //  ELEM_DBG("[Native] activateRoot " << nodeIdToHex(nodeId));
 
             if (nodeTable.find(nodeId) == nodeTable.end())
                 return ReturnCode::NodeNotFound();
