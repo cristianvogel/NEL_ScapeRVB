@@ -14,10 +14,14 @@
 
   import { CURRENT_UI_VERSION } from "./stores/constants";
 
+
+
+  let firstRun = true;
+  let getUserConsole = null;
+
   onMount(() => {
-    RegisterMessagesFromHost();
-    MessageToHost.requestReady();
-    // Second set up the listener for CABLES loader
+    //  set up the listener for CABLES loader
+    console.log("loading cables...");
     document.addEventListener("CABLES.jsLoaded", function (event) {
       CABLES.patch = new CABLES.Patch({
         patchFile: "scape_space_ui/js/" + CURRENT_UI_VERSION + ".json",
@@ -27,30 +31,28 @@
         glCanvasId: "glcanvas",
         glCanvasResizeToWindow: true,
         onError: (e) => console.error(e),
-        onPatchLoaded: () => console.count("UI loaded"),
+        onPatchLoaded: () => console.count("Patch loaded"),
         onFinishedLoading: () => {
           console.count("UI finished loading");
+          getUserConsole = ()=> CABLES.patch.getVar("ext_consoleMessage");
+          RegisterMessagesFromHost();
+          MessageToHost.requestReady();
           initPatchListeners(CABLES.patch);
           CablesReady.update(true);
+  
         },
         canvas: {
           willReadFrequently: true,
           alpha: false,
           premultipliedAlpha: true,
         },
-        variables: {
-          "ext_consoleMessage" : `𝌺 ${CURRENT_UI_VERSION} <br> Welcome.` 
-        },
       });
     });
   });
 
-  let firstRun = true;
-  let getUserConsole = () => {};
 
   $effect(() => {
     if (CablesReady.current && firstRun && Object.keys(HostState.current).length > 0) {
-      getUserConsole = ()=> CABLES.patch.getVar("ext_consoleMessage");
       CABLES.patch
         .getVar("host_scapeReverse")
         .setValue(HostState.snapshot.scapeReverse);
@@ -68,8 +70,9 @@
   });
 
   $effect(()=> {
-    if ( CablesReady.current && ConsoleText.current.length > 0) {
-      getUserConsole().setValue(ConsoleText.snapshot);
+    if ( ConsoleText.current.length > 0) {
+      if (typeof getUserConsole === "function")
+      getUserConsole().setValue(ConsoleText.current);
     }
   });
 

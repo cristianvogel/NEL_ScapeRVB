@@ -24734,9 +24734,21 @@ el.classList.add("sidebar__reloadable");
 
 const label = document.createElement("div");
 label.classList.add("sidebar__item-label");
+label.style.marginBottom = "0px";
+label.style.fontSize = "0.8rem";
+const line = document.createElement("hr");
+line.style.marginTop = "0px";
+line.style.marginBottom = "8px";
+line.style.border = "none"; // Remove the default border
+line.style.height = "2px"; // Set the height of the <hr> element
+line.style.backgroundColor = "#555"; // Stylish grey color
+
+
+
 const labelText = document.createTextNode(labelPort.get());
 label.appendChild(labelText);
 el.appendChild(label);
+el.appendChild(line);
 const input = document.createElement("select");
 
 input.classList.add("sidebar__select-select");
