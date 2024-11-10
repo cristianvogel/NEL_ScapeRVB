@@ -36,7 +36,7 @@ var CABLES;
 /************************************************************************/
 var __webpack_exports__ = {};
 /*!****************************************!*\
-  !*** ./src/core/index.js + 61 modules ***!
+  !*** ./src/core/index.js + 60 modules ***!
   \****************************************/
 
 // EXPORTS
@@ -60,6 +60,7 @@ __webpack_require__.d(utils_namespaceObject, {
   generateUUID: () => (generateUUID),
   getShortOpName: () => (getShortOpName),
   keyCodeToName: () => (keyCodeToName),
+  logErrorConsole: () => (logErrorConsole),
   logStack: () => (logStack),
   map: () => (map),
   prefixedHash: () => (prefixedHash),
@@ -869,15 +870,68 @@ window.performance = window.performance || {
 };
 
 
+const logErrorConsole = function (initiator)
+{
+    CABLES.errorConsole = CABLES.errorConsole || { "log": [] };
+    CABLES.errorConsole.log.push({ "initiator": initiator, "arguments": arguments });
+
+    if (!CABLES.errorConsole.ele)
+    {
+        const ele = document.createElement("div");
+        ele.id = "cablesErrorConsole";
+        ele.style.width = "90%";
+        ele.style.height = "300px";
+        ele.style.zIndex = "9999999";
+        ele.style.display = "inline-block";
+        ele.style.position = "absolute";
+        ele.style.padding = "10px";
+        ele.style.fontFamily = "monospace";
+        ele.style.color = "red";
+        ele.style.backgroundColor = "#200";
+
+        CABLES.errorConsole.ele = ele;
+        document.body.appendChild(ele);
+    }
+
+    let logHtml = "ERROR<br/>for more info, open your browsers dev tools console (Ctrl+Shift+I or Command+Alt+I)<br/>";
+
+    for (let l = 0; l < CABLES.errorConsole.log.length; l++)
+    {
+        logHtml += CABLES.errorConsole.log[l].initiator + " ";
+        for (let i = 1; i < CABLES.errorConsole.log[l].arguments.length; i++)
+        {
+            if (i > 2)logHtml += ", ";
+            let arg = CABLES.errorConsole.log[l].arguments[i];
+            if (arg.constructor.name.indexOf("Error") > -1 || arg.constructor.name.indexOf("error") > -1)
+            {
+                let txt = "Uncaught ErrorEvent ";
+                if (arg.message)txt += " message: " + arg.message;
+                logHtml += txt;
+            }
+            else if (typeof arg == "string")
+                logHtml += arg;
+            else if (typeof arg == "number")
+                logHtml += String(arg) + " ";
+        }
+        logHtml += "<br/>";
+    }
+
+
+    CABLES.errorConsole.ele.innerHTML = logHtml;
+};
+
+
+
 
 ;// CONCATENATED MODULE: ../shared/client/src/logger.js
 /* eslint-disable no-console */
 
 class Logger
 {
-    constructor(initiator)
+    constructor(initiator, options)
     {
         this.initiator = initiator;
+        this._options = options;
     }
 
     stack(t)
@@ -905,8 +959,18 @@ class Logger
 
     error()
     {
-        if ((CABLES.UI && CABLES.UI.logFilter.filterLog({ "initiator": this.initiator, "level": 2 }, ...arguments)) || !CABLES.logSilent)
+        if ((CABLES.UI && CABLES.UI.logFilter.filterLog({ "initiator": this.initiator, "level": 2 }, ...arguments)) || !CABLES.UI)
+        {
             console.error("[" + this.initiator + "]", ...arguments);
+        }
+
+        if (!CABLES.UI && this._options && this._options.onError)
+        {
+            this._options.onError(this.initiator, ...arguments);
+            // console.log("emitevent onerror...");
+            // CABLES.patch.emitEvent("onError", this.initiator, ...arguments);
+            // CABLES.logErrorConsole("[" + this.initiator + "]", ...arguments);
+        }
     }
 
     errorGui()
@@ -1442,7 +1506,7 @@ const EventTarget = function ()
             const event = this._listeners[which];
             if (!event)
             {
-                this._log.log("could not find event...");
+                this._log.log("could not find event...", which, this);
                 return;
             }
 
@@ -4976,71 +5040,72 @@ const Op = function ()
     // todo: check instancing stuff?
     Op.prototype.instanced = function (triggerPort)
     {
-        this._log.log("instanced", this.patch.instancing.numCycles());
-        if (this.patch.instancing.numCycles() === 0) return false;
+        return false;
+        // this._log.log("instanced", this.patch.instancing.numCycles());
+        // if (this.patch.instancing.numCycles() === 0) return false;
 
 
-        let i = 0;
-        let ipi = 0;
-        if (!this._instances || this._instances.length != this.patch.instancing.numCycles())
-        {
-            if (!this._instances) this._instances = [];
-            this._.log("creating instances of ", this.objName, this.patch.instancing.numCycles(), this._instances.length);
-            this._instances.length = this.patch.instancing.numCycles();
+        // let i = 0;
+        // let ipi = 0;
+        // if (!this._instances || this._instances.length != this.patch.instancing.numCycles())
+        // {
+        //     if (!this._instances) this._instances = [];
+        //     this._.log("creating instances of ", this.objName, this.patch.instancing.numCycles(), this._instances.length);
+        //     this._instances.length = this.patch.instancing.numCycles();
 
-            for (i = 0; i < this._instances.length; i++)
-            {
-                this._instances[i] = this.patch.createOp(this.objName, true);
-                this._instances[i].instanced = function ()
-                {
-                    return false;
-                };
-                this._instances[i].uiAttr(this.uiAttribs);
+        //     for (i = 0; i < this._instances.length; i++)
+        //     {
+        //         this._instances[i] = this.patch.createOp(this.objName, true);
+        //         this._instances[i].instanced = function ()
+        //         {
+        //             return false;
+        //         };
+        //         this._instances[i].uiAttr(this.uiAttribs);
 
-                for (let ipo = 0; ipo < this.portsOut.length; ipo++)
-                {
-                    if (this.portsOut[ipo].type == CONSTANTS.OP.OP_PORT_TYPE_FUNCTION)
-                    {
-                        this._instances[i].getPortByName(this.portsOut[ipo].name).trigger = this.portsOut[ipo].trigger.bind(this.portsOut[ipo]);
-                    }
-                }
-            }
+        //         for (let ipo = 0; ipo < this.portsOut.length; ipo++)
+        //         {
+        //             if (this.portsOut[ipo].type == CONSTANTS.OP.OP_PORT_TYPE_FUNCTION)
+        //             {
+        //                 this._instances[i].getPortByName(this.portsOut[ipo].name).trigger = this.portsOut[ipo].trigger.bind(this.portsOut[ipo]);
+        //             }
+        //         }
+        //     }
 
-            for (ipi = 0; ipi < this.portsIn.length; ipi++)
-            {
-                this.portsIn[ipi].onChange = null;
-                this.portsIn[ipi].onValueChanged = null;
-            }
-        }
+        //     for (ipi = 0; ipi < this.portsIn.length; ipi++)
+        //     {
+        //         this.portsIn[ipi].onChange = null;
+        //         this.portsIn[ipi].onValueChanged = null;
+        //     }
+        // }
 
-        const theTriggerPort = null;
-        for (ipi = 0; ipi < this.portsIn.length; ipi++)
-        {
-            if (
-                this.portsIn[ipi].type == CONSTANTS.OP.OP_PORT_TYPE_VALUE ||
-                this.portsIn[ipi].type == CONSTANTS.OP.OP_PORT_TYPE_ARRAY
-            )
-            {
-                this._instances[this.patch.instancing.index()].portsIn[ipi].set(this.portsIn[ipi].get());
-            }
-            if (this.portsIn[ipi].type == CONSTANTS.OP.OP_PORT_TYPE_FUNCTION)
-            {
-                // if(this._instances[ this.patch.instancing.index() ].portsIn[ipi].name==triggerPort.name)
-                // theTriggerPort=this._instances[ this.patch.instancing.index() ].portsIn[ipi];
-            }
-        }
+        // const theTriggerPort = null;
+        // for (ipi = 0; ipi < this.portsIn.length; ipi++)
+        // {
+        //     if (
+        //         this.portsIn[ipi].type == CONSTANTS.OP.OP_PORT_TYPE_VALUE ||
+        //         this.portsIn[ipi].type == CONSTANTS.OP.OP_PORT_TYPE_ARRAY
+        //     )
+        //     {
+        //         this._instances[this.patch.instancing.index()].portsIn[ipi].set(this.portsIn[ipi].get());
+        //     }
+        //     if (this.portsIn[ipi].type == CONSTANTS.OP.OP_PORT_TYPE_FUNCTION)
+        //     {
+        //         // if(this._instances[ this.patch.instancing.index() ].portsIn[ipi].name==triggerPort.name)
+        //         // theTriggerPort=this._instances[ this.patch.instancing.index() ].portsIn[ipi];
+        //     }
+        // }
 
-        if (theTriggerPort) theTriggerPort.onTriggered();
+        // if (theTriggerPort) theTriggerPort.onTriggered();
 
-        for (ipi = 0; ipi < this.portsOut.length; ipi++)
-        {
-            if (this.portsOut[ipi].type == CONSTANTS.OP.OP_PORT_TYPE_VALUE)
-            {
-                this.portsOut[ipi].set(this._instances[this.patch.instancing.index()].portsOut[ipi].get());
-            }
-        }
+        // for (ipi = 0; ipi < this.portsOut.length; ipi++)
+        // {
+        //     if (this.portsOut[ipi].type == CONSTANTS.OP.OP_PORT_TYPE_VALUE)
+        //     {
+        //         this.portsOut[ipi].set(this._instances[this.patch.instancing.index()].portsOut[ipi].get());
+        //     }
+        // }
 
-        return true;
+        // return true;
     };
 
     // todo: check instancing stuff?
@@ -5512,61 +5577,6 @@ LoadingStatus.prototype.start = function (type, name, op)
 
 
 
-;// CONCATENATED MODULE: ./src/core/instancing.js
-// todo: needs to be removed...
-
-const Instancing = function ()
-{
-    this._loops = [];
-    this._indizes = [];
-    this._index = 0;
-};
-
-Instancing.prototype.pushLoop = function (maxNum)
-{
-    this._loops.push(Math.abs(Math.floor(maxNum)));
-    this._indizes.push(this._index);
-};
-
-Instancing.prototype.popLoop = function ()
-{
-    this._loops.pop();
-    // this._index--;
-    this._index = this._indizes.pop();
-    if (this._loops.length === 0) this._index = 0;
-};
-
-Instancing.prototype.numLoops = function ()
-{
-    return this._loops.length;
-};
-
-Instancing.prototype.numCycles = function ()
-{
-    if (this._loops.length === 0) return 0;
-    let num = this._loops[0];
-    for (let i = 1; i < this._loops.length; i++) num *= this._loops[i];
-
-    return num;
-};
-
-Instancing.prototype.inLoop = function ()
-{
-    return this._loops.length > 0;
-};
-
-Instancing.prototype.increment = function ()
-{
-    this._index++;
-};
-
-Instancing.prototype.index = function ()
-{
-    return this._index;
-};
-
-
-
 ;// CONCATENATED MODULE: ./src/core/timer.js
 
 
@@ -5576,6 +5586,8 @@ const internalNow = function ()
 {
     return window.performance.now();
 };
+
+
 
 /**
  * current time in milliseconds
@@ -6741,7 +6753,7 @@ CgTexture.getDefaultTextureData = (name, size, options = {}) =>
         return data;
     }
     else
-    if (name == "random")
+    if (name == "random" || name == "randomFloat")
     {
         const data = new Float32Array(size * size * 4);
 
@@ -6791,7 +6803,7 @@ CgTexture.getDefaultTextureData = (name, size, options = {}) =>
     }
     else
     {
-        undefined._log.error("unknown default texture", name);
+        console.warn("unknown default texture", name);
         return CgTexture.getDefaultTextureData("stripes", size, { "r": 1, "g": 0, "b": 0 });
     }
 };
@@ -9088,7 +9100,7 @@ Geometry.prototype.getInfo = function ()
 
 // -----------------
 
-// TODO : move this into "old" circle op
+// TODO : rewritwe circle op
 Geometry.buildFromFaces = function (arr, name, optimize)
 {
     const vertices = [];
@@ -9143,166 +9155,7 @@ Geometry.buildFromFaces = function (arr, name, optimize)
 
 
 
-;// CONCATENATED MODULE: ./src/core/cgl/cgl_mesh_feedback.js
-// view-source:http://toji.github.io/webgl2-particles-2/
-
-function extendMeshWithFeedback(Mesh)
-{
-    Mesh.prototype.hasFeedbacks = function ()
-    {
-        return this._feedBacks.length > 0;
-    };
-
-    Mesh.prototype.removeFeedbacks = function (shader)
-    {
-        if (!this._feedbacks) return;
-        this._feedbacks.length = 0;
-        this._feedBacksChanged = true;
-    };
-
-    Mesh.prototype.setAttributeFeedback = function () {};
-
-    Mesh.prototype.setFeedback = function (attrib, nameOut, initialArr)
-    {
-        let fb = { nameOut, };
-        let found = false;
-        this.unBindFeedbacks();
-
-        for (let i = 0; i < this._feedBacks.length; i++)
-        {
-            if (this._feedBacks[i].nameOut == nameOut)
-            {
-                fb = this._feedBacks[i];
-
-                found = true;
-            }
-        }
-
-        if (!found) this._feedBacksChanged = true;
-
-        fb.initialArr = initialArr;
-        fb.attrib = attrib;
-
-        // console.log("setfeedback");
-
-        if (fb.outBuffer) this._cgl.gl.deleteBuffer(fb.outBuffer);
-        // if(fb.attrib.buffer)this._cgl.gl.deleteBuffer(fb.attrib.buffer);
-        fb.outBuffer = this._cgl.gl.createBuffer();
-        this._cgl.gl.bindBuffer(this._cgl.gl.ARRAY_BUFFER, fb.outBuffer);
-        this._cgl.gl.bufferData(this._cgl.gl.ARRAY_BUFFER, fb.initialArr, this._cgl.gl.STATIC_DRAW);
-
-        this._cgl.gl.bindBuffer(this._cgl.gl.ARRAY_BUFFER, fb.attrib.buffer);
-        this._cgl.gl.bufferData(this._cgl.gl.ARRAY_BUFFER, fb.initialArr, this._cgl.gl.STATIC_DRAW);
-
-        if (!found) this._feedBacks.push(fb);
-
-        // console.log('initialArr',initialArr.length/3);
-        // console.log('vertices',fb.attrib.numItems);
-        // console.log('vertices',this._bufVertexAttrib.numItems);
-
-        return fb;
-    };
-
-    Mesh.prototype.bindFeedback = function (attrib)
-    {
-        if (!this._feedBacks || this._feedBacks.length === 0) return;
-        if (this._transformFeedBackLoc == -1) this._transformFeedBackLoc = this._cgl.gl.createTransformFeedback();
-
-        this._cgl.gl.bindTransformFeedback(this._cgl.gl.TRANSFORM_FEEDBACK, this._transformFeedBackLoc);
-
-        let found = false;
-
-        for (let i = 0; i < this._feedBacks.length; i++)
-        {
-            const fb = this._feedBacks[i];
-
-            if (fb.attrib == attrib)
-            {
-                found = true;
-                // this._cgl.gl.bindBuffer(this._cgl.gl.ARRAY_BUFFER, fb.attrib.buffer);
-                //
-                // this._cgl.gl.vertexAttribPointer(
-                //     fb.attrib.loc,
-                //     fb.attrib.itemSize,
-                //     fb.attrib.type,
-                //     false,
-                //     fb.attrib.itemSize*4, 0);
-
-                this._cgl.gl.bindBufferBase(this._cgl.gl.TRANSFORM_FEEDBACK_BUFFER, i, fb.outBuffer);
-            }
-        }
-
-        if (!found)
-        {
-            // console.log("ARTTRIB NOT FOUND",attrib.name);
-        }
-    };
-
-    Mesh.prototype.drawFeedbacks = function (shader, prim)
-    {
-        let i = 0;
-
-        if (this._feedBacksChanged)
-        {
-            const names = [];
-            this._cgl.gl.bindTransformFeedback(this._cgl.gl.TRANSFORM_FEEDBACK, this._transformFeedBackLoc);
-
-            for (i = 0; i < this._feedBacks.length; i++) names.push(this._feedBacks[i].nameOut);
-            shader.setFeedbackNames(names);
-
-            console.log("feedbacknames", names);
-
-            shader.compile();
-            this._feedBacksChanged = false;
-            this._cgl.gl.bindTransformFeedback(this._cgl.gl.TRANSFORM_FEEDBACK, null);
-            console.log("changed finished");
-            return;
-        }
-
-        //
-        // for( i=0;i<this._feedBacks.length;i++)
-        // {
-        //     var fb=this._feedBacks[i];
-        //
-        //     this._cgl.gl.bindBufferBase(this._cgl.gl.TRANSFORM_FEEDBACK_BUFFER, i, fb.outBuffer);
-        // }
-
-        // draw
-        this._cgl.gl.beginTransformFeedback(this.glPrimitive);
-        this._cgl.gl.drawArrays(prim, 0, this._feedBacks[0].attrib.numItems);
-
-        // unbind
-        this._cgl.gl.endTransformFeedback();
-
-        this.unBindFeedbacks();
-
-        this.feedBacksSwapBuffers();
-    };
-
-    Mesh.prototype.unBindFeedbacks = function ()
-    {
-        for (let i = 0; i < this._feedBacks.length; i++)
-        {
-            // this._cgl.gl.disableVertexAttribArray(this._feedBacks[i].attrib.loc);
-            this._cgl.gl.bindBufferBase(this._cgl.gl.TRANSFORM_FEEDBACK_BUFFER, i, null);
-        }
-
-        this._cgl.gl.bindTransformFeedback(this._cgl.gl.TRANSFORM_FEEDBACK, null);
-    };
-
-    Mesh.prototype.feedBacksSwapBuffers = function ()
-    {
-        for (let i = 0; i < this._feedBacks.length; i++)
-        {
-            const t = this._feedBacks[i].attrib.buffer;
-            this._feedBacks[i].attrib.buffer = this._feedBacks[i].outBuffer;
-            this._feedBacks[i].outBuffer = t;
-        }
-    };
-}
-
 ;// CONCATENATED MODULE: ./src/core/cgl/cgl_mesh.js
-
 
 
 
@@ -9882,7 +9735,7 @@ Mesh.prototype._bind = function (shader)
                         this._cgl.gl.vertexAttribPointer(pointer.loc, attribute.itemSize, attribute.type, false, pointer.stride, pointer.offset);
                     }
                 }
-                this.bindFeedback(attribute);
+                if (this.bindFeedback) this.bindFeedback(attribute);
             }
         }
     }
@@ -10083,10 +9936,7 @@ Mesh.prototype.render = function (shader)
     }
 
 
-    if (this.hasFeedbacks())
-    {
-        this.drawFeedbacks(shader, prim);
-    }
+    if (this.hasFeedbacks && this.hasFeedbacks()) this.drawFeedbacks(shader, prim);
     else if (!this._bufVerticesIndizes || this._bufVerticesIndizes.numItems === 0)
     {
         // for (let i = 0; i < this._attributes.length; i++)
@@ -10183,7 +10033,7 @@ Mesh.prototype.dispose = function ()
     this._disposeAttributes();
 };
 
-extendMeshWithFeedback(Mesh);
+
 
 
 
@@ -10194,16 +10044,19 @@ extendMeshWithFeedback(Mesh);
 
 const MESHES = {};
 
-MESHES.getSimpleRect = function (cgl, name)
+MESHES.getSimpleRect = function (cgl, name, size = 1.0)
 {
     const geom = new Geometry(name);
 
-    geom.vertices = [1.0, 1.0, 0.0, -1.0, 1.0, 0.0, 1.0, -1.0, 0.0, -1.0, -1.0, 0.0];
+
+
+    geom.vertices = [1.0 * size, 1.0 * size, 0.0, -1.0 * size, 1.0 * size, 0.0, 1.0 * size, -1.0 * size, 0.0, -1.0 * size, -1.0 * size, 0.0];
     geom.texCoords = [1.0, 1.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0];
     geom.verticesIndices = [0, 1, 2, 2, 1, 3];
     geom.vertexNormals = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
 
-    return new Mesh(cgl, geom);
+    return cgl.createMesh(geom);
+    // return new Mesh(cgl, geom);
 };
 
 
@@ -10940,15 +10793,16 @@ const escapeHTML = function(string)
 ;// CONCATENATED MODULE: ./src/core/cg/cg_shader.js
 
 
-class CgShader
+
+class CgShader extends EventTarget
 {
     constructor()
     {
+        super();
         this.id = simpleId();
         this._isValid = true;
         this._defines = [];
     }
-
 
     /**
      * easily enable/disable a define without a value
@@ -11110,19 +10964,6 @@ uCamPosition - currently: camPos
 
 let materialIdCounter = 0;
 
-/**
- * @class
- * @namespace external:CGL
- * @hideconstructor
- * @param _cgl
- * @param _name
- * @param _op
- * @example
- * var shader=new CGL.Shader(cgl,'MinimalMaterial');
- * shader.setSource(attachments.shader_vert,attachments.shader_frag);
- */
-
-
 
 
 
@@ -11151,6 +10992,18 @@ function getDefaultFragmentShader(r, g, b)
         .endl() + "}";
 };
 
+
+/**
+ * @class
+ * @namespace external:CGL
+ * @hideconstructor
+ * @param _cgl
+ * @param _name
+ * @param _op
+ * @example
+ * var shader=new CGL.Shader(cgl,'MinimalMaterial');
+ * shader.setSource(attachments.shader_vert,attachments.shader_frag);
+ */
 class Shader extends CgShader
 {
     constructor (_cgl, _name, _op)
@@ -11363,6 +11216,7 @@ class Shader extends CgShader
      * @instance
      * @param {String} srcVert
      * @param {String} srcFrag
+     * @param {Bool} fromUserInteraction
      */
     setSource(srcVert, srcFrag, fromUserInteraction)
     {
@@ -13113,7 +12967,7 @@ class Events
             const event = this._listeners[id];
             if (!event)
             {
-                this._log.log("could not find event...");
+                this._log.log("could not find event...", id, this);
                 return;
             }
 
@@ -13330,6 +13184,7 @@ class CGState extends Events
         vec3.set(this._ident, 0, 0, 0);
 
         this.patch = _patch;
+        this.autoReSize = true;
 
         this.DEPTH_COMPARE_FUNC_NEVER = 0;
         this.DEPTH_COMPARE_FUNC_LESS = 1;
@@ -13446,21 +13301,27 @@ class CGState extends Events
 
     _resizeToWindowSize()
     {
-        this.setSize(window.innerWidth, window.innerHeight);
-        this.updateSize();
+        if (this.autoReSize)
+        {
+            this.setSize(window.innerWidth, window.innerHeight);
+            this.updateSize();
+        }
     }
 
     _resizeToParentSize()
     {
-        const p = this.canvas.parentElement;
-        if (!p)
+        if (this.autoReSize)
         {
-            this._log.error("cables: can not resize to container element");
-            return;
-        }
-        this.setSize(p.clientWidth, p.clientHeight);
+            const p = this.canvas.parentElement;
+            if (!p)
+            {
+                this._log.error("cables: can not resize to container element");
+                return;
+            }
 
-        this.updateSize();
+            this.setSize(p.clientWidth, p.clientHeight);
+            this.updateSize();
+        }
     }
 
     setAutoResize(parent)
@@ -13747,7 +13608,7 @@ class Context extends CGState
         this.popMvMatrix = this.popmMatrix = this.popModelMatrix;// deprecated and wrong... still used??
 
         this.profileData = new ProfileData(this);
-        this._log = new Logger("cgl_context");
+        this._log = new Logger("cgl_context", { "onError": _patch.config.onError });
         this._viewPort = [0, 0, 0, 0];
         this.glVersion = 0;
         this.glUseHalfFloatTex = false;
@@ -13835,14 +13696,6 @@ class Context extends CGState
     }
 
 
-    exitError(msgId, msg)
-    {
-        console.log(msgId, msg);
-        this.patch.exitError(msgId, msg);
-        this.aborted = true;
-    }
-
-
     _setCanvas(canv)
     {
         if (!canv)
@@ -13873,7 +13726,7 @@ class Context extends CGState
         if (!this.gl || this.gl.isContextLost())
         {
             this.aborted = true;
-            this.exitError("NO_WEBGL", "sorry, could not initialize WebGL. Please check if your Browser supports WebGL or try to restart your browser.");
+            this._log.error("NO_WEBGL", "sorry, could not initialize WebGL. Please check if your Browser supports WebGL or try to restart your browser.");
             return;
         }
 
@@ -15095,7 +14948,6 @@ class PatchVariable extends Events
 
 
 
-
 /**
  * Patch class, contains all operators,values,links etc. manages loading and running of the whole patch
  *
@@ -15123,7 +14975,7 @@ const Patch = function (cfg)
 {
     EventTarget.apply(this);
 
-    this._log = new Logger("core_patch");
+    this._log = new Logger("core_patch", { "onError": cfg.onError });
     this.ops = [];
     this.settings = {};
     this.config = cfg ||
@@ -15158,7 +15010,7 @@ const Patch = function (cfg)
     this._volumeListeners = [];
     this._paused = false;
     this._frameNum = 0;
-    this.instancing = new Instancing();
+    // this.instancing = new Instancing();
     this.onOneFrameRendered = null;
     this.namedTriggers = {};
 
@@ -15217,16 +15069,23 @@ const Patch = function (cfg)
                 this.config.patchFile,
                 (err, _data) =>
                 {
-                    const data = JSON.parse(_data);
-                    if (err)
+                    try
                     {
-                        const txt = "";
-                        this._log.error("err", err);
-                        this._log.error("data", data);
-                        this._log.error("data", data.msg);
-                        return;
+                        const data = JSON.parse(_data);
+                        if (err)
+                        {
+                            const txt = "";
+                            this._log.error("err", err);
+                            this._log.error("data", data);
+                            this._log.error("data", data.msg);
+                            return;
+                        }
+                        this.deSerialize(data);
                     }
-                    this.deSerialize(data);
+                    catch (e)
+                    {
+                        this._log.error("could not load/parse patch ", e);
+                    }
                 }
             );
         }
@@ -15520,8 +15379,8 @@ Patch.prototype.createOp = function (identifier, id, opName = null)
 
         if (!this.isEditorMode())
         {
-            this.exitError("INSTANCE_ERR", "Instancing Error: " + objName, e);
-            throw new Error("instancing error 1" + objName);
+            this._log.error("INSTANCE_ERR", "Instancing Error: " + objName, e);
+            // throw new Error("instancing error 1" + objName);
         }
     }
 
@@ -16338,49 +16197,6 @@ Patch.prototype.getVars = function (t)
     return vars;
 };
 
-/**
- * @function exitError
- * @memberof Patch
- * @instance
- * @param errorId
- * @param errorMessage
- * @param ex
- * @description cancel patch execution and quit showing an errormessage
- * @function
- */
-Patch.prototype.exitError = function (errorId, errorMessage, ex)
-{
-    this.aborted = true;
-
-    if (this && this.config && this.config.onError)
-    {
-        this.config.onError(errorId, errorMessage);
-    }
-    else
-    {
-        if (!this.isEditorMode())
-        {
-            const newDiv = document.createElement("div");
-
-            const rect = this.cgl.canvas.getBoundingClientRect();
-
-            newDiv.setAttribute("style", "position:absolute;border:5px solid red;padding:15px;background-color:black;color:white;font-family:monospace;");
-            newDiv.style.top = rect.top + "px";
-            newDiv.style.left = rect.left + "px";
-            let str = "cables - An error occured:<br/>";
-            str += "[" + errorId + "] - " + errorMessage;
-            if (ex)str += "<br/>Exception: " + ex.message;
-            newDiv.innerHTML = str;
-
-            console.log(ex);
-            const pe = this.cgl.canvas.parentElement;
-
-            while (pe.hasChildNodes()) pe.removeChild(pe.lastChild);
-
-            document.body.appendChild(newDiv);
-        }
-    }
-};
 
 /**
  * @function preRenderOps
@@ -16836,7 +16652,7 @@ WEBAUDIO.createAudioContext = function (op)
     }
     else
     {
-        op.patch.config.onError("NO_WEBAUDIO", "Web Audio is not supported in this browser.");
+        if (op.patch.config.onError)op.logError("NO_WEBAUDIO", "Web Audio is not supported in this browser.");
         return;
     }
     return window.audioContext;
@@ -17335,53 +17151,21 @@ class cgp_uniform_Uniform extends cg_uniform
         super(__shader, __type, __name, _value, _port2, _port3, _port4, _structUniformName, _structName, _propertyName);
         this._cgp = __shader._cgp;
 
-
-
-
-        // if (!CABLES.emptyCglTexture)
-        // {
-        //     let size = 256;
-
-        //     CABLES.emptyCglTexture = this._cgp.device.createTexture(
-        //         {
-        //             "size": [size, size],
-        //             "format": "rgba8unorm",
-        //             "usage": GPUTextureUsage.TEXTURE_BINDING | GPUTextureUsage.COPY_DST | GPUTextureUsage.RENDER_ATTACHMENT,
-        //         });
-        //     const data = CgTexture.getDefaultTextureData("stripes", size);
-
-        //     this._cgp.device.queue.writeTexture(
-        //         { "texture": CABLES.emptyCglTexture },
-        //         data,
-        //         { "bytesPerRow": size * 4 },
-        //         { "width": size, "height": size },
-        //     );
-
-
-        //     /// ////////////
-
-
-        //     CABLES.errorTexture = this._cgp.device.createTexture(
-        //         {
-        //             "size": [size, size],
-        //             "format": "rgba8unorm",
-        //             "usage": GPUTextureUsage.TEXTURE_BINDING | GPUTextureUsage.COPY_DST | GPUTextureUsage.RENDER_ATTACHMENT,
-        //         });
-        //     const data2 = CgTexture.getDefaultTextureData("stripes", size, { "r": 55, "g": 0, "b": 0 });
-
-        //     this._cgp.device.queue.writeTexture(
-        //         { "texture": CABLES.errorTexture },
-        //         data2,
-        //         { "bytesPerRow": size * 4 },
-        //         { "width": size, "height": size },
-        //     );
-        // }
-
         if (this.getType() == "t" && !_value) this._value = this._cgp.getEmptyTexture();
+
+        this.gpuBuffer = null;
     }
 
 
     updateValueF() { }
+
+    updateValueArrayF() {}
+
+    setValueArrayF(v)
+    {
+        this.needsUpdate = true;
+        this._value = v;
+    }
 
     setValueF(v)
     {
@@ -17441,13 +17225,19 @@ class cgp_uniform_Uniform extends cg_uniform
     updateValueT() {}
 
 
+    setGpuBuffer(b)
+    {
+        this.gpuBuffer = b;
+    }
+
     copyToBuffer(buff, pos = 0)
     {
-        if (this._type == "f") buff[pos] = this._value;
-        else
-        if (this._type == "t")
+        if (this._type == "f")
         {
-
+            buff[pos] = this._value;
+        }
+        else if (this._type == "t")
+        {
         }
         else if (this._type == "4f")
         {
@@ -17456,19 +17246,15 @@ class cgp_uniform_Uniform extends cg_uniform
             buff[pos + 2] = this._value[2];
             buff[pos + 3] = this._value[3];
         }
+        else if (this._type == "f[]")
+        {
+            for (let i = 0; i < this._value.length; i++)
+                buff[pos + i] = this._value[i];
+        }
         else if (this._type == "m4")
         {
-            // const mView = buff.subarray(pos, pos + 16);
-
             for (let i = 0; i < 16; i++)
-            {
                 buff[pos + i] = this._value[i];
-
-                // console.log(this._value[i]);
-            }
-            // console.log(buff);
-
-            // mat4.copy(mView, this._value);
         }
         else
         {
@@ -17480,25 +17266,21 @@ class cgp_uniform_Uniform extends cg_uniform
     {
         const bytesPerFloat = 4;
         const bytesPerInt = 4;
+        if (this._type == "t") return 4;
+        if (this._type == "sampler") return 4;
         if (this._type == "f") return 1 * bytesPerFloat;
         if (this._type == "2f") return 2 * bytesPerFloat;
         if (this._type == "3f") return 3 * bytesPerFloat;
         if (this._type == "4f") return 4 * bytesPerFloat;
+        if (this._type == "f[]") return this._value.length * bytesPerFloat;
 
         if (this._type == "m4") return 4 * 4 * bytesPerFloat;
 
         if (this._type == "i") return 1 * bytesPerInt;
         if (this._type == "2i") return 2 * bytesPerInt;
 
-        // this._log.warn("unknown type getSizeBytes");
+        this._log.warn("unknown type getSizeBytes", this._type);
         return 4;
-        // if (this._type == "t") return "sampler2D";
-        // if (this._type == "tc") return "samplerCube";
-        // if (this._type == "b") return "bool";
-
-        // if (t == "3f[]") return null; // ignore this for now...
-        // if (t == "m4[]") return null; // ignore this for now...
-        // if (t == "f[]") return null; // ignore this for now...
     }
 }
 
@@ -17506,9 +17288,7 @@ class cgp_uniform_Uniform extends cg_uniform
 function preproc(str, vars)
 {
     const lines = str.split("\n");
-
     const outLines = [];
-
     let stack = [];
 
     for (let i = 0; i < lines.length; i++)
@@ -17520,6 +17300,12 @@ function preproc(str, vars)
         {
             const s = vars[parts[1]];
             stack.push({ "state": s });
+            continue;
+        }
+        if (line.startsWith("#ifndef "))
+        {
+            const s = vars[parts[1]];
+            stack.push({ "state": !s });
             continue;
         }
         if (line.startsWith("#endif"))
@@ -17544,28 +17330,166 @@ function preproc(str, vars)
     return outLines.join("\n");
 }
 
+;// CONCATENATED MODULE: ./src/core/cgp/cgp_gpubuffer.js
+
+
+class GPUBuffer extends EventTarget
+{
+    constructor(cgp, name, data = null, options = {})
+    {
+        super();
+
+        this.id = CABLES.shortId();
+
+        this._name = name;
+        this.floatArr = null;
+        this._gpuBuffer = null;
+
+        this.setData([0, 0, 0, 0]);
+        this.needsUpdate = true;
+        this._length = 0;
+
+        if (options.buffCfg)
+        {
+            this._buffCfg = options.buffCfg;
+        }
+
+        if (data)
+            this.setData(data);
+
+        if (options.length) this.setLength(options.length);
+
+        this.updateGpuBuffer(cgp);
+    }
+
+    setData(d)
+    {
+        // console.log((new Error()).stack);
+
+        this.floatArr = new Float32Array(d);
+        this.setLength(this.floatArr.length);
+
+        // console.log(this.name, this.floatArr);
+        this.needsUpdate = true;
+    }
+
+    setLength(s)
+    {
+        this._length = s;
+        if (!this.floatArr || s != this.floatArr.length)
+        {
+            this.floatArr = new Float32Array(this._length);
+            this.needsUpdate = true;
+        }
+    }
+
+    updateGpuBuffer(cgp)
+    {
+        if (cgp) this._cgp = cgp;
+        if (!this._cgp || !this._cgp.device)
+        {
+            console.log("no cgp...", this._name, this._cgp);
+            return;
+        }
+
+        this._cgp.pushErrorScope("updateGpuBuffer");
+        if (!this._gpuBuffer)
+        {
+            this._buffCfg = this._buffCfg || {};
+            this._buffCfg.label = "gpuBuffer-" + this._name;
+            if (!this._buffCfg.hasOwnProperty("size") && this.floatArr) this._buffCfg.size = this.floatArr.length * 4;
+            this._buffCfg.usage = this._buffCfg.usage || (GPUBufferUsage.COPY_DST | GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_SRC);
+
+            this._gpuBuffer = this._cgp.device.createBuffer(this._buffCfg);
+        }
+
+        if (this.floatArr)
+            this._cgp.device.queue.writeBuffer(
+                this._gpuBuffer,
+                0,
+                this.floatArr.buffer,
+                this.floatArr.byteOffset,
+                this.floatArr.byteLength
+            );
+
+        // this._gpuBuffer.unmap();
+
+        this._cgp.popErrorScope();
+
+        this.needsUpdate = false;
+    }
+
+    get gpuBuffer()
+    {
+        if (!this._gpuBuffer || this.needsUpdate) this.updateGpuBuffer();
+
+        return this._gpuBuffer;
+    }
+
+    get length()
+    {
+        return this._length;
+    }
+
+    getSizeBytes()
+    {
+        return this.floatArr.length * 4;
+    }
+
+    dispose()
+    {
+        // setTimeout(() =>
+        // {
+        //     if (this._gpuBuffer) this._gpuBuffer.destroy();
+        // }, 100);
+    }
+}
+
 ;// CONCATENATED MODULE: ./src/core/cgp/cgp_binding.js
+
+
 
 class Binding
 {
-    constructor(cgp, idx, name, stage, options = {})
+    /**
+     * Description
+     * @param {any} cgp
+     * @param {any} idx
+     * @param {string} name
+     * @param {any} options={}
+     */
+    constructor(cgp, idx, name, options = {})
     {
         this.idx = idx;
         this._name = name;
         this._cgp = cgp;
+        this._log = new Logger("cgp_binding");
         this.uniforms = [];
+        // this.cGpuBuffer = null;
+        this.cGpuBuffers = [];
+
+        this.shader = null;
+
+        if (typeof options != "object") this._log.error("binding options is not an object");
+
+
         this.bindingInstances = [];
+        this.stageStr = options.stage;
+        this.bindingType = options.bindingType || "uniform"; // "uniform", "storage", "read-only-storage",
 
         this.stage = GPUShaderStage.VERTEX;
-        if (stage == "frag") this.stage = GPUShaderStage.FRAGMENT;
+        if (this.stageStr == "frag") this.stage = GPUShaderStage.FRAGMENT;
+
+        if (options.shader) this.shader = options.shader;
 
         this._buffer = null;
         this.isValid = true;
+        this.changed = 0;
 
         if (options.shader)
         {
-            if (stage == "frag") options.shader.bindingsFrag.push(this);
-            if (stage == "vert") options.shader.bindingsVert.push(this);
+            if (this.stageStr == "frag") options.shader.bindingsFrag.push(this);
+            if (this.stageStr == "vert") options.shader.bindingsVert.push(this);
         }
 
         this._cgp.on("deviceChange", () =>
@@ -17618,6 +17542,7 @@ class Binding
         else
         {
             o.buffer = {};
+            o.buffer.type = this.bindingType;
         }
 
         return o;
@@ -17625,12 +17550,6 @@ class Binding
 
     getBindingGroupEntry(gpuDevice, inst)
     {
-        if (this.bindingInstances[inst] && this.bindingInstances[inst].resource && this.bindingInstances[inst].resource.buffer)
-        {
-            console.log("destroy");
-            this.bindingInstances[inst].resource.buffer.destroy();
-        }
-
         this.isValid = false;
 
         const o = {
@@ -17642,16 +17561,11 @@ class Binding
 
         if (this.uniforms.length == 1 && this.uniforms[0].getType() == "t")
         {
-            if (this.uniforms[0].getValue())
-            {
-                if (this.uniforms[0].getValue().gpuTexture) o.resource = this.uniforms[0].getValue().gpuTexture.createView();
-            }
+            if (this.uniforms[0].getValue() && this.uniforms[0].getValue().gpuTexture) o.resource = this.uniforms[0].getValue().gpuTexture.createView();
             else o.resource = this._cgp.getEmptyTexture().createView();// CABLES.emptyCglTexture.createView();
         }
         else if (this.uniforms.length == 1 && this.uniforms[0].getType() == "sampler")
         {
-            // const sampler = this.uniforms[0]._cgp.device.createSampler();
-
             const sampler = this.uniforms[0]._cgp.device.createSampler({
                 "addressModeU": "repeat",
                 "addressModeV": "repeat",
@@ -17663,18 +17577,21 @@ class Binding
         }
         else
         {
-            // this._gpuBuffer = null;
-            // if (!this._gpuBuffer || this._gpuBuffer.size != this.getSizeBytes())
+            let buffCfg = {
+                "label": this._name,
+                "size": this.getSizeBytes(),
+                "usage": GPUBufferUsage.COPY_DST | GPUBufferUsage.UNIFORM,
+            };
 
-            const gpuBuffer = gpuDevice.createBuffer(
-                {
-                    "label": this._name,
-                    "size": this.getSizeBytes(),
-                    "usage": GPUBufferUsage.COPY_DST | GPUBufferUsage.UNIFORM
-                });
+            if (this.bindingType == "read-only-storage" || this.bindingType == "storage") buffCfg.usage = GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_DST;
+
+            if (this.cGpuBuffers[inst]) this.cGpuBuffers[inst].dispose();
+            this.cGpuBuffers[inst] = new GPUBuffer(this._cgp, "buff", null, { "buffCfg": buffCfg });
+
+            if (this.uniforms[0].gpuBuffer) this.cGpuBuffers[inst] = this.uniforms[0].gpuBuffer;
 
             o.resource = {
-                "buffer": gpuBuffer,
+                "buffer": this.cGpuBuffers[inst].gpuBuffer,
                 "minBindingSize": this.getSizeBytes(),
                 "hasDynamicOffset": 0
             };
@@ -17688,91 +17605,78 @@ class Binding
 
 
 
-    getShaderHeader()
-    {
-        // ????
-    }
-
     update(cgp, inst)
     {
-        // if (!this._gpuBuffer) return console.log("has no gpubuffer...");
         let b = this.bindingInstances[inst];
         if (!b) b = this.getBindingGroupEntry(cgp.device, inst);
 
+        if (this.uniforms.length == 1 && this.uniforms[0].gpuBuffer)
+        {
+            if (this.uniforms[0].gpuBuffer != this.cGpuBuffers[inst])
+            {
+                console.log("changed?!");
+                this.shader._needsRecompile = true; // TODO this should actually just rebuild the bindinggroup i guess ?
+            }
+
+            if (this._cgp.frameStore.branchProfiler) this._cgp.frameStore.branchStack.push("extern uni bind", [this.uniforms[0].getName(), this.cGpuBuffers[inst].floatArr]);
+            if (this._cgp.frameStore.branchProfiler) this._cgp.frameStore.branchStack.pop();
+        }
+        else
         if (this.uniforms.length == 1 && this.uniforms[0].getType() == "t")
         {
+            if (this._cgp.frameStore.branchProfiler) this._cgp.frameStore.branchStack.push("uni texture");
             if (this.uniforms[0].getValue())
                 if (this.uniforms[0].getValue().gpuTexture)
                 {
                     this.bindingInstances[inst] = this.getBindingGroupEntry(this.uniforms[0]._cgp.device, inst);
-                    // b.resource = this.uniforms[0].getValue().gpuTexture.createView();
-                    // console.log(this.uniforms[0].getValue().width);
-                    // console.log("yay");
-                    // console.log("real tex...", this.uniforms[0].getValue());
-                    // CABLES.errorTexture;
-                    // b.resource = CABLES.errorTexture.createView();
                 }
                 else
                 {
-                    // console.log("fake tex...");
                     b.resource = CABLES.errorTexture.createView();
                 }
-            // console.log(1);
 
-
-            // console.log("texture.....");
-            // o.resource = CABLES.emptyCglTexture.createView();
-            // if (this.uniforms.length == 1 && this.uniforms[0].getType() == "t")
-            // {
-            //     if (this.uniforms[0].getValue())
-            //     {
-            //         if (this.uniforms[0].getValue().gpuTexture) o.resource = this.uniforms[0].getValue().gpuTexture.createView();
-            //     }
-            //     else o.resource = CABLES.emptyCglTexture.createView();
-            // }
-            // else if (this.uniforms.length == 1 && this.uniforms[0].getType() == "sampler")
-            // {
-            //     const sampler = this.uniforms[0]._cgp.device.createSampler();
-
-            //     o.resource = sampler;
-            // }
+            if (this._cgp.frameStore.branchProfiler) this._cgp.frameStore.branchStack.pop();
         }
         else if (this.uniforms.length == 1 && this.uniforms[0].getType() == "sampler")
         {
+            if (this._cgp.frameStore.branchProfiler) this._cgp.frameStore.branchStack.push("uni sampler");
             b.resource = this.uniforms[0].getValue();
+            if (this._cgp.frameStore.branchProfiler) this._cgp.frameStore.branchStack.pop();
         }
         else
         {
+            let info = ["stage " + this.stageStr + " / inst " + inst];
+
+            // console.log("B",this.);
+
+
             // update uniform values to buffer
             const s = this.getSizeBytes() / 4;
-            if (!this._buffer || s != this._buffer.length) this._buffer = new Float32Array(s);
+            this.cGpuBuffers[inst].setLength(s);
 
             let off = 0;
             for (let i = 0; i < this.uniforms.length; i++)
             {
-                this.uniforms[i].copyToBuffer(this._buffer, off); // todo: check if uniform changed?
+                info.push(this.uniforms[i].getName() + " " + this.uniforms[i].getValue());
+                this.uniforms[i].copyToBuffer(this.cGpuBuffers[inst].floatArr, off); // todo: check if uniform changed?
                 off += this.uniforms[i].getSizeBytes() / 4;
-
-                // console.log(this.uniforms[0].getName(), this.uniforms[i]);
-
-                // if (this.uniforms[0].getType() == "m4")
-                // {
-                //     if (this.uniforms[i].getName() == "modelMatrix")
-                // console.log(this.uniforms[i].getName(), this._buffer);
-                // }
             }
+            if (this._cgp.frameStore.branchProfiler) this._cgp.frameStore.branchStack.push("uni buff", info);
 
-            // console.log(this._buffer);
 
+            // console.log("upodate", inst);
+
+            this.cGpuBuffers[inst].updateGpuBuffer();
             // todo: only if changed...
-            cgp.device.queue.writeBuffer(
-                // this._gpuBuffer,
-                b.resource.buffer,
-                0,
-                this._buffer.buffer,
-                this._buffer.byteOffset,
-                this._buffer.byteLength
-            );
+            // cgp.device.queue.writeBuffer(
+            //     b.resource.buffer,
+            //     0,
+            //     this._buffer.buffer,
+            //     this._buffer.byteOffset,
+            //     this._buffer.byteLength
+            // );
+
+            if (this._cgp.frameStore.branchProfiler) this._cgp.frameStore.branchStack.pop();
         }
     }
 }
@@ -17786,7 +17690,7 @@ class Binding
 
 class cgp_shader_Shader extends CgShader
 {
-    constructor(_cgp, _name)
+    constructor(_cgp, _name, options = {})
     {
         super();
         if (!_cgp) throw new Error("shader constructed without cgp " + _name);
@@ -17794,31 +17698,49 @@ class cgp_shader_Shader extends CgShader
         this._cgp = _cgp;
         this._name = _name;
         this._uniforms = [];
+        this.compute = options.compute || false;
 
         if (!_name) this._log.stack("no shader name given");
         this._name = _name || "unknown";
         this._compileReason = "";
-        this.shaderModule = null;
+        this.gpuShaderModule = null;
         this._needsRecompile = true;
 
-        this.defaultBindingVert = new Binding(_cgp, 0, "defaultVert", "vert");
-        this.defaultBindingFrag = new Binding(_cgp, 1, "defaultFrag", "frag");
+        this.defaultBindingVert = new Binding(_cgp, 0, "defaultVert", { "stage": "vert", "bindingType": "uniform" });
+        this.defaultBindingFrag = new Binding(_cgp, 1, "defaultFrag", { "stage": "frag", "bindingType": "uniform" });
+        this.defaultBindingComp = new Binding(_cgp, 1, "defaultComp", { "bindingType": "uniform" });
         this.bindingsFrag = [this.defaultBindingFrag];
         this.bindingsVert = [this.defaultBindingVert];
+        this.bindingsComp = [this.defaultBindingComp];
 
-        this.uniModelMatrix = this.addUniformVert("m4", "modelMatrix");
-        this.uniViewMatrix = this.addUniformVert("m4", "viewMatrix");
-        this.uniProjMatrix = this.addUniformVert("m4", "projMatrix");
-        this.uniNormalMatrix = this.addUniformVert("m4", "normalMatrix");
-        this._tempNormalMatrix = mat4.create();
+        if (!this.compute)
+        {
+            this.uniModelMatrix = this.addUniformVert("m4", "modelMatrix");
+            this.uniViewMatrix = this.addUniformVert("m4", "viewMatrix");
+            this.uniProjMatrix = this.addUniformVert("m4", "projMatrix");
+            this.uniNormalMatrix = this.addUniformVert("m4", "normalMatrix");
+            this.uniModelViewMatrix = this.addUniformVert("m4", "modelViewMatrix");
+            this._tempNormalMatrix = mat4.create();
+            this._tempModelViewMatrix = mat4.create();
+        }
+
+        this.bindingCounter = 0;
+        this.bindCountlastFrame = -1;
 
         this._src = "";
 
         this._cgp.on("deviceChange", () =>
         {
-            this.shaderModule = null;
+            this.gpuShaderModule = null;
             this._needsRecompile = "device changed";
         });
+    }
+
+    incBindingCounter()
+    {
+        if (this.bindCountlastFrame != this._cgp.frame) this.bindingCounter = 0;
+        else this.bindingCounter++;
+        this.bindCountlastFrame = this._cgp.frame;
     }
 
     reInit()
@@ -17864,10 +17786,11 @@ class cgp_shader_Shader extends CgShader
 
         const src = preproc(this._src, defs);
 
-        this.shaderModule = this._cgp.device.createShaderModule({ "code": src, "label": this._name });
+        this.gpuShaderModule = this._cgp.device.createShaderModule({ "code": src, "label": this._name });
         this._cgp.popErrorScope(this.error.bind(this));
         this._needsRecompile = false;
-        this.needsPipelineUpdate = "compiled";
+
+        this.emitEvent("compiled");
     }
 
     error(e)
@@ -17877,25 +17800,41 @@ class cgp_shader_Shader extends CgShader
 
     bind()
     {
-        // let sizes = {};
-        // for (let i = 0; i < this._uniforms.length; i++)
-        // {
-        //     // console.log(this._uniforms[i]);
-        // }
+        if (!this.compute)
+        {
+            this.uniModelMatrix.setValue(this._cgp.mMatrix);
+            this.uniViewMatrix.setValue(this._cgp.vMatrix);
+            this.uniProjMatrix.setValue(this._cgp.pMatrix);
 
-        this.uniModelMatrix.setValue(this._cgp.mMatrix);
-        this.uniViewMatrix.setValue(this._cgp.vMatrix);
-        this.uniProjMatrix.setValue(this._cgp.pMatrix);
-
-        // mat4.mul(this._tempNormalMatrix, this._cgp.vMatrix, this._cgp.mMatrix);
-        // mat4.invert(this._tempNormalMatrix, this._cgp.mMatrix);
-        // mat4.transpose(this._tempNormalMatrix, this._tempNormalMatrix);
+            // mat4.invert(this._tempNormalMatrix, this._cgp.mMatrix);
+            // mat4.transpose(this._tempNormalMatrix, this._tempNormalMatrix);
+            mat4.mul(this._tempModelViewMatrix, this._cgp.vMatrix, this._cgp.mMatrix);
 
 
-        mat4.transpose(this._tempNormalMatrix, this._cgp.mMatrix);
-        mat4.invert(this._tempNormalMatrix, this._tempNormalMatrix);
 
-        this.uniNormalMatrix.setValue(this._tempNormalMatrix);
+            // mat4.set(this._tempNormalMatrix, this._tempModelViewMatrix);
+            mat4.invert(this._tempNormalMatrix, this._tempModelViewMatrix);
+            mat4.transpose(this._tempNormalMatrix, this._tempNormalMatrix);
+
+
+            // cpu billboarding?
+            // this._tempModelViewMatrix[0 * 4 + 0] = 1.0;
+            // this._tempModelViewMatrix[0 * 4 + 1] = 0.0;
+            // this._tempModelViewMatrix[0 * 4 + 2] = 0.0;
+
+            // // #ifndef BILLBOARDING_CYLINDRIC
+            // this._tempModelViewMatrix[1 * 4 + 0] = 0.0;
+            // this._tempModelViewMatrix[1 * 4 + 1] = 1.0;
+            // this._tempModelViewMatrix[1 * 4 + 2] = 0.0;
+            // // #endif
+
+            // this._tempModelViewMatrix[2 * 4 + 0] = 0.0;
+            // this._tempModelViewMatrix[2 * 4 + 1] = 0.0;
+            // this._tempModelViewMatrix[2 * 4 + 2] = 1.0;
+
+            this.uniModelViewMatrix.setValue(this._tempModelViewMatrix);
+            this.uniNormalMatrix.setValue(this._tempNormalMatrix);
+        }
 
         if (this._needsRecompile) this.compile();
     }
@@ -17968,12 +17907,19 @@ class cgp_shader_Shader extends CgShader
         return uni;
     }
 
-
     _addUniform(uni)
     {
         this._uniforms.push(uni);
         this.setWhyCompile("add uniform " + name);
         this._needsRecompile = true;
+    }
+
+    getUniform(name)
+    {
+        for (let i = 0; i < this._uniforms.length; i++)
+        {
+            if (this._uniforms[i].getName() == name) return this._uniforms[i];
+        }
     }
 }
 
@@ -18166,6 +18112,7 @@ class WebGpuContext extends CGState
         this._shaderStack = [];
         this._simpleShader = null;
         this.frame = 0;
+        this.catchErrors = false;
 
         this._stackCullFaceFacing = [];
         this._stackDepthTest = [];
@@ -18173,7 +18120,21 @@ class WebGpuContext extends CGState
         this._stackDepthFunc = [];
         this._stackDepthWrite = [];
         this._stackErrorScope = [];
+        this._stackBlend = [];
         this._stackErrorScopeLogs = [];
+
+        this._defaultBlend = {
+            "color": {
+                "operation": "add",
+                "srcFactor": "one",
+                "dstFactor": "zero",
+            },
+            "alpha": {
+                "operation": "add",
+                "srcFactor": "one",
+                "dstFactor": "zero",
+            },
+        };
 
         this.DEPTH_FUNCS = [
             "never",
@@ -18224,6 +18185,9 @@ class WebGpuContext extends CGState
         this.pushDepthTest(true);
         this.pushDepthWrite(true);
         this.pushDepthFunc("less-equal");
+
+
+        this.pushBlend(this._defaultBlend);
 
         this.emitEvent("beginFrame");
     }
@@ -18321,33 +18285,39 @@ class WebGpuContext extends CGState
 
     pushErrorScope(name, options = {})
     {
-        this._stackErrorScope.push(name);
-        this._stackErrorScopeLogs.push(options.logger || null);
-        this.device.pushErrorScope(options.scope || "validation");
+        if (this.catchErrors)
+        {
+            this._stackErrorScope.push(name);
+            this._stackErrorScopeLogs.push(options.logger || null);
+            this.device.pushErrorScope(options.scope || "validation");
+        }
     }
 
     popErrorScope(cb)
     {
-        const name = this._stackErrorScope.pop();
-        const logger = this._stackErrorScopeLogs.pop();
-        this.device.popErrorScope().then((error) =>
+        if (this.catchErrors)
         {
-            if (error)
+            const name = this._stackErrorScope.pop();
+            const logger = this._stackErrorScopeLogs.pop();
+            this.device.popErrorScope().then((error) =>
             {
-                if (this.lastErrorMsg == error.message)
+                if (error)
                 {
-                    // this._log.warn("last error once more...");
-                }
-                else
-                {
-                    (logger || this._log).error(error.constructor.name, "in", name);
-                    (logger || this._log).error(error.message);
-                }
-                this.lastErrorMsg = error.message;
+                    if (this.lastErrorMsg == error.message)
+                    {
+                        // this._log.warn("last error once more...");
+                    }
+                    else
+                    {
+                        (logger || this._log).error(error.constructor.name, "in", name);
+                        (logger || this._log).error(error.message);
+                    }
+                    this.lastErrorMsg = error.message;
 
-                if (cb)cb(error);
-            }
-        });
+                    if (cb)cb(error);
+                }
+            });
+        }
     }
 
     /**
@@ -18515,7 +18485,6 @@ class WebGpuContext extends CGState
      * @param b
      * @instance
      */
-
     pushCullFaceFacing(b)
     {
         this._stackCullFaceFacing.push(b);
@@ -18544,7 +18513,21 @@ class WebGpuContext extends CGState
         this._stackCullFaceFacing.pop();
     }
 
+    pushBlend(b)
+    {
+        this._stackBlend.push(b);
+    }
 
+
+    popBlend()
+    {
+        this._stackBlend.pop();
+    }
+
+    stateBlend()
+    {
+        return this._stackBlend[this._stackBlend.length - 1];
+    }
 
     getEmptyTexture()
     {
@@ -18579,7 +18562,6 @@ class WebGpuContext extends CGState
 
 
 
-
 class Pipeline
 {
     constructor(_cgp, name)
@@ -18595,21 +18577,12 @@ class Pipeline
 
         this._bindGroups = [];
 
-        this.lastFrame = -1;
-        this.bindingCounter = 0;
-
+        this._shaderListeners = [];
+        this.shaderNeedsPipelineUpdate = false;
 
         this._old = {};
 
-        this.DEPTH_COMPARE_FUNCS_STRINGS = [
-            "never",
-            "less",
-            "equal",
-            "lessequal",
-            "greater",
-            "notequal",
-            "greaterequal",
-            "always"];
+        this.DEPTH_COMPARE_FUNCS_STRINGS = ["never", "less", "equal", "lessequal", "greater", "notequal", "greaterequal", "always"];
 
         this._cgp.on("deviceChange", () =>
         {
@@ -18619,6 +18592,47 @@ class Pipeline
 
     get isValid() { return this._isValid; }
 
+    setName(name)
+    {
+        this._name = name;
+    }
+
+    setShaderListener(oldShader, newShader)
+    {
+        for (let i = 0; i < this._shaderListeners.length; i++) oldShader.off(this._shaderListeners[i]);
+
+        this._shaderListeners.push(
+            newShader.on("compiled", () =>
+            {
+                // console.log("pipe update shader compileeeeeee");
+                // this.needsRebuildReason = "shader changed";
+                this.shaderNeedsPipelineUpdate = "shader compiled";
+            }));
+    }
+
+
+    getInfo()
+    {
+        // console.log(this.bindingGroupLayoutEntries);
+
+        const arr = [
+            "name: " + this._name,
+            "bindgroups: " + this._bindGroups.length
+
+        ];
+
+        if (this.bindingGroupLayoutEntries)arr.push("layouts: " + this.bindingGroupLayoutEntries.length);
+
+        // if (this.bindingGroupLayoutEntries)
+        //     for (let i = 0; i < this.bindingGroupLayoutEntries.length; i++)
+        //     {
+        //         // const lines = JSON.stringify(this.bindingGroupLayoutEntries, 4, true).split(",");
+        //         arr.push(...lines);
+        //     }
+
+        return arr;
+    }
+
     setPipeline(shader, mesh)
     {
         if (!mesh || !shader)
@@ -18627,16 +18641,19 @@ class Pipeline
             return;
         }
 
-        if (this._cgp.frameStore.branchProfiler) this._cgp.frameStore.branchStack.push("setPipeline");
+        if (this._cgp.frameStore.branchProfiler) this._cgp.frameStore.branchStack.push("setPipeline", this.getInfo());
 
-        // let needsRebuild = false;
         let needsRebuildReason = "";
         if (!this._renderPipeline) needsRebuildReason = "no renderpipeline";
         if (!this._pipeCfg)needsRebuildReason = "no pipecfg";
         if (this._old.mesh != mesh)needsRebuildReason = "no mesh";
-        if (this._old.shader != shader)needsRebuildReason = "shader changed";
+        if (this._old.shader != shader)
+        {
+            this.setShaderListener(this._old.shader, shader);
+            needsRebuildReason = "shader changed";
+        }
         if (mesh.needsPipelineUpdate)needsRebuildReason = "mesh needs update";
-        if (shader.needsPipelineUpdate)needsRebuildReason = "shader needs update: " + shader.needsPipelineUpdate;
+        if (this.shaderNeedsPipelineUpdate)needsRebuildReason = "shader needs update: " + this.shaderNeedsPipelineUpdate;
 
         if (this._pipeCfg)
         {
@@ -18645,6 +18662,22 @@ class Pipeline
                 needsRebuildReason = "depth changed";
                 this._pipeCfg.depthStencil.depthWriteEnabled = this._cgp.stateDepthWrite();
             }
+
+            if (this._pipeCfg.fragment.targets[0].blend != this._cgp.stateBlend())
+            {
+                needsRebuildReason = "blend changed";
+                this._pipeCfg.fragment.targets[0].blend = this._cgp.stateBlend();
+            }
+
+            // "fragment": {
+            //     "module": shader.gpuShaderModule,
+            //     "entryPoint": "myFSMain",
+            //     "targets": [
+            //         {
+            //             "format": this._cgp.presentationFormat,
+            //             "blend":
+            //         },
+
 
             if (this._cgp.stateDepthTest() === false)
             {
@@ -18672,10 +18705,9 @@ class Pipeline
         this._cgp.currentPipeDebug =
         {
             "cfg": this._pipeCfg,
-            // "bindingGroupEntries": this.bindingGroupEntries,
+            "bindingGroupEntries": this.bindingGroupEntries,
             "bindingGroupLayoutEntries": this.bindingGroupLayoutEntries
         };
-
 
 
         if (needsRebuildReason != "")
@@ -18699,16 +18731,14 @@ class Pipeline
         {
             this._cgp.pushErrorScope("setpipeline", { "logger": this._log });
 
-            if (this._cgp.frameStore.branchProfiler) this._cgp.frameStore.branchStack.push("updateUniforms");
-            if (this._cgp.frameStore.branchProfiler) this._cgp.frameStore.branchStack.pop();
 
             this._cgp.passEncoder.setPipeline(this._renderPipeline);
 
-            if (this.lastFrame != this._cgp.frame) this.bindingCounter = 0;
-            this.lastFrame = this._cgp.frame;
+            if (this._cgp.frameStore.branchProfiler) this._cgp.frameStore.branchStack.push("updateUniforms");
 
+            shader.incBindingCounter();
 
-            if (!this._bindGroups[this.bindingCounter])
+            if (!this._bindGroups[shader.bindingCounter])
             {
                 const bindingGroupEntries = [];
 
@@ -18716,8 +18746,7 @@ class Pipeline
                 {
                     if (shader.bindingsVert[i].getSizeBytes() > 0)
                     {
-                        bindingGroupEntries.push(shader.bindingsVert[i].getBindingGroupEntry(this._cgp.device, this.bindingCounter));
-                        // bindingGroupLayoutEntries.push(shader.bindingsVert[i].getBindingGroupLayoutEntry());
+                        bindingGroupEntries.push(shader.bindingsVert[i].getBindingGroupEntry(this._cgp.device, shader.bindingCounter));
                     }
                     else console.log("shader defaultBindingVert size 0");
                 }
@@ -18725,8 +18754,7 @@ class Pipeline
                 {
                     if (shader.bindingsFrag[i].getSizeBytes() > 0)
                     {
-                        bindingGroupEntries.push(shader.bindingsFrag[i].getBindingGroupEntry(this._cgp.device, this.bindingCounter));
-                        // bindingGroupLayoutEntries.push(shader.bindingsFrag[i].getBindingGroupLayoutEntry());
+                        bindingGroupEntries.push(shader.bindingsFrag[i].getBindingGroupEntry(this._cgp.device, shader.bindingCounter));
                     }
                     else console.log("shader defaultBindingFrag size 0");
                 }
@@ -18737,20 +18765,24 @@ class Pipeline
                     "entries": bindingGroupEntries
                 };
 
-                this._bindGroups[this.bindingCounter] = this._cgp.device.createBindGroup(bg);
+                this._bindGroups[shader.bindingCounter] = this._cgp.device.createBindGroup(bg);
             }
 
-            this._bindUniforms(shader, this.bindingCounter);
+            this._bindUniforms(shader, shader.bindingCounter);
 
-            if (this._bindGroups[this.bindingCounter]) this._cgp.passEncoder.setBindGroup(0, this._bindGroups[this.bindingCounter]);
-            this.bindingCounter++;
+            if (this._bindGroups[shader.bindingCounter]) this._cgp.passEncoder.setBindGroup(0, this._bindGroups[shader.bindingCounter]);
+
+
+            // shader.bindingCounter++;
 
             if (this._cgp.frameStore.branchProfiler) this._cgp.frameStore.branchStack.pop();
 
             this._cgp.popErrorScope();
         }
+        if (this._cgp.frameStore.branchProfiler) this._cgp.frameStore.branchStack.pop();
 
-        shader.needsPipelineUpdate = false;
+
+        this.shaderNeedsPipelineUpdate = false;
     }
 
     getPipelineObject(shader, mesh)
@@ -18761,7 +18793,6 @@ class Pipeline
         {
             if (shader.bindingsVert[i].getSizeBytes() > 0)
             {
-                // this.bindingGroupEntries.push(shader.bindingsVert[i].getBindingGroupEntry(this._cgp.device));
                 this.bindingGroupLayoutEntries.push(shader.bindingsVert[i].getBindingGroupLayoutEntry());
             }
             else console.log("shader defaultBindingVert size 0");
@@ -18771,7 +18802,6 @@ class Pipeline
         {
             if (shader.bindingsFrag[i].getSizeBytes() > 0)
             {
-                // this.bindingGroupEntries.push(shader.bindingsFrag[i].getBindingGroupEntry(this._cgp.device));
                 this.bindingGroupLayoutEntries.push(shader.bindingsFrag[i].getBindingGroupLayoutEntry());
             }
             else console.log("shader defaultBindingFrag size 0");
@@ -18780,53 +18810,59 @@ class Pipeline
 
         this.bindGroupLayout = this._cgp.device.createBindGroupLayout(
             {
-                "label": "label3",
+                "label": "bg layout " + this._name,
                 "entries": this.bindingGroupLayoutEntries,
             });
 
         const pipelineLayout = this._cgp.device.createPipelineLayout({
-            "label": "label1",
+            "label": "pipe layout " + this._name,
             "bindGroupLayouts": [this.bindGroupLayout]
         });
+
+
+        let buffers = [
+            // position
+            {
+                "arrayStride": 3 * 4, // 3 floats, 4 bytes each
+                "attributes": [
+                    { "shaderLocation": 0, "offset": 0, "format": "float32x3" },
+                ],
+            },
+            // texcoords
+            {
+                "arrayStride": 2 * 4, // 2 floats, 4 bytes each
+                "attributes": [
+                    { "shaderLocation": 2, "offset": 0, "format": "float32x2", },
+                ],
+            },
+            // normals
+            {
+                "arrayStride": 3 * 4, // 3 floats, 4 bytes each
+                "attributes": [
+                    { "shaderLocation": 1, "offset": 0, "format": "float32x3" },
+                ],
+            }];
+
+
 
         const pipeCfg = {
             // "layout": "auto",
             "label": this._name,
             "layout": pipelineLayout,
             "vertex": {
-                "module": shader.shaderModule,
+                "module": shader.gpuShaderModule,
                 "entryPoint": "myVSMain",
-                "buffers": [
-                    // position
-                    {
-                        "arrayStride": 3 * 4, // 3 floats, 4 bytes each
-                        "attributes": [
-                            { "shaderLocation": 0, "offset": 0, "format": "float32x3" },
-                        ],
-                    },
-                    // texcoords
-                    {
-                        "arrayStride": 2 * 4, // 2 floats, 4 bytes each
-                        "attributes": [
-                            { "shaderLocation": 2, "offset": 0, "format": "float32x2", },
-                        ],
-                    },
-                    // normals
-                    {
-                        "arrayStride": 3 * 4, // 3 floats, 4 bytes each
-                        "attributes": [
-                            { "shaderLocation": 1, "offset": 0, "format": "float32x3" },
-                        ],
-                    },
+                "buffers": buffers
 
-
-                ],
             },
             "fragment": {
-                "module": shader.shaderModule,
+                "module": shader.gpuShaderModule,
                 "entryPoint": "myFSMain",
                 "targets": [
-                    { "format": this._cgp.presentationFormat },
+                    {
+                        "format": this._cgp.presentationFormat,
+                        "blend": this._cgp.stateBlend()
+                    },
                 ],
             },
             "primitive": {
@@ -18840,7 +18876,7 @@ class Pipeline
                 // "triangle-strip"
             },
             "depthStencil": {
-                "depthWriteEnabled": true,
+                "depthWriteEnabled": this._cgp.stateDepthTest(),
                 "depthCompare": this._cgp.stateDepthFunc(),
                 "format": "depth24plus",
             },
@@ -18857,11 +18893,15 @@ class Pipeline
 
         shader.bind();
 
-        for (let i = 0; i < shader.bindingsVert.length; i++)
-            shader.bindingsVert[i].update(this._cgp, inst);
+        if (this._cgp.frameStore.branchProfiler) this._cgp.frameStore.branchStack.push("bind uniforms vert", ["num:" + shader.bindingsVert.length]);
+        for (let i = 0; i < shader.bindingsVert.length; i++) shader.bindingsVert[i].update(this._cgp, inst);
+        if (this._cgp.frameStore.branchProfiler) this._cgp.frameStore.branchStack.pop();
 
-        for (let i = 0; i < shader.bindingsFrag.length; i++)
-            shader.bindingsFrag[i].update(this._cgp, inst);
+        if (this._cgp.frameStore.branchProfiler) this._cgp.frameStore.branchStack.push("bind uniforms frag", ["num:" + shader.bindingsFrag.length]);
+        for (let i = 0; i < shader.bindingsFrag.length; i++) shader.bindingsFrag[i].update(this._cgp, inst);
+        if (this._cgp.frameStore.branchProfiler) this._cgp.frameStore.branchStack.pop();
+
+
 
         // shader.defaultBindingVert.update(this._cgp);
 
@@ -18884,14 +18924,13 @@ class cgp_mesh_Mesh
         this._cgp = _cgp;
         this._geom = null;
         this.numIndex = 0;
+        this.instances = 1;
 
-        this._pipe = new Pipeline(this._cgp);
-
+        this._pipe = new Pipeline(this._cgp, "new mesh");
         this._numNonIndexed = 0;
         this._positionBuffer = null;
         this._bufVerticesIndizes = null;
         this._attributes = [];
-
         this._needsPipelineUpdate = false;
 
         if (__geom) this.setGeom(__geom);
@@ -18899,11 +18938,13 @@ class cgp_mesh_Mesh
 
     _createBuffer(device, data, usage)
     {
-        const buffer = device.createBuffer({
+        let bo = {
             "size": data.byteLength,
             "usage": usage,
             "mappedAtCreation": true,
-        });
+        };
+        // ifbo.stepMode = "instance";
+        const buffer = device.createBuffer(bo);
         const dst = new data.constructor(buffer.getMappedRange());
         dst.set(data);
         buffer.unmap();
@@ -18933,6 +18974,8 @@ class cgp_mesh_Mesh
 
         if (geom.texCoords && geom.texCoords.length) this.setAttribute("texCoords", geom.texCoords, 2);
         if (geom.vertexNormals && geom.vertexNormals.length) this.setAttribute("normals", geom.vertexNormals, 3);
+
+        this.setAttribute("normals", geom.vertexNormals, 3);
     }
 
 
@@ -18961,7 +19004,7 @@ class cgp_mesh_Mesh
      * @param {Number} itemSize
      * @param {Object} options
      */
-    setAttribute(name, array, itemSize, options)
+    setAttribute(name, array, itemSize, options = {})
     {
         if (!array)
         {
@@ -18969,94 +19012,57 @@ class cgp_mesh_Mesh
             throw new Error();
         }
 
-        // for (let i = 0; i < this._attributes.length; i++)
-        // {
-        //     const attr = this._attributes[i];
-        //     if (attr.name == name)
-        //     {
-        //         // if (attr.numItems === numItems)
-        //         // {
-        //         // }
-        //         // else
-        //         // {
-        //         //     // this._log.log("wrong buffer size", this._geom.name, attr.name, attr.numItems, numItems);
-        //         //     this._resizeAttr(array, attr);
-        //         // }
-        //         // normalBuffer = this._createBuffer(this._cgp.device, new Float32Array(geom.vertexNormals), GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST);
-
-        //         // this._cgl.gl.bindBuffer(this._cgl.gl.ARRAY_BUFFER, attr.buffer);
-        //         // this._bufferArray(array, attr);
-
-        //         return attr;
-        //     }
-        // }
+        let instanced = false;
+        if (options.instanced) instanced = options.instanced;
 
         const buffer = this._createBuffer(this._cgp.device, new Float32Array(array), GPUBufferUsage.VERTEX | GPUBufferUsage.COPY_DST);
 
         const attr = {
             "buffer": buffer,
             "name": name,
-            // "cb": cb,
-            // "itemSize": itemSize,
-            // "numItems": numItems,
-            // "startItem": 0,
-            // "instanced": instanced,
-            // "type": type
+            "instanced": instanced,
         };
         this._attributes.push(attr);
 
         return attr;
     }
 
-    // setPipeline()
-    // {
-
-    //     this._cgp.passEncoder.setPipeline(this._pipe.getPiplelineObject(this._cgp.getShader(),this));
-
-
-    // }
 
     render()
     {
         if (!this._positionBuffer) return;
-
-        // this.setPipeline();
-
-
-
+        if (this.instances <= 0) return;
 
         const shader = this._cgp.getShader();
         if (shader)shader.bind();
 
         if (!this._cgp.getShader() || !this._cgp.getShader().isValid)
         {
+            // this.status = "shader invalid";
             return;
         }
 
-        if (this._cgp.frameStore.branchProfiler) this._cgp.frameStore.branchStack.push("mesh.render");
+        if (this._cgp.frameStore.branchProfiler) this._cgp.frameStore.branchStack.push("mesh", ["geom " + this._geom.name, "shader " + this._cgp.getShader().getName()]);
 
+        this._pipe.setName("mesh " + this._geom.name + " " + this._cgp.getShader().getName());
         this._pipe.setPipeline(this._cgp.getShader(), this);
 
-        if (!this._pipe.isValid)
+
+        if (this._pipe.isValid)
         {
-            if (this._cgp.frameStore.branchProfiler) this._cgp.frameStore.branchStack.pop();
-            return;
+            this._cgp.passEncoder.setVertexBuffer(0, this._positionBuffer);
+            for (let i = 0; i < this._attributes.length; i++)
+            {
+                this._cgp.passEncoder.setVertexBuffer(i + 1, this._attributes[i].buffer);
+            }
+
+            this._cgp.passEncoder.setIndexBuffer(this._indicesBuffer, "uint32");
+
+            if (this._numNonIndexed)
+                this._cgp.passEncoder.draw(this._numIndices, this.instances);
+            else
+                this._cgp.passEncoder.drawIndexed(this._numIndices, this.instances);
         }
-
-
-        this._cgp.passEncoder.setVertexBuffer(0, this._positionBuffer);
-        for (let i = 0; i < this._attributes.length; i++)
-        {
-            this._cgp.passEncoder.setVertexBuffer(i + 1, this._attributes[i].buffer);
-        }
-
-        this._cgp.passEncoder.setIndexBuffer(this._indicesBuffer, "uint32");
-
-        // draw finally........
-        if (this._numNonIndexed)
-            this._cgp.passEncoder.draw(this._numIndices);
-        else
-            this._cgp.passEncoder.drawIndexed(this._numIndices);
 
         if (this._cgp.frameStore.branchProfiler) this._cgp.frameStore.branchStack.pop();
 
@@ -19073,6 +19079,8 @@ class cgp_mesh_Mesh
 
 
 
+
+
 const cgp_CGP = {
     "Context": WebGpuContext,
     "Shader": cgp_shader_Shader,
@@ -19080,9 +19088,13 @@ const cgp_CGP = {
     "Pipeline": Pipeline,
     "Texture": cgp_texture_Texture,
     "Binding": Binding,
-    "Uniform": cgp_uniform_Uniform
+    "Uniform": cgp_uniform_Uniform,
+    "MESHES": MESHES,
+    "GPUBuffer": GPUBuffer
 };
 
+window.CABLES = window.CABLES || {};
+window.CABLES.CGP = cgp_CGP;
 window.CGP = cgp_CGP;
 
 
@@ -19117,8 +19129,8 @@ const Framebuffer = function (_cgl, _w, _h, options)
 
     if (!depthTextureExt)
     {
-        cgl.exitError("NO_DEPTH_TEXTURE", "no depth texture support");
-        // return;
+        this._log.error("NO_DEPTH_TEXTURE", "no depth texture support");
+        return;
     }
 
     let width = _w || 512;
@@ -19669,9 +19681,8 @@ Framebuffer2.prototype.setSize = function (w, h)
             throw new Error("Incomplete framebuffer: FRAMEBUFFER_UNSUPPORTED");
         default:
             this.valid = false;
-            this._log.warn("incomplete framebuffer", status, this._frameBuffer);
+            this._log.error("incomplete framebuffer", status, this._frameBuffer);
             this._cgl.printError();
-            this._cgl.exitError("Framebuffer incomplete...");
 
             this._frameBuffer = null;
             // debugger;
@@ -19929,7 +19940,6 @@ window.CGL = cgl_CGL;
 
 
 
-
 window.CABLES = window.CABLES || {};
 
 CABLES.CGL = cgl_CGL;
@@ -19941,7 +19951,6 @@ CABLES.Port = Port;
 CABLES.Op = Op;
 CABLES.Profiler = Profiler;
 CABLES.Patch = core_patch;
-CABLES.Instancing = Instancing;
 CABLES.Timer = Timer;
 CABLES.WEBAUDIO = WEBAUDIO;
 CABLES.Variable = Variable;
@@ -19969,4 +19978,4 @@ CABLES = __webpack_exports__["default"];
 ;
 
 
-var CABLES = CABLES || {}; CABLES.build = {"timestamp":1727180599058,"created":"2024-09-24T12:23:19.058Z","git":{"branch":"develop","commit":"dd33e45d8159cffc2e27d3936976e754c46e6146","date":"1727173772","message":"webgpu"}};
+var CABLES = CABLES || {}; CABLES.build = {"timestamp":1730796217675,"created":"2024-11-05T08:43:37.675Z","git":{"branch":"master","commit":"de2d1ed35b0f543548036c248fac723014a39801","date":"1730280145","message":"fix"}};
