@@ -19,3 +19,6 @@ export function  sumArray  (arr: number[]): number  {
 export function roundedStructureValue(hostValue01: number) {
   return Math.floor(hostValue01 * NUM_SEQUENCES);
 }
+
+// Helper function to convert degrees to radians
+export const toRadians = (degrees: number): number => degrees * (Math.PI / 180);

@@ -20,7 +20,7 @@ int SlotManager::getIndexForSlot(const SlotName &slotName) const
 
 int SlotManager::stepToNextTargetSlotIndex()
 {
-   return  targetSlotIndex = (targetSlotIndex + 1) % 4;
+    return targetSlotIndex = (targetSlotIndex + 1) % 4;
 }
 
 int SlotManager::getCurrentTargetSlotIndex() const
@@ -105,13 +105,13 @@ void SlotManager::wrapPeaksForView(elem::js::Object &peaksContainer)
     if (peaks.size() != 4)
         peaks.resize(4);
 
-    for (const auto & [slot_name, asset_data] : processor.assetsMap)
-    {   
+    for (const auto &[slot_name, asset_data] : processor.assetsMap)
+    {
 
         const auto user = asset_data.userPeaksForView;
         const auto factory = asset_data.defaultPeaksForView;
 
-        if (static_cast<elem::js::Number>(processor.state.at("scapeMode")) == 1 )
+        if (static_cast<elem::js::Number>(processor.state.at("scapeMode")) == 1)
         {
             assign(slot_name, Asset::Props::currentPeakDataInView, user);
         }
@@ -133,10 +133,10 @@ void SlotManager::wrapPeaksForView(elem::js::Object &peaksContainer)
 void SlotManager::wrapStateForView(elem::js::Object &containerForWrappedState) const
 {
     elem::js::Object processorState = processor.state;
-
+    // prepare extra state about filenames, for the front end
     elem::js::Array values;
     values.resize(processor.assetsMap.size());
-    for ( auto & [slot_name, asset_data] : processor.assetsMap)
+    for (auto &[slot_name, asset_data] : processor.assetsMap)
     {
         const int index = getIndexForSlot(slot_name);
         if (asset_data.filenameForView.empty())
@@ -146,6 +146,19 @@ void SlotManager::wrapStateForView(elem::js::Object &containerForWrappedState) c
         values[index] = elem::js::Value(asset_data.filenameForView);
     }
     processorState.insert_or_assign(processor.KEY_FOR_FILENAMES, elem::js::Value(values));
+
+    // inject a special rounded case for the 'structure' parameter
+    // this is needed because host is normalised but the front end
+    // expects a value between 0 and 15. Float rounding error is
+    // happening in the plugin host, so fix here
+    if (processorState.contains("structure"))
+    {
+        auto hostValue = static_cast<elem::js::Number>(processorState.at("structure"));
+        const float stepSize = 1.0f / 16.0f;
+        const float roundedValue = std::round(hostValue / stepSize) * stepSize;
+        processorState.insert_or_assign("structure", static_cast<elem::js::Number>(roundedValue));
+    }
+    // Now wrap up
     containerForWrappedState.insert_or_assign(processor.WS_RESPONSE_KEY_FOR_STATE, elem::js::Value(processorState));
 }
 
@@ -153,7 +166,7 @@ void SlotManager::wrapFileNamesForView(elem::js::Object &containerForWrappedFile
 {
     elem::js::Array values;
     values.resize(processor.assetsMap.size());
-    for (const auto & [slot_name, asset_data] : processor.assetsMap)
+    for (const auto &[slot_name, asset_data] : processor.assetsMap)
     {
         const int index = getIndexForSlot(slot_name);
         values[index] = elem::js::Value(asset_data.filenameForView);
@@ -163,14 +176,15 @@ void SlotManager::wrapFileNamesForView(elem::js::Object &containerForWrappedFile
 
 SlotName SlotManager::get_and_step_target_slot_name()
 {
-    if ( getCurrentTargetSlotIndex() == 3 ) processor.pruneVFS();
+    if (getCurrentTargetSlotIndex() == 3)
+        processor.pruneVFS();
     const auto targetSlot = static_cast<SlotName>(stepToNextTargetSlotIndex());
     return targetSlot; // Return the first slot if all are filled or all empty
 }
 
 void SlotManager::switchSlotsTo(const bool customScape, const bool pruneVFS)
 {
-    for (const auto & [slot_name, asset_data] : processor.assetsMap)
+    for (const auto &[slot_name, asset_data] : processor.assetsMap)
     {
         if (customScape)
         {

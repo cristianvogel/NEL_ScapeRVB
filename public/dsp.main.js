@@ -2293,6 +2293,9 @@
   // node_modules/@thi.ng/math/mix.js
   var mix = (a, b, t) => a + (b - a) * t;
 
+  // node_modules/@thi.ng/math/prec.js
+  var roundTo = (x, prec = 1) => Math.round(x / prec) * prec;
+
   // dsp/OEIS-Structures.ts
   function normalizeSequences(sequences) {
     return sequences.map((sequence) => {
@@ -2336,6 +2339,16 @@
     });
   }
 
+  // src/utils/utils.ts
+  function remapPosition(value) {
+    const clampedValue = clamp(value, EPS, 1);
+    return easeIn2(1 - (1 - 2 * Math.abs(clampedValue - 0.5)));
+  }
+  function roundedStructureValue(hostValue01) {
+    return Math.floor(hostValue01 * NUM_SEQUENCES);
+  }
+  var toRadians = (degrees) => degrees * (Math.PI / 180);
+
   // dsp/srvb-er.ts
   var OEIS_SEQUENCES_16 = [
     [39, 31, 23, 17, 34, 68, 76, 63, 50, 37, 28, 20, 55, 110, 123, 102],
@@ -2371,8 +2384,8 @@
     [17, 43, 16, 44, 15, 45, 14, 46, 79, 113, 78, 114, 77, 39, 78, 38]
     // A005132		Recamán's sequence
   ];
-  var OEIS_SEQUENCES = OEIS_SEQUENCES_16.map((seq3) => seq3.slice(0, 15));
-  var NUM_SEQUENCES = OEIS_SEQUENCES.length - 1;
+  var OEIS_SEQUENCES = OEIS_SEQUENCES_16;
+  var NUM_SEQUENCES = OEIS_SEQUENCES.length;
   var OEIS_NORMALISED = normalizeSequences(OEIS_SEQUENCES);
   var H8 = [
     [1, 1, 1, 1, 1, 1, 1, 1],
@@ -2419,7 +2432,6 @@
       const normStruct = stdlib.max(
         stdlib.db2gain(-35),
         stdlib.sub(1 + EPS, stdlib.div(structure[i % structure.length], structureMax))
-        // el.sub(  el.add( 1 , el.mul( el.noise() , -1.0e-4 )) , el.div(structure[i % structure.length], structureMax))  // more magic dust
       );
       return stdlib.min(stdlib.db2gain(-0.5), stdlib.mul(normStruct, baseAtt));
     };
@@ -2472,7 +2484,7 @@
         // darker
         stdlib.svf(
           fcLPF,
-          stdlib.div(1, stdlib.square(offset)),
+          stdlib.div(1, stdlib.mul(offset, offset)),
           stdlib.mul(stdlib.db2gain(0.5), input)
         ),
         // brighter
@@ -2495,7 +2507,7 @@
       return x;
     });
     const eight = [...four, ...four.map((x, i) => {
-      return stdlib.mul(stdlib.db2gain(-4.5), x);
+      return stdlib.mul(-1, x);
     })];
     const d1 = diffuse(
       {
@@ -2521,7 +2533,7 @@
       ...d1
     );
     let pos = (i, x) => {
-      const _x = stdlib.mul(x, Math.sin(i + structureIndex * 360));
+      const _x = stdlib.mul(x, Math.sin(toRadians(i * 45)));
       return _x;
     };
     const asLeftPan = (x) => {
@@ -2530,8 +2542,18 @@
     const asRightPan = (x) => {
       return stdlib.select(position, stdlib.mul(x, stdlib.db2gain(1.5)), x);
     };
-    let yl = toneDial(feedforward(0, asLeftPan(stdlib.add(pos(0, r0[0]), pos(2, r0[2]), pos(4, r0[4]), pos(6, r0[6])))), structureArray[3]);
-    let yr = toneDial(feedforward(1, asRightPan(stdlib.add(pos(1, r0[1]), pos(3, r0[3]), pos(5, r0[5]), pos(7, r0[7])))), structureArray[2]);
+    let yl = toneDial(feedforward(0, asLeftPan(stdlib.add(
+      pos(3, r0[0]),
+      pos(1, r0[2]),
+      pos(5, r0[4]),
+      pos(0, r0[6])
+    ))), structureArray[3]);
+    let yr = toneDial(feedforward(1, asRightPan(stdlib.add(
+      pos(4, r0[1]),
+      pos(6, r0[3]),
+      pos(2, r0[5]),
+      pos(7, r0[7])
+    ))), structureArray[3]);
     if (props.srvbBypass)
       return [feedforward(0, xl), feedforward(1, xr)];
     else
@@ -3215,7 +3237,7 @@
       { paramId: "mix", name: "Reflections Level", min: 0, max: 1, defaultValue: 1, isBoolean: false },
       { paramId: "position", name: "Position", min: 0, max: 1, defaultValue: 0.65, isBoolean: false },
       { paramId: "tone", name: "Tone", min: -1, max: 1, defaultValue: 0.5, isBoolean: false },
-      { paramId: "structure", name: "Structure", min: 0, max: 15, defaultValue: 0, step: 1, isBoolean: false },
+      { paramId: "structure", name: "Structure", min: 0, max: 1, defaultValue: 0, step: 0.0625, isBoolean: false },
       { paramId: "scapeLevel", name: "Scape Level", min: 0, max: 1, defaultValue: 0, isBoolean: false },
       { paramId: "scapeOffset", name: "Scape Offset", min: 0, max: 1, defaultValue: 0, isBoolean: false },
       { paramId: "scapeLength", name: "Scape IR", min: 0, max: 1, defaultValue: 0, isBoolean: false },
@@ -3300,7 +3322,6 @@
   // dsp/parseAndUpdateIRRefs.ts
   var refs;
   function parseAndUpdateIRRefs(_refs, currentVFSKeys2, scape) {
-    console.log("SCAPE::parseAndUpdateIRRefs", { currentVFSKeys: currentVFSKeys2, scape });
     if (currentVFSKeys2.length === 0 || !scape)
       return;
     refs = _refs;
@@ -3382,15 +3403,6 @@
     return result;
   }
 
-  // src/utils/utils.ts
-  function remapPosition(value) {
-    const clampedValue = clamp(value, EPS, 1);
-    return easeIn2(1 - (1 - 2 * Math.abs(clampedValue - 0.5)));
-  }
-  function roundedStructureValue(hostValue01) {
-    return Math.floor(hostValue01 * NUM_SEQUENCES);
-  }
-
   // dsp/handleGraphUpdate.ts
   var memoized;
   var renderCount = 0;
@@ -3455,7 +3467,7 @@
     refs2.vfsKeys = state.vfsKeys;
     const srvb = {
       vfsKeys: refs2.vfsKeys,
-      structure: Math.round((state.structure || 0) * NUM_SEQUENCES),
+      structure: roundTo(state.structure || 0, 1 / NUM_SEQUENCES) * NUM_SEQUENCES,
       size: state.size,
       diffuse: state.diffuse,
       tone: clamp(state.tone * 2 - 1, -0.99, 1),

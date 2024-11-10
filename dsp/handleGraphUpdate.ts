@@ -1,7 +1,7 @@
 import { el } from "@elemaudio/core";
 import { argMax, rotate } from "@thi.ng/arrays";
 import SRVB, { NUM_SEQUENCES, OEIS_SEQUENCES } from "./srvb-er";
-import { clamp, easeIn2 } from "@thi.ng/math";
+import { clamp, easeIn2, floorTo, roundTo } from "@thi.ng/math";
 import type { Ramp } from "@thi.ng/ramp";
 import { HERMITE_V, ramp, VEC3 } from "@thi.ng/ramp";
 import SCAPE from "./scape";
@@ -115,7 +115,7 @@ function parseNewState(_refs: RefMap, rawState: JSONString) {
 
     const srvb: SrvbSettings = {
         vfsKeys: refs.vfsKeys,
-        structure: Math.round((state.structure || 0) * NUM_SEQUENCES),
+        structure: roundTo(state.structure || 0, 1/NUM_SEQUENCES) * NUM_SEQUENCES,
         size: state.size,
         diffuse: state.diffuse,
         tone: clamp(state.tone * 2 - 1, -0.99, 1),

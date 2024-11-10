@@ -19,7 +19,7 @@ export function parseAndUpdateIRRefs(
   scape: ScapeSettings, 
   ) 
 {
-  console.log('SCAPE::parseAndUpdateIRRefs', {currentVFSKeys, scape});
+ // console.log('SCAPE::parseAndUpdateIRRefs', {currentVFSKeys, scape});
   if (currentVFSKeys.length === 0 || !scape) return;
   
   refs = _refs;
