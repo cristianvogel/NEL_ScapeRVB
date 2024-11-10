@@ -2379,7 +2379,7 @@
     [1, -1, -1, 1, -1, 1, 1, -1]
   ];
   function diffuse(props, ...ins) {
-    const { maxLengthSamp } = props;
+    const { maxLengthSamp, structureIndex } = props;
     const structure = props.structure;
     const len = ins.length;
     const diffusionStageLevel = () => {
@@ -2394,6 +2394,7 @@
       );
     });
     return H8.map(function(row, i) {
+      rotate(row, structureIndex);
       return stdlib.add(
         ...row.map(function(col, j) {
           return stdlib.mul(col, diffusionStageLevel(), delays[j]);
@@ -2404,7 +2405,7 @@
   function dampFDN(props, ...ins) {
     const len = ins.length / 2;
     const { size, decay, position } = props;
-    const { sampleRate } = props;
+    const { sampleRate, structureIndex } = props;
     const structure = props.structureArray;
     const structureMax = props.structureMax;
     const tapDelayLevel = (i) => {
@@ -2430,7 +2431,7 @@
     });
     let mix2 = H8.map(function(row, i) {
       return stdlib.add(
-        ...row.map(function(col, j) {
+        ...rotate(row, structureIndex).map(function(col, j) {
           return stdlib.mul(col, tapDelayLevel(i), delaysWithTapInserts[j]);
         })
       );
@@ -2449,10 +2450,11 @@
     });
   }
   function SRVB(props, inputs, ...structureArray) {
-    const { sampleRate, structureMax, tone } = props;
+    const { sampleRate, structureMax, tone, structure } = props;
     const level = stdlib.sm(props.mix);
     const position = stdlib.sm(props.position);
     const ms2samps2 = (ms) => sampleRate * (ms / 1e3);
+    const structureIndex = structure;
     const toneDial = (input, offset) => {
       const dial = stdlib.smooth(stdlib.tau2pole(0.5), stdlib.le(tone, 0));
       const fcLPF = stdlib.add(
@@ -2490,13 +2492,19 @@
       return x;
     })];
     const d1 = diffuse(
-      { structure: structureArray, structureMax, maxLengthSamp: ms2samps2(43) },
+      {
+        structure: structureArray,
+        structureMax,
+        structureIndex,
+        maxLengthSamp: ms2samps2(43)
+      },
       ...eight
     );
     let r0 = dampFDN(
       {
         name: `r0:`,
         sampleRate,
+        structureIndex,
         structureArray,
         structureMax,
         tone: props.tone,
@@ -3190,16 +3198,16 @@
   // src/public/manifest.json
   var manifest_default = {
     window: {
-      width: 1090,
-      height: 625
+      width: 800,
+      height: 440
     },
     "REVERSE-BUFFER-PREFIX": "REVERSED_",
     parameters: [
-      { paramId: "size", name: "Size", min: 0, max: 1, defaultValue: 0.15, isBoolean: false },
-      { paramId: "diffuse", name: "Reflections Diffuse", min: 0, max: 1, defaultValue: 0.25, isBoolean: false },
+      { paramId: "size", name: "Size", min: 0, max: 1, defaultValue: 0.25, isBoolean: false },
+      { paramId: "diffuse", name: "Reflections Diffuse", min: 0, max: 1, defaultValue: 0.35, isBoolean: false },
       { paramId: "mix", name: "Reflections Level", min: 0, max: 1, defaultValue: 1, isBoolean: false },
       { paramId: "position", name: "Position", min: 0, max: 1, defaultValue: 0.5, isBoolean: false },
-      { paramId: "tone", name: "Tone", min: -1, max: 1, defaultValue: 0, isBoolean: false },
+      { paramId: "tone", name: "Tone", min: -1, max: 1, defaultValue: 0.5, isBoolean: false },
       { paramId: "structure", name: "Structure", min: 0, max: 15, defaultValue: 0, step: 1, isBoolean: false },
       { paramId: "scapeLevel", name: "Scape Level", min: 0, max: 1, defaultValue: 0, isBoolean: false },
       { paramId: "scapeOffset", name: "Scape Offset", min: 0, max: 1, defaultValue: 0, isBoolean: false },
@@ -3396,7 +3404,7 @@
     max: defaultMax
   };
   function shouldRender(previous, current) {
-    return previous === null || current === null || refs.map.size === 0 || !srvbProps || !scapeProps || current.sampleRate !== previous?.sampleRate || Math.round(current.scapeBypass) !== previous?.scapeBypass || Math.round(current.srvbBypass) !== previous?.srvbBypass;
+    return previous === null || current === null || refs.map.size === 0 || !srvbProps || !scapeProps || current.sampleRate !== previous?.sampleRate || Math.round(current.scapeBypass) !== previous?.scapeBypass || Math.round(current.srvbBypass) !== previous?.srvbBypass || Math.round(current.structure) !== previous?.structure;
   }
   var memoized = null;
   var srvbProps = {};
