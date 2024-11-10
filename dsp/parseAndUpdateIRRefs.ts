@@ -1,19 +1,28 @@
-import { get } from "http";
+
 import { REVERSE_BUFFER_PREFIX } from "../src/stores/constants";
 import {
   ScapeSettings,
-  SharedSettings,
   DefaultIRSlotName as SlotName,
   IRMetaData as SlotData
 } from "../src/types";
-import { Slots, refs } from "./main";
-import { RefMap } from "./RefMap";
 
+import { RefMap } from "./RefMap";
+import { Slots } from "./convolverFactory";
+
+let refs: RefMap;
 // later, the Elementary refs system will be used to
 // parse and update the VFS paths of the default and user
 // loaded impulse responses made available to the processor
-export function parseAndUpdateIRRefs(currentVFSKeys: Array<string>, scape: ScapeSettings, shared: SharedSettings) {
-
+export function parseAndUpdateIRRefs(
+  _refs: RefMap,
+  currentVFSKeys: Array<string>, 
+  scape: ScapeSettings, 
+  ) 
+{
+ // console.log('SCAPE::parseAndUpdateIRRefs', {currentVFSKeys, scape});
+  if (currentVFSKeys.length === 0 || !scape) return;
+  
+  refs = _refs;
   let composedPath: string;
   const mode = scape.mode;
   let vfsPathWithChannel: string;
@@ -55,7 +64,7 @@ export function parseAndUpdateIRRefs(currentVFSKeys: Array<string>, scape: Scape
       const scale = getScale(slotName, chan);
       const offset = scape.offset;
       const process = Math.min(scape.level, scape.vectorData[slot.slotIndex]); // todo: take another look at this
-
+      console.log('SCAPE::parseAndUpdateIRRefs', {ref, path, scale, offset, process});
       // test for null or undefined
       if (ref === null || ref === undefined) return;
       if (path === null || path === undefined) return;
@@ -98,5 +107,6 @@ function resourceExistsForSlot(currentVFSKeys: Array<string>, slotName: SlotName
       result = true;
     }
   });
+  console.log('SCAPE::resourceExistsForSlot', result);
   return result;
 }

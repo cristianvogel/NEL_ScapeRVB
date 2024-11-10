@@ -8,7 +8,6 @@
 
 import { argMax } from "@thi.ng/arrays";
 import { SrvbSettings, StructureData } from "../src/types";
-
 import { RefMap } from "./RefMap";
 import { OEIS_SEQUENCES } from "./srvb-er";
 
@@ -25,26 +24,26 @@ export function normalizeSequences(sequences: number[][]): number[][] {
  * Keys and refNames should match what was set up by handleStructureChange()
  */
 export function updateStructureConstants(
-  refs: RefMap,
+  _refs: RefMap,
   srvbSettings: SrvbSettings
 ) {
-  if (!srvbSettings || !refs) return;
+  if (!srvbSettings || !_refs) return;
   OEIS_SEQUENCES[srvbSettings.structure].forEach((value, i) => {
-    if (value !== undefined) refs.update(`node:structureConst:${i}`, { value });
+    if (value !== undefined) _refs.update(`node:structureConst:${i}`, { value });
   });
 }
 /*
  * Generate from structral sequences to ElemNodes and Refs
  */
-export function buildStructures(refs: RefMap, currStructIndex = 0) {
+export function buildStructures(_refs: RefMap, currStructIndex = 0) {
   {
     let series = OEIS_SEQUENCES[currStructIndex];
     // console.log(`Using series ${series} `);
     // this should compute norm only on the set actually being used which is 8 elements long
     const seriesMax = series[argMax(series)];
     // convert the sequences to signals
-    const sequenceAsSignals = castSequencesToRefs(series, seriesMax, refs);
-    if (!sequenceAsSignals) return;
+    const sequenceAsSignals = castSequencesToRefs(series, seriesMax, _refs);
+    // create a structure data object
     const sd: StructureData = {
       nodes: sequenceAsSignals,
       max: seriesMax,

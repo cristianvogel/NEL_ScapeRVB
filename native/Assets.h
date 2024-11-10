@@ -18,7 +18,8 @@ public:
         defaultPeaksForView,
         currentPeakDataInView,
         defaultFilenameForView,
-        activeResourcePath
+        activeResourcePath,
+        LAST
     };
 
     // PLUG-IN STATE

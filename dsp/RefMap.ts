@@ -8,12 +8,19 @@ export class RefMap {
 
     private readonly _map: Map<string, any>;
     private _core: any;
+    private _vfsKeys: Array<string> = [];
 
     constructor(core: any) {
         this._map = new Map();
         this._core = core;
+        this._vfsKeys = [];
     }
-
+    get vfsKeys() {
+        return this._vfsKeys;
+    }
+    set vfsKeys(keys: Array<string>) {
+        this._vfsKeys = keys;
+    }
     get map() {
         return this._map;
     }

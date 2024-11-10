@@ -1,0 +1,18 @@
+All cables core code is licenced under the MIT licence
+
+Some ops may be using code from contributors or external libraries under different licences.
+
+Additional code from contributors and libraries in this export are licenced as follows:
+
+MIT:
+
+- DRACO Compression Loader by three.js (https://github.com/mrdoob/three.js/blob/master/examples/jsm/loaders/DRACOLoader.js)
+- glmatrix by toji (https://github.com/toji/gl-matrix)
+
+Public Domain:
+
+- Photoshop math GLSL shaders by Romain Dura (https://mouaif.wordpress.com/2009/01/05/photoshop-math-with-glsl-shaders/)
+
+ Apache-2.0 License :
+
+- draco - wasm wrapper (https://github.com/google/draco/tree/gltf_2.0_draco_extension)

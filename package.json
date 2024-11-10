@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
+    "init": "npm install --legacy-peer-deps",
     "clean": "rimraf dist",
     "predev": "npm run clean",
     "prebuild": "npm run clean",
