@@ -1,7 +1,9 @@
 import manifest from "../public/manifest.json";
 import { DefaultIRSlotName, IRMetaData } from "../types";
 
-export const BUILD_VERSION: string = "v0.8.8-beta";
+
+export const BUILD_VERSION: string = "v0.9.0-beta";
+
 export const CURRENT_UI_VERSION: string = `scape_space_${BUILD_VERSION}`;
 
 export const HOST_PARAMS = manifest.parameters;

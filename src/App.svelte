@@ -57,6 +57,12 @@
       CABLES.patch
         .getVar("ui_scapeReverse")
         .setValue(HostState.snapshot.scapeReverse);
+      CABLES.patch
+        .getVar("host_structure")
+        .setValue(HostState.snapshot.structure);
+        CABLES.patch
+        .getVar("ui_structureIndex")
+        .setValue(HostState.snapshot.structure);
       firstRun = false;
     }
   });

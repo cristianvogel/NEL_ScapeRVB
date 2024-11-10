@@ -85,6 +85,27 @@ function controlSource_scapeReverse( initial ) {
   }
 }
 
+export const GestureSource_STRUCTURE = controlSource_STRUCTURE('host');
+function controlSource_STRUCTURE( initial ) {
+  let current = $state(initial);
+  let prev = initial ;
+  return { 
+    get current() {
+      return current;
+    } ,
+    get prev() {
+      return prev;
+    },
+    update(newValue) {
+      prev = $state.snapshot(current);
+      current = newValue;
+    } ,
+    snapshot() {
+      return $state.snapshot(current);
+    }
+  }
+}
+
 export const GestureSource_IRMode = controlSource_IRMode('host');
 function controlSource_IRMode( initial ) {
   let current = $state(initial);
