@@ -28,7 +28,7 @@
 * __ext_WS_JSONPAYLOAD__ ```Object```
 * __host_scapeBypass__ ```Number```
 * __host_srvbBypass__ ```Number```
-* __host_structure__ ```Number``` (default Value: `6`)
+* __host_structure__ ```Number``` (default Value: `5.7`)
 * __NEL_SRVB_Metals__ ```Object```
 * __ringG__ ```Number```
 * __ringR__ ```Number```
