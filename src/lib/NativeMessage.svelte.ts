@@ -44,7 +44,14 @@ function processHostState(state: any) {
   const scapeBypass = parsedEntries.scapeBypass > 0.5 ? 1 : 0;
   const scapeReverse = parsedEntries.scapeReverse > 0.5 ? 1 : 0;
   const scapeMode = parsedEntries.scapeMode > 0.5 ? 1 : 0;
+  const structureIndex = parsedEntries.structure * 16 || 0;
 
+  function updateViewStructureIndex(param: string, value: number) {
+      let structureIndexVarCables = CABLES.patch.getVar("host_" + param);  // The UI patch variable needs to be named host_paramName
+      if (structureIndexVarCables.getValue() !== value) {
+        structureIndexVarCables.setValue( value );
+      }
+  }
   function updateViewToggles(param: string, boolValue: 1 | 0) {
       if (!gestureSource) return;
       
@@ -77,6 +84,7 @@ function processHostState(state: any) {
   updateViewToggles("scapeBypass", scapeBypass);
   updateViewToggles("scapeReverse", scapeReverse);
   updateViewToggles("scapeMode", scapeMode);
+  updateViewStructureIndex("structure", structureIndex);
 }
 
 export const MessageToHost = {
@@ -84,7 +92,8 @@ export const MessageToHost = {
     if (typeof globalThis.__postNativeMessage__ === "function") {
       globalThis.__postNativeMessage__("setParameterValue", {
         paramId,
-        value: value > 0.5 ? 1.0 : 0.0,
+      //  value: value > 0.5 ? 1.0 : 0.0,
+      value
       });
     }
   },

@@ -7,9 +7,10 @@ var __webpack_exports__ = {};
 
 class Logger
 {
-    constructor(initiator)
+    constructor(initiator, options)
     {
         this.initiator = initiator;
+        this._options = options;
     }
 
     stack(t)
@@ -37,8 +38,18 @@ class Logger
 
     error()
     {
-        if ((CABLES.UI && CABLES.UI.logFilter.filterLog({ "initiator": this.initiator, "level": 2 }, ...arguments)) || !CABLES.logSilent)
+        if ((CABLES.UI && CABLES.UI.logFilter.filterLog({ "initiator": this.initiator, "level": 2 }, ...arguments)) || !CABLES.UI)
+        {
             console.error("[" + this.initiator + "]", ...arguments);
+        }
+
+        if (!CABLES.UI && this._options && this._options.onError)
+        {
+            this._options.onError(this.initiator, ...arguments);
+            // console.log("emitevent onerror...");
+            // CABLES.patch.emitEvent("onError", this.initiator, ...arguments);
+            // CABLES.logErrorConsole("[" + this.initiator + "]", ...arguments);
+        }
     }
 
     errorGui()
@@ -760,6 +771,58 @@ window.performance = window.performance || {
         return Date.now() - this.offset;
     },
 };
+
+
+const logErrorConsole = function (initiator)
+{
+    CABLES.errorConsole = CABLES.errorConsole || { "log": [] };
+    CABLES.errorConsole.log.push({ "initiator": initiator, "arguments": arguments });
+
+    if (!CABLES.errorConsole.ele)
+    {
+        const ele = document.createElement("div");
+        ele.id = "cablesErrorConsole";
+        ele.style.width = "90%";
+        ele.style.height = "300px";
+        ele.style.zIndex = "9999999";
+        ele.style.display = "inline-block";
+        ele.style.position = "absolute";
+        ele.style.padding = "10px";
+        ele.style.fontFamily = "monospace";
+        ele.style.color = "red";
+        ele.style.backgroundColor = "#200";
+
+        CABLES.errorConsole.ele = ele;
+        document.body.appendChild(ele);
+    }
+
+    let logHtml = "ERROR<br/>for more info, open your browsers dev tools console (Ctrl+Shift+I or Command+Alt+I)<br/>";
+
+    for (let l = 0; l < CABLES.errorConsole.log.length; l++)
+    {
+        logHtml += CABLES.errorConsole.log[l].initiator + " ";
+        for (let i = 1; i < CABLES.errorConsole.log[l].arguments.length; i++)
+        {
+            if (i > 2)logHtml += ", ";
+            let arg = CABLES.errorConsole.log[l].arguments[i];
+            if (arg.constructor.name.indexOf("Error") > -1 || arg.constructor.name.indexOf("error") > -1)
+            {
+                let txt = "Uncaught ErrorEvent ";
+                if (arg.message)txt += " message: " + arg.message;
+                logHtml += txt;
+            }
+            else if (typeof arg == "string")
+                logHtml += arg;
+            else if (typeof arg == "number")
+                logHtml += String(arg) + " ";
+        }
+        logHtml += "<br/>";
+    }
+
+
+    CABLES.errorConsole.ele.innerHTML = logHtml;
+};
+
 
 
 
@@ -1880,7 +1943,7 @@ Geometry.prototype.getInfo = function ()
 
 // -----------------
 
-// TODO : move this into "old" circle op
+// TODO : rewritwe circle op
 Geometry.buildFromFaces = function (arr, name, optimize)
 {
     const vertices = [];
@@ -1999,7 +2062,7 @@ const EventTarget = function ()
             const event = this._listeners[which];
             if (!event)
             {
-                this._log.log("could not find event...");
+                this._log.log("could not find event...", which, this);
                 return;
             }
 
@@ -4912,166 +4975,7 @@ const cgl_constants_CONSTANTS = {
 
 
 
-;// CONCATENATED MODULE: ./src/core/cgl/cgl_mesh_feedback.js
-// view-source:http://toji.github.io/webgl2-particles-2/
-
-function extendMeshWithFeedback(Mesh)
-{
-    Mesh.prototype.hasFeedbacks = function ()
-    {
-        return this._feedBacks.length > 0;
-    };
-
-    Mesh.prototype.removeFeedbacks = function (shader)
-    {
-        if (!this._feedbacks) return;
-        this._feedbacks.length = 0;
-        this._feedBacksChanged = true;
-    };
-
-    Mesh.prototype.setAttributeFeedback = function () {};
-
-    Mesh.prototype.setFeedback = function (attrib, nameOut, initialArr)
-    {
-        let fb = { nameOut, };
-        let found = false;
-        this.unBindFeedbacks();
-
-        for (let i = 0; i < this._feedBacks.length; i++)
-        {
-            if (this._feedBacks[i].nameOut == nameOut)
-            {
-                fb = this._feedBacks[i];
-
-                found = true;
-            }
-        }
-
-        if (!found) this._feedBacksChanged = true;
-
-        fb.initialArr = initialArr;
-        fb.attrib = attrib;
-
-        // console.log("setfeedback");
-
-        if (fb.outBuffer) this._cgl.gl.deleteBuffer(fb.outBuffer);
-        // if(fb.attrib.buffer)this._cgl.gl.deleteBuffer(fb.attrib.buffer);
-        fb.outBuffer = this._cgl.gl.createBuffer();
-        this._cgl.gl.bindBuffer(this._cgl.gl.ARRAY_BUFFER, fb.outBuffer);
-        this._cgl.gl.bufferData(this._cgl.gl.ARRAY_BUFFER, fb.initialArr, this._cgl.gl.STATIC_DRAW);
-
-        this._cgl.gl.bindBuffer(this._cgl.gl.ARRAY_BUFFER, fb.attrib.buffer);
-        this._cgl.gl.bufferData(this._cgl.gl.ARRAY_BUFFER, fb.initialArr, this._cgl.gl.STATIC_DRAW);
-
-        if (!found) this._feedBacks.push(fb);
-
-        // console.log('initialArr',initialArr.length/3);
-        // console.log('vertices',fb.attrib.numItems);
-        // console.log('vertices',this._bufVertexAttrib.numItems);
-
-        return fb;
-    };
-
-    Mesh.prototype.bindFeedback = function (attrib)
-    {
-        if (!this._feedBacks || this._feedBacks.length === 0) return;
-        if (this._transformFeedBackLoc == -1) this._transformFeedBackLoc = this._cgl.gl.createTransformFeedback();
-
-        this._cgl.gl.bindTransformFeedback(this._cgl.gl.TRANSFORM_FEEDBACK, this._transformFeedBackLoc);
-
-        let found = false;
-
-        for (let i = 0; i < this._feedBacks.length; i++)
-        {
-            const fb = this._feedBacks[i];
-
-            if (fb.attrib == attrib)
-            {
-                found = true;
-                // this._cgl.gl.bindBuffer(this._cgl.gl.ARRAY_BUFFER, fb.attrib.buffer);
-                //
-                // this._cgl.gl.vertexAttribPointer(
-                //     fb.attrib.loc,
-                //     fb.attrib.itemSize,
-                //     fb.attrib.type,
-                //     false,
-                //     fb.attrib.itemSize*4, 0);
-
-                this._cgl.gl.bindBufferBase(this._cgl.gl.TRANSFORM_FEEDBACK_BUFFER, i, fb.outBuffer);
-            }
-        }
-
-        if (!found)
-        {
-            // console.log("ARTTRIB NOT FOUND",attrib.name);
-        }
-    };
-
-    Mesh.prototype.drawFeedbacks = function (shader, prim)
-    {
-        let i = 0;
-
-        if (this._feedBacksChanged)
-        {
-            const names = [];
-            this._cgl.gl.bindTransformFeedback(this._cgl.gl.TRANSFORM_FEEDBACK, this._transformFeedBackLoc);
-
-            for (i = 0; i < this._feedBacks.length; i++) names.push(this._feedBacks[i].nameOut);
-            shader.setFeedbackNames(names);
-
-            console.log("feedbacknames", names);
-
-            shader.compile();
-            this._feedBacksChanged = false;
-            this._cgl.gl.bindTransformFeedback(this._cgl.gl.TRANSFORM_FEEDBACK, null);
-            console.log("changed finished");
-            return;
-        }
-
-        //
-        // for( i=0;i<this._feedBacks.length;i++)
-        // {
-        //     var fb=this._feedBacks[i];
-        //
-        //     this._cgl.gl.bindBufferBase(this._cgl.gl.TRANSFORM_FEEDBACK_BUFFER, i, fb.outBuffer);
-        // }
-
-        // draw
-        this._cgl.gl.beginTransformFeedback(this.glPrimitive);
-        this._cgl.gl.drawArrays(prim, 0, this._feedBacks[0].attrib.numItems);
-
-        // unbind
-        this._cgl.gl.endTransformFeedback();
-
-        this.unBindFeedbacks();
-
-        this.feedBacksSwapBuffers();
-    };
-
-    Mesh.prototype.unBindFeedbacks = function ()
-    {
-        for (let i = 0; i < this._feedBacks.length; i++)
-        {
-            // this._cgl.gl.disableVertexAttribArray(this._feedBacks[i].attrib.loc);
-            this._cgl.gl.bindBufferBase(this._cgl.gl.TRANSFORM_FEEDBACK_BUFFER, i, null);
-        }
-
-        this._cgl.gl.bindTransformFeedback(this._cgl.gl.TRANSFORM_FEEDBACK, null);
-    };
-
-    Mesh.prototype.feedBacksSwapBuffers = function ()
-    {
-        for (let i = 0; i < this._feedBacks.length; i++)
-        {
-            const t = this._feedBacks[i].attrib.buffer;
-            this._feedBacks[i].attrib.buffer = this._feedBacks[i].outBuffer;
-            this._feedBacks[i].outBuffer = t;
-        }
-    };
-}
-
 ;// CONCATENATED MODULE: ./src/core/cgl/cgl_mesh.js
-
 
 
 
@@ -5651,7 +5555,7 @@ Mesh.prototype._bind = function (shader)
                         this._cgl.gl.vertexAttribPointer(pointer.loc, attribute.itemSize, attribute.type, false, pointer.stride, pointer.offset);
                     }
                 }
-                this.bindFeedback(attribute);
+                if (this.bindFeedback) this.bindFeedback(attribute);
             }
         }
     }
@@ -5852,10 +5756,7 @@ Mesh.prototype.render = function (shader)
     }
 
 
-    if (this.hasFeedbacks())
-    {
-        this.drawFeedbacks(shader, prim);
-    }
+    if (this.hasFeedbacks && this.hasFeedbacks()) this.drawFeedbacks(shader, prim);
     else if (!this._bufVerticesIndizes || this._bufVerticesIndizes.numItems === 0)
     {
         // for (let i = 0; i < this._attributes.length; i++)
@@ -5952,7 +5853,7 @@ Mesh.prototype.dispose = function ()
     this._disposeAttributes();
 };
 
-extendMeshWithFeedback(Mesh);
+
 
 
 
@@ -5963,16 +5864,19 @@ extendMeshWithFeedback(Mesh);
 
 const MESHES = {};
 
-MESHES.getSimpleRect = function (cgl, name)
+MESHES.getSimpleRect = function (cgl, name, size = 1.0)
 {
     const geom = new Geometry(name);
 
-    geom.vertices = [1.0, 1.0, 0.0, -1.0, 1.0, 0.0, 1.0, -1.0, 0.0, -1.0, -1.0, 0.0];
+
+
+    geom.vertices = [1.0 * size, 1.0 * size, 0.0, -1.0 * size, 1.0 * size, 0.0, 1.0 * size, -1.0 * size, 0.0, -1.0 * size, -1.0 * size, 0.0];
     geom.texCoords = [1.0, 1.0, 0.0, 1.0, 1.0, 0.0, 0.0, 0.0];
     geom.verticesIndices = [0, 1, 2, 2, 1, 3];
     geom.vertexNormals = [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0];
 
-    return new Mesh(cgl, geom);
+    return cgl.createMesh(geom);
+    // return new Mesh(cgl, geom);
 };
 
 

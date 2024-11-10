@@ -24,6 +24,8 @@ Ops.Trigger=Ops.Trigger || {};
 Ops.Website=Ops.Website || {};
 Ops.Gl.Phong=Ops.Gl.Phong || {};
 Ops.Graphics=Ops.Graphics || {};
+Ops.Html.CSS=Ops.Html.CSS || {};
+Ops.Extension=Ops.Extension || {};
 Ops.Gl.Matrix=Ops.Gl.Matrix || {};
 Ops.Gl.Meshes=Ops.Gl.Meshes || {};
 Ops.Gl.Shader=Ops.Gl.Shader || {};
@@ -35,11 +37,13 @@ Ops.Devices.Mouse=Ops.Devices.Mouse || {};
 Ops.Net.WebSocket=Ops.Net.WebSocket || {};
 Ops.Patch.P4Zknbo=Ops.Patch.P4Zknbo || {};
 Ops.Patch.PBktIwq=Ops.Patch.PBktIwq || {};
+Ops.Patch.Pg3hCDt=Ops.Patch.Pg3hCDt || {};
 Ops.Patch.PxdLHGq=Ops.Patch.PxdLHGq || {};
 Ops.Gl.ImageCompose=Ops.Gl.ImageCompose || {};
 Ops.Array.PointArray=Ops.Array.PointArray || {};
 Ops.Gl.ShaderEffects=Ops.Gl.ShaderEffects || {};
 Ops.Graphics.Geometry=Ops.Graphics.Geometry || {};
+Ops.Extension.Deprecated=Ops.Extension.Deprecated || {};
 
 
 
@@ -198,138 +202,6 @@ CABLES.OPS["4da89f73-5632-419e-9ff2-aca4b0372d4d"]={f:Ops.Patch.P4Zknbo.SubPatch
 
 // **************************************************************
 // 
-// Ops.Patch.P4Zknbo.UI_Structure
-// 
-// **************************************************************
-
-Ops.Patch.P4Zknbo.UI_Structure = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"op.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"7pv6px8kl\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Named Trigger\",\"value\":\"exeNoCamera\"}],\"portsOut\":[{\"name\":\"Triggered\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"Triggered\",\"objIn\":\"vtx3kdots\",\"objOut\":\"7pv6px8kl\"},{\"portIn\":\"render\",\"portOut\":\"Triggered\",\"objIn\":\"r4pg00ot6\",\"objOut\":\"7pv6px8kl\"}]}],\"objName\":\"Ops.Trigger.TriggerReceive\"},{\"id\":\"qwzkex2mf\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posX\",\"value\":0.79},{\"name\":\"posY\",\"value\":0.9},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":1},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"9iz4vsufy\",\"objOut\":\"qwzkex2mf\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"9iz4vsufy\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Text\",\"value\":\"* structure\"},{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.06},{\"name\":\"Letter Spacing\",\"value\":-0.04},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":0},{\"name\":\"Align\",\"value\":\"Left\"},{\"name\":\"Vertical Align index\",\"value\":1},{\"name\":\"Vertical Align\",\"value\":\"Top\"},{\"name\":\"r\",\"value\":0.9},{\"name\":\"g\",\"value\":0.9},{\"name\":\"b\",\"value\":0.9},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.17},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.5},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":1},{\"name\":\"Border g\",\"value\":1},{\"name\":\"Border b\",\"value\":1},{\"name\":\"Shadow\",\"value\":1},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"yozybluvg\",\"objOut\":\"9iz4vsufy\"}]},{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.29631796875000005},{\"name\":\"Height\",\"value\":0.09154265873015872},{\"name\":\"Start Y\",\"value\":0.0390077380952381},{\"name\":\"Num Chars\",\"value\":11}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"xmzih69c3\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Letter Spacing\",\"value\":-0.05},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":0},{\"name\":\"Align\",\"value\":\"Left\"},{\"name\":\"Vertical Align index\",\"value\":1},{\"name\":\"Vertical Align\",\"value\":\"Top\"},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.25},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.5},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":1},{\"name\":\"Border g\",\"value\":1},{\"name\":\"Border b\",\"value\":1},{\"name\":\"Shadow\",\"value\":1},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.25098750000000003},{\"name\":\"Height\",\"value\":0.07645148809523811},{\"name\":\"Start Y\",\"value\":0.044420982142857154},{\"name\":\"Num Chars\",\"value\":6}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"yozybluvg\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0.36},{\"name\":\"y\",\"value\":0},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"xmzih69c3\",\"objOut\":\"yozybluvg\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"tar3btg8u\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1.25},{\"name\":\"y\",\"value\":0.89},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"ddbwtw92m\",\"objOut\":\"tar3btg8u\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"9kmdl5kt6\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Duration\",\"value\":0.5},{\"name\":\"Invert\",\"value\":0}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Random Seed \",\"portOut\":\"Value\",\"objIn\":\"9yj1qxwv2\",\"objOut\":\"9kmdl5kt6\"},{\"portIn\":\"number1\",\"portOut\":\"Value\",\"objIn\":\"5j4rgs1dl\",\"objOut\":\"9kmdl5kt6\"}]}],\"objName\":\"Ops.Anim.Bang\"},{\"id\":\"lsg3s6g7p\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Text\",\"portOut\":\"result\",\"objIn\":\"xmzih69c3\",\"objOut\":\"lsg3s6g7p\"}]}],\"objName\":\"Ops.Array.ArrayGetString\"},{\"id\":\"rkgwiogce\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"text\",\"value\":\"A035506\\nA007604\\nA227413\\nA000040\\nA052330\\nA000607\\nA01401\\nA064356\\nA096441\\nA000009\\nA199535\\nA000010\\nA316667\\nA111133\\nA000124\\nA005132\"},{\"name\":\"separator\",\"value\":\" \"},{\"name\":\"Numbers\",\"value\":0},{\"name\":\"Trim\",\"value\":1},{\"name\":\"Split Lines\",\"value\":1}],\"portsOut\":[{\"name\":\"array\",\"links\":[{\"portIn\":\"array\",\"portOut\":\"array\",\"objIn\":\"lsg3s6g7p\",\"objOut\":\"rkgwiogce\"}]},{\"name\":\"length\",\"value\":16}],\"objName\":\"Ops.Array.StringToArray_v2\"},{\"id\":\"r4pg00ot6\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0.79},{\"name\":\"y\",\"value\":0.83},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"h91q6l7xz\",\"objOut\":\"r4pg00ot6\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"5jfi2ldid\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.125},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"value\",\"objIn\":\"i7bypy19z\",\"objOut\":\"5jfi2ldid\"},{\"portIn\":\"Percentage\",\"portOut\":\"value\",\"objIn\":\"774o0ka8f\",\"objOut\":\"5jfi2ldid\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"h91q6l7xz\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":4.91},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":1},{\"name\":\"num rows\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"9yj1qxwv2\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Num Values\",\"value\":24},{\"name\":\"Mode index\",\"value\":0},{\"name\":\"Mode\",\"value\":\"A\"},{\"name\":\"Integer\",\"value\":0},{\"name\":\"Last == First\",\"value\":0},{\"name\":\"Min A\",\"value\":0},{\"name\":\"Min B\",\"value\":-1},{\"name\":\"Max B\",\"value\":1},{\"name\":\"Min C\",\"value\":-1},{\"name\":\"Max C\",\"value\":1},{\"name\":\"Min D\",\"value\":-1},{\"name\":\"Max D\",\"value\":1}],\"portsOut\":[{\"name\":\"Array Out\",\"links\":[{\"portIn\":\"Rotations\",\"portOut\":\"Array Out\",\"objIn\":\"xmzih69c3\",\"objOut\":\"9yj1qxwv2\"}]},{\"name\":\"Chunks Amount\",\"value\":24},{\"name\":\"Array length\",\"value\":24}],\"objName\":\"Ops.Array.RandomNumbersArray_v4\"},{\"id\":\"5j4rgs1dl\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.0001}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"result\",\"objIn\":\"20lmpxljk\",\"objOut\":\"5j4rgs1dl\"}]}],\"objName\":\"Ops.Math.Compare.GreaterThan\"},{\"id\":\"20lmpxljk\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":360}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Max A\",\"portOut\":\"result\",\"objIn\":\"9yj1qxwv2\",\"objOut\":\"20lmpxljk\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"kg4hq93gw\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"structure\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"wwd3jj5yw\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0.003},{\"name\":\"Value 2\",\"value\":0.01}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"height\",\"portOut\":\"Result\",\"objIn\":\"h91q6l7xz\",\"objOut\":\"wwd3jj5yw\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"w5q635vjo\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0.9},{\"name\":\"Value 2\",\"value\":1}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"Result\",\"objIn\":\"xmzih69c3\",\"objOut\":\"w5q635vjo\"},{\"portIn\":\"g\",\"portOut\":\"Result\",\"objIn\":\"xmzih69c3\",\"objOut\":\"w5q635vjo\"},{\"portIn\":\"b\",\"portOut\":\"Result\",\"objIn\":\"xmzih69c3\",\"objOut\":\"w5q635vjo\"},{\"portIn\":\"r\",\"portOut\":\"Result\",\"objIn\":\"xmzih69c3\",\"objOut\":\"w5q635vjo\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"gm34fgofc\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0.09},{\"name\":\"Value 2\",\"value\":0.11}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Scale\",\"portOut\":\"Result\",\"objIn\":\"xmzih69c3\",\"objOut\":\"gm34fgofc\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"i7bypy19z\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Percentage\",\"portOut\":\"result\",\"objIn\":\"w5q635vjo\",\"objOut\":\"i7bypy19z\"},{\"portIn\":\"Percentage\",\"portOut\":\"result\",\"objIn\":\"gm34fgofc\",\"objOut\":\"i7bypy19z\"},{\"portIn\":\"Percentage\",\"portOut\":\"result\",\"objIn\":\"wwd3jj5yw\",\"objOut\":\"i7bypy19z\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"qhn9qwlq3\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_srvbBypass\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"Value\",\"objIn\":\"ghjb3kmav\",\"objOut\":\"qhn9qwlq3\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"ghjb3kmav\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"vtx3kdots\",\"objOut\":\"ghjb3kmav\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"1dn1txzpk\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"bypass\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"vtx3kdots\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"qwzkex2mf\",\"objOut\":\"vtx3kdots\"},{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"tar3btg8u\",\"objOut\":\"vtx3kdots\"}]}],\"objName\":\"Ops.Trigger.GateTrigger\"},{\"id\":\"774o0ka8f\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0.6},{\"name\":\"Value 2\",\"value\":1}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"Result\",\"objIn\":\"9iz4vsufy\",\"objOut\":\"774o0ka8f\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"9r1zgvvos\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"value\",\"value\":\"structure\"}],\"portsOut\":[{\"name\":\"String\",\"links\":[{\"portIn\":\"String In\",\"portOut\":\"String\",\"objIn\":\"69gs9z12s\",\"objOut\":\"9r1zgvvos\"},{\"portIn\":\"ID\",\"portOut\":\"String\",\"objIn\":\"ddbwtw92m\",\"objOut\":\"9r1zgvvos\"}]}],\"objName\":\"Ops.String.String_v2\"},{\"id\":\"42q45utdp\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Index\",\"portOut\":\"result\",\"objIn\":\"jpyad2gwo\",\"objOut\":\"42q45utdp\"},{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"jsk659b4b\",\"objOut\":\"42q45utdp\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"df01he2vg\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_structure\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"r2jb4fhd1\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int structure\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"69gs9z12s\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"structure\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"vwb9u8uqi\",\"objOut\":\"69gs9z12s\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"xtu118zv4\",\"objOut\":\"69gs9z12s\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"vwb9u8uqi\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"d2jhvop05\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"1mcqhoi4f\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_injectedState\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"4w5ob6pse\",\"objOut\":\"1mcqhoi4f\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"xtu118zv4\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"A\",\"portOut\":\"Result\",\"objIn\":\"skg9dd1m0\",\"objOut\":\"xtu118zv4\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"jpyad2gwo\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"value\":7},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"4w5ob6pse\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":1}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"xtu118zv4\",\"objOut\":\"4w5ob6pse\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"jsk659b4b\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonSlider\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"5je3z73yo\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"wqn6vopce\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"ddbwtw92m\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":0.56},{\"name\":\"Height\",\"value\":0.12},{\"name\":\"Class\",\"value\":\"\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":0},{\"name\":\"Pivot y\",\"value\":\"center\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Render Rectangle\",\"value\":0},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":2},{\"name\":\"Cursor\",\"value\":\"pointer\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"update\",\"portOut\":\"Trigger out\",\"objIn\":\"9kmdl5kt6\",\"objOut\":\"ddbwtw92m\"},{\"portIn\":\"exe\",\"portOut\":\"Trigger out\",\"objIn\":\"5jfi2ldid\",\"objOut\":\"ddbwtw92m\"},{\"portIn\":\"Exe\",\"portOut\":\"Trigger out\",\"objIn\":\"j8nugz0wm\",\"objOut\":\"ddbwtw92m\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"5jfi2ldid\",\"objOut\":\"ddbwtw92m\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"3yzcrcevr\",\"objOut\":\"ddbwtw92m\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"o0j8hf328\",\"objOut\":\"ddbwtw92m\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"42q45utdp\",\"objOut\":\"ddbwtw92m\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"69gs9z12s\",\"objOut\":\"ddbwtw92m\"}]},{\"name\":\"Pointer X\",\"value\":0.6598792209143872},{\"name\":\"Pointer Y\",\"value\":0.05248155729882975},{\"name\":\"Top\",\"value\":46.6350531578064},{\"name\":\"Left\",\"value\":816.9936943054199},{\"name\":\"Right\",\"value\":974.5982933044434},{\"name\":\"Bottom\",\"value\":80.40748286247253},{\"name\":\"Left Click\",\"links\":[{\"portIn\":\"Bang\",\"portOut\":\"Left Click\",\"objIn\":\"9kmdl5kt6\",\"objOut\":\"ddbwtw92m\"},{\"portIn\":\"Increment\",\"portOut\":\"Left Click\",\"objIn\":\"6jujy6h6l\",\"objOut\":\"ddbwtw92m\"}]}],\"objName\":\"Ops.Patch.P4Zknbo.InteractiveRectangle_v2\"},{\"id\":\"1grps8bf8\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"3yzcrcevr\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"1grps8bf8\",\"objOut\":\"3yzcrcevr\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"6jujy6h6l\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{},\"portsIn\":[{\"name\":\"Limit\",\"value\":0},{\"name\":\"Length\",\"value\":16},{\"name\":\"Mode index\",\"value\":0},{\"name\":\"Mode\",\"value\":\"Rewind\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"Value\",\"objIn\":\"uea6m2qxe\",\"objOut\":\"6jujy6h6l\"}]}],\"objName\":\"Ops.Math.Incrementor\"},{\"id\":\"skg9dd1m0\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"B\",\"value\":1},{\"name\":\"C\",\"value\":2},{\"name\":\"D\",\"value\":3},{\"name\":\"Expression\",\"value\":\"Math.floor((Math.round(a * 10000) / 10000) * 16)\"}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"Result\",\"objIn\":\"j8nugz0wm\",\"objOut\":\"skg9dd1m0\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"vxom0rbvo\",\"objOut\":\"skg9dd1m0\"},{\"portIn\":\"Default\",\"portOut\":\"Result\",\"objIn\":\"6jujy6h6l\",\"objOut\":\"skg9dd1m0\"}]},{\"name\":\"Expression Valid\",\"value\":true}],\"objName\":\"Ops.Math.MathExpression\"},{\"id\":\"uea6m2qxe\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":16},{\"name\":\"pingpong\",\"value\":0}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Numbers_1\",\"portOut\":\"result\",\"objIn\":\"jpyad2gwo\",\"objOut\":\"uea6m2qxe\"},{\"portIn\":\"index\",\"portOut\":\"result\",\"objIn\":\"lsg3s6g7p\",\"objOut\":\"uea6m2qxe\"},{\"portIn\":\"Number\",\"portOut\":\"result\",\"objIn\":\"txbhxl3wi\",\"objOut\":\"uea6m2qxe\"},{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"df01he2vg\",\"objOut\":\"uea6m2qxe\"},{\"portIn\":\"A\",\"portOut\":\"result\",\"objIn\":\"lk9lwm27k\",\"objOut\":\"uea6m2qxe\"}]}],\"objName\":\"Ops.Math.Modulo\"},{\"id\":\"o0j8hf328\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"4w5ob6pse\",\"objOut\":\"o0j8hf328\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"txbhxl3wi\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{},\"objName\":\"Ops.Ui.VizNumberBar\"},{\"id\":\"j8nugz0wm\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{},\"portsOut\":[{\"name\":\"then\",\"links\":[{\"portIn\":\"Trigger\",\"portOut\":\"then\",\"objIn\":\"g4qyrizaq\",\"objOut\":\"j8nugz0wm\"}]}],\"objName\":\"Ops.Boolean.IfFalseThen\"},{\"id\":\"g4qyrizaq\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{},\"portsIn\":[{\"name\":\"Duration\",\"value\":0.05},{\"name\":\"Value True\",\"value\":1},{\"name\":\"Value False\",\"value\":0}],\"portsOut\":[{\"name\":\"Activated\",\"links\":[{\"portIn\":\"Reset\",\"portOut\":\"Activated\",\"objIn\":\"6jujy6h6l\",\"objOut\":\"g4qyrizaq\"}]},{\"name\":\"Result\",\"value\":0}],\"objName\":\"Ops.Boolean.MonoFlop\"},{\"id\":\"vxom0rbvo\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":1}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Numbers_0\",\"portOut\":\"result\",\"objIn\":\"jpyad2gwo\",\"objOut\":\"vxom0rbvo\"}]}],\"objName\":\"Ops.Math.Sum\"},{\"id\":\"lk9lwm27k\",\"uiAttribs\":{\"subPatch\":\"owne979rx\"},\"storage\":{},\"portsIn\":[{\"name\":\"B\",\"value\":1},{\"name\":\"C\",\"value\":2},{\"name\":\"D\",\"value\":3},{\"name\":\"Expression\",\"value\":\"( a  / 15 )\"}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"d2jhvop05\",\"objOut\":\"lk9lwm27k\"}]},{\"name\":\"Expression Valid\",\"value\":true}],\"objName\":\"Ops.Math.MathExpression\"}]}",};
-op.initInnerPorts=function(addedOps)
-{
-  for(let i=0;i<addedOps.length;i++)
-  {
-    if(addedOps[i].innerInput)
-    {
-    }
-if(addedOps[i].innerOutput)
-{
-}
-}
-};
-
-const patchId = "bp2sub_" + op.id;
-
-new CABLES.SubPatchOp(op, { "subId": patchId });
-
-initializeSubpatch();
-
-function initializeSubpatch()
-{
-    const p = JSON.parse(attachments.subpatch_json);
-
-    CABLES.Patch.replaceOpIds(p,
-        {
-            "parentSubPatchId": patchId,
-            "prefixHash": patchId,
-            "oldIdAsRef": true,
-            "doNotUnlinkLostLinks": true
-        });
-
-    for (let i = 0; i < p.ops.length; i++)
-    {
-        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
-    }
-
-    op.loadDependencies(p, () =>
-    {
-        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
-        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
-        op.patch.emitEvent("subpatchExpose", patchId);
-        op.setStorage({ "blueprintVer": 2 });
-        op.patch.emitEvent("subpatchExpose", patchId);
-    });
-}
-
-
-};
-
-Ops.Patch.P4Zknbo.UI_Structure.prototype = new CABLES.Op();
-CABLES.OPS["334f382a-e0ce-42a7-806a-a2a6ca8fa997"]={f:Ops.Patch.P4Zknbo.UI_Structure,objName:"Ops.Patch.P4Zknbo.UI_Structure"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Patch.P4Zknbo.UI_Position
-// 
-// **************************************************************
-
-Ops.Patch.P4Zknbo.UI_Position = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"op.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"jbik4wp5s\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Named Trigger\",\"value\":\"exeNoCamera\"}],\"portsOut\":[{\"name\":\"Triggered\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"Triggered\",\"objIn\":\"fgvzdrim4\",\"objOut\":\"jbik4wp5s\"},{\"portIn\":\"Execute\",\"portOut\":\"Triggered\",\"objIn\":\"7gw7i08xf\",\"objOut\":\"jbik4wp5s\"}]}],\"objName\":\"Ops.Trigger.TriggerReceive\"},{\"id\":\"f7xudijnv\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"value\",\"value\":\"position\"}],\"portsOut\":[{\"name\":\"String\",\"links\":[{\"portIn\":\"btagbs7z2\",\"portOut\":\"String\",\"objIn\":\"e2twu2yjj\",\"objOut\":\"f7xudijnv\"}]}],\"objName\":\"Ops.String.String_v2\"},{\"id\":\"x5lahy950\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Text\",\"value\":\"* position\"},{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.06},{\"name\":\"Letter Spacing\",\"value\":-0.04},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":1},{\"name\":\"Align\",\"value\":\"Center\"},{\"name\":\"Vertical Align index\",\"value\":2},{\"name\":\"Vertical Align\",\"value\":\"Middle\"},{\"name\":\"r\",\"value\":0.75},{\"name\":\"g\",\"value\":0.75},{\"name\":\"b\",\"value\":0.75},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.17},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.222},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":0},{\"name\":\"Border g\",\"value\":0},{\"name\":\"Border b\",\"value\":1},{\"name\":\"Shadow\",\"value\":0},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.26200078125},{\"name\":\"Height\",\"value\":0.09154265873015872},{\"name\":\"Start Y\",\"value\":0.04224890873015873},{\"name\":\"Num Chars\",\"value\":10}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"taxdsh3o1\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":-1.34},{\"name\":\"y\",\"value\":1.05},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"x5lahy950\",\"objOut\":\"taxdsh3o1\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"fch2ndufn\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"position\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"h9qj105dd\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.33}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"result\",\"objIn\":\"x5lahy950\",\"objOut\":\"h9qj105dd\"}]}],\"objName\":\"Ops.Math.Sum\"},{\"id\":\"xi60ma3be\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"PointSize\",\"value\":8},{\"name\":\"Size in Pixels\",\"value\":1},{\"name\":\"Random Size\",\"value\":0},{\"name\":\"Round\",\"value\":1},{\"name\":\"Round Antialias\",\"value\":1},{\"name\":\"Scale by Distance\",\"value\":1},{\"name\":\"r\",\"value\":0.833},{\"name\":\"g\",\"value\":0.762},{\"name\":\"b\",\"value\":0.71},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Colorize Texture\",\"value\":0},{\"name\":\"Mask Channel index\",\"value\":2},{\"name\":\"Mask Channel\",\"value\":\"Luminance\"},{\"name\":\"Colorize Randomize\",\"value\":0},{\"name\":\"Point Size Channel index\",\"value\":0},{\"name\":\"Point Size Channel\",\"value\":\"R\"},{\"name\":\"Texture Point Size Mul\",\"value\":1},{\"name\":\"Map Size 0 index\",\"value\":0},{\"name\":\"Map Size 0\",\"value\":\"Black\"},{\"name\":\"Flip Texture\",\"value\":0},{\"name\":\"Atlas Cross Fade\",\"value\":0},{\"name\":\"Atlas Repeat X \",\"value\":1},{\"name\":\"Min Point Size\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"yq4omky6n\",\"objOut\":\"xi60ma3be\"}]}],\"objName\":\"Ops.Gl.Shader.PointMaterial_v5\"},{\"id\":\"1dg91q366\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_srvbBypass\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"Value\",\"objIn\":\"jq99pb4tq\",\"objOut\":\"1dg91q366\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"jq99pb4tq\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"fgvzdrim4\",\"objOut\":\"jq99pb4tq\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"br8cj6s0d\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"bypass\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"fgvzdrim4\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"taxdsh3o1\",\"objOut\":\"fgvzdrim4\"},{\"portIn\":\"Execute\",\"portOut\":\"Trigger out\",\"objIn\":\"tthnus5kf\",\"objOut\":\"fgvzdrim4\"},{\"portIn\":\"blls2amps\",\"portOut\":\"Trigger out\",\"objIn\":\"e2twu2yjj\",\"objOut\":\"fgvzdrim4\"}]}],\"objName\":\"Ops.Trigger.GateTrigger\"},{\"id\":\"amnzh9zod\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"3y5hk0uss\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"6kesvd73l\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"posX\",\"value\":-0.545},{\"name\":\"posY\",\"value\":0.91},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.2},{\"name\":\"rotX\",\"value\":-90},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"6pt6ghlh5\",\"objOut\":\"6kesvd73l\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"fqp72cg1u\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"sides\",\"value\":32},{\"name\":\"outerRadius\",\"value\":0.61},{\"name\":\"Draw\",\"value\":1,\"title\":\"Render mesh\"}],\"objName\":\"Ops.Gl.Meshes.Torus_v3\"},{\"id\":\"6pt6ghlh5\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"scale\",\"value\":1},{\"name\":\"x\",\"value\":3.88},{\"name\":\"y\",\"value\":1.56},{\"name\":\"z\",\"value\":-0.38}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"xi60ma3be\",\"objOut\":\"6pt6ghlh5\"}]}],\"objName\":\"Ops.Gl.Matrix.Scale\"},{\"id\":\"vbejauafm\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"Gradient\",\"value\":\"{\\\"keys\\\":[{\\\"pos\\\":0,\\\"posy\\\":0.53,\\\"r\\\":1,\\\"g\\\":1,\\\"b\\\":1},{\\\"pos\\\":0.0068359375,\\\"posy\\\":0.53,\\\"r\\\":1,\\\"g\\\":1,\\\"b\\\":1},{\\\"pos\\\":0.177734375,\\\"posy\\\":0.58,\\\"r\\\":0.05153645833333331,\\\"g\\\":0.05153645833333331,\\\"b\\\":0.05153645833333331},{\\\"pos\\\":0.7578125,\\\"posy\\\":0.61,\\\"r\\\":0,\\\"g\\\":0,\\\"b\\\":0},{\\\"pos\\\":1,\\\"posy\\\":0.6,\\\"r\\\":1,\\\"g\\\":1,\\\"b\\\":1},{\\\"pos\\\":1,\\\"posy\\\":0.6,\\\"r\\\":1,\\\"g\\\":1,\\\"b\\\":1}]}\"},{\"name\":\"Direction index\",\"value\":3},{\"name\":\"Direction\",\"value\":\"YY\"},{\"name\":\"Smoothstep\",\"value\":1},{\"name\":\"Step\",\"value\":0},{\"name\":\"Flip\",\"value\":0},{\"name\":\"sRGB\",\"value\":1},{\"name\":\"Oklab\",\"value\":0},{\"name\":\"Size\",\"value\":32},{\"name\":\"filter index\",\"value\":1},{\"name\":\"filter\",\"value\":\"linear\"},{\"name\":\"wrap index\",\"value\":0},{\"name\":\"wrap\",\"value\":\"clamp to edge\"},{\"name\":\"Dither\",\"value\":0},{\"name\":\"Gradient Array\",\"value\":0}],\"portsOut\":[{\"name\":\"Texture\",\"links\":[{\"portIn\":\"Texture Opacity\",\"portOut\":\"Texture\",\"objIn\":\"xi60ma3be\",\"objOut\":\"vbejauafm\"}]}],\"objName\":\"Ops.Gl.GradientTexture\"},{\"id\":\"v9suy4c4f\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"old min\",\"value\":0.6},{\"name\":\"old max\",\"value\":1},{\"name\":\"new min\",\"value\":0},{\"name\":\"new max\",\"value\":1},{\"name\":\"Easing index\",\"value\":0},{\"name\":\"Easing\",\"value\":\"Linear\"},{\"name\":\"Clamp\",\"value\":1}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"gxhq3pwx7\",\"objOut\":\"v9suy4c4f\"}]}],\"objName\":\"Ops.Math.MapRange\"},{\"id\":\"cybcf0sv2\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"Frequency\",\"value\":0.5},{\"name\":\"Type index\",\"value\":0},{\"name\":\"Type\",\"value\":\"sine\"},{\"name\":\"Phase\",\"value\":0},{\"name\":\"Range Min\",\"value\":-45},{\"name\":\"Range Max\",\"value\":45}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"kcosi4ebg\",\"objOut\":\"cybcf0sv2\"}]}],\"objName\":\"Ops.Anim.LFO_v3\"},{\"id\":\"q0fv1nz6l\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"Speed\",\"value\":0.005},{\"name\":\"Play\",\"value\":1},{\"name\":\"Sync to timeline\",\"value\":0}],\"portsOut\":[{\"name\":\"Time\",\"links\":[{\"portIn\":\"Time\",\"portOut\":\"Time\",\"objIn\":\"cybcf0sv2\",\"objOut\":\"q0fv1nz6l\"}]}],\"objName\":\"Ops.Anim.Timer_v2\"},{\"id\":\"kcosi4ebg\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"number2\",\"value\":360}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Strength\",\"portOut\":\"result\",\"objIn\":\"yq4omky6n\",\"objOut\":\"kcosi4ebg\"}]}],\"objName\":\"Ops.Math.Sum\"},{\"id\":\"yq4omky6n\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"Size\",\"value\":1.4},{\"name\":\"Smooth\",\"value\":1},{\"name\":\"x\",\"value\":-0.5},{\"name\":\"y\",\"value\":0.15},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"fqp72cg1u\",\"objOut\":\"yq4omky6n\"}]}],\"objName\":\"Ops.Gl.ShaderEffects.AreaRotate_v2\"},{\"id\":\"gxhq3pwx7\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"Min\",\"value\":0},{\"name\":\"Max\",\"value\":1},{\"name\":\"Easing index\",\"value\":17},{\"name\":\"Easing\",\"value\":\"Quint Out\"}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"Result\",\"objIn\":\"xi60ma3be\",\"objOut\":\"gxhq3pwx7\"}]}],\"objName\":\"Ops.Math.Ease\"},{\"id\":\"m7j2x3brg\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"old min\",\"value\":0.6},{\"name\":\"old max\",\"value\":1},{\"name\":\"new min\",\"value\":0.5},{\"name\":\"new max\",\"value\":2},{\"name\":\"Easing index\",\"value\":0},{\"name\":\"Easing\",\"value\":\"Linear\"},{\"name\":\"Clamp\",\"value\":1}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"result\",\"objIn\":\"2g0mjc3ba\",\"objOut\":\"m7j2x3brg\"}]}],\"objName\":\"Ops.Math.MapRange\"},{\"id\":\"ckxpr6aan\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"posX\",\"value\":-0.55},{\"name\":\"posY\",\"value\":0.94},{\"name\":\"posZ\",\"value\":-0.04},{\"name\":\"scale\",\"value\":1},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"lmn69jznm\",\"objOut\":\"ckxpr6aan\"},{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"9m6v4vl97\",\"objOut\":\"ckxpr6aan\"},{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"cfz08ghpj\",\"objOut\":\"ckxpr6aan\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"tomh1nu5h\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"X 1\",\"value\":0},{\"name\":\"Y 1\",\"value\":-0.08},{\"name\":\"Z 1\",\"value\":0},{\"name\":\"X 2\",\"value\":0},{\"name\":\"Y 2\",\"value\":0},{\"name\":\"Z 2\",\"value\":0}],\"objName\":\"Ops.Gl.Meshes.Line\"},{\"id\":\"n3btni6ih\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"Repeats\",\"value\":11},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Forward\"}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"cb4ehf83s\",\"objOut\":\"n3btni6ih\"}]},{\"name\":\"index\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"index\",\"objIn\":\"ixn0r0yzl\",\"objOut\":\"n3btni6ih\"}]}],\"objName\":\"Ops.Trigger.Repeat_v2\"},{\"id\":\"cb4ehf83s\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"y\",\"value\":0.04},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"tomh1nu5h\",\"objOut\":\"cb4ehf83s\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"ixn0r0yzl\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"old min\",\"value\":0},{\"name\":\"old max\",\"value\":14},{\"name\":\"new min\",\"value\":0.5},{\"name\":\"new max\",\"value\":1},{\"name\":\"Easing index\",\"value\":0},{\"name\":\"Easing\",\"value\":\"Linear\"},{\"name\":\"Clamp\",\"value\":1}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"88ug8x3np\",\"objOut\":\"ixn0r0yzl\"}]}],\"objName\":\"Ops.Math.MapRange\"},{\"id\":\"wo90cqydk\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"posX\",\"value\":-1.02},{\"name\":\"posY\",\"value\":0},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":1},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"trigger\",\"objIn\":\"n3btni6ih\",\"objOut\":\"wo90cqydk\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"lmn69jznm\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"scale\",\"value\":1},{\"name\":\"x\",\"value\":1.6},{\"name\":\"y\",\"value\":1},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"wo90cqydk\",\"objOut\":\"lmn69jznm\"}]}],\"objName\":\"Ops.Gl.Matrix.Scale\"},{\"id\":\"88ug8x3np\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"Min\",\"value\":0},{\"name\":\"Max\",\"value\":1},{\"name\":\"Easing index\",\"value\":6},{\"name\":\"Easing\",\"value\":\"Cubic In Out\"}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"x\",\"portOut\":\"Result\",\"objIn\":\"cb4ehf83s\",\"objOut\":\"88ug8x3np\"}]}],\"objName\":\"Ops.Math.Ease\"},{\"id\":\"5hz8aki6v\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"X 1\",\"value\":0},{\"name\":\"Y 1\",\"value\":-0.08},{\"name\":\"Z 1\",\"value\":0},{\"name\":\"X 2\",\"value\":0},{\"name\":\"Y 2\",\"value\":0},{\"name\":\"Z 2\",\"value\":0}],\"objName\":\"Ops.Gl.Meshes.Line\"},{\"id\":\"so6k9psr3\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"Repeats\",\"value\":11},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Forward\"}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"z727w9xkx\",\"objOut\":\"so6k9psr3\"}]},{\"name\":\"index\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"index\",\"objIn\":\"rxfxsnt2w\",\"objOut\":\"so6k9psr3\"}]}],\"objName\":\"Ops.Trigger.Repeat_v2\"},{\"id\":\"z727w9xkx\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"y\",\"value\":0.04},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"5hz8aki6v\",\"objOut\":\"z727w9xkx\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"rxfxsnt2w\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"old min\",\"value\":0},{\"name\":\"old max\",\"value\":14},{\"name\":\"new min\",\"value\":0.5},{\"name\":\"new max\",\"value\":1},{\"name\":\"Easing index\",\"value\":0},{\"name\":\"Easing\",\"value\":\"Linear\"},{\"name\":\"Clamp\",\"value\":1}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"su3pkday4\",\"objOut\":\"rxfxsnt2w\"}]}],\"objName\":\"Ops.Math.MapRange\"},{\"id\":\"u7hwor4gv\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"posX\",\"value\":1.02},{\"name\":\"posY\",\"value\":0},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":1},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":180},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"trigger\",\"objIn\":\"so6k9psr3\",\"objOut\":\"u7hwor4gv\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"9m6v4vl97\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"scale\",\"value\":1},{\"name\":\"x\",\"value\":1.6},{\"name\":\"y\",\"value\":1},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"u7hwor4gv\",\"objOut\":\"9m6v4vl97\"}]}],\"objName\":\"Ops.Gl.Matrix.Scale\"},{\"id\":\"su3pkday4\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"Min\",\"value\":0},{\"name\":\"Max\",\"value\":1},{\"name\":\"Easing index\",\"value\":6},{\"name\":\"Easing\",\"value\":\"Cubic In Out\"}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"x\",\"portOut\":\"Result\",\"objIn\":\"z727w9xkx\",\"objOut\":\"su3pkday4\"}]}],\"objName\":\"Ops.Math.Ease\"},{\"id\":\"cfz08ghpj\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"X 1\",\"value\":0},{\"name\":\"Y 1\",\"value\":-0.08},{\"name\":\"Z 1\",\"value\":0},{\"name\":\"X 2\",\"value\":0},{\"name\":\"Y 2\",\"value\":0.08},{\"name\":\"Z 2\",\"value\":0}],\"objName\":\"Ops.Gl.Meshes.Line\"},{\"id\":\"2g0mjc3ba\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":0.959},{\"name\":\"g\",\"value\":0.9422887035464338},{\"name\":\"b\",\"value\":0.852},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"ckxpr6aan\",\"objOut\":\"2g0mjc3ba\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"tthnus5kf\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"6kesvd73l\",\"objOut\":\"tthnus5kf\"}]}],\"objName\":\"Ops.Trigger.GateTrigger\"},{\"id\":\"e2twu2yjj\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{\"blueprintVer\":2,\"subPatchVer\":2},\"portsIn\":[{\"name\":\"blls2amps\",\"title\":\"Trigger in\"},{\"name\":\"btagbs7z2\",\"title\":\"Class\"},{\"name\":\"lj06d561p\",\"value\":0,\"title\":\"Show Boundings\"},{\"name\":\"patchId\",\"value\":\"v99isckv2\"}],\"portsOut\":[{\"name\":\"nti406vwi\",\"value\":0.1866593360900879,\"title\":\"Result\"},{\"name\":\"gjvx0zyv5\",\"title\":\"value\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"gjvx0zyv5\",\"objIn\":\"h9qj105dd\",\"objOut\":\"e2twu2yjj\"},{\"portIn\":\"value\",\"portOut\":\"gjvx0zyv5\",\"objIn\":\"v9suy4c4f\",\"objOut\":\"e2twu2yjj\"},{\"portIn\":\"value\",\"portOut\":\"gjvx0zyv5\",\"objIn\":\"m7j2x3brg\",\"objOut\":\"e2twu2yjj\"}]},{\"name\":\"h2l1ydpiy\",\"title\":\"Hover\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"h2l1ydpiy\",\"objIn\":\"tthnus5kf\",\"objOut\":\"e2twu2yjj\"},{\"portIn\":\"Boolean\",\"portOut\":\"h2l1ydpiy\",\"objIn\":\"65s996ny5\",\"objOut\":\"e2twu2yjj\"}]}],\"objName\":\"Ops.Patch.P4Zknbo.BasicSlider_v3\"},{\"id\":\"7gw7i08xf\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"2g0mjc3ba\",\"objOut\":\"7gw7i08xf\"}]}],\"objName\":\"Ops.Trigger.GateTrigger\"},{\"id\":\"65s996ny5\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"7gw7i08xf\",\"objOut\":\"65s996ny5\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"irmmcclbz\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_smoothedParam_mix\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Percentage\",\"portOut\":\"Value\",\"objIn\":\"xbujzat90\",\"objOut\":\"irmmcclbz\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"xbujzat90\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"Value 1\",\"value\":2},{\"name\":\"Value 2\",\"value\":32}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"number\",\"portOut\":\"Result\",\"objIn\":\"vcf0tlct8\",\"objOut\":\"xbujzat90\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"vcf0tlct8\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"Decimal Places\",\"value\":0}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rings\",\"portOut\":\"result\",\"objIn\":\"fqp72cg1u\",\"objOut\":\"vcf0tlct8\"}]}],\"objName\":\"Ops.Math.Round\"},{\"id\":\"urekbae5m\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_smoothedParam_size\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Percentage\",\"portOut\":\"Value\",\"objIn\":\"4iiujwgso\",\"objOut\":\"urekbae5m\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"4iiujwgso\",\"uiAttribs\":{\"subPatch\":\"r4a7vbpos\"},\"storage\":{},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0.3},{\"name\":\"Value 2\",\"value\":1.09}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"innerRadius\",\"portOut\":\"Result\",\"objIn\":\"fqp72cg1u\",\"objOut\":\"4iiujwgso\"}]}],\"objName\":\"Ops.Math.Interpolate\"}]}",};
-op.initInnerPorts=function(addedOps)
-{
-  for(let i=0;i<addedOps.length;i++)
-  {
-    if(addedOps[i].innerInput)
-    {
-    }
-if(addedOps[i].innerOutput)
-{
-}
-}
-};
-
-const patchId = "bp2sub_" + op.id;
-
-new CABLES.SubPatchOp(op, { "subId": patchId });
-
-initializeSubpatch();
-
-function initializeSubpatch()
-{
-    const p = JSON.parse(attachments.subpatch_json);
-
-    CABLES.Patch.replaceOpIds(p,
-        {
-            "parentSubPatchId": patchId,
-            "prefixHash": patchId,
-            "oldIdAsRef": true,
-            "doNotUnlinkLostLinks": true
-        });
-
-    for (let i = 0; i < p.ops.length; i++)
-    {
-        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
-    }
-
-    op.loadDependencies(p, () =>
-    {
-        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
-        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
-        op.patch.emitEvent("subpatchExpose", patchId);
-        op.setStorage({ "blueprintVer": 2 });
-        op.patch.emitEvent("subpatchExpose", patchId);
-    });
-}
-
-
-};
-
-Ops.Patch.P4Zknbo.UI_Position.prototype = new CABLES.Op();
-CABLES.OPS["d6f57134-d5ce-4192-a435-25e9ee14a19d"]={f:Ops.Patch.P4Zknbo.UI_Position,objName:"Ops.Patch.P4Zknbo.UI_Position"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Patch.P4Zknbo.UI_Reverse
 // 
 // **************************************************************
@@ -404,7 +276,7 @@ Ops.Patch.P4Zknbo.BasicSlider_v5 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"b5jmw6pne\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":0.24},{\"name\":\"Height\",\"value\":1},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":0},{\"name\":\"Pivot y\",\"value\":\"center\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Render Rectangle\",\"value\":0},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"7picyzk8b\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"geometry\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"geometry\",\"objIn\":\"mngezvib8\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Hover\",\"objIn\":\"s1gixysdm\",\"objOut\":\"b5jmw6pne\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"at2p512yk\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"okfe0jjro\",\"objOut\":\"b5jmw6pne\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"dr5mvrobr\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"Pointer X\",\"value\":0.22676901543163624},{\"name\":\"Pointer Y\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer Y\",\"objIn\":\"dr5mvrobr\",\"objOut\":\"b5jmw6pne\"},{\"portIn\":\"Value\",\"portOut\":\"Pointer Y\",\"objIn\":\"3rgu57nny\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"Top\",\"value\":123.45288813114166},{\"name\":\"Left\",\"value\":1503.669083893299},{\"name\":\"Right\",\"value\":1591.8645543456078},{\"name\":\"Bottom\",\"value\":682.0242273807526}],\"objName\":\"Ops.Gl.InteractiveRectangle_v2\"},{\"id\":\"uryzrh2kd\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"7gzmyju3f\",\"objOut\":\"uryzrh2kd\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"7picyzk8b\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"f0zxrdgdl\",\"objOut\":\"7picyzk8b\"},{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"1hn64zsny\",\"objOut\":\"7picyzk8b\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"r1trdmnoo\",\"objOut\":\"7picyzk8b\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"cgqxkp1dw\",\"objOut\":\"7picyzk8b\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"hhgw84tqq\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"izi14m4jj\",\"objOut\":\"hhgw84tqq\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"b5jmw6pne\",\"objOut\":\"hhgw84tqq\"},{\"portIn\":\"String In\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"uej7igfhs\",\"objOut\":\"hhgw84tqq\"}]},{\"name\":\"innerOut_lj06d561p\",\"value\":0,\"title\":\"Show Boundings\"}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"r1trdmnoo\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"f0zxrdgdl\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":6},{\"name\":\"easing\",\"value\":\"Cubic In Out\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.7},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"oi1e3c961\",\"objOut\":\"f0zxrdgdl\"}]},{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"uryzrh2kd\",\"objOut\":\"f0zxrdgdl\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"r1trdmnoo\",\"objOut\":\"f0zxrdgdl\"},{\"portIn\":\"Percentage\",\"portOut\":\"value\",\"objIn\":\"s3bh58foh\",\"objOut\":\"f0zxrdgdl\"},{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"tsxnsqish\",\"objOut\":\"f0zxrdgdl\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"izi14m4jj\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1.76},{\"name\":\"y\",\"value\":0.013},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"jtfgofit6\",\"objOut\":\"izi14m4jj\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"7gzmyju3f\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":0.07},{\"name\":\"height\",\"value\":0.01},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":1},{\"name\":\"num rows\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"okfe0jjro\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"5vxvxqmq8\",\"objOut\":\"okfe0jjro\"},{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"cqxu3tj4o\",\"objOut\":\"okfe0jjro\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"q95osg3jr\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_dryMix\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"dmhn9643j\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int dry mix\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"uej7igfhs\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"dryMix\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"4ken8jo2h\",\"objOut\":\"uej7igfhs\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"2kcwcw99k\",\"objOut\":\"uej7igfhs\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"4ken8jo2h\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"905qrz86p\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"kzejscdk9\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_injectedState\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"xp3womx4e\",\"objOut\":\"kzejscdk9\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"2kcwcw99k\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Numbers_1\",\"portOut\":\"Result\",\"objIn\":\"yyj0dn3hl\",\"objOut\":\"2kcwcw99k\"},{\"portIn\":\"Number\",\"portOut\":\"Result\",\"objIn\":\"vrog0zpzu\",\"objOut\":\"2kcwcw99k\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"5vxvxqmq8\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonSlider\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"yyj0dn3hl\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"q95osg3jr\",\"objOut\":\"yyj0dn3hl\"},{\"portIn\":\"number1\",\"portOut\":\"Number\",\"objIn\":\"toobytwr4\",\"objOut\":\"yyj0dn3hl\"},{\"portIn\":\"Number\",\"portOut\":\"Number\",\"objIn\":\"xc4wr3qpm\",\"objOut\":\"yyj0dn3hl\"},{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"7picyzk8b\",\"objOut\":\"yyj0dn3hl\"}]},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"xp3womx4e\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":1}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"2kcwcw99k\",\"objOut\":\"xp3womx4e\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"cqxu3tj4o\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Index\",\"portOut\":\"Result\",\"objIn\":\"yyj0dn3hl\",\"objOut\":\"cqxu3tj4o\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"xp3womx4e\",\"objOut\":\"cqxu3tj4o\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"jf5tu10qy\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"905qrz86p\",\"objOut\":\"jf5tu10qy\"},{\"portIn\":\"Numbers_0\",\"portOut\":\"result\",\"objIn\":\"yyj0dn3hl\",\"objOut\":\"jf5tu10qy\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"75ly7ofzk\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Decimal Places\",\"value\":0}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"string1\",\"portOut\":\"Result\",\"objIn\":\"2jmmqaj8y\",\"objOut\":\"75ly7ofzk\"}]}],\"objName\":\"Ops.String.NumberToString_v2\"},{\"id\":\"oi1e3c961\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0.01},{\"name\":\"y\",\"value\":0.64},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"tsxnsqish\",\"objOut\":\"oi1e3c961\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"834yak1b2\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"digits\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"toobytwr4\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":100}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Number\",\"portOut\":\"result\",\"objIn\":\"75ly7ofzk\",\"objOut\":\"toobytwr4\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"2jmmqaj8y\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"string2\",\"value\":\"%\"},{\"name\":\"New Line\",\"value\":0},{\"name\":\"Active\",\"value\":1}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Text\",\"portOut\":\"result\",\"objIn\":\"tsxnsqish\",\"objOut\":\"2jmmqaj8y\"}]}],\"objName\":\"Ops.String.Concat_v2\"},{\"id\":\"xc4wr3qpm\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.VizNumberBar\"},{\"id\":\"utf80cj50\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"portsOut\":[{\"name\":\"Value\",\"value\":\"disengage\"}],\"objName\":\"Ops.Vars.VarGetString\"},{\"id\":\"s1gixysdm\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"result\",\"objIn\":\"f0zxrdgdl\",\"objOut\":\"s1gixysdm\"},{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"uej7igfhs\",\"objOut\":\"s1gixysdm\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"dr5mvrobr\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Value Out\",\"objIn\":\"jf5tu10qy\",\"objOut\":\"dr5mvrobr\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"1hn64zsny\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posX\",\"value\":0},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":1},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"uryzrh2kd\",\"objOut\":\"1hn64zsny\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"jtfgofit6\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.651},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.912},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":0.05},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":-0.04},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"0d2yvn3ee\",\"objOut\":\"jtfgofit6\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"cgqxkp1dw\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"posY\",\"portOut\":\"result\",\"objIn\":\"1hn64zsny\",\"objOut\":\"cgqxkp1dw\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"mngezvib8\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Translate X\",\"value\":0.44},{\"name\":\"Translate Y\",\"value\":0.06},{\"name\":\"Translate Z\",\"value\":-0.5},{\"name\":\"Scale X\",\"value\":0.35},{\"name\":\"Scale Y\",\"value\":1.85},{\"name\":\"Scale Z\",\"value\":1},{\"name\":\"Rotation X\",\"value\":0},{\"name\":\"Rotation Y\",\"value\":0},{\"name\":\"Rotation Z\",\"value\":0}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"Result\",\"objIn\":\"0d2yvn3ee\",\"objOut\":\"mngezvib8\"}]}],\"objName\":\"Ops.Graphics.Geometry.TransformGeometry\"},{\"id\":\"0d2yvn3ee\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Render Mesh\",\"value\":1},{\"name\":\"Add Vertex Numbers\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"qntdf46e3\",\"objOut\":\"0d2yvn3ee\"}]}],\"objName\":\"Ops.Gl.RenderGeometry_v2\"},{\"id\":\"oedh2oj3o\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__lensFlareTexts\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"texture\",\"portOut\":\"Value\",\"objIn\":\"jtfgofit6\",\"objOut\":\"oedh2oj3o\"}]}],\"objName\":\"Ops.Vars.VarGetTexture_v2\"},{\"id\":\"qntdf46e3\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1},{\"name\":\"y\",\"value\":1.52},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"b5jmw6pne\",\"objOut\":\"qntdf46e3\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"},{\"id\":\"s3bh58foh\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":-2},{\"name\":\"Value 2\",\"value\":2}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Result\",\"objIn\":\"7knaraxdk\",\"objOut\":\"s3bh58foh\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"ac4vtthkl\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"at2p512yk\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"ac4vtthkl\",\"objOut\":\"at2p512yk\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"3rgu57nny\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValueOnHover\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"tsxnsqish\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{},\"portsIn\":[{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.06},{\"name\":\"Letter Spacing\",\"value\":0},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":1},{\"name\":\"Align\",\"value\":\"Center\"},{\"name\":\"Vertical Align index\",\"value\":2},{\"name\":\"Vertical Align\",\"value\":\"Middle\"},{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":1},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.3},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.5},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":1},{\"name\":\"Border g\",\"value\":1},{\"name\":\"Border b\",\"value\":1},{\"name\":\"Shadow\",\"value\":0},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.1137515625},{\"name\":\"Height\",\"value\":0.05096765873015873},{\"name\":\"Start Y\",\"value\":0.012567658730158734},{\"name\":\"Num Chars\",\"value\":3}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"7knaraxdk\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"result\",\"objIn\":\"jtfgofit6\",\"objOut\":\"7knaraxdk\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"vrog0zpzu\",\"uiAttribs\":{\"subPatch\":\"x6kzkw15l\"},\"storage\":{},\"objName\":\"Ops.Ui.VizNumberBar\"}]}",};
+const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"b5jmw6pne\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":0.24},{\"name\":\"Height\",\"value\":1},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":0},{\"name\":\"Pivot y\",\"value\":\"center\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Render Rectangle\",\"value\":0},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"7picyzk8b\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"geometry\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"geometry\",\"objIn\":\"mngezvib8\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Hover\",\"objIn\":\"s1gixysdm\",\"objOut\":\"b5jmw6pne\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"at2p512yk\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"okfe0jjro\",\"objOut\":\"b5jmw6pne\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"dr5mvrobr\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"Pointer X\",\"value\":0.09725448596467902},{\"name\":\"Pointer Y\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer Y\",\"objIn\":\"dr5mvrobr\",\"objOut\":\"b5jmw6pne\"},{\"portIn\":\"Value\",\"portOut\":\"Pointer Y\",\"objIn\":\"3rgu57nny\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"Top\",\"value\":143.9280012845993},{\"name\":\"Left\",\"value\":1578.6239383220673},{\"name\":\"Right\",\"value\":1681.4469587802887},{\"name\":\"Bottom\",\"value\":795.1404407024384}],\"objName\":\"Ops.Gl.InteractiveRectangle_v2\"},{\"id\":\"uryzrh2kd\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"7gzmyju3f\",\"objOut\":\"uryzrh2kd\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"7picyzk8b\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"f0zxrdgdl\",\"objOut\":\"7picyzk8b\"},{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"1hn64zsny\",\"objOut\":\"7picyzk8b\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"r1trdmnoo\",\"objOut\":\"7picyzk8b\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"cgqxkp1dw\",\"objOut\":\"7picyzk8b\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"hhgw84tqq\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"izi14m4jj\",\"objOut\":\"hhgw84tqq\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"b5jmw6pne\",\"objOut\":\"hhgw84tqq\"},{\"portIn\":\"String In\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"uej7igfhs\",\"objOut\":\"hhgw84tqq\"}]},{\"name\":\"innerOut_lj06d561p\",\"value\":0,\"title\":\"Show Boundings\"}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"r1trdmnoo\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"f0zxrdgdl\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":6},{\"name\":\"easing\",\"value\":\"Cubic In Out\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.7},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"oi1e3c961\",\"objOut\":\"f0zxrdgdl\"}]},{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"uryzrh2kd\",\"objOut\":\"f0zxrdgdl\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"r1trdmnoo\",\"objOut\":\"f0zxrdgdl\"},{\"portIn\":\"Percentage\",\"portOut\":\"value\",\"objIn\":\"s3bh58foh\",\"objOut\":\"f0zxrdgdl\"},{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"tsxnsqish\",\"objOut\":\"f0zxrdgdl\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"izi14m4jj\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1.76},{\"name\":\"y\",\"value\":0.013},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"jtfgofit6\",\"objOut\":\"izi14m4jj\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"7gzmyju3f\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":0.07},{\"name\":\"height\",\"value\":0.01},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":1},{\"name\":\"num rows\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"okfe0jjro\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"5vxvxqmq8\",\"objOut\":\"okfe0jjro\"},{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"cqxu3tj4o\",\"objOut\":\"okfe0jjro\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"q95osg3jr\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_dryMix\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"dmhn9643j\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int dry mix\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"uej7igfhs\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"dryMix\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"4ken8jo2h\",\"objOut\":\"uej7igfhs\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"2kcwcw99k\",\"objOut\":\"uej7igfhs\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"4ken8jo2h\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"905qrz86p\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"kzejscdk9\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_injectedState\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"xp3womx4e\",\"objOut\":\"kzejscdk9\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"2kcwcw99k\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Numbers_1\",\"portOut\":\"Result\",\"objIn\":\"yyj0dn3hl\",\"objOut\":\"2kcwcw99k\"},{\"portIn\":\"Number\",\"portOut\":\"Result\",\"objIn\":\"vrog0zpzu\",\"objOut\":\"2kcwcw99k\"}]},{\"name\":\"Found\",\"value\":0}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"5vxvxqmq8\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonSlider\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"yyj0dn3hl\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"q95osg3jr\",\"objOut\":\"yyj0dn3hl\"},{\"portIn\":\"number1\",\"portOut\":\"Number\",\"objIn\":\"toobytwr4\",\"objOut\":\"yyj0dn3hl\"},{\"portIn\":\"Number\",\"portOut\":\"Number\",\"objIn\":\"xc4wr3qpm\",\"objOut\":\"yyj0dn3hl\"},{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"7picyzk8b\",\"objOut\":\"yyj0dn3hl\"}]},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"xp3womx4e\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":1}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"2kcwcw99k\",\"objOut\":\"xp3womx4e\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"cqxu3tj4o\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Index\",\"portOut\":\"Result\",\"objIn\":\"yyj0dn3hl\",\"objOut\":\"cqxu3tj4o\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"xp3womx4e\",\"objOut\":\"cqxu3tj4o\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"jf5tu10qy\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"905qrz86p\",\"objOut\":\"jf5tu10qy\"},{\"portIn\":\"Numbers_0\",\"portOut\":\"result\",\"objIn\":\"yyj0dn3hl\",\"objOut\":\"jf5tu10qy\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"75ly7ofzk\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Decimal Places\",\"value\":0}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"string1\",\"portOut\":\"Result\",\"objIn\":\"2jmmqaj8y\",\"objOut\":\"75ly7ofzk\"}]}],\"objName\":\"Ops.String.NumberToString_v2\"},{\"id\":\"oi1e3c961\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0.01},{\"name\":\"y\",\"value\":0.61},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"tsxnsqish\",\"objOut\":\"oi1e3c961\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"834yak1b2\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"digits\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"toobytwr4\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":100}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Number\",\"portOut\":\"result\",\"objIn\":\"75ly7ofzk\",\"objOut\":\"toobytwr4\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"2jmmqaj8y\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"string2\",\"value\":\"%\"},{\"name\":\"New Line\",\"value\":0},{\"name\":\"Active\",\"value\":1}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Text\",\"portOut\":\"result\",\"objIn\":\"tsxnsqish\",\"objOut\":\"2jmmqaj8y\"}]}],\"objName\":\"Ops.String.Concat_v2\"},{\"id\":\"xc4wr3qpm\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.VizNumberBar\"},{\"id\":\"utf80cj50\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"portsOut\":[{\"name\":\"Value\",\"value\":\"disengage\"}],\"objName\":\"Ops.Vars.VarGetString\"},{\"id\":\"s1gixysdm\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"result\",\"objIn\":\"f0zxrdgdl\",\"objOut\":\"s1gixysdm\"},{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"uej7igfhs\",\"objOut\":\"s1gixysdm\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"dr5mvrobr\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Value Out\",\"objIn\":\"jf5tu10qy\",\"objOut\":\"dr5mvrobr\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"1hn64zsny\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posX\",\"value\":0},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":1},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"uryzrh2kd\",\"objOut\":\"1hn64zsny\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"jtfgofit6\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.651},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.912},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":0.05},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":-0.04},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"0d2yvn3ee\",\"objOut\":\"jtfgofit6\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"cgqxkp1dw\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"posY\",\"portOut\":\"result\",\"objIn\":\"1hn64zsny\",\"objOut\":\"cgqxkp1dw\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"mngezvib8\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Translate X\",\"value\":0.44},{\"name\":\"Translate Y\",\"value\":0.06},{\"name\":\"Translate Z\",\"value\":-0.5},{\"name\":\"Scale X\",\"value\":0.35},{\"name\":\"Scale Y\",\"value\":1.85},{\"name\":\"Scale Z\",\"value\":1},{\"name\":\"Rotation X\",\"value\":0},{\"name\":\"Rotation Y\",\"value\":0},{\"name\":\"Rotation Z\",\"value\":0}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"Result\",\"objIn\":\"0d2yvn3ee\",\"objOut\":\"mngezvib8\"}]}],\"objName\":\"Ops.Graphics.Geometry.TransformGeometry\"},{\"id\":\"0d2yvn3ee\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Render Mesh\",\"value\":1},{\"name\":\"Add Vertex Numbers\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"qntdf46e3\",\"objOut\":\"0d2yvn3ee\"}]}],\"objName\":\"Ops.Gl.RenderGeometry_v2\"},{\"id\":\"oedh2oj3o\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__lensFlareTexts\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"texture\",\"portOut\":\"Value\",\"objIn\":\"jtfgofit6\",\"objOut\":\"oedh2oj3o\"}]}],\"objName\":\"Ops.Vars.VarGetTexture_v2\"},{\"id\":\"qntdf46e3\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1},{\"name\":\"y\",\"value\":1.52},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"b5jmw6pne\",\"objOut\":\"qntdf46e3\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"},{\"id\":\"s3bh58foh\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":-2},{\"name\":\"Value 2\",\"value\":2}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Result\",\"objIn\":\"7knaraxdk\",\"objOut\":\"s3bh58foh\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"ac4vtthkl\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"at2p512yk\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"ac4vtthkl\",\"objOut\":\"at2p512yk\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"3rgu57nny\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValueOnHover\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"tsxnsqish\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{},\"portsIn\":[{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.06},{\"name\":\"Letter Spacing\",\"value\":0},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":1},{\"name\":\"Align\",\"value\":\"Center\"},{\"name\":\"Vertical Align index\",\"value\":2},{\"name\":\"Vertical Align\",\"value\":\"Middle\"},{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":1},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.3},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.5},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":1},{\"name\":\"Border g\",\"value\":1},{\"name\":\"Border b\",\"value\":1},{\"name\":\"Shadow\",\"value\":0},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.07661015624999999},{\"name\":\"Height\",\"value\":0.05096765873015873},{\"name\":\"Start Y\",\"value\":0.012567658730158734},{\"name\":\"Num Chars\",\"value\":2}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"7knaraxdk\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"result\",\"objIn\":\"jtfgofit6\",\"objOut\":\"7knaraxdk\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"vrog0zpzu\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{},\"objName\":\"Ops.Ui.VizNumberBar\"}]}",};
 const port_blls2amps=op.inTrigger("blls2amps");
 port_blls2amps.setUiAttribs({title:"Trigger in",});
 
@@ -1211,7 +1083,9 @@ Ops.Ui.Area = function()
 CABLES.Op.apply(this,arguments);
 const op=this;
 const attachments=op.attachments={};
-const inTitle = op.inString("Title", "");
+const
+    inTitle = op.inString("Title", ""),
+    inDelete = op.inTriggerButton("Delete");
 
 inTitle.setUiAttribs({ "hidePort": true });
 
@@ -1236,6 +1110,11 @@ function update()
         op.name = inTitle.get();
     }
 }
+
+inDelete.onTriggered = () =>
+{
+    op.patch.deleteOp(op.id);
+};
 
 
 };
@@ -5988,6 +5867,216 @@ CABLES.OPS["95e04331-49d6-42da-81d8-5a75261ab22f"]={f:Ops.Json.GateObject,objNam
 
 // **************************************************************
 // 
+// Ops.Array.StringToArray_v2
+// 
+// **************************************************************
+
+Ops.Array.StringToArray_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const text = op.inStringEditor("text", "1,2,3"),
+    separator = op.inString("separator", ","),
+    toNumber = op.inValueBool("Numbers", true),
+    trim = op.inValueBool("Trim", true),
+    splitNewLines = op.inBool("Split Lines", false),
+    arr = op.outArray("array"),
+    parsed = op.outTrigger("Parsed"),
+    len = op.outNumber("length");
+
+text.setUiAttribs({ "ignoreBigPort": true });
+
+text.onChange = separator.onChange = toNumber.onChange = trim.onChange = parse;
+
+splitNewLines.onChange = () =>
+{
+    separator.setUiAttribs({ "greyout": splitNewLines.get() });
+    parse();
+};
+
+parse();
+
+function parse()
+{
+    if (!text.get())
+    {
+        arr.set(null);
+        arr.set([]);
+        len.set(0);
+        return;
+    }
+
+    let textInput = text.get();
+    if (trim.get() && textInput)
+    {
+        textInput = textInput.replace(/^\s+|\s+$/g, "");
+        textInput = textInput.trim();
+    }
+
+    let r;
+    let sep = separator.get();
+    if (separator.get() === "\\n") sep = "\n";
+    if (splitNewLines.get()) r = textInput.split("\n");
+    else r = textInput.split(sep);
+
+    if (r[r.length - 1] === "") r.length -= 1;
+
+    len.set(r.length);
+
+    if (trim.get())
+    {
+        for (let i = 0; i < r.length; i++)
+        {
+            r[i] = r[i].replace(/^\s+|\s+$/g, "");
+            r[i] = r[i].trim();
+        }
+    }
+
+    op.setUiError("notnum", null);
+    if (toNumber.get())
+    {
+        let hasStrings = false;
+        for (let i = 0; i < r.length; i++)
+        {
+            r[i] = Number(r[i]);
+            if (!CABLES.UTILS.isNumeric(r[i]))
+            {
+                hasStrings = true;
+            }
+        }
+        if (hasStrings)
+        {
+            op.setUiError("notnum", "Parse Error / Not all values numerical!", 1);
+        }
+    }
+
+    arr.setRef(r);
+    parsed.trigger();
+}
+
+
+};
+
+Ops.Array.StringToArray_v2.prototype = new CABLES.Op();
+CABLES.OPS["c974de41-4ce4-4432-b94d-724741109c71"]={f:Ops.Array.StringToArray_v2,objName:"Ops.Array.StringToArray_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.P4Zknbo.BasicSlider_v3
+// 
+// **************************************************************
+
+Ops.Patch.P4Zknbo.BasicSlider_v3 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nconst port_h2l1ydpiy=op.outNumber(\"h2l1ydpiy\");\nport_h2l1ydpiy.setUiAttribs({title:\"Hover\",});\nport_h2l1ydpiy.setUiAttribs({\"values\":[\"\"]});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\nconst innerIn_h2l1ydpiy = addedOps[i].inFloat(\"innerIn_h2l1ydpiy\");\ninnerIn_h2l1ydpiy.setUiAttribs({title:\"Hover\"});\ninnerIn_h2l1ydpiy.on(\"change\", (a,v) => { port_h2l1ydpiy.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"uk3um0kyc\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"pv9fy1u1s\",\"objOut\":\"uk3um0kyc\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"vwwgjlizf\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posY\",\"value\":0.005},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Exec\",\"portOut\":\"trigger\",\"objIn\":\"ns66cci5h\",\"objOut\":\"vwwgjlizf\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"b9fhb990j\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"vwwgjlizf\",\"objOut\":\"b9fhb990j\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"xnap82xfe\",\"objOut\":\"b9fhb990j\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"ak207xc99\",\"objOut\":\"b9fhb990j\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"kdn6btjb3\",\"objOut\":\"b9fhb990j\"},{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"vwwgjlizf\",\"objOut\":\"b9fhb990j\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"v8j7nipl3\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"om399w808\",\"objOut\":\"v8j7nipl3\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"String In\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"6tpfx1h1e\",\"objOut\":\"v8j7nipl3\"},{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"c2lnrba6b\",\"objOut\":\"v8j7nipl3\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"c2lnrba6b\",\"objOut\":\"v8j7nipl3\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"ak207xc99\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"},{\"name\":\"innerIn_h2l1ydpiy\",\"title\":\"Hover\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"sp5jwe5ep\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"b9fhb990j\",\"objOut\":\"sp5jwe5ep\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"xnap82xfe\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.6},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"uk3um0kyc\",\"objOut\":\"xnap82xfe\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"ak207xc99\",\"objOut\":\"xnap82xfe\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"kdn6btjb3\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rotZ\",\"portOut\":\"result\",\"objIn\":\"vwwgjlizf\",\"objOut\":\"kdn6btjb3\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"ipgrn686s\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":-0.32},{\"name\":\"y\",\"value\":0.92},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"c2lnrba6b\",\"objOut\":\"ipgrn686s\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"pv9fy1u1s\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":0.02},{\"name\":\"height\",\"value\":0.07},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":1},{\"name\":\"num rows\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"ns66cci5h\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"uk3um0kyc\",\"objOut\":\"ns66cci5h\"}]}],\"objName\":\"Ops.Gl.Matrix.Billboard\"},{\"id\":\"om399w808\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1.73},{\"name\":\"y\",\"value\":1},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"ipgrn686s\",\"objOut\":\"om399w808\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"},{\"id\":\"ixcr22c6p\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_position\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"sp21nyh4q\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int position\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"6tpfx1h1e\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"position\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"k5cx9t2w0\",\"objOut\":\"6tpfx1h1e\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"nzy2b7ut8\",\"objOut\":\"6tpfx1h1e\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"k5cx9t2w0\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"ipyawra4a\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"baridp3mz\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_injectedState\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"l84gnznq4\",\"objOut\":\"baridp3mz\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"nzy2b7ut8\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Number\",\"portOut\":\"Result\",\"objIn\":\"f2to9w0p5\",\"objOut\":\"nzy2b7ut8\"},{\"portIn\":\"Numbers_1\",\"portOut\":\"Result\",\"objIn\":\"typa3qfai\",\"objOut\":\"nzy2b7ut8\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"u4ssrgqtd\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"qc7y3s0cx\",\"objOut\":\"u4ssrgqtd\"},{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"q1fyo45tl\",\"objOut\":\"u4ssrgqtd\"},{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"6tpfx1h1e\",\"objOut\":\"u4ssrgqtd\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"qc7y3s0cx\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonSlider\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"typa3qfai\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"Number\",\"objIn\":\"sp5jwe5ep\",\"objOut\":\"typa3qfai\"},{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"ixcr22c6p\",\"objOut\":\"typa3qfai\"}]},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"l84gnznq4\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":0}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"nzy2b7ut8\",\"objOut\":\"l84gnznq4\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"q1fyo45tl\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"l84gnznq4\",\"objOut\":\"q1fyo45tl\"},{\"portIn\":\"Index\",\"portOut\":\"Result\",\"objIn\":\"typa3qfai\",\"objOut\":\"q1fyo45tl\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"c2lnrba6b\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":1.04},{\"name\":\"Height\",\"value\":0.24},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"b9fhb990j\",\"objOut\":\"c2lnrba6b\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"xnap82xfe\",\"objOut\":\"c2lnrba6b\"},{\"portIn\":\"jqg7l6f5m\",\"portOut\":\"Pointer Hover\",\"objIn\":\"4lgk8235o\",\"objOut\":\"c2lnrba6b\"},{\"portIn\":\"innerIn_h2l1ydpiy\",\"portOut\":\"Pointer Hover\",\"objIn\":\"ak207xc99\",\"objOut\":\"c2lnrba6b\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"u4ssrgqtd\",\"objOut\":\"c2lnrba6b\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"iaaozqt73\",\"objOut\":\"c2lnrba6b\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Pointer X\",\"objIn\":\"t24b96xwy\",\"objOut\":\"c2lnrba6b\"},{\"portIn\":\"Numbers_0\",\"portOut\":\"Pointer X\",\"objIn\":\"typa3qfai\",\"objOut\":\"c2lnrba6b\"},{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"iaaozqt73\",\"objOut\":\"c2lnrba6b\"}]},{\"name\":\"Pointer Y\",\"value\":0.0475698468205169},{\"name\":\"Top\",\"value\":27.819621562957764},{\"name\":\"Left\",\"value\":366.9763829112053},{\"name\":\"Right\",\"value\":1028.1485039144754},{\"name\":\"Bottom\",\"value\":116.01506531238556}],\"objName\":\"Ops.Patch.P4Zknbo.InteractiveRectangle_v22\"},{\"id\":\"5ybabstd4\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"glassy\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"t24b96xwy\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValueOnHover\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"4lgk8235o\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2,\"subPatchVer\":2},\"portsIn\":[{\"name\":\"jqg7l6f5m\",\"title\":\"Boolean\"},{\"name\":\"patchId\",\"value\":\"ww64iitoy\"}],\"objName\":\"Ops.Patch.P4Zknbo.DisengageFlag\"},{\"id\":\"f2to9w0p5\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{},\"objName\":\"Ops.Ui.VizNumberBar\"},{\"id\":\"iaaozqt73\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Value Out\",\"objIn\":\"ipyawra4a\",\"objOut\":\"iaaozqt73\"}]}],\"objName\":\"Ops.Number.GateNumber\"}]}",};
+const port_blls2amps=op.inTrigger("blls2amps");
+port_blls2amps.setUiAttribs({title:"Trigger in",});
+
+const port_btagbs7z2=op.inString("btagbs7z2","");
+port_btagbs7z2.setUiAttribs({title:"Class",});
+
+const port_lj06d561p=op.inFloat("lj06d561p",0);
+port_lj06d561p.setUiAttribs({title:"Show Boundings",display:"bool",});
+
+const port_nti406vwi=op.outNumber("nti406vwi");
+port_nti406vwi.setUiAttribs({title:"Result",});
+
+const port_gjvx0zyv5=op.outNumber("gjvx0zyv5");
+port_gjvx0zyv5.setUiAttribs({title:"value",});
+
+const port_h2l1ydpiy=op.outNumber("h2l1ydpiy");
+port_h2l1ydpiy.setUiAttribs({title:"Hover",});
+port_h2l1ydpiy.setUiAttribs({"values":[""]});
+
+op.initInnerPorts=function(addedOps)
+{
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
+    {
+const innerOut_blls2amps = addedOps[i].outTrigger("innerOut_blls2amps");
+innerOut_blls2amps.setUiAttribs({title:"Trigger in"});
+port_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };
+
+const innerOut_btagbs7z2 = addedOps[i].outString("innerOut_btagbs7z2");
+innerOut_btagbs7z2.set(port_btagbs7z2.get() );
+innerOut_btagbs7z2.setUiAttribs({title:"Class"});
+port_btagbs7z2.on("change", (a,v) => { innerOut_btagbs7z2.set(a); });
+
+const innerOut_lj06d561p = addedOps[i].outNumber("innerOut_lj06d561p");
+innerOut_lj06d561p.set(port_lj06d561p.get() );
+innerOut_lj06d561p.setUiAttribs({title:"Show Boundings"});
+port_lj06d561p.on("change", (a,v) => { innerOut_lj06d561p.set(a); });
+
+    }
+if(addedOps[i].innerOutput)
+{
+const innerIn_nti406vwi = addedOps[i].inFloat("innerIn_nti406vwi");
+innerIn_nti406vwi.setUiAttribs({title:"Result"});
+innerIn_nti406vwi.on("change", (a,v) => { port_nti406vwi.set(a); });
+
+const innerIn_gjvx0zyv5 = addedOps[i].inFloat("innerIn_gjvx0zyv5");
+innerIn_gjvx0zyv5.setUiAttribs({title:"value"});
+innerIn_gjvx0zyv5.on("change", (a,v) => { port_gjvx0zyv5.set(a); });
+
+const innerIn_h2l1ydpiy = addedOps[i].inFloat("innerIn_h2l1ydpiy");
+innerIn_h2l1ydpiy.setUiAttribs({title:"Hover"});
+innerIn_h2l1ydpiy.on("change", (a,v) => { port_h2l1ydpiy.set(a); });
+
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
+    {
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
+    }
+
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
+}
+
+
+};
+
+Ops.Patch.P4Zknbo.BasicSlider_v3.prototype = new CABLES.Op();
+CABLES.OPS["3ce2ea3c-8e3e-4b77-965d-de9b6f3ffa56"]={f:Ops.Patch.P4Zknbo.BasicSlider_v3,objName:"Ops.Patch.P4Zknbo.BasicSlider_v3"};
+
+
+
+
+// **************************************************************
+// 
 // Ops.Gl.GLTF.GltfScene_v4
 // 
 // **************************************************************
@@ -5996,7 +6085,7 @@ Ops.Gl.GLTF.GltfScene_v4 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
-const attachments=op.attachments={"inc_camera_js":"const gltfCamera = class\n{\n    constructor(gltf, node)\n    {\n        this.node = node;\n        this.name = node.name;\n        // console.log(gltf);\n        this.config = gltf.json.cameras[node.camera];\n\n        this.pos = vec3.create();\n        this.quat = quat.create();\n        this.vCenter = vec3.create();\n        this.vUp = vec3.create();\n        this.vMat = mat4.create();\n    }\n\n    updateAnim(time)\n    {\n        if (this.node && this.node._animTrans)\n        {\n            vec3.set(this.pos,\n                this.node._animTrans[0].getValue(time),\n                this.node._animTrans[1].getValue(time),\n                this.node._animTrans[2].getValue(time));\n\n            quat.set(this.quat,\n                this.node._animRot[0].getValue(time),\n                this.node._animRot[1].getValue(time),\n                this.node._animRot[2].getValue(time),\n                this.node._animRot[3].getValue(time));\n        }\n    }\n\n    start(time)\n    {\n        if (cgl.frameStore.shadowPass) return;\n\n        this.updateAnim(time);\n        const asp = cgl.getViewPort()[2] / cgl.getViewPort()[3];\n\n        cgl.pushPMatrix();\n        // mat4.perspective(\n        //     cgl.pMatrix,\n        //     this.config.perspective.yfov*0.5,\n        //     asp,\n        //     this.config.perspective.znear,\n        //     this.config.perspective.zfar);\n\n        cgl.pushViewMatrix();\n        // mat4.identity(cgl.vMatrix);\n\n        // if(this.node && this.node.parent)\n        // {\n        //     console.log(this.node.parent)\n        // vec3.add(this.pos,this.pos,this.node.parent._node.translation);\n        // vec3.sub(this.vCenter,this.vCenter,this.node.parent._node.translation);\n        // mat4.translate(cgl.vMatrix,cgl.vMatrix,\n        // [\n        //     -this.node.parent._node.translation[0],\n        //     -this.node.parent._node.translation[1],\n        //     -this.node.parent._node.translation[2]\n        // ])\n        // }\n\n        // vec3.set(this.vUp, 0, 1, 0);\n        // vec3.set(this.vCenter, 0, -1, 0);\n        // // vec3.set(this.vCenter, 0, 1, 0);\n        // vec3.transformQuat(this.vCenter, this.vCenter, this.quat);\n        // vec3.normalize(this.vCenter, this.vCenter);\n        // vec3.add(this.vCenter, this.vCenter, this.pos);\n\n        // mat4.lookAt(cgl.vMatrix, this.pos, this.vCenter, this.vUp);\n\n        let mv = mat4.create();\n        mat4.invert(mv, this.node.modelMatAbs());\n\n        // console.log(this.node.modelMatAbs());\n\n        this.vMat = mv;\n\n        mat4.identity(cgl.vMatrix);\n        // console.log(mv);\n        mat4.mul(cgl.vMatrix, cgl.vMatrix, mv);\n    }\n\n    end()\n    {\n        if (cgl.frameStore.shadowPass) return;\n        cgl.popPMatrix();\n        cgl.popViewMatrix();\n    }\n};\n","inc_gltf_js":"const le = true; // little endian\n\nconst Gltf = class\n{\n    constructor()\n    {\n        this.json = {};\n        this.accBuffers = [];\n        this.meshes = [];\n        this.nodes = [];\n        this.shaders = [];\n        this.timing = [];\n        this.cams = [];\n        this.startTime = performance.now();\n        this.bounds = new CABLES.CG.BoundingBox();\n        this.loaded = Date.now();\n        this.accBuffersDelete = [];\n    }\n\n    getNode(n)\n    {\n        for (let i = 0; i < this.nodes.length; i++)\n        {\n            if (this.nodes[i].name == n) return this.nodes[i];\n        }\n    }\n\n    unHideAll()\n    {\n        for (let i = 0; i < this.nodes.length; i++)\n        {\n            this.nodes[i].unHide();\n        }\n    }\n};\n\nfunction Utf8ArrayToStr(array)\n{\n    if (window.TextDecoder) return new TextDecoder(\"utf-8\").decode(array);\n\n    let out, i, len, c;\n    let char2, char3;\n\n    out = \"\";\n    len = array.length;\n    i = 0;\n    while (i < len)\n    {\n        c = array[i++];\n        switch (c >> 4)\n        {\n        case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7:\n            // 0xxxxxxx\n            out += String.fromCharCode(c);\n            break;\n        case 12: case 13:\n            // 110x xxxx   10xx xxxx\n            char2 = array[i++];\n            out += String.fromCharCode(((c & 0x1F) << 6) | (char2 & 0x3F));\n            break;\n        case 14:\n            // 1110 xxxx  10xx xxxx  10xx xxxx\n            char2 = array[i++];\n            char3 = array[i++];\n            out += String.fromCharCode(((c & 0x0F) << 12) |\n                    ((char2 & 0x3F) << 6) |\n                    ((char3 & 0x3F) << 0));\n            break;\n        }\n    }\n\n    return out;\n}\n\nfunction readChunk(dv, bArr, arrayBuffer, offset)\n{\n    const chunk = {};\n\n    if (offset >= dv.byteLength)\n    {\n        // op.log(\"could not read chunk...\");\n        return;\n    }\n    chunk.size = dv.getUint32(offset + 0, le);\n\n    // chunk.type = new TextDecoder(\"utf-8\").decode(bArr.subarray(offset+4, offset+4+4));\n    chunk.type = Utf8ArrayToStr(bArr.subarray(offset + 4, offset + 4 + 4));\n\n    if (chunk.type == \"BIN\\0\")\n    {\n        // console.log(chunk.size,arrayBuffer.length,offset);\n        // try\n        // {\n        chunk.dataView = new DataView(arrayBuffer, offset + 8, chunk.size);\n        // }\n        // catch(e)\n        // {\n        //     chunk.dataView = null;\n        //     console.log(e);\n        // }\n    }\n    else\n    if (chunk.type == \"JSON\")\n    {\n        const json = Utf8ArrayToStr(bArr.subarray(offset + 8, offset + 8 + chunk.size));\n\n        try\n        {\n            const obj = JSON.parse(json);\n            chunk.data = obj;\n            outGenerator.set(obj.asset.generator);\n        }\n        catch (e)\n        {\n        }\n    }\n    else\n    {\n        op.warn(\"unknown type\", chunk.type);\n    }\n\n    return chunk;\n}\n\nfunction loadAnims(gltf)\n{\n    const uniqueAnimNames = {};\n\n    for (let i = 0; i < gltf.json.animations.length; i++)\n    {\n        const an = gltf.json.animations[i];\n\n        an.name = an.name || \"unknown\";\n\n        for (let ia = 0; ia < an.channels.length; ia++)\n        {\n            const chan = an.channels[ia];\n\n            const node = gltf.nodes[chan.target.node];\n            const sampler = an.samplers[chan.sampler];\n\n            const acc = gltf.json.accessors[sampler.input];\n            const bufferIn = gltf.accBuffers[sampler.input];\n\n            const accOut = gltf.json.accessors[sampler.output];\n            const bufferOut = gltf.accBuffers[sampler.output];\n\n            gltf.accBuffersDelete.push(sampler.output, sampler.input);\n\n            if (bufferIn && bufferOut)\n            {\n                let numComps = 1;\n                if (accOut.type === \"VEC2\")numComps = 2;\n                else if (accOut.type === \"VEC3\")numComps = 3;\n                else if (accOut.type === \"VEC4\")numComps = 4;\n                else if (accOut.type === \"SCALAR\")\n                {\n                    numComps = bufferOut.length / bufferIn.length; // is this really the way to find out ? cant find any other way,except number of morph targets, but not really connected...\n                }\n                else op.log(\"[] UNKNOWN accOut.type\", accOut.type);\n\n                const anims = [];\n\n                uniqueAnimNames[an.name] = true;\n\n                for (let k = 0; k < numComps; k++)\n                {\n                    const newAnim = new CABLES.Anim();\n                    // newAnim.name=an.name;\n                    anims.push(newAnim);\n                }\n\n                if (sampler.interpolation === \"LINEAR\") {}\n                else if (sampler.interpolation === \"STEP\") for (let k = 0; k < numComps; k++) anims[k].defaultEasing = CABLES.EASING_ABSOLUTE;\n                else if (sampler.interpolation === \"CUBICSPLINE\") for (let k = 0; k < numComps; k++) anims[k].defaultEasing = CABLES.EASING_CUBICSPLINE;\n                else op.warn(\"unknown interpolation\", sampler.interpolation);\n\n                // console.log(bufferOut)\n\n                // if there is no keyframe for time 0 copy value of first keyframe at time 0\n                if (bufferIn[0] !== 0.0)\n                    for (let k = 0; k < numComps; k++)\n                        anims[k].setValue(0, bufferOut[0 * numComps + k]);\n\n                for (let j = 0; j < bufferIn.length; j++)\n                {\n                    maxTime = Math.max(bufferIn[j], maxTime);\n\n                    for (let k = 0; k < numComps; k++)\n                    {\n                        if (anims[k].defaultEasing === CABLES.EASING_CUBICSPLINE)\n                        {\n                            const idx = ((j * numComps) * 3 + k);\n\n                            const key = anims[k].setValue(bufferIn[j], bufferOut[idx + numComps]);\n                            key.bezTangIn = bufferOut[idx];\n                            key.bezTangOut = bufferOut[idx + (numComps * 2)];\n\n                            // console.log(an.name,k,bufferOut[idx+1]);\n                        }\n                        else\n                        {\n                            // console.log(an.name,k,bufferOut[j * numComps + k]);\n                            anims[k].setValue(bufferIn[j], bufferOut[j * numComps + k]);\n                        }\n                    }\n                }\n\n                node.setAnim(chan.target.path, an.name, anims);\n            }\n            else\n            {\n                op.warn(\"loadAmins bufferIn undefined \", bufferIn === undefined);\n                op.warn(\"loadAmins bufferOut undefined \", bufferOut === undefined);\n                op.warn(\"loadAmins \", sampler, accOut);\n                op.warn(\"loadAmins num accBuffers\", gltf.accBuffers.length);\n                op.warn(\"loadAmins num accessors\", gltf.json.accessors.length);\n            }\n        }\n    }\n\n    gltf.uniqueAnimNames = uniqueAnimNames;\n\n    outAnims.setRef(Object.keys(uniqueAnimNames));\n}\n\nfunction loadCams(gltf)\n{\n    if (!gltf || !gltf.json.cameras) return;\n\n    gltf.cameras = gltf.cameras || [];\n\n    for (let i = 0; i < gltf.nodes.length; i++)\n    {\n        if (gltf.nodes[i].hasOwnProperty(\"camera\"))\n        {\n            const cam = new gltfCamera(gltf, gltf.nodes[i]);\n            gltf.cameras.push(cam);\n        }\n    }\n}\n\nfunction loadAfterDraco()\n{\n    if (!window.DracoDecoder)\n    {\n        setTimeout(() =>\n        {\n            loadAfterDraco();\n        }, 100);\n    }\n\n    reloadSoon();\n}\n\nfunction parseGltf(arrayBuffer)\n{\n    const CHUNK_HEADER_SIZE = 8;\n\n    let j = 0, i = 0;\n\n    const gltf = new Gltf();\n    gltf.timing.push([\"Start parsing\", Math.round((performance.now() - gltf.startTime))]);\n\n    if (!arrayBuffer) return;\n    const byteArray = new Uint8Array(arrayBuffer);\n    let pos = 0;\n\n    // var string = new TextDecoder(\"utf-8\").decode(byteArray.subarray(pos, 4));\n    const string = Utf8ArrayToStr(byteArray.subarray(pos, 4));\n    pos += 4;\n    if (string != \"glTF\") return;\n\n    gltf.timing.push([\"dataview\", Math.round((performance.now() - gltf.startTime))]);\n\n    const dv = new DataView(arrayBuffer);\n    const version = dv.getUint32(pos, le);\n    pos += 4;\n    const size = dv.getUint32(pos, le);\n    pos += 4;\n\n    outVersion.set(version);\n\n    const chunks = [];\n    gltf.chunks = chunks;\n\n    chunks.push(readChunk(dv, byteArray, arrayBuffer, pos));\n    pos += chunks[0].size + CHUNK_HEADER_SIZE;\n    gltf.json = chunks[0].data;\n\n    gltf.cables = {\n        \"fileUrl\": inFile.get(),\n        \"shortFileName\": CABLES.basename(inFile.get())\n    };\n\n    outJson.setRef(gltf.json);\n    outExtensions.setRef(gltf.json.extensionsUsed || []);\n\n    let ch = readChunk(dv, byteArray, arrayBuffer, pos);\n    while (ch)\n    {\n        chunks.push(ch);\n        pos += ch.size + CHUNK_HEADER_SIZE;\n        ch = readChunk(dv, byteArray, arrayBuffer, pos);\n    }\n\n    gltf.chunks = chunks;\n\n    const views = chunks[0].data.bufferViews;\n    const accessors = chunks[0].data.accessors;\n\n    gltf.timing.push([\"Parse buffers\", Math.round((performance.now() - gltf.startTime))]);\n\n    if (gltf.json.extensionsUsed && gltf.json.extensionsUsed.indexOf(\"KHR_draco_mesh_compression\") > -1)\n    {\n        if (!window.DracoDecoder)\n        {\n            op.setUiError(\"gltfdraco\", \"GLTF draco compression lib not found / add draco op to your patch!\");\n\n            loadAfterDraco();\n            return gltf;\n        }\n        else\n        {\n            gltf.useDraco = true;\n        }\n    }\n\n    op.setUiError(\"gltfdraco\", null);\n    // let accPos = (view.byteOffset || 0) + (acc.byteOffset || 0);\n\n    if (views)\n    {\n        for (i = 0; i < accessors.length; i++)\n        {\n            const acc = accessors[i];\n            const view = views[acc.bufferView];\n\n            let numComps = 0;\n            if (acc.type == \"SCALAR\")numComps = 1;\n            else if (acc.type == \"VEC2\")numComps = 2;\n            else if (acc.type == \"VEC3\")numComps = 3;\n            else if (acc.type == \"VEC4\")numComps = 4;\n            else if (acc.type == \"MAT4\")numComps = 16;\n            else console.error(\"unknown accessor type\", acc.type);\n\n            //   const decoder = new decoderModule.Decoder();\n            //   const decodedGeometry = decodeDracoData(data, decoder);\n            //   // Encode mesh\n            //   encodeMeshToFile(decodedGeometry, decoder);\n\n            //   decoderModule.destroy(decoder);\n            //   decoderModule.destroy(decodedGeometry);\n\n            // 5120 (BYTE)\t1\n            // 5121 (UNSIGNED_BYTE)\t1\n            // 5122 (SHORT)\t2\n\n            if (chunks[1].dataView)\n            {\n                if (view)\n                {\n                    const num = acc.count * numComps;\n                    let accPos = (view.byteOffset || 0) + (acc.byteOffset || 0);\n                    let stride = view.byteStride || 0;\n                    let dataBuff = null;\n\n                    if (acc.componentType == 5126 || acc.componentType == 5125) // 4byte FLOAT or INT\n                    {\n                        stride = stride || 4;\n\n                        const isInt = acc.componentType == 5125;\n                        if (isInt)dataBuff = new Uint32Array(num);\n                        else dataBuff = new Float32Array(num);\n\n                        for (j = 0; j < num; j++)\n                        {\n                            if (isInt) dataBuff[j] = chunks[1].dataView.getUint32(accPos, le);\n                            else dataBuff[j] = chunks[1].dataView.getFloat32(accPos, le);\n\n                            if (stride != 4 && (j + 1) % numComps === 0)accPos += stride - (numComps * 4);\n                            accPos += 4;\n                        }\n                    }\n                    else if (acc.componentType == 5123) // UNSIGNED_SHORT\n                    {\n                        stride = stride || 2;\n\n                        dataBuff = new Uint16Array(num);\n\n                        for (j = 0; j < num; j++)\n                        {\n                            dataBuff[j] = chunks[1].dataView.getUint16(accPos, le);\n\n                            if (stride != 2 && (j + 1) % numComps === 0) accPos += stride - (numComps * 2);\n\n                            accPos += 2;\n                        }\n                    }\n                    else if (acc.componentType == 5121) // UNSIGNED_BYTE\n                    {\n                        stride = stride || 1;\n\n                        dataBuff = new Uint8Array(num);\n\n                        for (j = 0; j < num; j++)\n                        {\n                            dataBuff[j] = chunks[1].dataView.getUint8(accPos, le);\n\n                            if (stride != 1 && (j + 1) % numComps === 0) accPos += stride - (numComps * 1);\n\n                            accPos += 1;\n                        }\n                    }\n\n                    else\n                    {\n                        console.error(\"unknown component type\", acc.componentType);\n                    }\n\n                    gltf.accBuffers.push(dataBuff);\n                }\n                else\n                {\n                    // console.log(\"has no dataview\");\n                }\n            }\n        }\n    }\n\n    gltf.timing.push([\"Parse mesh groups\", Math.round((performance.now() - gltf.startTime))]);\n\n    gltf.json.meshes = gltf.json.meshes || [];\n\n    if (gltf.json.meshes)\n    {\n        for (i = 0; i < gltf.json.meshes.length; i++)\n        {\n            const mesh = new gltfMeshGroup(gltf, gltf.json.meshes[i]);\n            gltf.meshes.push(mesh);\n        }\n    }\n\n    gltf.timing.push([\"Parse nodes\", Math.round((performance.now() - gltf.startTime))]);\n\n    for (i = 0; i < gltf.json.nodes.length; i++)\n    {\n        if (gltf.json.nodes[i].children)\n            for (j = 0; j < gltf.json.nodes[i].children.length; j++)\n            {\n                gltf.json.nodes[gltf.json.nodes[i].children[j]].isChild = true;\n            }\n    }\n\n    for (i = 0; i < gltf.json.nodes.length; i++)\n    {\n        const node = new gltfNode(gltf.json.nodes[i], gltf);\n        gltf.nodes.push(node);\n    }\n\n    for (i = 0; i < gltf.nodes.length; i++)\n    {\n        const node = gltf.nodes[i];\n\n        if (!node.children) continue;\n        for (let j = 0; j < node.children.length; j++)\n        {\n            gltf.nodes[node.children[j]].parent = node;\n        }\n    }\n\n    for (i = 0; i < gltf.nodes.length; i++)\n    {\n        gltf.nodes[i].initSkin();\n    }\n\n    needsMatUpdate = true;\n\n    gltf.timing.push([\"load anims\", Math.round((performance.now() - gltf.startTime))]);\n\n    if (gltf.json.animations) loadAnims(gltf);\n\n    gltf.timing.push([\"load cameras\", Math.round((performance.now() - gltf.startTime))]);\n\n    if (gltf.json.cameras) loadCams(gltf);\n\n    gltf.timing.push([\"finished\", Math.round((performance.now() - gltf.startTime))]);\n    return gltf;\n}\n","inc_mesh_js":"let gltfMesh = class\n{\n    constructor(name, prim, gltf, finished)\n    {\n        this.POINTS = 0;\n        this.LINES = 1;\n        this.LINE_LOOP = 2;\n        this.LINE_STRIP = 3;\n        this.TRIANGLES = 4;\n        this.TRIANGLE_STRIP = 5;\n        this.TRIANGLE_FAN = 6;\n\n        this.test = 0;\n        this.name = name;\n        this.submeshIndex = 0;\n        this.material = prim.material;\n        // console.log(prim);\n        this.mesh = null;\n        this.geom = new CGL.Geometry(\"gltf_\" + this.name);\n        this.geom.verticesIndices = [];\n        this.bounds = null;\n        this.primitive = 4;\n        this.morphTargetsRenderMod = null;\n        this.weights = prim.weights;\n\n        if (prim.hasOwnProperty(\"mode\")) this.primitive = prim.mode;\n\n        if (prim.hasOwnProperty(\"indices\")) this.geom.verticesIndices = gltf.accBuffers[prim.indices];\n\n        gltf.loadingMeshes = gltf.loadingMeshes || 0;\n        gltf.loadingMeshes++;\n\n        this.materialJson =\n            this._matPbrMetalness =\n            this._matPbrRoughness =\n            this._matDiffuseColor = null;\n\n        if (gltf.json.materials)\n        {\n            if (this.material != -1) this.materialJson = gltf.json.materials[this.material];\n\n            if (this.materialJson && this.materialJson.pbrMetallicRoughness)\n            {\n                if (!this.materialJson.pbrMetallicRoughness.hasOwnProperty(\"baseColorFactor\"))\n                {\n                    this._matDiffuseColor = [1, 1, 1, 1];\n                }\n                else\n                {\n                    this._matDiffuseColor = this.materialJson.pbrMetallicRoughness.baseColorFactor;\n                }\n\n                this._matDiffuseColor = this.materialJson.pbrMetallicRoughness.baseColorFactor;\n\n                if (!this.materialJson.pbrMetallicRoughness.hasOwnProperty(\"metallicFactor\"))\n                {\n                    this._matPbrMetalness = 1.0;\n                }\n                else\n                {\n                    this._matPbrMetalness = this.materialJson.pbrMetallicRoughness.metallicFactor || null;\n                }\n\n                if (!this.materialJson.pbrMetallicRoughness.hasOwnProperty(\"roughnessFactor\"))\n                {\n                    this._matPbrRoughness = 1.0;\n                }\n                else\n                {\n                    this._matPbrRoughness = this.materialJson.pbrMetallicRoughness.roughnessFactor || null;\n                }\n            }\n        }\n\n        if (gltf.useDraco && prim.extensions.KHR_draco_mesh_compression)\n        {\n            const view = gltf.chunks[0].data.bufferViews[prim.extensions.KHR_draco_mesh_compression.bufferView];\n            const num = view.byteLength;\n            const dataBuff = new Int8Array(num);\n            let accPos = (view.byteOffset || 0);// + (acc.byteOffset || 0);\n            for (let j = 0; j < num; j++)\n            {\n                dataBuff[j] = gltf.chunks[1].dataView.getInt8(accPos, le);\n                accPos++;\n            }\n\n            const dracoDecoder = window.DracoDecoder;\n            dracoDecoder.decodeGeometry(dataBuff.buffer, (geometry) =>\n            {\n                const geom = new CGL.Geometry(\"draco mesh \" + name);\n\n                for (let i = 0; i < geometry.attributes.length; i++)\n                {\n                    const attr = geometry.attributes[i];\n\n                    if (attr.name === \"position\") geom.vertices = attr.array;\n                    else if (attr.name === \"normal\") geom.vertexNormals = attr.array;\n                    else if (attr.name === \"uv\") geom.texCoords = attr.array;\n                    else if (attr.name === \"color\") geom.vertexColors = this.calcVertexColors(attr.array);\n                    else if (attr.name === \"joints\") geom.setAttribute(\"attrJoints\", Array.from(attr.array), 4);\n                    else if (attr.name === \"weights\")\n                    {\n                        const arr4 = new Float32Array(attr.array.length / attr.itemSize * 4);\n\n                        for (let k = 0; k < attr.array.length / attr.itemSize; k++)\n                        {\n                            arr4[k * 4] = arr4[k * 4 + 1] = arr4[k * 4 + 2] = arr4[k * 4 + 3] = 0;\n                            for (let j = 0; j < attr.itemSize; j++)\n                                arr4[k * 4 + j] = attr.array[k * attr.itemSize + j];\n                        }\n                        geom.setAttribute(\"attrWeights\", arr4, 4);\n                    }\n                    else op.logWarn(\"unknown draco attrib\", attr);\n                }\n\n                geometry.attributes = null;\n                geom.verticesIndices = geometry.index.array;\n\n                this.setGeom(geom);\n\n                this.mesh = null;\n                gltf.loadingMeshes--;\n                gltf.timing.push([\"draco decode\", Math.round((performance.now() - gltf.startTime))]);\n\n                if (finished)finished(this);\n            }, (error) => { op.logError(error); });\n        }\n        else\n        {\n            gltf.loadingMeshes--;\n            this.fillGeomAttribs(gltf, this.geom, prim.attributes);\n\n            if (prim.targets)\n            {\n                for (let j = 0; j < prim.targets.length; j++)\n                {\n                    const tgeom = new CGL.Geometry(\"gltf_target_\" + j);\n\n                    // if (prim.hasOwnProperty(\"indices\")) tgeom.verticesIndices = gltf.accBuffers[prim.indices];\n\n                    this.fillGeomAttribs(gltf, tgeom, prim.targets[j], false);\n\n                    // { // calculate normals for final position of morphtarget for later...\n                    //     for (let i = 0; i < tgeom.vertices.length; i++) tgeom.vertices[i] += this.geom.vertices[i];\n                    //     tgeom.calculateNormals();\n                    //     for (let i = 0; i < tgeom.vertices.length; i++) tgeom.vertices[i] -= this.geom.vertices[i];\n                    // }\n\n                    this.geom.morphTargets.push(tgeom);\n                }\n            }\n            if (finished)finished(this);\n        }\n    }\n\n    _linearToSrgb(x)\n    {\n        if (x <= 0)\n            return 0;\n        else if (x >= 1)\n            return 1;\n        else if (x < 0.0031308)\n            return x * 12.92;\n        else\n            return x ** (1 / 2.2) * 1.055 - 0.055;\n    }\n\n    calcVertexColors(arr)\n    {\n        let vertexColors = null;\n        if (arr instanceof Float32Array)\n        {\n            let div = false;\n            for (let i = 0; i < arr.length; i++)\n            {\n                if (arr[i] > 1)\n                {\n                    div = true;\n                    continue;\n                }\n            }\n\n            if (div)\n                for (let i = 0; i < arr.length; i++) arr[i] /= 65535;\n\n            vertexColors = arr;\n        }\n\n        else if (arr instanceof Uint16Array)\n        {\n            const fb = new Float32Array(arr.length);\n            for (let i = 0; i < arr.length; i++) fb[i] = arr[i] / 65535;\n\n            vertexColors = fb;\n        }\n        else vertexColors = arr;\n\n        for (let i = 0; i < vertexColors.length; i++)\n        {\n            vertexColors[i] = this._linearToSrgb(vertexColors[i]);\n        }\n\n        return vertexColors;\n    }\n\n    fillGeomAttribs(gltf, tgeom, attribs, setGeom)\n    {\n        if (attribs.hasOwnProperty(\"POSITION\")) tgeom.vertices = gltf.accBuffers[attribs.POSITION];\n        if (attribs.hasOwnProperty(\"NORMAL\")) tgeom.vertexNormals = gltf.accBuffers[attribs.NORMAL];\n        if (attribs.hasOwnProperty(\"TANGENT\")) tgeom.tangents = gltf.accBuffers[attribs.TANGENT];\n\n        if (attribs.hasOwnProperty(\"COLOR_0\")) tgeom.vertexColors = this.calcVertexColors(gltf.accBuffers[attribs.COLOR_0]);\n        if (attribs.hasOwnProperty(\"COLOR_1\")) tgeom.setAttribute(\"attrVertColor1\", this.calcVertexColors(gltf.accBuffers[attribs.COLOR_1]), 4);\n        if (attribs.hasOwnProperty(\"COLOR_2\")) tgeom.setAttribute(\"attrVertColor2\", this.calcVertexColors(gltf.accBuffers[attribs.COLOR_2]), 4);\n        if (attribs.hasOwnProperty(\"COLOR_3\")) tgeom.setAttribute(\"attrVertColor3\", this.calcVertexColors(gltf.accBuffers[attribs.COLOR_3]), 4);\n        if (attribs.hasOwnProperty(\"COLOR_4\")) tgeom.setAttribute(\"attrVertColor4\", this.calcVertexColors(gltf.accBuffers[attribs.COLOR_4]), 4);\n\n        if (attribs.hasOwnProperty(\"TEXCOORD_0\")) tgeom.texCoords = gltf.accBuffers[attribs.TEXCOORD_0];\n        if (attribs.hasOwnProperty(\"TEXCOORD_1\")) tgeom.setAttribute(\"attrTexCoord1\", gltf.accBuffers[attribs.TEXCOORD_1], 2);\n        if (attribs.hasOwnProperty(\"TEXCOORD_2\")) tgeom.setAttribute(\"attrTexCoord2\", gltf.accBuffers[attribs.TEXCOORD_2], 2);\n        if (attribs.hasOwnProperty(\"TEXCOORD_3\")) tgeom.setAttribute(\"attrTexCoord3\", gltf.accBuffers[attribs.TEXCOORD_3], 2);\n        if (attribs.hasOwnProperty(\"TEXCOORD_4\")) tgeom.setAttribute(\"attrTexCoord4\", gltf.accBuffers[attribs.TEXCOORD_4], 2);\n\n        if (attribs.hasOwnProperty(\"WEIGHTS_0\"))\n        {\n            tgeom.setAttribute(\"attrWeights\", gltf.accBuffers[attribs.WEIGHTS_0], 4);\n        }\n        if (attribs.hasOwnProperty(\"JOINTS_0\"))\n        {\n            if (!gltf.accBuffers[attribs.JOINTS_0])console.log(\"no !gltf.accBuffers[attribs.JOINTS_0]\");\n            tgeom.setAttribute(\"attrJoints\", gltf.accBuffers[attribs.JOINTS_0], 4);\n        }\n\n        if (attribs.hasOwnProperty(\"POSITION\")) gltf.accBuffersDelete.push(attribs.POSITION);\n        if (attribs.hasOwnProperty(\"NORMAL\")) gltf.accBuffersDelete.push(attribs.NORMAL);\n        if (attribs.hasOwnProperty(\"TEXCOORD_0\")) gltf.accBuffersDelete.push(attribs.TEXCOORD_0);\n        if (attribs.hasOwnProperty(\"TANGENT\")) gltf.accBuffersDelete.push(attribs.TANGENT);\n        if (attribs.hasOwnProperty(\"COLOR_0\"))gltf.accBuffersDelete.push(attribs.COLOR_0);\n        if (attribs.hasOwnProperty(\"COLOR_0\"))gltf.accBuffersDelete.push(attribs.COLOR_0);\n        if (attribs.hasOwnProperty(\"COLOR_1\"))gltf.accBuffersDelete.push(attribs.COLOR_1);\n        if (attribs.hasOwnProperty(\"COLOR_2\"))gltf.accBuffersDelete.push(attribs.COLOR_2);\n        if (attribs.hasOwnProperty(\"COLOR_3\"))gltf.accBuffersDelete.push(attribs.COLOR_3);\n\n        if (attribs.hasOwnProperty(\"TEXCOORD_1\")) gltf.accBuffersDelete.push(attribs.TEXCOORD_1);\n        if (attribs.hasOwnProperty(\"TEXCOORD_2\")) gltf.accBuffersDelete.push(attribs.TEXCOORD_2);\n        if (attribs.hasOwnProperty(\"TEXCOORD_3\")) gltf.accBuffersDelete.push(attribs.TEXCOORD_3);\n        if (attribs.hasOwnProperty(\"TEXCOORD_4\")) gltf.accBuffersDelete.push(attribs.TEXCOORD_4);\n\n        if (setGeom !== false) if (tgeom && tgeom.verticesIndices) this.setGeom(tgeom);\n    }\n\n    setGeom(geom)\n    {\n        if (inNormFormat.get() == \"X-ZY\")\n        {\n            for (let i = 0; i < geom.vertexNormals.length; i += 3)\n            {\n                let t = geom.vertexNormals[i + 2];\n                geom.vertexNormals[i + 2] = geom.vertexNormals[i + 1];\n                geom.vertexNormals[i + 1] = -t;\n            }\n        }\n\n        if (inVertFormat.get() == \"XZ-Y\")\n        {\n            for (let i = 0; i < geom.vertices.length; i += 3)\n            {\n                let t = geom.vertices[i + 2];\n                geom.vertices[i + 2] = -geom.vertices[i + 1];\n                geom.vertices[i + 1] = t;\n            }\n        }\n\n        if (this.primitive == this.TRIANGLES)\n        {\n            if (inCalcNormals.get() == \"Force Smooth\" || inCalcNormals.get() == false) geom.calculateNormals();\n            else if (!geom.vertexNormals.length && inCalcNormals.get() == \"Auto\") geom.calculateNormals({ \"smooth\": false });\n\n            if ((!geom.biTangents || geom.biTangents.length == 0) && geom.tangents)\n            {\n                const bitan = vec3.create();\n                const tan = vec3.create();\n\n                const tangents = geom.tangents;\n                geom.tangents = new Float32Array(tangents.length / 4 * 3);\n                geom.biTangents = new Float32Array(tangents.length / 4 * 3);\n\n                for (let i = 0; i < tangents.length; i += 4)\n                {\n                    const idx = i / 4 * 3;\n\n                    vec3.cross(\n                        bitan,\n                        [geom.vertexNormals[idx], geom.vertexNormals[idx + 1], geom.vertexNormals[idx + 2]],\n                        [tangents[i], tangents[i + 1], tangents[i + 2]]\n                    );\n\n                    vec3.div(bitan, bitan, [tangents[i + 3], tangents[i + 3], tangents[i + 3]]);\n                    vec3.normalize(bitan, bitan);\n\n                    geom.biTangents[idx + 0] = bitan[0];\n                    geom.biTangents[idx + 1] = bitan[1];\n                    geom.biTangents[idx + 2] = bitan[2];\n\n                    geom.tangents[idx + 0] = tangents[i + 0];\n                    geom.tangents[idx + 1] = tangents[i + 1];\n                    geom.tangents[idx + 2] = tangents[i + 2];\n                }\n            }\n\n            if (geom.tangents.length === 0 || inCalcNormals.get() != \"Never\")\n            {\n                // console.log(\"[gltf ]no tangents... calculating tangents...\");\n                geom.calcTangentsBitangents();\n            }\n        }\n\n        this.geom = geom;\n\n        this.bounds = geom.getBounds();\n    }\n\n    render(cgl, ignoreMaterial, skinRenderer)\n    {\n        if (!this.mesh && this.geom && this.geom.verticesIndices)\n        {\n            let g = this.geom;\n            if (this.geom.vertices.length / 3 > 64000)\n            {\n                g = this.geom.copy();\n                g.unIndex(false, true);\n            }\n\n            let glprim;\n\n            if (cgl.gl)\n            {\n                if (this.primitive == this.TRIANGLES)glprim = cgl.gl.TRIANGLES;\n                else if (this.primitive == this.LINES)glprim = cgl.gl.LINES;\n                else if (this.primitive == this.LINE_STRIP)glprim = cgl.gl.LINE_STRIP;\n                else if (this.primitive == this.POINTS)glprim = cgl.gl.POINTS;\n                else\n                {\n                    op.logWarn(\"unknown primitive type\", this);\n                }\n            }\n\n            this.mesh = op.patch.cg.createMesh(g, { \"glPrimitive\": glprim });\n        }\n\n        if (this.mesh)\n        {\n            // update morphTargets\n            if (this.geom && this.geom.morphTargets.length && !this.morphTargetsRenderMod)\n            {\n                this.mesh.addVertexNumbers = true;\n                this.morphTargetsRenderMod = new GltfTargetsRenderer(this);\n            }\n\n            let useMat = !ignoreMaterial && this.material != -1 && gltf.shaders[this.material];\n            if (skinRenderer)useMat = false;\n\n            if (useMat) cgl.pushShader(gltf.shaders[this.material]);\n\n            const currentShader = cgl.getShader() || {};\n            const uniDiff = currentShader.uniformColorDiffuse;\n\n            const uniPbrMetalness = currentShader.uniformPbrMetalness;\n            const uniPbrRoughness = currentShader.uniformPbrRoughness;\n\n            // if (gltf.shaders[this.material] && !inUseMatProps.get())\n            // {\n            //     gltf.shaders[this.material]=null;\n            // }\n\n            if (!gltf.shaders[this.material] && inUseMatProps.get())\n            {\n                if (uniDiff && this._matDiffuseColor)\n                {\n                    this._matDiffuseColorOrig = [uniDiff.getValue()[0], uniDiff.getValue()[1], uniDiff.getValue()[2], uniDiff.getValue()[3]];\n                    uniDiff.setValue(this._matDiffuseColor);\n                }\n\n                if (uniPbrMetalness)\n                    if (this._matPbrMetalness != null)\n                    {\n                        this._matPbrMetalnessOrig = uniPbrMetalness.getValue();\n                        uniPbrMetalness.setValue(this._matPbrMetalness);\n                    }\n                    else\n                        uniPbrMetalness.setValue(0);\n\n                if (uniPbrRoughness)\n                    if (this._matPbrRoughness != null)\n                    {\n                        this._matPbrRoughnessOrig = uniPbrRoughness.getValue();\n                        uniPbrRoughness.setValue(this._matPbrRoughness);\n                    }\n                    else\n                    {\n                        uniPbrRoughness.setValue(0);\n                    }\n            }\n\n            if (this.morphTargetsRenderMod) this.morphTargetsRenderMod.renderStart(cgl, 0);\n            if (this.mesh)\n            {\n                // console.log(this.mesh)\n                // this.mesh.lastMaterial=0;\n                this.mesh.render(cgl.getShader(), ignoreMaterial);\n            }\n            if (this.morphTargetsRenderMod) this.morphTargetsRenderMod.renderFinish(cgl);\n\n            if (inUseMatProps.get())\n            {\n                if (uniDiff && this._matDiffuseColor) uniDiff.setValue(this._matDiffuseColorOrig);\n                if (uniPbrMetalness && this._matPbrMetalnessOrig != undefined) uniPbrMetalness.setValue(this._matPbrMetalnessOrig);\n                if (uniPbrRoughness && this._matPbrRoughnessOrig != undefined) uniPbrRoughness.setValue(this._matPbrRoughnessOrig);\n            }\n\n            if (useMat) cgl.popShader();\n        }\n    }\n};\n","inc_meshGroup_js":"const gltfMeshGroup = class\n{\n    constructor(gltf, m)\n    {\n        this.bounds = new CABLES.CG.BoundingBox();\n        this.meshes = [];\n        this.name = m.name;\n        const prims = m.primitives;\n\n        for (let i = 0; i < prims.length; i++)\n        {\n            const mesh = new gltfMesh(this.name, prims[i], gltf,\n                (mesh) =>\n                {\n                    mesh.extras = m.extras;\n                    this.bounds.apply(mesh.bounds);\n                });\n\n            mesh.submeshIndex = i;\n            this.meshes.push(mesh);\n        }\n    }\n\n    render(cgl, ignoreMat, skinRenderer, _time, weights)\n    {\n        for (let i = 0; i < this.meshes.length; i++)\n        {\n            const useMat = gltf.shaders[this.meshes[i].material];\n\n            if (!ignoreMat && useMat) cgl.pushShader(gltf.shaders[this.meshes[i].material]);\n            // console.log(gltf.shaders[this.meshes[i].material],this.meshes[i].material)\n            if (skinRenderer)skinRenderer.renderStart(cgl, _time);\n            if (weights) this.meshes[i].weights = weights;\n            this.meshes[i].render(cgl, ignoreMat, skinRenderer, _time);\n            if (skinRenderer)skinRenderer.renderFinish(cgl);\n            if (!ignoreMat && useMat) cgl.popShader();\n        }\n    }\n};\n","inc_node_js":"const gltfNode = class\n{\n    constructor(node, gltf)\n    {\n        this.isChild = node.isChild || false;\n        this.name = node.name;\n        if (node.hasOwnProperty(\"camera\")) this.camera = node.camera;\n        this.hidden = false;\n        this.mat = mat4.create();\n        this._animActions = {};\n        this.animWeights = [];\n        this._animMat = mat4.create();\n        this._tempMat = mat4.create();\n        this._tempQuat = quat.create();\n        this._tempRotmat = mat4.create();\n        this.mesh = null;\n        this.children = [];\n        this._node = node;\n        this._gltf = gltf;\n        this.absMat = mat4.create();\n        this.addTranslate = null;\n        this._tempAnimScale = null;\n        this.addMulMat = null;\n        this.updateMatrix();\n        this.skinRenderer = null;\n        this.copies = [];\n    }\n\n    get skin()\n    {\n        if (this._node.hasOwnProperty(\"skin\")) return this._node.skin;\n        else return -1;\n    }\n\n    copy()\n    {\n        this.isCopy = true;\n        const n = new gltfNode(this._node, this._gltf);\n        n.copyOf = this;\n\n        n._animActions = this._animActions;\n        n.children = this.children;\n        if (this.skin) n.skinRenderer = new GltfSkin(this);\n\n        this.updateMatrix();\n        return n;\n    }\n\n    hasSkin()\n    {\n        if (this._node.hasOwnProperty(\"skin\")) return this._gltf.json.skins[this._node.skin].name || \"unknown\";\n        return false;\n    }\n\n    initSkin()\n    {\n        if (this.skin > -1)\n        {\n            this.skinRenderer = new GltfSkin(this);\n        }\n    }\n\n    updateMatrix()\n    {\n        mat4.identity(this.mat);\n        if (this._node.translation) mat4.translate(this.mat, this.mat, this._node.translation);\n\n        if (this._node.rotation)\n        {\n            const rotmat = mat4.create();\n            this._rot = this._node.rotation;\n\n            mat4.fromQuat(rotmat, this._node.rotation);\n            mat4.mul(this.mat, this.mat, rotmat);\n        }\n\n        if (this._node.scale)\n        {\n            this._scale = this._node.scale;\n            mat4.scale(this.mat, this.mat, this._scale);\n        }\n\n        if (this._node.hasOwnProperty(\"mesh\"))\n        {\n            this.mesh = this._gltf.meshes[this._node.mesh];\n            if (this.isCopy)\n            {\n                // console.log(this.mesh);\n            }\n        }\n\n        if (this._node.children)\n        {\n            for (let i = 0; i < this._node.children.length; i++)\n            {\n                this._gltf.json.nodes[i].isChild = true;\n                if (this._gltf.nodes[this._node.children[i]]) this._gltf.nodes[this._node.children[i]].isChild = true;\n                this.children.push(this._node.children[i]);\n            }\n        }\n    }\n\n    unHide()\n    {\n        this.hidden = false;\n        for (let i = 0; i < this.children.length; i++)\n            if (this.children[i].unHide) this.children[i].unHide();\n    }\n\n    calcBounds(gltf, mat, bounds)\n    {\n        const localMat = mat4.create();\n\n        if (mat) mat4.copy(localMat, mat);\n        if (this.mat) mat4.mul(localMat, localMat, this.mat);\n\n        if (this.mesh)\n        {\n            const bb = this.mesh.bounds.copy();\n            bb.mulMat4(localMat);\n            bounds.apply(bb);\n\n            if (bounds.changed)\n            {\n                boundingPoints.push(\n                    bb._min[0] || 0, bb._min[1] || 0, bb._min[2] || 0,\n                    bb._max[0] || 0, bb._max[1] || 0, bb._max[2] || 0);\n            }\n        }\n\n        for (let i = 0; i < this.children.length; i++)\n        {\n            if (gltf.nodes[this.children[i]] && gltf.nodes[this.children[i]].calcBounds)\n            {\n                const b = gltf.nodes[this.children[i]].calcBounds(gltf, localMat, bounds);\n\n                bounds.apply(b);\n            }\n        }\n\n        if (bounds.changed) return bounds;\n        else return null;\n    }\n\n    setAnimAction(name)\n    {\n        // console.log(\"setAnimAction:\", name);\n        if (!name) return;\n\n        this._currentAnimaction = name;\n\n        if (name && !this._animActions[name])\n        {\n            // console.log(\"no action found:\", name,this._animActions);\n            return null;\n        }\n\n        // else console.log(\"YES action found:\", name);\n        // console.log(this._animActions);\n\n        for (let path in this._animActions[name])\n        {\n            if (path == \"translation\") this._animTrans = this._animActions[name][path];\n            else if (path == \"rotation\") this._animRot = this._animActions[name][path];\n            else if (path == \"scale\") this._animScale = this._animActions[name][path];\n            else if (path == \"weights\") this.animWeights = this._animActions[name][path];\n            else console.log(\"[gltfNode] unknown anim path\", path, this._animActions[name][path]);\n        }\n    }\n\n    setAnim(path, name, anims)\n    {\n        if (!path || !name || !anims) return;\n\n        // console.log(\"setanim\", this._node.name, path, name, anims);\n\n        this._animActions[name] = this._animActions[name] || {};\n\n        // console.log(this._animActions);\n        // debugger;\n\n        // for (let i = 0; i < this.copies.length; i++) this.copies[i]._animActions = this._animActions;\n\n        if (this._animActions[name][path]) op.log(\"[gltfNode] animation action path already exists\", name, path, this._animActions[name][path]);\n\n        this._animActions[name][path] = anims;\n\n        if (path == \"translation\") this._animTrans = anims;\n        else if (path == \"rotation\") this._animRot = anims;\n        else if (path == \"scale\") this._animScale = anims;\n        else if (path == \"weights\")\n        {\n            // console.log(\"weights\",name,path,anims)\n            this.animWeights = this._animActions[name][path];\n            // console.log(this.animWeights);\n        }\n        else console.warn(\"unknown anim path\", path, anims);\n    }\n\n    modelMatLocal()\n    {\n        return this._animMat || this.mat;\n    }\n\n    modelMatAbs()\n    {\n        return this.absMat;\n    }\n\n    transform(cgl, _time)\n    {\n        if (!_time && _time != 0)_time = time;\n\n        this._lastTimeTrans = _time;\n\n        // console.log(this._rot)\n\n        gltfTransforms++;\n\n        if (!this._animTrans && !this._animRot && !this._animScale)\n        {\n            mat4.mul(cgl.mMatrix, cgl.mMatrix, this.mat);\n            this._animMat = null;\n        }\n        else\n        {\n            this._animMat = this._animMat || mat4.create();\n            mat4.identity(this._animMat);\n\n            const playAnims = true;\n\n            if (playAnims && this._animTrans)\n            {\n                mat4.translate(this._animMat, this._animMat, [\n                    this._animTrans[0].getValue(_time),\n                    this._animTrans[1].getValue(_time),\n                    this._animTrans[2].getValue(_time)]);\n            }\n            else\n            if (this._node.translation) mat4.translate(this._animMat, this._animMat, this._node.translation);\n\n            if (playAnims && this._animRot)\n            {\n                if (this._animRot[0].defaultEasing == CABLES.EASING_LINEAR) CABLES.Anim.slerpQuaternion(_time, this._tempQuat, this._animRot[0], this._animRot[1], this._animRot[2], this._animRot[3]);\n                else if (this._animRot[0].defaultEasing == CABLES.EASING_ABSOLUTE)\n                {\n                    this._tempQuat[0] = this._animRot[0].getValue(_time);\n                    this._tempQuat[1] = this._animRot[1].getValue(_time);\n                    this._tempQuat[2] = this._animRot[2].getValue(_time);\n                    this._tempQuat[3] = this._animRot[3].getValue(_time);\n                }\n                else if (this._animRot[0].defaultEasing == CABLES.EASING_CUBICSPLINE)\n                {\n                    CABLES.Anim.slerpQuaternion(_time, this._tempQuat, this._animRot[0], this._animRot[1], this._animRot[2], this._animRot[3]);\n                }\n\n                mat4.fromQuat(this._tempMat, this._tempQuat);\n                mat4.mul(this._animMat, this._animMat, this._tempMat);\n            }\n            else if (this._rot)\n            {\n                mat4.fromQuat(this._tempRotmat, this._rot);\n                mat4.mul(this._animMat, this._animMat, this._tempRotmat);\n            }\n\n            if (playAnims && this._animScale)\n            {\n                if (!this._tempAnimScale) this._tempAnimScale = [1, 1, 1];\n                this._tempAnimScale[0] = this._animScale[0].getValue(_time);\n                this._tempAnimScale[1] = this._animScale[1].getValue(_time);\n                this._tempAnimScale[2] = this._animScale[2].getValue(_time);\n                mat4.scale(this._animMat, this._animMat, this._tempAnimScale);\n            }\n            else if (this._scale) mat4.scale(this._animMat, this._animMat, this._scale);\n\n            mat4.mul(cgl.mMatrix, cgl.mMatrix, this._animMat);\n        }\n\n        if (this.animWeights)\n        {\n            this.weights = this.weights || [];\n\n            let str = \"\";\n            for (let i = 0; i < this.animWeights.length; i++)\n            {\n                this.weights[i] = this.animWeights[i].getValue(_time);\n                str += this.weights[i] + \"/\";\n            }\n\n            // console.log(str);\n            // this.mesh.weights=this.animWeights.get(_time);\n            // console.log(this.animWeights);\n        }\n\n        if (this.addTranslate) mat4.translate(cgl.mMatrix, cgl.mMatrix, this.addTranslate);\n\n        if (this.addMulMat) mat4.mul(cgl.mMatrix, cgl.mMatrix, this.addMulMat);\n\n        mat4.copy(this.absMat, cgl.mMatrix);\n    }\n\n    render(cgl, dontTransform, dontDrawMesh, ignoreMaterial, ignoreChilds, drawHidden, _time)\n    {\n        if (!dontTransform) cgl.pushModelMatrix();\n\n        if (_time === undefined) _time = gltf.time;\n\n        if (!dontTransform || this.skinRenderer) this.transform(cgl, _time);\n\n        if (this.hidden && !drawHidden)\n        {\n        }\n        else\n        {\n            if (this.skinRenderer)\n            {\n                this.skinRenderer.time = _time;\n                if (!dontDrawMesh)\n                    this.mesh.render(cgl, ignoreMaterial, this.skinRenderer, _time, this.weights);\n            }\n            else\n            {\n                if (this.mesh && !dontDrawMesh)\n                    this.mesh.render(cgl, ignoreMaterial, null, _time, this.weights);\n            }\n        }\n\n        if (!ignoreChilds && !this.hidden)\n            for (let i = 0; i < this.children.length; i++)\n                if (gltf.nodes[this.children[i]])\n                    gltf.nodes[this.children[i]].render(cgl, dontTransform, dontDrawMesh, ignoreMaterial, ignoreChilds, drawHidden, _time);\n\n        if (!dontTransform)cgl.popModelMatrix();\n    }\n};\n","inc_print_js":"let tab = null;\n\nfunction closeTab()\n{\n    if (tab)gui.mainTabs.closeTab(tab.id);\n    tab = null;\n}\n\nfunction formatVec(arr)\n{\n    const nums = [];\n    for (let i = 0; i < arr.length; i++)\n    {\n        nums.push(Math.round(arr[i] * 1000) / 1000);\n    }\n\n    return nums.join(\",\");\n}\n\nfunction printNode(html, node, level)\n{\n    if (!gltf) return;\n\n    html += \"<tr class=\\\"row\\\">\";\n\n    let ident = \"\";\n    let identSpace = \"\";\n\n    for (let i = 1; i < level; i++)\n    {\n        identSpace += \"&nbsp;&nbsp;&nbsp;\";\n        let identClass = \"identBg\";\n        if (i == 1)identClass = \"identBgLevel0\";\n        ident += \"<td class=\\\"ident \" + identClass + \"\\\" ><div style=\\\"\\\"></div></td>\";\n    }\n    let id = CABLES.uuid();\n    html += ident;\n    html += \"<td colspan=\\\"\" + (21 - level) + \"\\\">\";\n\n    if (node.mesh && node.mesh.meshes.length)html += \"<span class=\\\"icon icon-cube\\\"></span>&nbsp;\";\n    else html += \"<span class=\\\"icon icon-box-select\\\"></span> &nbsp;\";\n\n    html += node.name + \"</td><td></td>\";\n\n    if (node.mesh)\n    {\n        html += \"<td>\";\n        for (let i = 0; i < node.mesh.meshes.length; i++)\n        {\n            if (i > 0)html += \", \";\n            html += node.mesh.meshes[i].name;\n        }\n\n        html += \"</td>\";\n\n        html += \"<td>\";\n        html += node.hasSkin() || \"-\";\n        html += \"</td>\";\n\n        html += \"<td>\";\n        let countMats = 0;\n        for (let i = 0; i < node.mesh.meshes.length; i++)\n        {\n            if (countMats > 0)html += \", \";\n            if (gltf.json.materials && node.mesh.meshes[i].hasOwnProperty(\"material\"))\n            {\n                if (gltf.json.materials[node.mesh.meshes[i].material])\n                {\n                    html += gltf.json.materials[node.mesh.meshes[i].material].name;\n                    countMats++;\n                }\n            }\n        }\n        if (countMats == 0)html += \"none\";\n        html += \"</td>\";\n    }\n    else\n    {\n        html += \"<td>-</td><td>-</td><td>-</td>\";\n    }\n\n    html += \"<td>\";\n\n    if (node._node.translation || node._node.rotation || node._node.scale)\n    {\n        let info = \"\";\n\n        if (node._node.translation)info += \"Translate: `\" + formatVec(node._node.translation) + \"` || \";\n        if (node._node.rotation)info += \"Rotation: `\" + formatVec(node._node.rotation) + \"` || \";\n        if (node._node.scale)info += \"Scale: `\" + formatVec(node._node.scale) + \"` || \";\n\n        html += \"<span class=\\\"icon icon-gizmo info\\\" data-info=\\\"\" + info + \"\\\"></span> &nbsp;\";\n    }\n\n    if (node._animRot || node._animScale || node._animTrans)\n    {\n        let info = \"Animated: \";\n        if (node._animRot) info += \"Rot \";\n        if (node._animScale) info += \"Scale \";\n        if (node._animTrans) info += \"Trans \";\n\n        html += \"<span class=\\\"icon icon-clock info\\\" data-info=\\\"\" + info + \"\\\"></span>&nbsp;\";\n    }\n\n    if (!node._node.translation && !node._node.rotation && !node._node.scale && !node._animRot && !node._animScale && !node._animTrans) html += \"-\";\n\n    html += \"</td>\";\n\n    html += \"<td>\";\n    let hideclass = \"\";\n    if (node.hidden)hideclass = \"node-hidden\";\n\n    // html+='';\n    html += \"<a onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').exposeNode('\" + node.name + \"','transform')\\\" class=\\\"treebutton\\\">Transform</a>\";\n    html += \" <a onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').exposeNode('\" + node.name + \"','hierarchy')\\\" class=\\\"treebutton\\\">Hierarchy</a>\";\n    html += \" <a onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').exposeNode('\" + node.name + \"')\\\" class=\\\"treebutton\\\">Node</a>\";\n\n    if (node.hasSkin())\n        html += \" <a onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').exposeNode('\" + node.name + \"',false,{skin:true});\\\" class=\\\"treebutton\\\">Skin</a>\";\n\n    html += \"</td><td>\";\n    html += \"&nbsp;<span class=\\\"icon iconhover icon-eye \" + hideclass + \"\\\" onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').toggleNodeVisibility('\" + node.name + \"');this.classList.toggle('node-hidden');\\\"></span>\";\n    html += \"</td>\";\n\n    html += \"</tr>\";\n\n    if (node.children)\n    {\n        for (let i = 0; i < node.children.length; i++)\n            html = printNode(html, gltf.nodes[node.children[i]], level + 1);\n    }\n\n    return html;\n}\n\nfunction printMaterial(mat, idx)\n{\n    let html = \"<tr>\";\n    html += \" <td>\" + idx + \"</td>\";\n    html += \" <td>\" + mat.name + \"</td>\";\n\n    html += \" <td>\";\n\n    const info = JSON.stringify(mat, null, 4).replaceAll(\"\\\"\", \"\").replaceAll(\"\\n\", \"<br/>\");\n\n    html += \"<span class=\\\"icon icon-info\\\" onclick=\\\"new CABLES.UI.ModalDialog({ 'html': '<pre>\" + info + \"</pre>', 'title': '\" + mat.name + \"' });\\\"></span>&nbsp;\";\n\n    if (mat.pbrMetallicRoughness && mat.pbrMetallicRoughness.baseColorFactor)\n    {\n        let rgb = \"\";\n        rgb += \"\" + Math.round(mat.pbrMetallicRoughness.baseColorFactor[0] * 255);\n        rgb += \",\" + Math.round(mat.pbrMetallicRoughness.baseColorFactor[1] * 255);\n        rgb += \",\" + Math.round(mat.pbrMetallicRoughness.baseColorFactor[2] * 255);\n\n        html += \"<div style=\\\"width:15px;height:15px;background-color:rgb(\" + rgb + \");display:inline-block\\\">&nbsp;</a>\";\n    }\n    html += \" <td style=\\\"\\\">\" + (gltf.shaders[idx] ? \"-\" : \"<a onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').assignMaterial('\" + mat.name + \"')\\\" class=\\\"treebutton\\\">Assign</a>\") + \"<td>\";\n    html += \"<td>\";\n\n    html += \"</tr>\";\n    return html;\n}\n\nfunction printInfo()\n{\n    if (!gltf) return;\n\n    const startTime = performance.now();\n    const sizes = {};\n    let html = \"<div style=\\\"overflow:scroll;width:100%;height:100%\\\">\";\n\n    html += \"File: <a href=\\\"\" + CABLES.platform.getCablesUrl() + \"/asset/patches/?filename=\" + inFile.get() + \"\\\" target=\\\"_blank\\\">\" + CABLES.basename(inFile.get()) + \"</a><br/>\";\n\n    html += \"Generator:\" + gltf.json.asset.generator;\n\n    let numNodes = 0;\n    if (gltf.json.nodes)numNodes = gltf.json.nodes.length;\n    html += \"<div id=\\\"groupNodes\\\">Nodes (\" + numNodes + \")</div>\";\n\n    html += \"<table id=\\\"sectionNodes\\\" class=\\\"table treetable\\\">\";\n\n    html += \"<tr>\";\n    html += \" <th colspan=\\\"21\\\">Name</th>\";\n    html += \" <th>Mesh</th>\";\n    html += \" <th>Skin</th>\";\n    html += \" <th>Material</th>\";\n    html += \" <th>Transform</th>\";\n    html += \" <th>Expose</th>\";\n    html += \" <th></th>\";\n    html += \"</tr>\";\n\n    for (let i = 0; i < gltf.nodes.length; i++)\n    {\n        if (!gltf.nodes[i].isChild)\n            html = printNode(html, gltf.nodes[i], 1);\n    }\n    html += \"</table>\";\n\n    // / //////////////////\n\n    let numMaterials = 0;\n    if (gltf.json.materials)numMaterials = gltf.json.materials.length;\n    html += \"<div id=\\\"groupMaterials\\\">Materials (\" + numMaterials + \")</div>\";\n\n    if (!gltf.json.materials || gltf.json.materials.length == 0)\n    {\n    }\n    else\n    {\n        html += \"<table id=\\\"materialtable\\\"  class=\\\"table treetable\\\">\";\n        html += \"<tr>\";\n        html += \" <th>Index</th>\";\n        html += \" <th>Name</th>\";\n        html += \" <th>Color</th>\";\n        html += \" <th>Function</th>\";\n        html += \" <th></th>\";\n        html += \"</tr>\";\n        for (let i = 0; i < gltf.json.materials.length; i++)\n        {\n            html += printMaterial(gltf.json.materials[i], i);\n        }\n        html += \"</table>\";\n    }\n\n    // / ///////////////////////\n\n    html += \"<div id=\\\"groupMeshes\\\">Meshes (\" + gltf.json.meshes.length + \")</div>\";\n\n    html += \"<table id=\\\"meshestable\\\"  class=\\\"table treetable\\\">\";\n    html += \"<tr>\";\n    html += \" <th>Name</th>\";\n    html += \" <th>Node</th>\";\n    html += \" <th>Material</th>\";\n    html += \" <th>Vertices</th>\";\n    html += \" <th>Attributes</th>\";\n    html += \"</tr>\";\n\n    let sizeBufferViews = [];\n    sizes.meshes = 0;\n    sizes.meshTargets = 0;\n\n    for (let i = 0; i < gltf.json.meshes.length; i++)\n    {\n        html += \"<tr>\";\n        html += \"<td>\" + gltf.json.meshes[i].name + \"</td>\";\n\n        html += \"<td>\";\n        let count = 0;\n        let nodename = \"\";\n        for (let j = 0; j < gltf.json.nodes.length; j++)\n        {\n            if (gltf.json.nodes[j].mesh == i)\n            {\n                count++;\n                if (count == 1)\n                {\n                    nodename = gltf.json.nodes[j].name;\n                }\n            }\n        }\n        if (count > 1) html += (count) + \" nodes (\" + nodename + \" ...)\";\n        else html += nodename;\n        html += \"</td>\";\n\n        // -------\n\n        html += \"<td>\";\n        for (let j = 0; j < gltf.json.meshes[i].primitives.length; j++)\n        {\n            if (gltf.json.meshes[i].primitives[j].hasOwnProperty(\"material\"))\n            {\n                if (gltf.json.materials[gltf.json.meshes[i]])\n                {\n                    html += gltf.json.materials[gltf.json.meshes[i].primitives[j].material].name + \" \";\n                }\n            }\n            else html += \"None\";\n        }\n        html += \"</td>\";\n\n        html += \"<td>\";\n        let numVerts = 0;\n        for (let j = 0; j < gltf.json.meshes[i].primitives.length; j++)\n        {\n            if (gltf.json.meshes[i].primitives[j].attributes.POSITION != undefined)\n            {\n                let v = parseInt(gltf.json.accessors[gltf.json.meshes[i].primitives[j].attributes.POSITION].count);\n                numVerts += v;\n                html += \"\" + v + \"<br/>\";\n            }\n            else html += \"-<br/>\";\n        }\n\n        if (gltf.json.meshes[i].primitives.length > 1)\n            html += \"=\" + numVerts;\n        html += \"</td>\";\n\n        html += \"<td>\";\n        for (let j = 0; j < gltf.json.meshes[i].primitives.length; j++)\n        {\n            html += Object.keys(gltf.json.meshes[i].primitives[j].attributes);\n            html += \" <a onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').exposeGeom('\" + gltf.json.meshes[i].name + \"',\" + j + \")\\\" class=\\\"treebutton\\\">Geometry</a>\";\n            html += \"<br/>\";\n\n            if (gltf.json.meshes[i].primitives[j].targets)\n            {\n                html += gltf.json.meshes[i].primitives[j].targets.length + \" targets<br/>\";\n\n                if (gltf.json.meshes[i].extras && gltf.json.meshes[i].extras.targetNames)\n                    html += \"Targetnames:<br/>\" + gltf.json.meshes[i].extras.targetNames.join(\"<br/>\");\n\n                html += \"<br/>\";\n            }\n        }\n\n        html += \"</td>\";\n        html += \"</tr>\";\n\n        for (let j = 0; j < gltf.json.meshes[i].primitives.length; j++)\n        {\n            const accessor = gltf.json.accessors[gltf.json.meshes[i].primitives[j].indices];\n            if (accessor)\n            {\n                let bufView = accessor.bufferView;\n\n                if (sizeBufferViews.indexOf(bufView) == -1)\n                {\n                    sizeBufferViews.push(bufView);\n                    if (gltf.json.bufferViews[bufView])sizes.meshes += gltf.json.bufferViews[bufView].byteLength;\n                }\n            }\n\n            for (let k in gltf.json.meshes[i].primitives[j].attributes)\n            {\n                const attr = gltf.json.meshes[i].primitives[j].attributes[k];\n                const bufView2 = gltf.json.accessors[attr].bufferView;\n\n                if (sizeBufferViews.indexOf(bufView2) == -1)\n                {\n                    sizeBufferViews.push(bufView2);\n                    if (gltf.json.bufferViews[bufView2])sizes.meshes += gltf.json.bufferViews[bufView2].byteLength;\n                }\n            }\n\n            if (gltf.json.meshes[i].primitives[j].targets)\n                for (let k = 0; k < gltf.json.meshes[i].primitives[j].targets.length; k++)\n                {\n                    for (let l in gltf.json.meshes[i].primitives[j].targets[k])\n                    {\n                        const accessorIdx = gltf.json.meshes[i].primitives[j].targets[k][l];\n                        const accessor = gltf.json.accessors[accessorIdx];\n                        const bufView2 = accessor.bufferView;\n                        console.log(\"accessor\", accessor);\n                        if (sizeBufferViews.indexOf(bufView2) == -1)\n                            if (gltf.json.bufferViews[bufView2])\n                            {\n                                sizeBufferViews.push(bufView2);\n                                sizes.meshTargets += gltf.json.bufferViews[bufView2].byteLength;\n                            }\n                    }\n                }\n        }\n    }\n    html += \"</table>\";\n\n    // / //////////////////////////////////\n\n    let numSamplers = 0;\n    let numAnims = 0;\n    let numKeyframes = 0;\n\n    if (gltf.json.animations)\n    {\n        numAnims = gltf.json.animations.length;\n        for (let i = 0; i < gltf.json.animations.length; i++)\n        {\n            numSamplers += gltf.json.animations[i].samplers.length;\n        }\n    }\n\n    html += \"<div id=\\\"groupAnims\\\">Animations (\" + numAnims + \"/\" + numSamplers + \")</div>\";\n\n    if (gltf.json.animations)\n    {\n        html += \"<table id=\\\"sectionAnim\\\" class=\\\"table treetable\\\">\";\n        html += \"<tr>\";\n        html += \"  <th>Name</th>\";\n        html += \"  <th>Target node</th>\";\n        html += \"  <th>Path</th>\";\n        html += \"  <th>Interpolation</th>\";\n        html += \"  <th>Keys</th>\";\n        html += \"</tr>\";\n\n\n        sizes.animations = 0;\n\n        for (let i = 0; i < gltf.json.animations.length; i++)\n        {\n            for (let j = 0; j < gltf.json.animations[i].samplers.length; j++)\n            {\n                let bufView = gltf.json.accessors[gltf.json.animations[i].samplers[j].input].bufferView;\n                if (sizeBufferViews.indexOf(bufView) == -1)\n                {\n                    sizeBufferViews.push(bufView);\n                    sizes.animations += gltf.json.bufferViews[bufView].byteLength;\n                }\n\n                bufView = gltf.json.accessors[gltf.json.animations[i].samplers[j].output].bufferView;\n                if (sizeBufferViews.indexOf(bufView) == -1)\n                {\n                    sizeBufferViews.push(bufView);\n                    sizes.animations += gltf.json.bufferViews[bufView].byteLength;\n                }\n            }\n\n            for (let j = 0; j < gltf.json.animations[i].channels.length; j++)\n            {\n                html += \"<tr>\";\n                html += \"  <td> Anim \" + i + \": \" + gltf.json.animations[i].name + \"</td>\";\n\n                html += \"  <td>\" + gltf.nodes[gltf.json.animations[i].channels[j].target.node].name + \"</td>\";\n                html += \"  <td>\";\n                html += gltf.json.animations[i].channels[j].target.path + \" \";\n                html += \"  </td>\";\n\n                const smplidx = gltf.json.animations[i].channels[j].sampler;\n                const smplr = gltf.json.animations[i].samplers[smplidx];\n\n                html += \"  <td>\" + smplr.interpolation + \"</td>\";\n\n                html += \"  <td>\" + gltf.json.accessors[smplr.output].count;\n                numKeyframes += gltf.json.accessors[smplr.output].count;\n\n                // html += \"&nbsp;&nbsp;<a onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').showAnim('\" + i + \"','\" + j + \"')\\\" class=\\\"icon icon-search\\\"></a>\";\n\n                html += \"</td>\";\n\n                html += \"</tr>\";\n            }\n        }\n\n        html += \"<tr>\";\n        html += \"  <td></td>\";\n        html += \"  <td></td>\";\n        html += \"  <td></td>\";\n        html += \"  <td></td>\";\n        html += \"  <td>\" + numKeyframes + \" total</td>\";\n        html += \"</tr>\";\n        html += \"</table>\";\n    }\n    else\n    {\n\n    }\n\n    // / ///////////////////\n\n    let numImages = 0;\n    if (gltf.json.images)numImages = gltf.json.images.length;\n    html += \"<div id=\\\"groupImages\\\">Images (\" + numImages + \")</div>\";\n\n    if (gltf.json.images)\n    {\n        html += \"<table id=\\\"sectionImages\\\" class=\\\"table treetable\\\">\";\n\n        html += \"<tr>\";\n        html += \"  <th>name</th>\";\n        html += \"  <th>type</th>\";\n        html += \"  <th>func</th>\";\n        html += \"</tr>\";\n\n        sizes.images = 0;\n\n        for (let i = 0; i < gltf.json.images.length; i++)\n        {\n            if (gltf.json.images[i].hasOwnProperty(\"bufferView\"))\n            {\n                // if (sizeBufferViews.indexOf(gltf.json.images[i].hasOwnProperty(\"bufferView\")) == -1)console.log(\"image bufferview already there?!\");\n                // else\n                sizes.images += gltf.json.bufferViews[gltf.json.images[i].bufferView].byteLength;\n            }\n            else console.log(\"image has no bufferview?!\");\n\n            html += \"<tr>\";\n            html += \"<td>\" + gltf.json.images[i].name + \"</td>\";\n            html += \"<td>\" + gltf.json.images[i].mimeType + \"</td>\";\n            html += \"<td>\";\n\n            let name = gltf.json.images[i].name;\n            if (name === undefined)name = gltf.json.images[i].bufferView;\n\n            html += \"<a onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').exposeTexture('\" + name + \"')\\\" class=\\\"treebutton\\\">Expose</a>\";\n            html += \"</td>\";\n\n            html += \"<tr>\";\n        }\n        html += \"</table>\";\n    }\n\n    // / ///////////////////////\n\n    let numCameras = 0;\n    if (gltf.json.cameras)numCameras = gltf.json.cameras.length;\n    html += \"<div id=\\\"groupCameras\\\">Cameras (\" + numCameras + \")</div>\";\n\n    if (gltf.json.cameras)\n    {\n        html += \"<table id=\\\"sectionCameras\\\" class=\\\"table treetable\\\">\";\n\n        html += \"<tr>\";\n        html += \"  <th>name</th>\";\n        html += \"  <th>type</th>\";\n        html += \"  <th>info</th>\";\n        html += \"</tr>\";\n\n        for (let i = 0; i < gltf.json.cameras.length; i++)\n        {\n            html += \"<tr>\";\n            html += \"<td>\" + gltf.json.cameras[i].name + \"</td>\";\n            html += \"<td>\" + gltf.json.cameras[i].type + \"</td>\";\n            html += \"<td>\";\n\n            if (gltf.json.cameras[i].perspective)\n            {\n                html += \"yfov: \" + Math.round(gltf.json.cameras[i].perspective.yfov * 100) / 100;\n                html += \", \";\n                html += \"zfar: \" + Math.round(gltf.json.cameras[i].perspective.zfar * 100) / 100;\n                html += \", \";\n                html += \"znear: \" + Math.round(gltf.json.cameras[i].perspective.znear * 100) / 100;\n            }\n            html += \"</td>\";\n\n            html += \"<tr>\";\n        }\n        html += \"</table>\";\n    }\n\n    // / ////////////////////////////////////\n\n    let numSkins = 0;\n    if (gltf.json.skins)numSkins = gltf.json.skins.length;\n    html += \"<div id=\\\"groupSkins\\\">Skins (\" + numSkins + \")</div>\";\n\n    if (gltf.json.skins)\n    {\n        // html += \"<h3>Skins (\" + gltf.json.skins.length + \")</h3>\";\n        html += \"<table id=\\\"sectionSkins\\\" class=\\\"table treetable\\\">\";\n\n        html += \"<tr>\";\n        html += \"  <th>name</th>\";\n        html += \"  <th></th>\";\n        html += \"  <th>total joints</th>\";\n        html += \"</tr>\";\n\n        for (let i = 0; i < gltf.json.skins.length; i++)\n        {\n            html += \"<tr>\";\n            html += \"<td>\" + gltf.json.skins[i].name + \"</td>\";\n            html += \"<td>\" + \"</td>\";\n            html += \"<td>\" + gltf.json.skins[i].joints.length + \"</td>\";\n            html += \"<td>\";\n            html += \"</td>\";\n            html += \"<tr>\";\n        }\n        html += \"</table>\";\n    }\n\n    // / ////////////////////////////////////\n\n    if (gltf.timing)\n    {\n        html += \"<div id=\\\"groupTiming\\\">Debug Loading Timing </div>\";\n\n        html += \"<table id=\\\"sectionTiming\\\" class=\\\"table treetable\\\">\";\n\n        html += \"<tr>\";\n        html += \"  <th>task</th>\";\n        html += \"  <th>time used</th>\";\n        html += \"</tr>\";\n\n        let lt = 0;\n        for (let i = 0; i < gltf.timing.length - 1; i++)\n        {\n            html += \"<tr>\";\n            html += \"  <td>\" + gltf.timing[i][0] + \"</td>\";\n            html += \"  <td>\" + (gltf.timing[i + 1][1] - gltf.timing[i][1]) + \" ms</td>\";\n            html += \"</tr>\";\n            // lt = gltf.timing[i][1];\n        }\n        html += \"</table>\";\n    }\n\n    // / //////////////////////////\n\n    let sizeBin = 0;\n    if (gltf.json.buffers)\n        sizeBin = gltf.json.buffers[0].byteLength;\n\n    html += \"<div id=\\\"groupBinary\\\">File Size Allocation (\" + Math.round(sizeBin / 1024) + \"k )</div>\";\n\n    html += \"<table id=\\\"sectionBinary\\\" class=\\\"table treetable\\\">\";\n    html += \"<tr>\";\n    html += \"  <th>name</th>\";\n    html += \"  <th>size</th>\";\n    html += \"  <th>%</th>\";\n    html += \"</tr>\";\n    let sizeUnknown = sizeBin;\n    for (let i in sizes)\n    {\n        // html+=i+':'+Math.round(sizes[i]/1024);\n        html += \"<tr>\";\n        html += \"<td>\" + i + \"</td>\";\n        html += \"<td>\" + readableSize(sizes[i]) + \" </td>\";\n        html += \"<td>\" + Math.round(sizes[i] / sizeBin * 100) + \"% </td>\";\n        html += \"<tr>\";\n        sizeUnknown -= sizes[i];\n    }\n\n    if (sizeUnknown != 0)\n    {\n        html += \"<tr>\";\n        html += \"<td>unknown</td>\";\n        html += \"<td>\" + readableSize(sizeUnknown) + \" </td>\";\n        html += \"<td>\" + Math.round(sizeUnknown / sizeBin * 100) + \"% </td>\";\n        html += \"<tr>\";\n    }\n\n    html += \"</table>\";\n    html += \"</div>\";\n\n    tab = new CABLES.UI.Tab(\"GLTF \" + CABLES.basename(inFile.get()), { \"icon\": \"cube\", \"infotext\": \"tab_gltf\", \"padding\": true, \"singleton\": true });\n    gui.mainTabs.addTab(tab, true);\n\n    tab.addEventListener(\"close\", closeTab);\n    tab.html(html);\n\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupNodes\"), ele.byId(\"sectionNodes\"), false);\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupMaterials\"), ele.byId(\"materialtable\"), true);\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupAnims\"), ele.byId(\"sectionAnim\"), true);\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupMeshes\"), ele.byId(\"meshestable\"), true);\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupCameras\"), ele.byId(\"sectionCameras\"), true);\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupImages\"), ele.byId(\"sectionImages\"), true);\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupSkins\"), ele.byId(\"sectionSkins\"), true);\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupBinary\"), ele.byId(\"sectionBinary\"), true);\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupTiming\"), ele.byId(\"sectionTiming\"), true);\n\n    gui.maintabPanel.show(true);\n}\n\nfunction readableSize(n)\n{\n    if (n > 1024) return Math.round(n / 1024) + \" kb\";\n    if (n > 1024 * 500) return Math.round(n / 1024) + \" mb\";\n    else return n + \" bytes\";\n}\n","inc_skin_js":"const GltfSkin = class\n{\n    constructor(node)\n    {\n        this._mod = null;\n        this._node = node;\n        this._lastTime = 0;\n        this._matArr = [];\n        this._m = mat4.create();\n        this._invBindMatrix = mat4.create();\n        this.identity = true;\n    }\n\n    renderFinish(cgl)\n    {\n        cgl.popModelMatrix();\n        this._mod.unbind();\n    }\n\n    renderStart(cgl, time)\n    {\n        if (!this._mod)\n        {\n            this._mod = new CGL.ShaderModifier(cgl, op.name + this._node.name);\n\n            this._mod.addModule({\n                \"priority\": -2,\n                \"name\": \"MODULE_VERTEX_POSITION\",\n                \"srcHeadVert\": attachments.skin_head_vert || \"\",\n                \"srcBodyVert\": attachments.skin_vert || \"\"\n            });\n\n            this._mod.addUniformVert(\"m4[]\", \"MOD_boneMats\", []);// bohnenmatze\n            const tr = vec3.create();\n        }\n\n        const skinIdx = this._node.skin;\n        const arrLength = gltf.json.skins[skinIdx].joints.length * 16;\n\n        // if (this._lastTime != time || !time)\n        {\n            // this._lastTime=inTime.get();\n            if (this._matArr.length != arrLength) this._matArr.length = arrLength;\n\n            for (let i = 0; i < gltf.json.skins[skinIdx].joints.length; i++)\n            {\n                const i16 = i * 16;\n                const jointIdx = gltf.json.skins[skinIdx].joints[i];\n                const nodeJoint = gltf.nodes[jointIdx];\n\n                for (let j = 0; j < 16; j++)\n                    this._invBindMatrix[j] = gltf.accBuffers[gltf.json.skins[skinIdx].inverseBindMatrices][i16 + j];\n\n                mat4.mul(this._m, nodeJoint.modelMatAbs(), this._invBindMatrix);\n\n                for (let j = 0; j < this._m.length; j++) this._matArr[i16 + j] = this._m[j];\n            }\n\n            this._mod.setUniformValue(\"MOD_boneMats\", this._matArr);\n            this._lastTime = time;\n        }\n\n        this._mod.define(\"SKIN_NUM_BONES\", gltf.json.skins[skinIdx].joints.length);\n        this._mod.bind();\n\n        // draw mesh...\n        cgl.pushModelMatrix();\n        if (this.identity)mat4.identity(cgl.mMatrix);\n    }\n};\n","inc_targets_js":"const GltfTargetsRenderer = class\n{\n    constructor(mesh)\n    {\n        this.mesh = mesh;\n        this.tex = null;\n        this.numRowsPerTarget = 0;\n\n        this.makeTex(mesh.geom);\n    }\n\n    renderFinish(cgl)\n    {\n        cgl.popModelMatrix();\n        this._mod.unbind();\n    }\n\n    renderStart(cgl, time)\n    {\n        if (!this._mod)\n        {\n            this._mod = new CGL.ShaderModifier(cgl, \"gltftarget\");\n\n            this._mod.addModule({\n                \"priority\": -2,\n                \"name\": \"MODULE_VERTEX_POSITION\",\n                \"srcHeadVert\": attachments.targets_head_vert || \"\",\n                \"srcBodyVert\": attachments.targets_vert || \"\"\n            });\n\n            this._mod.addUniformVert(\"4f\", \"MOD_targetTexInfo\", [0, 0, 0, 0]);\n            this._mod.addUniformVert(\"t\", \"MOD_targetTex\", 1);\n            this._mod.addUniformVert(\"f[]\", \"MOD_weights\", []);\n\n            const tr = vec3.create();\n        }\n\n        this._mod.pushTexture(\"MOD_targetTex\", this.tex);\n        if (this.tex && this.mesh.weights)\n        {\n            this._mod.setUniformValue(\"MOD_weights\", this.mesh.weights);\n            this._mod.setUniformValue(\"MOD_targetTexInfo\", [this.tex.width, this.tex.height, this.numRowsPerTarget, this.mesh.weights.length]);\n\n            this._mod.define(\"MOD_NUM_WEIGHTS\", Math.max(1, this.mesh.weights.length));\n        }\n        else\n        {\n            this._mod.define(\"MOD_NUM_WEIGHTS\", 1);\n        }\n        this._mod.bind();\n\n        // draw mesh...\n        cgl.pushModelMatrix();\n        if (this.identity)mat4.identity(cgl.mMatrix);\n    }\n\n    makeTex(geom)\n    {\n        if (!geom.morphTargets || !geom.morphTargets.length) return;\n\n        let w = geom.morphTargets[0].vertices.length / 3;\n        let h = 0;\n        this.numRowsPerTarget = 0;\n\n        if (geom.morphTargets[0].vertices && geom.morphTargets[0].vertices.length) this.numRowsPerTarget++;\n        if (geom.morphTargets[0].vertexNormals && geom.morphTargets[0].vertexNormals.length) this.numRowsPerTarget++;\n        if (geom.morphTargets[0].tangents && geom.morphTargets[0].tangents.length) this.numRowsPerTarget++;\n        if (geom.morphTargets[0].bitangents && geom.morphTargets[0].bitangents.length) this.numRowsPerTarget++;\n\n        h = geom.morphTargets.length * this.numRowsPerTarget;\n\n        // console.log(\"this.numRowsPerTarget\", this.numRowsPerTarget);\n\n        const pixels = new Float32Array(w * h * 4);\n        let row = 0;\n\n        for (let i = 0; i < geom.morphTargets.length; i++)\n        {\n            if (geom.morphTargets[i].vertices && geom.morphTargets[i].vertices.length)\n            {\n                for (let j = 0; j < geom.morphTargets[i].vertices.length; j += 3)\n                {\n                    pixels[((row * w) + (j / 3)) * 4 + 0] = geom.morphTargets[i].vertices[j + 0];\n                    pixels[((row * w) + (j / 3)) * 4 + 1] = geom.morphTargets[i].vertices[j + 1];\n                    pixels[((row * w) + (j / 3)) * 4 + 2] = geom.morphTargets[i].vertices[j + 2];\n                    pixels[((row * w) + (j / 3)) * 4 + 3] = 1;\n                }\n                row++;\n            }\n\n            if (geom.morphTargets[i].vertexNormals && geom.morphTargets[i].vertexNormals.length)\n            {\n                for (let j = 0; j < geom.morphTargets[i].vertexNormals.length; j += 3)\n                {\n                    pixels[(row * w + j / 3) * 4 + 0] = geom.morphTargets[i].vertexNormals[j + 0];\n                    pixels[(row * w + j / 3) * 4 + 1] = geom.morphTargets[i].vertexNormals[j + 1];\n                    pixels[(row * w + j / 3) * 4 + 2] = geom.morphTargets[i].vertexNormals[j + 2];\n                    pixels[(row * w + j / 3) * 4 + 3] = 1;\n                }\n\n                row++;\n            }\n\n            if (geom.morphTargets[i].tangents && geom.morphTargets[i].tangents.length)\n            {\n                for (let j = 0; j < geom.morphTargets[i].tangents.length; j += 3)\n                {\n                    pixels[(row * w + j / 3) * 4 + 0] = geom.morphTargets[i].tangents[j + 0];\n                    pixels[(row * w + j / 3) * 4 + 1] = geom.morphTargets[i].tangents[j + 1];\n                    pixels[(row * w + j / 3) * 4 + 2] = geom.morphTargets[i].tangents[j + 2];\n                    pixels[(row * w + j / 3) * 4 + 3] = 1;\n                }\n                row++;\n            }\n\n            if (geom.morphTargets[i].bitangents && geom.morphTargets[i].bitangents.length)\n            {\n                for (let j = 0; j < geom.morphTargets[i].bitangents.length; j += 3)\n                {\n                    pixels[(row * w + j / 3) * 4 + 0] = geom.morphTargets[i].bitangents[j + 0];\n                    pixels[(row * w + j / 3) * 4 + 1] = geom.morphTargets[i].bitangents[j + 1];\n                    pixels[(row * w + j / 3) * 4 + 2] = geom.morphTargets[i].bitangents[j + 2];\n                    pixels[(row * w + j / 3) * 4 + 3] = 1;\n                }\n                row++;\n            }\n        }\n\n        this.tex = new CGL.Texture(cgl, { \"isFloatingPointTexture\": true, \"name\": \"targetsTexture\" });\n\n        this.tex.initFromData(pixels, w, h, CGL.Texture.FILTER_LINEAR, CGL.Texture.WRAP_REPEAT);\n\n        // console.log(\"morphTargets generated texture\", w, h);\n    }\n};\n","skin_vert":"int index=int(attrJoints.x);\nvec4 newPos = (MOD_boneMats[index] * pos) * attrWeights.x;\nvec3 newNorm = (vec4((MOD_boneMats[index] * vec4(norm.xyz, 0.0)) * attrWeights.x).xyz);\n\nindex=int(attrJoints.y);\nnewPos += (MOD_boneMats[index] * pos) * attrWeights.y;\nnewNorm = (vec4((MOD_boneMats[index] * vec4(norm.xyz, 0.0)) * attrWeights.y).xyz)+newNorm;\n\nindex=int(attrJoints.z);\nnewPos += (MOD_boneMats[index] * pos) * attrWeights.z;\nnewNorm = (vec4((MOD_boneMats[index] * vec4(norm.xyz, 0.0)) * attrWeights.z).xyz)+newNorm;\n\nindex=int(attrJoints.w);\nnewPos += (MOD_boneMats[index] * pos) * attrWeights.w ;\nnewNorm = (vec4((MOD_boneMats[index] * vec4(norm.xyz, 0.0)) * attrWeights.w).xyz)+newNorm;\n\npos=newPos;\n\nnorm=normalize(newNorm.xyz);\n\n\n","skin_head_vert":"\nIN vec4 attrWeights;\nIN vec4 attrJoints;\nUNI mat4 MOD_boneMats[SKIN_NUM_BONES];\n","targets_vert":"\n\nfloat MOD_width=MOD_targetTexInfo.x;\nfloat MOD_height=MOD_targetTexInfo.y;\nfloat MOD_numTargets=MOD_targetTexInfo.w;\nfloat MOD_numLinesPerTarget=MOD_height/MOD_numTargets;\n\nfloat halfpix=(1.0/MOD_width)*0.5;\nfloat halfpixy=(1.0/MOD_height)*0.5;\n\nfloat x=(attrVertIndex)/MOD_width+halfpix;\n\nvec3 off=vec3(0.0);\n\nfor(float i=0.0;i<MOD_numTargets;i+=1.0)\n{\n    float y=1.0-((MOD_numLinesPerTarget*i)/MOD_height+halfpixy);\n    vec2 coord=vec2(x,y);\n    vec3 targetXYZ = texture(MOD_targetTex,coord).xyz;\n\n    off+=(targetXYZ*MOD_weights[int(i)]);\n\n\n\n    coord.y+=1.0/MOD_height; // normals are in next row\n    vec3 targetNormal = texture(MOD_targetTex,coord).xyz;\n    norm+=targetNormal*MOD_weights[int(i)];\n\n\n}\n\n// norm=normalize(norm);\npos.xyz+=off;\n","targets_head_vert":"\nUNI float MOD_weights[MOD_NUM_WEIGHTS];\n",};
+const attachments=op.attachments={"inc_camera_js":"const gltfCamera = class\n{\n    constructor(gltf, node)\n    {\n        this.node = node;\n        this.name = node.name;\n        // console.log(gltf);\n        this.config = gltf.json.cameras[node.camera];\n\n        this.pos = vec3.create();\n        this.quat = quat.create();\n        this.vCenter = vec3.create();\n        this.vUp = vec3.create();\n        this.vMat = mat4.create();\n    }\n\n    updateAnim(time)\n    {\n        if (this.node && this.node._animTrans)\n        {\n            vec3.set(this.pos,\n                this.node._animTrans[0].getValue(time),\n                this.node._animTrans[1].getValue(time),\n                this.node._animTrans[2].getValue(time));\n\n            quat.set(this.quat,\n                this.node._animRot[0].getValue(time),\n                this.node._animRot[1].getValue(time),\n                this.node._animRot[2].getValue(time),\n                this.node._animRot[3].getValue(time));\n        }\n    }\n\n    start(time)\n    {\n        if (cgl.frameStore.shadowPass) return;\n\n        this.updateAnim(time);\n        const asp = cgl.getViewPort()[2] / cgl.getViewPort()[3];\n\n        cgl.pushPMatrix();\n        // mat4.perspective(\n        //     cgl.pMatrix,\n        //     this.config.perspective.yfov*0.5,\n        //     asp,\n        //     this.config.perspective.znear,\n        //     this.config.perspective.zfar);\n\n        cgl.pushViewMatrix();\n        // mat4.identity(cgl.vMatrix);\n\n        // if(this.node && this.node.parent)\n        // {\n        //     console.log(this.node.parent)\n        // vec3.add(this.pos,this.pos,this.node.parent._node.translation);\n        // vec3.sub(this.vCenter,this.vCenter,this.node.parent._node.translation);\n        // mat4.translate(cgl.vMatrix,cgl.vMatrix,\n        // [\n        //     -this.node.parent._node.translation[0],\n        //     -this.node.parent._node.translation[1],\n        //     -this.node.parent._node.translation[2]\n        // ])\n        // }\n\n        // vec3.set(this.vUp, 0, 1, 0);\n        // vec3.set(this.vCenter, 0, -1, 0);\n        // // vec3.set(this.vCenter, 0, 1, 0);\n        // vec3.transformQuat(this.vCenter, this.vCenter, this.quat);\n        // vec3.normalize(this.vCenter, this.vCenter);\n        // vec3.add(this.vCenter, this.vCenter, this.pos);\n\n        // mat4.lookAt(cgl.vMatrix, this.pos, this.vCenter, this.vUp);\n\n        let mv = mat4.create();\n        mat4.invert(mv, this.node.modelMatAbs());\n\n        // console.log(this.node.modelMatAbs());\n\n        this.vMat = mv;\n\n        mat4.identity(cgl.vMatrix);\n        // console.log(mv);\n        mat4.mul(cgl.vMatrix, cgl.vMatrix, mv);\n    }\n\n    end()\n    {\n        if (cgl.frameStore.shadowPass) return;\n        cgl.popPMatrix();\n        cgl.popViewMatrix();\n    }\n};\n","inc_gltf_js":"const le = true; // little endian\n\nconst Gltf = class\n{\n    constructor()\n    {\n        this.json = {};\n        this.accBuffers = [];\n        this.meshes = [];\n        this.nodes = [];\n        this.shaders = [];\n        this.timing = [];\n        this.cams = [];\n        this.startTime = performance.now();\n        this.bounds = new CABLES.CG.BoundingBox();\n        this.loaded = Date.now();\n        this.accBuffersDelete = [];\n    }\n\n    getNode(n)\n    {\n        for (let i = 0; i < this.nodes.length; i++)\n        {\n            if (this.nodes[i].name == n) return this.nodes[i];\n        }\n    }\n\n    unHideAll()\n    {\n        for (let i = 0; i < this.nodes.length; i++)\n        {\n            this.nodes[i].unHide();\n        }\n    }\n};\n\nfunction Utf8ArrayToStr(array)\n{\n    if (window.TextDecoder) return new TextDecoder(\"utf-8\").decode(array);\n\n    let out, i, len, c;\n    let char2, char3;\n\n    out = \"\";\n    len = array.length;\n    i = 0;\n    while (i < len)\n    {\n        c = array[i++];\n        switch (c >> 4)\n        {\n        case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7:\n            // 0xxxxxxx\n            out += String.fromCharCode(c);\n            break;\n        case 12: case 13:\n            // 110x xxxx   10xx xxxx\n            char2 = array[i++];\n            out += String.fromCharCode(((c & 0x1F) << 6) | (char2 & 0x3F));\n            break;\n        case 14:\n            // 1110 xxxx  10xx xxxx  10xx xxxx\n            char2 = array[i++];\n            char3 = array[i++];\n            out += String.fromCharCode(((c & 0x0F) << 12) |\n                    ((char2 & 0x3F) << 6) |\n                    ((char3 & 0x3F) << 0));\n            break;\n        }\n    }\n\n    return out;\n}\n\nfunction readChunk(dv, bArr, arrayBuffer, offset)\n{\n    const chunk = {};\n\n    if (offset >= dv.byteLength)\n    {\n        // op.log(\"could not read chunk...\");\n        return;\n    }\n    chunk.size = dv.getUint32(offset + 0, le);\n\n    // chunk.type = new TextDecoder(\"utf-8\").decode(bArr.subarray(offset+4, offset+4+4));\n    chunk.type = Utf8ArrayToStr(bArr.subarray(offset + 4, offset + 4 + 4));\n\n    if (chunk.type == \"BIN\\0\")\n    {\n        // console.log(chunk.size,arrayBuffer.length,offset);\n        // try\n        // {\n        chunk.dataView = new DataView(arrayBuffer, offset + 8, chunk.size);\n        // }\n        // catch(e)\n        // {\n        //     chunk.dataView = null;\n        //     console.log(e);\n        // }\n    }\n    else\n    if (chunk.type == \"JSON\")\n    {\n        const json = Utf8ArrayToStr(bArr.subarray(offset + 8, offset + 8 + chunk.size));\n\n        try\n        {\n            const obj = JSON.parse(json);\n            chunk.data = obj;\n            outGenerator.set(obj.asset.generator);\n        }\n        catch (e)\n        {\n        }\n    }\n    else\n    {\n        op.warn(\"unknown type\", chunk.type);\n    }\n\n    return chunk;\n}\n\nfunction loadAnims(gltf)\n{\n    const uniqueAnimNames = {};\n\n    for (let i = 0; i < gltf.json.animations.length; i++)\n    {\n        const an = gltf.json.animations[i];\n\n        an.name = an.name || \"unknown\";\n\n        for (let ia = 0; ia < an.channels.length; ia++)\n        {\n            const chan = an.channels[ia];\n\n            const node = gltf.nodes[chan.target.node];\n            const sampler = an.samplers[chan.sampler];\n\n            const acc = gltf.json.accessors[sampler.input];\n            const bufferIn = gltf.accBuffers[sampler.input];\n\n            const accOut = gltf.json.accessors[sampler.output];\n            const bufferOut = gltf.accBuffers[sampler.output];\n\n            gltf.accBuffersDelete.push(sampler.output, sampler.input);\n\n            if (bufferIn && bufferOut)\n            {\n                let numComps = 1;\n                if (accOut.type === \"VEC2\")numComps = 2;\n                else if (accOut.type === \"VEC3\")numComps = 3;\n                else if (accOut.type === \"VEC4\")numComps = 4;\n                else if (accOut.type === \"SCALAR\")\n                {\n                    numComps = bufferOut.length / bufferIn.length; // is this really the way to find out ? cant find any other way,except number of morph targets, but not really connected...\n                }\n                else op.log(\"[] UNKNOWN accOut.type\", accOut.type);\n\n                const anims = [];\n\n                uniqueAnimNames[an.name] = true;\n\n                for (let k = 0; k < numComps; k++)\n                {\n                    const newAnim = new CABLES.Anim();\n                    // newAnim.name=an.name;\n                    anims.push(newAnim);\n                }\n\n                if (sampler.interpolation === \"LINEAR\") {}\n                else if (sampler.interpolation === \"STEP\") for (let k = 0; k < numComps; k++) anims[k].defaultEasing = CABLES.EASING_ABSOLUTE;\n                else if (sampler.interpolation === \"CUBICSPLINE\") for (let k = 0; k < numComps; k++) anims[k].defaultEasing = CABLES.EASING_CUBICSPLINE;\n                else op.warn(\"unknown interpolation\", sampler.interpolation);\n\n                // console.log(bufferOut)\n\n                // if there is no keyframe for time 0 copy value of first keyframe at time 0\n                if (bufferIn[0] !== 0.0)\n                    for (let k = 0; k < numComps; k++)\n                        anims[k].setValue(0, bufferOut[0 * numComps + k]);\n\n                for (let j = 0; j < bufferIn.length; j++)\n                {\n                    maxTime = Math.max(bufferIn[j], maxTime);\n\n                    for (let k = 0; k < numComps; k++)\n                    {\n                        if (anims[k].defaultEasing === CABLES.EASING_CUBICSPLINE)\n                        {\n                            const idx = ((j * numComps) * 3 + k);\n\n                            const key = anims[k].setValue(bufferIn[j], bufferOut[idx + numComps]);\n                            key.bezTangIn = bufferOut[idx];\n                            key.bezTangOut = bufferOut[idx + (numComps * 2)];\n\n                            // console.log(an.name,k,bufferOut[idx+1]);\n                        }\n                        else\n                        {\n                            // console.log(an.name,k,bufferOut[j * numComps + k]);\n                            anims[k].setValue(bufferIn[j], bufferOut[j * numComps + k]);\n                        }\n                    }\n                }\n\n                node.setAnim(chan.target.path, an.name, anims);\n            }\n            else\n            {\n                op.warn(\"loadAmins bufferIn undefined \", bufferIn === undefined);\n                op.warn(\"loadAmins bufferOut undefined \", bufferOut === undefined);\n                op.warn(\"loadAmins \", sampler, accOut);\n                op.warn(\"loadAmins num accBuffers\", gltf.accBuffers.length);\n                op.warn(\"loadAmins num accessors\", gltf.json.accessors.length);\n            }\n        }\n    }\n\n    gltf.uniqueAnimNames = uniqueAnimNames;\n\n    outAnims.setRef(Object.keys(uniqueAnimNames));\n}\n\nfunction loadCams(gltf)\n{\n    if (!gltf || !gltf.json.cameras) return;\n\n    gltf.cameras = gltf.cameras || [];\n\n    for (let i = 0; i < gltf.nodes.length; i++)\n    {\n        if (gltf.nodes[i].hasOwnProperty(\"camera\"))\n        {\n            const cam = new gltfCamera(gltf, gltf.nodes[i]);\n            gltf.cameras.push(cam);\n        }\n    }\n}\n\nfunction loadAfterDraco()\n{\n    if (!window.DracoDecoder)\n    {\n        setTimeout(() =>\n        {\n            loadAfterDraco();\n        }, 100);\n    }\n\n    reloadSoon();\n}\n\nfunction parseGltf(arrayBuffer)\n{\n    const CHUNK_HEADER_SIZE = 8;\n\n    let j = 0, i = 0;\n\n    const gltf = new Gltf();\n    gltf.timing.push([\"Start parsing\", Math.round((performance.now() - gltf.startTime))]);\n\n    if (!arrayBuffer) return;\n    const byteArray = new Uint8Array(arrayBuffer);\n    let pos = 0;\n\n    // var string = new TextDecoder(\"utf-8\").decode(byteArray.subarray(pos, 4));\n    const string = Utf8ArrayToStr(byteArray.subarray(pos, 4));\n    pos += 4;\n    if (string != \"glTF\") return;\n\n    gltf.timing.push([\"dataview\", Math.round((performance.now() - gltf.startTime))]);\n\n    const dv = new DataView(arrayBuffer);\n    const version = dv.getUint32(pos, le);\n    pos += 4;\n    const size = dv.getUint32(pos, le);\n    pos += 4;\n\n    outVersion.set(version);\n\n    const chunks = [];\n    gltf.chunks = chunks;\n\n    chunks.push(readChunk(dv, byteArray, arrayBuffer, pos));\n    pos += chunks[0].size + CHUNK_HEADER_SIZE;\n    gltf.json = chunks[0].data;\n\n    gltf.cables = {\n        \"fileUrl\": inFile.get(),\n        \"shortFileName\": CABLES.basename(inFile.get())\n    };\n\n    outJson.setRef(gltf.json);\n    outExtensions.setRef(gltf.json.extensionsUsed || []);\n\n    let ch = readChunk(dv, byteArray, arrayBuffer, pos);\n    while (ch)\n    {\n        chunks.push(ch);\n        pos += ch.size + CHUNK_HEADER_SIZE;\n        ch = readChunk(dv, byteArray, arrayBuffer, pos);\n    }\n\n    gltf.chunks = chunks;\n\n    const views = chunks[0].data.bufferViews;\n    const accessors = chunks[0].data.accessors;\n\n    gltf.timing.push([\"Parse buffers\", Math.round((performance.now() - gltf.startTime))]);\n\n    if (gltf.json.extensionsUsed && gltf.json.extensionsUsed.indexOf(\"KHR_draco_mesh_compression\") > -1)\n    {\n        if (!window.DracoDecoder)\n        {\n            op.setUiError(\"gltfdraco\", \"GLTF draco compression lib not found / add draco op to your patch!\");\n\n            loadAfterDraco();\n            return gltf;\n        }\n        else\n        {\n            gltf.useDraco = true;\n        }\n    }\n\n    op.setUiError(\"gltfdraco\", null);\n    // let accPos = (view.byteOffset || 0) + (acc.byteOffset || 0);\n\n    if (views)\n    {\n        for (i = 0; i < accessors.length; i++)\n        {\n            const acc = accessors[i];\n            const view = views[acc.bufferView];\n\n            let numComps = 0;\n            if (acc.type == \"SCALAR\")numComps = 1;\n            else if (acc.type == \"VEC2\")numComps = 2;\n            else if (acc.type == \"VEC3\")numComps = 3;\n            else if (acc.type == \"VEC4\")numComps = 4;\n            else if (acc.type == \"MAT4\")numComps = 16;\n            else console.error(\"unknown accessor type\", acc.type);\n\n            //   const decoder = new decoderModule.Decoder();\n            //   const decodedGeometry = decodeDracoData(data, decoder);\n            //   // Encode mesh\n            //   encodeMeshToFile(decodedGeometry, decoder);\n\n            //   decoderModule.destroy(decoder);\n            //   decoderModule.destroy(decodedGeometry);\n\n            // 5120 (BYTE)\t1\n            // 5121 (UNSIGNED_BYTE)\t1\n            // 5122 (SHORT)\t2\n\n            if (chunks[1].dataView)\n            {\n                if (view)\n                {\n                    const num = acc.count * numComps;\n                    let accPos = (view.byteOffset || 0) + (acc.byteOffset || 0);\n                    let stride = view.byteStride || 0;\n                    let dataBuff = null;\n\n                    if (acc.componentType == 5126 || acc.componentType == 5125) // 4byte FLOAT or INT\n                    {\n                        stride = stride || 4;\n\n                        const isInt = acc.componentType == 5125;\n                        if (isInt)dataBuff = new Uint32Array(num);\n                        else dataBuff = new Float32Array(num);\n\n                        dataBuff.cblStride = numComps;\n\n                        for (j = 0; j < num; j++)\n                        {\n                            if (isInt) dataBuff[j] = chunks[1].dataView.getUint32(accPos, le);\n                            else dataBuff[j] = chunks[1].dataView.getFloat32(accPos, le);\n\n                            if (stride != 4 && (j + 1) % numComps === 0)accPos += stride - (numComps * 4);\n                            accPos += 4;\n                        }\n                    }\n                    else if (acc.componentType == 5123) // UNSIGNED_SHORT\n                    {\n                        stride = stride || 2;\n\n                        dataBuff = new Uint16Array(num);\n                        dataBuff.cblStride = stride;\n\n                        for (j = 0; j < num; j++)\n                        {\n                            dataBuff[j] = chunks[1].dataView.getUint16(accPos, le);\n\n                            if (stride != 2 && (j + 1) % numComps === 0) accPos += stride - (numComps * 2);\n\n                            accPos += 2;\n                        }\n                    }\n                    else if (acc.componentType == 5121) // UNSIGNED_BYTE\n                    {\n                        stride = stride || 1;\n\n                        dataBuff = new Uint8Array(num);\n                        dataBuff.cblStride = stride;\n\n                        for (j = 0; j < num; j++)\n                        {\n                            dataBuff[j] = chunks[1].dataView.getUint8(accPos, le);\n\n                            if (stride != 1 && (j + 1) % numComps === 0) accPos += stride - (numComps * 1);\n\n                            accPos += 1;\n                        }\n                    }\n\n                    else\n                    {\n                        console.error(\"unknown component type\", acc.componentType);\n                    }\n\n                    gltf.accBuffers.push(dataBuff);\n                }\n                else\n                {\n                    // console.log(\"has no dataview\");\n                }\n            }\n        }\n    }\n\n    gltf.timing.push([\"Parse mesh groups\", Math.round((performance.now() - gltf.startTime))]);\n\n    gltf.json.meshes = gltf.json.meshes || [];\n\n    if (gltf.json.meshes)\n    {\n        for (i = 0; i < gltf.json.meshes.length; i++)\n        {\n            const mesh = new gltfMeshGroup(gltf, gltf.json.meshes[i]);\n            gltf.meshes.push(mesh);\n        }\n    }\n\n    gltf.timing.push([\"Parse nodes\", Math.round((performance.now() - gltf.startTime))]);\n\n    for (i = 0; i < gltf.json.nodes.length; i++)\n    {\n        if (gltf.json.nodes[i].children)\n            for (j = 0; j < gltf.json.nodes[i].children.length; j++)\n            {\n                gltf.json.nodes[gltf.json.nodes[i].children[j]].isChild = true;\n            }\n    }\n\n    for (i = 0; i < gltf.json.nodes.length; i++)\n    {\n        const node = new gltfNode(gltf.json.nodes[i], gltf);\n        gltf.nodes.push(node);\n    }\n\n    for (i = 0; i < gltf.nodes.length; i++)\n    {\n        const node = gltf.nodes[i];\n\n        if (!node.children) continue;\n        for (let j = 0; j < node.children.length; j++)\n        {\n            gltf.nodes[node.children[j]].parent = node;\n        }\n    }\n\n    for (i = 0; i < gltf.nodes.length; i++)\n    {\n        gltf.nodes[i].initSkin();\n    }\n\n    needsMatUpdate = true;\n\n    gltf.timing.push([\"load anims\", Math.round((performance.now() - gltf.startTime))]);\n\n    if (gltf.json.animations) loadAnims(gltf);\n\n    gltf.timing.push([\"load cameras\", Math.round((performance.now() - gltf.startTime))]);\n\n    if (gltf.json.cameras) loadCams(gltf);\n\n    gltf.timing.push([\"finished\", Math.round((performance.now() - gltf.startTime))]);\n    return gltf;\n}\n","inc_mesh_js":"let gltfMesh = class\n{\n    constructor(name, prim, gltf, finished)\n    {\n        this.POINTS = 0;\n        this.LINES = 1;\n        this.LINE_LOOP = 2;\n        this.LINE_STRIP = 3;\n        this.TRIANGLES = 4;\n        this.TRIANGLE_STRIP = 5;\n        this.TRIANGLE_FAN = 6;\n\n        this.test = 0;\n        this.name = name;\n        this.submeshIndex = 0;\n        this.material = prim.material;\n        // console.log(prim);\n        this.mesh = null;\n        this.geom = new CGL.Geometry(\"gltf_\" + this.name);\n        this.geom.verticesIndices = [];\n        this.bounds = null;\n        this.primitive = 4;\n        this.morphTargetsRenderMod = null;\n        this.weights = prim.weights;\n\n        if (prim.hasOwnProperty(\"mode\")) this.primitive = prim.mode;\n\n        if (prim.hasOwnProperty(\"indices\")) this.geom.verticesIndices = gltf.accBuffers[prim.indices];\n\n        gltf.loadingMeshes = gltf.loadingMeshes || 0;\n        gltf.loadingMeshes++;\n\n        this.materialJson =\n            this._matPbrMetalness =\n            this._matPbrRoughness =\n            this._matDiffuseColor = null;\n\n        if (gltf.json.materials)\n        {\n            if (this.material != -1) this.materialJson = gltf.json.materials[this.material];\n\n            if (this.materialJson && this.materialJson.pbrMetallicRoughness)\n            {\n                if (!this.materialJson.pbrMetallicRoughness.hasOwnProperty(\"baseColorFactor\"))\n                {\n                    this._matDiffuseColor = [1, 1, 1, 1];\n                }\n                else\n                {\n                    this._matDiffuseColor = this.materialJson.pbrMetallicRoughness.baseColorFactor;\n                }\n\n                this._matDiffuseColor = this.materialJson.pbrMetallicRoughness.baseColorFactor;\n\n                if (!this.materialJson.pbrMetallicRoughness.hasOwnProperty(\"metallicFactor\"))\n                {\n                    this._matPbrMetalness = 1.0;\n                }\n                else\n                {\n                    this._matPbrMetalness = this.materialJson.pbrMetallicRoughness.metallicFactor || null;\n                }\n\n                if (!this.materialJson.pbrMetallicRoughness.hasOwnProperty(\"roughnessFactor\"))\n                {\n                    this._matPbrRoughness = 1.0;\n                }\n                else\n                {\n                    this._matPbrRoughness = this.materialJson.pbrMetallicRoughness.roughnessFactor || null;\n                }\n            }\n        }\n\n        if (gltf.useDraco && prim.extensions.KHR_draco_mesh_compression)\n        {\n            const view = gltf.chunks[0].data.bufferViews[prim.extensions.KHR_draco_mesh_compression.bufferView];\n            const num = view.byteLength;\n            const dataBuff = new Int8Array(num);\n            let accPos = (view.byteOffset || 0);// + (acc.byteOffset || 0);\n            for (let j = 0; j < num; j++)\n            {\n                dataBuff[j] = gltf.chunks[1].dataView.getInt8(accPos, le);\n                accPos++;\n            }\n\n            const dracoDecoder = window.DracoDecoder;\n            dracoDecoder.decodeGeometry(dataBuff.buffer, (geometry) =>\n            {\n                const geom = new CGL.Geometry(\"draco mesh \" + name);\n\n                for (let i = 0; i < geometry.attributes.length; i++)\n                {\n                    const attr = geometry.attributes[i];\n\n                    if (attr.name === \"position\") geom.vertices = attr.array;\n                    else if (attr.name === \"normal\") geom.vertexNormals = attr.array;\n                    else if (attr.name === \"uv\") geom.texCoords = attr.array;\n                    else if (attr.name === \"color\") geom.vertexColors = this.calcVertexColors(attr.array);\n                    else if (attr.name === \"joints\") geom.setAttribute(\"attrJoints\", Array.from(attr.array), 4);\n                    else if (attr.name === \"weights\")\n                    {\n                        const arr4 = new Float32Array(attr.array.length / attr.itemSize * 4);\n\n                        for (let k = 0; k < attr.array.length / attr.itemSize; k++)\n                        {\n                            arr4[k * 4] = arr4[k * 4 + 1] = arr4[k * 4 + 2] = arr4[k * 4 + 3] = 0;\n                            for (let j = 0; j < attr.itemSize; j++)\n                                arr4[k * 4 + j] = attr.array[k * attr.itemSize + j];\n                        }\n                        geom.setAttribute(\"attrWeights\", arr4, 4);\n                    }\n                    else op.logWarn(\"unknown draco attrib\", attr);\n                }\n\n                geometry.attributes = null;\n                geom.verticesIndices = geometry.index.array;\n\n                this.setGeom(geom);\n\n                this.mesh = null;\n                gltf.loadingMeshes--;\n                gltf.timing.push([\"draco decode\", Math.round((performance.now() - gltf.startTime))]);\n\n                if (finished)finished(this);\n            }, (error) => { op.logError(error); });\n        }\n        else\n        {\n            gltf.loadingMeshes--;\n            this.fillGeomAttribs(gltf, this.geom, prim.attributes);\n\n            if (prim.targets)\n            {\n                for (let j = 0; j < prim.targets.length; j++)\n                {\n                    const tgeom = new CGL.Geometry(\"gltf_target_\" + j);\n\n                    // if (prim.hasOwnProperty(\"indices\")) tgeom.verticesIndices = gltf.accBuffers[prim.indices];\n\n                    this.fillGeomAttribs(gltf, tgeom, prim.targets[j], false);\n\n                    // { // calculate normals for final position of morphtarget for later...\n                    //     for (let i = 0; i < tgeom.vertices.length; i++) tgeom.vertices[i] += this.geom.vertices[i];\n                    //     tgeom.calculateNormals();\n                    //     for (let i = 0; i < tgeom.vertices.length; i++) tgeom.vertices[i] -= this.geom.vertices[i];\n                    // }\n\n                    this.geom.morphTargets.push(tgeom);\n                }\n            }\n            if (finished)finished(this);\n        }\n    }\n\n    _linearToSrgb(x)\n    {\n        if (x <= 0)\n            return 0;\n        else if (x >= 1)\n            return 1;\n        else if (x < 0.0031308)\n            return x * 12.92;\n        else\n            return x ** (1 / 2.2) * 1.055 - 0.055;\n    }\n\n    calcVertexColors(arr, type)\n    {\n        let vertexColors = null;\n        if (arr instanceof Float32Array)\n        {\n            let div = false;\n            for (let i = 0; i < arr.length; i++)\n            {\n                if (arr[i] > 1)\n                {\n                    div = true;\n                    continue;\n                }\n            }\n\n            if (div)\n                for (let i = 0; i < arr.length; i++) arr[i] /= 65535;\n\n            vertexColors = arr;\n        }\n\n        else if (arr instanceof Uint16Array)\n        {\n            const fb = new Float32Array(arr.length);\n            for (let i = 0; i < arr.length; i++) fb[i] = arr[i] / 65535;\n\n            vertexColors = fb;\n        }\n        else vertexColors = arr;\n\n        for (let i = 0; i < vertexColors.length; i++)\n        {\n            vertexColors[i] = this._linearToSrgb(vertexColors[i]);\n        }\n\n        console.log(\"arr.cblStride\", arr.cblStride);\n        if (arr.cblStride == 3)\n        {\n            const nc = new Float32Array(vertexColors.length / 3 * 4);\n            for (let i = 0; i < vertexColors.length / 3; i++)\n            {\n                nc[i * 4 + 0] = vertexColors[i * 3 + 0];\n                nc[i * 4 + 1] = vertexColors[i * 3 + 1];\n                nc[i * 4 + 2] = vertexColors[i * 3 + 2];\n                nc[i * 4 + 3] = 1;\n            }\n            vertexColors = nc;\n        }\n\n        return vertexColors;\n    }\n\n    fillGeomAttribs(gltf, tgeom, attribs, setGeom)\n    {\n        if (attribs.hasOwnProperty(\"POSITION\")) tgeom.vertices = gltf.accBuffers[attribs.POSITION];\n        if (attribs.hasOwnProperty(\"NORMAL\")) tgeom.vertexNormals = gltf.accBuffers[attribs.NORMAL];\n        if (attribs.hasOwnProperty(\"TANGENT\")) tgeom.tangents = gltf.accBuffers[attribs.TANGENT];\n\n        // // console.log(gltf.accBuffers[attribs.COLOR_0])\n        // console.log(gltf);\n\n        if (attribs.hasOwnProperty(\"COLOR_0\")) tgeom.vertexColors = this.calcVertexColors(gltf.accBuffers[attribs.COLOR_0], gltf.accBuffers[attribs.COLOR_0].type);\n        if (attribs.hasOwnProperty(\"COLOR_1\")) tgeom.setAttribute(\"attrVertColor1\", this.calcVertexColors(gltf.accBuffers[attribs.COLOR_1]), gltf.accBuffers[attribs.COLOR_1].type);\n        if (attribs.hasOwnProperty(\"COLOR_2\")) tgeom.setAttribute(\"attrVertColor2\", this.calcVertexColors(gltf.accBuffers[attribs.COLOR_2]), gltf.accBuffers[attribs.COLOR_2].type);\n        if (attribs.hasOwnProperty(\"COLOR_3\")) tgeom.setAttribute(\"attrVertColor3\", this.calcVertexColors(gltf.accBuffers[attribs.COLOR_3]), gltf.accBuffers[attribs.COLOR_3].type);\n        if (attribs.hasOwnProperty(\"COLOR_4\")) tgeom.setAttribute(\"attrVertColor4\", this.calcVertexColors(gltf.accBuffers[attribs.COLOR_4]), gltf.accBuffers[attribs.COLOR_4].type);\n\n        if (attribs.hasOwnProperty(\"TEXCOORD_0\")) tgeom.texCoords = gltf.accBuffers[attribs.TEXCOORD_0];\n        if (attribs.hasOwnProperty(\"TEXCOORD_1\")) tgeom.setAttribute(\"attrTexCoord1\", gltf.accBuffers[attribs.TEXCOORD_1], 2);\n        if (attribs.hasOwnProperty(\"TEXCOORD_2\")) tgeom.setAttribute(\"attrTexCoord2\", gltf.accBuffers[attribs.TEXCOORD_2], 2);\n        if (attribs.hasOwnProperty(\"TEXCOORD_3\")) tgeom.setAttribute(\"attrTexCoord3\", gltf.accBuffers[attribs.TEXCOORD_3], 2);\n        if (attribs.hasOwnProperty(\"TEXCOORD_4\")) tgeom.setAttribute(\"attrTexCoord4\", gltf.accBuffers[attribs.TEXCOORD_4], 2);\n\n        if (attribs.hasOwnProperty(\"WEIGHTS_0\"))\n        {\n            tgeom.setAttribute(\"attrWeights\", gltf.accBuffers[attribs.WEIGHTS_0], 4);\n        }\n        if (attribs.hasOwnProperty(\"JOINTS_0\"))\n        {\n            if (!gltf.accBuffers[attribs.JOINTS_0])console.log(\"no !gltf.accBuffers[attribs.JOINTS_0]\");\n            tgeom.setAttribute(\"attrJoints\", gltf.accBuffers[attribs.JOINTS_0], 4);\n        }\n\n        if (attribs.hasOwnProperty(\"POSITION\")) gltf.accBuffersDelete.push(attribs.POSITION);\n        if (attribs.hasOwnProperty(\"NORMAL\")) gltf.accBuffersDelete.push(attribs.NORMAL);\n        if (attribs.hasOwnProperty(\"TEXCOORD_0\")) gltf.accBuffersDelete.push(attribs.TEXCOORD_0);\n        if (attribs.hasOwnProperty(\"TANGENT\")) gltf.accBuffersDelete.push(attribs.TANGENT);\n        if (attribs.hasOwnProperty(\"COLOR_0\"))gltf.accBuffersDelete.push(attribs.COLOR_0);\n        if (attribs.hasOwnProperty(\"COLOR_0\"))gltf.accBuffersDelete.push(attribs.COLOR_0);\n        if (attribs.hasOwnProperty(\"COLOR_1\"))gltf.accBuffersDelete.push(attribs.COLOR_1);\n        if (attribs.hasOwnProperty(\"COLOR_2\"))gltf.accBuffersDelete.push(attribs.COLOR_2);\n        if (attribs.hasOwnProperty(\"COLOR_3\"))gltf.accBuffersDelete.push(attribs.COLOR_3);\n\n        if (attribs.hasOwnProperty(\"TEXCOORD_1\")) gltf.accBuffersDelete.push(attribs.TEXCOORD_1);\n        if (attribs.hasOwnProperty(\"TEXCOORD_2\")) gltf.accBuffersDelete.push(attribs.TEXCOORD_2);\n        if (attribs.hasOwnProperty(\"TEXCOORD_3\")) gltf.accBuffersDelete.push(attribs.TEXCOORD_3);\n        if (attribs.hasOwnProperty(\"TEXCOORD_4\")) gltf.accBuffersDelete.push(attribs.TEXCOORD_4);\n\n        if (setGeom !== false) if (tgeom && tgeom.verticesIndices) this.setGeom(tgeom);\n    }\n\n    setGeom(geom)\n    {\n        if (inNormFormat.get() == \"X-ZY\")\n        {\n            for (let i = 0; i < geom.vertexNormals.length; i += 3)\n            {\n                let t = geom.vertexNormals[i + 2];\n                geom.vertexNormals[i + 2] = geom.vertexNormals[i + 1];\n                geom.vertexNormals[i + 1] = -t;\n            }\n        }\n\n        if (inVertFormat.get() == \"XZ-Y\")\n        {\n            for (let i = 0; i < geom.vertices.length; i += 3)\n            {\n                let t = geom.vertices[i + 2];\n                geom.vertices[i + 2] = -geom.vertices[i + 1];\n                geom.vertices[i + 1] = t;\n            }\n        }\n\n        if (this.primitive == this.TRIANGLES)\n        {\n            if (inCalcNormals.get() == \"Force Smooth\" || inCalcNormals.get() == false) geom.calculateNormals();\n            else if (!geom.vertexNormals.length && inCalcNormals.get() == \"Auto\") geom.calculateNormals({ \"smooth\": false });\n\n            if ((!geom.biTangents || geom.biTangents.length == 0) && geom.tangents)\n            {\n                const bitan = vec3.create();\n                const tan = vec3.create();\n\n                const tangents = geom.tangents;\n                geom.tangents = new Float32Array(tangents.length / 4 * 3);\n                geom.biTangents = new Float32Array(tangents.length / 4 * 3);\n\n                for (let i = 0; i < tangents.length; i += 4)\n                {\n                    const idx = i / 4 * 3;\n\n                    vec3.cross(\n                        bitan,\n                        [geom.vertexNormals[idx], geom.vertexNormals[idx + 1], geom.vertexNormals[idx + 2]],\n                        [tangents[i], tangents[i + 1], tangents[i + 2]]\n                    );\n\n                    vec3.div(bitan, bitan, [tangents[i + 3], tangents[i + 3], tangents[i + 3]]);\n                    vec3.normalize(bitan, bitan);\n\n                    geom.biTangents[idx + 0] = bitan[0];\n                    geom.biTangents[idx + 1] = bitan[1];\n                    geom.biTangents[idx + 2] = bitan[2];\n\n                    geom.tangents[idx + 0] = tangents[i + 0];\n                    geom.tangents[idx + 1] = tangents[i + 1];\n                    geom.tangents[idx + 2] = tangents[i + 2];\n                }\n            }\n\n            if (geom.tangents.length === 0 || inCalcNormals.get() != \"Never\")\n            {\n                // console.log(\"[gltf ]no tangents... calculating tangents...\");\n                geom.calcTangentsBitangents();\n            }\n        }\n\n        this.geom = geom;\n\n        this.bounds = geom.getBounds();\n    }\n\n    render(cgl, ignoreMaterial, skinRenderer)\n    {\n        if (!this.mesh && this.geom && this.geom.verticesIndices)\n        {\n            let g = this.geom;\n            if (this.geom.vertices.length / 3 > 64000)\n            {\n                g = this.geom.copy();\n                g.unIndex(false, true);\n            }\n\n            let glprim;\n\n            if (cgl.gl)\n            {\n                if (this.primitive == this.TRIANGLES)glprim = cgl.gl.TRIANGLES;\n                else if (this.primitive == this.LINES)glprim = cgl.gl.LINES;\n                else if (this.primitive == this.LINE_STRIP)glprim = cgl.gl.LINE_STRIP;\n                else if (this.primitive == this.POINTS)glprim = cgl.gl.POINTS;\n                else\n                {\n                    op.logWarn(\"unknown primitive type\", this);\n                }\n            }\n\n            this.mesh = op.patch.cg.createMesh(g, { \"glPrimitive\": glprim });\n        }\n\n        if (this.mesh)\n        {\n            // update morphTargets\n            if (this.geom && this.geom.morphTargets.length && !this.morphTargetsRenderMod)\n            {\n                this.mesh.addVertexNumbers = true;\n                this.morphTargetsRenderMod = new GltfTargetsRenderer(this);\n            }\n\n            let useMat = !ignoreMaterial && this.material != -1 && gltf.shaders[this.material];\n            if (skinRenderer)useMat = false;\n\n            if (useMat) cgl.pushShader(gltf.shaders[this.material]);\n\n            const currentShader = cgl.getShader() || {};\n            const uniDiff = currentShader.uniformColorDiffuse;\n\n            const uniPbrMetalness = currentShader.uniformPbrMetalness;\n            const uniPbrRoughness = currentShader.uniformPbrRoughness;\n\n            // if (gltf.shaders[this.material] && !inUseMatProps.get())\n            // {\n            //     gltf.shaders[this.material]=null;\n            // }\n\n            if (!gltf.shaders[this.material] && inUseMatProps.get())\n            {\n                if (uniDiff && this._matDiffuseColor)\n                {\n                    this._matDiffuseColorOrig = [uniDiff.getValue()[0], uniDiff.getValue()[1], uniDiff.getValue()[2], uniDiff.getValue()[3]];\n                    uniDiff.setValue(this._matDiffuseColor);\n                }\n\n                if (uniPbrMetalness)\n                    if (this._matPbrMetalness != null)\n                    {\n                        this._matPbrMetalnessOrig = uniPbrMetalness.getValue();\n                        uniPbrMetalness.setValue(this._matPbrMetalness);\n                    }\n                    else\n                        uniPbrMetalness.setValue(0);\n\n                if (uniPbrRoughness)\n                    if (this._matPbrRoughness != null)\n                    {\n                        this._matPbrRoughnessOrig = uniPbrRoughness.getValue();\n                        uniPbrRoughness.setValue(this._matPbrRoughness);\n                    }\n                    else\n                    {\n                        uniPbrRoughness.setValue(0);\n                    }\n            }\n\n            if (this.morphTargetsRenderMod) this.morphTargetsRenderMod.renderStart(cgl, 0);\n            if (this.mesh)\n            {\n                // console.log(this.mesh)\n                // this.mesh.lastMaterial=0;\n                this.mesh.render(cgl.getShader(), ignoreMaterial);\n            }\n            if (this.morphTargetsRenderMod) this.morphTargetsRenderMod.renderFinish(cgl);\n\n            if (inUseMatProps.get())\n            {\n                if (uniDiff && this._matDiffuseColor) uniDiff.setValue(this._matDiffuseColorOrig);\n                if (uniPbrMetalness && this._matPbrMetalnessOrig != undefined) uniPbrMetalness.setValue(this._matPbrMetalnessOrig);\n                if (uniPbrRoughness && this._matPbrRoughnessOrig != undefined) uniPbrRoughness.setValue(this._matPbrRoughnessOrig);\n            }\n\n            if (useMat) cgl.popShader();\n        }\n    }\n};\n","inc_meshGroup_js":"const gltfMeshGroup = class\n{\n    constructor(gltf, m)\n    {\n        this.bounds = new CABLES.CG.BoundingBox();\n        this.meshes = [];\n        this.name = m.name;\n        const prims = m.primitives;\n\n        for (let i = 0; i < prims.length; i++)\n        {\n            const mesh = new gltfMesh(this.name, prims[i], gltf,\n                (mesh) =>\n                {\n                    mesh.extras = m.extras;\n                    this.bounds.apply(mesh.bounds);\n                });\n\n            mesh.submeshIndex = i;\n            this.meshes.push(mesh);\n        }\n    }\n\n    render(cgl, ignoreMat, skinRenderer, _time, weights)\n    {\n        for (let i = 0; i < this.meshes.length; i++)\n        {\n            const useMat = gltf.shaders[this.meshes[i].material];\n\n            if (!ignoreMat && useMat) cgl.pushShader(gltf.shaders[this.meshes[i].material]);\n            // console.log(gltf.shaders[this.meshes[i].material],this.meshes[i].material)\n            if (skinRenderer)skinRenderer.renderStart(cgl, _time);\n            if (weights) this.meshes[i].weights = weights;\n            this.meshes[i].render(cgl, ignoreMat, skinRenderer, _time);\n            if (skinRenderer)skinRenderer.renderFinish(cgl);\n            if (!ignoreMat && useMat) cgl.popShader();\n        }\n    }\n};\n","inc_node_js":"const gltfNode = class\n{\n    constructor(node, gltf)\n    {\n        this.isChild = node.isChild || false;\n        this.name = node.name;\n        if (node.hasOwnProperty(\"camera\")) this.camera = node.camera;\n        this.hidden = false;\n        this.mat = mat4.create();\n        this._animActions = {};\n        this.animWeights = [];\n        this._animMat = mat4.create();\n        this._tempMat = mat4.create();\n        this._tempQuat = quat.create();\n        this._tempRotmat = mat4.create();\n        this.mesh = null;\n        this.children = [];\n        this._node = node;\n        this._gltf = gltf;\n        this.absMat = mat4.create();\n        this.addTranslate = null;\n        this._tempAnimScale = null;\n        this.addMulMat = null;\n        this.updateMatrix();\n        this.skinRenderer = null;\n        this.copies = [];\n    }\n\n    get skin()\n    {\n        if (this._node.hasOwnProperty(\"skin\")) return this._node.skin;\n        else return -1;\n    }\n\n    copy()\n    {\n        this.isCopy = true;\n        const n = new gltfNode(this._node, this._gltf);\n        n.copyOf = this;\n\n        n._animActions = this._animActions;\n        n.children = this.children;\n        if (this.skin) n.skinRenderer = new GltfSkin(this);\n\n        this.updateMatrix();\n        return n;\n    }\n\n    hasSkin()\n    {\n        if (this._node.hasOwnProperty(\"skin\")) return this._gltf.json.skins[this._node.skin].name || \"unknown\";\n        return false;\n    }\n\n    initSkin()\n    {\n        if (this.skin > -1)\n        {\n            this.skinRenderer = new GltfSkin(this);\n        }\n    }\n\n    updateMatrix()\n    {\n        mat4.identity(this.mat);\n        if (this._node.translation) mat4.translate(this.mat, this.mat, this._node.translation);\n\n        if (this._node.rotation)\n        {\n            const rotmat = mat4.create();\n            this._rot = this._node.rotation;\n\n            mat4.fromQuat(rotmat, this._node.rotation);\n            mat4.mul(this.mat, this.mat, rotmat);\n        }\n\n        if (this._node.scale)\n        {\n            this._scale = this._node.scale;\n            mat4.scale(this.mat, this.mat, this._scale);\n        }\n\n        if (this._node.hasOwnProperty(\"mesh\"))\n        {\n            this.mesh = this._gltf.meshes[this._node.mesh];\n            if (this.isCopy)\n            {\n                // console.log(this.mesh);\n            }\n        }\n\n        if (this._node.children)\n        {\n            for (let i = 0; i < this._node.children.length; i++)\n            {\n                this._gltf.json.nodes[i].isChild = true;\n                if (this._gltf.nodes[this._node.children[i]]) this._gltf.nodes[this._node.children[i]].isChild = true;\n                this.children.push(this._node.children[i]);\n            }\n        }\n    }\n\n    unHide()\n    {\n        this.hidden = false;\n        for (let i = 0; i < this.children.length; i++)\n            if (this.children[i].unHide) this.children[i].unHide();\n    }\n\n    calcBounds(gltf, mat, bounds)\n    {\n        const localMat = mat4.create();\n\n        if (mat) mat4.copy(localMat, mat);\n        if (this.mat) mat4.mul(localMat, localMat, this.mat);\n\n        if (this.mesh)\n        {\n            const bb = this.mesh.bounds.copy();\n            bb.mulMat4(localMat);\n            bounds.apply(bb);\n\n            if (bounds.changed)\n            {\n                boundingPoints.push(\n                    bb._min[0] || 0, bb._min[1] || 0, bb._min[2] || 0,\n                    bb._max[0] || 0, bb._max[1] || 0, bb._max[2] || 0);\n            }\n        }\n\n        for (let i = 0; i < this.children.length; i++)\n        {\n            if (gltf.nodes[this.children[i]] && gltf.nodes[this.children[i]].calcBounds)\n            {\n                const b = gltf.nodes[this.children[i]].calcBounds(gltf, localMat, bounds);\n\n                bounds.apply(b);\n            }\n        }\n\n        if (bounds.changed) return bounds;\n        else return null;\n    }\n\n    setAnimAction(name)\n    {\n        // console.log(\"setAnimAction:\", name);\n        if (!name) return;\n\n        this._currentAnimaction = name;\n\n        if (name && !this._animActions[name])\n        {\n            // console.log(\"no action found:\", name,this._animActions);\n            return null;\n        }\n\n        // else console.log(\"YES action found:\", name);\n        // console.log(this._animActions);\n\n        for (let path in this._animActions[name])\n        {\n            if (path == \"translation\") this._animTrans = this._animActions[name][path];\n            else if (path == \"rotation\") this._animRot = this._animActions[name][path];\n            else if (path == \"scale\") this._animScale = this._animActions[name][path];\n            else if (path == \"weights\") this.animWeights = this._animActions[name][path];\n            else console.log(\"[gltfNode] unknown anim path\", path, this._animActions[name][path]);\n        }\n    }\n\n    setAnim(path, name, anims)\n    {\n        if (!path || !name || !anims) return;\n\n        // console.log(\"setanim\", this._node.name, path, name, anims);\n\n        this._animActions[name] = this._animActions[name] || {};\n\n        // console.log(this._animActions);\n        // debugger;\n\n        // for (let i = 0; i < this.copies.length; i++) this.copies[i]._animActions = this._animActions;\n\n        if (this._animActions[name][path]) op.log(\"[gltfNode] animation action path already exists\", name, path, this._animActions[name][path]);\n\n        this._animActions[name][path] = anims;\n\n        if (path == \"translation\") this._animTrans = anims;\n        else if (path == \"rotation\") this._animRot = anims;\n        else if (path == \"scale\") this._animScale = anims;\n        else if (path == \"weights\")\n        {\n            // console.log(\"weights\",name,path,anims)\n            this.animWeights = this._animActions[name][path];\n            // console.log(this.animWeights);\n        }\n        else console.warn(\"unknown anim path\", path, anims);\n    }\n\n    modelMatLocal()\n    {\n        return this._animMat || this.mat;\n    }\n\n    modelMatAbs()\n    {\n        return this.absMat;\n    }\n\n    transform(cgl, _time)\n    {\n        if (!_time && _time != 0)_time = time;\n\n        this._lastTimeTrans = _time;\n\n        // console.log(this._rot)\n\n        gltfTransforms++;\n\n        if (!this._animTrans && !this._animRot && !this._animScale)\n        {\n            mat4.mul(cgl.mMatrix, cgl.mMatrix, this.mat);\n            this._animMat = null;\n        }\n        else\n        {\n            this._animMat = this._animMat || mat4.create();\n            mat4.identity(this._animMat);\n\n            const playAnims = true;\n\n            if (playAnims && this._animTrans)\n            {\n                mat4.translate(this._animMat, this._animMat, [\n                    this._animTrans[0].getValue(_time),\n                    this._animTrans[1].getValue(_time),\n                    this._animTrans[2].getValue(_time)]);\n            }\n            else\n            if (this._node.translation) mat4.translate(this._animMat, this._animMat, this._node.translation);\n\n            if (playAnims && this._animRot)\n            {\n                if (this._animRot[0].defaultEasing == CABLES.EASING_LINEAR) CABLES.Anim.slerpQuaternion(_time, this._tempQuat, this._animRot[0], this._animRot[1], this._animRot[2], this._animRot[3]);\n                else if (this._animRot[0].defaultEasing == CABLES.EASING_ABSOLUTE)\n                {\n                    this._tempQuat[0] = this._animRot[0].getValue(_time);\n                    this._tempQuat[1] = this._animRot[1].getValue(_time);\n                    this._tempQuat[2] = this._animRot[2].getValue(_time);\n                    this._tempQuat[3] = this._animRot[3].getValue(_time);\n                }\n                else if (this._animRot[0].defaultEasing == CABLES.EASING_CUBICSPLINE)\n                {\n                    CABLES.Anim.slerpQuaternion(_time, this._tempQuat, this._animRot[0], this._animRot[1], this._animRot[2], this._animRot[3]);\n                }\n\n                mat4.fromQuat(this._tempMat, this._tempQuat);\n                mat4.mul(this._animMat, this._animMat, this._tempMat);\n            }\n            else if (this._rot)\n            {\n                mat4.fromQuat(this._tempRotmat, this._rot);\n                mat4.mul(this._animMat, this._animMat, this._tempRotmat);\n            }\n\n            if (playAnims && this._animScale)\n            {\n                if (!this._tempAnimScale) this._tempAnimScale = [1, 1, 1];\n                this._tempAnimScale[0] = this._animScale[0].getValue(_time);\n                this._tempAnimScale[1] = this._animScale[1].getValue(_time);\n                this._tempAnimScale[2] = this._animScale[2].getValue(_time);\n                mat4.scale(this._animMat, this._animMat, this._tempAnimScale);\n            }\n            else if (this._scale) mat4.scale(this._animMat, this._animMat, this._scale);\n\n            mat4.mul(cgl.mMatrix, cgl.mMatrix, this._animMat);\n        }\n\n        if (this.animWeights)\n        {\n            this.weights = this.weights || [];\n\n            let str = \"\";\n            for (let i = 0; i < this.animWeights.length; i++)\n            {\n                this.weights[i] = this.animWeights[i].getValue(_time);\n                str += this.weights[i] + \"/\";\n            }\n\n            // console.log(str);\n            // this.mesh.weights=this.animWeights.get(_time);\n            // console.log(this.animWeights);\n        }\n\n        if (this.addTranslate) mat4.translate(cgl.mMatrix, cgl.mMatrix, this.addTranslate);\n\n        if (this.addMulMat) mat4.mul(cgl.mMatrix, cgl.mMatrix, this.addMulMat);\n\n        mat4.copy(this.absMat, cgl.mMatrix);\n    }\n\n    render(cgl, dontTransform, dontDrawMesh, ignoreMaterial, ignoreChilds, drawHidden, _time)\n    {\n        if (!dontTransform) cgl.pushModelMatrix();\n\n        if (_time === undefined) _time = gltf.time;\n\n        if (!dontTransform || this.skinRenderer) this.transform(cgl, _time);\n\n        if (this.hidden && !drawHidden)\n        {\n        }\n        else\n        {\n            if (this.skinRenderer)\n            {\n                this.skinRenderer.time = _time;\n                if (!dontDrawMesh)\n                    this.mesh.render(cgl, ignoreMaterial, this.skinRenderer, _time, this.weights);\n            }\n            else\n            {\n                if (this.mesh && !dontDrawMesh)\n                    this.mesh.render(cgl, ignoreMaterial, null, _time, this.weights);\n            }\n        }\n\n        if (!ignoreChilds && !this.hidden)\n            for (let i = 0; i < this.children.length; i++)\n                if (gltf.nodes[this.children[i]])\n                    gltf.nodes[this.children[i]].render(cgl, dontTransform, dontDrawMesh, ignoreMaterial, ignoreChilds, drawHidden, _time);\n\n        if (!dontTransform)cgl.popModelMatrix();\n    }\n};\n","inc_print_js":"let tab = null;\n\nfunction closeTab()\n{\n    if (tab)gui.mainTabs.closeTab(tab.id);\n    tab = null;\n}\n\nfunction formatVec(arr)\n{\n    const nums = [];\n    for (let i = 0; i < arr.length; i++)\n    {\n        nums.push(Math.round(arr[i] * 1000) / 1000);\n    }\n\n    return nums.join(\",\");\n}\n\nfunction printNode(html, node, level)\n{\n    if (!gltf) return;\n\n    html += \"<tr class=\\\"row\\\">\";\n\n    let ident = \"\";\n    let identSpace = \"\";\n\n    for (let i = 1; i < level; i++)\n    {\n        identSpace += \"&nbsp;&nbsp;&nbsp;\";\n        let identClass = \"identBg\";\n        if (i == 1)identClass = \"identBgLevel0\";\n        ident += \"<td class=\\\"ident \" + identClass + \"\\\" ><div style=\\\"\\\"></div></td>\";\n    }\n    let id = CABLES.uuid();\n    html += ident;\n    html += \"<td colspan=\\\"\" + (21 - level) + \"\\\">\";\n\n    if (node.mesh && node.mesh.meshes.length)html += \"<span class=\\\"icon icon-cube\\\"></span>&nbsp;\";\n    else html += \"<span class=\\\"icon icon-box-select\\\"></span> &nbsp;\";\n\n    html += node.name + \"</td><td></td>\";\n\n    if (node.mesh)\n    {\n        html += \"<td>\";\n        for (let i = 0; i < node.mesh.meshes.length; i++)\n        {\n            if (i > 0)html += \", \";\n            html += node.mesh.meshes[i].name;\n        }\n\n        html += \"</td>\";\n\n        html += \"<td>\";\n        html += node.hasSkin() || \"-\";\n        html += \"</td>\";\n\n        html += \"<td>\";\n        let countMats = 0;\n        for (let i = 0; i < node.mesh.meshes.length; i++)\n        {\n            if (countMats > 0)html += \", \";\n            if (gltf.json.materials && node.mesh.meshes[i].hasOwnProperty(\"material\"))\n            {\n                if (gltf.json.materials[node.mesh.meshes[i].material])\n                {\n                    html += gltf.json.materials[node.mesh.meshes[i].material].name;\n                    countMats++;\n                }\n            }\n        }\n        if (countMats == 0)html += \"none\";\n        html += \"</td>\";\n    }\n    else\n    {\n        html += \"<td>-</td><td>-</td><td>-</td>\";\n    }\n\n    html += \"<td>\";\n\n    if (node._node.translation || node._node.rotation || node._node.scale)\n    {\n        let info = \"\";\n\n        if (node._node.translation)info += \"Translate: `\" + formatVec(node._node.translation) + \"` || \";\n        if (node._node.rotation)info += \"Rotation: `\" + formatVec(node._node.rotation) + \"` || \";\n        if (node._node.scale)info += \"Scale: `\" + formatVec(node._node.scale) + \"` || \";\n\n        html += \"<span class=\\\"icon icon-gizmo info\\\" data-info=\\\"\" + info + \"\\\"></span> &nbsp;\";\n    }\n\n    if (node._animRot || node._animScale || node._animTrans)\n    {\n        let info = \"Animated: \";\n        if (node._animRot) info += \"Rot \";\n        if (node._animScale) info += \"Scale \";\n        if (node._animTrans) info += \"Trans \";\n\n        html += \"<span class=\\\"icon icon-clock info\\\" data-info=\\\"\" + info + \"\\\"></span>&nbsp;\";\n    }\n\n    if (!node._node.translation && !node._node.rotation && !node._node.scale && !node._animRot && !node._animScale && !node._animTrans) html += \"-\";\n\n    html += \"</td>\";\n\n    html += \"<td>\";\n    let hideclass = \"\";\n    if (node.hidden)hideclass = \"node-hidden\";\n\n    // html+='';\n    html += \"<a onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').exposeNode('\" + node.name + \"','transform')\\\" class=\\\"treebutton\\\">Transform</a>\";\n    html += \" <a onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').exposeNode('\" + node.name + \"','hierarchy')\\\" class=\\\"treebutton\\\">Hierarchy</a>\";\n    html += \" <a onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').exposeNode('\" + node.name + \"')\\\" class=\\\"treebutton\\\">Node</a>\";\n\n    if (node.hasSkin())\n        html += \" <a onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').exposeNode('\" + node.name + \"',false,{skin:true});\\\" class=\\\"treebutton\\\">Skin</a>\";\n\n    html += \"</td><td>\";\n    html += \"&nbsp;<span class=\\\"icon iconhover icon-eye \" + hideclass + \"\\\" onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').toggleNodeVisibility('\" + node.name + \"');this.classList.toggle('node-hidden');\\\"></span>\";\n    html += \"</td>\";\n\n    html += \"</tr>\";\n\n    if (node.children)\n    {\n        for (let i = 0; i < node.children.length; i++)\n            html = printNode(html, gltf.nodes[node.children[i]], level + 1);\n    }\n\n    return html;\n}\n\nfunction printMaterial(mat, idx)\n{\n    let html = \"<tr>\";\n    html += \" <td>\" + idx + \"</td>\";\n    html += \" <td>\" + mat.name + \"</td>\";\n\n    html += \" <td>\";\n\n    const info = JSON.stringify(mat, null, 4).replaceAll(\"\\\"\", \"\").replaceAll(\"\\n\", \"<br/>\");\n\n    html += \"<span class=\\\"icon icon-info\\\" onclick=\\\"new CABLES.UI.ModalDialog({ 'html': '<pre>\" + info + \"</pre>', 'title': '\" + mat.name + \"' });\\\"></span>&nbsp;\";\n\n    if (mat.pbrMetallicRoughness && mat.pbrMetallicRoughness.baseColorFactor)\n    {\n        let rgb = \"\";\n        rgb += \"\" + Math.round(mat.pbrMetallicRoughness.baseColorFactor[0] * 255);\n        rgb += \",\" + Math.round(mat.pbrMetallicRoughness.baseColorFactor[1] * 255);\n        rgb += \",\" + Math.round(mat.pbrMetallicRoughness.baseColorFactor[2] * 255);\n\n        html += \"<div style=\\\"width:15px;height:15px;background-color:rgb(\" + rgb + \");display:inline-block\\\">&nbsp;</a>\";\n    }\n    html += \" <td style=\\\"\\\">\" + (gltf.shaders[idx] ? \"-\" : \"<a onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').assignMaterial('\" + mat.name + \"')\\\" class=\\\"treebutton\\\">Assign</a>\") + \"<td>\";\n    html += \"<td>\";\n\n    html += \"</tr>\";\n    return html;\n}\n\nfunction printInfo()\n{\n    if (!gltf) return;\n\n    const startTime = performance.now();\n    const sizes = {};\n    let html = \"<div style=\\\"overflow:scroll;width:100%;height:100%\\\">\";\n\n    html += \"File: <a href=\\\"\" + CABLES.platform.getCablesUrl() + \"/asset/patches/?filename=\" + inFile.get() + \"\\\" target=\\\"_blank\\\">\" + CABLES.basename(inFile.get()) + \"</a><br/>\";\n\n    html += \"Generator:\" + gltf.json.asset.generator;\n\n    let numNodes = 0;\n    if (gltf.json.nodes)numNodes = gltf.json.nodes.length;\n    html += \"<div id=\\\"groupNodes\\\">Nodes (\" + numNodes + \")</div>\";\n\n    html += \"<table id=\\\"sectionNodes\\\" class=\\\"table treetable\\\">\";\n\n    html += \"<tr>\";\n    html += \" <th colspan=\\\"21\\\">Name</th>\";\n    html += \" <th>Mesh</th>\";\n    html += \" <th>Skin</th>\";\n    html += \" <th>Material</th>\";\n    html += \" <th>Transform</th>\";\n    html += \" <th>Expose</th>\";\n    html += \" <th></th>\";\n    html += \"</tr>\";\n\n    for (let i = 0; i < gltf.nodes.length; i++)\n    {\n        if (!gltf.nodes[i].isChild)\n            html = printNode(html, gltf.nodes[i], 1);\n    }\n    html += \"</table>\";\n\n    // / //////////////////\n\n    let numMaterials = 0;\n    if (gltf.json.materials)numMaterials = gltf.json.materials.length;\n    html += \"<div id=\\\"groupMaterials\\\">Materials (\" + numMaterials + \")</div>\";\n\n    if (!gltf.json.materials || gltf.json.materials.length == 0)\n    {\n    }\n    else\n    {\n        html += \"<table id=\\\"materialtable\\\"  class=\\\"table treetable\\\">\";\n        html += \"<tr>\";\n        html += \" <th>Index</th>\";\n        html += \" <th>Name</th>\";\n        html += \" <th>Color</th>\";\n        html += \" <th>Function</th>\";\n        html += \" <th></th>\";\n        html += \"</tr>\";\n        for (let i = 0; i < gltf.json.materials.length; i++)\n        {\n            html += printMaterial(gltf.json.materials[i], i);\n        }\n        html += \"</table>\";\n    }\n\n    // / ///////////////////////\n\n    html += \"<div id=\\\"groupMeshes\\\">Meshes (\" + gltf.json.meshes.length + \")</div>\";\n\n    html += \"<table id=\\\"meshestable\\\"  class=\\\"table treetable\\\">\";\n    html += \"<tr>\";\n    html += \" <th>Name</th>\";\n    html += \" <th>Node</th>\";\n    html += \" <th>Material</th>\";\n    html += \" <th>Vertices</th>\";\n    html += \" <th>Attributes</th>\";\n    html += \"</tr>\";\n\n    let sizeBufferViews = [];\n    sizes.meshes = 0;\n    sizes.meshTargets = 0;\n\n    for (let i = 0; i < gltf.json.meshes.length; i++)\n    {\n        html += \"<tr>\";\n        html += \"<td>\" + gltf.json.meshes[i].name + \"</td>\";\n\n        html += \"<td>\";\n        let count = 0;\n        let nodename = \"\";\n        for (let j = 0; j < gltf.json.nodes.length; j++)\n        {\n            if (gltf.json.nodes[j].mesh == i)\n            {\n                count++;\n                if (count == 1)\n                {\n                    nodename = gltf.json.nodes[j].name;\n                }\n            }\n        }\n        if (count > 1) html += (count) + \" nodes (\" + nodename + \" ...)\";\n        else html += nodename;\n        html += \"</td>\";\n\n        // -------\n\n        html += \"<td>\";\n        for (let j = 0; j < gltf.json.meshes[i].primitives.length; j++)\n        {\n            if (gltf.json.meshes[i].primitives[j].hasOwnProperty(\"material\"))\n            {\n                if (gltf.json.materials[gltf.json.meshes[i]])\n                {\n                    html += gltf.json.materials[gltf.json.meshes[i].primitives[j].material].name + \" \";\n                }\n            }\n            else html += \"None\";\n        }\n        html += \"</td>\";\n\n        html += \"<td>\";\n        let numVerts = 0;\n        for (let j = 0; j < gltf.json.meshes[i].primitives.length; j++)\n        {\n            if (gltf.json.meshes[i].primitives[j].attributes.POSITION != undefined)\n            {\n                let v = parseInt(gltf.json.accessors[gltf.json.meshes[i].primitives[j].attributes.POSITION].count);\n                numVerts += v;\n                html += \"\" + v + \"<br/>\";\n            }\n            else html += \"-<br/>\";\n        }\n\n        if (gltf.json.meshes[i].primitives.length > 1)\n            html += \"=\" + numVerts;\n        html += \"</td>\";\n\n        html += \"<td>\";\n        for (let j = 0; j < gltf.json.meshes[i].primitives.length; j++)\n        {\n            html += Object.keys(gltf.json.meshes[i].primitives[j].attributes);\n            html += \" <a onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').exposeGeom('\" + gltf.json.meshes[i].name + \"',\" + j + \")\\\" class=\\\"treebutton\\\">Geometry</a>\";\n            html += \"<br/>\";\n\n            if (gltf.json.meshes[i].primitives[j].targets)\n            {\n                html += gltf.json.meshes[i].primitives[j].targets.length + \" targets<br/>\";\n\n                if (gltf.json.meshes[i].extras && gltf.json.meshes[i].extras.targetNames)\n                    html += \"Targetnames:<br/>\" + gltf.json.meshes[i].extras.targetNames.join(\"<br/>\");\n\n                html += \"<br/>\";\n            }\n        }\n\n        html += \"</td>\";\n        html += \"</tr>\";\n\n        for (let j = 0; j < gltf.json.meshes[i].primitives.length; j++)\n        {\n            const accessor = gltf.json.accessors[gltf.json.meshes[i].primitives[j].indices];\n            if (accessor)\n            {\n                let bufView = accessor.bufferView;\n\n                if (sizeBufferViews.indexOf(bufView) == -1)\n                {\n                    sizeBufferViews.push(bufView);\n                    if (gltf.json.bufferViews[bufView])sizes.meshes += gltf.json.bufferViews[bufView].byteLength;\n                }\n            }\n\n            for (let k in gltf.json.meshes[i].primitives[j].attributes)\n            {\n                const attr = gltf.json.meshes[i].primitives[j].attributes[k];\n                const bufView2 = gltf.json.accessors[attr].bufferView;\n\n                if (sizeBufferViews.indexOf(bufView2) == -1)\n                {\n                    sizeBufferViews.push(bufView2);\n                    if (gltf.json.bufferViews[bufView2])sizes.meshes += gltf.json.bufferViews[bufView2].byteLength;\n                }\n            }\n\n            if (gltf.json.meshes[i].primitives[j].targets)\n                for (let k = 0; k < gltf.json.meshes[i].primitives[j].targets.length; k++)\n                {\n                    for (let l in gltf.json.meshes[i].primitives[j].targets[k])\n                    {\n                        const accessorIdx = gltf.json.meshes[i].primitives[j].targets[k][l];\n                        const accessor = gltf.json.accessors[accessorIdx];\n                        const bufView2 = accessor.bufferView;\n                        console.log(\"accessor\", accessor);\n                        if (sizeBufferViews.indexOf(bufView2) == -1)\n                            if (gltf.json.bufferViews[bufView2])\n                            {\n                                sizeBufferViews.push(bufView2);\n                                sizes.meshTargets += gltf.json.bufferViews[bufView2].byteLength;\n                            }\n                    }\n                }\n        }\n    }\n    html += \"</table>\";\n\n    // / //////////////////////////////////\n\n    let numSamplers = 0;\n    let numAnims = 0;\n    let numKeyframes = 0;\n\n    if (gltf.json.animations)\n    {\n        numAnims = gltf.json.animations.length;\n        for (let i = 0; i < gltf.json.animations.length; i++)\n        {\n            numSamplers += gltf.json.animations[i].samplers.length;\n        }\n    }\n\n    html += \"<div id=\\\"groupAnims\\\">Animations (\" + numAnims + \"/\" + numSamplers + \")</div>\";\n\n    if (gltf.json.animations)\n    {\n        html += \"<table id=\\\"sectionAnim\\\" class=\\\"table treetable\\\">\";\n        html += \"<tr>\";\n        html += \"  <th>Name</th>\";\n        html += \"  <th>Target node</th>\";\n        html += \"  <th>Path</th>\";\n        html += \"  <th>Interpolation</th>\";\n        html += \"  <th>Keys</th>\";\n        html += \"</tr>\";\n\n\n        sizes.animations = 0;\n\n        for (let i = 0; i < gltf.json.animations.length; i++)\n        {\n            for (let j = 0; j < gltf.json.animations[i].samplers.length; j++)\n            {\n                let bufView = gltf.json.accessors[gltf.json.animations[i].samplers[j].input].bufferView;\n                if (sizeBufferViews.indexOf(bufView) == -1)\n                {\n                    sizeBufferViews.push(bufView);\n                    sizes.animations += gltf.json.bufferViews[bufView].byteLength;\n                }\n\n                bufView = gltf.json.accessors[gltf.json.animations[i].samplers[j].output].bufferView;\n                if (sizeBufferViews.indexOf(bufView) == -1)\n                {\n                    sizeBufferViews.push(bufView);\n                    sizes.animations += gltf.json.bufferViews[bufView].byteLength;\n                }\n            }\n\n            for (let j = 0; j < gltf.json.animations[i].channels.length; j++)\n            {\n                html += \"<tr>\";\n                html += \"  <td> Anim \" + i + \": \" + gltf.json.animations[i].name + \"</td>\";\n\n                html += \"  <td>\" + gltf.nodes[gltf.json.animations[i].channels[j].target.node].name + \"</td>\";\n                html += \"  <td>\";\n                html += gltf.json.animations[i].channels[j].target.path + \" \";\n                html += \"  </td>\";\n\n                const smplidx = gltf.json.animations[i].channels[j].sampler;\n                const smplr = gltf.json.animations[i].samplers[smplidx];\n\n                html += \"  <td>\" + smplr.interpolation + \"</td>\";\n\n                html += \"  <td>\" + gltf.json.accessors[smplr.output].count;\n                numKeyframes += gltf.json.accessors[smplr.output].count;\n\n                // html += \"&nbsp;&nbsp;<a onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').showAnim('\" + i + \"','\" + j + \"')\\\" class=\\\"icon icon-search\\\"></a>\";\n\n                html += \"</td>\";\n\n                html += \"</tr>\";\n            }\n        }\n\n        html += \"<tr>\";\n        html += \"  <td></td>\";\n        html += \"  <td></td>\";\n        html += \"  <td></td>\";\n        html += \"  <td></td>\";\n        html += \"  <td>\" + numKeyframes + \" total</td>\";\n        html += \"</tr>\";\n        html += \"</table>\";\n    }\n    else\n    {\n\n    }\n\n    // / ///////////////////\n\n    let numImages = 0;\n    if (gltf.json.images)numImages = gltf.json.images.length;\n    html += \"<div id=\\\"groupImages\\\">Images (\" + numImages + \")</div>\";\n\n    if (gltf.json.images)\n    {\n        html += \"<table id=\\\"sectionImages\\\" class=\\\"table treetable\\\">\";\n\n        html += \"<tr>\";\n        html += \"  <th>name</th>\";\n        html += \"  <th>type</th>\";\n        html += \"  <th>func</th>\";\n        html += \"</tr>\";\n\n        sizes.images = 0;\n\n        for (let i = 0; i < gltf.json.images.length; i++)\n        {\n            if (gltf.json.images[i].hasOwnProperty(\"bufferView\"))\n            {\n                // if (sizeBufferViews.indexOf(gltf.json.images[i].hasOwnProperty(\"bufferView\")) == -1)console.log(\"image bufferview already there?!\");\n                // else\n                sizes.images += gltf.json.bufferViews[gltf.json.images[i].bufferView].byteLength;\n            }\n            else console.log(\"image has no bufferview?!\");\n\n            html += \"<tr>\";\n            html += \"<td>\" + gltf.json.images[i].name + \"</td>\";\n            html += \"<td>\" + gltf.json.images[i].mimeType + \"</td>\";\n            html += \"<td>\";\n\n            let name = gltf.json.images[i].name;\n            if (name === undefined)name = gltf.json.images[i].bufferView;\n\n            html += \"<a onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').exposeTexture('\" + name + \"')\\\" class=\\\"treebutton\\\">Expose</a>\";\n            html += \"</td>\";\n\n            html += \"<tr>\";\n        }\n        html += \"</table>\";\n    }\n\n    // / ///////////////////////\n\n    let numCameras = 0;\n    if (gltf.json.cameras)numCameras = gltf.json.cameras.length;\n    html += \"<div id=\\\"groupCameras\\\">Cameras (\" + numCameras + \")</div>\";\n\n    if (gltf.json.cameras)\n    {\n        html += \"<table id=\\\"sectionCameras\\\" class=\\\"table treetable\\\">\";\n\n        html += \"<tr>\";\n        html += \"  <th>name</th>\";\n        html += \"  <th>type</th>\";\n        html += \"  <th>info</th>\";\n        html += \"</tr>\";\n\n        for (let i = 0; i < gltf.json.cameras.length; i++)\n        {\n            html += \"<tr>\";\n            html += \"<td>\" + gltf.json.cameras[i].name + \"</td>\";\n            html += \"<td>\" + gltf.json.cameras[i].type + \"</td>\";\n            html += \"<td>\";\n\n            if (gltf.json.cameras[i].perspective)\n            {\n                html += \"yfov: \" + Math.round(gltf.json.cameras[i].perspective.yfov * 100) / 100;\n                html += \", \";\n                html += \"zfar: \" + Math.round(gltf.json.cameras[i].perspective.zfar * 100) / 100;\n                html += \", \";\n                html += \"znear: \" + Math.round(gltf.json.cameras[i].perspective.znear * 100) / 100;\n            }\n            html += \"</td>\";\n\n            html += \"<tr>\";\n        }\n        html += \"</table>\";\n    }\n\n    // / ////////////////////////////////////\n\n    let numSkins = 0;\n    if (gltf.json.skins)numSkins = gltf.json.skins.length;\n    html += \"<div id=\\\"groupSkins\\\">Skins (\" + numSkins + \")</div>\";\n\n    if (gltf.json.skins)\n    {\n        // html += \"<h3>Skins (\" + gltf.json.skins.length + \")</h3>\";\n        html += \"<table id=\\\"sectionSkins\\\" class=\\\"table treetable\\\">\";\n\n        html += \"<tr>\";\n        html += \"  <th>name</th>\";\n        html += \"  <th></th>\";\n        html += \"  <th>total joints</th>\";\n        html += \"</tr>\";\n\n        for (let i = 0; i < gltf.json.skins.length; i++)\n        {\n            html += \"<tr>\";\n            html += \"<td>\" + gltf.json.skins[i].name + \"</td>\";\n            html += \"<td>\" + \"</td>\";\n            html += \"<td>\" + gltf.json.skins[i].joints.length + \"</td>\";\n            html += \"<td>\";\n            html += \"</td>\";\n            html += \"<tr>\";\n        }\n        html += \"</table>\";\n    }\n\n    // / ////////////////////////////////////\n\n    if (gltf.timing)\n    {\n        html += \"<div id=\\\"groupTiming\\\">Debug Loading Timing </div>\";\n\n        html += \"<table id=\\\"sectionTiming\\\" class=\\\"table treetable\\\">\";\n\n        html += \"<tr>\";\n        html += \"  <th>task</th>\";\n        html += \"  <th>time used</th>\";\n        html += \"</tr>\";\n\n        let lt = 0;\n        for (let i = 0; i < gltf.timing.length - 1; i++)\n        {\n            html += \"<tr>\";\n            html += \"  <td>\" + gltf.timing[i][0] + \"</td>\";\n            html += \"  <td>\" + (gltf.timing[i + 1][1] - gltf.timing[i][1]) + \" ms</td>\";\n            html += \"</tr>\";\n            // lt = gltf.timing[i][1];\n        }\n        html += \"</table>\";\n    }\n\n    // / //////////////////////////\n\n    let sizeBin = 0;\n    if (gltf.json.buffers)\n        sizeBin = gltf.json.buffers[0].byteLength;\n\n    html += \"<div id=\\\"groupBinary\\\">File Size Allocation (\" + Math.round(sizeBin / 1024) + \"k )</div>\";\n\n    html += \"<table id=\\\"sectionBinary\\\" class=\\\"table treetable\\\">\";\n    html += \"<tr>\";\n    html += \"  <th>name</th>\";\n    html += \"  <th>size</th>\";\n    html += \"  <th>%</th>\";\n    html += \"</tr>\";\n    let sizeUnknown = sizeBin;\n    for (let i in sizes)\n    {\n        // html+=i+':'+Math.round(sizes[i]/1024);\n        html += \"<tr>\";\n        html += \"<td>\" + i + \"</td>\";\n        html += \"<td>\" + readableSize(sizes[i]) + \" </td>\";\n        html += \"<td>\" + Math.round(sizes[i] / sizeBin * 100) + \"% </td>\";\n        html += \"<tr>\";\n        sizeUnknown -= sizes[i];\n    }\n\n    if (sizeUnknown != 0)\n    {\n        html += \"<tr>\";\n        html += \"<td>unknown</td>\";\n        html += \"<td>\" + readableSize(sizeUnknown) + \" </td>\";\n        html += \"<td>\" + Math.round(sizeUnknown / sizeBin * 100) + \"% </td>\";\n        html += \"<tr>\";\n    }\n\n    html += \"</table>\";\n    html += \"</div>\";\n\n    tab = new CABLES.UI.Tab(\"GLTF \" + CABLES.basename(inFile.get()), { \"icon\": \"cube\", \"infotext\": \"tab_gltf\", \"padding\": true, \"singleton\": true });\n    gui.mainTabs.addTab(tab, true);\n\n    tab.addEventListener(\"close\", closeTab);\n    tab.html(html);\n\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupNodes\"), ele.byId(\"sectionNodes\"), false);\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupMaterials\"), ele.byId(\"materialtable\"), true);\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupAnims\"), ele.byId(\"sectionAnim\"), true);\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupMeshes\"), ele.byId(\"meshestable\"), true);\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupCameras\"), ele.byId(\"sectionCameras\"), true);\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupImages\"), ele.byId(\"sectionImages\"), true);\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupSkins\"), ele.byId(\"sectionSkins\"), true);\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupBinary\"), ele.byId(\"sectionBinary\"), true);\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupTiming\"), ele.byId(\"sectionTiming\"), true);\n\n    gui.maintabPanel.show(true);\n}\n\nfunction readableSize(n)\n{\n    if (n > 1024) return Math.round(n / 1024) + \" kb\";\n    if (n > 1024 * 500) return Math.round(n / 1024) + \" mb\";\n    else return n + \" bytes\";\n}\n","inc_skin_js":"const GltfSkin = class\n{\n    constructor(node)\n    {\n        this._mod = null;\n        this._node = node;\n        this._lastTime = 0;\n        this._matArr = [];\n        this._m = mat4.create();\n        this._invBindMatrix = mat4.create();\n        this.identity = true;\n    }\n\n    renderFinish(cgl)\n    {\n        cgl.popModelMatrix();\n        this._mod.unbind();\n    }\n\n    renderStart(cgl, time)\n    {\n        if (!this._mod)\n        {\n            this._mod = new CGL.ShaderModifier(cgl, op.name + this._node.name);\n\n            this._mod.addModule({\n                \"priority\": -2,\n                \"name\": \"MODULE_VERTEX_POSITION\",\n                \"srcHeadVert\": attachments.skin_head_vert || \"\",\n                \"srcBodyVert\": attachments.skin_vert || \"\"\n            });\n\n            this._mod.addUniformVert(\"m4[]\", \"MOD_boneMats\", []);// bohnenmatze\n            const tr = vec3.create();\n        }\n\n        const skinIdx = this._node.skin;\n        const arrLength = gltf.json.skins[skinIdx].joints.length * 16;\n\n        // if (this._lastTime != time || !time)\n        {\n            // this._lastTime=inTime.get();\n            if (this._matArr.length != arrLength) this._matArr.length = arrLength;\n\n            for (let i = 0; i < gltf.json.skins[skinIdx].joints.length; i++)\n            {\n                const i16 = i * 16;\n                const jointIdx = gltf.json.skins[skinIdx].joints[i];\n                const nodeJoint = gltf.nodes[jointIdx];\n\n                for (let j = 0; j < 16; j++)\n                    this._invBindMatrix[j] = gltf.accBuffers[gltf.json.skins[skinIdx].inverseBindMatrices][i16 + j];\n\n                mat4.mul(this._m, nodeJoint.modelMatAbs(), this._invBindMatrix);\n\n                for (let j = 0; j < this._m.length; j++) this._matArr[i16 + j] = this._m[j];\n            }\n\n            this._mod.setUniformValue(\"MOD_boneMats\", this._matArr);\n            this._lastTime = time;\n        }\n\n        this._mod.define(\"SKIN_NUM_BONES\", gltf.json.skins[skinIdx].joints.length);\n        this._mod.bind();\n\n        // draw mesh...\n        cgl.pushModelMatrix();\n        if (this.identity)mat4.identity(cgl.mMatrix);\n    }\n};\n","inc_targets_js":"const GltfTargetsRenderer = class\n{\n    constructor(mesh)\n    {\n        this.mesh = mesh;\n        this.tex = null;\n        this.numRowsPerTarget = 0;\n\n        this.makeTex(mesh.geom);\n    }\n\n    renderFinish(cgl)\n    {\n        cgl.popModelMatrix();\n        this._mod.unbind();\n    }\n\n    renderStart(cgl, time)\n    {\n        if (!this._mod)\n        {\n            this._mod = new CGL.ShaderModifier(cgl, \"gltftarget\");\n\n            this._mod.addModule({\n                \"priority\": -2,\n                \"name\": \"MODULE_VERTEX_POSITION\",\n                \"srcHeadVert\": attachments.targets_head_vert || \"\",\n                \"srcBodyVert\": attachments.targets_vert || \"\"\n            });\n\n            this._mod.addUniformVert(\"4f\", \"MOD_targetTexInfo\", [0, 0, 0, 0]);\n            this._mod.addUniformVert(\"t\", \"MOD_targetTex\", 1);\n            this._mod.addUniformVert(\"f[]\", \"MOD_weights\", []);\n\n            const tr = vec3.create();\n        }\n\n        this._mod.pushTexture(\"MOD_targetTex\", this.tex);\n        if (this.tex && this.mesh.weights)\n        {\n            this._mod.setUniformValue(\"MOD_weights\", this.mesh.weights);\n            this._mod.setUniformValue(\"MOD_targetTexInfo\", [this.tex.width, this.tex.height, this.numRowsPerTarget, this.mesh.weights.length]);\n\n            this._mod.define(\"MOD_NUM_WEIGHTS\", Math.max(1, this.mesh.weights.length));\n        }\n        else\n        {\n            this._mod.define(\"MOD_NUM_WEIGHTS\", 1);\n        }\n        this._mod.bind();\n\n        // draw mesh...\n        cgl.pushModelMatrix();\n        if (this.identity)mat4.identity(cgl.mMatrix);\n    }\n\n    makeTex(geom)\n    {\n        if (!geom.morphTargets || !geom.morphTargets.length) return;\n\n        let w = geom.morphTargets[0].vertices.length / 3;\n        let h = 0;\n        this.numRowsPerTarget = 0;\n\n        if (geom.morphTargets[0].vertices && geom.morphTargets[0].vertices.length) this.numRowsPerTarget++;\n        if (geom.morphTargets[0].vertexNormals && geom.morphTargets[0].vertexNormals.length) this.numRowsPerTarget++;\n        if (geom.morphTargets[0].tangents && geom.morphTargets[0].tangents.length) this.numRowsPerTarget++;\n        if (geom.morphTargets[0].bitangents && geom.morphTargets[0].bitangents.length) this.numRowsPerTarget++;\n\n        h = geom.morphTargets.length * this.numRowsPerTarget;\n\n        // console.log(\"this.numRowsPerTarget\", this.numRowsPerTarget);\n\n        const pixels = new Float32Array(w * h * 4);\n        let row = 0;\n\n        for (let i = 0; i < geom.morphTargets.length; i++)\n        {\n            if (geom.morphTargets[i].vertices && geom.morphTargets[i].vertices.length)\n            {\n                for (let j = 0; j < geom.morphTargets[i].vertices.length; j += 3)\n                {\n                    pixels[((row * w) + (j / 3)) * 4 + 0] = geom.morphTargets[i].vertices[j + 0];\n                    pixels[((row * w) + (j / 3)) * 4 + 1] = geom.morphTargets[i].vertices[j + 1];\n                    pixels[((row * w) + (j / 3)) * 4 + 2] = geom.morphTargets[i].vertices[j + 2];\n                    pixels[((row * w) + (j / 3)) * 4 + 3] = 1;\n                }\n                row++;\n            }\n\n            if (geom.morphTargets[i].vertexNormals && geom.morphTargets[i].vertexNormals.length)\n            {\n                for (let j = 0; j < geom.morphTargets[i].vertexNormals.length; j += 3)\n                {\n                    pixels[(row * w + j / 3) * 4 + 0] = geom.morphTargets[i].vertexNormals[j + 0];\n                    pixels[(row * w + j / 3) * 4 + 1] = geom.morphTargets[i].vertexNormals[j + 1];\n                    pixels[(row * w + j / 3) * 4 + 2] = geom.morphTargets[i].vertexNormals[j + 2];\n                    pixels[(row * w + j / 3) * 4 + 3] = 1;\n                }\n\n                row++;\n            }\n\n            if (geom.morphTargets[i].tangents && geom.morphTargets[i].tangents.length)\n            {\n                for (let j = 0; j < geom.morphTargets[i].tangents.length; j += 3)\n                {\n                    pixels[(row * w + j / 3) * 4 + 0] = geom.morphTargets[i].tangents[j + 0];\n                    pixels[(row * w + j / 3) * 4 + 1] = geom.morphTargets[i].tangents[j + 1];\n                    pixels[(row * w + j / 3) * 4 + 2] = geom.morphTargets[i].tangents[j + 2];\n                    pixels[(row * w + j / 3) * 4 + 3] = 1;\n                }\n                row++;\n            }\n\n            if (geom.morphTargets[i].bitangents && geom.morphTargets[i].bitangents.length)\n            {\n                for (let j = 0; j < geom.morphTargets[i].bitangents.length; j += 3)\n                {\n                    pixels[(row * w + j / 3) * 4 + 0] = geom.morphTargets[i].bitangents[j + 0];\n                    pixels[(row * w + j / 3) * 4 + 1] = geom.morphTargets[i].bitangents[j + 1];\n                    pixels[(row * w + j / 3) * 4 + 2] = geom.morphTargets[i].bitangents[j + 2];\n                    pixels[(row * w + j / 3) * 4 + 3] = 1;\n                }\n                row++;\n            }\n        }\n\n        this.tex = new CGL.Texture(cgl, { \"isFloatingPointTexture\": true, \"name\": \"targetsTexture\" });\n\n        this.tex.initFromData(pixels, w, h, CGL.Texture.FILTER_LINEAR, CGL.Texture.WRAP_REPEAT);\n\n        // console.log(\"morphTargets generated texture\", w, h);\n    }\n};\n","skin_vert":"int index=int(attrJoints.x);\nvec4 newPos = (MOD_boneMats[index] * pos) * attrWeights.x;\nvec3 newNorm = (vec4((MOD_boneMats[index] * vec4(norm.xyz, 0.0)) * attrWeights.x).xyz);\n\nindex=int(attrJoints.y);\nnewPos += (MOD_boneMats[index] * pos) * attrWeights.y;\nnewNorm = (vec4((MOD_boneMats[index] * vec4(norm.xyz, 0.0)) * attrWeights.y).xyz)+newNorm;\n\nindex=int(attrJoints.z);\nnewPos += (MOD_boneMats[index] * pos) * attrWeights.z;\nnewNorm = (vec4((MOD_boneMats[index] * vec4(norm.xyz, 0.0)) * attrWeights.z).xyz)+newNorm;\n\nindex=int(attrJoints.w);\nnewPos += (MOD_boneMats[index] * pos) * attrWeights.w ;\nnewNorm = (vec4((MOD_boneMats[index] * vec4(norm.xyz, 0.0)) * attrWeights.w).xyz)+newNorm;\n\npos=newPos;\n\nnorm=normalize(newNorm.xyz);\n\n\n","skin_head_vert":"\nIN vec4 attrWeights;\nIN vec4 attrJoints;\nUNI mat4 MOD_boneMats[SKIN_NUM_BONES];\n","targets_vert":"\n\nfloat MOD_width=MOD_targetTexInfo.x;\nfloat MOD_height=MOD_targetTexInfo.y;\nfloat MOD_numTargets=MOD_targetTexInfo.w;\nfloat MOD_numLinesPerTarget=MOD_height/MOD_numTargets;\n\nfloat halfpix=(1.0/MOD_width)*0.5;\nfloat halfpixy=(1.0/MOD_height)*0.5;\n\nfloat x=(attrVertIndex)/MOD_width+halfpix;\n\nvec3 off=vec3(0.0);\n\nfor(float i=0.0;i<MOD_numTargets;i+=1.0)\n{\n    float y=1.0-((MOD_numLinesPerTarget*i)/MOD_height+halfpixy);\n    vec2 coord=vec2(x,y);\n    vec3 targetXYZ = texture(MOD_targetTex,coord).xyz;\n\n    off+=(targetXYZ*MOD_weights[int(i)]);\n\n\n\n    coord.y+=1.0/MOD_height; // normals are in next row\n    vec3 targetNormal = texture(MOD_targetTex,coord).xyz;\n    norm+=targetNormal*MOD_weights[int(i)];\n\n\n}\n\n// norm=normalize(norm);\npos.xyz+=off;\n","targets_head_vert":"\nUNI float MOD_weights[MOD_NUM_WEIGHTS];\n",};
 const gltfCamera = class
 {
     constructor(gltf, node)
@@ -6464,6 +6553,8 @@ function parseGltf(arrayBuffer)
                         if (isInt)dataBuff = new Uint32Array(num);
                         else dataBuff = new Float32Array(num);
 
+                        dataBuff.cblStride = numComps;
+
                         for (j = 0; j < num; j++)
                         {
                             if (isInt) dataBuff[j] = chunks[1].dataView.getUint32(accPos, le);
@@ -6478,6 +6569,7 @@ function parseGltf(arrayBuffer)
                         stride = stride || 2;
 
                         dataBuff = new Uint16Array(num);
+                        dataBuff.cblStride = stride;
 
                         for (j = 0; j < num; j++)
                         {
@@ -6493,6 +6585,7 @@ function parseGltf(arrayBuffer)
                         stride = stride || 1;
 
                         dataBuff = new Uint8Array(num);
+                        dataBuff.cblStride = stride;
 
                         for (j = 0; j < num; j++)
                         {
@@ -6745,7 +6838,7 @@ let gltfMesh = class
             return x ** (1 / 2.2) * 1.055 - 0.055;
     }
 
-    calcVertexColors(arr)
+    calcVertexColors(arr, type)
     {
         let vertexColors = null;
         if (arr instanceof Float32Array)
@@ -6780,6 +6873,20 @@ let gltfMesh = class
             vertexColors[i] = this._linearToSrgb(vertexColors[i]);
         }
 
+        console.log("arr.cblStride", arr.cblStride);
+        if (arr.cblStride == 3)
+        {
+            const nc = new Float32Array(vertexColors.length / 3 * 4);
+            for (let i = 0; i < vertexColors.length / 3; i++)
+            {
+                nc[i * 4 + 0] = vertexColors[i * 3 + 0];
+                nc[i * 4 + 1] = vertexColors[i * 3 + 1];
+                nc[i * 4 + 2] = vertexColors[i * 3 + 2];
+                nc[i * 4 + 3] = 1;
+            }
+            vertexColors = nc;
+        }
+
         return vertexColors;
     }
 
@@ -6789,11 +6896,14 @@ let gltfMesh = class
         if (attribs.hasOwnProperty("NORMAL")) tgeom.vertexNormals = gltf.accBuffers[attribs.NORMAL];
         if (attribs.hasOwnProperty("TANGENT")) tgeom.tangents = gltf.accBuffers[attribs.TANGENT];
 
-        if (attribs.hasOwnProperty("COLOR_0")) tgeom.vertexColors = this.calcVertexColors(gltf.accBuffers[attribs.COLOR_0]);
-        if (attribs.hasOwnProperty("COLOR_1")) tgeom.setAttribute("attrVertColor1", this.calcVertexColors(gltf.accBuffers[attribs.COLOR_1]), 4);
-        if (attribs.hasOwnProperty("COLOR_2")) tgeom.setAttribute("attrVertColor2", this.calcVertexColors(gltf.accBuffers[attribs.COLOR_2]), 4);
-        if (attribs.hasOwnProperty("COLOR_3")) tgeom.setAttribute("attrVertColor3", this.calcVertexColors(gltf.accBuffers[attribs.COLOR_3]), 4);
-        if (attribs.hasOwnProperty("COLOR_4")) tgeom.setAttribute("attrVertColor4", this.calcVertexColors(gltf.accBuffers[attribs.COLOR_4]), 4);
+        // // console.log(gltf.accBuffers[attribs.COLOR_0])
+        // console.log(gltf);
+
+        if (attribs.hasOwnProperty("COLOR_0")) tgeom.vertexColors = this.calcVertexColors(gltf.accBuffers[attribs.COLOR_0], gltf.accBuffers[attribs.COLOR_0].type);
+        if (attribs.hasOwnProperty("COLOR_1")) tgeom.setAttribute("attrVertColor1", this.calcVertexColors(gltf.accBuffers[attribs.COLOR_1]), gltf.accBuffers[attribs.COLOR_1].type);
+        if (attribs.hasOwnProperty("COLOR_2")) tgeom.setAttribute("attrVertColor2", this.calcVertexColors(gltf.accBuffers[attribs.COLOR_2]), gltf.accBuffers[attribs.COLOR_2].type);
+        if (attribs.hasOwnProperty("COLOR_3")) tgeom.setAttribute("attrVertColor3", this.calcVertexColors(gltf.accBuffers[attribs.COLOR_3]), gltf.accBuffers[attribs.COLOR_3].type);
+        if (attribs.hasOwnProperty("COLOR_4")) tgeom.setAttribute("attrVertColor4", this.calcVertexColors(gltf.accBuffers[attribs.COLOR_4]), gltf.accBuffers[attribs.COLOR_4].type);
 
         if (attribs.hasOwnProperty("TEXCOORD_0")) tgeom.texCoords = gltf.accBuffers[attribs.TEXCOORD_0];
         if (attribs.hasOwnProperty("TEXCOORD_1")) tgeom.setAttribute("attrTexCoord1", gltf.accBuffers[attribs.TEXCOORD_1], 2);
@@ -8649,6 +8759,13 @@ function loadBin(addCacheBuster)
             gltf = parseGltf(arrayBuffer);
             arrayBuffer = null;
             finishLoading();
+        }).catch((e) =>
+        {
+            if (loadingId)cgl.patch.loading.finished(loadingId);
+            loadingId = null;
+            finishLoading();
+
+            op.logError("gltf fetch error", e);
         });
     closeTab();
 
@@ -9743,6 +9860,7 @@ const
 
     inPixelFormat = op.inDropDown("Pixel Format", CGL.Texture.PIXELFORMATS, CGL.Texture.PFORMATSTR_RGBA8UB),
 
+    inClear = op.inBool("Clear", true),
     r = op.inValueSlider("R", 0),
     g = op.inValueSlider("G", 0),
     b = op.inValueSlider("B", 0),
@@ -9758,7 +9876,7 @@ op.setPortGroup("Texture Size", [inSize, width, height]);
 op.setPortGroup("Texture Parameters", [inWrap, aniso, inFilter, inPixelFormat]);
 
 r.setUiAttribs({ "colorPick": true });
-op.setPortGroup("Color", [r, g, b, a]);
+op.setPortGroup("Color", [r, g, b, a, inClear]);
 
 op.toWorkPortsNeedToBeLinked(render);
 
@@ -9778,8 +9896,9 @@ aniso.onChange =
 inPixelFormat.onChange = reInitLater;
 
 inTex.onLinkChanged =
-inSize.onChange =
-inUVTex.onChange = updateUi;
+inClear.onChange =
+    inSize.onChange =
+    inUVTex.onChange = updateUi;
 
 render.onTriggered =
     op.preRender = doRender;
@@ -9903,7 +10022,7 @@ function updateResolutionInfo()
 
 function updateDefines()
 {
-    if (copyShader)copyShader.toggleDefine("USE_TEX", inTex.isLinked());
+    if (copyShader)copyShader.toggleDefine("USE_TEX", inTex.isLinked() || !inClear.get());
     if (copyShader)copyShader.toggleDefine("USE_UVTEX", inUVTex.isLinked());
 }
 
@@ -9916,6 +10035,7 @@ function updateUi()
     g.setUiAttribs({ "greyout": inTex.isLinked() });
     a.setUiAttribs({ "greyout": inTex.isLinked() });
 
+    inClear.setUiAttribs({ "greyout": inTex.isLinked() });
     width.setUiAttribs({ "greyout": inSize.get() != "Manual" });
     height.setUiAttribs({ "greyout": inSize.get() != "Manual" });
 
@@ -9961,6 +10081,7 @@ function copyTexture()
     cgl.currentTextureEffect.bind();
 
     if (inTex.get()) cgl.setTexture(0, inTex.get().tex);
+    else if (!inClear.get() && texOut.get()) cgl.setTexture(0, texOut.get().tex);
     if (inUVTex.get()) cgl.setTexture(1, inUVTex.get().tex);
 
     cgl.currentTextureEffect.finish();
@@ -10003,2571 +10124,6 @@ function doRender()
 
 Ops.Gl.ImageCompose.ImageCompose_v4.prototype = new CABLES.Op();
 CABLES.OPS["17212e2b-d692-464c-8f8d-2d511dd3410a"]={f:Ops.Gl.ImageCompose.ImageCompose_v4,objName:"Ops.Gl.ImageCompose.ImageCompose_v4"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Anim.Bang
-// 
-// **************************************************************
-
-Ops.Anim.Bang = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inUpdate = op.inTrigger("update"),
-    inBang = op.inTriggerButton("Bang"),
-    inDuration = op.inValue("Duration", 0.1),
-    invert = op.inBool("Invert", false),
-    outTrigger = op.outTrigger("Trigger Out"),
-    outValue = op.outNumber("Value");
-
-const anim = new CABLES.Anim();
-let startTime = CABLES.now();
-op.toWorkPortsNeedToBeLinked(inUpdate);
-
-let needsReset = false;
-
-inBang.onTriggered = function ()
-{
-    needsReset = true;
-};
-
-inUpdate.onTriggered = function ()
-{
-    if (needsReset)
-    {
-        startTime = CABLES.now();
-        anim.clear();
-        anim.setValue(0, 1);
-        anim.setValue(inDuration.get(), 0);
-        needsReset = false;
-    }
-
-    const elapsed = (CABLES.now() - startTime) / 1000;
-    if (elapsed <= inDuration.get())
-    {
-        const v = anim.getValue(elapsed);
-        if (invert.get()) outValue.set(1.0 - v);
-        else outValue.set(v);
-    }
-    else
-    {
-        if (invert.get())
-        {
-            outValue.set(1.0);
-        }
-        else
-        {
-            outValue.set(0);
-        }
-    }
-
-    outTrigger.trigger();
-};
-
-
-};
-
-Ops.Anim.Bang.prototype = new CABLES.Op();
-CABLES.OPS["92ca45a7-5b4b-4238-956e-23d79bdc659f"]={f:Ops.Anim.Bang,objName:"Ops.Anim.Bang"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Array.ArrayGetString
-// 
-// **************************************************************
-
-Ops.Array.ArrayGetString = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    array = op.inArray("array"),
-    index = op.inValueInt("index"),
-    result = op.outString("result");
-
-array.ignoreValueSerialize = true;
-
-index.onChange = update;
-
-array.onChange = function ()
-{
-    update();
-};
-
-function update()
-{
-    const arr = array.get();
-    if (arr) result.set(arr[index.get()]);
-}
-
-
-};
-
-Ops.Array.ArrayGetString.prototype = new CABLES.Op();
-CABLES.OPS["be8f16c0-0c8a-48a2-a92b-45dbf88c76c1"]={f:Ops.Array.ArrayGetString,objName:"Ops.Array.ArrayGetString"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Array.StringToArray_v2
-// 
-// **************************************************************
-
-Ops.Array.StringToArray_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const text = op.inStringEditor("text", "1,2,3"),
-    separator = op.inString("separator", ","),
-    toNumber = op.inValueBool("Numbers", true),
-    trim = op.inValueBool("Trim", true),
-    splitNewLines = op.inBool("Split Lines", false),
-    arr = op.outArray("array"),
-    parsed = op.outTrigger("Parsed"),
-    len = op.outNumber("length");
-
-text.setUiAttribs({ "ignoreBigPort": true });
-
-text.onChange = separator.onChange = toNumber.onChange = trim.onChange = parse;
-
-splitNewLines.onChange = () =>
-{
-    separator.setUiAttribs({ "greyout": splitNewLines.get() });
-    parse();
-};
-
-parse();
-
-function parse()
-{
-    if (!text.get())
-    {
-        arr.set(null);
-        arr.set([]);
-        len.set(0);
-        return;
-    }
-
-    let textInput = text.get();
-    if (trim.get() && textInput)
-    {
-        textInput = textInput.replace(/^\s+|\s+$/g, "");
-        textInput = textInput.trim();
-    }
-
-    let r;
-    let sep = separator.get();
-    if (separator.get() === "\\n") sep = "\n";
-    if (splitNewLines.get()) r = textInput.split("\n");
-    else r = textInput.split(sep);
-
-    if (r[r.length - 1] === "") r.length -= 1;
-
-    len.set(r.length);
-
-    if (trim.get())
-    {
-        for (let i = 0; i < r.length; i++)
-        {
-            r[i] = r[i].replace(/^\s+|\s+$/g, "");
-            r[i] = r[i].trim();
-        }
-    }
-
-    op.setUiError("notnum", null);
-    if (toNumber.get())
-    {
-        let hasStrings = false;
-        for (let i = 0; i < r.length; i++)
-        {
-            r[i] = Number(r[i]);
-            if (!CABLES.UTILS.isNumeric(r[i]))
-            {
-                hasStrings = true;
-            }
-        }
-        if (hasStrings)
-        {
-            op.setUiError("notnum", "Parse Error / Not all values numerical!", 1);
-        }
-    }
-
-    arr.setRef(r);
-    parsed.trigger();
-}
-
-
-};
-
-Ops.Array.StringToArray_v2.prototype = new CABLES.Op();
-CABLES.OPS["c974de41-4ce4-4432-b94d-724741109c71"]={f:Ops.Array.StringToArray_v2,objName:"Ops.Array.StringToArray_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Array.RandomNumbersArray_v4
-// 
-// **************************************************************
-
-Ops.Array.RandomNumbersArray_v4 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    numValues = op.inValueInt("Num Values", 100),
-    inModeSwitch = op.inSwitch("Mode", ["A", "AB", "ABC", "ABCD"], "A"),
-    inSeed = op.inValueFloat("Random Seed ", 0),
-    inInteger = op.inBool("Integer", false),
-    inClosed = op.inValueBool("Last == First"),
-    outValues = op.outArray("Array Out"),
-    outTotalPoints = op.outNumber("Chunks Amount"),
-    outArrayLength = op.outNumber("Array length");
-
-const letters = ["A", "B", "C", "D"];
-const arr = [];
-
-const inArray = letters.map(function (value)
-{
-    return {
-        "min": op.inValueFloat("Min " + value, -1),
-        "max": op.inValueFloat("Max " + value, 1),
-    };
-});
-
-for (let i = 0; i < inArray.length; i += 1)
-{
-    const portObj = inArray[i];
-    const keys = Object.keys(portObj);
-
-    op.setPortGroup("Value Range " + letters[i], keys.map(function (key) { return portObj[key]; }));
-
-    if (i > 0) keys.forEach(function (key) { portObj[key].setUiAttribs({ "greyout": true }); });
-}
-
-inModeSwitch.onChange = function ()
-{
-    const mode = inModeSwitch.get();
-    const modes = inModeSwitch.uiAttribs.values;
-
-    outValues.setUiAttribs({ "stride": inModeSwitch.get().length });
-
-    const index = modes.indexOf(mode);
-
-    inArray.forEach(function (portObj, i)
-    {
-        const keys = Object.keys(portObj);
-        keys.forEach(function (key, j)
-        {
-            if (i <= index) portObj[key].setUiAttribs({ "greyout": false });
-            else portObj[key].setUiAttribs({ "greyout": true });
-        });
-    });
-    init();
-};
-
-outValues.ignoreValueSerialize = true;
-
-inClosed.onChange =
-    numValues.onChange =
-    inSeed.onChange =
-    inInteger.onChange = init;
-
-const minMaxArray = [];
-
-init();
-
-function init()
-{
-    const mode = inModeSwitch.get();
-    const modes = inModeSwitch.uiAttribs.values;
-    const index = modes.indexOf(mode);
-
-    const n = Math.floor(Math.abs(numValues.get()));
-    Math.randomSeed = inSeed.get();
-
-    op.setUiAttrib({ "extendTitle": n + "*" + mode.length });
-
-    const dimension = index + 1;
-    const length = n * dimension;
-
-    arr.length = length;
-    const tupleLength = length / dimension;
-    const isInteger = inInteger.get();
-
-    // optimization: we only need to fetch the max min for each component once
-    for (let i = 0; i < dimension; i += 1)
-    {
-        const portObj = inArray[i];
-        const max = portObj.max.get();
-        const min = portObj.min.get();
-        minMaxArray[i] = [min, max];
-    }
-
-    for (let j = 0; j < tupleLength; j += 1)
-    {
-        for (let k = 0; k < dimension; k += 1)
-        {
-            const min = minMaxArray[k][0];
-            const max = minMaxArray[k][1];
-            const index = j * dimension + k;
-
-            if (isInteger) arr[index] = Math.floor(Math.seededRandom() * ((max + 1) - min) + min);
-            else arr[index] = Math.seededRandom() * (max - min) + min;
-        }
-    }
-
-    if (inClosed.get() && arr.length > dimension)
-    {
-        for (let i = 0; i < dimension; i++)
-            arr[arr.length - 3 + i] = arr[i];
-    }
-
-    outValues.setRef(arr);
-    outTotalPoints.set(arr.length / dimension);
-    outArrayLength.set(arr.length);
-}
-
-// assign change handler
-inArray.forEach(function (obj)
-{
-    Object.keys(obj).forEach(function (key)
-    {
-        const x = obj[key];
-        x.onChange = init;
-    });
-});
-
-
-};
-
-Ops.Array.RandomNumbersArray_v4.prototype = new CABLES.Op();
-CABLES.OPS["8a9fa2c6-c229-49a9-9dc8-247001539217"]={f:Ops.Array.RandomNumbersArray_v4,objName:"Ops.Array.RandomNumbersArray_v4"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Math.Compare.GreaterThan
-// 
-// **************************************************************
-
-Ops.Math.Compare.GreaterThan = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    number1 = op.inValueFloat("number1"),
-    number2 = op.inValueFloat("number2"),
-    result = op.outBoolNum("result");
-
-op.setUiAttribs({ "mathTitle": true });
-
-number1.onChange = number2.onChange = exec;
-
-function exec()
-{
-    result.set(number1.get() > number2.get());
-}
-
-
-};
-
-Ops.Math.Compare.GreaterThan.prototype = new CABLES.Op();
-CABLES.OPS["b250d606-f7f8-44d3-b099-c29efff2608a"]={f:Ops.Math.Compare.GreaterThan,objName:"Ops.Math.Compare.GreaterThan"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Patch.P4Zknbo.InteractiveRectangle_v2
-// 
-// **************************************************************
-
-Ops.Patch.P4Zknbo.InteractiveRectangle_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    render = op.inTrigger("Trigger in"),
-    trigger = op.outTrigger("Trigger out"),
-    width = op.inValue("Width", 1),
-    height = op.inValue("Height", 1),
-    inId = op.inString("ID"),
-    classPort = op.inString("Class"),
-    pivotX = op.inValueSelect("Pivot x", ["center", "left", "right"]),
-    pivotY = op.inValueSelect("Pivot y", ["center", "top", "bottom"]),
-    axis = op.inValueSelect("Axis", ["xy", "xz"]),
-    isInteractive = op.inValueBool("Is Interactive", true),
-    renderRect = op.inValueBool("Render Rectangle", true),
-    divVisible = op.inValueBool("Show Boundings", true),
-    cursorPort = op.inValueSelect("Cursor", ["auto", "crosshair", "pointer", "Hand", "move", "n-resize", "ne-resize", "e-resize", "se-resize", "s-resize", "sw-resize", "w-resize", "nw-resize", "text", "wait", "help", "none"], "pointer"),
-    active = op.inValueBool("Render", true);
-
-const geomOut = op.outObject("geometry");
-geomOut.ignoreValueSerialize = true;
-
-const
-    mouseOver = op.outBoolNum("Pointer Hover", false),
-    mouseDown = op.outBoolNum("Pointer Down", false),
-    outX = op.outNumber("Pointer X"),
-    outY = op.outNumber("Pointer Y"),
-    outTop = op.outNumber("Top"),
-    outLeft = op.outNumber("Left"),
-    outRight = op.outNumber("Right"),
-    outBottom = op.outNumber("Bottom"),
-    mouseClick = op.outTrigger("Left Click");
-
-const elementPort = op.outObject("Dom Element");
-
-active.setUiAttribs({ "title": "Active" });
-
-const cgl = op.patch.cgl;
-axis.set("xy");
-pivotX.set("center");
-pivotY.set("center");
-
-const geom = new CGL.Geometry(op.name);
-let mesh = null;
-let div = null;
-const m = mat4.create();
-const trans = mat4.create();
-const pos = vec3.create();
-const divAlign = vec3.create();
-const divAlignSize = vec3.create();
-
-axis.onChange = rebuild;
-pivotX.onChange = rebuild;
-pivotY.onChange = rebuild;
-width.onChange = rebuild;
-height.onChange = rebuild;
-cursorPort.onChange = updateCursor;
-rebuild();
-
-const modelMatrix = mat4.create();
-const identViewMatrix = mat4.create();
-const zeroVec3 = vec3.create();
-
-render.onTriggered = function ()
-{
-    if (!div)
-    {
-        setUpDiv();
-        addListeners();
-        updateDivVisibility();
-        updateIsInteractive();
-    }
-    updateDivSize();
-
-    if (active.get() && renderRect.get() && mesh) mesh.render(cgl.getShader());
-
-    trigger.trigger();
-};
-
-function rebuild()
-{
-    let w = width.get();
-    let h = height.get();
-    let x = 0;
-    let y = 0;
-
-    if (typeof w == "string")w = parseFloat(w);
-    if (typeof h == "string")h = parseFloat(h);
-
-    if (pivotX.get() == "center")
-    {
-        x = 0;
-        divAlign[0] = -w / 2;
-    }
-    if (pivotX.get() == "right")
-    {
-        x = -w / 2;
-    }
-    if (pivotX.get() == "left")
-    {
-        x = w / 2;
-    }
-
-    if (pivotY.get() == "center")
-    {
-        y = 0;
-        divAlign[1] = -h / 2;
-    }
-    if (pivotY.get() == "top") y = -h / 2;
-    if (pivotY.get() == "bottom") y = +h / 2;
-
-    const verts = [];
-    const tc = [];
-    const norms = [];
-    const indices = [];
-
-    const numRows = 1;
-    const numColumns = 1;
-
-    const stepColumn = w / numColumns;
-    const stepRow = h / numRows;
-
-    let c, r;
-
-    for (r = 0; r <= numRows; r++)
-    {
-        for (c = 0; c <= numColumns; c++)
-        {
-            verts.push(c * stepColumn - width.get() / 2 + x);
-            if (axis.get() == "xz") verts.push(0.0);
-            verts.push(r * stepRow - height.get() / 2 + y);
-            if (axis.get() == "xy") verts.push(0.0);
-
-            tc.push(c / numColumns);
-            tc.push(1.0 - r / numRows);
-
-            if (axis.get() == "xz")
-            {
-                norms.push(0);
-                norms.push(1);
-                norms.push(0);
-            }
-
-            if (axis.get() == "xy")
-            {
-                norms.push(0);
-                norms.push(0);
-                norms.push(-1);
-            }
-        }
-    }
-
-    for (c = 0; c < numColumns; c++)
-    {
-        for (r = 0; r < numRows; r++)
-        {
-            const ind = c + (numColumns + 1) * r;
-            const v1 = ind;
-            const v2 = ind + 1;
-            const v3 = ind + numColumns + 1;
-            const v4 = ind + 1 + numColumns + 1;
-
-            indices.push(v1);
-            indices.push(v3);
-            indices.push(v2);
-
-            indices.push(v2);
-            indices.push(v3);
-            indices.push(v4);
-        }
-    }
-
-    geom.clear();
-    geom.vertices = verts;
-    geom.texCoords = tc;
-    geom.verticesIndices = indices;
-    geom.vertexNormals = norms;
-
-    if (!mesh) mesh = new CGL.Mesh(cgl, geom);
-    else mesh.setGeom(geom);
-
-    geomOut.set(null);
-    geomOut.set(geom);
-}
-
-let divX = 0;
-let divY = 0;
-let divWidth = 0;
-let divHeight = 0;
-
-const mMatrix = mat4.create();
-divVisible.onChange = updateDivVisibility;
-inId.onChange = updateId;
-classPort.onChange = updateClassNames;
-
-function updateDivVisibility()
-{
-    if (div)
-    {
-        if (divVisible.get()) div.style.border = "1px solid red";
-        else div.style.border = "none";
-    }
-}
-
-function updateCursor()
-{
-    if (div)
-    {
-        div.style.cursor = cursorPort.get();
-    }
-}
-
-function updateId()
-{
-    if (div)
-    {
-        div.setAttribute("id", inId.get());
-    }
-}
-
-function updateDivSize()
-{
-    // var vp=cgl.getViewPort();
-
-    mat4.multiply(mMatrix, cgl.vMatrix, cgl.mMatrix);
-    vec3.transformMat4(pos, divAlign, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const top = cgl.canvas.styleMarginTop || 0;
-    const left = cgl.canvas.styleMarginLeft || 0;
-
-    const x1 = (trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2 + left;
-    const y1 = (trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top;
-
-    divAlignSize[0] = divAlign[0] + width.get();
-    divAlignSize[1] = divAlign[1];
-
-    vec3.transformMat4(pos, divAlignSize, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const x2 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
-    const y2 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
-
-    divAlignSize[0] = divAlign[0];
-    divAlignSize[1] = divAlign[1] + height.get();
-
-    vec3.transformMat4(pos, divAlignSize, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const x3 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
-    const y3 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
-
-    divAlignSize[0] = divAlign[0] + width.get();
-    divAlignSize[1] = divAlign[1] + height.get();
-
-    vec3.transformMat4(pos, divAlignSize, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const x4 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
-    const y4 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
-
-    divX = Math.min(x1, x2, x3, x4);
-    divY = Math.min(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
-
-    const xb = Math.max(x1, x2, x3, x4);
-    const yb = Math.max(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
-
-    outTop.set(divY);
-    outLeft.set(divX);
-    outRight.set(xb);
-    outBottom.set(yb);
-
-    divWidth = Math.abs(xb - divX);
-    divHeight = Math.abs(yb - divY);
-
-    divX /= op.patch.cgl.pixelDensity;
-    divY /= op.patch.cgl.pixelDensity;
-    divWidth /= op.patch.cgl.pixelDensity;
-    divHeight /= op.patch.cgl.pixelDensity;
-
-    // div.style.left=divX+'px';
-    // div.style.top=divY+'px';
-    // div.style.width=divWidth+'px';
-    // div.style.height=divHeight+'px';
-
-    const divXpx = divX + "px";
-    const divYpx = divY + "px";
-    const divWidthPx = divWidth + "px";
-    const divHeightPx = divHeight + "px";
-    if (divXpx != div.style.left) div.style.left = divXpx;
-    if (divYpx != div.style.top) div.style.top = divYpx;
-    if (div.style.width != divWidthPx) div.style.width = divWidthPx;
-    if (div.style.height != divHeightPx) div.style.height = divHeightPx;
-}
-
-function updateClassNames()
-{
-    if (div)
-    {
-        div.className = classPort.get();
-    }
-}
-
-op.onDelete = function ()
-{
-    if (div)div.remove();
-};
-
-function setUpDiv()
-{
-    if (!div)
-    {
-        div = document.createElement("div");
-        div.dataset.op = op.id;
-        div.oncontextmenu = function (e)
-        {
-            e.preventDefault();
-        };
-
-        div.style.padding = "0px";
-        div.style.position = "absolute";
-        div.style["box-sizing"] = "border-box";
-        div.style.border = "1px solid red";
-        // div.style['border-left']="1px solid blue";
-        // div.style['border-top']="1px solid green";
-        div.style["z-index"] = "500";
-
-        div.style["-webkit-user-select"] = "none";
-        div.style["user-select"] = "none";
-        div.style["-webkit-tap-highlight-color"] = "rgba(0,0,0,0)";
-        div.style["-webkit-touch-callout"] = "none";
-
-        const canvas = op.patch.cgl.canvas.parentElement;
-        canvas.appendChild(div);
-        updateCursor();
-        updateIsInteractive();
-        updateId();
-        updateClassNames();
-    }
-    updateDivSize();
-    elementPort.set(div);
-}
-
-let listenerElement = null;
-
-function onMouseMove(e)
-{
-    const offsetX = -width.get() / 2;
-    const offsetY = -height.get() / 2;
-
-    outX.set(Math.max(0.0, Math.min(1.0, e.offsetX / divWidth)));
-    outY.set(Math.max(0.0, Math.min(1.0, 1.0 - e.offsetY / divHeight)));
-}
-
-function onMouseLeave(e)
-{
-    mouseDown.set(false);
-    mouseOver.set(false);
-}
-
-function onMouseEnter(e)
-{
-    mouseOver.set(true);
-}
-
-function onMouseDown(e)
-{
-    mouseDown.set(true);
-}
-
-function onMouseUp(e)
-{
-    mouseDown.set(false);
-}
-
-function onmouseclick(e)
-{
-    mouseClick.trigger();
-}
-
-function onTouchMove(e)
-{
-    const targetEle = document.elementFromPoint(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
-
-    if (targetEle == div)
-    {
-        mouseOver.set(true);
-        if (e.touches && e.touches.length > 0)
-        {
-            const rect = div.getBoundingClientRect(); // e.target
-            const x = e.targetTouches[0].pageX - rect.left;
-            const y = e.targetTouches[0].pageY - rect.top;
-
-            const touch = e.touches[0];
-
-            outX.set(Math.max(0.0, Math.min(1.0, x / divWidth)));
-            outY.set(Math.max(0.0, Math.min(1.0, 1.0 - y / divHeight)));
-
-            onMouseMove(touch);
-        }
-    }
-    else
-    {
-        mouseOver.set(false);
-    }
-}
-
-active.onChange = updateActiveRender;
-function updateActiveRender()
-{
-    if (active.get())
-    {
-        addListeners();
-        if (div) div.style.display = "block";
-    }
-    else
-    {
-        removeListeners();
-        if (div) div.style.display = "none";
-    }
-}
-
-isInteractive.onChange = updateIsInteractive;
-function updateIsInteractive()
-{
-    if (isInteractive.get())
-    {
-        addListeners();
-        if (div)div.style["pointer-events"] = "initial";
-    }
-    else
-    {
-        removeListeners();
-        mouseDown.set(false);
-        mouseOver.set(false);
-        if (div)div.style["pointer-events"] = "none";
-    }
-}
-
-function removeListeners()
-{
-    if (listenerElement)
-    {
-        document.removeEventListener("touchmove", onTouchMove);
-        listenerElement.removeEventListener("touchend", onMouseUp);
-        listenerElement.removeEventListener("touchstart", onMouseDown);
-
-        listenerElement.removeEventListener("click", onmouseclick);
-        listenerElement.removeEventListener("mousemove", onMouseMove);
-        listenerElement.removeEventListener("mouseleave", onMouseLeave);
-        listenerElement.removeEventListener("mousedown", onMouseDown);
-        listenerElement.removeEventListener("mouseup", onMouseUp);
-        listenerElement.removeEventListener("mouseenter", onMouseEnter);
-        // listenerElement.removeEventListener('contextmenu', onClickRight);
-        listenerElement = null;
-    }
-}
-
-function addListeners()
-{
-    if (listenerElement)removeListeners();
-
-    listenerElement = div;
-
-    if (listenerElement)
-    {
-        document.addEventListener("touchmove", onTouchMove);
-        listenerElement.addEventListener("touchend", onMouseUp);
-        listenerElement.addEventListener("touchstart", onMouseDown);
-
-        listenerElement.addEventListener("click", onmouseclick);
-        listenerElement.addEventListener("mousemove", onMouseMove);
-        listenerElement.addEventListener("mouseleave", onMouseLeave);
-        listenerElement.addEventListener("mousedown", onMouseDown);
-        listenerElement.addEventListener("mouseup", onMouseUp);
-        listenerElement.addEventListener("mouseenter", onMouseEnter);
-        // listenerElement.addEventListener('contextmenu', onClickRight);
-    }
-}
-
-
-};
-
-Ops.Patch.P4Zknbo.InteractiveRectangle_v2.prototype = new CABLES.Op();
-CABLES.OPS["0e42dbb3-a8c2-4321-89ca-d545645dce5b"]={f:Ops.Patch.P4Zknbo.InteractiveRectangle_v2,objName:"Ops.Patch.P4Zknbo.InteractiveRectangle_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Math.Incrementor
-// 
-// **************************************************************
-
-Ops.Math.Incrementor = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    increment = op.inTriggerButton("Increment"),
-    decrement = op.inTriggerButton("Decrement"),
-    inLimit = op.inBool("Limit", false),
-    inLength = op.inValueInt("Length"),
-    inMode = op.inSwitch("Mode", ["Rewind", "Stop at Max"], "Rewind"),
-    inDefault = op.inValueInt("Default", 0),
-    reset = op.inTriggerButton("Reset"),
-    outChanged = op.outTrigger("Changed"),
-    value = op.outNumber("Value"),
-    outRestarted = op.outTrigger("Restarted");
-
-const MODE_REWIND = 0;
-const MODE_STOP = 1;
-value.ignoreValueSerialize = true;
-inLength.set(10);
-let val = 0;
-let mode = MODE_REWIND;
-value.set(0);
-
-inLength.onTriggered = reset;
-inDefault.onChange = doReset;
-reset.onTriggered = doReset;
-inLimit.onChange = updateUi;
-
-updateUi();
-
-inMode.onChange = () =>
-{
-    if (inMode.get() == "Rewind")
-    {
-        mode = MODE_REWIND;
-    }
-    if (inMode.get() == "Stop at Max")
-    {
-        mode = MODE_STOP;
-    }
-};
-
-function updateUi()
-{
-    inLength.setUiAttribs({ "greyout": !inLimit.get() });
-    inMode.setUiAttribs({ "greyout": !inLimit.get() });
-}
-
-function doReset()
-{
-    value.set(null);
-    val = inDefault.get();
-    value.set(val);
-    outRestarted.trigger();
-}
-
-decrement.onTriggered = function ()
-{
-    val--;
-    if (inLimit.get())
-    {
-        if (mode == MODE_REWIND && val < 0)val = inLength.get() - 1;
-        if (mode == MODE_STOP && val < 0)val = 0;
-    }
-    value.set(val);
-
-    outChanged.trigger();
-};
-
-increment.onTriggered = function ()
-{
-    val++;
-    if (inLimit.get())
-    {
-        if (mode == MODE_REWIND && val >= inLength.get())
-        {
-            val = 0;
-            outRestarted.trigger();
-        }
-        if (mode == MODE_STOP && val >= inLength.get())val = inLength.get() - 1;
-    }
-
-    value.set(val);
-
-    outChanged.trigger();
-};
-
-
-};
-
-Ops.Math.Incrementor.prototype = new CABLES.Op();
-CABLES.OPS["45cc0011-ada8-4423-8f5b-39a3810b8389"]={f:Ops.Math.Incrementor,objName:"Ops.Math.Incrementor"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Math.MathExpression
-// 
-// **************************************************************
-
-Ops.Math.MathExpression = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const inA = op.inFloat("A", 0);
-const inB = op.inFloat("B", 1);
-const inC = op.inFloat("C", 2);
-const inD = op.inFloat("D", 3);
-op.setPortGroup("Parameters", [inA, inB, inC, inD]);
-const inExpression = op.inString("Expression", "a*(b+c+d)");
-op.setPortGroup("Expression", [inExpression]);
-const outResult = op.outNumber("Result");
-const outExpressionIsValid = op.outBool("Expression Valid");
-
-let currentFunction = inExpression.get();
-let functionValid = false;
-
-const createFunction = () =>
-{
-    try
-    {
-        currentFunction = new Function("m", "a", "b", "c", "d", `with(m) { return ${inExpression.get()} }`);
-        functionValid = true;
-        evaluateFunction();
-        outExpressionIsValid.set(functionValid);
-    }
-    catch (e)
-    {
-        functionValid = false;
-        outExpressionIsValid.set(functionValid);
-        if (e instanceof ReferenceError || e instanceof SyntaxError) return;
-    }
-};
-
-const evaluateFunction = () =>
-{
-    if (functionValid)
-    {
-        outResult.set(currentFunction(Math, inA.get(), inB.get(), inC.get(), inD.get()));
-        if (!inExpression.get()) outResult.set(0);
-    }
-
-    outExpressionIsValid.set(functionValid);
-};
-
-
-inA.onChange = inB.onChange = inC.onChange = inD.onChange = evaluateFunction;
-inExpression.onChange = createFunction;
-createFunction();
-
-
-};
-
-Ops.Math.MathExpression.prototype = new CABLES.Op();
-CABLES.OPS["d2343a1e-64ea-45b2-99ed-46e167bbdcd3"]={f:Ops.Math.MathExpression,objName:"Ops.Math.MathExpression"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Math.Modulo
-// 
-// **************************************************************
-
-Ops.Math.Modulo = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    number1 = op.inValueFloat("number1", 1),
-    number2 = op.inValueFloat("number2", 2),
-    pingpong = op.inValueBool("pingpong"),
-    result = op.outNumber("result");
-
-let calculateFunction = calculateModule;
-
-number1.onChange =
-number2.onChange = exec;
-
-pingpong.onChange = updatePingPong;
-
-exec();
-
-function exec()
-{
-    let n2 = number2.get();
-    let n1 = number1.get();
-
-    result.set(calculateFunction(n1, n2));
-}
-
-function calculateModule(n1, n2)
-{
-    let re = ((n1 % n2) + n2) % n2;
-    if (re != re) re = 0;
-    return re;
-}
-
-function calculatePingPong(i, n)
-{
-    let cycle = 2 * n;
-    i %= cycle;
-    if (i >= n) return cycle - i;
-    else return i;
-}
-
-function updatePingPong()
-{
-    if (pingpong.get()) calculateFunction = calculatePingPong;
-    else calculateFunction = calculateModule;
-}
-
-
-};
-
-Ops.Math.Modulo.prototype = new CABLES.Op();
-CABLES.OPS["ebc13b25-3705-4265-8f06-5f985b6a7bb1"]={f:Ops.Math.Modulo,objName:"Ops.Math.Modulo"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Boolean.IfFalseThen
-// 
-// **************************************************************
-
-Ops.Boolean.IfFalseThen = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    exe = op.inTrigger("Exe"),
-    boolean = op.inValueBool("Boolean", false),
-    triggerThen = op.outTrigger("then"),
-    triggerElse = op.outTrigger("else");
-
-boolean.onChange = execBool;
-exe.onTriggered = exec;
-
-function execBool()
-{
-    if (exe.isLinked()) return;
-    exec();
-}
-
-function exec()
-{
-    if (!boolean.get()) triggerThen.trigger();
-    else triggerElse.trigger();
-}
-
-
-};
-
-Ops.Boolean.IfFalseThen.prototype = new CABLES.Op();
-CABLES.OPS["91cf65f1-94ac-423f-a536-af71eed08440"]={f:Ops.Boolean.IfFalseThen,objName:"Ops.Boolean.IfFalseThen"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Boolean.MonoFlop
-// 
-// **************************************************************
-
-Ops.Boolean.MonoFlop = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    trigger = op.inTriggerButton("Trigger"),
-    duration = op.inValue("Duration", 1),
-    valueTrue = op.inValue("Value True", 1),
-    valueFalse = op.inValue("Value False", 0),
-    resetButton = op.inTriggerButton("Reset"),
-    outAct = op.outTrigger("Activated"),
-    outEnded = op.outTrigger("Ended"),
-    result = op.outBoolNum("Result", false);
-
-let lastTimeout = -1;
-
-resetButton.onTriggered = function ()
-{
-    result.set(valueFalse.get());
-
-    clearTimeout(lastTimeout);
-};
-
-trigger.onTriggered = function ()
-{
-    if (result.get() == valueFalse.get())outAct.trigger();
-    result.set(valueTrue.get());
-
-    clearTimeout(lastTimeout);
-    lastTimeout = setTimeout(function ()
-    {
-        result.set(valueFalse.get());
-        outEnded.trigger();
-    }, duration.get() * 1000);
-};
-
-
-};
-
-Ops.Boolean.MonoFlop.prototype = new CABLES.Op();
-CABLES.OPS["3a4b0a78-4172-41c7-8248-95cb0856ecc8"]={f:Ops.Boolean.MonoFlop,objName:"Ops.Boolean.MonoFlop"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.Meshes.Torus_v3
-// 
-// **************************************************************
-
-Ops.Gl.Meshes.Torus_v3 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    render = op.inTrigger("render"),
-    sides = op.inValue("sides", 32),
-    rings = op.inValue("rings", 32),
-    innerRadius = op.inValue("innerRadius", 0.25),
-    outerRadius = op.inValue("outerRadius", 0.5),
-    indraw = op.inBool("Draw", true),
-    trigger = op.outTrigger("trigger"),
-    geomOut = op.outObject("geometry");
-
-indraw.setUiAttribs({ "title": "Render mesh" });
-
-const UP = vec3.fromValues(0, 1, 0), RIGHT = vec3.fromValues(1, 0, 0);
-let tmpNormal = vec3.create(), tmpVec = vec3.create();
-
-geomOut.ignoreValueSerialize = true;
-
-let cgl = op.patch.cg || op.patch.cgl;
-let mesh = null;
-let geom = null;
-let j = 0, i = 0, idx = 0;
-let needsUpdate = true;
-
-rings.onChange =
-sides.onChange =
-innerRadius.onChange =
-outerRadius.onChange = function ()
-{
-    needsUpdate = true;
-};
-
-render.onTriggered = function ()
-{
-    if (needsUpdate) updateMesh();
-    if (indraw.get() && mesh !== null) mesh.render(cgl.getShader());
-
-    trigger.trigger();
-};
-
-function updateMesh()
-{
-    let nrings = Math.round(rings.get()) + 1;
-    let nsides = Math.round(sides.get()) + 1;
-    if (nrings < 3)nrings = 3;
-    if (nsides < 3)nsides = 3;
-    let r = innerRadius.get();
-    let r2 = outerRadius.get();
-    generateTorus(r, r2, nrings, nsides);
-    needsUpdate = false;
-}
-
-function circleTable(n, flip)
-{
-    let i;
-
-    /* Table size, the sign of n flips the circle direction */
-    let size = Math.abs(n);
-
-    /* Determine the angle between samples */
-    let angle = 2 * Math.PI / (n - 1);
-    if (flip) angle = -angle;
-
-    /* Allocate memory for n samples, plus duplicate of first entry at the end */
-    let sint = [];
-    let cost = [];
-
-    sint[0] = 0;
-    cost[0] = 1;
-
-    /* Compute cos and sin around the circle */
-    for (i = 1; i < size - 1; i++)
-    {
-        sint[i] = Math.sin(angle * i);
-        cost[i] = Math.cos(angle * i);
-    }
-
-    sint[size - 1] = 0;
-    cost[size - 1] = 1;
-
-    return { "cost": cost, "sint": sint };
-}
-
-function generateTorus(iradius, oradius, nRings, nSides)
-{
-    let table1 = circleTable(nRings, false);
-    let table2 = circleTable(nSides, true);
-    let t;
-
-    geom = new CGL.Geometry("torus");
-    let tangents = [];
-    let biTangents = [];
-    let vertexNormals = [];
-    let tc = [];
-
-    for (j = 0; j < nRings; j++)
-    {
-        for (i = 0; i < nSides; i++)
-        {
-            let offset = 3 * (j * nSides + i);
-            let offset2 = 2 * (j * nSides + i);
-
-            geom.vertices[offset] = table1.cost[j] * (oradius + table2.cost[i] * iradius);
-            geom.vertices[offset + 1] = table1.sint[j] * (oradius + table2.cost[i] * iradius);
-            geom.vertices[offset + 2] = table2.sint[i] * iradius;
-
-            vertexNormals[offset] = tmpNormal[0] = table1.cost[j] * table2.cost[i];
-            vertexNormals[offset + 1] = tmpNormal[1] = table1.sint[j] * table2.cost[i];
-            vertexNormals[offset + 2] = tmpNormal[2] = table2.sint[i];
-
-            if (Math.abs(tmpNormal[1]) == 1) t = RIGHT;
-            else t = UP;
-
-            vec3.cross(tmpVec, tmpNormal, t);
-            vec3.normalize(tmpVec, tmpVec);
-            tangents[offset] = tmpVec[0];
-            tangents[offset + 1] = tmpVec[1];
-            tangents[offset + 2] = tmpVec[2];
-            vec3.cross(tmpVec, tmpVec, tmpNormal);
-            biTangents[offset] = tmpVec[0];
-            biTangents[offset + 1] = tmpVec[1];
-            biTangents[offset + 2] = tmpVec[2];
-
-            tc[offset2] = j / (nRings - 1);
-            tc[offset2 + 1] = i / (nSides - 1);
-        }
-    }
-
-    for (j = 0, idx = 0; j < nRings - 1; j++)
-    {
-        for (i = 0; i < nSides - 1; i++)
-        {
-            let offset = j * nSides + i;
-            geom.verticesIndices[idx++] = offset;
-            geom.verticesIndices[idx++] = offset + 1;
-            geom.verticesIndices[idx++] = offset + nSides;
-
-            geom.verticesIndices[idx++] = offset + 1;
-            geom.verticesIndices[idx++] = offset + nSides + 1;
-            geom.verticesIndices[idx++] = offset + nSides;
-        }
-    }
-
-    if (geom.biTangents.length == biTangents.length)geom.biTangents.set(biTangents);
-    else geom.biTangents = new Float32Array(biTangents);
-
-    if (geom.tangents.length == tangents.length)geom.tangents.set(tangents);
-    else geom.tangents = new Float32Array(tangents);
-
-    if (geom.vertexNormals.length == vertexNormals.length)geom.vertexNormals.set(vertexNormals);
-    else geom.vertexNormals = new Float32Array(vertexNormals);
-
-    geom.setTexCoords(tc);
-
-    geomOut.setRef(geom);
-
-    if (!mesh) mesh = op.patch.cg.createMesh(geom, { "opId": op.id });
-    // if (!mesh)mesh = new CGL.Mesh(cgl, geom);
-    else mesh.setGeom(geom);
-}
-
-
-};
-
-Ops.Gl.Meshes.Torus_v3.prototype = new CABLES.Op();
-CABLES.OPS["bfe60760-6cf6-43d0-96da-b4848c2b146a"]={f:Ops.Gl.Meshes.Torus_v3,objName:"Ops.Gl.Meshes.Torus_v3"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Math.MapRange
-// 
-// **************************************************************
-
-Ops.Math.MapRange = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    v = op.inValueFloat("value", 0),
-    old_min = op.inValueFloat("old min", 0),
-    old_max = op.inValueFloat("old max", 1),
-    new_min = op.inValueFloat("new min", 0),
-    new_max = op.inValueFloat("new max", 1),
-    easing = op.inValueSelect("Easing", ["Linear", "Smoothstep", "Smootherstep"], "Linear"),
-    inClamp = op.inBool("Clamp", true),
-    result = op.outNumber("result", 0);
-
-op.setPortGroup("Input Range", [old_min, old_max]);
-op.setPortGroup("Output Range", [new_min, new_max]);
-
-let doClamp = true;
-let ease = 0;
-let r = 0;
-
-v.onChange =
-    old_min.onChange =
-    old_max.onChange =
-    new_min.onChange =
-    new_max.onChange = exec;
-
-exec();
-
-inClamp.onChange =
-() =>
-{
-    doClamp = inClamp.get();
-    exec();
-};
-
-easing.onChange = function ()
-{
-    if (easing.get() == "Smoothstep") ease = 1;
-    else if (easing.get() == "Smootherstep") ease = 2;
-    else ease = 0;
-};
-
-function exec()
-{
-    const nMin = new_min.get();
-    const nMax = new_max.get();
-    const oMin = old_min.get();
-    const oMax = old_max.get();
-    let x = v.get();
-
-    if (doClamp)
-    {
-        if (x >= Math.max(oMax, oMin))
-        {
-            result.set(nMax);
-            return;
-        }
-        else
-        if (x <= Math.min(oMax, oMin))
-        {
-            result.set(nMin);
-            return;
-        }
-    }
-
-    let reverseInput = false;
-    const oldMin = Math.min(oMin, oMax);
-    const oldMax = Math.max(oMin, oMax);
-    if (oldMin != oMin) reverseInput = true;
-
-    let reverseOutput = false;
-    const newMin = Math.min(nMin, nMax);
-    const newMax = Math.max(nMin, nMax);
-    if (newMin != nMin) reverseOutput = true;
-
-    let portion = 0;
-
-    if (reverseInput) portion = (oldMax - x) * (newMax - newMin) / (oldMax - oldMin);
-    else portion = (x - oldMin) * (newMax - newMin) / (oldMax - oldMin);
-
-    if (reverseOutput) r = newMax - portion;
-    else r = portion + newMin;
-
-    if (ease === 0)
-    {
-        result.set(r);
-    }
-    else
-    if (ease == 1)
-    {
-        x = Math.max(0, Math.min(1, (r - nMin) / (nMax - nMin)));
-        result.set(nMin + x * x * (3 - 2 * x) * (nMax - nMin)); // smoothstep
-    }
-    else
-    if (ease == 2)
-    {
-        x = Math.max(0, Math.min(1, (r - nMin) / (nMax - nMin)));
-        result.set(nMin + x * x * x * (x * (x * 6 - 15) + 10) * (nMax - nMin)); // smootherstep
-    }
-}
-
-
-};
-
-Ops.Math.MapRange.prototype = new CABLES.Op();
-CABLES.OPS["2617b407-60a0-4ff6-b4a7-18136cfa7817"]={f:Ops.Math.MapRange,objName:"Ops.Math.MapRange"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Anim.LFO_v3
-// 
-// **************************************************************
-
-Ops.Anim.LFO_v3 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    time = op.inValue("Time"),
-    speed = op.inFloat("Frequency", 1),
-    type = op.inValueSelect("Type", ["sine", "triangle", "ramp up", "ramp down", "square"], "sine"),
-    phase = op.inValue("Phase", 0),
-    rangeMin = op.inValue("Range Min", -1),
-    rangeMax = op.inValue("Range Max", 1),
-    result = op.outNumber("Result");
-
-let v = 0;
-type.onChange = updateType;
-
-updateType();
-
-const PI2 = Math.PI / 2;
-
-function updateType()
-{
-    if (type.get() == "sine") time.onChange = sine;
-    if (type.get() == "ramp up") time.onChange = rampUp;
-    if (type.get() == "ramp down") time.onChange = rampDown;
-    if (type.get() == "square") time.onChange = square;
-    if (type.get() == "triangle") time.onChange = triangle;
-}
-
-function updateTime()
-{
-    return (time.get() * speed.get()) + phase.get();
-}
-
-function square()
-{
-    let t = updateTime() + 0.5;
-    v = t % 2.0;
-    if (v <= 1.0)v = -1;
-    else v = 1;
-    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
-    result.set(v);
-}
-
-function rampUp()
-{
-    let t = (updateTime() + 1);
-    v = t % 1.0;
-    v -= 0.5;
-    v *= 2.0;
-    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
-    result.set(v);
-}
-
-function rampDown()
-{
-    let t = updateTime();
-    v = t % 1.0;
-    v -= 0.5;
-    v *= -2.0;
-    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
-    result.set(v);
-}
-
-function triangle()
-{
-    let t = updateTime();
-    v = t % 2.0;
-    if (v > 1) v = 2.0 - v;
-    v -= 0.5;
-    v *= 2.0;
-    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
-    result.set(v);
-}
-
-function sine()
-{
-    let t = updateTime() * Math.PI - (PI2);
-    v = Math.sin((t));
-    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
-    result.set(v);
-}
-
-
-};
-
-Ops.Anim.LFO_v3.prototype = new CABLES.Op();
-CABLES.OPS["5bdbe26b-dea3-4266-850c-1b66ed29936e"]={f:Ops.Anim.LFO_v3,objName:"Ops.Anim.LFO_v3"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.ShaderEffects.AreaRotate_v2
-// 
-// **************************************************************
-
-Ops.Gl.ShaderEffects.AreaRotate_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={"area_rotate_vert":"\n\nvec4 MOD_scaler(vec4 pos,mat4 modelMatrix)\n{\n    vec3 forcePos=vec3(MOD_x,MOD_y,MOD_z);\n    vec3 vecToOrigin=(modelMatrix*pos).xyz-forcePos;\n    float dist=abs(length(vecToOrigin));\n    float distAlpha = (MOD_size - dist) ;\n\n    if(MOD_smooth) distAlpha=smoothstep(0.0,MOD_size,distAlpha);\n\n    // pos.xyz*=(1.0+(distAlpha*MOD_strength));\n\n    mat3 rotation = mat3(\n        vec3( cos(MOD_strength*distAlpha),  sin(MOD_strength*distAlpha),  0.0),\n        vec3(-sin(MOD_strength*distAlpha),  cos(MOD_strength*distAlpha),  0.0),\n        vec3(        0.0,         0.0,  1.0)\n    );\n    pos =vec4(rotation * pos.xyz, 1.0);\n\n\n    return pos;\n}\n",};
-const
-    render = op.inTrigger("render"),
-    inSize = op.inValue("Size", 1),
-    inStrength = op.inValue("Strength", 1),
-    inSmooth = op.inValueBool("Smooth", true),
-    x = op.inValue("x"),
-    y = op.inValue("y"),
-    z = op.inValue("z"),
-    next = op.outTrigger("trigger");
-
-const cgl = op.patch.cgl;
-const srcBodyVert = ""
-    .endl() + "pos=MOD_scaler(pos,mMatrix);"
-    .endl();
-
-const mod = new CGL.ShaderModifier(cgl, op.name, { "opId": op.id });
-
-mod.addModule({
-    "priority": 2,
-    "title": "vert" + op.name,
-    "name": "MODULE_VERTEX_POSITION",
-    "srcHeadVert": attachments.area_rotate_vert,
-    "srcBodyVert": srcBodyVert
-});
-
-mod.addUniform("f", "MOD_x", x);
-mod.addUniform("f", "MOD_y", y);
-mod.addUniform("f", "MOD_z", z);
-
-mod.addUniform("f", "MOD_size", inSize);
-mod.addUniform("f", "MOD_strength", inStrength);
-mod.addUniform("b", "MOD_smooth", inSmooth);
-
-
-render.onTriggered = function ()
-{
-    if (!cgl.getShader())
-    {
-        next.trigger();
-        return;
-    }
-
-    if (op.isCurrentUiOp()) gui.setTransformGizmo({ "posX": x, "posY": y, "posZ": z });
-
-    mod.bind();
-    next.trigger();
-    mod.unbind();
-};
-
-
-};
-
-Ops.Gl.ShaderEffects.AreaRotate_v2.prototype = new CABLES.Op();
-CABLES.OPS["ebfd3f0c-7a58-44d3-aba0-72d91fafd7ae"]={f:Ops.Gl.ShaderEffects.AreaRotate_v2,objName:"Ops.Gl.ShaderEffects.AreaRotate_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Math.Ease
-// 
-// **************************************************************
-
-Ops.Math.Ease = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inVal = op.inValue("Value"),
-    inMin = op.inValue("Min", 0),
-    inMax = op.inValue("Max", 1),
-    result = op.outNumber("Result"),
-    anim = new CABLES.Anim();
-
-anim.createPort(op, "Easing", updateAnimEasing);
-anim.setValue(0, 0);
-anim.setValue(1, 1);
-
-op.onLoaded = inMin.onChange = inMax.onChange = updateMinMax;
-
-function updateMinMax()
-{
-    anim.keys[0].time = anim.keys[0].value = Math.min(inMin.get(), inMax.get());
-    anim.keys[1].time = anim.keys[1].value = Math.max(inMin.get(), inMax.get());
-}
-
-function updateAnimEasing()
-{
-    anim.keys[0].setEasing(anim.defaultEasing);
-}
-
-inVal.onChange = function ()
-{
-    const r = anim.getValue(inVal.get());
-    result.set(r);
-};
-
-
-};
-
-Ops.Math.Ease.prototype = new CABLES.Op();
-CABLES.OPS["8f6e4a08-33e6-408f-ac4a-198bd03b417b"]={f:Ops.Math.Ease,objName:"Ops.Math.Ease"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.Meshes.Line
-// 
-// **************************************************************
-
-Ops.Gl.Meshes.Line = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    render = op.inTrigger("Render"),
-    x1 = op.inValue("X 1"),
-    y1 = op.inValue("Y 1"),
-    z1 = op.inValue("Z 1"),
-    x2 = op.inValue("X 2", 1),
-    y2 = op.inValue("Y 2", 1),
-    z2 = op.inValue("Z 2", 1),
-    next = op.outTrigger("Next"),
-    outArr = op.outArray("Array");
-
-const cgl = op.patch.cgl;
-const arr = [0, 0, 0, 0, 0, 0];
-const geom = new CGL.Geometry("simplespline");
-geom.vertices = [x1.get(), y1.get(), z1.get(), x2.get(), y2.get(), x2.get()];
-const mesh = new CGL.Mesh(cgl, geom, { "glPrimitive": cgl.gl.LINES });
-
-let changed = true;
-
-x1.onChange = function () { arr[0] = geom.vertices[0] = x1.get(); changed = true; };
-y1.onChange = function () { arr[1] = geom.vertices[1] = y1.get(); changed = true; };
-z1.onChange = function () { arr[2] = geom.vertices[2] = z1.get(); changed = true; };
-
-x2.onChange = function () { arr[3] = geom.vertices[3] = x2.get(); changed = true; };
-y2.onChange = function () { arr[4] = geom.vertices[4] = y2.get(); changed = true; };
-z2.onChange = function () { arr[5] = geom.vertices[5] = z2.get(); changed = true; };
-
-render.onTriggered = function ()
-{
-    if (changed)
-    {
-        mesh.updateVertices(geom);
-        outArr.setRef(arr);
-        changed = false;
-    }
-
-    let shader = cgl.getShader();
-    mesh.render(shader);
-
-    next.trigger();
-};
-
-
-};
-
-Ops.Gl.Meshes.Line.prototype = new CABLES.Op();
-CABLES.OPS["c6a0d570-a0ac-4655-b17d-74d0870b0799"]={f:Ops.Gl.Meshes.Line,objName:"Ops.Gl.Meshes.Line"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Patch.P4Zknbo.BasicSlider_v3
-// 
-// **************************************************************
-
-Ops.Patch.P4Zknbo.BasicSlider_v3 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nconst port_h2l1ydpiy=op.outNumber(\"h2l1ydpiy\");\nport_h2l1ydpiy.setUiAttribs({title:\"Hover\",});\nport_h2l1ydpiy.setUiAttribs({\"values\":[\"\"]});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\nconst innerIn_h2l1ydpiy = addedOps[i].inFloat(\"innerIn_h2l1ydpiy\");\ninnerIn_h2l1ydpiy.setUiAttribs({title:\"Hover\"});\ninnerIn_h2l1ydpiy.on(\"change\", (a,v) => { port_h2l1ydpiy.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"uk3um0kyc\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"pv9fy1u1s\",\"objOut\":\"uk3um0kyc\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"vwwgjlizf\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posY\",\"value\":0.005},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Exec\",\"portOut\":\"trigger\",\"objIn\":\"ns66cci5h\",\"objOut\":\"vwwgjlizf\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"b9fhb990j\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"vwwgjlizf\",\"objOut\":\"b9fhb990j\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"xnap82xfe\",\"objOut\":\"b9fhb990j\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"ak207xc99\",\"objOut\":\"b9fhb990j\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"kdn6btjb3\",\"objOut\":\"b9fhb990j\"},{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"vwwgjlizf\",\"objOut\":\"b9fhb990j\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"v8j7nipl3\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"om399w808\",\"objOut\":\"v8j7nipl3\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"String In\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"6tpfx1h1e\",\"objOut\":\"v8j7nipl3\"},{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"c2lnrba6b\",\"objOut\":\"v8j7nipl3\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"c2lnrba6b\",\"objOut\":\"v8j7nipl3\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"ak207xc99\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"},{\"name\":\"innerIn_h2l1ydpiy\",\"title\":\"Hover\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"sp5jwe5ep\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"b9fhb990j\",\"objOut\":\"sp5jwe5ep\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"xnap82xfe\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.6},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"uk3um0kyc\",\"objOut\":\"xnap82xfe\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"ak207xc99\",\"objOut\":\"xnap82xfe\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"kdn6btjb3\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rotZ\",\"portOut\":\"result\",\"objIn\":\"vwwgjlizf\",\"objOut\":\"kdn6btjb3\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"ipgrn686s\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":-0.32},{\"name\":\"y\",\"value\":0.92},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"c2lnrba6b\",\"objOut\":\"ipgrn686s\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"pv9fy1u1s\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":0.02},{\"name\":\"height\",\"value\":0.07},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":1},{\"name\":\"num rows\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"ns66cci5h\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"uk3um0kyc\",\"objOut\":\"ns66cci5h\"}]}],\"objName\":\"Ops.Gl.Matrix.Billboard\"},{\"id\":\"om399w808\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1.73},{\"name\":\"y\",\"value\":1},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"ipgrn686s\",\"objOut\":\"om399w808\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"},{\"id\":\"ixcr22c6p\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_position\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"sp21nyh4q\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int position\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"6tpfx1h1e\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"position\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"k5cx9t2w0\",\"objOut\":\"6tpfx1h1e\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"nzy2b7ut8\",\"objOut\":\"6tpfx1h1e\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"k5cx9t2w0\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"ipyawra4a\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"baridp3mz\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_injectedState\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"l84gnznq4\",\"objOut\":\"baridp3mz\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"nzy2b7ut8\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Number\",\"portOut\":\"Result\",\"objIn\":\"f2to9w0p5\",\"objOut\":\"nzy2b7ut8\"},{\"portIn\":\"Numbers_1\",\"portOut\":\"Result\",\"objIn\":\"typa3qfai\",\"objOut\":\"nzy2b7ut8\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"u4ssrgqtd\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"qc7y3s0cx\",\"objOut\":\"u4ssrgqtd\"},{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"q1fyo45tl\",\"objOut\":\"u4ssrgqtd\"},{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"6tpfx1h1e\",\"objOut\":\"u4ssrgqtd\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"qc7y3s0cx\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonSlider\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"typa3qfai\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"Number\",\"objIn\":\"sp5jwe5ep\",\"objOut\":\"typa3qfai\"},{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"ixcr22c6p\",\"objOut\":\"typa3qfai\"}]},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"l84gnznq4\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":0}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"nzy2b7ut8\",\"objOut\":\"l84gnznq4\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"q1fyo45tl\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"l84gnznq4\",\"objOut\":\"q1fyo45tl\"},{\"portIn\":\"Index\",\"portOut\":\"Result\",\"objIn\":\"typa3qfai\",\"objOut\":\"q1fyo45tl\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"c2lnrba6b\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":1.04},{\"name\":\"Height\",\"value\":0.24},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"b9fhb990j\",\"objOut\":\"c2lnrba6b\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"xnap82xfe\",\"objOut\":\"c2lnrba6b\"},{\"portIn\":\"jqg7l6f5m\",\"portOut\":\"Pointer Hover\",\"objIn\":\"4lgk8235o\",\"objOut\":\"c2lnrba6b\"},{\"portIn\":\"innerIn_h2l1ydpiy\",\"portOut\":\"Pointer Hover\",\"objIn\":\"ak207xc99\",\"objOut\":\"c2lnrba6b\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"u4ssrgqtd\",\"objOut\":\"c2lnrba6b\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"iaaozqt73\",\"objOut\":\"c2lnrba6b\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Pointer X\",\"objIn\":\"t24b96xwy\",\"objOut\":\"c2lnrba6b\"},{\"portIn\":\"Numbers_0\",\"portOut\":\"Pointer X\",\"objIn\":\"typa3qfai\",\"objOut\":\"c2lnrba6b\"},{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"iaaozqt73\",\"objOut\":\"c2lnrba6b\"}]},{\"name\":\"Pointer Y\",\"value\":0.0475698468205169},{\"name\":\"Top\",\"value\":27.819621562957764},{\"name\":\"Left\",\"value\":366.9763829112053},{\"name\":\"Right\",\"value\":1028.1485039144754},{\"name\":\"Bottom\",\"value\":116.01506531238556}],\"objName\":\"Ops.Patch.P4Zknbo.InteractiveRectangle_v22\"},{\"id\":\"5ybabstd4\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"glassy\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"t24b96xwy\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValueOnHover\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"4lgk8235o\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2,\"subPatchVer\":2},\"portsIn\":[{\"name\":\"jqg7l6f5m\",\"title\":\"Boolean\"},{\"name\":\"patchId\",\"value\":\"ww64iitoy\"}],\"objName\":\"Ops.Patch.P4Zknbo.DisengageFlag\"},{\"id\":\"f2to9w0p5\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{},\"objName\":\"Ops.Ui.VizNumberBar\"},{\"id\":\"iaaozqt73\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Value Out\",\"objIn\":\"ipyawra4a\",\"objOut\":\"iaaozqt73\"}]}],\"objName\":\"Ops.Number.GateNumber\"}]}",};
-const port_blls2amps=op.inTrigger("blls2amps");
-port_blls2amps.setUiAttribs({title:"Trigger in",});
-
-const port_btagbs7z2=op.inString("btagbs7z2","");
-port_btagbs7z2.setUiAttribs({title:"Class",});
-
-const port_lj06d561p=op.inFloat("lj06d561p",0);
-port_lj06d561p.setUiAttribs({title:"Show Boundings",display:"bool",});
-
-const port_nti406vwi=op.outNumber("nti406vwi");
-port_nti406vwi.setUiAttribs({title:"Result",});
-
-const port_gjvx0zyv5=op.outNumber("gjvx0zyv5");
-port_gjvx0zyv5.setUiAttribs({title:"value",});
-
-const port_h2l1ydpiy=op.outNumber("h2l1ydpiy");
-port_h2l1ydpiy.setUiAttribs({title:"Hover",});
-port_h2l1ydpiy.setUiAttribs({"values":[""]});
-
-op.initInnerPorts=function(addedOps)
-{
-  for(let i=0;i<addedOps.length;i++)
-  {
-    if(addedOps[i].innerInput)
-    {
-const innerOut_blls2amps = addedOps[i].outTrigger("innerOut_blls2amps");
-innerOut_blls2amps.setUiAttribs({title:"Trigger in"});
-port_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };
-
-const innerOut_btagbs7z2 = addedOps[i].outString("innerOut_btagbs7z2");
-innerOut_btagbs7z2.set(port_btagbs7z2.get() );
-innerOut_btagbs7z2.setUiAttribs({title:"Class"});
-port_btagbs7z2.on("change", (a,v) => { innerOut_btagbs7z2.set(a); });
-
-const innerOut_lj06d561p = addedOps[i].outNumber("innerOut_lj06d561p");
-innerOut_lj06d561p.set(port_lj06d561p.get() );
-innerOut_lj06d561p.setUiAttribs({title:"Show Boundings"});
-port_lj06d561p.on("change", (a,v) => { innerOut_lj06d561p.set(a); });
-
-    }
-if(addedOps[i].innerOutput)
-{
-const innerIn_nti406vwi = addedOps[i].inFloat("innerIn_nti406vwi");
-innerIn_nti406vwi.setUiAttribs({title:"Result"});
-innerIn_nti406vwi.on("change", (a,v) => { port_nti406vwi.set(a); });
-
-const innerIn_gjvx0zyv5 = addedOps[i].inFloat("innerIn_gjvx0zyv5");
-innerIn_gjvx0zyv5.setUiAttribs({title:"value"});
-innerIn_gjvx0zyv5.on("change", (a,v) => { port_gjvx0zyv5.set(a); });
-
-const innerIn_h2l1ydpiy = addedOps[i].inFloat("innerIn_h2l1ydpiy");
-innerIn_h2l1ydpiy.setUiAttribs({title:"Hover"});
-innerIn_h2l1ydpiy.on("change", (a,v) => { port_h2l1ydpiy.set(a); });
-
-}
-}
-};
-
-const patchId = "bp2sub_" + op.id;
-
-new CABLES.SubPatchOp(op, { "subId": patchId });
-
-initializeSubpatch();
-
-function initializeSubpatch()
-{
-    const p = JSON.parse(attachments.subpatch_json);
-
-    CABLES.Patch.replaceOpIds(p,
-        {
-            "parentSubPatchId": patchId,
-            "prefixHash": patchId,
-            "oldIdAsRef": true,
-            "doNotUnlinkLostLinks": true
-        });
-
-    for (let i = 0; i < p.ops.length; i++)
-    {
-        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
-    }
-
-    op.loadDependencies(p, () =>
-    {
-        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
-        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
-        op.patch.emitEvent("subpatchExpose", patchId);
-        op.setStorage({ "blueprintVer": 2 });
-        op.patch.emitEvent("subpatchExpose", patchId);
-    });
-}
-
-
-};
-
-Ops.Patch.P4Zknbo.BasicSlider_v3.prototype = new CABLES.Op();
-CABLES.OPS["3ce2ea3c-8e3e-4b77-965d-de9b6f3ffa56"]={f:Ops.Patch.P4Zknbo.BasicSlider_v3,objName:"Ops.Patch.P4Zknbo.BasicSlider_v3"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Math.Round
-// 
-// **************************************************************
-
-Ops.Math.Round = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    number1 = op.inValueFloat("number"),
-    decPlaces = op.inInt("Decimal Places", 0),
-    result = op.outNumber("result");
-
-let decm = 0;
-
-number1.onChange = exec;
-decPlaces.onChange = updateDecm;
-
-updateDecm();
-
-function updateDecm()
-{
-    decm = Math.pow(10, decPlaces.get());
-    exec();
-}
-
-function exec()
-{
-    result.set(Math.round(number1.get() * decm) / decm);
-}
-
-
-};
-
-Ops.Math.Round.prototype = new CABLES.Op();
-CABLES.OPS["1a1ef636-6d02-42ba-ae1e-627b917d0d2b"]={f:Ops.Math.Round,objName:"Ops.Math.Round"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.Matrix.Billboard
-// 
-// **************************************************************
-
-Ops.Gl.Matrix.Billboard = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const exec = op.inTrigger("Exec");
-const next = op.outTrigger("Next");
-
-const cgl = op.patch.cgl;
-
-let mm = mat4.create();
-let mv = mat4.create();
-let m = mat4.create();
-let mempty = mat4.create();
-
-exec.onTriggered = function ()
-{
-    mat4.invert(mm, cgl.mMatrix);
-    mat4.invert(mv, cgl.vMatrix);
-
-    mat4.mul(mm, mm, mv);
-
-    mm[12] = 0;
-    mm[13] = 0;
-    mm[14] = 0;
-
-    cgl.pushModelMatrix();
-    cgl.pushViewMatrix();
-    mat4.mul(cgl.mMatrix, cgl.mMatrix, mm);
-    next.trigger();
-    cgl.popViewMatrix();
-    cgl.popModelMatrix();
-};
-
-
-};
-
-Ops.Gl.Matrix.Billboard.prototype = new CABLES.Op();
-CABLES.OPS["d41e676e-d8a7-4a1e-8abf-f1bddfc982d5"]={f:Ops.Gl.Matrix.Billboard,objName:"Ops.Gl.Matrix.Billboard"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Patch.P4Zknbo.InteractiveRectangle_v22
-// 
-// **************************************************************
-
-Ops.Patch.P4Zknbo.InteractiveRectangle_v22 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    render = op.inTrigger("Trigger in"),
-    trigger = op.outTrigger("Trigger out"),
-    width = op.inValue("Width", 1),
-    height = op.inValue("Height", 1),
-    inId = op.inString("ID"),
-    classPort = op.inString("Class"),
-    pivotX = op.inValueSelect("Pivot x", ["center", "left", "right"]),
-    pivotY = op.inValueSelect("Pivot y", ["center", "top", "bottom"]),
-    axis = op.inValueSelect("Axis", ["xy", "xz"]),
-    isInteractive = op.inValueBool("Is Interactive", true),
-    renderRect = op.inValueBool("Render Rectangle", true),
-    divVisible = op.inValueBool("Show Boundings", true),
-    cursorPort = op.inValueSelect("Cursor", ["auto", "crosshair", "pointer", "Hand", "move", "n-resize", "ne-resize", "e-resize", "se-resize", "s-resize", "sw-resize", "w-resize", "nw-resize", "text", "wait", "help", "none"], "pointer"),
-    active = op.inValueBool("Render", true);
-
-const geomOut = op.outObject("geometry");
-geomOut.ignoreValueSerialize = true;
-
-const
-    mouseOver = op.outBoolNum("Pointer Hover", false),
-    mouseDown = op.outBoolNum("Pointer Down", false),
-    outX = op.outNumber("Pointer X"),
-    outY = op.outNumber("Pointer Y"),
-    outTop = op.outNumber("Top"),
-    outLeft = op.outNumber("Left"),
-    outRight = op.outNumber("Right"),
-    outBottom = op.outNumber("Bottom"),
-    mouseClick = op.outTrigger("Left Click");
-
-const elementPort = op.outObject("Dom Element");
-
-active.setUiAttribs({ "title": "Active" });
-
-const cgl = op.patch.cgl;
-axis.set("xy");
-pivotX.set("center");
-pivotY.set("center");
-
-const geom = new CGL.Geometry(op.name);
-let mesh = null;
-let div = null;
-const m = mat4.create();
-const trans = mat4.create();
-const pos = vec3.create();
-const divAlign = vec3.create();
-const divAlignSize = vec3.create();
-
-axis.onChange = rebuild;
-pivotX.onChange = rebuild;
-pivotY.onChange = rebuild;
-width.onChange = rebuild;
-height.onChange = rebuild;
-cursorPort.onChange = updateCursor;
-rebuild();
-
-const modelMatrix = mat4.create();
-const identViewMatrix = mat4.create();
-const zeroVec3 = vec3.create();
-
-render.onTriggered = function ()
-{
-    if (!div)
-    {
-        setUpDiv();
-        addListeners();
-        updateDivVisibility();
-        updateIsInteractive();
-    }
-    updateDivSize();
-
-    if (active.get() && renderRect.get() && mesh) mesh.render(cgl.getShader());
-
-    trigger.trigger();
-};
-
-function rebuild()
-{
-    let w = width.get();
-    let h = height.get();
-    let x = 0;
-    let y = 0;
-
-    if (typeof w == "string")w = parseFloat(w);
-    if (typeof h == "string")h = parseFloat(h);
-
-    if (pivotX.get() == "center")
-    {
-        x = 0;
-        divAlign[0] = -w / 2;
-    }
-    if (pivotX.get() == "right")
-    {
-        x = -w / 2;
-    }
-    if (pivotX.get() == "left")
-    {
-        x = w / 2;
-    }
-
-    if (pivotY.get() == "center")
-    {
-        y = 0;
-        divAlign[1] = -h / 2;
-    }
-    if (pivotY.get() == "top") y = -h / 2;
-    if (pivotY.get() == "bottom") y = +h / 2;
-
-    const verts = [];
-    const tc = [];
-    const norms = [];
-    const indices = [];
-
-    const numRows = 1;
-    const numColumns = 1;
-
-    const stepColumn = w / numColumns;
-    const stepRow = h / numRows;
-
-    let c, r;
-
-    for (r = 0; r <= numRows; r++)
-    {
-        for (c = 0; c <= numColumns; c++)
-        {
-            verts.push(c * stepColumn - width.get() / 2 + x);
-            if (axis.get() == "xz") verts.push(0.0);
-            verts.push(r * stepRow - height.get() / 2 + y);
-            if (axis.get() == "xy") verts.push(0.0);
-
-            tc.push(c / numColumns);
-            tc.push(1.0 - r / numRows);
-
-            if (axis.get() == "xz")
-            {
-                norms.push(0);
-                norms.push(1);
-                norms.push(0);
-            }
-
-            if (axis.get() == "xy")
-            {
-                norms.push(0);
-                norms.push(0);
-                norms.push(-1);
-            }
-        }
-    }
-
-    for (c = 0; c < numColumns; c++)
-    {
-        for (r = 0; r < numRows; r++)
-        {
-            const ind = c + (numColumns + 1) * r;
-            const v1 = ind;
-            const v2 = ind + 1;
-            const v3 = ind + numColumns + 1;
-            const v4 = ind + 1 + numColumns + 1;
-
-            indices.push(v1);
-            indices.push(v3);
-            indices.push(v2);
-
-            indices.push(v2);
-            indices.push(v3);
-            indices.push(v4);
-        }
-    }
-
-    geom.clear();
-    geom.vertices = verts;
-    geom.texCoords = tc;
-    geom.verticesIndices = indices;
-    geom.vertexNormals = norms;
-
-    if (!mesh) mesh = new CGL.Mesh(cgl, geom);
-    else mesh.setGeom(geom);
-
-    geomOut.set(null);
-    geomOut.set(geom);
-}
-
-let divX = 0;
-let divY = 0;
-let divWidth = 0;
-let divHeight = 0;
-
-const mMatrix = mat4.create();
-divVisible.onChange = updateDivVisibility;
-inId.onChange = updateId;
-classPort.onChange = updateClassNames;
-
-function updateDivVisibility()
-{
-    if (div)
-    {
-        if (divVisible.get()) div.style.border = "1px solid red";
-        else div.style.border = "none";
-    }
-}
-
-function updateCursor()
-{
-    if (div)
-    {
-        div.style.cursor = cursorPort.get();
-    }
-}
-
-function updateId()
-{
-    if (div)
-    {
-        div.setAttribute("id", inId.get());
-    }
-}
-
-function updateDivSize()
-{
-    // var vp=cgl.getViewPort();
-
-    mat4.multiply(mMatrix, cgl.vMatrix, cgl.mMatrix);
-    vec3.transformMat4(pos, divAlign, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const top = cgl.canvas.styleMarginTop || 0;
-    const left = cgl.canvas.styleMarginLeft || 0;
-
-    const x1 = (trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2 + left;
-    const y1 = (trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top;
-
-    divAlignSize[0] = divAlign[0] + width.get();
-    divAlignSize[1] = divAlign[1];
-
-    vec3.transformMat4(pos, divAlignSize, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const x2 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
-    const y2 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
-
-    divAlignSize[0] = divAlign[0];
-    divAlignSize[1] = divAlign[1] + height.get();
-
-    vec3.transformMat4(pos, divAlignSize, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const x3 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
-    const y3 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
-
-    divAlignSize[0] = divAlign[0] + width.get();
-    divAlignSize[1] = divAlign[1] + height.get();
-
-    vec3.transformMat4(pos, divAlignSize, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const x4 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
-    const y4 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
-
-    divX = Math.min(x1, x2, x3, x4);
-    divY = Math.min(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
-
-    const xb = Math.max(x1, x2, x3, x4);
-    const yb = Math.max(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
-
-    outTop.set(divY);
-    outLeft.set(divX);
-    outRight.set(xb);
-    outBottom.set(yb);
-
-    divWidth = Math.abs(xb - divX);
-    divHeight = Math.abs(yb - divY);
-
-    divX /= op.patch.cgl.pixelDensity;
-    divY /= op.patch.cgl.pixelDensity;
-    divWidth /= op.patch.cgl.pixelDensity;
-    divHeight /= op.patch.cgl.pixelDensity;
-
-    // div.style.left=divX+'px';
-    // div.style.top=divY+'px';
-    // div.style.width=divWidth+'px';
-    // div.style.height=divHeight+'px';
-
-    const divXpx = divX + "px";
-    const divYpx = divY + "px";
-    const divWidthPx = divWidth + "px";
-    const divHeightPx = divHeight + "px";
-    if (divXpx != div.style.left) div.style.left = divXpx;
-    if (divYpx != div.style.top) div.style.top = divYpx;
-    if (div.style.width != divWidthPx) div.style.width = divWidthPx;
-    if (div.style.height != divHeightPx) div.style.height = divHeightPx;
-}
-
-function updateClassNames()
-{
-    if (div)
-    {
-        div.className = classPort.get();
-    }
-}
-
-op.onDelete = function ()
-{
-    if (div)div.remove();
-};
-
-function setUpDiv()
-{
-    if (!div)
-    {
-        div = document.createElement("div");
-        div.dataset.op = op.id;
-        div.oncontextmenu = function (e)
-        {
-            e.preventDefault();
-        };
-
-        div.style.padding = "0px";
-        div.style.position = "absolute";
-        div.style["box-sizing"] = "border-box";
-        div.style.border = "1px solid red";
-        // div.style['border-left']="1px solid blue";
-        // div.style['border-top']="1px solid green";
-        div.style["z-index"] = "500";
-
-        div.style["-webkit-user-select"] = "none";
-        div.style["user-select"] = "none";
-        div.style["-webkit-tap-highlight-color"] = "rgba(0,0,0,0)";
-        div.style["-webkit-touch-callout"] = "none";
-
-        const canvas = op.patch.cgl.canvas.parentElement;
-        canvas.appendChild(div);
-        updateCursor();
-        updateIsInteractive();
-        updateId();
-        updateClassNames();
-    }
-    updateDivSize();
-    elementPort.set(div);
-}
-
-let listenerElement = null;
-
-function onMouseMove(e)
-{
-    const offsetX = -width.get() / 2;
-    const offsetY = -height.get() / 2;
-
-    outX.set(Math.max(0.0, Math.min(1.0, e.offsetX / divWidth)));
-    outY.set(Math.max(0.0, Math.min(1.0, 1.0 - e.offsetY / divHeight)));
-}
-
-function onMouseLeave(e)
-{
-    mouseDown.set(false);
-    mouseOver.set(false);
-}
-
-function onMouseEnter(e)
-{
-    mouseOver.set(true);
-}
-
-function onMouseDown(e)
-{
-    mouseDown.set(true);
-}
-
-function onMouseUp(e)
-{
-    mouseDown.set(false);
-}
-
-function onmouseclick(e)
-{
-    mouseClick.trigger();
-}
-
-function onTouchMove(e)
-{
-    const targetEle = document.elementFromPoint(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
-
-    if (targetEle == div)
-    {
-        mouseOver.set(true);
-        if (e.touches && e.touches.length > 0)
-        {
-            const rect = div.getBoundingClientRect(); // e.target
-            const x = e.targetTouches[0].pageX - rect.left;
-            const y = e.targetTouches[0].pageY - rect.top;
-
-            const touch = e.touches[0];
-
-            outX.set(Math.max(0.0, Math.min(1.0, x / divWidth)));
-            outY.set(Math.max(0.0, Math.min(1.0, 1.0 - y / divHeight)));
-
-            onMouseMove(touch);
-        }
-    }
-    else
-    {
-        mouseOver.set(false);
-    }
-}
-
-active.onChange = updateActiveRender;
-function updateActiveRender()
-{
-    if (active.get())
-    {
-        addListeners();
-        if (div) div.style.display = "block";
-    }
-    else
-    {
-        removeListeners();
-        if (div) div.style.display = "none";
-    }
-}
-
-isInteractive.onChange = updateIsInteractive;
-function updateIsInteractive()
-{
-    if (isInteractive.get())
-    {
-        addListeners();
-        if (div)div.style["pointer-events"] = "initial";
-    }
-    else
-    {
-        removeListeners();
-        mouseDown.set(false);
-        mouseOver.set(false);
-        if (div)div.style["pointer-events"] = "none";
-    }
-}
-
-function removeListeners()
-{
-    if (listenerElement)
-    {
-        document.removeEventListener("touchmove", onTouchMove);
-        listenerElement.removeEventListener("touchend", onMouseUp);
-        listenerElement.removeEventListener("touchstart", onMouseDown);
-
-        listenerElement.removeEventListener("click", onmouseclick);
-        listenerElement.removeEventListener("mousemove", onMouseMove);
-        listenerElement.removeEventListener("mouseleave", onMouseLeave);
-        listenerElement.removeEventListener("mousedown", onMouseDown);
-        listenerElement.removeEventListener("mouseup", onMouseUp);
-        listenerElement.removeEventListener("mouseenter", onMouseEnter);
-        // listenerElement.removeEventListener('contextmenu', onClickRight);
-        listenerElement = null;
-    }
-}
-
-function addListeners()
-{
-    if (listenerElement)removeListeners();
-
-    listenerElement = div;
-
-    if (listenerElement)
-    {
-        document.addEventListener("touchmove", onTouchMove);
-        listenerElement.addEventListener("touchend", onMouseUp);
-        listenerElement.addEventListener("touchstart", onMouseDown);
-
-        listenerElement.addEventListener("click", onmouseclick);
-        listenerElement.addEventListener("mousemove", onMouseMove);
-        listenerElement.addEventListener("mouseleave", onMouseLeave);
-        listenerElement.addEventListener("mousedown", onMouseDown);
-        listenerElement.addEventListener("mouseup", onMouseUp);
-        listenerElement.addEventListener("mouseenter", onMouseEnter);
-        // listenerElement.addEventListener('contextmenu', onClickRight);
-    }
-}
-
-
-};
-
-Ops.Patch.P4Zknbo.InteractiveRectangle_v22.prototype = new CABLES.Op();
-CABLES.OPS["e7b5e668-7bb2-4224-9c2f-46015ba41497"]={f:Ops.Patch.P4Zknbo.InteractiveRectangle_v22,objName:"Ops.Patch.P4Zknbo.InteractiveRectangle_v22"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Patch.P4Zknbo.DisengageFlag
-// 
-// **************************************************************
-
-Ops.Patch.P4Zknbo.DisengageFlag = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_jqg7l6f5m=op.inFloat(\"jqg7l6f5m\",0);\nport_jqg7l6f5m.setUiAttribs({title:\"Boolean\",display:\"bool\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_jqg7l6f5m = addedOps[i].outNumber(\"innerOut_jqg7l6f5m\");\ninnerOut_jqg7l6f5m.set(port_jqg7l6f5m.get() );\ninnerOut_jqg7l6f5m.setUiAttribs({title:\"Boolean\"});\nport_jqg7l6f5m.on(\"change\", (a,v) => { innerOut_jqg7l6f5m.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"tjwrh5u95\",\"uiAttribs\":{\"subPatch\":\"ynlymowkj\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"dlvka8p7u\",\"uiAttribs\":{\"subPatch\":\"ynlymowkj\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"tjwrh5u95\",\"objOut\":\"dlvka8p7u\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"eck8hvwot\",\"uiAttribs\":{\"subPatch\":\"ynlymowkj\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_jqg7l6f5m\",\"title\":\"Boolean\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"innerOut_jqg7l6f5m\",\"objIn\":\"dlvka8p7u\",\"objOut\":\"eck8hvwot\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"7mxc7zyyb\",\"uiAttribs\":{\"subPatch\":\"ynlymowkj\"},\"storage\":{},\"objName\":\"Ops.Ui.SubPatchOutput\"}]}",};
-const port_jqg7l6f5m=op.inFloat("jqg7l6f5m",0);
-port_jqg7l6f5m.setUiAttribs({title:"Boolean",display:"bool",});
-
-op.initInnerPorts=function(addedOps)
-{
-  for(let i=0;i<addedOps.length;i++)
-  {
-    if(addedOps[i].innerInput)
-    {
-const innerOut_jqg7l6f5m = addedOps[i].outNumber("innerOut_jqg7l6f5m");
-innerOut_jqg7l6f5m.set(port_jqg7l6f5m.get() );
-innerOut_jqg7l6f5m.setUiAttribs({title:"Boolean"});
-port_jqg7l6f5m.on("change", (a,v) => { innerOut_jqg7l6f5m.set(a); });
-
-    }
-if(addedOps[i].innerOutput)
-{
-}
-}
-};
-
-const patchId = "bp2sub_" + op.id;
-
-new CABLES.SubPatchOp(op, { "subId": patchId });
-
-initializeSubpatch();
-
-function initializeSubpatch()
-{
-    const p = JSON.parse(attachments.subpatch_json);
-
-    CABLES.Patch.replaceOpIds(p,
-        {
-            "parentSubPatchId": patchId,
-            "prefixHash": patchId,
-            "oldIdAsRef": true,
-            "doNotUnlinkLostLinks": true
-        });
-
-    for (let i = 0; i < p.ops.length; i++)
-    {
-        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
-    }
-
-    op.loadDependencies(p, () =>
-    {
-        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
-        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
-        op.patch.emitEvent("subpatchExpose", patchId);
-        op.setStorage({ "blueprintVer": 2 });
-        op.patch.emitEvent("subpatchExpose", patchId);
-    });
-}
-
-
-};
-
-Ops.Patch.P4Zknbo.DisengageFlag.prototype = new CABLES.Op();
-CABLES.OPS["d3d25a0e-a7e1-43f1-a005-8b7062db8e3a"]={f:Ops.Patch.P4Zknbo.DisengageFlag,objName:"Ops.Patch.P4Zknbo.DisengageFlag"};
 
 
 
@@ -12651,7 +10207,11 @@ function renderMesh()
 
     if (drawSpline.get()) shader.glPrimitive = cgl.gl.LINE_STRIP;
 
-    if (inDraw.get() && mesh)mesh.render(shader);
+    if (inDraw.get() && mesh)
+    {
+        // mesh.instances = 3;
+        mesh.render(shader);
+    }
     trigger.trigger();
 
     shader.glPrimitive = oldPrim;
@@ -12897,6 +10457,78 @@ function exec()
 
 Ops.Number.Number.prototype = new CABLES.Op();
 CABLES.OPS["8fb2bb5d-665a-4d0a-8079-12710ae453be"]={f:Ops.Number.Number,objName:"Ops.Number.Number"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Anim.Bang
+// 
+// **************************************************************
+
+Ops.Anim.Bang = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inUpdate = op.inTrigger("update"),
+    inBang = op.inTriggerButton("Bang"),
+    inDuration = op.inValue("Duration", 0.1),
+    invert = op.inBool("Invert", false),
+    outTrigger = op.outTrigger("Trigger Out"),
+    outValue = op.outNumber("Value");
+
+const anim = new CABLES.Anim();
+let startTime = CABLES.now();
+op.toWorkPortsNeedToBeLinked(inUpdate);
+
+let needsReset = false;
+
+inBang.onTriggered = function ()
+{
+    needsReset = true;
+};
+
+inUpdate.onTriggered = function ()
+{
+    if (needsReset)
+    {
+        startTime = CABLES.now();
+        anim.clear();
+        anim.setValue(0, 1);
+        anim.setValue(inDuration.get(), 0);
+        needsReset = false;
+    }
+
+    const elapsed = (CABLES.now() - startTime) / 1000;
+    if (elapsed <= inDuration.get())
+    {
+        const v = anim.getValue(elapsed);
+        if (invert.get()) outValue.set(1.0 - v);
+        else outValue.set(v);
+    }
+    else
+    {
+        if (invert.get())
+        {
+            outValue.set(1.0);
+        }
+        else
+        {
+            outValue.set(0);
+        }
+    }
+
+    outTrigger.trigger();
+};
+
+
+};
+
+Ops.Anim.Bang.prototype = new CABLES.Op();
+CABLES.OPS["92ca45a7-5b4b-4238-956e-23d79bdc659f"]={f:Ops.Anim.Bang,objName:"Ops.Anim.Bang"};
 
 
 
@@ -14392,6 +12024,626 @@ CABLES.OPS["ef522d4a-9712-4063-8a99-c6b409f26456"]={f:Ops.Gl.Meshes.Triangle_v2,
 
 // **************************************************************
 // 
+// Ops.Gl.Matrix.Billboard
+// 
+// **************************************************************
+
+Ops.Gl.Matrix.Billboard = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const exec = op.inTrigger("Exec");
+const next = op.outTrigger("Next");
+
+const cgl = op.patch.cgl;
+
+let mm = mat4.create();
+let mv = mat4.create();
+let m = mat4.create();
+let mempty = mat4.create();
+
+exec.onTriggered = function ()
+{
+    mat4.invert(mm, cgl.mMatrix);
+    mat4.invert(mv, cgl.vMatrix);
+
+    mat4.mul(mm, mm, mv);
+
+    mm[12] = 0;
+    mm[13] = 0;
+    mm[14] = 0;
+
+    cgl.pushModelMatrix();
+    cgl.pushViewMatrix();
+    mat4.mul(cgl.mMatrix, cgl.mMatrix, mm);
+    next.trigger();
+    cgl.popViewMatrix();
+    cgl.popModelMatrix();
+};
+
+
+};
+
+Ops.Gl.Matrix.Billboard.prototype = new CABLES.Op();
+CABLES.OPS["d41e676e-d8a7-4a1e-8abf-f1bddfc982d5"]={f:Ops.Gl.Matrix.Billboard,objName:"Ops.Gl.Matrix.Billboard"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.P4Zknbo.InteractiveRectangle_v22
+// 
+// **************************************************************
+
+Ops.Patch.P4Zknbo.InteractiveRectangle_v22 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("Trigger in"),
+    trigger = op.outTrigger("Trigger out"),
+    width = op.inValue("Width", 1),
+    height = op.inValue("Height", 1),
+    inId = op.inString("ID"),
+    classPort = op.inString("Class"),
+    pivotX = op.inValueSelect("Pivot x", ["center", "left", "right"]),
+    pivotY = op.inValueSelect("Pivot y", ["center", "top", "bottom"]),
+    axis = op.inValueSelect("Axis", ["xy", "xz"]),
+    isInteractive = op.inValueBool("Is Interactive", true),
+    renderRect = op.inValueBool("Render Rectangle", true),
+    divVisible = op.inValueBool("Show Boundings", true),
+    cursorPort = op.inValueSelect("Cursor", ["auto", "crosshair", "pointer", "Hand", "move", "n-resize", "ne-resize", "e-resize", "se-resize", "s-resize", "sw-resize", "w-resize", "nw-resize", "text", "wait", "help", "none"], "pointer"),
+    active = op.inValueBool("Render", true);
+
+const geomOut = op.outObject("geometry");
+geomOut.ignoreValueSerialize = true;
+
+const
+    mouseOver = op.outBoolNum("Pointer Hover", false),
+    mouseDown = op.outBoolNum("Pointer Down", false),
+    outX = op.outNumber("Pointer X"),
+    outY = op.outNumber("Pointer Y"),
+    outTop = op.outNumber("Top"),
+    outLeft = op.outNumber("Left"),
+    outRight = op.outNumber("Right"),
+    outBottom = op.outNumber("Bottom"),
+    mouseClick = op.outTrigger("Left Click");
+
+const elementPort = op.outObject("Dom Element");
+
+active.setUiAttribs({ "title": "Active" });
+
+const cgl = op.patch.cgl;
+axis.set("xy");
+pivotX.set("center");
+pivotY.set("center");
+
+const geom = new CGL.Geometry(op.name);
+let mesh = null;
+let div = null;
+const m = mat4.create();
+const trans = mat4.create();
+const pos = vec3.create();
+const divAlign = vec3.create();
+const divAlignSize = vec3.create();
+
+axis.onChange = rebuild;
+pivotX.onChange = rebuild;
+pivotY.onChange = rebuild;
+width.onChange = rebuild;
+height.onChange = rebuild;
+cursorPort.onChange = updateCursor;
+rebuild();
+
+const modelMatrix = mat4.create();
+const identViewMatrix = mat4.create();
+const zeroVec3 = vec3.create();
+
+render.onTriggered = function ()
+{
+    if (!div)
+    {
+        setUpDiv();
+        addListeners();
+        updateDivVisibility();
+        updateIsInteractive();
+    }
+    updateDivSize();
+
+    if (active.get() && renderRect.get() && mesh) mesh.render(cgl.getShader());
+
+    trigger.trigger();
+};
+
+function rebuild()
+{
+    let w = width.get();
+    let h = height.get();
+    let x = 0;
+    let y = 0;
+
+    if (typeof w == "string")w = parseFloat(w);
+    if (typeof h == "string")h = parseFloat(h);
+
+    if (pivotX.get() == "center")
+    {
+        x = 0;
+        divAlign[0] = -w / 2;
+    }
+    if (pivotX.get() == "right")
+    {
+        x = -w / 2;
+    }
+    if (pivotX.get() == "left")
+    {
+        x = w / 2;
+    }
+
+    if (pivotY.get() == "center")
+    {
+        y = 0;
+        divAlign[1] = -h / 2;
+    }
+    if (pivotY.get() == "top") y = -h / 2;
+    if (pivotY.get() == "bottom") y = +h / 2;
+
+    const verts = [];
+    const tc = [];
+    const norms = [];
+    const indices = [];
+
+    const numRows = 1;
+    const numColumns = 1;
+
+    const stepColumn = w / numColumns;
+    const stepRow = h / numRows;
+
+    let c, r;
+
+    for (r = 0; r <= numRows; r++)
+    {
+        for (c = 0; c <= numColumns; c++)
+        {
+            verts.push(c * stepColumn - width.get() / 2 + x);
+            if (axis.get() == "xz") verts.push(0.0);
+            verts.push(r * stepRow - height.get() / 2 + y);
+            if (axis.get() == "xy") verts.push(0.0);
+
+            tc.push(c / numColumns);
+            tc.push(1.0 - r / numRows);
+
+            if (axis.get() == "xz")
+            {
+                norms.push(0);
+                norms.push(1);
+                norms.push(0);
+            }
+
+            if (axis.get() == "xy")
+            {
+                norms.push(0);
+                norms.push(0);
+                norms.push(-1);
+            }
+        }
+    }
+
+    for (c = 0; c < numColumns; c++)
+    {
+        for (r = 0; r < numRows; r++)
+        {
+            const ind = c + (numColumns + 1) * r;
+            const v1 = ind;
+            const v2 = ind + 1;
+            const v3 = ind + numColumns + 1;
+            const v4 = ind + 1 + numColumns + 1;
+
+            indices.push(v1);
+            indices.push(v3);
+            indices.push(v2);
+
+            indices.push(v2);
+            indices.push(v3);
+            indices.push(v4);
+        }
+    }
+
+    geom.clear();
+    geom.vertices = verts;
+    geom.texCoords = tc;
+    geom.verticesIndices = indices;
+    geom.vertexNormals = norms;
+
+    if (!mesh) mesh = new CGL.Mesh(cgl, geom);
+    else mesh.setGeom(geom);
+
+    geomOut.set(null);
+    geomOut.set(geom);
+}
+
+let divX = 0;
+let divY = 0;
+let divWidth = 0;
+let divHeight = 0;
+
+const mMatrix = mat4.create();
+divVisible.onChange = updateDivVisibility;
+inId.onChange = updateId;
+classPort.onChange = updateClassNames;
+
+function updateDivVisibility()
+{
+    if (div)
+    {
+        if (divVisible.get()) div.style.border = "1px solid red";
+        else div.style.border = "none";
+    }
+}
+
+function updateCursor()
+{
+    if (div)
+    {
+        div.style.cursor = cursorPort.get();
+    }
+}
+
+function updateId()
+{
+    if (div)
+    {
+        div.setAttribute("id", inId.get());
+    }
+}
+
+function updateDivSize()
+{
+    // var vp=cgl.getViewPort();
+
+    mat4.multiply(mMatrix, cgl.vMatrix, cgl.mMatrix);
+    vec3.transformMat4(pos, divAlign, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const top = cgl.canvas.styleMarginTop || 0;
+    const left = cgl.canvas.styleMarginLeft || 0;
+
+    const x1 = (trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2 + left;
+    const y1 = (trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top;
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1];
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x2 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y2 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0];
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x3 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y3 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x4 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y4 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divX = Math.min(x1, x2, x3, x4);
+    divY = Math.min(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    const xb = Math.max(x1, x2, x3, x4);
+    const yb = Math.max(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    outTop.set(divY);
+    outLeft.set(divX);
+    outRight.set(xb);
+    outBottom.set(yb);
+
+    divWidth = Math.abs(xb - divX);
+    divHeight = Math.abs(yb - divY);
+
+    divX /= op.patch.cgl.pixelDensity;
+    divY /= op.patch.cgl.pixelDensity;
+    divWidth /= op.patch.cgl.pixelDensity;
+    divHeight /= op.patch.cgl.pixelDensity;
+
+    // div.style.left=divX+'px';
+    // div.style.top=divY+'px';
+    // div.style.width=divWidth+'px';
+    // div.style.height=divHeight+'px';
+
+    const divXpx = divX + "px";
+    const divYpx = divY + "px";
+    const divWidthPx = divWidth + "px";
+    const divHeightPx = divHeight + "px";
+    if (divXpx != div.style.left) div.style.left = divXpx;
+    if (divYpx != div.style.top) div.style.top = divYpx;
+    if (div.style.width != divWidthPx) div.style.width = divWidthPx;
+    if (div.style.height != divHeightPx) div.style.height = divHeightPx;
+}
+
+function updateClassNames()
+{
+    if (div)
+    {
+        div.className = classPort.get();
+    }
+}
+
+op.onDelete = function ()
+{
+    if (div)div.remove();
+};
+
+function setUpDiv()
+{
+    if (!div)
+    {
+        div = document.createElement("div");
+        div.dataset.op = op.id;
+        div.oncontextmenu = function (e)
+        {
+            e.preventDefault();
+        };
+
+        div.style.padding = "0px";
+        div.style.position = "absolute";
+        div.style["box-sizing"] = "border-box";
+        div.style.border = "1px solid red";
+        // div.style['border-left']="1px solid blue";
+        // div.style['border-top']="1px solid green";
+        div.style["z-index"] = "500";
+
+        div.style["-webkit-user-select"] = "none";
+        div.style["user-select"] = "none";
+        div.style["-webkit-tap-highlight-color"] = "rgba(0,0,0,0)";
+        div.style["-webkit-touch-callout"] = "none";
+
+        const canvas = op.patch.cgl.canvas.parentElement;
+        canvas.appendChild(div);
+        updateCursor();
+        updateIsInteractive();
+        updateId();
+        updateClassNames();
+    }
+    updateDivSize();
+    elementPort.set(div);
+}
+
+let listenerElement = null;
+
+function onMouseMove(e)
+{
+    const offsetX = -width.get() / 2;
+    const offsetY = -height.get() / 2;
+
+    outX.set(Math.max(0.0, Math.min(1.0, e.offsetX / divWidth)));
+    outY.set(Math.max(0.0, Math.min(1.0, 1.0 - e.offsetY / divHeight)));
+}
+
+function onMouseLeave(e)
+{
+    mouseDown.set(false);
+    mouseOver.set(false);
+}
+
+function onMouseEnter(e)
+{
+    mouseOver.set(true);
+}
+
+function onMouseDown(e)
+{
+    mouseDown.set(true);
+}
+
+function onMouseUp(e)
+{
+    mouseDown.set(false);
+}
+
+function onmouseclick(e)
+{
+    mouseClick.trigger();
+}
+
+function onTouchMove(e)
+{
+    const targetEle = document.elementFromPoint(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
+
+    if (targetEle == div)
+    {
+        mouseOver.set(true);
+        if (e.touches && e.touches.length > 0)
+        {
+            const rect = div.getBoundingClientRect(); // e.target
+            const x = e.targetTouches[0].pageX - rect.left;
+            const y = e.targetTouches[0].pageY - rect.top;
+
+            const touch = e.touches[0];
+
+            outX.set(Math.max(0.0, Math.min(1.0, x / divWidth)));
+            outY.set(Math.max(0.0, Math.min(1.0, 1.0 - y / divHeight)));
+
+            onMouseMove(touch);
+        }
+    }
+    else
+    {
+        mouseOver.set(false);
+    }
+}
+
+active.onChange = updateActiveRender;
+function updateActiveRender()
+{
+    if (active.get())
+    {
+        addListeners();
+        if (div) div.style.display = "block";
+    }
+    else
+    {
+        removeListeners();
+        if (div) div.style.display = "none";
+    }
+}
+
+isInteractive.onChange = updateIsInteractive;
+function updateIsInteractive()
+{
+    if (isInteractive.get())
+    {
+        addListeners();
+        if (div)div.style["pointer-events"] = "initial";
+    }
+    else
+    {
+        removeListeners();
+        mouseDown.set(false);
+        mouseOver.set(false);
+        if (div)div.style["pointer-events"] = "none";
+    }
+}
+
+function removeListeners()
+{
+    if (listenerElement)
+    {
+        document.removeEventListener("touchmove", onTouchMove);
+        listenerElement.removeEventListener("touchend", onMouseUp);
+        listenerElement.removeEventListener("touchstart", onMouseDown);
+
+        listenerElement.removeEventListener("click", onmouseclick);
+        listenerElement.removeEventListener("mousemove", onMouseMove);
+        listenerElement.removeEventListener("mouseleave", onMouseLeave);
+        listenerElement.removeEventListener("mousedown", onMouseDown);
+        listenerElement.removeEventListener("mouseup", onMouseUp);
+        listenerElement.removeEventListener("mouseenter", onMouseEnter);
+        // listenerElement.removeEventListener('contextmenu', onClickRight);
+        listenerElement = null;
+    }
+}
+
+function addListeners()
+{
+    if (listenerElement)removeListeners();
+
+    listenerElement = div;
+
+    if (listenerElement)
+    {
+        document.addEventListener("touchmove", onTouchMove);
+        listenerElement.addEventListener("touchend", onMouseUp);
+        listenerElement.addEventListener("touchstart", onMouseDown);
+
+        listenerElement.addEventListener("click", onmouseclick);
+        listenerElement.addEventListener("mousemove", onMouseMove);
+        listenerElement.addEventListener("mouseleave", onMouseLeave);
+        listenerElement.addEventListener("mousedown", onMouseDown);
+        listenerElement.addEventListener("mouseup", onMouseUp);
+        listenerElement.addEventListener("mouseenter", onMouseEnter);
+        // listenerElement.addEventListener('contextmenu', onClickRight);
+    }
+}
+
+
+};
+
+Ops.Patch.P4Zknbo.InteractiveRectangle_v22.prototype = new CABLES.Op();
+CABLES.OPS["e7b5e668-7bb2-4224-9c2f-46015ba41497"]={f:Ops.Patch.P4Zknbo.InteractiveRectangle_v22,objName:"Ops.Patch.P4Zknbo.InteractiveRectangle_v22"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.P4Zknbo.DisengageFlag
+// 
+// **************************************************************
+
+Ops.Patch.P4Zknbo.DisengageFlag = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"inc_gen_ports_js":"const port_jqg7l6f5m=op.inFloat(\"jqg7l6f5m\",0);\nport_jqg7l6f5m.setUiAttribs({title:\"Boolean\",display:\"bool\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_jqg7l6f5m = addedOps[i].outNumber(\"innerOut_jqg7l6f5m\");\ninnerOut_jqg7l6f5m.set(port_jqg7l6f5m.get() );\ninnerOut_jqg7l6f5m.setUiAttribs({title:\"Boolean\"});\nport_jqg7l6f5m.on(\"change\", (a,v) => { innerOut_jqg7l6f5m.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"tjwrh5u95\",\"uiAttribs\":{\"subPatch\":\"ynlymowkj\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"dlvka8p7u\",\"uiAttribs\":{\"subPatch\":\"ynlymowkj\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"tjwrh5u95\",\"objOut\":\"dlvka8p7u\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"eck8hvwot\",\"uiAttribs\":{\"subPatch\":\"ynlymowkj\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_jqg7l6f5m\",\"title\":\"Boolean\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"innerOut_jqg7l6f5m\",\"objIn\":\"dlvka8p7u\",\"objOut\":\"eck8hvwot\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"7mxc7zyyb\",\"uiAttribs\":{\"subPatch\":\"ynlymowkj\"},\"storage\":{},\"objName\":\"Ops.Ui.SubPatchOutput\"}]}",};
+const port_jqg7l6f5m=op.inFloat("jqg7l6f5m",0);
+port_jqg7l6f5m.setUiAttribs({title:"Boolean",display:"bool",});
+
+op.initInnerPorts=function(addedOps)
+{
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
+    {
+const innerOut_jqg7l6f5m = addedOps[i].outNumber("innerOut_jqg7l6f5m");
+innerOut_jqg7l6f5m.set(port_jqg7l6f5m.get() );
+innerOut_jqg7l6f5m.setUiAttribs({title:"Boolean"});
+port_jqg7l6f5m.on("change", (a,v) => { innerOut_jqg7l6f5m.set(a); });
+
+    }
+if(addedOps[i].innerOutput)
+{
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
+    {
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
+    }
+
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
+}
+
+
+};
+
+Ops.Patch.P4Zknbo.DisengageFlag.prototype = new CABLES.Op();
+CABLES.OPS["d3d25a0e-a7e1-43f1-a005-8b7062db8e3a"]={f:Ops.Patch.P4Zknbo.DisengageFlag,objName:"Ops.Patch.P4Zknbo.DisengageFlag"};
+
+
+
+
+// **************************************************************
+// 
 // Ops.Gl.ClearColor
 // 
 // **************************************************************
@@ -14901,6 +13153,56 @@ CABLES.OPS["b24dbfdc-485c-49d2-92a1-7258efd9239a"]={f:Ops.Gl.Matrix.Camera,objNa
 
 // **************************************************************
 // 
+// Ops.Math.Ease
+// 
+// **************************************************************
+
+Ops.Math.Ease = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inVal = op.inValue("Value"),
+    inMin = op.inValue("Min", 0),
+    inMax = op.inValue("Max", 1),
+    result = op.outNumber("Result"),
+    anim = new CABLES.Anim();
+
+anim.createPort(op, "Easing", updateAnimEasing);
+anim.setValue(0, 0);
+anim.setValue(1, 1);
+
+op.onLoaded = inMin.onChange = inMax.onChange = updateMinMax;
+
+function updateMinMax()
+{
+    anim.keys[0].time = anim.keys[0].value = Math.min(inMin.get(), inMax.get());
+    anim.keys[1].time = anim.keys[1].value = Math.max(inMin.get(), inMax.get());
+}
+
+function updateAnimEasing()
+{
+    anim.keys[0].setEasing(anim.defaultEasing);
+}
+
+inVal.onChange = function ()
+{
+    const r = anim.getValue(inVal.get());
+    result.set(r);
+};
+
+
+};
+
+Ops.Math.Ease.prototype = new CABLES.Op();
+CABLES.OPS["8f6e4a08-33e6-408f-ac4a-198bd03b417b"]={f:Ops.Math.Ease,objName:"Ops.Math.Ease"};
+
+
+
+
+// **************************************************************
+// 
 // Ops.Gl.Matrix.TransformView
 // 
 // **************************************************************
@@ -15141,6 +13443,46 @@ function update()
 
 Ops.String.StringCompose_v3.prototype = new CABLES.Op();
 CABLES.OPS["6afea9f4-728d-4f3c-9e75-62ddc1448bf0"]={f:Ops.String.StringCompose_v3,objName:"Ops.String.StringCompose_v3"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Array.ArrayGetString
+// 
+// **************************************************************
+
+Ops.Array.ArrayGetString = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    array = op.inArray("array"),
+    index = op.inValueInt("index"),
+    result = op.outString("result");
+
+array.ignoreValueSerialize = true;
+
+index.onChange = update;
+
+array.onChange = function ()
+{
+    update();
+};
+
+function update()
+{
+    const arr = array.get();
+    if (arr) result.set(arr[index.get()]);
+}
+
+
+};
+
+Ops.Array.ArrayGetString.prototype = new CABLES.Op();
+CABLES.OPS["be8f16c0-0c8a-48a2-a92b-45dbf88c76c1"]={f:Ops.Array.ArrayGetString,objName:"Ops.Array.ArrayGetString"};
 
 
 
@@ -16081,6 +14423,72 @@ inIfNull.onChange =
 
 Ops.Array.GateArray_v2.prototype = new CABLES.Op();
 CABLES.OPS["e28a489c-46b6-4279-928c-6b0cbaaaae2a"]={f:Ops.Array.GateArray_v2,objName:"Ops.Array.GateArray_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.MathExpression
+// 
+// **************************************************************
+
+Ops.Math.MathExpression = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const inA = op.inFloat("A", 0);
+const inB = op.inFloat("B", 1);
+const inC = op.inFloat("C", 2);
+const inD = op.inFloat("D", 3);
+op.setPortGroup("Parameters", [inA, inB, inC, inD]);
+const inExpression = op.inString("Expression", "a*(b+c+d)");
+op.setPortGroup("Expression", [inExpression]);
+const outResult = op.outNumber("Result");
+const outExpressionIsValid = op.outBool("Expression Valid");
+
+let currentFunction = inExpression.get();
+let functionValid = false;
+
+const createFunction = () =>
+{
+    try
+    {
+        currentFunction = new Function("m", "a", "b", "c", "d", `with(m) { return ${inExpression.get()} }`);
+        functionValid = true;
+        evaluateFunction();
+        outExpressionIsValid.set(functionValid);
+    }
+    catch (e)
+    {
+        functionValid = false;
+        outExpressionIsValid.set(functionValid);
+        if (e instanceof ReferenceError || e instanceof SyntaxError) return;
+    }
+};
+
+const evaluateFunction = () =>
+{
+    if (functionValid)
+    {
+        outResult.set(currentFunction(Math, inA.get(), inB.get(), inC.get(), inD.get()));
+        if (!inExpression.get()) outResult.set(0);
+    }
+
+    outExpressionIsValid.set(functionValid);
+};
+
+
+inA.onChange = inB.onChange = inC.onChange = inD.onChange = evaluateFunction;
+inExpression.onChange = createFunction;
+createFunction();
+
+
+};
+
+Ops.Math.MathExpression.prototype = new CABLES.Op();
+CABLES.OPS["d2343a1e-64ea-45b2-99ed-46e167bbdcd3"]={f:Ops.Math.MathExpression,objName:"Ops.Math.MathExpression"};
 
 
 
@@ -17164,6 +15572,70 @@ number1.onChange = exec;
 
 Ops.Math.Ceil.prototype = new CABLES.Op();
 CABLES.OPS["15ba7aa9-b1c3-4b20-b6bf-b52a3ba8c8c5"]={f:Ops.Math.Ceil,objName:"Ops.Math.Ceil"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.Modulo
+// 
+// **************************************************************
+
+Ops.Math.Modulo = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    number1 = op.inValueFloat("number1", 1),
+    number2 = op.inValueFloat("number2", 2),
+    pingpong = op.inValueBool("pingpong"),
+    result = op.outNumber("result");
+
+let calculateFunction = calculateModule;
+
+number1.onChange =
+number2.onChange = exec;
+
+pingpong.onChange = updatePingPong;
+
+exec();
+
+function exec()
+{
+    let n2 = number2.get();
+    let n1 = number1.get();
+
+    result.set(calculateFunction(n1, n2));
+}
+
+function calculateModule(n1, n2)
+{
+    let re = ((n1 % n2) + n2) % n2;
+    if (re != re) re = 0;
+    return re;
+}
+
+function calculatePingPong(i, n)
+{
+    let cycle = 2 * n;
+    i %= cycle;
+    if (i >= n) return cycle - i;
+    else return i;
+}
+
+function updatePingPong()
+{
+    if (pingpong.get()) calculateFunction = calculatePingPong;
+    else calculateFunction = calculateModule;
+}
+
+
+};
+
+Ops.Math.Modulo.prototype = new CABLES.Op();
+CABLES.OPS["ebc13b25-3705-4265-8f06-5f985b6a7bb1"]={f:Ops.Math.Modulo,objName:"Ops.Math.Modulo"};
 
 
 
@@ -18365,6 +16837,7 @@ const
     inConsole = op.inTriggerButton("console log"),
     inZoomText = op.inBool("ZoomText", false),
     inLineNums = op.inBool("Line Numbers", true),
+    inExpString = op.inBool("Experimental Stringify", true),
     inFontSize = op.inFloat("Font Size", 10),
     inPos = op.inFloatSlider("Scroll", 0);
 
@@ -18373,11 +16846,99 @@ inConsole.setUiAttribs({ "hidePort": true });
 
 op.setUiAttrib({ "height": 200, "width": 400, "resizable": true, "vizLayerMaxZoom": 2500 });
 
+function myStringify(o, level = 0)
+{
+    let ind = "   ";
+    let indent = "";
+    let str = "";
+    for (let i = 0; i < level; i++) indent += ind;
+
+    let keys = Object.keys(o).sort();
+    let numKeys = keys.length;
+
+    if (numKeys == 0)
+    {
+        str += indent + "{}";
+    }
+    else
+    {
+        let keyCounter = 0;
+        str += indent + "{\n";
+        for (let i = 0; i < keys.length; i++)
+        {
+            const item = o[keys[i]];
+
+            keyCounter++;
+            str += indent + ind;
+            str += "\"" + keys[i] + "\": ";
+
+            if (item === null)
+            {
+                str += "null";
+            }
+            else
+            if (item === undefined)
+            {
+                str += "undefined";
+            }
+            else
+            if (item === true)
+            {
+                str += "true";
+            }
+            else
+            if (item === false)
+            {
+                str += "false";
+            }
+            else
+            if (typeof item === "number")
+            {
+                str += String(item);
+            }
+            else if (typeof item === "string")
+            {
+                str += "\"" + item + "\"";
+            }
+            else if (Array.isArray(item) || (item.constructor && item.constructor.name === "Float32Array"))
+            {
+                str += "{" + item.constructor.name + "[" + item.length + "]} ";
+                str += "[";
+                for (let a = 0; a < Math.min(5, item.length); a++)
+                {
+                    if (a > 0)str += ",";
+                    str += item[a];
+                }
+                str += "...";
+                str += "]";
+            }
+            else if (item.constructor.name === "Object")
+            {
+                if (Object.keys(item).length == 0) str += "{}";
+                else str += "\n" + myStringify(item, level + 1);
+            }
+            else
+            {
+                str += "[" + item.constructor.name + "]";
+                str += "\n" + myStringify(item, level + 1);
+            }
+
+            if (keyCounter != numKeys)str += ",";
+            str += "\n";
+        }
+
+        str += indent;
+        str += "}";
+    }
+
+    return str;
+}
+
+inExpString.onChange =
 inObj.onChange = () =>
 {
     let obj = inObj.get();
     let str = "???";
-
     if (obj && obj.getInfo) obj = obj.getInfo();
 
     if (obj && obj.constructor && obj.constructor.name != "Object") op.setUiAttribs({ "extendTitle": obj.constructor.name });
@@ -18387,7 +16948,8 @@ inObj.onChange = () =>
     else
         try
         {
-            str = JSON.stringify(obj, false, 4);
+            if (inExpString.get()) str = myStringify(obj);
+            else str = JSON.stringify(obj, false, 4);
 
             if (
                 obj.hasOwnProperty("isTrusted") && Object.keys(obj).length == 1 ||
@@ -18414,7 +16976,7 @@ inObj.onChange = () =>
         }
         catch (e)
         {
-            str = "object can not be displayed as string", e.msg;
+            str = "object can not be displayed as string\n" + e.message;
         }
 
     str = String(str);
@@ -18494,6 +17056,7 @@ let shader = null;
 let fb = null;
 let pixelReader = null;
 let colorString = "";
+let firstTime = true;
 
 inAlpha.onChange =
     inVizRange.onChange = updateDefines;
@@ -18504,7 +17067,7 @@ updateUi();
 if (CABLES.UI)
 {
     timer.play();
-    op.checkMainloopExists();
+    // op.checkMainloopExists();
 }
 
 function updateUi()
@@ -18534,11 +17097,16 @@ function updateDefines()
     shader.toggleDefine("ANIM_RANGE", inVizRange.get() == "Anim");
     shader.toggleDefine("ALPHA_INV", inAlpha.get() == "1-A");
     shader.toggleDefine("ALPHA_ONE", inAlpha.get() == "1");
-    op.checkMainloopExists();
+    // op.checkMainloopExists();
 }
 
 op.renderVizLayerGl = (ctx, layer) =>
 {
+    // if (firstTime)
+    // {
+    //     firstTime = false;
+    //     op.checkMainloopExists();
+    // }
     if (!inTex.isLinked()) return;
     if (!layer.useGl) return;
 
@@ -19097,7 +17665,7 @@ const
     inZoomText = op.inBool("ZoomText", false),
     inLineNums = op.inBool("Line Numbers", true),
     inWhitespace = op.inBool("Whitespace", false),
-    inWrap = op.inBool("Wrap lines", true),
+    inWrap = op.inBool("Wrap lines", false),
     syntax = op.inValueSelect("Syntax", ["text", "glsl", "css", "html", "xml", "json", "javascript", "inline-css", "sql"], "text"),
     inFontSize = op.inFloat("Font Size", 10),
     inPos = op.inFloatSlider("Scroll", 0);
@@ -19406,6 +17974,124 @@ function testMultiMainloop()
 
 Ops.Gl.MainLoop.prototype = new CABLES.Op();
 CABLES.OPS["b0472a1d-db16-4ba6-8787-f300fbdc77bb"]={f:Ops.Gl.MainLoop,objName:"Ops.Gl.MainLoop"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.MapRange
+// 
+// **************************************************************
+
+Ops.Math.MapRange = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    v = op.inValueFloat("value", 0),
+    old_min = op.inValueFloat("old min", 0),
+    old_max = op.inValueFloat("old max", 1),
+    new_min = op.inValueFloat("new min", 0),
+    new_max = op.inValueFloat("new max", 1),
+    easing = op.inValueSelect("Easing", ["Linear", "Smoothstep", "Smootherstep"], "Linear"),
+    inClamp = op.inBool("Clamp", true),
+    result = op.outNumber("result", 0);
+
+op.setPortGroup("Input Range", [old_min, old_max]);
+op.setPortGroup("Output Range", [new_min, new_max]);
+
+let doClamp = true;
+let ease = 0;
+let r = 0;
+
+v.onChange =
+    old_min.onChange =
+    old_max.onChange =
+    new_min.onChange =
+    new_max.onChange = exec;
+
+exec();
+
+inClamp.onChange =
+() =>
+{
+    doClamp = inClamp.get();
+    exec();
+};
+
+easing.onChange = function ()
+{
+    if (easing.get() == "Smoothstep") ease = 1;
+    else if (easing.get() == "Smootherstep") ease = 2;
+    else ease = 0;
+};
+
+function exec()
+{
+    const nMin = new_min.get();
+    const nMax = new_max.get();
+    const oMin = old_min.get();
+    const oMax = old_max.get();
+    let x = v.get();
+
+    if (doClamp)
+    {
+        if (x >= Math.max(oMax, oMin))
+        {
+            result.set(nMax);
+            return;
+        }
+        else
+        if (x <= Math.min(oMax, oMin))
+        {
+            result.set(nMin);
+            return;
+        }
+    }
+
+    let reverseInput = false;
+    const oldMin = Math.min(oMin, oMax);
+    const oldMax = Math.max(oMin, oMax);
+    if (oldMin != oMin) reverseInput = true;
+
+    let reverseOutput = false;
+    const newMin = Math.min(nMin, nMax);
+    const newMax = Math.max(nMin, nMax);
+    if (newMin != nMin) reverseOutput = true;
+
+    let portion = 0;
+
+    if (reverseInput) portion = (oldMax - x) * (newMax - newMin) / (oldMax - oldMin);
+    else portion = (x - oldMin) * (newMax - newMin) / (oldMax - oldMin);
+
+    if (reverseOutput) r = newMax - portion;
+    else r = portion + newMin;
+
+    if (ease === 0)
+    {
+        result.set(r);
+    }
+    else
+    if (ease == 1)
+    {
+        x = Math.max(0, Math.min(1, (r - nMin) / (nMax - nMin)));
+        result.set(nMin + x * x * (3 - 2 * x) * (nMax - nMin)); // smoothstep
+    }
+    else
+    if (ease == 2)
+    {
+        x = Math.max(0, Math.min(1, (r - nMin) / (nMax - nMin)));
+        result.set(nMin + x * x * x * (x * (x * 6 - 15) + 10) * (nMax - nMin)); // smootherstep
+    }
+}
+
+
+};
+
+Ops.Math.MapRange.prototype = new CABLES.Op();
+CABLES.OPS["2617b407-60a0-4ff6-b4a7-18136cfa7817"]={f:Ops.Math.MapRange,objName:"Ops.Math.MapRange"};
 
 
 
@@ -19775,6 +18461,40 @@ op.renderVizLayer = (ctx, layer) =>
 
 Ops.Ui.VizTrigger.prototype = new CABLES.Op();
 CABLES.OPS["4533060f-3cd4-4572-ac78-dad0710a3f7a"]={f:Ops.Ui.VizTrigger,objName:"Ops.Ui.VizTrigger"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.Compare.GreaterThan
+// 
+// **************************************************************
+
+Ops.Math.Compare.GreaterThan = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    number1 = op.inValueFloat("number1"),
+    number2 = op.inValueFloat("number2"),
+    result = op.outBoolNum("result");
+
+op.setUiAttribs({ "mathTitle": true });
+
+number1.onChange = number2.onChange = exec;
+
+function exec()
+{
+    result.set(number1.get() > number2.get());
+}
+
+
+};
+
+Ops.Math.Compare.GreaterThan.prototype = new CABLES.Op();
+CABLES.OPS["b250d606-f7f8-44d3-b099-c29efff2608a"]={f:Ops.Math.Compare.GreaterThan,objName:"Ops.Math.Compare.GreaterThan"};
 
 
 
@@ -20337,6 +19057,58 @@ function update()
 
 Ops.Json.ObjectGetObject_v2.prototype = new CABLES.Op();
 CABLES.OPS["d1dfa305-89db-4ca1-b0ac-2d6321d76ae8"]={f:Ops.Json.ObjectGetObject_v2,objName:"Ops.Json.ObjectGetObject_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Boolean.MonoFlop
+// 
+// **************************************************************
+
+Ops.Boolean.MonoFlop = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    trigger = op.inTriggerButton("Trigger"),
+    duration = op.inValue("Duration", 1),
+    valueTrue = op.inValue("Value True", 1),
+    valueFalse = op.inValue("Value False", 0),
+    resetButton = op.inTriggerButton("Reset"),
+    outAct = op.outTrigger("Activated"),
+    outEnded = op.outTrigger("Ended"),
+    result = op.outBoolNum("Result", false);
+
+let lastTimeout = -1;
+
+resetButton.onTriggered = function ()
+{
+    result.set(valueFalse.get());
+
+    clearTimeout(lastTimeout);
+};
+
+trigger.onTriggered = function ()
+{
+    if (result.get() == valueFalse.get())outAct.trigger();
+    result.set(valueTrue.get());
+
+    clearTimeout(lastTimeout);
+    lastTimeout = setTimeout(function ()
+    {
+        result.set(valueFalse.get());
+        outEnded.trigger();
+    }, duration.get() * 1000);
+};
+
+
+};
+
+Ops.Boolean.MonoFlop.prototype = new CABLES.Op();
+CABLES.OPS["3a4b0a78-4172-41c7-8248-95cb0856ecc8"]={f:Ops.Boolean.MonoFlop,objName:"Ops.Boolean.MonoFlop"};
 
 
 
@@ -21087,11 +19859,11 @@ CABLES.OPS["074034c9-9698-4984-897a-849bcb2b9b62"]={f:Ops.Array.ArrayPushString,
 
 // **************************************************************
 // 
-// Ops.Html.TransformElement
+// Ops.Html.CSS.TransformElement
 // 
 // **************************************************************
 
-Ops.Html.TransformElement = function()
+Ops.Html.CSS.TransformElement = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
@@ -21282,8 +20054,8 @@ op.addEventListener("onEnabledChange", function (enabled)
 
 };
 
-Ops.Html.TransformElement.prototype = new CABLES.Op();
-CABLES.OPS["caca0307-d460-47df-8674-b7d2601239ab"]={f:Ops.Html.TransformElement,objName:"Ops.Html.TransformElement"};
+Ops.Html.CSS.TransformElement.prototype = new CABLES.Op();
+CABLES.OPS["caca0307-d460-47df-8674-b7d2601239ab"]={f:Ops.Html.CSS.TransformElement,objName:"Ops.Html.CSS.TransformElement"};
 
 
 
@@ -21489,11 +20261,11 @@ CABLES.OPS["cc591cc3-ff23-4817-907c-e5be7d5c059d"]={f:Ops.Sidebar.SidebarText_v2
 
 // **************************************************************
 // 
-// Ops.Html.ElementCssShadow
+// Ops.Html.CSS.ElementCssShadow
 // 
 // **************************************************************
 
-Ops.Html.ElementCssShadow = function()
+Ops.Html.CSS.ElementCssShadow = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
@@ -21555,8 +20327,8 @@ function update()
 
 };
 
-Ops.Html.ElementCssShadow.prototype = new CABLES.Op();
-CABLES.OPS["d57433b7-7662-4ae3-8016-e09414705f77"]={f:Ops.Html.ElementCssShadow,objName:"Ops.Html.ElementCssShadow"};
+Ops.Html.CSS.ElementCssShadow.prototype = new CABLES.Op();
+CABLES.OPS["d57433b7-7662-4ae3-8016-e09414705f77"]={f:Ops.Html.CSS.ElementCssShadow,objName:"Ops.Html.CSS.ElementCssShadow"};
 
 
 
@@ -21723,9 +20495,15 @@ function reset()
     // mode 2 Normalized array
     else if (selectIndex === MODE_0_TO_1)
     {
-        for (i = 0; i < arrLength; i++)
+        if (arrLength > 1) { 
+            for (i = 0; i < arrLength; i++)
+                {
+                    arr[i] = i / (arrLength - 1);
+                }
+        } else 
         {
-            arr[i] = i / (arrLength - 1);
+            //When array length is only 1 
+            arr = [0];
         }
     }
 
@@ -22023,7 +20801,7 @@ key.on("change", updateUi);
 updateUi();
 function updateUi()
 {
-    if (!key.get())op.setUiError("nokey", "Missing Key Value");
+    if (!key.get())op.setUiError("nokey", "Missing Key Value", 1);
     else op.setUiError("nokey", null);
 }
 
@@ -22061,11 +20839,11 @@ CABLES.OPS["7c06a818-9c07-493a-8c4f-04eb2c7796f5"]={f:Ops.Json.ObjectGetArray_v2
 
 // **************************************************************
 // 
-// Ops.Html.CSS_v3
+// Ops.Html.CSS.CSS_v3
 // 
 // **************************************************************
 
-Ops.Html.CSS_v3 = function()
+Ops.Html.CSS.CSS_v3 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
@@ -22149,8 +20927,8 @@ op.onDelete = function ()
 
 };
 
-Ops.Html.CSS_v3.prototype = new CABLES.Op();
-CABLES.OPS["aa44a0e9-b9fe-4eed-93a3-38e41a91b623"]={f:Ops.Html.CSS_v3,objName:"Ops.Html.CSS_v3"};
+Ops.Html.CSS.CSS_v3.prototype = new CABLES.Op();
+CABLES.OPS["aa44a0e9-b9fe-4eed-93a3-38e41a91b623"]={f:Ops.Html.CSS.CSS_v3,objName:"Ops.Html.CSS.CSS_v3"};
 
 
 
@@ -23302,11 +22080,11 @@ CABLES.OPS["22b0ba21-a0c3-45a0-b0bc-2db5d770582e"]={f:Ops.Patch.PxdLHGq.SidebarS
 
 // **************************************************************
 // 
-// Ops.Array.ArrayChangedTrigger
+// Ops.Extension.Deprecated.ArrayChangedTrigger
 // 
 // **************************************************************
 
-Ops.Array.ArrayChangedTrigger = function()
+Ops.Extension.Deprecated.ArrayChangedTrigger = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
@@ -23325,8 +22103,8 @@ inArr.onChange = function ()
 
 };
 
-Ops.Array.ArrayChangedTrigger.prototype = new CABLES.Op();
-CABLES.OPS["bb55860d-a186-4e39-9542-8d21185e7e12"]={f:Ops.Array.ArrayChangedTrigger,objName:"Ops.Array.ArrayChangedTrigger"};
+Ops.Extension.Deprecated.ArrayChangedTrigger.prototype = new CABLES.Op();
+CABLES.OPS["bb55860d-a186-4e39-9542-8d21185e7e12"]={f:Ops.Extension.Deprecated.ArrayChangedTrigger,objName:"Ops.Extension.Deprecated.ArrayChangedTrigger"};
 
 
 
@@ -23381,6 +22159,49 @@ function rotate(array, n, guard)
 
 Ops.Array.RotateArray.prototype = new CABLES.Op();
 CABLES.OPS["e435d07b-8545-4469-befb-868510adcb76"]={f:Ops.Array.RotateArray,objName:"Ops.Array.RotateArray"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.Round
+// 
+// **************************************************************
+
+Ops.Math.Round = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    number1 = op.inValueFloat("number"),
+    decPlaces = op.inInt("Decimal Places", 0),
+    result = op.outNumber("result");
+
+let decm = 0;
+
+number1.onChange = exec;
+decPlaces.onChange = updateDecm;
+
+updateDecm();
+
+function updateDecm()
+{
+    decm = Math.pow(10, decPlaces.get());
+    exec();
+}
+
+function exec()
+{
+    result.set(Math.round(number1.get() * decm) / decm);
+}
+
+
+};
+
+Ops.Math.Round.prototype = new CABLES.Op();
+CABLES.OPS["1a1ef636-6d02-42ba-ae1e-627b917d0d2b"]={f:Ops.Math.Round,objName:"Ops.Math.Round"};
 
 
 
@@ -23813,7 +22634,6 @@ op.renderVizLayer = (ctx, layer) =>
         for (let s = 0; s < stride; s++)
         {
             const v = arr[i + s];
-
             columnsWidth[s] = Math.max(columnsWidth[s], getCellValue(v).length);
         }
     }
@@ -24864,6 +23684,1288 @@ inTriggerPort.onTriggered = function ()
 
 Ops.Trigger.TriggerLimiter.prototype = new CABLES.Op();
 CABLES.OPS["47641d85-9f81-4287-8aa2-35753b0727e0"]={f:Ops.Trigger.TriggerLimiter,objName:"Ops.Trigger.TriggerLimiter"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Ui.Routing.RouteObject
+// 
+// **************************************************************
+
+Ops.Ui.Routing.RouteObject = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    v = op.inObject("Array In", ""),
+    result = op.outObject("Array Out");
+
+op.setUiAttribs({ "display": "reroute" });
+v.onChange = exec;
+
+result.onLinkChanged =
+v.onLinkChanged = () =>
+{
+    v.copyLinkedUiAttrib("objType", result);
+};
+
+function exec()
+{
+    result.setRef(v.get());
+}
+
+
+};
+
+Ops.Ui.Routing.RouteObject.prototype = new CABLES.Op();
+CABLES.OPS["c9b14538-bcd7-4559-9f61-c0d5a96b0ba8"]={f:Ops.Ui.Routing.RouteObject,objName:"Ops.Ui.Routing.RouteObject"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Trigger.RouteTriggerMultiPort
+// 
+// **************************************************************
+
+Ops.Trigger.RouteTriggerMultiPort = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    exePort = op.inTriggerButton("Execute"),
+    switchPort = op.inValueInt("Switch Value"),
+    numTrigs = op.outNumber("Total Connections"),
+    outTrigs = op.outMultiPort("Trigger", CABLES.OP_PORT_TYPE_FUNCTION);
+
+exePort.onTriggered = update;
+
+function update()
+{
+    const trigs = outTrigs.get();
+    numTrigs.set(trigs.length);
+
+    const index = Math.floor(switchPort.get());
+    if (index >= 0 && index < trigs.length)
+    {
+        trigs[index].trigger();
+    }
+}
+
+
+};
+
+Ops.Trigger.RouteTriggerMultiPort.prototype = new CABLES.Op();
+CABLES.OPS["e9cfc6a0-c764-435c-aa98-c6e8f30729d6"]={f:Ops.Trigger.RouteTriggerMultiPort,objName:"Ops.Trigger.RouteTriggerMultiPort"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.Meshes.Torus_v3
+// 
+// **************************************************************
+
+Ops.Gl.Meshes.Torus_v3 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("render"),
+    sides = op.inValue("sides", 32),
+    rings = op.inValue("rings", 32),
+    innerRadius = op.inValue("innerRadius", 0.25),
+    outerRadius = op.inValue("outerRadius", 0.5),
+    indraw = op.inBool("Draw", true),
+    trigger = op.outTrigger("trigger"),
+    geomOut = op.outObject("geometry");
+
+indraw.setUiAttribs({ "title": "Render mesh" });
+
+const UP = vec3.fromValues(0, 1, 0), RIGHT = vec3.fromValues(1, 0, 0);
+let tmpNormal = vec3.create(), tmpVec = vec3.create();
+
+geomOut.ignoreValueSerialize = true;
+
+let cgl = op.patch.cg || op.patch.cgl;
+let mesh = null;
+let geom = null;
+let j = 0, i = 0, idx = 0;
+let needsUpdate = true;
+
+rings.onChange =
+sides.onChange =
+innerRadius.onChange =
+outerRadius.onChange = function ()
+{
+    needsUpdate = true;
+};
+
+render.onTriggered = function ()
+{
+    if (needsUpdate) updateMesh();
+    if (indraw.get() && mesh !== null) mesh.render(cgl.getShader());
+
+    trigger.trigger();
+};
+
+function updateMesh()
+{
+    let nrings = Math.round(rings.get()) + 1;
+    let nsides = Math.round(sides.get()) + 1;
+    if (nrings < 3)nrings = 3;
+    if (nsides < 3)nsides = 3;
+    let r = innerRadius.get();
+    let r2 = outerRadius.get();
+    generateTorus(r, r2, nrings, nsides);
+    needsUpdate = false;
+}
+
+function circleTable(n, flip)
+{
+    let i;
+
+    /* Table size, the sign of n flips the circle direction */
+    let size = Math.abs(n);
+
+    /* Determine the angle between samples */
+    let angle = 2 * Math.PI / (n - 1);
+    if (flip) angle = -angle;
+
+    /* Allocate memory for n samples, plus duplicate of first entry at the end */
+    let sint = [];
+    let cost = [];
+
+    sint[0] = 0;
+    cost[0] = 1;
+
+    /* Compute cos and sin around the circle */
+    for (i = 1; i < size - 1; i++)
+    {
+        sint[i] = Math.sin(angle * i);
+        cost[i] = Math.cos(angle * i);
+    }
+
+    sint[size - 1] = 0;
+    cost[size - 1] = 1;
+
+    return { "cost": cost, "sint": sint };
+}
+
+function generateTorus(iradius, oradius, nRings, nSides)
+{
+    let table1 = circleTable(nRings, false);
+    let table2 = circleTable(nSides, true);
+    let t;
+
+    geom = new CGL.Geometry("torus");
+    let tangents = [];
+    let biTangents = [];
+    let vertexNormals = [];
+    let tc = [];
+
+    for (j = 0; j < nRings; j++)
+    {
+        for (i = 0; i < nSides; i++)
+        {
+            let offset = 3 * (j * nSides + i);
+            let offset2 = 2 * (j * nSides + i);
+
+            geom.vertices[offset] = table1.cost[j] * (oradius + table2.cost[i] * iradius);
+            geom.vertices[offset + 1] = table1.sint[j] * (oradius + table2.cost[i] * iradius);
+            geom.vertices[offset + 2] = table2.sint[i] * iradius;
+
+            vertexNormals[offset] = tmpNormal[0] = table1.cost[j] * table2.cost[i];
+            vertexNormals[offset + 1] = tmpNormal[1] = table1.sint[j] * table2.cost[i];
+            vertexNormals[offset + 2] = tmpNormal[2] = table2.sint[i];
+
+            if (Math.abs(tmpNormal[1]) == 1) t = RIGHT;
+            else t = UP;
+
+            vec3.cross(tmpVec, tmpNormal, t);
+            vec3.normalize(tmpVec, tmpVec);
+            tangents[offset] = tmpVec[0];
+            tangents[offset + 1] = tmpVec[1];
+            tangents[offset + 2] = tmpVec[2];
+            vec3.cross(tmpVec, tmpVec, tmpNormal);
+            biTangents[offset] = tmpVec[0];
+            biTangents[offset + 1] = tmpVec[1];
+            biTangents[offset + 2] = tmpVec[2];
+
+            tc[offset2] = j / (nRings - 1);
+            tc[offset2 + 1] = i / (nSides - 1);
+        }
+    }
+
+    for (j = 0, idx = 0; j < nRings - 1; j++)
+    {
+        for (i = 0; i < nSides - 1; i++)
+        {
+            let offset = j * nSides + i;
+            geom.verticesIndices[idx++] = offset;
+            geom.verticesIndices[idx++] = offset + 1;
+            geom.verticesIndices[idx++] = offset + nSides;
+
+            geom.verticesIndices[idx++] = offset + 1;
+            geom.verticesIndices[idx++] = offset + nSides + 1;
+            geom.verticesIndices[idx++] = offset + nSides;
+        }
+    }
+
+    if (geom.biTangents.length == biTangents.length)geom.biTangents.set(biTangents);
+    else geom.biTangents = new Float32Array(biTangents);
+
+    if (geom.tangents.length == tangents.length)geom.tangents.set(tangents);
+    else geom.tangents = new Float32Array(tangents);
+
+    if (geom.vertexNormals.length == vertexNormals.length)geom.vertexNormals.set(vertexNormals);
+    else geom.vertexNormals = new Float32Array(vertexNormals);
+
+    geom.setTexCoords(tc);
+
+    geomOut.setRef(geom);
+
+    if (!mesh) mesh = op.patch.cg.createMesh(geom, { "opId": op.id });
+    // if (!mesh)mesh = new CGL.Mesh(cgl, geom);
+    else mesh.setGeom(geom);
+}
+
+
+};
+
+Ops.Gl.Meshes.Torus_v3.prototype = new CABLES.Op();
+CABLES.OPS["bfe60760-6cf6-43d0-96da-b4848c2b146a"]={f:Ops.Gl.Meshes.Torus_v3,objName:"Ops.Gl.Meshes.Torus_v3"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Anim.LFO_v3
+// 
+// **************************************************************
+
+Ops.Anim.LFO_v3 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    time = op.inValue("Time"),
+    speed = op.inFloat("Frequency", 1),
+    type = op.inValueSelect("Type", ["sine", "triangle", "ramp up", "ramp down", "square"], "sine"),
+    phase = op.inValue("Phase", 0),
+    rangeMin = op.inValue("Range Min", -1),
+    rangeMax = op.inValue("Range Max", 1),
+    result = op.outNumber("Result");
+
+let v = 0;
+type.onChange = updateType;
+
+updateType();
+
+const PI2 = Math.PI / 2;
+
+function updateType()
+{
+    if (type.get() == "sine") time.onChange = sine;
+    if (type.get() == "ramp up") time.onChange = rampUp;
+    if (type.get() == "ramp down") time.onChange = rampDown;
+    if (type.get() == "square") time.onChange = square;
+    if (type.get() == "triangle") time.onChange = triangle;
+}
+
+function updateTime()
+{
+    return (time.get() * speed.get()) + phase.get();
+}
+
+function square()
+{
+    let t = updateTime() + 0.5;
+    v = t % 2.0;
+    if (v <= 1.0)v = -1;
+    else v = 1;
+    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
+    result.set(v);
+}
+
+function rampUp()
+{
+    let t = (updateTime() + 1);
+    v = t % 1.0;
+    v -= 0.5;
+    v *= 2.0;
+    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
+    result.set(v);
+}
+
+function rampDown()
+{
+    let t = updateTime();
+    v = t % 1.0;
+    v -= 0.5;
+    v *= -2.0;
+    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
+    result.set(v);
+}
+
+function triangle()
+{
+    let t = updateTime();
+    v = t % 2.0;
+    if (v > 1) v = 2.0 - v;
+    v -= 0.5;
+    v *= 2.0;
+    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
+    result.set(v);
+}
+
+function sine()
+{
+    let t = updateTime() * Math.PI - (PI2);
+    v = Math.sin((t));
+    v = CABLES.map(v, -1, 1, rangeMin.get(), rangeMax.get());
+    result.set(v);
+}
+
+
+};
+
+Ops.Anim.LFO_v3.prototype = new CABLES.Op();
+CABLES.OPS["5bdbe26b-dea3-4266-850c-1b66ed29936e"]={f:Ops.Anim.LFO_v3,objName:"Ops.Anim.LFO_v3"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.ShaderEffects.AreaRotate_v2
+// 
+// **************************************************************
+
+Ops.Gl.ShaderEffects.AreaRotate_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"area_rotate_vert":"\n\nvec4 MOD_scaler(vec4 pos,mat4 modelMatrix)\n{\n    vec3 forcePos=vec3(MOD_x,MOD_y,MOD_z);\n    vec3 vecToOrigin=(modelMatrix*pos).xyz-forcePos;\n    float dist=abs(length(vecToOrigin));\n    float distAlpha = (MOD_size - dist) ;\n\n    if(MOD_smooth) distAlpha=smoothstep(0.0,MOD_size,distAlpha);\n\n    // pos.xyz*=(1.0+(distAlpha*MOD_strength));\n\n    mat3 rotation = mat3(\n        vec3( cos(MOD_strength*distAlpha),  sin(MOD_strength*distAlpha),  0.0),\n        vec3(-sin(MOD_strength*distAlpha),  cos(MOD_strength*distAlpha),  0.0),\n        vec3(        0.0,         0.0,  1.0)\n    );\n    pos =vec4(rotation * pos.xyz, 1.0);\n\n\n    return pos;\n}\n",};
+const
+    render = op.inTrigger("render"),
+    inSize = op.inValue("Size", 1),
+    inStrength = op.inValue("Strength", 1),
+    inSmooth = op.inValueBool("Smooth", true),
+    x = op.inValue("x"),
+    y = op.inValue("y"),
+    z = op.inValue("z"),
+    next = op.outTrigger("trigger");
+
+const cgl = op.patch.cgl;
+const srcBodyVert = ""
+    .endl() + "pos=MOD_scaler(pos,mMatrix);"
+    .endl();
+
+const mod = new CGL.ShaderModifier(cgl, op.name, { "opId": op.id });
+
+mod.addModule({
+    "priority": 2,
+    "title": "vert" + op.name,
+    "name": "MODULE_VERTEX_POSITION",
+    "srcHeadVert": attachments.area_rotate_vert,
+    "srcBodyVert": srcBodyVert
+});
+
+mod.addUniform("f", "MOD_x", x);
+mod.addUniform("f", "MOD_y", y);
+mod.addUniform("f", "MOD_z", z);
+
+mod.addUniform("f", "MOD_size", inSize);
+mod.addUniform("f", "MOD_strength", inStrength);
+mod.addUniform("b", "MOD_smooth", inSmooth);
+
+
+render.onTriggered = function ()
+{
+    if (!cgl.getShader())
+    {
+        next.trigger();
+        return;
+    }
+
+    if (op.isCurrentUiOp()) gui.setTransformGizmo({ "posX": x, "posY": y, "posZ": z });
+
+    mod.bind();
+    next.trigger();
+    mod.unbind();
+};
+
+
+};
+
+Ops.Gl.ShaderEffects.AreaRotate_v2.prototype = new CABLES.Op();
+CABLES.OPS["ebfd3f0c-7a58-44d3-aba0-72d91fafd7ae"]={f:Ops.Gl.ShaderEffects.AreaRotate_v2,objName:"Ops.Gl.ShaderEffects.AreaRotate_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.Meshes.Line
+// 
+// **************************************************************
+
+Ops.Gl.Meshes.Line = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("Render"),
+    x1 = op.inValue("X 1"),
+    y1 = op.inValue("Y 1"),
+    z1 = op.inValue("Z 1"),
+    x2 = op.inValue("X 2", 1),
+    y2 = op.inValue("Y 2", 1),
+    z2 = op.inValue("Z 2", 1),
+    next = op.outTrigger("Next"),
+    outArr = op.outArray("Array");
+
+const cgl = op.patch.cgl;
+const arr = [0, 0, 0, 0, 0, 0];
+const geom = new CGL.Geometry("simplespline");
+geom.vertices = [x1.get(), y1.get(), z1.get(), x2.get(), y2.get(), x2.get()];
+const mesh = new CGL.Mesh(cgl, geom, { "glPrimitive": cgl.gl.LINES });
+
+let changed = true;
+
+x1.onChange = function () { arr[0] = geom.vertices[0] = x1.get(); changed = true; };
+y1.onChange = function () { arr[1] = geom.vertices[1] = y1.get(); changed = true; };
+z1.onChange = function () { arr[2] = geom.vertices[2] = z1.get(); changed = true; };
+
+x2.onChange = function () { arr[3] = geom.vertices[3] = x2.get(); changed = true; };
+y2.onChange = function () { arr[4] = geom.vertices[4] = y2.get(); changed = true; };
+z2.onChange = function () { arr[5] = geom.vertices[5] = z2.get(); changed = true; };
+
+render.onTriggered = function ()
+{
+    if (changed)
+    {
+        mesh.updateVertices(geom);
+        outArr.setRef(arr);
+        changed = false;
+    }
+
+    let shader = cgl.getShader();
+    mesh.render(shader);
+
+    next.trigger();
+};
+
+
+};
+
+Ops.Gl.Meshes.Line.prototype = new CABLES.Op();
+CABLES.OPS["c6a0d570-a0ac-4655-b17d-74d0870b0799"]={f:Ops.Gl.Meshes.Line,objName:"Ops.Gl.Meshes.Line"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Array.RandomNumbersArray_v4
+// 
+// **************************************************************
+
+Ops.Array.RandomNumbersArray_v4 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    numValues = op.inValueInt("Num Values", 100),
+    inModeSwitch = op.inSwitch("Mode", ["A", "AB", "ABC", "ABCD"], "A"),
+    inSeed = op.inValueFloat("Random Seed ", 0),
+    inInteger = op.inBool("Integer", false),
+    inClosed = op.inValueBool("Last == First"),
+    outValues = op.outArray("Array Out"),
+    outTotalPoints = op.outNumber("Chunks Amount"),
+    outArrayLength = op.outNumber("Array length");
+
+const letters = ["A", "B", "C", "D"];
+const arr = [];
+
+const inArray = letters.map(function (value)
+{
+    return {
+        "min": op.inValueFloat("Min " + value, -1),
+        "max": op.inValueFloat("Max " + value, 1),
+    };
+});
+
+for (let i = 0; i < inArray.length; i += 1)
+{
+    const portObj = inArray[i];
+    const keys = Object.keys(portObj);
+
+    op.setPortGroup("Value Range " + letters[i], keys.map(function (key) { return portObj[key]; }));
+
+    if (i > 0) keys.forEach(function (key) { portObj[key].setUiAttribs({ "greyout": true }); });
+}
+
+inModeSwitch.onChange = function ()
+{
+    const mode = inModeSwitch.get();
+    const modes = inModeSwitch.uiAttribs.values;
+
+    outValues.setUiAttribs({ "stride": inModeSwitch.get().length });
+
+    const index = modes.indexOf(mode);
+
+    inArray.forEach(function (portObj, i)
+    {
+        const keys = Object.keys(portObj);
+        keys.forEach(function (key, j)
+        {
+            if (i <= index) portObj[key].setUiAttribs({ "greyout": false });
+            else portObj[key].setUiAttribs({ "greyout": true });
+        });
+    });
+    init();
+};
+
+outValues.ignoreValueSerialize = true;
+
+inClosed.onChange =
+    numValues.onChange =
+    inSeed.onChange =
+    inInteger.onChange = init;
+
+const minMaxArray = [];
+
+init();
+
+function init()
+{
+    const mode = inModeSwitch.get();
+    const modes = inModeSwitch.uiAttribs.values;
+    const index = modes.indexOf(mode);
+
+    const n = Math.floor(Math.abs(numValues.get()));
+    Math.randomSeed = inSeed.get();
+
+    op.setUiAttrib({ "extendTitle": n + "*" + mode.length });
+
+    const dimension = index + 1;
+    const length = n * dimension;
+
+    arr.length = length;
+    const tupleLength = length / dimension;
+    const isInteger = inInteger.get();
+
+    // optimization: we only need to fetch the max min for each component once
+    for (let i = 0; i < dimension; i += 1)
+    {
+        const portObj = inArray[i];
+        const max = portObj.max.get();
+        const min = portObj.min.get();
+        minMaxArray[i] = [min, max];
+    }
+
+    for (let j = 0; j < tupleLength; j += 1)
+    {
+        for (let k = 0; k < dimension; k += 1)
+        {
+            const min = minMaxArray[k][0];
+            const max = minMaxArray[k][1];
+            const index = j * dimension + k;
+
+            if (isInteger) arr[index] = Math.floor(Math.seededRandom() * ((max + 1) - min) + min);
+            else arr[index] = Math.seededRandom() * (max - min) + min;
+        }
+    }
+
+    if (inClosed.get() && arr.length > dimension)
+    {
+        for (let i = 0; i < dimension; i++)
+            arr[arr.length - 3 + i] = arr[i];
+    }
+
+    outValues.setRef(arr);
+    outTotalPoints.set(arr.length / dimension);
+    outArrayLength.set(arr.length);
+}
+
+// assign change handler
+inArray.forEach(function (obj)
+{
+    Object.keys(obj).forEach(function (key)
+    {
+        const x = obj[key];
+        x.onChange = init;
+    });
+});
+
+
+};
+
+Ops.Array.RandomNumbersArray_v4.prototype = new CABLES.Op();
+CABLES.OPS["8a9fa2c6-c229-49a9-9dc8-247001539217"]={f:Ops.Array.RandomNumbersArray_v4,objName:"Ops.Array.RandomNumbersArray_v4"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Html.CSS.TransformCSS3DElement
+// 
+// **************************************************************
+
+Ops.Html.CSS.TransformCSS3DElement = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    cgl = op.patch.cgl,
+    origins = [
+	    "top-left", "top-middle", "top-right",
+	    "center-left", "center-middle", "center-right",
+	    "bottom-left", "bottom-middle", "bottom-right"
+    ],
+    trigger = op.inTrigger("trigger"),
+    inElement = op.inObject("DOMElement"),
+    inOrigin = op.inValueSelect("origin", origins, "center-middle"),
+    next = op.outTrigger("next"),
+    sCSSMatrix = mat4.create(),
+    sScalingVector = vec3.create();
+op.uuid = CABLES.uuid();
+let oldEle = null;
+
+let elProjection = cgl.canvas.parentElement.querySelector("[data-provide=\"css3d\"]");
+if (!elProjection)
+{
+    elProjection = document.createElement("div");
+    elProjection.dataset.op = op.id;
+    elProjection.style.position = "absolute";
+    elProjection.style.top = elProjection.style.left = 0;
+    elProjection.style.width = elProjection.style.height = "100%";
+    elProjection.dataset.provide = "css3d";
+    elProjection.style.zIndex = 1000;
+    elProjection.style.pointerEvents = "none";
+    elProjection.style.perspectiveOrigin = "center center";
+    cgl.canvas.parentElement.appendChild(elProjection);
+
+    let style = document.createElement("style");
+    style.dataset.op = op.id;
+    style.type = "text/css";
+    style.textContent = [
+	    ".cables-loading .cables-css3dview {visibility:hidden;pointer-events:none;backface-visibility:hidden;}",
+	    ".cables-css3dview {position:absolute;left:0;top:0;width:100%;height:100%;transform-style:preserve-3d;}",
+        ".cables-css3dview > * {pointer-events:auto;}",
+        ".cables-css3dview.origin-top-left > * {}",
+        ".cables-css3dview.origin-top-middle > * {transform:translate3d(-50%,0,0);}",
+        ".cables-css3dview.origin-top-right > * {transform:translate3d(-100%,0,0);}",
+        ".cables-css3dview.origin-center-left > * {transform:translate3d(0,-50%,0);}",
+        ".cables-css3dview.origin-center-middle > * {transform:translate3d(-50%,-50%,0);}",
+        ".cables-css3dview.origin-center-right > * {transform:translate3d(-100%,-50%,0);}",
+        ".cables-css3dview.origin-bottom-left > * {transform:translate3d(0,-100%,0);}",
+        ".cables-css3dview.origin-bottom-middle > * {transform:translate3d(-50%,-100%,0);}",
+        ".cables-css3dview.origin-bottom-right > * {transform:translate3d(-100%,-100%,0);}"
+    ].join("\n");
+    elProjection.appendChild(style);
+}
+
+op.onDelete = function ()
+{
+    let el = elProjection.querySelector("[data-ccs3did=\"" + op.uuid + "\"]");
+    if (el && el.parentElement) el.parentElement.removeChild(el);
+};
+
+function wrap(el)
+{
+    let view = document.createElement("div");
+    view.classList.add("cables-css3dview");
+    view.dataset.css3did = op.uuid;
+    view.appendChild(el);
+    return view;
+}
+
+inElement.onChange = function (self, el)
+{
+    op.onDelete();
+    if (!el) return;
+    elProjection.appendChild(wrap(el));
+    inOrigin.onChange();
+};
+inOrigin.onChange = function ()
+{
+    let el = inElement.get();
+    if (!el || !el.parentElement) return;
+    DOMTokenList.prototype.remove.apply(el.parentElement.classList, origins.map(function (o) { return "origin-" + o; }));
+    el.parentElement.classList.add("origin-" + inOrigin.get());
+};
+trigger.onTriggered = function ()
+{
+    let pxfov = 0.5 / (1 / cgl.pMatrix[5]) * cgl.gl.drawingBufferHeight / op.patch.cgl.pixelDensity;
+    elProjection.style.perspective = (pxfov) + "px";
+    // elProjection.style["-webkit-perspective"] = (pxfov) + "px";
+
+    let a = -2 * cgl.gl.drawingBufferWidth / cgl.gl.drawingBufferHeight;
+    vec3.set(
+        sScalingVector,
+        a / cgl.gl.drawingBufferWidth * op.patch.cgl.pixelDensity,
+        -2 / cgl.gl.drawingBufferHeight * op.patch.cgl.pixelDensity,
+        1
+    );
+    let el = inElement.get();
+    if (el)
+    {
+        mat4.multiply(
+            sCSSMatrix,
+            cgl.vMatrix,
+            cgl.mMatrix
+        );
+        mat4.scale(
+            sCSSMatrix,
+            sCSSMatrix,
+            sScalingVector
+        );
+
+        if (el.parentElement)
+    		el.parentElement.style.transform = "translateZ(" + (pxfov) + "px) matrix3d(" +
+    			sCSSMatrix[0] + "," +
+    			-sCSSMatrix[1] + "," +
+    			sCSSMatrix[2] + "," +
+    			sCSSMatrix[3] + "," +
+
+    			sCSSMatrix[4] + "," +
+    			-sCSSMatrix[5] + "," +
+    			sCSSMatrix[6] + "," +
+    			sCSSMatrix[7] + "," +
+
+    			sCSSMatrix[8] + "," +
+    			-sCSSMatrix[9] + "," +
+    			sCSSMatrix[10] + "," +
+    			sCSSMatrix[11] + "," +
+
+    			sCSSMatrix[12] + "," +
+    			-sCSSMatrix[13] + "," +
+    			sCSSMatrix[14] + "," +
+    			sCSSMatrix[15] +
+    		") scaleX(-1) translate3d(" +
+    			(cgl.gl.drawingBufferWidth / 2 / op.patch.cgl.pixelDensity) + "px," +
+    			(cgl.gl.drawingBufferHeight / 2 / op.patch.cgl.pixelDensity) + "px" +
+    			",0" +
+    		")";
+    }
+    next.trigger();
+    oldEle = el;
+};
+inOrigin.onChange();
+
+function removeProperties(el)
+{
+    if (!el)el = inElement.get();
+    if (el && el.parentElement)el.parentElement.style.transform = "";
+}
+
+op.onDelete = function ()
+{
+    removeProperties(oldEle);
+};
+
+inElement.onLinkChanged = function ()
+{
+    if (!inElement.isLinked())
+        removeProperties(oldEle);
+};
+
+op.addEventListener("onEnabledChange", function (enabled)
+{
+    if (!enabled) removeProperties();
+});
+
+
+};
+
+Ops.Html.CSS.TransformCSS3DElement.prototype = new CABLES.Op();
+CABLES.OPS["7b81ed97-6fb9-4044-a731-962a2a11db27"]={f:Ops.Html.CSS.TransformCSS3DElement,objName:"Ops.Html.CSS.TransformCSS3DElement"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Html.CSS.CSSProperty_v2
+// 
+// **************************************************************
+
+Ops.Html.CSS.CSSProperty_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inEle = op.inObject("Element"),
+    inProperty = op.inString("Property"),
+    inValue = op.inFloat("Value"),
+    inValueSuffix = op.inString("Value Suffix", "px"),
+    outEle = op.outObject("HTML Element", null, "element");
+
+op.setPortGroup("Element", [inEle]);
+op.setPortGroup("Attributes", [inProperty, inValue, inValueSuffix]);
+
+inProperty.onChange = updateProperty;
+inValue.onChange = update;
+inValueSuffix.onChange = update;
+let ele = null;
+
+inEle.onChange = inEle.onLinkChanged = function ()
+{
+    if (ele && ele.style)
+    {
+        ele.style[inProperty.get()] = "initial";
+    }
+    update();
+};
+
+function updateProperty()
+{
+    update();
+    op.setUiAttrib({ "extendTitle": inProperty.get() + "" });
+}
+
+function update()
+{
+    ele = inEle.get();
+    if (ele && ele.style)
+    {
+        const str = inValue.get() + inValueSuffix.get();
+        try
+        {
+            if (ele.style[inProperty.get()] != str)
+                ele.style[inProperty.get()] = str;
+        }
+        catch (e)
+        {
+            op.logError(e);
+        }
+    }
+    else
+    {
+        setTimeout(update, 50);
+    }
+
+    outEle.setRef(inEle.get());
+}
+
+
+};
+
+Ops.Html.CSS.CSSProperty_v2.prototype = new CABLES.Op();
+CABLES.OPS["c179aa0e-b558-4130-8c2d-2deab2919a07"]={f:Ops.Html.CSS.CSSProperty_v2,objName:"Ops.Html.CSS.CSSProperty_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Boolean.ToggleBool_v2
+// 
+// **************************************************************
+
+Ops.Boolean.ToggleBool_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    trigger = op.inTriggerButton("trigger"),
+    reset = op.inTriggerButton("reset"),
+    inDefault = op.inBool("Default", false),
+    next = op.outTrigger("Next"),
+    outBool = op.outBoolNum("result");
+
+let theBool = false;
+
+op.onLoadedValueSet = () =>
+{
+    theBool = inDefault.get();
+    outBool.set(inDefault.get());
+    next.trigger();
+};
+
+trigger.onTriggered = function ()
+{
+    theBool = !theBool;
+    outBool.set(theBool);
+    next.trigger();
+};
+
+reset.onTriggered = function ()
+{
+    theBool = inDefault.get();
+    outBool.set(theBool);
+    next.trigger();
+};
+
+
+};
+
+Ops.Boolean.ToggleBool_v2.prototype = new CABLES.Op();
+CABLES.OPS["4313d9bb-96b6-43bc-9190-6068cfb2593c"]={f:Ops.Boolean.ToggleBool_v2,objName:"Ops.Boolean.ToggleBool_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Ui.VizNumber
+// 
+// **************************************************************
+
+Ops.Ui.VizNumber = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const inNum = op.inFloat("Number", 0);
+const outNum = op.outNumber("Result");
+
+op.setUiAttrib({ "widthOnlyGrow": true });
+
+inNum.onChange = update;
+
+update();
+
+function update()
+{
+    let n = inNum.get();
+    if (op.patch.isEditorMode())
+    {
+        let str = "";
+        if (n === null)str = "null";
+        else if (n === undefined)str = "undefined";
+        else
+        {
+            str = "" + Math.round(n * 10000) / 10000;
+
+            if (str[0] != "-")str = " " + str;
+        }
+
+        op.setUiAttribs({ "extendTitle": str });
+    }
+
+    outNum.set(n);
+}
+
+
+};
+
+Ops.Ui.VizNumber.prototype = new CABLES.Op();
+CABLES.OPS["2b60d12d-2884-4ad0-bda4-0caeb6882f5c"]={f:Ops.Ui.VizNumber,objName:"Ops.Ui.VizNumber"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.Pg3hCDt.DropDown_v2
+// 
+// **************************************************************
+
+Ops.Patch.Pg3hCDt.DropDown_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+// inputs
+const parentPort = op.inObject("Link");
+const labelPort = op.inString("Text", "Value");
+const valuesPort = op.inArray("Values");
+const defaultValuePort = op.inString("Default", "");
+const inGreyOut = op.inBool("Grey Out", false);
+const inVisible = op.inBool("Visible", true);
+const inSize = op.inInt("Lines", 1);
+const extIndex = op.inInt("External Index", 0);
+const setDefaultValueButtonPort = op.inTriggerButton("Set Default");
+setDefaultValueButtonPort.onTriggered = setDefault;
+// Add after other vars
+let changeTimer = null;
+// outputs
+const siblingsPort = op.outObject("Children");
+const valuePort = op.outString("Result", defaultValuePort.get());
+const outIndex = op.outNumber("Index");
+const hasChanged = op.outTrigger("Changed");
+
+defaultValuePort.setUiAttribs({ "title": "Input" });
+
+// vars
+const el = document.createElement("div");
+el.addEventListener("dblclick", function ()
+{
+    valuePort.set(defaultValuePort.get());
+    const optionElements = input.querySelectorAll("option");
+    optionElements.forEach(function (optionElement, index)
+    {
+        if (optionElement.value.trim() === defaultValuePort.get())
+        {
+            optionElement.selected = true;
+            outIndex.set(index);
+        }
+        else
+        {
+            optionElement.removeAttribute("selected");
+        }
+    });
+});
+
+el.dataset.op = op.id;
+el.classList.add("cablesEle");
+el.classList.add("sidebar__item");
+el.classList.add("sidebar__select");
+el.classList.add("sidebar__reloadable");
+
+const label = document.createElement("div");
+label.classList.add("sidebar__item-label");
+const labelText = document.createTextNode(labelPort.get());
+label.appendChild(labelText);
+el.appendChild(label);
+const input = document.createElement("select");
+
+input.classList.add("sidebar__select-select");
+input.setAttribute("style", "font-size: 1.1em; width: 100%;");
+el.appendChild(input);
+input.addEventListener("input", onInput);
+
+const greyOut = document.createElement("div");
+greyOut.classList.add("sidebar__greyout");
+el.appendChild(greyOut);
+greyOut.style.display = "none";
+
+inGreyOut.onChange = function ()
+{
+    greyOut.style.display = inGreyOut.get() ? "block" : "none";
+};
+
+inVisible.onChange = function ()
+{
+    el.style.display = inVisible.get() ? "block" : "none";
+};
+
+// events
+parentPort.onChange = onParentChanged;
+labelPort.onChange = onLabelTextChanged;
+defaultValuePort.onChange = onDefaultValueChanged;
+op.onDelete = onDelete;
+valuesPort.onChange = onValuesPortChange;
+
+let options = [];
+// functions
+
+inSize.onChange = () =>
+{
+    input.setAttribute("size", inSize.get());
+};
+
+op.onLoaded = function ()
+{
+    valuePort.set(defaultValuePort.get());
+};
+
+function onValuesPortChange()
+{
+    // remove all children
+    while (input.lastChild)
+    {
+        input.removeChild(input.lastChild);
+    }
+    options = valuesPort.get();
+    const defaultValue = defaultValuePort.get();
+    if (options)
+    {
+        options.forEach(function (option)
+        {
+            const optionEl = document.createElement("option");
+
+            optionEl.setAttribute("value", option);
+            if (option === defaultValue || option === valuePort.get())
+            {
+                optionEl.setAttribute("selected", "");
+            }
+            const textEl = document.createTextNode(option);
+            optionEl.appendChild(textEl);
+            input.appendChild(optionEl);
+        });
+    }
+    else
+    {
+        valuePort.set("");
+    }
+
+    outIndex.set(0);
+    setSelectedProperty(); /* set the selected property for the default value */
+}
+
+function onExternalIndexChange()
+{
+    const index = extIndex.get();
+    const optionElements = input.querySelectorAll("option");
+    if (index >= 0 && index < optionElements.length)
+    {
+        optionElements.forEach(function (optionElement, i)
+        {
+            if (i === index)
+            {
+                optionElement.selected = true;
+                outIndex.set(i);
+                valuePort.set(optionElement.value);
+            }
+            else
+            {
+                optionElement.removeAttribute("selected");
+            }
+        });
+    }
+}
+let finalIndex = 0;
+
+function setSelectedProperty(defaultinput)
+{
+    const optionElements = input.querySelectorAll("option");
+
+    let finalEle = null;
+
+    optionElements.forEach(function (optionElement, index)
+    {
+        if (optionElement.value.trim() === valuePort.get())
+        {
+            finalEle = optionElement;
+            finalIndex = index;
+        }
+        optionElement.removeAttribute("selected");
+    });
+
+    if (defaultinput)
+    {
+        const defaultItem = defaultValuePort.get() + "".trim();
+
+        optionElements.forEach(function (optionElement, index)
+        {
+            if (optionElement.value.trim() === defaultItem)
+            {
+                finalEle = optionElement;
+                finalIndex = index;
+            }
+
+            optionElement.removeAttribute("selected");
+        });
+    }
+
+    if (finalEle) finalEle.setAttribute("selected", "");
+    outIndex.set(finalIndex);
+}
+
+function onInput(ev)
+{
+     // Clear any existing timer
+     if (changeTimer) {
+        clearTimeout(changeTimer);
+    }
+
+    valuePort.set(ev.target.value);
+    outIndex.set(options.indexOf(ev.target.value));
+    setSelectedProperty();
+
+        // Set new timer
+        changeTimer = setTimeout(() => {
+            hasChanged.trigger();
+        }, 50);
+}
+
+function onDefaultValueChanged()
+{
+    const defaultValue = defaultValuePort.get();
+    valuePort.set(defaultValue);
+    input.value = defaultValue;
+    setSelectedProperty();
+}
+
+function onLabelTextChanged()
+{
+    const lblText = labelPort.get();
+    label.textContent = lblText;
+    if (CABLES.UI) op.setUiAttrib({ "extendTitle": lblText });
+}
+
+function onParentChanged()
+{
+    siblingsPort.set(null);
+    const parent = parentPort.get();
+    if (parent && parent.parentElement)
+    {
+        parent.parentElement.appendChild(el);
+        siblingsPort.set(parent);
+    }
+    else
+    { // detach
+        if (el.parentElement)
+        {
+            el.parentElement.removeChild(el);
+        }
+    }
+}
+
+function showElement(ele)
+{
+    if (ele)
+    {
+        ele.style.display = "block";
+    }
+    setSelectedProperty();
+}
+
+function hideElement(ele)
+{
+    if (ele)
+    {
+        ele.style.display = "none";
+    }
+}
+
+// Add cleanup to onDelete
+function onDelete() {
+    if (changeTimer) {
+        clearTimeout(changeTimer);
+    }
+    removeElementFromDOM(el);
+}
+
+function removeElementFromDOM(ele)
+{
+    if (ele && ele.parentNode && ele.parentNode.removeChild)
+    {
+        ele.parentNode.removeChild(ele);
+    }
+}
+
+function setDefault()
+{
+    defaultValuePort.set(input.value);
+    op.refreshParams();
+}
+
+
+};
+
+Ops.Patch.Pg3hCDt.DropDown_v2.prototype = new CABLES.Op();
+CABLES.OPS["97aff0eb-8542-4a35-9e49-e48aa66ed364"]={f:Ops.Patch.Pg3hCDt.DropDown_v2,objName:"Ops.Patch.Pg3hCDt.DropDown_v2"};
 
 
 
