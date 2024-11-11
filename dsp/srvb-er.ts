@@ -100,8 +100,9 @@ function diffuse(props: {
 
 // An eight channel feedback delay network
 function dampFDN(props: FDNProps, ...ins: ElemNode[]) {
-  const len = ins.length / 2;
-  const { size, decay, position  } = props;
+  const len = ins.length;
+  const { size, decay  } = props;
+  const position = el.sm(props.position);
   const { sampleRate, structureIndex } = props
   const structure: Array<ElemNode> = props.structureArray;
   const structureMax: ElemNode = props.structureMax as ElemNode;
@@ -128,8 +129,6 @@ function dampFDN(props: FDNProps, ...ins: ElemNode[]) {
   // of killing the decay time too quickly. Towards the bottom, not much damping.
   const delaysWithTapInserts = ins.map(function (input, i) {
     return el.add(
-      // too many instances of the filter, moving to output
-      //  toneDial(input, structure[i]),
       input,
       el.mul(
         1 + EPS,
@@ -142,7 +141,7 @@ function dampFDN(props: FDNProps, ...ins: ElemNode[]) {
     return el.add(
 
       ...  rotate(row, structureIndex).map(function (col, j) {
-        return el.mul(col, tapDelayLevel(i), delaysWithTapInserts[j]);
+        return el.mul(col, tapDelayLevel(j), delaysWithTapInserts[j]);
       })
     );
   });
@@ -152,7 +151,8 @@ function dampFDN(props: FDNProps, ...ins: ElemNode[]) {
 
     const delayScale = el.mul(
       el.add(1.0, el.sm(size)),
-      el.ms2samps(el.smooth(el.tau2pole(i * 0.25), el.mul( 7, position, structure[i % structure.length] ))) // !
+    //  el.ms2samps(el.smooth(el.tau2pole(i * 0.25), el.mul( 7, position, structure[i % structure.length] ))) // !
+    el.ms2samps( el.mul( 7, position, structure[i % structure.length] ))
     );
 
     return el.tapOut(

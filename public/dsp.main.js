@@ -2422,8 +2422,9 @@
     });
   }
   function dampFDN(props, ...ins) {
-    const len = ins.length / 2;
-    const { size, decay, position } = props;
+    const len = ins.length;
+    const { size, decay } = props;
+    const position = stdlib.sm(props.position);
     const { sampleRate, structureIndex } = props;
     const structure = props.structureArray;
     const structureMax = props.structureMax;
@@ -2437,8 +2438,6 @@
     };
     const delaysWithTapInserts = ins.map(function(input, i) {
       return stdlib.add(
-        // too many instances of the filter, moving to output
-        //  toneDial(input, structure[i]),
         input,
         stdlib.mul(
           1 + EPS,
@@ -2450,7 +2449,7 @@
     let mix2 = H8.map(function(row, i) {
       return stdlib.add(
         ...rotate(row, structureIndex).map(function(col, j) {
-          return stdlib.mul(col, tapDelayLevel(i), delaysWithTapInserts[j]);
+          return stdlib.mul(col, tapDelayLevel(j), delaysWithTapInserts[j]);
         })
       );
     });
@@ -2458,8 +2457,8 @@
       const ms2samps2 = (ms) => sampleRate * (ms / 1e3);
       const delayScale = stdlib.mul(
         stdlib.add(1, stdlib.sm(size)),
-        stdlib.ms2samps(stdlib.smooth(stdlib.tau2pole(i * 0.25), stdlib.mul(7, position, structure[i % structure.length])))
-        // !
+        //  el.ms2samps(el.smooth(el.tau2pole(i * 0.25), el.mul( 7, position, structure[i % structure.length] ))) // !
+        stdlib.ms2samps(stdlib.mul(7, position, structure[i % structure.length]))
       );
       return stdlib.tapOut(
         { name: `srvb:fdn${i}` },
