@@ -439,7 +439,6 @@ void EffectsPluginProcessor::pruneVFS() const
 {
     if (elementaryRuntime)
         elementaryRuntime->pruneSharedResourceMap();
-    // assetsMap.clearUserSlots();
 }
 
 /*
@@ -773,6 +772,7 @@ void EffectsPluginProcessor::releaseResources()
 
 void EffectsPluginProcessor::processBlock(juce::AudioBuffer<float> &buffer, juce::MidiBuffer & /* midiMessages */)
 {
+        juce::ScopedNoDenormals noDenormals;
     // If the license is invalid, we clear the buffer and return
     // if (licenseStatus != Keyzy::LicenseStatus::VALID)
     // {
