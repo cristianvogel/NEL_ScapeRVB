@@ -58,7 +58,7 @@ public:
             defaultStereoFile = file;
             break;
         case Props::filenameForView:
-            filenameForView = file.getFileNameWithoutExtension().toStdString();
+            filenameForView = file.getFileNameWithoutExtension().substring( 0, 15 ).toStdString();
             break;
         case Props::defaultFilenameForView:
             defaultFilenameForView = file.getFileNameWithoutExtension().toStdString();

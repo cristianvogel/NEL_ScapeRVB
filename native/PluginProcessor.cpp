@@ -439,7 +439,6 @@ void EffectsPluginProcessor::pruneVFS() const
 {
     if (elementaryRuntime)
         elementaryRuntime->pruneSharedResourceMap();
-    // assetsMap.clearUserSlots();
 }
 
 /*
