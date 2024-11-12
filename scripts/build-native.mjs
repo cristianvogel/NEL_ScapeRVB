@@ -23,8 +23,8 @@ let devFlag = argv.dev ? '-DELEM_DEV_LOCALHOST=1' : '';
 
 if (os.platform() === 'darwin') {
     // macOS specific code // -G Xcode for Xcode project
-  //  await $`cmake -DCMAKE_BUILD_TYPE=${buildType} -DCMAKE_INSTALL_PREFIX=./out/  -DCMAKE_OSX_DEPLOYMENT_TARGET=13 -DCMAKE_OSX_ARCHITECTURES="arm64" ${devFlag} ../..`;
-  //  await $`cmake --build . --config ${buildType} -j 4`;
+    await $`cmake -DCMAKE_BUILD_TYPE=${buildType} -DCMAKE_INSTALL_PREFIX=./out/  -DCMAKE_OSX_DEPLOYMENT_TARGET=13 -DCMAKE_OSX_ARCHITECTURES="arm64" ${devFlag} ../..`;
+    await $`cmake --build . --config ${buildType} -j 4`;
 
     // Uncomment the following lines if you need to build for x86_64 as well
     await $`cmake  -DCMAKE_BUILD_TYPE=${buildType} -DCMAKE_INSTALL_PREFIX=./out/  -DCMAKE_OSX_DEPLOYMENT_TARGET=13 -DCMAKE_OSX_ARCHITECTURES="x86_64" ${devFlag} ../..`;
