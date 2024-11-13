@@ -638,25 +638,25 @@ juce::AudioProcessorEditor *EffectsPluginProcessor::createEditor()
 
     editor->handleUnlockEvent = [this](const choc::value::Value &v)
     {
-        const bool hasSerial =
-            v.hasObjectMember("serial") && v["serial"].isString() && v["serial"].getString().length() > 0;
-        const bool shouldActivate = licenseStatus != Keyzy::LicenseStatus::VALID;
+        // const bool hasSerial =
+        //     v.hasObjectMember("serial") && v["serial"].isString() && v["serial"].getString().length() > 0;
+        // const bool shouldActivate = licenseStatus != Keyzy::LicenseStatus::VALID;
 
-        if (!hasSerial && shouldActivate)
-        {
-            licenseStatus = licenseActivator.activateSemiOnline();
-        }
-        else if (hasSerial && shouldActivate)
-        {
-            const auto serial = v["serial"].getString();
-            licenseStatus = licenseActivator.activateSemiOnline(serial.data());
-        }
+        // if (!hasSerial && shouldActivate)
+        // {
+        //     licenseStatus = licenseActivator.activateSemiOnline();
+        // }
+        // else if (hasSerial && shouldActivate)
+        // {
+        //     const auto serial = v["serial"].getString();
+        //     licenseStatus = licenseActivator.activateSemiOnline(serial.data());
+        // }
 
-        sendJavascriptToUI("globalThis.__onUnlock__('" + unlock::errorStatuses(licenseStatus) + "')");
-        // also send back the current host info
-        const juce::PluginHostType hostType;
-        const std::string hostDescription = static_cast<const char *>(hostType.getHostDescription());
-        sendJavascriptToUI("globalThis.__hostInfo__('" + hostDescription + "')");
+        // sendJavascriptToUI("globalThis.__onUnlock__('" + unlock::errorStatuses(licenseStatus) + "')");
+        // // also send back the current host info
+        // const juce::PluginHostType hostType;
+        // const std::string hostDescription = static_cast<const char *>(hostType.getHostDescription());
+        // sendJavascriptToUI("globalThis.__hostInfo__('" + hostDescription + "')");
     };
 
     editor->ready = [this]()

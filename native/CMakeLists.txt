@@ -7,7 +7,7 @@ set(ASSETS_DIR ${CMAKE_SOURCE_DIR}/../dist/)
 # sync version manually in constants.ts 
 # messing with Cmake to TypeScript through Vite was getting messy
 
-set(BUILD_VERSION "v0.9.0-beta")
+set(BUILD_VERSION "v0.9.1-beta")
 
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -54,50 +54,50 @@ juce_add_plugin(${TARGET_NAME}
   FORMATS AU VST3 STANDALONE # The formats to build. Other valid formats are: AAX Unity VST AU AUv3
   PRODUCT_NAME "NEL_scape_space_${CMAKE_OSX_ARCHITECTURES}${PC_ARCH}_${BUILD_VERSION}") # The name of the final executable, which can differ from the target name
 
-# Keyzy Client Library
-# Replace KeyzyClientLibraryX.X.X with your actual library version
-set(KeyzyClientLibrary_VERSION "v143")
+# # Keyzy Client Library
+# # Replace KeyzyClientLibraryX.X.X with your actual library version
+# set(KeyzyClientLibrary_VERSION "v143")
 
-if(WIN32)
-  if(MSVC_VERSION EQUAL 1910) # VS 2017
-    set(VS_VERSION "VS2017")
-  elseif(MSVC_VERSION EQUAL 1920) # VS 2019
-    set(VS_VERSION "VS2019")
-  elseif(MSVC_VERSION GREATER_EQUAL 1930) # VS 2022 or later
-    set(VS_VERSION "VS2022")
-  endif()
+# if(WIN32)
+#   if(MSVC_VERSION EQUAL 1910) # VS 2017
+#     set(VS_VERSION "VS2017")
+#   elseif(MSVC_VERSION EQUAL 1920) # VS 2019
+#     set(VS_VERSION "VS2019")
+#   elseif(MSVC_VERSION GREATER_EQUAL 1930) # VS 2022 or later
+#     set(VS_VERSION "VS2022")
+#   endif()
 
-  if(CMAKE_SIZEOF_VOID_P EQUAL 8)
-    set(ARCH "64")
-  else()
-    set(ARCH "86")
-  endif()
+#   if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+#     set(ARCH "64")
+#   else()
+#     set(ARCH "86")
+#   endif()
 
-  # Set MD or MT based on your project requirements
-  set(MD_MT "MT") # The other line of Martin's famous fix
+#   # Set MD or MT based on your project requirements
+#   set(MD_MT "MT") # The other line of Martin's famous fix
 
-  set(DEBUG_OR_RELEASE "$<$<CONFIG:Debug>:D>$<$<CONFIG:Release>:R>")
+#   set(DEBUG_OR_RELEASE "$<$<CONFIG:Debug>:D>$<$<CONFIG:Release>:R>")
 
-  set(LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/KeyzyClientLibrary/${VS_VERSION}/${DEBUG_OR_RELEASE}${ARCH}${MD_MT}_x64_${KeyzyClientLibrary_VERSION})
+#   set(LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/KeyzyClientLibrary/${VS_VERSION}/${DEBUG_OR_RELEASE}${ARCH}${MD_MT}_x64_${KeyzyClientLibrary_VERSION})
 
-  target_link_libraries(${TARGET_NAME} PRIVATE ${LIB_DIR}/Lib/KeyzyClient.lib)
+#   target_link_libraries(${TARGET_NAME} PRIVATE ${LIB_DIR}/Lib/KeyzyClient.lib)
 
-elseif(APPLE)
-  if(IOS)
-    set(LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/KeyzyClientLibrary/XcodeiOS)
-  else()
-    # Choose the correct library based on your target architectures
-    set(LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/KeyzyClientLibrary/XcodeAppleSiliconIntel64)
-  endif()
+# elseif(APPLE)
+#   if(IOS)
+#     set(LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/KeyzyClientLibrary/XcodeiOS)
+#   else()
+#     # Choose the correct library based on your target architectures
+#     set(LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/KeyzyClientLibrary/XcodeAppleSiliconIntel64)
+#   endif()
 
-  find_library(KEYZY_CLIENT_LIB KeyzyClient PATHS ${LIB_DIR}/Lib)
+#   find_library(KEYZY_CLIENT_LIB KeyzyClient PATHS ${LIB_DIR}/Lib)
 
-  if(NOT KEYZY_CLIENT_LIB)
-    message(FATAL_ERROR "KeyzyClient library not found")
-  endif()
+#   if(NOT KEYZY_CLIENT_LIB)
+#     message(FATAL_ERROR "KeyzyClient library not found")
+#   endif()
 
-  target_link_libraries(${TARGET_NAME} PRIVATE ${KEYZY_CLIENT_LIB})
-endif()
+#   target_link_libraries(${TARGET_NAME} PRIVATE ${KEYZY_CLIENT_LIB})
+# endif()
 
 # Find Boost libraries
 find_package(Boost REQUIRED COMPONENTS system thread)

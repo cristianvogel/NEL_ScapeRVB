@@ -9,7 +9,7 @@
 #include <map>
 
 // Third-Party Library Headers
-#include <KeyzyLicenseActivator.h>
+// #include <KeyzyLicenseActivator.h>
 #include <choc_HTTPServer.h>
 #include <choc_StringUtilities.h>
 #include <choc_javascript.h>
@@ -221,133 +221,133 @@ private:
     // Keyzy License Activator
     //     Keyzy::ProductData productData{"YOUR_APP_ID", "YOUR_API_KEY", "YOUR_PRODUCT_CODE", "YOUR_CRYPTION_KEY"};
 
-    Keyzy::ProductData productData{
-        "JXgnTvml", "Q4PbX--------1QU5b",
-        "01a---------30b", "3qKlXJ2---------------YNIOIhz"
-    };
-    Keyzy::KeyzyLicenseActivator licenseActivator{productData};
-    Keyzy::LicenseStatus licenseStatus = Keyzy::LicenseStatus::NOT_AUTHORIZED;
+    // Keyzy::ProductData productData{
+    //     "JXgnTvml", "Q4PbX--------1QU5b",
+    //     "01a---------30b", "3qKlXJ2---------------YNIOIhz"
+    // };
+    // Keyzy::KeyzyLicenseActivator licenseActivator{productData};
+    // Keyzy::LicenseStatus licenseStatus = Keyzy::LicenseStatus::NOT_AUTHORIZED;
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(EffectsPluginProcessor)
 };
 
-namespace unlock
-{
-    inline std::string errorStatuses(Keyzy::LicenseStatus status)
-    {
-        switch (status)
-        {
-        case Keyzy::LicenseStatus::EXPIRED:
-            return "Expired";
+// namespace unlock
+// {
+//     inline std::string errorStatuses(Keyzy::LicenseStatus status)
+//     {
+//         switch (status)
+//         {
+//         case Keyzy::LicenseStatus::EXPIRED:
+//             return "Expired";
 
-        case Keyzy::LicenseStatus::INVALID:
-            return "Invalid";
+//         case Keyzy::LicenseStatus::INVALID:
+//             return "Invalid";
 
-        case Keyzy::LicenseStatus::NOT_AUTHORIZED:
-            return "Not authorized";
+//         case Keyzy::LicenseStatus::NOT_AUTHORIZED:
+//             return "Not authorized";
 
-        case Keyzy::LicenseStatus::SERIAL_INVALID:
-            return "Serial invalid";
+//         case Keyzy::LicenseStatus::SERIAL_INVALID:
+//             return "Serial invalid";
 
-        case Keyzy::LicenseStatus::PRODUCT_NOT_EXIST:
-            return "Product does not exist";
+//         case Keyzy::LicenseStatus::PRODUCT_NOT_EXIST:
+//             return "Product does not exist";
 
-        case Keyzy::LicenseStatus::PRODUCT_NOT_EXIST_FOR_USER:
-            return "Product does not exist";
+//         case Keyzy::LicenseStatus::PRODUCT_NOT_EXIST_FOR_USER:
+//             return "Product does not exist";
 
-        case Keyzy::LicenseStatus::PRODUCT_NOT_ACTIVE:
-            return "Product is not active";
+//         case Keyzy::LicenseStatus::PRODUCT_NOT_ACTIVE:
+//             return "Product is not active";
 
-        case Keyzy::LicenseStatus::SKU_NOT_EXIST:
-            return "SKU does not exist";
+//         case Keyzy::LicenseStatus::SKU_NOT_EXIST:
+//             return "SKU does not exist";
 
-        case Keyzy::LicenseStatus::SKU_NOT_ACTIVE:
-            return "SKU is not active";
+//         case Keyzy::LicenseStatus::SKU_NOT_ACTIVE:
+//             return "SKU is not active";
 
-        case Keyzy::LicenseStatus::REACHED_MAX_NUMBER_OF_HOST:
-            return "Reached maximum number of host";
+//         case Keyzy::LicenseStatus::REACHED_MAX_NUMBER_OF_HOST:
+//             return "Reached maximum number of host";
 
-        case Keyzy::LicenseStatus::PRODUCT_NOT_EXIST_FOR_SKU:
-            return "Product does not exist for this SKU";
+//         case Keyzy::LicenseStatus::PRODUCT_NOT_EXIST_FOR_SKU:
+//             return "Product does not exist for this SKU";
 
-        case Keyzy::LicenseStatus::ACTIVATION_DEACTIVATED:
-            return "Activation is deactivated";
+//         case Keyzy::LicenseStatus::ACTIVATION_DEACTIVATED:
+//             return "Activation is deactivated";
 
-        case Keyzy::LicenseStatus::SUBSCRIPTION_LICENSE_EXPIRED:
-            return "Subscription license expired!";
+//         case Keyzy::LicenseStatus::SUBSCRIPTION_LICENSE_EXPIRED:
+//             return "Subscription license expired!";
 
-        case Keyzy::LicenseStatus::SUBSCRIPTION_LICENSE_NOT_STARTED:
-            return "Subscription license not started!";
+//         case Keyzy::LicenseStatus::SUBSCRIPTION_LICENSE_NOT_STARTED:
+//             return "Subscription license not started!";
 
-        case Keyzy::LicenseStatus::TRIAL_LICENSE_EXPIRED:
-            return "Trial license expired!";
+//         case Keyzy::LicenseStatus::TRIAL_LICENSE_EXPIRED:
+//             return "Trial license expired!";
 
-        case Keyzy::LicenseStatus::TRIAL_LICENSE_NOT_STARTED:
-            return "Trial license not started!";
+//         case Keyzy::LicenseStatus::TRIAL_LICENSE_NOT_STARTED:
+//             return "Trial license not started!";
 
-        case Keyzy::LicenseStatus::CANNOT_KEEP_SERIAL:
-            return "Cannot keep serial!";
+//         case Keyzy::LicenseStatus::CANNOT_KEEP_SERIAL:
+//             return "Cannot keep serial!";
 
-        case Keyzy::LicenseStatus::CANNOT_KEEP_LICENSE_FILE:
-            return "Cannot keep license file!";
+//         case Keyzy::LicenseStatus::CANNOT_KEEP_LICENSE_FILE:
+//             return "Cannot keep license file!";
 
-        case Keyzy::LicenseStatus::ACTIVATION_DELETED:
-            return "Activation deleted!";
+//         case Keyzy::LicenseStatus::ACTIVATION_DELETED:
+//             return "Activation deleted!";
 
-        case Keyzy::LicenseStatus::CLIENT_SERIAL_DOES_NOT_EXIST:
-            return "Client serial does not exist!";
+//         case Keyzy::LicenseStatus::CLIENT_SERIAL_DOES_NOT_EXIST:
+//             return "Client serial does not exist!";
 
-        case Keyzy::LicenseStatus::CONNECTION_ERROR:
-            return "Connection Error!";
+//         case Keyzy::LicenseStatus::CONNECTION_ERROR:
+//             return "Connection Error!";
 
-        case Keyzy::LicenseStatus::TOO_MANY_REQUESTS:
-            return "Too Many Requests!";
+//         case Keyzy::LicenseStatus::TOO_MANY_REQUESTS:
+//             return "Too Many Requests!";
 
-        case Keyzy::LicenseStatus::NO_ACTIVE_SUBSCRIPTION:
-            return "No Active Subscription!";
+//         case Keyzy::LicenseStatus::NO_ACTIVE_SUBSCRIPTION:
+//             return "No Active Subscription!";
 
-        case Keyzy::LicenseStatus::CURRENT_LICENSE_DOES_NOT_EXIST:
-            return "Current license does not exist!";
+//         case Keyzy::LicenseStatus::CURRENT_LICENSE_DOES_NOT_EXIST:
+//             return "Current license does not exist!";
 
-        case Keyzy::LicenseStatus::UPGRADE_LICENSE_DOES_NOT_EXIST:
-            return "Upgrade license does not exist!";
+//         case Keyzy::LicenseStatus::UPGRADE_LICENSE_DOES_NOT_EXIST:
+//             return "Upgrade license does not exist!";
 
-        case Keyzy::LicenseStatus::UPGRADE_LICENSE_DOES_NOT_MATCH:
-            return "Upgrade license does not match for upgrade with current license!";
+//         case Keyzy::LicenseStatus::UPGRADE_LICENSE_DOES_NOT_MATCH:
+//             return "Upgrade license does not match for upgrade with current license!";
 
-        case Keyzy::LicenseStatus::ANOTHER_TRIAL_LICENSE_ALREADY_ACTIVATED:
-            return "Another trial license has already been activated on this device!";
+//         case Keyzy::LicenseStatus::ANOTHER_TRIAL_LICENSE_ALREADY_ACTIVATED:
+//             return "Another trial license has already been activated on this device!";
 
-        case Keyzy::LicenseStatus::SKU_NUMBER_VALIDATION:
-            return "sku_number parameter cannot be validated!";
+//         case Keyzy::LicenseStatus::SKU_NUMBER_VALIDATION:
+//             return "sku_number parameter cannot be validated!";
 
-        case Keyzy::LicenseStatus::PRODUCT_CODE_VALIDATION:
-            return "product_code parameter cannot be validated!";
+//         case Keyzy::LicenseStatus::PRODUCT_CODE_VALIDATION:
+//             return "product_code parameter cannot be validated!";
 
-        case Keyzy::LicenseStatus::NAME_VALIDATION:
-            return "name parameter cannot be validated!";
+//         case Keyzy::LicenseStatus::NAME_VALIDATION:
+//             return "name parameter cannot be validated!";
 
-        case Keyzy::LicenseStatus::EMAIL_VALIDATION:
-            return "email parameter cannot be validated!";
+//         case Keyzy::LicenseStatus::EMAIL_VALIDATION:
+//             return "email parameter cannot be validated!";
 
-        case Keyzy::LicenseStatus::NO_FREE_LICENSES:
-            return "You do not have any free licenses for this sku. Please generate new licenses for this sku!";
+//         case Keyzy::LicenseStatus::NO_FREE_LICENSES:
+//             return "You do not have any free licenses for this sku. Please generate new licenses for this sku!";
 
-        case Keyzy::LicenseStatus::NAME_OR_EMAIL_VALIDATION:
-            return "Either the name or email filed must be filled!";
+//         case Keyzy::LicenseStatus::NAME_OR_EMAIL_VALIDATION:
+//             return "Either the name or email filed must be filled!";
 
-        case Keyzy::LicenseStatus::LICENSE_NOT_EXIST_NOT_ASSIGNED_DEALER_ALREADY_DEPOSITED:
-            return "The license does not exist or is not assigned to a dealer or is already deposited!";
+//         case Keyzy::LicenseStatus::LICENSE_NOT_EXIST_NOT_ASSIGNED_DEALER_ALREADY_DEPOSITED:
+//             return "The license does not exist or is not assigned to a dealer or is already deposited!";
 
-        case Keyzy::LicenseStatus::VALID: // Just in case
-            return "Valid";
+//         case Keyzy::LicenseStatus::VALID: // Just in case
+//             return "Valid";
 
-        default:
-            return "Unknown";
-        }
-    }
-} // namespace unlock
+//         default:
+//             return "Unknown";
+//         }
+//     }
+// } // namespace unlock
 
 namespace jsFunctions
 {
