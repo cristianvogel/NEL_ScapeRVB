@@ -1,4 +1,13 @@
 cmake_minimum_required(VERSION 3.15)
+cmake_policy(SET CMP0144 NEW)
+# Add after cmake_minimum_required but before project()
+if(WIN32)
+    # Target Windows 7 or later (0x0601)
+    add_definitions(-D_WIN32_WINNT=0x0601)
+endif()
+set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+
 project(NEL_scape_space VERSION 1.01)
 
 set(TARGET_NAME "NEL_scape_space")
@@ -9,6 +18,20 @@ set(ASSETS_DIR ${CMAKE_SOURCE_DIR}/../dist/)
 
 set(BUILD_VERSION "v0.9.1-beta")
 
+
+# toolchain file for vcpkg
+set(CMAKE_TOOLCHAIN_FILE "C:/dev/vcpkg/scripts/buildsystems/vcpkg.cmake" CACHE STRING "Vcpkg toolchain file")
+
+# Manually specify Boost paths
+set(BOOST_ROOT "C:/dev/vcpkg/installed/x64-windows")
+set(BOOST_INCLUDEDIR "${BOOST_ROOT}/include")
+set(BOOST_LIBRARYDIR "${BOOST_ROOT}/lib")
+
+# Ensure Boost is found
+find_package(Boost REQUIRED COMPONENTS system thread)
+
+
+set(Boost_USE_MULTITHREADED ON)
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
@@ -23,36 +46,35 @@ add_subdirectory(juce) # using the static non-submodule version
 add_subdirectory(elementary/runtime) # using the static non-submodule version
 
 
-
 # Set build type
 
-if(CMAKE_BUILD_TYPE STREQUAL "Release")
+if (CMAKE_BUILD_TYPE STREQUAL "Release")
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -s")
     set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -s")
-endif()
+endif ()
 
-if(WIN32)
-  set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>") # Martin's famous fix ... JUCE and plugins need this
+if (WIN32)
+    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>") # Martin's famous fix ... JUCE and plugins need this
 
-  if(CMAKE_SIZEOF_VOID_P EQUAL 8)
-    set(PC_ARCH "x64")
-  else()
-    set(PC_ARCH "x32")
-  endif()
-endif()
+    if (CMAKE_SIZEOF_VOID_P EQUAL 8)
+        set(PC_ARCH "x64")
+    else ()
+        set(PC_ARCH "x32")
+    endif ()
+endif ()
 
 juce_add_plugin(${TARGET_NAME}
-  BUNDLE_ID "audio.neverenginelabs.scapespace"
-  COMPANY_NAME "NeverEngineLabs"
-  COMPANY_WEBSITE "https://neverenginelabs.com"
-  COMPANY_EMAIL "support@neverenginelabs.com"
-  PLUGIN_MANUFACTURER_CODE NVLB # A four-character manufacturer id with at least one upper-case character
-  PLUGIN_CODE ScRv # A unique four-character plugin id with at least one upper-case character
-  COPY_PLUGIN_AFTER_BUILD FALSE # We enable this manually below after adding a copy step
-  APP_SANDBOX_ENABLED FALSE
-  APP_SANDBOX_OPTIONS com.apple.security.network.client com.apple.security.files.user-selected.read-write
-  FORMATS AU VST3 STANDALONE # The formats to build. Other valid formats are: AAX Unity VST AU AUv3
-  PRODUCT_NAME "NEL_scape_space_${CMAKE_OSX_ARCHITECTURES}${PC_ARCH}_${BUILD_VERSION}") # The name of the final executable, which can differ from the target name
+        BUNDLE_ID "audio.neverenginelabs.scapespace"
+        COMPANY_NAME "NeverEngineLabs"
+        COMPANY_WEBSITE "https://neverenginelabs.com"
+        COMPANY_EMAIL "support@neverenginelabs.com"
+        PLUGIN_MANUFACTURER_CODE NVLB # A four-character manufacturer id with at least one upper-case character
+        PLUGIN_CODE ScRv # A unique four-character plugin id with at least one upper-case character
+        COPY_PLUGIN_AFTER_BUILD FALSE # We enable this manually below after adding a copy step
+        APP_SANDBOX_ENABLED FALSE
+        APP_SANDBOX_OPTIONS com.apple.security.network.client com.apple.security.files.user-selected.read-write
+        FORMATS AU VST3 STANDALONE # The formats to build. Other valid formats are: AAX Unity VST AU AUv3
+        PRODUCT_NAME "NEL_scape_space_${CMAKE_OSX_ARCHITECTURES}${PC_ARCH}_${BUILD_VERSION}") # The name of the final executable, which can differ from the target name
 
 # # Keyzy Client Library
 # # Replace KeyzyClientLibraryX.X.X with your actual library version
@@ -99,98 +121,94 @@ juce_add_plugin(${TARGET_NAME}
 #   target_link_libraries(${TARGET_NAME} PRIVATE ${KEYZY_CLIENT_LIB})
 # endif()
 
-# Find Boost libraries
-find_package(Boost REQUIRED COMPONENTS system thread)
-
-# Link Boost libraries
-target_link_libraries(${TARGET_NAME} PRIVATE Boost::system Boost::thread)
-
-target_include_directories(${TARGET_NAME} PRIVATE
-  $<BUILD_INTERFACE:${LIB_DIR}/Include>
-  $<BUILD_INTERFACE:${Boost_INCLUDE_DIRS}>)
 
 # Copy static assets post build
-if(NOT ELEM_DEV_LOCALHOST)
-  get_target_property(ACTIVE_TARGETS ${TARGET_NAME} JUCE_ACTIVE_PLUGIN_TARGETS)
+if (NOT ELEM_DEV_LOCALHOST)
+    get_target_property(ACTIVE_TARGETS ${TARGET_NAME} JUCE_ACTIVE_PLUGIN_TARGETS)
 
-  foreach(ACTIVE_TARGET IN LISTS ACTIVE_TARGETS)
-    message(STATUS "Adding resource copy step from ${ASSETS_DIR} for ${ACTIVE_TARGET}")
+    foreach (ACTIVE_TARGET IN LISTS ACTIVE_TARGETS)
+        message(STATUS "Adding resource copy step from ${ASSETS_DIR} for ${ACTIVE_TARGET}")
 
-    get_target_property(ARTIFACT_FILE ${ACTIVE_TARGET} JUCE_PLUGIN_ARTEFACT_FILE)
-    set(RESOURCE_DIR "${ARTIFACT_FILE}/Contents/Resources/")
+        get_target_property(ARTIFACT_FILE ${ACTIVE_TARGET} JUCE_PLUGIN_ARTEFACT_FILE)
+        set(RESOURCE_DIR "${ARTIFACT_FILE}/Contents/Resources/")
 
-    add_custom_command(TARGET ${ACTIVE_TARGET} POST_BUILD
-      COMMAND ${CMAKE_COMMAND} -E rm -rf "${RESOURCE_DIR}/dist"
+        add_custom_command(TARGET ${ACTIVE_TARGET} POST_BUILD
+                COMMAND ${CMAKE_COMMAND} -E rm -rf "${RESOURCE_DIR}/dist"
 
-      COMMAND ${CMAKE_COMMAND} -E make_directory "${RESOURCE_DIR}/dist"
+                COMMAND ${CMAKE_COMMAND} -E make_directory "${RESOURCE_DIR}/dist"
 
-      COMMAND ${CMAKE_COMMAND} -E make_directory "${ASSETS_DIR}/assets"
+                COMMAND ${CMAKE_COMMAND} -E make_directory "${ASSETS_DIR}/assets"
 
-      COMMAND ${CMAKE_COMMAND} -E copy_directory "${ASSETS_DIR}" "${RESOURCE_DIR}/dist"
-      COMMAND ${CMAKE_COMMAND} -E echo "Copied directory: ${ASSETS_DIR} to ${RESOURCE_DIR}/dist"
-      VERBATIM)
-  endforeach()
-endif()
+                COMMAND ${CMAKE_COMMAND} -E copy_directory "${ASSETS_DIR}" "${RESOURCE_DIR}/dist"
+                COMMAND ${CMAKE_COMMAND} -E echo "Copied directory: ${ASSETS_DIR} to ${RESOURCE_DIR}/dist"
+                VERBATIM)
+    endforeach ()
+endif ()
 
 # Enable copy step
-if(NOT DEFINED ENV{CI})
-  juce_enable_copy_plugin_step(${TARGET_NAME})
-endif()
+if (NOT DEFINED ENV{CI})
+    juce_enable_copy_plugin_step(${TARGET_NAME})
+endif ()
 
 target_sources(${TARGET_NAME}
-  PRIVATE
-  PluginProcessor.cpp
-  WebViewEditor.cpp
-  Utilities.cpp
-  SlotName.cpp
-  SlotManager.cpp
-  ViewClientInstance.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/TwoStageFFTConvolver.cpp 
-  ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/AudioFFT.cpp 
-  ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/Utilities.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/FFTConvolver.cpp 
-  ConvolverNode.h
-  UserBankManager.h
+        PRIVATE
+        PluginProcessor.cpp
+        WebViewEditor.cpp
+        Utilities.cpp
+        SlotName.cpp
+        SlotManager.cpp
+        ViewClientInstance.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/TwoStageFFTConvolver.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/AudioFFT.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/Utilities.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/FFTConvolver.cpp
+        ConvolverNode.h
+        UserBankManager.h
 )
 
 target_include_directories(${TARGET_NAME}
-  PRIVATE
-  ${CMAKE_CURRENT_SOURCE_DIR}/choc/gui
-  ${CMAKE_CURRENT_SOURCE_DIR}/choc/javascript
-  ${CMAKE_CURRENT_SOURCE_DIR}/choc/containers
-  ${CMAKE_CURRENT_SOURCE_DIR}/choc/network
-  ${CMAKE_CURRENT_SOURCE_DIR}/choc/text
-  ${CMAKE_CURRENT_SOURCE_DIR}/choc/memory
-  ${CMAKE_CURRENT_SOURCE_DIR}/choc/audio
-  ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver
+        PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/choc/gui
+        ${CMAKE_CURRENT_SOURCE_DIR}/choc/javascript
+        ${CMAKE_CURRENT_SOURCE_DIR}/choc/containers
+        ${CMAKE_CURRENT_SOURCE_DIR}/choc/network
+        ${CMAKE_CURRENT_SOURCE_DIR}/choc/text
+        ${CMAKE_CURRENT_SOURCE_DIR}/choc/memory
+        ${CMAKE_CURRENT_SOURCE_DIR}/choc/audio
+        ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver
 )
 
 target_compile_features(${TARGET_NAME}
-  PRIVATE
-  cxx_std_20)
+        PRIVATE
+        cxx_std_20)
 
 target_compile_definitions(${TARGET_NAME}
-  PRIVATE
-  ELEM_DEV_LOCALHOST=${ELEM_DEV_LOCALHOST}
-  JUCE_VST3_CAN_REPLACE_VST2=0
-  JUCE_USE_CURL=0
-  JUCE_MODAL_LOOPS_PERMITTED=1  # Allow file chooser dialog to open
+        PRIVATE
+        ELEM_DEV_LOCALHOST=${ELEM_DEV_LOCALHOST}
+        JUCE_VST3_CAN_REPLACE_VST2=0
+        JUCE_USE_CURL=0
+        JUCE_MODAL_LOOPS_PERMITTED=1  # Allow file chooser dialog to open
 )
 
 target_link_libraries(${TARGET_NAME}
-  PRIVATE
-  juce::juce_audio_basics
-  juce::juce_audio_formats
-  juce::juce_audio_devices
-  juce::juce_audio_plugin_client
-  juce::juce_audio_processors
-  juce::juce_audio_utils
-  juce::juce_core
-  juce::juce_data_structures
-  juce::juce_dsp
-  juce::juce_events
- # juce::juce_graphics
- juce::juce_gui_basics
- juce::juce_gui_extra
- runtime
+        PRIVATE
+        # Link Boost libraries
+        Boost::system Boost::thread
+        # LInk Juce libraries
+        juce::juce_audio_basics
+        juce::juce_audio_formats
+        juce::juce_audio_devices
+        juce::juce_audio_plugin_client
+        juce::juce_audio_processors
+        juce::juce_audio_utils
+        juce::juce_core
+        juce::juce_data_structures
+        juce::juce_dsp
+        juce::juce_events
+        # juce::juce_graphics
+        juce::juce_gui_basics
+        juce::juce_gui_extra
+        # link Elementary runtime
+        runtime
 )
+
