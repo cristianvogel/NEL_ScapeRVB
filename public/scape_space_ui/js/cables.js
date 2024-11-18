@@ -1506,7 +1506,7 @@ const EventTarget = function ()
             const event = this._listeners[which];
             if (!event)
             {
-                this._log.log("could not find event...", which, this);
+                this._log.log("removeEvent: could not find event...", which, this);
                 return;
             }
 
@@ -2620,6 +2620,12 @@ Port.prototype.set = Port.prototype.setValue = function (v)
 {
     if (v === undefined) v = null;
 
+
+    if (CABLES.UI && CABLES.UI.showDevInfos)
+        if (this.direction == CONSTANTS.PORT.PORT_DIR_OUT && this.type == CONSTANTS.OP.OP_PORT_TYPE_OBJECT && v && !this.forceRefChange)
+            this._log.warn("object port uses .set", this.name, this.op.objName);
+
+
     if (this._op.enabled && !this.crashed)
     {
         if (v !== this.value || this.changeAlways || this.type == CONSTANTS.OP.OP_PORT_TYPE_TEXTURE || this.type == CONSTANTS.OP.OP_PORT_TYPE_ARRAY)
@@ -3016,7 +3022,7 @@ Port.prototype.trigger = function ()
 
             if (portTriggered.op.onError) portTriggered.op.onError(ex);
         }
-        this._log.error("exception in port: " + portTriggered.op.name, portTriggered.op);
+        this._log.error("exception in port: ", portTriggered.name, portTriggered.op.name, portTriggered.op);
         this._log.error(ex);
     }
 };
@@ -6103,6 +6109,11 @@ class CgUniform
         }
         else this._value = _value;
 
+
+        // console.log(__shader, __type, __name, _value, _port2, _port3, _port4, _structUniformName, _structName, _propertyName);
+
+
+
         this.setValue(this._value);
         this.needsUpdate = true;
     }
@@ -6111,6 +6122,16 @@ class CgUniform
     getType()
     {
         return this._type;
+    }
+
+    get type()
+    {
+        return this._type;
+    }
+
+    get name()
+    {
+        return this._name;
     }
 
     getName()
@@ -8005,8 +8026,8 @@ class BoundingBox
 
     _init()
     {
-        this._max = [-Number.MAX_VALUE, -Number.MAX_VALUE, -Number.MAX_VALUE];
-        this._min = [Number.MAX_VALUE, Number.MAX_VALUE, Number.MAX_VALUE];
+        this._max = [-0, -0, -0];
+        this._min = [0, 0, 0];
         this._center = [0, 0, 0];
         this._size = [0, 0, 0];
         this._maxAxis = 0.0;
@@ -8105,17 +8126,7 @@ class BoundingBox
         else
         {
             for (let i = 0; i < geom.vertices.length; i += 3)
-                // if (geom.vertices[i] == geom.vertices[i] || geom.vertices[i] != null)
-                // {
-            // if(mat)
-            // {
                 this.applyPos(geom.vertices[i], geom.vertices[i + 1], geom.vertices[i + 2]);
-            // }
-            // else
-            // {
-            //     this.applyPos(geom.vertices[i + 0],geom.vertices[i + 1],geom.vertices[i + 2]);
-            // }
-                // }
         }
         this.calcCenterSize();
     }
@@ -8169,9 +8180,8 @@ class BoundingBox
     calcCenterSize()
     {
         if (this._first) return;
-        // this._size[0]=Math.abs(this._min[0])+Math.abs(this._max[0]);
-        // this._size[1]=Math.abs(this._min[1])+Math.abs(this._max[1]);
-        // this._size[2]=Math.abs(this._min[2])+Math.abs(this._max[2]);
+
+
         this._size[0] = this._max[0] - this._min[0];
         this._size[1] = this._max[1] - this._min[1];
         this._size[2] = this._max[2] - this._min[2];
@@ -10370,7 +10380,7 @@ TextureEffect.checkOpInEffect = function (op, minver)
 
     if (!op.patch.cgl.currentTextureEffect && (!op.uiAttribs.uierrors || op.uiAttribs.uierrors.length == 0))
     {
-        op.setUiError("texeffect", "This op must be a child of an ImageCompose op! More infos <a href=\"https://docs.cables.gl/image_composition/image_composition.html\" target=\"_blank\">here</a>. ", 1);
+        op.setUiError("texeffect", "This op must be a child of an ImageCompose op! More infos <a href=\"https://cables.gl/docs/image_composition/image_composition.html\" target=\"_blank\">here</a>. ", 1);
         return false;
     }
 
@@ -10802,6 +10812,10 @@ class CgShader extends EventTarget
         this.id = simpleId();
         this._isValid = true;
         this._defines = [];
+
+        this._moduleNames = [];
+        this._modules = [];
+        this._moduleNumId = 0;
     }
 
     /**
@@ -10920,6 +10934,155 @@ class CgShader extends EventTarget
                 return;
             }
         }
+    }
+
+
+    hasModule(modId)
+    {
+        for (let i = 0; i < this._modules.length; i++)
+        {
+            if (this._modules[i].id == modId) return true;
+        }
+        return false;
+    }
+
+    setModules(names)
+    {
+        this._moduleNames = names;
+    }
+
+
+    /**
+     * remove a module from shader
+     * @function removeModule
+     * @memberof Shader
+     * @instance
+     * @param {shaderModule} mod the module to be removed
+     */
+    removeModule(mod)
+    {
+        for (let i = 0; i < this._modules.length; i++)
+        {
+            if (mod && mod.id)
+            {
+                if (this._modules[i].id == mod.id || !this._modules[i])
+                {
+                    let found = true;
+                    while (found)
+                    {
+                        found = false;
+                        for (let j = 0; j < this._uniforms.length; j++)
+                        {
+                            if (this._uniforms[j].getName().startsWith(mod.prefix))
+                            {
+                                this._uniforms.splice(j, 1);
+                                found = true;
+                                continue;
+                            }
+                        }
+                    }
+
+                    this._needsRecompile = true;
+                    this.setWhyCompile("remove module " + mod.title);
+                    this._modules.splice(i, 1);
+                    break;
+                }
+            }
+        }
+    }
+
+
+    getNumModules()
+    {
+        return this._modules.length;
+    }
+
+
+    getCurrentModules() { return this._modules; }
+
+
+    /**
+     * add a module
+     * @function addModule
+     * @memberof Shader
+     * @instance
+     * @param {shaderModule} mod the module to be added
+     * @param {shaderModule} [sibling] sibling module, new module will share the same group
+     */
+    addModule(mod, sibling)
+    {
+        if (this.hasModule(mod.id)) return;
+        if (!mod.id) mod.id = CABLES.simpleId();
+        if (!mod.numId) mod.numId = this._moduleNumId;
+        if (!mod.num)mod.num = this._modules.length;
+        if (sibling && !sibling.group) sibling.group = simpleId();
+
+        if (!mod.group)
+            if (sibling) mod.group = sibling.group;
+            else mod.group = simpleId();
+
+        mod.prefix = "mod" + mod.group + "_";
+        this._modules.push(mod);
+
+        this._needsRecompile = true;
+        this.setWhyCompile("add module " + mod.title);
+        this._moduleNumId++;
+
+        return mod;
+    }
+
+    getAttributeSrc(mod, srcHeadVert, srcVert)
+    {
+        if (mod.attributes)
+            for (let k = 0; k < mod.attributes.length; k++)
+            {
+                const r = this._getAttrSrc(mod.attributes[k], false);
+                if (r.srcHeadVert)srcHeadVert += r.srcHeadVert;
+                if (r.srcVert)srcVert += r.srcVert;
+            }
+
+        return { "srcHeadVert": srcHeadVert, "srcVert": srcVert };
+    }
+
+    replaceModuleSrc()
+    {
+        let srcHeadVert = "";
+
+        for (let j = 0; j < this._modules.length; j++)
+        {
+            const mod = this._modules[j];
+            if (mod.name == this._moduleNames[i])
+            {
+                srcHeadVert += "\n//---- MOD: group:" + mod.group + ": idx:" + j + " - prfx:" + mod.prefix + " - " + mod.title + " ------\n";
+
+                srcVert += "\n\n//---- MOD: " + mod.title + " / " + mod.priority + " ------\n";
+
+
+                if (mod.getAttributeSrc)
+                {
+                    const r = getAttributeSrc(mod, srcHeadVert, srcVert);
+                    if (r.srcHeadVert)srcHeadVert += r.srcHeadVert;
+                    if (r.srcVert)srcVert += r.srcVert;
+                }
+
+
+                srcHeadVert += mod.srcHeadVert || "";
+                srcVert += mod.srcBodyVert || "";
+
+                srcHeadVert += "\n//---- end mod ------\n";
+
+                srcVert += "\n//---- end mod ------\n";
+
+                srcVert = srcVert.replace(/{{mod}}/g, mod.prefix);
+                srcHeadVert = srcHeadVert.replace(/{{mod}}/g, mod.prefix);
+
+                srcVert = srcVert.replace(/MOD_/g, mod.prefix);
+                srcHeadVert = srcHeadVert.replace(/MOD_/g, mod.prefix);
+            }
+        }
+
+
+        vs = vs.replace("{{" + this._moduleNames[i] + "}}", srcVert);
     }
 }
 
@@ -11058,9 +11221,6 @@ class Shader extends CgShader
         this.srcFrag = getDefaultFragmentShader();
         this.lastCompile = 0;
 
-        this._moduleNames = [];
-        this._modules = [];
-        this._moduleNumId = 0;
 
         this._libs = [];
         this._structNames = [];
@@ -11631,10 +11791,11 @@ class Shader extends CgShader
         let srcHeadVert = "";
         let srcHeadFrag = "";
 
-        this._modules.sort(function (a, b)
-        {
-            return a.group - b.group;
-        });
+        // testing if this breaks things...
+        // this._modules.sort(function (a, b)
+        // {
+        //     return a.group - b.group;
+        // });
 
         this._modules.sort(function (a, b)
         {
@@ -11709,6 +11870,8 @@ class Shader extends CgShader
             vs = vs.replace("{{" + this._moduleNames[i] + "}}", srcVert);
             fs = fs.replace("{{" + this._moduleNames[i] + "}}", srcFrag);
         }
+
+
         vs = vs.replace("{{MODULES_HEAD}}", srcHeadVert);
         fs = fs.replace("{{MODULES_HEAD}}", srcHeadFrag);
 
@@ -11904,98 +12067,6 @@ class Shader extends CgShader
     {
     };
 
-    /**
-     * remove a module from shader
-     * @function removeModule
-     * @memberof Shader
-     * @instance
-     * @param {shaderModule} mod the module to be removed
-     */
-    removeModule(mod)
-    {
-        for (let i = 0; i < this._modules.length; i++)
-        {
-            if (mod && mod.id)
-            {
-                if (this._modules[i].id == mod.id || !this._modules[i])
-                {
-                    let found = true;
-                    while (found)
-                    {
-                        found = false;
-                        for (let j = 0; j < this._uniforms.length; j++)
-                        {
-                            if (this._uniforms[j].getName().startsWith(mod.prefix))
-                            {
-                                this._uniforms.splice(j, 1);
-                                found = true;
-                                continue;
-                            }
-                        }
-                    }
-
-                    this._needsRecompile = true;
-                    this.setWhyCompile("remove module " + mod.title);
-                    this._modules.splice(i, 1);
-                    break;
-                }
-            }
-        }
-    };
-
-
-    getNumModules()
-    {
-        return this._modules.length;
-    };
-
-
-    getCurrentModules() { return this._modules; };
-
-
-    /**
-     * add a module
-     * @function addModule
-     * @memberof Shader
-     * @instance
-     * @param {shaderModule} mod the module to be added
-     * @param {shaderModule} [sibling] sibling module, new module will share the same group
-     */
-    addModule(mod, sibling)
-    {
-        if (this.hasModule(mod.id)) return;
-        if (!mod.id) mod.id = CABLES.simpleId();
-        if (!mod.numId) mod.numId = this._moduleNumId;
-        if (!mod.num)mod.num = this._modules.length;
-        if (sibling && !sibling.group) sibling.group = simpleId();
-
-        if (!mod.group)
-            if (sibling) mod.group = sibling.group;
-            else mod.group = simpleId();
-
-        mod.prefix = "mod" + mod.group + "_";
-        this._modules.push(mod);
-
-        this._needsRecompile = true;
-        this.setWhyCompile("add module " + mod.title);
-        this._moduleNumId++;
-
-        return mod;
-    };
-
-    hasModule(modId)
-    {
-        for (let i = 0; i < this._modules.length; i++)
-        {
-            if (this._modules[i].id == modId) return true;
-        }
-        return false;
-    };
-
-    setModules(names)
-    {
-        this._moduleNames = names;
-    };
 
     dispose()
     {
@@ -17151,7 +17222,14 @@ class cgp_uniform_Uniform extends cg_uniform
         super(__shader, __type, __name, _value, _port2, _port3, _port4, _structUniformName, _structName, _propertyName);
         this._cgp = __shader._cgp;
 
-        if (this.getType() == "t" && !_value) this._value = this._cgp.getEmptyTexture();
+        if (!_value)
+        {
+            // if (this.getType() == "m4") this._value = mat4.create();
+            if (this.getType() == "t") this._value = this._cgp.getEmptyTexture();
+            // else if (this.getType() == "2f") this._value = [0, 0];
+            // else if (this.getType() == "4f") this._value = [0, 1, 0, 1];
+            // else if (this.getType() == "3f") this._value = [0, 1, 0];
+        }
 
         this.gpuBuffer = null;
     }
@@ -17193,6 +17271,11 @@ class cgp_uniform_Uniform extends cg_uniform
 
     setValue4F(v)
     {
+        if (v[0] == undefined)
+        {
+            this._log.stack("uniform value undefined");
+            console.error("uniform value undefined");
+        }
         this.needsUpdate = true;
         this._value = v;
     }
@@ -17262,6 +17345,21 @@ class cgp_uniform_Uniform extends cg_uniform
         }
     }
 
+    getWgslTypeStr()
+    {
+        if (this._type == "m4") return "mat4x4f";
+        if (this._type == "4f") return "vec4f";
+        if (this._type == "3f") return "vec3f";
+        if (this._type == "2f") return "vec2f";
+        if (this._type == "f") return "float";
+        if (this._type == "f[]") return "array<vec4f>";
+        if (this._type == "i") return "int";
+        if (this._type == "sampler") return "sampler";
+        if (this._type == "t") return "texture_2d<f32>";
+        this._log.warn("unknown type getWgslTypeStr", this._type);
+        return "???";
+    }
+
     getSizeBytes()
     {
         const bytesPerFloat = 4;
@@ -17281,6 +17379,17 @@ class cgp_uniform_Uniform extends cg_uniform
 
         this._log.warn("unknown type getSizeBytes", this._type);
         return 4;
+    }
+
+    copy(newShader)
+    {
+        const uni = new cgp_uniform_Uniform(newShader, this._type, this._name, this._value, this._port2, this._port3, this._port4, this._structUniformName, this._structName, this._propertyName);
+        uni.shaderType = this.shaderType;
+
+        console.log(this._name, this._value, uni._value);
+
+
+        return uni;
     }
 }
 
@@ -17403,6 +17512,8 @@ class GPUBuffer extends EventTarget
             this._gpuBuffer = this._cgp.device.createBuffer(this._buffCfg);
         }
 
+        // if (!isNaN(this.floatArr[0]))console.log("shit", this._name);
+
         if (this.floatArr)
             this._cgp.device.queue.writeBuffer(
                 this._gpuBuffer,
@@ -17417,6 +17528,11 @@ class GPUBuffer extends EventTarget
         this._cgp.popErrorScope();
 
         this.needsUpdate = false;
+    }
+
+    get name()
+    {
+        return this._name;
     }
 
     get gpuBuffer()
@@ -17458,27 +17574,25 @@ class Binding
      * @param {string} name
      * @param {any} options={}
      */
-    constructor(cgp, idx, name, options = {})
+    constructor(cgp, name, options = {})
     {
-        this.idx = idx;
+        if (typeof options != "object") this._log.error("binding options is not an object");
+        this._index = -1;
+
         this._name = name;
         this._cgp = cgp;
         this._log = new Logger("cgp_binding");
         this.uniforms = [];
-        // this.cGpuBuffer = null;
         this.cGpuBuffers = [];
-
+        this._options = options;
         this.shader = null;
-
-        if (typeof options != "object") this._log.error("binding options is not an object");
-
-
         this.bindingInstances = [];
         this.stageStr = options.stage;
         this.bindingType = options.bindingType || "uniform"; // "uniform", "storage", "read-only-storage",
 
-        this.stage = GPUShaderStage.VERTEX;
         if (this.stageStr == "frag") this.stage = GPUShaderStage.FRAGMENT;
+        else this.stage = GPUShaderStage.VERTEX;
+        if (options.hasOwnProperty("index")) this._index = options.index;
 
         if (options.shader) this.shader = options.shader;
 
@@ -17486,16 +17600,55 @@ class Binding
         this.isValid = true;
         this.changed = 0;
 
-        if (options.shader)
+        if (this.shader)
         {
-            if (this.stageStr == "frag") options.shader.bindingsFrag.push(this);
-            if (this.stageStr == "vert") options.shader.bindingsVert.push(this);
+            if (this.stageStr == "frag") this.shader.bindingsFrag.push(this);
+            if (this.stageStr == "vert") this.shader.bindingsVert.push(this);
+            if (this._index == -1) this._index = this.shader.getNewBindingIndex();
         }
+
+        if (this._index == -1) this._log.warn("binding could not get an index", this._name);
 
         this._cgp.on("deviceChange", () =>
         {
             // this.reInit();
         });
+    }
+
+    isStruct()
+    {
+        if (this.uniforms.length == 0) return false;
+
+        if (this.uniforms.length == 1)
+        {
+            if (this.uniforms[0].type == "t" || this.uniforms[0].type == "sampler") return false;
+            if (this.bindingType != "uniform") return false;
+        }
+
+        return true;
+    }
+
+    copy(newShader)
+    {
+        console.log("copy binding...");
+        const options = {};
+
+        for (const i in this._options)
+            options[i] = this._options[i];
+
+        options.shader = newShader;
+
+        let binding = new Binding(this._cgp, this._name, options);
+
+        for (let i = 0; i < this.uniforms.length; i++)
+        {
+            binding.addUniform(newShader.getUniform(this.uniforms[i].name)); // .copy(newShader)
+        }
+
+
+
+
+        return binding;
     }
 
     addUniform(uni)
@@ -17516,17 +17669,61 @@ class Binding
         return size;
     }
 
+    getShaderHeaderCode()
+    {
+        let str = "";
+
+        let typeStr = "strct_" + this._name;
+        let name = this._name;
+
+        if (this.uniforms.length === 0) return "// no uniforms in bindinggroup...?\n";
+
+
+        str += "// " + this.uniforms.length + " uniforms\n";
+
+        if (this.isStruct())
+        {
+            str += "struct " + typeStr + "\n";
+            str += "{\n";
+            for (let i = 0; i < this.uniforms.length; i++)
+            {
+                str += "    " + this.uniforms[i].name + ": " + this.uniforms[i].getWgslTypeStr();
+                if (i != this.uniforms.length - 1)str += ",";
+                str += "\n";
+            }
+            str += "};\n";
+        }
+        else
+        {
+            typeStr = this.uniforms[0].getWgslTypeStr();
+            name = this.uniforms[0].name;
+        }
+
+        str += "@group(0) ";
+        str += "@binding(" + this._index + ") ";
+
+        if (this.isStruct())
+        {
+            str += "var<" + this.bindingType + "> ";
+        }
+        else if (this.bindingType == "read-only-storage")str += "var<storage,read> ";
+        else str += "var ";
+
+        str += name + ": " + typeStr + ";\n";
+
+        return str;
+    }
+
+
     getBindingGroupLayoutEntry()
     {
         let label = "layout " + this._name + " [";
-        for (let i = 0; i < this.uniforms.length; i++)
-            label += this.uniforms[i].getName() + ",";
-
+        for (let i = 0; i < this.uniforms.length; i++) label += this.uniforms[i].getName() + ",";
         label += "]";
 
         const o = {
             "label": label,
-            "binding": this.idx,
+            "binding": this._index,
             "visibility": this.stage,
             "size": this.getSizeBytes()
         };
@@ -17554,10 +17751,17 @@ class Binding
 
         const o = {
             "label": this._name + " binding",
-            "binding": this.idx,
+            "binding": this._index,
             "size": this.getSizeBytes(),
             "visibility": this.stage,
         };
+
+        if (this.uniforms.length == 0)
+        {
+            console.log("binding uniforms length 0");
+            return;
+        }
+
 
         if (this.uniforms.length == 1 && this.uniforms[0].getType() == "t")
         {
@@ -17577,18 +17781,7 @@ class Binding
         }
         else
         {
-            let buffCfg = {
-                "label": this._name,
-                "size": this.getSizeBytes(),
-                "usage": GPUBufferUsage.COPY_DST | GPUBufferUsage.UNIFORM,
-            };
-
-            if (this.bindingType == "read-only-storage" || this.bindingType == "storage") buffCfg.usage = GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_DST;
-
-            if (this.cGpuBuffers[inst]) this.cGpuBuffers[inst].dispose();
-            this.cGpuBuffers[inst] = new GPUBuffer(this._cgp, "buff", null, { "buffCfg": buffCfg });
-
-            if (this.uniforms[0].gpuBuffer) this.cGpuBuffers[inst] = this.uniforms[0].gpuBuffer;
+            this._createCgpuBuffer(inst);
 
             o.resource = {
                 "buffer": this.cGpuBuffers[inst].gpuBuffer,
@@ -17601,6 +17794,22 @@ class Binding
         this.bindingInstances[inst] = o;
 
         return o;
+    }
+
+    _createCgpuBuffer(inst)
+    {
+        let buffCfg = {
+            "label": this._name,
+            "size": this.getSizeBytes(),
+            "usage": GPUBufferUsage.COPY_DST | GPUBufferUsage.UNIFORM,
+        };
+
+        if (this.bindingType == "read-only-storage" || this.bindingType == "storage") buffCfg.usage = GPUBufferUsage.STORAGE | GPUBufferUsage.COPY_DST;
+
+        if (this.cGpuBuffers[inst]) this.cGpuBuffers[inst].dispose();
+        this.cGpuBuffers[inst] = new GPUBuffer(this._cgp, this._name + " buff", null, { "buffCfg": buffCfg });
+
+        if (this.uniforms.length > 0 && this.uniforms[0].gpuBuffer) this.cGpuBuffers[inst] = this.uniforms[0].gpuBuffer;
     }
 
 
@@ -17632,7 +17841,7 @@ class Binding
                 }
                 else
                 {
-                    b.resource = CABLES.errorTexture.createView();
+                    b.resource = this._cgp.getErrorTexture().createView();
                 }
 
             if (this._cgp.frameStore.branchProfiler) this._cgp.frameStore.branchStack.pop();
@@ -17648,17 +17857,31 @@ class Binding
             let info = ["stage " + this.stageStr + " / inst " + inst];
 
             // console.log("B",this.);
-
-
             // update uniform values to buffer
             const s = this.getSizeBytes() / 4;
+
+            // if (!this.cGpuBuffers[inst])
+            // this._createCgpuBuffer(inst);
+            // this.cGpuBuffers[inst] = new GPUBuffer(this._cgp, "buff", null, { "buffCfg": buffCfg });
+
             this.cGpuBuffers[inst].setLength(s);
 
             let off = 0;
             for (let i = 0; i < this.uniforms.length; i++)
             {
                 info.push(this.uniforms[i].getName() + " " + this.uniforms[i].getValue());
+
+
+
                 this.uniforms[i].copyToBuffer(this.cGpuBuffers[inst].floatArr, off); // todo: check if uniform changed?
+
+
+                // if (isNaN(this.cGpuBuffers[inst].floatArr[0]))
+                // {
+                // console.log("shitttttttt", this.cGpuBuffers[inst].floatArr[0], this.uniforms[i].getName(), this.cGpuBuffers[inst].name, this.uniforms[i]);
+                // }
+
+
                 off += this.uniforms[i].getSizeBytes() / 4;
             }
             if (this._cgp.frameStore.branchProfiler) this._cgp.frameStore.branchStack.push("uni buff", info);
@@ -17705,10 +17928,13 @@ class cgp_shader_Shader extends CgShader
         this._compileReason = "";
         this.gpuShaderModule = null;
         this._needsRecompile = true;
+        this.bindingCounter = 0;
+        this.bindCountlastFrame = -1;
+        this._bindingIndexCount = 0;
 
-        this.defaultBindingVert = new Binding(_cgp, 0, "defaultVert", { "stage": "vert", "bindingType": "uniform" });
-        this.defaultBindingFrag = new Binding(_cgp, 1, "defaultFrag", { "stage": "frag", "bindingType": "uniform" });
-        this.defaultBindingComp = new Binding(_cgp, 1, "defaultComp", { "bindingType": "uniform" });
+        this.defaultBindingVert = new Binding(_cgp, "vsUniforms", { "stage": "vert", "bindingType": "uniform", "index": this._bindingIndexCount++ });
+        this.defaultBindingFrag = new Binding(_cgp, "fsUniforms", { "stage": "frag", "bindingType": "uniform", "index": this._bindingIndexCount++ });
+        this.defaultBindingComp = new Binding(_cgp, "computeUniforms", { "bindingType": "uniform", "index": this._bindingIndexCount++ });
         this.bindingsFrag = [this.defaultBindingFrag];
         this.bindingsVert = [this.defaultBindingVert];
         this.bindingsComp = [this.defaultBindingComp];
@@ -17724,8 +17950,6 @@ class cgp_shader_Shader extends CgShader
             this._tempModelViewMatrix = mat4.create();
         }
 
-        this.bindingCounter = 0;
-        this.bindCountlastFrame = -1;
 
         this._src = "";
 
@@ -17768,6 +17992,12 @@ class cgp_shader_Shader extends CgShader
         this._compileReason = why;
     }
 
+    getNewBindingIndex()
+    {
+        return ++this._bindingIndexCount;
+    }
+
+
     setSource(src)
     {
         this._src = src;
@@ -17775,18 +18005,85 @@ class cgp_shader_Shader extends CgShader
         this._needsRecompile = true;
     }
 
-    compile()
+    _replaceMods(vs)
     {
-        this._isValid = true;
-        this._cgp.pushErrorScope("cgp_shader " + this._name);
+        let srcHeadVert = "";
+        for (let i = 0; i < this._moduleNames.length; i++)
+        {
+            let srcVert = "";
 
+            for (let j = 0; j < this._modules.length; j++)
+            {
+                const mod = this._modules[j];
+                if (mod.name == this._moduleNames[i])
+                {
+                    srcHeadVert += "\n//---- MOD: group:" + mod.group + ": idx:" + j + " - prfx:" + mod.prefix + " - " + mod.title + " ------\n";
+
+                    srcVert += "\n\n//---- MOD: " + mod.title + " / " + mod.priority + " ------\n";
+
+                    if (mod.attributes)
+                        for (let k = 0; k < mod.attributes.length; k++)
+                        {
+                            const r = this._getAttrSrc(mod.attributes[k], false);
+                            if (r.srcHeadVert)srcHeadVert += r.srcHeadVert;
+                            if (r.srcVert)srcVert += r.srcVert;
+                        }
+
+                    srcHeadVert += mod.srcHead || "";
+                    srcVert += mod.srcBody || "";
+
+                    srcHeadVert += "\n//---- end mod ------\n";
+
+                    srcVert += "\n//---- end mod ------\n";
+
+                    srcVert = srcVert.replace(/{{mod}}/g, mod.prefix);
+                    srcHeadVert = srcHeadVert.replace(/{{mod}}/g, mod.prefix);
+
+                    srcVert = srcVert.replace(/MOD_/g, mod.prefix);
+                    srcHeadVert = srcHeadVert.replace(/MOD_/g, mod.prefix);
+                }
+            }
+
+            vs = vs.replace("{{" + this._moduleNames[i] + "}}", srcVert);
+        }
+
+        vs = vs.replace("{{MODULES_HEAD}}", srcHeadVert);
+        return vs;
+    }
+
+    getProcessedSource()
+    {
         const defs = {};
         for (let i = 0; i < this._defines.length; i++)
             defs[this._defines[i][0]] = this._defines[i][1] || true;
 
-        const src = preproc(this._src, defs);
 
-        this.gpuShaderModule = this._cgp.device.createShaderModule({ "code": src, "label": this._name });
+        let src = preproc(this._src, defs);
+
+        let bindingsHeadVert = "";
+        for (let i = 0; i < this.bindingsFrag.length; i++)
+            bindingsHeadVert += this.bindingsFrag[i].getShaderHeaderCode();
+
+        let bindingsHeadFrag = "";
+        for (let i = 0; i < this.bindingsVert.length; i++)
+            bindingsHeadFrag += this.bindingsVert[i].getShaderHeaderCode();
+
+
+
+        src = bindingsHeadFrag + "\n\n////////////////\n\n" + bindingsHeadVert + "\n\n////////////////\n\n" + src;
+        src = this._replaceMods(src);
+
+        return src;
+        // console.log("----------------\n", src, "\n----------------------------");
+    }
+
+    compile()
+    {
+        console.log("compile", this._compileReason);
+        this._isValid = true;
+        this._cgp.pushErrorScope("cgp_shader " + this._name);
+        console.log(this.getProcessedSource());
+        this.gpuShaderModule = this._cgp.device.createShaderModule({ "code": this.getProcessedSource(), "label": this._name });
         this._cgp.popErrorScope(this.error.bind(this));
         this._needsRecompile = false;
 
@@ -17921,10 +18218,85 @@ class cgp_shader_Shader extends CgShader
             if (this._uniforms[i].getName() == name) return this._uniforms[i];
         }
     }
+
+    /**
+     * copy current shader
+     * @function copy
+     * @memberof Shader
+     * @instance
+     * @returns newShader
+     */
+    copy()
+    {
+        const shader = new cgp_shader_Shader(this._cgp, this._name + " copy");
+        shader.setSource(this._src);
+
+        shader._modules = JSON.parse(JSON.stringify(this._modules));
+        shader._defines = JSON.parse(JSON.stringify(this._defines));
+
+        shader._modGroupCount = this._modGroupCount;
+        shader._moduleNames = this._moduleNames;
+
+        // shader.glPrimitive = this.glPrimitive;
+        // shader.offScreenPass = this.offScreenPass;
+        // shader._extensions = this._extensions;
+        // shader.wireframe = this.wireframe;
+        // shader._attributes = this._attributes;
+
+        for (let i = 0; i < this._uniforms.length; i++) this._uniforms[i].copy(shader);
+
+        shader.bindingsFrag = [];
+        for (let i = 0; i < this.bindingsFrag.length; i++) this.bindingsFrag[i].copy(shader);
+        shader.defaultBindingFrag = this.bindingsFrag[0];
+
+        shader.bindingsVert = [];
+        for (let i = 0; i < this.bindingsVert.length; i++) this.bindingsVert[i].copy(shader);
+        shader.defaultBindingVert = this.bindingsVert[0];
+
+        shader.bindingsComp = [];
+        for (let i = 0; i < this.bindingsComp.length; i++) this.bindingsComp[i].copy(shader);
+        shader.defaultBindingComp = this.bindingsComp[0];
+
+        console.log("copyyyyyyyyyy", shader.bindingsVert, this.bindingsVert);
+
+        this.setWhyCompile("copy");
+        shader._needsRecompile = true;
+        return shader;
+    }
+
+
+    /**
+     * copy all uniform values from another shader
+     * @function copyUniforms
+     * @memberof Shader
+     * @instance
+     * @param origShader uniform values will be copied from this shader
+     */
+    copyUniformValues(origShader)
+    {
+        for (let i = 0; i < origShader._uniforms.length; i++)
+        {
+            if (!this._uniforms[i])
+            {
+                this._log.log("unknown uniform?!");
+                continue;
+            }
+            this.getUniform(origShader._uniforms[i].getName()).set(origShader._uniforms[i].getValue());
+        }
+
+        // this.popTextures();
+        // for (let i = 0; i < origShader._textureStackUni.length; i++)
+        // {
+        //     this._textureStackUni[i] = origShader._textureStackUni[i];
+        //     this._textureStackTex[i] = origShader._textureStackTex[i];
+        //     this._textureStackType[i] = origShader._textureStackType[i];
+        //     this._textureStackTexCgl[i] = origShader._textureStackTexCgl[i];
+        // }
+    }
 }
 
 ;// CONCATENATED MODULE: ./src/core/cgp/cgl_shader_default.wgsl
-/* harmony default export */ const cgl_shader_default = ("struct VSUniforms\n{\n    modelMatrix: mat4x4<f32>,\n    viewMatrix: mat4x4<f32>,\n    projMatrix: mat4x4<f32>,\n};\n\nstruct FSUniforms\n{\n    color:vec4<f32>\n};\n\n@group(0) @binding(0) var<uniform> vsUniforms: VSUniforms;\n@group(0) @binding(1) var<uniform> fsUniforms: FSUniforms;\n\nstruct MyVSInput\n{\n    @location(0) position: vec3<f32>,\n    @location(1) normal: vec3<f32>,\n    @location(2) texcoord: vec2<f32>,\n};\n\nstruct MyVSOutput\n{\n    @builtin(position) position: vec4<f32>,\n    @location(0) normal: vec3<f32>,\n    @location(1) texcoord: vec2<f32>,\n};\n\n@vertex\nfn myVSMain(v: MyVSInput) -> MyVSOutput\n{\n    var vsOut: MyVSOutput;\n    var pos =vec4<f32>(v.position, 1.0);\n\n    var mvMatrix=vsUniforms.viewMatrix * vsUniforms.modelMatrix;\n    vsOut.position = vsUniforms.projMatrix * mvMatrix * pos;\n\n    vsOut.normal = v.normal;\n    vsOut.texcoord = v.texcoord;\n    return vsOut;\n}\n\n@fragment\nfn myFSMain(v: MyVSOutput) -> @location(0) vec4<f32>\n{\n    return fsUniforms.color+vec4<f32>(.5,.5,.5,1.0);\n}\n\n");
+/* harmony default export */ const cgl_shader_default = ("\nstruct MyVSInput\n{\n    @location(0) position: vec3<f32>,\n    @location(1) normal: vec3<f32>,\n    @location(2) texcoord: vec2<f32>,\n};\n\nstruct MyVSOutput\n{\n    @builtin(position) position: vec4<f32>,\n    @location(0) normal: vec3<f32>,\n    @location(1) texcoord: vec2<f32>,\n};\n\n@vertex\nfn myVSMain(v: MyVSInput) -> MyVSOutput\n{\n    var vsOut: MyVSOutput;\n    var pos =vec4<f32>(v.position, 1.0);\n\n    var mvMatrix=vsUniforms.viewMatrix * vsUniforms.modelMatrix;\n    vsOut.position = vsUniforms.projMatrix * mvMatrix * pos;\n\n    vsOut.normal = v.normal;\n    vsOut.texcoord = v.texcoord;\n    return vsOut;\n}\n\n@fragment\nfn myFSMain(v: MyVSOutput) -> @location(0) vec4<f32>\n{\n    return fsUniforms.color+vec4<f32>(.5,.5,.5,1.0);\n}\n\n");
 ;// CONCATENATED MODULE: ./src/core/cgp/cgp_texture.js
 
 
@@ -19978,4 +20350,4 @@ CABLES = __webpack_exports__["default"];
 ;
 
 
-var CABLES = CABLES || {}; CABLES.build = {"timestamp":1730796217675,"created":"2024-11-05T08:43:37.675Z","git":{"branch":"master","commit":"de2d1ed35b0f543548036c248fac723014a39801","date":"1730280145","message":"fix"}};
+var CABLES = CABLES || {}; CABLES.build = {"timestamp":1731931574112,"created":"2024-11-18T12:06:14.112Z","git":{"branch":"develop","commit":"a8e1939a0dddaa79c9a189263bc027a705179173","date":"1731930901","message":"dev"}};

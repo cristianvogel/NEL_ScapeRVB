@@ -848,8 +848,8 @@ class BoundingBox
 
     _init()
     {
-        this._max = [-Number.MAX_VALUE, -Number.MAX_VALUE, -Number.MAX_VALUE];
-        this._min = [Number.MAX_VALUE, Number.MAX_VALUE, Number.MAX_VALUE];
+        this._max = [-0, -0, -0];
+        this._min = [0, 0, 0];
         this._center = [0, 0, 0];
         this._size = [0, 0, 0];
         this._maxAxis = 0.0;
@@ -948,17 +948,7 @@ class BoundingBox
         else
         {
             for (let i = 0; i < geom.vertices.length; i += 3)
-                // if (geom.vertices[i] == geom.vertices[i] || geom.vertices[i] != null)
-                // {
-            // if(mat)
-            // {
                 this.applyPos(geom.vertices[i], geom.vertices[i + 1], geom.vertices[i + 2]);
-            // }
-            // else
-            // {
-            //     this.applyPos(geom.vertices[i + 0],geom.vertices[i + 1],geom.vertices[i + 2]);
-            // }
-                // }
         }
         this.calcCenterSize();
     }
@@ -1012,9 +1002,8 @@ class BoundingBox
     calcCenterSize()
     {
         if (this._first) return;
-        // this._size[0]=Math.abs(this._min[0])+Math.abs(this._max[0]);
-        // this._size[1]=Math.abs(this._min[1])+Math.abs(this._max[1]);
-        // this._size[2]=Math.abs(this._min[2])+Math.abs(this._max[2]);
+
+
         this._size[0] = this._max[0] - this._min[0];
         this._size[1] = this._max[1] - this._min[1];
         this._size[2] = this._max[2] - this._min[2];
@@ -2062,7 +2051,7 @@ const EventTarget = function ()
             const event = this._listeners[which];
             if (!event)
             {
-                this._log.log("could not find event...", which, this);
+                this._log.log("removeEvent: could not find event...", which, this);
                 return;
             }
 
@@ -3463,6 +3452,12 @@ Port.prototype.set = Port.prototype.setValue = function (v)
 {
     if (v === undefined) v = null;
 
+
+    if (CABLES.UI && CABLES.UI.showDevInfos)
+        if (this.direction == constants_CONSTANTS.PORT.PORT_DIR_OUT && this.type == constants_CONSTANTS.OP.OP_PORT_TYPE_OBJECT && v && !this.forceRefChange)
+            this._log.warn("object port uses .set", this.name, this.op.objName);
+
+
     if (this._op.enabled && !this.crashed)
     {
         if (v !== this.value || this.changeAlways || this.type == constants_CONSTANTS.OP.OP_PORT_TYPE_TEXTURE || this.type == constants_CONSTANTS.OP.OP_PORT_TYPE_ARRAY)
@@ -3859,7 +3854,7 @@ Port.prototype.trigger = function ()
 
             if (portTriggered.op.onError) portTriggered.op.onError(ex);
         }
-        this._log.error("exception in port: " + portTriggered.op.name, portTriggered.op);
+        this._log.error("exception in port: ", portTriggered.name, portTriggered.op.name, portTriggered.op);
         this._log.error(ex);
     }
 };
@@ -4333,6 +4328,11 @@ class CgUniform
         }
         else this._value = _value;
 
+
+        // console.log(__shader, __type, __name, _value, _port2, _port3, _port4, _structUniformName, _structName, _propertyName);
+
+
+
         this.setValue(this._value);
         this.needsUpdate = true;
     }
@@ -4341,6 +4341,16 @@ class CgUniform
     getType()
     {
         return this._type;
+    }
+
+    get type()
+    {
+        return this._type;
+    }
+
+    get name()
+    {
+        return this._name;
     }
 
     getName()

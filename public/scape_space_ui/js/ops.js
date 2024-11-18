@@ -14,6 +14,7 @@ Ops.Math=Ops.Math || {};
 Ops.Vars=Ops.Vars || {};
 Ops.Array=Ops.Array || {};
 Ops.Patch=Ops.Patch || {};
+Ops.Cables=Ops.Cables || {};
 Ops.Number=Ops.Number || {};
 Ops.String=Ops.String || {};
 Ops.Boolean=Ops.Boolean || {};
@@ -37,6 +38,7 @@ Ops.Devices.Mouse=Ops.Devices.Mouse || {};
 Ops.Net.WebSocket=Ops.Net.WebSocket || {};
 Ops.Patch.P4Zknbo=Ops.Patch.P4Zknbo || {};
 Ops.Patch.PBktIwq=Ops.Patch.PBktIwq || {};
+Ops.Patch.PKUEypu=Ops.Patch.PKUEypu || {};
 Ops.Patch.Pg3hCDt=Ops.Patch.Pg3hCDt || {};
 Ops.Patch.PxdLHGq=Ops.Patch.PxdLHGq || {};
 Ops.Gl.ImageCompose=Ops.Gl.ImageCompose || {};
@@ -9238,7 +9240,7 @@ wrap.onChange = onWrapChange;
 tfilter.set("mipmap");
 wrap.set("repeat");
 
-textureOut.set(CGL.Texture.getEmptyTexture(cgl));
+textureOut.setRef(CGL.Texture.getEmptyTexture(cgl));
 
 inReload.onTriggered = reloadSoon;
 
@@ -9247,11 +9249,11 @@ active.onChange = function ()
     if (active.get())
     {
         if (loadedFilename != filename.get() || !tex) reloadSoon();
-        else textureOut.set(tex);
+        else textureOut.setRef(tex);
     }
     else
     {
-        textureOut.set(CGL.Texture.getEmptyTexture(cgl));
+        textureOut.setRef(CGL.Texture.getEmptyTexture(cgl));
         width.set(CGL.Texture.getEmptyTexture(cgl).width);
         height.set(CGL.Texture.getEmptyTexture(cgl).height);
         if (tex)tex.delete();
@@ -9263,7 +9265,7 @@ active.onChange = function ()
 const setTempTexture = function ()
 {
     const t = CGL.Texture.getTempTexture(cgl);
-    textureOut.set(t);
+    textureOut.setRef(t);
 };
 
 function reloadSoon(nocache)
@@ -9347,7 +9349,7 @@ function realReload(nocache)
                 // else op.setUiError("npot", null);
 
                 tex = newTex;
-                // textureOut.set(null);
+                // textureOut.setRef(null);
                 textureOut.setRef(tex);
 
                 loading.set(false);
@@ -9405,8 +9407,8 @@ op.onFileChanged = function (fn)
 {
     if (filename.get() && filename.get().indexOf(fn) > -1)
     {
-        textureOut.set(CGL.Texture.getEmptyTexture(op.patch.cgl));
-        textureOut.set(CGL.Texture.getTempTexture(cgl));
+        textureOut.setRef(CGL.Texture.getEmptyTexture(op.patch.cgl));
+        textureOut.setRef(CGL.Texture.getTempTexture(cgl));
         realReload(true);
     }
 };
@@ -18225,318 +18227,6 @@ CABLES.OPS["04fd113f-ade1-43fb-99fa-f8825f8814c0"]={f:Ops.Math.Compare.LessThan,
 
 // **************************************************************
 // 
-// Ops.String.StringContains_v2
-// 
-// **************************************************************
-
-Ops.String.StringContains_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inStr = op.inString("String"),
-    inValue = op.inString("SearchValue"),
-    outFound = op.outBoolNum("Found", false),
-    outIndex = op.outNumber("Index", -1);
-
-inValue.onChange =
-    inStr.onChange = exec;
-
-exec();
-
-function exec()
-{
-    if (inStr.get() && inValue.get() && inValue.get().length > 0)
-    {
-        const index = inStr.get().indexOf(inValue.get());
-        outIndex.set(index);
-        outFound.set(index > -1);
-    }
-    else
-    {
-        outIndex.set(-1);
-        outFound.set(false);
-    }
-}
-
-
-};
-
-Ops.String.StringContains_v2.prototype = new CABLES.Op();
-CABLES.OPS["2ca3e5d7-e6b4-46a7-8381-3fe1ad8b6879"]={f:Ops.String.StringContains_v2,objName:"Ops.String.StringContains_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Math.Delta
-// 
-// **************************************************************
-
-Ops.Math.Delta = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    val = op.inValue("Value"),
-    changeAlwaysPort = op.inValueBool("Change Always", false),
-    inReset = op.inTrigger("Reset"),
-    result = op.outNumber("Delta");
-
-val.changeAlways = false;
-
-let oldVal = 0;
-let firstTime = true;
-
-changeAlwaysPort.onChange = function ()
-{
-    val.changeAlways = changeAlwaysPort.get();
-};
-
-inReset.onTriggered = function ()
-{
-    firstTime = true;
-};
-
-val.onChange = function ()
-{
-    let change = oldVal - val.get();
-    oldVal = val.get();
-    if (firstTime)
-    {
-        firstTime = false;
-        return;
-    }
-    result.set(change);
-};
-
-
-};
-
-Ops.Math.Delta.prototype = new CABLES.Op();
-CABLES.OPS["0f203337-e13c-47ec-a09f-b309212540b0"]={f:Ops.Math.Delta,objName:"Ops.Math.Delta"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Math.Clamp
-// 
-// **************************************************************
-
-Ops.Math.Clamp = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    val = op.inValueFloat("val", 0.5),
-    min = op.inValueFloat("min", 0),
-    max = op.inValueFloat("max", 1),
-    ignore = op.inValueBool("ignore outside values"),
-    result = op.outNumber("result");
-
-val.onChange = min.onChange = max.onChange = clamp;
-
-function clamp()
-{
-    if (ignore.get())
-    {
-        if (val.get() > max.get()) return;
-        if (val.get() < min.get()) return;
-    }
-    result.set(Math.min(Math.max(val.get(), min.get()), max.get()));
-}
-
-
-};
-
-Ops.Math.Clamp.prototype = new CABLES.Op();
-CABLES.OPS["cda1a98e-5e16-40bd-9b18-a67e9eaad5a1"]={f:Ops.Math.Clamp,objName:"Ops.Math.Clamp"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Math.FlipSign
-// 
-// **************************************************************
-
-Ops.Math.FlipSign = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inval = op.inValueFloat("Value", 1),
-    result = op.outNumber("Result");
-
-inval.onChange = update;
-update();
-
-function update()
-{
-    result.set(inval.get() * -1);
-}
-
-
-};
-
-Ops.Math.FlipSign.prototype = new CABLES.Op();
-CABLES.OPS["f5c858a2-2654-4108-86fe-319efa70ecec"]={f:Ops.Math.FlipSign,objName:"Ops.Math.FlipSign"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Ui.VizTrigger
-// 
-// **************************************************************
-
-Ops.Ui.VizTrigger = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inTrigger = op.inTriggerButton("Trigger"),
-    inReset = op.inTriggerButton("Reset"),
-    outCount = op.outNumber("Count");
-
-op.setUiAttrib({ "height": 100, "width": 130, "resizable": true });
-
-let lastTime = 0;
-let count = 0;
-
-inReset.onTriggered = () =>
-{
-    count = 0;
-    op.setUiAttrib({ "extendTitle": "_____" + String(count) });
-    outCount.set(count);
-};
-
-inTrigger.onTriggered = () =>
-{
-    lastTime = performance.now();
-    op.setUiAttrib({ "extendTitle": String(++count) });
-    outCount.set(count);
-};
-
-op.renderVizLayer = (ctx, layer) =>
-{
-    ctx.fillStyle = "#222";
-    ctx.fillRect(
-        layer.x, layer.y,
-        layer.width, layer.height);
-
-    let radius = Math.min(layer.height, layer.width) / 2.4 * 0.8;
-    let diff = performance.now() - lastTime;
-
-    let v = CABLES.map(diff, 0, 100, 1, 0);
-
-    ctx.globalAlpha = v + 0.3;
-    ctx.fillStyle = "#ccc";
-
-    let circle = new Path2D();
-
-    const sizeAnim = v * 6;
-    circle.arc(
-        layer.x + layer.width / 2,
-        layer.y + layer.height / 2,
-        radius - (ctx.lineWidth / 2) + (sizeAnim * 2),
-        0, 2 * Math.PI, false);
-    ctx.fill(circle);
-
-    ctx.globalAlpha = 1.0;
-};
-
-
-};
-
-Ops.Ui.VizTrigger.prototype = new CABLES.Op();
-CABLES.OPS["4533060f-3cd4-4572-ac78-dad0710a3f7a"]={f:Ops.Ui.VizTrigger,objName:"Ops.Ui.VizTrigger"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Math.Compare.GreaterThan
-// 
-// **************************************************************
-
-Ops.Math.Compare.GreaterThan = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    number1 = op.inValueFloat("number1"),
-    number2 = op.inValueFloat("number2"),
-    result = op.outBoolNum("result");
-
-op.setUiAttribs({ "mathTitle": true });
-
-number1.onChange = number2.onChange = exec;
-
-function exec()
-{
-    result.set(number1.get() > number2.get());
-}
-
-
-};
-
-Ops.Math.Compare.GreaterThan.prototype = new CABLES.Op();
-CABLES.OPS["b250d606-f7f8-44d3-b099-c29efff2608a"]={f:Ops.Math.Compare.GreaterThan,objName:"Ops.Math.Compare.GreaterThan"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.String.SwitchStringMultiPort
-// 
-// **************************************************************
-
-Ops.String.SwitchStringMultiPort = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inIndex = op.inInt("Index", 0),
-    inStrs = op.inMultiPort("Strings", CABLES.OP_PORT_TYPE_STRING),
-    outResult = op.outString("String"),
-    outNum = op.outNumber("Num Values");
-
-inIndex.onChange =
-inStrs.onChange = () =>
-{
-    const valuePorts = inStrs.get();
-    const idx = Math.ceil(Math.min(valuePorts.length - 1, Math.max(0, inIndex.get())));
-
-    outResult.set(valuePorts[idx].get());
-    outNum.set(valuePorts.length);
-};
-
-
-};
-
-Ops.String.SwitchStringMultiPort.prototype = new CABLES.Op();
-CABLES.OPS["cf8a883f-cf09-44a6-ba1c-7f9c1220b618"]={f:Ops.String.SwitchStringMultiPort,objName:"Ops.String.SwitchStringMultiPort"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Net.WebSocket.WebSocketSend
 // 
 // **************************************************************
@@ -19153,29 +18843,72 @@ CABLES.OPS["385197e1-8b34-4d1c-897f-d1386d99e3b3"]={f:Ops.Boolean.TriggerChanged
 
 // **************************************************************
 // 
-// Ops.Trigger.TriggerButton
+// Ops.Ui.VizTrigger
 // 
 // **************************************************************
 
-Ops.Trigger.TriggerButton = function()
+Ops.Ui.VizTrigger = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
 const attachments=op.attachments={};
 const
-    inTrig = op.inTriggerButton("Trigger"),
-    outTrig = op.outTrigger("Next");
+    inTrigger = op.inTriggerButton("Trigger"),
+    inReset = op.inTriggerButton("Reset"),
+    outCount = op.outNumber("Count");
 
-inTrig.onTriggered = function ()
+op.setUiAttrib({ "height": 100, "width": 130, "resizable": true });
+
+let lastTime = 0;
+let count = 0;
+
+inReset.onTriggered = () =>
 {
-    outTrig.trigger();
+    count = 0;
+    op.setUiAttrib({ "extendTitle": "_____" + String(count) });
+    outCount.set(count);
+};
+
+inTrigger.onTriggered = () =>
+{
+    lastTime = performance.now();
+    op.setUiAttrib({ "extendTitle": String(++count) });
+    outCount.set(count);
+};
+
+op.renderVizLayer = (ctx, layer) =>
+{
+    ctx.fillStyle = "#222";
+    ctx.fillRect(
+        layer.x, layer.y,
+        layer.width, layer.height);
+
+    let radius = Math.min(layer.height, layer.width) / 2.4 * 0.8;
+    let diff = performance.now() - lastTime;
+
+    let v = CABLES.map(diff, 0, 100, 1, 0);
+
+    ctx.globalAlpha = v + 0.3;
+    ctx.fillStyle = "#ccc";
+
+    let circle = new Path2D();
+
+    const sizeAnim = v * 6;
+    circle.arc(
+        layer.x + layer.width / 2,
+        layer.y + layer.height / 2,
+        radius - (ctx.lineWidth / 2) + (sizeAnim * 2),
+        0, 2 * Math.PI, false);
+    ctx.fill(circle);
+
+    ctx.globalAlpha = 1.0;
 };
 
 
 };
 
-Ops.Trigger.TriggerButton.prototype = new CABLES.Op();
-CABLES.OPS["21630924-39e4-4df5-9965-b9136510d156"]={f:Ops.Trigger.TriggerButton,objName:"Ops.Trigger.TriggerButton"};
+Ops.Ui.VizTrigger.prototype = new CABLES.Op();
+CABLES.OPS["4533060f-3cd4-4572-ac78-dad0710a3f7a"]={f:Ops.Ui.VizTrigger,objName:"Ops.Ui.VizTrigger"};
 
 
 
@@ -19223,33 +18956,36 @@ CABLES.OPS["a851cddb-74e5-41e7-ac75-709beae914fd"]={f:Ops.Json.FilterValidObject
 
 // **************************************************************
 // 
-// Ops.Boolean.And
+// Ops.String.SwitchStringMultiPort
 // 
 // **************************************************************
 
-Ops.Boolean.And = function()
+Ops.String.SwitchStringMultiPort = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
 const attachments=op.attachments={};
 const
-    bool0 = op.inValueBool("bool 1"),
-    bool1 = op.inValueBool("bool 2"),
-    result = op.outBoolNum("result");
+    inIndex = op.inInt("Index", 0),
+    inStrs = op.inMultiPort("Strings", CABLES.OP_PORT_TYPE_STRING),
+    outResult = op.outString("String"),
+    outNum = op.outNumber("Num Values");
 
-bool0.onChange =
-bool1.onChange = exec;
-
-function exec()
+inIndex.onChange =
+inStrs.onChange = () =>
 {
-    result.set(bool1.get() && bool0.get());
-}
+    const valuePorts = inStrs.get();
+    const idx = Math.ceil(Math.min(valuePorts.length - 1, Math.max(0, inIndex.get())));
+
+    outResult.set(valuePorts[idx].get());
+    outNum.set(valuePorts.length);
+};
 
 
 };
 
-Ops.Boolean.And.prototype = new CABLES.Op();
-CABLES.OPS["c26e6ce0-8047-44bb-9bc8-5a4f911ed8ad"]={f:Ops.Boolean.And,objName:"Ops.Boolean.And"};
+Ops.String.SwitchStringMultiPort.prototype = new CABLES.Op();
+CABLES.OPS["cf8a883f-cf09-44a6-ba1c-7f9c1220b618"]={f:Ops.String.SwitchStringMultiPort,objName:"Ops.String.SwitchStringMultiPort"};
 
 
 
@@ -19296,307 +19032,6 @@ srcObj.onChange = () =>
 
 Ops.Patch.P4Zknbo.ArrayOfSrvbValuesFromMap.prototype = new CABLES.Op();
 CABLES.OPS["8b905906-ea16-42d7-b77c-c5685e063a36"]={f:Ops.Patch.P4Zknbo.ArrayOfSrvbValuesFromMap,objName:"Ops.Patch.P4Zknbo.ArrayOfSrvbValuesFromMap"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Devices.Mouse.Mouse_v3
-// 
-// **************************************************************
-
-Ops.Devices.Mouse.Mouse_v3 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inCoords = op.inSwitch("Coordinates", ["-1 to 1", "Pixel Display", "Pixel", "0 to 1"], "-1 to 1"),
-    area = op.inValueSelect("Area", ["Canvas", "Document", "Parent Element", "Canvas Area"], "Canvas"),
-    flipY = op.inValueBool("flip y", true),
-    rightClickPrevDef = op.inBool("right click prevent default", true),
-    touchscreen = op.inValueBool("Touch support", true),
-    inPassive = op.inValueBool("Passive Events", false),
-    active = op.inValueBool("Active", true),
-    outMouseX = op.outNumber("x", 0),
-    outMouseY = op.outNumber("y", 0),
-    mouseClick = op.outTrigger("click"),
-    mouseClickRight = op.outTrigger("click right"),
-    mouseDown = op.outBoolNum("Button is down"),
-    mouseOver = op.outBoolNum("Mouse is hovering"),
-    outMovementX = op.outNumber("Movement X", 0),
-    outMovementY = op.outNumber("Movement Y", 0);
-
-const cgl = op.patch.cgl;
-let normalize = 1;
-let listenerElement = null;
-let sizeElement = null;
-
-inPassive.onChange =
-area.onChange = addListeners;
-
-inCoords.onChange = updateCoordNormalizing;
-op.onDelete = removeListeners;
-
-addListeners();
-
-op.on("loadedValueSet", onStart);
-
-function onStart()
-{
-    if (normalize == 0)
-    {
-        if (sizeElement.clientWidth === 0) setTimeout(onStart, 50);
-
-        outMouseX.set(sizeElement.clientWidth / 2);
-        outMouseY.set(sizeElement.clientHeight / 2);
-    }
-    else if (normalize == 1)
-    {
-        outMouseX.set(0);
-        outMouseY.set(0);
-    }
-    else if (normalize == 2)
-    {
-        outMouseX.set(0.5);
-        outMouseY.set(0.5);
-    }
-    else if (normalize == 3)
-    {
-        if (sizeElement.clientWidth === 0)
-        {
-            setTimeout(onStart, 50);
-        }
-
-        outMouseX.set(sizeElement.clientWidth / 2 / cgl.pixelDensity);
-        outMouseY.set(sizeElement.clientHeight / 2 / cgl.pixelDensity);
-    }
-    else console.error("unknown normalize mouse", normalize);
-}
-
-function setValue(x, y)
-{
-    x = x || 0;
-    y = y || 0;
-
-    if (normalize == 0) // pixel
-    {
-        outMouseX.set(x);
-        outMouseY.set(y);
-    }
-    else
-    if (normalize == 3) // pixel css
-    {
-        outMouseX.set(x * cgl.pixelDensity);
-        outMouseY.set(y * cgl.pixelDensity);
-    }
-    else
-    {
-        let w = sizeElement.clientWidth / cgl.pixelDensity;
-        let h = sizeElement.clientHeight / cgl.pixelDensity;
-
-        w = w || 1;
-        h = h || 1;
-
-        if (normalize == 1) // -1 to 1
-        {
-            let xx = (x / w * 2.0 - 1.0);
-            let yy = (y / h * 2.0 - 1.0);
-            xx = CABLES.clamp(xx, -1, 1);
-            yy = CABLES.clamp(yy, -1, 1);
-
-            outMouseX.set(xx);
-            outMouseY.set(yy);
-        }
-        else if (normalize == 2) // 0 to 1
-        {
-            let xx = x / w;
-            let yy = y / h;
-
-            xx = CABLES.clamp(xx, 0, 1);
-            yy = CABLES.clamp(yy, 0, 1);
-
-            outMouseX.set(xx);
-            outMouseY.set(yy);
-        }
-    }
-}
-
-function checkHovering(e)
-{
-    const r = sizeElement.getBoundingClientRect();
-
-    return (
-        e.clientX > r.left &&
-        e.clientX < r.left + r.width &&
-        e.clientY > r.top &&
-        e.clientY < r.top + r.height
-    );
-}
-
-touchscreen.onChange = function ()
-{
-    removeListeners();
-    addListeners();
-};
-
-active.onChange = function ()
-{
-    if (listenerElement)removeListeners();
-    if (active.get())addListeners();
-};
-
-function updateCoordNormalizing()
-{
-    if (inCoords.get() == "Pixel") normalize = 0;
-    else if (inCoords.get() == "-1 to 1") normalize = 1;
-    else if (inCoords.get() == "0 to 1") normalize = 2;
-    else if (inCoords.get() == "Pixel Display") normalize = 3;
-}
-
-function onMouseEnter(e)
-{
-    mouseDown.set(false);
-    mouseOver.set(checkHovering(e));
-}
-
-function onMouseDown(e)
-{
-    if (!checkHovering(e)) return;
-    mouseDown.set(true);
-}
-
-function onMouseUp(e)
-{
-    mouseDown.set(false);
-}
-
-function onClickRight(e)
-{
-    if (!checkHovering(e)) return;
-    mouseClickRight.trigger();
-    if (rightClickPrevDef.get()) e.preventDefault();
-}
-
-function onmouseclick(e)
-{
-    if (!checkHovering(e)) return;
-    mouseClick.trigger();
-}
-
-function onMouseLeave(e)
-{
-    mouseDown.set(false);
-    mouseOver.set(checkHovering(e));
-}
-
-function setCoords(e)
-{
-    let x = e.clientX;
-    let y = e.clientY;
-
-    if (area.get() != "Document")
-    {
-        x = e.offsetX;
-        y = e.offsetY;
-    }
-    if (area.get() === "Canvas Area")
-    {
-        const r = sizeElement.getBoundingClientRect();
-        x = e.clientX - r.left;
-        y = e.clientY - r.top;
-    }
-
-    if (flipY.get()) y = sizeElement.clientHeight - y;
-
-    setValue(x / cgl.pixelDensity, y / cgl.pixelDensity);
-}
-
-function onmousemove(e)
-{
-    mouseOver.set(checkHovering(e));
-    setCoords(e);
-
-    outMovementX.set(e.movementX / cgl.pixelDensity);
-    outMovementY.set(e.movementY / cgl.pixelDensity);
-}
-
-function ontouchmove(e)
-{
-    if (event.touches && event.touches.length > 0) setCoords(e.touches[0]);
-}
-
-function ontouchstart(event)
-{
-    mouseDown.set(true);
-
-    if (event.touches && event.touches.length > 0) onMouseDown(event.touches[0]);
-}
-
-function ontouchend(event)
-{
-    mouseDown.set(false);
-    onMouseUp();
-}
-
-function removeListeners()
-{
-    if (!listenerElement) return;
-    listenerElement.removeEventListener("touchend", ontouchend);
-    listenerElement.removeEventListener("touchstart", ontouchstart);
-    listenerElement.removeEventListener("touchmove", ontouchmove);
-
-    listenerElement.removeEventListener("click", onmouseclick);
-    listenerElement.removeEventListener("mousemove", onmousemove);
-    listenerElement.removeEventListener("mouseleave", onMouseLeave);
-    listenerElement.removeEventListener("mousedown", onMouseDown);
-    listenerElement.removeEventListener("mouseup", onMouseUp);
-    listenerElement.removeEventListener("mouseenter", onMouseEnter);
-    listenerElement.removeEventListener("contextmenu", onClickRight);
-    listenerElement = null;
-}
-
-function addListeners()
-{
-    if (listenerElement || !active.get())removeListeners();
-    if (!active.get()) return;
-
-    listenerElement = sizeElement = cgl.canvas;
-    if (area.get() == "Canvas Area")
-    {
-        sizeElement = cgl.canvas.parentElement;
-        listenerElement = document.body;
-    }
-    if (area.get() == "Document") sizeElement = listenerElement = document.body;
-    if (area.get() == "Parent Element") listenerElement = sizeElement = cgl.canvas.parentElement;
-
-    let passive = false;
-    if (inPassive.get())passive = { "passive": true };
-
-    if (touchscreen.get())
-    {
-        listenerElement.addEventListener("touchend", ontouchend, passive);
-        listenerElement.addEventListener("touchstart", ontouchstart, passive);
-        listenerElement.addEventListener("touchmove", ontouchmove, passive);
-    }
-
-    listenerElement.addEventListener("mousemove", onmousemove, passive);
-    listenerElement.addEventListener("mouseleave", onMouseLeave, passive);
-    listenerElement.addEventListener("mousedown", onMouseDown, passive);
-    listenerElement.addEventListener("mouseup", onMouseUp, passive);
-    listenerElement.addEventListener("mouseenter", onMouseEnter, passive);
-    listenerElement.addEventListener("contextmenu", onClickRight, passive);
-    listenerElement.addEventListener("click", onmouseclick, passive);
-}
-
-//
-
-
-};
-
-Ops.Devices.Mouse.Mouse_v3.prototype = new CABLES.Op();
-CABLES.OPS["6d1edbc0-088a-43d7-9156-918fb3d7f24b"]={f:Ops.Devices.Mouse.Mouse_v3,objName:"Ops.Devices.Mouse.Mouse_v3"};
 
 
 
@@ -19871,14 +19306,15 @@ const attachments=op.attachments={};
 const
     exec = op.inTrigger("Exec"),
     inEle = op.inObject("Element"),
-    next = op.outTrigger("Next"),
     inScale = op.inFloat("Scale", 1),
     inOrtho = op.inBool("Orthogonal", false),
     inRotate = op.inFloat("Rotate", 0),
     inHideBehind = op.inBool("Hide out of view", false),
     inAlignVert = op.inSwitch("Align Vertical", ["Left", "Center", "Right"], "Left"),
     inAlignHor = op.inSwitch("Align Horizontal", ["Top", "Center", "Bottom"], "Top"),
-    inActive = op.inBool("Active", true);
+    inActive = op.inBool("Active", true),
+    next = op.outTrigger("Next"),
+    outEle = op.outObject("HTML Element", null, "element");
 
 const cgl = op.patch.cgl;
 let x = 0;
@@ -19936,6 +19372,7 @@ function updateTransform()
     {
         currTransformStr = str;
         ele.style.transform = str;
+        outEle.setRef(ele);
     }
 }
 
@@ -20012,6 +19449,7 @@ function setProperties()
         if (yy + top != cachedTop)
         {
             ele.style.top = (yy + top) + "px";
+            outEle.setRef(ele);
             cachedTop = yy;
         }
 
@@ -20020,6 +19458,7 @@ function setProperties()
         if (x + left != cachedLeft)
         {
             ele.style.left = (x + left) + "px";
+            outEle.setRef(ele);
             cachedLeft = x;
         }
 
@@ -20329,93 +19768,6 @@ function update()
 
 Ops.Html.CSS.ElementCssShadow.prototype = new CABLES.Op();
 CABLES.OPS["d57433b7-7662-4ae3-8016-e09414705f77"]={f:Ops.Html.CSS.ElementCssShadow,objName:"Ops.Html.CSS.ElementCssShadow"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Array.ArrayPack3Simple
-// 
-// **************************************************************
-
-Ops.Array.ArrayPack3Simple = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inArr1 = op.inArray("Array 1"),
-    inArr2 = op.inArray("Array 2"),
-    inArr3 = op.inArray("Array 3"),
-
-    outArr = op.outArray("Array out", 3),
-    outNum = op.outNumber("Num Points"),
-    outArrayLength = op.outNumber("Array length");
-
-let showingError = false;
-
-let arr = [];
-let emptyArray = [];
-let needsCalc = true;
-
-inArr1.onChange = inArr2.onChange = inArr3.onChange = update;
-
-function update()
-{
-    let array1 = inArr1.get();
-    let array2 = inArr2.get();
-    let array3 = inArr3.get();
-
-    if (!array1 && !array2 && !array3)
-    {
-        outArr.set(null);
-        outNum.set(0);
-        return;
-    }
-    let arrlen = 0;
-
-    if (!array1 || !array2 || !array3)
-    {
-        if (array1) arrlen = array1.length;
-        else if (array2) arrlen = array2.length;
-        else if (array3) arrlen = array3.length;
-
-        if (emptyArray.length != arrlen)
-            for (let i = 0; i < arrlen; i++) emptyArray[i] = 0;
-
-        if (!array1)array1 = emptyArray;
-        if (!array2)array2 = emptyArray;
-        if (!array3)array3 = emptyArray;
-    }
-
-    if ((array1.length !== array2.length) || (array2.length !== array3.length))
-    {
-        //
-        op.setUiError("arraylen", "Arrays do not have the same length !");
-        return;
-    }
-    op.setUiError("arraylen", null);
-
-    arr.length = array1.length;
-    for (let i = 0; i < array1.length; i++)
-    {
-        arr[i * 3 + 0] = array1[i];
-        arr[i * 3 + 1] = array2[i];
-        arr[i * 3 + 2] = array3[i];
-    }
-
-    needsCalc = false;
-    outArr.setRef(arr);
-    outNum.set(arr.length / 3);
-    outArrayLength.set(arr.length);
-}
-
-
-};
-
-Ops.Array.ArrayPack3Simple.prototype = new CABLES.Op();
-CABLES.OPS["9c48785b-4cac-472c-a70f-dbd3c240b782"]={f:Ops.Array.ArrayPack3Simple,objName:"Ops.Array.ArrayPack3Simple"};
 
 
 
@@ -23145,7 +22497,7 @@ function createElement()
     div.classList.add("cablesEle");
 
     canvas.appendChild(div);
-    outElement.set(div);
+    outElement.setRef(div);
 }
 
 function removeElement()
@@ -23768,6 +23120,45 @@ CABLES.OPS["e9cfc6a0-c764-435c-aa98-c6e8f30729d6"]={f:Ops.Trigger.RouteTriggerMu
 
 // **************************************************************
 // 
+// Ops.Math.Clamp
+// 
+// **************************************************************
+
+Ops.Math.Clamp = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    val = op.inValueFloat("val", 0.5),
+    min = op.inValueFloat("min", 0),
+    max = op.inValueFloat("max", 1),
+    ignore = op.inValueBool("ignore outside values"),
+    result = op.outNumber("result");
+
+val.onChange = min.onChange = max.onChange = clamp;
+
+function clamp()
+{
+    if (ignore.get())
+    {
+        if (val.get() > max.get()) return;
+        if (val.get() < min.get()) return;
+    }
+    result.set(Math.min(Math.max(val.get(), min.get()), max.get()));
+}
+
+
+};
+
+Ops.Math.Clamp.prototype = new CABLES.Op();
+CABLES.OPS["cda1a98e-5e16-40bd-9b18-a67e9eaad5a1"]={f:Ops.Math.Clamp,objName:"Ops.Math.Clamp"};
+
+
+
+
+// **************************************************************
+// 
 // Ops.Gl.Meshes.Torus_v3
 // 
 // **************************************************************
@@ -24316,6 +23707,40 @@ inArray.forEach(function (obj)
 
 Ops.Array.RandomNumbersArray_v4.prototype = new CABLES.Op();
 CABLES.OPS["8a9fa2c6-c229-49a9-9dc8-247001539217"]={f:Ops.Array.RandomNumbersArray_v4,objName:"Ops.Array.RandomNumbersArray_v4"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.Compare.GreaterThan
+// 
+// **************************************************************
+
+Ops.Math.Compare.GreaterThan = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    number1 = op.inValueFloat("number1"),
+    number2 = op.inValueFloat("number2"),
+    result = op.outBoolNum("result");
+
+op.setUiAttribs({ "mathTitle": true });
+
+number1.onChange = number2.onChange = exec;
+
+function exec()
+{
+    result.set(number1.get() > number2.get());
+}
+
+
+};
+
+Ops.Math.Compare.GreaterThan.prototype = new CABLES.Op();
+CABLES.OPS["b250d606-f7f8-44d3-b099-c29efff2608a"]={f:Ops.Math.Compare.GreaterThan,objName:"Ops.Math.Compare.GreaterThan"};
 
 
 
@@ -24979,6 +24404,831 @@ function setDefault()
 
 Ops.Patch.Pg3hCDt.DropDown_v2.prototype = new CABLES.Op();
 CABLES.OPS["97aff0eb-8542-4a35-9e49-e48aa66ed364"]={f:Ops.Patch.Pg3hCDt.DropDown_v2,objName:"Ops.Patch.Pg3hCDt.DropDown_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.String.StringContains_v2
+// 
+// **************************************************************
+
+Ops.String.StringContains_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inStr = op.inString("String"),
+    inValue = op.inString("SearchValue"),
+    outFound = op.outBoolNum("Found", false),
+    outIndex = op.outNumber("Index", -1);
+
+inValue.onChange =
+    inStr.onChange = exec;
+
+exec();
+
+function exec()
+{
+    if (inStr.get() && inValue.get() && inValue.get().length > 0)
+    {
+        const index = inStr.get().indexOf(inValue.get());
+        outIndex.set(index);
+        outFound.set(index > -1);
+    }
+    else
+    {
+        outIndex.set(-1);
+        outFound.set(false);
+    }
+}
+
+
+};
+
+Ops.String.StringContains_v2.prototype = new CABLES.Op();
+CABLES.OPS["2ca3e5d7-e6b4-46a7-8381-3fe1ad8b6879"]={f:Ops.String.StringContains_v2,objName:"Ops.String.StringContains_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.Delta
+// 
+// **************************************************************
+
+Ops.Math.Delta = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    val = op.inValue("Value"),
+    changeAlwaysPort = op.inValueBool("Change Always", false),
+    inReset = op.inTrigger("Reset"),
+    result = op.outNumber("Delta");
+
+val.changeAlways = false;
+
+let oldVal = 0;
+let firstTime = true;
+
+changeAlwaysPort.onChange = function ()
+{
+    val.changeAlways = changeAlwaysPort.get();
+};
+
+inReset.onTriggered = function ()
+{
+    firstTime = true;
+};
+
+val.onChange = function ()
+{
+    let change = oldVal - val.get();
+    oldVal = val.get();
+    if (firstTime)
+    {
+        firstTime = false;
+        return;
+    }
+    result.set(change);
+};
+
+
+};
+
+Ops.Math.Delta.prototype = new CABLES.Op();
+CABLES.OPS["0f203337-e13c-47ec-a09f-b309212540b0"]={f:Ops.Math.Delta,objName:"Ops.Math.Delta"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.FlipSign
+// 
+// **************************************************************
+
+Ops.Math.FlipSign = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inval = op.inValueFloat("Value", 1),
+    result = op.outNumber("Result");
+
+inval.onChange = update;
+update();
+
+function update()
+{
+    result.set(inval.get() * -1);
+}
+
+
+};
+
+Ops.Math.FlipSign.prototype = new CABLES.Op();
+CABLES.OPS["f5c858a2-2654-4108-86fe-319efa70ecec"]={f:Ops.Math.FlipSign,objName:"Ops.Math.FlipSign"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Boolean.And
+// 
+// **************************************************************
+
+Ops.Boolean.And = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    bool0 = op.inValueBool("bool 1"),
+    bool1 = op.inValueBool("bool 2"),
+    result = op.outBoolNum("result");
+
+bool0.onChange =
+bool1.onChange = exec;
+
+function exec()
+{
+    result.set(bool1.get() && bool0.get());
+}
+
+
+};
+
+Ops.Boolean.And.prototype = new CABLES.Op();
+CABLES.OPS["c26e6ce0-8047-44bb-9bc8-5a4f911ed8ad"]={f:Ops.Boolean.And,objName:"Ops.Boolean.And"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Devices.Mouse.Mouse_v3
+// 
+// **************************************************************
+
+Ops.Devices.Mouse.Mouse_v3 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inCoords = op.inSwitch("Coordinates", ["-1 to 1", "Pixel Display", "Pixel", "0 to 1"], "-1 to 1"),
+    area = op.inValueSelect("Area", ["Canvas", "Document", "Parent Element", "Canvas Area"], "Canvas"),
+    flipY = op.inValueBool("flip y", true),
+    rightClickPrevDef = op.inBool("right click prevent default", true),
+    touchscreen = op.inValueBool("Touch support", true),
+    inPassive = op.inValueBool("Passive Events", false),
+    active = op.inValueBool("Active", true),
+    outMouseX = op.outNumber("x", 0),
+    outMouseY = op.outNumber("y", 0),
+    mouseClick = op.outTrigger("click"),
+    mouseClickRight = op.outTrigger("click right"),
+    mouseDown = op.outBoolNum("Button is down"),
+    mouseOver = op.outBoolNum("Mouse is hovering"),
+    outMovementX = op.outNumber("Movement X", 0),
+    outMovementY = op.outNumber("Movement Y", 0);
+
+const cgl = op.patch.cgl;
+let normalize = 1;
+let listenerElement = null;
+let sizeElement = null;
+
+inPassive.onChange =
+area.onChange = addListeners;
+
+inCoords.onChange = updateCoordNormalizing;
+op.onDelete = removeListeners;
+
+addListeners();
+
+op.on("loadedValueSet", onStart);
+
+function onStart()
+{
+    if (normalize == 0)
+    {
+        if (sizeElement.clientWidth === 0) setTimeout(onStart, 50);
+
+        outMouseX.set(sizeElement.clientWidth / 2);
+        outMouseY.set(sizeElement.clientHeight / 2);
+    }
+    else if (normalize == 1)
+    {
+        outMouseX.set(0);
+        outMouseY.set(0);
+    }
+    else if (normalize == 2)
+    {
+        outMouseX.set(0.5);
+        outMouseY.set(0.5);
+    }
+    else if (normalize == 3)
+    {
+        if (sizeElement.clientWidth === 0)
+        {
+            setTimeout(onStart, 50);
+        }
+
+        outMouseX.set(sizeElement.clientWidth / 2 / cgl.pixelDensity);
+        outMouseY.set(sizeElement.clientHeight / 2 / cgl.pixelDensity);
+    }
+    else console.error("unknown normalize mouse", normalize);
+}
+
+function setValue(x, y)
+{
+    x = x || 0;
+    y = y || 0;
+
+    if (normalize == 0) // pixel
+    {
+        outMouseX.set(x);
+        outMouseY.set(y);
+    }
+    else
+    if (normalize == 3) // pixel css
+    {
+        outMouseX.set(x * cgl.pixelDensity);
+        outMouseY.set(y * cgl.pixelDensity);
+    }
+    else
+    {
+        let w = sizeElement.clientWidth / cgl.pixelDensity;
+        let h = sizeElement.clientHeight / cgl.pixelDensity;
+
+        w = w || 1;
+        h = h || 1;
+
+        if (normalize == 1) // -1 to 1
+        {
+            let xx = (x / w * 2.0 - 1.0);
+            let yy = (y / h * 2.0 - 1.0);
+            xx = CABLES.clamp(xx, -1, 1);
+            yy = CABLES.clamp(yy, -1, 1);
+
+            outMouseX.set(xx);
+            outMouseY.set(yy);
+        }
+        else if (normalize == 2) // 0 to 1
+        {
+            let xx = x / w;
+            let yy = y / h;
+
+            xx = CABLES.clamp(xx, 0, 1);
+            yy = CABLES.clamp(yy, 0, 1);
+
+            outMouseX.set(xx);
+            outMouseY.set(yy);
+        }
+    }
+}
+
+function checkHovering(e)
+{
+    const r = sizeElement.getBoundingClientRect();
+
+    return (
+        e.clientX > r.left &&
+        e.clientX < r.left + r.width &&
+        e.clientY > r.top &&
+        e.clientY < r.top + r.height
+    );
+}
+
+touchscreen.onChange = function ()
+{
+    removeListeners();
+    addListeners();
+};
+
+active.onChange = function ()
+{
+    if (listenerElement)removeListeners();
+    if (active.get())addListeners();
+};
+
+function updateCoordNormalizing()
+{
+    if (inCoords.get() == "Pixel") normalize = 0;
+    else if (inCoords.get() == "-1 to 1") normalize = 1;
+    else if (inCoords.get() == "0 to 1") normalize = 2;
+    else if (inCoords.get() == "Pixel Display") normalize = 3;
+}
+
+function onMouseEnter(e)
+{
+    mouseDown.set(false);
+    mouseOver.set(checkHovering(e));
+}
+
+function onMouseDown(e)
+{
+    if (!checkHovering(e)) return;
+    mouseDown.set(true);
+}
+
+function onMouseUp(e)
+{
+    mouseDown.set(false);
+}
+
+function onClickRight(e)
+{
+    if (!checkHovering(e)) return;
+    mouseClickRight.trigger();
+    if (rightClickPrevDef.get()) e.preventDefault();
+}
+
+function onmouseclick(e)
+{
+    if (!checkHovering(e)) return;
+    mouseClick.trigger();
+}
+
+function onMouseLeave(e)
+{
+    mouseDown.set(false);
+    mouseOver.set(checkHovering(e));
+}
+
+function setCoords(e)
+{
+    let x = e.clientX;
+    let y = e.clientY;
+
+    if (area.get() != "Document")
+    {
+        x = e.offsetX;
+        y = e.offsetY;
+    }
+    if (area.get() === "Canvas Area")
+    {
+        const r = sizeElement.getBoundingClientRect();
+        x = e.clientX - r.left;
+        y = e.clientY - r.top;
+    }
+
+    if (flipY.get()) y = sizeElement.clientHeight - y;
+
+    setValue(x / cgl.pixelDensity, y / cgl.pixelDensity);
+}
+
+function onmousemove(e)
+{
+    mouseOver.set(checkHovering(e));
+    setCoords(e);
+
+    outMovementX.set(e.movementX / cgl.pixelDensity);
+    outMovementY.set(e.movementY / cgl.pixelDensity);
+}
+
+function ontouchmove(e)
+{
+    if (event.touches && event.touches.length > 0) setCoords(e.touches[0]);
+}
+
+function ontouchstart(event)
+{
+    mouseDown.set(true);
+
+    if (event.touches && event.touches.length > 0) onMouseDown(event.touches[0]);
+}
+
+function ontouchend(event)
+{
+    mouseDown.set(false);
+    onMouseUp();
+}
+
+function removeListeners()
+{
+    if (!listenerElement) return;
+    listenerElement.removeEventListener("touchend", ontouchend);
+    listenerElement.removeEventListener("touchstart", ontouchstart);
+    listenerElement.removeEventListener("touchmove", ontouchmove);
+
+    listenerElement.removeEventListener("click", onmouseclick);
+    listenerElement.removeEventListener("mousemove", onmousemove);
+    listenerElement.removeEventListener("mouseleave", onMouseLeave);
+    listenerElement.removeEventListener("mousedown", onMouseDown);
+    listenerElement.removeEventListener("mouseup", onMouseUp);
+    listenerElement.removeEventListener("mouseenter", onMouseEnter);
+    listenerElement.removeEventListener("contextmenu", onClickRight);
+    listenerElement = null;
+}
+
+function addListeners()
+{
+    if (listenerElement || !active.get())removeListeners();
+    if (!active.get()) return;
+
+    listenerElement = sizeElement = cgl.canvas;
+    if (area.get() == "Canvas Area")
+    {
+        sizeElement = cgl.canvas.parentElement;
+        listenerElement = document.body;
+    }
+    if (area.get() == "Document") sizeElement = listenerElement = document.body;
+    if (area.get() == "Parent Element") listenerElement = sizeElement = cgl.canvas.parentElement;
+
+    let passive = false;
+    if (inPassive.get())passive = { "passive": true };
+
+    if (touchscreen.get())
+    {
+        listenerElement.addEventListener("touchend", ontouchend, passive);
+        listenerElement.addEventListener("touchstart", ontouchstart, passive);
+        listenerElement.addEventListener("touchmove", ontouchmove, passive);
+    }
+
+    listenerElement.addEventListener("mousemove", onmousemove, passive);
+    listenerElement.addEventListener("mouseleave", onMouseLeave, passive);
+    listenerElement.addEventListener("mousedown", onMouseDown, passive);
+    listenerElement.addEventListener("mouseup", onMouseUp, passive);
+    listenerElement.addEventListener("mouseenter", onMouseEnter, passive);
+    listenerElement.addEventListener("contextmenu", onClickRight, passive);
+    listenerElement.addEventListener("click", onmouseclick, passive);
+}
+
+//
+
+
+};
+
+Ops.Devices.Mouse.Mouse_v3.prototype = new CABLES.Op();
+CABLES.OPS["6d1edbc0-088a-43d7-9156-918fb3d7f24b"]={f:Ops.Devices.Mouse.Mouse_v3,objName:"Ops.Devices.Mouse.Mouse_v3"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.DeltaSum
+// 
+// **************************************************************
+
+Ops.Math.DeltaSum = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inVal = op.inValue("Delta Value"),
+    defVal = op.inValue("Default Value", 0),
+    inMul = op.inValue("Multiply", 1),
+    inReset = op.inTriggerButton("Reset"),
+    inLimit = op.inValueBool("Limit", false),
+    inMin = op.inValue("Min", 0),
+    inMax = op.inValue("Max", 100),
+    inRubber = op.inValue("Rubberband", 0),
+    outVal = op.outNumber("Absolute Value");
+
+inVal.changeAlways = true;
+
+op.setPortGroup("Limit", [inLimit, inMin, inMax, inRubber]);
+
+let value = 0;
+let lastEvent = CABLES.now();
+let rubTimeout = null;
+
+inLimit.onChange = updateLimit;
+defVal.onChange =
+    inReset.onTriggered = resetValue;
+
+inMax.onChange =
+    inMin.onChange = updateValue;
+
+updateLimit();
+
+function resetValue()
+{
+    let v = defVal.get();
+
+    if (inLimit.get())
+    {
+        v = Math.max(inMin.get(), v);
+        v = Math.min(inMax.get(), v);
+    }
+
+    value = v;
+    outVal.set(value);
+}
+
+function updateLimit()
+{
+    inMin.setUiAttribs({ "greyout": !inLimit.get() });
+    inMax.setUiAttribs({ "greyout": !inLimit.get() });
+    inRubber.setUiAttribs({ "greyout": !inLimit.get() });
+
+    updateValue();
+}
+
+function releaseRubberband()
+{
+    const min = inMin.get();
+    const max = inMax.get();
+
+    if (value < min) value = min;
+    if (value > max) value = max;
+
+    outVal.set(value);
+}
+
+function updateValue()
+{
+    if (inLimit.get())
+    {
+        const min = inMin.get();
+        const max = inMax.get();
+        const rubber = inRubber.get();
+        const minr = inMin.get() - rubber;
+        const maxr = inMax.get() + rubber;
+
+        if (value < minr) value = minr;
+        if (value > maxr) value = maxr;
+
+        if (rubber !== 0.0)
+        {
+            clearTimeout(rubTimeout);
+            rubTimeout = setTimeout(releaseRubberband.bind(this), 300);
+        }
+    }
+
+    outVal.set(value);
+}
+
+inVal.onChange = function ()
+{
+    let v = inVal.get();
+
+    const rubber = inRubber.get();
+
+    if (rubber !== 0.0)
+    {
+        const min = inMin.get();
+        const max = inMax.get();
+        const minr = inMin.get() - rubber;
+        const maxr = inMax.get() + rubber;
+
+        if (value < min)
+        {
+            const aa = Math.abs(value - minr) / rubber;
+            v *= (aa * aa);
+        }
+        if (value > max)
+        {
+            const aa = Math.abs(maxr - value) / rubber;
+            v *= (aa * aa);
+        }
+    }
+
+    lastEvent = CABLES.now();
+    value += v * inMul.get();
+    updateValue();
+};
+
+
+};
+
+Ops.Math.DeltaSum.prototype = new CABLES.Op();
+CABLES.OPS["d9d4b3db-c24b-48da-b798-9e6230d861f7"]={f:Ops.Math.DeltaSum,objName:"Ops.Math.DeltaSum"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PKUEypu.ArrayPack3Simple
+// 
+// **************************************************************
+
+Ops.Patch.PKUEypu.ArrayPack3Simple = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inArr1 = op.inArray("Array 1"),
+    inArr2 = op.inArray("Array 2"),
+    inArr3 = op.inArray("Array 3"),
+
+    outArr = op.outArray("Array out", 3),
+    outNum = op.outNumber("Num Points"),
+    outArrayLength = op.outNumber("Array length");
+
+let showingError = false;
+
+let arr = [];
+let emptyArray = [];
+let needsCalc = true;
+
+inArr1.onChange = inArr2.onChange = inArr3.onChange = update;
+
+function update()
+{
+    let array1 = inArr1.get();
+    let array2 = inArr2.get();
+    let array3 = inArr3.get();
+
+    if (!array1 && !array2 && !array3)
+    {
+        outArr.set(null);
+        outNum.set(0);
+        return;
+    }
+    let arrlen = 0;
+
+    if (!array1 || !array2 || !array3)
+    {
+        if (array1) arrlen = array1.length;
+        else if (array2) arrlen = array2.length;
+        else if (array3) arrlen = array3.length;
+
+        if (emptyArray.length != arrlen)
+            for (let i = 0; i < arrlen; i++) emptyArray[i] = 0;
+
+        if (!array1)array1 = emptyArray;
+        if (!array2)array2 = emptyArray;
+        if (!array3)array3 = emptyArray;
+    }
+
+    if ((array1.length !== array2.length) || (array2.length !== array3.length))
+    {
+        //
+        op.setUiError("arraylen", "Arrays do not have the same length !");
+        return;
+    }
+
+    if ( !array2.length ){
+        array2 = array1;
+    }
+    op.setUiError("arraylen", null);
+
+    arr.length = array1.length;
+    for (let i = 0; i < array1.length; i++)
+    {
+        arr[i * 3 + 0] = array1[i];
+        arr[i * 3 + 1] = array2[i];
+        arr[i * 3 + 2] = array3[i];
+    }
+
+    needsCalc = false;
+    outArr.setRef(arr);
+    outNum.set(arr.length / 3);
+    outArrayLength.set(arr.length);
+}
+
+
+};
+
+Ops.Patch.PKUEypu.ArrayPack3Simple.prototype = new CABLES.Op();
+CABLES.OPS["e610287d-9f3e-4dd4-916a-e38b7fe6122a"]={f:Ops.Patch.PKUEypu.ArrayPack3Simple,objName:"Ops.Patch.PKUEypu.ArrayPack3Simple"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Cables.PatchInfo_v2
+// 
+// **************************************************************
+
+Ops.Cables.PatchInfo_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const outConfig = op.outObject("Config");
+const outName = op.outString("Name");
+const outPatchId = op.outString("Patch Id");
+const outNamespace = op.outString("Namespace");
+const outSaveDate = op.outNumber("Last Saved");
+const outExportDate = op.outNumber("Last Exported");
+
+const patch = getPatch();
+
+outConfig.set(patch.config);
+outName.set(patch.name);
+outPatchId.set(getPatchId());
+outNamespace.set(patch.namespace);
+outSaveDate.set(getLastSaveDate());
+outExportDate.set(getLastExportDate());
+
+function getPatchId()
+{
+    let id = null;
+    if (patch && patch._id) id = patch._id;
+    if (patch && patch.config && patch.config.patch && patch.config.patch._id) id = patch.config.patch._id;
+    if (window.gui && window.gui.patchId) id = window.gui.patchId;
+    if (window.CABLES && window.CABLES.patchId) id = window.CABLES.patchId;
+    if (CABLES.patchId) id = CABLES.patchId;
+    return id;
+}
+
+function getLastSaveDate()
+{
+    let date = null;
+    if (patch && patch.config && patch.config.patch) date = patch.config.patch.updated;
+    if (window.gui && window.gui.project) date = window.gui.project().updated;
+    return new Date(date).getTime();
+}
+
+function getLastExportDate()
+{
+    let date = null;
+    if (patch && patch.config && patch.config.patch)
+    {
+        if (patch.config.patch.deployments && patch.config.patch.deployments.lastDeployment)
+        {
+            date = patch.config.patch.deployments.lastDeployment.date;
+        }
+    }
+    if (window.gui && window.gui.project)
+    {
+        const p = window.gui.project();
+        if (p.deployments && p.deployments.lastDeployment)
+        {
+            date = p.deployments.lastDeployment.date;
+        }
+    }
+    return new Date(date).getTime();
+}
+
+function getPatch()
+{
+    let thePatch = null;
+    if (CABLES && CABLES.exportedPatch) thePatch = CABLES.exportedPatch;
+    if (CABLES && CABLES.patch) thePatch = CABLES.patch;
+    if (op.patch) thePatch = op.patch;
+    return thePatch;
+}
+
+
+};
+
+Ops.Cables.PatchInfo_v2.prototype = new CABLES.Op();
+CABLES.OPS["7187c2f2-67a9-479e-92c4-0e415443f504"]={f:Ops.Cables.PatchInfo_v2,objName:"Ops.Cables.PatchInfo_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.String.SubString_v2
+// 
+// **************************************************************
+
+Ops.String.SubString_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inStr = op.inString("String", "cables"),
+    inStart = op.inValueInt("Start", 0),
+    inEnd = op.inValueInt("End", 4),
+    inToEnd = op.inBool("End of string", false),
+    result = op.outString("Result");
+
+inStr.onChange =
+    inStart.onChange =
+    inEnd.onChange = update;
+
+update();
+
+inToEnd.onChange = () =>
+{
+    inEnd.setUiAttribs({ "greyout": inToEnd.get() });
+    update();
+};
+
+function update()
+{
+    let start = inStart.get();
+    let end = inEnd.get();
+    let str = inStr.get() + "";
+
+    if (inToEnd.get()) result.set(str.substring(start));
+    else result.set(str.substring(start, end));
+}
+
+
+};
+
+Ops.String.SubString_v2.prototype = new CABLES.Op();
+CABLES.OPS["6e994ba8-01d1-4da6-98b4-af7e822a2e6c"]={f:Ops.String.SubString_v2,objName:"Ops.String.SubString_v2"};
 
 
 
