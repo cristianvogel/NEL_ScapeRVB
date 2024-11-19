@@ -41,6 +41,17 @@ SlotName fromString(const std::string &str)
         return SlotName::DEEPNESS;
     throw std::invalid_argument("Invalid SlotName string");
 }
+SlotName fromIndex( int idx)
+{
+    switch(idx)
+    {
+    case 0: return SlotName::LIGHT;
+    case 1: return SlotName::SURFACE;
+    case 2: return SlotName::TEMPLE;
+    case 3: return SlotName::DEEPNESS;
+    default: throw std::invalid_argument("Invalid index");
+    }
+}
 
 SlotName nextSlot(SlotName slot, const bool wrap)
 {

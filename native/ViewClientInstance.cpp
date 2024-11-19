@@ -1,14 +1,14 @@
-
 #include "ViewClientInstance.h"
 #include "PluginProcessor.h"
 #include "SlotName.h"
 
-ViewClientInstance::ViewClientInstance(EffectsPluginProcessor &processor)
+using Results = std::map<std::string, elem::js::Object>;
+
+ViewClientInstance::ViewClientInstance(EffectsPluginProcessor& processor)
     : processor(processor)
 {
     static int clientCount = 0;
     clientID = ++clientCount;
-
 }
 
 ViewClientInstance::~ViewClientInstance()
@@ -24,7 +24,7 @@ void ViewClientInstance::stop()
 
 void ViewClientInstance::handleWebSocketMessage(std::string_view message)
 {
-    if (!running.load() || processor.isSuspended() || processor.editor == nullptr )
+    if (!running.load() || processor.isSuspended() || processor.editor == nullptr)
         return; // Check running flag before processing
 
     // Convert std::string_view to std::string
@@ -47,7 +47,7 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             return;
         }
 
-        for (auto &[key, hpfValue] : socketMessage)
+        for (auto& [key, hpfValue] : socketMessage)
         {
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮
             //  "selectFiles" Opens file picker,
@@ -55,10 +55,10 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             //  passes in a value from UI for HPF cutoff which is
             //  otherwise redundant in the methods that follow
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮
-            if (key == "selectFiles" && hpfValue.isNumber()  )
+            if (key == "selectFiles" && hpfValue.isNumber())
             {
                 if (chooserIsOpen.load()) continue;
-                uploadStatus = 0; 
+                uploadStatus = 0;
                 int filterCutoff = static_cast<elem::js::Number>(hpfValue);
                 userFileUploadHandler(filterCutoff);
             }
@@ -68,7 +68,7 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮
             if (key == "requestState")
             {
-                if (!processor.editor || chooserIsOpen.load() ) return;
+                if (!processor.editor || chooserIsOpen.load()) return;
 
 
                 // ============ performance optimization ========================
@@ -83,7 +83,7 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                     sendWebSocketMessage(serializedState.toStdString());
                     processor.slotManager->lastStateHash = currentStateHash;
                 }
-                if (processor.slotManager->peaksDirty )
+                if (processor.slotManager->peaksDirty)
                 {
                     elem::js::Object peaksContainer;
                     std::cout << "wrapping and sending peaks to View.." << std::endl;
@@ -144,83 +144,95 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
     }
 }
 
-void EffectsPluginProcessor::requestUserFileSelection(std::promise<elem::js::Object> &promise)
+void EffectsPluginProcessor::requestUserFileSelection( std::promise<Results> &promise)
 {
+
     juce::MessageManager::callAsync([this, &promise]()
-                                    {
-                                        const bool browsed = chooser.browseForMultipleFilesToOpen(nullptr);
-                                        elem::js::Object result;
-                                        result.insert_or_assign("success", static_cast<elem::js::Boolean>(browsed));
-                                        juce::Array<juce::File> selected(chooser.getResults());
-                                        // Create an elem::js::Array to hold the file paths
-                                        elem::js::Array selectedFilesAsValue;
-                                        validateUserUpload(selected, selectedFilesAsValue, result);
-                                        promise.set_value(result);
-                                    });
+    {
+        const bool browsed = chooser.browseForMultipleFilesToOpen(nullptr);
+        if (!browsed) return;
+        Results results;
+        juce::Array<juce::File> selected(chooser.getResults());
+        // Create an elem::js::Array to hold the file paths
+        elem::js::Array selectedFilesAsValue;
+        validateUserUpload(selected, selectedFilesAsValue, results);
+        promise.set_value(results);
+    });
 }
 
-void ViewClientInstance::userFileUploadHandler( const int &hpfValue )
+void ViewClientInstance::userFileUploadHandler(const int& hpfValue)
 {
+
+
     processor.userCutoffChoice = hpfValue;
-    std::promise<elem::js::Object> promise;
-    std::future<elem::js::Object> future = promise.get_future();
+    std::promise<EffectsPluginProcessor::Results> promise;
+    std::future<EffectsPluginProcessor::Results> future = promise.get_future();
 
     // begin async file selection
     chooserIsOpen.store(true);
-     processor.requestUserFileSelection(promise);
+    processor.requestUserFileSelection(promise);
     // get the future back
-    
-    elem::js::Object gotFiles = future.get();
+    EffectsPluginProcessor::Results data = future.get();
 
-    chooserIsOpen.store(false);
-    uploadStatus = gotFiles["status"].isNumber() ? static_cast<elem::js::Number>(gotFiles["status"]) : 0;
-
-    // Failed
-    if ( gotFiles["success"].isBool() && static_cast<elem::js::Boolean>(gotFiles["success"])  == false )
+    for (auto& result : data)
     {
-        processor.dispatchError("[ Import Error ]", errorStatuses( uploadStatus ));
+        const std::string& outerKey = result.first;
+        for (auto& innerPair: result.second)
         {
-            return ;
-        };
-    }
+            const std::string& key = innerPair.first;
+            elem::js::Object value;
+            value.insert_or_assign( key, innerPair.second );
+            SlotName targetSlot = fromString(key);
 
-    auto files = gotFiles["files"].getArray();
-    
-    if ( files.size() > 4) processor.pruneVFS();
+            {
+                chooserIsOpen.store(false);
 
-    if (files.empty())
-    {
-        processor.dispatchError("[ Import Error ]", errorStatuses(static_cast<int>(ScapeError::UNKNOWN_ERROR)));
-        {
-            return ;
-        };
-    }
- 
-    // Success
-    SlotName targetSlot = processor.slotManager->get_and_step_target_slot_name();
+                auto files = value["files"].getArray();
+                uploadStatus = value["status"].isNumber() ? static_cast<elem::js::Number>(value["status"]) : 0;
 
-    for (const auto& fileValue : files)
-    {
-        auto filePath = juce::String(static_cast<std::string>(fileValue));
-        juce::File file(filePath);
-        if (file.existsAsFile())
-        {
-            processor.slotManager->assignFileHookToSlot(targetSlot, file);
-            processor.slotManager->assignFilenameToSlot(targetSlot, file);
-            processor.userBankManager.incrementUserBank();
-            targetSlot = nextSlot(targetSlot);
+
+                // Failed validation
+                const bool invalid = !value["validated"];
+
+                if (invalid)
+                {
+                    processor.dispatchError("[ Import Error ]", errorStatuses(uploadStatus));
+                    continue;
+                }
+
+                if (files.empty())
+                {
+                    processor.dispatchError("[ Import Error ]",
+                                            errorStatuses(static_cast<int>(ScapeError::UNKNOWN_ERROR)));
+                    continue;
+                }
+
+                // Success
+                for (const auto& fileValue : files)
+                {
+                    auto filePath = juce::String(static_cast<std::string>(fileValue));
+                    juce::File file(filePath);
+                    if (file.existsAsFile())
+                    {
+                        processor.slotManager->assignFileHookToSlot(targetSlot, file);
+                        processor.slotManager->assignFilenameToSlot(targetSlot, file);
+                        processor.userBankManager.incrementUserBank();
+                        targetSlot = nextSlot(targetSlot);
+                    }
+                }
+                processor.updateStateWithAssetsData();
+            }
         }
     }
-        processor.updateStateWithAssetsData();
-}
+} // end userFileUploadHandler
 
-choc::network::HTTPContent ViewClientInstance::getHTTPContent(std::string_view path)
-{
-    // not using HTML
+    choc::network::HTTPContent ViewClientInstance::getHTTPContent(std::string_view path)
+    {
+        // not using HTML
     return {};
-}
+    }
 
-void ViewClientInstance::upgradedToWebSocket(std::string_view path)
-{
-    // not using HTML
-}
+    void ViewClientInstance::upgradedToWebSocket(std::string_view path)
+    {
+        // not using HTML
+    }

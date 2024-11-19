@@ -49,7 +49,8 @@
 #include <string>
 #include <stdexcept>
 
-enum class SlotName {
+enum class SlotName
+{
     LIGHT = 0,
     SURFACE = 1,
     TEMPLE = 2,
@@ -60,10 +61,12 @@ enum class SlotName {
 std::string toString(SlotName slot);
 int getIndexForSlot(SlotName slot);
 SlotName fromString(const std::string& str);
+SlotName fromIndex(int idx);
+
 
 // Function to get the next SlotName with wrap around
-SlotName nextSlot(SlotName slot,  bool wrap = true);
+SlotName nextSlot(SlotName slot, bool wrap = true);
 // Explicitly no wrapping
-SlotName nextSlotNoWrap( SlotName slot );
+SlotName nextSlotNoWrap(SlotName slot);
 
 #endif // SLOTNAME_H

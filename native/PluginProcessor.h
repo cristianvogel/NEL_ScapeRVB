@@ -166,6 +166,8 @@ private:
     //=============================================
 
 public:
+    using Results = std::map<std::string, elem::js::Object>;
+
     elem::js::Object state;
     std::map<SlotName, Asset> assetsMap;
     elem::js::Object assetState;
@@ -179,9 +181,16 @@ public:
     bool processDefaultResponseBuffers();
     void inspectVFS();
     void pruneVFS() const;
-    void requestUserFileSelection(std::promise<elem::js::Object>& promise);
-    void validateUserUpload(juce::Array<juce::File>& selected, elem::js::Array& selectedFilesAsValue,
-                            elem::js::Object& result);
+
+    void insertOrUpdate(Results& results,
+                    const std::string& key,
+                    const std::string& subKey,
+                    elem::js::Value value);
+
+    void requestUserFileSelection(std::promise<Results> &promise);
+    void validateUserUpload(juce::Array<juce::File>& selected,
+                            elem::js::Array& files,
+                            Results& results);
     void updateStateWithAssetsData();
     elem::js::Value assetsMapToValue(const std::map<SlotName, Asset>& map);
     std::vector<float> getReducedAudioBuffer(const juce::AudioBuffer<float>& buffer);
