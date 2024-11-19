@@ -18,7 +18,7 @@ public:
     choc::network::HTTPContent getHTTPContent(std::string_view path) override;
     void upgradedToWebSocket(std::string_view path) override;
     void handleWebSocketMessage(std::string_view message) override;
-    void userFileUploadHandler(const int &hpfValue, int &retFlag);
+    void userFileUploadHandler(const int &hpfValue);
 
 
 

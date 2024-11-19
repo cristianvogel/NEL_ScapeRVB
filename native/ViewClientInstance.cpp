@@ -49,30 +49,31 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
 
         for (auto &[key, hpfValue] : socketMessage)
         {
-            // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
-            //  "selectFiles" Opens file picker,                      //
-            //  handles file selection, and assigns files to slots    //
-            // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
-            if (key == "selectFiles" && hpfValue.isNumber() )
+            // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮
+            //  "selectFiles" Opens file picker,
+            //  handles file selection, and assigns files to slots
+            //  passes in a value from UI for HPF cutoff which is
+            //  otherwise redundant in the methods that follow
+            // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮
+            if (key == "selectFiles" && hpfValue.isNumber()  )
             {
                 if (chooserIsOpen.load()) continue;
                 uploadStatus = 0; 
                 int filterCutoff = static_cast<elem::js::Number>(hpfValue);
-                userFileUploadHandler(filterCutoff, retFlag);
-            } // end selectFiles
+                userFileUploadHandler(filterCutoff);
+            }
 
-            // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
-            // ▮▮ "'requestState" called frequently from front end  ▮ //
-            // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
+            // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮
+            // ▮▮ "'requestState" called frequently from front end
+            // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮
             if (key == "requestState")
             {
-                if (!processor.editor || chooserIsOpen.load() )
-                    return;
+                if (!processor.editor || chooserIsOpen.load() ) return;
 
-                elem::js::Object stateContainer;
+
                 // ============ performance optimization ========================
                 // hash the serialized state, send only if changed
-
+                elem::js::Object stateContainer;
                 processor.slotManager->wrapStateForView(stateContainer);
                 juce::String serializedState = elem::js::serialize(stateContainer);
                 int currentStateHash = serializedState.hashCode();
@@ -91,8 +92,9 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                     sendWebSocketMessage(serializedPeaks.toStdString());
                     processor.slotManager->peaksDirty = false;
                 }
-            } // end requestState
+            }
 
+            // Custom Scape buttons
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ "factory" ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
@@ -101,8 +103,7 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             {
                 processor.slotManager->switchSlotsTo(false, false);
                 std::cout << "switching to factory slots" << std::endl;
-                retFlag = 0;
-            } // end switchToDefaultSlots
+            }
 
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ "custom" ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
@@ -112,7 +113,7 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             {
                 processor.slotManager->switchSlotsTo(true, false);
                 std::cout << "switching to custom slots" << std::endl;
-            } // end switchToUserSlots
+            }
 
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ "prune and reset" ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
@@ -122,8 +123,7 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                 processor.clear_userFiles_in_assets_map();
                 processor.slotManager->switchSlotsTo(false, true);
                 std::cout << "resetting slots" << std::endl;
-                retFlag = 0;
-            } // end reset
+            }
 
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
             // ▮▮▮▮▮▮▮ simple parameter update request       ▮▮▮▮▮▮▮ //
@@ -159,7 +159,7 @@ void EffectsPluginProcessor::requestUserFileSelection(std::promise<elem::js::Obj
                                     });
 }
 
-void ViewClientInstance::userFileUploadHandler( const int &hpfValue, int &retFlag)
+void ViewClientInstance::userFileUploadHandler( const int &hpfValue )
 {
     processor.userCutoffChoice = hpfValue;
     std::promise<elem::js::Object> promise;
@@ -180,7 +180,6 @@ void ViewClientInstance::userFileUploadHandler( const int &hpfValue, int &retFla
     {
         processor.dispatchError("[ Import Error ]", errorStatuses( uploadStatus ));
         {
-            retFlag = 0;
             return ;
         };
     }
@@ -193,7 +192,6 @@ void ViewClientInstance::userFileUploadHandler( const int &hpfValue, int &retFla
     {
         processor.dispatchError("[ Import Error ]", errorStatuses(static_cast<int>(ScapeError::UNKNOWN_ERROR)));
         {
-            retFlag = 0;
             return ;
         };
     }
@@ -214,9 +212,6 @@ void ViewClientInstance::userFileUploadHandler( const int &hpfValue, int &retFla
         }
     }
         processor.updateStateWithAssetsData();
-
-        retFlag = 1;
-
 }
 
 choc::network::HTTPContent ViewClientInstance::getHTTPContent(std::string_view path)
