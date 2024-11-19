@@ -180,32 +180,30 @@ void ViewClientInstance::userFileUploadHandler(const int& hpfValue)
         for (auto& innerPair: result.second)
         {
             const std::string& key = innerPair.first;
-            elem::js::Object value;
-            value.insert_or_assign( key, innerPair.second );
+            auto val = innerPair.second;
+
             SlotName targetSlot = fromString(key);
 
             {
                 chooserIsOpen.store(false);
+                if ( key == "files")
+                {
+                     files = val.getArray();
+                }
 
-                auto files = value["files"].getArray();
-                uploadStatus = value["status"].isNumber() ? static_cast<elem::js::Number>(value["status"]) : 0;
-
+                {
+                    uploadStatus = val.isNumber() ? static_cast<elem::js::Number>(val) : 0;
+                }
 
                 // Failed validation
-                const bool invalid = !value["validated"];
 
-                if (invalid)
+
+                if (  key =="validated" && !val )
                 {
                     processor.dispatchError("[ Import Error ]", errorStatuses(uploadStatus));
                     continue;
                 }
 
-                if (files.empty())
-                {
-                    processor.dispatchError("[ Import Error ]",
-                                            errorStatuses(static_cast<int>(ScapeError::UNKNOWN_ERROR)));
-                    continue;
-                }
 
                 // Success
                 for (const auto& fileValue : files)
