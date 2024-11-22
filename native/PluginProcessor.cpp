@@ -121,8 +121,8 @@ void EffectsPluginProcessor::handleAsyncUpdate()
         for (const auto& [slotName, asset] : assetsMap)
         {
             SlotName targetSlot = slotName;
-            juce::File file = asset.userStereoFile;
-            processImportedResponseBuffers(file, targetSlot);
+            if (juce::File file = asset.userStereoFile; file.existsAsFile())
+                processImportedResponseBuffers(file, targetSlot);
         }
     }
 
@@ -268,80 +268,69 @@ void EffectsPluginProcessor::updateStateWithAssetsData()
 
 
 void EffectsPluginProcessor::insertOrUpdate(Results& results,
-                    const std::string& key,
-                    const std::string& subKey,
-                    elem::js::Value value)
+                                            const std::string& key,
+                                            const std::string& subKey,
+                                            const elem::js::Value& value)
 {
     auto& obj = results[key]; // Get the subObject
     obj.insert_or_assign(subKey, value);
 }
 
-void EffectsPluginProcessor::validateUserUpload(juce::Array<juce::File>& selected,
-                                                elem::js::Array& files,
-                                                Results& results)
+Results EffectsPluginProcessor::validateUserUpload(const juce::Array<juce::File>& selected)
 {
-    for (const auto& file : selected)
-    {
-        juce::String filePath = file.getFullPathName();
-        files.emplace_back(elem::js::String(filePath.toStdString()));
-    }
-
-    auto target_slotName = SlotName::LAST;
+    SlotName slot = SlotName::LAST;
+    Results results;
 
     for (const juce::File& file : selected)
     {
-        auto slot = toString(nextSlot(target_slotName, true));
+        auto file_path = file.getFullPathName().toStdString();
+        slot = nextSlot( slot, true);
+        std::string slot_as_key = toString(slot);
 
+        // Check if valid extension
         const bool validExtension = file.hasFileExtension("wav;WAV;aiff;AIFF");
         if (!validExtension)
         {
-            insertOrUpdate(results, slot, "validated", false);
-            insertOrUpdate(results, slot, "files", files);
-            insertOrUpdate(results, slot, "status",
-                           static_cast<elem::js::Number>(static_cast<int>(ScapeError::FILETYPE_NOT_SUPPORTED)));
+            insertOrUpdate(results, slot_as_key, "status",
+                           util::wrapError(ScapeError::FILETYPE_NOT_SUPPORTED));
+            insertOrUpdate(results, slot_as_key, "filePath", file_path);
             continue;
         }
-
+        // Check if exists
         if (file.existsAsFile() == false)
         {
-            insertOrUpdate(results, slot, "validated", false);
-            insertOrUpdate(results, slot, "files", files);
-            insertOrUpdate(results, slot, "status",
-                           static_cast<elem::js::Number>(static_cast<int>(ScapeError::FILE_NOT_FOUND)));
+            insertOrUpdate(results, slot_as_key, "status",
+                           util::wrapError(ScapeError::FILE_NOT_FOUND));
+            insertOrUpdate(results, slot_as_key, "filePath", file_path);
+
             continue;
         }
-
         // Check if file size is larger than 5MB
         if (file.getSize() > 5 * 1024 * 1024)
         {
-            insertOrUpdate(results, slot, "validated", false);
-            insertOrUpdate(results, slot, "files", files);
-            insertOrUpdate(results, slot, "status",
-                           static_cast<elem::js::Number>(static_cast<int>(ScapeError::FILESIZE_EXCEEDED)));
+            insertOrUpdate(results, slot_as_key, "status",
+                           util::wrapError(ScapeError::FILESIZE_EXCEEDED));
+            insertOrUpdate(results, slot_as_key, "filePath", file_path);
             continue;
         }
-
         // Check if filename contains reserved default slot keywords
         if (file.getFileNameWithoutExtension().containsWholeWord("TEMPLE") ||
             file.getFileNameWithoutExtension().containsWholeWord("SURFACE") ||
             file.getFileNameWithoutExtension().containsWholeWord("DEEPNESS") ||
             file.getFileNameWithoutExtension().containsWholeWord("LIGHT"))
         {
-            insertOrUpdate(results, slot, "validated", false);
-            insertOrUpdate(results, slot, "files", files);
-            insertOrUpdate(results, slot, "status",
-                           static_cast<elem::js::Number>(static_cast<int>(ScapeError::DO_NOT_OVERWRITE_DEFAULTS)));
+            insertOrUpdate(results, slot_as_key, "status",
+                           util::wrapError(ScapeError::DO_NOT_OVERWRITE_DEFAULTS));
+            insertOrUpdate(results, slot_as_key, "filePath", file_path);
             continue;
         }
-
-        insertOrUpdate(results, slot, "files", files);
-        insertOrUpdate(results, slot, "status",
-                       static_cast<elem::js::Number>(static_cast<int>(ScapeError::JOY_OF_JOYS)));
-        insertOrUpdate(results, slot, "validated", true);
+        // Verified as valid ✅
+        insertOrUpdate(results, slot_as_key, "status",
+                       util::wrapError(ScapeError::JOY_OF_JOYS));
+        insertOrUpdate(results, slot_as_key, "filePath", file_path);
     }
-
-    userFilesWereImported.store(true);
-    state.insert_or_assign("scapeMode", 1.0);
+    // fulfill promise
+    return results;
 }
 
 bool EffectsPluginProcessor::processImportedResponseBuffers(const juce::File& file, const SlotName& targetSlot)

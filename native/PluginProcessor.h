@@ -182,15 +182,13 @@ public:
     void inspectVFS();
     void pruneVFS() const;
 
-    void insertOrUpdate(Results& results,
+    static void insertOrUpdate(Results& results,
                     const std::string& key,
                     const std::string& subKey,
-                    elem::js::Value value);
+                    const elem::js::Value& value);
 
     void requestUserFileSelection(std::promise<Results> &promise);
-    void validateUserUpload(juce::Array<juce::File>& selected,
-                            elem::js::Array& files,
-                            Results& results);
+    static Results validateUserUpload(const juce::Array<juce::File>& selected);
     void updateStateWithAssetsData();
     elem::js::Value assetsMapToValue(const std::map<SlotName, Asset>& map);
     std::vector<float> getReducedAudioBuffer(const juce::AudioBuffer<float>& buffer);
