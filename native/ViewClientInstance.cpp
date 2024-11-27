@@ -168,10 +168,8 @@ void ViewClientInstance::userFileUploadHandler(const int& hpfValue)
     EffectsPluginProcessor::Results results_object = future.get();
 
     if (results_object.empty()) return;
-    int debugCounter = 0;
-    std::array<std::string, 4> slots = {"LIGHT", "DEEPNESS", "SURFACE", "TEMPLE"};
 
-    for (const auto & slot : slots)
+    for (const auto & slot : DEFAULT_SLOT_NAMES)
     {
         SlotName targetSlot = fromString(slot); // outer key
         const auto entry = results_object.at(slot);

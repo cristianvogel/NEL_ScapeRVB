@@ -1,8 +1,10 @@
+#pragma once
+
 #ifndef VIEWCLIENTINSTANCE_H
 #define VIEWCLIENTINSTANCE_H
 
 #include <choc_HTTPServer.h>
-
+#include "SlotName.h"
 
 // Forward declaration of EffectsPluginProcessor
 class EffectsPluginProcessor;
