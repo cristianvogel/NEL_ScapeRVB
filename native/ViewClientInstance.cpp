@@ -181,8 +181,8 @@ void ViewClientInstance::userFileUploadHandler(const int& hpfValue)
         //     outerKey          status (via ScapeError enum class)       filepath
         //          ⬇︎︎︎             ⬇︎︎︎                                        ⬇︎︎︎
         // <    "LIGHT",        "File not found;                            path/to/file.wav"
-        const auto status = data.upToFirstOccurrenceOf(";", false, false);
-        juce::String file_path = data.fromFirstOccurrenceOf(";", false, false);
+        const auto status = data.upToFirstOccurrenceOf( processor.delimiter, false, false);
+        juce::String file_path = data.fromFirstOccurrenceOf( processor.delimiter, false, false);
 
         if ( file_path.isEmpty() ) break;
 
