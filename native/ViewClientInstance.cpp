@@ -1,6 +1,7 @@
 #include "ViewClientInstance.h"
 #include "PluginProcessor.h"
 #include "SlotName.h"
+#include "Utilities.h"
 
 using Results = std::map<std::string, elem::js::Object>;
 
@@ -57,7 +58,7 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮
             if (key == "selectFiles" && hpfValue.isNumber())
             {
-                if (chooserIsOpen.load()) continue;
+
                 uploadStatus = 0;
                 int filterCutoff = static_cast<elem::js::Number>(hpfValue);
                 userFileUploadHandler(filterCutoff);
@@ -128,7 +129,7 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
             // ▮▮▮▮▮▮▮ simple parameter update request       ▮▮▮▮▮▮▮ //
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
-            if (hpfValue.isNumber() && processor.parameterMap.contains(key) && !chooserIsOpen.load())
+            if (hpfValue.isNumber() && processor.parameterMap.contains(key) )
             {
                 float paramValue = static_cast<elem::js::Number>(hpfValue);
                 float stateValue = static_cast<elem::js::Number>(processor.state[key]);
@@ -148,10 +149,10 @@ void EffectsPluginProcessor::requestUserFileSelection(std::promise<Results>& pro
 {
     juce::MessageManager::callAsync([this, &promise]()
     {
-        const bool browsed = chooser.browseForMultipleFilesToOpen(nullptr);
-        if (!browsed) return;
-        juce::Array<juce::File> selected(chooser.getResults());
-        promise.set_value(validateUserUpload(selected));
+        chooser.browseForMultipleFilesToOpen(nullptr);
+        juce::StringPairArray results;
+         results = validateUserUpload( results, chooser.getResults() );
+        promise.set_value( results );
     });
 }
 
@@ -165,26 +166,35 @@ void ViewClientInstance::userFileUploadHandler(const int& hpfValue)
     chooserIsOpen.store(true);
     processor.requestUserFileSelection(promise);
     // get the future back
-    EffectsPluginProcessor::Results results_object = future.get();
+    const EffectsPluginProcessor::Results results = future.get();
 
-    if (results_object.empty()) return;
+     chooserIsOpen.store(false);
+    if (results.size() == 0 ) return;
 
     for (const auto & slot : DEFAULT_SLOT_NAMES)
     {
-        SlotName targetSlot = fromString(slot); // outer key
-        const auto entry = results_object.at(slot);
-        const auto status = entry.at("status");
-        const auto file_path = entry.at("filePath");
+        SlotName targetSlot = fromString( slot ); // outer key
+        const juce::String& data = results[slot];
+
+        // The data should have been assigned in bound string using ; to seperate data elements
+        // for example (ignore the spaces here) :
+        //     outerKey          status (via ScapeError enum class)       filepath
+        //          ⬇︎︎︎             ⬇︎︎︎                                        ⬇︎︎︎
+        // <    "LIGHT",        "File not found;                            path/to/file.wav"
+        const auto status = data.upToFirstOccurrenceOf(";", false, false);
+        juce::String file_path = data.fromFirstOccurrenceOf(";", false, false);
+
+        if ( file_path.isEmpty() ) break;
 
         // Validation status
-        if ( status.isNumber() && static_cast<int>(status) != 0 )
+        if (  status !=  util::error_to_string( ScapeError::NO_ERRORS ) )
         {
-            processor.dispatchError("[ Import Error ]", errorStatuses(status));
+            processor.dispatchError("[ Import Error ]", status.toStdString() );
         }
 
         // File path
-
-        if (juce::File file(file_path.toString()); file.existsAsFile())
+        processor.dispatchError("[ Import ]", "Success!" );
+        if (juce::File file(file_path); file.existsAsFile())
         {
             processor.slotManager->assignFileHookToSlot(targetSlot, file);
             processor.slotManager->assignFilenameToSlot(targetSlot, file);
@@ -198,7 +208,6 @@ void ViewClientInstance::userFileUploadHandler(const int& hpfValue)
     }
     // finally, update state with valid results of file import
     processor.updateStateWithAssetsData();
-    chooserIsOpen.store(false);
 } // end userFileUploadHandler
 
 choc::network::HTTPContent ViewClientInstance::getHTTPContent(std::string_view path)

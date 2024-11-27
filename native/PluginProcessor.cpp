@@ -6,7 +6,8 @@
 #include "ConvolverNode.h"
 #include "Utilities.h"
 
-using Results = std::map<std::string, elem::js::Object>;
+
+using Results = juce::StringPairArray;
 
 //======= DETAIL
 //=======================================================================
@@ -267,50 +268,40 @@ void EffectsPluginProcessor::updateStateWithAssetsData()
 }
 
 
-void EffectsPluginProcessor::insertOrUpdate(Results& results,
-                                            const std::string& key,
-                                            const std::string& subKey,
-                                            const elem::js::Value& value)
+Results EffectsPluginProcessor::validateUserUpload( Results& results, const juce::Array<juce::File>& selected)
 {
-    auto& obj = results[key]; // Get the subObject
-    obj.insert_or_assign(subKey, value);
-}
-
-Results EffectsPluginProcessor::validateUserUpload(const juce::Array<juce::File>& selected)
-{
-    SlotName slot = SlotName::LAST;
-    Results results;
-
+    auto slot = SlotName::LAST;
     for (const juce::File& file : selected)
     {
-        auto file_path = file.getFullPathName().toStdString();
-        slot = nextSlot( slot, true);
-        std::string slot_as_key = toString(slot);
+        juce::String file_path = file.getFullPathName();
+        slot = nextSlot(slot, true);
+        juce::String slot_as_key(toString(slot));
 
         // Check if valid extension
-        const bool validExtension = file.hasFileExtension("wav;WAV;aiff;AIFF");
-        if (!validExtension)
+        if (!file.hasFileExtension("wav;WAV;aiff;AIFF"))
         {
-            insertOrUpdate(results, slot_as_key, "status",
-                           util::wrapError(ScapeError::FILETYPE_NOT_SUPPORTED));
-            insertOrUpdate(results, slot_as_key, "filePath", file_path);
+            results.set(slot_as_key,
+                        util::error_to_string(ScapeError::FILETYPE_NOT_SUPPORTED)
+                        + delimiter
+                        + file_path);
             continue;
         }
         // Check if exists
         if (file.existsAsFile() == false)
         {
-            insertOrUpdate(results, slot_as_key, "status",
-                           util::wrapError(ScapeError::FILE_NOT_FOUND));
-            insertOrUpdate(results, slot_as_key, "filePath", file_path);
-
+            results.set(slot_as_key,
+                        util::error_to_string(ScapeError::FILE_NOT_FOUND)
+                        + delimiter
+                        + file_path);
             continue;
         }
         // Check if file size is larger than 5MB
         if (file.getSize() > 5 * 1024 * 1024)
         {
-            insertOrUpdate(results, slot_as_key, "status",
-                           util::wrapError(ScapeError::FILESIZE_EXCEEDED));
-            insertOrUpdate(results, slot_as_key, "filePath", file_path);
+            results.set(slot_as_key,
+                       util::error_to_string(ScapeError::FILESIZE_EXCEEDED)
+                       + delimiter
+                       + file_path);
             continue;
         }
         // Check if filename contains reserved default slot keywords
@@ -319,15 +310,17 @@ Results EffectsPluginProcessor::validateUserUpload(const juce::Array<juce::File>
             file.getFileNameWithoutExtension().containsWholeWord("DEEPNESS") ||
             file.getFileNameWithoutExtension().containsWholeWord("LIGHT"))
         {
-            insertOrUpdate(results, slot_as_key, "status",
-                           util::wrapError(ScapeError::DO_NOT_OVERWRITE_DEFAULTS));
-            insertOrUpdate(results, slot_as_key, "filePath", file_path);
+            results.set(slot_as_key,
+                        util::error_to_string(ScapeError::DO_NOT_OVERWRITE_DEFAULTS)
+                        + delimiter
+                        + file_path);
             continue;
         }
         // Verified as valid ✅
-        insertOrUpdate(results, slot_as_key, "status",
-                       util::wrapError(ScapeError::JOY_OF_JOYS));
-        insertOrUpdate(results, slot_as_key, "filePath", file_path);
+        results.set(slot_as_key,
+                        util::error_to_string(ScapeError::NO_ERRORS)
+                        + delimiter
+                        + file_path);
     }
     // fulfill promise
     return results;

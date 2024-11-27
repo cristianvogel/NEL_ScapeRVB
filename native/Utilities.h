@@ -12,4 +12,5 @@ namespace util
     juce::File getPersistentDataDirectory();
     bool isOdd(int num);
     elem::js::Number wrapError(ScapeError error);
+    juce::String error_to_string( ScapeError error);
 } // namespace util

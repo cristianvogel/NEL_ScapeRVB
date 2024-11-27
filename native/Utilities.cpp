@@ -88,4 +88,10 @@ namespace util
         return static_cast<elem::js::Number>(static_cast<int>(error));
     }
 
+    juce::String error_to_string( ScapeError error )
+    {
+        const juce::String status = errorStatuses( static_cast<int>( error ) );
+        return status;
+    }
+
 } // namespace nel
