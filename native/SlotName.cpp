@@ -1,13 +1,15 @@
 
 #include <string>
 #include <stdexcept>
+#include <sys/stat.h>
 
 enum class SlotName
 {
     LIGHT,
     SURFACE,
     TEMPLE,
-    DEEPNESS
+    DEEPNESS,
+    LAST
 };
 
 std::string toString(SlotName slot)
@@ -23,7 +25,7 @@ std::string toString(SlotName slot)
     case SlotName::DEEPNESS:
         return "DEEPNESS";
     default:
-        throw std::invalid_argument("Invalid SlotName");
+        return "LAST";
     }
 }
 
@@ -39,6 +41,8 @@ SlotName fromString(const std::string &str)
         return SlotName::TEMPLE;
     if (str == "DEEPNESS")
         return SlotName::DEEPNESS;
+    if (str == "LAST")
+        return SlotName::LAST;
     throw std::invalid_argument("Invalid SlotName string");
 }
 SlotName fromIndex( int idx)
@@ -49,22 +53,25 @@ SlotName fromIndex( int idx)
     case 1: return SlotName::SURFACE;
     case 2: return SlotName::TEMPLE;
     case 3: return SlotName::DEEPNESS;
-    default: throw std::invalid_argument("Invalid index");
+    default: return SlotName::LAST;
     }
 }
 
 SlotName nextSlot(SlotName slot, const bool wrap)
 {
     int next = static_cast<int>(slot) + 1;
-    if (next > static_cast<int>(SlotName::DEEPNESS) && wrap)
+    constexpr int last = static_cast<int>(SlotName::LAST);
+    if (next >= last)
     {
-        next = static_cast<int>(SlotName::LIGHT); // Wrap around to the first slot
+        if (wrap) next = 0;
+        else next = last;
     }
     return static_cast<SlotName>(next);
 }
 
 SlotName nextSlotNoWrap(SlotName slot)
 {
-    int next = static_cast<int>(slot) + 1;
+    constexpr int last = static_cast<int>(SlotName::LAST);
+    int next = std::min( last, static_cast<int>(slot) + 1);
     return static_cast<SlotName>(next);
 }

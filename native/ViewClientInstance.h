@@ -1,7 +1,10 @@
+#pragma once
+
 #ifndef VIEWCLIENTINSTANCE_H
 #define VIEWCLIENTINSTANCE_H
 
 #include <choc_HTTPServer.h>
+#include "SlotName.h"
 
 
 // Forward declaration of EffectsPluginProcessor
@@ -33,7 +36,7 @@ public:
     enum class ErrorType
     {
         UNKNOWN_ERROR,
-        JOY_OF_JOYS,
+        NO_ERRORS,
         FILESIZE_EXCEEDED,
         FILETYPE_NOT_SUPPORTED,
         FILE_NOT_SELECTED,
@@ -53,7 +56,7 @@ inline std::string errorStatuses(int status)
     switch (status)
     {
     case static_cast<int>(ScapeError::FILESIZE_EXCEEDED):
-        return "Each file cannot exceed 5MB";
+        return "File size limit is 5MB";
     case static_cast<int>(ScapeError::FILETYPE_NOT_SUPPORTED):
         return "Only WAV and AIFF files are supported";
     case static_cast<int>(ScapeError::FILE_NOT_SELECTED):
@@ -66,8 +69,8 @@ inline std::string errorStatuses(int status)
         return "File must be stereo";
     case static_cast<int>(ScapeError::DO_NOT_OVERWRITE_DEFAULTS):
         return "File cannot be called TEMPLE, SURFACE, DEEPNESS or LIGHT";
-    case static_cast<int>(ScapeError::JOY_OF_JOYS):
-        return "Joy of Joys";
+    case static_cast<int>(ScapeError::NO_ERRORS):
+        return "OK";
     default:
         return "Nothing was imported.";
     }

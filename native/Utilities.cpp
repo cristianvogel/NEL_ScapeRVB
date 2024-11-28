@@ -2,6 +2,10 @@
 #include <numeric>
 #include "Utilities.h"
 
+#include <elem/Value.h>
+
+#include "ViewClientInstance.h"
+
 namespace util
 {
     
@@ -78,6 +82,16 @@ namespace util
     bool isOdd(int n)
     {
         return n == 0 || n % 2 != 0;
+    }
+
+    elem::js::Number wrapError(ScapeError error){
+        return static_cast<elem::js::Number>(static_cast<int>(error));
+    }
+
+    juce::String error_to_string( ScapeError error )
+    {
+        const juce::String status = errorStatuses( static_cast<int>( error ) );
+        return status;
     }
 
 } // namespace nel

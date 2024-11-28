@@ -143,7 +143,8 @@ function parseNewState(_refs: RefMap, rawState: JSONString) {
     return { state, srvb, shared, scape };
 }
 
-function updateMemoizedState(state, srvb, shared, scape) {
+function updateMemoizedState(state: any, srvb: SrvbSettings, shared: SharedSettings, scape: ScapeSettings)
+{
     memoized = {
         ...state,
         sampleRate: shared.sampleRate,

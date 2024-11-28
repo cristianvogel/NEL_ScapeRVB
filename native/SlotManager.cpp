@@ -1,8 +1,6 @@
 
 #include "SlotManager.h"
 
-#include <sys/proc.h>
-
 #include "Assets.h"
 
 SlotManager::SlotManager(EffectsPluginProcessor &processor) : processor(processor) {}

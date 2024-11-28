@@ -7,8 +7,8 @@ import { handleStateChange } from "./handleGraphUpdate";
 // batches through the __postNativeMessage__ function to direct the underlying native
 // engine.
  export const core = new Renderer((batch: any) => {
-  globalThis.
-  __postNativeMessage__(JSON.stringify(batch));
+  // @ts-ignore
+   globalThis.__postNativeMessage__(JSON.stringify(batch));
 });
 // Next, a RefMap for coordinating our refs and asset keys
 const refs: RefMap = new RefMap(core);
@@ -19,6 +19,7 @@ const refs: RefMap = new RefMap(core);
 let convolver = (_props: any, ...childs: ElemNode[]) => createNode("convolver", _props, childs);
 
 
+// @ts-ignore
 globalThis.__receiveStateChange__ = function (rawState: JSONString)  {
   handleStateChange(refs, rawState );
 }

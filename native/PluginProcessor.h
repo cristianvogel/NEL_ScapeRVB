@@ -142,6 +142,9 @@ public:
     std::string serialize(const std::string& function, const choc::value::Value& data,
                           const juce::String& replacementChar = "%");
 
+    // for file chooser
+    juce::String delimiter = ";";
+
     //==============================================================================
 
 private:
@@ -166,7 +169,7 @@ private:
     //=============================================
 
 public:
-    using Results = std::map<std::string, elem::js::Object>;
+    using Results = juce::StringPairArray;
 
     elem::js::Object state;
     std::map<SlotName, Asset> assetsMap;
@@ -182,15 +185,8 @@ public:
     void inspectVFS();
     void pruneVFS() const;
 
-    void insertOrUpdate(Results& results,
-                    const std::string& key,
-                    const std::string& subKey,
-                    elem::js::Value value);
-
     void requestUserFileSelection(std::promise<Results> &promise);
-    void validateUserUpload(juce::Array<juce::File>& selected,
-                            elem::js::Array& files,
-                            Results& results);
+     Results validateUserUpload( Results& results, const juce::Array<juce::File>& selected);
     void updateStateWithAssetsData();
     elem::js::Value assetsMapToValue(const std::map<SlotName, Asset>& map);
     std::vector<float> getReducedAudioBuffer(const juce::AudioBuffer<float>& buffer);

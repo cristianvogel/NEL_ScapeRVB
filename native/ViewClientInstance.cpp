@@ -1,6 +1,7 @@
 #include "ViewClientInstance.h"
 #include "PluginProcessor.h"
 #include "SlotName.h"
+#include "Utilities.h"
 
 using Results = std::map<std::string, elem::js::Object>;
 
@@ -57,7 +58,7 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮
             if (key == "selectFiles" && hpfValue.isNumber())
             {
-                if (chooserIsOpen.load()) continue;
+
                 uploadStatus = 0;
                 int filterCutoff = static_cast<elem::js::Number>(hpfValue);
                 userFileUploadHandler(filterCutoff);
@@ -128,7 +129,7 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
             // ▮▮▮▮▮▮▮ simple parameter update request       ▮▮▮▮▮▮▮ //
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
-            if (hpfValue.isNumber() && processor.parameterMap.contains(key) && !chooserIsOpen.load())
+            if (hpfValue.isNumber() && processor.parameterMap.contains(key) )
             {
                 float paramValue = static_cast<elem::js::Number>(hpfValue);
                 float stateValue = static_cast<elem::js::Number>(processor.state[key]);
@@ -144,26 +145,19 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
     }
 }
 
-void EffectsPluginProcessor::requestUserFileSelection( std::promise<Results> &promise)
+void EffectsPluginProcessor::requestUserFileSelection(std::promise<Results>& promise)
 {
-
     juce::MessageManager::callAsync([this, &promise]()
     {
-        const bool browsed = chooser.browseForMultipleFilesToOpen(nullptr);
-        if (!browsed) return;
-        Results results;
-        juce::Array<juce::File> selected(chooser.getResults());
-        // Create an elem::js::Array to hold the file paths
-        elem::js::Array selectedFilesAsValue;
-        validateUserUpload(selected, selectedFilesAsValue, results);
-        promise.set_value(results);
+        chooser.browseForMultipleFilesToOpen(nullptr);
+        juce::StringPairArray results;
+         results = validateUserUpload( results, chooser.getResults() );
+        promise.set_value( results );
     });
 }
 
 void ViewClientInstance::userFileUploadHandler(const int& hpfValue)
 {
-
-
     processor.userCutoffChoice = hpfValue;
     std::promise<EffectsPluginProcessor::Results> promise;
     std::future<EffectsPluginProcessor::Results> future = promise.get_future();
@@ -172,65 +166,57 @@ void ViewClientInstance::userFileUploadHandler(const int& hpfValue)
     chooserIsOpen.store(true);
     processor.requestUserFileSelection(promise);
     // get the future back
-    EffectsPluginProcessor::Results data = future.get();
+    const EffectsPluginProcessor::Results results = future.get();
 
-    for (auto& result : data)
+     chooserIsOpen.store(false);
+    if (results.size() == 0 ) return;
+
+    for (const auto & slot : DEFAULT_SLOT_NAMES)
     {
-        const std::string& outerKey = result.first;
-        for (auto& innerPair: result.second)
+        SlotName targetSlot = fromString( slot ); // outer key
+        const juce::String& data = results[slot];
+
+        // The data should have been assigned in bound string using ; to seperate data elements
+        // for example (ignore the spaces here) :
+        //     outerKey          status (via ScapeError enum class)       filepath
+        //          ⬇︎︎︎             ⬇︎︎︎                                        ⬇︎︎︎
+        // <    "LIGHT",        "File not found;                            path/to/file.wav"
+        const auto status = data.upToFirstOccurrenceOf( processor.delimiter, false, false);
+        juce::String file_path = data.fromFirstOccurrenceOf( processor.delimiter, false, false);
+
+        if ( file_path.isEmpty() ) break;
+
+        // Validation status
+        if (  status !=  util::error_to_string( ScapeError::NO_ERRORS ) )
         {
-            const std::string& key = innerPair.first;
-            auto val = innerPair.second;
+            processor.dispatchError("[ Import Error ]", status.toStdString() );
+        }
 
-            SlotName targetSlot = fromString(key);
-
-            {
-                chooserIsOpen.store(false);
-                if ( key == "files")
-                {
-                     files = val.getArray();
-                }
-
-                {
-                    uploadStatus = val.isNumber() ? static_cast<elem::js::Number>(val) : 0;
-                }
-
-                // Failed validation
-
-
-                if (  key =="validated" && !val )
-                {
-                    processor.dispatchError("[ Import Error ]", errorStatuses(uploadStatus));
-                    continue;
-                }
-
-
-                // Success
-                for (const auto& fileValue : files)
-                {
-                    auto filePath = juce::String(static_cast<std::string>(fileValue));
-                    juce::File file(filePath);
-                    if (file.existsAsFile())
-                    {
-                        processor.slotManager->assignFileHookToSlot(targetSlot, file);
-                        processor.slotManager->assignFilenameToSlot(targetSlot, file);
-                        processor.userBankManager.incrementUserBank();
-                        targetSlot = nextSlot(targetSlot);
-                    }
-                }
-                processor.updateStateWithAssetsData();
-            }
+        // File path
+        processor.dispatchError("[ Import ]", "Success!" );
+        if (juce::File file(file_path); file.existsAsFile())
+        {
+            processor.slotManager->assignFileHookToSlot(targetSlot, file);
+            processor.slotManager->assignFilenameToSlot(targetSlot, file);
+            processor.userBankManager.incrementUserBank();
+            processor.userFilesWereImported.store(true);
+        }
+        else
+        {
+            processor.dispatchError("[ Import Error ]", errorStatuses(5)); // not found
         }
     }
+    // finally, update state with valid results of file import
+    processor.updateStateWithAssetsData();
 } // end userFileUploadHandler
 
-    choc::network::HTTPContent ViewClientInstance::getHTTPContent(std::string_view path)
-    {
-        // not using HTML
+choc::network::HTTPContent ViewClientInstance::getHTTPContent(std::string_view path)
+{
+    // not using HTML
     return {};
-    }
+}
 
-    void ViewClientInstance::upgradedToWebSocket(std::string_view path)
-    {
-        // not using HTML
-    }
+void ViewClientInstance::upgradedToWebSocket(std::string_view path)
+{
+    // not using HTML
+}
