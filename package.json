@@ -30,7 +30,6 @@
     "invariant": "^2.2.4",
     "resize-observer-polyfill": "^1.5.1",
     "rimraf": "^5.0.0",
-    "svelte-hmr": "^0.16.0",
     "zustand": "^4.3.8"
   },
   "devDependencies": {
