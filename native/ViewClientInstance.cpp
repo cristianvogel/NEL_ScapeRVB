@@ -62,6 +62,7 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                 uploadStatus = 0;
                 int filterCutoff = static_cast<elem::js::Number>(hpfValue);
                 userFileUploadHandler(filterCutoff);
+                processor.slotManager->switchSlotsTo(true, false);
             }
 
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮
@@ -193,7 +194,7 @@ void ViewClientInstance::userFileUploadHandler(const int& hpfValue)
         }
 
         // File path
-        processor.dispatchError("[ Import ]", "Success!" );
+
         if (juce::File file(file_path); file.existsAsFile())
         {
             processor.slotManager->assignFileHookToSlot(targetSlot, file);

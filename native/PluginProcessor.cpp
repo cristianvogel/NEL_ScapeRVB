@@ -928,7 +928,7 @@ void EffectsPluginProcessor::dispatchStateChange()
 {
     auto currentStateMap = state;
     currentStateMap.insert_or_assign(SAMPLE_RATE_KEY, lastKnownSampleRate);
-    const auto expr = serialize(jsFunctions::dispatchScript, currentStateMap);
+    const auto expr = serialize(jsFunctions::dispatchStateChangeScript, currentStateMap);
     // Next we dispatch to the local engine which will evaluate any necessary
     // JavaScript synchronously here on the main thread
     try
@@ -989,7 +989,7 @@ void EffectsPluginProcessor::dispatchError(std::string const& name, std::string 
  */
 void EffectsPluginProcessor::dispatchNativeLog(std::string const& name, std::string const& message)
 {
-    const auto expr = juce::String(jsFunctions::errorScript)
+    const auto expr = juce::String(jsFunctions::logToUIScript)
                       .replace("@", elem::js::serialize(name))
                       .replace("%", elem::js::serialize(message))
                       .toStdString();

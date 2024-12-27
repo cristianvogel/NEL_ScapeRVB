@@ -366,7 +366,7 @@ namespace jsFunctions
 })();
 )script";
 
-    inline auto dispatchScript = R"script(
+    inline auto dispatchStateChangeScript = R"script(
 (function() {
   if (typeof globalThis.__receiveStateChange__ !== 'function')
     return false;
@@ -379,6 +379,19 @@ namespace jsFunctions
     inline auto errorScript = R"script(
 (function() {
   if (typeof globalThis.__receiveError__ !== 'function')
+    return false;
+
+  let e = new Error(%);
+  e.name = @;
+
+  globalThis.__receiveError__(e);
+  return true;
+})();
+)script";
+
+    inline auto logToUIScript = R"script(
+(function() {
+  if (typeof globalThis.__logToUI__ !== 'function')
     return false;
 
   let e = new Error(%);

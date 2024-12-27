@@ -190,9 +190,12 @@ export function RegisterMessagesFromHost() {
    * @param error - The error object.
    */
   globalThis.__receiveError__ = function (error: any) {
-    //ConsoleText.set("Error: " + error);
     ConsoleText.update(">> " + error);
   };
+
+  globalThis.__logToUI__ = function (log: any) {
+      ConsoleText.update(">> " + log);
+  }
 
   globalThis.__log__ = function (log: any) {
     //ConsoleText.set("Error: " + error);
