@@ -18,7 +18,7 @@ public:
     const juce::File& getFileAtSlot(int slotIndex) const;
     void clearSlot(int slotIndex);
     void clearAllSlots();
-    juce::FileChooser chooser;
+    std::unique_ptr<juce::FileChooser> chooser;
     int currentSlotIndex = 0;
     
 private:

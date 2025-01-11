@@ -62,11 +62,8 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮
             if (key == "selectFiles" && hpfValue.isNumber())
             {
-
-                uploadStatus = 0;
                 int filterCutoff = static_cast<elem::js::Number>(hpfValue);
                 userFileUploadHandler(filterCutoff);
-                processor.slotManager->switchSlotsTo(true, false);
             }
 
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮
@@ -158,12 +155,11 @@ void EffectsPluginProcessor::requestUserFileSelection() const
 void ViewClientInstance::userFileUploadHandler(const int& hpfValue)
 {
     processor.userCutoffChoice = hpfValue;
-
     // begin async file selection
     chooserIsOpen.store(true);
     processor.requestUserFileSelection();
     chooserIsOpen.store(false);
-
+    processor.slotManager->switchSlotsTo(true, false);
 } // end userFileUploadHandler
 
 choc::network::HTTPContent ViewClientInstance::getHTTPContent(std::string_view path)
