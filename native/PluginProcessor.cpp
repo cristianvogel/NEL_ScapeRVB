@@ -5,7 +5,7 @@
 #include "ViewClientInstance.h"
 #include "ConvolverNode.h"
 #include "Utilities.h"
-
+#include "AudioFileLoader.h"
 
 using Results = juce::StringPairArray;
 
@@ -19,9 +19,7 @@ EffectsPluginProcessor::EffectsPluginProcessor()
       jsContext(choc::javascript::createQuickJSContext()),
       server(std::make_unique<choc::network::HTTPServer>()),
       slotManager(std::make_unique<SlotManager>(*this)),
-      chooser("Select up to four stereo audio files", juce::File::getSpecialLocation(juce::File::userHomeDirectory),
-              "*.wav;*.aiff")
-
+      fileLoader(std::make_unique<AudioFileLoader>(*this))
 {
     // Initialize parameters from the manifest file
 #if ELEM_DEV_LOCALHOST
@@ -268,67 +266,59 @@ void EffectsPluginProcessor::updateStateWithAssetsData()
 }
 
 
-Results EffectsPluginProcessor::validateUserUpload( Results& results, const juce::Array<juce::File>& selected)
+Results EffectsPluginProcessor::validateUserUpload(Results& results, const juce::File& selectedFile) const
 {
     auto slot = SlotName::LAST;
-    
-    if ( selected.size() == 0 )
+
+    if (!selectedFile.existsAsFile())
     {
         results.set(toString(slot), util::error_to_string(ScapeError::NO_FILES_SELECTED));
         return results;
     }
 
-    for (const juce::File& file : selected)
-    {
-        juce::String file_path = file.getFullPathName();
-        nextSlot(slot);
-        juce::String slot_as_key(toString(slot));
+    const juce::String& file_path = selectedFile.getFullPathName();
+    const juce::String slot_as_key(toString(fromIndex(fileLoader->currentSlotIndex)));
 
-        // Check if valid extension
-        if (!file.hasFileExtension("wav;WAV;aiff;AIFF"))
-        {
-            results.set(slot_as_key,
-                        util::error_to_string(ScapeError::FILETYPE_NOT_SUPPORTED)
-                        + delimiter
-                        + file_path);
-            continue;
-        }
-        // Check if exists
-        if (file.existsAsFile() == false)
-        {
-            results.set(slot_as_key,
-                        util::error_to_string(ScapeError::FILE_NOT_FOUND)
-                        + delimiter
-                        + file_path);
-            continue;
-        }
-        // Check if file size is larger than 5MB
-        if (file.getSize() > 5 * 1024 * 1024)
-        {
-            results.set(slot_as_key,
-                       util::error_to_string(ScapeError::FILESIZE_EXCEEDED)
-                       + delimiter
-                       + file_path);
-            continue;
-        }
-        // Check if filename contains reserved default slot keywords
-        if (file.getFileNameWithoutExtension().containsWholeWord("TEMPLE") ||
-            file.getFileNameWithoutExtension().containsWholeWord("SURFACE") ||
-            file.getFileNameWithoutExtension().containsWholeWord("DEEPNESS") ||
-            file.getFileNameWithoutExtension().containsWholeWord("LIGHT"))
-        {
-            results.set(slot_as_key,
-                        util::error_to_string(ScapeError::DO_NOT_OVERWRITE_DEFAULTS)
-                        + delimiter
-                        + file_path);
-            continue;
-        }
-        // Verified as valid ✅
+    // Check if valid extension
+    if (!selectedFile.hasFileExtension("wav;WAV;aiff;AIFF"))
+    {
         results.set(slot_as_key,
-                        util::error_to_string(ScapeError::NO_ERRORS)
-                        + delimiter
-                        + file_path);
+                    util::error_to_string(ScapeError::FILETYPE_NOT_SUPPORTED)
+                    + delimiter
+                    + file_path);
     }
+    // Check if exists
+    if (selectedFile.existsAsFile() == false)
+    {
+        results.set(slot_as_key,
+                    util::error_to_string(ScapeError::FILE_NOT_FOUND)
+                    + delimiter
+                    + file_path);
+    }
+    // Check if file size is larger than 5MB
+    if (selectedFile.getSize() > 5 * 1024 * 1024)
+    {
+        results.set(slot_as_key,
+                    util::error_to_string(ScapeError::FILESIZE_EXCEEDED)
+                    + delimiter
+                    + file_path);
+    }
+    // Check if filename contains reserved default slot keywords
+    if (selectedFile.getFileNameWithoutExtension().containsWholeWord("TEMPLE") ||
+        selectedFile.getFileNameWithoutExtension().containsWholeWord("SURFACE") ||
+        selectedFile.getFileNameWithoutExtension().containsWholeWord("DEEPNESS") ||
+        selectedFile.getFileNameWithoutExtension().containsWholeWord("LIGHT"))
+    {
+        results.set(slot_as_key,
+                    util::error_to_string(ScapeError::DO_NOT_OVERWRITE_DEFAULTS)
+                    + delimiter
+                    + file_path);
+    }
+    // Verified as valid ✅
+    results.set(slot_as_key,
+                util::error_to_string(ScapeError::OK)
+                + delimiter
+                + file_path);
     // fulfill promise
     return results;
 }

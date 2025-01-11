@@ -36,7 +36,7 @@ public:
     enum class ErrorType
     {
         UNKNOWN_ERROR,
-        NO_ERRORS,
+        OK,
         FILESIZE_EXCEEDED,
         FILETYPE_NOT_SUPPORTED,
         NO_FILES_SELECTED,
@@ -69,7 +69,7 @@ inline std::string errorStatuses(int status)
         return "File must be stereo";
     case static_cast<int>(ScapeError::DO_NOT_OVERWRITE_DEFAULTS):
         return "File cannot be called TEMPLE, SURFACE, DEEPNESS or LIGHT";
-    case static_cast<int>(ScapeError::NO_ERRORS):
+    case static_cast<int>(ScapeError::OK):
         return "OK";
     default:
         return "Nothing was imported.";

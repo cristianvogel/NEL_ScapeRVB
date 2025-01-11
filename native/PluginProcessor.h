@@ -9,7 +9,6 @@
 #include <map>
 
 // Third-Party Library Headers
-// #include <KeyzyLicenseActivator.h>
 #include <choc_HTTPServer.h>
 #include <choc_StringUtilities.h>
 #include <choc_javascript.h>
@@ -38,6 +37,7 @@ class WebViewEditor;
 class ViewClientInstance;
 class SlotManager;
 class UserBankManager;
+class AudioFileLoader;  // Forward declaration
 
 //==============================================================================
 class EffectsPluginProcessor : public juce::AudioProcessor,
@@ -45,7 +45,8 @@ class EffectsPluginProcessor : public juce::AudioProcessor,
                                private juce::AsyncUpdater
 {
 public:
-    juce::FileChooser chooser;
+
+
     juce::AudioFormatManager formatManager;
     void createParameters(const std::vector<elem::js::Value>& parameters);
 
@@ -148,6 +149,7 @@ public:
     //==============================================================================
 
 private:
+    std::unique_ptr<AudioFileLoader> fileLoader;
     // The maximum number of error messages to keep in the queue
     size_t MAX_ERROR_LOG_QUEUE_SIZE = 200;
     std::optional<std::string> loadDspEntryFileContents() const;
@@ -185,8 +187,9 @@ public:
     void inspectVFS();
     void pruneVFS() const;
 
-    void requestUserFileSelection(std::promise<Results> &promise);
-     Results validateUserUpload( Results& results, const juce::Array<juce::File>& selected);
+    void requestUserFileSelection() const;
+     Results validateUserUpload(Results& results, const juce::File& selectedFile) const;
+    Results uploadedFileData;
     void updateStateWithAssetsData();
     elem::js::Value assetsMapToValue(const std::map<SlotName, Asset>& map);
     std::vector<float> getReducedAudioBuffer(const juce::AudioBuffer<float>& buffer);
@@ -198,6 +201,8 @@ public:
 
     vfs::UserBankManager userBankManager;
     std::string prefixUserBank(const std::string& name) const;
+    std::unique_ptr<SlotManager> slotManager; // Use a smart pointer to manage the slot manager
+
 
 private:
     int USERBANK = 0;
@@ -208,7 +213,6 @@ private:
     juce::dsp::StateVariableTPTFilter<float> stateVariableFilter; // For filtering the imported IRs
     std::unique_ptr<ViewClientInstance> clientInstance; // Use a smart pointer to store the client instance
     std::unique_ptr<choc::network::HTTPServer> server; // Use a smart pointer to manage the server
-    std::unique_ptr<SlotManager> slotManager; // Use a smart pointer to manage the slot manager
 
     //==============================================================================
     // A simple "dirty list" abstraction here for propagating realtime parameter

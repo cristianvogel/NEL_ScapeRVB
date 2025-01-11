@@ -23,36 +23,35 @@ add_subdirectory(juce) # using the static non-submodule version
 add_subdirectory(elementary/runtime) # using the static non-submodule version
 
 
-
 # Set build type
 
-if(CMAKE_BUILD_TYPE STREQUAL "Release")
+if (CMAKE_BUILD_TYPE STREQUAL "Release")
     set(CMAKE_CXX_FLAGS_RELEASE "${CMAKE_CXX_FLAGS_RELEASE} -s")
     set(CMAKE_C_FLAGS_RELEASE "${CMAKE_C_FLAGS_RELEASE} -s")
-endif()
+endif ()
 
-if(WIN32)
-  set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>") # Martin's famous fix ... JUCE and plugins need this
+if (WIN32)
+    set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>") # Martin's famous fix ... JUCE and plugins need this
 
-  if(CMAKE_SIZEOF_VOID_P EQUAL 8)
-    set(PC_ARCH "x64")
-  else()
-    set(PC_ARCH "x32")
-  endif()
-endif()
+    if (CMAKE_SIZEOF_VOID_P EQUAL 8)
+        set(PC_ARCH "x64")
+    else ()
+        set(PC_ARCH "x32")
+    endif ()
+endif ()
 
 juce_add_plugin(${TARGET_NAME}
-  BUNDLE_ID "audio.neverenginelabs.scapespace"
-  COMPANY_NAME "NeverEngineLabs"
-  COMPANY_WEBSITE "https://neverenginelabs.com"
-  COMPANY_EMAIL "support@neverenginelabs.com"
-  PLUGIN_MANUFACTURER_CODE NVLB # A four-character manufacturer id with at least one upper-case character
-  PLUGIN_CODE ScRv # A unique four-character plugin id with at least one upper-case character
-  COPY_PLUGIN_AFTER_BUILD FALSE # We enable this manually below after adding a copy step
-  APP_SANDBOX_ENABLED FALSE
-  APP_SANDBOX_OPTIONS com.apple.security.network.client com.apple.security.files.user-selected.read-write
-  FORMATS AU VST3 STANDALONE # The formats to build. Other valid formats are: AAX Unity VST AU AUv3
-  PRODUCT_NAME "NEL_scape_space_${CMAKE_OSX_ARCHITECTURES}${PC_ARCH}_${BUILD_VERSION}") # The name of the final executable, which can differ from the target name
+        BUNDLE_ID "audio.neverenginelabs.scapespace"
+        COMPANY_NAME "NeverEngineLabs"
+        COMPANY_WEBSITE "https://neverenginelabs.com"
+        COMPANY_EMAIL "support@neverenginelabs.com"
+        PLUGIN_MANUFACTURER_CODE NVLB # A four-character manufacturer id with at least one upper-case character
+        PLUGIN_CODE ScRv # A unique four-character plugin id with at least one upper-case character
+        COPY_PLUGIN_AFTER_BUILD FALSE # We enable this manually below after adding a copy step
+        APP_SANDBOX_ENABLED FALSE
+        APP_SANDBOX_OPTIONS com.apple.security.network.client com.apple.security.files.user-selected.read-write
+        FORMATS AU VST3 STANDALONE # The formats to build. Other valid formats are: AAX Unity VST AU AUv3
+        PRODUCT_NAME "NEL_scape_space_${CMAKE_OSX_ARCHITECTURES}${PC_ARCH}_${BUILD_VERSION}") # The name of the final executable, which can differ from the target name
 
 # # Keyzy Client Library
 # # Replace KeyzyClientLibraryX.X.X with your actual library version
@@ -106,91 +105,93 @@ find_package(Boost REQUIRED COMPONENTS system thread)
 target_link_libraries(${TARGET_NAME} PRIVATE Boost::system Boost::thread)
 
 target_include_directories(${TARGET_NAME} PRIVATE
-  $<BUILD_INTERFACE:${LIB_DIR}/Include>
-  $<BUILD_INTERFACE:${Boost_INCLUDE_DIRS}>)
+        $<BUILD_INTERFACE:${LIB_DIR}/Include>
+        $<BUILD_INTERFACE:${Boost_INCLUDE_DIRS}>)
 
 # Copy static assets post build
-if(NOT ELEM_DEV_LOCALHOST)
-  get_target_property(ACTIVE_TARGETS ${TARGET_NAME} JUCE_ACTIVE_PLUGIN_TARGETS)
+if (NOT ELEM_DEV_LOCALHOST)
+    get_target_property(ACTIVE_TARGETS ${TARGET_NAME} JUCE_ACTIVE_PLUGIN_TARGETS)
 
-  foreach(ACTIVE_TARGET IN LISTS ACTIVE_TARGETS)
-    message(STATUS "Adding resource copy step from ${ASSETS_DIR} for ${ACTIVE_TARGET}")
+    foreach (ACTIVE_TARGET IN LISTS ACTIVE_TARGETS)
+        message(STATUS "Adding resource copy step from ${ASSETS_DIR} for ${ACTIVE_TARGET}")
 
-    get_target_property(ARTIFACT_FILE ${ACTIVE_TARGET} JUCE_PLUGIN_ARTEFACT_FILE)
-    set(RESOURCE_DIR "${ARTIFACT_FILE}/Contents/Resources/")
+        get_target_property(ARTIFACT_FILE ${ACTIVE_TARGET} JUCE_PLUGIN_ARTEFACT_FILE)
+        set(RESOURCE_DIR "${ARTIFACT_FILE}/Contents/Resources/")
 
-    add_custom_command(TARGET ${ACTIVE_TARGET} POST_BUILD
-      COMMAND ${CMAKE_COMMAND} -E rm -rf "${RESOURCE_DIR}/dist"
+        add_custom_command(TARGET ${ACTIVE_TARGET} POST_BUILD
+                COMMAND ${CMAKE_COMMAND} -E rm -rf "${RESOURCE_DIR}/dist"
 
-      COMMAND ${CMAKE_COMMAND} -E make_directory "${RESOURCE_DIR}/dist"
+                COMMAND ${CMAKE_COMMAND} -E make_directory "${RESOURCE_DIR}/dist"
 
-      COMMAND ${CMAKE_COMMAND} -E make_directory "${ASSETS_DIR}/assets"
+                COMMAND ${CMAKE_COMMAND} -E make_directory "${ASSETS_DIR}/assets"
 
-      COMMAND ${CMAKE_COMMAND} -E copy_directory "${ASSETS_DIR}" "${RESOURCE_DIR}/dist"
-      COMMAND ${CMAKE_COMMAND} -E echo "Copied directory: ${ASSETS_DIR} to ${RESOURCE_DIR}/dist"
-      VERBATIM)
-  endforeach()
-endif()
+                COMMAND ${CMAKE_COMMAND} -E copy_directory "${ASSETS_DIR}" "${RESOURCE_DIR}/dist"
+                COMMAND ${CMAKE_COMMAND} -E echo "Copied directory: ${ASSETS_DIR} to ${RESOURCE_DIR}/dist"
+                VERBATIM)
+    endforeach ()
+endif ()
 
 # Enable copy step
-if(NOT DEFINED ENV{CI})
-  juce_enable_copy_plugin_step(${TARGET_NAME})
-endif()
+if (NOT DEFINED ENV{CI})
+    juce_enable_copy_plugin_step(${TARGET_NAME})
+endif ()
 
 target_sources(${TARGET_NAME}
-  PRIVATE
-  PluginProcessor.cpp
-  WebViewEditor.cpp
-  Utilities.cpp
-  SlotName.cpp
-  SlotManager.cpp
-  ViewClientInstance.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/TwoStageFFTConvolver.cpp 
-  ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/AudioFFT.cpp 
-  ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/Utilities.cpp
-  ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/FFTConvolver.cpp 
-  ConvolverNode.h
-  UserBankManager.h
+        PRIVATE
+        PluginProcessor.cpp
+        WebViewEditor.cpp
+        Utilities.cpp
+        SlotName.cpp
+        SlotManager.cpp
+        ViewClientInstance.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/TwoStageFFTConvolver.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/AudioFFT.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/Utilities.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver/FFTConvolver.cpp
+        ConvolverNode.h
+        UserBankManager.h
+        AudioFileLoader.cpp
+        AudioFileLoader.h
 )
 
 target_include_directories(${TARGET_NAME}
-  PRIVATE
-  ${CMAKE_CURRENT_SOURCE_DIR}/choc/gui
-  ${CMAKE_CURRENT_SOURCE_DIR}/choc/javascript
-  ${CMAKE_CURRENT_SOURCE_DIR}/choc/containers
-  ${CMAKE_CURRENT_SOURCE_DIR}/choc/network
-  ${CMAKE_CURRENT_SOURCE_DIR}/choc/text
-  ${CMAKE_CURRENT_SOURCE_DIR}/choc/memory
-  ${CMAKE_CURRENT_SOURCE_DIR}/choc/audio
-  ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver
+        PRIVATE
+        ${CMAKE_CURRENT_SOURCE_DIR}/choc/gui
+        ${CMAKE_CURRENT_SOURCE_DIR}/choc/javascript
+        ${CMAKE_CURRENT_SOURCE_DIR}/choc/containers
+        ${CMAKE_CURRENT_SOURCE_DIR}/choc/network
+        ${CMAKE_CURRENT_SOURCE_DIR}/choc/text
+        ${CMAKE_CURRENT_SOURCE_DIR}/choc/memory
+        ${CMAKE_CURRENT_SOURCE_DIR}/choc/audio
+        ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver
 )
 
 target_compile_features(${TARGET_NAME}
-  PRIVATE
-  cxx_std_20)
+        PRIVATE
+        cxx_std_20)
 
 target_compile_definitions(${TARGET_NAME}
-  PRIVATE
-  ELEM_DEV_LOCALHOST=${ELEM_DEV_LOCALHOST}
-  JUCE_VST3_CAN_REPLACE_VST2=0
-  JUCE_USE_CURL=0
-  JUCE_MODAL_LOOPS_PERMITTED=1  # Allow file chooser dialog to open
+        PRIVATE
+        ELEM_DEV_LOCALHOST=${ELEM_DEV_LOCALHOST}
+        JUCE_VST3_CAN_REPLACE_VST2=0
+        JUCE_USE_CURL=0
+        JUCE_MODAL_LOOPS_PERMITTED=1  # Allow file chooser dialog to open
 )
 
 target_link_libraries(${TARGET_NAME}
-  PRIVATE
-  juce::juce_audio_basics
-  juce::juce_audio_formats
-  juce::juce_audio_devices
-  juce::juce_audio_plugin_client
-  juce::juce_audio_processors
-  juce::juce_audio_utils
-  juce::juce_core
-  juce::juce_data_structures
-  juce::juce_dsp
-  juce::juce_events
- # juce::juce_graphics
- juce::juce_gui_basics
- juce::juce_gui_extra
- runtime
+        PRIVATE
+        juce::juce_audio_basics
+        juce::juce_audio_formats
+        juce::juce_audio_devices
+        juce::juce_audio_plugin_client
+        juce::juce_audio_processors
+        juce::juce_audio_utils
+        juce::juce_core
+        juce::juce_data_structures
+        juce::juce_dsp
+        juce::juce_events
+        # juce::juce_graphics
+        juce::juce_gui_basics
+        juce::juce_gui_extra
+        runtime
 )
