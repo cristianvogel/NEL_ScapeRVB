@@ -75,7 +75,7 @@ void EffectsPluginProcessor::initialise_assets_map()
     while (slot != SlotName::LAST)
     {
         assetsMap[slot] = Asset();
-        slot = nextSlotNoWrap(slot);
+        nextSlotNoWrap(slot);
     }
 }
 
@@ -89,7 +89,7 @@ void EffectsPluginProcessor::clear_userFiles_in_assets_map()
         assetsMap[slot].setProperty(Asset::Props::userStereoFile, juce::File());
         assetsMap[slot].setProperty(Asset::Props::filenameForView, "");
         assetsMap[slot].setProperty(Asset::Props::userPeaksForView, std::vector<float>{});
-        slot = nextSlotNoWrap(slot);
+        nextSlotNoWrap(slot);
     }
 }
 
@@ -271,10 +271,17 @@ void EffectsPluginProcessor::updateStateWithAssetsData()
 Results EffectsPluginProcessor::validateUserUpload( Results& results, const juce::Array<juce::File>& selected)
 {
     auto slot = SlotName::LAST;
+    
+    if ( selected.size() == 0 )
+    {
+        results.set(toString(slot), util::error_to_string(ScapeError::NO_FILES_SELECTED));
+        return results;
+    }
+
     for (const juce::File& file : selected)
     {
         juce::String file_path = file.getFullPathName();
-        slot = nextSlot(slot, true);
+        nextSlot(slot);
         juce::String slot_as_key(toString(slot));
 
         // Check if valid extension
@@ -437,7 +444,7 @@ void EffectsPluginProcessor::pruneVFS() const
 /*
  * Call the runtime to get its immutable
  * Map of audio buffer resources
- * then construct a JSON string of the keys.
+ * then construct a JSON string of the keys and dispatch to view
  */
 void EffectsPluginProcessor::inspectVFS()
 {

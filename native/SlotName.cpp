@@ -57,7 +57,7 @@ SlotName fromIndex( int idx)
     }
 }
 
-SlotName nextSlot(SlotName slot, const bool wrap)
+void nextSlot(SlotName& slot, const bool wrap = true)
 {
     int next = static_cast<int>(slot) + 1;
     constexpr int last = static_cast<int>(SlotName::LAST);
@@ -66,12 +66,12 @@ SlotName nextSlot(SlotName slot, const bool wrap)
         if (wrap) next = 0;
         else next = last;
     }
-    return static_cast<SlotName>(next);
+    slot = static_cast<SlotName>(next);
 }
 
-SlotName nextSlotNoWrap(SlotName slot)
+void nextSlotNoWrap(SlotName& slot)
 {
     constexpr int last = static_cast<int>(SlotName::LAST);
     int next = std::min( last, static_cast<int>(slot) + 1);
-    return static_cast<SlotName>(next);
+    slot = static_cast<SlotName>(next);
 }

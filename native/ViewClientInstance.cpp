@@ -152,7 +152,7 @@ void EffectsPluginProcessor::requestUserFileSelection(std::promise<Results>& pro
     {
         chooser.browseForMultipleFilesToOpen(nullptr);
         juce::StringPairArray results;
-         results = validateUserUpload( results, chooser.getResults() );
+        results = validateUserUpload( results, chooser.getResults() );
         promise.set_value( results );
     });
 }
@@ -164,51 +164,43 @@ void ViewClientInstance::userFileUploadHandler(const int& hpfValue)
     std::future<EffectsPluginProcessor::Results> future = promise.get_future();
 
     // begin async file selection
+    // fence...
     chooserIsOpen.store(true);
     processor.requestUserFileSelection(promise);
     // get the future back
     const EffectsPluginProcessor::Results results = future.get();
-
-     chooserIsOpen.store(false);
-    if (results.size() == 0 ) return;
+    // remove fence...
+    chooserIsOpen.store(false);
 
     for (const auto & slot : DEFAULT_SLOT_NAMES)
     {
         SlotName targetSlot = fromString( slot ); // outer key
         const juce::String& data = results[slot];
 
-        // The data should have been assigned in bound string using ; to seperate data elements
-        // for example (ignore the spaces here) :
+        // The data should have been assigned in bound string using semicolon delimiter
+        // to separate data element for example (ignore the spaces here) :
         //     outerKey          status (via ScapeError enum class)       filepath
         //          ⬇︎︎︎             ⬇︎︎︎                                        ⬇︎︎︎
         // <    "LIGHT",        "File not found;                            path/to/file.wav"
         const auto status = data.upToFirstOccurrenceOf( processor.delimiter, false, false);
         juce::String file_path = data.fromFirstOccurrenceOf( processor.delimiter, false, false);
 
-        if ( file_path.isEmpty() ) break;
-
-        // Validation status
-        if (  status !=  util::error_to_string( ScapeError::NO_ERRORS ) )
-        {
-            processor.dispatchError("[ Import Error ]", status.toStdString() );
-        }
-
-        // File path
-
-        if (juce::File file(file_path); file.existsAsFile())
+        // Validity conditional
+        if (juce::File file(file_path); file.existsAsFile() && status == "OK" )
         {
             processor.slotManager->assignFileHookToSlot(targetSlot, file);
             processor.slotManager->assignFilenameToSlot(targetSlot, file);
-            processor.userBankManager.incrementUserBank();
             processor.userFilesWereImported.store(true);
         }
         else
         {
-            processor.dispatchError("[ Import Error ]", errorStatuses(5)); // not found
+            processor.slotManager->assignDefaultFilenameToSlot(targetSlot);
+            processor.slotManager->wrapDefaultPeaksForSlot(targetSlot);
         }
     }
     // finally, update state with valid results of file import
     processor.updateStateWithAssetsData();
+    processor.inspectVFS();
 } // end userFileUploadHandler
 
 choc::network::HTTPContent ViewClientInstance::getHTTPContent(std::string_view path)

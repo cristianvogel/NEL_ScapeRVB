@@ -67,8 +67,8 @@ SlotName fromIndex(int idx);
 
 
 // Function to get the next SlotName with wrap around
-SlotName nextSlot(SlotName slot, bool wrap = true);
+void nextSlot(SlotName& slot, bool wrap = true);
 // Explicitly no wrapping
-SlotName nextSlotNoWrap(SlotName slot);
+void nextSlotNoWrap(SlotName& slot);
 
 #endif // SLOTNAME_H

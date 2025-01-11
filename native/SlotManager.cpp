@@ -96,6 +96,18 @@ void SlotManager::assign(const SlotName &slotName, Asset::Props property, const 
     peaksDirty = true;
     updateState(slotName, assetInSlot);
 }
+void SlotManager::wrapDefaultPeaksForSlot( const SlotName &slot_name)
+{
+    elem::js::Array peaks;
+    if (peaks.size() != 4)
+        peaks.resize(4);
+    const auto factory = processor.assetsMap[slot_name].defaultPeaksForView;
+
+    if (!factory.empty() && getIndexForSlot(slot_name) < 4 && getIndexForSlot(slot_name) > 0)
+         assign(slot_name, Asset::Props::currentPeakDataInView, factory);
+}
+
+
 
 void SlotManager::wrapPeaksForView(elem::js::Object &peaksContainer)
 {
@@ -105,7 +117,6 @@ void SlotManager::wrapPeaksForView(elem::js::Object &peaksContainer)
 
     for (const auto &[slot_name, asset_data] : processor.assetsMap)
     {
-
         const auto user = asset_data.userPeaksForView;
         const auto factory = asset_data.defaultPeaksForView;
 

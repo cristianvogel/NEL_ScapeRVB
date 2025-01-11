@@ -39,7 +39,7 @@ public:
         NO_ERRORS,
         FILESIZE_EXCEEDED,
         FILETYPE_NOT_SUPPORTED,
-        FILE_NOT_SELECTED,
+        NO_FILES_SELECTED,
         FILE_NOT_FOUND,
         FILE_NOT_READABLE,
         FILE_NOT_STEREO,
@@ -59,8 +59,8 @@ inline std::string errorStatuses(int status)
         return "File size limit is 5MB";
     case static_cast<int>(ScapeError::FILETYPE_NOT_SUPPORTED):
         return "Only WAV and AIFF files are supported";
-    case static_cast<int>(ScapeError::FILE_NOT_SELECTED):
-        return "No file selected";
+    case static_cast<int>(ScapeError::NO_FILES_SELECTED):
+        return "No files were imported";
     case static_cast<int>(ScapeError::FILE_NOT_FOUND):
         return "File not found";
     case static_cast<int>(ScapeError::FILE_NOT_READABLE):
