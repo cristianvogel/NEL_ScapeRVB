@@ -6,14 +6,13 @@
 
 // Constructors and Destructor
 Asset::Asset(Processor* proc)
-    :   userPeaksForView( reducedPeaks ),
-        processor(proc)
+    :  processor(proc)
 {}
 
 
 // default constructor
 Asset::Asset()
-    : userPeaksForView( reducedPeaks ), processor(nullptr)
+    :  processor(nullptr)
 {}
 
 Asset::~Asset() = default;

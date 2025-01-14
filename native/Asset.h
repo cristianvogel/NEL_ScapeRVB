@@ -35,16 +35,22 @@ public:
     static elem::js::Value toJsValue() ;
     static Asset fromJsValue(const elem::js::Value& value);
 
-    
     // Data properties
-    juce::File userStereoFile, defaultStereoFile;
-    std::vector<float>& userPeaksForView, defaultPeaksForView, currentPeakDataInView;
-    std::string filenameForView, defaultFilenameForView, activeResourcePath;
+    juce::File userStereoFile = juce::File();      // Default to invalid juce::File
+    juce::File defaultStereoFile = juce::File();  // Default to invalid juce::File
+
+    std::vector<float> reducedPeaks;
+    std::vector<float> userPeaksForView ;
+    std::vector<float> defaultPeaksForView ;
+    std::vector<float> currentPeakDataInView ;
+
+    std::string filenameForView;             // Default to empty string
+    std::string defaultFilenameForView;      // Default to empty string
+    std::string activeResourcePath;          // Default to empty string
 
 private:
     // Data Members
     Processor* processor;
-    std::vector<float> reducedPeaks;
 
 };
 

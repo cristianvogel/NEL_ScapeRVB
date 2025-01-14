@@ -89,7 +89,7 @@ void Processor::clear_userFiles_in_assets_map()
     {
         assetsMap[slot].setProperty(Asset::Props::userStereoFile, juce::File());
         assetsMap[slot].setProperty(Asset::Props::filenameForView, "");
-        assetsMap[slot].setProperty(Asset::Props::userPeaksForView, juce::AudioBuffer<float>());
+        assetsMap[slot].setProperty(Asset::Props::userPeaksForView, std::vector<float>() );
         nextSlotNoWrap(slot);
     }
     spin.unlock();
@@ -231,7 +231,7 @@ bool Processor::processDefaultResponseBuffers()
 
             // stash one channel of the normalised buffer data for Peaks in the VIEW
             if (channel == 0)
-                slotManager->assignPeaksToSlot(slot_name, buffer, true);
+                slotManager->assignPeaksToSlot(slot_name, util::reduceBufferToPeaksData( buffer ), true);
 
             // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
             juce::String vfsPathname = file.getFileNameWithoutExtension(); // "AMBIENCE.wav" -> "AMBIENCE"
@@ -330,7 +330,7 @@ bool Processor::processImportedResponseBuffers(const juce::File& file, const Slo
 {
     lastKnownSampleRate = getSampleRate();
     // Create an AudioBuffer to hold the audio data
-    auto buffer = juce::AudioBuffer<float>();
+    auto buffer1 = juce::AudioBuffer<float>();
     // Check the userCutoffChoice is set
     if (!userCutoffChoice)
     {
@@ -370,15 +370,15 @@ bool Processor::processImportedResponseBuffers(const juce::File& file, const Slo
     // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
     for (int channel = 0; channel < numChannels; ++channel)
     {
-        auto container = juce::AudioBuffer<float>();
-        container.setSize(1, reader->lengthInSamples);
-        reader->read(&container, 0, reader->lengthInSamples, 0, !channel, channel);
+        auto buffer2 = juce::AudioBuffer<float>();
+        buffer2.setSize(1, reader->lengthInSamples);
+        reader->read(&buffer2, 0, reader->lengthInSamples, 0, !channel, channel);
 
-        int numSamples = container.getNumSamples();
+        int numSamples = buffer2.getNumSamples();
         // fade in, less ER energy from the IR, as we have a whole ER engine already
-        container.applyGainRamp(0, numSamples, 0.65, 1);
+        buffer2.applyGainRamp(0, numSamples, 0.65, 1);
         // normalise the impulse response
-        util::normaliseAudioBuffer(container, 0.8414); // -1.5 db
+        util::normaliseAudioBuffer(buffer2, 0.8414); // -1.5 db
         // add the gain ramped impulse response to the virtual
         // file system
 
@@ -386,7 +386,7 @@ bool Processor::processImportedResponseBuffers(const juce::File& file, const Slo
         if (channel == 0)
         {
             spin.unlock();
-                slotManager->assignPeaksToSlot(targetSlot, container, false);
+                slotManager->assignPeaksToSlot(targetSlot, util::reduceBufferToPeaksData( buffer2 ), false);
             spin.lock();
         }
 
@@ -399,7 +399,7 @@ bool Processor::processImportedResponseBuffers(const juce::File& file, const Slo
         stateVariableFilter.prepare(spec);
         stateVariableFilter.setType(juce::dsp::StateVariableTPTFilterType::highpass);
         stateVariableFilter.setCutoffFrequency(userCutoffChoice);
-        auto outputBlock = juce::dsp::AudioBlock<float>(container);
+        auto outputBlock = juce::dsp::AudioBlock<float>(buffer2);
         juce::dsp::ProcessContextReplacing<float> context(outputBlock);
         stateVariableFilter.process(context);
 
@@ -407,16 +407,16 @@ bool Processor::processImportedResponseBuffers(const juce::File& file, const Slo
         auto name = prefixUserBank(toString(targetSlot) + "_" + std::to_string(channel));
         if (elementaryRuntime)
         {
-            elementaryRuntime->updateSharedResourceMap(name, container.getReadPointer(0), numSamples);
+            elementaryRuntime->updateSharedResourceMap(name, buffer2.getReadPointer(0), numSamples);
         }
         const int shorter = numSamples * 0.75;
-        container.reverse(0, shorter);
+        buffer2.reverse(0, shorter);
         // add the shaped impulse response to the virtual file system
         std::string reversedName = REVERSE_BUFFER_PREFIX + name;
         // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
         if (elementaryRuntime)
         {
-            elementaryRuntime->updateSharedResourceMap(reversedName, container.getReadPointer(0), shorter);
+            elementaryRuntime->updateSharedResourceMap(reversedName, buffer2.getReadPointer(0), shorter);
         }
         // done, next channel
     }
@@ -478,8 +478,8 @@ void Processor::inspectVFS()
             << std::endl
             << " currentPeaks checksum: "
             << std::endl
-            << " ∑ default: " << asset.defaultPeaksForView.getNumSamples()
-            << " ∑ user: " << asset.userPeaksForView.getNumSamples()
+            << " ∑ default: " << asset.defaultPeaksForView.size()
+            << " ∑ user: " << asset.userPeaksForView.size()
             << std::endl;
     }
     spin.unlock();
@@ -489,38 +489,7 @@ void Processor::inspectVFS()
     state.insert_or_assign(VFS_KEYS, keys);
 }
 
-//============= Peaks generator for the front end, returns vector derived from reduced buffer =====================
-std::vector<float> Processor::getReducedAudioBuffer(const juce::AudioBuffer<float>& buffer)
-{
-    // This function reduces the audio buffer to a smaller size for plotting as
-    // peaks in the front end. The buffer is stride stepped by an int factor to reduce
-    // the size.
-    const int numSamples = buffer.getNumSamples();
-    // Compute the stride as a factor of the number of samples
-    constexpr int stride = 96;
-    std::vector<float> audioData(numSamples / stride + 1);
 
-    // Declare a pointer variable for floating-point data
-    juce::AudioData::Pointer<juce::AudioData::Float32, juce::AudioData::LittleEndian, juce::AudioData::NonInterleaved,
-                             juce::AudioData::Const>
-        pointer(buffer.getReadPointer(0));
-
-    // Fill the audioData vector with a stride stepped copy of the audio buffer
-    int pointerPosition = 0;
-    for (int i = 0; i < numSamples; i++)
-    {
-        const auto value = pointer.getAsFloat();
-
-        pointer += stride; // Move the pointer by the stride value
-        pointerPosition += stride;
-        if (pointerPosition >= numSamples)
-            break;
-        if (abs(value) < 1.0e-4)
-            continue; // skip small values
-        audioData[i] = value;
-    }
-    return audioData;
-}
 
 //============== FRONT END IS CONNECTED VIA WEBSOCKET SERVER ================
 // We launch that when the WebView calls ready()

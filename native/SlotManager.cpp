@@ -1,6 +1,7 @@
 // local headers
 #include "SlotManager.h"
 #include "Asset.h"
+#include "Utilities.h"
 
 SlotManager::SlotManager(Processor &processor) : processor(processor) {}
 
@@ -37,7 +38,6 @@ void SlotManager::updateAssetsInSlotWithSpinLock(const SlotName &slotName, Asset
 void SlotManager::assignPeaksToSlot(const SlotName &slotName, const std::vector<float> &reducedSampleData, const bool defaultSlot) const
 {
     Asset assetDataInSlot = getAssetFrom(slotName);
-
     if (defaultSlot)
     {
         assetDataInSlot.setProperty(Asset::Props::defaultPeaksForView, reducedSampleData);
@@ -46,9 +46,7 @@ void SlotManager::assignPeaksToSlot(const SlotName &slotName, const std::vector<
     {
         assetDataInSlot.setProperty(Asset::Props::userPeaksForView, reducedSampleData);
     }
-
     updateAssetsInSlotWithSpinLock(slotName, assetDataInSlot);
-    peaksDirty.store(true);
 }
 
 void SlotManager::assignFileHookToSlot(const SlotName &slotName, const juce::File &file) const
@@ -82,26 +80,9 @@ void SlotManager::assign(const SlotName &slotName, Asset::Props property, const 
 
 void SlotManager::assign(const SlotName& slotName, Asset::Props property, const juce::AudioBuffer<float>& buffer) const
 {
-    auto reducedPeaks = Processor::getReducedAudioBuffer( buffer );
+    auto reducedPeaks = util::reduceBufferToPeaksData( buffer );
     assignPeaksToSlot(slotName, reducedPeaks);
 }
-
-
-
-
-
-void SlotManager::wrapDefaultPeaksForSlot( const SlotName &slot_name) const
-{
-    elem::js::Array peaks;
-    if (peaks.size() != 4)
-        peaks.resize(4);
-    processor.spin.lock();
-    const auto factory = processor.assetsMap[slot_name].defaultPeaksForView;
-    processor.spin.unlock();
-    if (!factory.getNumSamples() && getIndexForSlot(slot_name) < 4 && getIndexForSlot(slot_name) > 0)
-         assign(slot_name, Asset::Props::currentPeakDataInView, factory);
-}
-
 
 
 void SlotManager::wrapPeaksForView(elem::js::Object &peaksContainer) const
@@ -114,17 +95,12 @@ void SlotManager::wrapPeaksForView(elem::js::Object &peaksContainer) const
     processor.spin.lock();
     for (const auto &[slot_name, asset_data] : processor.assetsMap)
     {
-        auto current = asset_data.currentPeakDataInView.getReadPointer(0);
-        // Get the number of samples in the buffer
-        int numSamples = asset_data.currentPeakDataInView.getNumSamples();
+        auto current = asset_data.currentPeakDataInView;
 
-        // Copy the data into a std::vector<float>
-        std::vector<float> currentVector(current, current + numSamples);
-
-        std::cout << "wrapping reduced peaks for view size >> " << currentVector.size() << std::endl;
+        std::cout << "wrapping reduced peaks for view size >> " << current.size() << std::endl;
         // set the relevant index in the peaks vector
         const int index = getIndexForSlot(slot_name);
-        peaks[index] = elem::js::Value( currentVector );
+        peaks[index] = elem::js::Value( current );
     }
     // put the wrapped peaks data of each slot into the passed container keyed by WS_RESPONSE_KEY_FOR_PEAKS
     peaksContainer.insert_or_assign(processor.WS_RESPONSE_KEY_FOR_PEAKS, elem::js::Value( peaks ));

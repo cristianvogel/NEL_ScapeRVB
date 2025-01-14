@@ -81,8 +81,6 @@ public:
      * @param targetSlot The target slot.
      */
     void assignDefaultFilenameToSlot(const SlotName& targetSlot) const;
-   /** @brief wrap default peaks for view for slot */
-    void wrapDefaultPeaksForSlot( const SlotName &slot_name) const;
 
     /**
      * @brief Assigns a filename to a slot.

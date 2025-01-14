@@ -81,7 +81,6 @@ void AudioFileLoader::handleAsyncUpdate()
     else
     {
         processor.slotManager->assignDefaultFilenameToSlot(fromString(targetSlot));
-        processor.slotManager->wrapDefaultPeaksForSlot(fromString(targetSlot));
         processor.slotManager->switchSlotsTo(false, false);
     }
     // finally, update state with valid results of file import
