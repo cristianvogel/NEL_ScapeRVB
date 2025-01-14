@@ -22,7 +22,7 @@ std::string getMimeType(std::string const &ext)
         {".css", "text/css"},
     };
 
-    if (mimeTypes.count(ext) > 0)
+    if (mimeTypes.contains(ext))
         return mimeTypes.at(ext);
 
     return "application/octet-stream";

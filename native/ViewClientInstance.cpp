@@ -9,7 +9,7 @@
 
 using Results = std::map<std::string, elem::js::Object>;
 
-ViewClientInstance::ViewClientInstance(EffectsPluginProcessor& processor)
+ViewClientInstance::ViewClientInstance(Processor& processor)
     : processor(processor)
 {
     static int clientCount = 0;
@@ -71,10 +71,20 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮
             if (key == "requestState")
             {
-                if (!processor.editor || chooserIsOpen.load()) return;
+                if (!processor.editor) return;
 
+                // === first handle peaks for view
+                if (processor.slotManager->peaksDirty.load())
+                {
+                    elem::js::Object peaksContainer;
+                    processor.slotManager->wrapPeaksForView(peaksContainer);
+                    juce::String serializedPeaks = elem::js::serialize(peaksContainer);
+                    sendWebSocketMessage(serializedPeaks.toStdString());
+                    // reset dirty flag
+                    processor.slotManager->peaksDirty.store(false);
+                }
 
-                // ============ performance optimization ========================
+                // ============ hash state for performance optimization ========================
                 // hash the serialized state, send only if changed
                 elem::js::Object stateContainer;
                 processor.slotManager->wrapStateForView(stateContainer);
@@ -85,15 +95,6 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                 {
                     sendWebSocketMessage(serializedState.toStdString());
                     processor.slotManager->lastStateHash = currentStateHash;
-                }
-                if (processor.slotManager->peaksDirty)
-                {
-                    elem::js::Object peaksContainer;
-                    std::cout << "wrapping and sending peaks to View.." << std::endl;
-                    processor.slotManager->wrapPeaksForView(peaksContainer);
-                    juce::String serializedPeaks = elem::js::serialize(peaksContainer);
-                    sendWebSocketMessage(serializedPeaks.toStdString());
-                    processor.slotManager->peaksDirty = false;
                 }
             }
 
@@ -147,20 +148,11 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
     }
 }
 
-void EffectsPluginProcessor::requestUserFileSelection() const
-{
-        fileLoader->loadNewFile();
-}
-
-void ViewClientInstance::userFileUploadHandler(const int& hpfValue)
+void ViewClientInstance::userFileUploadHandler(const int& hpfValue) const
 {
     processor.userCutoffChoice = hpfValue;
-    // begin async file selection
-    chooserIsOpen.store(true);
-    processor.requestUserFileSelection();
-    chooserIsOpen.store(false);
-    processor.slotManager->switchSlotsTo(true, false);
-} // end userFileUploadHandler
+    processor.fileLoader->loadNewFile();
+}
 
 choc::network::HTTPContent ViewClientInstance::getHTTPContent(std::string_view path)
 {

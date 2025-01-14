@@ -58,7 +58,7 @@ enum class SlotName
     LAST
 };
 
-const std::array<std::string, 4> DEFAULT_SLOT_NAMES = {"LIGHT", "DEEPNESS", "SURFACE", "TEMPLE"};
+const std::array<std::string, 4> DEFAULT_SLOT_NAMES = {"LIGHT",  "SURFACE", "TEMPLE", "DEEPNESS" };
 
 std::string toString(SlotName slot);
 int getIndexForSlot(SlotName slot);

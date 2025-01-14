@@ -1,7 +1,6 @@
 
 #include <string>
 #include <stdexcept>
-#include <sys/stat.h>
 
 enum class SlotName
 {

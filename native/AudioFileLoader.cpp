@@ -1,14 +1,12 @@
 #include "AudioFileLoader.h"
 
+#include <sys/proc.h>
+#include <future>
 #include "PluginProcessor.h"
 
 
-AudioFileLoader::AudioFileLoader(EffectsPluginProcessor& p)
-    : chooser(std::make_unique<juce::FileChooser>(
-          "Select a stereo audio file",
-          juce::File::getSpecialLocation(juce::File::userHomeDirectory),
-          "*.wav;*.aiff"
-      )),
+AudioFileLoader::AudioFileLoader(Processor& p)
+    : chooser(nullptr),
       processor(p)
 {
     clearAllSlots();
@@ -22,33 +20,32 @@ AudioFileLoader::~AudioFileLoader()
 
 void AudioFileLoader::loadNewFile()
 {
-    chooser = std::make_unique<juce::FileChooser>(
-         "Select a stereo audio file",
-         juce::File::getSpecialLocation(juce::File::userHomeDirectory),
-         "*.wav;*.aiff");
-
     juce::MessageManager::callAsync([this]
     {
-        std::cout << "AudioFileLoader::loadNewFile: Running chooser->launchAsync on the message thread." << std::endl;
-            chooser->launchAsync(
-                juce::FileBrowserComponent::openMode |
-                juce::FileBrowserComponent::canSelectFiles,
-                [this](const juce::FileChooser& fc)
+        chooser = std::make_unique<juce::FileChooser>(
+            "Select a stereo audio file",
+            juce::File::getSpecialLocation(juce::File::userHomeDirectory),
+            "*.wav;*.aiff");
+
+        chooser->launchAsync(
+            juce::FileBrowserComponent::openMode |
+            juce::FileBrowserComponent::canSelectFiles,
+            [this](const juce::FileChooser& fc)
+            {
+                auto file = fc.getResult();
+                if (file.exists())
                 {
-                    auto file = fc.getResult();
-                    if (file.exists())
-                    {
-                        std::cout << "AudioFileLoader::loadNewFile: File selected: "
-                            << file.getFullPathName().toStdString() << std::endl;
-                        fileSlots[currentSlotIndex] = file;
-                        triggerAsyncUpdate();
-                    }
-                    else
-                    {
-                        std::cout << "AudioFileLoader::loadNewFile: No file was selected." << std::endl;
-                    }
-                    chooser.reset();
-                });
+                    std::cout << "AudioFileLoader::loadNewFile: File selected: "
+                        << file.getFullPathName().toStdString() << std::endl;
+                    fileSlots[currentSlotIndex] = file;
+                    triggerAsyncUpdate();
+                }
+                else
+                {
+                    std::cout << "AudioFileLoader::loadNewFile: No file was selected." << std::endl;
+                }
+                chooser.reset();
+            });
     });
 }
 
@@ -60,20 +57,32 @@ void AudioFileLoader::handleAsyncUpdate()
     // Processes file validation and updates processor state after file selection is complete
     juce::StringPairArray chooser_result{};
     const auto currentFile = getFileAtSlot(currentSlotIndex);
-    juce::String file_path = currentFile.getFullPathName();
-    const auto& targetSlot = DEFAULT_SLOT_NAMES[currentSlotIndex];
-    // Validity conditional
+    const juce::String& file_path = currentFile.getFullPathName();
+    const auto targetSlot = DEFAULT_SLOT_NAMES[currentSlotIndex];
+    // Validity check and then process and update the asset
+    // into the state and assetMap
+    auto scoped_processor = &processor;
     if (juce::File file(file_path); file.existsAsFile())
     {
-        processor.slotManager->assignFileHookToSlot(fromString(targetSlot), file);
-        processor.slotManager->assignFilenameToSlot(fromString(targetSlot), file);
-        processor.userFilesWereImported.store(true);
-        currentSlotIndex = (currentSlotIndex + 1) % NUM_SLOTS;
+        std::future<bool> result = std::async(std::launch::async,
+                                              [ scoped_processor, &file, &targetSlot]()
+                                              {
+                                                  return scoped_processor->processImportedResponseBuffers(
+                                                      file, fromString(targetSlot));
+                                              });
+        // wait for processing... then assign to state and switch slots to user mode
+        if (result.get()) {
+            processor.slotManager->assignFileHookToSlot(fromString(targetSlot), file);
+            processor.slotManager->assignFilenameToSlot(fromString(targetSlot), file);
+            currentSlotIndex = (currentSlotIndex + 1) % NUM_SLOTS;
+            processor.slotManager->switchSlotsTo(true, false); // prune here if currentSlot > 4 ?
+        }
     }
     else
     {
         processor.slotManager->assignDefaultFilenameToSlot(fromString(targetSlot));
         processor.slotManager->wrapDefaultPeaksForSlot(fromString(targetSlot));
+        processor.slotManager->switchSlotsTo(false, false);
     }
     // finally, update state with valid results of file import
     processor.updateStateWithAssetsData();

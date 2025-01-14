@@ -8,13 +8,14 @@
 #include <future>     //   std::promise and std::future
 #include <map>
 
+
 // Third-Party Library Headers
 #include <choc_HTTPServer.h>
 #include <choc_StringUtilities.h>
 #include <choc_javascript.h>
 #include <choc_javascript_QuickJS.h>
 #include <choc_javascript_Console.h>
-#include <choc_SmallVector.h>
+#include <choc_SpinLock.h>
 #include <elem/Runtime.h>
 #include <juce_audio_basics/juce_audio_basics.h>
 #include <juce_audio_formats/juce_audio_formats.h>
@@ -24,7 +25,7 @@
 // Project Headers
 
 // Local Headers
-#include "Assets.h"
+#include "Asset.h"
 #include "WebViewEditor.h"
 #include "ViewClientInstance.h"
 #include "SlotManager.h"
@@ -40,9 +41,9 @@ class UserBankManager;
 class AudioFileLoader;  // Forward declaration
 
 //==============================================================================
-class EffectsPluginProcessor : public juce::AudioProcessor,
-                               public juce::AudioProcessorParameter::Listener,
-                               private juce::AsyncUpdater
+class Processor final : public juce::AudioProcessor,
+                        public juce::AudioProcessorParameter::Listener,
+                        private juce::AsyncUpdater
 {
 public:
 
@@ -51,8 +52,8 @@ public:
     void createParameters(const std::vector<elem::js::Value>& parameters);
 
     //==============================================================================
-    EffectsPluginProcessor();
-    ~EffectsPluginProcessor() override;
+    Processor();
+    ~Processor() override;
 
     //==============================================================================
 
@@ -118,7 +119,7 @@ public:
 
     std::string REVERSE_BUFFER_PREFIX = "REVERSED_";
     std::string PERSISTED_HOST_PARAMETERS = "hostParameters";
-    std::string PERSISTED_ASSETMAP = "assetMap";
+    std::string PERSISTED_ASSET_MAP = "assetMap";
     std::string PERSISTED_USER_FILENAMES = "userFilenames";
     std::string MAIN_DSP_JS_FILE = "dsp.main.js";
     std::string MAIN_PATCH_JS_FILE = "patch.main.js";
@@ -175,6 +176,7 @@ public:
 
     elem::js::Object state;
     std::map<SlotName, Asset> assetsMap;
+    choc::threading::SpinLock spin;
     elem::js::Object assetState;
     int userCutoffChoice = 160;
     std::atomic<bool> userFilesWereImported = false;
@@ -187,12 +189,11 @@ public:
     void inspectVFS();
     void pruneVFS() const;
 
-    void requestUserFileSelection() const;
-     Results validateUserUpload(Results& results, const juce::File& selectedFile) const;
+    Results validateUserUpload(Results& results, const juce::File& selectedFile) const;
     Results uploadedFileData;
     void updateStateWithAssetsData();
-    elem::js::Value assetsMapToValue(const std::map<SlotName, Asset>& map);
-    std::vector<float> getReducedAudioBuffer(const juce::AudioBuffer<float>& buffer);
+    static elem::js::Value assetsMapToValue(const std::map<SlotName, Asset>& map);
+    static std::vector<float> getReducedAudioBuffer(const juce::AudioBuffer<float>& buffer);
     bool processImportedResponseBuffers(const juce::File& file, const SlotName& targetSlot);
     void processPersistedAssetState(const elem::js::Object& assetState);
     bool importPeakDataForView(const juce::AudioBuffer<float>& buffer);
@@ -238,7 +239,7 @@ private:
     // Keyzy::LicenseStatus licenseStatus = Keyzy::LicenseStatus::NOT_AUTHORIZED;
 
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(EffectsPluginProcessor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Processor)
 };
 
 // namespace unlock

@@ -8,12 +8,12 @@
 
 
 // Forward declaration of EffectsPluginProcessor
-class EffectsPluginProcessor;
+class Processor;
 
 class ViewClientInstance : public choc::network::HTTPServer::ClientInstance
 {
 public:
-    explicit ViewClientInstance(EffectsPluginProcessor &processor);
+    explicit ViewClientInstance(Processor &processor);
     ~ViewClientInstance() override;
 
     void stop(); // Custom stop method
@@ -21,15 +21,14 @@ public:
     choc::network::HTTPContent getHTTPContent(std::string_view path) override;
     void upgradedToWebSocket(std::string_view path) override;
     void handleWebSocketMessage(std::string_view message) override;
-    void userFileUploadHandler(const int &hpfValue);
+    void userFileUploadHandler(const int &hpfValue) const;
 
 
 
 private:
     int clientID;
     int retFlag = 0;
-    std::atomic<bool> chooserIsOpen = false;
-    EffectsPluginProcessor &processor;
+    Processor &processor;
     std::atomic<bool> running = true; // Flag to indicate if the instance is running
 
 public:

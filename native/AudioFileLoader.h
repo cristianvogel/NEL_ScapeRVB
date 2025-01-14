@@ -4,12 +4,12 @@
 #include <juce_audio_processors/juce_audio_processors.h>
 
 
-class EffectsPluginProcessor;
+class Processor;
 
 class AudioFileLoader :  private juce::AsyncUpdater
 {
 public:
-    explicit AudioFileLoader( EffectsPluginProcessor& p );
+    explicit AudioFileLoader( Processor& p );
     ~AudioFileLoader() override;
     
     void loadNewFile( );
@@ -22,7 +22,7 @@ public:
     int currentSlotIndex = 0;
     
 private:
-    EffectsPluginProcessor& processor;
+    Processor& processor;
     int getNextAvailableSlot() const;
     void handleAsyncUpdate() override;
     static constexpr int NUM_SLOTS = 4;
