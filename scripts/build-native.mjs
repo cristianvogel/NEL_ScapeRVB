@@ -9,8 +9,8 @@ import { $ } from 'zx';
 let rootDir =  path.resolve(__dirname, '..');
 let buildDir = path.join(rootDir, 'native', 'build', 'scripted');
 
-echo(`Root directory: ${rootDir}`);
-echo(`Build directory: ${buildDir}`);
+//echo(`Root directory: ${rootDir}`);
+//echo(`Build directory: ${buildDir}`);
 
 // Clean the build directory before we build
 await fs.remove(buildDir);
@@ -18,7 +18,7 @@ await fs.ensureDir(buildDir);
 
 cd(buildDir);
 
-let buildType = argv.dev ? 'Debug' : 'Release';
+let buildType = argv.dev ? 'Debug' : 'RelWithDebInfo';
 let devFlag = argv.dev ? '-DELEM_DEV_LOCALHOST=1' : '';
 
 if (os.platform() === 'darwin') {

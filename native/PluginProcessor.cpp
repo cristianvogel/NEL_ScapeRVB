@@ -1157,6 +1157,7 @@ void Processor::processPersistedAssetState(const elem::js::Object& assetStateObj
     future.wait();
 
     // Iterate through assetState to collect userStereoFile paths
+    spin.lock();
     for (const std::pair<SlotName, Asset>& entry : assetMap)
     {
         targetSlot = entry.first;
@@ -1170,7 +1171,7 @@ void Processor::processPersistedAssetState(const elem::js::Object& assetStateObj
                 << std::endl;
             file = juce::File{asset.userStereoFile};
         }
-
+        spin.unlock();
         if (!processImportedResponseBuffers(file, targetSlot))
         {
             std::cout << "Failed to process restored buffers" << std::endl;
