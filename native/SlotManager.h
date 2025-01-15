@@ -17,9 +17,7 @@
 class Processor;
 
 /**
- * @brief Manages slots within the EffectsPluginProcessor.
- * SpinLocks are locked and unlocked in all assign methods, so unlock before calling if
- * called under a lock
+ *
  */
 class SlotManager
 {
@@ -38,9 +36,10 @@ public:
 
     /**
      * @brief Wraps peaks data for view.
+     * @param assetsMap
      * @param containerForWrappedPeaks Container for the wrapped peaks data.
      */
-    void wrapPeaksForView(elem::js::Object& containerForWrappedPeaks) const;
+    void wrapPeaksForView(std::map<SlotName, Asset>& assetsMap, elem::js::Object& containerForWrappedPeaks) const;
 
     /**
      * @brief Wraps state data for view.
@@ -62,10 +61,15 @@ public:
     void switchSlotsTo(bool customScape, bool pruneVFS);
 
 
-
+    /**
+     * @brief Assigns reduced sample vector to slot
+     * @param assetsMap
+     * @param slotName
+     * @param reducedSampleData the result of reducing the real sample date to one channel, strided
+     * @param defaultSlot when true, assign default/factory peaks
+     */
     void assignPeaksToSlot(std::map<SlotName, Asset>& assetsMap, const SlotName& slotName,
-                           const std::vector<float>& reducedSampleData, bool defaultSlot) const;
-
+                           const std::vector<float>& reducedSampleData, bool defaultSlot);
 
     /**
      * @brief Assigns a juce::File hook to a slot.
@@ -75,7 +79,6 @@ public:
      */
     void assignUserFileToSlot(std::map<SlotName, Asset>& assetsMap, const SlotName& targetSlot, const juce::File& file) const;
 
-
     /**
      * @brief Assigns a filename to a slot.
      * @param assetsMap
@@ -84,7 +87,6 @@ public:
      */
     void assignFilenameForViewToSlot(std::map<SlotName, Asset>& assetsMap, const SlotName& targetSlot, const juce::File& file) const;
 
-
     /**
      * @brief Updates the asset entry at the current slot in the Processor assetMap
      * @param assetsMap
@@ -92,8 +94,10 @@ public:
      * @param assetData The asset in the slot.
      */
     void updateSlotDataInAssetMap(std::map<SlotName, Asset>& assetsMap, const SlotName& slotName, Asset& assetData) const;
+   /**
+    * @brief Utility to log the asset data
+    **/
     void logAssetsMap() const;
-
 
     /**
      * @brief Gets the asset from a slot.
@@ -110,14 +114,7 @@ public:
     void resetUserSlots(bool pruneVFS = false);
 
     void assignDefaultFilenameToSlot(std::map<SlotName, Asset>& assetsMap,SlotName& slotName) const;
-
-    /**
-     * @brief Gets the index for a slot.
-     * @param slotName The slot name.
-     * @return The index of the slot.
-     */
     static int getIndexForSlot(const SlotName& slotName);
-
     int stepToNextTargetSlotIndex();
     int getCurrentTargetSlotIndex() const;
 

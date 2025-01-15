@@ -117,6 +117,7 @@ public:
 
     inline void set(Props property, const std::vector<float>& peaks)
     {
+        reducedPeaks = peaks;
         switch (property)
         {
         case Props::userPeaksForView:
@@ -129,7 +130,6 @@ public:
             currentPeakDataInView = peaks;
             break;
         case Props::reducedPeaks:
-            reducedPeaks = peaks;
             break;
         default:
             throw std::invalid_argument("Invalid property for vector setter");

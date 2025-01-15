@@ -74,13 +74,13 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                 if (!processor.editor) return;
 
                 // === first handle peaks for view
-                if (processor.slotManager->peaksDirty.load())
+                if ( processor.slotManager->peaksDirty.load() )
                 {
+                    std::cout << "dispatching peaks" << std::endl;
                     elem::js::Object peaksContainer;
-                    processor.slotManager->wrapPeaksForView(peaksContainer);
+                    processor.slotManager->wrapPeaksForView( processor.assetsMap, peaksContainer );
                     juce::String serializedPeaks = elem::js::serialize(peaksContainer);
                     sendWebSocketMessage(serializedPeaks.toStdString());
-                    // reset dirty flag
                     processor.slotManager->peaksDirty.store(false);
                 }
 

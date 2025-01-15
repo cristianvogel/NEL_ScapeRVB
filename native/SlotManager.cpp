@@ -81,7 +81,7 @@ void SlotManager::assignDefaultFilenameToSlot(std::map<SlotName, Asset>& assetsM
 void SlotManager::assignPeaksToSlot(std::map<SlotName, Asset>& assetsMap,
                                     const SlotName& slotName,
                                     const std::vector<float>& reducedSampleData,
-                                    const bool defaultSlot = true) const
+                                    const bool defaultSlot = true)
 {
     Asset& asset = assetsMap[slotName];
     if (defaultSlot)
@@ -92,6 +92,7 @@ void SlotManager::assignPeaksToSlot(std::map<SlotName, Asset>& assetsMap,
     {
         asset.set(Props::userPeaksForView, reducedSampleData);
     }
+    peaksDirty.store(true);
 }
 
 
@@ -113,7 +114,7 @@ void SlotManager::assignFilenameForViewToSlot(std::map<SlotName, Asset>& assetsM
 }
 
 
-void SlotManager::wrapPeaksForView(elem::js::Object& peaksContainer) const
+void SlotManager::wrapPeaksForView(std::map<SlotName, Asset>& assetsMap, elem::js::Object& peaksContainer) const
 {
     elem::js::Array peaks;
     if (peaks.size() != 4)
@@ -121,7 +122,7 @@ void SlotManager::wrapPeaksForView(elem::js::Object& peaksContainer) const
 
     // go through whole assetsMap
     //
-    for (const auto& [slot_name, asset] : processor.assetsMap)
+    for (const auto& [slot_name, asset] : assetsMap)
     {
         const auto current = asset.get<std::vector<float>>(Props::reducedPeaks);
 
