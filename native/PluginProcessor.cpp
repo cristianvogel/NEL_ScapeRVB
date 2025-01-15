@@ -1109,6 +1109,7 @@ std::map<SlotName, Asset> Processor::convertToAssetMap(const elem::js::Object& a
         const std::string& key = entry.first;
         const elem::js::Value& value = entry.second;
         SlotName slotName = fromString(key);
+
         Asset asset = Asset::fromJsValue(value);
         assetMap.insert_or_assign(slotName, asset);
     }
