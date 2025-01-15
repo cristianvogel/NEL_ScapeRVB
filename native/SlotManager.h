@@ -24,7 +24,7 @@ class Processor;
 class SlotManager
 {
 public:
-    std::atomic<bool> peaksDirty = true; ///< Whether the peaks are dirty.
+    std::atomic<bool> peaksDirty = false; ///< Whether the peaks are dirty.
     /**
      * @brief Constructs a SlotManager with a reference to the EffectsPluginProcessor.
      * @param processor Reference to the EffectsPluginProcessor.
@@ -61,80 +61,47 @@ public:
      */
     void switchSlotsTo(bool customScape, bool pruneVFS);
 
-    /**
-     * @brief Assigns peaks data to a slot.
-     * @param targetSlot The target slot.
-     * @param peaks The peaks data, shuold be REDUCED as only for rough view purposes in the slot––
-     * @param defaultSlot Whether this is the default slot.
-     */
-    void assignPeaksToSlot(const SlotName& targetSlot, const std::vector<float>& peaks, bool defaultSlot = false) const;
+
+
+    void assignPeaksToSlot(std::map<SlotName, Asset>& assetsMap, const SlotName& slotName,
+                           const std::vector<float>& reducedSampleData, bool defaultSlot) const;
+
 
     /**
      * @brief Assigns a juce::File hook to a slot.
+     * @param assetsMap
      * @param targetSlot The target slot.
      * @param file The file to assign.
      */
-    void assignFileHookToSlot(const SlotName& targetSlot, const juce::File& file) const;
+    void assignUserFileToSlot(std::map<SlotName, Asset>& assetsMap, const SlotName& targetSlot, const juce::File& file) const;
 
-    /**
-     * @brief Assigns a default filename to a slot.
-     * @param targetSlot The target slot.
-     */
-    void assignDefaultFilenameToSlot(const SlotName& targetSlot) const;
 
     /**
      * @brief Assigns a filename to a slot.
+     * @param assetsMap
      * @param targetSlot The target slot.
      * @param file The file containing the filename.
      */
-    void assignFilenameToSlot(const SlotName& targetSlot, const juce::File& file) const;
-
-    /**
-     * @brief Assigns a juce::File property to a slot.
-     * @param slotName The slot name.
-     * @param property The property to assign.
-     * @param file The data associated with the property.
-     */
-    void assign(const SlotName& slotName, Asset::Props property, const juce::File& file) const;
-
-    /**
-     * @brief Assigns an std::string property to a slot.
-     * @param slotName The slot name.
-     * @param property The property to assign.
-     * @param value The string value associated with the property.
-     */
-    void assign(const SlotName& slotName, Asset::Props property, const std::string& value) const;
-
-    /**
-     * @brief Assigns a juce::AudioBuffer property to a slot.
-     * @param slotName The slot name.
-     * @param property The property to assign.
-     * @param buffer The audio buffer associated with the property.
-     */
-    void assign(const SlotName& slotName, Asset::Props property, const juce::AudioBuffer<float>& buffer) const;
-
-    /**
-     * @brief Assigns a std::vector<float> property to a slot.
-     * @param slotName The slot name.
-     * @param property The property to assign.
-     * @param peaks The peaks data associated with the property.
-     */
-    void assign(const SlotName& slotName, Asset::Props property, const std::vector<float>& peaks);
+    void assignFilenameForViewToSlot(std::map<SlotName, Asset>& assetsMap, const SlotName& targetSlot, const juce::File& file) const;
 
 
     /**
      * @brief Updates the asset entry at the current slot in the Processor assetMap
+     * @param assetsMap
      * @param slotName The slot name.
      * @param assetData The asset in the slot.
      */
-    void updateAssetsInSlotWithSpinLock(const SlotName& slotName, Asset& assetData) const;
+    void updateSlotDataInAssetMap(std::map<SlotName, Asset>& assetsMap, const SlotName& slotName, Asset& assetData) const;
+    void logAssetsMap() const;
+
 
     /**
      * @brief Gets the asset from a slot.
+     * @param assetsMap
      * @param slotName The slot name.
      * @return The asset in the slot.
      */
-    Asset getAssetFrom(const SlotName& slotName) const;
+    Asset& getAssetFrom(std::map<SlotName, Asset>& assetsMap, const SlotName& slotName) const;
 
     /**
      * @brief Resets the user slots.
@@ -142,12 +109,14 @@ public:
      */
     void resetUserSlots(bool pruneVFS = false);
 
+    void assignDefaultFilenameToSlot(std::map<SlotName, Asset>& assetsMap,SlotName& slotName) const;
+
     /**
      * @brief Gets the index for a slot.
      * @param slotName The slot name.
      * @return The index of the slot.
      */
-     static int getIndexForSlot(const SlotName& slotName) ;
+    static int getIndexForSlot(const SlotName& slotName);
 
     int stepToNextTargetSlotIndex();
     int getCurrentTargetSlotIndex() const;
@@ -158,6 +127,7 @@ private:
     std::size_t lastStateHash = 0; ///< Last state hash.
     int lastPeaksHash = 0; ///< Last peaks hash
     int targetSlotIndex = -1;
+    std::mutex mtx;
 };
 
 #endif // SLOTMANAGER_H

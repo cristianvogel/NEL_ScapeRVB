@@ -15,7 +15,6 @@
 #include <choc_javascript.h>
 #include <choc_javascript_QuickJS.h>
 #include <choc_javascript_Console.h>
-#include <choc_SpinLock.h>
 #include <elem/Runtime.h>
 #include <juce_audio_basics/juce_audio_basics.h>
 #include <juce_audio_formats/juce_audio_formats.h>
@@ -176,7 +175,6 @@ public:
 
     elem::js::Object state;
     std::map<SlotName, Asset> assetsMap;
-    choc::threading::SpinLock spin;
     elem::js::Object assetState;
     int userCutoffChoice = 160;
     std::atomic<bool> userFilesWereImported = false;
@@ -184,14 +182,14 @@ public:
 
     void initialise_assets_map();
     void clear_userFiles_in_assets_map();
-    bool fetchDefaultAudioFileAssets();
+    bool registerDefautStereoFiles();
     bool processDefaultResponseBuffers();
     void inspectVFS();
     void pruneVFS() const;
 
     Results validateUserUpload(Results& results, const juce::File& selectedFile) const;
     Results uploadedFileData;
-    void updateStateWithAssetsData();
+    void updateStateFromAssetsMap();
     static elem::js::Value assetsMapToValue(const std::map<SlotName, Asset>& map);
     static std::vector<float> getReducedAudioBuffer(const juce::AudioBuffer<float>& buffer);
     bool processImportedResponseBuffers(const juce::File& file, const SlotName& targetSlot);

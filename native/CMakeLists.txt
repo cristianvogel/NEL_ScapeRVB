@@ -152,7 +152,7 @@ target_sources(${TARGET_NAME}
         UserBankManager.h
         AudioFileLoader.cpp
         AudioFileLoader.h
-        Asset.cpp
+        Asset.h
 )
 
 target_include_directories(${TARGET_NAME}

@@ -3,17 +3,31 @@
 #include "Asset.h"
 #include "Utilities.h"
 
-SlotManager::SlotManager(Processor &processor) : processor(processor) {}
+using Props = Asset::Props;
 
-Asset SlotManager::getAssetFrom(const SlotName &slotName) const
+SlotManager::SlotManager(Processor& processor) : processor(processor)
 {
-    processor.spin.lock();
-    Asset assetInSlot = processor.assetsMap.contains(slotName) ? processor.assetsMap.at(slotName) : Asset();
-    processor.spin.unlock();
-    return assetInSlot;
 }
 
-int SlotManager::getIndexForSlot(const SlotName &slotName)
+
+Asset& SlotManager::getAssetFrom(std::map<SlotName, Asset>& assetsMap, const SlotName& slotName) const
+{
+    auto it = assetsMap.find(slotName);
+    if (it != assetsMap.end())
+    {
+        // Slot exists, return a reference to the asset in the slot.
+        return it->second;
+    }
+    else
+    {
+        // Slot does not exist: throw exception or handle error
+        throw std::runtime_error("SlotName not found in the assetsMap.");
+        // Alternatively, return a safe default object managed elsewhere if you cannot throw.
+    }
+    //
+}
+
+int SlotManager::getIndexForSlot(const SlotName& slotName)
 {
     return static_cast<int>(slotName);
 }
@@ -28,105 +42,111 @@ int SlotManager::getCurrentTargetSlotIndex() const
     return targetSlotIndex;
 };
 
-void SlotManager::updateAssetsInSlotWithSpinLock(const SlotName &slotName, Asset &assetData) const
+
+void SlotManager::updateSlotDataInAssetMap(std::map<SlotName, Asset>& assetsMap,
+                                           const SlotName& slotName,
+                                           Asset& assetData) const
 {
-    processor.spin.lock();
-        processor.assetsMap.insert_or_assign(slotName, assetData);
-    processor.spin.unlock();
+    assetsMap.insert_or_assign(slotName, assetData);
+    logAssetsMap();
 }
 
-void SlotManager::assignPeaksToSlot(const SlotName &slotName, const std::vector<float> &reducedSampleData, const bool defaultSlot) const
+void SlotManager::logAssetsMap() const
 {
-    Asset assetDataInSlot = getAssetFrom(slotName);
+    // log by referring to processor, so we are sure that's what is being consumed
+    for (const auto& entry : processor.assetsMap)
+    {
+        // Retrieve slotName and asset from the map entry
+        const auto& slotName = entry.first;
+        const auto& asset = entry.second;
+
+        // Manually log their contents
+        std::cout
+            << "SlotName: " << toString(slotName)
+            << "ReducedPeaks: " << asset.get<std::vector<float>>(Props::reducedPeaks).size()
+            << "UserPeaks: " << asset.get<std::vector<float>>(Props::userPeaksForView).size()
+            << "PeaksInView:" << asset.get<std::vector<float>>(Props::currentPeakDataInView).size()
+            << std::endl;
+    }
+}
+
+void SlotManager::assignDefaultFilenameToSlot(std::map<SlotName, Asset>& assetsMap,
+                                               SlotName& slotName) const
+{
+    Asset& asset = assetsMap[slotName];
+    const auto defaultFilename = asset.get<std::string>(Props::defaultFilenameForView);
+    asset.set(Props::defaultFilenameForView, defaultFilename);
+}
+
+void SlotManager::assignPeaksToSlot(std::map<SlotName, Asset>& assetsMap,
+                                    const SlotName& slotName,
+                                    const std::vector<float>& reducedSampleData,
+                                    const bool defaultSlot = true) const
+{
+    Asset& asset = assetsMap[slotName];
     if (defaultSlot)
     {
-        assetDataInSlot.setProperty(Asset::Props::defaultPeaksForView, reducedSampleData);
+        asset.set(Props::defaultPeaksForView, reducedSampleData);
     }
     else
     {
-        assetDataInSlot.setProperty(Asset::Props::userPeaksForView, reducedSampleData);
+        asset.set(Props::userPeaksForView, reducedSampleData);
     }
-    updateAssetsInSlotWithSpinLock(slotName, assetDataInSlot);
 }
 
-void SlotManager::assignFileHookToSlot(const SlotName &slotName, const juce::File &file) const
+
+void SlotManager::assignUserFileToSlot(std::map<SlotName, Asset>& assetsMap,
+                                       const SlotName& slotName,
+                                       const juce::File& file) const
 {
-    assign(slotName, Asset::Props::userStereoFile, file);
+    Asset& asset = assetsMap[slotName];
+    asset.set(Props::userStereoFile, file);
 }
 
-void SlotManager::assignDefaultFilenameToSlot(const SlotName &slotName) const
+
+void SlotManager::assignFilenameForViewToSlot(std::map<SlotName, Asset>& assetsMap,
+                                              const SlotName& slotName,
+                                              const juce::File& file) const
 {
-    assign(slotName, Asset::Props::defaultFilenameForView, toString(slotName));
-}
-
-void SlotManager::assignFilenameToSlot(const SlotName &slotName, const juce::File &file) const
-{
-    assign(slotName, Asset::Props::filenameForView, file);
-}
-
-void SlotManager::assign(const SlotName &slotName, Asset::Props property, const juce::File &file) const
-{
-    Asset assetDataInSlot = getAssetFrom(slotName);
-    assetDataInSlot.setProperty(property, file);
-    updateAssetsInSlotWithSpinLock(slotName, assetDataInSlot);
-}
-
-void SlotManager::assign(const SlotName &slotName, Asset::Props property, const std::string &str) const
-{
-    Asset assetDataInSlot = getAssetFrom(slotName);
-    assetDataInSlot.setProperty(property, str);
-    updateAssetsInSlotWithSpinLock(slotName, assetDataInSlot);
-}
-
-void SlotManager::assign(const SlotName& slotName, Asset::Props property, const juce::AudioBuffer<float>& buffer) const
-{
-    auto reducedPeaks = util::reduceBufferToPeaksData( buffer );
-    assignPeaksToSlot(slotName, reducedPeaks);
+    Asset& asset = assetsMap[slotName];
+    asset.set(Props::filenameForView, file);
 }
 
 
-void SlotManager::wrapPeaksForView(elem::js::Object &peaksContainer) const
+void SlotManager::wrapPeaksForView(elem::js::Object& peaksContainer) const
 {
     elem::js::Array peaks;
     if (peaks.size() != 4)
         peaks.resize(4);
 
     // go through whole assetsMap
-    processor.spin.lock();
-    for (const auto &[slot_name, asset_data] : processor.assetsMap)
+    //
+    for (const auto& [slot_name, asset] : processor.assetsMap)
     {
-        auto current = asset_data.currentPeakDataInView;
+        const auto current = asset.get<std::vector<float>>(Props::reducedPeaks);
 
         std::cout << "wrapping reduced peaks for view size >> " << current.size() << std::endl;
         // set the relevant index in the peaks vector
         const int index = getIndexForSlot(slot_name);
-        peaks[index] = elem::js::Value( current );
+        peaks[index] = elem::js::Value(current);
     }
     // put the wrapped peaks data of each slot into the passed container keyed by WS_RESPONSE_KEY_FOR_PEAKS
-    peaksContainer.insert_or_assign(processor.WS_RESPONSE_KEY_FOR_PEAKS, elem::js::Value( peaks ));
-    processor.spin.unlock();
+    peaksContainer.insert_or_assign(processor.WS_RESPONSE_KEY_FOR_PEAKS, elem::js::Value(peaks));
+    //
 }
 
-void SlotManager::wrapStateForView(elem::js::Object &containerForWrappedState) const
+void SlotManager::wrapStateForView(elem::js::Object& containerForWrappedState) const
 {
     elem::js::Object processorState = processor.state;
     // prepare extra state about filenames, for the front end
     elem::js::Array values;
 
-    processor.spin.lock();
     values.resize(processor.assetsMap.size());
-    for (auto &[slot_name, asset_data] : processor.assetsMap)
+    for (auto& [slot_name, asset] : processor.assetsMap)
     {
         const int index = getIndexForSlot(slot_name);
-        if (asset_data.filenameForView.empty())
-        {
-
-            asset_data.filenameForView = asset_data.defaultFilenameForView;
-        }
-        values[index] = elem::js::Value(asset_data.filenameForView);
+        values[index] = elem::js::Value(asset.get<std::string>(Props::filenameForView));
     }
-    processor.spin.unlock();
-
 
     processorState.insert_or_assign(processor.KEY_FOR_FILENAMES, elem::js::Value(values));
     // inject a special rounded case for the 'structure' parameter
@@ -144,49 +164,49 @@ void SlotManager::wrapStateForView(elem::js::Object &containerForWrappedState) c
     containerForWrappedState.insert_or_assign(processor.WS_RESPONSE_KEY_FOR_STATE, elem::js::Value(processorState));
 }
 
-void SlotManager::wrapFileNamesForView(elem::js::Object &containerForWrappedFileNames) const
+void SlotManager::wrapFileNamesForView(elem::js::Object& containerForWrappedFileNames) const
 {
     elem::js::Array values;
-    processor.spin.lock();
+    //
     values.resize(processor.assetsMap.size());
-    for (const auto &[slot_name, asset_data] : processor.assetsMap)
+    for (const auto& [slot_name, asset] : processor.assetsMap)
     {
         const int index = getIndexForSlot(slot_name);
-        values[index] = elem::js::Value(asset_data.filenameForView);
+        values[index] = elem::js::Value(asset.get<std::string>(Props::filenameForView));
     }
-    processor.spin.unlock();
+    //
     containerForWrappedFileNames.insert_or_assign(processor.KEY_FOR_FILENAMES, elem::js::Value(values));
 }
 
 
 void SlotManager::switchSlotsTo(const bool customScape, const bool pruneVFS = false)
 {
-    processor.spin.lock();
-    for (const auto &[slot_name, asset_data] : processor.assetsMap)
+    //
+    for (auto& [slot_name, asset] : processor.assetsMap)
     {
         if (customScape)
         {
             // just in case the userStereoFile doesn't exist anymore
             // fall back to default
-            const auto userFile =
-                asset_data.userStereoFile.exists() ?
-                asset_data.userStereoFile : asset_data.defaultStereoFile;
-            processor.spin.unlock();
-            assign(slot_name, Asset::Props::filenameForView, userFile );
+            const auto fileInSlot = asset.get<juce::File>(asset.hasUserStereoFile()
+                                                               ? Props::userStereoFile
+                                                               : Props::defaultStereoFile);
+            const auto croppedName = fileInSlot.getFileNameWithoutExtension().substring(0, 10).toStdString();
+            asset.set(Props::filenameForView, croppedName);
             // toggle scapeMode to custom in the plugin
             processor.state.insert_or_assign("scapeMode", 1.0);
         }
         else
         {
             // we are back in factory mode
-            processor.spin.unlock();
-            assign(slot_name, Asset::Props::filenameForView, asset_data.defaultStereoFile);
+            const auto fn = asset.get<std::string>(Props::defaultFilenameForView);
+            asset.set(Props::filenameForView, fn);
             processor.state.insert_or_assign("scapeMode", 0.0);
         }
         lastStateHash = -1;
     }
 
-    processor.spin.unlock();
+    //
 
     if (pruneVFS)
     {

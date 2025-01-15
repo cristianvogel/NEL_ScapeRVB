@@ -16,27 +16,27 @@ namespace util
         const int numSamples = buffer.getNumSamples();
         // Compute the stride as a factor of the number of samples
         constexpr int stride = 96;
-        std::vector<float> audioData(numSamples / stride + 1);
+        std::vector<float> audioData;
 
         // Declare a pointer variable for floating-point data
         juce::AudioData::Pointer<juce::AudioData::Float32, juce::AudioData::LittleEndian, juce::AudioData::NonInterleaved,
                                  juce::AudioData::Const>
             pointer(buffer.getReadPointer(0));
 
-        // Fill the audioData vector with a stride stepped copy of the audio buffer
+        // Fill the audioData vector with reduced data using stride
         int pointerPosition = 0;
-        for (int i = 0; i < numSamples; i++)
+        while (pointerPosition < numSamples)
         {
             const auto value = pointer.getAsFloat();
-
-            pointer += stride; // Move the pointer by the stride value
+            pointer += stride; // Move pointer by stride
             pointerPosition += stride;
-            if (pointerPosition >= numSamples)
-                break;
-            if (abs(value) < 1.0e-4)
-                continue; // skip small values
-            audioData[i] = value;
+
+            if (abs(value) >= 1.0e-4) // Skip small values
+            {
+                audioData.push_back(value); // Push valid values into the vector
+            }
         }
+        std::cout << "Debug audioData size: " << audioData.size() << std::endl;
         return audioData;
     }
     

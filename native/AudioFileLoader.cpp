@@ -58,33 +58,25 @@ void AudioFileLoader::handleAsyncUpdate()
     juce::StringPairArray chooser_result{};
     const auto currentFile = getFileAtSlot(currentSlotIndex);
     const juce::String& file_path = currentFile.getFullPathName();
-    const auto targetSlot = DEFAULT_SLOT_NAMES[currentSlotIndex];
+    const auto& targetSlot = DEFAULT_SLOT_NAMES[currentSlotIndex];
     // Validity check and then process and update the asset
     // into the state and assetMap
-    auto scoped_processor = &processor;
+
+    // will this actually stick in the processor.assetsMap ??
     if (juce::File file(file_path); file.existsAsFile())
     {
-        std::future<bool> result = std::async(std::launch::async,
-                                              [ scoped_processor, &file, &targetSlot]()
-                                              {
-                                                  return scoped_processor->processImportedResponseBuffers(
-                                                      file, fromString(targetSlot));
-                                              });
-        // wait for processing... then assign to state and switch slots to user mode
-        if (result.get()) {
-            processor.slotManager->assignFileHookToSlot(fromString(targetSlot), file);
-            processor.slotManager->assignFilenameToSlot(fromString(targetSlot), file);
+     processor.processImportedResponseBuffers( file, fromString(targetSlot));
+            processor.slotManager->assignUserFileToSlot(processor.assetsMap, fromString(targetSlot), file);
+            processor.slotManager->assignFilenameForViewToSlot(processor.assetsMap, fromString(targetSlot), file);
             currentSlotIndex = (currentSlotIndex + 1) % NUM_SLOTS;
             processor.slotManager->switchSlotsTo(true, false); // prune here if currentSlot > 4 ?
-        }
     }
     else
     {
-        processor.slotManager->assignDefaultFilenameToSlot(fromString(targetSlot));
         processor.slotManager->switchSlotsTo(false, false);
     }
     // finally, update state with valid results of file import
-    processor.updateStateWithAssetsData();
+    processor.updateStateFromAssetsMap();
     processor.inspectVFS();
 }
 
