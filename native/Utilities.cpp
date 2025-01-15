@@ -15,7 +15,7 @@ namespace util
         // the size.
         const int numSamples = buffer.getNumSamples();
         // Compute the stride as a factor of the number of samples
-        constexpr int stride = 96;
+        constexpr int stride = 64;
         std::vector<float> audioData;
 
         // Declare a pointer variable for floating-point data

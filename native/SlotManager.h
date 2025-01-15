@@ -77,7 +77,7 @@ public:
      * @param targetSlot The target slot.
      * @param file The file to assign.
      */
-    void assignUserFileToSlot(std::map<SlotName, Asset>& assetsMap, const SlotName& targetSlot, const juce::File& file) const;
+    static void assignUserFileToSlot(std::map<SlotName, Asset>& assetsMap, const SlotName& targetSlot, const juce::File& file) ;
 
     /**
      * @brief Assigns a filename to a slot.
@@ -85,7 +85,7 @@ public:
      * @param targetSlot The target slot.
      * @param file The file containing the filename.
      */
-    void assignFilenameForViewToSlot(std::map<SlotName, Asset>& assetsMap, const SlotName& targetSlot, const juce::File& file) const;
+    static void assignFilenameForViewToSlot(std::map<SlotName, Asset>& assetsMap, const SlotName& targetSlot, const juce::File& file) ;
 
     /**
      * @brief Updates the asset entry at the current slot in the Processor assetMap
@@ -113,7 +113,7 @@ public:
      */
     void resetUserSlots(bool pruneVFS = false);
 
-    void assignDefaultFilenameToSlot(std::map<SlotName, Asset>& assetsMap,SlotName& slotName) const;
+    static void assignDefaultFilenameToSlot(std::map<SlotName, Asset>& assetsMap,SlotName& slotName) ;
     static int getIndexForSlot(const SlotName& slotName);
     int stepToNextTargetSlotIndex();
     int getCurrentTargetSlotIndex() const;

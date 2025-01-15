@@ -71,10 +71,10 @@ void SlotManager::logAssetsMap() const
 }
 
 void SlotManager::assignDefaultFilenameToSlot(std::map<SlotName, Asset>& assetsMap,
-                                               SlotName& slotName) const
+                                               SlotName& slotName)
 {
     Asset& asset = assetsMap[slotName];
-    const auto defaultFilename = asset.get<std::string>(Props::defaultFilenameForView);
+    const auto& defaultFilename = DEFAULT_SLOT_NAMES[ getIndexForSlot(slotName) ];
     asset.set(Props::defaultFilenameForView, defaultFilename);
 }
 
@@ -84,6 +84,7 @@ void SlotManager::assignPeaksToSlot(std::map<SlotName, Asset>& assetsMap,
                                     const bool defaultSlot = true)
 {
     Asset& asset = assetsMap[slotName];
+    asset.set(Props::reducedPeaks, reducedSampleData);
     if (defaultSlot)
     {
         asset.set(Props::defaultPeaksForView, reducedSampleData);
@@ -98,7 +99,7 @@ void SlotManager::assignPeaksToSlot(std::map<SlotName, Asset>& assetsMap,
 
 void SlotManager::assignUserFileToSlot(std::map<SlotName, Asset>& assetsMap,
                                        const SlotName& slotName,
-                                       const juce::File& file) const
+                                       const juce::File& file)
 {
     Asset& asset = assetsMap[slotName];
     asset.set(Props::userStereoFile, file);
@@ -107,7 +108,7 @@ void SlotManager::assignUserFileToSlot(std::map<SlotName, Asset>& assetsMap,
 
 void SlotManager::assignFilenameForViewToSlot(std::map<SlotName, Asset>& assetsMap,
                                               const SlotName& slotName,
-                                              const juce::File& file) const
+                                              const juce::File& file)
 {
     Asset& asset = assetsMap[slotName];
     asset.set(Props::filenameForView, file.getFileNameWithoutExtension().substring(0,10).toStdString());
