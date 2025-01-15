@@ -109,7 +109,7 @@ void SlotManager::assignFilenameForViewToSlot(std::map<SlotName, Asset>& assetsM
                                               const juce::File& file) const
 {
     Asset& asset = assetsMap[slotName];
-    asset.set(Props::filenameForView, file);
+    asset.set(Props::filenameForView, file.getFileNameWithoutExtension().substring(0,10).toStdString());
 }
 
 
@@ -212,7 +212,7 @@ void SlotManager::switchSlotsTo(const bool customScape, const bool pruneVFS = fa
     {
         processor.pruneVFS();
         lastStateHash = -1;
-        processor.userBankManager.resetUserBank();
+       // processor.userBankManager.resetUserBank();
         peaksDirty.store(true);
     }
 }

@@ -107,6 +107,7 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             {
                 processor.slotManager->switchSlotsTo(false, false);
                 std::cout << "switching to factory slots" << std::endl;
+                continue;
             }
 
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
@@ -117,16 +118,21 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             {
                 processor.slotManager->switchSlotsTo(true, false);
                 std::cout << "switching to custom slots" << std::endl;
+                continue;
             }
 
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ "prune and reset" ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
-            if (key == "reset")
+            // TODO: Fix this! it was being called from the front end
+            // when new IR loads and already in factory mode
+            if (key == "reset" )
             {
-                processor.clear_userFiles_in_assets_map();
-                processor.slotManager->switchSlotsTo(false, true);
-                std::cout << "resetting slots" << std::endl;
+
+                // processor.clear_userFiles_in_assets_map();
+                // processor.slotManager->switchSlotsTo(false, true);
+                // std::cout << "resetting slots" << std::endl;
+                // continue;
             }
 
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
