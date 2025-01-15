@@ -202,7 +202,7 @@ bool Processor::processDefaultResponseBuffers()
 
     lastKnownSampleRate = getSampleRate();
 
-    for (auto& [slot_name, asset] : assetsMap)
+    for (auto& [targetSlot, asset] : assetsMap)
     {
         const juce::File& file = asset.get<juce::File>(Props::defaultStereoFile);
         // get a reader for the default file from the plugin bundle assets folder
@@ -232,9 +232,9 @@ bool Processor::processDefaultResponseBuffers()
             // stash one channel of the normalised buffer data for Peaks in the VIEW
             if (channel == 0)
             {
-                assetsMap[ slot_name ].set( Props::defaultStereoFile, file );
+                assetsMap[ targetSlot ].set( Props::defaultStereoFile, file );
                 std::vector<float> samples = util::reduceBufferToPeaksData( buffer );
-                assetsMap[ slot_name].set( Props::defaultPeaksForView, samples );
+                assetsMap[ targetSlot].set( Props::defaultPeaksForView, samples );
             }
 
             // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
@@ -258,6 +258,7 @@ bool Processor::processDefaultResponseBuffers()
     }
     //
     // notify the front end of the updated VFS keys
+    slotManager->peaksDirty.store(true);
     inspectVFS();
     return true;
 }
