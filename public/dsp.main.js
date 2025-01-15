@@ -3249,7 +3249,7 @@
   };
 
   // src/stores/constants.ts
-  var BUILD_VERSION = "v0.9.2-beta";
+  var BUILD_VERSION = "v0.9.3-beta";
   var CURRENT_UI_VERSION = `scape_space_${BUILD_VERSION}`;
   var HOST_PARAMS = manifest_default.parameters;
   var REGISTERED_PARAM_NAMES = HOST_PARAMS.map(

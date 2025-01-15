@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(NEL_scape_space VERSION 1.01)
+project(NEL_scape_space VERSION 1.9.3)
 
 set(TARGET_NAME "NEL_scape_space")
 set(ASSETS_DIR ${CMAKE_SOURCE_DIR}/../dist/)
