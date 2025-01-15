@@ -1,11 +1,15 @@
 #include "ViewClientInstance.h"
+
+#include <sys/proc.h>
+
+#include "AudioFileLoader.h"
 #include "PluginProcessor.h"
 #include "SlotName.h"
 #include "Utilities.h"
 
 using Results = std::map<std::string, elem::js::Object>;
 
-ViewClientInstance::ViewClientInstance(EffectsPluginProcessor& processor)
+ViewClientInstance::ViewClientInstance(Processor& processor)
     : processor(processor)
 {
     static int clientCount = 0;
@@ -58,11 +62,8 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮
             if (key == "selectFiles" && hpfValue.isNumber())
             {
-
-                uploadStatus = 0;
                 int filterCutoff = static_cast<elem::js::Number>(hpfValue);
                 userFileUploadHandler(filterCutoff);
-                processor.slotManager->switchSlotsTo(true, false);
             }
 
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮
@@ -70,10 +71,20 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮
             if (key == "requestState")
             {
-                if (!processor.editor || chooserIsOpen.load()) return;
+                if (!processor.editor) return;
 
+                // === first handle peaks for view
+                if ( processor.slotManager->peaksDirty.load() )
+                {
+                    elem::js::Object peaksContainer;
+                    processor.slotManager->wrapPeaksForView( processor.assetsMap, peaksContainer );
+                    juce::String serializedPeaks = elem::js::serialize(peaksContainer);
+                    std::cout << "Dispatching reduced peaks to front end..." << std::endl;
+                    sendWebSocketMessage(serializedPeaks.toStdString());
+                    processor.slotManager->peaksDirty.store(false);
+                }
 
-                // ============ performance optimization ========================
+                // ============ hash state for performance optimization ========================
                 // hash the serialized state, send only if changed
                 elem::js::Object stateContainer;
                 processor.slotManager->wrapStateForView(stateContainer);
@@ -84,15 +95,6 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                 {
                     sendWebSocketMessage(serializedState.toStdString());
                     processor.slotManager->lastStateHash = currentStateHash;
-                }
-                if (processor.slotManager->peaksDirty)
-                {
-                    elem::js::Object peaksContainer;
-                    std::cout << "wrapping and sending peaks to View.." << std::endl;
-                    processor.slotManager->wrapPeaksForView(peaksContainer);
-                    juce::String serializedPeaks = elem::js::serialize(peaksContainer);
-                    sendWebSocketMessage(serializedPeaks.toStdString());
-                    processor.slotManager->peaksDirty = false;
                 }
             }
 
@@ -105,6 +107,7 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             {
                 processor.slotManager->switchSlotsTo(false, false);
                 std::cout << "switching to factory slots" << std::endl;
+                continue;
             }
 
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
@@ -115,16 +118,21 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             {
                 processor.slotManager->switchSlotsTo(true, false);
                 std::cout << "switching to custom slots" << std::endl;
+                continue;
             }
 
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ "prune and reset" ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
-            if (key == "reset")
+            // TODO: Fix this! it was being called from the front end
+            // when new IR loads and already in factory mode
+            if (key == "reset" )
             {
-                processor.clear_userFiles_in_assets_map();
-                processor.slotManager->switchSlotsTo(false, true);
-                std::cout << "resetting slots" << std::endl;
+
+                // processor.clear_userFiles_in_assets_map();
+                // processor.slotManager->switchSlotsTo(false, true);
+                // std::cout << "resetting slots" << std::endl;
+                // continue;
             }
 
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
@@ -146,62 +154,11 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
     }
 }
 
-void EffectsPluginProcessor::requestUserFileSelection(std::promise<Results>& promise)
-{
-    juce::MessageManager::callAsync([this, &promise]()
-    {
-        chooser.browseForMultipleFilesToOpen(nullptr);
-        juce::StringPairArray results;
-        results = validateUserUpload( results, chooser.getResults() );
-        promise.set_value( results );
-    });
-}
-
-void ViewClientInstance::userFileUploadHandler(const int& hpfValue)
+void ViewClientInstance::userFileUploadHandler(const int& hpfValue) const
 {
     processor.userCutoffChoice = hpfValue;
-    std::promise<EffectsPluginProcessor::Results> promise;
-    std::future<EffectsPluginProcessor::Results> future = promise.get_future();
-
-    // begin async file selection
-    // fence...
-    chooserIsOpen.store(true);
-    processor.requestUserFileSelection(promise);
-    // get the future back
-    const EffectsPluginProcessor::Results results = future.get();
-    // remove fence...
-    chooserIsOpen.store(false);
-
-    for (const auto & slot : DEFAULT_SLOT_NAMES)
-    {
-        SlotName targetSlot = fromString( slot ); // outer key
-        const juce::String& data = results[slot];
-
-        // The data should have been assigned in bound string using semicolon delimiter
-        // to separate data element for example (ignore the spaces here) :
-        //     outerKey          status (via ScapeError enum class)       filepath
-        //          ⬇︎︎︎             ⬇︎︎︎                                        ⬇︎︎︎
-        // <    "LIGHT",        "File not found;                            path/to/file.wav"
-        const auto status = data.upToFirstOccurrenceOf( processor.delimiter, false, false);
-        juce::String file_path = data.fromFirstOccurrenceOf( processor.delimiter, false, false);
-
-        // Validity conditional
-        if (juce::File file(file_path); file.existsAsFile() && status == "OK" )
-        {
-            processor.slotManager->assignFileHookToSlot(targetSlot, file);
-            processor.slotManager->assignFilenameToSlot(targetSlot, file);
-            processor.userFilesWereImported.store(true);
-        }
-        else
-        {
-            processor.slotManager->assignDefaultFilenameToSlot(targetSlot);
-            processor.slotManager->wrapDefaultPeaksForSlot(targetSlot);
-        }
-    }
-    // finally, update state with valid results of file import
-    processor.updateStateWithAssetsData();
-    processor.inspectVFS();
-} // end userFileUploadHandler
+    processor.fileLoader->loadNewFile();
+}
 
 choc::network::HTTPContent ViewClientInstance::getHTTPContent(std::string_view path)
 {

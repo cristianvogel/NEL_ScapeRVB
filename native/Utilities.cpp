@@ -8,6 +8,37 @@
 
 namespace util
 {
+    std::vector<float> reduceBufferToPeaksData(const juce::AudioBuffer<float>& buffer)
+    {
+        // This function reduces the audio buffer to a smaller size for plotting as
+        // peaks in the front end. The buffer is stride stepped by an int factor to reduce
+        // the size.
+        const int numSamples = buffer.getNumSamples();
+        // Compute the stride as a factor of the number of samples
+        constexpr int stride = 96;
+        std::vector<float> audioData;
+
+        // Declare a pointer variable for floating-point data
+        juce::AudioData::Pointer<juce::AudioData::Float32, juce::AudioData::LittleEndian, juce::AudioData::NonInterleaved,
+                                 juce::AudioData::Const>
+            pointer(buffer.getReadPointer(0));
+
+        // Fill the audioData vector with reduced data using stride
+        int pointerPosition = 0;
+        while (pointerPosition < numSamples)
+        {
+            const auto value = pointer.getAsFloat();
+            pointer += stride; // Move pointer by stride
+            pointerPosition += stride;
+
+            if (abs(value) >= 1.0e-4) // Skip small values
+            {
+                audioData.push_back(value); // Push valid values into the vector
+            }
+        }
+        std::cout << "Debug audioData size: " << audioData.size() << std::endl;
+        return audioData;
+    }
     
     //======================== Normalisation from JUCE convolution code
     // additional maxAbsValue parameter to allow for normalisation to a specific value

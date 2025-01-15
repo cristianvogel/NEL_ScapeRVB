@@ -8,12 +8,12 @@
 
 
 // Forward declaration of EffectsPluginProcessor
-class EffectsPluginProcessor;
+class Processor;
 
 class ViewClientInstance : public choc::network::HTTPServer::ClientInstance
 {
 public:
-    explicit ViewClientInstance(EffectsPluginProcessor &processor);
+    explicit ViewClientInstance(Processor &processor);
     ~ViewClientInstance() override;
 
     void stop(); // Custom stop method
@@ -21,22 +21,21 @@ public:
     choc::network::HTTPContent getHTTPContent(std::string_view path) override;
     void upgradedToWebSocket(std::string_view path) override;
     void handleWebSocketMessage(std::string_view message) override;
-    void userFileUploadHandler(const int &hpfValue);
+    void userFileUploadHandler(const int &hpfValue) const;
 
 
 
 private:
     int clientID;
     int retFlag = 0;
-    std::atomic<bool> chooserIsOpen = false;
-    EffectsPluginProcessor &processor;
+    Processor &processor;
     std::atomic<bool> running = true; // Flag to indicate if the instance is running
 
 public:
     enum class ErrorType
     {
         UNKNOWN_ERROR,
-        NO_ERRORS,
+        OK,
         FILESIZE_EXCEEDED,
         FILETYPE_NOT_SUPPORTED,
         NO_FILES_SELECTED,
@@ -69,7 +68,7 @@ inline std::string errorStatuses(int status)
         return "File must be stereo";
     case static_cast<int>(ScapeError::DO_NOT_OVERWRITE_DEFAULTS):
         return "File cannot be called TEMPLE, SURFACE, DEEPNESS or LIGHT";
-    case static_cast<int>(ScapeError::NO_ERRORS):
+    case static_cast<int>(ScapeError::OK):
         return "OK";
     default:
         return "Nothing was imported.";

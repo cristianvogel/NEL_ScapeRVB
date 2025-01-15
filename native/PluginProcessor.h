@@ -8,14 +8,13 @@
 #include <future>     //   std::promise and std::future
 #include <map>
 
+
 // Third-Party Library Headers
-// #include <KeyzyLicenseActivator.h>
 #include <choc_HTTPServer.h>
 #include <choc_StringUtilities.h>
 #include <choc_javascript.h>
 #include <choc_javascript_QuickJS.h>
 #include <choc_javascript_Console.h>
-#include <choc_SmallVector.h>
 #include <elem/Runtime.h>
 #include <juce_audio_basics/juce_audio_basics.h>
 #include <juce_audio_formats/juce_audio_formats.h>
@@ -25,7 +24,7 @@
 // Project Headers
 
 // Local Headers
-#include "Assets.h"
+#include "Asset.h"
 #include "WebViewEditor.h"
 #include "ViewClientInstance.h"
 #include "SlotManager.h"
@@ -38,20 +37,22 @@ class WebViewEditor;
 class ViewClientInstance;
 class SlotManager;
 class UserBankManager;
+class AudioFileLoader;  // Forward declaration
 
 //==============================================================================
-class EffectsPluginProcessor : public juce::AudioProcessor,
-                               public juce::AudioProcessorParameter::Listener,
-                               private juce::AsyncUpdater
+class Processor final : public juce::AudioProcessor,
+                        public juce::AudioProcessorParameter::Listener,
+                        private juce::AsyncUpdater
 {
 public:
-    juce::FileChooser chooser;
+
+
     juce::AudioFormatManager formatManager;
     void createParameters(const std::vector<elem::js::Value>& parameters);
 
     //==============================================================================
-    EffectsPluginProcessor();
-    ~EffectsPluginProcessor() override;
+    Processor();
+    ~Processor() override;
 
     //==============================================================================
 
@@ -117,7 +118,7 @@ public:
 
     std::string REVERSE_BUFFER_PREFIX = "REVERSED_";
     std::string PERSISTED_HOST_PARAMETERS = "hostParameters";
-    std::string PERSISTED_ASSETMAP = "assetMap";
+    std::string PERSISTED_ASSET_MAP = "assetMap";
     std::string PERSISTED_USER_FILENAMES = "userFilenames";
     std::string MAIN_DSP_JS_FILE = "dsp.main.js";
     std::string MAIN_PATCH_JS_FILE = "patch.main.js";
@@ -148,6 +149,7 @@ public:
     //==============================================================================
 
 private:
+    std::unique_ptr<AudioFileLoader> fileLoader;
     // The maximum number of error messages to keep in the queue
     size_t MAX_ERROR_LOG_QUEUE_SIZE = 200;
     std::optional<std::string> loadDspEntryFileContents() const;
@@ -180,16 +182,16 @@ public:
 
     void initialise_assets_map();
     void clear_userFiles_in_assets_map();
-    bool fetchDefaultAudioFileAssets();
+    bool registerDefautStereoFiles();
     bool processDefaultResponseBuffers();
     void inspectVFS();
     void pruneVFS() const;
 
-    void requestUserFileSelection(std::promise<Results> &promise);
-     Results validateUserUpload( Results& results, const juce::Array<juce::File>& selected);
-    void updateStateWithAssetsData();
-    elem::js::Value assetsMapToValue(const std::map<SlotName, Asset>& map);
-    std::vector<float> getReducedAudioBuffer(const juce::AudioBuffer<float>& buffer);
+    Results validateUserUpload(Results& results, const juce::File& selectedFile) const;
+    Results uploadedFileData;
+    void updateStateFromAssetsMap();
+    static elem::js::Value assetsMapToValue(const std::map<SlotName, Asset>& map);
+    static std::vector<float> getReducedAudioBuffer(const juce::AudioBuffer<float>& buffer);
     bool processImportedResponseBuffers(const juce::File& file, const SlotName& targetSlot);
     void processPersistedAssetState(const elem::js::Object& assetState);
     bool importPeakDataForView(const juce::AudioBuffer<float>& buffer);
@@ -198,6 +200,8 @@ public:
 
     vfs::UserBankManager userBankManager;
     std::string prefixUserBank(const std::string& name) const;
+    std::unique_ptr<SlotManager> slotManager; // Use a smart pointer to manage the slot manager
+
 
 private:
     int USERBANK = 0;
@@ -208,7 +212,6 @@ private:
     juce::dsp::StateVariableTPTFilter<float> stateVariableFilter; // For filtering the imported IRs
     std::unique_ptr<ViewClientInstance> clientInstance; // Use a smart pointer to store the client instance
     std::unique_ptr<choc::network::HTTPServer> server; // Use a smart pointer to manage the server
-    std::unique_ptr<SlotManager> slotManager; // Use a smart pointer to manage the slot manager
 
     //==============================================================================
     // A simple "dirty list" abstraction here for propagating realtime parameter
@@ -234,7 +237,7 @@ private:
     // Keyzy::LicenseStatus licenseStatus = Keyzy::LicenseStatus::NOT_AUTHORIZED;
 
     //==============================================================================
-    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(EffectsPluginProcessor)
+    JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR(Processor)
 };
 
 // namespace unlock
