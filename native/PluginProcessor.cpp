@@ -437,6 +437,7 @@ void Processor::inspectVFS()
 
     // add the keys to the state object
     // which will get sent with the next state update
+    state.insert_or_assign( "currentSlotIndex", static_cast<elem::js::Number>( fileLoader->currentSlotIndex));
     state.insert_or_assign(VFS_KEYS, keys);
 }
 
