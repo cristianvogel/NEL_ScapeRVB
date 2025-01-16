@@ -3355,7 +3355,6 @@
         const scale = getScale(slotName, chan);
         const offset = scape.offset;
         const process2 = Math.min(scape.level, scape.vectorData[slot.slotIndex]);
-        console.log("SCAPE::parseAndUpdateIRRefs", { ref, path, scale, offset, process: process2 });
         if (ref === null || ref === void 0)
           return;
         if (path === null || path === void 0)
