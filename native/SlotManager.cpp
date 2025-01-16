@@ -7,7 +7,7 @@ using Props = Asset::Props;
 
 SlotManager::SlotManager(Processor& processor) : processor(processor) { }
 
-void SlotManager::wrapPeaksForView(std::map<SlotName, Asset>& assetsMap, elem::js::Object& peaksContainer) const
+void SlotManager::wrapPeaksForView(std::map<SlotName, Asset>& assetsMap, elem::js::Object& peaksContainer)
 {
     elem::js::Array peaks;
     peaks.resize(4);
@@ -27,6 +27,7 @@ void SlotManager::wrapPeaksForView(std::map<SlotName, Asset>& assetsMap, elem::j
     // put the wrapped peaks data of each slot into the passed container keyed by WS_RESPONSE_KEY_FOR_PEAKS
     peaksContainer.insert_or_assign(processor.WS_RESPONSE_KEY_FOR_PEAKS, elem::js::Array(peaks));
     //
+    peaksDirty.store(true);
 }
 
 void SlotManager::wrapStateForView(elem::js::Object& containerForWrappedState) const

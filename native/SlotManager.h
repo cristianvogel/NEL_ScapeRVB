@@ -34,7 +34,7 @@ public:
      * @param assetsMap
      * @param containerForWrappedPeaks Container for the wrapped peaks data.
      */
-    void wrapPeaksForView(std::map<SlotName, Asset>& assetsMap, elem::js::Object& containerForWrappedPeaks) const;
+    void wrapPeaksForView(std::map<SlotName, Asset>& assetsMap, elem::js::Object& containerForWrappedPeaks) ;
     /**
      * @brief Wraps state data for view.
      * @param containerForWrappedState Container for the wrapped state data.
