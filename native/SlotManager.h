@@ -16,9 +16,6 @@
 // Forward declaration of EffectsPluginProcessor
 class Processor;
 
-/**
- *
- */
 class SlotManager
 {
 public:
@@ -28,59 +25,45 @@ public:
      * @param processor Reference to the EffectsPluginProcessor.
      */
     explicit SlotManager(Processor& processor);
-
     /**
      * @brief Default destructor.
      */
     ~SlotManager() = default;
-
     /**
      * @brief Wraps peaks data for view.
      * @param assetsMap
      * @param containerForWrappedPeaks Container for the wrapped peaks data.
      */
     void wrapPeaksForView(std::map<SlotName, Asset>& assetsMap, elem::js::Object& containerForWrappedPeaks) const;
-
     /**
      * @brief Wraps state data for view.
      * @param containerForWrappedState Container for the wrapped state data.
      */
     void wrapStateForView(elem::js::Object& containerForWrappedState) const;
-
     /**
      * @brief Wraps file names for view.
      * @param containerForWrappedFileNames Container for the wrapped file names.
      */
     void wrapFileNamesForView(elem::js::Object& containerForWrappedFileNames) const;
-
     /**
      * @brief Switches slots to a custom scape.
      * @param customScape Whether to switch to custom scapes or default scapes
      * @param pruneVFS Whether to prune the VFS.
      */
     void switchSlotsTo(bool customScape, bool pruneVFS);
-
-
     /**
-     * @brief Assigns reduced sample vector to slot
-     * @param assetsMap
-     * @param slotName
-     * @param reducedSampleData the result of reducing the real sample date to one channel, strided
-     * @param defaultSlot when true, assign default/factory peaks
+     * @brief Populates the target slot with filename, filehook and peaks
+     * @param assetsMap main assetsMap
+     * @param slotName target slot
+     * @param isExternal if true, then we are assigining User data else default factory data
+     * @param file juce file hook, validated
+     * @param reducedSampleData the result of downsampling buffer processing, to reduce samples for view
      */
-    void setPeaksToSlot(std::map<SlotName, Asset>& assetsMap, const SlotName& slotName,
-                        const std::vector<float>& reducedSampleData, bool defaultSlot);
-    void setDefaultFilenameToSlot(std::map<SlotName, Asset>& map, const SlotName& slot_name);
-
-
     void populateSlotFromFileData(std::map<SlotName, Asset>& assetsMap,
-                                      const SlotName& slotName,
-                                      bool isExternal,
-                                      const juce::File& file,
-                                      const std::vector<float>& reducedSampleData);
-
-
-
+                                  const SlotName& slotName,
+                                  bool isExternal,
+                                  const juce::File& file,
+                                  const std::vector<float>& reducedSampleData);
     /**
      * @brief Updates the asset entry at the current slot in the Processor assetMap
      * @param assetsMap
@@ -93,7 +76,6 @@ public:
      * @brief Utility to log the asset data
      **/
     void logAssetsMap() const;
-
     /**
      * @brief Gets the asset from a slot.
      * @param assetsMap
@@ -101,16 +83,16 @@ public:
      * @return The asset in the slot.
      */
     Asset& getAssetFrom(std::map<SlotName, Asset>& assetsMap, const SlotName& slotName) const;
-
     /**
      * @brief Resets the user slots.
      * @param pruneVFS Whether to prune the VFS.
      */
     void resetUserSlots(bool pruneVFS = false);
-
+    /**
+    * @brief returns the integer index from the slotName enum
+    *
+   */
     static int getIndexForSlot(const SlotName& slotName);
-    int stepToNextTargetSlotIndex();
-    int getCurrentTargetSlotIndex() const;
 
 private:
     friend class ViewClientInstance;

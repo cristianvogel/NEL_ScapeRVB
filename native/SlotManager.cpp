@@ -7,77 +7,6 @@ using Props = Asset::Props;
 
 SlotManager::SlotManager(Processor& processor) : processor(processor) { }
 
-
-Asset& SlotManager::getAssetFrom(std::map<SlotName, Asset>& assetsMap, const SlotName& slotName) const
-{
-    auto it = assetsMap.find(slotName);
-    if (it != assetsMap.end())
-    {
-        // Slot exists, return a reference to the asset in the slot.
-        return it->second;
-    }
-    else
-    {
-        // Slot does not exist: throw exception or handle error
-        throw std::runtime_error("SlotName not found in the assetsMap.");
-    }
-}
-
-int SlotManager::getIndexForSlot(const SlotName& slotName)
-{
-    return static_cast<int>(slotName);
-}
-
-void SlotManager::updateSlotDataInAssetMap(std::map<SlotName, Asset>& assetsMap,
-                                           const SlotName& slotName,
-                                           Asset& assetData) const
-{
-    assetsMap.insert_or_assign(slotName, assetData);
-    logAssetsMap();
-}
-
-void SlotManager::logAssetsMap() const
-{
-    // log by referring to processor, so we are sure that's what is being consumed
-    for (const auto& entry : processor.assetsMap)
-    {
-        // Retrieve slotName and asset from the map entry
-        const auto& slotName = entry.first;
-        const auto& asset = entry.second;
-
-        // Manually log their contents
-        std::cout
-            << "SlotName: " << toString(slotName)
-            << "UserPeaks: " << asset.get<std::vector<float>>(Props::userPeaksForView).size()
-            << "PeaksInView:" << asset.get<std::vector<float>>(Props::currentPeakDataInView).size()
-            << std::endl;
-    }
-}
-
-/**
- * @brief Populates the target slot with filename, filehook and peaks
- * @param assetsMap main assetsMap
- * @param slotName target slot
- * @param isExternal if true, then we are assigining User data else default factory data
- * @param file juce file hook, validated
- * @param reducedSampleData the result of downsampling buffer processing, to reduce samples for view
- */
-void SlotManager::populateSlotFromFileData(std::map<SlotName, Asset>& assetsMap,
-                                           const SlotName& slotName,
-                                           bool isExternal,
-                                           const juce::File& file,
-                                           const std::vector<float>& reducedSampleData
-)
-{
-    Asset& asset = assetsMap[slotName];
-    asset.set( isExternal ? Props::userStereoFile : Props::defaultStereoFile,file);
-    const auto& croppedFilename = file.getFileNameWithoutExtension().substring(0, 10).toStdString();
-    asset.set( isExternal ? Props::userFilenameForView : Props::defaultFilenameForView, croppedFilename);
-    asset.set( isExternal ? Props::userPeaksForView : Props::defaultPeaksForView, reducedSampleData);
-    peaksDirty.store(true);
-}
-
-
 void SlotManager::wrapPeaksForView(std::map<SlotName, Asset>& assetsMap, elem::js::Object& peaksContainer) const
 {
     elem::js::Array peaks;
@@ -143,7 +72,6 @@ void SlotManager::wrapFileNamesForView(elem::js::Object& containerForWrappedFile
     containerForWrappedFileNames.insert_or_assign(processor.KEY_FOR_FILENAMES, elem::js::Value(values));
 }
 
-
 void SlotManager::switchSlotsTo(const bool customScape, const bool pruneVFS = false)
 {
     //
@@ -183,4 +111,65 @@ void SlotManager::switchSlotsTo(const bool customScape, const bool pruneVFS = fa
         // processor.userBankManager.resetUserBank();
         peaksDirty.store(true);
     }
+}
+
+void SlotManager::populateSlotFromFileData(std::map<SlotName, Asset>& assetsMap,
+                                           const SlotName& slotName,
+                                           bool isExternal,
+                                           const juce::File& file,
+                                           const std::vector<float>& reducedSampleData
+)
+{
+    Asset& asset = assetsMap[slotName];
+    asset.set( isExternal ? Props::userStereoFile : Props::defaultStereoFile,file);
+    const auto& croppedFilename = file.getFileNameWithoutExtension().substring(0, 10).toStdString();
+    asset.set( isExternal ? Props::userFilenameForView : Props::defaultFilenameForView, croppedFilename);
+    asset.set( isExternal ? Props::userPeaksForView : Props::defaultPeaksForView, reducedSampleData);
+    peaksDirty.store(true);
+}
+
+void SlotManager::updateSlotDataInAssetMap(std::map<SlotName, Asset>& assetsMap,
+                                           const SlotName& slotName,
+                                           Asset& assetData) const
+{
+    assetsMap.insert_or_assign(slotName, assetData);
+    logAssetsMap();
+}
+
+void SlotManager::logAssetsMap() const
+{
+    // log by referring to processor, so we are sure that's what is being consumed
+    for (const auto& entry : processor.assetsMap)
+    {
+        // Retrieve slotName and asset from the map entry
+        const auto& slotName = entry.first;
+        const auto& asset = entry.second;
+
+        // Manually log their contents
+        std::cout
+            << "SlotName: " << toString(slotName)
+            << "UserPeaks: " << asset.get<std::vector<float>>(Props::userPeaksForView).size()
+            << "PeaksInView:" << asset.get<std::vector<float>>(Props::currentPeakDataInView).size()
+            << std::endl;
+    }
+}
+
+Asset& SlotManager::getAssetFrom(std::map<SlotName, Asset>& assetsMap, const SlotName& slotName) const
+{
+    auto it = assetsMap.find(slotName);
+    if (it != assetsMap.end())
+    {
+        // Slot exists, return a reference to the asset in the slot.
+        return it->second;
+    }
+    else
+    {
+        // Slot does not exist: throw exception or handle error
+        throw std::runtime_error("SlotName not found in the assetsMap.");
+    }
+}
+
+int SlotManager::getIndexForSlot(const SlotName& slotName)
+{
+    return static_cast<int>(slotName);
 }
