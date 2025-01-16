@@ -187,7 +187,7 @@ public:
     void inspectVFS();
     void pruneVFS() const;
 
-    void validateUserUpload(const juce::File& selectedFile) ;
+    bool validateUserUpload(const juce::File& selectedFile) ;
     Results uploadedFileData;
     void updateStateFromAssetsMap();
     static elem::js::Value assetsMapToValue(const std::map<SlotName, Asset>& map);

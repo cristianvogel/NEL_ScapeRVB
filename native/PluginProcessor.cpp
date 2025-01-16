@@ -272,12 +272,12 @@ void Processor::updateStateFromAssetsMap()
 }
 
 // todo: is this being called?
-void Processor::validateUserUpload( const juce::File& selectedFile)
+bool Processor::validateUserUpload( const juce::File& selectedFile)
 {
     if (!selectedFile.existsAsFile())
     {
         dispatchError("File error:", errorStatuses(static_cast<int>(ScapeError::FILE_NOT_FOUND)));
-        return;
+        return false;
     }
 
     const juce::String& file_path = selectedFile.getFullPathName();
@@ -287,14 +287,14 @@ void Processor::validateUserUpload( const juce::File& selectedFile)
     if (!selectedFile.hasFileExtension("wav;WAV;aiff;AIFF"))
     {
         dispatchError("File error:", errorStatuses(static_cast<int>(ScapeError::FILETYPE_NOT_SUPPORTED)));
-        return;
+        return false;
     }
 
     // Check if file size is larger than 5MB
     if (selectedFile.getSize() > 5 * 1024 * 1024)
     {
         dispatchError("File error:", errorStatuses(static_cast<int>(ScapeError::FILESIZE_EXCEEDED)));
-        return;
+        return false;
     }
     // Check if filename contains reserved default slot keywords
     if (selectedFile.getFileNameWithoutExtension().containsWholeWord("TEMPLE") ||
@@ -303,14 +303,19 @@ void Processor::validateUserUpload( const juce::File& selectedFile)
         selectedFile.getFileNameWithoutExtension().containsWholeWord("LIGHT"))
     {
         dispatchError("File error:", errorStatuses(static_cast<int>(ScapeError::DO_NOT_OVERWRITE_DEFAULTS)));
-        return;
+        return false;
     }
+    // validated
+    return true;
 }
 
 bool Processor::processImportedResponseBuffers(const juce::File& file, const SlotName& targetSlot)
 {
-    lastKnownSampleRate = getSampleRate();
+    // first validate the upload
+    if ( !validateUserUpload(file) ) return false;
+
     // Create an AudioBuffer to hold the audio data
+    lastKnownSampleRate = getSampleRate();
     auto buffer1 = juce::AudioBuffer<float>();
     // Check the userCutoffChoice is set
     if (!userCutoffChoice)
