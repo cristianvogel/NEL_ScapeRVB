@@ -73,10 +73,12 @@ public:
     void setDefaultFilenameToSlot(std::map<SlotName, Asset>& map, const SlotName& slot_name);
 
 
-    void populateSlotWithUserFileData(std::map<SlotName, Asset>& assetsMap,
-                                      const SlotName& slot_name,
+    void populateSlotFromFileData(std::map<SlotName, Asset>& assetsMap,
+                                      const SlotName& slotName,
+                                      bool isExternal,
                                       const juce::File& file,
                                       const std::vector<float>& reducedSampleData);
+
 
 
     /**

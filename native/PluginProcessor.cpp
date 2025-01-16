@@ -229,13 +229,11 @@ bool Processor::processDefaultResponseBuffers()
             // file system
 
             // stash one channel of the normalised buffer data for Peaks in the VIEW
-            // and generally update all the default view asset data
+            // and populate all the Fcactory Default view asset data
             if (channel == 0)
             {
-                assetsMap[targetSlot].set(Props::defaultStereoFile, file);
-                std::vector<float> samples = util::reduceBufferToPeaksData(buffer);
-                assetsMap[targetSlot].set(Props::defaultPeaksForView, samples);
-                slotManager->setDefaultFilenameToSlot(assetsMap, targetSlot);
+                std::vector<float> reducedSamples = util::reduceBufferToPeaksData(buffer);
+                slotManager->populateSlotFromFileData(assetsMap, targetSlot, false, file, reducedSamples);
             }
 
             // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
@@ -372,7 +370,7 @@ bool Processor::processUserResponseFile(const juce::File& file, const SlotName& 
         if (channel == 0)
         {
             const std::vector<float> reducedSamples = util::reduceBufferToPeaksData(buffer2);
-            slotManager->populateSlotWithUserFileData(assetsMap, targetSlot, file, reducedSamples);
+            slotManager->populateSlotFromFileData(assetsMap, targetSlot, true, file, reducedSamples);
         }
 
         // apply the high pass filter

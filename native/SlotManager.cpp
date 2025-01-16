@@ -5,9 +5,7 @@
 
 using Props = Asset::Props;
 
-SlotManager::SlotManager(Processor& processor) : processor(processor)
-{
-}
+SlotManager::SlotManager(Processor& processor) : processor(processor) { }
 
 
 Asset& SlotManager::getAssetFrom(std::map<SlotName, Asset>& assetsMap, const SlotName& slotName) const
@@ -22,26 +20,13 @@ Asset& SlotManager::getAssetFrom(std::map<SlotName, Asset>& assetsMap, const Slo
     {
         // Slot does not exist: throw exception or handle error
         throw std::runtime_error("SlotName not found in the assetsMap.");
-        // Alternatively, return a safe default object managed elsewhere if you cannot throw.
     }
-    //
 }
 
 int SlotManager::getIndexForSlot(const SlotName& slotName)
 {
     return static_cast<int>(slotName);
 }
-
-int SlotManager::stepToNextTargetSlotIndex()
-{
-    return targetSlotIndex = (targetSlotIndex + 1) % 4;
-}
-
-int SlotManager::getCurrentTargetSlotIndex() const
-{
-    return targetSlotIndex;
-};
-
 
 void SlotManager::updateSlotDataInAssetMap(std::map<SlotName, Asset>& assetsMap,
                                            const SlotName& slotName,
@@ -69,41 +54,26 @@ void SlotManager::logAssetsMap() const
     }
 }
 
-void SlotManager::setDefaultFilenameToSlot(std::map<SlotName, Asset>& assetsMap,
-                                           const SlotName& slotName)
-{
-    Asset& asset = assetsMap[slotName];
-    const auto& defaultFilename = DEFAULT_SLOT_NAMES[getIndexForSlot(slotName)];
-    asset.set(Props::defaultFilenameForView, defaultFilename);
-}
-
-void SlotManager::populateSlotWithUserFileData(std::map<SlotName, Asset>& assetsMap,
-                                               const SlotName& slotName,
-                                               const juce::File& file,
-                                               const std::vector<float>& reducedSampleData
+/**
+ * @brief Populates the target slot with filename, filehook and peaks
+ * @param assetsMap main assetsMap
+ * @param slotName target slot
+ * @param isExternal if true, then we are assigining User data else default factory data
+ * @param file juce file hook, validated
+ * @param reducedSampleData the result of downsampling buffer processing, to reduce samples for view
+ */
+void SlotManager::populateSlotFromFileData(std::map<SlotName, Asset>& assetsMap,
+                                           const SlotName& slotName,
+                                           bool isExternal,
+                                           const juce::File& file,
+                                           const std::vector<float>& reducedSampleData
 )
 {
     Asset& asset = assetsMap[slotName];
-    asset.set(Props::userStereoFile, file);
-    const auto& userFilename = file.getFileNameWithoutExtension().substring(0, 10).toStdString();
-    asset.set(Props::userFilenameForView, userFilename);
-    asset.set(Props::userPeaksForView, reducedSampleData);
-}
-
-void SlotManager::setPeaksToSlot(std::map<SlotName, Asset>& assetsMap,
-                                 const SlotName& slotName,
-                                 const std::vector<float>& reducedSampleData,
-                                 const bool defaultSlot = true)
-{
-    Asset& asset = assetsMap[slotName];
-    if (defaultSlot)
-    {
-        asset.set(Props::defaultPeaksForView, reducedSampleData);
-    }
-    else
-    {
-        asset.set(Props::userPeaksForView, reducedSampleData);
-    }
+    asset.set( isExternal ? Props::userStereoFile : Props::defaultStereoFile,file);
+    const auto& croppedFilename = file.getFileNameWithoutExtension().substring(0, 10).toStdString();
+    asset.set( isExternal ? Props::userFilenameForView : Props::defaultFilenameForView, croppedFilename);
+    asset.set( isExternal ? Props::userPeaksForView : Props::defaultPeaksForView, reducedSampleData);
     peaksDirty.store(true);
 }
 
@@ -117,7 +87,7 @@ void SlotManager::wrapPeaksForView(std::map<SlotName, Asset>& assetsMap, elem::j
     //
     for (const auto& [slot_name, asset] : assetsMap)
     {
-        // which peaks depends whether user mode is active
+        // which peaks to wrap depends on user mode
         const auto current = asset.get<std::vector<float>>(processor.userScapeMode
                                                                ? Props::userPeaksForView
                                                                : Props::defaultFilenameForView);
@@ -164,14 +134,12 @@ void SlotManager::wrapStateForView(elem::js::Object& containerForWrappedState) c
 void SlotManager::wrapFileNamesForView(elem::js::Object& containerForWrappedFileNames) const
 {
     elem::js::Array values;
-    //
     values.resize(processor.assetsMap.size());
     for (const auto& [slot_name, asset] : processor.assetsMap)
     {
         const int index = getIndexForSlot(slot_name);
         values[index] = elem::js::Value(asset.get<std::string>(Props::filenameForView));
     }
-    //
     containerForWrappedFileNames.insert_or_assign(processor.KEY_FOR_FILENAMES, elem::js::Value(values));
 }
 
