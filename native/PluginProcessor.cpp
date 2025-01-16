@@ -115,8 +115,8 @@ void Processor::handleAsyncUpdate()
         for (const auto& [slotName, asset] : assetsMap)
         {
             SlotName targetSlot = slotName;
-            if ( asset.hasUserStereoFile() )
-                processImportedResponseBuffers( asset.get<juce::File>(Props::userStereoFile), targetSlot);
+            if (asset.hasUserStereoFile())
+                processUserResponseFile(asset.get<juce::File>(Props::userStereoFile), targetSlot);
         }
         // Værsgo!
         initJavaScriptEngine();
@@ -181,7 +181,7 @@ bool Processor::registerDefautStereoFiles()
                     SlotName slotName;
                     Asset assetInSlot;
                     assetInSlot.set(Props::defaultStereoFile, file);
-                    slotName = fromString( DEFAULT_SLOT_NAMES[i % 4] );
+                    slotName = fromString(DEFAULT_SLOT_NAMES[i % 4]);
                     assetsMap.insert_or_assign(slotName, assetInSlot);
                     i++;
                 }
@@ -216,7 +216,6 @@ bool Processor::processDefaultResponseBuffers()
 
         for (int channel = 0; channel < 2; ++channel)
         {
-
             auto buffer = juce::AudioBuffer<float>();
             buffer.setSize(1, reader->lengthInSamples);
             reader->read(&buffer, 0, reader->lengthInSamples, 0, !channel, channel);
@@ -233,10 +232,10 @@ bool Processor::processDefaultResponseBuffers()
             // and generally update all the default view asset data
             if (channel == 0)
             {
-                assetsMap[ targetSlot ].set( Props::defaultStereoFile, file );
-                std::vector<float> samples = util::reduceBufferToPeaksData( buffer );
-                assetsMap[ targetSlot].set( Props::defaultPeaksForView, samples );
-                slotManager->assignDefaultFilenameToSlot( assetsMap, targetSlot );
+                assetsMap[targetSlot].set(Props::defaultStereoFile, file);
+                std::vector<float> samples = util::reduceBufferToPeaksData(buffer);
+                assetsMap[targetSlot].set(Props::defaultPeaksForView, samples);
+                slotManager->setDefaultFilenameToSlot(assetsMap, targetSlot);
             }
 
             // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
@@ -268,11 +267,11 @@ bool Processor::processDefaultResponseBuffers()
 
 void Processor::updateStateFromAssetsMap()
 {
-        assetState.insert_or_assign(PERSISTED_ASSET_MAP, assetsMapToValue(assetsMap));
+    assetState.insert_or_assign(PERSISTED_ASSET_MAP, assetsMapToValue(assetsMap));
 }
 
 // todo: is this being called?
-bool Processor::validateUserUpload( const juce::File& selectedFile)
+bool Processor::validateUserUpload(const juce::File& selectedFile)
 {
     if (!selectedFile.existsAsFile())
     {
@@ -309,10 +308,10 @@ bool Processor::validateUserUpload( const juce::File& selectedFile)
     return true;
 }
 
-bool Processor::processImportedResponseBuffers(const juce::File& file, const SlotName& targetSlot)
+bool Processor::processUserResponseFile(const juce::File& file, const SlotName& targetSlot)
 {
     // first validate the upload
-    if ( !validateUserUpload(file) ) return false;
+    if (!validateUserUpload(file)) return false;
 
     // Create an AudioBuffer to hold the audio data
     lastKnownSampleRate = getSampleRate();
@@ -369,11 +368,11 @@ bool Processor::processImportedResponseBuffers(const juce::File& file, const Slo
         // file system
 
         // stash one channel of the normalised buffer data for Peaks in the VIEW
+        // and populate all the user view asset data
         if (channel == 0)
         {
-            assetsMap[ targetSlot ].set( Props::userStereoFile, file );
-            std::vector<float> samples = util::reduceBufferToPeaksData( buffer2 );
-            assetsMap[ targetSlot ].set( Props::userPeaksForView, samples );
+            const std::vector<float> reducedSamples = util::reduceBufferToPeaksData(buffer2);
+            slotManager->populateSlotWithUserFileData(assetsMap, targetSlot, file, reducedSamples);
         }
 
         // apply the high pass filter
@@ -459,7 +458,6 @@ void Processor::inspectVFS()
     // which will get sent with the next state update
     state.insert_or_assign(VFS_KEYS, keys);
 }
-
 
 
 //============== FRONT END IS CONNECTED VIA WEBSOCKET SERVER ================
@@ -993,7 +991,7 @@ bool Processor::sendJavascriptToUI(const std::string& expr) const
  * @brief Serialize data for js
  */
 std::string Processor::serialize(const std::string& function, const elem::js::Object& data,
-                                              const juce::String& replacementChar)
+                                 const juce::String& replacementChar)
 {
     return juce::String(function)
            .replace(replacementChar, elem::js::serialize(elem::js::serialize(data)))
@@ -1001,7 +999,7 @@ std::string Processor::serialize(const std::string& function, const elem::js::Ob
 }
 
 std::string Processor::serialize(const std::string& function, const choc::value::Value& data,
-                                              const juce::String& replacementChar)
+                                 const juce::String& replacementChar)
 {
     return juce::String(function).replace(replacementChar, choc::json::toString(data)).toStdString();
 }
@@ -1137,13 +1135,13 @@ void Processor::processPersistedAssetState(const elem::js::Object& assetStateObj
 
         if (savedAsset.hasUserStereoFile())
         {
-            file =  savedAsset.get<juce::File>(Props::userStereoFile);
+            file = savedAsset.get<juce::File>(Props::userStereoFile);
             std::cout << "Restoring ▶︎ Slot: " << toString(targetSlot)
                 << ", File: "
                 << file.getFileName().toStdString()
                 << std::endl;
 
-            if (!processImportedResponseBuffers(file, targetSlot))
+            if (!processUserResponseFile(file, targetSlot))
             {
                 std::cout << "Failed to restore user IRs!" << std::endl;
                 continue;

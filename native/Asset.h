@@ -22,8 +22,8 @@ public:
         defaultPeaksForView,
         currentPeakDataInView,
         defaultFilenameForView,
-        activeResourcePath,
-        reducedPeaks
+        userFilenameForView,
+        activeResourcePath
     };
 
     // 1. Base template declaration
@@ -50,6 +50,7 @@ public:
         case Props::filenameForView: return filenameForView;
         case Props::defaultFilenameForView: return defaultFilenameForView;
         case Props::activeResourcePath: return activeResourcePath;
+        case Props::userFilenameForView: return userFilenameForView;
         default: throw std::invalid_argument("Invalid property for string getter");
         }
     }
@@ -63,7 +64,6 @@ public:
         case Props::userPeaksForView: return userPeaksForView;
         case Props::defaultPeaksForView: return defaultPeaksForView;
         case Props::currentPeakDataInView: return currentPeakDataInView;
-        case Props::reducedPeaks: return reducedPeaks;
         default: throw std::invalid_argument("Invalid property for vector getter");
         }
     }
@@ -78,7 +78,7 @@ public:
         userStereoFile = juce::File();
         userPeaksForView.clear();
         filenameForView.clear();
-        reducedPeaks.clear();
+        userFilenameForView.clear();
     }
 
     // Generic property setters
@@ -110,6 +110,9 @@ public:
         case Props::activeResourcePath:
             activeResourcePath = str;
             break;
+        case Props::userFilenameForView:
+            userFilenameForView = str;
+            break;
         default:
             throw std::invalid_argument("Invalid property for string setter");
         }
@@ -117,7 +120,6 @@ public:
 
     inline void set(Props property, const std::vector<float>& peaks)
     {
-        reducedPeaks = peaks;
         switch (property)
         {
         case Props::userPeaksForView:
@@ -128,8 +130,6 @@ public:
             break;
         case Props::currentPeakDataInView:
             currentPeakDataInView = peaks;
-            break;
-        case Props::reducedPeaks:
             break;
         default:
             throw std::invalid_argument("Invalid property for vector setter");
@@ -188,17 +188,17 @@ public:
 
 
 private:
-    juce::File userStereoFile = juce::File(); // Default to invalid juce::File
-    juce::File defaultStereoFile = juce::File(); // Default to invalid juce::File
+    juce::File userStereoFile = juce::File();
+    juce::File defaultStereoFile = juce::File();
 
-    std::vector<float> reducedPeaks;
     std::vector<float> userPeaksForView;
     std::vector<float> defaultPeaksForView;
     std::vector<float> currentPeakDataInView;
 
-    std::string filenameForView; // Default to empty string
-    std::string defaultFilenameForView; // Default to empty string
-    std::string activeResourcePath; // Default to empty string
+    std::string filenameForView;
+    std::string defaultFilenameForView;
+    std::string activeResourcePath;
+    std::string userFilenameForView;
 };
 
 #endif // ASSET_H

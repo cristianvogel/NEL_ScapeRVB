@@ -63,28 +63,39 @@ void SlotManager::logAssetsMap() const
         // Manually log their contents
         std::cout
             << "SlotName: " << toString(slotName)
-            << "ReducedPeaks: " << asset.get<std::vector<float>>(Props::reducedPeaks).size()
             << "UserPeaks: " << asset.get<std::vector<float>>(Props::userPeaksForView).size()
             << "PeaksInView:" << asset.get<std::vector<float>>(Props::currentPeakDataInView).size()
             << std::endl;
     }
 }
 
-void SlotManager::assignDefaultFilenameToSlot(std::map<SlotName, Asset>& assetsMap,
-                                 const SlotName& slotName)
+void SlotManager::setDefaultFilenameToSlot(std::map<SlotName, Asset>& assetsMap,
+                                           const SlotName& slotName)
 {
     Asset& asset = assetsMap[slotName];
     const auto& defaultFilename = DEFAULT_SLOT_NAMES[getIndexForSlot(slotName)];
     asset.set(Props::defaultFilenameForView, defaultFilename);
 }
 
-void SlotManager::assignPeaksToSlot(std::map<SlotName, Asset>& assetsMap,
-                                    const SlotName& slotName,
-                                    const std::vector<float>& reducedSampleData,
-                                    const bool defaultSlot = true)
+void SlotManager::populateSlotWithUserFileData(std::map<SlotName, Asset>& assetsMap,
+                                               const SlotName& slotName,
+                                               const juce::File& file,
+                                               const std::vector<float>& reducedSampleData
+)
 {
     Asset& asset = assetsMap[slotName];
-    asset.set(Props::reducedPeaks, reducedSampleData);
+    asset.set(Props::userStereoFile, file);
+    const auto& userFilename = file.getFileNameWithoutExtension().substring(0, 10).toStdString();
+    asset.set(Props::userFilenameForView, userFilename);
+    asset.set(Props::userPeaksForView, reducedSampleData);
+}
+
+void SlotManager::setPeaksToSlot(std::map<SlotName, Asset>& assetsMap,
+                                 const SlotName& slotName,
+                                 const std::vector<float>& reducedSampleData,
+                                 const bool defaultSlot = true)
+{
+    Asset& asset = assetsMap[slotName];
     if (defaultSlot)
     {
         asset.set(Props::defaultPeaksForView, reducedSampleData);
@@ -97,43 +108,27 @@ void SlotManager::assignPeaksToSlot(std::map<SlotName, Asset>& assetsMap,
 }
 
 
-void SlotManager::assignUserFileToSlot(std::map<SlotName, Asset>& assetsMap,
-                                       const SlotName& slotName,
-                                       const juce::File& file)
-{
-    Asset& asset = assetsMap[slotName];
-    asset.set(Props::userStereoFile, file);
-}
-
-
-void SlotManager::assignFilenameForViewToSlot(std::map<SlotName, Asset>& assetsMap,
-                                              const SlotName& slotName,
-                                              const juce::File& file)
-{
-    Asset& asset = assetsMap[slotName];
-    asset.set(Props::filenameForView, file.getFileNameWithoutExtension().substring(0, 10).toStdString());
-}
-
-
 void SlotManager::wrapPeaksForView(std::map<SlotName, Asset>& assetsMap, elem::js::Object& peaksContainer) const
 {
     elem::js::Array peaks;
-    if (peaks.size() != 4)
-        peaks.resize(4);
+    peaks.resize(4);
 
     // go through whole assetsMap
     //
     for (const auto& [slot_name, asset] : assetsMap)
     {
-        const auto current = asset.get<std::vector<float>>(Props::reducedPeaks);
-
-        std::cout << "wrapping reduced peaks for view size >> " << current.size() << std::endl;
+        // which peaks depends whether user mode is active
+        const auto current = asset.get<std::vector<float>>(processor.userScapeMode
+                                                               ? Props::userPeaksForView
+                                                               : Props::defaultFilenameForView);
         // set the relevant index in the peaks vector
         const int index = getIndexForSlot(slot_name);
-        peaks[index] = elem::js::Value(current);
+        std::cout << "wrapped peaks for slot " << toString(slot_name) << " at index " << index << " size >> "
+            << current.size() << std::endl;
+        peaks[index] = elem::js::Float32Array(current);
     }
     // put the wrapped peaks data of each slot into the passed container keyed by WS_RESPONSE_KEY_FOR_PEAKS
-    peaksContainer.insert_or_assign(processor.WS_RESPONSE_KEY_FOR_PEAKS, elem::js::Value(peaks));
+    peaksContainer.insert_or_assign(processor.WS_RESPONSE_KEY_FOR_PEAKS, elem::js::Array(peaks));
     //
 }
 
@@ -184,7 +179,7 @@ void SlotManager::wrapFileNamesForView(elem::js::Object& containerForWrappedFile
 void SlotManager::switchSlotsTo(const bool customScape, const bool pruneVFS = false)
 {
     //
-    for (auto& [slot_name, asset] : processor.assetsMap)
+    for (auto& [slotName, asset] : processor.assetsMap)
     {
         if (customScape)
         {
@@ -193,7 +188,10 @@ void SlotManager::switchSlotsTo(const bool customScape, const bool pruneVFS = fa
             const auto fileInSlot = asset.get<juce::File>(asset.hasUserStereoFile()
                                                               ? Props::userStereoFile
                                                               : Props::defaultStereoFile);
-            const auto croppedName = fileInSlot.getFileNameWithoutExtension().substring(0, 10).toStdString();
+            const auto croppedName = asset.get<juce::File>(asset.hasUserStereoFile()
+                                                               ? Props::userFilenameForView
+                                                               : Props::defaultFilenameForView);
+
             asset.set(Props::filenameForView, croppedName);
             // toggle scapeMode to custom in the plugin
             processor.state.insert_or_assign("scapeMode", 1.0);

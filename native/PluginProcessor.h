@@ -178,6 +178,7 @@ public:
     elem::js::Object assetState;
     int userCutoffChoice = 160;
     std::atomic<bool> userFilesWereImported = false;
+    bool userScapeMode = false;
 
 
     void initialise_assets_map();
@@ -192,7 +193,7 @@ public:
     void updateStateFromAssetsMap();
     static elem::js::Value assetsMapToValue(const std::map<SlotName, Asset>& map);
     static std::vector<float> getReducedAudioBuffer(const juce::AudioBuffer<float>& buffer);
-    bool processImportedResponseBuffers(const juce::File& file, const SlotName& targetSlot);
+    bool processUserResponseFile(const juce::File& file, const SlotName& targetSlot);
     void processPersistedAssetState(const elem::js::Object& assetState);
     bool importPeakDataForView(const juce::AudioBuffer<float>& buffer);
     void dispatchVFSpathHistoryForSlot(SlotName slot);

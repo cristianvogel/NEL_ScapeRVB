@@ -63,10 +63,11 @@ void AudioFileLoader::handleAsyncUpdate()
 
     if (juce::File file(file_path); file.existsAsFile())
     {
-        processor.processImportedResponseBuffers(file, fromString(targetSlot));
-        processor.slotManager->assignUserFileToSlot(processor.assetsMap, fromString(targetSlot), file);
-        processor.slotManager->assignFilenameForViewToSlot(processor.assetsMap, fromString(targetSlot), file);
-        currentSlotIndex = (getIndexForSlot(fromString(targetSlot)) + 1) % NUM_SLOTS;
+        const auto& slotName = fromString(targetSlot);
+        if (processor.processUserResponseFile(file, slotName))
+        {
+            currentSlotIndex = (getIndexForSlot(slotName) + 1) % NUM_SLOTS;
+        }
         // Switch slots to User
         processor.slotManager->switchSlotsTo(true, false);
     }
