@@ -11,15 +11,13 @@ void SlotManager::wrapPeaksForView(std::map<SlotName, Asset>& assetsMap, elem::j
 {
     elem::js::Array peaks;
     peaks.resize(4);
-
     // go through whole assetsMap
-    //
     for (const auto& [slot_name, asset] : assetsMap)
     {
         // which peaks to wrap depends on user mode
         const auto current = asset.get<std::vector<float>>(processor.userScapeMode
                                                                ? Props::userPeaksForView
-                                                               : Props::defaultFilenameForView);
+                                                               : Props::defaultPeaksForView);
         // set the relevant index in the peaks vector
         const int index = getIndexForSlot(slot_name);
         std::cout << "wrapped peaks for slot " << toString(slot_name) << " at index " << index << " size >> "
@@ -84,13 +82,12 @@ void SlotManager::switchSlotsTo(const bool customScape, const bool pruneVFS = fa
             const auto fileInSlot = asset.get<juce::File>(asset.hasUserStereoFile()
                                                               ? Props::userStereoFile
                                                               : Props::defaultStereoFile);
-            const auto croppedName = asset.get<juce::File>(asset.hasUserStereoFile()
+            const auto croppedName = asset.get<std::string>(asset.hasUserStereoFile()
                                                                ? Props::userFilenameForView
                                                                : Props::defaultFilenameForView);
-
-            asset.set(Props::filenameForView, croppedName);
             // toggle scapeMode to custom in the plugin
-            processor.state.insert_or_assign("scapeMode", 1.0);
+            processor.state.insert_or_assign("scapeMode", 0.55); // avoiding odd behaviour with 1.0
+            processor.userScapeMode = true;
         }
         else
         {
@@ -98,6 +95,7 @@ void SlotManager::switchSlotsTo(const bool customScape, const bool pruneVFS = fa
             const auto fn = asset.get<std::string>(Props::defaultFilenameForView);
             asset.set(Props::filenameForView, fn);
             processor.state.insert_or_assign("scapeMode", 0.0);
+            processor.userScapeMode = false;
         }
         lastStateHash = -1;
     }
@@ -108,9 +106,9 @@ void SlotManager::switchSlotsTo(const bool customScape, const bool pruneVFS = fa
     {
         processor.pruneVFS();
         lastStateHash = -1;
-        // processor.userBankManager.resetUserBank();
-        peaksDirty.store(true);
     }
+
+    peaksDirty.store(true);
 }
 
 void SlotManager::populateSlotFromFileData(std::map<SlotName, Asset>& assetsMap,

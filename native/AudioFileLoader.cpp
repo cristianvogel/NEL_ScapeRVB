@@ -66,10 +66,10 @@ void AudioFileLoader::handleAsyncUpdate()
         const auto& slotName = fromString(targetSlot);
         if (processor.processUserResponseFile(file, slotName))
         {
+            processor.slotManager->switchSlotsTo(true, false);
             currentSlotIndex = (getIndexForSlot(slotName) + 1) % NUM_SLOTS;
         }
-        // Switch slots to User
-        processor.slotManager->switchSlotsTo(true, false);
+
     }
     else
     {

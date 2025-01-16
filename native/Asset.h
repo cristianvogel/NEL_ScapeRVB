@@ -191,9 +191,9 @@ private:
     juce::File userStereoFile = juce::File();
     juce::File defaultStereoFile = juce::File();
 
-    std::vector<float> userPeaksForView;
-    std::vector<float> defaultPeaksForView;
-    std::vector<float> currentPeakDataInView;
+    std::vector<float> userPeaksForView ;
+    std::vector<float> defaultPeaksForView ;
+    std::vector<float> currentPeakDataInView ;
 
     std::string filenameForView;
     std::string defaultFilenameForView;

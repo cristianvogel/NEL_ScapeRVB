@@ -180,11 +180,9 @@ public:
     std::atomic<bool> userFilesWereImported = false;
     bool userScapeMode = false;
 
-
-    void initialise_assets_map();
     void clear_userFiles_in_assets_map();
-    bool registerDefautStereoFiles();
-    bool processDefaultResponseBuffers();
+    bool initialiseDefaultFileAssets();
+    bool processDefaultIRs();
     void inspectVFS();
     void pruneVFS() const;
 

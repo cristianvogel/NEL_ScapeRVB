@@ -39,13 +39,12 @@ Processor::Processor()
         jassert(false);
     const auto parameters = manifest.getWithDefault("parameters", elem::js::Array());
     createParameters(parameters);
-    initialise_assets_map();
     // register audio file formats
     formatManager.registerBasicFormats();
     // run the famous CHOC WebView
     editor = new WebViewEditor(this, util::getAssetsDirectory(), 840, 480);
     // then load default audio assets
-    registerDefautStereoFiles();
+    initialiseDefaultFileAssets();
 }
 
 // Destructor
@@ -66,19 +65,6 @@ Processor::~Processor()
     }
 }
 
-void Processor::initialise_assets_map()
-{
-    // Initial slot
-    std::cout << "Initialising assets_map..." << std::endl;
-    auto slot = SlotName::LIGHT;
-    //
-    while (slot != SlotName::LAST)
-    {
-        assetsMap[slot] = Asset();
-        nextSlotNoWrap(slot);
-    }
-    //
-}
 
 void Processor::clear_userFiles_in_assets_map()
 {
@@ -110,7 +96,7 @@ void Processor::handleAsyncUpdate()
                                             });
 
         // initialise, process and load into the runtime all 4 default IR assets
-        processDefaultResponseBuffers();
+        processDefaultIRs();
         //
         for (const auto& [slotName, asset] : assetsMap)
         {
@@ -155,10 +141,11 @@ void Processor::handleAsyncUpdate()
 }
 
 //==============================================================================
-// At initialisation, handle registering each default impulse response to the
-// runtime virtual file system. These are already Mono channel files, with the
-// schema used throughout, LIGHT_0.WAV, LIGHT_1.WAV, SURFACE_0.WAV, SURFACE_1.WAV, etc.
-bool Processor::registerDefautStereoFiles()
+// At initialisation, start using the assetsMap straight away
+// to handle each default impulse response. On disk at public/assets/impulse-responses
+// these are stereo wav files called LIGHT.wav, SURFACE.wav, TEMPLE.wav, DEEPNESS.wav
+// and should be consumed in proper order. Refer to DEFAULT_SLOT_NAMES global for that.
+bool Processor::initialiseDefaultFileAssets()
 {
 #if ELEM_DEV_LOCALHOST
     auto assetsDir =
@@ -172,18 +159,14 @@ bool Processor::registerDefautStereoFiles()
     {
         if (assetsDir.isDirectory())
         {
-            int i = 0;
             auto assets = assetsDir.findChildFiles(juce::File::findFiles, true);
             for (auto& file : assets)
             {
                 if (file.getFileExtension().toLowerCase() == ".wav")
                 {
-                    SlotName slotName;
-                    Asset assetInSlot;
-                    assetInSlot.set(Props::defaultStereoFile, file);
-                    slotName = fromString(DEFAULT_SLOT_NAMES[i % 4]);
-                    assetsMap.insert_or_assign(slotName, assetInSlot);
-                    i++;
+                    SlotName slotName = fromString( file.getFileNameWithoutExtension().toStdString());;
+                    std::vector<float> samples;
+                    slotManager->populateSlotFromFileData( assetsMap, slotName, false, file, samples);
                 }
             }
         }
@@ -196,7 +179,7 @@ bool Processor::registerDefautStereoFiles()
     return true;
 }
 
-bool Processor::processDefaultResponseBuffers()
+bool Processor::processDefaultIRs()
 {
     jassert(elementaryRuntime != nullptr);
 
