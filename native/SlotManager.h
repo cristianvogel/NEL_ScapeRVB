@@ -70,6 +70,7 @@ public:
      */
     void assignPeaksToSlot(std::map<SlotName, Asset>& assetsMap, const SlotName& slotName,
                            const std::vector<float>& reducedSampleData, bool defaultSlot);
+     void assignDefaultFilenameToSlot( std::map<SlotName, Asset>& map, const SlotName& slot_name);
 
     /**
      * @brief Assigns a juce::File hook to a slot.
@@ -77,7 +78,8 @@ public:
      * @param targetSlot The target slot.
      * @param file The file to assign.
      */
-    static void assignUserFileToSlot(std::map<SlotName, Asset>& assetsMap, const SlotName& targetSlot, const juce::File& file) ;
+    static void assignUserFileToSlot(std::map<SlotName, Asset>& assetsMap, const SlotName& targetSlot,
+                                     const juce::File& file);
 
     /**
      * @brief Assigns a filename to a slot.
@@ -85,7 +87,8 @@ public:
      * @param targetSlot The target slot.
      * @param file The file containing the filename.
      */
-    static void assignFilenameForViewToSlot(std::map<SlotName, Asset>& assetsMap, const SlotName& targetSlot, const juce::File& file) ;
+    static void assignFilenameForViewToSlot(std::map<SlotName, Asset>& assetsMap, const SlotName& targetSlot,
+                                            const juce::File& file);
 
     /**
      * @brief Updates the asset entry at the current slot in the Processor assetMap
@@ -93,10 +96,11 @@ public:
      * @param slotName The slot name.
      * @param assetData The asset in the slot.
      */
-    void updateSlotDataInAssetMap(std::map<SlotName, Asset>& assetsMap, const SlotName& slotName, Asset& assetData) const;
-   /**
-    * @brief Utility to log the asset data
-    **/
+    void updateSlotDataInAssetMap(std::map<SlotName, Asset>& assetsMap, const SlotName& slotName,
+                                  Asset& assetData) const;
+    /**
+     * @brief Utility to log the asset data
+     **/
     void logAssetsMap() const;
 
     /**
@@ -113,7 +117,7 @@ public:
      */
     void resetUserSlots(bool pruneVFS = false);
 
-    static void assignDefaultFilenameToSlot(std::map<SlotName, Asset>& assetsMap,SlotName& slotName) ;
+    static void assignDefaultFilenameToSlot(std::map<SlotName, Asset>& assetsMap, SlotName& slotName);
     static int getIndexForSlot(const SlotName& slotName);
     int stepToNextTargetSlotIndex();
     int getCurrentTargetSlotIndex() const;

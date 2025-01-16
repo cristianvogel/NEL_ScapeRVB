@@ -71,10 +71,10 @@ void SlotManager::logAssetsMap() const
 }
 
 void SlotManager::assignDefaultFilenameToSlot(std::map<SlotName, Asset>& assetsMap,
-                                               SlotName& slotName)
+                                 const SlotName& slotName)
 {
     Asset& asset = assetsMap[slotName];
-    const auto& defaultFilename = DEFAULT_SLOT_NAMES[ getIndexForSlot(slotName) ];
+    const auto& defaultFilename = DEFAULT_SLOT_NAMES[getIndexForSlot(slotName)];
     asset.set(Props::defaultFilenameForView, defaultFilename);
 }
 
@@ -111,7 +111,7 @@ void SlotManager::assignFilenameForViewToSlot(std::map<SlotName, Asset>& assetsM
                                               const juce::File& file)
 {
     Asset& asset = assetsMap[slotName];
-    asset.set(Props::filenameForView, file.getFileNameWithoutExtension().substring(0,10).toStdString());
+    asset.set(Props::filenameForView, file.getFileNameWithoutExtension().substring(0, 10).toStdString());
 }
 
 
@@ -191,8 +191,8 @@ void SlotManager::switchSlotsTo(const bool customScape, const bool pruneVFS = fa
             // just in case the userStereoFile doesn't exist anymore
             // fall back to default
             const auto fileInSlot = asset.get<juce::File>(asset.hasUserStereoFile()
-                                                               ? Props::userStereoFile
-                                                               : Props::defaultStereoFile);
+                                                              ? Props::userStereoFile
+                                                              : Props::defaultStereoFile);
             const auto croppedName = fileInSlot.getFileNameWithoutExtension().substring(0, 10).toStdString();
             asset.set(Props::filenameForView, croppedName);
             // toggle scapeMode to custom in the plugin
@@ -214,7 +214,7 @@ void SlotManager::switchSlotsTo(const bool customScape, const bool pruneVFS = fa
     {
         processor.pruneVFS();
         lastStateHash = -1;
-       // processor.userBankManager.resetUserBank();
+        // processor.userBankManager.resetUserBank();
         peaksDirty.store(true);
     }
 }

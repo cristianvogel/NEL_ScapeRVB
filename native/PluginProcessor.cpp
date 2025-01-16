@@ -230,11 +230,13 @@ bool Processor::processDefaultResponseBuffers()
             // file system
 
             // stash one channel of the normalised buffer data for Peaks in the VIEW
+            // and generally update all the default view asset data
             if (channel == 0)
             {
                 assetsMap[ targetSlot ].set( Props::defaultStereoFile, file );
                 std::vector<float> samples = util::reduceBufferToPeaksData( buffer );
                 assetsMap[ targetSlot].set( Props::defaultPeaksForView, samples );
+                slotManager->assignDefaultFilenameToSlot( assetsMap, targetSlot );
             }
 
             // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
@@ -266,48 +268,33 @@ bool Processor::processDefaultResponseBuffers()
 
 void Processor::updateStateFromAssetsMap()
 {
-    //
         assetState.insert_or_assign(PERSISTED_ASSET_MAP, assetsMapToValue(assetsMap));
-    //
 }
 
-
-Results Processor::validateUserUpload(Results& results, const juce::File& selectedFile) const
+// todo: is this being called?
+void Processor::validateUserUpload( const juce::File& selectedFile)
 {
-    auto slot = SlotName::LAST;
-
     if (!selectedFile.existsAsFile())
     {
-        results.set(toString(slot), util::error_to_string(ScapeError::NO_FILES_SELECTED));
-        return results;
+        dispatchError("File error:", errorStatuses(static_cast<int>(ScapeError::FILE_NOT_FOUND)));
+        return;
     }
 
     const juce::String& file_path = selectedFile.getFullPathName();
-    const juce::String slot_as_key(toString(fromIndex(fileLoader->currentSlotIndex)));
+    // const juce::String slot_as_key(toString(fromIndex(fileLoader->currentSlotIndex)));
 
     // Check if valid extension
     if (!selectedFile.hasFileExtension("wav;WAV;aiff;AIFF"))
     {
-        results.set(slot_as_key,
-                    util::error_to_string(ScapeError::FILETYPE_NOT_SUPPORTED)
-                    + delimiter
-                    + file_path);
+        dispatchError("File error:", errorStatuses(static_cast<int>(ScapeError::FILETYPE_NOT_SUPPORTED)));
+        return;
     }
-    // Check if exists
-    if (selectedFile.existsAsFile() == false)
-    {
-        results.set(slot_as_key,
-                    util::error_to_string(ScapeError::FILE_NOT_FOUND)
-                    + delimiter
-                    + file_path);
-    }
+
     // Check if file size is larger than 5MB
     if (selectedFile.getSize() > 5 * 1024 * 1024)
     {
-        results.set(slot_as_key,
-                    util::error_to_string(ScapeError::FILESIZE_EXCEEDED)
-                    + delimiter
-                    + file_path);
+        dispatchError("File error:", errorStatuses(static_cast<int>(ScapeError::FILESIZE_EXCEEDED)));
+        return;
     }
     // Check if filename contains reserved default slot keywords
     if (selectedFile.getFileNameWithoutExtension().containsWholeWord("TEMPLE") ||
@@ -315,18 +302,9 @@ Results Processor::validateUserUpload(Results& results, const juce::File& select
         selectedFile.getFileNameWithoutExtension().containsWholeWord("DEEPNESS") ||
         selectedFile.getFileNameWithoutExtension().containsWholeWord("LIGHT"))
     {
-        results.set(slot_as_key,
-                    util::error_to_string(ScapeError::DO_NOT_OVERWRITE_DEFAULTS)
-                    + delimiter
-                    + file_path);
+        dispatchError("File error:", errorStatuses(static_cast<int>(ScapeError::DO_NOT_OVERWRITE_DEFAULTS)));
+        return;
     }
-    // Verified as valid ✅
-    results.set(slot_as_key,
-                util::error_to_string(ScapeError::OK)
-                + delimiter
-                + file_path);
-    // fulfill promise
-    return results;
 }
 
 bool Processor::processImportedResponseBuffers(const juce::File& file, const SlotName& targetSlot)
