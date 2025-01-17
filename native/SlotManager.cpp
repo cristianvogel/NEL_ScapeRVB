@@ -38,7 +38,7 @@ void SlotManager::wrapPeaksForView(std::map<SlotName, Asset>& assetsMap, elem::j
 
 void SlotManager::wrapStateForView(elem::js::Object& containerForWrappedState) const
 {
-    elem::js::Object processorState = processor.state;
+
     // prepare extra state about filenames, for the front end
     elem::js::Array values;
 
@@ -49,20 +49,20 @@ void SlotManager::wrapStateForView(elem::js::Object& containerForWrappedState) c
         values[index] = elem::js::String(asset.get<std::string>(Props::filenameForView));
     }
 
-    processorState.insert_or_assign(processor.KEY_FOR_FILENAMES, elem::js::Value(values));
+    processor.state.insert_or_assign(processor.KEY_FOR_FILENAMES, elem::js::Value(values));
     // inject a special rounded case for the 'structure' parameter
     // this is needed because host is normalised but the front end
     // expects a value between 0 and 15. Float rounding error is
     // happening in the plugin host, so fix here
-    if (processorState.contains("structure"))
+    if (processor.state.contains("structure"))
     {
-        const auto hostValue = static_cast<elem::js::Number>(processorState.at("structure"));
+        const auto hostValue = static_cast<elem::js::Number>(processor.state.at("structure"));
         constexpr float stepSize = 1.0f / 16.0f;
         const float roundedValue = std::round(hostValue / stepSize) * stepSize;
-        processorState.insert_or_assign("structure", static_cast<elem::js::Number>(roundedValue));
+        processor.state.insert_or_assign("structure", static_cast<elem::js::Number>(roundedValue));
     }
     // Now wrap up
-    containerForWrappedState.insert_or_assign(processor.WS_RESPONSE_KEY_FOR_STATE, elem::js::Object(processorState));
+    containerForWrappedState.insert_or_assign(processor.WS_RESPONSE_KEY_FOR_STATE, processor.state);
 }
 
 void SlotManager::wrapFileNamesForView(elem::js::Object& containerForWrappedFileNames) const
