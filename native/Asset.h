@@ -22,8 +22,9 @@ public:
         defaultPeaksForView,
         currentPeakDataInView,
         defaultFilenameForView,
-        activeResourcePath,
-        reducedPeaks
+        userFilenameForView,
+        cutOffChoice,
+        vfs_keys // Elementary Virtual File System resource paths
     };
 
     // 1. Base template declaration
@@ -37,7 +38,7 @@ public:
         {
         case Props::userStereoFile: return userStereoFile;
         case Props::defaultStereoFile: return defaultStereoFile;
-        default: throw std::invalid_argument("Invalid property for File getter");
+        default: throw std::invalid_argument("Invalid property for juce::File getter");
         }
     }
 
@@ -49,8 +50,8 @@ public:
         {
         case Props::filenameForView: return filenameForView;
         case Props::defaultFilenameForView: return defaultFilenameForView;
-        case Props::activeResourcePath: return activeResourcePath;
-        default: throw std::invalid_argument("Invalid property for string getter");
+        case Props::userFilenameForView: return userFilenameForView;
+        default: throw std::invalid_argument("Invalid property for filename string getter");
         }
     }
 
@@ -63,8 +64,31 @@ public:
         case Props::userPeaksForView: return userPeaksForView;
         case Props::defaultPeaksForView: return defaultPeaksForView;
         case Props::currentPeakDataInView: return currentPeakDataInView;
-        case Props::reducedPeaks: return reducedPeaks;
-        default: throw std::invalid_argument("Invalid property for vector getter");
+        default: throw std::invalid_argument("Invalid property for peaks vector getter");
+        }
+    }
+
+    // 5. for vfs
+    template <>
+    inline const std::vector<std::string>& get<std::vector<std::string>>(Props property) const
+    {
+        switch (property)
+        {
+        case Props::vfs_keys: return vfs_keys;
+        default: throw std::invalid_argument("Invalid property for vfs string vector getter");
+        }
+    }
+
+    //  6. for cutoff choice
+    template <>
+    inline const int& get<int>(Props property) const
+    {
+        switch (property)
+        {
+        case Props::cutOffChoice:
+            return cutOffChoice; // Scoped access to `cutOffChoice`.
+        default:
+            return defaultCutOffChoice; // Default value.
         }
     }
 
@@ -78,10 +102,21 @@ public:
         userStereoFile = juce::File();
         userPeaksForView.clear();
         filenameForView.clear();
-        reducedPeaks.clear();
+        userFilenameForView.clear();
     }
 
     // Generic property setters
+    inline void set(Props property, int hz )
+    {
+        switch (property)
+        {
+        case Props::cutOffChoice:
+            cutOffChoice = hz;
+            break;
+        default:
+            throw std::invalid_argument("Invalid property for cutOffChoice setter");
+        }
+    }
     inline void set(Props property, const juce::File& file)
     {
         switch (property)
@@ -97,6 +132,23 @@ public:
         }
     }
 
+    inline void set(Props property, const std::vector<std::string>& keys)
+    {
+        switch (property)
+        {
+        case Props::vfs_keys:
+            if (!keys.empty())
+            {
+                vfs_keys.clear();
+                vfs_keys.reserve(keys.size());
+                vfs_keys.insert(vfs_keys.end(), keys.begin(), keys.end());
+            }
+            break;
+        default:
+            throw std::invalid_argument("Invalid property for VFS_KEYS");
+        }
+    }
+
     inline void set(Props property, const std::string& str)
     {
         switch (property)
@@ -107,8 +159,8 @@ public:
         case Props::defaultFilenameForView:
             defaultFilenameForView = str;
             break;
-        case Props::activeResourcePath:
-            activeResourcePath = str;
+        case Props::userFilenameForView:
+            userFilenameForView = str;
             break;
         default:
             throw std::invalid_argument("Invalid property for string setter");
@@ -117,7 +169,6 @@ public:
 
     inline void set(Props property, const std::vector<float>& peaks)
     {
-        reducedPeaks = peaks;
         switch (property)
         {
         case Props::userPeaksForView:
@@ -128,8 +179,6 @@ public:
             break;
         case Props::currentPeakDataInView:
             currentPeakDataInView = peaks;
-            break;
-        case Props::reducedPeaks:
             break;
         default:
             throw std::invalid_argument("Invalid property for vector setter");
@@ -151,7 +200,7 @@ public:
     // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
 
     // Convert Asset to elem::js::Value
-     inline elem::js::Value toJsValue() const
+    inline elem::js::Value toJsValue() const
     {
         elem::js::Object obj;
         obj["userStereoFile"] = elem::js::Value(get<juce::File>(Props::userStereoFile).getFullPathName().toStdString());
@@ -161,13 +210,16 @@ public:
         obj["defaultFilenameForView"] = elem::js::Value(get<std::string>(Props::defaultFilenameForView));
         obj["userPeaksForView"] = elem::js::Value(get<std::vector<float>>(Props::userPeaksForView));
         obj["defaultPeaksForView"] = elem::js::Value(get<std::vector<float>>(Props::defaultPeaksForView));
+        obj["vfs_keys"] = elem::js::Value(get<std::vector<std::string>>(Props::vfs_keys));
+        obj["cutOffChoice"] = elem::js::Number(get<int>(Props::cutOffChoice));
         // don't think we need to save currentPeakDataInView, as its derived from the other peaks
         return elem::js::Value(obj);
     }
 
     // Convert from elem::js::Value to Asset
     // specialised for asset state restoration
-     static inline Asset fromJsValue(const elem::js::Value& value)
+    // todo: Do we need to restore the vfs_keys?
+    static inline Asset fromJsValue(const elem::js::Value& value)
     {
         Asset asset;
         if (value.isObject())
@@ -181,24 +233,29 @@ public:
             {
                 asset.set(Props::filenameForView, obj.at("filenameForView").toString());
             }
+            if (obj.contains("cutOffChoice") && obj.at("cutOffChoice").isNumber())
+            {
+                asset.set(Props::cutOffChoice, static_cast<int>( obj.at("cutOffChoice")));
+            }
         }
         return asset;
     }
 
-
-
 private:
-    juce::File userStereoFile = juce::File(); // Default to invalid juce::File
-    juce::File defaultStereoFile = juce::File(); // Default to invalid juce::File
+    static inline const int defaultCutOffChoice  = 160;
+    juce::File userStereoFile = juce::File();
+    juce::File defaultStereoFile = juce::File();
 
-    std::vector<float> reducedPeaks;
     std::vector<float> userPeaksForView;
     std::vector<float> defaultPeaksForView;
     std::vector<float> currentPeakDataInView;
 
-    std::string filenameForView; // Default to empty string
-    std::string defaultFilenameForView; // Default to empty string
-    std::string activeResourcePath; // Default to empty string
+    std::string filenameForView;
+    std::string defaultFilenameForView;
+    std::vector<std::string> vfs_keys;
+    std::string userFilenameForView;
+
+    int cutOffChoice{};
 };
 
 #endif // ASSET_H

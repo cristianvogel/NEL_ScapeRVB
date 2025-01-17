@@ -39,13 +39,12 @@ Processor::Processor()
         jassert(false);
     const auto parameters = manifest.getWithDefault("parameters", elem::js::Array());
     createParameters(parameters);
-    initialise_assets_map();
     // register audio file formats
     formatManager.registerBasicFormats();
     // run the famous CHOC WebView
     editor = new WebViewEditor(this, util::getAssetsDirectory(), 840, 480);
     // then load default audio assets
-    registerDefautStereoFiles();
+    initialiseDefaultFileAssets();
 }
 
 // Destructor
@@ -66,19 +65,6 @@ Processor::~Processor()
     }
 }
 
-void Processor::initialise_assets_map()
-{
-    // Initial slot
-    std::cout << "Initialising assets_map..." << std::endl;
-    auto slot = SlotName::LIGHT;
-    //
-    while (slot != SlotName::LAST)
-    {
-        assetsMap[slot] = Asset();
-        nextSlotNoWrap(slot);
-    }
-    //
-}
 
 void Processor::clear_userFiles_in_assets_map()
 {
@@ -110,13 +96,13 @@ void Processor::handleAsyncUpdate()
                                             });
 
         // initialise, process and load into the runtime all 4 default IR assets
-        processDefaultResponseBuffers();
+        processDefaultIRs();
         //
         for (const auto& [slotName, asset] : assetsMap)
         {
             SlotName targetSlot = slotName;
-            if ( asset.hasUserStereoFile() )
-                processImportedResponseBuffers( asset.get<juce::File>(Props::userStereoFile), targetSlot);
+            if (asset.hasUserStereoFile())
+                processUserResponseFile(asset.get<juce::File>(Props::userStereoFile), targetSlot);
         }
         // Værsgo!
         initJavaScriptEngine();
@@ -155,10 +141,11 @@ void Processor::handleAsyncUpdate()
 }
 
 //==============================================================================
-// At initialisation, handle registering each default impulse response to the
-// runtime virtual file system. These are already Mono channel files, with the
-// schema used throughout, LIGHT_0.WAV, LIGHT_1.WAV, SURFACE_0.WAV, SURFACE_1.WAV, etc.
-bool Processor::registerDefautStereoFiles()
+// At initialisation, start using the assetsMap straight away
+// to handle each default impulse response. On disk at public/assets/impulse-responses
+// these are stereo wav files called LIGHT.wav, SURFACE.wav, TEMPLE.wav, DEEPNESS.wav
+// and should be consumed in proper order. Refer to DEFAULT_SLOT_NAMES global for that.
+bool Processor::initialiseDefaultFileAssets()
 {
 #if ELEM_DEV_LOCALHOST
     auto assetsDir =
@@ -172,18 +159,14 @@ bool Processor::registerDefautStereoFiles()
     {
         if (assetsDir.isDirectory())
         {
-            int i = 0;
             auto assets = assetsDir.findChildFiles(juce::File::findFiles, true);
             for (auto& file : assets)
             {
                 if (file.getFileExtension().toLowerCase() == ".wav")
                 {
-                    SlotName slotName;
-                    Asset assetInSlot;
-                    assetInSlot.set(Props::defaultStereoFile, file);
-                    slotName = fromString( DEFAULT_SLOT_NAMES[i % 4] );
-                    assetsMap.insert_or_assign(slotName, assetInSlot);
-                    i++;
+                    SlotName slotName = fromString( file.getFileNameWithoutExtension().toStdString());;
+                    std::vector<float> samples;
+                    slotManager->populateSlotFromFileData( assetsMap, slotName, false, file, samples);
                 }
             }
         }
@@ -196,7 +179,7 @@ bool Processor::registerDefautStereoFiles()
     return true;
 }
 
-bool Processor::processDefaultResponseBuffers()
+bool Processor::processDefaultIRs()
 {
     jassert(elementaryRuntime != nullptr);
 
@@ -216,7 +199,6 @@ bool Processor::processDefaultResponseBuffers()
 
         for (int channel = 0; channel < 2; ++channel)
         {
-
             auto buffer = juce::AudioBuffer<float>();
             buffer.setSize(1, reader->lengthInSamples);
             reader->read(&buffer, 0, reader->lengthInSamples, 0, !channel, channel);
@@ -230,11 +212,11 @@ bool Processor::processDefaultResponseBuffers()
             // file system
 
             // stash one channel of the normalised buffer data for Peaks in the VIEW
+            // and populate all the Fcactory Default view asset data
             if (channel == 0)
             {
-                assetsMap[ targetSlot ].set( Props::defaultStereoFile, file );
-                std::vector<float> samples = util::reduceBufferToPeaksData( buffer );
-                assetsMap[ targetSlot].set( Props::defaultPeaksForView, samples );
+                std::vector<float> reducedSamples = util::reduceBufferToPeaksData(buffer);
+                slotManager->populateSlotFromFileData(assetsMap, targetSlot, false, file, reducedSamples);
             }
 
             // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
@@ -266,48 +248,33 @@ bool Processor::processDefaultResponseBuffers()
 
 void Processor::updateStateFromAssetsMap()
 {
-    //
-        assetState.insert_or_assign(PERSISTED_ASSET_MAP, assetsMapToValue(assetsMap));
-    //
+    assetState.insert_or_assign(PERSISTED_ASSET_MAP, assetsMapToValue(assetsMap));
 }
 
-
-Results Processor::validateUserUpload(Results& results, const juce::File& selectedFile) const
+// todo: is this being called?
+bool Processor::validateUserUpload(const juce::File& selectedFile)
 {
-    auto slot = SlotName::LAST;
-
     if (!selectedFile.existsAsFile())
     {
-        results.set(toString(slot), util::error_to_string(ScapeError::NO_FILES_SELECTED));
-        return results;
+        dispatchError("File error:", errorStatuses(static_cast<int>(ScapeError::FILE_NOT_FOUND)));
+        return false;
     }
 
     const juce::String& file_path = selectedFile.getFullPathName();
-    const juce::String slot_as_key(toString(fromIndex(fileLoader->currentSlotIndex)));
+    // const juce::String slot_as_key(toString(fromIndex(fileLoader->currentSlotIndex)));
 
     // Check if valid extension
     if (!selectedFile.hasFileExtension("wav;WAV;aiff;AIFF"))
     {
-        results.set(slot_as_key,
-                    util::error_to_string(ScapeError::FILETYPE_NOT_SUPPORTED)
-                    + delimiter
-                    + file_path);
+        dispatchError("File error:", errorStatuses(static_cast<int>(ScapeError::FILETYPE_NOT_SUPPORTED)));
+        return false;
     }
-    // Check if exists
-    if (selectedFile.existsAsFile() == false)
-    {
-        results.set(slot_as_key,
-                    util::error_to_string(ScapeError::FILE_NOT_FOUND)
-                    + delimiter
-                    + file_path);
-    }
+
     // Check if file size is larger than 5MB
     if (selectedFile.getSize() > 5 * 1024 * 1024)
     {
-        results.set(slot_as_key,
-                    util::error_to_string(ScapeError::FILESIZE_EXCEEDED)
-                    + delimiter
-                    + file_path);
+        dispatchError("File error:", errorStatuses(static_cast<int>(ScapeError::FILESIZE_EXCEEDED)));
+        return false;
     }
     // Check if filename contains reserved default slot keywords
     if (selectedFile.getFileNameWithoutExtension().containsWholeWord("TEMPLE") ||
@@ -315,24 +282,20 @@ Results Processor::validateUserUpload(Results& results, const juce::File& select
         selectedFile.getFileNameWithoutExtension().containsWholeWord("DEEPNESS") ||
         selectedFile.getFileNameWithoutExtension().containsWholeWord("LIGHT"))
     {
-        results.set(slot_as_key,
-                    util::error_to_string(ScapeError::DO_NOT_OVERWRITE_DEFAULTS)
-                    + delimiter
-                    + file_path);
+        dispatchError("File error:", errorStatuses(static_cast<int>(ScapeError::DO_NOT_OVERWRITE_DEFAULTS)));
+        return false;
     }
-    // Verified as valid ✅
-    results.set(slot_as_key,
-                util::error_to_string(ScapeError::OK)
-                + delimiter
-                + file_path);
-    // fulfill promise
-    return results;
+    // validated
+    return true;
 }
 
-bool Processor::processImportedResponseBuffers(const juce::File& file, const SlotName& targetSlot)
+bool Processor::processUserResponseFile(const juce::File& file, const SlotName& targetSlot)
 {
-    lastKnownSampleRate = getSampleRate();
+    // first validate the upload
+    if (!validateUserUpload(file)) return false;
+
     // Create an AudioBuffer to hold the audio data
+    lastKnownSampleRate = getSampleRate();
     auto buffer1 = juce::AudioBuffer<float>();
     // Check the userCutoffChoice is set
     if (!userCutoffChoice)
@@ -386,11 +349,12 @@ bool Processor::processImportedResponseBuffers(const juce::File& file, const Slo
         // file system
 
         // stash one channel of the normalised buffer data for Peaks in the VIEW
+        // and populate all the user view asset data
         if (channel == 0)
         {
-            assetsMap[ targetSlot ].set( Props::userStereoFile, file );
-            std::vector<float> samples = util::reduceBufferToPeaksData( buffer2 );
-            assetsMap[ targetSlot ].set( Props::userPeaksForView, samples );
+            const std::vector<float> reducedSamples = util::reduceBufferToPeaksData(buffer2);
+            assetsMap.at(targetSlot).set( Props::cutOffChoice, userCutoffChoice);
+            slotManager->populateSlotFromFileData(assetsMap, targetSlot, true, file, reducedSamples);
         }
 
         // apply the high pass filter
@@ -452,31 +416,26 @@ void Processor::inspectVFS()
     if (elementaryRuntime == nullptr)
         return;
     auto vfs = elementaryRuntime->getSharedResourceMapKeys();
-    std::vector<std::string> keys;
-    // get the assets map
-    // to the front end the easy way
-    // stashing it in the state object
-    //
-    for (const auto& kv : assetsMap)
+   if (vfs.begin() == vfs.end()) return;
+    std::vector<std::string> allKeys;
+    std::vector<std::string> slotKeys;
+    // couple the vfs keys with each slot by name
+    for (auto& [slotName, asset] : assetsMap)
     {
-        const SlotName& slotName = kv.first;
-        const Asset& asset = kv.second;
-
-        for (const auto& key : vfs)
+        slotKeys.clear();
+        for (const auto& path : vfs)
         {
-            if (key.find(toString(slotName)) != std::string::npos)
+            if (path.find(toString(slotName)) != std::string::npos)
             {
-                keys.push_back(key);
+                slotKeys.push_back(path);
+                allKeys.push_back(path);
             }
         }
+        asset.set(Props::vfs_keys, slotKeys);
+        assetsMap.insert_or_assign(slotName, asset);
     }
-    //
-
-    // add the keys to the state object
-    // which will get sent with the next state update
-    state.insert_or_assign(VFS_KEYS, keys);
+    state.insert_or_assign(VFS_KEYS, allKeys);
 }
-
 
 
 //============== FRONT END IS CONNECTED VIA WEBSOCKET SERVER ================
@@ -1010,7 +969,7 @@ bool Processor::sendJavascriptToUI(const std::string& expr) const
  * @brief Serialize data for js
  */
 std::string Processor::serialize(const std::string& function, const elem::js::Object& data,
-                                              const juce::String& replacementChar)
+                                 const juce::String& replacementChar)
 {
     return juce::String(function)
            .replace(replacementChar, elem::js::serialize(elem::js::serialize(data)))
@@ -1018,7 +977,7 @@ std::string Processor::serialize(const std::string& function, const elem::js::Ob
 }
 
 std::string Processor::serialize(const std::string& function, const choc::value::Value& data,
-                                              const juce::String& replacementChar)
+                                 const juce::String& replacementChar)
 {
     return juce::String(function).replace(replacementChar, choc::json::toString(data)).toStdString();
 }
@@ -1117,6 +1076,9 @@ std::map<SlotName, Asset> Processor::convertToAssetMap(const elem::js::Object& a
     return assetMap;
 }
 
+
+// todo: Still needs work, peaks not being restored for example
+// todo: needs to handle a persisted HPF cutoff value
 void Processor::processPersistedAssetState(const elem::js::Object& assetStateObject)
 {
     std::map<SlotName, Asset> savedAssetMap = convertToAssetMap(assetStateObject);
@@ -1147,20 +1109,20 @@ void Processor::processPersistedAssetState(const elem::js::Object& assetStateObj
 
     // Iterate through assetState to collect userStereoFile paths
     //
-    for (const std::pair<SlotName, Asset>& entry : savedAssetMap)
+    for (const auto& entry : savedAssetMap)
     {
         targetSlot = entry.first;
         const Asset& savedAsset = entry.second;
 
         if (savedAsset.hasUserStereoFile())
         {
-            file =  savedAsset.get<juce::File>(Props::userStereoFile);
+            file = savedAsset.get<juce::File>(Props::userStereoFile);
             std::cout << "Restoring ▶︎ Slot: " << toString(targetSlot)
                 << ", File: "
                 << file.getFileName().toStdString()
                 << std::endl;
 
-            if (!processImportedResponseBuffers(file, targetSlot))
+            if (!processUserResponseFile(file, targetSlot))
             {
                 std::cout << "Failed to restore user IRs!" << std::endl;
                 continue;

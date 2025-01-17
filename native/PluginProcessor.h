@@ -49,7 +49,7 @@ public:
 
     juce::AudioFormatManager formatManager;
     void createParameters(const std::vector<elem::js::Value>& parameters);
-
+    std::unique_ptr<AudioFileLoader> fileLoader;
     //==============================================================================
     Processor();
     ~Processor() override;
@@ -63,11 +63,8 @@ public:
     //==============================================================================
     void prepareToPlay(double sampleRate, int samplesPerBlock) override;
     void releaseResources() override;
-
     bool isBusesLayoutSupported(const juce::AudioProcessor::BusesLayout& layouts) const override;
-
     void processBlock(juce::AudioBuffer<float>&, juce::MidiBuffer&) override;
-
     //==============================================================================
     const juce::String getName() const override;
 
@@ -149,7 +146,6 @@ public:
     //==============================================================================
 
 private:
-    std::unique_ptr<AudioFileLoader> fileLoader;
     // The maximum number of error messages to keep in the queue
     size_t MAX_ERROR_LOG_QUEUE_SIZE = 200;
     std::optional<std::string> loadDspEntryFileContents() const;
@@ -178,30 +174,30 @@ public:
     elem::js::Object assetState;
     int userCutoffChoice = 160;
     std::atomic<bool> userFilesWereImported = false;
+    bool userScapeMode = false;
 
-
-    void initialise_assets_map();
     void clear_userFiles_in_assets_map();
-    bool registerDefautStereoFiles();
-    bool processDefaultResponseBuffers();
+    bool initialiseDefaultFileAssets();
+    bool processDefaultIRs();
     void inspectVFS();
     void pruneVFS() const;
 
-    Results validateUserUpload(Results& results, const juce::File& selectedFile) const;
+    bool validateUserUpload(const juce::File& selectedFile) ;
     Results uploadedFileData;
     void updateStateFromAssetsMap();
     static elem::js::Value assetsMapToValue(const std::map<SlotName, Asset>& map);
     static std::vector<float> getReducedAudioBuffer(const juce::AudioBuffer<float>& buffer);
-    bool processImportedResponseBuffers(const juce::File& file, const SlotName& targetSlot);
+    bool processUserResponseFile(const juce::File& file, const SlotName& targetSlot);
     void processPersistedAssetState(const elem::js::Object& assetState);
     bool importPeakDataForView(const juce::AudioBuffer<float>& buffer);
-    void dispatchVFSpathHistoryForSlot(SlotName slot);
     std::map<SlotName, Asset> convertToAssetMap(const elem::js::Object& assetStateObject) const;
 
-    vfs::UserBankManager userBankManager;
+    vfs::UserBankManager userBankManager; // todo: DEPRECATED ?
     std::string prefixUserBank(const std::string& name) const;
-    std::unique_ptr<SlotManager> slotManager; // Use a smart pointer to manage the slot manager
 
+    // Slot Manager instance
+    std::unique_ptr<SlotManager> slotManager; // Use a smart pointer to manage the slot manager
+    std::vector<std::string> current_VFS_Keys;
 
 private:
     int USERBANK = 0;

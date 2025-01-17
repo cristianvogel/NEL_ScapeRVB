@@ -80,20 +80,20 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                     processor.slotManager->wrapPeaksForView( processor.assetsMap, peaksContainer );
                     juce::String serializedPeaks = elem::js::serialize(peaksContainer);
                     std::cout << "Dispatching reduced peaks to front end..." << std::endl;
-                    sendWebSocketMessage(serializedPeaks.toStdString());
+                    sendWebSocketMessage( std::move( serializedPeaks.toStdString() ));
                     processor.slotManager->peaksDirty.store(false);
                 }
 
                 // ============ hash state for performance optimization ========================
                 // hash the serialized state, send only if changed
                 elem::js::Object stateContainer;
-                processor.slotManager->wrapStateForView(stateContainer);
+                processor.slotManager->wrapStateForView( processor.assetsMap, stateContainer );
                 juce::String serializedState = elem::js::serialize(stateContainer);
                 int currentStateHash = serializedState.hashCode();
 
                 if (currentStateHash != processor.slotManager->lastStateHash)
                 {
-                    sendWebSocketMessage(serializedState.toStdString());
+                    sendWebSocketMessage( std::move( serializedState.toStdString() ) );
                     processor.slotManager->lastStateHash = currentStateHash;
                 }
             }

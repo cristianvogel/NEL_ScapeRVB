@@ -64,7 +64,6 @@ export function parseAndUpdateIRRefs(
       const scale = getScale(slotName, chan);
       const offset = scape.offset;
       const process = Math.min(scape.level, scape.vectorData[slot.slotIndex]); // todo: take another look at this
-      console.log('SCAPE::parseAndUpdateIRRefs', {ref, path, scale, offset, process});
       // test for null or undefined
       if (ref === null || ref === undefined) return;
       if (path === null || path === undefined) return;
