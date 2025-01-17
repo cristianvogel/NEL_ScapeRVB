@@ -23,6 +23,7 @@ public:
         currentPeakDataInView,
         defaultFilenameForView,
         userFilenameForView,
+        cutOffChoice,
         vfs_keys // Elementary Virtual File System resource paths
     };
 
@@ -78,6 +79,19 @@ public:
         }
     }
 
+    //  6. for cutoff choice
+    template <>
+    inline const int& get<int>(Props property) const
+    {
+        switch (property)
+        {
+        case Props::cutOffChoice:
+            return cutOffChoice; // Scoped access to `cutOffChoice`.
+        default:
+            return defaultCutOffChoice; // Default value.
+        }
+    }
+
     // Constructors and Destructor
     inline Asset() = default;
     inline ~Asset() = default;
@@ -92,6 +106,17 @@ public:
     }
 
     // Generic property setters
+    inline void set(Props property, int hz )
+    {
+        switch (property)
+        {
+        case Props::cutOffChoice:
+            cutOffChoice = hz;
+            break;
+        default:
+            throw std::invalid_argument("Invalid property for cutOffChoice setter");
+        }
+    }
     inline void set(Props property, const juce::File& file)
     {
         switch (property)
@@ -186,6 +211,7 @@ public:
         obj["userPeaksForView"] = elem::js::Value(get<std::vector<float>>(Props::userPeaksForView));
         obj["defaultPeaksForView"] = elem::js::Value(get<std::vector<float>>(Props::defaultPeaksForView));
         obj["vfs_keys"] = elem::js::Value(get<std::vector<std::string>>(Props::vfs_keys));
+        obj["cutOffChoice"] = elem::js::Number(get<int>(Props::cutOffChoice));
         // don't think we need to save currentPeakDataInView, as its derived from the other peaks
         return elem::js::Value(obj);
     }
@@ -207,11 +233,16 @@ public:
             {
                 asset.set(Props::filenameForView, obj.at("filenameForView").toString());
             }
+            if (obj.contains("cutOffChoice") && obj.at("cutOffChoice").isNumber())
+            {
+                asset.set(Props::cutOffChoice, static_cast<int>( obj.at("cutOffChoice")));
+            }
         }
         return asset;
     }
 
 private:
+    static inline const int defaultCutOffChoice  = 160;
     juce::File userStereoFile = juce::File();
     juce::File defaultStereoFile = juce::File();
 
@@ -223,6 +254,8 @@ private:
     std::string defaultFilenameForView;
     std::vector<std::string> vfs_keys;
     std::string userFilenameForView;
+
+    int cutOffChoice{};
 };
 
 #endif // ASSET_H

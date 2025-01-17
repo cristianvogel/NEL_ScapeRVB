@@ -353,7 +353,7 @@ bool Processor::processUserResponseFile(const juce::File& file, const SlotName& 
         if (channel == 0)
         {
             const std::vector<float> reducedSamples = util::reduceBufferToPeaksData(buffer2);
-           // assetsMap.at(targetSlot).set( Props::cutOffChoice, userCutoffChoice);
+            assetsMap.at(targetSlot).set( Props::cutOffChoice, userCutoffChoice);
             slotManager->populateSlotFromFileData(assetsMap, targetSlot, true, file, reducedSamples);
         }
 
