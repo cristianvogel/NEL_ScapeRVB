@@ -36,3 +36,4 @@ previousUI-versions
 *.sw?
 *.swp
 
+/public/dsp.main.js
