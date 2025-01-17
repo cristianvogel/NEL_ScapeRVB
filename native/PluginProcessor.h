@@ -49,7 +49,7 @@ public:
 
     juce::AudioFormatManager formatManager;
     void createParameters(const std::vector<elem::js::Value>& parameters);
-
+    std::unique_ptr<AudioFileLoader> fileLoader;
     //==============================================================================
     Processor();
     ~Processor() override;
@@ -63,11 +63,8 @@ public:
     //==============================================================================
     void prepareToPlay(double sampleRate, int samplesPerBlock) override;
     void releaseResources() override;
-
     bool isBusesLayoutSupported(const juce::AudioProcessor::BusesLayout& layouts) const override;
-
     void processBlock(juce::AudioBuffer<float>&, juce::MidiBuffer&) override;
-
     //==============================================================================
     const juce::String getName() const override;
 
@@ -149,7 +146,6 @@ public:
     //==============================================================================
 
 private:
-    std::unique_ptr<AudioFileLoader> fileLoader;
     // The maximum number of error messages to keep in the queue
     size_t MAX_ERROR_LOG_QUEUE_SIZE = 200;
     std::optional<std::string> loadDspEntryFileContents() const;
@@ -194,13 +190,14 @@ public:
     bool processUserResponseFile(const juce::File& file, const SlotName& targetSlot);
     void processPersistedAssetState(const elem::js::Object& assetState);
     bool importPeakDataForView(const juce::AudioBuffer<float>& buffer);
-    void dispatchVFSpathHistoryForSlot(SlotName slot);
     std::map<SlotName, Asset> convertToAssetMap(const elem::js::Object& assetStateObject) const;
 
-    vfs::UserBankManager userBankManager;
+    vfs::UserBankManager userBankManager; // todo: DEPRECATED ?
     std::string prefixUserBank(const std::string& name) const;
-    std::unique_ptr<SlotManager> slotManager; // Use a smart pointer to manage the slot manager
 
+    // Slot Manager instance
+    std::unique_ptr<SlotManager> slotManager; // Use a smart pointer to manage the slot manager
+    std::vector<std::string> current_VFS_Keys;
 
 private:
     int USERBANK = 0;

@@ -1,6 +1,7 @@
 // local headers
 #include "SlotManager.h"
 #include "Asset.h"
+#include "AudioFileLoader.h"
 #include "Utilities.h"
 
 using Props = Asset::Props;
@@ -11,71 +12,64 @@ SlotManager::SlotManager(Processor& processor) : processor(processor)
 
 void SlotManager::wrapPeaksForView(std::map<SlotName, Asset>& assetsMap, elem::js::Object& peaksContainer)
 {
-    elem::js::Array peaks;
-    peaks.resize(4);
     // go through whole assetsMap
+    peaks.resize(assetsMap.size());
     for (const auto& [slot_name, asset] : assetsMap)
     {
         // which peaks to wrap depends on user mode
         auto current = asset.get<std::vector<float>>(processor.userScapeMode
-                                                               ? Props::userPeaksForView
-                                                               : Props::defaultPeaksForView);
+                                                         ? Props::userPeaksForView
+                                                         : Props::defaultPeaksForView);
         if (current.empty())
         {
-            current = asset.get<std::vector<float>>( Props::currentPeakDataInView );
+            current = asset.get<std::vector<float>>(Props::currentPeakDataInView);
         }
         // set the relevant index in the peaks vector
         const int index = getIndexForSlot(slot_name);
+        assert(index >= 0 && index < DEFAULT_SLOT_NAMES.size());
         std::cout << "wrapped peaks for slot " << toString(slot_name) << " at index " << index << " size >> "
             << current.size() << std::endl;
         peaks[index] = elem::js::Float32Array(current);
     }
     // put the wrapped peaks data of each slot into the passed container keyed by WS_RESPONSE_KEY_FOR_PEAKS
-    peaksContainer.insert_or_assign(processor.WS_RESPONSE_KEY_FOR_PEAKS, elem::js::Array(peaks));
+    peaksContainer.insert_or_assign(processor.WS_RESPONSE_KEY_FOR_PEAKS, peaks);
     //
     peaksDirty.store(true);
 }
 
-void SlotManager::wrapStateForView(elem::js::Object& containerForWrappedState) const
+void SlotManager::wrapStateForView(std::map<SlotName, Asset>& assetsMap, elem::js::Object& containerForWrappedState)
 {
+    // prepare extra non-host state for the front end
 
-    // prepare extra state about filenames, for the front end
-    elem::js::Array values;
 
-    values.resize(processor.assetsMap.size());
-    for (auto& [slot_name, asset] : processor.assetsMap)
+    // --- Wrap filenames
+    names.resize(assetsMap.size());
+    for (const auto& [slot_name, asset] : processor.assetsMap)
     {
         const int index = getIndexForSlot(slot_name);
-        values[index] = elem::js::String(asset.get<std::string>(Props::filenameForView));
+        names[index] = elem::js::String(asset.get<std::string>(Props::filenameForView));
     }
 
-    processor.state.insert_or_assign(processor.KEY_FOR_FILENAMES, elem::js::Value(values));
+    // --- Wrap Structure param
     // inject a special rounded case for the 'structure' parameter
     // this is needed because host is normalised but the front end
     // expects a value between 0 and 15. Float rounding error is
     // happening in the plugin host, so fix here
-    if (processor.state.contains("structure"))
-    {
-        const auto hostValue = static_cast<elem::js::Number>(processor.state.at("structure"));
-        constexpr float stepSize = 1.0f / 16.0f;
-        const float roundedValue = std::round(hostValue / stepSize) * stepSize;
-        processor.state.insert_or_assign("structure", static_cast<elem::js::Number>(roundedValue));
-    }
-    // Now wrap up
+    const auto hostValue = static_cast<elem::js::Number>(processor.state.at("structure"));
+    constexpr float stepSize = 1.0f / 16.0f;
+    const float roundedValue = std::round(hostValue / stepSize) * stepSize;
+
+
+    //
+    // Now bundle host and extra state together
+    processor.state.insert_or_assign("currentSlotIndex",
+                                     static_cast<elem::js::Number>(processor.fileLoader->currentSlotIndex));
+    processor.state.insert_or_assign("structure", static_cast<elem::js::Number>(roundedValue));
+    processor.state.insert_or_assign(processor.KEY_FOR_FILENAMES, names);
+    // wrap into container
     containerForWrappedState.insert_or_assign(processor.WS_RESPONSE_KEY_FOR_STATE, processor.state);
 }
 
-void SlotManager::wrapFileNamesForView(elem::js::Object& containerForWrappedFileNames) const
-{
-    elem::js::Array values;
-    values.resize(processor.assetsMap.size());
-    for (const auto& [slot_name, asset] : processor.assetsMap)
-    {
-        const int index = getIndexForSlot(slot_name);
-        values[index] = elem::js::String(asset.get<std::string>(Props::filenameForView));
-    }
-    containerForWrappedFileNames.insert_or_assign(processor.KEY_FOR_FILENAMES, elem::js::Array(values));
-}
 
 void SlotManager::switchSlotsTo(const bool customScape, const bool pruneVFS = false)
 {
@@ -93,9 +87,9 @@ void SlotManager::switchSlotsTo(const bool customScape, const bool pruneVFS = fa
                                                                 ? Props::userFilenameForView
                                                                 : Props::defaultFilenameForView);
             const auto peaksInView = asset.get<std::vector<float>>(asset.hasUserStereoFile()
-                                                                ? Props::userPeaksForView
-                                                                : Props::defaultPeaksForView);
-            asset.set( Props::currentPeakDataInView, peaksInView);
+                                                                       ? Props::userPeaksForView
+                                                                       : Props::defaultPeaksForView);
+            asset.set(Props::currentPeakDataInView, peaksInView);
             asset.set(Props::filenameForView, croppedName);
             // toggle scapeMode to custom in the plugin
             processor.state.insert_or_assign("scapeMode", 0.55); // avoiding odd behaviour with 1.0

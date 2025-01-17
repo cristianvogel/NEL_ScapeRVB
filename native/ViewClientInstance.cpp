@@ -87,7 +87,7 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                 // ============ hash state for performance optimization ========================
                 // hash the serialized state, send only if changed
                 elem::js::Object stateContainer;
-                processor.slotManager->wrapStateForView(stateContainer);
+                processor.slotManager->wrapStateForView( processor.assetsMap, stateContainer );
                 juce::String serializedState = elem::js::serialize(stateContainer);
                 int currentStateHash = serializedState.hashCode();
 

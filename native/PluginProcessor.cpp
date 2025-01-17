@@ -415,30 +415,25 @@ void Processor::inspectVFS()
     if (elementaryRuntime == nullptr)
         return;
     auto vfs = elementaryRuntime->getSharedResourceMapKeys();
-    std::vector<std::string> keys;
-    // get the assets map
-    // to the front end the easy way
-    // stashing it in the state object
-    //
-    for (const auto& kv : assetsMap)
+   if (vfs.begin() == vfs.end()) return;
+    std::vector<std::string> allKeys;
+    std::vector<std::string> slotKeys;
+    // couple the vfs keys with each slot by name
+    for (auto& [slotName, asset] : assetsMap)
     {
-        const SlotName& slotName = kv.first;
-        const Asset& asset = kv.second;
-
-        for (const auto& key : vfs)
+        slotKeys.clear();
+        for (const auto& path : vfs)
         {
-            if (key.find(toString(slotName)) != std::string::npos)
+            if (path.find(toString(slotName)) != std::string::npos)
             {
-                keys.push_back(key);
+                slotKeys.push_back(path);
+                allKeys.push_back(path);
             }
         }
+        asset.set(Props::vfs_keys, slotKeys);
+        assetsMap.insert_or_assign(slotName, asset);
     }
-    //
-
-    // add the keys to the state object
-    // which will get sent with the next state update
-    state.insert_or_assign( "currentSlotIndex", static_cast<elem::js::Number>( fileLoader->currentSlotIndex));
-    state.insert_or_assign(VFS_KEYS, keys);
+    state.insert_or_assign(VFS_KEYS, allKeys);
 }
 
 

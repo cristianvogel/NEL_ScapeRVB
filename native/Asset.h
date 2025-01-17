@@ -23,7 +23,7 @@ public:
         currentPeakDataInView,
         defaultFilenameForView,
         userFilenameForView,
-        activeResourcePath
+        vfs_keys // Elementary Virtual File System resource paths
     };
 
     // 1. Base template declaration
@@ -37,7 +37,7 @@ public:
         {
         case Props::userStereoFile: return userStereoFile;
         case Props::defaultStereoFile: return defaultStereoFile;
-        default: throw std::invalid_argument("Invalid property for File getter");
+        default: throw std::invalid_argument("Invalid property for juce::File getter");
         }
     }
 
@@ -49,9 +49,8 @@ public:
         {
         case Props::filenameForView: return filenameForView;
         case Props::defaultFilenameForView: return defaultFilenameForView;
-        case Props::activeResourcePath: return activeResourcePath;
         case Props::userFilenameForView: return userFilenameForView;
-        default: throw std::invalid_argument("Invalid property for string getter");
+        default: throw std::invalid_argument("Invalid property for filename string getter");
         }
     }
 
@@ -64,7 +63,18 @@ public:
         case Props::userPeaksForView: return userPeaksForView;
         case Props::defaultPeaksForView: return defaultPeaksForView;
         case Props::currentPeakDataInView: return currentPeakDataInView;
-        default: throw std::invalid_argument("Invalid property for vector getter");
+        default: throw std::invalid_argument("Invalid property for peaks vector getter");
+        }
+    }
+
+    // 5. for vfs
+    template <>
+    inline const std::vector<std::string>& get<std::vector<std::string>>(Props property) const
+    {
+        switch (property)
+        {
+        case Props::vfs_keys: return vfs_keys;
+        default: throw std::invalid_argument("Invalid property for vfs string vector getter");
         }
     }
 
@@ -97,6 +107,23 @@ public:
         }
     }
 
+    inline void set(Props property, const std::vector<std::string>& keys)
+    {
+        switch (property)
+        {
+        case Props::vfs_keys:
+            if (!keys.empty())
+            {
+                vfs_keys.clear();
+                vfs_keys.reserve(keys.size());
+                vfs_keys.insert(vfs_keys.end(), keys.begin(), keys.end());
+            }
+            break;
+        default:
+            throw std::invalid_argument("Invalid property for VFS_KEYS");
+        }
+    }
+
     inline void set(Props property, const std::string& str)
     {
         switch (property)
@@ -106,9 +133,6 @@ public:
             break;
         case Props::defaultFilenameForView:
             defaultFilenameForView = str;
-            break;
-        case Props::activeResourcePath:
-            activeResourcePath = str;
             break;
         case Props::userFilenameForView:
             userFilenameForView = str;
@@ -151,7 +175,7 @@ public:
     // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
 
     // Convert Asset to elem::js::Value
-     inline elem::js::Value toJsValue() const
+    inline elem::js::Value toJsValue() const
     {
         elem::js::Object obj;
         obj["userStereoFile"] = elem::js::Value(get<juce::File>(Props::userStereoFile).getFullPathName().toStdString());
@@ -161,13 +185,15 @@ public:
         obj["defaultFilenameForView"] = elem::js::Value(get<std::string>(Props::defaultFilenameForView));
         obj["userPeaksForView"] = elem::js::Value(get<std::vector<float>>(Props::userPeaksForView));
         obj["defaultPeaksForView"] = elem::js::Value(get<std::vector<float>>(Props::defaultPeaksForView));
+        obj["vfs_keys"] = elem::js::Value(get<std::vector<std::string>>(Props::vfs_keys));
         // don't think we need to save currentPeakDataInView, as its derived from the other peaks
         return elem::js::Value(obj);
     }
 
     // Convert from elem::js::Value to Asset
     // specialised for asset state restoration
-     static inline Asset fromJsValue(const elem::js::Value& value)
+    // todo: Do we need to restore the vfs_keys?
+    static inline Asset fromJsValue(const elem::js::Value& value)
     {
         Asset asset;
         if (value.isObject())
@@ -185,19 +211,17 @@ public:
         return asset;
     }
 
-
-
 private:
     juce::File userStereoFile = juce::File();
     juce::File defaultStereoFile = juce::File();
 
-    std::vector<float> userPeaksForView ;
-    std::vector<float> defaultPeaksForView ;
-    std::vector<float> currentPeakDataInView ;
+    std::vector<float> userPeaksForView;
+    std::vector<float> defaultPeaksForView;
+    std::vector<float> currentPeakDataInView;
 
     std::string filenameForView;
     std::string defaultFilenameForView;
-    std::string activeResourcePath;
+    std::vector<std::string> vfs_keys;
     std::string userFilenameForView;
 };
 

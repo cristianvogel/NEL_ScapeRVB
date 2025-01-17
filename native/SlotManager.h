@@ -34,17 +34,14 @@ public:
      * @param assetsMap
      * @param containerForWrappedPeaks Container for the wrapped peaks data.
      */
-    void wrapPeaksForView(std::map<SlotName, Asset>& assetsMap, elem::js::Object& containerForWrappedPeaks) ;
+    void wrapPeaksForView(std::map<SlotName, Asset>& assetsMap, elem::js::Object& containerForWrappedPeaks);
     /**
      * @brief Wraps state data for view.
+     * @param assetsMap
      * @param containerForWrappedState Container for the wrapped state data.
      */
-    void wrapStateForView(elem::js::Object& containerForWrappedState) const;
-    /**
-     * @brief Wraps file names for view.
-     * @param containerForWrappedFileNames Container for the wrapped file names.
-     */
-    void wrapFileNamesForView(elem::js::Object& containerForWrappedFileNames) const;
+    void wrapStateForView(std::map<SlotName, Asset>& assetsMap, elem::js::Object& containerForWrappedState) ;
+
     /**
      * @brief Switches slots to a custom scape.
      * @param customScape Whether to switch to custom scapes or default scapes
@@ -100,7 +97,9 @@ private:
     std::size_t lastStateHash = 0; ///< Last state hash.
     int lastPeaksHash = 0; ///< Last peaks hash
     int targetSlotIndex = -1;
-    std::mutex mtx;
+    elem::js::Array peaks;
+    elem::js::Array names;
 };
+
 
 #endif // SLOTMANAGER_H
