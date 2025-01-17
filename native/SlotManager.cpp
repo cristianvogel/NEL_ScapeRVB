@@ -96,10 +96,10 @@ void SlotManager::switchSlotsTo(const bool customScape, const bool pruneVFS = fa
                                                                 ? Props::userPeaksForView
                                                                 : Props::defaultPeaksForView);
             asset.set( Props::currentPeakDataInView, peaksInView);
+            asset.set(Props::filenameForView, croppedName);
             // toggle scapeMode to custom in the plugin
             processor.state.insert_or_assign("scapeMode", 0.55); // avoiding odd behaviour with 1.0
             processor.userScapeMode = true;
-            asset.set(Props::filenameForView, croppedName);
         }
         else
         {
@@ -112,14 +112,12 @@ void SlotManager::switchSlotsTo(const bool customScape, const bool pruneVFS = fa
         lastStateHash = -1;
     }
 
-    //
-
     if (pruneVFS)
     {
         processor.pruneVFS();
         lastStateHash = -1;
     }
-
+    // in all cases, peaks need to be redrawn
     peaksDirty.store(true);
 }
 
