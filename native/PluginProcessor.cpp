@@ -1076,6 +1076,9 @@ std::map<SlotName, Asset> Processor::convertToAssetMap(const elem::js::Object& a
     return assetMap;
 }
 
+
+// todo: Still needs work, peaks not being restored for example
+// todo: needs to handle a persisted HPF cutoff value
 void Processor::processPersistedAssetState(const elem::js::Object& assetStateObject)
 {
     std::map<SlotName, Asset> savedAssetMap = convertToAssetMap(assetStateObject);
@@ -1106,7 +1109,7 @@ void Processor::processPersistedAssetState(const elem::js::Object& assetStateObj
 
     // Iterate through assetState to collect userStereoFile paths
     //
-    for (const std::pair<SlotName, Asset>& entry : savedAssetMap)
+    for (const auto& entry : savedAssetMap)
     {
         targetSlot = entry.first;
         const Asset& savedAsset = entry.second;
