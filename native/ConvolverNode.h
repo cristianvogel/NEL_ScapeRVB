@@ -12,9 +12,7 @@ class DuckingTimer : public juce::Timer
     std::atomic<bool>& shouldDuck;
 
 public:
-    explicit DuckingTimer(std::atomic<bool>& duckFlag) : shouldDuck(duckFlag)
-    {
-    }
+    explicit DuckingTimer(std::atomic<bool>& duckFlag) : shouldDuck(duckFlag){ }
 
     void timerCallback() override
     {
@@ -42,7 +40,7 @@ public:
     }
     void startDucking() {
         shouldDuckAudio.store(true);
-        duckTimer->startTimer(150);
+        duckTimer->startTimer(50);
     }
     // This is an Elementary custom node
     int setProperty(
@@ -66,11 +64,11 @@ public:
 
             path = (elem::js::String)val;
             const auto ref = resources.get(path);
-            std::lock_guard<std::mutex> lock(convolverMutex);
-            auto co = std::make_shared<fftconvolver::TwoStageFFTConvolver>();
-            co->reset();
-            co->init(headSize, tailSize, ref->data(), ref->size());
-            convolverQueue.push(std::move(co));
+                std::lock_guard<std::mutex> lock(convolverMutex);
+                auto co = std::make_shared<fftconvolver::TwoStageFFTConvolver>();
+                co->reset();
+                co->init(headSize, tailSize, ref->data(), ref->size());
+                convolverQueue.push(std::move(co));
         }
 
         // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
@@ -135,26 +133,18 @@ public:
             // 3. Update the convolver with the new data from channel 0
             auto* shiftedData = shifted.getReadPointer(0);
             // 4. do the convolver swap and init, replacing the most recent convolver in the queue
-
-            co->init(headSize, tailSize, shiftedData, adjustedIRLen);
-            // really not sure if I have to pop the oldConvolver node
-            // from the stack?
             std::lock_guard<std::mutex> lock(convolverMutex);
-            std::shared_ptr<fftconvolver::TwoStageFFTConvolver> oldConvolver;
-            if (convolverQueue.size() > 0)
-            {
-                convolverQueue.pop(oldConvolver);
-            }
-            // Push the new convolver in all cases
-            convolverQueue.push(std::move(co));
-            // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
-            // A solution to crash when too much convolution re-computing
-            // is happening, for example a user scrubs the Offset fader
-            // in the UI.
-            // ...
-            // Create a timer to reset shouldDuckAudio after a few millis
-            // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
-            startDucking();
+                co->init(headSize, tailSize, shiftedData, adjustedIRLen);
+                // really not sure if I have to pop the oldConvolver node
+                // from the stack?
+                std::shared_ptr<fftconvolver::TwoStageFFTConvolver> oldConvolver;
+                if (convolverQueue.size() > 0)
+                {
+                    convolverQueue.pop(oldConvolver);
+                }
+                // start ducking and push the new convolver in all cases
+                startDucking();
+                convolverQueue.push(std::move(co));
         }
 
         return GraphNode<float>::setProperty(key, val);

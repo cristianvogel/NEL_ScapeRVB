@@ -419,7 +419,7 @@ void Processor::inspectVFS()
    if (vfs.begin() == vfs.end()) return;
     std::vector<std::string> allKeys;
     std::vector<std::string> slotKeys;
-    // couple the vfs keys with each slot by name
+    //=== couple the vfs keys with each slot by name
     for (auto& [slotName, asset] : assetsMap)
     {
         slotKeys.clear();
@@ -434,11 +434,12 @@ void Processor::inspectVFS()
         asset.set(Props::vfs_keys, slotKeys);
         assetsMap.insert_or_assign(slotName, asset);
     }
+    //=== dispatch all the keys as one array
     state.insert_or_assign(VFS_KEYS, allKeys);
 }
 
 
-//============== FRONT END IS CONNECTED VIA WEBSOCKET SERVER ================
+//=== FRONT END IS CONNECTED VIA WEBSOCKET SERVER ===
 // We launch that when the WebView calls ready()
 void Processor::runWebServer()
 {

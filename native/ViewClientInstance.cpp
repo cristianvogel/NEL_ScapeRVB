@@ -73,7 +73,7 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             {
                 if (!processor.editor) return;
 
-                // === first handle peaks for view
+                // === first handle peaks for view ===
                 if ( processor.slotManager->peaksDirty.load() )
                 {
                     elem::js::Object peaksContainer;
@@ -84,8 +84,7 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                     processor.slotManager->peaksDirty.store(false);
                 }
 
-                // ============ hash state for performance optimization ========================
-                // hash the serialized state, send only if changed
+                // === hash state for performance optimization ===
                 elem::js::Object stateContainer;
                 processor.slotManager->wrapStateForView( processor.assetsMap, stateContainer );
                 juce::String serializedState = elem::js::serialize(stateContainer);
