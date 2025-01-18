@@ -1,20 +1,35 @@
 #pragma once
 
-#include <juce_dsp/juce_dsp.h>
+#include <mutex>
 #include "FFTConvolver/TwoStageFFTConvolver.h"
 #include <elem/GraphNode.h>
 #include <elem/Types.h>
 #include <elem/SingleWriterSingleReaderQueue.h>
 #include "Utilities.h"
 
+class DuckingTimer : public juce::Timer
+{
+    std::atomic<bool>& shouldDuck;
+
+public:
+    explicit DuckingTimer(std::atomic<bool>& duckFlag) : shouldDuck(duckFlag)
+    {
+    }
+
+    void timerCallback() override
+    {
+        shouldDuck.store(false);
+        stopTimer();
+    }
+};
+
 class ConvolverNode : public elem::GraphNode<float>
 {
 public:
     ConvolverNode(elem::NodeId const id, double sampleRate, int const blockSize)
-        : elem::GraphNode<float>(id, sampleRate, blockSize)
-    {
-        // Other initialization code
-    }
+        : elem::GraphNode<float>(id, sampleRate, blockSize),
+          duckTimer(std::make_unique<DuckingTimer>(shouldDuckAudio))
+    { }
 
     ~ConvolverNode() override
     {
@@ -25,13 +40,15 @@ public:
             // No specific cleanup needed for shared_ptr, just clearing the queue
         }
     }
-
+    void startDucking() {
+        shouldDuckAudio.store(true);
+        duckTimer->startTimer(150);
+    }
     // This is an Elementary custom node
-
     int setProperty(
-        std::string const &key,
-        elem::js::Value const &val,
-        elem::SharedResourceMap<float> &resources) override
+        std::string const& key,
+        elem::js::Value const& val,
+        elem::SharedResourceMap<float>& resources) override
     {
         // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
         // The Elementary VFS / Shared Resources Map path NOT File path
@@ -48,7 +65,8 @@ public:
                 return elem::ReturnCode::InvalidPropertyValue(); // USERBANK_1_USER2_0
 
             path = (elem::js::String)val;
-            auto ref = resources.get(path);
+            const auto ref = resources.get(path);
+            std::lock_guard<std::mutex> lock(convolverMutex);
             auto co = std::make_shared<fftconvolver::TwoStageFFTConvolver>();
             co->reset();
             co->init(headSize, tailSize, ref->data(), ref->size());
@@ -60,7 +78,6 @@ public:
         // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
         if (key == "headSize" || key == "tailSize")
         {
-
             if (!val.isNumber())
                 return elem::ReturnCode::InvalidPropertyType();
             if (key == "headSize")
@@ -101,8 +118,9 @@ public:
                 return elem::ReturnCode::InvalidPropertyValue();
 
             shouldDuckAudio.store(true);
-            offset = fmin( 0.9, static_cast<float>( (elem::js::Number) val) );
+            offset = fmin(0.9, static_cast<float>((elem::js::Number)val));
             auto ref = resources.get(path);
+
             auto co = std::make_shared<fftconvolver::TwoStageFFTConvolver>();
             // 1. Create an instance of juce::AudioBuffer
             juce::AudioBuffer<float> ab(1, ref->size());
@@ -110,16 +128,18 @@ public:
             ab.copyFrom(0, 0, ref->data(), ref->size());
             auto denormOffset = ab.getNumSamples() * offset;
             auto adjustedIRLen = fmax(headSize, ab.getNumSamples() - denormOffset);
-            juce::AudioBuffer<float> shifted = juce::AudioBuffer<float>(1, adjustedIRLen);
+            juce::AudioBuffer<float> shifted = std::move(juce::AudioBuffer<float>(1, adjustedIRLen));
             // 2. Copy a crop of data from the reference into a second buffer
             shifted.copyFrom(0, 0, ab, 0, denormOffset, adjustedIRLen);
             util::normaliseAudioBuffer(shifted, 0.7079f);
             // 3. Update the convolver with the new data from channel 0
-            auto *shiftedData = shifted.getReadPointer(0);
+            auto* shiftedData = shifted.getReadPointer(0);
             // 4. do the convolver swap and init, replacing the most recent convolver in the queue
+
             co->init(headSize, tailSize, shiftedData, adjustedIRLen);
             // really not sure if I have to pop the oldConvolver node
             // from the stack?
+            std::lock_guard<std::mutex> lock(convolverMutex);
             std::shared_ptr<fftconvolver::TwoStageFFTConvolver> oldConvolver;
             if (convolverQueue.size() > 0)
             {
@@ -134,20 +154,16 @@ public:
             // ...
             // Create a timer to reset shouldDuckAudio after a few millis
             // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
-            std::thread([this]()
-                        {
-                std::this_thread::sleep_for(std::chrono::milliseconds(150));
-                shouldDuckAudio.store(false); })
-                .detach();
+            startDucking();
         }
 
         return GraphNode<float>::setProperty(key, val);
     }
 
-    void process(elem::BlockContext<float> const &ctx) override
+    void process(elem::BlockContext<float> const& ctx) override
     {
-        auto **inputData = ctx.inputData;
-        auto *outputData = ctx.outputData;
+        auto** inputData = ctx.inputData;
+        auto* outputData = ctx.outputData;
         auto numChannels = ctx.numInputChannels;
         auto numSamples = ctx.numSamples;
 
@@ -157,6 +173,7 @@ public:
         // First order of business: grab the most recent convolver to use if
         // there's anything in the queue. Try to handle discontinuities in the
         // audio by ducking the audio with an atomic flag
+        std::lock_guard<std::mutex> lock(convolverMutex);
         while (convolverQueue.size() > 0)
         {
             convolverQueue.pop(convolver);
@@ -173,14 +190,16 @@ public:
         // Finally convolve the scaledData with the impulse response
         convolver->TwoStageFFTConvolver::process(scaledData.data(), outputData, numSamples);
     }
+
     elem::SingleWriterSingleReaderQueue<std::shared_ptr<fftconvolver::TwoStageFFTConvolver>> convolverQueue;
     std::shared_ptr<fftconvolver::TwoStageFFTConvolver> convolver;
-    //  std::atomic<float> procFlag = 0.0f;
     std::atomic<float> scalar = 1.0f;
     int headSize = 512;
     int tailSize = 4096;
     float offset = 0;
     std::atomic<float> procFlag = 0.0f;
     std::string path;
-    std::atomic<bool> shouldDuckAudio = false;
+    std::atomic<bool> shouldDuckAudio{false};
+    mutable std::mutex convolverMutex;
+    std::unique_ptr<DuckingTimer> duckTimer;
 }; // namespace elem
