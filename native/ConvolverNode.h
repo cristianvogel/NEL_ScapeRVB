@@ -152,6 +152,8 @@ public:
 
     void process(elem::BlockContext<float> const& ctx) override
     {
+        juce::ScopedNoDenormals noDenormals;
+
         auto** inputData = ctx.inputData;
         auto* outputData = ctx.outputData;
         auto numChannels = ctx.numInputChannels;
