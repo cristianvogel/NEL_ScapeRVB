@@ -1128,8 +1128,6 @@ void Processor::processPersistedAssetState(const elem::js::Object& assetStateObj
                 std::cout << "Failed to restore user IRs!" << std::endl;
                 continue;
             }
-            // is this enough to make deep copy of saved asset?
-            assetsMap[targetSlot] = savedAsset;
         }
     }
     state.insert_or_assign("scapeMode", 1.0);
