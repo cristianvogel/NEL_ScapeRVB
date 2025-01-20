@@ -43,13 +43,13 @@ export function handleStateChange(_refs: RefMap, rawJSON: JSONString ) {
     
     //  parse the state
     const { state, srvb, shared, scape } = parseNewState( refs, rawJSON) as ProcessorSettings;
-    console.log('STATE::0');
+    // console.log('STATE::0');
     // then get or create the props for the DSP
     const { srvbProps, scapeProps } = getOrCreatePropsForDSP(srvb, shared, scape);
-    console.log('STATE::1');
+   //  console.log('STATE::1');
     // setup the structure series
     structureData = structureSetup( refs, structureData );
-    console.log('STATE::2');
+    // console.log('STATE::2');
     // now render or re-hydrate the graph
     // ▮▮▮▮▮▮▮▮▮▮▮ Elementary Audio Graph Renderer ▮▮▮▮▮▮▮▮▮▮ //
  
@@ -59,7 +59,7 @@ export function handleStateChange(_refs: RefMap, rawJSON: JSONString ) {
         adjustStructurePosition(refs, srvb, structureData);
         renderAudioGraph(shared, srvbProps, scapeProps);
     } else {
-        console.log('STATE::UPDATE');
+      //  console.log('STATE::UPDATE');
         updateSignalRefs( refs, srvb, scape, shared);
     }
 };
@@ -109,7 +109,7 @@ function parseNewState(_refs: RefMap, rawState: JSONString) {
         dryInputs: [el.in({ channel: 0 }), el.in({ channel: 1 })],
         dryMix: state.dryMix,
     };
-    console.log('STATE::shared');
+    // console.log('STATE::shared');
 
     refs.vfsKeys = state.vfsKeys;
 
@@ -126,7 +126,7 @@ function parseNewState(_refs: RefMap, rawState: JSONString) {
         bypass: (Math.round(state.srvbBypass) || 0) as 1 | 0,
         position: remapPosition(state.position)
     };
-    console.log('STATE::srvb');
+    // console.log('STATE::srvb');
     const scape: ScapeSettings = {
         reverse: Math.round(state.scapeReverse) as 1 | 0,
         level: state.scapeLevel * 1.5,
@@ -139,7 +139,7 @@ function parseNewState(_refs: RefMap, rawState: JSONString) {
         position: state.position,
         hasUserSlots: currentVFSKeys?.some((key) => key.includes("USERBANK"))
     };
-    console.log('STATE::scape');
+    // console.log('STATE::scape');
     return { state, srvb, shared, scape };
 }
 

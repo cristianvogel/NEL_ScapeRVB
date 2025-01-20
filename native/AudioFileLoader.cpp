@@ -63,7 +63,7 @@ void AudioFileLoader::handleAsyncUpdate()
 
     if (juce::File file(file_path); file.existsAsFile())
     {
-        const auto& slotName = fromString(targetSlot);
+        const auto& slotName = slotname_from_string(targetSlot);
         if (processor.processUserResponseFile(file, slotName))
         {
             processor.slotManager->switchSlotsTo(true, false);

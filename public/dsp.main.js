@@ -3411,18 +3411,14 @@
     refs2 = _refs;
     currentVFSKeys = refs2.vfsKeys;
     const { state, srvb, shared, scape } = parseNewState(refs2, rawJSON);
-    console.log("STATE::0");
     const { srvbProps, scapeProps } = getOrCreatePropsForDSP(srvb, shared, scape);
-    console.log("STATE::1");
     structureData = structureSetup(refs2, structureData);
-    console.log("STATE::2");
     if (shouldRender(memoized, state, renderCount)) {
       console.log("STATE::Render: " + renderCount);
       updateMemoizedState(state, srvb, shared, scape);
       adjustStructurePosition(refs2, srvb, structureData);
       renderAudioGraph(shared, srvbProps, scapeProps);
     } else {
-      console.log("STATE::UPDATE");
       updateSignalRefs(refs2, srvb, scape, shared);
     }
   }
@@ -3461,7 +3457,6 @@
       dryInputs: [stdlib.in({ channel: 0 }), stdlib.in({ channel: 1 })],
       dryMix: state.dryMix
     };
-    console.log("STATE::shared");
     refs2.vfsKeys = state.vfsKeys;
     const srvb = {
       vfsKeys: refs2.vfsKeys,
@@ -3477,7 +3472,6 @@
       bypass: Math.round(state.srvbBypass) || 0,
       position: remapPosition(state.position)
     };
-    console.log("STATE::srvb");
     const scape = {
       reverse: Math.round(state.scapeReverse),
       level: state.scapeLevel * 1.5,
@@ -3490,7 +3484,6 @@
       position: state.position,
       hasUserSlots: currentVFSKeys?.some((key) => key.includes("USERBANK"))
     };
-    console.log("STATE::scape");
     return { state, srvb, shared, scape };
   }
   function updateMemoizedState(state, srvb, shared, scape) {

@@ -27,7 +27,7 @@ void SlotManager::wrapPeaksForView(std::map<SlotName, Asset>& assetsMap, elem::j
         // set the relevant index in the peaks vector
         const int index = getIndexForSlot(slot_name);
         assert(index >= 0 && index < DEFAULT_SLOT_NAMES.size());
-        std::cout << "wrapped peaks for slot " << toString(slot_name) << " at index " << index << " size >> "
+        std::cout << "wrapped peaks for slot " << slotname_to_string(slot_name) << " at index " << index << " size >> "
             << current.size() << std::endl;
         peaks[index] = elem::js::Float32Array(current);
     }
@@ -149,7 +149,7 @@ void SlotManager::logAssetsMap() const
 
         // Manually log their contents
         std::cout
-            << "SlotName: " << toString(slotName)
+            << "SlotName: " << slotname_to_string(slotName)
             << "UserPeaks: " << asset.get<std::vector<float>>(Props::userPeaksForView).size()
             << "PeaksInView:" << asset.get<std::vector<float>>(Props::currentPeakDataInView).size()
             << std::endl;

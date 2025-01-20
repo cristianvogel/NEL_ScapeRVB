@@ -115,6 +115,7 @@ public:
 
     std::string REVERSE_BUFFER_PREFIX = "REVERSED_";
     std::string PERSISTED_HOST_PARAMETERS = "hostParameters";
+    std::string PERSISTED_VIEW_STATE = "viewState";
     std::string PERSISTED_ASSET_MAP = "assetMap";
     std::string PERSISTED_USER_FILENAMES = "userFilenames";
     std::string MAIN_DSP_JS_FILE = "dsp.main.js";
@@ -185,12 +186,10 @@ public:
     bool validateUserUpload(const juce::File& selectedFile) ;
     Results uploadedFileData;
     void updateStateFromAssetsMap();
-    static elem::js::Value assetsMapToValue(const std::map<SlotName, Asset>& map);
     static std::vector<float> getReducedAudioBuffer(const juce::AudioBuffer<float>& buffer);
     bool processUserResponseFile(const juce::File& file, const SlotName& targetSlot);
     void processPersistedAssetState(const elem::js::Object& assetState);
     bool importPeakDataForView(const juce::AudioBuffer<float>& buffer);
-    std::map<SlotName, Asset> convertToAssetMap(const elem::js::Object& assetStateObject) const;
 
     vfs::UserBankManager userBankManager; // todo: DEPRECATED ?
     std::string prefixUserBank(const std::string& name) const;

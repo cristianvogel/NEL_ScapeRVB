@@ -164,7 +164,7 @@ bool Processor::initialiseDefaultFileAssets()
             {
                 if (file.getFileExtension().toLowerCase() == ".wav")
                 {
-                    SlotName slotName = fromString( file.getFileNameWithoutExtension().toStdString());;
+                    SlotName slotName = slotname_from_string( file.getFileNameWithoutExtension().toStdString());;
                     std::vector<float> samples;
                     slotManager->populateSlotFromFileData( assetsMap, slotName, false, file, samples);
                 }
@@ -248,8 +248,10 @@ bool Processor::processDefaultIRs()
 
 void Processor::updateStateFromAssetsMap()
 {
-    assetState.insert_or_assign(PERSISTED_ASSET_MAP, assetsMapToValue(assetsMap));
+    assetState.insert_or_assign(PERSISTED_ASSET_MAP, assetsMap);
 }
+
+
 
 // todo: is this being called?
 bool Processor::validateUserUpload(const juce::File& selectedFile)
@@ -371,7 +373,7 @@ bool Processor::processUserResponseFile(const juce::File& file, const SlotName& 
         stateVariableFilter.process(context);
 
         // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
-        auto name = prefixUserBank(toString(targetSlot) + "_" + std::to_string(channel));
+        auto name = prefixUserBank(slotname_to_string(targetSlot) + "_" + std::to_string(channel));
         if (elementaryRuntime)
         {
             elementaryRuntime->updateSharedResourceMap(name, buffer2.getReadPointer(0), numSamples);
@@ -425,7 +427,7 @@ void Processor::inspectVFS()
         slotKeys.clear();
         for (const auto& path : vfs)
         {
-            if (path.find(toString(slotName)) != std::string::npos)
+            if (path.find(slotname_to_string(slotName)) != std::string::npos)
             {
                 slotKeys.push_back(path);
                 allKeys.push_back(path);
@@ -734,18 +736,6 @@ void Processor::parameterGestureChanged(int, bool)
     // Not implemented
 }
 
-// ▮▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮
-// Function to convert std::map<SlotName, Asset> to elem::js::Value
-// do we need to stash the peaks?
-elem::js::Value Processor::assetsMapToValue(const std::map<SlotName, Asset>& map)
-{
-    elem::js::Object obj;
-    for (const auto& [key, value] : map)
-    {
-        obj[toString(key)] = value.toJsValue();
-    }
-    return elem::js::Value(obj);
-}
 
 // ▮▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮
 void Processor::initJavaScriptEngine()
@@ -992,13 +982,16 @@ std::string Processor::serialize(const std::string& function, const choc::value:
 
 void Processor::getStateInformation(juce::MemoryBlock& destData)
 {
-    auto dataToPersist = elem::js::Object();
-    dataToPersist.insert_or_assign(PERSISTED_HOST_PARAMETERS, elem::js::Value(state));
-    dataToPersist.insert_or_assign(PERSISTED_ASSET_MAP, assetState);
-
-    const auto serialized = elem::js::serialize(dataToPersist);
-
-    destData.replaceAll((void*)serialized.c_str(), serialized.size());
+    // serialise the secondary store for view state data ( extra non-daw hosted stuff )
+    // then insert it into the data to be stored by the host
+    state.insert_or_assign(PERSISTED_VIEW_STATE, assetState.at(PERSISTED_VIEW_STATE));
+    // seriliase the whole package
+    const auto dataToPersist = elem::js::serialize(state);
+    // stash
+    destData.replaceAll((void *)dataToPersist.c_str(), dataToPersist.size());
+    // remove the view data from the active param state updates
+    // so the view data doesn't get sent on every update
+    state.erase(PERSISTED_VIEW_STATE);
 }
 
 // ▮▮▮▮▮▮juce▮▮▮▮▮▮ plugin state
@@ -1009,72 +1002,55 @@ void Processor::getStateInformation(juce::MemoryBlock& destData)
 // ▮▮▮▮▮▮juce▮▮▮▮▮▮ plugin state
 void Processor::setStateInformation(const void* data, int sizeInBytes)
 {
+    shouldInitialize.store(true);
+    handleAsyncUpdate();
+
+    auto parsed = elem::js::parseJSON("{}");
+    // restore the data the host stashed previously
     const auto jsonString = std::string(static_cast<const char*>(data), sizeInBytes);
+    // try to deserialise the whole stashed data string
     try
     {
-        auto parsed = elem::js::parseJSON(jsonString);
-        auto persistedData = parsed.getObject();
-
-        for (auto& [key, value] : persistedData)
-        {
-            if (key == PERSISTED_HOST_PARAMETERS)
-            {
-                for (auto& [paramId, setting] : value.getObject())
-                {
-                    state.insert_or_assign(paramId, setting);
-                }
-            }
-            else if (key == PERSISTED_ASSET_MAP)
-            {
-                assetState = value.getObject();
-                if (!assetState.empty())
-                {
-                    pruneVFS();
-                    processPersistedAssetState(assetState);
-                }
-            }
-            dispatchStateChange();
-        }
+        parsed = elem::js::parseJSON(jsonString);
     }
-
     catch (...)
     {
         // Failed to parse the incoming state, or the state we did parse was not
         // actually an object type. How you handle it is up to you.
         dispatchError("Data Error:", "Failed to restore plugin state!");
     }
-}
 
-// Function to convert elem::js::Object to std::map<SlotName, Asset>
-std::map<SlotName, Asset> Processor::convertToAssetMap(const elem::js::Object& assetStateObject) const
-{
-    std::map<SlotName, Asset> assetMap;
-    // Ensure assetStateObject contains the expected key
-    if (!assetStateObject.contains(PERSISTED_ASSET_MAP))
+    // try to re-assign the local stores from the stashed data
+    try
     {
-        std::cerr << "PERSISTED_ASSETMAP key not found in assetStateObject" << std::endl;
-        return assetMap;
+        auto o = parsed.getObject();
+        for (auto& [key, value] : o)
+        {
+            if (key != PERSISTED_VIEW_STATE)
+            {
+                if (state.contains(key) )
+                {
+                    state.insert_or_assign(key, value);
+                }
+            }
+            else if (key == PERSISTED_VIEW_STATE)
+            {
+                    pruneVFS();
+                    assetState.insert_or_assign( PERSISTED_VIEW_STATE, elem::js::parseJSON(value) );
+                std::cout << "parsed saved state " << value.toString().substr(0,15) << "...." << std::endl;
+                    processPersistedAssetState(assetState);
+            }
+            dispatchStateChange();
+        }
+    }
+    catch (...)
+    {
+        // Failed to parse the incoming state, or the state we did parse was not actually
+        // an object type. How you handle it is up to you.
+        dispatchError("State Error", "Failed to restore assets!");
     }
 
-    const auto& wrapper = assetStateObject.at(PERSISTED_ASSET_MAP);
 
-    // Ensure wrapper is an object
-    if (!wrapper.isObject())
-    {
-        std::cerr << "PERSISTED_ASSETMAP is not an object" << std::endl;
-        return assetMap;
-    }
-    const auto& wrapperObject = wrapper.getObject();
-    for (const auto& entry : wrapperObject)
-    {
-        const std::string& key = entry.first;
-        const elem::js::Value& value = entry.second;
-        SlotName slotName = fromString(key);
-
-        Asset asset = Asset::fromJsValue(value);
-        assetMap.insert_or_assign(slotName, asset);
-    }
-    return assetMap;
 }
 
 
@@ -1082,55 +1058,37 @@ std::map<SlotName, Asset> Processor::convertToAssetMap(const elem::js::Object& a
 // todo: needs to handle a persisted HPF cutoff value
 void Processor::processPersistedAssetState(const elem::js::Object& assetStateObject)
 {
-    std::map<SlotName, Asset> savedAssetMap = convertToAssetMap(assetStateObject);
-    auto assetState = std::vector<Asset>();
-    SlotName targetSlot = SlotName::LIGHT;
-    juce::File file;
-
-    shouldInitialize.store(true);
-    handleAsyncUpdate();
-
-    // Create a promise and future to wait for elementaryRuntime to be initialized
-    std::promise<void> promise;
-    std::future<void> future = promise.get_future();
-
-    // Launch a thread to check for elementaryRuntime initialization
-    std::thread([this, &promise]()
-        {
-            while (elementaryRuntime == nullptr)
-            {
-                std::this_thread::sleep_for(std::chrono::milliseconds(10)); // Sleep for a short duration
-            }
-            promise.set_value(); // Set the promise value once elementaryRuntime is initialized
-        })
-        .detach();
-
-    // Wait for the future to be set
-    future.wait();
 
     // Iterate through assetState to collect userStereoFile paths
     //
-    for (const auto& entry : savedAssetMap)
+    for ( auto& [k, v] : assetStateObject )
     {
-        targetSlot = entry.first;
-        const Asset& savedAsset = entry.second;
-
-        if (savedAsset.hasUserStereoFile())
+        if ( !v.isObject() ) continue;
+        SlotName targetSlot = slotname_from_string(k);
+        const auto incomingAsset = v.getAsset();
+        if (incomingAsset->hasUserStereoFile())
         {
-            file = savedAsset.get<juce::File>(Props::userStereoFile);
-            std::cout << "Restoring ▶︎ Slot: " << toString(targetSlot)
-                << ", File: "
-                << file.getFileName().toStdString()
-                << std::endl;
+            const auto& file = incomingAsset->get<juce::File>(Props::userStereoFile);
+            DBG( "Restoring ▶︎ Slot: " + slotname_to_string(targetSlot)
+                + ", File: "
+                + file.getFileName().toStdString());
 
             if (!processUserResponseFile(file, targetSlot))
             {
-                std::cout << "Failed to restore user IRs!" << std::endl;
+                dispatchError("Error:", "Asset lost:" + file.getFileNameWithoutExtension().toStdString());
                 continue;
             }
         }
+        if (incomingAsset != nullptr) {
+            slotManager->updateSlotDataInAssetMap(assetsMap , targetSlot, *incomingAsset);
+        } else {
+            // handle a dangling pointer
+        }
+
     }
-    state.insert_or_assign("scapeMode", 1.0);
+    state.insert_or_assign("scapeMode", 0.55); // 1.0 is behaving oddly, use > 0.5 instead
+    slotManager->peaksDirty.store(true);
+
 }
 
 //==============================================================================
