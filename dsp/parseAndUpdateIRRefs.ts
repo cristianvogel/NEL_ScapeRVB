@@ -106,6 +106,5 @@ function resourceExistsForSlot(currentVFSKeys: Array<string>, slotName: SlotName
       result = true;
     }
   });
-  console.log('SCAPE::resourceExistsForSlot', result);
   return result;
 }
