@@ -142,7 +142,6 @@ void Processor::handleAsyncUpdate()
 
     state.insert_or_assign(USER_BANK_KEY, static_cast<elem::js::Number>(userBankManager.getUserBank()));
     // reflect the current asset data in the state
-    updateStateFromAssetsMap();
     dispatchStateChange();
 }
 
@@ -172,7 +171,7 @@ bool Processor::initialiseDefaultFileAssets()
                 {
                     SlotName slotName = slotname_from_string(file.getFileNameWithoutExtension().toStdString());;
                     std::vector<float> samples;
-                    slotManager->populateSlotFromFileData(assetsMap, slotName, false, file, samples);
+                    slotManager->populate_assetsMap_from_File(assetsMap, slotName, false, file, samples);
                 }
             }
         }
@@ -222,7 +221,7 @@ bool Processor::processDefaultIRs()
             if (channel == 0)
             {
                 std::vector<float> reducedSamples = util::reduceBufferToPeaksData(buffer);
-                slotManager->populateSlotFromFileData(assetsMap, targetSlot, false, file, reducedSamples);
+                slotManager->populate_assetsMap_from_File(assetsMap, targetSlot, false, file, reducedSamples);
             }
 
             // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
@@ -249,12 +248,6 @@ bool Processor::processDefaultIRs()
     slotManager->peaksDirty.store(true);
     inspectVFS();
     return true;
-}
-
-
-void Processor::updateStateFromAssetsMap()
-{
-    assetState.insert_or_assign(PERSISTED_ASSET_MAP, serialise_assets_map_entries(assetsMap));
 }
 
 
@@ -361,7 +354,7 @@ bool Processor::processUserResponseFile(const juce::File& file, const SlotName& 
         {
             const std::vector<float> reducedSamples = util::reduceBufferToPeaksData(buffer2);
             assetsMap.at(targetSlot).set(Props::cutOffChoice, userCutoffChoice);
-            slotManager->populateSlotFromFileData(assetsMap, targetSlot, true, file, reducedSamples);
+            slotManager->populate_assetsMap_from_File(assetsMap, targetSlot, true, file, reducedSamples);
         }
 
         // apply the high pass filter
@@ -1121,7 +1114,7 @@ void Processor::getStateInformation(juce::MemoryBlock& destData)
 {
     // serialise the secondary store for view state data ( extra non-daw hosted stuff )
     // then insert it into the data to be stored by the host
-
+    std::cout << "stashing state..." << std::endl;
     state.insert_or_assign(PERSISTED_VIEW_STATE, serialise_assets_map_entries(assetsMap));
     // seriliase the whole package
     const auto dataToPersist = elem::js::serialize(state);
@@ -1140,8 +1133,7 @@ void Processor::getStateInformation(juce::MemoryBlock& destData)
 // ▮▮▮▮▮▮juce▮▮▮▮▮▮ plugin state
 void Processor::setStateInformation(const void* data, int sizeInBytes)
 {
-    shouldInitialize.store(true);
-    handleAsyncUpdate();
+
 
     auto parsed = elem::js::parseJSON("{}");
     // restore the data the host stashed previously
@@ -1187,6 +1179,9 @@ void Processor::setStateInformation(const void* data, int sizeInBytes)
         // an object type. How you handle it is up to you.
         dispatchError("State Error", "Failed to restore assets!");
     }
+
+    shouldInitialize.store(true);
+    handleAsyncUpdate();
 }
 
 
@@ -1205,7 +1200,7 @@ void Processor::processPersistedAssetState(const elem::js::Object& assetStateObj
 
         Asset convertedAsset = convert_to_asset(incomingAsset);
 
-        slotManager->updateSlotDataInAssetMap(assetsMap, targetSlot, convertedAsset);
+        slotManager->populate_assetsMap_from_Asset(assetsMap, targetSlot, convertedAsset);
     }
     state.insert_or_assign("scapeMode", 0.55); // 1.0 is behaving oddly, use > 0.5 instead
     slotManager->peaksDirty.store(true);

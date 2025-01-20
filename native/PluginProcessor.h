@@ -190,7 +190,7 @@ public:
 
     bool validateUserUpload(const juce::File& selectedFile) ;
     Results uploadedFileData;
-    void updateStateFromAssetsMap();
+
     static std::vector<float> getReducedAudioBuffer(const juce::AudioBuffer<float>& buffer);
     bool processUserResponseFile(const juce::File& file, const SlotName& targetSlot);
     void processPersistedAssetState(const elem::js::Object& assetState);
