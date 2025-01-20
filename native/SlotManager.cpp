@@ -115,7 +115,7 @@ void SlotManager::switchSlotsTo(const bool customScape, const bool pruneVFS = fa
     peaksDirty.store(true);
 }
 
-void SlotManager::populateSlotFromFileData(std::map<SlotName, Asset>& assetsMap,
+void SlotManager::populate_assetsMap_from_File(std::map<SlotName, Asset>& assetsMap,
                                            const SlotName& slotName,
                                            bool isExternal,
                                            const juce::File& file,
@@ -130,12 +130,13 @@ void SlotManager::populateSlotFromFileData(std::map<SlotName, Asset>& assetsMap,
     peaksDirty.store(true);
 }
 
-void SlotManager::updateSlotDataInAssetMap(std::map<SlotName, Asset>& assetsMap,
+void SlotManager::populate_assetsMap_from_Asset(std::map<SlotName, Asset>& assetsMap,
                                            const SlotName& slotName,
-                                           Asset& assetData) const
+                                           Asset& assetData)
 {
     assetsMap.insert_or_assign(slotName, assetData);
     logAssetsMap();
+    peaksDirty.store(true);
 }
 
 void SlotManager::logAssetsMap() const

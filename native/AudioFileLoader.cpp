@@ -76,7 +76,6 @@ void AudioFileLoader::handleAsyncUpdate()
         // Switch slots back to Factory
         processor.slotManager->switchSlotsTo(false, false);
     }
-    // finally, update state with valid results of file import
-    processor.updateStateFromAssetsMap();
+    // finally, update front end with asset paths for convolver
     processor.inspectVFS();
 }
