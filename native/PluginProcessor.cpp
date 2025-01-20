@@ -41,6 +41,12 @@ Processor::Processor()
     createParameters(parameters);
     // register audio file formats
     formatManager.registerBasicFormats();
+
+    // The view state property has to have some value so that when state is loaded
+    // from the host, the key exists and is populated.
+    assetState.insert_or_assign(PERSISTED_VIEW_STATE, "{}");
+    Asset emptyAsset;
+    assetsMap.insert_or_assign(SlotName::LAST, emptyAsset);
     // run the famous CHOC WebView
     editor = new WebViewEditor(this, util::getAssetsDirectory(), 840, 480);
     // then load default audio assets
@@ -164,9 +170,9 @@ bool Processor::initialiseDefaultFileAssets()
             {
                 if (file.getFileExtension().toLowerCase() == ".wav")
                 {
-                    SlotName slotName = slotname_from_string( file.getFileNameWithoutExtension().toStdString());;
+                    SlotName slotName = slotname_from_string(file.getFileNameWithoutExtension().toStdString());;
                     std::vector<float> samples;
-                    slotManager->populateSlotFromFileData( assetsMap, slotName, false, file, samples);
+                    slotManager->populateSlotFromFileData(assetsMap, slotName, false, file, samples);
                 }
             }
         }
@@ -248,9 +254,8 @@ bool Processor::processDefaultIRs()
 
 void Processor::updateStateFromAssetsMap()
 {
-    assetState.insert_or_assign(PERSISTED_ASSET_MAP, assetsMap);
+    assetState.insert_or_assign(PERSISTED_ASSET_MAP, serialise_assets_map_entries(assetsMap));
 }
-
 
 
 // todo: is this being called?
@@ -355,7 +360,7 @@ bool Processor::processUserResponseFile(const juce::File& file, const SlotName& 
         if (channel == 0)
         {
             const std::vector<float> reducedSamples = util::reduceBufferToPeaksData(buffer2);
-            assetsMap.at(targetSlot).set( Props::cutOffChoice, userCutoffChoice);
+            assetsMap.at(targetSlot).set(Props::cutOffChoice, userCutoffChoice);
             slotManager->populateSlotFromFileData(assetsMap, targetSlot, true, file, reducedSamples);
         }
 
@@ -418,7 +423,7 @@ void Processor::inspectVFS()
     if (elementaryRuntime == nullptr)
         return;
     auto vfs = elementaryRuntime->getSharedResourceMapKeys();
-   if (vfs.begin() == vfs.end()) return;
+    if (vfs.begin() == vfs.end()) return;
     std::vector<std::string> allKeys;
     std::vector<std::string> slotKeys;
     //=== couple the vfs keys with each slot by name
@@ -973,6 +978,138 @@ std::string Processor::serialize(const std::string& function, const choc::value:
     return juce::String(function).replace(replacementChar, choc::json::toString(data)).toStdString();
 }
 
+
+// Function to convert elem::js::Object to std::map<SlotName, Asset>
+std::map<SlotName, Asset> Processor::convert_to_asset_map(const elem::js::Object& assetStateObject) const
+{
+    std::map<SlotName, Asset> assetMap;
+    // Ensure assetStateObject contains the expected key
+    if (!assetStateObject.contains(PERSISTED_ASSET_MAP))
+    {
+        std::cerr << "PERSISTED_ASSETMAP key not found in assetStateObject" << std::endl;
+        return assetMap;
+    }
+
+    const auto& wrapper = assetStateObject.at(PERSISTED_ASSET_MAP);
+
+    // Ensure inner wrapper is an object too
+    if (!wrapper.isObject())
+    {
+        std::cerr << "PERSISTED_ASSETMAP is not an object" << std::endl;
+        return assetMap;
+    }
+
+    const auto& wrapperObject = wrapper.getObject();
+    for (const auto& entry : wrapperObject)
+    {
+        const std::string& stored_target_slot = entry.first;
+        const std::string& stored_serialised_asset = entry.second.toString();
+        SlotName slotName = slotname_from_string(stored_target_slot);
+        const elem::js::Value asset = elem::js::parseJSON(stored_serialised_asset);
+        assetMap.insert_or_assign(slotName, convert_to_asset(asset));
+    }
+    return assetMap;
+}
+
+Asset Processor::convert_to_asset(const elem::js::Value& wrapper) const
+{
+    // Ensure wrapper is an object
+    if (!wrapper.isObject())
+    {
+        std::cerr << "Wrapped Asset is not an object" << std::endl;
+        return {};
+    }
+    Asset convertedAsset;
+    const auto& wrapperObject = wrapper.getObject();
+
+    std::map<std::string, std::function<void(const elem::js::Value&, Asset&)>> propertySetters = {
+        {
+            "userStereoFile", [&](const elem::js::Value& value, Asset& asset)
+            {
+                asset.set(Props::userStereoFile, juce::File(value.toString()));
+            }
+        },
+        {
+            "defaultStereoFile", [&](const elem::js::Value& value, Asset& asset)
+            {
+                asset.set(Props::defaultStereoFile, juce::File(value.toString()));
+            }
+        },
+        {
+            "userPeaksForView", [&](const elem::js::Value& value, Asset& asset)
+            {
+                asset.set(Props::userPeaksForView, value.getFloat32Array());
+            }
+        },
+        {
+            "defaultPeaksForView", [&](const elem::js::Value& value, Asset& asset)
+            {
+                asset.set(Props::userPeaksForView, value.getFloat32Array());
+            }
+        },
+        {
+            "currentPeakDataInView", [&](const elem::js::Value& value, Asset& asset)
+            {
+                asset.set(Props::userPeaksForView, value.getFloat32Array());
+            }
+        },
+        {
+            "filenameForView", [&](const elem::js::Value& value, Asset& asset)
+            {
+                asset.set(Props::filenameForView, value.toString());
+            }
+        },
+        {
+            "defaultFilenameForView", [&](const elem::js::Value& value, Asset& asset)
+            {
+                asset.set(Props::defaultFilenameForView, juce::File(value.toString()));
+            }
+        },
+        {
+            "userFilenameForView", [&](const elem::js::Value& value, Asset& asset)
+            {
+                asset.set(Props::userFilenameForView, value.toString());
+            }
+        },
+        {
+            "cutOffChoice", [&](const elem::js::Value& value, Asset& asset)
+            {
+                asset.set(Props::cutOffChoice, static_cast<int>(value));
+            }
+        }
+    };
+
+    for (const auto& entry : wrapperObject)
+    {
+        const std::string& key = entry.first;
+        const elem::js::Value& value = entry.second;
+        if (propertySetters.contains(key))
+            propertySetters[key](value, convertedAsset);
+        else
+            std::cout << "Could not unwrap persisted asset " << std::endl;
+    }
+    return convertedAsset;
+}
+
+// ▮▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮
+// Function to convert std::map<SlotName, Asset> to elem::js::Value
+elem::js::Value Processor::serialise_assets_map_entries(std::map<SlotName, Asset>& map)
+{
+    elem::js::Object obj;
+    for (auto& [target_slot, linked_asset] : map)
+    {
+        obj[slotname_to_string(target_slot)] = serialise_asset(linked_asset);
+    }
+    return elem::js::Value(obj);
+}
+
+elem::js::String Processor::serialise_asset(const Asset& asset)
+{
+    std::string serialised_asset = asset.wrap_asset();
+    return elem::js::String(serialised_asset);
+}
+
+
 // ▮▮▮▮▮▮juce▮▮▮▮▮▮ plugin state
 //
 //  STORE
@@ -984,11 +1121,12 @@ void Processor::getStateInformation(juce::MemoryBlock& destData)
 {
     // serialise the secondary store for view state data ( extra non-daw hosted stuff )
     // then insert it into the data to be stored by the host
-    state.insert_or_assign(PERSISTED_VIEW_STATE, assetState.at(PERSISTED_VIEW_STATE));
+
+    state.insert_or_assign(PERSISTED_VIEW_STATE, serialise_assets_map_entries(assetsMap));
     // seriliase the whole package
     const auto dataToPersist = elem::js::serialize(state);
     // stash
-    destData.replaceAll((void *)dataToPersist.c_str(), dataToPersist.size());
+    destData.replaceAll((void*)dataToPersist.c_str(), dataToPersist.size());
     // remove the view data from the active param state updates
     // so the view data doesn't get sent on every update
     state.erase(PERSISTED_VIEW_STATE);
@@ -1028,17 +1166,17 @@ void Processor::setStateInformation(const void* data, int sizeInBytes)
         {
             if (key != PERSISTED_VIEW_STATE)
             {
-                if (state.contains(key) )
+                if (state.contains(key))
                 {
                     state.insert_or_assign(key, value);
                 }
             }
             else if (key == PERSISTED_VIEW_STATE)
             {
-                    pruneVFS();
-                    assetState.insert_or_assign( PERSISTED_VIEW_STATE, elem::js::parseJSON(value) );
-                std::cout << "parsed saved state " << value.toString().substr(0,15) << "...." << std::endl;
-                    processPersistedAssetState(assetState);
+                pruneVFS();
+                assetState.insert_or_assign(PERSISTED_VIEW_STATE, elem::js::parseJSON(value));
+                std::cout << "parsed saved state " << value.toString().substr(0, 15) << "...." << std::endl;
+                processPersistedAssetState(assetState);
             }
             dispatchStateChange();
         }
@@ -1049,8 +1187,6 @@ void Processor::setStateInformation(const void* data, int sizeInBytes)
         // an object type. How you handle it is up to you.
         dispatchError("State Error", "Failed to restore assets!");
     }
-
-
 }
 
 
@@ -1058,37 +1194,21 @@ void Processor::setStateInformation(const void* data, int sizeInBytes)
 // todo: needs to handle a persisted HPF cutoff value
 void Processor::processPersistedAssetState(const elem::js::Object& assetStateObject)
 {
-
-    // Iterate through assetState to collect userStereoFile paths
-    //
-    for ( auto& [k, v] : assetStateObject )
+    // Iterate through assetState to collect asset
+    // Should be serialised data
+    for (auto& [k, v] : assetStateObject)
     {
-        if ( !v.isObject() ) continue;
+        if (!v.isObject()) continue;
         SlotName targetSlot = slotname_from_string(k);
-        const auto incomingAsset = v.getAsset();
-        if (incomingAsset->hasUserStereoFile())
-        {
-            const auto& file = incomingAsset->get<juce::File>(Props::userStereoFile);
-            DBG( "Restoring ▶︎ Slot: " + slotname_to_string(targetSlot)
-                + ", File: "
-                + file.getFileName().toStdString());
+        const auto serialisedAsset = v.toString();
+        const auto incomingAsset = elem::js::parseJSON(serialisedAsset).getObject();
 
-            if (!processUserResponseFile(file, targetSlot))
-            {
-                dispatchError("Error:", "Asset lost:" + file.getFileNameWithoutExtension().toStdString());
-                continue;
-            }
-        }
-        if (incomingAsset != nullptr) {
-            slotManager->updateSlotDataInAssetMap(assetsMap , targetSlot, *incomingAsset);
-        } else {
-            // handle a dangling pointer
-        }
+        Asset convertedAsset = convert_to_asset(incomingAsset);
 
+        slotManager->updateSlotDataInAssetMap(assetsMap, targetSlot, convertedAsset);
     }
     state.insert_or_assign("scapeMode", 0.55); // 1.0 is behaving oddly, use > 0.5 instead
     slotManager->peaksDirty.store(true);
-
 }
 
 //==============================================================================

@@ -177,6 +177,11 @@ public:
     std::atomic<bool> userFilesWereImported = false;
     bool userScapeMode = false;
 
+    std::map<SlotName, Asset> convert_to_asset_map(const elem::js::Object& assetStateObject) const;
+    Asset convert_to_asset(const elem::js::Value& asset) const;
+    elem::js::Value serialise_assets_map_entries( std::map<SlotName, Asset>& map);
+    elem::js::String serialise_asset(const Asset& asset);
+
     void clear_userFiles_in_assets_map();
     bool initialiseDefaultFileAssets();
     bool processDefaultIRs();
