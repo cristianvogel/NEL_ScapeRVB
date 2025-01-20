@@ -27,6 +27,22 @@ public:
         vfs_keys // Elementary Virtual File System resource paths
     };
 
+    static inline std::vector<std::string> getPropNames() {
+        std::vector<std::string> propNames = {
+            "userStereoFile",
+            "defaultStereoFile",
+            "filenameForView",
+            "userPeaksForView",
+            "defaultPeaksForView",
+            "currentPeakDataInView",
+            "defaultFilenameForView",
+            "userFilenameForView",
+            "cutOffChoice",
+            "vfs_keys"
+        };
+        return propNames;
+    }
+
     // 1. Base template declaration
     template <typename T>
     inline const T& get(Props property) const;
@@ -233,8 +249,10 @@ public:
 
 
 
+
+
 private:
-    static inline const int defaultCutOffChoice  = 160;
+    static constexpr int defaultCutOffChoice  = 160;
     juce::File userStereoFile = juce::File();
     juce::File defaultStereoFile = juce::File();
 
