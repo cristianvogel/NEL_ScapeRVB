@@ -1085,7 +1085,6 @@ void Processor::processPersistedAssetState(const elem::js::Object& assetStateObj
     std::map<SlotName, Asset> savedAssetMap = convertToAssetMap(assetStateObject);
     auto assetState = std::vector<Asset>();
     SlotName targetSlot = SlotName::LIGHT;
-    juce::File file;
 
     shouldInitialize.store(true);
     handleAsyncUpdate();
@@ -1110,29 +1109,22 @@ void Processor::processPersistedAssetState(const elem::js::Object& assetStateObj
 
     // Iterate through assetState to collect userStereoFile paths
     //
-    for (const auto& entry : savedAssetMap)
+    for (const auto& [targetSlot, savedAsset] : savedAssetMap)
     {
-        targetSlot = entry.first;
-        const Asset& savedAsset = entry.second;
-
         if (savedAsset.hasUserStereoFile())
         {
-            file = savedAsset.get<juce::File>(Props::userStereoFile);
-            std::cout << "Restoring ▶︎ Slot: " << toString(targetSlot)
-                << ", File: "
-                << file.getFileName().toStdString()
-                << std::endl;
-
+            const juce::File file = savedAsset.get<juce::File>(Props::userStereoFile);
             if (!processUserResponseFile(file, targetSlot))
             {
-                std::cout << "Failed to restore user IRs!" << std::endl;
+                std::cerr << "Failed to restore user IRs!" << std::endl;
                 continue;
             }
-            // is this enough to make deep copy of saved asset?
-            assetsMap[targetSlot] = savedAsset;
+            assetsMap.insert_or_assign( targetSlot, savedAsset );
+            state.insert_or_assign("scapeMode", 0.55);  // 1.0 was playing up
+            userScapeMode = true;
         }
     }
-    state.insert_or_assign("scapeMode", 1.0);
+
 }
 
 //==============================================================================

@@ -6,9 +6,8 @@
 #include <vector>
 #include <functional>
 
-namespace elem
-{
-namespace js
+
+namespace elem::js
 {
 
     //==============================================================================
@@ -105,116 +104,161 @@ namespace js
         Float32Array const& getFloat32Array()   const { return std::get<Float32Array>(var); }
         Object const& getObject()               const { return std::get<Object>(var); }
         Function const& getFunction()           const { return std::get<Function>(var); }
+        Number const& getNumber()               const { return std::get<Number>(var); }
 
         Array& getArray()                   { return std::get<Array>(var); }
         Float32Array& getFloat32Array()     { return std::get<Float32Array>(var); }
         Object& getObject()                 { return std::get<Object>(var); }
         Function& getFunction()             { return std::get<Function>(var); }
+        Number& getNumber()                 { return std::get<Number>(var); }
 
-        //==============================================================================
-        // Object property access with a default return value
-        template <typename T>
-        T getWithDefault(std::string const& k, T const& v) const
-        {
-            auto o = getObject();
-
-            if (o.count(k) > 0) {
-                return T(o.at(k));
-            }
-
-            return v;
-        }
-
-        // String representation
-        String toString() const
-        {
-            if (isUndefined()) { return "undefined"; }
-            if (isNull()) { return "null"; }
-            if (isBool()) { return String(std::to_string(std::get<Boolean>(var))); }
-            if (isNumber()) { return String(std::to_string(std::get<Number>(var))); }
-            if (isString()) { return std::get<String>(var); }
-            if (isArray())
+         //==============================================================================
+            // Object property access with a default return value
+            template <typename T>
+            T getWithDefault(std::string const& k, T const& v) const
             {
-                auto& a = getArray();
-                std::stringstream ss;
-                ss << "[";
+                auto o = getObject();
 
-                for (size_t i = 0; i < std::min((size_t) 3, a.size()); ++i)
-                    ss << a[i].toString() << ", ";
-
-                if (a.size() > 3)
+                if (o.count(k) > 0)
                 {
-                    ss << "...]";
-                    return ss.str();
+                    return T(o.at(k));
                 }
 
-                auto s = ss.str();
-                return s.substr(0, s.size() - 2) + "]";
+                return v;
             }
-            if (isFloat32Array())
+
+
+            // an additional trait to get a vector of strings
+            std::vector<std::string> toStringVector() const
             {
-                auto& fa = getFloat32Array();
-                std::stringstream ss;
-                ss << "[";
-
-                for (size_t i = 0; i < std::min((size_t) 3, fa.size()); ++i)
-                    ss << std::to_string(fa[i]) << ", ";
-
-                if (fa.size() > 3)
+                std::vector<std::string> array_of_strings;
+                if (isArray())
                 {
-                    ss << "...]";
-                    return ss.str();
+                    auto& a = getArray();
+                    for ( const auto& e : a)
+                    {
+                        array_of_strings.push_back( e.toString());
+                    }
                 }
-
-                auto s = ss.str();
-                return s.substr(0, s.size() - 2) + "]";
+                return array_of_strings;
             }
-            if (isObject())
+
+            // String representation using nicer std::visit
+            String toString() const
             {
-                std::stringstream ss;
-                ss << "{\n";
+                return std::visit(
+                    []<typename T0>(T0&& arg) -> String
+                    {
+                        using T = std::decay_t<T0>;
 
-                for (auto const& [k, v] : getObject()) {
-                    ss << "    " << k << ": " << v.toString() << "\n";
-                }
+                        if constexpr (std::is_same_v<T, Undefined>)
+                        {
+                            return "undefined";
+                        }
+                        else if constexpr (std::is_same_v<T, Null>)
+                        {
+                            return "null";
+                        }
+                        else if constexpr (std::is_same_v<T, Boolean>)
+                        {
+                            return String(std::to_string(arg));
+                        }
+                        else if constexpr (std::is_same_v<T, Number>)
+                        {
+                            return String(std::to_string(arg));
+                        }
+                        else if constexpr (std::is_same_v<T, String>)
+                        {
+                            return arg;
+                        }
+                        else if constexpr (std::is_same_v<T, Array>)
+                        {
+                            // Handle array
+                            std::stringstream ss;
+                            ss << "[";
 
-                ss << "}\n";
-                return ss.str();
+                            for (size_t i = 0; i < std::min(static_cast<size_t>(3), arg.size()); ++i)
+                                ss << arg[i].toString() << ", ";
+
+                            if (arg.size() > 3)
+                            {
+                                ss << "...]";
+                                return ss.str();
+                            }
+
+                            auto s = ss.str();
+                            return s.substr(0, s.size() - 2) + "]";
+                        }
+                        else if constexpr (std::is_same_v<T, Float32Array>)
+                        {
+                            // Handle float32 array
+                            std::stringstream ss;
+                            ss << "[";
+
+                            for (size_t i = 0; i < std::min(static_cast<size_t>(3), arg.size()); ++i)
+                                ss << std::to_string(arg[i]) << ", ";
+
+                            if (arg.size() > 3)
+                            {
+                                ss << "...]";
+                                return ss.str();
+                            }
+
+                            auto s = ss.str();
+                            return s.substr(0, s.size() - 2) + "]";
+                        }
+                        else if constexpr (std::is_same_v<T, Object>)
+                        {
+                            // Handle object
+                            std::stringstream ss;
+                            ss << "{\n";
+
+                            for (auto const& [k, v] : arg)
+                            {
+                                ss << "    " << k << ": " << v.toString() << "\n";
+                            }
+
+                            ss << "}\n";
+                            return ss.str();
+                        }
+                        else if constexpr (std::is_same_v<T, Function>)
+                        {
+                            // Handle function
+                            return "[Object Function]";
+                        }
+                        else
+                        {
+                            // Handle unknown type
+                            return "undefined";
+                        }
+                    },
+                    var);
             }
 
-            // TODO
-            if (isFunction()) { return "[Object Function]"; }
+        private:
+            //==============================================================================
+            // Internally we represent the Value's real value with a variant
+            using VarType = std::variant<
+                Undefined,
+                Null,
+                Boolean,
+                Number,
+                String,
+                Object,
+                Array,
+                Float32Array,
+                Function>;
 
-            return "undefined";
+            VarType var;
+        };
+
+        // We need moves to avoid allocations on the realtime thread if moving from
+        // a lock free queue.
+        static_assert(std::is_move_assignable<Value>::value);
+
+        static inline std::ostream& operator<<(std::ostream& s, Value const& v)
+        {
+            s << v.toString();
+            return s;
         }
-
-    private:
-        //==============================================================================
-        // Internally we represent the Value's real value with a variant
-        using VarType = std::variant<
-            Undefined,
-            Null,
-            Boolean,
-            Number,
-            String,
-            Object,
-            Array,
-            Float32Array,
-            Function>;
-
-        VarType var;
-    };
-
-    // We need moves to avoid allocations on the realtime thread if moving from
-    // a lock free queue.
-    static_assert(std::is_move_assignable<Value>::value);
-
-    static inline std::ostream& operator<< (std::ostream& s, Value const& v)
-    {
-        s << v.toString();
-        return s;
-    }
-
-
-} // namespace js
-} // namespace elem
+    } // namespace elem::js
