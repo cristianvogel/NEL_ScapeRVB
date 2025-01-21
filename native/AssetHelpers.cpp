@@ -51,7 +51,7 @@ namespace assetHelpers
             return {};
         }
         // mutable container of Asset type
-        Asset conversion;
+        Asset assetOut;
 
         std::map<std::string, std::function<void(EJV&, Asset&)>> propertySetters;
 
@@ -108,7 +108,7 @@ namespace assetHelpers
         //=== int or valid default hz
         propertySetters["cutOffChoice"] = [&](EJV& value, Asset& asset)
         {
-            const auto cutoff = static_cast<elem::js::Number>(value);
+            const auto cutoff = value.getNumber();
             if (cutoff)
             {
                 asset.set(Asset::Props::cutOffChoice, HZ_OPTIONS[0]);
@@ -123,16 +123,15 @@ namespace assetHelpers
         };
 
 
-        for (const auto& entry : unwrapped_object)
+        for (const auto& [prop, nonMutVal] : unwrapped_object)
         {
-            const std::string& key = entry.first;
-            elem::js::Value ejv = entry.second;
-            if (propertySetters.contains(key))
-                propertySetters[key](ejv, conversion);
+            elem::js::Value mutVal = nonMutVal;
+            if (propertySetters.contains(prop))
+                propertySetters[prop](mutVal, assetOut);
             else
-                std::cout << "Could not unwrap persisted asset " << std::endl;
+                std::cerr << "👻 Could not unwrap persisted asset! " << std::endl;
         }
-        return conversion;
+        return assetOut;
     }
 
     // ▮▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮
