@@ -6,7 +6,6 @@
 #include <atomic>
 
 // Third-Party Library Headers
-#include <juce_audio_basics/juce_audio_basics.h>
 #include "elem/Value.h"
 
 // Local Headers
@@ -40,7 +39,7 @@ public:
      * @param assetsMap
      * @param containerForWrappedState Container for the wrapped state data.
      */
-    void wrapStateForView(std::map<SlotName, Asset>& assetsMap, elem::js::Object& containerForWrappedState) ;
+    void wrapStateForView(const std::map<SlotName, Asset>& assetsMap, elem::js::Object& containerForWrappedState) ;
 
     /**
      * @brief Switches slots to a custom scape.

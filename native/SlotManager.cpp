@@ -14,7 +14,7 @@ void SlotManager::wrapPeaksForView(std::map<SlotName, Asset>& assetsMap, elem::j
 {
     // go through whole assetsMap
     peaks.resize(assetsMap.size());
-    for (const auto& [slot_name, asset] : assetsMap)
+    for (const auto& [targetSlot, asset] : assetsMap)
     {
         // which peaks to wrap depends on user mode
         auto current = asset.get<std::vector<float>>(processor.userScapeMode
@@ -25,28 +25,29 @@ void SlotManager::wrapPeaksForView(std::map<SlotName, Asset>& assetsMap, elem::j
             current = asset.get<std::vector<float>>(Props::currentPeakDataInView);
         }
         // set the relevant index in the peaks vector
-        const int index = getIndexForSlot(slot_name);
+        const int index = getIndexForSlot(targetSlot);
         assert(index >= 0 && index < DEFAULT_SLOT_NAMES.size());
-        std::cout << "wrapped peaks for slot " << slotname_to_string(slot_name) << " at index " << index << " size >> "
+        std::cout << "wrapped peaks for slot " << slotname_to_string(targetSlot) << " at index " << index << " size >> "
             << current.size() << std::endl;
         peaks[index] = elem::js::Float32Array(current);
     }
     // put the wrapped peaks data of each slot into the passed container keyed by WS_RESPONSE_KEY_FOR_PEAKS
-    peaksContainer.insert_or_assign(processor.WS_RESPONSE_KEY_FOR_PEAKS, peaks);
+    peaksContainer.insert_or_assign(WS_RESPONSE_KEY_FOR_PEAKS, peaks);
     //
     peaksDirty.store(true);
 }
 
-void SlotManager::wrapStateForView(std::map<SlotName, Asset>& assetsMap, elem::js::Object& containerForWrappedState)
+void SlotManager::wrapStateForView(const std::map<SlotName, Asset>& assetsMap, elem::js::Object& containerForWrappedState)
 {
     // prepare extra non-host state for the front end
 
 
     // --- Wrap filenames
     names.resize(assetsMap.size());
-    for (const auto& [slot_name, asset] : processor.assetsMap)
+    for (const auto& [targetSlot, asset] : processor.assetsMap)
     {
-        const int index = getIndexForSlot(slot_name);
+        if (targetSlot == SlotName::LAST ) break;
+        const int index = getIndexForSlot(targetSlot);
         names[index] = elem::js::String(asset.get<std::string>(Props::filenameForView));
     }
 
@@ -65,9 +66,9 @@ void SlotManager::wrapStateForView(std::map<SlotName, Asset>& assetsMap, elem::j
     processor.state.insert_or_assign("currentSlotIndex",
                                         static_cast<elem::js::Number>(processor.fileLoader->currentSlotIndex));
     processor.state.insert_or_assign("structure", static_cast<elem::js::Number>(roundedValue));
-    processor.state.insert_or_assign(processor.KEY_FOR_FILENAMES, names);
+    processor.state.insert_or_assign(KEY_FOR_FILENAMES, names);
     // wrap into container
-    containerForWrappedState.insert_or_assign(processor.WS_RESPONSE_KEY_FOR_STATE, processor.state);
+    containerForWrappedState.insert_or_assign(WS_RESPONSE_KEY_FOR_STATE, processor.state);
 }
 
 

@@ -3397,7 +3397,6 @@
         result = true;
       }
     });
-    console.log("SCAPE::resourceExistsForSlot", result);
     return result;
   }
 
