@@ -11,7 +11,7 @@ enum class SlotName
     LAST
 };
 
-std::string toString(SlotName slot)
+std::string slotname_to_string(SlotName slot)
 {
     switch (slot)
     {
@@ -30,7 +30,7 @@ std::string toString(SlotName slot)
 
 int getIndexForSlot(SlotName slot) { return static_cast<int>(slot); }
 
-SlotName fromString(const std::string &str)
+SlotName slotname_from_string(const std::string &str)
 {
     if (str == "LIGHT")
         return SlotName::LIGHT;
