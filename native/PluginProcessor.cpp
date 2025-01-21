@@ -1021,75 +1021,44 @@ void Processor::setStateInformation(const void* data, int sizeInBytes)
     {
         bool isParam = key != PERSISTED_VIEW_STATE;
 
-    const auto& wrapper = assetStateObject.at(PERSISTED_ASSET_MAP);
-
-    // Ensure wrapper is an object
-    if (!wrapper.isObject())
-    {
-        std::cerr << "PERSISTED_ASSETMAP is not an object" << std::endl;
-        return assetMap;
-    }
-    const auto& wrapperObject = wrapper.getObject();
-    for (const auto& entry : wrapperObject)
-    {
-        const std::string& key = entry.first;
-        const elem::js::Value& value = entry.second;
-        SlotName slotName = fromString(key);
-
-        Asset asset = Asset::fromJsValue(value);
-        assetMap.insert_or_assign(slotName, asset);
-    }
-    return assetMap;
-}
-
-
-// todo: Still needs work, peaks not being restored for example
-// todo: needs to handle a persisted HPF cutoff value
-void Processor::processPersistedAssetState(const elem::js::Object& assetStateObject)
-{
-    std::map<SlotName, Asset> savedAssetMap = convertToAssetMap(assetStateObject);
-    auto assetState = std::vector<Asset>();
-    SlotName targetSlot = SlotName::LIGHT;
-
-    shouldInitialize.store(true);
-    handleAsyncUpdate();
-
-    // Create a promise and future to wait for elementaryRuntime to be initialized
-    std::promise<void> promise;
-    std::future<void> future = promise.get_future();
-
-    // Launch a thread to check for elementaryRuntime initialization
-    std::thread([this, &promise]()
+        if (isParam)
         {
-            while (elementaryRuntime == nullptr)
-            {
-                std::this_thread::sleep_for(std::chrono::milliseconds(10)); // Sleep for a short duration
-            }
-            promise.set_value(); // Set the promise value once elementaryRuntime is initialized
-        })
-        .detach();
-
-    // Wait for the future to be set
-    future.wait();
-
-    // Iterate through assetState to collect userStereoFile paths
-    //
-    for (const auto& [targetSlot, savedAsset] : savedAssetMap)
-    {
-        if (savedAsset.hasUserStereoFile())
+            state.insert_or_assign(key, value);
+        }
+        else
         {
-            const juce::File file = savedAsset.get<juce::File>(Props::userStereoFile);
-            if (!processUserResponseFile(file, targetSlot))
-            {
-                std::cerr << "Failed to restore user IRs!" << std::endl;
-                continue;
-            }
-            assetsMap.insert_or_assign( targetSlot, savedAsset );
-            state.insert_or_assign("scapeMode", 0.55);  // 1.0 was playing up
-            userScapeMode = true;
+            processPersistedAssetState(value.getObject());
         }
     }
 
+
+    // just in case, remove view data from the active param state updates
+    // so the view data doesn't get sent on every update
+    if (state.contains(PERSISTED_VIEW_STATE))
+        state.erase(PERSISTED_VIEW_STATE);
+
+    shouldInitialize.store(true);
+    // handleAsyncUpdate();
+    // dispatchStateChange();
+}
+
+
+// todo: needs to handle a persisted HPF cutoff value
+void Processor::processPersistedAssetState(const elem::js::Object& target_slot_and_serialised_asset)
+{
+    // Iterate through assetState to collect asset
+    // Should be serialised data
+    std::cout << "Processing persisted Asset State..." << std::endl;
+    for (auto& [k, v] : target_slot_and_serialised_asset)
+    {
+        if (k == "LAST" || k.empty() || !v.isString()) continue;
+
+        SlotName targetSlot = slotname_from_string(k);
+        const auto serialisedAsset = v.toString();
+        const auto incomingAsset = elem::js::parseJSON(serialisedAsset).getObject();
+        Asset convertedAsset = assetHelpers::convert_to_asset(incomingAsset);
+        slotManager->populate_assetsMap_from_Asset(assetsMap, targetSlot, convertedAsset);
+    }
 }
 
 //==============================================================================
