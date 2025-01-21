@@ -41,6 +41,10 @@ Processor::Processor()
     createParameters(parameters);
     // register audio file formats
     formatManager.registerBasicFormats();
+
+    // The view state property has to have some value so that when state is loaded
+    // from the host, the key exists and is populated.
+    assetState.insert_or_assign(PERSISTED_VIEW_STATE, "{}");
     // run the famous CHOC WebView
     editor = new WebViewEditor(this, util::getAssetsDirectory(), 840, 480);
     // then load default audio assets
@@ -96,17 +100,19 @@ void Processor::handleAsyncUpdate()
                                             });
 
         // initialise, process and load into the runtime all 4 default IR assets
-        processDefaultIRs();
+        process_default_IRs();
         //
         for (const auto& [slotName, asset] : assetsMap)
         {
             SlotName targetSlot = slotName;
             if (asset.hasUserStereoFile())
-                processUserResponseFile(asset.get<juce::File>(Props::userStereoFile), targetSlot);
+                process_user_IR(asset.get<juce::File>(Props::userStereoFile), targetSlot);
+            userScapeMode = true;
         }
         // Værsgo!
         initJavaScriptEngine();
         runtimeSwapRequired.store(false);
+        slotManager->switchSlotsTo(userScapeMode, false);
     }
 
     // Next we iterate over the current parameter values to update our local state
@@ -136,7 +142,6 @@ void Processor::handleAsyncUpdate()
 
     state.insert_or_assign(USER_BANK_KEY, static_cast<elem::js::Number>(userBankManager.getUserBank()));
     // reflect the current asset data in the state
-    updateStateFromAssetsMap();
     dispatchStateChange();
 }
 
@@ -164,9 +169,9 @@ bool Processor::initialiseDefaultFileAssets()
             {
                 if (file.getFileExtension().toLowerCase() == ".wav")
                 {
-                    SlotName slotName = fromString( file.getFileNameWithoutExtension().toStdString());;
+                    SlotName slotName = slotname_from_string(file.getFileNameWithoutExtension().toStdString());;
                     std::vector<float> samples;
-                    slotManager->populateSlotFromFileData( assetsMap, slotName, false, file, samples);
+                    slotManager->populate_assetsMap_from_File(assetsMap, slotName, false, file, samples);
                 }
             }
         }
@@ -179,7 +184,7 @@ bool Processor::initialiseDefaultFileAssets()
     return true;
 }
 
-bool Processor::processDefaultIRs()
+bool Processor::process_default_IRs()
 {
     jassert(elementaryRuntime != nullptr);
 
@@ -187,6 +192,7 @@ bool Processor::processDefaultIRs()
 
     for (auto& [targetSlot, asset] : assetsMap)
     {
+        if (targetSlot == SlotName::LAST ) continue;
         const juce::File& file = asset.get<juce::File>(Props::defaultStereoFile);
         // get a reader for the default file from the plugin bundle assets folder
         const auto reader = formatManager.createReaderFor(file);
@@ -216,7 +222,7 @@ bool Processor::processDefaultIRs()
             if (channel == 0)
             {
                 std::vector<float> reducedSamples = util::reduceBufferToPeaksData(buffer);
-                slotManager->populateSlotFromFileData(assetsMap, targetSlot, false, file, reducedSamples);
+                slotManager->populate_assetsMap_from_File(assetsMap, targetSlot, false, file, reducedSamples);
             }
 
             // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
@@ -240,16 +246,10 @@ bool Processor::processDefaultIRs()
     }
     //
     // notify the front end of the updated VFS keys
-    slotManager->peaksDirty.store(true);
     inspectVFS();
     return true;
 }
 
-
-void Processor::updateStateFromAssetsMap()
-{
-    assetState.insert_or_assign(PERSISTED_ASSET_MAP, assetsMapToValue(assetsMap));
-}
 
 // todo: is this being called?
 bool Processor::validateUserUpload(const juce::File& selectedFile)
@@ -289,8 +289,9 @@ bool Processor::validateUserUpload(const juce::File& selectedFile)
     return true;
 }
 
-bool Processor::processUserResponseFile(const juce::File& file, const SlotName& targetSlot)
+bool Processor::process_user_IR(const juce::File& file, const SlotName& targetSlot)
 {
+    if (targetSlot == SlotName::LAST ) return false;
     // first validate the upload
     if (!validateUserUpload(file)) return false;
 
@@ -353,8 +354,8 @@ bool Processor::processUserResponseFile(const juce::File& file, const SlotName& 
         if (channel == 0)
         {
             const std::vector<float> reducedSamples = util::reduceBufferToPeaksData(buffer2);
-            assetsMap.at(targetSlot).set( Props::cutOffChoice, userCutoffChoice);
-            slotManager->populateSlotFromFileData(assetsMap, targetSlot, true, file, reducedSamples);
+            assetsMap.at(targetSlot).set(Props::cutOffChoice, userCutoffChoice);
+            slotManager->populate_assetsMap_from_File(assetsMap, targetSlot, true, file, reducedSamples);
         }
 
         // apply the high pass filter
@@ -371,7 +372,7 @@ bool Processor::processUserResponseFile(const juce::File& file, const SlotName& 
         stateVariableFilter.process(context);
 
         // ▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮▮▮▮elem▮▮▮runtime▮▮▮
-        auto name = prefixUserBank(toString(targetSlot) + "_" + std::to_string(channel));
+        auto name = prefixUserBank(slotname_to_string(targetSlot) + "_" + std::to_string(channel));
         if (elementaryRuntime)
         {
             elementaryRuntime->updateSharedResourceMap(name, buffer2.getReadPointer(0), numSamples);
@@ -391,7 +392,6 @@ bool Processor::processUserResponseFile(const juce::File& file, const SlotName& 
     delete reader;
     // notify the front end of the updated VFS keys
     inspectVFS();
-    slotManager->peaksDirty.store(true);
     return true;
 }
 
@@ -416,7 +416,7 @@ void Processor::inspectVFS()
     if (elementaryRuntime == nullptr)
         return;
     auto vfs = elementaryRuntime->getSharedResourceMapKeys();
-   if (vfs.begin() == vfs.end()) return;
+    if (vfs.begin() == vfs.end()) return;
     std::vector<std::string> allKeys;
     std::vector<std::string> slotKeys;
     //=== couple the vfs keys with each slot by name
@@ -425,7 +425,7 @@ void Processor::inspectVFS()
         slotKeys.clear();
         for (const auto& path : vfs)
         {
-            if (path.find(toString(slotName)) != std::string::npos)
+            if (path.find(slotname_to_string(slotName)) != std::string::npos)
             {
                 slotKeys.push_back(path);
                 allKeys.push_back(path);
@@ -734,18 +734,6 @@ void Processor::parameterGestureChanged(int, bool)
     // Not implemented
 }
 
-// ▮▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮
-// Function to convert std::map<SlotName, Asset> to elem::js::Value
-// do we need to stash the peaks?
-elem::js::Value Processor::assetsMapToValue(const std::map<SlotName, Asset>& map)
-{
-    elem::js::Object obj;
-    for (const auto& [key, value] : map)
-    {
-        obj[toString(key)] = value.toJsValue();
-    }
-    return elem::js::Value(obj);
-}
 
 // ▮▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮
 void Processor::initJavaScriptEngine()
@@ -932,7 +920,7 @@ void Processor::dispatchNativeLog(std::string const& name, std::string const& me
  * @name loadDspEntryFileContents
  * @brief load the compiled dsp main.js file
  */
-std::optional<std::string> Processor::loadDspEntryFileContents() const
+std::optional<std::string> Processor::loadDspEntryFileContents()
 {
     // Load and evaluate our Elementary js main file
 #if ELEM_DEV_LOCALHOST
@@ -983,6 +971,8 @@ std::string Processor::serialize(const std::string& function, const choc::value:
     return juce::String(function).replace(replacementChar, choc::json::toString(data)).toStdString();
 }
 
+
+
 // ▮▮▮▮▮▮juce▮▮▮▮▮▮ plugin state
 //
 //  STORE
@@ -992,13 +982,15 @@ std::string Processor::serialize(const std::string& function, const choc::value:
 
 void Processor::getStateInformation(juce::MemoryBlock& destData)
 {
-    auto dataToPersist = elem::js::Object();
-    dataToPersist.insert_or_assign(PERSISTED_HOST_PARAMETERS, elem::js::Value(state));
-    dataToPersist.insert_or_assign(PERSISTED_ASSET_MAP, assetState);
-
-    const auto serialized = elem::js::serialize(dataToPersist);
-
-    destData.replaceAll((void*)serialized.c_str(), serialized.size());
+    // serialise the secondary store for view state data ( extra non-daw hosted stuff )
+    // then insert it into the data to be stored by the host
+    std::cout << "stashing state..." << std::to_string(assetsMap.size()) << " entries! " << std::endl;
+    if (!assetsMap.empty())
+        state.insert_or_assign(PERSISTED_VIEW_STATE, assetHelpers::serialise_assets_map_entries(assetsMap));
+    // seriliase the whole package
+    const auto dataToPersist = elem::js::serialize(state);
+    // stash
+    destData.replaceAll((void*)dataToPersist.c_str(), dataToPersist.size());
 }
 
 // ▮▮▮▮▮▮juce▮▮▮▮▮▮ plugin state
@@ -1009,52 +1001,25 @@ void Processor::getStateInformation(juce::MemoryBlock& destData)
 // ▮▮▮▮▮▮juce▮▮▮▮▮▮ plugin state
 void Processor::setStateInformation(const void* data, int sizeInBytes)
 {
+    std::cout << "recalling state..." << std::endl;
+    elem::js::Value allStateParsed;
+    // restore the data the host stashed previously
     const auto jsonString = std::string(static_cast<const char*>(data), sizeInBytes);
+    // try to deserialise the whole stashed data string
     try
     {
-        auto parsed = elem::js::parseJSON(jsonString);
-        auto persistedData = parsed.getObject();
-
-        for (auto& [key, value] : persistedData)
-        {
-            if (key == PERSISTED_HOST_PARAMETERS)
-            {
-                for (auto& [paramId, setting] : value.getObject())
-                {
-                    state.insert_or_assign(paramId, setting);
-                }
-            }
-            else if (key == PERSISTED_ASSET_MAP)
-            {
-                assetState = value.getObject();
-                if (!assetState.empty())
-                {
-                    pruneVFS();
-                    processPersistedAssetState(assetState);
-                }
-            }
-            dispatchStateChange();
-        }
+        allStateParsed = elem::js::parseJSON(jsonString);
     }
-
     catch (...)
     {
         // Failed to parse the incoming state, or the state we did parse was not
         // actually an object type. How you handle it is up to you.
         dispatchError("Data Error:", "Failed to restore plugin state!");
     }
-}
-
-// Function to convert elem::js::Object to std::map<SlotName, Asset>
-std::map<SlotName, Asset> Processor::convertToAssetMap(const elem::js::Object& assetStateObject) const
-{
-    std::map<SlotName, Asset> assetMap;
-    // Ensure assetStateObject contains the expected key
-    if (!assetStateObject.contains(PERSISTED_ASSET_MAP))
+    auto o = allStateParsed.getObject();
+    for (auto& [key, value] : o)
     {
-        std::cerr << "PERSISTED_ASSETMAP key not found in assetStateObject" << std::endl;
-        return assetMap;
-    }
+        bool isParam = key != PERSISTED_VIEW_STATE;
 
     const auto& wrapper = assetStateObject.at(PERSISTED_ASSET_MAP);
 

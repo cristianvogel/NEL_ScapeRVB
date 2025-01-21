@@ -3,7 +3,7 @@
 
 #include <juce_core/juce_core.h> // Include necessary JUCE dependencies
 #include <string>
-#include <elem/Value.h>
+#include <elem/deps/json.hpp>
 
 
 // Forward declaration of NEL_fx_plugin to avoid unnecessary inclusion
@@ -26,6 +26,22 @@ public:
         cutOffChoice,
         vfs_keys // Elementary Virtual File System resource paths
     };
+
+    static inline std::vector<std::string> getPropNames() {
+        std::vector<std::string> propNames = {
+            "userStereoFile",
+            "defaultStereoFile",
+            "filenameForView",
+            "userPeaksForView",
+            "defaultPeaksForView",
+            "currentPeakDataInView",
+            "defaultFilenameForView",
+            "userFilenameForView",
+            "cutOffChoice",
+            "vfs_keys"
+        };
+        return propNames;
+    }
 
     // 1. Base template declaration
     template <typename T>
@@ -104,6 +120,42 @@ public:
         filenameForView.clear();
         userFilenameForView.clear();
     }
+
+ inline std::string wrap_asset() const
+{
+    nlohmann::json json;
+
+    // Serialize cutoff choice
+    json["cutOffChoice"] = cutOffChoice;
+
+    // Serialize filenames
+    if (!filenameForView.empty())
+        json["filenameForView"] = filenameForView;
+    if (!defaultFilenameForView.empty())
+        json["defaultFilenameForView"] = defaultFilenameForView;
+    if (!userFilenameForView.empty())
+        json["userFilenameForView"] = userFilenameForView;
+
+    // Serialize file paths
+    if (userStereoFile.exists())
+        json["userStereoFile"] = userStereoFile.getFullPathName().toStdString();
+    if (defaultStereoFile.exists())
+        json["defaultStereoFile"] = defaultStereoFile.getFullPathName().toStdString();
+
+    // Serialize peak data arrays
+    if (!userPeaksForView.empty())
+        json["userPeaksForView"] = userPeaksForView;
+    if (!defaultPeaksForView.empty())
+        json["defaultPeaksForView"] = defaultPeaksForView;
+    if (!currentPeakDataInView.empty())
+        json["currentPeakDataInView"] = currentPeakDataInView;
+
+    // Serialize VFS keys
+    if (!vfs_keys.empty())
+        json["vfs_keys"] = vfs_keys;
+
+    return json.dump();
+}
 
     // Generic property setters
     inline void set(Props property, int hz )
@@ -195,54 +247,12 @@ public:
         return userStereoFile.exists();
     }
 
-    // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
-    // ▮▮▮▮ Wrapping and unWrapping for persisting state ▮▮▮▮ //
-    // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
 
-    // Convert Asset to elem::js::Value
-    inline elem::js::Value toJsValue() const
-    {
-        elem::js::Object obj;
-        obj["userStereoFile"] = elem::js::Value(get<juce::File>(Props::userStereoFile).getFullPathName().toStdString());
-        obj["defaultStereoFile"] = elem::js::Value(
-            get<juce::File>(Props::defaultStereoFile).getFullPathName().toStdString());
-        obj["filenameForView"] = elem::js::Value(get<std::string>(Props::filenameForView));
-        obj["defaultFilenameForView"] = elem::js::Value(get<std::string>(Props::defaultFilenameForView));
-        obj["userPeaksForView"] = elem::js::Value(get<std::vector<float>>(Props::userPeaksForView));
-        obj["defaultPeaksForView"] = elem::js::Value(get<std::vector<float>>(Props::defaultPeaksForView));
-        obj["vfs_keys"] = elem::js::Value(get<std::vector<std::string>>(Props::vfs_keys));
-        obj["cutOffChoice"] = elem::js::Number(get<int>(Props::cutOffChoice));
-        // don't think we need to save currentPeakDataInView, as its derived from the other peaks
-        return elem::js::Value(obj);
-    }
 
-    // Convert from elem::js::Value to Asset
-    // specialised for asset state restoration
-    // todo: Do we need to restore the vfs_keys?
-    static inline Asset fromJsValue(const elem::js::Value& value)
-    {
-        Asset asset;
-        if (value.isObject())
-        {
-            const auto& obj = value.getObject();
-            if (obj.contains("userStereoFile") && obj.at("userStereoFile").isString())
-            {
-                asset.set(Props::userStereoFile, juce::File(obj.at("userStereoFile").toString()));
-            }
-            if (obj.contains("filenameForView") && obj.at("filenameForView").isString())
-            {
-                asset.set(Props::filenameForView, obj.at("filenameForView").toString());
-            }
-            if (obj.contains("cutOffChoice") && obj.at("cutOffChoice").isNumber())
-            {
-                asset.set(Props::cutOffChoice, static_cast<int>( obj.at("cutOffChoice")));
-            }
-        }
-        return asset;
-    }
+
 
 private:
-    static inline const int defaultCutOffChoice  = 160;
+    static constexpr int defaultCutOffChoice  = 160;
     juce::File userStereoFile = juce::File();
     juce::File defaultStereoFile = juce::File();
 

@@ -63,8 +63,8 @@ void AudioFileLoader::handleAsyncUpdate()
 
     if (juce::File file(file_path); file.existsAsFile())
     {
-        const auto& slotName = fromString(targetSlot);
-        if (processor.processUserResponseFile(file, slotName))
+        const auto& slotName = slotname_from_string(targetSlot);
+        if (processor.process_user_IR(file, slotName))
         {
             processor.slotManager->switchSlotsTo(true, false);
             currentSlotIndex = (getIndexForSlot(slotName) + 1) % NUM_SLOTS;
@@ -76,7 +76,6 @@ void AudioFileLoader::handleAsyncUpdate()
         // Switch slots back to Factory
         processor.slotManager->switchSlotsTo(false, false);
     }
-    // finally, update state with valid results of file import
-    processor.updateStateFromAssetsMap();
+    // finally, update front end with asset paths for convolver
     processor.inspectVFS();
 }

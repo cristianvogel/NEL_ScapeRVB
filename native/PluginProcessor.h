@@ -21,10 +21,9 @@
 #include <juce_audio_processors/juce_audio_processors.h>
 #include <juce_dsp/juce_dsp.h>
 
-// Project Headers
-
 // Local Headers
 #include "Asset.h"
+#include "AssetHelpers.h"
 #include "WebViewEditor.h"
 #include "ViewClientInstance.h"
 #include "SlotManager.h"
@@ -38,6 +37,23 @@ class ViewClientInstance;
 class SlotManager;
 class UserBankManager;
 class AudioFileLoader;  // Forward declaration
+
+inline std::string REVERSE_BUFFER_PREFIX = "REVERSED_";
+inline std::string PERSISTED_HOST_PARAMETERS = "hostParameters";
+inline std::string PERSISTED_VIEW_STATE = "viewState";
+inline std::string PERSISTED_USER_FILENAMES = "userFilenames";
+inline std::string MAIN_DSP_JS_FILE = "dsp.main.js";
+inline std::string MAIN_PATCH_JS_FILE = "patch.main.js";
+inline std::string SAMPLE_RATE_KEY = "sampleRate";
+inline std::string USER_BANK_KEY = "userBank";
+inline std::string NATIVE_MESSAGE_FUNCTION_NAME = "__postNativeMessage__";
+inline std::string LOG_FUNCTION_NAME = "__log__";
+inline std::string WS_RESPONSE_KEY_FOR_STATE = "NEL_STATE";
+inline std::string KEY_FOR_FILENAMES = "userFilenames";
+inline std::string WS_RESPONSE_KEY_FOR_PEAKS = "userPeaks";
+inline std::string VFS_KEYS = "vfsKeys";
+inline std::string PERSISTED_ASSET_MAP = "assetMap";
+inline std::array<int, 3> HZ_OPTIONS = { 160, 320, 1200 };
 
 //==============================================================================
 class Processor final : public juce::AudioProcessor,
@@ -113,20 +129,7 @@ public:
     /** log to UI */
     void dispatchNativeLog(std::string const& name, std::string const& message);
 
-    std::string REVERSE_BUFFER_PREFIX = "REVERSED_";
-    std::string PERSISTED_HOST_PARAMETERS = "hostParameters";
-    std::string PERSISTED_ASSET_MAP = "assetMap";
-    std::string PERSISTED_USER_FILENAMES = "userFilenames";
-    std::string MAIN_DSP_JS_FILE = "dsp.main.js";
-    std::string MAIN_PATCH_JS_FILE = "patch.main.js";
-    std::string SAMPLE_RATE_KEY = "sampleRate";
-    std::string USER_BANK_KEY = "userBank";
-    std::string NATIVE_MESSAGE_FUNCTION_NAME = "__postNativeMessage__";
-    std::string LOG_FUNCTION_NAME = "__log__";
-    std::string WS_RESPONSE_KEY_FOR_STATE = "NEL_STATE";
-    std::string KEY_FOR_FILENAMES = "userFilenames";
-    std::string WS_RESPONSE_KEY_FOR_PEAKS = "userPeaks";
-    std::string VFS_KEYS = "vfsKeys";
+
 
     /**
      *
@@ -135,9 +138,9 @@ public:
      */
     bool sendJavascriptToUI(const std::string& expr) const;
 
-    std::string serialize(const std::string& function, const elem::js::Object& data,
+    static std::string serialize(const std::string& function, const elem::js::Object& data,
                           const juce::String& replacementChar = "%");
-    std::string serialize(const std::string& function, const choc::value::Value& data,
+    static std::string serialize(const std::string& function, const choc::value::Value& data,
                           const juce::String& replacementChar = "%");
 
     // for file chooser
@@ -148,7 +151,7 @@ public:
 private:
     // The maximum number of error messages to keep in the queue
     size_t MAX_ERROR_LOG_QUEUE_SIZE = 200;
-    std::optional<std::string> loadDspEntryFileContents() const;
+    static std::optional<std::string> loadDspEntryFileContents() ;
     std::optional<std::string> loadPatchEntryFileContents() const;
     std::atomic<bool> runtimeSwapRequired{false};
     std::atomic<bool> shouldInitialize{false};
@@ -172,25 +175,24 @@ public:
     elem::js::Object state;
     std::map<SlotName, Asset> assetsMap;
     elem::js::Object assetState;
-    int userCutoffChoice = 160;
+
+    int userCutoffChoice = HZ_OPTIONS[0];
     std::atomic<bool> userFilesWereImported = false;
     bool userScapeMode = false;
 
     void clear_userFiles_in_assets_map();
     bool initialiseDefaultFileAssets();
-    bool processDefaultIRs();
+    bool process_default_IRs();
     void inspectVFS();
     void pruneVFS() const;
 
     bool validateUserUpload(const juce::File& selectedFile) ;
     Results uploadedFileData;
-    void updateStateFromAssetsMap();
-    static elem::js::Value assetsMapToValue(const std::map<SlotName, Asset>& map);
+
     static std::vector<float> getReducedAudioBuffer(const juce::AudioBuffer<float>& buffer);
-    bool processUserResponseFile(const juce::File& file, const SlotName& targetSlot);
-    void processPersistedAssetState(const elem::js::Object& assetState);
+    bool process_user_IR(const juce::File& file, const SlotName& targetSlot);
+    void processPersistedAssetState(const elem::js::Object& target_slot_and_serialised_asset);
     bool importPeakDataForView(const juce::AudioBuffer<float>& buffer);
-    std::map<SlotName, Asset> convertToAssetMap(const elem::js::Object& assetStateObject) const;
 
     vfs::UserBankManager userBankManager; // todo: DEPRECATED ?
     std::string prefixUserBank(const std::string& name) const;

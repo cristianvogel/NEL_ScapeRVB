@@ -60,9 +60,9 @@ enum class SlotName
 
 const std::array<std::string, 4> DEFAULT_SLOT_NAMES = {"LIGHT",  "SURFACE", "TEMPLE", "DEEPNESS" };
 
-std::string toString(SlotName slot);
+std::string slotname_to_string(SlotName slot);
 int getIndexForSlot(SlotName slot);
-SlotName fromString(const std::string& str);
+SlotName slotname_from_string(const std::string& str);
 SlotName fromIndex(int idx);
 
 

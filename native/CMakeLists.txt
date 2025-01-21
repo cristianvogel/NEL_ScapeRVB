@@ -153,6 +153,8 @@ target_sources(${TARGET_NAME}
         AudioFileLoader.cpp
         AudioFileLoader.h
         Asset.h
+        AssetHelpers.cpp
+        AssetHelpers.h
 )
 
 target_include_directories(${TARGET_NAME}

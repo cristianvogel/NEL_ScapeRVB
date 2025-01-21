@@ -6,7 +6,6 @@
 #include <atomic>
 
 // Third-Party Library Headers
-#include <juce_audio_basics/juce_audio_basics.h>
 #include "elem/Value.h"
 
 // Local Headers
@@ -40,7 +39,7 @@ public:
      * @param assetsMap
      * @param containerForWrappedState Container for the wrapped state data.
      */
-    void wrapStateForView(std::map<SlotName, Asset>& assetsMap, elem::js::Object& containerForWrappedState) ;
+    void wrapStateForView(const std::map<SlotName, Asset>& assetsMap, elem::js::Object& containerForWrappedState) ;
 
     /**
      * @brief Switches slots to a custom scape.
@@ -56,7 +55,7 @@ public:
      * @param file juce file hook, validated
      * @param reducedSampleData the result of downsampling buffer processing, to reduce samples for view
      */
-    void populateSlotFromFileData(std::map<SlotName, Asset>& assetsMap,
+    void populate_assetsMap_from_File(std::map<SlotName, Asset>& assetsMap,
                                   const SlotName& slotName,
                                   bool isExternal,
                                   const juce::File& file,
@@ -67,8 +66,8 @@ public:
      * @param slotName The slot name.
      * @param assetData The asset in the slot.
      */
-    void updateSlotDataInAssetMap(std::map<SlotName, Asset>& assetsMap, const SlotName& slotName,
-                                  Asset& assetData) const;
+    void populate_assetsMap_from_Asset(std::map<SlotName, Asset>& assetsMap, const SlotName& slotName,
+                                  Asset& assetData) ;
     /**
      * @brief Utility to log the asset data
      **/
