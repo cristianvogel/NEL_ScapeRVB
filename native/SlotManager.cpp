@@ -63,7 +63,7 @@ void SlotManager::wrapStateForView(std::map<SlotName, Asset>& assetsMap, elem::j
     //
     // Now bundle host and extra state together
     processor.state.insert_or_assign("currentSlotIndex",
-                                     static_cast<elem::js::Number>(processor.fileLoader->currentSlotIndex));
+                                        static_cast<elem::js::Number>(processor.fileLoader->currentSlotIndex));
     processor.state.insert_or_assign("structure", static_cast<elem::js::Number>(roundedValue));
     processor.state.insert_or_assign(processor.KEY_FOR_FILENAMES, names);
     // wrap into container
@@ -127,7 +127,6 @@ void SlotManager::populate_assetsMap_from_File(std::map<SlotName, Asset>& assets
     const auto& croppedFilename = file.getFileNameWithoutExtension().substring(0, 10).toStdString();
     asset.set(isExternal ? Props::userFilenameForView : Props::defaultFilenameForView, croppedFilename);
     asset.set(isExternal ? Props::userPeaksForView : Props::defaultPeaksForView, reducedSampleData);
-    peaksDirty.store(true);
 }
 
 void SlotManager::populate_assetsMap_from_Asset(std::map<SlotName, Asset>& assetsMap,
@@ -136,7 +135,6 @@ void SlotManager::populate_assetsMap_from_Asset(std::map<SlotName, Asset>& asset
 {
     assetsMap.insert_or_assign(slotName, assetData);
     logAssetsMap();
-    peaksDirty.store(true);
 }
 
 void SlotManager::logAssetsMap() const

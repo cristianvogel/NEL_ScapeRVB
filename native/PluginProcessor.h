@@ -178,13 +178,13 @@ public:
     bool userScapeMode = false;
 
     std::map<SlotName, Asset> convert_to_asset_map(const elem::js::Object& assetStateObject) const;
-    Asset convert_to_asset(const elem::js::Value& asset) const;
+    Asset convert_to_asset(const elem::js::Object& asset) const ;
     elem::js::Value serialise_assets_map_entries( std::map<SlotName, Asset>& map);
     elem::js::String serialise_asset(const Asset& asset);
 
     void clear_userFiles_in_assets_map();
     bool initialiseDefaultFileAssets();
-    bool processDefaultIRs();
+    bool process_default_IRs();
     void inspectVFS();
     void pruneVFS() const;
 
@@ -192,8 +192,8 @@ public:
     Results uploadedFileData;
 
     static std::vector<float> getReducedAudioBuffer(const juce::AudioBuffer<float>& buffer);
-    bool processUserResponseFile(const juce::File& file, const SlotName& targetSlot);
-    void processPersistedAssetState(const elem::js::Object& assetState);
+    bool process_user_IR(const juce::File& file, const SlotName& targetSlot);
+    void processPersistedAssetState(const elem::js::Object& target_slot_and_serialised_asset);
     bool importPeakDataForView(const juce::AudioBuffer<float>& buffer);
 
     vfs::UserBankManager userBankManager; // todo: DEPRECATED ?

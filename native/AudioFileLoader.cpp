@@ -64,7 +64,7 @@ void AudioFileLoader::handleAsyncUpdate()
     if (juce::File file(file_path); file.existsAsFile())
     {
         const auto& slotName = slotname_from_string(targetSlot);
-        if (processor.processUserResponseFile(file, slotName))
+        if (processor.process_user_IR(file, slotName))
         {
             processor.slotManager->switchSlotsTo(true, false);
             currentSlotIndex = (getIndexForSlot(slotName) + 1) % NUM_SLOTS;
