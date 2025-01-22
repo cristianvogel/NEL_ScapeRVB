@@ -39,7 +39,7 @@ public:
      * @param assetsMap
      * @param containerForWrappedState Container for the wrapped state data.
      */
-    void wrapStateForView(const std::map<SlotName, Asset>& assetsMap, elem::js::Object& containerForWrappedState) ;
+    void wrapStateForView(const std::map<SlotName, Asset>& assetsMap, elem::js::Object& containerForWrappedState);
 
     /**
      * @brief Switches slots to a custom scape.
@@ -56,10 +56,10 @@ public:
      * @param reducedSampleData the result of downsampling buffer processing, to reduce samples for view
      */
     void populate_assetsMap_from_File(std::map<SlotName, Asset>& assetsMap,
-                                  const SlotName& slotName,
-                                  bool isExternal,
-                                  const juce::File& file,
-                                  const std::vector<float>& reducedSampleData);
+                                      const SlotName& slotName,
+                                      bool isExternal,
+                                      const juce::File& file,
+                                      const std::vector<float>& reducedSampleData);
     /**
      * @brief Updates the asset entry at the current slot in the Processor assetMap
      * @param assetsMap
@@ -67,7 +67,7 @@ public:
      * @param assetData The asset in the slot.
      */
     void populate_assetsMap_from_Asset(std::map<SlotName, Asset>& assetsMap, const SlotName& slotName,
-                                  Asset& assetData) ;
+                                       Asset& assetData);
     /**
      * @brief Utility to log the asset data
      **/
@@ -88,14 +88,23 @@ public:
     * @brief returns the integer index from the slotName enum
     *
    */
-    static int getIndexForSlot(const SlotName& slotName);
+    static std::size_t getIndexForSlot(const SlotName& slotName);
+    /**
+     * @brief Get last state hashes
+     *
+     */
+    std::map<std::string, std::size_t> getStateHashes();
+    /**
+     * @brief Reset state hashes to -1, forcing a front end state update
+     */
+    void resetStateHashes();
 
 private:
     friend class ViewClientInstance;
     Processor& processor; ///< Reference to the EffectsPluginProcessor.
-    std::size_t lastStateHash = 0; ///< Last state hash.
-    int lastPeaksHash = 0; ///< Last peaks hash
-    int targetSlotIndex = -1;
+    std::size_t lastStateHash = -1; ///< Last state hash.
+    std::size_t lastPeaksHash = -1; ///< Last peaks hash
+    std::size_t targetSlotIndex = -1;
     elem::js::Array peaks;
     elem::js::Array names;
 };
