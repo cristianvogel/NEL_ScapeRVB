@@ -76,22 +76,25 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                 // === first handle peaks for view ===
                 if ( processor.slotManager->peaksDirty.load() )
                 {
-                    elem::js::Object peaksContainer;
-                    processor.slotManager->wrapPeaksForView( processor.assetsMap, peaksContainer );
-                    juce::String serializedPeaks = elem::js::serialize(peaksContainer);
+                    elem::js::Object peaks_to_dispatch;
+                    processor.slotManager->wrapPeaksForView( processor.assetsMap, peaks_to_dispatch );
+                    juce::String serializedPeaks = elem::js::serialize(peaks_to_dispatch);
                     std::cout << "Dispatching reduced peaks to front end..." << std::endl;
                     sendWebSocketMessage( std::move( serializedPeaks.toStdString() ));
                     processor.slotManager->peaksDirty.store(false);
                 }
 
                 // === hash state for performance optimization ===
-                elem::js::Object stateContainer;
-                stateContainer.insert_or_assign(WS_RESPONSE_KEY_FOR_STATE, processor.state);
-                juce::String serializedState = elem::js::serialize(stateContainer);
-                int newHash = serializedState.hashCode();
+
+                elem::js::Object state_to_dispatch = processor.state;
+                util::strip_viewstate_from_state(state_to_dispatch);
+                state_to_dispatch.insert_or_assign(WS_RESPONSE_KEY_FOR_STATE, state_to_dispatch);
+                juce::String serializedState = elem::js::serialize(state_to_dispatch);
+                std::size_t newHash = serializedState.hashCode();
 
                 if (newHash != processor.slotManager->lastStateHash)
                 {
+                    std::cout << ".>>." ;
                     sendWebSocketMessage( std::move( serializedState.toStdString() ) );
                     processor.slotManager->lastStateHash = newHash;
                 }

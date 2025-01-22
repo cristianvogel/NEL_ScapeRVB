@@ -837,9 +837,9 @@ void Processor::initJavaScriptEngine()
 // from the front end.
 void Processor::dispatchStateChange()
 {
-    auto currentStateMap = state;
-    currentStateMap.insert_or_assign(SAMPLE_RATE_KEY, lastKnownSampleRate);
-    const auto expr = serialize(jsFunctions::dispatchStateChangeScript, currentStateMap);
+    auto state_to_dispatch = state;
+    util::strip_viewstate_from_state(state_to_dispatch);
+    const auto expr = serialize(jsFunctions::dispatchStateChangeScript, state_to_dispatch);
     // Next we dispatch to the local engine which will evaluate any necessary
     // JavaScript synchronously here on the main thread
     try
@@ -984,7 +984,7 @@ void Processor::getStateInformation(juce::MemoryBlock& destData)
     // then insert it into the data to be stored by the host
     std::cout << "stashing state..." << std::to_string(assetsMap.size()) << " entries! " << std::endl;
     if (!assetsMap.empty())
-        state.insert_or_assign(PERSISTED_VIEW_STATE, assetHelpers::serialise_assets_map_entries(assetsMap));
+        state.insert_or_assign(PERSISTED_VIEW_STATE_KEY, assetHelpers::serialise_assets_map_entries(assetsMap));
     // seriliase the whole package
     const auto dataToPersist = elem::js::serialize(state);
     // stash
@@ -1017,7 +1017,7 @@ void Processor::setStateInformation(const void* data, int sizeInBytes)
     auto o = allStateParsed.getObject();
     for (auto& [key, value] : o)
     {
-        bool isParam = key != PERSISTED_VIEW_STATE;
+        bool isParam = key != PERSISTED_VIEW_STATE_KEY;
 
         if (isParam)
         {
@@ -1032,8 +1032,8 @@ void Processor::setStateInformation(const void* data, int sizeInBytes)
 
     // just in case, remove view data from the active param state updates
     // so the view data doesn't get sent on every update
-    if (state.contains(PERSISTED_VIEW_STATE))
-        state.erase(PERSISTED_VIEW_STATE);
+    if (state.contains(PERSISTED_VIEW_STATE_KEY))
+        state.erase(PERSISTED_VIEW_STATE_KEY);
 
     std::cout << "Persisted Param State..." << std::endl;
     shouldInitialize.store(true);

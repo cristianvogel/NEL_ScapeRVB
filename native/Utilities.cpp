@@ -2,6 +2,7 @@
 #include <numeric>
 #include "Utilities.h"
 
+#include <PluginProcessor.h>
 #include <elem/Value.h>
 
 #include "ViewClientInstance.h"
@@ -124,5 +125,13 @@ namespace util
         const juce::String status = errorStatuses( static_cast<int>( error ) );
         return status;
     }
+    void strip_viewstate_from_state(elem::js::Object& state_to_dispatch)
+    {
+        // just in case, remove view data from the active param state updates
+        // so the view data doesn't get sent on every update
+        if (state_to_dispatch.contains(PERSISTED_VIEW_STATE_KEY))
+            state_to_dispatch.erase(PERSISTED_VIEW_STATE_KEY);
+    }
+
 
 } // namespace nel

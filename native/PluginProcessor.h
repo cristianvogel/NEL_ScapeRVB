@@ -39,8 +39,8 @@ class UserBankManager;
 class AudioFileLoader;  // Forward declaration
 
 inline std::string REVERSE_BUFFER_PREFIX = "REVERSED_";
-inline std::string PERSISTED_HOST_PARAMETERS = "hostParameters";
-inline std::string PERSISTED_VIEW_STATE = "viewState";
+inline std::string PERSISTED_HOST_PARAMETERS_KEY = "hostParameters";
+inline std::string PERSISTED_VIEW_STATE_KEY = "viewState";
 inline std::string PERSISTED_USER_FILENAMES = "userFilenames";
 inline std::string MAIN_DSP_JS_FILE = "dsp.main.js";
 inline std::string MAIN_PATCH_JS_FILE = "patch.main.js";
