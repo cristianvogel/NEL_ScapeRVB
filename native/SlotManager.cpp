@@ -171,7 +171,24 @@ Asset& SlotManager::getAssetFrom(std::map<SlotName, Asset>& assetsMap, const Slo
     }
 }
 
-int SlotManager::getIndexForSlot(const SlotName& slotName)
+std::size_t SlotManager::getIndexForSlot(const SlotName& slotName)
 {
     return static_cast<int>(slotName);
 }
+
+void SlotManager::resetStateHashes()
+{
+    lastPeaksHash = -1;
+    lastStateHash = -1;
+}
+
+
+std::map< std::string, size_t > SlotManager::getStateHashes()
+{
+    std::map< std::string, size_t > hashes;
+    hashes.insert_or_assign( "state", lastStateHash );
+    hashes.insert_or_assign( "peaks", lastPeaksHash );
+    return hashes;
+}
+
+

@@ -86,14 +86,14 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
 
                 // === hash state for performance optimization ===
                 elem::js::Object stateContainer;
-                processor.slotManager->wrapStateForView( processor.assetsMap, stateContainer );
+                stateContainer.insert_or_assign(WS_RESPONSE_KEY_FOR_STATE, processor.state);
                 juce::String serializedState = elem::js::serialize(stateContainer);
-                int currentStateHash = serializedState.hashCode();
+                int newHash = serializedState.hashCode();
 
-                if (currentStateHash != processor.slotManager->lastStateHash)
+                if (newHash != processor.slotManager->lastStateHash)
                 {
                     sendWebSocketMessage( std::move( serializedState.toStdString() ) );
-                    processor.slotManager->lastStateHash = currentStateHash;
+                    processor.slotManager->lastStateHash = newHash;
                 }
             }
 

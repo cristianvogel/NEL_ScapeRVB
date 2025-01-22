@@ -42,13 +42,11 @@ Processor::Processor()
     // register audio file formats
     formatManager.registerBasicFormats();
 
-    // The view state property has to have some value so that when state is loaded
-    // from the host, the key exists and is populated.
-    assetState.insert_or_assign(PERSISTED_VIEW_STATE, "{}");
     // run the famous CHOC WebView
     editor = new WebViewEditor(this, util::getAssetsDirectory(), 840, 480);
     // then load default audio assets
     initialiseDefaultFileAssets();
+    slotManager->resetStateHashes();
 }
 
 // Destructor
@@ -192,7 +190,7 @@ bool Processor::process_default_IRs()
 
     for (auto& [targetSlot, asset] : assetsMap)
     {
-        if (targetSlot == SlotName::LAST ) continue;
+        if (targetSlot == SlotName::LAST) continue;
         const juce::File& file = asset.get<juce::File>(Props::defaultStereoFile);
         // get a reader for the default file from the plugin bundle assets folder
         const auto reader = formatManager.createReaderFor(file);
@@ -291,7 +289,7 @@ bool Processor::validateUserUpload(const juce::File& selectedFile)
 
 bool Processor::process_user_IR(const juce::File& file, const SlotName& targetSlot)
 {
-    if (targetSlot == SlotName::LAST ) return false;
+    if (targetSlot == SlotName::LAST) return false;
     // first validate the upload
     if (!validateUserUpload(file)) return false;
 
@@ -463,6 +461,7 @@ void Processor::runWebServer()
         [this]() -> std::unique_ptr<choc::network::HTTPServer::ClientInstance>
         {
             clientInstance = std::make_unique<ViewClientInstance>(*this);
+            slotManager->resetStateHashes();
             return std::move(clientInstance);
         },
         // Handle some kind of server error..
@@ -972,7 +971,6 @@ std::string Processor::serialize(const std::string& function, const choc::value:
 }
 
 
-
 // ▮▮▮▮▮▮juce▮▮▮▮▮▮ plugin state
 //
 //  STORE
@@ -996,7 +994,7 @@ void Processor::getStateInformation(juce::MemoryBlock& destData)
 // ▮▮▮▮▮▮juce▮▮▮▮▮▮ plugin state
 //
 //  RESTORE
-//  state when window opens or plugin is loaded
+//  state when preset is loaded
 //
 // ▮▮▮▮▮▮juce▮▮▮▮▮▮ plugin state
 void Processor::setStateInformation(const void* data, int sizeInBytes)
@@ -1037,9 +1035,10 @@ void Processor::setStateInformation(const void* data, int sizeInBytes)
     if (state.contains(PERSISTED_VIEW_STATE))
         state.erase(PERSISTED_VIEW_STATE);
 
+    std::cout << "Persisted Param State..." << std::endl;
     shouldInitialize.store(true);
-    // handleAsyncUpdate();
-    // dispatchStateChange();
+    slotManager->resetStateHashes();
+    handleAsyncUpdate();
 }
 
 
