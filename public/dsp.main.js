@@ -3249,12 +3249,9 @@
   };
 
   // src/stores/constants.ts
-  var BUILD_VERSION = "v0.9.3-beta";
+  var BUILD_VERSION = "v0.9.5-beta";
   var CURRENT_UI_VERSION = `scape_space_${BUILD_VERSION}`;
   var HOST_PARAMS = manifest_default.parameters;
-  var REGISTERED_PARAM_NAMES = HOST_PARAMS.map(
-    (p) => p.paramId
-  );
   var IR_Slots = [
     { pathStem: "LIGHT", slotIndex: 0, att: 0.65 },
     { pathStem: "SURFACE", slotIndex: 1, att: 0.475 },
@@ -3456,7 +3453,7 @@
       dryInputs: [stdlib.in({ channel: 0 }), stdlib.in({ channel: 1 })],
       dryMix: state.dryMix
     };
-    refs2.vfsKeys = state.vfsKeys;
+    refs2.vfsKeys = state.NEL_VFS_KEYS;
     const srvb = {
       vfsKeys: refs2.vfsKeys,
       structure: roundTo(state.structure || 0, 1 / NUM_SEQUENCES) * NUM_SEQUENCES,

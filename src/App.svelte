@@ -93,6 +93,10 @@
 {/if}
 
 <style>
+   /* hack, to stop the menu overlays vanish in the plugin */
+    #glcanvas {
+        position: static;
+    }
  .loading-bar {
     width: 100%;
     margin-top: 2px;

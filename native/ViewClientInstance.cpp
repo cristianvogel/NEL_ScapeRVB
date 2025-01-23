@@ -78,6 +78,9 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                 {
                     elem::js::Object peaks_to_dispatch;
                     processor.slotManager->wrapPeaksForView( processor.assetsMap, peaks_to_dispatch );
+                    std::cout << "Wrapped peaks for view..." << peaks_to_dispatch.at(WS_RESPONSE_KEY_FOR_PEAKS) << std::endl;
+                    std::cout << "Adding filenames for view..." << std::endl;
+
                     juce::String serializedPeaks = elem::js::serialize(peaks_to_dispatch);
                     std::cout << "Dispatching reduced peaks to front end..." << std::endl;
                     sendWebSocketMessage( std::move( serializedPeaks.toStdString() ));
@@ -87,8 +90,8 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
                 // === hash state for performance optimization ===
 
                 elem::js::Object state_to_dispatch = processor.state;
+                processor.slotManager->wrapStateForView(processor.assetsMap, state_to_dispatch);
                 util::strip_viewstate_from_state(state_to_dispatch);
-                state_to_dispatch.insert_or_assign(WS_RESPONSE_KEY_FOR_STATE, state_to_dispatch);
                 juce::String serializedState = elem::js::serialize(state_to_dispatch);
                 std::size_t newHash = serializedState.hashCode();
 

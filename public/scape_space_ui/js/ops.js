@@ -22,7 +22,6 @@ Ops.Devices=Ops.Devices || {};
 Ops.Gl.GLTF=Ops.Gl.GLTF || {};
 Ops.Sidebar=Ops.Sidebar || {};
 Ops.Trigger=Ops.Trigger || {};
-Ops.Website=Ops.Website || {};
 Ops.Gl.Phong=Ops.Gl.Phong || {};
 Ops.Graphics=Ops.Graphics || {};
 Ops.Html.CSS=Ops.Html.CSS || {};
@@ -35,6 +34,7 @@ Ops.Ui.Routing=Ops.Ui.Routing || {};
 Ops.Gl.Textures=Ops.Gl.Textures || {};
 Ops.Math.Compare=Ops.Math.Compare || {};
 Ops.Devices.Mouse=Ops.Devices.Mouse || {};
+Ops.Html.Elements=Ops.Html.Elements || {};
 Ops.Net.WebSocket=Ops.Net.WebSocket || {};
 Ops.Patch.P4Zknbo=Ops.Patch.P4Zknbo || {};
 Ops.Patch.PBktIwq=Ops.Patch.PBktIwq || {};
@@ -59,7 +59,7 @@ Ops.Patch.P4Zknbo.SubPatch1 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_9fkoygcno=op.inTrigger(\"9fkoygcno\");\nport_9fkoygcno.setUiAttribs({title:\"Render\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_9fkoygcno = addedOps[i].outTrigger(\"innerOut_9fkoygcno\");\ninnerOut_9fkoygcno.setUiAttribs({title:\"Render\"});\nport_9fkoygcno.onTriggered = () => { innerOut_9fkoygcno.trigger(); };\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"85rseo930\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"data\",\"value\":\"\"},{\"name\":\"glb File\",\"value\":\"/assets/66c8bba9b731425e29f47a4a/NEL-Logo.draco.glb\",\"display\":\"file\"},{\"name\":\"Draw\",\"value\":1},{\"name\":\"Camera index\",\"value\":0},{\"name\":\"Camera\",\"value\":\"None\"},{\"name\":\"Animation\",\"value\":\"\"},{\"name\":\"Center index\",\"value\":2},{\"name\":\"Center\",\"value\":\"XZ\"},{\"name\":\"Rescale\",\"value\":1},{\"name\":\"Rescale Size\",\"value\":2},{\"name\":\"Time\",\"value\":0},{\"name\":\"Sync to timeline\",\"value\":0},{\"name\":\"Loop\",\"value\":1},{\"name\":\"Normals Format index\",\"value\":0},{\"name\":\"Normals Format\",\"value\":\"XYZ\"},{\"name\":\"Vertices Format index\",\"value\":0},{\"name\":\"Vertices Format\",\"value\":\"XYZ\"},{\"name\":\"Calc Normals index\",\"value\":0},{\"name\":\"Calc Normals\",\"value\":\"Auto\"},{\"name\":\"Hide Nodes\",\"value\":0},{\"name\":\"Use Material Properties\",\"value\":0},{\"name\":\"Active\",\"value\":1}],\"portsOut\":[{\"name\":\"Generator\",\"value\":\"Khronos glTF Blender I/O v4.2.60\"},{\"name\":\"GLTF Version\",\"value\":2},{\"name\":\"Anim Length\",\"value\":0},{\"name\":\"Anim Time\",\"value\":0},{\"name\":\"Loading\",\"value\":false}],\"objName\":\"Ops.Gl.GLTF.GltfScene_v4\"},{\"id\":\"nbmadl6p6\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"Material Name\",\"value\":\"mat0\"}],\"portsOut\":[{\"name\":\"Material\",\"links\":[{\"portIn\":\"Materials\",\"portOut\":\"Material\",\"objIn\":\"85rseo930\",\"objOut\":\"nbmadl6p6\"}]}],\"objName\":\"Ops.Gl.GLTF.GltfSetMaterial\"},{\"id\":\"ymzn2u1wr\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"Material Name\",\"value\":\"Material.001\"}],\"portsOut\":[{\"name\":\"Material\",\"links\":[{\"portIn\":\"Materials\",\"portOut\":\"Material\",\"objIn\":\"85rseo930\",\"objOut\":\"ymzn2u1wr\"}]}],\"objName\":\"Ops.Gl.GLTF.GltfSetMaterial\"},{\"id\":\"6wtj1mxj5\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_9fkoygcno\",\"title\":\"Render\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"innerOut_9fkoygcno\",\"objIn\":\"alz1qp4y2\",\"objOut\":\"6wtj1mxj5\"},{\"portIn\":\"Render\",\"portOut\":\"innerOut_9fkoygcno\",\"objIn\":\"ce52znu67\",\"objOut\":\"6wtj1mxj5\"},{\"portIn\":\"render\",\"portOut\":\"innerOut_9fkoygcno\",\"objIn\":\"mgntydb26\",\"objOut\":\"6wtj1mxj5\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"lt3kjnr3e\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"alz1qp4y2\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":0.514},{\"name\":\"b\",\"value\":0.262},{\"name\":\"Opacity\",\"value\":1},{\"name\":\"AO Intensity\",\"value\":1},{\"name\":\"Normal Map Intensity\",\"value\":0.812},{\"name\":\"Repeat X\",\"value\":1},{\"name\":\"Repeat Y\",\"value\":1},{\"name\":\"Offset X\",\"value\":0},{\"name\":\"Offset Y\",\"value\":0.02},{\"name\":\"Screen Space Normals\",\"value\":0},{\"name\":\"Calc normal tangents\",\"value\":1},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"}],\"portsOut\":[{\"name\":\"Shader\",\"links\":[{\"portIn\":\"Shader\",\"portOut\":\"Shader\",\"objIn\":\"ymzn2u1wr\",\"objOut\":\"alz1qp4y2\"}]}],\"objName\":\"Ops.Gl.Shader.MatCapMaterial_v3\"},{\"id\":\"ce52znu67\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":0.22},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.262},{\"name\":\"Opacity\",\"value\":1},{\"name\":\"AO Intensity\",\"value\":1},{\"name\":\"Normal Map Intensity\",\"value\":0.118},{\"name\":\"Repeat X\",\"value\":1},{\"name\":\"Repeat Y\",\"value\":1},{\"name\":\"Offset X\",\"value\":0},{\"name\":\"Offset Y\",\"value\":0},{\"name\":\"Screen Space Normals\",\"value\":0},{\"name\":\"Calc normal tangents\",\"value\":1},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"}],\"portsOut\":[{\"name\":\"Shader\",\"links\":[{\"portIn\":\"Shader\",\"portOut\":\"Shader\",\"objIn\":\"nbmadl6p6\",\"objOut\":\"ce52znu67\"}]}],\"objName\":\"Ops.Gl.Shader.MatCapMaterial_v3\"},{\"id\":\"96qgwcwln\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"File\",\"value\":\"/assets/6697c3b245eb5d333bae2007/NEL_SRVB.webp\",\"display\":\"file\"},{\"name\":\"Filter index\",\"value\":2},{\"name\":\"Filter\",\"value\":\"mipmap\"},{\"name\":\"Wrap index\",\"value\":0},{\"name\":\"Wrap\",\"value\":\"repeat\"},{\"name\":\"Anisotropic index\",\"value\":0},{\"name\":\"Anisotropic\",\"value\":\"0\"},{\"name\":\"Data Format index\",\"value\":3},{\"name\":\"Data Format\",\"value\":\"RGBA\"},{\"name\":\"Flip\",\"value\":0},{\"name\":\"Pre Multiplied Alpha\",\"value\":0},{\"name\":\"Active\",\"value\":1},{\"name\":\"Save Memory\",\"value\":1},{\"name\":\"Add Cachebuster\",\"value\":0}],\"portsOut\":[{\"name\":\"Texture\",\"links\":[{\"portIn\":\"Normal\",\"portOut\":\"Texture\",\"objIn\":\"alz1qp4y2\",\"objOut\":\"96qgwcwln\"},{\"portIn\":\"Normal\",\"portOut\":\"Texture\",\"objIn\":\"ce52znu67\",\"objOut\":\"96qgwcwln\"}]},{\"name\":\"Width\",\"value\":256},{\"name\":\"Height\",\"value\":256},{\"name\":\"Aspect Ratio\",\"value\":1},{\"name\":\"Loaded\",\"value\":1},{\"name\":\"Loading\",\"value\":0}],\"objName\":\"Ops.Gl.Texture_v2\"},{\"id\":\"mgntydb26\",\"uiAttribs\":{\"subPatch\":\"ydntu5lbo\"},\"storage\":{},\"portsIn\":[{\"name\":\"posX\",\"value\":0},{\"name\":\"posY\",\"value\":-0.56},{\"name\":\"posZ\",\"value\":0.16},{\"name\":\"scale\",\"value\":1},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"85rseo930\",\"objOut\":\"mgntydb26\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"}]}",};
+const attachments=op.attachments={"inc_gen_ports_js":"const port_9fkoygcno=op.inTrigger(\"9fkoygcno\");\nport_9fkoygcno.setUiAttribs({title:\"Render\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_9fkoygcno = addedOps[i].outTrigger(\"innerOut_9fkoygcno\");\ninnerOut_9fkoygcno.setUiAttribs({title:\"Render\"});\nport_9fkoygcno.onTriggered = () => { innerOut_9fkoygcno.trigger(); };\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"85rseo930\",\"uiAttribs\":{\"subPatch\":\"u23iu4akz\"},\"storage\":{},\"portsIn\":[{\"name\":\"data\",\"value\":\"\"},{\"name\":\"glb File\",\"value\":\"/assets/NEL-Logo.draco.glb\",\"display\":\"file\"},{\"name\":\"Draw\",\"value\":1},{\"name\":\"Camera index\",\"value\":0},{\"name\":\"Camera\",\"value\":\"None\"},{\"name\":\"Animation\",\"value\":\"\"},{\"name\":\"Center index\",\"value\":2},{\"name\":\"Center\",\"value\":\"XZ\"},{\"name\":\"Rescale\",\"value\":1},{\"name\":\"Rescale Size\",\"value\":2},{\"name\":\"Time\",\"value\":0},{\"name\":\"Sync to timeline\",\"value\":0},{\"name\":\"Loop\",\"value\":1},{\"name\":\"Normals Format index\",\"value\":0},{\"name\":\"Normals Format\",\"value\":\"XYZ\"},{\"name\":\"Vertices Format index\",\"value\":0},{\"name\":\"Vertices Format\",\"value\":\"XYZ\"},{\"name\":\"Calc Normals index\",\"value\":0},{\"name\":\"Calc Normals\",\"value\":\"Auto\"},{\"name\":\"Hide Nodes\",\"value\":0},{\"name\":\"Use Material Properties\",\"value\":0},{\"name\":\"Active\",\"value\":1}],\"portsOut\":[{\"name\":\"Generator\",\"value\":\"Khronos glTF Blender I/O v4.2.60\"},{\"name\":\"GLTF Version\",\"value\":2},{\"name\":\"Anim Length\",\"value\":0},{\"name\":\"Anim Time\",\"value\":0},{\"name\":\"Loading\",\"value\":false}],\"objName\":\"Ops.Gl.GLTF.GltfScene_v4\"},{\"id\":\"nbmadl6p6\",\"uiAttribs\":{\"subPatch\":\"u23iu4akz\"},\"storage\":{},\"portsIn\":[{\"name\":\"Material Name\",\"value\":\"mat0\"}],\"portsOut\":[{\"name\":\"Material\",\"links\":[{\"portIn\":\"Materials\",\"portOut\":\"Material\",\"objIn\":\"85rseo930\",\"objOut\":\"nbmadl6p6\"}]}],\"objName\":\"Ops.Gl.GLTF.GltfSetMaterial\"},{\"id\":\"ymzn2u1wr\",\"uiAttribs\":{\"subPatch\":\"u23iu4akz\"},\"storage\":{},\"portsIn\":[{\"name\":\"Material Name\",\"value\":\"Material.001\"}],\"portsOut\":[{\"name\":\"Material\",\"links\":[{\"portIn\":\"Materials\",\"portOut\":\"Material\",\"objIn\":\"85rseo930\",\"objOut\":\"ymzn2u1wr\"}]}],\"objName\":\"Ops.Gl.GLTF.GltfSetMaterial\"},{\"id\":\"6wtj1mxj5\",\"uiAttribs\":{\"subPatch\":\"u23iu4akz\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_9fkoygcno\",\"title\":\"Render\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"innerOut_9fkoygcno\",\"objIn\":\"alz1qp4y2\",\"objOut\":\"6wtj1mxj5\"},{\"portIn\":\"Render\",\"portOut\":\"innerOut_9fkoygcno\",\"objIn\":\"ce52znu67\",\"objOut\":\"6wtj1mxj5\"},{\"portIn\":\"render\",\"portOut\":\"innerOut_9fkoygcno\",\"objIn\":\"mgntydb26\",\"objOut\":\"6wtj1mxj5\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"lt3kjnr3e\",\"uiAttribs\":{\"subPatch\":\"u23iu4akz\"},\"storage\":{},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"alz1qp4y2\",\"uiAttribs\":{\"subPatch\":\"u23iu4akz\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":0.514},{\"name\":\"b\",\"value\":0.262},{\"name\":\"Opacity\",\"value\":1},{\"name\":\"AO Intensity\",\"value\":1},{\"name\":\"Normal Map Intensity\",\"value\":0.812},{\"name\":\"Repeat X\",\"value\":1},{\"name\":\"Repeat Y\",\"value\":1},{\"name\":\"Offset X\",\"value\":0},{\"name\":\"Offset Y\",\"value\":0.02},{\"name\":\"Double Sided\",\"value\":0},{\"name\":\"Screen Space Normals\",\"value\":0},{\"name\":\"Calc normal tangents\",\"value\":1},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"}],\"portsOut\":[{\"name\":\"Shader\",\"links\":[{\"portIn\":\"Shader\",\"portOut\":\"Shader\",\"objIn\":\"ymzn2u1wr\",\"objOut\":\"alz1qp4y2\"}]}],\"objName\":\"Ops.Gl.Shader.MatCapMaterial_v3\"},{\"id\":\"ce52znu67\",\"uiAttribs\":{\"subPatch\":\"u23iu4akz\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":0.22},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.262},{\"name\":\"Opacity\",\"value\":1},{\"name\":\"AO Intensity\",\"value\":1},{\"name\":\"Normal Map Intensity\",\"value\":0.118},{\"name\":\"Repeat X\",\"value\":1},{\"name\":\"Repeat Y\",\"value\":1},{\"name\":\"Offset X\",\"value\":0},{\"name\":\"Offset Y\",\"value\":0},{\"name\":\"Double Sided\",\"value\":0},{\"name\":\"Screen Space Normals\",\"value\":0},{\"name\":\"Calc normal tangents\",\"value\":1},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"}],\"portsOut\":[{\"name\":\"Shader\",\"links\":[{\"portIn\":\"Shader\",\"portOut\":\"Shader\",\"objIn\":\"nbmadl6p6\",\"objOut\":\"ce52znu67\"}]}],\"objName\":\"Ops.Gl.Shader.MatCapMaterial_v3\"},{\"id\":\"96qgwcwln\",\"uiAttribs\":{\"subPatch\":\"u23iu4akz\"},\"storage\":{},\"portsIn\":[{\"name\":\"File\",\"value\":\"/assets/NEL_SRVB.webp\",\"display\":\"file\"},{\"name\":\"Filter index\",\"value\":2},{\"name\":\"Filter\",\"value\":\"mipmap\"},{\"name\":\"Wrap index\",\"value\":0},{\"name\":\"Wrap\",\"value\":\"repeat\"},{\"name\":\"Anisotropic index\",\"value\":0},{\"name\":\"Anisotropic\",\"value\":\"0\"},{\"name\":\"Data Format index\",\"value\":3},{\"name\":\"Data Format\",\"value\":\"RGBA\"},{\"name\":\"Flip\",\"value\":0},{\"name\":\"Pre Multiplied Alpha\",\"value\":0},{\"name\":\"Active\",\"value\":1},{\"name\":\"Save Memory\",\"value\":1},{\"name\":\"Add Cachebuster\",\"value\":0}],\"portsOut\":[{\"name\":\"Texture\",\"links\":[{\"portIn\":\"Normal\",\"portOut\":\"Texture\",\"objIn\":\"alz1qp4y2\",\"objOut\":\"96qgwcwln\"},{\"portIn\":\"Normal\",\"portOut\":\"Texture\",\"objIn\":\"ce52znu67\",\"objOut\":\"96qgwcwln\"}]},{\"name\":\"Width\",\"value\":256},{\"name\":\"Height\",\"value\":256},{\"name\":\"Aspect Ratio\",\"value\":1},{\"name\":\"Loaded\",\"value\":1},{\"name\":\"Loading\",\"value\":0}],\"objName\":\"Ops.Gl.Texture_v2\"},{\"id\":\"mgntydb26\",\"uiAttribs\":{\"subPatch\":\"u23iu4akz\"},\"storage\":{},\"portsIn\":[{\"name\":\"posX\",\"value\":0},{\"name\":\"posY\",\"value\":-0.56},{\"name\":\"posZ\",\"value\":0.16},{\"name\":\"scale\",\"value\":1},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"85rseo930\",\"objOut\":\"mgntydb26\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"}]}",};
 const port_9fkoygcno=op.inTrigger("9fkoygcno");
 port_9fkoygcno.setUiAttribs({title:"Render",});
 
@@ -132,7 +132,7 @@ Ops.Patch.P4Zknbo.SubPatch3 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_alrh6hig4=op.inTrigger(\"alrh6hig4\");\nport_alrh6hig4.setUiAttribs({title:\"render\",});\n\nconst port_8dittifdh=op.inTrigger(\"8dittifdh\");\nport_8dittifdh.setUiAttribs({title:\"Render\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_alrh6hig4 = addedOps[i].outTrigger(\"innerOut_alrh6hig4\");\ninnerOut_alrh6hig4.setUiAttribs({title:\"render\"});\nport_alrh6hig4.onTriggered = () => { innerOut_alrh6hig4.trigger(); };\n\nconst innerOut_8dittifdh = addedOps[i].outTrigger(\"innerOut_8dittifdh\");\ninnerOut_8dittifdh.setUiAttribs({title:\"Render\"});\nport_8dittifdh.onTriggered = () => { innerOut_8dittifdh.trigger(); };\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"5samfghd8\",\"uiAttribs\":{\"subPatch\":\"on1ynf3wi\"},\"storage\":{},\"portsIn\":[{\"name\":\"data\",\"value\":\"\"},{\"name\":\"glb File\",\"value\":\"/assets/66c8bba9b731425e29f47a4a/tetragram_fixed_material.draco.glb\",\"display\":\"file\"},{\"name\":\"Draw\",\"value\":1},{\"name\":\"Camera index\",\"value\":0},{\"name\":\"Camera\",\"value\":\"None\"},{\"name\":\"Animation\",\"value\":\"\"},{\"name\":\"Center index\",\"value\":1},{\"name\":\"Center\",\"value\":\"XYZ\"},{\"name\":\"Rescale\",\"value\":1},{\"name\":\"Rescale Size\",\"value\":0.15},{\"name\":\"Time\",\"value\":0},{\"name\":\"Sync to timeline\",\"value\":0},{\"name\":\"Loop\",\"value\":1},{\"name\":\"Normals Format index\",\"value\":0},{\"name\":\"Normals Format\",\"value\":\"XYZ\"},{\"name\":\"Vertices Format index\",\"value\":0},{\"name\":\"Vertices Format\",\"value\":\"XYZ\"},{\"name\":\"Calc Normals index\",\"value\":2},{\"name\":\"Calc Normals\",\"value\":\"Never\"},{\"name\":\"Hide Nodes\",\"value\":0},{\"name\":\"Use Material Properties\",\"value\":0},{\"name\":\"Active\",\"value\":1}],\"portsOut\":[{\"name\":\"Generator\",\"value\":\"Khronos glTF Blender I/O v4.2.60\"},{\"name\":\"GLTF Version\",\"value\":2},{\"name\":\"Anim Length\",\"value\":0},{\"name\":\"Anim Time\",\"value\":0},{\"name\":\"Loading\",\"value\":false}],\"objName\":\"Ops.Gl.GLTF.GltfScene_v4\"},{\"id\":\"rmprhecho\",\"uiAttribs\":{\"subPatch\":\"on1ynf3wi\"},\"storage\":{},\"portsIn\":[{\"name\":\"posX\",\"value\":-1.74},{\"name\":\"posY\",\"value\":0.97},{\"name\":\"posZ\",\"value\":0.05},{\"name\":\"scale\",\"value\":0.98},{\"name\":\"rotX\",\"value\":13},{\"name\":\"rotY\",\"value\":60.5},{\"name\":\"rotZ\",\"value\":-15}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"69e8cxa7e\",\"objOut\":\"rmprhecho\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"z1zbpc5ex\",\"uiAttribs\":{\"subPatch\":\"on1ynf3wi\"},\"storage\":{},\"portsIn\":[{\"name\":\"Material Name\",\"value\":\"Material_0.001\"}],\"portsOut\":[{\"name\":\"Material\",\"links\":[{\"portIn\":\"Materials\",\"portOut\":\"Material\",\"objIn\":\"5samfghd8\",\"objOut\":\"z1zbpc5ex\"}]}],\"objName\":\"Ops.Gl.GLTF.GltfSetMaterial\"},{\"id\":\"znj0gtwab\",\"uiAttribs\":{\"subPatch\":\"on1ynf3wi\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":1},{\"name\":\"Opacity\",\"value\":1},{\"name\":\"AO Intensity\",\"value\":1},{\"name\":\"Normal Map Intensity\",\"value\":0.361},{\"name\":\"Repeat X\",\"value\":0},{\"name\":\"Repeat Y\",\"value\":0},{\"name\":\"Offset X\",\"value\":0},{\"name\":\"Offset Y\",\"value\":0},{\"name\":\"Screen Space Normals\",\"value\":0},{\"name\":\"Calc normal tangents\",\"value\":1},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"}],\"portsOut\":[{\"name\":\"Shader\",\"links\":[{\"portIn\":\"Shader\",\"portOut\":\"Shader\",\"objIn\":\"z1zbpc5ex\",\"objOut\":\"znj0gtwab\"}]}],\"objName\":\"Ops.Gl.Shader.MatCapMaterial_v3\"},{\"id\":\"13dxix11f\",\"uiAttribs\":{\"subPatch\":\"on1ynf3wi\"},\"storage\":{},\"portsIn\":[{\"name\":\"Gradient\",\"value\":\"{\\\"keys\\\":[{\\\"pos\\\":0,\\\"posy\\\":0.5,\\\"r\\\":0.19606043020884192,\\\"g\\\":0.9551041666666666,\\\"b\\\":0.30280095564822357},{\\\"pos\\\":0,\\\"posy\\\":0.5,\\\"r\\\":0.19606043020884192,\\\"g\\\":0.9551041666666666,\\\"b\\\":0.30280095564822357},{\\\"pos\\\":0.25,\\\"posy\\\":0.7,\\\"r\\\":0.24755528330802917,\\\"g\\\":0.5961175041362186,\\\"b\\\":0.6089322916666666},{\\\"pos\\\":1,\\\"posy\\\":0.5,\\\"r\\\":0.9515885416666666,\\\"g\\\":0.01916651725769043,\\\"b\\\":0.643597891729076},{\\\"pos\\\":1,\\\"posy\\\":0.5,\\\"r\\\":0.9515885416666666,\\\"g\\\":0.01916651725769043,\\\"b\\\":0.643597891729076}]}\"},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"X\"},{\"name\":\"Smoothstep\",\"value\":0},{\"name\":\"Step\",\"value\":1},{\"name\":\"Flip\",\"value\":1},{\"name\":\"sRGB\",\"value\":0},{\"name\":\"Oklab\",\"value\":0},{\"name\":\"Size\",\"value\":8},{\"name\":\"filter index\",\"value\":0},{\"name\":\"filter\",\"value\":\"nearest\"},{\"name\":\"wrap index\",\"value\":0},{\"name\":\"wrap\",\"value\":\"clamp to edge\"},{\"name\":\"Gradient Array\",\"value\":0}],\"portsOut\":[{\"name\":\"Texture\",\"links\":[{\"portIn\":\"Normal\",\"portOut\":\"Texture\",\"objIn\":\"znj0gtwab\",\"objOut\":\"13dxix11f\"}]}],\"objName\":\"Ops.Gl.GradientTexture\"},{\"id\":\"69e8cxa7e\",\"uiAttribs\":{\"subPatch\":\"on1ynf3wi\"},\"storage\":{},\"portsIn\":[{\"name\":\"scale\",\"value\":0.76},{\"name\":\"x\",\"value\":0.99},{\"name\":\"y\",\"value\":1.79},{\"name\":\"z\",\"value\":0.47}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"5samfghd8\",\"objOut\":\"69e8cxa7e\"}]}],\"objName\":\"Ops.Gl.Matrix.Scale\"},{\"id\":\"r9gyvdkvh\",\"uiAttribs\":{\"subPatch\":\"on1ynf3wi\"},\"storage\":{},\"portsIn\":[{\"name\":\"Frequency\",\"value\":1},{\"name\":\"Type index\",\"value\":0},{\"name\":\"Type\",\"value\":\"sine\"},{\"name\":\"Phase\",\"value\":0},{\"name\":\"Range Min\",\"value\":0},{\"name\":\"Range Max\",\"value\":1}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pos\",\"portOut\":\"Result\",\"objIn\":\"qe82kxn0g\",\"objOut\":\"r9gyvdkvh\"}]}],\"objName\":\"Ops.Anim.LFO_v2\"},{\"id\":\"bmv9fqxjh\",\"uiAttribs\":{\"subPatch\":\"on1ynf3wi\"},\"storage\":{},\"portsIn\":[{\"name\":\"Speed\",\"value\":0.05},{\"name\":\"Play\",\"value\":1},{\"name\":\"Sync to timeline\",\"value\":0}],\"portsOut\":[{\"name\":\"Time\",\"links\":[{\"portIn\":\"Time\",\"portOut\":\"Time\",\"objIn\":\"r9gyvdkvh\",\"objOut\":\"bmv9fqxjh\"}]}],\"objName\":\"Ops.Anim.Timer_v2\"},{\"id\":\"we5n3qi4s\",\"uiAttribs\":{\"subPatch\":\"on1ynf3wi\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_alrh6hig4\",\"title\":\"render\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_alrh6hig4\",\"objIn\":\"rmprhecho\",\"objOut\":\"we5n3qi4s\"}]},{\"name\":\"innerOut_8dittifdh\",\"title\":\"Render\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"innerOut_8dittifdh\",\"objIn\":\"znj0gtwab\",\"objOut\":\"we5n3qi4s\"},{\"portIn\":\"Render\",\"portOut\":\"innerOut_8dittifdh\",\"objIn\":\"kan5jvxj9\",\"objOut\":\"we5n3qi4s\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"aqkj0fxy7\",\"uiAttribs\":{\"subPatch\":\"on1ynf3wi\"},\"storage\":{},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"qe82kxn0g\",\"uiAttribs\":{\"subPatch\":\"on1ynf3wi\"},\"storage\":{},\"portsIn\":[{\"name\":\"Blend Mode index\",\"value\":18},{\"name\":\"Blend Mode\",\"value\":\"Math Add\"},{\"name\":\"Alpha Mask index\",\"value\":0},{\"name\":\"Alpha Mask\",\"value\":\"Off\"},{\"name\":\"Amount\",\"value\":1},{\"name\":\"Width\",\"value\":1},{\"name\":\"Type index\",\"value\":3},{\"name\":\"Type\",\"value\":\"Radial\"},{\"name\":\"Smoothstep\",\"value\":0},{\"name\":\"sRGB\",\"value\":0},{\"name\":\"color space index\",\"value\":0},{\"name\":\"color space\",\"value\":\"RGB\"},{\"name\":\"r\",\"value\":0.19606043020884192},{\"name\":\"g\",\"value\":0.9551},{\"name\":\"b\",\"value\":0.3028},{\"name\":\"r2\",\"value\":0.247},{\"name\":\"g2\",\"value\":0.596},{\"name\":\"b2\",\"value\":0.608},{\"name\":\"r3\",\"value\":0.951},{\"name\":\"g3\",\"value\":0.0191},{\"name\":\"b3\",\"value\":0.6436}],\"objName\":\"Ops.Gl.ImageCompose.Gradient_v2\"},{\"id\":\"kan5jvxj9\",\"uiAttribs\":{\"subPatch\":\"on1ynf3wi\"},\"storage\":{},\"portsIn\":[{\"name\":\"Size index\",\"value\":0},{\"name\":\"Size\",\"value\":\"Auto\"},{\"name\":\"Width\",\"value\":640},{\"name\":\"Height\",\"value\":480},{\"name\":\"Filter index\",\"value\":1},{\"name\":\"Filter\",\"value\":\"linear\"},{\"name\":\"Wrap index\",\"value\":1},{\"name\":\"Wrap\",\"value\":\"repeat\"},{\"name\":\"Anisotropic index\",\"value\":0},{\"name\":\"Anisotropic\",\"value\":\"0\"},{\"name\":\"Pixel Format index\",\"value\":9},{\"name\":\"Pixel Format\",\"value\":\"RGBA 16bit float\"},{\"name\":\"R\",\"value\":0},{\"name\":\"G\",\"value\":0},{\"name\":\"B\",\"value\":0},{\"name\":\"A\",\"value\":0}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"Next\",\"objIn\":\"qe82kxn0g\",\"objOut\":\"kan5jvxj9\"}]},{\"name\":\"texture_out\",\"links\":[{\"portIn\":\"MatCap\",\"portOut\":\"texture_out\",\"objIn\":\"znj0gtwab\",\"objOut\":\"kan5jvxj9\"}]},{\"name\":\"Aspect Ratio\",\"value\":1.917312661498708},{\"name\":\"Texture Width\",\"value\":1484},{\"name\":\"Texture Height\",\"value\":774}],\"objName\":\"Ops.Gl.ImageCompose.ImageCompose_v4\"}]}",};
+const attachments=op.attachments={"inc_gen_ports_js":"const port_alrh6hig4=op.inTrigger(\"alrh6hig4\");\nport_alrh6hig4.setUiAttribs({title:\"render\",});\n\nconst port_8dittifdh=op.inTrigger(\"8dittifdh\");\nport_8dittifdh.setUiAttribs({title:\"Render\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_alrh6hig4 = addedOps[i].outTrigger(\"innerOut_alrh6hig4\");\ninnerOut_alrh6hig4.setUiAttribs({title:\"render\"});\nport_alrh6hig4.onTriggered = () => { innerOut_alrh6hig4.trigger(); };\n\nconst innerOut_8dittifdh = addedOps[i].outTrigger(\"innerOut_8dittifdh\");\ninnerOut_8dittifdh.setUiAttribs({title:\"Render\"});\nport_8dittifdh.onTriggered = () => { innerOut_8dittifdh.trigger(); };\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"5samfghd8\",\"uiAttribs\":{\"subPatch\":\"802svhcdg\"},\"storage\":{},\"portsIn\":[{\"name\":\"data\",\"value\":\"\"},{\"name\":\"glb File\",\"value\":\"/assets/tetragram_fixed_material.draco.glb\",\"display\":\"file\"},{\"name\":\"Draw\",\"value\":1},{\"name\":\"Camera index\",\"value\":0},{\"name\":\"Camera\",\"value\":\"None\"},{\"name\":\"Animation\",\"value\":\"\"},{\"name\":\"Center index\",\"value\":1},{\"name\":\"Center\",\"value\":\"XYZ\"},{\"name\":\"Rescale\",\"value\":1},{\"name\":\"Rescale Size\",\"value\":0.15},{\"name\":\"Time\",\"value\":0},{\"name\":\"Sync to timeline\",\"value\":0},{\"name\":\"Loop\",\"value\":1},{\"name\":\"Normals Format index\",\"value\":0},{\"name\":\"Normals Format\",\"value\":\"XYZ\"},{\"name\":\"Vertices Format index\",\"value\":0},{\"name\":\"Vertices Format\",\"value\":\"XYZ\"},{\"name\":\"Calc Normals index\",\"value\":2},{\"name\":\"Calc Normals\",\"value\":\"Never\"},{\"name\":\"Hide Nodes\",\"value\":0},{\"name\":\"Use Material Properties\",\"value\":0},{\"name\":\"Active\",\"value\":1}],\"portsOut\":[{\"name\":\"Generator\",\"value\":\"Khronos glTF Blender I/O v4.2.60\"},{\"name\":\"GLTF Version\",\"value\":2},{\"name\":\"Anim Length\",\"value\":0},{\"name\":\"Anim Time\",\"value\":0},{\"name\":\"Loading\",\"value\":false}],\"objName\":\"Ops.Gl.GLTF.GltfScene_v4\"},{\"id\":\"rmprhecho\",\"uiAttribs\":{\"subPatch\":\"802svhcdg\"},\"storage\":{},\"portsIn\":[{\"name\":\"posX\",\"value\":-1.74},{\"name\":\"posY\",\"value\":0.97},{\"name\":\"posZ\",\"value\":0.05},{\"name\":\"scale\",\"value\":0.98},{\"name\":\"rotX\",\"value\":13},{\"name\":\"rotY\",\"value\":60.5},{\"name\":\"rotZ\",\"value\":-15}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"69e8cxa7e\",\"objOut\":\"rmprhecho\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"z1zbpc5ex\",\"uiAttribs\":{\"subPatch\":\"802svhcdg\"},\"storage\":{},\"portsIn\":[{\"name\":\"Material Name\",\"value\":\"Material_0.001\"}],\"portsOut\":[{\"name\":\"Material\",\"links\":[{\"portIn\":\"Materials\",\"portOut\":\"Material\",\"objIn\":\"5samfghd8\",\"objOut\":\"z1zbpc5ex\"}]}],\"objName\":\"Ops.Gl.GLTF.GltfSetMaterial\"},{\"id\":\"znj0gtwab\",\"uiAttribs\":{\"subPatch\":\"802svhcdg\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":1},{\"name\":\"Opacity\",\"value\":1},{\"name\":\"AO Intensity\",\"value\":1},{\"name\":\"Normal Map Intensity\",\"value\":0.361},{\"name\":\"Repeat X\",\"value\":0},{\"name\":\"Repeat Y\",\"value\":0},{\"name\":\"Offset X\",\"value\":0},{\"name\":\"Offset Y\",\"value\":0},{\"name\":\"Double Sided\",\"value\":0},{\"name\":\"Screen Space Normals\",\"value\":0},{\"name\":\"Calc normal tangents\",\"value\":1},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"}],\"portsOut\":[{\"name\":\"Shader\",\"links\":[{\"portIn\":\"Shader\",\"portOut\":\"Shader\",\"objIn\":\"z1zbpc5ex\",\"objOut\":\"znj0gtwab\"}]}],\"objName\":\"Ops.Gl.Shader.MatCapMaterial_v3\"},{\"id\":\"13dxix11f\",\"uiAttribs\":{\"subPatch\":\"802svhcdg\"},\"storage\":{},\"portsIn\":[{\"name\":\"Gradient\",\"value\":\"{\\\"keys\\\":[{\\\"pos\\\":0,\\\"posy\\\":0.5,\\\"r\\\":0.19606043020884192,\\\"g\\\":0.9551041666666666,\\\"b\\\":0.30280095564822357},{\\\"pos\\\":0,\\\"posy\\\":0.5,\\\"r\\\":0.19606043020884192,\\\"g\\\":0.9551041666666666,\\\"b\\\":0.30280095564822357},{\\\"pos\\\":0.25,\\\"posy\\\":0.7,\\\"r\\\":0.24755528330802917,\\\"g\\\":0.5961175041362186,\\\"b\\\":0.6089322916666666},{\\\"pos\\\":1,\\\"posy\\\":0.5,\\\"r\\\":0.9515885416666666,\\\"g\\\":0.01916651725769043,\\\"b\\\":0.643597891729076},{\\\"pos\\\":1,\\\"posy\\\":0.5,\\\"r\\\":0.9515885416666666,\\\"g\\\":0.01916651725769043,\\\"b\\\":0.643597891729076}]}\"},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"X\"},{\"name\":\"Smoothstep\",\"value\":0},{\"name\":\"Step\",\"value\":1},{\"name\":\"Flip\",\"value\":1},{\"name\":\"sRGB\",\"value\":0},{\"name\":\"Oklab\",\"value\":0},{\"name\":\"Size\",\"value\":8},{\"name\":\"filter index\",\"value\":0},{\"name\":\"filter\",\"value\":\"nearest\"},{\"name\":\"wrap index\",\"value\":0},{\"name\":\"wrap\",\"value\":\"clamp to edge\"},{\"name\":\"Dither\",\"value\":0},{\"name\":\"Gradient Array\",\"value\":0}],\"portsOut\":[{\"name\":\"Texture\",\"links\":[{\"portIn\":\"Normal\",\"portOut\":\"Texture\",\"objIn\":\"znj0gtwab\",\"objOut\":\"13dxix11f\"}]}],\"objName\":\"Ops.Gl.GradientTexture\"},{\"id\":\"69e8cxa7e\",\"uiAttribs\":{\"subPatch\":\"802svhcdg\"},\"storage\":{},\"portsIn\":[{\"name\":\"scale\",\"value\":0.76},{\"name\":\"x\",\"value\":0.99},{\"name\":\"y\",\"value\":1.79},{\"name\":\"z\",\"value\":0.47}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"5samfghd8\",\"objOut\":\"69e8cxa7e\"}]}],\"objName\":\"Ops.Gl.Matrix.Scale\"},{\"id\":\"r9gyvdkvh\",\"uiAttribs\":{\"subPatch\":\"802svhcdg\"},\"storage\":{},\"portsIn\":[{\"name\":\"Frequency\",\"value\":1},{\"name\":\"Type index\",\"value\":0},{\"name\":\"Type\",\"value\":\"sine\"},{\"name\":\"Phase\",\"value\":0},{\"name\":\"Range Min\",\"value\":0},{\"name\":\"Range Max\",\"value\":1}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pos\",\"portOut\":\"Result\",\"objIn\":\"qe82kxn0g\",\"objOut\":\"r9gyvdkvh\"}]}],\"objName\":\"Ops.Anim.LFO_v2\"},{\"id\":\"bmv9fqxjh\",\"uiAttribs\":{\"subPatch\":\"802svhcdg\"},\"storage\":{},\"portsIn\":[{\"name\":\"Speed\",\"value\":0.05},{\"name\":\"Play\",\"value\":1},{\"name\":\"Sync to timeline\",\"value\":0}],\"portsOut\":[{\"name\":\"Time\",\"links\":[{\"portIn\":\"Time\",\"portOut\":\"Time\",\"objIn\":\"r9gyvdkvh\",\"objOut\":\"bmv9fqxjh\"}]}],\"objName\":\"Ops.Anim.Timer_v2\"},{\"id\":\"we5n3qi4s\",\"uiAttribs\":{\"subPatch\":\"802svhcdg\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_alrh6hig4\",\"title\":\"render\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_alrh6hig4\",\"objIn\":\"rmprhecho\",\"objOut\":\"we5n3qi4s\"}]},{\"name\":\"innerOut_8dittifdh\",\"title\":\"Render\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"innerOut_8dittifdh\",\"objIn\":\"znj0gtwab\",\"objOut\":\"we5n3qi4s\"},{\"portIn\":\"Render\",\"portOut\":\"innerOut_8dittifdh\",\"objIn\":\"kan5jvxj9\",\"objOut\":\"we5n3qi4s\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"aqkj0fxy7\",\"uiAttribs\":{\"subPatch\":\"802svhcdg\"},\"storage\":{},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"qe82kxn0g\",\"uiAttribs\":{\"subPatch\":\"802svhcdg\"},\"storage\":{},\"portsIn\":[{\"name\":\"Blend Mode index\",\"value\":18},{\"name\":\"Blend Mode\",\"value\":\"Math Add\"},{\"name\":\"Alpha Mask index\",\"value\":0},{\"name\":\"Alpha Mask\",\"value\":\"Off\"},{\"name\":\"Amount\",\"value\":1},{\"name\":\"Width\",\"value\":1},{\"name\":\"Type index\",\"value\":3},{\"name\":\"Type\",\"value\":\"Radial\"},{\"name\":\"Smoothstep\",\"value\":0},{\"name\":\"sRGB\",\"value\":0},{\"name\":\"color space index\",\"value\":0},{\"name\":\"color space\",\"value\":\"RGB\"},{\"name\":\"r\",\"value\":0.19606043020884192},{\"name\":\"g\",\"value\":0.9551},{\"name\":\"b\",\"value\":0.3028},{\"name\":\"r2\",\"value\":0.247},{\"name\":\"g2\",\"value\":0.596},{\"name\":\"b2\",\"value\":0.608},{\"name\":\"r3\",\"value\":0.951},{\"name\":\"g3\",\"value\":0.0191},{\"name\":\"b3\",\"value\":0.6436}],\"objName\":\"Ops.Gl.ImageCompose.Gradient_v2\"},{\"id\":\"kan5jvxj9\",\"uiAttribs\":{\"subPatch\":\"802svhcdg\"},\"storage\":{},\"portsIn\":[{\"name\":\"Size index\",\"value\":0},{\"name\":\"Size\",\"value\":\"Auto\"},{\"name\":\"Width\",\"value\":640},{\"name\":\"Height\",\"value\":480},{\"name\":\"Filter index\",\"value\":1},{\"name\":\"Filter\",\"value\":\"linear\"},{\"name\":\"Wrap index\",\"value\":1},{\"name\":\"Wrap\",\"value\":\"repeat\"},{\"name\":\"Anisotropic index\",\"value\":0},{\"name\":\"Anisotropic\",\"value\":\"0\"},{\"name\":\"Pixel Format index\",\"value\":9},{\"name\":\"Pixel Format\",\"value\":\"RGBA 16bit float\"},{\"name\":\"Clear\",\"value\":1},{\"name\":\"R\",\"value\":0},{\"name\":\"G\",\"value\":0},{\"name\":\"B\",\"value\":0},{\"name\":\"A\",\"value\":0}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"Next\",\"objIn\":\"qe82kxn0g\",\"objOut\":\"kan5jvxj9\"}]},{\"name\":\"texture_out\",\"links\":[{\"portIn\":\"MatCap\",\"portOut\":\"texture_out\",\"objIn\":\"znj0gtwab\",\"objOut\":\"kan5jvxj9\"}]},{\"name\":\"Aspect Ratio\",\"value\":1.8746736292428199},{\"name\":\"Texture Width\",\"value\":1436},{\"name\":\"Texture Height\",\"value\":766}],\"objName\":\"Ops.Gl.ImageCompose.ImageCompose_v4\"}]}",};
 const port_alrh6hig4=op.inTrigger("alrh6hig4");
 port_alrh6hig4.setUiAttribs({title:"render",});
 
@@ -604,6 +604,8 @@ const op=this;
 const attachments=op.attachments={};
 const next = op.outTrigger("Triggered");
 op.varName = op.inValueSelect("Named Trigger", [], "", true);
+
+op.varName.setUiAttribs({ "_triggerSelect": true });
 
 updateVarNamesDropdown();
 op.patch.addEventListener("namedTriggersChanged", updateVarNamesDropdown);
@@ -5124,6 +5126,8 @@ Ops.Gl.GradientTexture = function()
 CABLES.Op.apply(this,arguments);
 const op=this;
 const attachments=op.attachments={};
+// STOP UPDATING THIS OP ... use Ops.Color.GradientColorArray
+
 const inGrad = op.inGradient("Gradient"),
     inDir = op.inValueSelect("Direction", ["X", "XX", "Y", "YY", "XY", "YX", "Radial"], "X"),
     inSmoothstep = op.inValueBool("Smoothstep", false),
@@ -5321,7 +5325,7 @@ function updateGradient(keys)
             "editShortcut": true,
             "gradEditSmoothstep": inSmoothstep.get(),
             "gradEditStep": inStep.get(),
-            "gradOklab": inOklab.get(),
+            "gradOklab": inOklab.get()
         });
 
     let selectedWrap = 0;
@@ -6087,7 +6091,7 @@ Ops.Gl.GLTF.GltfScene_v4 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
-const attachments=op.attachments={"inc_camera_js":"const gltfCamera = class\n{\n    constructor(gltf, node)\n    {\n        this.node = node;\n        this.name = node.name;\n        // console.log(gltf);\n        this.config = gltf.json.cameras[node.camera];\n\n        this.pos = vec3.create();\n        this.quat = quat.create();\n        this.vCenter = vec3.create();\n        this.vUp = vec3.create();\n        this.vMat = mat4.create();\n    }\n\n    updateAnim(time)\n    {\n        if (this.node && this.node._animTrans)\n        {\n            vec3.set(this.pos,\n                this.node._animTrans[0].getValue(time),\n                this.node._animTrans[1].getValue(time),\n                this.node._animTrans[2].getValue(time));\n\n            quat.set(this.quat,\n                this.node._animRot[0].getValue(time),\n                this.node._animRot[1].getValue(time),\n                this.node._animRot[2].getValue(time),\n                this.node._animRot[3].getValue(time));\n        }\n    }\n\n    start(time)\n    {\n        if (cgl.frameStore.shadowPass) return;\n\n        this.updateAnim(time);\n        const asp = cgl.getViewPort()[2] / cgl.getViewPort()[3];\n\n        cgl.pushPMatrix();\n        // mat4.perspective(\n        //     cgl.pMatrix,\n        //     this.config.perspective.yfov*0.5,\n        //     asp,\n        //     this.config.perspective.znear,\n        //     this.config.perspective.zfar);\n\n        cgl.pushViewMatrix();\n        // mat4.identity(cgl.vMatrix);\n\n        // if(this.node && this.node.parent)\n        // {\n        //     console.log(this.node.parent)\n        // vec3.add(this.pos,this.pos,this.node.parent._node.translation);\n        // vec3.sub(this.vCenter,this.vCenter,this.node.parent._node.translation);\n        // mat4.translate(cgl.vMatrix,cgl.vMatrix,\n        // [\n        //     -this.node.parent._node.translation[0],\n        //     -this.node.parent._node.translation[1],\n        //     -this.node.parent._node.translation[2]\n        // ])\n        // }\n\n        // vec3.set(this.vUp, 0, 1, 0);\n        // vec3.set(this.vCenter, 0, -1, 0);\n        // // vec3.set(this.vCenter, 0, 1, 0);\n        // vec3.transformQuat(this.vCenter, this.vCenter, this.quat);\n        // vec3.normalize(this.vCenter, this.vCenter);\n        // vec3.add(this.vCenter, this.vCenter, this.pos);\n\n        // mat4.lookAt(cgl.vMatrix, this.pos, this.vCenter, this.vUp);\n\n        let mv = mat4.create();\n        mat4.invert(mv, this.node.modelMatAbs());\n\n        // console.log(this.node.modelMatAbs());\n\n        this.vMat = mv;\n\n        mat4.identity(cgl.vMatrix);\n        // console.log(mv);\n        mat4.mul(cgl.vMatrix, cgl.vMatrix, mv);\n    }\n\n    end()\n    {\n        if (cgl.frameStore.shadowPass) return;\n        cgl.popPMatrix();\n        cgl.popViewMatrix();\n    }\n};\n","inc_gltf_js":"const le = true; // little endian\n\nconst Gltf = class\n{\n    constructor()\n    {\n        this.json = {};\n        this.accBuffers = [];\n        this.meshes = [];\n        this.nodes = [];\n        this.shaders = [];\n        this.timing = [];\n        this.cams = [];\n        this.startTime = performance.now();\n        this.bounds = new CABLES.CG.BoundingBox();\n        this.loaded = Date.now();\n        this.accBuffersDelete = [];\n    }\n\n    getNode(n)\n    {\n        for (let i = 0; i < this.nodes.length; i++)\n        {\n            if (this.nodes[i].name == n) return this.nodes[i];\n        }\n    }\n\n    unHideAll()\n    {\n        for (let i = 0; i < this.nodes.length; i++)\n        {\n            this.nodes[i].unHide();\n        }\n    }\n};\n\nfunction Utf8ArrayToStr(array)\n{\n    if (window.TextDecoder) return new TextDecoder(\"utf-8\").decode(array);\n\n    let out, i, len, c;\n    let char2, char3;\n\n    out = \"\";\n    len = array.length;\n    i = 0;\n    while (i < len)\n    {\n        c = array[i++];\n        switch (c >> 4)\n        {\n        case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7:\n            // 0xxxxxxx\n            out += String.fromCharCode(c);\n            break;\n        case 12: case 13:\n            // 110x xxxx   10xx xxxx\n            char2 = array[i++];\n            out += String.fromCharCode(((c & 0x1F) << 6) | (char2 & 0x3F));\n            break;\n        case 14:\n            // 1110 xxxx  10xx xxxx  10xx xxxx\n            char2 = array[i++];\n            char3 = array[i++];\n            out += String.fromCharCode(((c & 0x0F) << 12) |\n                    ((char2 & 0x3F) << 6) |\n                    ((char3 & 0x3F) << 0));\n            break;\n        }\n    }\n\n    return out;\n}\n\nfunction readChunk(dv, bArr, arrayBuffer, offset)\n{\n    const chunk = {};\n\n    if (offset >= dv.byteLength)\n    {\n        // op.log(\"could not read chunk...\");\n        return;\n    }\n    chunk.size = dv.getUint32(offset + 0, le);\n\n    // chunk.type = new TextDecoder(\"utf-8\").decode(bArr.subarray(offset+4, offset+4+4));\n    chunk.type = Utf8ArrayToStr(bArr.subarray(offset + 4, offset + 4 + 4));\n\n    if (chunk.type == \"BIN\\0\")\n    {\n        // console.log(chunk.size,arrayBuffer.length,offset);\n        // try\n        // {\n        chunk.dataView = new DataView(arrayBuffer, offset + 8, chunk.size);\n        // }\n        // catch(e)\n        // {\n        //     chunk.dataView = null;\n        //     console.log(e);\n        // }\n    }\n    else\n    if (chunk.type == \"JSON\")\n    {\n        const json = Utf8ArrayToStr(bArr.subarray(offset + 8, offset + 8 + chunk.size));\n\n        try\n        {\n            const obj = JSON.parse(json);\n            chunk.data = obj;\n            outGenerator.set(obj.asset.generator);\n        }\n        catch (e)\n        {\n        }\n    }\n    else\n    {\n        op.warn(\"unknown type\", chunk.type);\n    }\n\n    return chunk;\n}\n\nfunction loadAnims(gltf)\n{\n    const uniqueAnimNames = {};\n\n    for (let i = 0; i < gltf.json.animations.length; i++)\n    {\n        const an = gltf.json.animations[i];\n\n        an.name = an.name || \"unknown\";\n\n        for (let ia = 0; ia < an.channels.length; ia++)\n        {\n            const chan = an.channels[ia];\n\n            const node = gltf.nodes[chan.target.node];\n            const sampler = an.samplers[chan.sampler];\n\n            const acc = gltf.json.accessors[sampler.input];\n            const bufferIn = gltf.accBuffers[sampler.input];\n\n            const accOut = gltf.json.accessors[sampler.output];\n            const bufferOut = gltf.accBuffers[sampler.output];\n\n            gltf.accBuffersDelete.push(sampler.output, sampler.input);\n\n            if (bufferIn && bufferOut)\n            {\n                let numComps = 1;\n                if (accOut.type === \"VEC2\")numComps = 2;\n                else if (accOut.type === \"VEC3\")numComps = 3;\n                else if (accOut.type === \"VEC4\")numComps = 4;\n                else if (accOut.type === \"SCALAR\")\n                {\n                    numComps = bufferOut.length / bufferIn.length; // is this really the way to find out ? cant find any other way,except number of morph targets, but not really connected...\n                }\n                else op.log(\"[] UNKNOWN accOut.type\", accOut.type);\n\n                const anims = [];\n\n                uniqueAnimNames[an.name] = true;\n\n                for (let k = 0; k < numComps; k++)\n                {\n                    const newAnim = new CABLES.Anim();\n                    // newAnim.name=an.name;\n                    anims.push(newAnim);\n                }\n\n                if (sampler.interpolation === \"LINEAR\") {}\n                else if (sampler.interpolation === \"STEP\") for (let k = 0; k < numComps; k++) anims[k].defaultEasing = CABLES.EASING_ABSOLUTE;\n                else if (sampler.interpolation === \"CUBICSPLINE\") for (let k = 0; k < numComps; k++) anims[k].defaultEasing = CABLES.EASING_CUBICSPLINE;\n                else op.warn(\"unknown interpolation\", sampler.interpolation);\n\n                // console.log(bufferOut)\n\n                // if there is no keyframe for time 0 copy value of first keyframe at time 0\n                if (bufferIn[0] !== 0.0)\n                    for (let k = 0; k < numComps; k++)\n                        anims[k].setValue(0, bufferOut[0 * numComps + k]);\n\n                for (let j = 0; j < bufferIn.length; j++)\n                {\n                    maxTime = Math.max(bufferIn[j], maxTime);\n\n                    for (let k = 0; k < numComps; k++)\n                    {\n                        if (anims[k].defaultEasing === CABLES.EASING_CUBICSPLINE)\n                        {\n                            const idx = ((j * numComps) * 3 + k);\n\n                            const key = anims[k].setValue(bufferIn[j], bufferOut[idx + numComps]);\n                            key.bezTangIn = bufferOut[idx];\n                            key.bezTangOut = bufferOut[idx + (numComps * 2)];\n\n                            // console.log(an.name,k,bufferOut[idx+1]);\n                        }\n                        else\n                        {\n                            // console.log(an.name,k,bufferOut[j * numComps + k]);\n                            anims[k].setValue(bufferIn[j], bufferOut[j * numComps + k]);\n                        }\n                    }\n                }\n\n                node.setAnim(chan.target.path, an.name, anims);\n            }\n            else\n            {\n                op.warn(\"loadAmins bufferIn undefined \", bufferIn === undefined);\n                op.warn(\"loadAmins bufferOut undefined \", bufferOut === undefined);\n                op.warn(\"loadAmins \", sampler, accOut);\n                op.warn(\"loadAmins num accBuffers\", gltf.accBuffers.length);\n                op.warn(\"loadAmins num accessors\", gltf.json.accessors.length);\n            }\n        }\n    }\n\n    gltf.uniqueAnimNames = uniqueAnimNames;\n\n    outAnims.setRef(Object.keys(uniqueAnimNames));\n}\n\nfunction loadCams(gltf)\n{\n    if (!gltf || !gltf.json.cameras) return;\n\n    gltf.cameras = gltf.cameras || [];\n\n    for (let i = 0; i < gltf.nodes.length; i++)\n    {\n        if (gltf.nodes[i].hasOwnProperty(\"camera\"))\n        {\n            const cam = new gltfCamera(gltf, gltf.nodes[i]);\n            gltf.cameras.push(cam);\n        }\n    }\n}\n\nfunction loadAfterDraco()\n{\n    if (!window.DracoDecoder)\n    {\n        setTimeout(() =>\n        {\n            loadAfterDraco();\n        }, 100);\n    }\n\n    reloadSoon();\n}\n\nfunction parseGltf(arrayBuffer)\n{\n    const CHUNK_HEADER_SIZE = 8;\n\n    let j = 0, i = 0;\n\n    const gltf = new Gltf();\n    gltf.timing.push([\"Start parsing\", Math.round((performance.now() - gltf.startTime))]);\n\n    if (!arrayBuffer) return;\n    const byteArray = new Uint8Array(arrayBuffer);\n    let pos = 0;\n\n    // var string = new TextDecoder(\"utf-8\").decode(byteArray.subarray(pos, 4));\n    const string = Utf8ArrayToStr(byteArray.subarray(pos, 4));\n    pos += 4;\n    if (string != \"glTF\") return;\n\n    gltf.timing.push([\"dataview\", Math.round((performance.now() - gltf.startTime))]);\n\n    const dv = new DataView(arrayBuffer);\n    const version = dv.getUint32(pos, le);\n    pos += 4;\n    const size = dv.getUint32(pos, le);\n    pos += 4;\n\n    outVersion.set(version);\n\n    const chunks = [];\n    gltf.chunks = chunks;\n\n    chunks.push(readChunk(dv, byteArray, arrayBuffer, pos));\n    pos += chunks[0].size + CHUNK_HEADER_SIZE;\n    gltf.json = chunks[0].data;\n\n    gltf.cables = {\n        \"fileUrl\": inFile.get(),\n        \"shortFileName\": CABLES.basename(inFile.get())\n    };\n\n    outJson.setRef(gltf.json);\n    outExtensions.setRef(gltf.json.extensionsUsed || []);\n\n    let ch = readChunk(dv, byteArray, arrayBuffer, pos);\n    while (ch)\n    {\n        chunks.push(ch);\n        pos += ch.size + CHUNK_HEADER_SIZE;\n        ch = readChunk(dv, byteArray, arrayBuffer, pos);\n    }\n\n    gltf.chunks = chunks;\n\n    const views = chunks[0].data.bufferViews;\n    const accessors = chunks[0].data.accessors;\n\n    gltf.timing.push([\"Parse buffers\", Math.round((performance.now() - gltf.startTime))]);\n\n    if (gltf.json.extensionsUsed && gltf.json.extensionsUsed.indexOf(\"KHR_draco_mesh_compression\") > -1)\n    {\n        if (!window.DracoDecoder)\n        {\n            op.setUiError(\"gltfdraco\", \"GLTF draco compression lib not found / add draco op to your patch!\");\n\n            loadAfterDraco();\n            return gltf;\n        }\n        else\n        {\n            gltf.useDraco = true;\n        }\n    }\n\n    op.setUiError(\"gltfdraco\", null);\n    // let accPos = (view.byteOffset || 0) + (acc.byteOffset || 0);\n\n    if (views)\n    {\n        for (i = 0; i < accessors.length; i++)\n        {\n            const acc = accessors[i];\n            const view = views[acc.bufferView];\n\n            let numComps = 0;\n            if (acc.type == \"SCALAR\")numComps = 1;\n            else if (acc.type == \"VEC2\")numComps = 2;\n            else if (acc.type == \"VEC3\")numComps = 3;\n            else if (acc.type == \"VEC4\")numComps = 4;\n            else if (acc.type == \"MAT4\")numComps = 16;\n            else console.error(\"unknown accessor type\", acc.type);\n\n            //   const decoder = new decoderModule.Decoder();\n            //   const decodedGeometry = decodeDracoData(data, decoder);\n            //   // Encode mesh\n            //   encodeMeshToFile(decodedGeometry, decoder);\n\n            //   decoderModule.destroy(decoder);\n            //   decoderModule.destroy(decodedGeometry);\n\n            // 5120 (BYTE)\t1\n            // 5121 (UNSIGNED_BYTE)\t1\n            // 5122 (SHORT)\t2\n\n            if (chunks[1].dataView)\n            {\n                if (view)\n                {\n                    const num = acc.count * numComps;\n                    let accPos = (view.byteOffset || 0) + (acc.byteOffset || 0);\n                    let stride = view.byteStride || 0;\n                    let dataBuff = null;\n\n                    if (acc.componentType == 5126 || acc.componentType == 5125) // 4byte FLOAT or INT\n                    {\n                        stride = stride || 4;\n\n                        const isInt = acc.componentType == 5125;\n                        if (isInt)dataBuff = new Uint32Array(num);\n                        else dataBuff = new Float32Array(num);\n\n                        dataBuff.cblStride = numComps;\n\n                        for (j = 0; j < num; j++)\n                        {\n                            if (isInt) dataBuff[j] = chunks[1].dataView.getUint32(accPos, le);\n                            else dataBuff[j] = chunks[1].dataView.getFloat32(accPos, le);\n\n                            if (stride != 4 && (j + 1) % numComps === 0)accPos += stride - (numComps * 4);\n                            accPos += 4;\n                        }\n                    }\n                    else if (acc.componentType == 5123) // UNSIGNED_SHORT\n                    {\n                        stride = stride || 2;\n\n                        dataBuff = new Uint16Array(num);\n                        dataBuff.cblStride = stride;\n\n                        for (j = 0; j < num; j++)\n                        {\n                            dataBuff[j] = chunks[1].dataView.getUint16(accPos, le);\n\n                            if (stride != 2 && (j + 1) % numComps === 0) accPos += stride - (numComps * 2);\n\n                            accPos += 2;\n                        }\n                    }\n                    else if (acc.componentType == 5121) // UNSIGNED_BYTE\n                    {\n                        stride = stride || 1;\n\n                        dataBuff = new Uint8Array(num);\n                        dataBuff.cblStride = stride;\n\n                        for (j = 0; j < num; j++)\n                        {\n                            dataBuff[j] = chunks[1].dataView.getUint8(accPos, le);\n\n                            if (stride != 1 && (j + 1) % numComps === 0) accPos += stride - (numComps * 1);\n\n                            accPos += 1;\n                        }\n                    }\n\n                    else\n                    {\n                        console.error(\"unknown component type\", acc.componentType);\n                    }\n\n                    gltf.accBuffers.push(dataBuff);\n                }\n                else\n                {\n                    // console.log(\"has no dataview\");\n                }\n            }\n        }\n    }\n\n    gltf.timing.push([\"Parse mesh groups\", Math.round((performance.now() - gltf.startTime))]);\n\n    gltf.json.meshes = gltf.json.meshes || [];\n\n    if (gltf.json.meshes)\n    {\n        for (i = 0; i < gltf.json.meshes.length; i++)\n        {\n            const mesh = new gltfMeshGroup(gltf, gltf.json.meshes[i]);\n            gltf.meshes.push(mesh);\n        }\n    }\n\n    gltf.timing.push([\"Parse nodes\", Math.round((performance.now() - gltf.startTime))]);\n\n    for (i = 0; i < gltf.json.nodes.length; i++)\n    {\n        if (gltf.json.nodes[i].children)\n            for (j = 0; j < gltf.json.nodes[i].children.length; j++)\n            {\n                gltf.json.nodes[gltf.json.nodes[i].children[j]].isChild = true;\n            }\n    }\n\n    for (i = 0; i < gltf.json.nodes.length; i++)\n    {\n        const node = new gltfNode(gltf.json.nodes[i], gltf);\n        gltf.nodes.push(node);\n    }\n\n    for (i = 0; i < gltf.nodes.length; i++)\n    {\n        const node = gltf.nodes[i];\n\n        if (!node.children) continue;\n        for (let j = 0; j < node.children.length; j++)\n        {\n            gltf.nodes[node.children[j]].parent = node;\n        }\n    }\n\n    for (i = 0; i < gltf.nodes.length; i++)\n    {\n        gltf.nodes[i].initSkin();\n    }\n\n    needsMatUpdate = true;\n\n    gltf.timing.push([\"load anims\", Math.round((performance.now() - gltf.startTime))]);\n\n    if (gltf.json.animations) loadAnims(gltf);\n\n    gltf.timing.push([\"load cameras\", Math.round((performance.now() - gltf.startTime))]);\n\n    if (gltf.json.cameras) loadCams(gltf);\n\n    gltf.timing.push([\"finished\", Math.round((performance.now() - gltf.startTime))]);\n    return gltf;\n}\n","inc_mesh_js":"let gltfMesh = class\n{\n    constructor(name, prim, gltf, finished)\n    {\n        this.POINTS = 0;\n        this.LINES = 1;\n        this.LINE_LOOP = 2;\n        this.LINE_STRIP = 3;\n        this.TRIANGLES = 4;\n        this.TRIANGLE_STRIP = 5;\n        this.TRIANGLE_FAN = 6;\n\n        this.test = 0;\n        this.name = name;\n        this.submeshIndex = 0;\n        this.material = prim.material;\n        // console.log(prim);\n        this.mesh = null;\n        this.geom = new CGL.Geometry(\"gltf_\" + this.name);\n        this.geom.verticesIndices = [];\n        this.bounds = null;\n        this.primitive = 4;\n        this.morphTargetsRenderMod = null;\n        this.weights = prim.weights;\n\n        if (prim.hasOwnProperty(\"mode\")) this.primitive = prim.mode;\n\n        if (prim.hasOwnProperty(\"indices\")) this.geom.verticesIndices = gltf.accBuffers[prim.indices];\n\n        gltf.loadingMeshes = gltf.loadingMeshes || 0;\n        gltf.loadingMeshes++;\n\n        this.materialJson =\n            this._matPbrMetalness =\n            this._matPbrRoughness =\n            this._matDiffuseColor = null;\n\n        if (gltf.json.materials)\n        {\n            if (this.material != -1) this.materialJson = gltf.json.materials[this.material];\n\n            if (this.materialJson && this.materialJson.pbrMetallicRoughness)\n            {\n                if (!this.materialJson.pbrMetallicRoughness.hasOwnProperty(\"baseColorFactor\"))\n                {\n                    this._matDiffuseColor = [1, 1, 1, 1];\n                }\n                else\n                {\n                    this._matDiffuseColor = this.materialJson.pbrMetallicRoughness.baseColorFactor;\n                }\n\n                this._matDiffuseColor = this.materialJson.pbrMetallicRoughness.baseColorFactor;\n\n                if (!this.materialJson.pbrMetallicRoughness.hasOwnProperty(\"metallicFactor\"))\n                {\n                    this._matPbrMetalness = 1.0;\n                }\n                else\n                {\n                    this._matPbrMetalness = this.materialJson.pbrMetallicRoughness.metallicFactor || null;\n                }\n\n                if (!this.materialJson.pbrMetallicRoughness.hasOwnProperty(\"roughnessFactor\"))\n                {\n                    this._matPbrRoughness = 1.0;\n                }\n                else\n                {\n                    this._matPbrRoughness = this.materialJson.pbrMetallicRoughness.roughnessFactor || null;\n                }\n            }\n        }\n\n        if (gltf.useDraco && prim.extensions.KHR_draco_mesh_compression)\n        {\n            const view = gltf.chunks[0].data.bufferViews[prim.extensions.KHR_draco_mesh_compression.bufferView];\n            const num = view.byteLength;\n            const dataBuff = new Int8Array(num);\n            let accPos = (view.byteOffset || 0);// + (acc.byteOffset || 0);\n            for (let j = 0; j < num; j++)\n            {\n                dataBuff[j] = gltf.chunks[1].dataView.getInt8(accPos, le);\n                accPos++;\n            }\n\n            const dracoDecoder = window.DracoDecoder;\n            dracoDecoder.decodeGeometry(dataBuff.buffer, (geometry) =>\n            {\n                const geom = new CGL.Geometry(\"draco mesh \" + name);\n\n                for (let i = 0; i < geometry.attributes.length; i++)\n                {\n                    const attr = geometry.attributes[i];\n\n                    if (attr.name === \"position\") geom.vertices = attr.array;\n                    else if (attr.name === \"normal\") geom.vertexNormals = attr.array;\n                    else if (attr.name === \"uv\") geom.texCoords = attr.array;\n                    else if (attr.name === \"color\") geom.vertexColors = this.calcVertexColors(attr.array);\n                    else if (attr.name === \"joints\") geom.setAttribute(\"attrJoints\", Array.from(attr.array), 4);\n                    else if (attr.name === \"weights\")\n                    {\n                        const arr4 = new Float32Array(attr.array.length / attr.itemSize * 4);\n\n                        for (let k = 0; k < attr.array.length / attr.itemSize; k++)\n                        {\n                            arr4[k * 4] = arr4[k * 4 + 1] = arr4[k * 4 + 2] = arr4[k * 4 + 3] = 0;\n                            for (let j = 0; j < attr.itemSize; j++)\n                                arr4[k * 4 + j] = attr.array[k * attr.itemSize + j];\n                        }\n                        geom.setAttribute(\"attrWeights\", arr4, 4);\n                    }\n                    else op.logWarn(\"unknown draco attrib\", attr);\n                }\n\n                geometry.attributes = null;\n                geom.verticesIndices = geometry.index.array;\n\n                this.setGeom(geom);\n\n                this.mesh = null;\n                gltf.loadingMeshes--;\n                gltf.timing.push([\"draco decode\", Math.round((performance.now() - gltf.startTime))]);\n\n                if (finished)finished(this);\n            }, (error) => { op.logError(error); });\n        }\n        else\n        {\n            gltf.loadingMeshes--;\n            this.fillGeomAttribs(gltf, this.geom, prim.attributes);\n\n            if (prim.targets)\n            {\n                for (let j = 0; j < prim.targets.length; j++)\n                {\n                    const tgeom = new CGL.Geometry(\"gltf_target_\" + j);\n\n                    // if (prim.hasOwnProperty(\"indices\")) tgeom.verticesIndices = gltf.accBuffers[prim.indices];\n\n                    this.fillGeomAttribs(gltf, tgeom, prim.targets[j], false);\n\n                    // { // calculate normals for final position of morphtarget for later...\n                    //     for (let i = 0; i < tgeom.vertices.length; i++) tgeom.vertices[i] += this.geom.vertices[i];\n                    //     tgeom.calculateNormals();\n                    //     for (let i = 0; i < tgeom.vertices.length; i++) tgeom.vertices[i] -= this.geom.vertices[i];\n                    // }\n\n                    this.geom.morphTargets.push(tgeom);\n                }\n            }\n            if (finished)finished(this);\n        }\n    }\n\n    _linearToSrgb(x)\n    {\n        if (x <= 0)\n            return 0;\n        else if (x >= 1)\n            return 1;\n        else if (x < 0.0031308)\n            return x * 12.92;\n        else\n            return x ** (1 / 2.2) * 1.055 - 0.055;\n    }\n\n    calcVertexColors(arr, type)\n    {\n        let vertexColors = null;\n        if (arr instanceof Float32Array)\n        {\n            let div = false;\n            for (let i = 0; i < arr.length; i++)\n            {\n                if (arr[i] > 1)\n                {\n                    div = true;\n                    continue;\n                }\n            }\n\n            if (div)\n                for (let i = 0; i < arr.length; i++) arr[i] /= 65535;\n\n            vertexColors = arr;\n        }\n\n        else if (arr instanceof Uint16Array)\n        {\n            const fb = new Float32Array(arr.length);\n            for (let i = 0; i < arr.length; i++) fb[i] = arr[i] / 65535;\n\n            vertexColors = fb;\n        }\n        else vertexColors = arr;\n\n        for (let i = 0; i < vertexColors.length; i++)\n        {\n            vertexColors[i] = this._linearToSrgb(vertexColors[i]);\n        }\n\n        console.log(\"arr.cblStride\", arr.cblStride);\n        if (arr.cblStride == 3)\n        {\n            const nc = new Float32Array(vertexColors.length / 3 * 4);\n            for (let i = 0; i < vertexColors.length / 3; i++)\n            {\n                nc[i * 4 + 0] = vertexColors[i * 3 + 0];\n                nc[i * 4 + 1] = vertexColors[i * 3 + 1];\n                nc[i * 4 + 2] = vertexColors[i * 3 + 2];\n                nc[i * 4 + 3] = 1;\n            }\n            vertexColors = nc;\n        }\n\n        return vertexColors;\n    }\n\n    fillGeomAttribs(gltf, tgeom, attribs, setGeom)\n    {\n        if (attribs.hasOwnProperty(\"POSITION\")) tgeom.vertices = gltf.accBuffers[attribs.POSITION];\n        if (attribs.hasOwnProperty(\"NORMAL\")) tgeom.vertexNormals = gltf.accBuffers[attribs.NORMAL];\n        if (attribs.hasOwnProperty(\"TANGENT\")) tgeom.tangents = gltf.accBuffers[attribs.TANGENT];\n\n        // // console.log(gltf.accBuffers[attribs.COLOR_0])\n        // console.log(gltf);\n\n        if (attribs.hasOwnProperty(\"COLOR_0\")) tgeom.vertexColors = this.calcVertexColors(gltf.accBuffers[attribs.COLOR_0], gltf.accBuffers[attribs.COLOR_0].type);\n        if (attribs.hasOwnProperty(\"COLOR_1\")) tgeom.setAttribute(\"attrVertColor1\", this.calcVertexColors(gltf.accBuffers[attribs.COLOR_1]), gltf.accBuffers[attribs.COLOR_1].type);\n        if (attribs.hasOwnProperty(\"COLOR_2\")) tgeom.setAttribute(\"attrVertColor2\", this.calcVertexColors(gltf.accBuffers[attribs.COLOR_2]), gltf.accBuffers[attribs.COLOR_2].type);\n        if (attribs.hasOwnProperty(\"COLOR_3\")) tgeom.setAttribute(\"attrVertColor3\", this.calcVertexColors(gltf.accBuffers[attribs.COLOR_3]), gltf.accBuffers[attribs.COLOR_3].type);\n        if (attribs.hasOwnProperty(\"COLOR_4\")) tgeom.setAttribute(\"attrVertColor4\", this.calcVertexColors(gltf.accBuffers[attribs.COLOR_4]), gltf.accBuffers[attribs.COLOR_4].type);\n\n        if (attribs.hasOwnProperty(\"TEXCOORD_0\")) tgeom.texCoords = gltf.accBuffers[attribs.TEXCOORD_0];\n        if (attribs.hasOwnProperty(\"TEXCOORD_1\")) tgeom.setAttribute(\"attrTexCoord1\", gltf.accBuffers[attribs.TEXCOORD_1], 2);\n        if (attribs.hasOwnProperty(\"TEXCOORD_2\")) tgeom.setAttribute(\"attrTexCoord2\", gltf.accBuffers[attribs.TEXCOORD_2], 2);\n        if (attribs.hasOwnProperty(\"TEXCOORD_3\")) tgeom.setAttribute(\"attrTexCoord3\", gltf.accBuffers[attribs.TEXCOORD_3], 2);\n        if (attribs.hasOwnProperty(\"TEXCOORD_4\")) tgeom.setAttribute(\"attrTexCoord4\", gltf.accBuffers[attribs.TEXCOORD_4], 2);\n\n        if (attribs.hasOwnProperty(\"WEIGHTS_0\"))\n        {\n            tgeom.setAttribute(\"attrWeights\", gltf.accBuffers[attribs.WEIGHTS_0], 4);\n        }\n        if (attribs.hasOwnProperty(\"JOINTS_0\"))\n        {\n            if (!gltf.accBuffers[attribs.JOINTS_0])console.log(\"no !gltf.accBuffers[attribs.JOINTS_0]\");\n            tgeom.setAttribute(\"attrJoints\", gltf.accBuffers[attribs.JOINTS_0], 4);\n        }\n\n        if (attribs.hasOwnProperty(\"POSITION\")) gltf.accBuffersDelete.push(attribs.POSITION);\n        if (attribs.hasOwnProperty(\"NORMAL\")) gltf.accBuffersDelete.push(attribs.NORMAL);\n        if (attribs.hasOwnProperty(\"TEXCOORD_0\")) gltf.accBuffersDelete.push(attribs.TEXCOORD_0);\n        if (attribs.hasOwnProperty(\"TANGENT\")) gltf.accBuffersDelete.push(attribs.TANGENT);\n        if (attribs.hasOwnProperty(\"COLOR_0\"))gltf.accBuffersDelete.push(attribs.COLOR_0);\n        if (attribs.hasOwnProperty(\"COLOR_0\"))gltf.accBuffersDelete.push(attribs.COLOR_0);\n        if (attribs.hasOwnProperty(\"COLOR_1\"))gltf.accBuffersDelete.push(attribs.COLOR_1);\n        if (attribs.hasOwnProperty(\"COLOR_2\"))gltf.accBuffersDelete.push(attribs.COLOR_2);\n        if (attribs.hasOwnProperty(\"COLOR_3\"))gltf.accBuffersDelete.push(attribs.COLOR_3);\n\n        if (attribs.hasOwnProperty(\"TEXCOORD_1\")) gltf.accBuffersDelete.push(attribs.TEXCOORD_1);\n        if (attribs.hasOwnProperty(\"TEXCOORD_2\")) gltf.accBuffersDelete.push(attribs.TEXCOORD_2);\n        if (attribs.hasOwnProperty(\"TEXCOORD_3\")) gltf.accBuffersDelete.push(attribs.TEXCOORD_3);\n        if (attribs.hasOwnProperty(\"TEXCOORD_4\")) gltf.accBuffersDelete.push(attribs.TEXCOORD_4);\n\n        if (setGeom !== false) if (tgeom && tgeom.verticesIndices) this.setGeom(tgeom);\n    }\n\n    setGeom(geom)\n    {\n        if (inNormFormat.get() == \"X-ZY\")\n        {\n            for (let i = 0; i < geom.vertexNormals.length; i += 3)\n            {\n                let t = geom.vertexNormals[i + 2];\n                geom.vertexNormals[i + 2] = geom.vertexNormals[i + 1];\n                geom.vertexNormals[i + 1] = -t;\n            }\n        }\n\n        if (inVertFormat.get() == \"XZ-Y\")\n        {\n            for (let i = 0; i < geom.vertices.length; i += 3)\n            {\n                let t = geom.vertices[i + 2];\n                geom.vertices[i + 2] = -geom.vertices[i + 1];\n                geom.vertices[i + 1] = t;\n            }\n        }\n\n        if (this.primitive == this.TRIANGLES)\n        {\n            if (inCalcNormals.get() == \"Force Smooth\" || inCalcNormals.get() == false) geom.calculateNormals();\n            else if (!geom.vertexNormals.length && inCalcNormals.get() == \"Auto\") geom.calculateNormals({ \"smooth\": false });\n\n            if ((!geom.biTangents || geom.biTangents.length == 0) && geom.tangents)\n            {\n                const bitan = vec3.create();\n                const tan = vec3.create();\n\n                const tangents = geom.tangents;\n                geom.tangents = new Float32Array(tangents.length / 4 * 3);\n                geom.biTangents = new Float32Array(tangents.length / 4 * 3);\n\n                for (let i = 0; i < tangents.length; i += 4)\n                {\n                    const idx = i / 4 * 3;\n\n                    vec3.cross(\n                        bitan,\n                        [geom.vertexNormals[idx], geom.vertexNormals[idx + 1], geom.vertexNormals[idx + 2]],\n                        [tangents[i], tangents[i + 1], tangents[i + 2]]\n                    );\n\n                    vec3.div(bitan, bitan, [tangents[i + 3], tangents[i + 3], tangents[i + 3]]);\n                    vec3.normalize(bitan, bitan);\n\n                    geom.biTangents[idx + 0] = bitan[0];\n                    geom.biTangents[idx + 1] = bitan[1];\n                    geom.biTangents[idx + 2] = bitan[2];\n\n                    geom.tangents[idx + 0] = tangents[i + 0];\n                    geom.tangents[idx + 1] = tangents[i + 1];\n                    geom.tangents[idx + 2] = tangents[i + 2];\n                }\n            }\n\n            if (geom.tangents.length === 0 || inCalcNormals.get() != \"Never\")\n            {\n                // console.log(\"[gltf ]no tangents... calculating tangents...\");\n                geom.calcTangentsBitangents();\n            }\n        }\n\n        this.geom = geom;\n\n        this.bounds = geom.getBounds();\n    }\n\n    render(cgl, ignoreMaterial, skinRenderer)\n    {\n        if (!this.mesh && this.geom && this.geom.verticesIndices)\n        {\n            let g = this.geom;\n            if (this.geom.vertices.length / 3 > 64000)\n            {\n                g = this.geom.copy();\n                g.unIndex(false, true);\n            }\n\n            let glprim;\n\n            if (cgl.gl)\n            {\n                if (this.primitive == this.TRIANGLES)glprim = cgl.gl.TRIANGLES;\n                else if (this.primitive == this.LINES)glprim = cgl.gl.LINES;\n                else if (this.primitive == this.LINE_STRIP)glprim = cgl.gl.LINE_STRIP;\n                else if (this.primitive == this.POINTS)glprim = cgl.gl.POINTS;\n                else\n                {\n                    op.logWarn(\"unknown primitive type\", this);\n                }\n            }\n\n            this.mesh = op.patch.cg.createMesh(g, { \"glPrimitive\": glprim });\n        }\n\n        if (this.mesh)\n        {\n            // update morphTargets\n            if (this.geom && this.geom.morphTargets.length && !this.morphTargetsRenderMod)\n            {\n                this.mesh.addVertexNumbers = true;\n                this.morphTargetsRenderMod = new GltfTargetsRenderer(this);\n            }\n\n            let useMat = !ignoreMaterial && this.material != -1 && gltf.shaders[this.material];\n            if (skinRenderer)useMat = false;\n\n            if (useMat) cgl.pushShader(gltf.shaders[this.material]);\n\n            const currentShader = cgl.getShader() || {};\n            const uniDiff = currentShader.uniformColorDiffuse;\n\n            const uniPbrMetalness = currentShader.uniformPbrMetalness;\n            const uniPbrRoughness = currentShader.uniformPbrRoughness;\n\n            // if (gltf.shaders[this.material] && !inUseMatProps.get())\n            // {\n            //     gltf.shaders[this.material]=null;\n            // }\n\n            if (!gltf.shaders[this.material] && inUseMatProps.get())\n            {\n                if (uniDiff && this._matDiffuseColor)\n                {\n                    this._matDiffuseColorOrig = [uniDiff.getValue()[0], uniDiff.getValue()[1], uniDiff.getValue()[2], uniDiff.getValue()[3]];\n                    uniDiff.setValue(this._matDiffuseColor);\n                }\n\n                if (uniPbrMetalness)\n                    if (this._matPbrMetalness != null)\n                    {\n                        this._matPbrMetalnessOrig = uniPbrMetalness.getValue();\n                        uniPbrMetalness.setValue(this._matPbrMetalness);\n                    }\n                    else\n                        uniPbrMetalness.setValue(0);\n\n                if (uniPbrRoughness)\n                    if (this._matPbrRoughness != null)\n                    {\n                        this._matPbrRoughnessOrig = uniPbrRoughness.getValue();\n                        uniPbrRoughness.setValue(this._matPbrRoughness);\n                    }\n                    else\n                    {\n                        uniPbrRoughness.setValue(0);\n                    }\n            }\n\n            if (this.morphTargetsRenderMod) this.morphTargetsRenderMod.renderStart(cgl, 0);\n            if (this.mesh)\n            {\n                // console.log(this.mesh)\n                // this.mesh.lastMaterial=0;\n                this.mesh.render(cgl.getShader(), ignoreMaterial);\n            }\n            if (this.morphTargetsRenderMod) this.morphTargetsRenderMod.renderFinish(cgl);\n\n            if (inUseMatProps.get())\n            {\n                if (uniDiff && this._matDiffuseColor) uniDiff.setValue(this._matDiffuseColorOrig);\n                if (uniPbrMetalness && this._matPbrMetalnessOrig != undefined) uniPbrMetalness.setValue(this._matPbrMetalnessOrig);\n                if (uniPbrRoughness && this._matPbrRoughnessOrig != undefined) uniPbrRoughness.setValue(this._matPbrRoughnessOrig);\n            }\n\n            if (useMat) cgl.popShader();\n        }\n    }\n};\n","inc_meshGroup_js":"const gltfMeshGroup = class\n{\n    constructor(gltf, m)\n    {\n        this.bounds = new CABLES.CG.BoundingBox();\n        this.meshes = [];\n        this.name = m.name;\n        const prims = m.primitives;\n\n        for (let i = 0; i < prims.length; i++)\n        {\n            const mesh = new gltfMesh(this.name, prims[i], gltf,\n                (mesh) =>\n                {\n                    mesh.extras = m.extras;\n                    this.bounds.apply(mesh.bounds);\n                });\n\n            mesh.submeshIndex = i;\n            this.meshes.push(mesh);\n        }\n    }\n\n    render(cgl, ignoreMat, skinRenderer, _time, weights)\n    {\n        for (let i = 0; i < this.meshes.length; i++)\n        {\n            const useMat = gltf.shaders[this.meshes[i].material];\n\n            if (!ignoreMat && useMat) cgl.pushShader(gltf.shaders[this.meshes[i].material]);\n            // console.log(gltf.shaders[this.meshes[i].material],this.meshes[i].material)\n            if (skinRenderer)skinRenderer.renderStart(cgl, _time);\n            if (weights) this.meshes[i].weights = weights;\n            this.meshes[i].render(cgl, ignoreMat, skinRenderer, _time);\n            if (skinRenderer)skinRenderer.renderFinish(cgl);\n            if (!ignoreMat && useMat) cgl.popShader();\n        }\n    }\n};\n","inc_node_js":"const gltfNode = class\n{\n    constructor(node, gltf)\n    {\n        this.isChild = node.isChild || false;\n        this.name = node.name;\n        if (node.hasOwnProperty(\"camera\")) this.camera = node.camera;\n        this.hidden = false;\n        this.mat = mat4.create();\n        this._animActions = {};\n        this.animWeights = [];\n        this._animMat = mat4.create();\n        this._tempMat = mat4.create();\n        this._tempQuat = quat.create();\n        this._tempRotmat = mat4.create();\n        this.mesh = null;\n        this.children = [];\n        this._node = node;\n        this._gltf = gltf;\n        this.absMat = mat4.create();\n        this.addTranslate = null;\n        this._tempAnimScale = null;\n        this.addMulMat = null;\n        this.updateMatrix();\n        this.skinRenderer = null;\n        this.copies = [];\n    }\n\n    get skin()\n    {\n        if (this._node.hasOwnProperty(\"skin\")) return this._node.skin;\n        else return -1;\n    }\n\n    copy()\n    {\n        this.isCopy = true;\n        const n = new gltfNode(this._node, this._gltf);\n        n.copyOf = this;\n\n        n._animActions = this._animActions;\n        n.children = this.children;\n        if (this.skin) n.skinRenderer = new GltfSkin(this);\n\n        this.updateMatrix();\n        return n;\n    }\n\n    hasSkin()\n    {\n        if (this._node.hasOwnProperty(\"skin\")) return this._gltf.json.skins[this._node.skin].name || \"unknown\";\n        return false;\n    }\n\n    initSkin()\n    {\n        if (this.skin > -1)\n        {\n            this.skinRenderer = new GltfSkin(this);\n        }\n    }\n\n    updateMatrix()\n    {\n        mat4.identity(this.mat);\n        if (this._node.translation) mat4.translate(this.mat, this.mat, this._node.translation);\n\n        if (this._node.rotation)\n        {\n            const rotmat = mat4.create();\n            this._rot = this._node.rotation;\n\n            mat4.fromQuat(rotmat, this._node.rotation);\n            mat4.mul(this.mat, this.mat, rotmat);\n        }\n\n        if (this._node.scale)\n        {\n            this._scale = this._node.scale;\n            mat4.scale(this.mat, this.mat, this._scale);\n        }\n\n        if (this._node.hasOwnProperty(\"mesh\"))\n        {\n            this.mesh = this._gltf.meshes[this._node.mesh];\n            if (this.isCopy)\n            {\n                // console.log(this.mesh);\n            }\n        }\n\n        if (this._node.children)\n        {\n            for (let i = 0; i < this._node.children.length; i++)\n            {\n                this._gltf.json.nodes[i].isChild = true;\n                if (this._gltf.nodes[this._node.children[i]]) this._gltf.nodes[this._node.children[i]].isChild = true;\n                this.children.push(this._node.children[i]);\n            }\n        }\n    }\n\n    unHide()\n    {\n        this.hidden = false;\n        for (let i = 0; i < this.children.length; i++)\n            if (this.children[i].unHide) this.children[i].unHide();\n    }\n\n    calcBounds(gltf, mat, bounds)\n    {\n        const localMat = mat4.create();\n\n        if (mat) mat4.copy(localMat, mat);\n        if (this.mat) mat4.mul(localMat, localMat, this.mat);\n\n        if (this.mesh)\n        {\n            const bb = this.mesh.bounds.copy();\n            bb.mulMat4(localMat);\n            bounds.apply(bb);\n\n            if (bounds.changed)\n            {\n                boundingPoints.push(\n                    bb._min[0] || 0, bb._min[1] || 0, bb._min[2] || 0,\n                    bb._max[0] || 0, bb._max[1] || 0, bb._max[2] || 0);\n            }\n        }\n\n        for (let i = 0; i < this.children.length; i++)\n        {\n            if (gltf.nodes[this.children[i]] && gltf.nodes[this.children[i]].calcBounds)\n            {\n                const b = gltf.nodes[this.children[i]].calcBounds(gltf, localMat, bounds);\n\n                bounds.apply(b);\n            }\n        }\n\n        if (bounds.changed) return bounds;\n        else return null;\n    }\n\n    setAnimAction(name)\n    {\n        // console.log(\"setAnimAction:\", name);\n        if (!name) return;\n\n        this._currentAnimaction = name;\n\n        if (name && !this._animActions[name])\n        {\n            // console.log(\"no action found:\", name,this._animActions);\n            return null;\n        }\n\n        // else console.log(\"YES action found:\", name);\n        // console.log(this._animActions);\n\n        for (let path in this._animActions[name])\n        {\n            if (path == \"translation\") this._animTrans = this._animActions[name][path];\n            else if (path == \"rotation\") this._animRot = this._animActions[name][path];\n            else if (path == \"scale\") this._animScale = this._animActions[name][path];\n            else if (path == \"weights\") this.animWeights = this._animActions[name][path];\n            else console.log(\"[gltfNode] unknown anim path\", path, this._animActions[name][path]);\n        }\n    }\n\n    setAnim(path, name, anims)\n    {\n        if (!path || !name || !anims) return;\n\n        // console.log(\"setanim\", this._node.name, path, name, anims);\n\n        this._animActions[name] = this._animActions[name] || {};\n\n        // console.log(this._animActions);\n        // debugger;\n\n        // for (let i = 0; i < this.copies.length; i++) this.copies[i]._animActions = this._animActions;\n\n        if (this._animActions[name][path]) op.log(\"[gltfNode] animation action path already exists\", name, path, this._animActions[name][path]);\n\n        this._animActions[name][path] = anims;\n\n        if (path == \"translation\") this._animTrans = anims;\n        else if (path == \"rotation\") this._animRot = anims;\n        else if (path == \"scale\") this._animScale = anims;\n        else if (path == \"weights\")\n        {\n            // console.log(\"weights\",name,path,anims)\n            this.animWeights = this._animActions[name][path];\n            // console.log(this.animWeights);\n        }\n        else console.warn(\"unknown anim path\", path, anims);\n    }\n\n    modelMatLocal()\n    {\n        return this._animMat || this.mat;\n    }\n\n    modelMatAbs()\n    {\n        return this.absMat;\n    }\n\n    transform(cgl, _time)\n    {\n        if (!_time && _time != 0)_time = time;\n\n        this._lastTimeTrans = _time;\n\n        // console.log(this._rot)\n\n        gltfTransforms++;\n\n        if (!this._animTrans && !this._animRot && !this._animScale)\n        {\n            mat4.mul(cgl.mMatrix, cgl.mMatrix, this.mat);\n            this._animMat = null;\n        }\n        else\n        {\n            this._animMat = this._animMat || mat4.create();\n            mat4.identity(this._animMat);\n\n            const playAnims = true;\n\n            if (playAnims && this._animTrans)\n            {\n                mat4.translate(this._animMat, this._animMat, [\n                    this._animTrans[0].getValue(_time),\n                    this._animTrans[1].getValue(_time),\n                    this._animTrans[2].getValue(_time)]);\n            }\n            else\n            if (this._node.translation) mat4.translate(this._animMat, this._animMat, this._node.translation);\n\n            if (playAnims && this._animRot)\n            {\n                if (this._animRot[0].defaultEasing == CABLES.EASING_LINEAR) CABLES.Anim.slerpQuaternion(_time, this._tempQuat, this._animRot[0], this._animRot[1], this._animRot[2], this._animRot[3]);\n                else if (this._animRot[0].defaultEasing == CABLES.EASING_ABSOLUTE)\n                {\n                    this._tempQuat[0] = this._animRot[0].getValue(_time);\n                    this._tempQuat[1] = this._animRot[1].getValue(_time);\n                    this._tempQuat[2] = this._animRot[2].getValue(_time);\n                    this._tempQuat[3] = this._animRot[3].getValue(_time);\n                }\n                else if (this._animRot[0].defaultEasing == CABLES.EASING_CUBICSPLINE)\n                {\n                    CABLES.Anim.slerpQuaternion(_time, this._tempQuat, this._animRot[0], this._animRot[1], this._animRot[2], this._animRot[3]);\n                }\n\n                mat4.fromQuat(this._tempMat, this._tempQuat);\n                mat4.mul(this._animMat, this._animMat, this._tempMat);\n            }\n            else if (this._rot)\n            {\n                mat4.fromQuat(this._tempRotmat, this._rot);\n                mat4.mul(this._animMat, this._animMat, this._tempRotmat);\n            }\n\n            if (playAnims && this._animScale)\n            {\n                if (!this._tempAnimScale) this._tempAnimScale = [1, 1, 1];\n                this._tempAnimScale[0] = this._animScale[0].getValue(_time);\n                this._tempAnimScale[1] = this._animScale[1].getValue(_time);\n                this._tempAnimScale[2] = this._animScale[2].getValue(_time);\n                mat4.scale(this._animMat, this._animMat, this._tempAnimScale);\n            }\n            else if (this._scale) mat4.scale(this._animMat, this._animMat, this._scale);\n\n            mat4.mul(cgl.mMatrix, cgl.mMatrix, this._animMat);\n        }\n\n        if (this.animWeights)\n        {\n            this.weights = this.weights || [];\n\n            let str = \"\";\n            for (let i = 0; i < this.animWeights.length; i++)\n            {\n                this.weights[i] = this.animWeights[i].getValue(_time);\n                str += this.weights[i] + \"/\";\n            }\n\n            // console.log(str);\n            // this.mesh.weights=this.animWeights.get(_time);\n            // console.log(this.animWeights);\n        }\n\n        if (this.addTranslate) mat4.translate(cgl.mMatrix, cgl.mMatrix, this.addTranslate);\n\n        if (this.addMulMat) mat4.mul(cgl.mMatrix, cgl.mMatrix, this.addMulMat);\n\n        mat4.copy(this.absMat, cgl.mMatrix);\n    }\n\n    render(cgl, dontTransform, dontDrawMesh, ignoreMaterial, ignoreChilds, drawHidden, _time)\n    {\n        if (!dontTransform) cgl.pushModelMatrix();\n\n        if (_time === undefined) _time = gltf.time;\n\n        if (!dontTransform || this.skinRenderer) this.transform(cgl, _time);\n\n        if (this.hidden && !drawHidden)\n        {\n        }\n        else\n        {\n            if (this.skinRenderer)\n            {\n                this.skinRenderer.time = _time;\n                if (!dontDrawMesh)\n                    this.mesh.render(cgl, ignoreMaterial, this.skinRenderer, _time, this.weights);\n            }\n            else\n            {\n                if (this.mesh && !dontDrawMesh)\n                    this.mesh.render(cgl, ignoreMaterial, null, _time, this.weights);\n            }\n        }\n\n        if (!ignoreChilds && !this.hidden)\n            for (let i = 0; i < this.children.length; i++)\n                if (gltf.nodes[this.children[i]])\n                    gltf.nodes[this.children[i]].render(cgl, dontTransform, dontDrawMesh, ignoreMaterial, ignoreChilds, drawHidden, _time);\n\n        if (!dontTransform)cgl.popModelMatrix();\n    }\n};\n","inc_print_js":"let tab = null;\n\nfunction closeTab()\n{\n    if (tab)gui.mainTabs.closeTab(tab.id);\n    tab = null;\n}\n\nfunction formatVec(arr)\n{\n    const nums = [];\n    for (let i = 0; i < arr.length; i++)\n    {\n        nums.push(Math.round(arr[i] * 1000) / 1000);\n    }\n\n    return nums.join(\",\");\n}\n\nfunction printNode(html, node, level)\n{\n    if (!gltf) return;\n\n    html += \"<tr class=\\\"row\\\">\";\n\n    let ident = \"\";\n    let identSpace = \"\";\n\n    for (let i = 1; i < level; i++)\n    {\n        identSpace += \"&nbsp;&nbsp;&nbsp;\";\n        let identClass = \"identBg\";\n        if (i == 1)identClass = \"identBgLevel0\";\n        ident += \"<td class=\\\"ident \" + identClass + \"\\\" ><div style=\\\"\\\"></div></td>\";\n    }\n    let id = CABLES.uuid();\n    html += ident;\n    html += \"<td colspan=\\\"\" + (21 - level) + \"\\\">\";\n\n    if (node.mesh && node.mesh.meshes.length)html += \"<span class=\\\"icon icon-cube\\\"></span>&nbsp;\";\n    else html += \"<span class=\\\"icon icon-box-select\\\"></span> &nbsp;\";\n\n    html += node.name + \"</td><td></td>\";\n\n    if (node.mesh)\n    {\n        html += \"<td>\";\n        for (let i = 0; i < node.mesh.meshes.length; i++)\n        {\n            if (i > 0)html += \", \";\n            html += node.mesh.meshes[i].name;\n        }\n\n        html += \"</td>\";\n\n        html += \"<td>\";\n        html += node.hasSkin() || \"-\";\n        html += \"</td>\";\n\n        html += \"<td>\";\n        let countMats = 0;\n        for (let i = 0; i < node.mesh.meshes.length; i++)\n        {\n            if (countMats > 0)html += \", \";\n            if (gltf.json.materials && node.mesh.meshes[i].hasOwnProperty(\"material\"))\n            {\n                if (gltf.json.materials[node.mesh.meshes[i].material])\n                {\n                    html += gltf.json.materials[node.mesh.meshes[i].material].name;\n                    countMats++;\n                }\n            }\n        }\n        if (countMats == 0)html += \"none\";\n        html += \"</td>\";\n    }\n    else\n    {\n        html += \"<td>-</td><td>-</td><td>-</td>\";\n    }\n\n    html += \"<td>\";\n\n    if (node._node.translation || node._node.rotation || node._node.scale)\n    {\n        let info = \"\";\n\n        if (node._node.translation)info += \"Translate: `\" + formatVec(node._node.translation) + \"` || \";\n        if (node._node.rotation)info += \"Rotation: `\" + formatVec(node._node.rotation) + \"` || \";\n        if (node._node.scale)info += \"Scale: `\" + formatVec(node._node.scale) + \"` || \";\n\n        html += \"<span class=\\\"icon icon-gizmo info\\\" data-info=\\\"\" + info + \"\\\"></span> &nbsp;\";\n    }\n\n    if (node._animRot || node._animScale || node._animTrans)\n    {\n        let info = \"Animated: \";\n        if (node._animRot) info += \"Rot \";\n        if (node._animScale) info += \"Scale \";\n        if (node._animTrans) info += \"Trans \";\n\n        html += \"<span class=\\\"icon icon-clock info\\\" data-info=\\\"\" + info + \"\\\"></span>&nbsp;\";\n    }\n\n    if (!node._node.translation && !node._node.rotation && !node._node.scale && !node._animRot && !node._animScale && !node._animTrans) html += \"-\";\n\n    html += \"</td>\";\n\n    html += \"<td>\";\n    let hideclass = \"\";\n    if (node.hidden)hideclass = \"node-hidden\";\n\n    // html+='';\n    html += \"<a onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').exposeNode('\" + node.name + \"','transform')\\\" class=\\\"treebutton\\\">Transform</a>\";\n    html += \" <a onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').exposeNode('\" + node.name + \"','hierarchy')\\\" class=\\\"treebutton\\\">Hierarchy</a>\";\n    html += \" <a onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').exposeNode('\" + node.name + \"')\\\" class=\\\"treebutton\\\">Node</a>\";\n\n    if (node.hasSkin())\n        html += \" <a onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').exposeNode('\" + node.name + \"',false,{skin:true});\\\" class=\\\"treebutton\\\">Skin</a>\";\n\n    html += \"</td><td>\";\n    html += \"&nbsp;<span class=\\\"icon iconhover icon-eye \" + hideclass + \"\\\" onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').toggleNodeVisibility('\" + node.name + \"');this.classList.toggle('node-hidden');\\\"></span>\";\n    html += \"</td>\";\n\n    html += \"</tr>\";\n\n    if (node.children)\n    {\n        for (let i = 0; i < node.children.length; i++)\n            html = printNode(html, gltf.nodes[node.children[i]], level + 1);\n    }\n\n    return html;\n}\n\nfunction printMaterial(mat, idx)\n{\n    let html = \"<tr>\";\n    html += \" <td>\" + idx + \"</td>\";\n    html += \" <td>\" + mat.name + \"</td>\";\n\n    html += \" <td>\";\n\n    const info = JSON.stringify(mat, null, 4).replaceAll(\"\\\"\", \"\").replaceAll(\"\\n\", \"<br/>\");\n\n    html += \"<span class=\\\"icon icon-info\\\" onclick=\\\"new CABLES.UI.ModalDialog({ 'html': '<pre>\" + info + \"</pre>', 'title': '\" + mat.name + \"' });\\\"></span>&nbsp;\";\n\n    if (mat.pbrMetallicRoughness && mat.pbrMetallicRoughness.baseColorFactor)\n    {\n        let rgb = \"\";\n        rgb += \"\" + Math.round(mat.pbrMetallicRoughness.baseColorFactor[0] * 255);\n        rgb += \",\" + Math.round(mat.pbrMetallicRoughness.baseColorFactor[1] * 255);\n        rgb += \",\" + Math.round(mat.pbrMetallicRoughness.baseColorFactor[2] * 255);\n\n        html += \"<div style=\\\"width:15px;height:15px;background-color:rgb(\" + rgb + \");display:inline-block\\\">&nbsp;</a>\";\n    }\n    html += \" <td style=\\\"\\\">\" + (gltf.shaders[idx] ? \"-\" : \"<a onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').assignMaterial('\" + mat.name + \"')\\\" class=\\\"treebutton\\\">Assign</a>\") + \"<td>\";\n    html += \"<td>\";\n\n    html += \"</tr>\";\n    return html;\n}\n\nfunction printInfo()\n{\n    if (!gltf) return;\n\n    const startTime = performance.now();\n    const sizes = {};\n    let html = \"<div style=\\\"overflow:scroll;width:100%;height:100%\\\">\";\n\n    html += \"File: <a href=\\\"\" + CABLES.platform.getCablesUrl() + \"/asset/patches/?filename=\" + inFile.get() + \"\\\" target=\\\"_blank\\\">\" + CABLES.basename(inFile.get()) + \"</a><br/>\";\n\n    html += \"Generator:\" + gltf.json.asset.generator;\n\n    let numNodes = 0;\n    if (gltf.json.nodes)numNodes = gltf.json.nodes.length;\n    html += \"<div id=\\\"groupNodes\\\">Nodes (\" + numNodes + \")</div>\";\n\n    html += \"<table id=\\\"sectionNodes\\\" class=\\\"table treetable\\\">\";\n\n    html += \"<tr>\";\n    html += \" <th colspan=\\\"21\\\">Name</th>\";\n    html += \" <th>Mesh</th>\";\n    html += \" <th>Skin</th>\";\n    html += \" <th>Material</th>\";\n    html += \" <th>Transform</th>\";\n    html += \" <th>Expose</th>\";\n    html += \" <th></th>\";\n    html += \"</tr>\";\n\n    for (let i = 0; i < gltf.nodes.length; i++)\n    {\n        if (!gltf.nodes[i].isChild)\n            html = printNode(html, gltf.nodes[i], 1);\n    }\n    html += \"</table>\";\n\n    // / //////////////////\n\n    let numMaterials = 0;\n    if (gltf.json.materials)numMaterials = gltf.json.materials.length;\n    html += \"<div id=\\\"groupMaterials\\\">Materials (\" + numMaterials + \")</div>\";\n\n    if (!gltf.json.materials || gltf.json.materials.length == 0)\n    {\n    }\n    else\n    {\n        html += \"<table id=\\\"materialtable\\\"  class=\\\"table treetable\\\">\";\n        html += \"<tr>\";\n        html += \" <th>Index</th>\";\n        html += \" <th>Name</th>\";\n        html += \" <th>Color</th>\";\n        html += \" <th>Function</th>\";\n        html += \" <th></th>\";\n        html += \"</tr>\";\n        for (let i = 0; i < gltf.json.materials.length; i++)\n        {\n            html += printMaterial(gltf.json.materials[i], i);\n        }\n        html += \"</table>\";\n    }\n\n    // / ///////////////////////\n\n    html += \"<div id=\\\"groupMeshes\\\">Meshes (\" + gltf.json.meshes.length + \")</div>\";\n\n    html += \"<table id=\\\"meshestable\\\"  class=\\\"table treetable\\\">\";\n    html += \"<tr>\";\n    html += \" <th>Name</th>\";\n    html += \" <th>Node</th>\";\n    html += \" <th>Material</th>\";\n    html += \" <th>Vertices</th>\";\n    html += \" <th>Attributes</th>\";\n    html += \"</tr>\";\n\n    let sizeBufferViews = [];\n    sizes.meshes = 0;\n    sizes.meshTargets = 0;\n\n    for (let i = 0; i < gltf.json.meshes.length; i++)\n    {\n        html += \"<tr>\";\n        html += \"<td>\" + gltf.json.meshes[i].name + \"</td>\";\n\n        html += \"<td>\";\n        let count = 0;\n        let nodename = \"\";\n        for (let j = 0; j < gltf.json.nodes.length; j++)\n        {\n            if (gltf.json.nodes[j].mesh == i)\n            {\n                count++;\n                if (count == 1)\n                {\n                    nodename = gltf.json.nodes[j].name;\n                }\n            }\n        }\n        if (count > 1) html += (count) + \" nodes (\" + nodename + \" ...)\";\n        else html += nodename;\n        html += \"</td>\";\n\n        // -------\n\n        html += \"<td>\";\n        for (let j = 0; j < gltf.json.meshes[i].primitives.length; j++)\n        {\n            if (gltf.json.meshes[i].primitives[j].hasOwnProperty(\"material\"))\n            {\n                if (gltf.json.materials[gltf.json.meshes[i]])\n                {\n                    html += gltf.json.materials[gltf.json.meshes[i].primitives[j].material].name + \" \";\n                }\n            }\n            else html += \"None\";\n        }\n        html += \"</td>\";\n\n        html += \"<td>\";\n        let numVerts = 0;\n        for (let j = 0; j < gltf.json.meshes[i].primitives.length; j++)\n        {\n            if (gltf.json.meshes[i].primitives[j].attributes.POSITION != undefined)\n            {\n                let v = parseInt(gltf.json.accessors[gltf.json.meshes[i].primitives[j].attributes.POSITION].count);\n                numVerts += v;\n                html += \"\" + v + \"<br/>\";\n            }\n            else html += \"-<br/>\";\n        }\n\n        if (gltf.json.meshes[i].primitives.length > 1)\n            html += \"=\" + numVerts;\n        html += \"</td>\";\n\n        html += \"<td>\";\n        for (let j = 0; j < gltf.json.meshes[i].primitives.length; j++)\n        {\n            html += Object.keys(gltf.json.meshes[i].primitives[j].attributes);\n            html += \" <a onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').exposeGeom('\" + gltf.json.meshes[i].name + \"',\" + j + \")\\\" class=\\\"treebutton\\\">Geometry</a>\";\n            html += \"<br/>\";\n\n            if (gltf.json.meshes[i].primitives[j].targets)\n            {\n                html += gltf.json.meshes[i].primitives[j].targets.length + \" targets<br/>\";\n\n                if (gltf.json.meshes[i].extras && gltf.json.meshes[i].extras.targetNames)\n                    html += \"Targetnames:<br/>\" + gltf.json.meshes[i].extras.targetNames.join(\"<br/>\");\n\n                html += \"<br/>\";\n            }\n        }\n\n        html += \"</td>\";\n        html += \"</tr>\";\n\n        for (let j = 0; j < gltf.json.meshes[i].primitives.length; j++)\n        {\n            const accessor = gltf.json.accessors[gltf.json.meshes[i].primitives[j].indices];\n            if (accessor)\n            {\n                let bufView = accessor.bufferView;\n\n                if (sizeBufferViews.indexOf(bufView) == -1)\n                {\n                    sizeBufferViews.push(bufView);\n                    if (gltf.json.bufferViews[bufView])sizes.meshes += gltf.json.bufferViews[bufView].byteLength;\n                }\n            }\n\n            for (let k in gltf.json.meshes[i].primitives[j].attributes)\n            {\n                const attr = gltf.json.meshes[i].primitives[j].attributes[k];\n                const bufView2 = gltf.json.accessors[attr].bufferView;\n\n                if (sizeBufferViews.indexOf(bufView2) == -1)\n                {\n                    sizeBufferViews.push(bufView2);\n                    if (gltf.json.bufferViews[bufView2])sizes.meshes += gltf.json.bufferViews[bufView2].byteLength;\n                }\n            }\n\n            if (gltf.json.meshes[i].primitives[j].targets)\n                for (let k = 0; k < gltf.json.meshes[i].primitives[j].targets.length; k++)\n                {\n                    for (let l in gltf.json.meshes[i].primitives[j].targets[k])\n                    {\n                        const accessorIdx = gltf.json.meshes[i].primitives[j].targets[k][l];\n                        const accessor = gltf.json.accessors[accessorIdx];\n                        const bufView2 = accessor.bufferView;\n                        console.log(\"accessor\", accessor);\n                        if (sizeBufferViews.indexOf(bufView2) == -1)\n                            if (gltf.json.bufferViews[bufView2])\n                            {\n                                sizeBufferViews.push(bufView2);\n                                sizes.meshTargets += gltf.json.bufferViews[bufView2].byteLength;\n                            }\n                    }\n                }\n        }\n    }\n    html += \"</table>\";\n\n    // / //////////////////////////////////\n\n    let numSamplers = 0;\n    let numAnims = 0;\n    let numKeyframes = 0;\n\n    if (gltf.json.animations)\n    {\n        numAnims = gltf.json.animations.length;\n        for (let i = 0; i < gltf.json.animations.length; i++)\n        {\n            numSamplers += gltf.json.animations[i].samplers.length;\n        }\n    }\n\n    html += \"<div id=\\\"groupAnims\\\">Animations (\" + numAnims + \"/\" + numSamplers + \")</div>\";\n\n    if (gltf.json.animations)\n    {\n        html += \"<table id=\\\"sectionAnim\\\" class=\\\"table treetable\\\">\";\n        html += \"<tr>\";\n        html += \"  <th>Name</th>\";\n        html += \"  <th>Target node</th>\";\n        html += \"  <th>Path</th>\";\n        html += \"  <th>Interpolation</th>\";\n        html += \"  <th>Keys</th>\";\n        html += \"</tr>\";\n\n\n        sizes.animations = 0;\n\n        for (let i = 0; i < gltf.json.animations.length; i++)\n        {\n            for (let j = 0; j < gltf.json.animations[i].samplers.length; j++)\n            {\n                let bufView = gltf.json.accessors[gltf.json.animations[i].samplers[j].input].bufferView;\n                if (sizeBufferViews.indexOf(bufView) == -1)\n                {\n                    sizeBufferViews.push(bufView);\n                    sizes.animations += gltf.json.bufferViews[bufView].byteLength;\n                }\n\n                bufView = gltf.json.accessors[gltf.json.animations[i].samplers[j].output].bufferView;\n                if (sizeBufferViews.indexOf(bufView) == -1)\n                {\n                    sizeBufferViews.push(bufView);\n                    sizes.animations += gltf.json.bufferViews[bufView].byteLength;\n                }\n            }\n\n            for (let j = 0; j < gltf.json.animations[i].channels.length; j++)\n            {\n                html += \"<tr>\";\n                html += \"  <td> Anim \" + i + \": \" + gltf.json.animations[i].name + \"</td>\";\n\n                html += \"  <td>\" + gltf.nodes[gltf.json.animations[i].channels[j].target.node].name + \"</td>\";\n                html += \"  <td>\";\n                html += gltf.json.animations[i].channels[j].target.path + \" \";\n                html += \"  </td>\";\n\n                const smplidx = gltf.json.animations[i].channels[j].sampler;\n                const smplr = gltf.json.animations[i].samplers[smplidx];\n\n                html += \"  <td>\" + smplr.interpolation + \"</td>\";\n\n                html += \"  <td>\" + gltf.json.accessors[smplr.output].count;\n                numKeyframes += gltf.json.accessors[smplr.output].count;\n\n                // html += \"&nbsp;&nbsp;<a onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').showAnim('\" + i + \"','\" + j + \"')\\\" class=\\\"icon icon-search\\\"></a>\";\n\n                html += \"</td>\";\n\n                html += \"</tr>\";\n            }\n        }\n\n        html += \"<tr>\";\n        html += \"  <td></td>\";\n        html += \"  <td></td>\";\n        html += \"  <td></td>\";\n        html += \"  <td></td>\";\n        html += \"  <td>\" + numKeyframes + \" total</td>\";\n        html += \"</tr>\";\n        html += \"</table>\";\n    }\n    else\n    {\n\n    }\n\n    // / ///////////////////\n\n    let numImages = 0;\n    if (gltf.json.images)numImages = gltf.json.images.length;\n    html += \"<div id=\\\"groupImages\\\">Images (\" + numImages + \")</div>\";\n\n    if (gltf.json.images)\n    {\n        html += \"<table id=\\\"sectionImages\\\" class=\\\"table treetable\\\">\";\n\n        html += \"<tr>\";\n        html += \"  <th>name</th>\";\n        html += \"  <th>type</th>\";\n        html += \"  <th>func</th>\";\n        html += \"</tr>\";\n\n        sizes.images = 0;\n\n        for (let i = 0; i < gltf.json.images.length; i++)\n        {\n            if (gltf.json.images[i].hasOwnProperty(\"bufferView\"))\n            {\n                // if (sizeBufferViews.indexOf(gltf.json.images[i].hasOwnProperty(\"bufferView\")) == -1)console.log(\"image bufferview already there?!\");\n                // else\n                sizes.images += gltf.json.bufferViews[gltf.json.images[i].bufferView].byteLength;\n            }\n            else console.log(\"image has no bufferview?!\");\n\n            html += \"<tr>\";\n            html += \"<td>\" + gltf.json.images[i].name + \"</td>\";\n            html += \"<td>\" + gltf.json.images[i].mimeType + \"</td>\";\n            html += \"<td>\";\n\n            let name = gltf.json.images[i].name;\n            if (name === undefined)name = gltf.json.images[i].bufferView;\n\n            html += \"<a onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').exposeTexture('\" + name + \"')\\\" class=\\\"treebutton\\\">Expose</a>\";\n            html += \"</td>\";\n\n            html += \"<tr>\";\n        }\n        html += \"</table>\";\n    }\n\n    // / ///////////////////////\n\n    let numCameras = 0;\n    if (gltf.json.cameras)numCameras = gltf.json.cameras.length;\n    html += \"<div id=\\\"groupCameras\\\">Cameras (\" + numCameras + \")</div>\";\n\n    if (gltf.json.cameras)\n    {\n        html += \"<table id=\\\"sectionCameras\\\" class=\\\"table treetable\\\">\";\n\n        html += \"<tr>\";\n        html += \"  <th>name</th>\";\n        html += \"  <th>type</th>\";\n        html += \"  <th>info</th>\";\n        html += \"</tr>\";\n\n        for (let i = 0; i < gltf.json.cameras.length; i++)\n        {\n            html += \"<tr>\";\n            html += \"<td>\" + gltf.json.cameras[i].name + \"</td>\";\n            html += \"<td>\" + gltf.json.cameras[i].type + \"</td>\";\n            html += \"<td>\";\n\n            if (gltf.json.cameras[i].perspective)\n            {\n                html += \"yfov: \" + Math.round(gltf.json.cameras[i].perspective.yfov * 100) / 100;\n                html += \", \";\n                html += \"zfar: \" + Math.round(gltf.json.cameras[i].perspective.zfar * 100) / 100;\n                html += \", \";\n                html += \"znear: \" + Math.round(gltf.json.cameras[i].perspective.znear * 100) / 100;\n            }\n            html += \"</td>\";\n\n            html += \"<tr>\";\n        }\n        html += \"</table>\";\n    }\n\n    // / ////////////////////////////////////\n\n    let numSkins = 0;\n    if (gltf.json.skins)numSkins = gltf.json.skins.length;\n    html += \"<div id=\\\"groupSkins\\\">Skins (\" + numSkins + \")</div>\";\n\n    if (gltf.json.skins)\n    {\n        // html += \"<h3>Skins (\" + gltf.json.skins.length + \")</h3>\";\n        html += \"<table id=\\\"sectionSkins\\\" class=\\\"table treetable\\\">\";\n\n        html += \"<tr>\";\n        html += \"  <th>name</th>\";\n        html += \"  <th></th>\";\n        html += \"  <th>total joints</th>\";\n        html += \"</tr>\";\n\n        for (let i = 0; i < gltf.json.skins.length; i++)\n        {\n            html += \"<tr>\";\n            html += \"<td>\" + gltf.json.skins[i].name + \"</td>\";\n            html += \"<td>\" + \"</td>\";\n            html += \"<td>\" + gltf.json.skins[i].joints.length + \"</td>\";\n            html += \"<td>\";\n            html += \"</td>\";\n            html += \"<tr>\";\n        }\n        html += \"</table>\";\n    }\n\n    // / ////////////////////////////////////\n\n    if (gltf.timing)\n    {\n        html += \"<div id=\\\"groupTiming\\\">Debug Loading Timing </div>\";\n\n        html += \"<table id=\\\"sectionTiming\\\" class=\\\"table treetable\\\">\";\n\n        html += \"<tr>\";\n        html += \"  <th>task</th>\";\n        html += \"  <th>time used</th>\";\n        html += \"</tr>\";\n\n        let lt = 0;\n        for (let i = 0; i < gltf.timing.length - 1; i++)\n        {\n            html += \"<tr>\";\n            html += \"  <td>\" + gltf.timing[i][0] + \"</td>\";\n            html += \"  <td>\" + (gltf.timing[i + 1][1] - gltf.timing[i][1]) + \" ms</td>\";\n            html += \"</tr>\";\n            // lt = gltf.timing[i][1];\n        }\n        html += \"</table>\";\n    }\n\n    // / //////////////////////////\n\n    let sizeBin = 0;\n    if (gltf.json.buffers)\n        sizeBin = gltf.json.buffers[0].byteLength;\n\n    html += \"<div id=\\\"groupBinary\\\">File Size Allocation (\" + Math.round(sizeBin / 1024) + \"k )</div>\";\n\n    html += \"<table id=\\\"sectionBinary\\\" class=\\\"table treetable\\\">\";\n    html += \"<tr>\";\n    html += \"  <th>name</th>\";\n    html += \"  <th>size</th>\";\n    html += \"  <th>%</th>\";\n    html += \"</tr>\";\n    let sizeUnknown = sizeBin;\n    for (let i in sizes)\n    {\n        // html+=i+':'+Math.round(sizes[i]/1024);\n        html += \"<tr>\";\n        html += \"<td>\" + i + \"</td>\";\n        html += \"<td>\" + readableSize(sizes[i]) + \" </td>\";\n        html += \"<td>\" + Math.round(sizes[i] / sizeBin * 100) + \"% </td>\";\n        html += \"<tr>\";\n        sizeUnknown -= sizes[i];\n    }\n\n    if (sizeUnknown != 0)\n    {\n        html += \"<tr>\";\n        html += \"<td>unknown</td>\";\n        html += \"<td>\" + readableSize(sizeUnknown) + \" </td>\";\n        html += \"<td>\" + Math.round(sizeUnknown / sizeBin * 100) + \"% </td>\";\n        html += \"<tr>\";\n    }\n\n    html += \"</table>\";\n    html += \"</div>\";\n\n    tab = new CABLES.UI.Tab(\"GLTF \" + CABLES.basename(inFile.get()), { \"icon\": \"cube\", \"infotext\": \"tab_gltf\", \"padding\": true, \"singleton\": true });\n    gui.mainTabs.addTab(tab, true);\n\n    tab.addEventListener(\"close\", closeTab);\n    tab.html(html);\n\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupNodes\"), ele.byId(\"sectionNodes\"), false);\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupMaterials\"), ele.byId(\"materialtable\"), true);\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupAnims\"), ele.byId(\"sectionAnim\"), true);\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupMeshes\"), ele.byId(\"meshestable\"), true);\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupCameras\"), ele.byId(\"sectionCameras\"), true);\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupImages\"), ele.byId(\"sectionImages\"), true);\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupSkins\"), ele.byId(\"sectionSkins\"), true);\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupBinary\"), ele.byId(\"sectionBinary\"), true);\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupTiming\"), ele.byId(\"sectionTiming\"), true);\n\n    gui.maintabPanel.show(true);\n}\n\nfunction readableSize(n)\n{\n    if (n > 1024) return Math.round(n / 1024) + \" kb\";\n    if (n > 1024 * 500) return Math.round(n / 1024) + \" mb\";\n    else return n + \" bytes\";\n}\n","inc_skin_js":"const GltfSkin = class\n{\n    constructor(node)\n    {\n        this._mod = null;\n        this._node = node;\n        this._lastTime = 0;\n        this._matArr = [];\n        this._m = mat4.create();\n        this._invBindMatrix = mat4.create();\n        this.identity = true;\n    }\n\n    renderFinish(cgl)\n    {\n        cgl.popModelMatrix();\n        this._mod.unbind();\n    }\n\n    renderStart(cgl, time)\n    {\n        if (!this._mod)\n        {\n            this._mod = new CGL.ShaderModifier(cgl, op.name + this._node.name);\n\n            this._mod.addModule({\n                \"priority\": -2,\n                \"name\": \"MODULE_VERTEX_POSITION\",\n                \"srcHeadVert\": attachments.skin_head_vert || \"\",\n                \"srcBodyVert\": attachments.skin_vert || \"\"\n            });\n\n            this._mod.addUniformVert(\"m4[]\", \"MOD_boneMats\", []);// bohnenmatze\n            const tr = vec3.create();\n        }\n\n        const skinIdx = this._node.skin;\n        const arrLength = gltf.json.skins[skinIdx].joints.length * 16;\n\n        // if (this._lastTime != time || !time)\n        {\n            // this._lastTime=inTime.get();\n            if (this._matArr.length != arrLength) this._matArr.length = arrLength;\n\n            for (let i = 0; i < gltf.json.skins[skinIdx].joints.length; i++)\n            {\n                const i16 = i * 16;\n                const jointIdx = gltf.json.skins[skinIdx].joints[i];\n                const nodeJoint = gltf.nodes[jointIdx];\n\n                for (let j = 0; j < 16; j++)\n                    this._invBindMatrix[j] = gltf.accBuffers[gltf.json.skins[skinIdx].inverseBindMatrices][i16 + j];\n\n                mat4.mul(this._m, nodeJoint.modelMatAbs(), this._invBindMatrix);\n\n                for (let j = 0; j < this._m.length; j++) this._matArr[i16 + j] = this._m[j];\n            }\n\n            this._mod.setUniformValue(\"MOD_boneMats\", this._matArr);\n            this._lastTime = time;\n        }\n\n        this._mod.define(\"SKIN_NUM_BONES\", gltf.json.skins[skinIdx].joints.length);\n        this._mod.bind();\n\n        // draw mesh...\n        cgl.pushModelMatrix();\n        if (this.identity)mat4.identity(cgl.mMatrix);\n    }\n};\n","inc_targets_js":"const GltfTargetsRenderer = class\n{\n    constructor(mesh)\n    {\n        this.mesh = mesh;\n        this.tex = null;\n        this.numRowsPerTarget = 0;\n\n        this.makeTex(mesh.geom);\n    }\n\n    renderFinish(cgl)\n    {\n        cgl.popModelMatrix();\n        this._mod.unbind();\n    }\n\n    renderStart(cgl, time)\n    {\n        if (!this._mod)\n        {\n            this._mod = new CGL.ShaderModifier(cgl, \"gltftarget\");\n\n            this._mod.addModule({\n                \"priority\": -2,\n                \"name\": \"MODULE_VERTEX_POSITION\",\n                \"srcHeadVert\": attachments.targets_head_vert || \"\",\n                \"srcBodyVert\": attachments.targets_vert || \"\"\n            });\n\n            this._mod.addUniformVert(\"4f\", \"MOD_targetTexInfo\", [0, 0, 0, 0]);\n            this._mod.addUniformVert(\"t\", \"MOD_targetTex\", 1);\n            this._mod.addUniformVert(\"f[]\", \"MOD_weights\", []);\n\n            const tr = vec3.create();\n        }\n\n        this._mod.pushTexture(\"MOD_targetTex\", this.tex);\n        if (this.tex && this.mesh.weights)\n        {\n            this._mod.setUniformValue(\"MOD_weights\", this.mesh.weights);\n            this._mod.setUniformValue(\"MOD_targetTexInfo\", [this.tex.width, this.tex.height, this.numRowsPerTarget, this.mesh.weights.length]);\n\n            this._mod.define(\"MOD_NUM_WEIGHTS\", Math.max(1, this.mesh.weights.length));\n        }\n        else\n        {\n            this._mod.define(\"MOD_NUM_WEIGHTS\", 1);\n        }\n        this._mod.bind();\n\n        // draw mesh...\n        cgl.pushModelMatrix();\n        if (this.identity)mat4.identity(cgl.mMatrix);\n    }\n\n    makeTex(geom)\n    {\n        if (!geom.morphTargets || !geom.morphTargets.length) return;\n\n        let w = geom.morphTargets[0].vertices.length / 3;\n        let h = 0;\n        this.numRowsPerTarget = 0;\n\n        if (geom.morphTargets[0].vertices && geom.morphTargets[0].vertices.length) this.numRowsPerTarget++;\n        if (geom.morphTargets[0].vertexNormals && geom.morphTargets[0].vertexNormals.length) this.numRowsPerTarget++;\n        if (geom.morphTargets[0].tangents && geom.morphTargets[0].tangents.length) this.numRowsPerTarget++;\n        if (geom.morphTargets[0].bitangents && geom.morphTargets[0].bitangents.length) this.numRowsPerTarget++;\n\n        h = geom.morphTargets.length * this.numRowsPerTarget;\n\n        // console.log(\"this.numRowsPerTarget\", this.numRowsPerTarget);\n\n        const pixels = new Float32Array(w * h * 4);\n        let row = 0;\n\n        for (let i = 0; i < geom.morphTargets.length; i++)\n        {\n            if (geom.morphTargets[i].vertices && geom.morphTargets[i].vertices.length)\n            {\n                for (let j = 0; j < geom.morphTargets[i].vertices.length; j += 3)\n                {\n                    pixels[((row * w) + (j / 3)) * 4 + 0] = geom.morphTargets[i].vertices[j + 0];\n                    pixels[((row * w) + (j / 3)) * 4 + 1] = geom.morphTargets[i].vertices[j + 1];\n                    pixels[((row * w) + (j / 3)) * 4 + 2] = geom.morphTargets[i].vertices[j + 2];\n                    pixels[((row * w) + (j / 3)) * 4 + 3] = 1;\n                }\n                row++;\n            }\n\n            if (geom.morphTargets[i].vertexNormals && geom.morphTargets[i].vertexNormals.length)\n            {\n                for (let j = 0; j < geom.morphTargets[i].vertexNormals.length; j += 3)\n                {\n                    pixels[(row * w + j / 3) * 4 + 0] = geom.morphTargets[i].vertexNormals[j + 0];\n                    pixels[(row * w + j / 3) * 4 + 1] = geom.morphTargets[i].vertexNormals[j + 1];\n                    pixels[(row * w + j / 3) * 4 + 2] = geom.morphTargets[i].vertexNormals[j + 2];\n                    pixels[(row * w + j / 3) * 4 + 3] = 1;\n                }\n\n                row++;\n            }\n\n            if (geom.morphTargets[i].tangents && geom.morphTargets[i].tangents.length)\n            {\n                for (let j = 0; j < geom.morphTargets[i].tangents.length; j += 3)\n                {\n                    pixels[(row * w + j / 3) * 4 + 0] = geom.morphTargets[i].tangents[j + 0];\n                    pixels[(row * w + j / 3) * 4 + 1] = geom.morphTargets[i].tangents[j + 1];\n                    pixels[(row * w + j / 3) * 4 + 2] = geom.morphTargets[i].tangents[j + 2];\n                    pixels[(row * w + j / 3) * 4 + 3] = 1;\n                }\n                row++;\n            }\n\n            if (geom.morphTargets[i].bitangents && geom.morphTargets[i].bitangents.length)\n            {\n                for (let j = 0; j < geom.morphTargets[i].bitangents.length; j += 3)\n                {\n                    pixels[(row * w + j / 3) * 4 + 0] = geom.morphTargets[i].bitangents[j + 0];\n                    pixels[(row * w + j / 3) * 4 + 1] = geom.morphTargets[i].bitangents[j + 1];\n                    pixels[(row * w + j / 3) * 4 + 2] = geom.morphTargets[i].bitangents[j + 2];\n                    pixels[(row * w + j / 3) * 4 + 3] = 1;\n                }\n                row++;\n            }\n        }\n\n        this.tex = new CGL.Texture(cgl, { \"isFloatingPointTexture\": true, \"name\": \"targetsTexture\" });\n\n        this.tex.initFromData(pixels, w, h, CGL.Texture.FILTER_LINEAR, CGL.Texture.WRAP_REPEAT);\n\n        // console.log(\"morphTargets generated texture\", w, h);\n    }\n};\n","skin_vert":"int index=int(attrJoints.x);\nvec4 newPos = (MOD_boneMats[index] * pos) * attrWeights.x;\nvec3 newNorm = (vec4((MOD_boneMats[index] * vec4(norm.xyz, 0.0)) * attrWeights.x).xyz);\n\nindex=int(attrJoints.y);\nnewPos += (MOD_boneMats[index] * pos) * attrWeights.y;\nnewNorm = (vec4((MOD_boneMats[index] * vec4(norm.xyz, 0.0)) * attrWeights.y).xyz)+newNorm;\n\nindex=int(attrJoints.z);\nnewPos += (MOD_boneMats[index] * pos) * attrWeights.z;\nnewNorm = (vec4((MOD_boneMats[index] * vec4(norm.xyz, 0.0)) * attrWeights.z).xyz)+newNorm;\n\nindex=int(attrJoints.w);\nnewPos += (MOD_boneMats[index] * pos) * attrWeights.w ;\nnewNorm = (vec4((MOD_boneMats[index] * vec4(norm.xyz, 0.0)) * attrWeights.w).xyz)+newNorm;\n\npos=newPos;\n\nnorm=normalize(newNorm.xyz);\n\n\n","skin_head_vert":"\nIN vec4 attrWeights;\nIN vec4 attrJoints;\nUNI mat4 MOD_boneMats[SKIN_NUM_BONES];\n","targets_vert":"\n\nfloat MOD_width=MOD_targetTexInfo.x;\nfloat MOD_height=MOD_targetTexInfo.y;\nfloat MOD_numTargets=MOD_targetTexInfo.w;\nfloat MOD_numLinesPerTarget=MOD_height/MOD_numTargets;\n\nfloat halfpix=(1.0/MOD_width)*0.5;\nfloat halfpixy=(1.0/MOD_height)*0.5;\n\nfloat x=(attrVertIndex)/MOD_width+halfpix;\n\nvec3 off=vec3(0.0);\n\nfor(float i=0.0;i<MOD_numTargets;i+=1.0)\n{\n    float y=1.0-((MOD_numLinesPerTarget*i)/MOD_height+halfpixy);\n    vec2 coord=vec2(x,y);\n    vec3 targetXYZ = texture(MOD_targetTex,coord).xyz;\n\n    off+=(targetXYZ*MOD_weights[int(i)]);\n\n\n\n    coord.y+=1.0/MOD_height; // normals are in next row\n    vec3 targetNormal = texture(MOD_targetTex,coord).xyz;\n    norm+=targetNormal*MOD_weights[int(i)];\n\n\n}\n\n// norm=normalize(norm);\npos.xyz+=off;\n","targets_head_vert":"\nUNI float MOD_weights[MOD_NUM_WEIGHTS];\n",};
+const attachments=op.attachments={"inc_camera_js":"const gltfCamera = class\n{\n    constructor(gltf, node)\n    {\n        this.node = node;\n        this.name = node.name;\n        // console.log(gltf);\n        this.config = gltf.json.cameras[node.camera];\n\n        this.pos = vec3.create();\n        this.quat = quat.create();\n        this.vCenter = vec3.create();\n        this.vUp = vec3.create();\n        this.vMat = mat4.create();\n    }\n\n    updateAnim(time)\n    {\n        if (this.node && this.node._animTrans)\n        {\n            vec3.set(this.pos,\n                this.node._animTrans[0].getValue(time),\n                this.node._animTrans[1].getValue(time),\n                this.node._animTrans[2].getValue(time));\n\n            quat.set(this.quat,\n                this.node._animRot[0].getValue(time),\n                this.node._animRot[1].getValue(time),\n                this.node._animRot[2].getValue(time),\n                this.node._animRot[3].getValue(time));\n        }\n    }\n\n    start(time)\n    {\n        if (cgl.tempData.shadowPass) return;\n\n        this.updateAnim(time);\n        const asp = cgl.getViewPort()[2] / cgl.getViewPort()[3];\n\n        cgl.pushPMatrix();\n        // mat4.perspective(\n        //     cgl.pMatrix,\n        //     this.config.perspective.yfov*0.5,\n        //     asp,\n        //     this.config.perspective.znear,\n        //     this.config.perspective.zfar);\n\n        cgl.pushViewMatrix();\n        // mat4.identity(cgl.vMatrix);\n\n        // if(this.node && this.node.parent)\n        // {\n        //     console.log(this.node.parent)\n        // vec3.add(this.pos,this.pos,this.node.parent._node.translation);\n        // vec3.sub(this.vCenter,this.vCenter,this.node.parent._node.translation);\n        // mat4.translate(cgl.vMatrix,cgl.vMatrix,\n        // [\n        //     -this.node.parent._node.translation[0],\n        //     -this.node.parent._node.translation[1],\n        //     -this.node.parent._node.translation[2]\n        // ])\n        // }\n\n        // vec3.set(this.vUp, 0, 1, 0);\n        // vec3.set(this.vCenter, 0, -1, 0);\n        // // vec3.set(this.vCenter, 0, 1, 0);\n        // vec3.transformQuat(this.vCenter, this.vCenter, this.quat);\n        // vec3.normalize(this.vCenter, this.vCenter);\n        // vec3.add(this.vCenter, this.vCenter, this.pos);\n\n        // mat4.lookAt(cgl.vMatrix, this.pos, this.vCenter, this.vUp);\n\n        let mv = mat4.create();\n        mat4.invert(mv, this.node.modelMatAbs());\n\n        // console.log(this.node.modelMatAbs());\n\n        this.vMat = mv;\n\n        mat4.identity(cgl.vMatrix);\n        // console.log(mv);\n        mat4.mul(cgl.vMatrix, cgl.vMatrix, mv);\n    }\n\n    end()\n    {\n        if (cgl.tempData.shadowPass) return;\n        cgl.popPMatrix();\n        cgl.popViewMatrix();\n    }\n};\n","inc_gltf_js":"const le = true; // little endian\n\nconst Gltf = class\n{\n    constructor()\n    {\n        this.json = {};\n        this.accBuffers = [];\n        this.meshes = [];\n        this.nodes = [];\n        this.shaders = [];\n        this.timing = [];\n        this.cams = [];\n        this.startTime = performance.now();\n        this.bounds = new CABLES.CG.BoundingBox();\n        this.loaded = Date.now();\n        this.accBuffersDelete = [];\n    }\n\n    getNode(n)\n    {\n        for (let i = 0; i < this.nodes.length; i++)\n        {\n            if (this.nodes[i].name == n) return this.nodes[i];\n        }\n    }\n\n    unHideAll()\n    {\n        for (let i = 0; i < this.nodes.length; i++)\n        {\n            this.nodes[i].unHide();\n        }\n    }\n};\n\nfunction Utf8ArrayToStr(array)\n{\n    if (window.TextDecoder) return new TextDecoder(\"utf-8\").decode(array);\n\n    let out, i, len, c;\n    let char2, char3;\n\n    out = \"\";\n    len = array.length;\n    i = 0;\n    while (i < len)\n    {\n        c = array[i++];\n        switch (c >> 4)\n        {\n        case 0: case 1: case 2: case 3: case 4: case 5: case 6: case 7:\n            // 0xxxxxxx\n            out += String.fromCharCode(c);\n            break;\n        case 12: case 13:\n            // 110x xxxx   10xx xxxx\n            char2 = array[i++];\n            out += String.fromCharCode(((c & 0x1F) << 6) | (char2 & 0x3F));\n            break;\n        case 14:\n            // 1110 xxxx  10xx xxxx  10xx xxxx\n            char2 = array[i++];\n            char3 = array[i++];\n            out += String.fromCharCode(((c & 0x0F) << 12) |\n                    ((char2 & 0x3F) << 6) |\n                    ((char3 & 0x3F) << 0));\n            break;\n        }\n    }\n\n    return out;\n}\n\nfunction readChunk(dv, bArr, arrayBuffer, offset)\n{\n    const chunk = {};\n\n    if (offset >= dv.byteLength)\n    {\n        // op.log(\"could not read chunk...\");\n        return;\n    }\n    chunk.size = dv.getUint32(offset + 0, le);\n\n    // chunk.type = new TextDecoder(\"utf-8\").decode(bArr.subarray(offset+4, offset+4+4));\n    chunk.type = Utf8ArrayToStr(bArr.subarray(offset + 4, offset + 4 + 4));\n\n    if (chunk.type == \"BIN\\0\")\n    {\n        // console.log(chunk.size,arrayBuffer.length,offset);\n        // try\n        // {\n        chunk.dataView = new DataView(arrayBuffer, offset + 8, chunk.size);\n        // }\n        // catch(e)\n        // {\n        //     chunk.dataView = null;\n        //     console.log(e);\n        // }\n    }\n    else\n    if (chunk.type == \"JSON\")\n    {\n        const json = Utf8ArrayToStr(bArr.subarray(offset + 8, offset + 8 + chunk.size));\n\n        try\n        {\n            const obj = JSON.parse(json);\n            chunk.data = obj;\n            outGenerator.set(obj.asset.generator);\n        }\n        catch (e)\n        {\n        }\n    }\n    else\n    {\n        op.warn(\"unknown type\", chunk.type);\n    }\n\n    return chunk;\n}\n\nfunction loadAnims(gltf)\n{\n    const uniqueAnimNames = {};\n\n    for (let i = 0; i < gltf.json.animations.length; i++)\n    {\n        const an = gltf.json.animations[i];\n\n        an.name = an.name || \"unknown\";\n\n        for (let ia = 0; ia < an.channels.length; ia++)\n        {\n            const chan = an.channels[ia];\n\n            const node = gltf.nodes[chan.target.node];\n            const sampler = an.samplers[chan.sampler];\n\n            const acc = gltf.json.accessors[sampler.input];\n            const bufferIn = gltf.accBuffers[sampler.input];\n\n            const accOut = gltf.json.accessors[sampler.output];\n            const bufferOut = gltf.accBuffers[sampler.output];\n\n            gltf.accBuffersDelete.push(sampler.output, sampler.input);\n\n            if (bufferIn && bufferOut)\n            {\n                let numComps = 1;\n                if (accOut.type === \"VEC2\")numComps = 2;\n                else if (accOut.type === \"VEC3\")numComps = 3;\n                else if (accOut.type === \"VEC4\")numComps = 4;\n                else if (accOut.type === \"SCALAR\")\n                {\n                    numComps = bufferOut.length / bufferIn.length; // is this really the way to find out ? cant find any other way,except number of morph targets, but not really connected...\n                }\n                else op.log(\"[] UNKNOWN accOut.type\", accOut.type);\n\n                const anims = [];\n\n                uniqueAnimNames[an.name] = true;\n\n                for (let k = 0; k < numComps; k++)\n                {\n                    const newAnim = new CABLES.Anim();\n                    // newAnim.name=an.name;\n                    anims.push(newAnim);\n                }\n\n                if (sampler.interpolation === \"LINEAR\") {}\n                else if (sampler.interpolation === \"STEP\") for (let k = 0; k < numComps; k++) anims[k].defaultEasing = CABLES.EASING_ABSOLUTE;\n                else if (sampler.interpolation === \"CUBICSPLINE\") for (let k = 0; k < numComps; k++) anims[k].defaultEasing = CABLES.EASING_CUBICSPLINE;\n                else op.warn(\"unknown interpolation\", sampler.interpolation);\n\n                // console.log(bufferOut)\n\n                // if there is no keyframe for time 0 copy value of first keyframe at time 0\n                if (bufferIn[0] !== 0.0)\n                    for (let k = 0; k < numComps; k++)\n                        anims[k].setValue(0, bufferOut[0 * numComps + k]);\n\n                for (let j = 0; j < bufferIn.length; j++)\n                {\n                    maxTime = Math.max(bufferIn[j], maxTime);\n\n                    for (let k = 0; k < numComps; k++)\n                    {\n                        if (anims[k].defaultEasing === CABLES.EASING_CUBICSPLINE)\n                        {\n                            const idx = ((j * numComps) * 3 + k);\n\n                            const key = anims[k].setValue(bufferIn[j], bufferOut[idx + numComps]);\n                            key.bezTangIn = bufferOut[idx];\n                            key.bezTangOut = bufferOut[idx + (numComps * 2)];\n\n                            // console.log(an.name,k,bufferOut[idx+1]);\n                        }\n                        else\n                        {\n                            // console.log(an.name,k,bufferOut[j * numComps + k]);\n                            anims[k].setValue(bufferIn[j], bufferOut[j * numComps + k]);\n                        }\n                    }\n                }\n\n                node.setAnim(chan.target.path, an.name, anims);\n            }\n            else\n            {\n                op.warn(\"loadAmins bufferIn undefined \", bufferIn === undefined);\n                op.warn(\"loadAmins bufferOut undefined \", bufferOut === undefined);\n                op.warn(\"loadAmins \", an.name, sampler, accOut);\n                op.warn(\"loadAmins num accBuffers\", gltf.accBuffers.length);\n                op.warn(\"loadAmins num accessors\", gltf.json.accessors.length);\n            }\n        }\n    }\n\n    gltf.uniqueAnimNames = uniqueAnimNames;\n\n    outAnims.setRef(Object.keys(uniqueAnimNames));\n}\n\nfunction loadCams(gltf)\n{\n    if (!gltf || !gltf.json.cameras) return;\n\n    gltf.cameras = gltf.cameras || [];\n\n    for (let i = 0; i < gltf.nodes.length; i++)\n    {\n        if (gltf.nodes[i].hasOwnProperty(\"camera\"))\n        {\n            const cam = new gltfCamera(gltf, gltf.nodes[i]);\n            gltf.cameras.push(cam);\n        }\n    }\n}\n\nfunction loadAfterDraco()\n{\n    if (!window.DracoDecoder)\n    {\n        setTimeout(() =>\n        {\n            loadAfterDraco();\n        }, 100);\n    }\n\n    reloadSoon();\n}\n\nfunction parseGltf(arrayBuffer)\n{\n    const CHUNK_HEADER_SIZE = 8;\n\n    let j = 0, i = 0;\n\n    const gltf = new Gltf();\n    gltf.timing.push([\"Start parsing\", Math.round((performance.now() - gltf.startTime))]);\n\n    if (!arrayBuffer) return;\n    const byteArray = new Uint8Array(arrayBuffer);\n    let pos = 0;\n\n    // var string = new TextDecoder(\"utf-8\").decode(byteArray.subarray(pos, 4));\n    const string = Utf8ArrayToStr(byteArray.subarray(pos, 4));\n    pos += 4;\n    if (string != \"glTF\") return;\n\n    gltf.timing.push([\"dataview\", Math.round((performance.now() - gltf.startTime))]);\n\n    const dv = new DataView(arrayBuffer);\n    const version = dv.getUint32(pos, le);\n    pos += 4;\n    const size = dv.getUint32(pos, le);\n    pos += 4;\n\n    outVersion.set(version);\n\n    const chunks = [];\n    gltf.chunks = chunks;\n\n    chunks.push(readChunk(dv, byteArray, arrayBuffer, pos));\n    pos += chunks[0].size + CHUNK_HEADER_SIZE;\n    gltf.json = chunks[0].data;\n\n    gltf.cables = {\n        \"fileUrl\": inFile.get(),\n        \"shortFileName\": CABLES.basename(inFile.get())\n    };\n\n    outJson.setRef(gltf.json);\n    outExtensions.setRef(gltf.json.extensionsUsed || []);\n\n    let ch = readChunk(dv, byteArray, arrayBuffer, pos);\n    while (ch)\n    {\n        chunks.push(ch);\n        pos += ch.size + CHUNK_HEADER_SIZE;\n        ch = readChunk(dv, byteArray, arrayBuffer, pos);\n    }\n\n    gltf.chunks = chunks;\n\n    const views = chunks[0].data.bufferViews;\n    const accessors = chunks[0].data.accessors;\n\n    gltf.timing.push([\"Parse buffers\", Math.round((performance.now() - gltf.startTime))]);\n\n    if (gltf.json.extensionsUsed && gltf.json.extensionsUsed.indexOf(\"KHR_draco_mesh_compression\") > -1)\n    {\n        if (!window.DracoDecoder)\n        {\n            op.setUiError(\"gltfdraco\", \"GLTF draco compression lib not found / add draco op to your patch!\");\n\n            loadAfterDraco();\n            return gltf;\n        }\n        else\n        {\n            gltf.useDraco = true;\n        }\n    }\n\n    op.setUiError(\"gltfdraco\", null);\n    // let accPos = (view.byteOffset || 0) + (acc.byteOffset || 0);\n\n    if (views)\n    {\n        for (i = 0; i < accessors.length; i++)\n        {\n            const acc = accessors[i];\n            const view = views[acc.bufferView];\n\n            let numComps = 0;\n            if (acc.type == \"SCALAR\")numComps = 1;\n            else if (acc.type == \"VEC2\")numComps = 2;\n            else if (acc.type == \"VEC3\")numComps = 3;\n            else if (acc.type == \"VEC4\")numComps = 4;\n            else if (acc.type == \"MAT4\")numComps = 16;\n            else console.error(\"unknown accessor type\", acc.type);\n\n            //   const decoder = new decoderModule.Decoder();\n            //   const decodedGeometry = decodeDracoData(data, decoder);\n            //   // Encode mesh\n            //   encodeMeshToFile(decodedGeometry, decoder);\n\n            //   decoderModule.destroy(decoder);\n            //   decoderModule.destroy(decodedGeometry);\n\n            // 5120 (BYTE)\t1\n            // 5121 (UNSIGNED_BYTE)\t1\n            // 5122 (SHORT)\t2\n\n            if (chunks[1].dataView)\n            {\n                if (view)\n                {\n                    const num = acc.count * numComps;\n                    let accPos = (view.byteOffset || 0) + (acc.byteOffset || 0);\n                    let stride = view.byteStride || 0;\n                    let dataBuff = null;\n\n                    if (acc.componentType == 5126 || acc.componentType == 5125) // 4byte FLOAT or INT\n                    {\n                        stride = stride || 4;\n\n                        const isInt = acc.componentType == 5125;\n                        if (isInt)dataBuff = new Uint32Array(num);\n                        else dataBuff = new Float32Array(num);\n\n                        dataBuff.cblStride = numComps;\n\n                        for (j = 0; j < num; j++)\n                        {\n                            if (isInt) dataBuff[j] = chunks[1].dataView.getUint32(accPos, le);\n                            else dataBuff[j] = chunks[1].dataView.getFloat32(accPos, le);\n\n                            if (stride != 4 && (j + 1) % numComps === 0)accPos += stride - (numComps * 4);\n                            accPos += 4;\n                        }\n                    }\n                    else if (acc.componentType == 5123) // UNSIGNED_SHORT\n                    {\n                        stride = stride || 2;\n\n                        dataBuff = new Uint16Array(num);\n                        dataBuff.cblStride = stride;\n\n                        for (j = 0; j < num; j++)\n                        {\n                            dataBuff[j] = chunks[1].dataView.getUint16(accPos, le);\n\n                            if (stride != 2 && (j + 1) % numComps === 0) accPos += stride - (numComps * 2);\n\n                            accPos += 2;\n                        }\n                    }\n                    else if (acc.componentType == 5121) // UNSIGNED_BYTE\n                    {\n                        stride = stride || 1;\n\n                        dataBuff = new Uint8Array(num);\n                        dataBuff.cblStride = stride;\n\n                        for (j = 0; j < num; j++)\n                        {\n                            dataBuff[j] = chunks[1].dataView.getUint8(accPos, le);\n\n                            if (stride != 1 && (j + 1) % numComps === 0) accPos += stride - (numComps * 1);\n\n                            accPos += 1;\n                        }\n                    }\n\n                    else\n                    {\n                        console.error(\"unknown component type\", acc.componentType);\n                    }\n\n                    gltf.accBuffers.push(dataBuff);\n                }\n                else\n                {\n                    // console.log(\"has no dataview\");\n                }\n            }\n        }\n    }\n\n    gltf.timing.push([\"Parse mesh groups\", Math.round((performance.now() - gltf.startTime))]);\n\n    gltf.json.meshes = gltf.json.meshes || [];\n\n    if (gltf.json.meshes)\n    {\n        for (i = 0; i < gltf.json.meshes.length; i++)\n        {\n            const mesh = new gltfMeshGroup(gltf, gltf.json.meshes[i]);\n            gltf.meshes.push(mesh);\n        }\n    }\n\n    gltf.timing.push([\"Parse nodes\", Math.round((performance.now() - gltf.startTime))]);\n\n    for (i = 0; i < gltf.json.nodes.length; i++)\n    {\n        if (gltf.json.nodes[i].children)\n            for (j = 0; j < gltf.json.nodes[i].children.length; j++)\n            {\n                gltf.json.nodes[gltf.json.nodes[i].children[j]].isChild = true;\n            }\n    }\n\n    for (i = 0; i < gltf.json.nodes.length; i++)\n    {\n        const node = new gltfNode(gltf.json.nodes[i], gltf);\n        gltf.nodes.push(node);\n    }\n\n    for (i = 0; i < gltf.nodes.length; i++)\n    {\n        const node = gltf.nodes[i];\n\n        if (!node.children) continue;\n        for (let j = 0; j < node.children.length; j++)\n        {\n            gltf.nodes[node.children[j]].parent = node;\n        }\n    }\n\n    for (i = 0; i < gltf.nodes.length; i++)\n    {\n        gltf.nodes[i].initSkin();\n    }\n\n    needsMatUpdate = true;\n\n    gltf.timing.push([\"load anims\", Math.round((performance.now() - gltf.startTime))]);\n\n    if (gltf.json.animations) loadAnims(gltf);\n\n    gltf.timing.push([\"load cameras\", Math.round((performance.now() - gltf.startTime))]);\n\n    if (gltf.json.cameras) loadCams(gltf);\n\n    gltf.timing.push([\"finished\", Math.round((performance.now() - gltf.startTime))]);\n    return gltf;\n}\n","inc_mesh_js":"let gltfMesh = class\n{\n    constructor(name, prim, gltf, finished)\n    {\n        this.POINTS = 0;\n        this.LINES = 1;\n        this.LINE_LOOP = 2;\n        this.LINE_STRIP = 3;\n        this.TRIANGLES = 4;\n        this.TRIANGLE_STRIP = 5;\n        this.TRIANGLE_FAN = 6;\n\n        this.test = 0;\n        this.name = name;\n        this.submeshIndex = 0;\n        this.material = prim.material;\n        // console.log(prim);\n        this.mesh = null;\n        this.geom = new CGL.Geometry(\"gltf_\" + this.name);\n        this.geom.verticesIndices = [];\n        this.bounds = null;\n        this.primitive = 4;\n        this.morphTargetsRenderMod = null;\n        this.weights = prim.weights;\n\n        if (prim.hasOwnProperty(\"mode\")) this.primitive = prim.mode;\n\n        if (prim.hasOwnProperty(\"indices\")) this.geom.verticesIndices = gltf.accBuffers[prim.indices];\n\n        gltf.loadingMeshes = gltf.loadingMeshes || 0;\n        gltf.loadingMeshes++;\n\n        this.materialJson =\n            this._matPbrMetalness =\n            this._matPbrRoughness =\n            this._matDiffuseColor = null;\n\n        if (gltf.json.materials)\n        {\n            if (this.material != -1) this.materialJson = gltf.json.materials[this.material];\n\n            if (this.materialJson && this.materialJson.pbrMetallicRoughness)\n            {\n                if (!this.materialJson.pbrMetallicRoughness.hasOwnProperty(\"baseColorFactor\"))\n                {\n                    this._matDiffuseColor = [1, 1, 1, 1];\n                }\n                else\n                {\n                    this._matDiffuseColor = this.materialJson.pbrMetallicRoughness.baseColorFactor;\n                }\n\n                this._matDiffuseColor = this.materialJson.pbrMetallicRoughness.baseColorFactor;\n\n                if (!this.materialJson.pbrMetallicRoughness.hasOwnProperty(\"metallicFactor\"))\n                {\n                    this._matPbrMetalness = 1.0;\n                }\n                else\n                {\n                    this._matPbrMetalness = this.materialJson.pbrMetallicRoughness.metallicFactor || null;\n                }\n\n                if (!this.materialJson.pbrMetallicRoughness.hasOwnProperty(\"roughnessFactor\"))\n                {\n                    this._matPbrRoughness = 1.0;\n                }\n                else\n                {\n                    this._matPbrRoughness = this.materialJson.pbrMetallicRoughness.roughnessFactor || null;\n                }\n            }\n        }\n\n        if (gltf.useDraco && prim.extensions.KHR_draco_mesh_compression)\n        {\n            const view = gltf.chunks[0].data.bufferViews[prim.extensions.KHR_draco_mesh_compression.bufferView];\n            const num = view.byteLength;\n            const dataBuff = new Int8Array(num);\n            let accPos = (view.byteOffset || 0);// + (acc.byteOffset || 0);\n            for (let j = 0; j < num; j++)\n            {\n                dataBuff[j] = gltf.chunks[1].dataView.getInt8(accPos, le);\n                accPos++;\n            }\n\n            const dracoDecoder = window.DracoDecoder;\n            dracoDecoder.decodeGeometry(dataBuff.buffer, (geometry) =>\n            {\n                const geom = new CGL.Geometry(\"draco mesh \" + name);\n\n                for (let i = 0; i < geometry.attributes.length; i++)\n                {\n                    const attr = geometry.attributes[i];\n\n                    if (attr.name === \"position\") geom.vertices = attr.array;\n                    else if (attr.name === \"normal\") geom.vertexNormals = attr.array;\n                    else if (attr.name === \"uv\") geom.texCoords = attr.array;\n                    else if (attr.name === \"color\") geom.vertexColors = this.calcVertexColors(attr.array);\n                    else if (attr.name === \"joints\") geom.setAttribute(\"attrJoints\", Array.from(attr.array), 4);\n                    else if (attr.name === \"weights\")\n                    {\n                        const arr4 = new Float32Array(attr.array.length / attr.itemSize * 4);\n\n                        for (let k = 0; k < attr.array.length / attr.itemSize; k++)\n                        {\n                            arr4[k * 4] = arr4[k * 4 + 1] = arr4[k * 4 + 2] = arr4[k * 4 + 3] = 0;\n                            for (let j = 0; j < attr.itemSize; j++)\n                                arr4[k * 4 + j] = attr.array[k * attr.itemSize + j];\n                        }\n                        geom.setAttribute(\"attrWeights\", arr4, 4);\n                    }\n                    else op.logWarn(\"unknown draco attrib\", attr);\n                }\n\n                geometry.attributes = null;\n                geom.verticesIndices = geometry.index.array;\n\n                this.setGeom(geom);\n\n                this.mesh = null;\n                gltf.loadingMeshes--;\n                gltf.timing.push([\"draco decode\", Math.round((performance.now() - gltf.startTime))]);\n\n                if (finished)finished(this);\n            }, (error) => { op.logError(error); });\n        }\n        else\n        {\n            gltf.loadingMeshes--;\n            this.fillGeomAttribs(gltf, this.geom, prim.attributes);\n\n            if (prim.targets)\n            {\n                for (let j = 0; j < prim.targets.length; j++)\n                {\n                    const tgeom = new CGL.Geometry(\"gltf_target_\" + j);\n\n                    // if (prim.hasOwnProperty(\"indices\")) tgeom.verticesIndices = gltf.accBuffers[prim.indices];\n\n                    this.fillGeomAttribs(gltf, tgeom, prim.targets[j], false);\n\n                    // { // calculate normals for final position of morphtarget for later...\n                    //     for (let i = 0; i < tgeom.vertices.length; i++) tgeom.vertices[i] += this.geom.vertices[i];\n                    //     tgeom.calculateNormals();\n                    //     for (let i = 0; i < tgeom.vertices.length; i++) tgeom.vertices[i] -= this.geom.vertices[i];\n                    // }\n\n                    this.geom.morphTargets.push(tgeom);\n                }\n            }\n            if (finished)finished(this);\n        }\n    }\n\n    _linearToSrgb(x)\n    {\n        if (x <= 0)\n            return 0;\n        else if (x >= 1)\n            return 1;\n        else if (x < 0.0031308)\n            return x * 12.92;\n        else\n            return x ** (1 / 2.2) * 1.055 - 0.055;\n    }\n\n    calcVertexColors(arr, type)\n    {\n        let vertexColors = null;\n        if (arr instanceof Float32Array)\n        {\n            let div = false;\n            for (let i = 0; i < arr.length; i++)\n            {\n                if (arr[i] > 1)\n                {\n                    div = true;\n                    continue;\n                }\n            }\n\n            if (div)\n                for (let i = 0; i < arr.length; i++) arr[i] /= 65535;\n\n            vertexColors = arr;\n        }\n\n        else if (arr instanceof Uint16Array)\n        {\n            const fb = new Float32Array(arr.length);\n            for (let i = 0; i < arr.length; i++) fb[i] = arr[i] / 65535;\n\n            vertexColors = fb;\n        }\n        else vertexColors = arr;\n\n        for (let i = 0; i < vertexColors.length; i++)\n        {\n            vertexColors[i] = this._linearToSrgb(vertexColors[i]);\n        }\n\n        console.log(\"arr.cblStride\", arr.cblStride);\n        if (arr.cblStride == 3)\n        {\n            const nc = new Float32Array(vertexColors.length / 3 * 4);\n            for (let i = 0; i < vertexColors.length / 3; i++)\n            {\n                nc[i * 4 + 0] = vertexColors[i * 3 + 0];\n                nc[i * 4 + 1] = vertexColors[i * 3 + 1];\n                nc[i * 4 + 2] = vertexColors[i * 3 + 2];\n                nc[i * 4 + 3] = 1;\n            }\n            vertexColors = nc;\n        }\n\n        return vertexColors;\n    }\n\n    fillGeomAttribs(gltf, tgeom, attribs, setGeom)\n    {\n        if (attribs.hasOwnProperty(\"POSITION\")) tgeom.vertices = gltf.accBuffers[attribs.POSITION];\n        if (attribs.hasOwnProperty(\"NORMAL\")) tgeom.vertexNormals = gltf.accBuffers[attribs.NORMAL];\n        if (attribs.hasOwnProperty(\"TANGENT\")) tgeom.tangents = gltf.accBuffers[attribs.TANGENT];\n\n        // // console.log(gltf.accBuffers[attribs.COLOR_0])\n        // console.log(gltf);\n\n        if (attribs.hasOwnProperty(\"COLOR_0\")) tgeom.vertexColors = this.calcVertexColors(gltf.accBuffers[attribs.COLOR_0], gltf.accBuffers[attribs.COLOR_0].type);\n        if (attribs.hasOwnProperty(\"COLOR_1\")) tgeom.setAttribute(\"attrVertColor1\", this.calcVertexColors(gltf.accBuffers[attribs.COLOR_1]), gltf.accBuffers[attribs.COLOR_1].type);\n        if (attribs.hasOwnProperty(\"COLOR_2\")) tgeom.setAttribute(\"attrVertColor2\", this.calcVertexColors(gltf.accBuffers[attribs.COLOR_2]), gltf.accBuffers[attribs.COLOR_2].type);\n        if (attribs.hasOwnProperty(\"COLOR_3\")) tgeom.setAttribute(\"attrVertColor3\", this.calcVertexColors(gltf.accBuffers[attribs.COLOR_3]), gltf.accBuffers[attribs.COLOR_3].type);\n        if (attribs.hasOwnProperty(\"COLOR_4\")) tgeom.setAttribute(\"attrVertColor4\", this.calcVertexColors(gltf.accBuffers[attribs.COLOR_4]), gltf.accBuffers[attribs.COLOR_4].type);\n\n        if (attribs.hasOwnProperty(\"TEXCOORD_0\")) tgeom.texCoords = gltf.accBuffers[attribs.TEXCOORD_0];\n        if (attribs.hasOwnProperty(\"TEXCOORD_1\")) tgeom.setAttribute(\"attrTexCoord1\", gltf.accBuffers[attribs.TEXCOORD_1], 2);\n        if (attribs.hasOwnProperty(\"TEXCOORD_2\")) tgeom.setAttribute(\"attrTexCoord2\", gltf.accBuffers[attribs.TEXCOORD_2], 2);\n        if (attribs.hasOwnProperty(\"TEXCOORD_3\")) tgeom.setAttribute(\"attrTexCoord3\", gltf.accBuffers[attribs.TEXCOORD_3], 2);\n        if (attribs.hasOwnProperty(\"TEXCOORD_4\")) tgeom.setAttribute(\"attrTexCoord4\", gltf.accBuffers[attribs.TEXCOORD_4], 2);\n\n        if (attribs.hasOwnProperty(\"WEIGHTS_0\"))\n        {\n            tgeom.setAttribute(\"attrWeights\", gltf.accBuffers[attribs.WEIGHTS_0], 4);\n        }\n        if (attribs.hasOwnProperty(\"JOINTS_0\"))\n        {\n            if (!gltf.accBuffers[attribs.JOINTS_0])console.log(\"no !gltf.accBuffers[attribs.JOINTS_0]\");\n            tgeom.setAttribute(\"attrJoints\", gltf.accBuffers[attribs.JOINTS_0], 4);\n        }\n\n        if (attribs.hasOwnProperty(\"POSITION\")) gltf.accBuffersDelete.push(attribs.POSITION);\n        if (attribs.hasOwnProperty(\"NORMAL\")) gltf.accBuffersDelete.push(attribs.NORMAL);\n        if (attribs.hasOwnProperty(\"TEXCOORD_0\")) gltf.accBuffersDelete.push(attribs.TEXCOORD_0);\n        if (attribs.hasOwnProperty(\"TANGENT\")) gltf.accBuffersDelete.push(attribs.TANGENT);\n        if (attribs.hasOwnProperty(\"COLOR_0\"))gltf.accBuffersDelete.push(attribs.COLOR_0);\n        if (attribs.hasOwnProperty(\"COLOR_0\"))gltf.accBuffersDelete.push(attribs.COLOR_0);\n        if (attribs.hasOwnProperty(\"COLOR_1\"))gltf.accBuffersDelete.push(attribs.COLOR_1);\n        if (attribs.hasOwnProperty(\"COLOR_2\"))gltf.accBuffersDelete.push(attribs.COLOR_2);\n        if (attribs.hasOwnProperty(\"COLOR_3\"))gltf.accBuffersDelete.push(attribs.COLOR_3);\n\n        if (attribs.hasOwnProperty(\"TEXCOORD_1\")) gltf.accBuffersDelete.push(attribs.TEXCOORD_1);\n        if (attribs.hasOwnProperty(\"TEXCOORD_2\")) gltf.accBuffersDelete.push(attribs.TEXCOORD_2);\n        if (attribs.hasOwnProperty(\"TEXCOORD_3\")) gltf.accBuffersDelete.push(attribs.TEXCOORD_3);\n        if (attribs.hasOwnProperty(\"TEXCOORD_4\")) gltf.accBuffersDelete.push(attribs.TEXCOORD_4);\n\n        if (setGeom !== false) if (tgeom && tgeom.verticesIndices) this.setGeom(tgeom);\n    }\n\n    setGeom(geom)\n    {\n        if (inNormFormat.get() == \"X-ZY\")\n        {\n            for (let i = 0; i < geom.vertexNormals.length; i += 3)\n            {\n                let t = geom.vertexNormals[i + 2];\n                geom.vertexNormals[i + 2] = geom.vertexNormals[i + 1];\n                geom.vertexNormals[i + 1] = -t;\n            }\n        }\n\n        if (inVertFormat.get() == \"XZ-Y\")\n        {\n            for (let i = 0; i < geom.vertices.length; i += 3)\n            {\n                let t = geom.vertices[i + 2];\n                geom.vertices[i + 2] = -geom.vertices[i + 1];\n                geom.vertices[i + 1] = t;\n            }\n        }\n\n        if (this.primitive == this.TRIANGLES)\n        {\n            if (inCalcNormals.get() == \"Force Smooth\" || inCalcNormals.get() == false) geom.calculateNormals();\n            else if (!geom.vertexNormals.length && inCalcNormals.get() == \"Auto\") geom.calculateNormals({ \"smooth\": false });\n\n            if ((!geom.biTangents || geom.biTangents.length == 0) && geom.tangents)\n            {\n                const bitan = vec3.create();\n                const tan = vec3.create();\n\n                const tangents = geom.tangents;\n                geom.tangents = new Float32Array(tangents.length / 4 * 3);\n                geom.biTangents = new Float32Array(tangents.length / 4 * 3);\n\n                for (let i = 0; i < tangents.length; i += 4)\n                {\n                    const idx = i / 4 * 3;\n\n                    vec3.cross(\n                        bitan,\n                        [geom.vertexNormals[idx], geom.vertexNormals[idx + 1], geom.vertexNormals[idx + 2]],\n                        [tangents[i], tangents[i + 1], tangents[i + 2]]\n                    );\n\n                    vec3.div(bitan, bitan, [tangents[i + 3], tangents[i + 3], tangents[i + 3]]);\n                    vec3.normalize(bitan, bitan);\n\n                    geom.biTangents[idx + 0] = bitan[0];\n                    geom.biTangents[idx + 1] = bitan[1];\n                    geom.biTangents[idx + 2] = bitan[2];\n\n                    geom.tangents[idx + 0] = tangents[i + 0];\n                    geom.tangents[idx + 1] = tangents[i + 1];\n                    geom.tangents[idx + 2] = tangents[i + 2];\n                }\n            }\n\n            if (geom.tangents.length === 0 || inCalcNormals.get() != \"Never\")\n            {\n                // console.log(\"[gltf ]no tangents... calculating tangents...\");\n                geom.calcTangentsBitangents();\n            }\n        }\n\n        this.geom = geom;\n\n        this.bounds = geom.getBounds();\n    }\n\n    render(cgl, ignoreMaterial, skinRenderer)\n    {\n        if (!this.mesh && this.geom && this.geom.verticesIndices)\n        {\n            let g = this.geom;\n            if (this.geom.vertices.length / 3 > 64000)\n            {\n                g = this.geom.copy();\n                g.unIndex(false, true);\n            }\n\n            let glprim;\n\n            if (cgl.gl)\n            {\n                if (this.primitive == this.TRIANGLES)glprim = cgl.gl.TRIANGLES;\n                else if (this.primitive == this.LINES)glprim = cgl.gl.LINES;\n                else if (this.primitive == this.LINE_STRIP)glprim = cgl.gl.LINE_STRIP;\n                else if (this.primitive == this.POINTS)glprim = cgl.gl.POINTS;\n                else\n                {\n                    op.logWarn(\"unknown primitive type\", this);\n                }\n            }\n\n            this.mesh = op.patch.cg.createMesh(g, { \"glPrimitive\": glprim });\n        }\n\n        if (this.mesh)\n        {\n            // update morphTargets\n            if (this.geom && this.geom.morphTargets.length && !this.morphTargetsRenderMod)\n            {\n                this.mesh.addVertexNumbers = true;\n                this.morphTargetsRenderMod = new GltfTargetsRenderer(this);\n            }\n\n            let useMat = !ignoreMaterial && this.material != -1 && gltf.shaders[this.material];\n            if (skinRenderer)useMat = false;\n\n            if (useMat) cgl.pushShader(gltf.shaders[this.material]);\n\n            const currentShader = cgl.getShader() || {};\n            const uniDiff = currentShader.uniformColorDiffuse;\n\n            const uniPbrMetalness = currentShader.uniformPbrMetalness;\n            const uniPbrRoughness = currentShader.uniformPbrRoughness;\n\n            // if (gltf.shaders[this.material] && !inUseMatProps.get())\n            // {\n            //     gltf.shaders[this.material]=null;\n            // }\n\n            if (!gltf.shaders[this.material] && inUseMatProps.get())\n            {\n                if (uniDiff && this._matDiffuseColor)\n                {\n                    this._matDiffuseColorOrig = [uniDiff.getValue()[0], uniDiff.getValue()[1], uniDiff.getValue()[2], uniDiff.getValue()[3]];\n                    uniDiff.setValue(this._matDiffuseColor);\n                }\n\n                if (uniPbrMetalness)\n                    if (this._matPbrMetalness != null)\n                    {\n                        this._matPbrMetalnessOrig = uniPbrMetalness.getValue();\n                        uniPbrMetalness.setValue(this._matPbrMetalness);\n                    }\n                    else\n                        uniPbrMetalness.setValue(0);\n\n                if (uniPbrRoughness)\n                    if (this._matPbrRoughness != null)\n                    {\n                        this._matPbrRoughnessOrig = uniPbrRoughness.getValue();\n                        uniPbrRoughness.setValue(this._matPbrRoughness);\n                    }\n                    else\n                    {\n                        uniPbrRoughness.setValue(0);\n                    }\n            }\n\n            if (this.morphTargetsRenderMod) this.morphTargetsRenderMod.renderStart(cgl, 0);\n            if (this.mesh)\n            {\n                // console.log(this.mesh)\n                // this.mesh.lastMaterial=0;\n                this.mesh.render(cgl.getShader(), ignoreMaterial);\n            }\n            if (this.morphTargetsRenderMod) this.morphTargetsRenderMod.renderFinish(cgl);\n\n            if (inUseMatProps.get())\n            {\n                if (uniDiff && this._matDiffuseColor) uniDiff.setValue(this._matDiffuseColorOrig);\n                if (uniPbrMetalness && this._matPbrMetalnessOrig != undefined) uniPbrMetalness.setValue(this._matPbrMetalnessOrig);\n                if (uniPbrRoughness && this._matPbrRoughnessOrig != undefined) uniPbrRoughness.setValue(this._matPbrRoughnessOrig);\n            }\n\n            if (useMat) cgl.popShader();\n        }\n    }\n};\n","inc_meshGroup_js":"const gltfMeshGroup = class\n{\n    constructor(gltf, m)\n    {\n        this.bounds = new CABLES.CG.BoundingBox();\n        this.meshes = [];\n        this.name = m.name;\n        const prims = m.primitives;\n\n        for (let i = 0; i < prims.length; i++)\n        {\n            const mesh = new gltfMesh(this.name, prims[i], gltf,\n                (mesh) =>\n                {\n                    mesh.extras = m.extras;\n                    this.bounds.apply(mesh.bounds);\n                });\n\n            mesh.submeshIndex = i;\n            this.meshes.push(mesh);\n        }\n    }\n\n    render(cgl, ignoreMat, skinRenderer, _time, weights)\n    {\n        for (let i = 0; i < this.meshes.length; i++)\n        {\n            const useMat = gltf.shaders[this.meshes[i].material];\n\n            if (!ignoreMat && useMat) cgl.pushShader(gltf.shaders[this.meshes[i].material]);\n            // console.log(gltf.shaders[this.meshes[i].material],this.meshes[i].material)\n            if (skinRenderer)skinRenderer.renderStart(cgl, _time);\n            if (weights) this.meshes[i].weights = weights;\n            this.meshes[i].render(cgl, ignoreMat, skinRenderer, _time);\n            if (skinRenderer)skinRenderer.renderFinish(cgl);\n            if (!ignoreMat && useMat) cgl.popShader();\n        }\n    }\n};\n","inc_node_js":"const gltfNode = class\n{\n    constructor(node, gltf)\n    {\n        this.isChild = node.isChild || false;\n        this.name = node.name;\n        if (node.hasOwnProperty(\"camera\")) this.camera = node.camera;\n        this.hidden = false;\n        this.mat = mat4.create();\n        this._animActions = {};\n        this.animWeights = [];\n        this._animMat = mat4.create();\n        this._tempMat = mat4.create();\n        this._tempQuat = quat.create();\n        this._tempRotmat = mat4.create();\n        this.mesh = null;\n        this.children = [];\n        this._node = node;\n        this._gltf = gltf;\n        this.absMat = mat4.create();\n        this.addTranslate = null;\n        this._tempAnimScale = null;\n        this.addMulMat = null;\n        this.updateMatrix();\n        this.skinRenderer = null;\n        this.copies = [];\n    }\n\n    get skin()\n    {\n        if (this._node.hasOwnProperty(\"skin\")) return this._node.skin;\n        else return -1;\n    }\n\n    copy()\n    {\n        this.isCopy = true;\n        const n = new gltfNode(this._node, this._gltf);\n        n.copyOf = this;\n\n        n._animActions = this._animActions;\n        n.children = this.children;\n        if (this.skin) n.skinRenderer = new GltfSkin(this);\n\n        this.updateMatrix();\n        return n;\n    }\n\n    hasSkin()\n    {\n        if (this._node.hasOwnProperty(\"skin\")) return this._gltf.json.skins[this._node.skin].name || \"unknown\";\n        return false;\n    }\n\n    initSkin()\n    {\n        if (this.skin > -1)\n        {\n            this.skinRenderer = new GltfSkin(this);\n        }\n    }\n\n    updateMatrix()\n    {\n        mat4.identity(this.mat);\n        if (this._node.translation) mat4.translate(this.mat, this.mat, this._node.translation);\n\n        if (this._node.rotation)\n        {\n            const rotmat = mat4.create();\n            this._rot = this._node.rotation;\n\n            mat4.fromQuat(rotmat, this._node.rotation);\n            mat4.mul(this.mat, this.mat, rotmat);\n        }\n\n        if (this._node.scale)\n        {\n            this._scale = this._node.scale;\n            mat4.scale(this.mat, this.mat, this._scale);\n        }\n\n        if (this._node.hasOwnProperty(\"mesh\"))\n        {\n            this.mesh = this._gltf.meshes[this._node.mesh];\n            if (this.isCopy)\n            {\n                // console.log(this.mesh);\n            }\n        }\n\n        if (this._node.children)\n        {\n            for (let i = 0; i < this._node.children.length; i++)\n            {\n                this._gltf.json.nodes[i].isChild = true;\n                if (this._gltf.nodes[this._node.children[i]]) this._gltf.nodes[this._node.children[i]].isChild = true;\n                this.children.push(this._node.children[i]);\n            }\n        }\n    }\n\n    unHide()\n    {\n        this.hidden = false;\n        for (let i = 0; i < this.children.length; i++)\n            if (this.children[i].unHide) this.children[i].unHide();\n    }\n\n    calcBounds(gltf, mat, bounds)\n    {\n        const localMat = mat4.create();\n\n        if (mat) mat4.copy(localMat, mat);\n        if (this.mat) mat4.mul(localMat, localMat, this.mat);\n\n        if (this.mesh)\n        {\n            const bb = this.mesh.bounds.copy();\n            bb.mulMat4(localMat);\n            bounds.apply(bb);\n\n            if (bounds.changed)\n            {\n                boundingPoints.push(\n                    bb._min[0] || 0, bb._min[1] || 0, bb._min[2] || 0,\n                    bb._max[0] || 0, bb._max[1] || 0, bb._max[2] || 0);\n            }\n        }\n\n        for (let i = 0; i < this.children.length; i++)\n        {\n            if (gltf.nodes[this.children[i]] && gltf.nodes[this.children[i]].calcBounds)\n            {\n                const b = gltf.nodes[this.children[i]].calcBounds(gltf, localMat, bounds);\n\n                bounds.apply(b);\n            }\n        }\n\n        if (bounds.changed) return bounds;\n        else return null;\n    }\n\n    setAnimAction(name)\n    {\n        // console.log(\"setAnimAction:\", name);\n        if (!name) return;\n\n        this._currentAnimaction = name;\n\n        if (name && !this._animActions[name])\n        {\n            // console.log(\"no action found:\", name,this._animActions);\n            return null;\n        }\n\n        // else console.log(\"YES action found:\", name);\n        // console.log(this._animActions);\n\n        for (let path in this._animActions[name])\n        {\n            if (path == \"translation\") this._animTrans = this._animActions[name][path];\n            else if (path == \"rotation\") this._animRot = this._animActions[name][path];\n            else if (path == \"scale\") this._animScale = this._animActions[name][path];\n            else if (path == \"weights\") this.animWeights = this._animActions[name][path];\n            else console.log(\"[gltfNode] unknown anim path\", path, this._animActions[name][path]);\n        }\n    }\n\n    setAnim(path, name, anims)\n    {\n        if (!path || !name || !anims) return;\n\n        // console.log(\"setanim\", this._node.name, path, name, anims);\n\n        this._animActions[name] = this._animActions[name] || {};\n\n        // console.log(this._animActions);\n        // debugger;\n\n        // for (let i = 0; i < this.copies.length; i++) this.copies[i]._animActions = this._animActions;\n\n        if (this._animActions[name][path]) op.log(\"[gltfNode] animation action path already exists\", name, path, this._animActions[name][path]);\n\n        this._animActions[name][path] = anims;\n\n        if (path == \"translation\") this._animTrans = anims;\n        else if (path == \"rotation\") this._animRot = anims;\n        else if (path == \"scale\") this._animScale = anims;\n        else if (path == \"weights\")\n        {\n            // console.log(\"weights\",name,path,anims)\n            this.animWeights = this._animActions[name][path];\n            // console.log(this.animWeights);\n        }\n        else console.warn(\"unknown anim path\", path, anims);\n    }\n\n    modelMatLocal()\n    {\n        return this._animMat || this.mat;\n    }\n\n    modelMatAbs()\n    {\n        return this.absMat;\n    }\n\n    transform(cgl, _time)\n    {\n        if (!_time && _time != 0)_time = time;\n\n        this._lastTimeTrans = _time;\n\n        // console.log(this._rot)\n\n        gltfTransforms++;\n\n        if (!this._animTrans && !this._animRot && !this._animScale)\n        {\n            mat4.mul(cgl.mMatrix, cgl.mMatrix, this.mat);\n            this._animMat = null;\n        }\n        else\n        {\n            this._animMat = this._animMat || mat4.create();\n            mat4.identity(this._animMat);\n\n            const playAnims = true;\n\n            if (playAnims && this._animTrans)\n            {\n                mat4.translate(this._animMat, this._animMat, [\n                    this._animTrans[0].getValue(_time),\n                    this._animTrans[1].getValue(_time),\n                    this._animTrans[2].getValue(_time)]);\n            }\n            else\n            if (this._node.translation) mat4.translate(this._animMat, this._animMat, this._node.translation);\n\n            if (playAnims && this._animRot)\n            {\n                if (this._animRot[0].defaultEasing == CABLES.EASING_LINEAR) CABLES.Anim.slerpQuaternion(_time, this._tempQuat, this._animRot[0], this._animRot[1], this._animRot[2], this._animRot[3]);\n                else if (this._animRot[0].defaultEasing == CABLES.EASING_ABSOLUTE)\n                {\n                    this._tempQuat[0] = this._animRot[0].getValue(_time);\n                    this._tempQuat[1] = this._animRot[1].getValue(_time);\n                    this._tempQuat[2] = this._animRot[2].getValue(_time);\n                    this._tempQuat[3] = this._animRot[3].getValue(_time);\n                }\n                else if (this._animRot[0].defaultEasing == CABLES.EASING_CUBICSPLINE)\n                {\n                    CABLES.Anim.slerpQuaternion(_time, this._tempQuat, this._animRot[0], this._animRot[1], this._animRot[2], this._animRot[3]);\n                }\n\n                mat4.fromQuat(this._tempMat, this._tempQuat);\n                mat4.mul(this._animMat, this._animMat, this._tempMat);\n            }\n            else if (this._rot)\n            {\n                mat4.fromQuat(this._tempRotmat, this._rot);\n                mat4.mul(this._animMat, this._animMat, this._tempRotmat);\n            }\n\n            if (playAnims && this._animScale)\n            {\n                if (!this._tempAnimScale) this._tempAnimScale = [1, 1, 1];\n                this._tempAnimScale[0] = this._animScale[0].getValue(_time);\n                this._tempAnimScale[1] = this._animScale[1].getValue(_time);\n                this._tempAnimScale[2] = this._animScale[2].getValue(_time);\n                mat4.scale(this._animMat, this._animMat, this._tempAnimScale);\n            }\n            else if (this._scale) mat4.scale(this._animMat, this._animMat, this._scale);\n\n            mat4.mul(cgl.mMatrix, cgl.mMatrix, this._animMat);\n        }\n\n        if (this.animWeights)\n        {\n            this.weights = this.weights || [];\n\n            let str = \"\";\n            for (let i = 0; i < this.animWeights.length; i++)\n            {\n                this.weights[i] = this.animWeights[i].getValue(_time);\n                str += this.weights[i] + \"/\";\n            }\n\n            // console.log(str);\n            // this.mesh.weights=this.animWeights.get(_time);\n            // console.log(this.animWeights);\n        }\n\n        if (this.addTranslate) mat4.translate(cgl.mMatrix, cgl.mMatrix, this.addTranslate);\n\n        if (this.addMulMat) mat4.mul(cgl.mMatrix, cgl.mMatrix, this.addMulMat);\n\n        mat4.copy(this.absMat, cgl.mMatrix);\n    }\n\n    render(cgl, dontTransform, dontDrawMesh, ignoreMaterial, ignoreChilds, drawHidden, _time)\n    {\n        if (!dontTransform) cgl.pushModelMatrix();\n\n        if (_time === undefined) _time = gltf.time;\n\n        if (!dontTransform || this.skinRenderer) this.transform(cgl, _time);\n\n        if (this.hidden && !drawHidden)\n        {\n        }\n        else\n        {\n            if (this.skinRenderer)\n            {\n                this.skinRenderer.time = _time;\n                if (!dontDrawMesh)\n                    this.mesh.render(cgl, ignoreMaterial, this.skinRenderer, _time, this.weights);\n            }\n            else\n            {\n                if (this.mesh && !dontDrawMesh)\n                    this.mesh.render(cgl, ignoreMaterial, null, _time, this.weights);\n            }\n        }\n\n        if (!ignoreChilds && !this.hidden)\n            for (let i = 0; i < this.children.length; i++)\n                if (gltf.nodes[this.children[i]])\n                    gltf.nodes[this.children[i]].render(cgl, dontTransform, dontDrawMesh, ignoreMaterial, ignoreChilds, drawHidden, _time);\n\n        if (!dontTransform)cgl.popModelMatrix();\n    }\n};\n","inc_print_js":"let tab = null;\n\nfunction closeTab()\n{\n    if (tab)gui.mainTabs.closeTab(tab.id);\n    tab = null;\n}\n\nfunction formatVec(arr)\n{\n    const nums = [];\n    for (let i = 0; i < arr.length; i++)\n    {\n        nums.push(Math.round(arr[i] * 1000) / 1000);\n    }\n\n    return nums.join(\",\");\n}\n\nfunction printNode(html, node, level)\n{\n    if (!gltf) return;\n\n    html += \"<tr class=\\\"row\\\">\";\n\n    let ident = \"\";\n    let identSpace = \"\";\n\n    for (let i = 1; i < level; i++)\n    {\n        identSpace += \"&nbsp;&nbsp;&nbsp;\";\n        let identClass = \"identBg\";\n        if (i == 1)identClass = \"identBgLevel0\";\n        ident += \"<td class=\\\"ident \" + identClass + \"\\\" ><div style=\\\"\\\"></div></td>\";\n    }\n    let id = CABLES.uuid();\n    html += ident;\n    html += \"<td colspan=\\\"\" + (21 - level) + \"\\\">\";\n\n    if (node.mesh && node.mesh.meshes.length)html += \"<span class=\\\"icon icon-cube\\\"></span>&nbsp;\";\n    else html += \"<span class=\\\"icon icon-box-select\\\"></span> &nbsp;\";\n\n    html += node.name + \"</td><td></td>\";\n\n    if (node.mesh)\n    {\n        html += \"<td>\";\n        for (let i = 0; i < node.mesh.meshes.length; i++)\n        {\n            if (i > 0)html += \", \";\n            html += node.mesh.meshes[i].name;\n        }\n\n        html += \"</td>\";\n\n        html += \"<td>\";\n        html += node.hasSkin() || \"-\";\n        html += \"</td>\";\n\n        html += \"<td>\";\n        let countMats = 0;\n        for (let i = 0; i < node.mesh.meshes.length; i++)\n        {\n            if (countMats > 0)html += \", \";\n            if (gltf.json.materials && node.mesh.meshes[i].hasOwnProperty(\"material\"))\n            {\n                if (gltf.json.materials[node.mesh.meshes[i].material])\n                {\n                    html += gltf.json.materials[node.mesh.meshes[i].material].name;\n                    countMats++;\n                }\n            }\n        }\n        if (countMats == 0)html += \"none\";\n        html += \"</td>\";\n    }\n    else\n    {\n        html += \"<td>-</td><td>-</td><td>-</td>\";\n    }\n\n    html += \"<td>\";\n\n    if (node._node.translation || node._node.rotation || node._node.scale)\n    {\n        let info = \"\";\n\n        if (node._node.translation)info += \"Translate: `\" + formatVec(node._node.translation) + \"` || \";\n        if (node._node.rotation)info += \"Rotation: `\" + formatVec(node._node.rotation) + \"` || \";\n        if (node._node.scale)info += \"Scale: `\" + formatVec(node._node.scale) + \"` || \";\n\n        html += \"<span class=\\\"icon icon-gizmo info\\\" data-info=\\\"\" + info + \"\\\"></span> &nbsp;\";\n    }\n\n    if (node._animRot || node._animScale || node._animTrans)\n    {\n        let info = \"Animated: \";\n        if (node._animRot) info += \"Rot \";\n        if (node._animScale) info += \"Scale \";\n        if (node._animTrans) info += \"Trans \";\n\n        html += \"<span class=\\\"icon icon-clock info\\\" data-info=\\\"\" + info + \"\\\"></span>&nbsp;\";\n    }\n\n    if (!node._node.translation && !node._node.rotation && !node._node.scale && !node._animRot && !node._animScale && !node._animTrans) html += \"-\";\n\n    html += \"</td>\";\n\n    html += \"<td>\";\n    let hideclass = \"\";\n    if (node.hidden)hideclass = \"node-hidden\";\n\n    // html+='';\n    html += \"<a onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').exposeNode('\" + node.name + \"','transform')\\\" class=\\\"treebutton\\\">Transform</a>\";\n    html += \" <a onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').exposeNode('\" + node.name + \"','hierarchy')\\\" class=\\\"treebutton\\\">Hierarchy</a>\";\n    html += \" <a onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').exposeNode('\" + node.name + \"')\\\" class=\\\"treebutton\\\">Node</a>\";\n\n    if (node.hasSkin())\n        html += \" <a onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').exposeNode('\" + node.name + \"',false,{skin:true});\\\" class=\\\"treebutton\\\">Skin</a>\";\n\n    html += \"</td><td>\";\n    html += \"&nbsp;<span class=\\\"icon iconhover icon-eye \" + hideclass + \"\\\" onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').toggleNodeVisibility('\" + node.name + \"');this.classList.toggle('node-hidden');\\\"></span>\";\n    html += \"</td>\";\n\n    html += \"</tr>\";\n\n    if (node.children)\n    {\n        for (let i = 0; i < node.children.length; i++)\n            html = printNode(html, gltf.nodes[node.children[i]], level + 1);\n    }\n\n    return html;\n}\n\nfunction printMaterial(mat, idx)\n{\n    let html = \"<tr>\";\n    html += \" <td>\" + idx + \"</td>\";\n    html += \" <td>\" + mat.name + \"</td>\";\n\n    html += \" <td>\";\n\n    const info = JSON.stringify(mat, null, 4).replaceAll(\"\\\"\", \"\").replaceAll(\"\\n\", \"<br/>\");\n\n    html += \"<span class=\\\"icon icon-info\\\" onclick=\\\"new CABLES.UI.ModalDialog({ 'html': '<pre>\" + info + \"</pre>', 'title': '\" + mat.name + \"' });\\\"></span>&nbsp;\";\n\n    if (mat.pbrMetallicRoughness && mat.pbrMetallicRoughness.baseColorFactor)\n    {\n        let rgb = \"\";\n        rgb += \"\" + Math.round(mat.pbrMetallicRoughness.baseColorFactor[0] * 255);\n        rgb += \",\" + Math.round(mat.pbrMetallicRoughness.baseColorFactor[1] * 255);\n        rgb += \",\" + Math.round(mat.pbrMetallicRoughness.baseColorFactor[2] * 255);\n\n        html += \"<div style=\\\"width:15px;height:15px;background-color:rgb(\" + rgb + \");display:inline-block\\\">&nbsp;</a>\";\n    }\n    html += \" <td style=\\\"\\\">\" + (gltf.shaders[idx] ? \"-\" : \"<a onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').assignMaterial('\" + mat.name + \"')\\\" class=\\\"treebutton\\\">Assign</a>\") + \"<td>\";\n    html += \"<td>\";\n\n    html += \"</tr>\";\n    return html;\n}\n\nfunction printInfo()\n{\n    if (!gltf) return;\n\n    const startTime = performance.now();\n    const sizes = {};\n    let html = \"<div style=\\\"overflow:scroll;width:100%;height:100%\\\">\";\n\n    html += \"File: <a href=\\\"\" + CABLES.platform.getCablesUrl() + \"/asset/patches/?filename=\" + inFile.get() + \"\\\" target=\\\"_blank\\\">\" + CABLES.basename(inFile.get()) + \"</a><br/>\";\n\n    html += \"Generator:\" + gltf.json.asset.generator;\n\n    let numNodes = 0;\n    if (gltf.json.nodes)numNodes = gltf.json.nodes.length;\n    html += \"<div id=\\\"groupNodes\\\">Nodes (\" + numNodes + \")</div>\";\n\n    html += \"<table id=\\\"sectionNodes\\\" class=\\\"table treetable\\\">\";\n\n    html += \"<tr>\";\n    html += \" <th colspan=\\\"21\\\">Name</th>\";\n    html += \" <th>Mesh</th>\";\n    html += \" <th>Skin</th>\";\n    html += \" <th>Material</th>\";\n    html += \" <th>Transform</th>\";\n    html += \" <th>Expose</th>\";\n    html += \" <th></th>\";\n    html += \"</tr>\";\n\n    for (let i = 0; i < gltf.nodes.length; i++)\n    {\n        if (!gltf.nodes[i].isChild)\n            html = printNode(html, gltf.nodes[i], 1);\n    }\n    html += \"</table>\";\n\n    // / //////////////////\n\n    let numMaterials = 0;\n    if (gltf.json.materials)numMaterials = gltf.json.materials.length;\n    html += \"<div id=\\\"groupMaterials\\\">Materials (\" + numMaterials + \")</div>\";\n\n    if (!gltf.json.materials || gltf.json.materials.length == 0)\n    {\n    }\n    else\n    {\n        html += \"<table id=\\\"materialtable\\\"  class=\\\"table treetable\\\">\";\n        html += \"<tr>\";\n        html += \" <th>Index</th>\";\n        html += \" <th>Name</th>\";\n        html += \" <th>Color</th>\";\n        html += \" <th>Function</th>\";\n        html += \" <th></th>\";\n        html += \"</tr>\";\n        for (let i = 0; i < gltf.json.materials.length; i++)\n        {\n            html += printMaterial(gltf.json.materials[i], i);\n        }\n        html += \"</table>\";\n    }\n\n    // / ///////////////////////\n\n    html += \"<div id=\\\"groupMeshes\\\">Meshes (\" + gltf.json.meshes.length + \")</div>\";\n\n    html += \"<table id=\\\"meshestable\\\"  class=\\\"table treetable\\\">\";\n    html += \"<tr>\";\n    html += \" <th>Name</th>\";\n    html += \" <th>Node</th>\";\n    html += \" <th>Material</th>\";\n    html += \" <th>Vertices</th>\";\n    html += \" <th>Attributes</th>\";\n    html += \"</tr>\";\n\n    let sizeBufferViews = [];\n    sizes.meshes = 0;\n    sizes.meshTargets = 0;\n\n    for (let i = 0; i < gltf.json.meshes.length; i++)\n    {\n        html += \"<tr>\";\n        html += \"<td>\" + gltf.json.meshes[i].name + \"</td>\";\n\n        html += \"<td>\";\n        let count = 0;\n        let nodename = \"\";\n        for (let j = 0; j < gltf.json.nodes.length; j++)\n        {\n            if (gltf.json.nodes[j].mesh == i)\n            {\n                count++;\n                if (count == 1)\n                {\n                    nodename = gltf.json.nodes[j].name;\n                }\n            }\n        }\n        if (count > 1) html += (count) + \" nodes (\" + nodename + \" ...)\";\n        else html += nodename;\n        html += \"</td>\";\n\n        // -------\n\n        html += \"<td>\";\n        for (let j = 0; j < gltf.json.meshes[i].primitives.length; j++)\n        {\n            if (gltf.json.meshes[i].primitives[j].hasOwnProperty(\"material\"))\n            {\n                if (gltf.json.materials[gltf.json.meshes[i]])\n                {\n                    html += gltf.json.materials[gltf.json.meshes[i].primitives[j].material].name + \" \";\n                }\n            }\n            else html += \"None\";\n        }\n        html += \"</td>\";\n\n        html += \"<td>\";\n        let numVerts = 0;\n        for (let j = 0; j < gltf.json.meshes[i].primitives.length; j++)\n        {\n            if (gltf.json.meshes[i].primitives[j].attributes.POSITION != undefined)\n            {\n                let v = parseInt(gltf.json.accessors[gltf.json.meshes[i].primitives[j].attributes.POSITION].count);\n                numVerts += v;\n                html += \"\" + v + \"<br/>\";\n            }\n            else html += \"-<br/>\";\n        }\n\n        if (gltf.json.meshes[i].primitives.length > 1)\n            html += \"=\" + numVerts;\n        html += \"</td>\";\n\n        html += \"<td>\";\n        for (let j = 0; j < gltf.json.meshes[i].primitives.length; j++)\n        {\n            html += Object.keys(gltf.json.meshes[i].primitives[j].attributes);\n            html += \" <a onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').exposeGeom('\" + gltf.json.meshes[i].name + \"',\" + j + \")\\\" class=\\\"treebutton\\\">Geometry</a>\";\n            html += \"<br/>\";\n\n            if (gltf.json.meshes[i].primitives[j].targets)\n            {\n                html += gltf.json.meshes[i].primitives[j].targets.length + \" targets<br/>\";\n\n                if (gltf.json.meshes[i].extras && gltf.json.meshes[i].extras.targetNames)\n                    html += \"Targetnames:<br/>\" + gltf.json.meshes[i].extras.targetNames.join(\"<br/>\");\n\n                html += \"<br/>\";\n            }\n        }\n\n        html += \"</td>\";\n        html += \"</tr>\";\n\n        for (let j = 0; j < gltf.json.meshes[i].primitives.length; j++)\n        {\n            const accessor = gltf.json.accessors[gltf.json.meshes[i].primitives[j].indices];\n            if (accessor)\n            {\n                let bufView = accessor.bufferView;\n\n                if (sizeBufferViews.indexOf(bufView) == -1)\n                {\n                    sizeBufferViews.push(bufView);\n                    if (gltf.json.bufferViews[bufView])sizes.meshes += gltf.json.bufferViews[bufView].byteLength;\n                }\n            }\n\n            for (let k in gltf.json.meshes[i].primitives[j].attributes)\n            {\n                const attr = gltf.json.meshes[i].primitives[j].attributes[k];\n                const bufView2 = gltf.json.accessors[attr].bufferView;\n\n                if (sizeBufferViews.indexOf(bufView2) == -1)\n                {\n                    sizeBufferViews.push(bufView2);\n                    if (gltf.json.bufferViews[bufView2])sizes.meshes += gltf.json.bufferViews[bufView2].byteLength;\n                }\n            }\n\n            if (gltf.json.meshes[i].primitives[j].targets)\n                for (let k = 0; k < gltf.json.meshes[i].primitives[j].targets.length; k++)\n                {\n                    for (let l in gltf.json.meshes[i].primitives[j].targets[k])\n                    {\n                        const accessorIdx = gltf.json.meshes[i].primitives[j].targets[k][l];\n                        const accessor = gltf.json.accessors[accessorIdx];\n                        const bufView2 = accessor.bufferView;\n                        console.log(\"accessor\", accessor);\n                        if (sizeBufferViews.indexOf(bufView2) == -1)\n                            if (gltf.json.bufferViews[bufView2])\n                            {\n                                sizeBufferViews.push(bufView2);\n                                sizes.meshTargets += gltf.json.bufferViews[bufView2].byteLength;\n                            }\n                    }\n                }\n        }\n    }\n    html += \"</table>\";\n\n    // / //////////////////////////////////\n\n    let numSamplers = 0;\n    let numAnims = 0;\n    let numKeyframes = 0;\n\n    if (gltf.json.animations)\n    {\n        numAnims = gltf.json.animations.length;\n        for (let i = 0; i < gltf.json.animations.length; i++)\n        {\n            numSamplers += gltf.json.animations[i].samplers.length;\n        }\n    }\n\n    html += \"<div id=\\\"groupAnims\\\">Animations (\" + numAnims + \"/\" + numSamplers + \")</div>\";\n\n    if (gltf.json.animations)\n    {\n        html += \"<table id=\\\"sectionAnim\\\" class=\\\"table treetable\\\">\";\n        html += \"<tr>\";\n        html += \"  <th>Name</th>\";\n        html += \"  <th>Target node</th>\";\n        html += \"  <th>Path</th>\";\n        html += \"  <th>Interpolation</th>\";\n        html += \"  <th>Keys</th>\";\n        html += \"</tr>\";\n\n\n        sizes.animations = 0;\n\n        for (let i = 0; i < gltf.json.animations.length; i++)\n        {\n            for (let j = 0; j < gltf.json.animations[i].samplers.length; j++)\n            {\n                let bufView = gltf.json.accessors[gltf.json.animations[i].samplers[j].input].bufferView;\n                if (sizeBufferViews.indexOf(bufView) == -1)\n                {\n                    sizeBufferViews.push(bufView);\n                    sizes.animations += gltf.json.bufferViews[bufView].byteLength;\n                }\n\n                bufView = gltf.json.accessors[gltf.json.animations[i].samplers[j].output].bufferView;\n                if (sizeBufferViews.indexOf(bufView) == -1)\n                {\n                    sizeBufferViews.push(bufView);\n                    sizes.animations += gltf.json.bufferViews[bufView].byteLength;\n                }\n            }\n\n            for (let j = 0; j < gltf.json.animations[i].channels.length; j++)\n            {\n                html += \"<tr>\";\n                html += \"  <td> Anim \" + i + \": \" + gltf.json.animations[i].name + \"</td>\";\n\n                html += \"  <td>\" + gltf.nodes[gltf.json.animations[i].channels[j].target.node].name + \"</td>\";\n                html += \"  <td>\";\n                html += gltf.json.animations[i].channels[j].target.path + \" \";\n                html += \"  </td>\";\n\n                const smplidx = gltf.json.animations[i].channels[j].sampler;\n                const smplr = gltf.json.animations[i].samplers[smplidx];\n\n                html += \"  <td>\" + smplr.interpolation + \"</td>\";\n\n                html += \"  <td>\" + gltf.json.accessors[smplr.output].count;\n                numKeyframes += gltf.json.accessors[smplr.output].count;\n\n                // html += \"&nbsp;&nbsp;<a onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').showAnim('\" + i + \"','\" + j + \"')\\\" class=\\\"icon icon-search\\\"></a>\";\n\n                html += \"</td>\";\n\n                html += \"</tr>\";\n            }\n        }\n\n        html += \"<tr>\";\n        html += \"  <td></td>\";\n        html += \"  <td></td>\";\n        html += \"  <td></td>\";\n        html += \"  <td></td>\";\n        html += \"  <td>\" + numKeyframes + \" total</td>\";\n        html += \"</tr>\";\n        html += \"</table>\";\n    }\n    else\n    {\n\n    }\n\n    // / ///////////////////\n\n    let numImages = 0;\n    if (gltf.json.images)numImages = gltf.json.images.length;\n    html += \"<div id=\\\"groupImages\\\">Images (\" + numImages + \")</div>\";\n\n    if (gltf.json.images)\n    {\n        html += \"<table id=\\\"sectionImages\\\" class=\\\"table treetable\\\">\";\n\n        html += \"<tr>\";\n        html += \"  <th>name</th>\";\n        html += \"  <th>type</th>\";\n        html += \"  <th>func</th>\";\n        html += \"</tr>\";\n\n        sizes.images = 0;\n\n        for (let i = 0; i < gltf.json.images.length; i++)\n        {\n            if (gltf.json.images[i].hasOwnProperty(\"bufferView\"))\n            {\n                // if (sizeBufferViews.indexOf(gltf.json.images[i].hasOwnProperty(\"bufferView\")) == -1)console.log(\"image bufferview already there?!\");\n                // else\n                sizes.images += gltf.json.bufferViews[gltf.json.images[i].bufferView].byteLength;\n            }\n            else console.log(\"image has no bufferview?!\");\n\n            html += \"<tr>\";\n            html += \"<td>\" + gltf.json.images[i].name + \"</td>\";\n            html += \"<td>\" + gltf.json.images[i].mimeType + \"</td>\";\n            html += \"<td>\";\n\n            let name = gltf.json.images[i].name;\n            if (name === undefined)name = gltf.json.images[i].bufferView;\n\n            html += \"<a onclick=\\\"gui.corePatch().getOpById('\" + op.id + \"').exposeTexture('\" + name + \"')\\\" class=\\\"treebutton\\\">Expose</a>\";\n            html += \"</td>\";\n\n            html += \"<tr>\";\n        }\n        html += \"</table>\";\n    }\n\n    // / ///////////////////////\n\n    let numCameras = 0;\n    if (gltf.json.cameras)numCameras = gltf.json.cameras.length;\n    html += \"<div id=\\\"groupCameras\\\">Cameras (\" + numCameras + \")</div>\";\n\n    if (gltf.json.cameras)\n    {\n        html += \"<table id=\\\"sectionCameras\\\" class=\\\"table treetable\\\">\";\n\n        html += \"<tr>\";\n        html += \"  <th>name</th>\";\n        html += \"  <th>type</th>\";\n        html += \"  <th>info</th>\";\n        html += \"</tr>\";\n\n        for (let i = 0; i < gltf.json.cameras.length; i++)\n        {\n            html += \"<tr>\";\n            html += \"<td>\" + gltf.json.cameras[i].name + \"</td>\";\n            html += \"<td>\" + gltf.json.cameras[i].type + \"</td>\";\n            html += \"<td>\";\n\n            if (gltf.json.cameras[i].perspective)\n            {\n                html += \"yfov: \" + Math.round(gltf.json.cameras[i].perspective.yfov * 100) / 100;\n                html += \", \";\n                html += \"zfar: \" + Math.round(gltf.json.cameras[i].perspective.zfar * 100) / 100;\n                html += \", \";\n                html += \"znear: \" + Math.round(gltf.json.cameras[i].perspective.znear * 100) / 100;\n            }\n            html += \"</td>\";\n\n            html += \"<tr>\";\n        }\n        html += \"</table>\";\n    }\n\n    // / ////////////////////////////////////\n\n    let numSkins = 0;\n    if (gltf.json.skins)numSkins = gltf.json.skins.length;\n    html += \"<div id=\\\"groupSkins\\\">Skins (\" + numSkins + \")</div>\";\n\n    if (gltf.json.skins)\n    {\n        // html += \"<h3>Skins (\" + gltf.json.skins.length + \")</h3>\";\n        html += \"<table id=\\\"sectionSkins\\\" class=\\\"table treetable\\\">\";\n\n        html += \"<tr>\";\n        html += \"  <th>name</th>\";\n        html += \"  <th></th>\";\n        html += \"  <th>total joints</th>\";\n        html += \"</tr>\";\n\n        for (let i = 0; i < gltf.json.skins.length; i++)\n        {\n            html += \"<tr>\";\n            html += \"<td>\" + gltf.json.skins[i].name + \"</td>\";\n            html += \"<td>\" + \"</td>\";\n            html += \"<td>\" + gltf.json.skins[i].joints.length + \"</td>\";\n            html += \"<td>\";\n            html += \"</td>\";\n            html += \"<tr>\";\n        }\n        html += \"</table>\";\n    }\n\n    // / ////////////////////////////////////\n\n    if (gltf.timing)\n    {\n        html += \"<div id=\\\"groupTiming\\\">Debug Loading Timing </div>\";\n\n        html += \"<table id=\\\"sectionTiming\\\" class=\\\"table treetable\\\">\";\n\n        html += \"<tr>\";\n        html += \"  <th>task</th>\";\n        html += \"  <th>time used</th>\";\n        html += \"</tr>\";\n\n        let lt = 0;\n        for (let i = 0; i < gltf.timing.length - 1; i++)\n        {\n            html += \"<tr>\";\n            html += \"  <td>\" + gltf.timing[i][0] + \"</td>\";\n            html += \"  <td>\" + (gltf.timing[i + 1][1] - gltf.timing[i][1]) + \" ms</td>\";\n            html += \"</tr>\";\n            // lt = gltf.timing[i][1];\n        }\n        html += \"</table>\";\n    }\n\n    // / //////////////////////////\n\n    let sizeBin = 0;\n    if (gltf.json.buffers)\n        sizeBin = gltf.json.buffers[0].byteLength;\n\n    html += \"<div id=\\\"groupBinary\\\">File Size Allocation (\" + Math.round(sizeBin / 1024) + \"k )</div>\";\n\n    html += \"<table id=\\\"sectionBinary\\\" class=\\\"table treetable\\\">\";\n    html += \"<tr>\";\n    html += \"  <th>name</th>\";\n    html += \"  <th>size</th>\";\n    html += \"  <th>%</th>\";\n    html += \"</tr>\";\n    let sizeUnknown = sizeBin;\n    for (let i in sizes)\n    {\n        // html+=i+':'+Math.round(sizes[i]/1024);\n        html += \"<tr>\";\n        html += \"<td>\" + i + \"</td>\";\n        html += \"<td>\" + readableSize(sizes[i]) + \" </td>\";\n        html += \"<td>\" + Math.round(sizes[i] / sizeBin * 100) + \"% </td>\";\n        html += \"<tr>\";\n        sizeUnknown -= sizes[i];\n    }\n\n    if (sizeUnknown != 0)\n    {\n        html += \"<tr>\";\n        html += \"<td>unknown</td>\";\n        html += \"<td>\" + readableSize(sizeUnknown) + \" </td>\";\n        html += \"<td>\" + Math.round(sizeUnknown / sizeBin * 100) + \"% </td>\";\n        html += \"<tr>\";\n    }\n\n    html += \"</table>\";\n    html += \"</div>\";\n\n    tab = new CABLES.UI.Tab(\"GLTF \" + CABLES.basename(inFile.get()), { \"icon\": \"cube\", \"infotext\": \"tab_gltf\", \"padding\": true, \"singleton\": true });\n    gui.mainTabs.addTab(tab, true);\n\n    tab.addEventListener(\"close\", closeTab);\n    tab.html(html);\n\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupNodes\"), ele.byId(\"sectionNodes\"), false);\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupMaterials\"), ele.byId(\"materialtable\"), true);\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupAnims\"), ele.byId(\"sectionAnim\"), true);\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupMeshes\"), ele.byId(\"meshestable\"), true);\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupCameras\"), ele.byId(\"sectionCameras\"), true);\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupImages\"), ele.byId(\"sectionImages\"), true);\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupSkins\"), ele.byId(\"sectionSkins\"), true);\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupBinary\"), ele.byId(\"sectionBinary\"), true);\n    CABLES.UI.Collapsable.setup(ele.byId(\"groupTiming\"), ele.byId(\"sectionTiming\"), true);\n\n    gui.maintabPanel.show(true);\n}\n\nfunction readableSize(n)\n{\n    if (n > 1024) return Math.round(n / 1024) + \" kb\";\n    if (n > 1024 * 500) return Math.round(n / 1024) + \" mb\";\n    else return n + \" bytes\";\n}\n","inc_skin_js":"const GltfSkin = class\n{\n    constructor(node)\n    {\n        this._mod = null;\n        this._node = node;\n        this._lastTime = 0;\n        this._matArr = [];\n        this._m = mat4.create();\n        this._invBindMatrix = mat4.create();\n        this.identity = true;\n    }\n\n    renderFinish(cgl)\n    {\n        cgl.popModelMatrix();\n        this._mod.unbind();\n    }\n\n    renderStart(cgl, time)\n    {\n        if (!this._mod)\n        {\n            this._mod = new CGL.ShaderModifier(cgl, op.name + this._node.name);\n\n            this._mod.addModule({\n                \"priority\": -2,\n                \"name\": \"MODULE_VERTEX_POSITION\",\n                \"srcHeadVert\": attachments.skin_head_vert || \"\",\n                \"srcBodyVert\": attachments.skin_vert || \"\"\n            });\n\n            this._mod.addUniformVert(\"m4[]\", \"MOD_boneMats\", []);// bohnenmatze\n            const tr = vec3.create();\n        }\n\n        const skinIdx = this._node.skin;\n        const arrLength = gltf.json.skins[skinIdx].joints.length * 16;\n\n        // if (this._lastTime != time || !time)\n        {\n            // this._lastTime=inTime.get();\n            if (this._matArr.length != arrLength) this._matArr.length = arrLength;\n\n            for (let i = 0; i < gltf.json.skins[skinIdx].joints.length; i++)\n            {\n                const i16 = i * 16;\n                const jointIdx = gltf.json.skins[skinIdx].joints[i];\n                const nodeJoint = gltf.nodes[jointIdx];\n\n                for (let j = 0; j < 16; j++)\n                    this._invBindMatrix[j] = gltf.accBuffers[gltf.json.skins[skinIdx].inverseBindMatrices][i16 + j];\n\n                mat4.mul(this._m, nodeJoint.modelMatAbs(), this._invBindMatrix);\n\n                for (let j = 0; j < this._m.length; j++) this._matArr[i16 + j] = this._m[j];\n            }\n\n            this._mod.setUniformValue(\"MOD_boneMats\", this._matArr);\n            this._lastTime = time;\n        }\n\n        this._mod.define(\"SKIN_NUM_BONES\", gltf.json.skins[skinIdx].joints.length);\n        this._mod.bind();\n\n        // draw mesh...\n        cgl.pushModelMatrix();\n        if (this.identity)mat4.identity(cgl.mMatrix);\n    }\n};\n","inc_targets_js":"const GltfTargetsRenderer = class\n{\n    constructor(mesh)\n    {\n        this.mesh = mesh;\n        this.tex = null;\n        this.numRowsPerTarget = 0;\n\n        this.makeTex(mesh.geom);\n    }\n\n    renderFinish(cgl)\n    {\n        cgl.popModelMatrix();\n        this._mod.unbind();\n    }\n\n    renderStart(cgl, time)\n    {\n        if (!this._mod)\n        {\n            this._mod = new CGL.ShaderModifier(cgl, \"gltftarget\");\n\n            this._mod.addModule({\n                \"priority\": -2,\n                \"name\": \"MODULE_VERTEX_POSITION\",\n                \"srcHeadVert\": attachments.targets_head_vert || \"\",\n                \"srcBodyVert\": attachments.targets_vert || \"\"\n            });\n\n            this._mod.addUniformVert(\"4f\", \"MOD_targetTexInfo\", [0, 0, 0, 0]);\n            this._mod.addUniformVert(\"t\", \"MOD_targetTex\", 1);\n            this._mod.addUniformVert(\"f[]\", \"MOD_weights\", []);\n\n            const tr = vec3.create();\n        }\n\n        this._mod.pushTexture(\"MOD_targetTex\", this.tex);\n        if (this.tex && this.mesh.weights)\n        {\n            this._mod.setUniformValue(\"MOD_weights\", this.mesh.weights);\n            this._mod.setUniformValue(\"MOD_targetTexInfo\", [this.tex.width, this.tex.height, this.numRowsPerTarget, this.mesh.weights.length]);\n\n            this._mod.define(\"MOD_NUM_WEIGHTS\", Math.max(1, this.mesh.weights.length));\n        }\n        else\n        {\n            this._mod.define(\"MOD_NUM_WEIGHTS\", 1);\n        }\n        this._mod.bind();\n\n        // draw mesh...\n        cgl.pushModelMatrix();\n        if (this.identity)mat4.identity(cgl.mMatrix);\n    }\n\n    makeTex(geom)\n    {\n        if (!geom.morphTargets || !geom.morphTargets.length) return;\n\n        let w = geom.morphTargets[0].vertices.length / 3;\n        let h = 0;\n        this.numRowsPerTarget = 0;\n\n        if (geom.morphTargets[0].vertices && geom.morphTargets[0].vertices.length) this.numRowsPerTarget++;\n        if (geom.morphTargets[0].vertexNormals && geom.morphTargets[0].vertexNormals.length) this.numRowsPerTarget++;\n        if (geom.morphTargets[0].tangents && geom.morphTargets[0].tangents.length) this.numRowsPerTarget++;\n        if (geom.morphTargets[0].bitangents && geom.morphTargets[0].bitangents.length) this.numRowsPerTarget++;\n\n        h = geom.morphTargets.length * this.numRowsPerTarget;\n\n        // console.log(\"this.numRowsPerTarget\", this.numRowsPerTarget);\n\n        const pixels = new Float32Array(w * h * 4);\n        let row = 0;\n\n        for (let i = 0; i < geom.morphTargets.length; i++)\n        {\n            if (geom.morphTargets[i].vertices && geom.morphTargets[i].vertices.length)\n            {\n                for (let j = 0; j < geom.morphTargets[i].vertices.length; j += 3)\n                {\n                    pixels[((row * w) + (j / 3)) * 4 + 0] = geom.morphTargets[i].vertices[j + 0];\n                    pixels[((row * w) + (j / 3)) * 4 + 1] = geom.morphTargets[i].vertices[j + 1];\n                    pixels[((row * w) + (j / 3)) * 4 + 2] = geom.morphTargets[i].vertices[j + 2];\n                    pixels[((row * w) + (j / 3)) * 4 + 3] = 1;\n                }\n                row++;\n            }\n\n            if (geom.morphTargets[i].vertexNormals && geom.morphTargets[i].vertexNormals.length)\n            {\n                for (let j = 0; j < geom.morphTargets[i].vertexNormals.length; j += 3)\n                {\n                    pixels[(row * w + j / 3) * 4 + 0] = geom.morphTargets[i].vertexNormals[j + 0];\n                    pixels[(row * w + j / 3) * 4 + 1] = geom.morphTargets[i].vertexNormals[j + 1];\n                    pixels[(row * w + j / 3) * 4 + 2] = geom.morphTargets[i].vertexNormals[j + 2];\n                    pixels[(row * w + j / 3) * 4 + 3] = 1;\n                }\n\n                row++;\n            }\n\n            if (geom.morphTargets[i].tangents && geom.morphTargets[i].tangents.length)\n            {\n                for (let j = 0; j < geom.morphTargets[i].tangents.length; j += 3)\n                {\n                    pixels[(row * w + j / 3) * 4 + 0] = geom.morphTargets[i].tangents[j + 0];\n                    pixels[(row * w + j / 3) * 4 + 1] = geom.morphTargets[i].tangents[j + 1];\n                    pixels[(row * w + j / 3) * 4 + 2] = geom.morphTargets[i].tangents[j + 2];\n                    pixels[(row * w + j / 3) * 4 + 3] = 1;\n                }\n                row++;\n            }\n\n            if (geom.morphTargets[i].bitangents && geom.morphTargets[i].bitangents.length)\n            {\n                for (let j = 0; j < geom.morphTargets[i].bitangents.length; j += 3)\n                {\n                    pixels[(row * w + j / 3) * 4 + 0] = geom.morphTargets[i].bitangents[j + 0];\n                    pixels[(row * w + j / 3) * 4 + 1] = geom.morphTargets[i].bitangents[j + 1];\n                    pixels[(row * w + j / 3) * 4 + 2] = geom.morphTargets[i].bitangents[j + 2];\n                    pixels[(row * w + j / 3) * 4 + 3] = 1;\n                }\n                row++;\n            }\n        }\n\n        this.tex = new CGL.Texture(cgl, { \"isFloatingPointTexture\": true, \"name\": \"targetsTexture\" });\n\n        this.tex.initFromData(pixels, w, h, CGL.Texture.FILTER_LINEAR, CGL.Texture.WRAP_REPEAT);\n\n        // console.log(\"morphTargets generated texture\", w, h);\n    }\n};\n","skin_vert":"int index=int(attrJoints.x);\nvec4 newPos = (MOD_boneMats[index] * pos) * attrWeights.x;\nvec3 newNorm = (vec4((MOD_boneMats[index] * vec4(norm.xyz, 0.0)) * attrWeights.x).xyz);\n\nindex=int(attrJoints.y);\nnewPos += (MOD_boneMats[index] * pos) * attrWeights.y;\nnewNorm = (vec4((MOD_boneMats[index] * vec4(norm.xyz, 0.0)) * attrWeights.y).xyz)+newNorm;\n\nindex=int(attrJoints.z);\nnewPos += (MOD_boneMats[index] * pos) * attrWeights.z;\nnewNorm = (vec4((MOD_boneMats[index] * vec4(norm.xyz, 0.0)) * attrWeights.z).xyz)+newNorm;\n\nindex=int(attrJoints.w);\nnewPos += (MOD_boneMats[index] * pos) * attrWeights.w ;\nnewNorm = (vec4((MOD_boneMats[index] * vec4(norm.xyz, 0.0)) * attrWeights.w).xyz)+newNorm;\n\npos=newPos;\n\nnorm=normalize(newNorm.xyz);\n\n\n","skin_head_vert":"\nIN vec4 attrWeights;\nIN vec4 attrJoints;\nUNI mat4 MOD_boneMats[SKIN_NUM_BONES];\n","targets_vert":"\n\nfloat MOD_width=MOD_targetTexInfo.x;\nfloat MOD_height=MOD_targetTexInfo.y;\nfloat MOD_numTargets=MOD_targetTexInfo.w;\nfloat MOD_numLinesPerTarget=MOD_height/MOD_numTargets;\n\nfloat halfpix=(1.0/MOD_width)*0.5;\nfloat halfpixy=(1.0/MOD_height)*0.5;\n\nfloat x=(attrVertIndex)/MOD_width+halfpix;\n\nvec3 off=vec3(0.0);\n\nfor(float i=0.0;i<MOD_numTargets;i+=1.0)\n{\n    float y=1.0-((MOD_numLinesPerTarget*i)/MOD_height+halfpixy);\n    vec2 coord=vec2(x,y);\n    vec3 targetXYZ = texture(MOD_targetTex,coord).xyz;\n\n    off+=(targetXYZ*MOD_weights[int(i)]);\n\n\n\n    coord.y+=1.0/MOD_height; // normals are in next row\n    vec3 targetNormal = texture(MOD_targetTex,coord).xyz;\n    norm+=targetNormal*MOD_weights[int(i)];\n\n\n}\n\n// norm=normalize(norm);\npos.xyz+=off;\n","targets_head_vert":"\nUNI float MOD_weights[MOD_NUM_WEIGHTS];\n",};
 const gltfCamera = class
 {
     constructor(gltf, node)
@@ -6123,7 +6127,7 @@ const gltfCamera = class
 
     start(time)
     {
-        if (cgl.frameStore.shadowPass) return;
+        if (cgl.tempData.shadowPass) return;
 
         this.updateAnim(time);
         const asp = cgl.getViewPort()[2] / cgl.getViewPort()[3];
@@ -6175,7 +6179,7 @@ const gltfCamera = class
 
     end()
     {
-        if (cgl.frameStore.shadowPass) return;
+        if (cgl.tempData.shadowPass) return;
         cgl.popPMatrix();
         cgl.popViewMatrix();
     }
@@ -6394,7 +6398,7 @@ function loadAnims(gltf)
             {
                 op.warn("loadAmins bufferIn undefined ", bufferIn === undefined);
                 op.warn("loadAmins bufferOut undefined ", bufferOut === undefined);
-                op.warn("loadAmins ", sampler, accOut);
+                op.warn("loadAmins ", an.name, sampler, accOut);
                 op.warn("loadAmins num accBuffers", gltf.accBuffers.length);
                 op.warn("loadAmins num accessors", gltf.json.accessors.length);
             }
@@ -8538,8 +8542,8 @@ inExec.onTriggered = function ()
         }
     }
 
-    let oldScene = cgl.frameStore.currentScene || null;
-    cgl.frameStore.currentScene = gltf;
+    let oldScene = cgl.tempData.currentScene || null;
+    cgl.tempData.currentScene = gltf;
 
     nextBefore.trigger();
 
@@ -8578,7 +8582,7 @@ inExec.onTriggered = function ()
     }
 
     next.trigger();
-    cgl.frameStore.currentScene = oldScene;
+    cgl.tempData.currentScene = oldScene;
 
     cgl.popModelMatrix();
 
@@ -12705,6 +12709,9 @@ op.patch.addEventListener("namedTriggersChanged", updateVarNamesDropdown);
 
 updateVarNamesDropdown();
 
+op.varName.setUiAttribs({ "_triggerSelect": true });
+
+
 function updateVarNamesDropdown()
 {
     if (CABLES.UI)
@@ -13018,7 +13025,7 @@ let updateCameraMovementMatrix = true;
 
 render.onTriggered = function ()
 {
-    if (cgl.frameStore.shadowPass) return trigger.trigger();
+    if (cgl.tempData.shadowPass) return trigger.trigger();
 
     // Aspect ration
     if (!autoAspect.get()) asp = aspect.get();
@@ -13601,7 +13608,7 @@ function doRender()
 
         if (fb && fb.valid)
         {
-            texDepth.set(fb.getTextureDepth());
+            texDepth.setRef(fb.getTextureDepth());
             reInitFb = false;
         }
         else
@@ -13926,31 +13933,6 @@ CABLES.OPS["4ecdc2ef-a242-4548-ad74-13f617119a64"]={f:Ops.Gl.GLTF.GltfDracoCompr
 
 // **************************************************************
 // 
-// Ops.Vars.VarSetObject_v2
-// 
-// **************************************************************
-
-Ops.Vars.VarSetObject_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const val = op.inObject("Value", null);
-op.varName = op.inDropDown("Variable", [], "", true);
-
-new CABLES.VarSetOpWrapper(op, "object", val, op.varName);
-
-
-};
-
-Ops.Vars.VarSetObject_v2.prototype = new CABLES.Op();
-CABLES.OPS["c7608375-5b45-4bca-87ef-d0c5e970779a"]={f:Ops.Vars.VarSetObject_v2,objName:"Ops.Vars.VarSetObject_v2"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Gl.Phong.LambertMaterial_v2
 // 
 // **************************************************************
@@ -14192,7 +14174,7 @@ function compareLights(lightStack)
 
 function updateLights()
 {
-    if ((!cgl.frameStore.lightStack || !cgl.frameStore.lightStack.length))
+    if ((!cgl.tempData.lightStack || !cgl.tempData.lightStack.length))
     {
         // if no light in light stack, use default light & set count to -1
         // so when a new light gets added, the shader does recompile
@@ -14209,12 +14191,12 @@ function updateLights()
     {
         if (shader)
         {
-            if (cgl.frameStore.lightStack)
+            if (cgl.tempData.lightStack)
             {
-                if (cgl.frameStore.lightStack.length)
+                if (cgl.tempData.lightStack.length)
                 {
                     defaultUniform = null;
-                    compareLights(cgl.frameStore.lightStack);
+                    compareLights(cgl.tempData.lightStack);
                 }
             }
         }
@@ -14228,9 +14210,9 @@ execute.onTriggered = function ()
         op.log("lambert has no shader...");
         return;
     }
-    if (cgl.frameStore.lightStack)
+    if (cgl.tempData.lightStack)
     {
-        if (cgl.frameStore.lightStack.length === 0) op.setUiError("deflight", "Default light is enabled. Please add lights to your patch to make this warning disappear.", 1);
+        if (cgl.tempData.lightStack.length === 0) op.setUiError("deflight", "Default light is enabled. Please add lights to your patch to make this warning disappear.", 1);
         else op.setUiError("deflight", null);
     }
     cgl.pushShader(shader);
@@ -14329,22 +14311,22 @@ op.onDelete = function ()
 
 inExec.onTriggered = function ()
 {
-    if (!cgl.frameStore.currentScene) return;
-    if (currentSceneLoaded != cgl.frameStore.currentScene.loaded) node = null;
+    if (!cgl.tempData.currentScene) return;
+    if (currentSceneLoaded != cgl.tempData.currentScene.loaded) node = null;
 
     if (!node)
     {
         const name = inNodeName.get();
 
-        if (!cgl.frameStore || !cgl.frameStore.currentScene || !cgl.frameStore.currentScene.nodes) return;
+        if (!cgl.tempData || !cgl.tempData.currentScene || !cgl.tempData.currentScene.nodes) return;
 
-        currentSceneLoaded = cgl.frameStore.currentScene.loaded;
+        currentSceneLoaded = cgl.tempData.currentScene.loaded;
 
-        for (let i = 0; i < cgl.frameStore.currentScene.nodes.length; i++)
+        for (let i = 0; i < cgl.tempData.currentScene.nodes.length; i++)
         {
-            if (cgl.frameStore.currentScene.nodes[i].name == name)
+            if (cgl.tempData.currentScene.nodes[i].name == name)
             {
-                node = cgl.frameStore.currentScene.nodes[i];
+                node = cgl.tempData.currentScene.nodes[i];
                 outFound.set(true);
             }
         }
@@ -15544,6 +15526,31 @@ render.onTriggered = function ()
 
 Ops.Gl.ImageCompose.FastBlur_v2.prototype = new CABLES.Op();
 CABLES.OPS["61ed277f-d096-43b2-9de8-dc87fb3a9169"]={f:Ops.Gl.ImageCompose.FastBlur_v2,objName:"Ops.Gl.ImageCompose.FastBlur_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Vars.VarSetObject_v2
+// 
+// **************************************************************
+
+Ops.Vars.VarSetObject_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const val = op.inObject("Value", null);
+op.varName = op.inDropDown("Variable", [], "", true);
+
+new CABLES.VarSetOpWrapper(op, "object", val, op.varName);
+
+
+};
+
+Ops.Vars.VarSetObject_v2.prototype = new CABLES.Op();
+CABLES.OPS["c7608375-5b45-4bca-87ef-d0c5e970779a"]={f:Ops.Vars.VarSetObject_v2,objName:"Ops.Vars.VarSetObject_v2"};
 
 
 
@@ -16855,8 +16862,11 @@ function myStringify(o, level = 0)
     let str = "";
     for (let i = 0; i < level; i++) indent += ind;
 
-    let keys = Object.keys(o).sort();
+    let keys = Object.keys(o);
     let numKeys = keys.length;
+
+    if (!(Array.isArray(o) || (o.constructor && o.constructor.name === "Float32Array")))
+        keys = keys.sort();
 
     if (numKeys == 0)
     {
@@ -17356,20 +17366,8 @@ op.renderVizLayerGl = (ctx, layer) =>
         }
 
         let info = "";
-
-        if (inShowInfo.get())
-        {
-            if (port.get() && port.get().getInfoOneLine) info += port.get().getInfoOneLine() + "\n";
-
-        // ctx.save();
-        // ctx.scale(layer.scale, layer.scale);
-        // ctx.font = "normal 10px sourceCodePro";
-        // ctx.fillStyle = "#000";
-        // ctx.fillText(info, layer.x / layer.scale + 5 + 0.5, (layer.y + layer.height) / layer.scale - 5 + 0.5);
-        // ctx.fillStyle = "#aaa";
-        // ctx.fillText(info, layer.x / layer.scale + 5, (layer.y + layer.height) / layer.scale - 5);
-        // ctx.restore();
-        }
+        if (port.get() && port.get().getInfoOneLine) info += port.get().getInfoOneLine() + "\n";
+        outInfo.set(info);
 
         if (inPickColor.get())
         {
@@ -17415,8 +17413,18 @@ op.renderVizLayerGl = (ctx, layer) =>
                 1);
         }
 
-        op.setUiAttrib({ "comment": info });
-        outInfo.set(info);
+        if (inShowInfo.get())
+        {
+        // ctx.save();
+            // ctx.scale(layer.scale, layer.scale);
+            // ctx.font = "normal 10px sourceCodePro";
+            // ctx.fillStyle = "#000";
+            // ctx.fillText(info, layer.x / layer.scale + 5 + 0.5, (layer.y + layer.height) / layer.scale - 5 + 0.5);
+            // ctx.fillStyle = "#aaa";
+            // ctx.fillText(info, layer.x / layer.scale + 5, (layer.y + layer.height) / layer.scale - 5);
+            // ctx.restore();
+            op.setUiAttrib({ "comment": info });
+        }
 
         if (inPickColor.get())
         {
@@ -17800,7 +17808,7 @@ window.addEventListener("focus", () => { winhasFocus = true; });
 document.addEventListener("visibilitychange", () => { winVisible = !document.hidden; });
 testMultiMainloop();
 
-cgl.mainloopOp = this;
+op.patch.tempData.mainloopOp = this;
 
 inUnit.onChange = () =>
 {
@@ -17950,7 +17958,7 @@ function render(time)
         cgl.gl.colorMask(true, true, true, true);
     }
 
-    if (!cgl.frameStore.phong)cgl.frameStore.phong = {};
+    if (!cgl.tempData.phong)cgl.tempData.phong = {};
     rframes++;
 
     op.patch.cgl.profileData.profileMainloopMs = performance.now() - startTime;
@@ -19294,213 +19302,6 @@ CABLES.OPS["074034c9-9698-4984-897a-849bcb2b9b62"]={f:Ops.Array.ArrayPushString,
 
 // **************************************************************
 // 
-// Ops.Html.CSS.TransformElement
-// 
-// **************************************************************
-
-Ops.Html.CSS.TransformElement = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    exec = op.inTrigger("Exec"),
-    inEle = op.inObject("Element"),
-    inScale = op.inFloat("Scale", 1),
-    inOrtho = op.inBool("Orthogonal", false),
-    inRotate = op.inFloat("Rotate", 0),
-    inHideBehind = op.inBool("Hide out of view", false),
-    inAlignVert = op.inSwitch("Align Vertical", ["Left", "Center", "Right"], "Left"),
-    inAlignHor = op.inSwitch("Align Horizontal", ["Top", "Center", "Bottom"], "Top"),
-    inActive = op.inBool("Active", true),
-    next = op.outTrigger("Next"),
-    outEle = op.outObject("HTML Element", null, "element");
-
-const cgl = op.patch.cgl;
-let x = 0;
-let y = 0;
-let visible = 0;
-const m = mat4.create();
-const pos = vec3.create();
-const trans = vec3.create();
-
-let cachedTop = -1;
-let cachedLeft = -1;
-let currTransformStr = 0;
-
-exec.onTriggered =
-() =>
-{
-    if (!inActive.get()) return next.trigger();
-
-    setProperties();
-    next.trigger();
-};
-
-op.onDelete = removeProperties;
-
-let oldEle = null;
-
-inAlignHor.onChange =
-    inAlignVert.onChange =
-    inRotate.onChange =
-    inScale.onChange = updateTransform;
-
-function updateTransform()
-{
-    const ele = inEle.get();
-    if (!ele)
-    {
-        oldEle = null;
-        return;
-    }
-
-    let translateStr = "";
-    if (inAlignVert.get() == "Left")translateStr = "0%";
-    if (inAlignVert.get() == "Center")translateStr = "-50%";
-    if (inAlignVert.get() == "Right")translateStr = "-100%";
-
-    translateStr += ", ";
-    if (inAlignHor.get() == "Top")translateStr += "0%";
-    if (inAlignHor.get() == "Center")translateStr += "-50%";
-    if (inAlignHor.get() == "Bottom")translateStr += "-100%";
-
-    const str = "translate(" + translateStr + ") scale(" + inScale.get() + ") rotate(" + inRotate.get() + "deg)";
-
-    // if (currTransformStr != str || oldEle != ele)
-    if (ele.style.transform != str)
-    {
-        currTransformStr = str;
-        ele.style.transform = str;
-        outEle.setRef(ele);
-    }
-}
-
-inEle.onChange = function ()
-{
-    const ele = inEle.get();
-    if (!ele)
-    {
-        removeProperties(oldEle);
-
-        oldEle = null;
-        return;
-    }
-
-    updateTransform();
-    setProperties();
-};
-
-inEle.onLinkChanged = function ()
-{
-    cachedLeft = -1;
-    cachedTop = -1;
-
-    if (!inEle.isLinked())
-    {
-        if (oldEle)
-        {
-            removeProperties(oldEle);
-        }
-    }
-    else
-    {
-        oldEle = inEle.get();
-    }
-    updateTransform();
-};
-
-function getScreenCoord()
-{
-    mat4.multiply(m, cgl.vMatrix, cgl.mMatrix);
-    vec3.transformMat4(pos, [0, 0, 0], m);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const vp = cgl.getViewPort();
-
-    const w = cgl.canvasWidth / cgl.pixelDensity;
-    const h = cgl.canvasHeight / cgl.pixelDensity;
-
-    if (inOrtho.get())
-    {
-        x = ((w * 0.5 + trans[0] * w * 0.5 / 1));
-        y = ((h * 0.5 - trans[1] * h * 0.5 / 1));
-    }
-    else
-    {
-        x = (w - (w * 0.5 - trans[0] * w * 0.5)); //  / trans[2]
-        y = (h - (h * 0.5 + trans[1] * h * 0.5)); //  / trans[2]
-    }
-
-    visible = pos[2] < 0.0 && x > 0 && x < vp[2] && y > 0 && y < vp[3];
-}
-
-function setProperties()
-{
-    const ele = inEle.get();
-    oldEle = ele;
-    if (ele && ele.style)
-    {
-        getScreenCoord();
-        const yy = cgl.canvas.offsetTop + y;
-
-        const top = cgl.canvas.styleMarginTop || 0;
-
-        if (yy + top != cachedTop)
-        {
-            ele.style.top = (yy + top) + "px";
-            outEle.setRef(ele);
-            cachedTop = yy;
-        }
-
-        const left = cgl.canvas.styleMarginLeft || 0;
-
-        if (x + left != cachedLeft)
-        {
-            ele.style.left = (x + left) + "px";
-            outEle.setRef(ele);
-            cachedLeft = x;
-        }
-
-        if (inHideBehind.get())
-        {
-            if (visible)ele.style.display = "initial";
-            else ele.style.display = "none";
-        }
-    }
-}
-
-function removeProperties(ele)
-{
-    cachedLeft = -1;
-    cachedTop = -1;
-
-    if (!ele) ele = inEle.get();
-    if (ele && ele.style)
-    {
-        ele.style.top = "initial";
-        ele.style.left = "initial";
-        ele.style.transform = "initial";
-    }
-}
-
-op.addEventListener("onEnabledChange", function (enabled)
-{
-    if (enabled) setProperties();
-    else removeProperties();
-});
-
-
-};
-
-Ops.Html.CSS.TransformElement.prototype = new CABLES.Op();
-CABLES.OPS["caca0307-d460-47df-8674-b7d2601239ab"]={f:Ops.Html.CSS.TransformElement,objName:"Ops.Html.CSS.TransformElement"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Standalone.SideBarStyle
 // 
 // **************************************************************
@@ -20234,14 +20035,8 @@ function getCssContent()
     }
 
     if (css)
-    {
-        let patchId = null;
-        if (op.storage && op.storage.blueprint && op.storage.blueprint.patchId)
-        {
-            patchId = op.storage.blueprint.patchId;
-        }
-        css = css.replace(new RegExp("{{ASSETPATH}}", "g"), op.patch.getAssetPath(patchId));
-    }
+        css = css.replace(new RegExp("{{ASSETPATH}}", "g"), op.patch.getAssetPath());
+
     return css;
 }
 
@@ -20295,7 +20090,7 @@ Ops.Sidebar.Sidebar = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
-const attachments=op.attachments={"style_css":" /*\n * SIDEBAR\n  http://danielstern.ca/range.css/#/\n  https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-progress-value\n */\n\n.sidebar-icon-undo\n{\n    width:10px;\n    height:10px;\n    background-image: url(\"data:image/svg+xml;charset=utf8, %3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='grey' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 7v6h6'/%3E%3Cpath d='M21 17a9 9 0 00-9-9 9 9 0 00-6 2.3L3 13'/%3E%3C/svg%3E\");\n    background-size: 19px;\n    background-repeat: no-repeat;\n    top: -19px;\n    margin-top: -7px;\n}\n\n.icon-chevron-down {\n    top: 2px;\n    right: 9px;\n}\n\n.iconsidebar-chevron-up,.sidebar__close-button {\n\tbackground-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM4ODg4ODgiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0iZmVhdGhlciBmZWF0aGVyLWNoZXZyb24tdXAiPjxwb2x5bGluZSBwb2ludHM9IjE4IDE1IDEyIDkgNiAxNSI+PC9wb2x5bGluZT48L3N2Zz4=);\n}\n\n.iconsidebar-minimizebutton {\n    background-position: 98% center;\n    background-repeat: no-repeat;\n}\n\n.sidebar-cables-right\n{\n    right: 15px;\n    left: initial !important;\n}\n\n.sidebar-cables *\n{\n    color: #BBBBBB !important;\n    font-family: Arial;\n}\n\n.sidebar-cables {\n    --sidebar-color: #07f78c;\n    --sidebar-width: 220px;\n    --sidebar-border-radius: 10px;\n    --sidebar-monospace-font-stack: \"SFMono-Regular\", Consolas, \"Liberation Mono\", Menlo, Courier, monospace;\n    --sidebar-hover-transition-time: .2s;\n\n    position: absolute;\n    top: 15px;\n    left: 15px;\n    border-radius: var(--sidebar-border-radius);\n    z-index: 100000;\n    width: var(--sidebar-width);\n    max-height: 100%;\n    box-sizing: border-box;\n    overflow-y: auto;\n    overflow-x: hidden;\n    font-size: 13px;\n    line-height: 1em; /* prevent emojis from breaking height of the title */\n}\n\n.sidebar-cables::selection {\n    background-color: var(--sidebar-color);\n    color: #EEEEEE;\n}\n\n.sidebar-cables::-webkit-scrollbar {\n    background-color: transparent;\n    --cables-scrollbar-width: 8px;\n    width: var(--cables-scrollbar-width);\n}\n\n.sidebar-cables::-webkit-scrollbar-track {\n    background-color: transparent;\n    width: var(--cables-scrollbar-width);\n}\n\n.sidebar-cables::-webkit-scrollbar-thumb {\n    background-color: #333333;\n    border-radius: 4px;\n    width: var(--cables-scrollbar-width);\n}\n\n.sidebar-cables--closed {\n    width: auto;\n}\n\n.sidebar__close-button {\n    background-color: #222;\n    /*-webkit-user-select: none;  */\n    /*-moz-user-select: none;     */\n    /*-ms-user-select: none;      */\n    /*user-select: none;          */\n    /*transition: background-color var(--sidebar-hover-transition-time);*/\n    /*color: #CCCCCC;*/\n    height: 2px;\n    /*border-bottom:20px solid #222;*/\n\n    /*box-sizing: border-box;*/\n    /*padding-top: 2px;*/\n    /*text-align: center;*/\n    /*cursor: pointer;*/\n    /*border-radius: 0 0 var(--sidebar-border-radius) var(--sidebar-border-radius);*/\n    /*opacity: 1.0;*/\n    /*transition: opacity 0.3s;*/\n    /*overflow: hidden;*/\n}\n\n.sidebar__close-button-icon {\n    display: inline-block;\n    /*opacity: 0;*/\n    width: 20px;\n    height: 20px;\n    /*position: relative;*/\n    /*top: -1px;*/\n\n\n}\n\n.sidebar--closed {\n    width: auto;\n    margin-right: 20px;\n}\n\n.sidebar--closed .sidebar__close-button {\n    margin-top: 8px;\n    margin-left: 8px;\n    padding:10px;\n\n    height: 25px;\n    width:25px;\n    border-radius: 50%;\n    cursor: pointer;\n    opacity: 0.3;\n    background-repeat: no-repeat;\n    background-position: center center;\n    transform:rotate(180deg);\n}\n\n.sidebar--closed .sidebar__group\n{\n    display:none;\n\n}\n.sidebar--closed .sidebar__close-button-icon {\n    background-position: 0px 0px;\n}\n\n.sidebar__close-button:hover {\n    background-color: #111111;\n    opacity: 1.0 !important;\n}\n\n/*\n * SIDEBAR ITEMS\n */\n\n.sidebar__items {\n    /* max-height: 1000px; */\n    /* transition: max-height 0.5;*/\n    background-color: #222;\n    padding-bottom: 20px;\n}\n\n.sidebar--closed .sidebar__items {\n    /* max-height: 0; */\n    height: 0;\n    display: none;\n    pointer-interactions: none;\n}\n\n.sidebar__item__right {\n    float: right;\n}\n\n/*\n * SIDEBAR GROUP\n */\n\n.sidebar__group {\n    /*background-color: #1A1A1A;*/\n    overflow: hidden;\n    box-sizing: border-box;\n    animate: height;\n    /*background-color: #151515;*/\n    /* max-height: 1000px; */\n    /* transition: max-height 0.5s; */\n--sidebar-group-header-height: 33px;\n}\n\n.sidebar__group-items\n{\n    padding-top: 15px;\n    padding-bottom: 15px;\n}\n\n.sidebar__group--closed {\n    /* max-height: 13px; */\n    height: var(--sidebar-group-header-height);\n}\n\n.sidebar__group-header {\n    box-sizing: border-box;\n    color: #EEEEEE;\n    background-color: #151515;\n    -webkit-user-select: none;  /* Chrome all / Safari all */\n    -moz-user-select: none;     /* Firefox all */\n    -ms-user-select: none;      /* IE 10+ */\n    user-select: none;          /* Likely future */\n\n    /*height: 100%;//var(--sidebar-group-header-height);*/\n\n    padding-top: 7px;\n    text-transform: uppercase;\n    letter-spacing: 0.08em;\n    cursor: pointer;\n    /*transition: background-color var(--sidebar-hover-transition-time);*/\n    position: relative;\n}\n\n.sidebar__group-header:hover {\n  background-color: #111111;\n}\n\n.sidebar__group-header-title {\n  /*float: left;*/\n  overflow: hidden;\n  padding: 0 15px;\n  padding-top:5px;\n  padding-bottom:10px;\n  font-weight:bold;\n}\n\n.sidebar__group-header-undo {\n    float: right;\n    overflow: hidden;\n    padding-right: 15px;\n    padding-top:5px;\n    font-weight:bold;\n  }\n\n.sidebar__group-header-icon {\n    width: 17px;\n    height: 14px;\n    background-repeat: no-repeat;\n    display: inline-block;\n    position: absolute;\n    background-size: cover;\n\n    /* icon open */\n    /* feather icon: chevron up */\n    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM4ODg4ODgiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0iZmVhdGhlciBmZWF0aGVyLWNoZXZyb24tdXAiPjxwb2x5bGluZSBwb2ludHM9IjE4IDE1IDEyIDkgNiAxNSI+PC9wb2x5bGluZT48L3N2Zz4=);\n    top: 4px;\n    right: 5px;\n    opacity: 0.0;\n    transition: opacity 0.3;\n}\n\n.sidebar__group-header:hover .sidebar__group-header-icon {\n    opacity: 1.0;\n}\n\n/* icon closed */\n.sidebar__group--closed .sidebar__group-header-icon {\n    /* feather icon: chevron down */\n    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM4ODg4ODgiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0iZmVhdGhlciBmZWF0aGVyLWNoZXZyb24tZG93biI+PHBvbHlsaW5lIHBvaW50cz0iNiA5IDEyIDE1IDE4IDkiPjwvcG9seWxpbmU+PC9zdmc+);\n    top: 4px;\n    right: 5px;\n}\n\n/*\n * SIDEBAR ITEM\n */\n\n.sidebar__item\n{\n    box-sizing: border-box;\n    padding: 7px;\n    padding-left:15px;\n    padding-right:15px;\n\n    overflow: hidden;\n    position: relative;\n}\n\n.sidebar__item-label {\n    display: inline-block;\n    -webkit-user-select: none;  /* Chrome all / Safari all */\n    -moz-user-select: none;     /* Firefox all */\n    -ms-user-select: none;      /* IE 10+ */\n    user-select: none;          /* Likely future */\n    width: calc(50% - 7px);\n    margin-right: 7px;\n    margin-top: 2px;\n    text-overflow: ellipsis;\n    /* overflow: hidden; */\n}\n\n.sidebar__item-value-label {\n    font-family: var(--sidebar-monospace-font-stack);\n    display: inline-block;\n    text-overflow: ellipsis;\n    overflow: hidden;\n    white-space: nowrap;\n    max-width: 60%;\n}\n\n.sidebar__item-value-label::selection {\n    background-color: var(--sidebar-color);\n    color: #EEEEEE;\n}\n\n.sidebar__item + .sidebar__item,\n.sidebar__item + .sidebar__group,\n.sidebar__group + .sidebar__item,\n.sidebar__group + .sidebar__group {\n    /*border-top: 1px solid #272727;*/\n}\n\n/*\n * SIDEBAR ITEM TOGGLE\n */\n\n/*.sidebar__toggle */\n.icon_toggle{\n    cursor: pointer;\n}\n\n.sidebar__toggle-input {\n    --sidebar-toggle-input-color: #CCCCCC;\n    --sidebar-toggle-input-color-hover: #EEEEEE;\n    --sidebar-toggle-input-border-size: 2px;\n    display: inline;\n    float: right;\n    box-sizing: border-box;\n    border-radius: 50%;\n    cursor: pointer;\n    --toggle-size: 11px;\n    margin-top: 2px;\n    background-color: transparent !important;\n    border: var(--sidebar-toggle-input-border-size) solid var(--sidebar-toggle-input-color);\n    width: var(--toggle-size);\n    height: var(--toggle-size);\n    transition: background-color var(--sidebar-hover-transition-time);\n    transition: border-color var(--sidebar-hover-transition-time);\n}\n.sidebar__toggle:hover .sidebar__toggle-input {\n    border-color: var(--sidebar-toggle-input-color-hover);\n}\n\n.sidebar__toggle .sidebar__item-value-label {\n    -webkit-user-select: none;  /* Chrome all / Safari all */\n    -moz-user-select: none;     /* Firefox all */\n    -ms-user-select: none;      /* IE 10+ */\n    user-select: none;          /* Likely future */\n    max-width: calc(50% - 12px);\n}\n.sidebar__toggle-input::after { clear: both; }\n\n.sidebar__toggle--active .icon_toggle\n{\n\n    background-image: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjE1cHgiIHdpZHRoPSIzMHB4IiBmaWxsPSIjMDZmNzhiIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMTAwIDEwMCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PGcgZGlzcGxheT0ibm9uZSI+PGcgZGlzcGxheT0iaW5saW5lIj48Zz48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZmlsbD0iIzA2Zjc4YiIgZD0iTTMwLDI3QzE3LjM1LDI3LDcsMzcuMzUsNyw1MGwwLDBjMCwxMi42NSwxMC4zNSwyMywyMywyM2g0MCBjMTIuNjUsMCwyMy0xMC4zNSwyMy0yM2wwLDBjMC0xMi42NS0xMC4zNS0yMy0yMy0yM0gzMHogTTcwLDY3Yy05LjM4OSwwLTE3LTcuNjEtMTctMTdzNy42MTEtMTcsMTctMTdzMTcsNy42MSwxNywxNyAgICAgUzc5LjM4OSw2Nyw3MCw2N3oiPjwvcGF0aD48L2c+PC9nPjwvZz48Zz48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTMwLDI3QzE3LjM1LDI3LDcsMzcuMzUsNyw1MGwwLDBjMCwxMi42NSwxMC4zNSwyMywyMywyM2g0MCAgIGMxMi42NSwwLDIzLTEwLjM1LDIzLTIzbDAsMGMwLTEyLjY1LTEwLjM1LTIzLTIzLTIzSDMweiBNNzAsNjdjLTkuMzg5LDAtMTctNy42MS0xNy0xN3M3LjYxMS0xNywxNy0xN3MxNyw3LjYxLDE3LDE3ICAgUzc5LjM4OSw2Nyw3MCw2N3oiPjwvcGF0aD48L2c+PGcgZGlzcGxheT0ibm9uZSI+PGcgZGlzcGxheT0iaW5saW5lIj48cGF0aCBmaWxsPSIjMDZmNzhiIiBzdHJva2U9IiMwNmY3OGIiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBkPSJNNyw1MGMwLDEyLjY1LDEwLjM1LDIzLDIzLDIzaDQwICAgIGMxMi42NSwwLDIzLTEwLjM1LDIzLTIzbDAsMGMwLTEyLjY1LTEwLjM1LTIzLTIzLTIzSDMwQzE3LjM1LDI3LDcsMzcuMzUsNyw1MEw3LDUweiI+PC9wYXRoPjwvZz48Y2lyY2xlIGRpc3BsYXk9ImlubGluZSIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGZpbGw9IiMwNmY3OGIiIHN0cm9rZT0iIzA2Zjc4YiIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIGN4PSI3MCIgY3k9IjUwIiByPSIxNyI+PC9jaXJjbGU+PC9nPjxnIGRpc3BsYXk9Im5vbmUiPjxwYXRoIGRpc3BsYXk9ImlubGluZSIgZD0iTTcwLDI1SDMwQzE2LjIxNSwyNSw1LDM2LjIxNSw1LDUwczExLjIxNSwyNSwyNSwyNWg0MGMxMy43ODUsMCwyNS0xMS4yMTUsMjUtMjVTODMuNzg1LDI1LDcwLDI1eiBNNzAsNzEgICBIMzBDMTguNDIxLDcxLDksNjEuNTc5LDksNTBzOS40MjEtMjEsMjEtMjFoNDBjMTEuNTc5LDAsMjEsOS40MjEsMjEsMjFTODEuNTc5LDcxLDcwLDcxeiBNNzAsMzFjLTEwLjQ3NywwLTE5LDguNTIzLTE5LDE5ICAgczguNTIzLDE5LDE5LDE5czE5LTguNTIzLDE5LTE5UzgwLjQ3NywzMSw3MCwzMXogTTcwLDY1Yy04LjI3MSwwLTE1LTYuNzI5LTE1LTE1czYuNzI5LTE1LDE1LTE1czE1LDYuNzI5LDE1LDE1Uzc4LjI3MSw2NSw3MCw2NXoiPjwvcGF0aD48L2c+PC9zdmc+);\n    opacity: 1;\n    transform: rotate(0deg);\n}\n\n\n.icon_toggle\n{\n    float: right;\n    width:40px;\n    height:18px;\n    background-image: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjE1cHgiIHdpZHRoPSIzMHB4IiBmaWxsPSIjYWFhYWFhIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMTAwIDEwMCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PGcgZGlzcGxheT0ibm9uZSI+PGcgZGlzcGxheT0iaW5saW5lIj48Zz48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZmlsbD0iI2FhYWFhYSIgZD0iTTMwLDI3QzE3LjM1LDI3LDcsMzcuMzUsNyw1MGwwLDBjMCwxMi42NSwxMC4zNSwyMywyMywyM2g0MCBjMTIuNjUsMCwyMy0xMC4zNSwyMy0yM2wwLDBjMC0xMi42NS0xMC4zNS0yMy0yMy0yM0gzMHogTTcwLDY3Yy05LjM4OSwwLTE3LTcuNjEtMTctMTdzNy42MTEtMTcsMTctMTdzMTcsNy42MSwxNywxNyAgICAgUzc5LjM4OSw2Nyw3MCw2N3oiPjwvcGF0aD48L2c+PC9nPjwvZz48Zz48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTMwLDI3QzE3LjM1LDI3LDcsMzcuMzUsNyw1MGwwLDBjMCwxMi42NSwxMC4zNSwyMywyMywyM2g0MCAgIGMxMi42NSwwLDIzLTEwLjM1LDIzLTIzbDAsMGMwLTEyLjY1LTEwLjM1LTIzLTIzLTIzSDMweiBNNzAsNjdjLTkuMzg5LDAtMTctNy42MS0xNy0xN3M3LjYxMS0xNywxNy0xN3MxNyw3LjYxLDE3LDE3ICAgUzc5LjM4OSw2Nyw3MCw2N3oiPjwvcGF0aD48L2c+PGcgZGlzcGxheT0ibm9uZSI+PGcgZGlzcGxheT0iaW5saW5lIj48cGF0aCBmaWxsPSIjYWFhYWFhIiBzdHJva2U9IiNhYWFhYWEiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBkPSJNNyw1MGMwLDEyLjY1LDEwLjM1LDIzLDIzLDIzaDQwICAgIGMxMi42NSwwLDIzLTEwLjM1LDIzLTIzbDAsMGMwLTEyLjY1LTEwLjM1LTIzLTIzLTIzSDMwQzE3LjM1LDI3LDcsMzcuMzUsNyw1MEw3LDUweiI+PC9wYXRoPjwvZz48Y2lyY2xlIGRpc3BsYXk9ImlubGluZSIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGZpbGw9IiNhYWFhYWEiIHN0cm9rZT0iI2FhYWFhYSIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIGN4PSI3MCIgY3k9IjUwIiByPSIxNyI+PC9jaXJjbGU+PC9nPjxnIGRpc3BsYXk9Im5vbmUiPjxwYXRoIGRpc3BsYXk9ImlubGluZSIgZD0iTTcwLDI1SDMwQzE2LjIxNSwyNSw1LDM2LjIxNSw1LDUwczExLjIxNSwyNSwyNSwyNWg0MGMxMy43ODUsMCwyNS0xMS4yMTUsMjUtMjVTODMuNzg1LDI1LDcwLDI1eiBNNzAsNzEgICBIMzBDMTguNDIxLDcxLDksNjEuNTc5LDksNTBzOS40MjEtMjEsMjEtMjFoNDBjMTEuNTc5LDAsMjEsOS40MjEsMjEsMjFTODEuNTc5LDcxLDcwLDcxeiBNNzAsMzFjLTEwLjQ3NywwLTE5LDguNTIzLTE5LDE5ICAgczguNTIzLDE5LDE5LDE5czE5LTguNTIzLDE5LTE5UzgwLjQ3NywzMSw3MCwzMXogTTcwLDY1Yy04LjI3MSwwLTE1LTYuNzI5LTE1LTE1czYuNzI5LTE1LDE1LTE1czE1LDYuNzI5LDE1LDE1Uzc4LjI3MSw2NSw3MCw2NXoiPjwvcGF0aD48L2c+PC9zdmc+);\n    background-size: 50px 37px;\n    background-position: -6px -10px;\n    transform: rotate(180deg);\n    opacity: 0.4;\n}\n\n\n\n/*.sidebar__toggle--active .sidebar__toggle-input {*/\n/*    transition: background-color var(--sidebar-hover-transition-time);*/\n/*    background-color: var(--sidebar-toggle-input-color);*/\n/*}*/\n/*.sidebar__toggle--active .sidebar__toggle-input:hover*/\n/*{*/\n/*    background-color: var(--sidebar-toggle-input-color-hover);*/\n/*    border-color: var(--sidebar-toggle-input-color-hover);*/\n/*    transition: background-color var(--sidebar-hover-transition-time);*/\n/*    transition: border-color var(--sidebar-hover-transition-time);*/\n/*}*/\n\n/*\n * SIDEBAR ITEM BUTTON\n */\n\n.sidebar__button {}\n\n.sidebar__button-input:active\n{\n    background-color: #555 !important;\n}\n\n.sidebar__button-input {\n    -webkit-user-select: none;  /* Chrome all / Safari all */\n    -moz-user-select: none;     /* Firefox all */\n    -ms-user-select: none;      /* IE 10+ */\n    user-select: none;          /* Likely future */\n    min-height: 24px;\n    background-color: transparent;\n    color: #CCCCCC;\n    box-sizing: border-box;\n    padding-top: 3px;\n    text-align: center;\n    border-radius: 125px;\n    border:2px solid #555;\n    cursor: pointer;\n    padding-bottom: 3px;\n}\n\n.sidebar__button-input.plus, .sidebar__button-input.minus {\n    display: inline-block;\n    min-width: 20px;\n}\n\n.sidebar__button-input:hover {\n  background-color: #333;\n  border:2px solid var(--sidebar-color);\n}\n\n/*\n * VALUE DISPLAY (shows a value)\n */\n\n.sidebar__value-display {}\n\n/*\n * SLIDER\n */\n\n.sidebar__slider {\n    --sidebar-slider-input-height: 3px;\n}\n\n.sidebar__slider-input-wrapper {\n    width: 100%;\n\n    margin-top: 8px;\n    position: relative;\n}\n\n.sidebar__slider-input {\n    -webkit-appearance: none;\n    appearance: none;\n    margin: 0;\n    width: 100%;\n    height: var(--sidebar-slider-input-height);\n    background: #555;\n    cursor: pointer;\n    outline: 0;\n\n    -webkit-transition: .2s;\n    transition: background-color .2s;\n    border: none;\n}\n\n.sidebar__slider-input:focus, .sidebar__slider-input:hover {\n    border: none;\n}\n\n.sidebar__slider-input-active-track {\n    user-select: none;\n    position: absolute;\n    z-index: 11;\n    top: 0;\n    left: 0;\n    background-color: var(--sidebar-color);\n    pointer-events: none;\n    height: var(--sidebar-slider-input-height);\n    max-width: 100%;\n}\n\n/* Mouse-over effects */\n.sidebar__slider-input:hover {\n    /*background-color: #444444;*/\n}\n\n/*.sidebar__slider-input::-webkit-progress-value {*/\n/*    background-color: green;*/\n/*    color:green;*/\n\n/*    }*/\n\n/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */\n\n.sidebar__slider-input::-moz-range-thumb\n{\n    position: absolute;\n    height: 15px;\n    width: 15px;\n    z-index: 900 !important;\n    border-radius: 20px !important;\n    cursor: pointer;\n    background: var(--sidebar-color) !important;\n    user-select: none;\n\n}\n\n.sidebar__slider-input::-webkit-slider-thumb\n{\n    position: relative;\n    appearance: none;\n    -webkit-appearance: none;\n    user-select: none;\n    height: 15px;\n    width: 15px;\n    display: block;\n    z-index: 900 !important;\n    border: 0;\n    border-radius: 20px !important;\n    cursor: pointer;\n    background: #777 !important;\n}\n\n.sidebar__slider-input:hover ::-webkit-slider-thumb {\n    background-color: #EEEEEE !important;\n}\n\n/*.sidebar__slider-input::-moz-range-thumb {*/\n\n/*    width: 0 !important;*/\n/*    height: var(--sidebar-slider-input-height);*/\n/*    background: #EEEEEE;*/\n/*    cursor: pointer;*/\n/*    border-radius: 0 !important;*/\n/*    border: none;*/\n/*    outline: 0;*/\n/*    z-index: 100 !important;*/\n/*}*/\n\n.sidebar__slider-input::-moz-range-track {\n    background-color: transparent;\n    z-index: 11;\n}\n\n/*.sidebar__slider-input::-moz-range-thumb:hover {*/\n  /* background-color: #EEEEEE; */\n/*}*/\n\n\n/*.sidebar__slider-input-wrapper:hover .sidebar__slider-input-active-track {*/\n/*    background-color: #EEEEEE;*/\n/*}*/\n\n/*.sidebar__slider-input-wrapper:hover .sidebar__slider-input::-moz-range-thumb {*/\n/*    background-color: #fff !important;*/\n/*}*/\n\n/*.sidebar__slider-input-wrapper:hover .sidebar__slider-input::-webkit-slider-thumb {*/\n/*    background-color: #EEEEEE;*/\n/*}*/\n\n.sidebar__slider input[type=text],\n.sidebar__slider input[type=paddword]\n{\n    box-sizing: border-box;\n    /*background-color: #333333;*/\n    text-align: right;\n    color: #BBBBBB;\n    display: inline-block;\n    background-color: transparent !important;\n\n    width: 40%;\n    height: 18px;\n    outline: none;\n    border: none;\n    border-radius: 0;\n    padding: 0 0 0 4px !important;\n    margin: 0;\n}\n\n.sidebar__slider input[type=text]:active,\n.sidebar__slider input[type=text]:focus,\n.sidebar__slider input[type=text]:hover\n.sidebar__slider input[type=password]:active,\n.sidebar__slider input[type=password]:focus,\n.sidebar__slider input[type=password]:hover\n{\n\n    color: #EEEEEE;\n}\n\n/*\n * TEXT / DESCRIPTION\n */\n\n.sidebar__text .sidebar__item-label {\n    width: auto;\n    display: block;\n    max-height: none;\n    margin-right: 0;\n    line-height: 1.1em;\n}\n\n/*\n * SIDEBAR INPUT\n */\n.sidebar__text-input textarea,\n.sidebar__text-input input[type=date],\n.sidebar__text-input input[type=datetime-local],\n.sidebar__text-input input[type=text],\n.sidebar__text-input input[type=password] {\n    box-sizing: border-box;\n    background-color: #333333;\n    color: #BBBBBB;\n    display: inline-block;\n    width: 50%;\n    height: 18px;\n    outline: none;\n    border: none;\n    border-radius: 0;\n    border:1px solid #666;\n    padding: 0 0 0 4px !important;\n    margin: 0;\n    color-scheme: dark;\n}\n\n.sidebar__text-input textarea:focus::placeholder {\n  color: transparent;\n}\n\n.sidebar__color-picker .sidebar__item-label\n{\n    width:45%;\n}\n\n.sidebar__text-input textarea,\n.sidebar__text-input input[type=text]:active,\n.sidebar__text-input input[type=text]:focus,\n.sidebar__text-input input[type=text]:hover,\n.sidebar__text-input input[type=password]:active,\n.sidebar__text-input input[type=password]:focus,\n.sidebar__text-input input[type=password]:hover {\n    background-color: transparent;\n    color: #EEEEEE;\n}\n\n.sidebar__text-input textarea\n{\n    margin-top:10px;\n    height:60px;\n    width:100%;\n}\n\n/*\n * SIDEBAR SELECT\n */\n\n\n\n .sidebar__select {}\n .sidebar__select-select {\n    color: #BBBBBB;\n    /*-webkit-appearance: none;*/\n    /*-moz-appearance: none;*/\n    appearance: none;\n    /*box-sizing: border-box;*/\n    width: 50%;\n    /*height: 20px;*/\n    background-color: #333333;\n    /*background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM4ODg4ODgiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0iZmVhdGhlciBmZWF0aGVyLWNoZXZyb24tZG93biI+PHBvbHlsaW5lIHBvaW50cz0iNiA5IDEyIDE1IDE4IDkiPjwvcG9seWxpbmU+PC9zdmc+);*/\n    background-repeat: no-repeat;\n    background-position: right center;\n    background-size: 16px 16px;\n    margin: 0;\n    /*padding: 0 2 2 6px;*/\n    border-radius: 5px;\n    border: 1px solid #777;\n    background-color: #444;\n    cursor: pointer;\n    outline: none;\n    padding-left: 5px;\n\n }\n\n.sidebar__select-select:hover,\n.sidebar__select-select:active,\n.sidebar__select-select:inactive {\n    background-color: #444444;\n    color: #EEEEEE;\n}\n\n/*.sidebar__select-select option*/\n/*{*/\n/*    background-color: #444444;*/\n/*    color: #bbb;*/\n/*}*/\n\n.sidebar__select-select option:checked\n{\n    background-color: #000;\n    color: #FFF;\n}\n\n\n/*\n * COLOR PICKER\n */\n\n\n .sidebar__color-picker input[type=text] {\n    box-sizing: border-box;\n    background-color: #333333;\n    color: #BBBBBB;\n    display: inline-block;\n    width: calc(50% - 21px); /* 50% minus space of picker circle */\n    height: 18px;\n    outline: none;\n    border: none;\n    border-radius: 0;\n    padding: 0 0 0 4px !important;\n    margin: 0;\n    margin-right: 7px;\n}\n\n.sidebar__color-picker input[type=text]:active,\n.sidebar__color-picker input[type=text]:focus,\n.sidebar__color-picker input[type=text]:hover {\n    background-color: #444444;\n    color: #EEEEEE;\n}\n\ndiv.sidebar__color-picker-color-input,\n.sidebar__color-picker input[type=color],\n.sidebar__palette-picker input[type=color] {\n    display: inline-block;\n    border-radius: 100%;\n    height: 14px;\n    width: 14px;\n\n    padding: 0;\n    border: none;\n    /*border:2px solid red;*/\n    border-color: transparent;\n    outline: none;\n    background: none;\n    appearance: none;\n    -moz-appearance: none;\n    -webkit-appearance: none;\n    cursor: pointer;\n    position: relative;\n    top: 3px;\n}\n.sidebar__color-picker input[type=color]:focus,\n.sidebar__palette-picker input[type=color]:focus {\n    outline: none;\n}\n.sidebar__color-picker input[type=color]::-moz-color-swatch,\n.sidebar__palette-picker input[type=color]::-moz-color-swatch {\n    border: none;\n}\n.sidebar__color-picker input[type=color]::-webkit-color-swatch-wrapper,\n.sidebar__palette-picker input[type=color]::-webkit-color-swatch-wrapper {\n    padding: 0;\n}\n.sidebar__color-picker input[type=color]::-webkit-color-swatch,\n.sidebar__palette-picker input[type=color]::-webkit-color-swatch {\n    border: none;\n    border-radius: 100%;\n}\n\n/*\n * Palette Picker\n */\n.sidebar__palette-picker .sidebar__palette-picker-color-input.first {\n    margin-left: 0;\n}\n.sidebar__palette-picker .sidebar__palette-picker-color-input.last {\n    margin-right: 0;\n}\n.sidebar__palette-picker .sidebar__palette-picker-color-input {\n    margin: 0 4px;\n}\n\n.sidebar__palette-picker .circlebutton {\n    width: 14px;\n    height: 14px;\n    border-radius: 1em;\n    display: inline-block;\n    top: 3px;\n    position: relative;\n}\n\n/*\n * Preset\n */\n.sidebar__item-presets-preset\n{\n    padding:4px;\n    cursor:pointer;\n    padding-left:8px;\n    padding-right:8px;\n    margin-right:4px;\n    background-color:#444;\n}\n\n.sidebar__item-presets-preset:hover\n{\n    background-color:#666;\n}\n\n.sidebar__greyout\n{\n    background: #222;\n    opacity: 0.8;\n    width: 100%;\n    height: 100%;\n    position: absolute;\n    z-index: 1000;\n    right: 0;\n    top: 0;\n}\n\n.sidebar_tabs\n{\n    background-color: #151515;\n    padding-bottom: 0px;\n}\n\n.sidebar_switchs\n{\n    float: right;\n}\n\n.sidebar_tab\n{\n    float:left;\n    background-color: #151515;\n    border-bottom:1px solid transparent;\n    padding-right:7px;\n    padding-left:7px;\n    padding-bottom: 5px;\n    padding-top: 5px;\n    cursor:pointer;\n}\n\n.sidebar_tab_active\n{\n    background-color: #272727;\n    color:white;\n}\n\n.sidebar_tab:hover\n{\n    border-bottom:1px solid #777;\n    color:white;\n}\n\n\n.sidebar_switch\n{\n    float:left;\n    background-color: #444;\n    padding-right:7px;\n    padding-left:7px;\n    padding-bottom: 5px;\n    padding-top: 5px;\n    cursor:pointer;\n}\n\n.sidebar_switch:last-child\n{\n    border-top-right-radius: 7px;\n    border-bottom-right-radius: 7px;\n}\n\n.sidebar_switch:first-child\n{\n    border-top-left-radius: 7px;\n    border-bottom-left-radius: 7px;\n}\n\n\n.sidebar_switch_active\n{\n    background-color: #999;\n    color:white;\n}\n\n.sidebar_switch:hover\n{\n    color:white;\n}\n\n",};
+const attachments=op.attachments={"style_css":" /*\n * SIDEBAR\n  http://danielstern.ca/range.css/#/\n  https://developer.mozilla.org/en-US/docs/Web/CSS/::-webkit-progress-value\n */\n\n.sidebar-icon-undo\n{\n    width:10px;\n    height:10px;\n    background-image: url(\"data:image/svg+xml;charset=utf8, %3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' fill='none' stroke='grey' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 7v6h6'/%3E%3Cpath d='M21 17a9 9 0 00-9-9 9 9 0 00-6 2.3L3 13'/%3E%3C/svg%3E\");\n    background-size: 19px;\n    background-repeat: no-repeat;\n    top: -19px;\n    margin-top: -7px;\n}\n\n.icon-chevron-down {\n    top: 2px;\n    right: 9px;\n}\n\n.iconsidebar-chevron-up,.sidebar__close-button {\n\tbackground-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM4ODg4ODgiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0iZmVhdGhlciBmZWF0aGVyLWNoZXZyb24tdXAiPjxwb2x5bGluZSBwb2ludHM9IjE4IDE1IDEyIDkgNiAxNSI+PC9wb2x5bGluZT48L3N2Zz4=);\n}\n\n.iconsidebar-minimizebutton {\n    background-position: 98% center;\n    background-repeat: no-repeat;\n}\n\n.sidebar-cables-right\n{\n    right: 15px;\n    left: initial !important;\n}\n\n.sidebar-cables *\n{\n    color: #BBBBBB !important;\n    font-family: Arial;\n}\n\n.sidebar-cables {\n    --sidebar-color: #07f78c;\n    --sidebar-width: 220px;\n    --sidebar-border-radius: 10px;\n    --sidebar-monospace-font-stack: \"SFMono-Regular\", Consolas, \"Liberation Mono\", Menlo, Courier, monospace;\n    --sidebar-hover-transition-time: .2s;\n\n    position: absolute;\n    top: 15px;\n    left: 15px;\n    border-radius: var(--sidebar-border-radius);\n    z-index: 100000;\n    width: var(--sidebar-width);\n    max-height: 100%;\n    box-sizing: border-box;\n    overflow-y: auto;\n    overflow-x: hidden;\n    font-size: 13px;\n    line-height: 1em; /* prevent emojis from breaking height of the title */\n}\n\n.sidebar-cables::selection {\n    background-color: var(--sidebar-color);\n    color: #EEEEEE;\n}\n\n.sidebar-cables::-webkit-scrollbar {\n    background-color: transparent;\n    --cables-scrollbar-width: 8px;\n    width: var(--cables-scrollbar-width);\n}\n\n.sidebar-cables::-webkit-scrollbar-track {\n    background-color: transparent;\n    width: var(--cables-scrollbar-width);\n}\n\n.sidebar-cables::-webkit-scrollbar-thumb {\n    background-color: #333333;\n    border-radius: 4px;\n    width: var(--cables-scrollbar-width);\n}\n\n.sidebar-cables--closed {\n    width: auto;\n}\n\n.sidebar__close-button {\n    background-color: #222;\n    /*-webkit-user-select: none;  */\n    /*-moz-user-select: none;     */\n    /*-ms-user-select: none;      */\n    /*user-select: none;          */\n    /*transition: background-color var(--sidebar-hover-transition-time);*/\n    /*color: #CCCCCC;*/\n    height: 2px;\n    /*border-bottom:20px solid #222;*/\n\n    /*box-sizing: border-box;*/\n    /*padding-top: 2px;*/\n    /*text-align: center;*/\n    /*cursor: pointer;*/\n    /*border-radius: 0 0 var(--sidebar-border-radius) var(--sidebar-border-radius);*/\n    /*opacity: 1.0;*/\n    /*transition: opacity 0.3s;*/\n    /*overflow: hidden;*/\n}\n\n.sidebar__close-button-icon {\n    display: inline-block;\n    /*opacity: 0;*/\n    width: 20px;\n    height: 20px;\n    /*position: relative;*/\n    /*top: -1px;*/\n\n\n}\n\n.sidebar--closed {\n    width: auto;\n    margin-right: 20px;\n}\n\n.sidebar--closed .sidebar__close-button {\n    margin-top: 8px;\n    margin-left: 8px;\n    padding:10px;\n\n    height: 25px;\n    width:25px;\n    border-radius: 50%;\n    cursor: pointer;\n    opacity: 0.3;\n    background-repeat: no-repeat;\n    background-position: center center;\n    transform:rotate(180deg);\n}\n\n.sidebar--closed .sidebar__group\n{\n    display:none;\n\n}\n.sidebar--closed .sidebar__close-button-icon {\n    background-position: 0px 0px;\n}\n\n.sidebar__close-button:hover {\n    background-color: #111111;\n    opacity: 1.0 !important;\n}\n\n/*\n * SIDEBAR ITEMS\n */\n\n.sidebar__items {\n    /* max-height: 1000px; */\n    /* transition: max-height 0.5;*/\n    background-color: #222;\n    padding-bottom: 20px;\n}\n\n.sidebar--closed .sidebar__items {\n    /* max-height: 0; */\n    height: 0;\n    display: none;\n    pointer-interactions: none;\n}\n\n.sidebar__item__right {\n    float: right;\n}\n\n/*\n * SIDEBAR GROUP\n */\n\n.sidebar__group {\n    /*background-color: #1A1A1A;*/\n    overflow: hidden;\n    box-sizing: border-box;\n    animate: height;\n    /*background-color: #151515;*/\n    /* max-height: 1000px; */\n    /* transition: max-height 0.5s; */\n--sidebar-group-header-height: 33px;\n}\n\n.sidebar__group-items\n{\n    padding-top: 15px;\n    padding-bottom: 15px;\n}\n\n.sidebar__group--closed {\n    /* max-height: 13px; */\n    height: var(--sidebar-group-header-height);\n}\n\n.sidebar__group-header {\n    box-sizing: border-box;\n    color: #EEEEEE;\n    background-color: #151515;\n    -webkit-user-select: none;  /* Chrome all / Safari all */\n    -moz-user-select: none;     /* Firefox all */\n    -ms-user-select: none;      /* IE 10+ */\n    user-select: none;          /* Likely future */\n\n    /*height: 100%;//var(--sidebar-group-header-height);*/\n\n    padding-top: 7px;\n    text-transform: uppercase;\n    letter-spacing: 0.08em;\n    cursor: pointer;\n    /*transition: background-color var(--sidebar-hover-transition-time);*/\n    position: relative;\n}\n\n.sidebar__group-header:hover {\n  background-color: #111111;\n}\n\n.sidebar__group-header-title {\n  /*float: left;*/\n  overflow: hidden;\n  padding: 0 15px;\n  padding-top:5px;\n  padding-bottom:10px;\n  font-weight:bold;\n}\n\n.sidebar__group-header-undo {\n    float: right;\n    overflow: hidden;\n    padding-right: 15px;\n    padding-top:5px;\n    font-weight:bold;\n  }\n\n.sidebar__group-header-icon {\n    width: 17px;\n    height: 14px;\n    background-repeat: no-repeat;\n    display: inline-block;\n    position: absolute;\n    background-size: cover;\n\n    /* icon open */\n    /* feather icon: chevron up */\n    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM4ODg4ODgiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0iZmVhdGhlciBmZWF0aGVyLWNoZXZyb24tdXAiPjxwb2x5bGluZSBwb2ludHM9IjE4IDE1IDEyIDkgNiAxNSI+PC9wb2x5bGluZT48L3N2Zz4=);\n    top: 4px;\n    right: 5px;\n    opacity: 0.0;\n    transition: opacity 0.3;\n}\n\n.sidebar__group-header:hover .sidebar__group-header-icon {\n    opacity: 1.0;\n}\n\n/* icon closed */\n.sidebar__group--closed .sidebar__group-header-icon {\n    /* feather icon: chevron down */\n    background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM4ODg4ODgiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0iZmVhdGhlciBmZWF0aGVyLWNoZXZyb24tZG93biI+PHBvbHlsaW5lIHBvaW50cz0iNiA5IDEyIDE1IDE4IDkiPjwvcG9seWxpbmU+PC9zdmc+);\n    top: 4px;\n    right: 5px;\n}\n\n/*\n * SIDEBAR ITEM\n */\n\n.sidebar__item\n{\n    box-sizing: border-box;\n    padding: 7px;\n    padding-left:15px;\n    padding-right:15px;\n\n    overflow: hidden;\n    position: relative;\n}\n\n.sidebar__item-label {\n    display: inline-block;\n    -webkit-user-select: none;  /* Chrome all / Safari all */\n    -moz-user-select: none;     /* Firefox all */\n    -ms-user-select: none;      /* IE 10+ */\n    user-select: none;          /* Likely future */\n    width: calc(50% - 7px);\n    margin-right: 7px;\n    margin-top: 2px;\n    text-overflow: ellipsis;\n    /* overflow: hidden; */\n}\n\n.sidebar__item-value-label {\n    font-family: var(--sidebar-monospace-font-stack);\n    display: inline-block;\n    text-overflow: ellipsis;\n    overflow: hidden;\n    white-space: nowrap;\n    max-width: 60%;\n}\n\n.sidebar__item-value-label::selection {\n    background-color: var(--sidebar-color);\n    color: #EEEEEE;\n}\n\n.sidebar__item + .sidebar__item,\n.sidebar__item + .sidebar__group,\n.sidebar__group + .sidebar__item,\n.sidebar__group + .sidebar__group {\n    /*border-top: 1px solid #272727;*/\n}\n\n/*\n * SIDEBAR ITEM TOGGLE\n */\n\n/*.sidebar__toggle */\n.icon_toggle{\n    cursor: pointer;\n}\n\n.sidebar__toggle-input {\n    --sidebar-toggle-input-color: #CCCCCC;\n    --sidebar-toggle-input-color-hover: #EEEEEE;\n    --sidebar-toggle-input-border-size: 2px;\n    display: inline;\n    float: right;\n    box-sizing: border-box;\n    border-radius: 50%;\n    /*outline-style: solid;*/\n    /*outline-color:red;*/\n    cursor: pointer;\n    --toggle-size: 11px;\n    margin-top: 2px;\n    background-color: transparent !important;\n    border: var(--sidebar-toggle-input-border-size) solid var(--sidebar-toggle-input-color);\n    width: var(--toggle-size);\n    height: var(--toggle-size);\n    transition: background-color var(--sidebar-hover-transition-time);\n    transition: border-color var(--sidebar-hover-transition-time);\n}\n.sidebar__toggle:hover .sidebar__toggle-input {\n    border-color: var(--sidebar-toggle-input-color-hover);\n}\n\n.sidebar__toggle .sidebar__item-value-label {\n    -webkit-user-select: none;  /* Chrome all / Safari all */\n    -moz-user-select: none;     /* Firefox all */\n    -ms-user-select: none;      /* IE 10+ */\n    user-select: none;          /* Likely future */\n    max-width: calc(50% - 12px);\n}\n.sidebar__toggle-input::after { clear: both; }\n\n.sidebar__toggle--active .icon_toggle\n{\n\n    background-image: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjE1cHgiIHdpZHRoPSIzMHB4IiBmaWxsPSIjMDZmNzhiIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMTAwIDEwMCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PGcgZGlzcGxheT0ibm9uZSI+PGcgZGlzcGxheT0iaW5saW5lIj48Zz48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZmlsbD0iIzA2Zjc4YiIgZD0iTTMwLDI3QzE3LjM1LDI3LDcsMzcuMzUsNyw1MGwwLDBjMCwxMi42NSwxMC4zNSwyMywyMywyM2g0MCBjMTIuNjUsMCwyMy0xMC4zNSwyMy0yM2wwLDBjMC0xMi42NS0xMC4zNS0yMy0yMy0yM0gzMHogTTcwLDY3Yy05LjM4OSwwLTE3LTcuNjEtMTctMTdzNy42MTEtMTcsMTctMTdzMTcsNy42MSwxNywxNyAgICAgUzc5LjM4OSw2Nyw3MCw2N3oiPjwvcGF0aD48L2c+PC9nPjwvZz48Zz48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTMwLDI3QzE3LjM1LDI3LDcsMzcuMzUsNyw1MGwwLDBjMCwxMi42NSwxMC4zNSwyMywyMywyM2g0MCAgIGMxMi42NSwwLDIzLTEwLjM1LDIzLTIzbDAsMGMwLTEyLjY1LTEwLjM1LTIzLTIzLTIzSDMweiBNNzAsNjdjLTkuMzg5LDAtMTctNy42MS0xNy0xN3M3LjYxMS0xNywxNy0xN3MxNyw3LjYxLDE3LDE3ICAgUzc5LjM4OSw2Nyw3MCw2N3oiPjwvcGF0aD48L2c+PGcgZGlzcGxheT0ibm9uZSI+PGcgZGlzcGxheT0iaW5saW5lIj48cGF0aCBmaWxsPSIjMDZmNzhiIiBzdHJva2U9IiMwNmY3OGIiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBkPSJNNyw1MGMwLDEyLjY1LDEwLjM1LDIzLDIzLDIzaDQwICAgIGMxMi42NSwwLDIzLTEwLjM1LDIzLTIzbDAsMGMwLTEyLjY1LTEwLjM1LTIzLTIzLTIzSDMwQzE3LjM1LDI3LDcsMzcuMzUsNyw1MEw3LDUweiI+PC9wYXRoPjwvZz48Y2lyY2xlIGRpc3BsYXk9ImlubGluZSIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGZpbGw9IiMwNmY3OGIiIHN0cm9rZT0iIzA2Zjc4YiIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIGN4PSI3MCIgY3k9IjUwIiByPSIxNyI+PC9jaXJjbGU+PC9nPjxnIGRpc3BsYXk9Im5vbmUiPjxwYXRoIGRpc3BsYXk9ImlubGluZSIgZD0iTTcwLDI1SDMwQzE2LjIxNSwyNSw1LDM2LjIxNSw1LDUwczExLjIxNSwyNSwyNSwyNWg0MGMxMy43ODUsMCwyNS0xMS4yMTUsMjUtMjVTODMuNzg1LDI1LDcwLDI1eiBNNzAsNzEgICBIMzBDMTguNDIxLDcxLDksNjEuNTc5LDksNTBzOS40MjEtMjEsMjEtMjFoNDBjMTEuNTc5LDAsMjEsOS40MjEsMjEsMjFTODEuNTc5LDcxLDcwLDcxeiBNNzAsMzFjLTEwLjQ3NywwLTE5LDguNTIzLTE5LDE5ICAgczguNTIzLDE5LDE5LDE5czE5LTguNTIzLDE5LTE5UzgwLjQ3NywzMSw3MCwzMXogTTcwLDY1Yy04LjI3MSwwLTE1LTYuNzI5LTE1LTE1czYuNzI5LTE1LDE1LTE1czE1LDYuNzI5LDE1LDE1Uzc4LjI3MSw2NSw3MCw2NXoiPjwvcGF0aD48L2c+PC9zdmc+);\n    opacity: 1;\n    transform: rotate(0deg);\n    background-position: -4px -9px;\n}\n\n\n.icon_toggle\n{\n    float: right;\n    width:40px;\n    height:18px;\n    background-image: url(data:image/svg+xml;base64,PHN2ZyBoZWlnaHQ9IjE1cHgiIHdpZHRoPSIzMHB4IiBmaWxsPSIjYWFhYWFhIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIiB2ZXJzaW9uPSIxLjEiIHg9IjBweCIgeT0iMHB4IiB2aWV3Qm94PSIwIDAgMTAwIDEwMCIgZW5hYmxlLWJhY2tncm91bmQ9Im5ldyAwIDAgMTAwIDEwMCIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSI+PGcgZGlzcGxheT0ibm9uZSI+PGcgZGlzcGxheT0iaW5saW5lIj48Zz48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZmlsbD0iI2FhYWFhYSIgZD0iTTMwLDI3QzE3LjM1LDI3LDcsMzcuMzUsNyw1MGwwLDBjMCwxMi42NSwxMC4zNSwyMywyMywyM2g0MCBjMTIuNjUsMCwyMy0xMC4zNSwyMy0yM2wwLDBjMC0xMi42NS0xMC4zNS0yMy0yMy0yM0gzMHogTTcwLDY3Yy05LjM4OSwwLTE3LTcuNjEtMTctMTdzNy42MTEtMTcsMTctMTdzMTcsNy42MSwxNywxNyAgICAgUzc5LjM4OSw2Nyw3MCw2N3oiPjwvcGF0aD48L2c+PC9nPjwvZz48Zz48cGF0aCBmaWxsLXJ1bGU9ImV2ZW5vZGQiIGNsaXAtcnVsZT0iZXZlbm9kZCIgZD0iTTMwLDI3QzE3LjM1LDI3LDcsMzcuMzUsNyw1MGwwLDBjMCwxMi42NSwxMC4zNSwyMywyMywyM2g0MCAgIGMxMi42NSwwLDIzLTEwLjM1LDIzLTIzbDAsMGMwLTEyLjY1LTEwLjM1LTIzLTIzLTIzSDMweiBNNzAsNjdjLTkuMzg5LDAtMTctNy42MS0xNy0xN3M3LjYxMS0xNywxNy0xN3MxNyw3LjYxLDE3LDE3ICAgUzc5LjM4OSw2Nyw3MCw2N3oiPjwvcGF0aD48L2c+PGcgZGlzcGxheT0ibm9uZSI+PGcgZGlzcGxheT0iaW5saW5lIj48cGF0aCBmaWxsPSIjYWFhYWFhIiBzdHJva2U9IiNhYWFhYWEiIHN0cm9rZS13aWR0aD0iNCIgc3Ryb2tlLW1pdGVybGltaXQ9IjEwIiBkPSJNNyw1MGMwLDEyLjY1LDEwLjM1LDIzLDIzLDIzaDQwICAgIGMxMi42NSwwLDIzLTEwLjM1LDIzLTIzbDAsMGMwLTEyLjY1LTEwLjM1LTIzLTIzLTIzSDMwQzE3LjM1LDI3LDcsMzcuMzUsNyw1MEw3LDUweiI+PC9wYXRoPjwvZz48Y2lyY2xlIGRpc3BsYXk9ImlubGluZSIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiIGZpbGw9IiNhYWFhYWEiIHN0cm9rZT0iI2FhYWFhYSIgc3Ryb2tlLXdpZHRoPSI0IiBzdHJva2UtbWl0ZXJsaW1pdD0iMTAiIGN4PSI3MCIgY3k9IjUwIiByPSIxNyI+PC9jaXJjbGU+PC9nPjxnIGRpc3BsYXk9Im5vbmUiPjxwYXRoIGRpc3BsYXk9ImlubGluZSIgZD0iTTcwLDI1SDMwQzE2LjIxNSwyNSw1LDM2LjIxNSw1LDUwczExLjIxNSwyNSwyNSwyNWg0MGMxMy43ODUsMCwyNS0xMS4yMTUsMjUtMjVTODMuNzg1LDI1LDcwLDI1eiBNNzAsNzEgICBIMzBDMTguNDIxLDcxLDksNjEuNTc5LDksNTBzOS40MjEtMjEsMjEtMjFoNDBjMTEuNTc5LDAsMjEsOS40MjEsMjEsMjFTODEuNTc5LDcxLDcwLDcxeiBNNzAsMzFjLTEwLjQ3NywwLTE5LDguNTIzLTE5LDE5ICAgczguNTIzLDE5LDE5LDE5czE5LTguNTIzLDE5LTE5UzgwLjQ3NywzMSw3MCwzMXogTTcwLDY1Yy04LjI3MSwwLTE1LTYuNzI5LTE1LTE1czYuNzI5LTE1LDE1LTE1czE1LDYuNzI5LDE1LDE1Uzc4LjI3MSw2NSw3MCw2NXoiPjwvcGF0aD48L2c+PC9zdmc+);\n    background-size: 50px 37px;\n    background-position: -6px -10px;\n    transform: rotate(180deg);\n    opacity: 0.4;\n}\n\n\n\n/*.sidebar__toggle--active .sidebar__toggle-input {*/\n/*    transition: background-color var(--sidebar-hover-transition-time);*/\n/*    background-color: var(--sidebar-toggle-input-color);*/\n/*}*/\n/*.sidebar__toggle--active .sidebar__toggle-input:hover*/\n/*{*/\n/*    background-color: var(--sidebar-toggle-input-color-hover);*/\n/*    border-color: var(--sidebar-toggle-input-color-hover);*/\n/*    transition: background-color var(--sidebar-hover-transition-time);*/\n/*    transition: border-color var(--sidebar-hover-transition-time);*/\n/*}*/\n\n/*\n * SIDEBAR ITEM BUTTON\n */\n\n.sidebar__button {}\n\n.sidebar__button-input:active\n{\n    background-color: #555 !important;\n}\n\n.sidebar__button-input {\n    -webkit-user-select: none;  /* Chrome all / Safari all */\n    -moz-user-select: none;     /* Firefox all */\n    -ms-user-select: none;      /* IE 10+ */\n    user-select: none;          /* Likely future */\n    min-height: 24px;\n    background-color: transparent;\n    color: #CCCCCC;\n    box-sizing: border-box;\n    padding-top: 3px;\n    text-align: center;\n    border-radius: 125px;\n    border:2px solid #555;\n    cursor: pointer;\n    padding-bottom: 3px;\n    display:block;\n    width:100%;\n}\n\n.sidebar__button-input.plus, .sidebar__button-input.minus {\n    display: inline-block;\n    min-width: 20px;\n}\n\n.sidebar__button-input:hover {\n  background-color: #333;\n  border:2px solid var(--sidebar-color);\n}\n\n/*\n * VALUE DISPLAY (shows a value)\n */\n\n.sidebar__value-display {}\n\n/*\n * SLIDER\n */\n\n.sidebar__slider {\n    --sidebar-slider-input-height: 3px;\n}\n\n.sidebar__slider-input-wrapper {\n    width: 100%;\n\n    margin-top: 8px;\n    position: relative;\n}\n\n.sidebar__slider-input {\n    -webkit-appearance: none;\n    appearance: none;\n    margin: 0;\n    width: 100%;\n    height: var(--sidebar-slider-input-height);\n    background: #555;\n    cursor: pointer;\n    /*outline: 0;*/\n\n    -webkit-transition: .2s;\n    transition: background-color .2s;\n    border: none;\n}\n\n.sidebar__slider-input:focus, .sidebar__slider-input:hover {\n    border: none;\n}\n\n.sidebar__slider-input-active-track {\n    user-select: none;\n    position: absolute;\n    z-index: 11;\n    top: 0;\n    left: 0;\n    background-color: var(--sidebar-color);\n    pointer-events: none;\n    height: var(--sidebar-slider-input-height);\n    max-width: 100%;\n}\n\n/* Mouse-over effects */\n.sidebar__slider-input:hover {\n    /*background-color: #444444;*/\n}\n\n/*.sidebar__slider-input::-webkit-progress-value {*/\n/*    background-color: green;*/\n/*    color:green;*/\n\n/*    }*/\n\n/* The slider handle (use -webkit- (Chrome, Opera, Safari, Edge) and -moz- (Firefox) to override default look) */\n\n.sidebar__slider-input::-moz-range-thumb\n{\n    position: absolute;\n    height: 15px;\n    width: 15px;\n    z-index: 900 !important;\n    border-radius: 20px !important;\n    cursor: pointer;\n    background: var(--sidebar-color) !important;\n    user-select: none;\n\n}\n\n.sidebar__slider-input::-webkit-slider-thumb\n{\n    position: relative;\n    appearance: none;\n    -webkit-appearance: none;\n    user-select: none;\n    height: 15px;\n    width: 15px;\n    display: block;\n    z-index: 900 !important;\n    border: 0;\n    border-radius: 20px !important;\n    cursor: pointer;\n    background: #777 !important;\n}\n\n.sidebar__slider-input:hover ::-webkit-slider-thumb {\n    background-color: #EEEEEE !important;\n}\n\n/*.sidebar__slider-input::-moz-range-thumb {*/\n\n/*    width: 0 !important;*/\n/*    height: var(--sidebar-slider-input-height);*/\n/*    background: #EEEEEE;*/\n/*    cursor: pointer;*/\n/*    border-radius: 0 !important;*/\n/*    border: none;*/\n/*    outline: 0;*/\n/*    z-index: 100 !important;*/\n/*}*/\n\n.sidebar__slider-input::-moz-range-track {\n    background-color: transparent;\n    z-index: 11;\n}\n\n.sidebar__slider input[type=text],\n.sidebar__slider input[type=paddword]\n{\n    box-sizing: border-box;\n    /*background-color: #333333;*/\n    text-align: right;\n    color: #BBBBBB;\n    display: inline-block;\n    background-color: transparent !important;\n\n    width: 40%;\n    height: 18px;\n    /*outline: none;*/\n    border: none;\n    border-radius: 0;\n    padding: 0 0 0 4px !important;\n    margin: 0;\n}\n\n.sidebar__slider input[type=text]:active,\n.sidebar__slider input[type=text]:focus,\n.sidebar__slider input[type=text]:hover\n.sidebar__slider input[type=password]:active,\n.sidebar__slider input[type=password]:focus,\n.sidebar__slider input[type=password]:hover\n{\n\n    color: #EEEEEE;\n}\n\n/*\n * TEXT / DESCRIPTION\n */\n\n.sidebar__text .sidebar__item-label {\n    width: auto;\n    display: block;\n    max-height: none;\n    margin-right: 0;\n    line-height: 1.1em;\n}\n\n/*\n * SIDEBAR INPUT\n */\n.sidebar__text-input textarea,\n.sidebar__text-input input[type=date],\n.sidebar__text-input input[type=datetime-local],\n.sidebar__text-input input[type=text],\n.sidebar__text-input input[type=password] {\n    box-sizing: border-box;\n    background-color: #333333;\n    color: #BBBBBB;\n    display: inline-block;\n    width: 50%;\n    height: 18px;\n\n\n    border: none;\n    border-radius: 0;\n    border:1px solid #666;\n    padding: 0 0 0 4px !important;\n    margin: 0;\n    color-scheme: dark;\n}\n\n.sidebar__text-input textarea:focus::placeholder {\n  color: transparent;\n}\n\n\n\n\n\n.sidebar__color-picker .sidebar__item-label\n{\n    width:45%;\n}\n\n.sidebar__text-input textarea,\n.sidebar__text-input input[type=text]:active,\n.sidebar__text-input input[type=text]:focus,\n.sidebar__text-input input[type=text]:hover,\n.sidebar__text-input input[type=password]:active,\n.sidebar__text-input input[type=password]:focus,\n.sidebar__text-input input[type=password]:hover {\n    background-color: transparent;\n    color: #EEEEEE;\n\n}\n\n.sidebar__text-input textarea\n{\n    margin-top:10px;\n    height:60px;\n    width:100%;\n}\n\n/*\n * SIDEBAR SELECT\n */\n\n\n\n .sidebar__select {}\n .sidebar__select-select {\n    color: #BBBBBB;\n    /*-webkit-appearance: none;*/\n    /*-moz-appearance: none;*/\n    appearance: none;\n    /*box-sizing: border-box;*/\n    width: 50%;\n    /*height: 20px;*/\n    background-color: #333333;\n    /*background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9IiM4ODg4ODgiIHN0cm9rZS13aWR0aD0iMiIgc3Ryb2tlLWxpbmVjYXA9InJvdW5kIiBzdHJva2UtbGluZWpvaW49InJvdW5kIiBjbGFzcz0iZmVhdGhlciBmZWF0aGVyLWNoZXZyb24tZG93biI+PHBvbHlsaW5lIHBvaW50cz0iNiA5IDEyIDE1IDE4IDkiPjwvcG9seWxpbmU+PC9zdmc+);*/\n    background-repeat: no-repeat;\n    background-position: right center;\n    background-size: 16px 16px;\n    margin: 0;\n    /*padding: 0 2 2 6px;*/\n    border-radius: 5px;\n    border: 1px solid #777;\n    background-color: #444;\n    cursor: pointer;\n    /*outline: none;*/\n    padding-left: 5px;\n\n }\n\n.sidebar__select-select:hover,\n.sidebar__select-select:active,\n.sidebar__select-select:inactive {\n    background-color: #444444;\n    color: #EEEEEE;\n}\n\n/*.sidebar__select-select option*/\n/*{*/\n/*    background-color: #444444;*/\n/*    color: #bbb;*/\n/*}*/\n\n.sidebar__select-select option:checked\n{\n    background-color: #000;\n    color: #FFF;\n}\n\n\n/*\n * COLOR PICKER\n */\n\n\n .sidebar__color-picker input[type=text] {\n    box-sizing: border-box;\n    background-color: #333333;\n    color: #BBBBBB;\n    display: inline-block;\n    width: calc(50% - 21px); /* 50% minus space of picker circle */\n    height: 18px;\n    /*outline: none;*/\n    border: none;\n    border-radius: 0;\n    padding: 0 0 0 4px !important;\n    margin: 0;\n    margin-right: 7px;\n}\n\n.sidebar__color-picker input[type=text]:active,\n.sidebar__color-picker input[type=text]:focus,\n.sidebar__color-picker input[type=text]:hover {\n    background-color: #444444;\n    color: #EEEEEE;\n}\n\ndiv.sidebar__color-picker-color-input,\n.sidebar__color-picker input[type=color],\n.sidebar__palette-picker input[type=color] {\n    display: inline-block;\n    border-radius: 100%;\n    height: 14px;\n    width: 14px;\n\n    padding: 0;\n    border: none;\n    /*border:2px solid red;*/\n    border-color: transparent;\n    outline: none;\n    background: none;\n    appearance: none;\n    -moz-appearance: none;\n    -webkit-appearance: none;\n    cursor: pointer;\n    position: relative;\n    top: 3px;\n}\n.sidebar__color-picker input[type=color]:focus,\n.sidebar__palette-picker input[type=color]:focus {\n    outline: none;\n}\n.sidebar__color-picker input[type=color]::-moz-color-swatch,\n.sidebar__palette-picker input[type=color]::-moz-color-swatch {\n    border: none;\n}\n.sidebar__color-picker input[type=color]::-webkit-color-swatch-wrapper,\n.sidebar__palette-picker input[type=color]::-webkit-color-swatch-wrapper {\n    padding: 0;\n}\n.sidebar__color-picker input[type=color]::-webkit-color-swatch,\n.sidebar__palette-picker input[type=color]::-webkit-color-swatch {\n    border: none;\n    border-radius: 100%;\n}\n\n/*\n * Palette Picker\n */\n.sidebar__palette-picker .sidebar__palette-picker-color-input.first {\n    margin-left: 0;\n}\n.sidebar__palette-picker .sidebar__palette-picker-color-input.last {\n    margin-right: 0;\n}\n.sidebar__palette-picker .sidebar__palette-picker-color-input {\n    margin: 0 4px;\n}\n\n.sidebar__palette-picker .circlebutton {\n    width: 14px;\n    height: 14px;\n    border-radius: 1em;\n    display: inline-block;\n    top: 3px;\n    position: relative;\n}\n\n/*\n * Preset\n */\n.sidebar__item-presets-preset\n{\n    padding:4px;\n    cursor:pointer;\n    padding-left:8px;\n    padding-right:8px;\n    margin-right:4px;\n    background-color:#444;\n}\n\n.sidebar__item-presets-preset:hover\n{\n    background-color:#666;\n}\n\n.sidebar__greyout\n{\n    background: #222;\n    opacity: 0.8;\n    width: 100%;\n    height: 100%;\n    position: absolute;\n    z-index: 1000;\n    right: 0;\n    top: 0;\n}\n\n.sidebar_tabs\n{\n    background-color: #151515;\n    padding-bottom: 0px;\n}\n\n.sidebar_switchs\n{\n    float: right;\n}\n\n.sidebar_tab\n{\n    float:left;\n    background-color: #151515;\n    border-bottom:1px solid transparent;\n    padding-right:7px;\n    padding-left:7px;\n    padding-bottom: 5px;\n    padding-top: 5px;\n    cursor:pointer;\n}\n\n.sidebar_tab_active\n{\n    background-color: #272727;\n    color:white;\n}\n\n.sidebar_tab:hover\n{\n    border-bottom:1px solid #777;\n    color:white;\n}\n\n\n.sidebar_switch\n{\n    float:left;\n    background-color: #444;\n    padding-right:7px;\n    padding-left:7px;\n    padding-bottom: 5px;\n    padding-top: 5px;\n    cursor:pointer;\n}\n\n.sidebar_switch:last-child\n{\n    border-top-right-radius: 7px;\n    border-bottom-right-radius: 7px;\n}\n\n.sidebar_switch:first-child\n{\n    border-top-left-radius: 7px;\n    border-bottom-left-radius: 7px;\n}\n\n\n.sidebar_switch_active\n{\n    background-color: #999;\n    color:white;\n}\n\n.sidebar_switch:hover\n{\n    color:white;\n}\n\n.sidebar__text-input-input::focus-visible,\n/*.sidebar__text-input-input:active,*/\n.sidebar__button-input:focus-visible,\n.sidebar__text-input:focus-visible\n/*.sidebar__text-input:active*/\n{\n    outline-style: solid;\n    outline-color:white;\n    outline-width: 1px;\n\n}\n\n",};
 // vars
 const CSS_ELEMENT_CLASS = "cables-sidebar-style"; /* class for the style element to be generated */
 const CSS_ELEMENT_DYNAMIC_CLASS = "cables-sidebar-dynamic-style"; /* things which can be set via op-port, but not attached to the elements themselves, e.g. minimized opacity */
@@ -21630,13 +21425,11 @@ const
     outRaw = op.outString("Raw Data");
 
 let connection = null;
-let timeout = null;
+let timeout = setTimeout(checkConnection, 2000);
 let connectedTo = "";
 
 inUrl.onChange = connect;
-timeout = setTimeout(checkConnection, 2000);
-
-inUrl.set();
+connect();
 
 let connecting = false;
 
@@ -21644,60 +21437,66 @@ function checkConnection()
 {
     if (!outConnected.get() && !connecting)
     {
-        // op.log("reconnect websocket...");
         connect();
     }
-
     timeout = setTimeout(checkConnection, 2000);
 }
 
 op.onDelete = function ()
 {
-    if (outConnected.get())connection.close();
+    if (outConnected.get() && connection) connection.close();
     connecting = false;
     clearTimeout(timeout);
 };
 
 function connect()
 {
+    outConnected.set(false);
+
+    const url = inUrl.get();
+    if (!url) return;
+
     op.setUiError("connection", null);
     op.setUiError("jsonvalid", null);
+    op.setUiError("websocket", null);
 
     if (outConnected.get() && connectedTo == inUrl.get()) return;
 
-    if (inUrl.get() && inUrl.get().indexOf("ws://") == -1 && inUrl.get().indexOf("wss://") == -1)
+    if (inUrl.get() && !inUrl.get().startsWith("ws://") && !inUrl.get().startsWith("wss://"))
     {
         op.setUiError("wrongproto", "only valid protocols are ws:// or wss:// ");
         return;
     }
     else
+    {
         op.setUiError("wrongproto", null);
+    }
 
     if (!inUrl.get() || inUrl.get() === "")
     {
         op.logWarn("websocket: invalid url ");
-        outConnected.set(false);
         return;
     }
 
     window.WebSocket = window.WebSocket || window.MozWebSocket;
 
     if (!window.WebSocket)
+    {
         return op.logError("Sorry, but your browser doesn't support WebSockets.");
-
-    op.setUiError("websocket", null);
+    }
 
     try
     {
         connecting = true;
-        if (connection !== null)connection.close();
+        if (connection !== null) connection.close();
         connection = new WebSocket(inUrl.get());
     }
     catch (e)
     {
-        if (e && e.message)op.setUiError("websocket", e.message);
+        if (e && e.message) op.setUiError("websocket", e.message);
         op.logWarn("could not connect to", inUrl.get());
         connecting = false;
+        outConnected.set(false);
     }
 
     if (connection)
@@ -21705,10 +21504,8 @@ function connect()
         connection.onerror = function (e)
         {
             connecting = false;
-
             outConnected.set(false);
             outConnection.set(null);
-            // op.setUiError("connection", "Error connecting to websocket server", 2);
         };
 
         connection.onclose = function (message)
@@ -21729,11 +21526,12 @@ function connect()
         connection.onmessage = function (message)
         {
             op.setUiError("jsonvalid", null);
+
+            outConnected.set(true);
             outRaw.set(message.data);
             try
             {
                 const json = JSON.parse(message.data);
-                // outResult.set(null);
                 outResult.setRef(json);
                 outValidJson.set(true);
             }
@@ -22143,281 +21941,218 @@ CABLES.OPS["ff256324-41b0-43e6-acc0-526c4538b83b"]={f:Ops.Patch.PxdLHGq.CountVal
 
 // **************************************************************
 // 
-// Ops.Patch.PBktIwq.Button_NEL
+// Ops.Html.CSS.TransformElement
 // 
 // **************************************************************
 
-Ops.Patch.PBktIwq.Button_NEL = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-// inputs
-const parentPort = op.inObject("link");
-const buttonTextPort = op.inString("Text", "Button");
-const checksum = op.inValue("Checksum", 0);
-const update = op.inTrigger("update");
-
-const inGreyOut = op.inBool("Grey Out", false);
-const inVisible = op.inBool("Visible", true);
-
-// outputs
-const siblingsPort = op.outObject("childs");
-const buttonPressedPort = op.outTrigger("Pressed Trigger");
-
-
-// vars
-const colors = ["rgba(85,85,85,0.5)", "aquamarine"];
-
-const el = document.createElement("div");
-el.dataset.op = op.id;
-el.classList.add("cablesEle");
-el.classList.add("sidebar__item");
-el.classList.add("sidebar--button");
-el.style.display = "grid";
-el.style.gridTemplateColumns = "0.25fr 1fr";
-el.style.alignItems = "start";
-el.style.alignContent = "stretch";
-el.style.height = "75px";
-el.style.paddingLeft = "5px";
-
-
-// draw svg
-const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-svg.setAttribute("viewBox", "0 0 100 100");
-svg.setAttribute("width", "100%");
-svg.setAttribute("height", "150%");
-svg.style.gridColumn = "1 / 2";
-
-
-
-const quadrants = [];
-
-
-for (let i = 0; i < 4; i++) {
-    const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-    rect.setAttribute("x", [ "0", "25", "50", "75" ][i]);
-    rect.setAttribute("y", "0");
-
-    rect.setAttribute("width", "20");
-    rect.setAttribute("height", "20");
-    rect.setAttribute("fill", colors[0]);
-    rect.setAttribute("rx", "50"); // Round the corners with a radius of 10
-    rect.setAttribute("ry", "50"); // Round the corners with a radius of 10
-    rect.style.display = "block";
-    quadrants.push(rect);
-    svg.appendChild(rect);
-}
-
-svg.setAttribute("transform", "translate(-2.5, -17)")
-
-
-function showQuadrant( index ) {
-    if (index < 0 || index > quadrants.length) return;
-    quadrants.forEach((quad, i) => {
-        quad.style.fill = i <= index - 1 || index === 4 ? colors[1] : colors[0];
-    });
-}
-
-
-updateSegments();
-
-function updateSegments () {
-
-el.appendChild( svg );
-showQuadrant( Math.round( checksum.get() ) )
-
- }
-
- checksum.onChange = updateSegments;
-
-
-update.onTriggered = updateSegments;
-
-const button = document.createElement("div");
-button.classList.add("sidebar__button-input");
-button.style.gridColumn = "2 / 3";
-el.appendChild(button);
-
-const inputText = document.createTextNode(buttonTextPort.get());
-button.appendChild(inputText);
-
-
-button.addEventListener("click", onButtonClick);
-
-op.toWorkNeedsParent("Ops.Sidebar.Sidebar");
-
-// events
-parentPort.onChange = onParentChanged;
-buttonTextPort.onChange = onButtonTextChanged;
-op.onDelete = onDelete;
-
-
-const greyOut = document.createElement("div");
-greyOut.classList.add("sidebar__greyout");
-greyOut.style.gridColumn = "1 / 4";
-el.appendChild(greyOut);
-greyOut.style.display = "none";
-
-inGreyOut.onChange = function ()
-{
-    greyOut.style.display = inGreyOut.get() ? "block" : "none";
-};
-
-inVisible.onChange = function ()
-{
-    el.style.display = inVisible.get() ? "grid" : "none";
-};
-
-function onButtonClick()
-{
-    buttonPressedPort.trigger();
-}
-
-function onButtonTextChanged()
-{
-    const buttonText = buttonTextPort.get();
-    button.textContent = buttonText;
-    if (CABLES.UI)
-    {
-        op.setUiAttrib({ "extendTitle": buttonText });
-    }
-}
-
-function onParentChanged()
-{
-    siblingsPort.set(null);
-    const parent = parentPort.get();
-    if (parent && parent.parentElement)
-    {
-        parent.parentElement.appendChild(el);
-        siblingsPort.set(parent);
-    }
-    else
-    { // detach
-        if (el.parentElement)
-        {
-            el.parentElement.removeChild(el);
-        }
-    }
-}
-
-function showElement(el)
-{
-    if (el)
-    {
-        el.style.display = "grid";
-    }
-}
-
-function hideElement(el)
-{
-    if (el)
-    {
-        el.style.display = "none";
-    }
-}
-
-function onDelete()
-{
-    removeElementFromDOM(el);
-}
-
-function removeElementFromDOM(el)
-{
-    if (el && el.parentNode && el.parentNode.removeChild)
-    {
-        el.parentNode.removeChild(el);
-    }
-}
-
-
-
-
-};
-
-Ops.Patch.PBktIwq.Button_NEL.prototype = new CABLES.Op();
-CABLES.OPS["e40caa69-8d39-4da3-bf3e-2a7790b0b2f8"]={f:Ops.Patch.PBktIwq.Button_NEL,objName:"Ops.Patch.PBktIwq.Button_NEL"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Website.LocalStorageString
-// 
-// **************************************************************
-
-Ops.Website.LocalStorageString = function()
+Ops.Html.CSS.TransformElement = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
 const attachments=op.attachments={};
 const
-    inKey = op.inString("Key"),
-    inValue = op.inString("String", ""),
-    inStore = op.inTriggerButton("Store"),
-    outValue = op.outString("Stored String"),
-    outSupported = op.outBool("Storage Support", true);
+    exec = op.inTrigger("Exec"),
+    inEle = op.inObject("Element"),
+    inScale = op.inFloat("Scale", 1),
+    inOrtho = op.inBool("Orthogonal", false),
+    inRotate = op.inFloat("Rotate", 0),
+    inHideBehind = op.inBool("Hide out of view", false),
+    inAlignVert = op.inSwitch("Align Vertical", ["Left", "Center", "Right"], "Left"),
+    inAlignHor = op.inSwitch("Align Horizontal", ["Top", "Center", "Bottom"], "Top"),
+    inActive = op.inBool("Active", true),
+    next = op.outTrigger("Next"),
+    outEle = op.outObject("HTML Element", null, "element");
 
-const localStorageSupport = !!window.localStorage;
-if (!localStorageSupport)
+const cgl = op.patch.cgl;
+let x = 0;
+let y = 0;
+let visible = 0;
+const m = mat4.create();
+const pos = vec3.create();
+const trans = vec3.create();
+
+let cachedTop = -1;
+let cachedLeft = -1;
+let currTransformStr = 0;
+
+exec.onTriggered =
+() =>
 {
-    op.logError("your browser does not support or blocks access to localStorage, output will be inValue!");
-    outSupported.set(false);
-}
+    if (!inActive.get()) return next.trigger();
 
-updateOutput();
-inKey.onChange = updateOutput;
-inStore.onTriggered = storeValue;
+    setProperties();
+    next.trigger();
+};
 
-function getKey()
+op.onDelete = removeProperties;
+
+let oldEle = null;
+
+inAlignHor.onChange =
+    inAlignVert.onChange =
+    inRotate.onChange =
+    inScale.onChange = updateTransform;
+
+function updateTransform()
 {
-    return (op.patch.namespace || "") + inKey.get();
-}
-
-function updateOutput()
-{
-    if (localStorageSupport)
+    const ele = inEle.get();
+    if (!ele)
     {
-        outValue.set(window.localStorage.getItem(getKey()));
+        oldEle = null;
+        return;
+    }
+
+    let translateStr = "";
+    if (inAlignVert.get() == "Left")translateStr = "0%";
+    if (inAlignVert.get() == "Center")translateStr = "-50%";
+    if (inAlignVert.get() == "Right")translateStr = "-100%";
+
+    translateStr += ", ";
+    if (inAlignHor.get() == "Top")translateStr += "0%";
+    if (inAlignHor.get() == "Center")translateStr += "-50%";
+    if (inAlignHor.get() == "Bottom")translateStr += "-100%";
+
+    const str = "translate(" + translateStr + ") scale(" + inScale.get() + ") rotate(" + inRotate.get() + "deg)";
+
+    // if (currTransformStr != str || oldEle != ele)
+    if (ele.style.transform != str)
+    {
+        currTransformStr = str;
+        ele.style.transform = str;
+        outEle.setRef(ele);
+    }
+}
+
+inEle.onChange = function ()
+{
+    const ele = inEle.get();
+    if (!ele)
+    {
+        removeProperties(oldEle);
+
+        oldEle = null;
+        return;
+    }
+
+    updateTransform();
+    setProperties();
+};
+
+inEle.onLinkChanged = function ()
+{
+    cachedLeft = -1;
+    cachedTop = -1;
+
+    if (!inEle.isLinked())
+    {
+        if (oldEle)
+        {
+            removeProperties(oldEle);
+        }
     }
     else
     {
-        outValue.set(inValue.get());
+        oldEle = inEle.get();
     }
-}
+    updateTransform();
+};
 
-function storeValue()
+function getScreenCoord()
 {
-    const val = inValue.get();
-    if (localStorageSupport)
+    mat4.multiply(m, cgl.vMatrix, cgl.mMatrix);
+    vec3.transformMat4(pos, [0, 0, 0], m);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const vp = cgl.getViewPort();
+
+    const w = cgl.canvasWidth / cgl.pixelDensity;
+    const h = cgl.canvasHeight / cgl.pixelDensity;
+
+    if (inOrtho.get())
     {
-        window.localStorage.setItem(getKey(), val);
+        x = ((w * 0.5 + trans[0] * w * 0.5 / 1));
+        y = ((h * 0.5 - trans[1] * h * 0.5 / 1));
     }
     else
     {
-        op.warn("not storing to localstorage, missing browsersupport!");
+        x = (w - (w * 0.5 - trans[0] * w * 0.5)); //  / trans[2]
+        y = (h - (h * 0.5 + trans[1] * h * 0.5)); //  / trans[2]
     }
-    outValue.set(val);
+
+    visible = pos[2] < 0.0 && x > 0 && x < vp[2] && y > 0 && y < vp[3];
 }
+
+function setProperties()
+{
+    const ele = inEle.get();
+    oldEle = ele;
+    if (ele && ele.style)
+    {
+        getScreenCoord();
+        const yy = cgl.canvas.offsetTop + y;
+
+        const top = cgl.canvas.styleMarginTop || 0;
+
+        if (yy + top != cachedTop)
+        {
+            ele.style.top = (yy + top) + "px";
+            outEle.setRef(ele);
+            cachedTop = yy;
+        }
+
+        const left = cgl.canvas.styleMarginLeft || 0;
+
+        if (x + left != cachedLeft)
+        {
+            ele.style.left = (x + left) + "px";
+            outEle.setRef(ele);
+            cachedLeft = x;
+        }
+
+        if (inHideBehind.get())
+        {
+            if (visible)ele.style.display = "initial";
+            else ele.style.display = "none";
+        }
+    }
+}
+
+function removeProperties(ele)
+{
+    cachedLeft = -1;
+    cachedTop = -1;
+
+    if (!ele) ele = inEle.get();
+    if (ele && ele.style)
+    {
+        ele.style.top = "initial";
+        ele.style.left = "initial";
+        ele.style.transform = "initial";
+    }
+}
+
+op.addEventListener("onEnabledChange", function (enabled)
+{
+    if (enabled) setProperties();
+    else removeProperties();
+});
 
 
 };
 
-Ops.Website.LocalStorageString.prototype = new CABLES.Op();
-CABLES.OPS["f908fc2e-70b6-4ca4-8afd-4302b35ff570"]={f:Ops.Website.LocalStorageString,objName:"Ops.Website.LocalStorageString"};
+Ops.Html.CSS.TransformElement.prototype = new CABLES.Op();
+CABLES.OPS["caca0307-d460-47df-8674-b7d2601239ab"]={f:Ops.Html.CSS.TransformElement,objName:"Ops.Html.CSS.TransformElement"};
 
 
 
 
 // **************************************************************
 // 
-// Ops.Html.Element_v2
+// Ops.Html.Elements.Element_v2
 // 
 // **************************************************************
 
-Ops.Html.Element_v2 = function()
+Ops.Html.Elements.Element_v2 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
@@ -22425,7 +22160,6 @@ const attachments=op.attachments={};
 const
     inText = op.inString("Text", ""),
     inPos = op.inSwitch("Position", ["Absolute", "Static", "Relative", "Fixed"], "Absolute"),
-    // inInteractive = op.inValueBool("Interactive", false),
     inInteractive = op.inSwitch("Interactive", ["True", "False", "No Pointer Events"], "True"),
 
     inSetSize = op.inValueBool("Set Size", true),
@@ -22438,6 +22172,7 @@ const
     inBlacklist = op.inString("Disable CSS Props"),
 
     inDisplay = op.inDropDown("Display", ["None", "Block", "Inline", "inline-block", "flex", "inline-flex", "grid", "inline-grid", "flow-root"], "Block"),
+    inTag = op.inString("Tag Name", "div"),
     inOpacity = op.inFloatSlider("Opacity", 1),
     inPropagation = op.inValueBool("Propagate Click-Events", true),
 
@@ -22453,12 +22188,23 @@ let oldStr = null;
 let prevDisplay = "block";
 let div = null;
 
-const canvas = op.patch.cgl.canvas.parentElement;
+const parent = op.patch.cgl.canvas.parentElement;
 
 createElement();
 
 inClass.onChange = updateClass;
 inText.onChange = updateText;
+
+inTag.onChange = () =>
+{
+    removeElement();
+    createElement();
+    updateClass();
+    updateText();
+};
+
+inSetSize.onChange =
+    updateUiAndStyle;
 
 inDisplay.onChange =
     inOpacity.onChange =
@@ -22466,7 +22212,7 @@ inDisplay.onChange =
     inWidth.onChange =
     inHeight.onChange =
     inOverflow.onChange =
-    inSetSize.onChange =
+
     inHeight.onChange =
     inStyle.onChange = updateStyle;
 
@@ -22490,14 +22236,22 @@ outClicked.onLinkChanged = () =>
         op.setUiError("interactiveProblem", "Interactive should be activated when linking clicked port");
 };
 
+function updateUiAndStyle()
+{
+    inWidth.setUiAttribs({ "greyout": !inSetSize.get() });
+    inHeight.setUiAttribs({ "greyout": !inSetSize.get() });
+    updateStyle();
+}
+
 function createElement()
 {
-    div = op.patch.getDocument().createElement("div");
+    div = op.patch.getDocument().createElement(inTag.get() || "div");
     div.dataset.op = op.id;
     div.classList.add("cablesEle");
 
-    canvas.appendChild(div);
+    parent.appendChild(div);
     outElement.setRef(div);
+    updateStyle();
 }
 
 function removeElement()
@@ -22516,7 +22270,6 @@ function updateText()
     oldStr = str;
 
     if (div.innerHTML != str) div.innerHTML = str;
-    // outElement.setRef(div);
 }
 
 function updateStyle()
@@ -22545,7 +22298,7 @@ function updateStyle()
 
     outElement.setRef(div);
 
-    if (!div.parentElement) canvas.appendChild(div);
+    if (!div.parentElement) parent.appendChild(div);
 
     warning();
 }
@@ -22674,8 +22427,8 @@ function warning()
 
 };
 
-Ops.Html.Element_v2.prototype = new CABLES.Op();
-CABLES.OPS["a0d2cc80-0b2f-4422-ba2d-c903ac9ca297"]={f:Ops.Html.Element_v2,objName:"Ops.Html.Element_v2"};
+Ops.Html.Elements.Element_v2.prototype = new CABLES.Op();
+CABLES.OPS["a0d2cc80-0b2f-4422-ba2d-c903ac9ca297"]={f:Ops.Html.Elements.Element_v2,objName:"Ops.Html.Elements.Element_v2"};
 
 
 
@@ -22951,45 +22704,6 @@ exe.onTriggered = function ()
 
 Ops.Anim.AnimNumber.prototype = new CABLES.Op();
 CABLES.OPS["e5b0b016-9663-4c9d-9365-f54ae3c5fbb6"]={f:Ops.Anim.AnimNumber,objName:"Ops.Anim.AnimNumber"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Patch.PxdLHGq.CountEmptyStringElements
-// 
-// **************************************************************
-
-Ops.Patch.PxdLHGq.CountEmptyStringElements = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    exec = op.inTrigger("Trigger"),
-    arr = op.inArray("Array"),
-    result = op.outNumber("Result");
-
-let count = 0;
-
-exec.onTriggered = () => {
-    if (!arr.get()) return;
-
-    count = 0; // Reset count each time the trigger is executed
-
-    for (let str of arr.get()) {
-        if (str.includes( "SURFACE" ) || str.includes("LIGHT") || str.includes("TEMPLE") || str.includes("DEEPNESS")) continue;
-        if (str.length > 0) count++
-    }
-
-    result.set(count);
-};
-
-};
-
-Ops.Patch.PxdLHGq.CountEmptyStringElements.prototype = new CABLES.Op();
-CABLES.OPS["7b72a958-c864-4ca1-a961-f7bf805df6b3"]={f:Ops.Patch.PxdLHGq.CountEmptyStringElements,objName:"Ops.Patch.PxdLHGq.CountEmptyStringElements"};
 
 
 
@@ -25010,97 +24724,6 @@ CABLES.OPS["d9d4b3db-c24b-48da-b798-9e6230d861f7"]={f:Ops.Math.DeltaSum,objName:
 
 // **************************************************************
 // 
-// Ops.Patch.PKUEypu.ArrayPack3Simple
-// 
-// **************************************************************
-
-Ops.Patch.PKUEypu.ArrayPack3Simple = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inArr1 = op.inArray("Array 1"),
-    inArr2 = op.inArray("Array 2"),
-    inArr3 = op.inArray("Array 3"),
-
-    outArr = op.outArray("Array out", 3),
-    outNum = op.outNumber("Num Points"),
-    outArrayLength = op.outNumber("Array length");
-
-let showingError = false;
-
-let arr = [];
-let emptyArray = [];
-let needsCalc = true;
-
-inArr1.onChange = inArr2.onChange = inArr3.onChange = update;
-
-function update()
-{
-    let array1 = inArr1.get();
-    let array2 = inArr2.get();
-    let array3 = inArr3.get();
-
-    if (!array1 && !array2 && !array3)
-    {
-        outArr.set(null);
-        outNum.set(0);
-        return;
-    }
-    let arrlen = 0;
-
-    if (!array1 || !array2 || !array3)
-    {
-        if (array1) arrlen = array1.length;
-        else if (array2) arrlen = array2.length;
-        else if (array3) arrlen = array3.length;
-
-        if (emptyArray.length != arrlen)
-            for (let i = 0; i < arrlen; i++) emptyArray[i] = 0;
-
-        if (!array1)array1 = emptyArray;
-        if (!array2)array2 = emptyArray;
-        if (!array3)array3 = emptyArray;
-    }
-
-    if ((array1.length !== array2.length) || (array2.length !== array3.length))
-    {
-        //
-        op.setUiError("arraylen", "Arrays do not have the same length !");
-        return;
-    }
-
-    if ( !array2.length ){
-        array2 = array1;
-    }
-    op.setUiError("arraylen", null);
-
-    arr.length = array1.length;
-    for (let i = 0; i < array1.length; i++)
-    {
-        arr[i * 3 + 0] = array1[i];
-        arr[i * 3 + 1] = array2[i];
-        arr[i * 3 + 2] = array3[i];
-    }
-
-    needsCalc = false;
-    outArr.setRef(arr);
-    outNum.set(arr.length / 3);
-    outArrayLength.set(arr.length);
-}
-
-
-};
-
-Ops.Patch.PKUEypu.ArrayPack3Simple.prototype = new CABLES.Op();
-CABLES.OPS["e610287d-9f3e-4dd4-916a-e38b7fe6122a"]={f:Ops.Patch.PKUEypu.ArrayPack3Simple,objName:"Ops.Patch.PKUEypu.ArrayPack3Simple"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Cables.PatchInfo_v2
 // 
 // **************************************************************
@@ -25229,6 +24852,940 @@ function update()
 
 Ops.String.SubString_v2.prototype = new CABLES.Op();
 CABLES.OPS["6e994ba8-01d1-4da6-98b4-af7e822a2e6c"]={f:Ops.String.SubString_v2,objName:"Ops.String.SubString_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PKUEypu.ArrayPack3Simple
+// 
+// **************************************************************
+
+Ops.Patch.PKUEypu.ArrayPack3Simple = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inArr1 = op.inArray("Array 1"),
+    inArr2 = op.inArray("Array 2"),
+    inArr3 = op.inArray("Array 3"),
+
+    outArr = op.outArray("Array out", 3),
+    outNum = op.outNumber("Num Points"),
+    outArrayLength = op.outNumber("Array length");
+
+let showingError = false;
+
+let arr = [];
+let emptyArray = [];
+let needsCalc = true;
+
+inArr1.onChange = inArr2.onChange = inArr3.onChange = update;
+
+function update()
+{
+    let array1 = inArr1.get();
+    let array2 = inArr2.get();
+    let array3 = inArr3.get();
+
+    if (!array1 && !array2 && !array3)
+    {
+        outArr.set(null);
+        outNum.set(0);
+        return;
+    }
+    let arrlen = 0;
+
+    if (!array1 || !array2 || !array3)
+    {
+        if (array1) arrlen = array1.length;
+        else if (array2) arrlen = array2.length;
+        else if (array3) arrlen = array3.length;
+
+        if (emptyArray.length != arrlen)
+            for (let i = 0; i < arrlen; i++) emptyArray[i] = 0;
+
+        if (!array1)array1 = emptyArray;
+        if (!array2)array2 = emptyArray;
+        if (!array3)array3 = emptyArray;
+    }
+
+    if ((array1.length !== array2.length) || (array2.length !== array3.length))
+    {
+         for (let i = 0; i < array1.len; i++) array2[i] = 0;
+        op.setUiError("arraylen", "Arrays do not have the same length !");
+        return;
+    }
+
+    op.setUiError("arraylen", null);
+
+    arr.length = array1.length;
+    for (let i = 0; i < array1.length; i++)
+    {
+        arr[i * 3 + 0] = array1[i];
+        arr[i * 3 + 1] = array2[i];
+        arr[i * 3 + 2] = array3[i];
+    }
+
+    needsCalc = false;
+    outArr.setRef(arr);
+    outNum.set(arr.length / 3);
+    outArrayLength.set(arr.length);
+}
+
+
+};
+
+Ops.Patch.PKUEypu.ArrayPack3Simple.prototype = new CABLES.Op();
+CABLES.OPS["e610287d-9f3e-4dd4-916a-e38b7fe6122a"]={f:Ops.Patch.PKUEypu.ArrayPack3Simple,objName:"Ops.Patch.PKUEypu.ArrayPack3Simple"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Vars.VarTriggerString
+// 
+// **************************************************************
+
+Ops.Vars.VarTriggerString = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    trigger = op.inTriggerButton("Trigger"),
+    val = op.inString("Value", "New String"),
+    next = op.outTrigger("Next");
+
+op.varName = op.inDropDown("Variable", [], "", true);
+
+new CABLES.VarSetOpWrapper(op, "string", val, op.varName, trigger, next);
+
+
+};
+
+Ops.Vars.VarTriggerString.prototype = new CABLES.Op();
+CABLES.OPS["d75992b7-65e2-44d8-b264-320d4c5a5630"]={f:Ops.Vars.VarTriggerString,objName:"Ops.Vars.VarTriggerString"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.CanvasInfo_v3
+// 
+// **************************************************************
+
+Ops.Gl.CanvasInfo_v3 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    width = op.outNumber("CSS Width"),
+    height = op.outNumber("CSS Height"),
+    pixelRatio = op.outNumber("Pixel Ratio"),
+    widthPixel = op.outNumber("Pixel Width"),
+    heightPixel = op.outNumber("Pixel Height"),
+    aspect = op.outNumber("Aspect Ratio"),
+    landscape = op.outBool("Landscape"),
+    outCanvasEle = op.outObject("Canvas", "element"),
+    outCanvasParentEle = op.outObject("Canvas Parent", "element");
+
+let cgl = op.patch.cgl;
+outCanvasEle.set(op.patch.cgl.canvas);
+outCanvasParentEle.set(op.patch.cgl.canvas.parentElement);
+
+cgl.on("resize", update);
+
+update();
+
+function update()
+{
+    let div = 1;
+
+    if (cgl.canvasHeight == 0)setTimeout(update, 100);
+
+    height.set(cgl.canvasHeight / op.patch.cgl.pixelDensity);
+    width.set(cgl.canvasWidth / op.patch.cgl.pixelDensity);
+
+    widthPixel.set(cgl.canvasWidth);
+    heightPixel.set(cgl.canvasHeight);
+
+    pixelRatio.set(op.patch.cgl.pixelDensity); // window.devicePixelRatio
+
+    aspect.set(cgl.canvasWidth / cgl.canvasHeight);
+    landscape.set(cgl.canvasWidth > cgl.canvasHeight ? 1 : 0);
+}
+
+
+};
+
+Ops.Gl.CanvasInfo_v3.prototype = new CABLES.Op();
+CABLES.OPS["be186ff9-427e-409f-b6a4-f8d957bf7bc7"]={f:Ops.Gl.CanvasInfo_v3,objName:"Ops.Gl.CanvasInfo_v3"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Math.Min_v3
+// 
+// **************************************************************
+
+Ops.Math.Min_v3 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    val1 = op.inValue("Value 1", 1),
+    val2 = op.inValue("Value 2", 2),
+    result = op.outNumber("result");
+
+val1.onChange =
+    val2.onChange = exec;
+
+exec();
+
+function exec()
+{
+    let v = Math.min(val1.get(), val2.get());
+    result.set(v);
+}
+
+
+};
+
+Ops.Math.Min_v3.prototype = new CABLES.Op();
+CABLES.OPS["24a9062d-380c-4690-8fe7-6703787fa94c"]={f:Ops.Math.Min_v3,objName:"Ops.Math.Min_v3"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Html.CSS.ElementCss3DTransform
+// 
+// **************************************************************
+
+Ops.Html.CSS.ElementCss3DTransform = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inEle = op.inObject("Element"),
+
+    x = op.inFloat("X", 0),
+    y = op.inFloat("Y", 0),
+    z = op.inFloat("Z", 0),
+
+    rotx = op.inFloat("Rot X", 0),
+    roty = op.inFloat("Rot Y", 0),
+    rotz = op.inFloat("Rot Z", 0),
+
+    persp = op.inFloat("Perspective", 640),
+    backface = op.inBool("Backface-Visibility", true),
+
+    outEle = op.outObject("HTML Element", null, "element");
+
+let ele = null;
+
+inEle.onChange =
+    inEle.onLinkChanged =
+    backface.onChange =
+    x.onChange = y.onChange = z.onChange =
+    rotx.onChange = roty.onChange = rotz.onChange =
+    persp.onChange = update;
+
+op.onDelete = remove;
+
+function remove()
+{
+    if (ele)
+    {
+        ele.style.removeProperty("perspective");
+        ele.style.removeProperty("transform");
+        ele.style.removeProperty("backface-visibility");
+    }
+}
+
+function update()
+{
+    remove();
+    ele = inEle.get();
+
+    if (ele && ele.style)
+    {
+        let tr = "";
+
+        tr += "translate3d(" + x.get() + "px," + y.get() + "px," + z.get() + "px) ";
+
+        tr += "rotateX(" + rotx.get() + "deg)";
+        tr += "rotateY(" + roty.get() + "deg)";
+        tr += "rotateZ(" + rotz.get() + "deg)";
+
+        ele.parentElement.style.perspective = persp.get() + "px";
+        ele.style.transform = tr;
+        ele.style["backface-visibility"] = backface.get() ? "visible" : "hidden";
+    }
+    else
+    {
+        setTimeout(update, 50);
+    }
+
+    if (outEle != inEle.get())
+        outEle.setRef(inEle.get());
+}
+
+
+};
+
+Ops.Html.CSS.ElementCss3DTransform.prototype = new CABLES.Op();
+CABLES.OPS["ee4f2f09-17df-4d26-bda3-9db51cf78b9d"]={f:Ops.Html.CSS.ElementCss3DTransform,objName:"Ops.Html.CSS.ElementCss3DTransform"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PBktIwq.Button_NEL
+// 
+// **************************************************************
+
+Ops.Patch.PBktIwq.Button_NEL = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+// inputs
+const parentPort = op.inObject("link");
+const buttonTextPort = op.inString("Text", "Button");
+const checksum = op.inValue("Checksum", 0);
+const update = op.inTrigger("update");
+
+const inGreyOut = op.inBool("Grey Out", false);
+const inVisible = op.inBool("Visible", true);
+
+const elementIn = op.inObject("Left Element");
+
+// outputs
+const siblingsPort = op.outObject("childs");
+const elementPort = op.outObject("element");
+const buttonPressedPort = op.outTrigger("Pressed Trigger");
+
+// vars
+const colors = ["rgba(85,85,85,0.5)", "aquamarine"];
+
+const el = document.createElement("div");
+el.dataset.op = op.id;
+el.classList.add("cablesEle");
+el.classList.add("sidebar__item");
+el.classList.add("sidebar--button");
+el.style.display = "grid";
+el.style.gridTemplateColumns = "0.5fr 1fr 0.025fr";
+el.style.alignItems = "start";
+el.style.alignContent = "stretch";
+el.style.height = "5%";
+el.style.backgroundColor = "transparent";
+elementPort.set(el);
+
+const button = document.createElement("div");
+button.classList.add("sidebar__button-input");
+button.style.gridColumn = "2/3";
+el.appendChild(button);
+
+const inputText = document.createTextNode(buttonTextPort.get());
+button.appendChild(inputText);
+
+button.addEventListener("click", onButtonClick);
+
+op.toWorkNeedsParent("Ops.Sidebar.Sidebar");
+
+// events
+parentPort.onChange = onParentChanged;
+buttonTextPort.onChange = onButtonTextChanged;
+op.onDelete = onDelete;
+elementIn.onChange = onElementInChanged;
+
+const greyOut = document.createElement("div");
+greyOut.classList.add("sidebar__greyout");
+greyOut.style.gridColumn = "1 / 4";
+el.appendChild(greyOut);
+greyOut.style.display = "none";
+
+inGreyOut.onChange = function ()
+{
+    greyOut.style.display = inGreyOut.get() ? "block" : "none";
+};
+
+inVisible.onChange = function ()
+{
+    el.style.display = inVisible.get() ? "grid" : "none";
+};
+
+function onButtonClick()
+{
+    buttonPressedPort.trigger();
+}
+
+function onButtonTextChanged()
+{
+    const buttonText = buttonTextPort.get();
+    button.textContent = buttonText;
+    if (CABLES.UI)
+    {
+        op.setUiAttrib({ "extendTitle": buttonText });
+    }
+}
+
+function onElementInChanged()
+{
+    if (elementIn.get() !== null)
+    {
+        let icons = elementIn.get();
+        icons.style.gridColumn = "1/3";
+        el.appendChild(icons);
+    }
+}
+
+function onParentChanged()
+{
+    siblingsPort.set(null);
+    const parent = parentPort.get();
+    if (parent && parent.parentElement)
+    {
+        parent.parentElement.appendChild(el);
+        siblingsPort.set(parent);
+    }
+    else
+    { // detach
+        if (el.parentElement)
+        {
+            el.parentElement.removeChild(el);
+        }
+    }
+}
+
+function showElement(el)
+{
+    if (el)
+    {
+        el.style.display = "grid";
+    }
+}
+
+function hideElement(el)
+{
+    if (el)
+    {
+        el.style.display = "none";
+    }
+}
+
+function onDelete()
+{
+    removeElementFromDOM(el);
+}
+
+function removeElementFromDOM(el)
+{
+    if (el && el.parentNode && el.parentNode.removeChild)
+    {
+        el.parentNode.removeChild(el);
+    }
+}
+
+
+};
+
+Ops.Patch.PBktIwq.Button_NEL.prototype = new CABLES.Op();
+CABLES.OPS["e40caa69-8d39-4da3-bf3e-2a7790b0b2f8"]={f:Ops.Patch.PBktIwq.Button_NEL,objName:"Ops.Patch.PBktIwq.Button_NEL"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Html.CSS.ElementCssTransform_v2
+// 
+// **************************************************************
+
+Ops.Html.CSS.ElementCssTransform_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+// todo: remove % unit, does not make sense, try container queries ?
+
+const
+    inEle = op.inObject("Element", null, "element"),
+    inDoTranslate = op.inBool("Translate Active", true),
+    inTransX = op.inFloat("Translate X", 0),
+    inTransY = op.inFloat("Translate Y", 0),
+    inTransUnit = op.inSwitch("Unit", ["px", "%"], "px"),
+
+    inDoScale = op.inBool("Scale Active", true),
+    inScale = op.inFloat("Scale", 1),
+
+    inDoRot = op.inBool("Rotate Active", true),
+    inRot = op.inFloat("Rot Z", 0),
+
+    inDoOrigin = op.inBool("Set Origin", true),
+    inOriginX = op.inSwitch("Origin X", ["left", "center", "right"], "center"),
+    inOriginY = op.inSwitch("Origin Y", ["top", "center", "bottom"], "center"),
+
+    inDoZ = op.inBool("Z Index Active", false),
+    inZ = op.inFloat("Z Index", 100),
+
+    outEle = op.outObject("Passthrough", null, "element");
+
+op.setPortGroup("Element", [inEle]);
+op.setPortGroup("Translation", [inDoTranslate, inTransY, inTransX, inTransUnit]);
+op.setPortGroup("Scaling", [inScale, inDoScale]);
+op.setPortGroup("Rotation", [inDoRot, inRot]);
+op.setPortGroup("Origin", [inDoOrigin, inOriginX, inOriginY]);
+
+inTransUnit.onChange =
+    inOriginX.onChange =
+    inOriginY.onChange =
+    inTransX.onChange =
+    inTransY.onChange =
+    inScale.onChange =
+    inZ.onChange =
+    inRot.onChange = update;
+
+let ele = null;
+let timeoutUpd = null;
+
+inDoTranslate.onChange =
+    inDoOrigin.onChange =
+    inDoScale.onChange =
+    inDoZ.onChange =
+    inDoRot.onChange = updateUi;
+
+inEle.onChange = inEle.onLinkChanged = function ()
+{
+    if (ele && ele.style)
+    {
+        ele.style.transform = "initial";
+
+        if (CABLES.UI && inEle.get() && ele != inEle.get())
+        {
+            if (window.getComputedStyle(ele).position !== "absolute") op.setUiError("oppos", "Element position should be absolute");
+        }
+    }
+    if (CABLES.UI) op.setUiError("oppos", null);
+
+    update();
+    outEle.setRef(inEle.get());
+};
+
+function updateUi()
+{
+    inTransX.setUiAttribs({ "greyout": !inDoTranslate.get() });
+    inTransY.setUiAttribs({ "greyout": !inDoTranslate.get() });
+    inScale.setUiAttribs({ "greyout": !inDoScale.get() });
+    inRot.setUiAttribs({ "greyout": !inDoRot.get() });
+    inZ.setUiAttribs({ "greyout": !inDoZ.get() });
+    inOriginY.setUiAttribs({ "greyout": !inDoOrigin.get() });
+    inOriginX.setUiAttribs({ "greyout": !inDoOrigin.get() });
+
+    update();
+}
+
+function update()
+{
+    ele = inEle.get();
+    if (ele && ele.style)
+    {
+        let str = "";
+
+        if (inDoTranslate.get())
+            str += "translate(" + inTransX.get() + inTransUnit.get() + " , " + inTransY.get() + inTransUnit.get() + ") ";
+
+        if (inDoScale.get())
+            if (inScale.get() != 1.0)
+                str += "scale(" + inScale.get() + ") ";
+
+        if (inDoRot.get())
+            if (inRot.get() != 0.0)
+                str += "rotateZ(" + inRot.get() + "deg) ";
+
+        if (inDoZ.get())
+            ele.style["z-index"] = inZ.get();
+
+        try
+        {
+            ele.style.transform = str;
+
+            if (inDoOrigin.get())
+                ele.style["transform-origin"] = inOriginY.get() + " " + inOriginX.get();
+            else
+                ele.style["transform-origin"] = "initial";
+        }
+        catch (e)
+        {
+            op.logError(e);
+        }
+
+        outEle.setRef(ele);
+    }
+    else
+    {
+        clearTimeout(timeoutUpd);
+        timeoutUpd = setTimeout(update, 150);
+    }
+}
+
+
+};
+
+Ops.Html.CSS.ElementCssTransform_v2.prototype = new CABLES.Op();
+CABLES.OPS["11381bfe-38b0-4051-aef9-69d83c292f0d"]={f:Ops.Html.CSS.ElementCssTransform_v2,objName:"Ops.Html.CSS.ElementCssTransform_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Html.CSS.CSSPropertyString
+// 
+// **************************************************************
+
+Ops.Html.CSS.CSSPropertyString = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inEle = op.inObject("Element"),
+    inProperty = op.inString("Property"),
+    inValue = op.inString("Value"),
+    inActive = op.inBool("Active", true),
+    outEle = op.outObject("HTML Element");
+
+op.setPortGroup("Element", [inEle]);
+op.setPortGroup("Attributes", [inProperty, inValue]);
+
+inProperty.onChange = updateProperty;
+inValue.onChange = update;
+let ele = null;
+
+inEle.onChange =
+    outEle.onLinkChanged =
+    inEle.onLinkChanged = removeProp;
+
+inActive.onChange = () =>
+{
+    if (!inActive.get()) removeProp();
+    else update();
+};
+
+function removeProp()
+{
+    if (ele && ele.style) ele.style[inProperty.get()] = "initial";
+    update();
+}
+
+function updateProperty()
+{
+    update();
+    op.setUiAttrib({ "extendTitle": inProperty.get() + "" });
+}
+
+function update()
+{
+    if (!inActive.get()) return;
+
+    ele = inEle.get();
+    if (ele && ele.style)
+    {
+        const str = inValue.get();
+        try
+        {
+            ele.style[inProperty.get()] = str;
+        }
+        catch (e)
+        {
+            op.logError(e);
+        }
+    }
+
+    outEle.setRef(inEle.get());
+}
+
+
+};
+
+Ops.Html.CSS.CSSPropertyString.prototype = new CABLES.Op();
+CABLES.OPS["a7abdfb9-4c2a-4ddb-8fc6-55b3fdfbdaf3"]={f:Ops.Html.CSS.CSSPropertyString,objName:"Ops.Html.CSS.CSSPropertyString"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Html.CSS.CSSFilter
+// 
+// **************************************************************
+
+Ops.Html.CSS.CSSFilter = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const inEle = op.inObject("Element");
+const inMethod = op.inValueSelect("method", ["-", "blur", "brightness", "contrast", "grayscale", "hue-rotate", "invert", "opacity", "saturate", "sepia"]);
+const inVal = op.inValue("Value");
+
+let suffix = "";
+let prefix = "";
+
+inVal.onChange = setValue;
+inEle.onChange = setValue;
+
+let oldEle = null;
+
+function getCSSFilterString()
+{
+    return inMethod.get() + "(" + inVal.get() + suffix + ")";
+}
+
+inEle.onLinkChanged = function ()
+{
+    // remove style when deleting op
+    if (inEle.isLinked()) return;
+
+    const ele = oldEle;// inEle.get();
+
+    if (ele && ele.style)
+    {
+        let filter = ele.style.filter;
+        var str = "";
+
+        if (filter && filter.length > 0)
+        {
+            var str = "";
+            let parts = filter.split(" ");
+            for (let i = 0; i < parts.length; i++)
+            {
+                if (parts[i].indexOf(inMethod.get()) == 0)
+                    parts[i] = "";
+            }
+
+            str = parts.join(" ");
+        }
+        ele.style.filter = str;
+    }
+};
+
+function setValue()
+{
+    const ele = inEle.get();
+    let str = "";
+
+    if (ele && ele.style)
+    {
+        if (ele != oldEle) oldEle = ele;
+        let foundMyFilter = false;
+        let filter = ele.style.filter;
+
+        if (filter && filter.length > 0)
+        {
+            let parts = filter.split(" ");
+            for (let i = 0; i < parts.length; i++)
+            {
+                if (parts[i].indexOf(inMethod.get()) == 0)
+                {
+                    foundMyFilter = true;
+                    parts[i] = getCSSFilterString();
+                }
+            }
+
+            str = parts.join(" ");
+        }
+
+        if (!foundMyFilter)
+            str += " " + getCSSFilterString();
+
+        ele.style.filter = str;
+    }
+}
+
+inMethod.onChange = function ()
+{
+    let m = inMethod.get();
+
+    prefix = inMethod.get() + ":";
+
+    if (m == "blur") suffix = "px";
+    if (m == "brightness") suffix = "";
+    if (m == "contrast") suffix = "%";
+    if (m == "grayscale") suffix = "%";
+    if (m == "hue-rotate") suffix = "deg";
+    if (m == "invert") suffix = "%";
+    if (m == "opacity") suffix = "%";
+    if (m == "saturate") suffix = "";
+    if (m == "sepia") suffix = "%";
+    setValue();
+};
+
+
+};
+
+Ops.Html.CSS.CSSFilter.prototype = new CABLES.Op();
+CABLES.OPS["33befabf-7eef-45f6-869f-30e0e4f44739"]={f:Ops.Html.CSS.CSSFilter,objName:"Ops.Html.CSS.CSSFilter"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Html.CSS.BackgroundImage_v2
+// 
+// **************************************************************
+
+Ops.Html.CSS.BackgroundImage_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inEle = op.inObject("Element"),
+    filename = op.inUrl("image file"),
+    inSize = op.inValueSelect("Size", ["auto", "length", "cover", "contain", "initial", "inherit", "75%", "50%", "40%", "30%", "25%", "20%", "10%"], "cover"),
+    inRepeat = op.inValueSelect("Repeat", ["no-repeat", "repeat", "repeat-x", "repeat-y"], "no-repeat"),
+    inPosition = op.inValueSelect("Position", ["left top", "left center", "left bottom", "right top", "right center", "right bottom", "center top", "center center", "center bottom"], "center center"),
+    active = op.inValueBool("active", true),
+    inNotUnset = op.inValueBool("Never Unset", false),
+    outEle = op.outObject("HTML Element");
+
+op.onLoadedValueSet =
+op.onLoaded =
+inPosition.onChange =
+inSize.onChange =
+inEle.onChange =
+inRepeat.onChange =
+active.onChange =
+filename.onChange = update;
+
+let ele = null;
+let cacheBust = null;
+
+op.onFileChanged = function (fn)
+{
+    if (filename.get() && filename.get().indexOf(fn) > -1)
+    {
+        if (ele && ele.style)ele.style["background-image"] = "none";
+        cacheBust = CABLES.uuid();
+        update();
+    }
+};
+
+function remove()
+{
+    if (ele)
+    {
+        ele.style["background-image"] = "none";
+        ele.style["background-size"] = "initial";
+        ele.style["background-position"] = "initial";
+        ele.style["background-repeat"] = "initial";
+    }
+}
+
+function update()
+{
+    if (!inEle.get())
+    {
+        remove();
+        return;
+    }
+
+    op.setUiAttrib({ "extendTitle": CABLES.basename(filename.get()) });
+
+    ele = inEle.get();
+
+    if (ele && ele.style && filename.get())
+    {
+        if (!active.get())
+        {
+            if (!inNotUnset.get()) ele.style["background-image"] = "none";
+        }
+        else
+        {
+            let cb = "";
+            let url = op.patch.getFilePath(String(filename.get()));
+            if (cacheBust)url = CABLES.cacheBust(url);
+
+            ele.style["background-image"] = "url(" + url + ")";
+            ele.style["background-size"] = inSize.get();
+            ele.style["background-position"] = inPosition.get();
+            ele.style["background-repeat"] = inRepeat.get();
+        }
+    }
+
+    outEle.setRef(ele);
+}
+
+
+};
+
+Ops.Html.CSS.BackgroundImage_v2.prototype = new CABLES.Op();
+CABLES.OPS["081c4328-984d-4acd-8758-5d1379cc3a30"]={f:Ops.Html.CSS.BackgroundImage_v2,objName:"Ops.Html.CSS.BackgroundImage_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Json.ObjectDeleteKey
+// 
+// **************************************************************
+
+Ops.Json.ObjectDeleteKey = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inObj1 = op.inObject("Object"),
+    inKey = op.inString("Key", ""),
+    outObj = op.outObject("Object Result");
+
+inObj1.onChange = update;
+
+inKey.onChange = () =>
+{
+    op.setUiAttrib({ "extendTitle": inKey.get() });
+    update();
+};
+
+function update()
+{
+    const o = inObj1.get();
+
+    if (!o)
+    {
+        outObj.set(null);
+        return;
+    }
+
+    const newObj = JSON.parse(JSON.stringify(o));
+    delete newObj[inKey.get()];
+
+    outObj.setRef(newObj);
+}
+
+
+};
+
+Ops.Json.ObjectDeleteKey.prototype = new CABLES.Op();
+CABLES.OPS["57a80386-b565-4915-a365-61b2dccf5ccc"]={f:Ops.Json.ObjectDeleteKey,objName:"Ops.Json.ObjectDeleteKey"};
 
 
 

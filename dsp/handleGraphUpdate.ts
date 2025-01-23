@@ -111,7 +111,7 @@ function parseNewState(_refs: RefMap, rawState: JSONString) {
     };
     // console.log('STATE::shared');
 
-    refs.vfsKeys = state.vfsKeys;
+    refs.vfsKeys = state.NEL_VFS_KEYS;
 
     const srvb: SrvbSettings = {
         vfsKeys: refs.vfsKeys,

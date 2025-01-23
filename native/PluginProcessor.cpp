@@ -99,6 +99,7 @@ void Processor::handleAsyncUpdate()
 
         // initialise, process and load into the runtime all 4 default IR assets
         process_default_IRs();
+        userScapeMode = false;
         //
         for (const auto& [slotName, asset] : assetsMap)
         {
@@ -433,7 +434,7 @@ void Processor::inspectVFS()
         assetsMap.insert_or_assign(slotName, asset);
     }
     //=== dispatch all the keys as one array
-    state.insert_or_assign(VFS_KEYS, allKeys);
+    state.insert_or_assign(WS_RESPONSE_VFS_KEYS, allKeys);
 }
 
 
@@ -462,6 +463,7 @@ void Processor::runWebServer()
         {
             clientInstance = std::make_unique<ViewClientInstance>(*this);
             slotManager->resetStateHashes();
+            slotManager->peaksDirty.store(true);
             return std::move(clientInstance);
         },
         // Handle some kind of server error..
@@ -842,20 +844,6 @@ void Processor::dispatchStateChange()
 {
     auto state_to_dispatch = state;
     util::strip_viewstate_from_state(state_to_dispatch);
-    elem::js::Array irNames;
-    for (const auto& [slot, asset] : assetsMap)
-    {
-        if (asset.has_filename_for_view())
-        {
-            irNames.push_back(asset.get_all_filenames()[0]);
-        }
-        else
-        {
-            irNames.push_back(slotname_to_string(slot));
-        }
-    }
-    state_to_dispatch.insert_or_assign(PERSISTED_USER_FILENAMES,
-                                       irNames);
 
     const auto expr = serialize(jsFunctions::dispatchStateChangeScript, state_to_dispatch);
     // Next we dispatch to the local engine which will evaluate any necessary

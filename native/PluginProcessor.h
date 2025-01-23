@@ -38,21 +38,32 @@ class SlotManager;
 class UserBankManager;
 class AudioFileLoader;  // Forward declaration
 
+//=== Persisted state keys
 inline std::string REVERSE_BUFFER_PREFIX = "REVERSED_";
 inline std::string PERSISTED_HOST_PARAMETERS_KEY = "hostParameters";
 inline std::string PERSISTED_VIEW_STATE_KEY = "viewState";
 inline std::string PERSISTED_USER_FILENAMES = "userFilenames";
+inline std::string PERSISTED_ASSET_MAP = "assetMap";
+//=== Inter Layer communication
 inline std::string MAIN_DSP_JS_FILE = "dsp.main.js";
 inline std::string MAIN_PATCH_JS_FILE = "patch.main.js";
 inline std::string SAMPLE_RATE_KEY = "sampleRate";
 inline std::string USER_BANK_KEY = "userBank";
 inline std::string NATIVE_MESSAGE_FUNCTION_NAME = "__postNativeMessage__";
 inline std::string LOG_FUNCTION_NAME = "__log__";
-inline std::string WS_RESPONSE_KEY_FOR_STATE = "NEL_STATE";
-inline std::string KEY_FOR_FILENAMES = "userFilenames";
-inline std::string WS_RESPONSE_KEY_FOR_PEAKS = "userPeaks";
-inline std::string VFS_KEYS = "vfsKeys";
-inline std::string PERSISTED_ASSET_MAP = "assetMap";
+// === Front end is listening for these on WS
+// @see Cables patch
+// todo: pass these in to the patch and populate them as key values
+// in the patch var getters
+inline std::string WS_RESPONSE_KEY_FOR_STATE = "NEL_STATE_FOR_VIEW";
+inline std::string WS_RESPONSE_FILENAMES = "NEL_FILENAMES_FOR_VIEW";
+inline std::string WS_RESPONSE_KEY_FOR_PEAKS = "NEL_PEAKS_FOR_VIEW";
+inline std::string WS_CURRENT_SLOT_INDEX = "NEL_CURRENT_SLOT_INDEX";
+inline std::string WS_STRUCTURE_INDEX = "NEL_STRUCTURE_INDEX";
+// === Local dsp JS is listening for these
+// @see dsp/handleGraphUpdate.ts @parseNewState()
+inline std::string WS_RESPONSE_VFS_KEYS = "NEL_VFS_KEYS";
+
 inline std::array<int, 3> HZ_OPTIONS = { 160, 320, 1200 };
 
 //==============================================================================

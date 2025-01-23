@@ -39,7 +39,7 @@ public:
      * @param assetsMap
      * @param containerForWrappedState Container for the wrapped state data.
      */
-    void wrapStateForView(const std::map<SlotName, Asset>& assetsMap, elem::js::Object& containerForWrappedState);
+    void wrapStateForView(const std::map<SlotName, Asset>& assetsMap, elem::js::Object& containerForWrappedState) const;
 
     /**
      * @brief Switches slots to a custom scape.

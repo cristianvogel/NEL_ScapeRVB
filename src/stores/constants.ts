@@ -2,15 +2,11 @@ import manifest from "../public/manifest.json";
 import { DefaultIRSlotName, IRMetaData } from "../types";
 
 
-export const BUILD_VERSION: string = "v0.9.4-beta";
+export const BUILD_VERSION: string = "v0.9.51-beta";
 
 export const CURRENT_UI_VERSION: string = `scape_space_${BUILD_VERSION}`;
 
 export const HOST_PARAMS = manifest.parameters;
-
-export const REGISTERED_PARAM_NAMES: Array<string> = HOST_PARAMS.map(
-  (p) => p.paramId
-);
 
 export const IR_Slots: Array<IRMetaData> = [
   { pathStem: "LIGHT", slotIndex: 0, att: 0.65 },
