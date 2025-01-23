@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(NEL_scape_space VERSION 0.9.51)
+project(NEL_scape_space VERSION 0.9.61)
 
 set(TARGET_NAME "NEL_scape_space")
 set(ASSETS_DIR ${CMAKE_SOURCE_DIR}/../dist/)
@@ -7,7 +7,9 @@ set(ASSETS_DIR ${CMAKE_SOURCE_DIR}/../dist/)
 # sync version manually in constants.ts 
 # messing with Cmake to TypeScript through Vite was getting messy
 
-set(BUILD_VERSION "v0.9.51-dbg")
+
+set(BUILD_VERSION "v0.9.61")
+
 
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)

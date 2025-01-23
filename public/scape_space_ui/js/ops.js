@@ -29,18 +29,13 @@ Ops.Extension=Ops.Extension || {};
 Ops.Gl.Matrix=Ops.Gl.Matrix || {};
 Ops.Gl.Meshes=Ops.Gl.Meshes || {};
 Ops.Gl.Shader=Ops.Gl.Shader || {};
-Ops.Standalone=Ops.Standalone || {};
 Ops.Ui.Routing=Ops.Ui.Routing || {};
 Ops.Gl.Textures=Ops.Gl.Textures || {};
 Ops.Math.Compare=Ops.Math.Compare || {};
 Ops.Devices.Mouse=Ops.Devices.Mouse || {};
 Ops.Html.Elements=Ops.Html.Elements || {};
 Ops.Net.WebSocket=Ops.Net.WebSocket || {};
-Ops.Patch.P4Zknbo=Ops.Patch.P4Zknbo || {};
-Ops.Patch.PBktIwq=Ops.Patch.PBktIwq || {};
-Ops.Patch.PKUEypu=Ops.Patch.PKUEypu || {};
-Ops.Patch.Pg3hCDt=Ops.Patch.Pg3hCDt || {};
-Ops.Patch.PxdLHGq=Ops.Patch.PxdLHGq || {};
+Ops.Patch.PbdFbHA=Ops.Patch.PbdFbHA || {};
 Ops.Gl.ImageCompose=Ops.Gl.ImageCompose || {};
 Ops.Array.PointArray=Ops.Array.PointArray || {};
 Ops.Gl.ShaderEffects=Ops.Gl.ShaderEffects || {};
@@ -51,15 +46,15 @@ Ops.Extension.Deprecated=Ops.Extension.Deprecated || {};
 
 // **************************************************************
 // 
-// Ops.Patch.P4Zknbo.SubPatch1
+// Ops.Patch.PbdFbHA.SubPatch1
 // 
 // **************************************************************
 
-Ops.Patch.P4Zknbo.SubPatch1 = function()
+Ops.Patch.PbdFbHA.SubPatch1 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_9fkoygcno=op.inTrigger(\"9fkoygcno\");\nport_9fkoygcno.setUiAttribs({title:\"Render\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_9fkoygcno = addedOps[i].outTrigger(\"innerOut_9fkoygcno\");\ninnerOut_9fkoygcno.setUiAttribs({title:\"Render\"});\nport_9fkoygcno.onTriggered = () => { innerOut_9fkoygcno.trigger(); };\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"85rseo930\",\"uiAttribs\":{\"subPatch\":\"u23iu4akz\"},\"storage\":{},\"portsIn\":[{\"name\":\"data\",\"value\":\"\"},{\"name\":\"glb File\",\"value\":\"/assets/NEL-Logo.draco.glb\",\"display\":\"file\"},{\"name\":\"Draw\",\"value\":1},{\"name\":\"Camera index\",\"value\":0},{\"name\":\"Camera\",\"value\":\"None\"},{\"name\":\"Animation\",\"value\":\"\"},{\"name\":\"Center index\",\"value\":2},{\"name\":\"Center\",\"value\":\"XZ\"},{\"name\":\"Rescale\",\"value\":1},{\"name\":\"Rescale Size\",\"value\":2},{\"name\":\"Time\",\"value\":0},{\"name\":\"Sync to timeline\",\"value\":0},{\"name\":\"Loop\",\"value\":1},{\"name\":\"Normals Format index\",\"value\":0},{\"name\":\"Normals Format\",\"value\":\"XYZ\"},{\"name\":\"Vertices Format index\",\"value\":0},{\"name\":\"Vertices Format\",\"value\":\"XYZ\"},{\"name\":\"Calc Normals index\",\"value\":0},{\"name\":\"Calc Normals\",\"value\":\"Auto\"},{\"name\":\"Hide Nodes\",\"value\":0},{\"name\":\"Use Material Properties\",\"value\":0},{\"name\":\"Active\",\"value\":1}],\"portsOut\":[{\"name\":\"Generator\",\"value\":\"Khronos glTF Blender I/O v4.2.60\"},{\"name\":\"GLTF Version\",\"value\":2},{\"name\":\"Anim Length\",\"value\":0},{\"name\":\"Anim Time\",\"value\":0},{\"name\":\"Loading\",\"value\":false}],\"objName\":\"Ops.Gl.GLTF.GltfScene_v4\"},{\"id\":\"nbmadl6p6\",\"uiAttribs\":{\"subPatch\":\"u23iu4akz\"},\"storage\":{},\"portsIn\":[{\"name\":\"Material Name\",\"value\":\"mat0\"}],\"portsOut\":[{\"name\":\"Material\",\"links\":[{\"portIn\":\"Materials\",\"portOut\":\"Material\",\"objIn\":\"85rseo930\",\"objOut\":\"nbmadl6p6\"}]}],\"objName\":\"Ops.Gl.GLTF.GltfSetMaterial\"},{\"id\":\"ymzn2u1wr\",\"uiAttribs\":{\"subPatch\":\"u23iu4akz\"},\"storage\":{},\"portsIn\":[{\"name\":\"Material Name\",\"value\":\"Material.001\"}],\"portsOut\":[{\"name\":\"Material\",\"links\":[{\"portIn\":\"Materials\",\"portOut\":\"Material\",\"objIn\":\"85rseo930\",\"objOut\":\"ymzn2u1wr\"}]}],\"objName\":\"Ops.Gl.GLTF.GltfSetMaterial\"},{\"id\":\"6wtj1mxj5\",\"uiAttribs\":{\"subPatch\":\"u23iu4akz\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_9fkoygcno\",\"title\":\"Render\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"innerOut_9fkoygcno\",\"objIn\":\"alz1qp4y2\",\"objOut\":\"6wtj1mxj5\"},{\"portIn\":\"Render\",\"portOut\":\"innerOut_9fkoygcno\",\"objIn\":\"ce52znu67\",\"objOut\":\"6wtj1mxj5\"},{\"portIn\":\"render\",\"portOut\":\"innerOut_9fkoygcno\",\"objIn\":\"mgntydb26\",\"objOut\":\"6wtj1mxj5\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"lt3kjnr3e\",\"uiAttribs\":{\"subPatch\":\"u23iu4akz\"},\"storage\":{},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"alz1qp4y2\",\"uiAttribs\":{\"subPatch\":\"u23iu4akz\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":0.514},{\"name\":\"b\",\"value\":0.262},{\"name\":\"Opacity\",\"value\":1},{\"name\":\"AO Intensity\",\"value\":1},{\"name\":\"Normal Map Intensity\",\"value\":0.812},{\"name\":\"Repeat X\",\"value\":1},{\"name\":\"Repeat Y\",\"value\":1},{\"name\":\"Offset X\",\"value\":0},{\"name\":\"Offset Y\",\"value\":0.02},{\"name\":\"Double Sided\",\"value\":0},{\"name\":\"Screen Space Normals\",\"value\":0},{\"name\":\"Calc normal tangents\",\"value\":1},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"}],\"portsOut\":[{\"name\":\"Shader\",\"links\":[{\"portIn\":\"Shader\",\"portOut\":\"Shader\",\"objIn\":\"ymzn2u1wr\",\"objOut\":\"alz1qp4y2\"}]}],\"objName\":\"Ops.Gl.Shader.MatCapMaterial_v3\"},{\"id\":\"ce52znu67\",\"uiAttribs\":{\"subPatch\":\"u23iu4akz\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":0.22},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.262},{\"name\":\"Opacity\",\"value\":1},{\"name\":\"AO Intensity\",\"value\":1},{\"name\":\"Normal Map Intensity\",\"value\":0.118},{\"name\":\"Repeat X\",\"value\":1},{\"name\":\"Repeat Y\",\"value\":1},{\"name\":\"Offset X\",\"value\":0},{\"name\":\"Offset Y\",\"value\":0},{\"name\":\"Double Sided\",\"value\":0},{\"name\":\"Screen Space Normals\",\"value\":0},{\"name\":\"Calc normal tangents\",\"value\":1},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"}],\"portsOut\":[{\"name\":\"Shader\",\"links\":[{\"portIn\":\"Shader\",\"portOut\":\"Shader\",\"objIn\":\"nbmadl6p6\",\"objOut\":\"ce52znu67\"}]}],\"objName\":\"Ops.Gl.Shader.MatCapMaterial_v3\"},{\"id\":\"96qgwcwln\",\"uiAttribs\":{\"subPatch\":\"u23iu4akz\"},\"storage\":{},\"portsIn\":[{\"name\":\"File\",\"value\":\"/assets/NEL_SRVB.webp\",\"display\":\"file\"},{\"name\":\"Filter index\",\"value\":2},{\"name\":\"Filter\",\"value\":\"mipmap\"},{\"name\":\"Wrap index\",\"value\":0},{\"name\":\"Wrap\",\"value\":\"repeat\"},{\"name\":\"Anisotropic index\",\"value\":0},{\"name\":\"Anisotropic\",\"value\":\"0\"},{\"name\":\"Data Format index\",\"value\":3},{\"name\":\"Data Format\",\"value\":\"RGBA\"},{\"name\":\"Flip\",\"value\":0},{\"name\":\"Pre Multiplied Alpha\",\"value\":0},{\"name\":\"Active\",\"value\":1},{\"name\":\"Save Memory\",\"value\":1},{\"name\":\"Add Cachebuster\",\"value\":0}],\"portsOut\":[{\"name\":\"Texture\",\"links\":[{\"portIn\":\"Normal\",\"portOut\":\"Texture\",\"objIn\":\"alz1qp4y2\",\"objOut\":\"96qgwcwln\"},{\"portIn\":\"Normal\",\"portOut\":\"Texture\",\"objIn\":\"ce52znu67\",\"objOut\":\"96qgwcwln\"}]},{\"name\":\"Width\",\"value\":256},{\"name\":\"Height\",\"value\":256},{\"name\":\"Aspect Ratio\",\"value\":1},{\"name\":\"Loaded\",\"value\":1},{\"name\":\"Loading\",\"value\":0}],\"objName\":\"Ops.Gl.Texture_v2\"},{\"id\":\"mgntydb26\",\"uiAttribs\":{\"subPatch\":\"u23iu4akz\"},\"storage\":{},\"portsIn\":[{\"name\":\"posX\",\"value\":0},{\"name\":\"posY\",\"value\":-0.56},{\"name\":\"posZ\",\"value\":0.16},{\"name\":\"scale\",\"value\":1},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"85rseo930\",\"objOut\":\"mgntydb26\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"}]}",};
+const attachments=op.attachments={"inc_gen_ports_js":"const port_9fkoygcno=op.inTrigger(\"9fkoygcno\");\nport_9fkoygcno.setUiAttribs({title:\"Render\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_9fkoygcno = addedOps[i].outTrigger(\"innerOut_9fkoygcno\");\ninnerOut_9fkoygcno.setUiAttribs({title:\"Render\"});\nport_9fkoygcno.onTriggered = () => { innerOut_9fkoygcno.trigger(); };\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"85rseo930\",\"uiAttribs\":{\"subPatch\":\"uyca233qu\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"data\",\"value\":\"\"},{\"name\":\"glb File\",\"value\":\"/assets/NEL-Logo.draco.glb\",\"display\":\"file\"},{\"name\":\"Draw\",\"value\":1},{\"name\":\"Camera index\",\"value\":0},{\"name\":\"Camera\",\"value\":\"None\"},{\"name\":\"Animation\",\"value\":\"\"},{\"name\":\"Center index\",\"value\":2},{\"name\":\"Center\",\"value\":\"XZ\"},{\"name\":\"Rescale\",\"value\":1},{\"name\":\"Rescale Size\",\"value\":2},{\"name\":\"Time\",\"value\":0},{\"name\":\"Sync to timeline\",\"value\":0},{\"name\":\"Loop\",\"value\":1},{\"name\":\"Normals Format index\",\"value\":0},{\"name\":\"Normals Format\",\"value\":\"XYZ\"},{\"name\":\"Vertices Format index\",\"value\":0},{\"name\":\"Vertices Format\",\"value\":\"XYZ\"},{\"name\":\"Calc Normals index\",\"value\":0},{\"name\":\"Calc Normals\",\"value\":\"Auto\"},{\"name\":\"Hide Nodes\",\"value\":0},{\"name\":\"Use Material Properties\",\"value\":0},{\"name\":\"Active\",\"value\":1}],\"portsOut\":[{\"name\":\"Generator\",\"value\":\"Khronos glTF Blender I/O v4.2.60\"},{\"name\":\"GLTF Version\",\"value\":2},{\"name\":\"Anim Length\",\"value\":0},{\"name\":\"Anim Time\",\"value\":0},{\"name\":\"Loading\",\"value\":false}],\"objName\":\"Ops.Gl.GLTF.GltfScene_v4\"},{\"id\":\"nbmadl6p6\",\"uiAttribs\":{\"subPatch\":\"uyca233qu\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Material Name\",\"value\":\"mat0\"}],\"portsOut\":[{\"name\":\"Material\",\"links\":[{\"portIn\":\"Materials\",\"portOut\":\"Material\",\"objIn\":\"85rseo930\",\"objOut\":\"nbmadl6p6\"}]}],\"objName\":\"Ops.Gl.GLTF.GltfSetMaterial\"},{\"id\":\"ymzn2u1wr\",\"uiAttribs\":{\"subPatch\":\"uyca233qu\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Material Name\",\"value\":\"Material.001\"}],\"portsOut\":[{\"name\":\"Material\",\"links\":[{\"portIn\":\"Materials\",\"portOut\":\"Material\",\"objIn\":\"85rseo930\",\"objOut\":\"ymzn2u1wr\"}]}],\"objName\":\"Ops.Gl.GLTF.GltfSetMaterial\"},{\"id\":\"6wtj1mxj5\",\"uiAttribs\":{\"subPatch\":\"uyca233qu\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_9fkoygcno\",\"title\":\"Render\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"innerOut_9fkoygcno\",\"objIn\":\"alz1qp4y2\",\"objOut\":\"6wtj1mxj5\"},{\"portIn\":\"Render\",\"portOut\":\"innerOut_9fkoygcno\",\"objIn\":\"ce52znu67\",\"objOut\":\"6wtj1mxj5\"},{\"portIn\":\"render\",\"portOut\":\"innerOut_9fkoygcno\",\"objIn\":\"mgntydb26\",\"objOut\":\"6wtj1mxj5\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"lt3kjnr3e\",\"uiAttribs\":{\"subPatch\":\"uyca233qu\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"alz1qp4y2\",\"uiAttribs\":{\"subPatch\":\"uyca233qu\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":0.514},{\"name\":\"b\",\"value\":0.262},{\"name\":\"Opacity\",\"value\":1},{\"name\":\"AO Intensity\",\"value\":1},{\"name\":\"Normal Map Intensity\",\"value\":0.812},{\"name\":\"Repeat X\",\"value\":1},{\"name\":\"Repeat Y\",\"value\":1},{\"name\":\"Offset X\",\"value\":0},{\"name\":\"Offset Y\",\"value\":0.02},{\"name\":\"Double Sided\",\"value\":0},{\"name\":\"Screen Space Normals\",\"value\":0},{\"name\":\"Calc normal tangents\",\"value\":1},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"}],\"portsOut\":[{\"name\":\"Shader\",\"links\":[{\"portIn\":\"Shader\",\"portOut\":\"Shader\",\"objIn\":\"ymzn2u1wr\",\"objOut\":\"alz1qp4y2\"}]}],\"objName\":\"Ops.Gl.Shader.MatCapMaterial_v3\"},{\"id\":\"ce52znu67\",\"uiAttribs\":{\"subPatch\":\"uyca233qu\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.22},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.262},{\"name\":\"Opacity\",\"value\":1},{\"name\":\"AO Intensity\",\"value\":1},{\"name\":\"Normal Map Intensity\",\"value\":0.118},{\"name\":\"Repeat X\",\"value\":1},{\"name\":\"Repeat Y\",\"value\":1},{\"name\":\"Offset X\",\"value\":0},{\"name\":\"Offset Y\",\"value\":0},{\"name\":\"Double Sided\",\"value\":0},{\"name\":\"Screen Space Normals\",\"value\":0},{\"name\":\"Calc normal tangents\",\"value\":1},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"}],\"portsOut\":[{\"name\":\"Shader\",\"links\":[{\"portIn\":\"Shader\",\"portOut\":\"Shader\",\"objIn\":\"nbmadl6p6\",\"objOut\":\"ce52znu67\"}]}],\"objName\":\"Ops.Gl.Shader.MatCapMaterial_v3\"},{\"id\":\"96qgwcwln\",\"uiAttribs\":{\"subPatch\":\"uyca233qu\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"File\",\"value\":\"/assets/6792119b8dfb7f29f975df95/NEL_SRVB.webp\",\"display\":\"file\"},{\"name\":\"Filter index\",\"value\":2},{\"name\":\"Filter\",\"value\":\"mipmap\"},{\"name\":\"Wrap index\",\"value\":0},{\"name\":\"Wrap\",\"value\":\"repeat\"},{\"name\":\"Anisotropic index\",\"value\":0},{\"name\":\"Anisotropic\",\"value\":\"0\"},{\"name\":\"Data Format index\",\"value\":3},{\"name\":\"Data Format\",\"value\":\"RGBA\"},{\"name\":\"Flip\",\"value\":0},{\"name\":\"Pre Multiplied Alpha\",\"value\":0},{\"name\":\"Active\",\"value\":1},{\"name\":\"Save Memory\",\"value\":1},{\"name\":\"Add Cachebuster\",\"value\":0}],\"portsOut\":[{\"name\":\"Texture\",\"links\":[{\"portIn\":\"Normal\",\"portOut\":\"Texture\",\"objIn\":\"alz1qp4y2\",\"objOut\":\"96qgwcwln\"},{\"portIn\":\"Normal\",\"portOut\":\"Texture\",\"objIn\":\"ce52znu67\",\"objOut\":\"96qgwcwln\"}]},{\"name\":\"Width\",\"value\":256},{\"name\":\"Height\",\"value\":256},{\"name\":\"Aspect Ratio\",\"value\":1},{\"name\":\"Loaded\",\"value\":1},{\"name\":\"Loading\",\"value\":0}],\"objName\":\"Ops.Gl.Texture_v2\"},{\"id\":\"mgntydb26\",\"uiAttribs\":{\"subPatch\":\"uyca233qu\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posX\",\"value\":0},{\"name\":\"posY\",\"value\":-0.56},{\"name\":\"posZ\",\"value\":0.16},{\"name\":\"scale\",\"value\":1},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"85rseo930\",\"objOut\":\"mgntydb26\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"}]}",};
 const port_9fkoygcno=op.inTrigger("9fkoygcno");
 port_9fkoygcno.setUiAttribs({title:"Render",});
 
@@ -116,23 +111,23 @@ function initializeSubpatch()
 
 };
 
-Ops.Patch.P4Zknbo.SubPatch1.prototype = new CABLES.Op();
-CABLES.OPS["f5436c37-3e2b-43e6-a951-208e02171dc3"]={f:Ops.Patch.P4Zknbo.SubPatch1,objName:"Ops.Patch.P4Zknbo.SubPatch1"};
+Ops.Patch.PbdFbHA.SubPatch1.prototype = new CABLES.Op();
+CABLES.OPS["4bf57488-7686-46d5-a5d6-aff1863da351"]={f:Ops.Patch.PbdFbHA.SubPatch1,objName:"Ops.Patch.PbdFbHA.SubPatch1"};
 
 
 
 
 // **************************************************************
 // 
-// Ops.Patch.P4Zknbo.SubPatch3
+// Ops.Patch.PbdFbHA.SubPatch3
 // 
 // **************************************************************
 
-Ops.Patch.P4Zknbo.SubPatch3 = function()
+Ops.Patch.PbdFbHA.SubPatch3 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_alrh6hig4=op.inTrigger(\"alrh6hig4\");\nport_alrh6hig4.setUiAttribs({title:\"render\",});\n\nconst port_8dittifdh=op.inTrigger(\"8dittifdh\");\nport_8dittifdh.setUiAttribs({title:\"Render\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_alrh6hig4 = addedOps[i].outTrigger(\"innerOut_alrh6hig4\");\ninnerOut_alrh6hig4.setUiAttribs({title:\"render\"});\nport_alrh6hig4.onTriggered = () => { innerOut_alrh6hig4.trigger(); };\n\nconst innerOut_8dittifdh = addedOps[i].outTrigger(\"innerOut_8dittifdh\");\ninnerOut_8dittifdh.setUiAttribs({title:\"Render\"});\nport_8dittifdh.onTriggered = () => { innerOut_8dittifdh.trigger(); };\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"5samfghd8\",\"uiAttribs\":{\"subPatch\":\"802svhcdg\"},\"storage\":{},\"portsIn\":[{\"name\":\"data\",\"value\":\"\"},{\"name\":\"glb File\",\"value\":\"/assets/tetragram_fixed_material.draco.glb\",\"display\":\"file\"},{\"name\":\"Draw\",\"value\":1},{\"name\":\"Camera index\",\"value\":0},{\"name\":\"Camera\",\"value\":\"None\"},{\"name\":\"Animation\",\"value\":\"\"},{\"name\":\"Center index\",\"value\":1},{\"name\":\"Center\",\"value\":\"XYZ\"},{\"name\":\"Rescale\",\"value\":1},{\"name\":\"Rescale Size\",\"value\":0.15},{\"name\":\"Time\",\"value\":0},{\"name\":\"Sync to timeline\",\"value\":0},{\"name\":\"Loop\",\"value\":1},{\"name\":\"Normals Format index\",\"value\":0},{\"name\":\"Normals Format\",\"value\":\"XYZ\"},{\"name\":\"Vertices Format index\",\"value\":0},{\"name\":\"Vertices Format\",\"value\":\"XYZ\"},{\"name\":\"Calc Normals index\",\"value\":2},{\"name\":\"Calc Normals\",\"value\":\"Never\"},{\"name\":\"Hide Nodes\",\"value\":0},{\"name\":\"Use Material Properties\",\"value\":0},{\"name\":\"Active\",\"value\":1}],\"portsOut\":[{\"name\":\"Generator\",\"value\":\"Khronos glTF Blender I/O v4.2.60\"},{\"name\":\"GLTF Version\",\"value\":2},{\"name\":\"Anim Length\",\"value\":0},{\"name\":\"Anim Time\",\"value\":0},{\"name\":\"Loading\",\"value\":false}],\"objName\":\"Ops.Gl.GLTF.GltfScene_v4\"},{\"id\":\"rmprhecho\",\"uiAttribs\":{\"subPatch\":\"802svhcdg\"},\"storage\":{},\"portsIn\":[{\"name\":\"posX\",\"value\":-1.74},{\"name\":\"posY\",\"value\":0.97},{\"name\":\"posZ\",\"value\":0.05},{\"name\":\"scale\",\"value\":0.98},{\"name\":\"rotX\",\"value\":13},{\"name\":\"rotY\",\"value\":60.5},{\"name\":\"rotZ\",\"value\":-15}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"69e8cxa7e\",\"objOut\":\"rmprhecho\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"z1zbpc5ex\",\"uiAttribs\":{\"subPatch\":\"802svhcdg\"},\"storage\":{},\"portsIn\":[{\"name\":\"Material Name\",\"value\":\"Material_0.001\"}],\"portsOut\":[{\"name\":\"Material\",\"links\":[{\"portIn\":\"Materials\",\"portOut\":\"Material\",\"objIn\":\"5samfghd8\",\"objOut\":\"z1zbpc5ex\"}]}],\"objName\":\"Ops.Gl.GLTF.GltfSetMaterial\"},{\"id\":\"znj0gtwab\",\"uiAttribs\":{\"subPatch\":\"802svhcdg\"},\"storage\":{},\"portsIn\":[{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":1},{\"name\":\"Opacity\",\"value\":1},{\"name\":\"AO Intensity\",\"value\":1},{\"name\":\"Normal Map Intensity\",\"value\":0.361},{\"name\":\"Repeat X\",\"value\":0},{\"name\":\"Repeat Y\",\"value\":0},{\"name\":\"Offset X\",\"value\":0},{\"name\":\"Offset Y\",\"value\":0},{\"name\":\"Double Sided\",\"value\":0},{\"name\":\"Screen Space Normals\",\"value\":0},{\"name\":\"Calc normal tangents\",\"value\":1},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"}],\"portsOut\":[{\"name\":\"Shader\",\"links\":[{\"portIn\":\"Shader\",\"portOut\":\"Shader\",\"objIn\":\"z1zbpc5ex\",\"objOut\":\"znj0gtwab\"}]}],\"objName\":\"Ops.Gl.Shader.MatCapMaterial_v3\"},{\"id\":\"13dxix11f\",\"uiAttribs\":{\"subPatch\":\"802svhcdg\"},\"storage\":{},\"portsIn\":[{\"name\":\"Gradient\",\"value\":\"{\\\"keys\\\":[{\\\"pos\\\":0,\\\"posy\\\":0.5,\\\"r\\\":0.19606043020884192,\\\"g\\\":0.9551041666666666,\\\"b\\\":0.30280095564822357},{\\\"pos\\\":0,\\\"posy\\\":0.5,\\\"r\\\":0.19606043020884192,\\\"g\\\":0.9551041666666666,\\\"b\\\":0.30280095564822357},{\\\"pos\\\":0.25,\\\"posy\\\":0.7,\\\"r\\\":0.24755528330802917,\\\"g\\\":0.5961175041362186,\\\"b\\\":0.6089322916666666},{\\\"pos\\\":1,\\\"posy\\\":0.5,\\\"r\\\":0.9515885416666666,\\\"g\\\":0.01916651725769043,\\\"b\\\":0.643597891729076},{\\\"pos\\\":1,\\\"posy\\\":0.5,\\\"r\\\":0.9515885416666666,\\\"g\\\":0.01916651725769043,\\\"b\\\":0.643597891729076}]}\"},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"X\"},{\"name\":\"Smoothstep\",\"value\":0},{\"name\":\"Step\",\"value\":1},{\"name\":\"Flip\",\"value\":1},{\"name\":\"sRGB\",\"value\":0},{\"name\":\"Oklab\",\"value\":0},{\"name\":\"Size\",\"value\":8},{\"name\":\"filter index\",\"value\":0},{\"name\":\"filter\",\"value\":\"nearest\"},{\"name\":\"wrap index\",\"value\":0},{\"name\":\"wrap\",\"value\":\"clamp to edge\"},{\"name\":\"Dither\",\"value\":0},{\"name\":\"Gradient Array\",\"value\":0}],\"portsOut\":[{\"name\":\"Texture\",\"links\":[{\"portIn\":\"Normal\",\"portOut\":\"Texture\",\"objIn\":\"znj0gtwab\",\"objOut\":\"13dxix11f\"}]}],\"objName\":\"Ops.Gl.GradientTexture\"},{\"id\":\"69e8cxa7e\",\"uiAttribs\":{\"subPatch\":\"802svhcdg\"},\"storage\":{},\"portsIn\":[{\"name\":\"scale\",\"value\":0.76},{\"name\":\"x\",\"value\":0.99},{\"name\":\"y\",\"value\":1.79},{\"name\":\"z\",\"value\":0.47}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"5samfghd8\",\"objOut\":\"69e8cxa7e\"}]}],\"objName\":\"Ops.Gl.Matrix.Scale\"},{\"id\":\"r9gyvdkvh\",\"uiAttribs\":{\"subPatch\":\"802svhcdg\"},\"storage\":{},\"portsIn\":[{\"name\":\"Frequency\",\"value\":1},{\"name\":\"Type index\",\"value\":0},{\"name\":\"Type\",\"value\":\"sine\"},{\"name\":\"Phase\",\"value\":0},{\"name\":\"Range Min\",\"value\":0},{\"name\":\"Range Max\",\"value\":1}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pos\",\"portOut\":\"Result\",\"objIn\":\"qe82kxn0g\",\"objOut\":\"r9gyvdkvh\"}]}],\"objName\":\"Ops.Anim.LFO_v2\"},{\"id\":\"bmv9fqxjh\",\"uiAttribs\":{\"subPatch\":\"802svhcdg\"},\"storage\":{},\"portsIn\":[{\"name\":\"Speed\",\"value\":0.05},{\"name\":\"Play\",\"value\":1},{\"name\":\"Sync to timeline\",\"value\":0}],\"portsOut\":[{\"name\":\"Time\",\"links\":[{\"portIn\":\"Time\",\"portOut\":\"Time\",\"objIn\":\"r9gyvdkvh\",\"objOut\":\"bmv9fqxjh\"}]}],\"objName\":\"Ops.Anim.Timer_v2\"},{\"id\":\"we5n3qi4s\",\"uiAttribs\":{\"subPatch\":\"802svhcdg\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_alrh6hig4\",\"title\":\"render\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_alrh6hig4\",\"objIn\":\"rmprhecho\",\"objOut\":\"we5n3qi4s\"}]},{\"name\":\"innerOut_8dittifdh\",\"title\":\"Render\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"innerOut_8dittifdh\",\"objIn\":\"znj0gtwab\",\"objOut\":\"we5n3qi4s\"},{\"portIn\":\"Render\",\"portOut\":\"innerOut_8dittifdh\",\"objIn\":\"kan5jvxj9\",\"objOut\":\"we5n3qi4s\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"aqkj0fxy7\",\"uiAttribs\":{\"subPatch\":\"802svhcdg\"},\"storage\":{},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"qe82kxn0g\",\"uiAttribs\":{\"subPatch\":\"802svhcdg\"},\"storage\":{},\"portsIn\":[{\"name\":\"Blend Mode index\",\"value\":18},{\"name\":\"Blend Mode\",\"value\":\"Math Add\"},{\"name\":\"Alpha Mask index\",\"value\":0},{\"name\":\"Alpha Mask\",\"value\":\"Off\"},{\"name\":\"Amount\",\"value\":1},{\"name\":\"Width\",\"value\":1},{\"name\":\"Type index\",\"value\":3},{\"name\":\"Type\",\"value\":\"Radial\"},{\"name\":\"Smoothstep\",\"value\":0},{\"name\":\"sRGB\",\"value\":0},{\"name\":\"color space index\",\"value\":0},{\"name\":\"color space\",\"value\":\"RGB\"},{\"name\":\"r\",\"value\":0.19606043020884192},{\"name\":\"g\",\"value\":0.9551},{\"name\":\"b\",\"value\":0.3028},{\"name\":\"r2\",\"value\":0.247},{\"name\":\"g2\",\"value\":0.596},{\"name\":\"b2\",\"value\":0.608},{\"name\":\"r3\",\"value\":0.951},{\"name\":\"g3\",\"value\":0.0191},{\"name\":\"b3\",\"value\":0.6436}],\"objName\":\"Ops.Gl.ImageCompose.Gradient_v2\"},{\"id\":\"kan5jvxj9\",\"uiAttribs\":{\"subPatch\":\"802svhcdg\"},\"storage\":{},\"portsIn\":[{\"name\":\"Size index\",\"value\":0},{\"name\":\"Size\",\"value\":\"Auto\"},{\"name\":\"Width\",\"value\":640},{\"name\":\"Height\",\"value\":480},{\"name\":\"Filter index\",\"value\":1},{\"name\":\"Filter\",\"value\":\"linear\"},{\"name\":\"Wrap index\",\"value\":1},{\"name\":\"Wrap\",\"value\":\"repeat\"},{\"name\":\"Anisotropic index\",\"value\":0},{\"name\":\"Anisotropic\",\"value\":\"0\"},{\"name\":\"Pixel Format index\",\"value\":9},{\"name\":\"Pixel Format\",\"value\":\"RGBA 16bit float\"},{\"name\":\"Clear\",\"value\":1},{\"name\":\"R\",\"value\":0},{\"name\":\"G\",\"value\":0},{\"name\":\"B\",\"value\":0},{\"name\":\"A\",\"value\":0}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"Next\",\"objIn\":\"qe82kxn0g\",\"objOut\":\"kan5jvxj9\"}]},{\"name\":\"texture_out\",\"links\":[{\"portIn\":\"MatCap\",\"portOut\":\"texture_out\",\"objIn\":\"znj0gtwab\",\"objOut\":\"kan5jvxj9\"}]},{\"name\":\"Aspect Ratio\",\"value\":1.8746736292428199},{\"name\":\"Texture Width\",\"value\":1436},{\"name\":\"Texture Height\",\"value\":766}],\"objName\":\"Ops.Gl.ImageCompose.ImageCompose_v4\"}]}",};
+const attachments=op.attachments={"inc_gen_ports_js":"const port_alrh6hig4=op.inTrigger(\"alrh6hig4\");\nport_alrh6hig4.setUiAttribs({title:\"render\",});\n\nconst port_8dittifdh=op.inTrigger(\"8dittifdh\");\nport_8dittifdh.setUiAttribs({title:\"Render\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_alrh6hig4 = addedOps[i].outTrigger(\"innerOut_alrh6hig4\");\ninnerOut_alrh6hig4.setUiAttribs({title:\"render\"});\nport_alrh6hig4.onTriggered = () => { innerOut_alrh6hig4.trigger(); };\n\nconst innerOut_8dittifdh = addedOps[i].outTrigger(\"innerOut_8dittifdh\");\ninnerOut_8dittifdh.setUiAttribs({title:\"Render\"});\nport_8dittifdh.onTriggered = () => { innerOut_8dittifdh.trigger(); };\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"rmprhecho\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posX\",\"value\":-1.74},{\"name\":\"posY\",\"value\":0.97},{\"name\":\"posZ\",\"value\":0.05},{\"name\":\"scale\",\"value\":0.98},{\"name\":\"rotX\",\"value\":13},{\"name\":\"rotY\",\"value\":60.5},{\"name\":\"rotZ\",\"value\":-15}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"69e8cxa7e\",\"objOut\":\"rmprhecho\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"z1zbpc5ex\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Material Name\",\"value\":\"Material_0.001\"}],\"portsOut\":[{\"name\":\"Material\",\"links\":[{\"portIn\":\"Materials\",\"portOut\":\"Material\",\"objIn\":\"yyw9jp0lz\",\"objOut\":\"z1zbpc5ex\"}]}],\"objName\":\"Ops.Gl.GLTF.GltfSetMaterial\"},{\"id\":\"znj0gtwab\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":1},{\"name\":\"Opacity\",\"value\":1},{\"name\":\"AO Intensity\",\"value\":1},{\"name\":\"Normal Map Intensity\",\"value\":0.361},{\"name\":\"Repeat X\",\"value\":0},{\"name\":\"Repeat Y\",\"value\":0},{\"name\":\"Offset X\",\"value\":0},{\"name\":\"Offset Y\",\"value\":0},{\"name\":\"Double Sided\",\"value\":0},{\"name\":\"Screen Space Normals\",\"value\":0},{\"name\":\"Calc normal tangents\",\"value\":1},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"}],\"portsOut\":[{\"name\":\"Shader\",\"links\":[{\"portIn\":\"Shader\",\"portOut\":\"Shader\",\"objIn\":\"z1zbpc5ex\",\"objOut\":\"znj0gtwab\"}]}],\"objName\":\"Ops.Gl.Shader.MatCapMaterial_v3\"},{\"id\":\"13dxix11f\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Gradient\",\"value\":\"{\\\"keys\\\":[{\\\"pos\\\":0,\\\"posy\\\":0.5,\\\"r\\\":0.19606043020884192,\\\"g\\\":0.9551041666666666,\\\"b\\\":0.30280095564822357},{\\\"pos\\\":0,\\\"posy\\\":0.5,\\\"r\\\":0.19606043020884192,\\\"g\\\":0.9551041666666666,\\\"b\\\":0.30280095564822357},{\\\"pos\\\":0.25,\\\"posy\\\":0.7,\\\"r\\\":0.24755528330802917,\\\"g\\\":0.5961175041362186,\\\"b\\\":0.6089322916666666},{\\\"pos\\\":1,\\\"posy\\\":0.5,\\\"r\\\":0.9515885416666666,\\\"g\\\":0.01916651725769043,\\\"b\\\":0.643597891729076},{\\\"pos\\\":1,\\\"posy\\\":0.5,\\\"r\\\":0.9515885416666666,\\\"g\\\":0.01916651725769043,\\\"b\\\":0.643597891729076}]}\"},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"X\"},{\"name\":\"Smoothstep\",\"value\":0},{\"name\":\"Step\",\"value\":1},{\"name\":\"Flip\",\"value\":1},{\"name\":\"sRGB\",\"value\":0},{\"name\":\"Oklab\",\"value\":0},{\"name\":\"Size\",\"value\":8},{\"name\":\"filter index\",\"value\":0},{\"name\":\"filter\",\"value\":\"nearest\"},{\"name\":\"wrap index\",\"value\":0},{\"name\":\"wrap\",\"value\":\"clamp to edge\"},{\"name\":\"Dither\",\"value\":0},{\"name\":\"Gradient Array\",\"value\":0}],\"portsOut\":[{\"name\":\"Texture\",\"links\":[{\"portIn\":\"Normal\",\"portOut\":\"Texture\",\"objIn\":\"znj0gtwab\",\"objOut\":\"13dxix11f\"}]}],\"objName\":\"Ops.Gl.GradientTexture\"},{\"id\":\"69e8cxa7e\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"scale\",\"value\":0.76},{\"name\":\"x\",\"value\":0.99},{\"name\":\"y\",\"value\":1.79},{\"name\":\"z\",\"value\":0.47}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"yyw9jp0lz\",\"objOut\":\"69e8cxa7e\"}]}],\"objName\":\"Ops.Gl.Matrix.Scale\"},{\"id\":\"r9gyvdkvh\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Frequency\",\"value\":1},{\"name\":\"Type index\",\"value\":0},{\"name\":\"Type\",\"value\":\"sine\"},{\"name\":\"Phase\",\"value\":0},{\"name\":\"Range Min\",\"value\":0},{\"name\":\"Range Max\",\"value\":1}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pos\",\"portOut\":\"Result\",\"objIn\":\"qe82kxn0g\",\"objOut\":\"r9gyvdkvh\"}]}],\"objName\":\"Ops.Anim.LFO_v2\"},{\"id\":\"bmv9fqxjh\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Speed\",\"value\":0.05},{\"name\":\"Play\",\"value\":1},{\"name\":\"Sync to timeline\",\"value\":0}],\"portsOut\":[{\"name\":\"Time\",\"links\":[{\"portIn\":\"Time\",\"portOut\":\"Time\",\"objIn\":\"r9gyvdkvh\",\"objOut\":\"bmv9fqxjh\"}]}],\"objName\":\"Ops.Anim.Timer_v2\"},{\"id\":\"we5n3qi4s\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_alrh6hig4\",\"title\":\"render\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_alrh6hig4\",\"objIn\":\"rmprhecho\",\"objOut\":\"we5n3qi4s\"}]},{\"name\":\"innerOut_8dittifdh\",\"title\":\"Render\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"innerOut_8dittifdh\",\"objIn\":\"znj0gtwab\",\"objOut\":\"we5n3qi4s\"},{\"portIn\":\"Render\",\"portOut\":\"innerOut_8dittifdh\",\"objIn\":\"kan5jvxj9\",\"objOut\":\"we5n3qi4s\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"aqkj0fxy7\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"qe82kxn0g\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Blend Mode index\",\"value\":18},{\"name\":\"Blend Mode\",\"value\":\"Math Add\"},{\"name\":\"Alpha Mask index\",\"value\":0},{\"name\":\"Alpha Mask\",\"value\":\"Off\"},{\"name\":\"Amount\",\"value\":1},{\"name\":\"Width\",\"value\":1},{\"name\":\"Type index\",\"value\":3},{\"name\":\"Type\",\"value\":\"Radial\"},{\"name\":\"Smoothstep\",\"value\":0},{\"name\":\"sRGB\",\"value\":0},{\"name\":\"color space index\",\"value\":0},{\"name\":\"color space\",\"value\":\"RGB\"},{\"name\":\"r\",\"value\":0.19606043020884192},{\"name\":\"g\",\"value\":0.9551},{\"name\":\"b\",\"value\":0.3028},{\"name\":\"r2\",\"value\":0.247},{\"name\":\"g2\",\"value\":0.596},{\"name\":\"b2\",\"value\":0.608},{\"name\":\"r3\",\"value\":0.951},{\"name\":\"g3\",\"value\":0.0191},{\"name\":\"b3\",\"value\":0.6436}],\"objName\":\"Ops.Gl.ImageCompose.Gradient_v2\"},{\"id\":\"kan5jvxj9\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Size index\",\"value\":0},{\"name\":\"Size\",\"value\":\"Auto\"},{\"name\":\"Width\",\"value\":640},{\"name\":\"Height\",\"value\":480},{\"name\":\"Filter index\",\"value\":1},{\"name\":\"Filter\",\"value\":\"linear\"},{\"name\":\"Wrap index\",\"value\":1},{\"name\":\"Wrap\",\"value\":\"repeat\"},{\"name\":\"Anisotropic index\",\"value\":0},{\"name\":\"Anisotropic\",\"value\":\"0\"},{\"name\":\"Pixel Format index\",\"value\":9},{\"name\":\"Pixel Format\",\"value\":\"RGBA 16bit float\"},{\"name\":\"Clear\",\"value\":1},{\"name\":\"R\",\"value\":0},{\"name\":\"G\",\"value\":0},{\"name\":\"B\",\"value\":0},{\"name\":\"A\",\"value\":0}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"Next\",\"objIn\":\"qe82kxn0g\",\"objOut\":\"kan5jvxj9\"}]},{\"name\":\"texture_out\",\"links\":[{\"portIn\":\"MatCap\",\"portOut\":\"texture_out\",\"objIn\":\"znj0gtwab\",\"objOut\":\"kan5jvxj9\"}]},{\"name\":\"Aspect Ratio\",\"value\":1.713302752293578},{\"name\":\"Texture Width\",\"value\":1494},{\"name\":\"Texture Height\",\"value\":872}],\"objName\":\"Ops.Gl.ImageCompose.ImageCompose_v4\"},{\"id\":\"yyw9jp0lz\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{},\"portsIn\":[{\"name\":\"data\",\"value\":\"\"},{\"name\":\"glb File\",\"value\":\"/assets/tetragram_fixed_material.draco.glb\",\"display\":\"file\"},{\"name\":\"Draw\",\"value\":1},{\"name\":\"Camera index\",\"value\":0},{\"name\":\"Camera\",\"value\":\"None\"},{\"name\":\"Animation\",\"value\":\"\"},{\"name\":\"Center index\",\"value\":1},{\"name\":\"Center\",\"value\":\"XYZ\"},{\"name\":\"Rescale\",\"value\":1},{\"name\":\"Rescale Size\",\"value\":0.15},{\"name\":\"Time\",\"value\":0},{\"name\":\"Sync to timeline\",\"value\":0},{\"name\":\"Loop\",\"value\":1},{\"name\":\"Normals Format index\",\"value\":0},{\"name\":\"Normals Format\",\"value\":\"XYZ\"},{\"name\":\"Vertices Format index\",\"value\":0},{\"name\":\"Vertices Format\",\"value\":\"XYZ\"},{\"name\":\"Calc Normals index\",\"value\":0},{\"name\":\"Calc Normals\",\"value\":\"Auto\"},{\"name\":\"Hide Nodes\",\"value\":0},{\"name\":\"Use Material Properties\",\"value\":0},{\"name\":\"Active\",\"value\":1}],\"portsOut\":[{\"name\":\"Generator\",\"value\":\"Khronos glTF Blender I/O v4.2.60\"},{\"name\":\"GLTF Version\",\"value\":2},{\"name\":\"Anim Length\",\"value\":0},{\"name\":\"Anim Time\",\"value\":0},{\"name\":\"Loading\",\"value\":false}],\"objName\":\"Ops.Gl.GLTF.GltfScene_v4\"}]}",};
 const port_alrh6hig4=op.inTrigger("alrh6hig4");
 port_alrh6hig4.setUiAttribs({title:"render",});
 
@@ -196,23 +191,23 @@ function initializeSubpatch()
 
 };
 
-Ops.Patch.P4Zknbo.SubPatch3.prototype = new CABLES.Op();
-CABLES.OPS["4da89f73-5632-419e-9ff2-aca4b0372d4d"]={f:Ops.Patch.P4Zknbo.SubPatch3,objName:"Ops.Patch.P4Zknbo.SubPatch3"};
+Ops.Patch.PbdFbHA.SubPatch3.prototype = new CABLES.Op();
+CABLES.OPS["d8ef430e-cac3-4a6b-b046-872e1708ff5d"]={f:Ops.Patch.PbdFbHA.SubPatch3,objName:"Ops.Patch.PbdFbHA.SubPatch3"};
 
 
 
 
 // **************************************************************
 // 
-// Ops.Patch.P4Zknbo.UI_Reverse
+// Ops.Patch.PbdFbHA.UI_Reverse
 // 
 // **************************************************************
 
-Ops.Patch.P4Zknbo.UI_Reverse = function()
+Ops.Patch.PbdFbHA.UI_Reverse = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"op.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"qghiiy95s\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Named Trigger\",\"value\":\"exeNoCamera\"}],\"portsOut\":[{\"name\":\"Triggered\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"Triggered\",\"objIn\":\"tid23z5y9\",\"objOut\":\"qghiiy95s\"}]}],\"objName\":\"Ops.Trigger.TriggerReceive\"},{\"id\":\"7utel4c7y\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1.56},{\"name\":\"y\",\"value\":-0.91},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"wjdkfrc11\",\"objOut\":\"7utel4c7y\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"16otblnj7\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":2.35},{\"name\":\"y\",\"value\":-1.41},{\"name\":\"z\",\"value\":-1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"y8y68olnn\",\"objOut\":\"16otblnj7\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"y8y68olnn\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.18},{\"name\":\"g\",\"value\":0.87},{\"name\":\"b\",\"value\":0.7},{\"name\":\"a\",\"value\":0.639},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":1},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":1},{\"name\":\"Tex Offset Y\",\"value\":1},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"update\",\"portOut\":\"trigger\",\"objIn\":\"4rj53xcrb\",\"objOut\":\"y8y68olnn\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"emr97oqar\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":9},{\"name\":\"easing\",\"value\":\"Expo In Out\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"trigger\",\"objIn\":\"sagw7b55r\",\"objOut\":\"emr97oqar\"},{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"kvlx2oltj\",\"objOut\":\"emr97oqar\"}]},{\"name\":\"value\",\"links\":[{\"portIn\":\"Percentage\",\"portOut\":\"value\",\"objIn\":\"zw7w6mo0c\",\"objOut\":\"emr97oqar\"}]},{\"name\":\"finished\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"finished\",\"objIn\":\"eyg6ioae6\",\"objOut\":\"emr97oqar\"}]}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"texsus5w1\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"radius\",\"value\":0.5},{\"name\":\"segments\",\"value\":3},{\"name\":\"percent\",\"value\":1},{\"name\":\"steps\",\"value\":0},{\"name\":\"invertSteps\",\"value\":1},{\"name\":\"mapping index\",\"value\":1},{\"name\":\"mapping\",\"value\":\"round\"},{\"name\":\"Spline\",\"value\":0},{\"name\":\"Draw\",\"value\":0,\"title\":\"Render mesh\"}],\"portsOut\":[{\"name\":\"geometry\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"geometry\",\"objIn\":\"u5vhr44jp\",\"objOut\":\"texsus5w1\"}]}],\"objName\":\"Ops.Gl.Meshes.Circle_v3\"},{\"id\":\"mhkszyupz\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"direction\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"u5vhr44jp\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Translate X\",\"value\":0},{\"name\":\"Translate Y\",\"value\":0.03},{\"name\":\"Translate Z\",\"value\":0},{\"name\":\"Rotation X\",\"value\":0},{\"name\":\"Rotation Z\",\"value\":0}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"Result\",\"objIn\":\"a7obygjuu\",\"objOut\":\"u5vhr44jp\"}]}],\"objName\":\"Ops.Graphics.Geometry.TransformGeometry\"},{\"id\":\"a7obygjuu\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Render Mesh\",\"value\":1},{\"name\":\"Add Vertex Numbers\",\"value\":1}],\"objName\":\"Ops.Gl.RenderGeometry_v2\"},{\"id\":\"sagw7b55r\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"texsus5w1\",\"objOut\":\"sagw7b55r\"}]}],\"objName\":\"Ops.Trigger.GateTrigger\"},{\"id\":\"eyg6ioae6\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"bool 1\",\"portOut\":\"Result\",\"objIn\":\"c3tlwlzty\",\"objOut\":\"eyg6ioae6\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"wjfsknozl\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":8},{\"name\":\"easing\",\"value\":\"Expo Out\"},{\"name\":\"duration\",\"value\":2},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0},{\"name\":\"value true\",\"value\":180}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"a7obygjuu\",\"objOut\":\"wjfsknozl\"}]},{\"name\":\"value\",\"links\":[{\"portIn\":\"Rotation Y\",\"portOut\":\"value\",\"objIn\":\"u5vhr44jp\",\"objOut\":\"wjfsknozl\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"4ic99bue4\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"value\",\"value\":0.3}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Scale X\",\"portOut\":\"result\",\"objIn\":\"u5vhr44jp\",\"objOut\":\"4ic99bue4\"},{\"portIn\":\"Scale Y\",\"portOut\":\"result\",\"objIn\":\"u5vhr44jp\",\"objOut\":\"4ic99bue4\"},{\"portIn\":\"Scale Z\",\"portOut\":\"result\",\"objIn\":\"u5vhr44jp\",\"objOut\":\"4ic99bue4\"}]}],\"objName\":\"Ops.Number.Number\"},{\"id\":\"vnufzl0gr\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__directionHover\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"4rj53xcrb\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Duration\",\"value\":0.1},{\"name\":\"Invert\",\"value\":0}],\"portsOut\":[{\"name\":\"Trigger Out\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"Trigger Out\",\"objIn\":\"wjfsknozl\",\"objOut\":\"4rj53xcrb\"}]},{\"name\":\"Value\",\"links\":[{\"portIn\":\"bool 2\",\"portOut\":\"Value\",\"objIn\":\"c3tlwlzty\",\"objOut\":\"4rj53xcrb\"}]}],\"objName\":\"Ops.Anim.Bang\"},{\"id\":\"c3tlwlzty\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"bool 3\",\"value\":0},{\"name\":\"bool 4\",\"value\":0},{\"name\":\"bool 5\",\"value\":0},{\"name\":\"bool 6\",\"value\":0},{\"name\":\"bool 7\",\"value\":0},{\"name\":\"bool 8\",\"value\":0},{\"name\":\"bool 9\",\"value\":0},{\"name\":\"bool 10\",\"value\":0}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"sagw7b55r\",\"objOut\":\"c3tlwlzty\"}]}],\"objName\":\"Ops.Boolean.Or\"},{\"id\":\"645zi03vl\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Named Trigger\",\"value\":\"mainExe\"}],\"portsOut\":[{\"name\":\"Triggered\",\"links\":[{\"portIn\":\"Exec\",\"portOut\":\"Triggered\",\"objIn\":\"3j312q09a\",\"objOut\":\"645zi03vl\"}]}],\"objName\":\"Ops.Trigger.TriggerReceive\"},{\"id\":\"3j312q09a\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"Bang\",\"portOut\":\"Next\",\"objIn\":\"4rj53xcrb\",\"objOut\":\"3j312q09a\"}]},{\"name\":\"Was Triggered\",\"value\":1}],\"objName\":\"Ops.Trigger.TriggerOnce\"},{\"id\":\"hh1bw1t8x\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Text\",\"value\":\"mirror\"},{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.06},{\"name\":\"Letter Spacing\",\"value\":0},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":1},{\"name\":\"Align\",\"value\":\"Center\"},{\"name\":\"Vertical Align index\",\"value\":2},{\"name\":\"Vertical Align\",\"value\":\"Middle\"},{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":1},{\"name\":\"a\",\"value\":1},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.147},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.085},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":0},{\"name\":\"Border g\",\"value\":0.107},{\"name\":\"Border b\",\"value\":0.196},{\"name\":\"Shadow\",\"value\":0},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.1596796875},{\"name\":\"Height\",\"value\":0.056864533730158734},{\"name\":\"Start Y\",\"value\":0.017550471230158737},{\"name\":\"Num Chars\",\"value\":6}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"kvlx2oltj\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posX\",\"value\":-0.06},{\"name\":\"posY\",\"value\":0},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":1.12},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"hh1bw1t8x\",\"objOut\":\"kvlx2oltj\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"zw7w6mo0c\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0.8},{\"name\":\"Value 2\",\"value\":-1}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"innerRadius\",\"portOut\":\"Result\",\"objIn\":\"texsus5w1\",\"objOut\":\"zw7w6mo0c\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"ujqk5fpaf\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0},{\"name\":\"Value 2\",\"value\":180},{\"name\":\"Percentage\",\"value\":0}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"rotY\",\"portOut\":\"Result\",\"objIn\":\"kvlx2oltj\",\"objOut\":\"ujqk5fpaf\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"1pqb89bjc\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeBypass\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"Value\",\"objIn\":\"tz85ej408\",\"objOut\":\"1pqb89bjc\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"tid23z5y9\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"16otblnj7\",\"objOut\":\"tid23z5y9\"},{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"7utel4c7y\",\"objOut\":\"tid23z5y9\"}]}],\"objName\":\"Ops.Trigger.GateTrigger\"},{\"id\":\"tz85ej408\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"tid23z5y9\",\"objOut\":\"tz85ej408\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"cygi82km5\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"zbffut3f0\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"8ozh9kadw\",\"objOut\":\"zbffut3f0\"},{\"portIn\":\"Index\",\"portOut\":\"result\",\"objIn\":\"0vu10mt62\",\"objOut\":\"zbffut3f0\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"nfsa96rhl\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"value\",\"value\":\"scapeReverse\"}],\"portsOut\":[{\"name\":\"String\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String\",\"objIn\":\"cygi82km5\",\"objOut\":\"nfsa96rhl\"},{\"portIn\":\"String In\",\"portOut\":\"String\",\"objIn\":\"t14aqlug4\",\"objOut\":\"nfsa96rhl\"},{\"portIn\":\"ID\",\"portOut\":\"String\",\"objIn\":\"wjdkfrc11\",\"objOut\":\"nfsa96rhl\"}]}],\"objName\":\"Ops.String.String_v2\"},{\"id\":\"vu19d3bul\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Bool\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Bool\",\"objIn\":\"td9wlsg43\",\"objOut\":\"vu19d3bul\"}]}],\"objName\":\"Ops.Ui.VizBool\"},{\"id\":\"8ozh9kadw\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonToggle\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"90vhc52nh\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeReverse\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"9r76qflhv\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int rev\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"t14aqlug4\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"scapeReverse\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"qvj2rc5yc\",\"objOut\":\"t14aqlug4\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"qvj2rc5yc\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeReverse_mouseEnter_string\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"td9wlsg43\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeReverse\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"0vu10mt62\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_0\",\"value\":0},{\"name\":\"Numbers_1\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"90vhc52nh\",\"objOut\":\"0vu10mt62\"}]},{\"name\":\"Num Values\",\"value\":1}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"o11gp8oqj\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"l212r4h3a\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"wjdkfrc11\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":0.18},{\"name\":\"Height\",\"value\":0.3},{\"name\":\"Class\",\"value\":\"\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":0},{\"name\":\"Pivot y\",\"value\":\"center\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Render Rectangle\",\"value\":0},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":2},{\"name\":\"Cursor\",\"value\":\"pointer\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"Trigger out\",\"objIn\":\"emr97oqar\",\"objOut\":\"wjdkfrc11\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"emr97oqar\",\"objOut\":\"wjdkfrc11\"},{\"portIn\":\"Value\",\"portOut\":\"Pointer Hover\",\"objIn\":\"vnufzl0gr\",\"objOut\":\"wjdkfrc11\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bapp6utku\",\"objOut\":\"wjdkfrc11\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Hover\",\"objIn\":\"t14aqlug4\",\"objOut\":\"wjdkfrc11\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Hover\",\"objIn\":\"om0mg2x2d\",\"objOut\":\"wjdkfrc11\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"zbffut3f0\",\"objOut\":\"wjdkfrc11\"}]},{\"name\":\"Pointer X\",\"value\":0.43427912988118217},{\"name\":\"Pointer Y\",\"value\":0.028793380943673674},{\"name\":\"Top\",\"value\":527.8919612169266},{\"name\":\"Left\",\"value\":957.7120399475098},{\"name\":\"Right\",\"value\":1008.3707027435303},{\"name\":\"Bottom\",\"value\":612.3230167627335},{\"name\":\"Left Click\",\"links\":[{\"portIn\":\"trigger in\",\"portOut\":\"Left Click\",\"objIn\":\"lykqgog3v\",\"objOut\":\"wjdkfrc11\"}]}],\"objName\":\"Ops.Patch.P4Zknbo.InteractiveRectangle_v23\"},{\"id\":\"11sr8l1sw\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bapp6utku\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"11sr8l1sw\",\"objOut\":\"bapp6utku\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"fzdh5f3dx\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{},\"portsOut\":[{\"name\":\"Bool\",\"value\":0}],\"objName\":\"Ops.Ui.VizBool\"},{\"id\":\"om0mg2x2d\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{},\"portsIn\":[{\"name\":\"String In\",\"value\":\"enter\"},{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"leave\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"2taefvu7i\",\"objOut\":\"om0mg2x2d\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"2taefvu7i\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeReverse_mouseEnter_string\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"pf3tzra6p\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"host_scapeReverse\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"Value\",\"objIn\":\"fzdh5f3dx\",\"objOut\":\"pf3tzra6p\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"0dafyebwa\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{},\"portsIn\":[{\"name\":\"Value\",\"value\":0},{\"name\":\"Variable\",\"value\":\"host_scapeReverse\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"6871qjb4g\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2,\"ref\":\"6871qjb4g\"},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"host_scapeReverse\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Value\",\"objIn\":\"10k0ten5d\",\"objOut\":\"6871qjb4g\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"crxc9gthe\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"host_scapeReverse\"}],\"storage\":{\"ref\":\"crxc9gthe\"},\"objName\":\"Ops.Vars.VarTriggerNumber\"},{\"id\":\"c8109m2kz\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"portsIn\":[{\"name\":\"Loop min\",\"value\":0},{\"name\":\"Loop max\",\"value\":1}],\"portsOut\":[{\"name\":\"current count\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"current count\",\"objIn\":\"vu19d3bul\",\"objOut\":\"c8109m2kz\"},{\"portIn\":\"bool\",\"portOut\":\"current count\",\"objIn\":\"wjfsknozl\",\"objOut\":\"c8109m2kz\"}]}],\"storage\":{\"ref\":\"c8109m2kz\"},\"objName\":\"Ops.Trigger.TriggerCounterLoop\"},{\"id\":\"10k0ten5d\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"portsOut\":[{\"name\":\"True\",\"links\":[{\"portIn\":\"trigger in\",\"portOut\":\"True\",\"objIn\":\"c8109m2kz\",\"objOut\":\"10k0ten5d\"}]},{\"name\":\"False\",\"links\":[{\"portIn\":\"reset\",\"portOut\":\"False\",\"objIn\":\"c8109m2kz\",\"objOut\":\"10k0ten5d\"}]}],\"storage\":{\"ref\":\"10k0ten5d\"},\"objName\":\"Ops.Boolean.TriggerOnChangeBoolean\"},{\"id\":\"lykqgog3v\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"portsIn\":[{\"name\":\"Loop min\",\"value\":0},{\"name\":\"Loop max\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger out\",\"links\":[{\"portIn\":\"Trigger\",\"portOut\":\"trigger out\",\"objIn\":\"crxc9gthe\",\"objOut\":\"lykqgog3v\"}]},{\"name\":\"current count\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"current count\",\"objIn\":\"crxc9gthe\",\"objOut\":\"lykqgog3v\"}]}],\"storage\":{\"ref\":\"lykqgog3v\"},\"objName\":\"Ops.Trigger.TriggerCounterLoop\"}]}",};
+const attachments=op.attachments={"inc_gen_ports_js":"op.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"qghiiy95s\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Named Trigger\",\"value\":\"exeNoCamera\"}],\"portsOut\":[{\"name\":\"Triggered\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"Triggered\",\"objIn\":\"tid23z5y9\",\"objOut\":\"qghiiy95s\"}]}],\"objName\":\"Ops.Trigger.TriggerReceive\"},{\"id\":\"7utel4c7y\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1.56},{\"name\":\"y\",\"value\":-0.91},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"wjdkfrc11\",\"objOut\":\"7utel4c7y\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"16otblnj7\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":2.35},{\"name\":\"y\",\"value\":-1.41},{\"name\":\"z\",\"value\":-1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"y8y68olnn\",\"objOut\":\"16otblnj7\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"y8y68olnn\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.18},{\"name\":\"g\",\"value\":0.87},{\"name\":\"b\",\"value\":0.7},{\"name\":\"a\",\"value\":0.639},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":1},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":1},{\"name\":\"Tex Offset Y\",\"value\":1},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"update\",\"portOut\":\"trigger\",\"objIn\":\"4rj53xcrb\",\"objOut\":\"y8y68olnn\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"emr97oqar\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":9},{\"name\":\"easing\",\"value\":\"Expo In Out\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"trigger\",\"objIn\":\"sagw7b55r\",\"objOut\":\"emr97oqar\"},{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"kvlx2oltj\",\"objOut\":\"emr97oqar\"}]},{\"name\":\"value\",\"links\":[{\"portIn\":\"Percentage\",\"portOut\":\"value\",\"objIn\":\"zw7w6mo0c\",\"objOut\":\"emr97oqar\"}]},{\"name\":\"finished\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"finished\",\"objIn\":\"eyg6ioae6\",\"objOut\":\"emr97oqar\"}]}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"texsus5w1\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"radius\",\"value\":0.5},{\"name\":\"segments\",\"value\":3},{\"name\":\"percent\",\"value\":1},{\"name\":\"steps\",\"value\":0},{\"name\":\"invertSteps\",\"value\":1},{\"name\":\"mapping index\",\"value\":1},{\"name\":\"mapping\",\"value\":\"round\"},{\"name\":\"Spline\",\"value\":0},{\"name\":\"Draw\",\"value\":0,\"title\":\"Render mesh\"}],\"portsOut\":[{\"name\":\"geometry\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"geometry\",\"objIn\":\"u5vhr44jp\",\"objOut\":\"texsus5w1\"}]}],\"objName\":\"Ops.Gl.Meshes.Circle_v3\"},{\"id\":\"mhkszyupz\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"direction\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"u5vhr44jp\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Translate X\",\"value\":0},{\"name\":\"Translate Y\",\"value\":0.03},{\"name\":\"Translate Z\",\"value\":0},{\"name\":\"Rotation X\",\"value\":0},{\"name\":\"Rotation Z\",\"value\":0}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"Result\",\"objIn\":\"a7obygjuu\",\"objOut\":\"u5vhr44jp\"}]}],\"objName\":\"Ops.Graphics.Geometry.TransformGeometry\"},{\"id\":\"a7obygjuu\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Render Mesh\",\"value\":1},{\"name\":\"Add Vertex Numbers\",\"value\":1}],\"objName\":\"Ops.Gl.RenderGeometry_v2\"},{\"id\":\"sagw7b55r\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"texsus5w1\",\"objOut\":\"sagw7b55r\"}]}],\"objName\":\"Ops.Trigger.GateTrigger\"},{\"id\":\"eyg6ioae6\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"bool 1\",\"portOut\":\"Result\",\"objIn\":\"c3tlwlzty\",\"objOut\":\"eyg6ioae6\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"wjfsknozl\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":8},{\"name\":\"easing\",\"value\":\"Expo Out\"},{\"name\":\"duration\",\"value\":2},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0},{\"name\":\"value true\",\"value\":180}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"a7obygjuu\",\"objOut\":\"wjfsknozl\"}]},{\"name\":\"value\",\"links\":[{\"portIn\":\"Rotation Y\",\"portOut\":\"value\",\"objIn\":\"u5vhr44jp\",\"objOut\":\"wjfsknozl\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"4ic99bue4\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"value\",\"value\":0.3}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Scale X\",\"portOut\":\"result\",\"objIn\":\"u5vhr44jp\",\"objOut\":\"4ic99bue4\"},{\"portIn\":\"Scale Y\",\"portOut\":\"result\",\"objIn\":\"u5vhr44jp\",\"objOut\":\"4ic99bue4\"},{\"portIn\":\"Scale Z\",\"portOut\":\"result\",\"objIn\":\"u5vhr44jp\",\"objOut\":\"4ic99bue4\"}]}],\"objName\":\"Ops.Number.Number\"},{\"id\":\"vnufzl0gr\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__directionHover\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"4rj53xcrb\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Duration\",\"value\":0.1},{\"name\":\"Invert\",\"value\":0}],\"portsOut\":[{\"name\":\"Trigger Out\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"Trigger Out\",\"objIn\":\"wjfsknozl\",\"objOut\":\"4rj53xcrb\"}]},{\"name\":\"Value\",\"links\":[{\"portIn\":\"bool 2\",\"portOut\":\"Value\",\"objIn\":\"c3tlwlzty\",\"objOut\":\"4rj53xcrb\"}]}],\"objName\":\"Ops.Anim.Bang\"},{\"id\":\"c3tlwlzty\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"bool 3\",\"value\":0},{\"name\":\"bool 4\",\"value\":0},{\"name\":\"bool 5\",\"value\":0},{\"name\":\"bool 6\",\"value\":0},{\"name\":\"bool 7\",\"value\":0},{\"name\":\"bool 8\",\"value\":0},{\"name\":\"bool 9\",\"value\":0},{\"name\":\"bool 10\",\"value\":0}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"sagw7b55r\",\"objOut\":\"c3tlwlzty\"}]}],\"objName\":\"Ops.Boolean.Or\"},{\"id\":\"645zi03vl\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Named Trigger\",\"value\":\"mainExe\"}],\"portsOut\":[{\"name\":\"Triggered\",\"links\":[{\"portIn\":\"Exec\",\"portOut\":\"Triggered\",\"objIn\":\"3j312q09a\",\"objOut\":\"645zi03vl\"}]}],\"objName\":\"Ops.Trigger.TriggerReceive\"},{\"id\":\"3j312q09a\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"Bang\",\"portOut\":\"Next\",\"objIn\":\"4rj53xcrb\",\"objOut\":\"3j312q09a\"}]},{\"name\":\"Was Triggered\",\"value\":1}],\"objName\":\"Ops.Trigger.TriggerOnce\"},{\"id\":\"hh1bw1t8x\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Text\",\"value\":\"mirror\"},{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.06},{\"name\":\"Letter Spacing\",\"value\":0},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":1},{\"name\":\"Align\",\"value\":\"Center\"},{\"name\":\"Vertical Align index\",\"value\":2},{\"name\":\"Vertical Align\",\"value\":\"Middle\"},{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":1},{\"name\":\"a\",\"value\":1},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.147},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.085},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":0},{\"name\":\"Border g\",\"value\":0.107},{\"name\":\"Border b\",\"value\":0.196},{\"name\":\"Shadow\",\"value\":0},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.1596796875},{\"name\":\"Height\",\"value\":0.056864533730158734},{\"name\":\"Start Y\",\"value\":0.017550471230158737},{\"name\":\"Num Chars\",\"value\":6}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"kvlx2oltj\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posX\",\"value\":-0.06},{\"name\":\"posY\",\"value\":0},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":1.12},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"hh1bw1t8x\",\"objOut\":\"kvlx2oltj\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"zw7w6mo0c\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0.8},{\"name\":\"Value 2\",\"value\":-1}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"innerRadius\",\"portOut\":\"Result\",\"objIn\":\"texsus5w1\",\"objOut\":\"zw7w6mo0c\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"ujqk5fpaf\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0},{\"name\":\"Value 2\",\"value\":180},{\"name\":\"Percentage\",\"value\":0}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"rotY\",\"portOut\":\"Result\",\"objIn\":\"kvlx2oltj\",\"objOut\":\"ujqk5fpaf\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"1pqb89bjc\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeBypass\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"Value\",\"objIn\":\"tz85ej408\",\"objOut\":\"1pqb89bjc\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"tid23z5y9\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"16otblnj7\",\"objOut\":\"tid23z5y9\"},{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"7utel4c7y\",\"objOut\":\"tid23z5y9\"}]}],\"objName\":\"Ops.Trigger.GateTrigger\"},{\"id\":\"tz85ej408\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"tid23z5y9\",\"objOut\":\"tz85ej408\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"cygi82km5\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"zbffut3f0\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"8ozh9kadw\",\"objOut\":\"zbffut3f0\"},{\"portIn\":\"Index\",\"portOut\":\"result\",\"objIn\":\"0vu10mt62\",\"objOut\":\"zbffut3f0\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"nfsa96rhl\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"value\",\"value\":\"scapeReverse\"}],\"portsOut\":[{\"name\":\"String\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String\",\"objIn\":\"cygi82km5\",\"objOut\":\"nfsa96rhl\"},{\"portIn\":\"String In\",\"portOut\":\"String\",\"objIn\":\"t14aqlug4\",\"objOut\":\"nfsa96rhl\"},{\"portIn\":\"ID\",\"portOut\":\"String\",\"objIn\":\"wjdkfrc11\",\"objOut\":\"nfsa96rhl\"}]}],\"objName\":\"Ops.String.String_v2\"},{\"id\":\"vu19d3bul\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Bool\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Bool\",\"objIn\":\"td9wlsg43\",\"objOut\":\"vu19d3bul\"}]}],\"objName\":\"Ops.Ui.VizBool\"},{\"id\":\"8ozh9kadw\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonToggle\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"90vhc52nh\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeReverse\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"9r76qflhv\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int rev\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"t14aqlug4\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"scapeReverse\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"qvj2rc5yc\",\"objOut\":\"t14aqlug4\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"qvj2rc5yc\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeReverse_mouseEnter_string\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"td9wlsg43\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeReverse\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"0vu10mt62\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_0\",\"value\":0},{\"name\":\"Numbers_1\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"90vhc52nh\",\"objOut\":\"0vu10mt62\"}]},{\"name\":\"Num Values\",\"value\":1}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"o11gp8oqj\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"l212r4h3a\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"wjdkfrc11\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":0.18},{\"name\":\"Height\",\"value\":0.3},{\"name\":\"Class\",\"value\":\"\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":0},{\"name\":\"Pivot y\",\"value\":\"center\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Render Rectangle\",\"value\":0},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":2},{\"name\":\"Cursor\",\"value\":\"pointer\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"Trigger out\",\"objIn\":\"emr97oqar\",\"objOut\":\"wjdkfrc11\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"emr97oqar\",\"objOut\":\"wjdkfrc11\"},{\"portIn\":\"Value\",\"portOut\":\"Pointer Hover\",\"objIn\":\"vnufzl0gr\",\"objOut\":\"wjdkfrc11\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bapp6utku\",\"objOut\":\"wjdkfrc11\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Hover\",\"objIn\":\"t14aqlug4\",\"objOut\":\"wjdkfrc11\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Hover\",\"objIn\":\"om0mg2x2d\",\"objOut\":\"wjdkfrc11\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"zbffut3f0\",\"objOut\":\"wjdkfrc11\"}]},{\"name\":\"Pointer X\",\"value\":0.43427912988118217},{\"name\":\"Pointer Y\",\"value\":0.028793380943673674},{\"name\":\"Top\",\"value\":527.8919612169266},{\"name\":\"Left\",\"value\":957.7120399475098},{\"name\":\"Right\",\"value\":1008.3707027435303},{\"name\":\"Bottom\",\"value\":612.3230167627335},{\"name\":\"Left Click\",\"links\":[{\"portIn\":\"trigger in\",\"portOut\":\"Left Click\",\"objIn\":\"lykqgog3v\",\"objOut\":\"wjdkfrc11\"}]}],\"objName\":\"Ops.Patch.PbdFbHA.InteractiveRectangle_v23\"},{\"id\":\"11sr8l1sw\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bapp6utku\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"11sr8l1sw\",\"objOut\":\"bapp6utku\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"fzdh5f3dx\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Bool\",\"value\":0}],\"objName\":\"Ops.Ui.VizBool\"},{\"id\":\"om0mg2x2d\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"String In\",\"value\":\"enter\"},{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"leave\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"2taefvu7i\",\"objOut\":\"om0mg2x2d\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"2taefvu7i\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeReverse_mouseEnter_string\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"pf3tzra6p\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"host_scapeReverse\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"Value\",\"objIn\":\"fzdh5f3dx\",\"objOut\":\"pf3tzra6p\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"0dafyebwa\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value\",\"value\":0},{\"name\":\"Variable\",\"value\":\"host_scapeReverse\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"6871qjb4g\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2,\"ref\":\"6871qjb4g\"},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"host_scapeReverse\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Value\",\"objIn\":\"10k0ten5d\",\"objOut\":\"6871qjb4g\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"crxc9gthe\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"host_scapeReverse\"}],\"storage\":{\"ref\":\"crxc9gthe\",\"blueprintVer\":2},\"objName\":\"Ops.Vars.VarTriggerNumber\"},{\"id\":\"c8109m2kz\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"portsIn\":[{\"name\":\"Loop min\",\"value\":0},{\"name\":\"Loop max\",\"value\":1}],\"portsOut\":[{\"name\":\"current count\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"current count\",\"objIn\":\"vu19d3bul\",\"objOut\":\"c8109m2kz\"},{\"portIn\":\"bool\",\"portOut\":\"current count\",\"objIn\":\"wjfsknozl\",\"objOut\":\"c8109m2kz\"}]}],\"storage\":{\"ref\":\"c8109m2kz\",\"blueprintVer\":2},\"objName\":\"Ops.Trigger.TriggerCounterLoop\"},{\"id\":\"10k0ten5d\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"portsOut\":[{\"name\":\"True\",\"links\":[{\"portIn\":\"trigger in\",\"portOut\":\"True\",\"objIn\":\"c8109m2kz\",\"objOut\":\"10k0ten5d\"}]},{\"name\":\"False\",\"links\":[{\"portIn\":\"reset\",\"portOut\":\"False\",\"objIn\":\"c8109m2kz\",\"objOut\":\"10k0ten5d\"}]}],\"storage\":{\"ref\":\"10k0ten5d\",\"blueprintVer\":2},\"objName\":\"Ops.Boolean.TriggerOnChangeBoolean\"},{\"id\":\"lykqgog3v\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"portsIn\":[{\"name\":\"Loop min\",\"value\":0},{\"name\":\"Loop max\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger out\",\"links\":[{\"portIn\":\"Trigger\",\"portOut\":\"trigger out\",\"objIn\":\"crxc9gthe\",\"objOut\":\"lykqgog3v\"}]},{\"name\":\"current count\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"current count\",\"objIn\":\"crxc9gthe\",\"objOut\":\"lykqgog3v\"}]}],\"storage\":{\"ref\":\"lykqgog3v\",\"blueprintVer\":2},\"objName\":\"Ops.Trigger.TriggerCounterLoop\"}]}",};
 op.initInnerPorts=function(addedOps)
 {
   for(let i=0;i<addedOps.length;i++)
@@ -262,23 +257,23 @@ function initializeSubpatch()
 
 };
 
-Ops.Patch.P4Zknbo.UI_Reverse.prototype = new CABLES.Op();
-CABLES.OPS["542fcabf-cbcc-4a8f-897c-b6b622a90b92"]={f:Ops.Patch.P4Zknbo.UI_Reverse,objName:"Ops.Patch.P4Zknbo.UI_Reverse"};
+Ops.Patch.PbdFbHA.UI_Reverse.prototype = new CABLES.Op();
+CABLES.OPS["6e3eeb5b-6627-43e4-9a42-990df340ab4f"]={f:Ops.Patch.PbdFbHA.UI_Reverse,objName:"Ops.Patch.PbdFbHA.UI_Reverse"};
 
 
 
 
 // **************************************************************
 // 
-// Ops.Patch.P4Zknbo.BasicSlider_v5
+// Ops.Patch.PbdFbHA.BasicSlider_v5
 // 
 // **************************************************************
 
-Ops.Patch.P4Zknbo.BasicSlider_v5 = function()
+Ops.Patch.PbdFbHA.BasicSlider_v5 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"b5jmw6pne\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":0.24},{\"name\":\"Height\",\"value\":1},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":0},{\"name\":\"Pivot y\",\"value\":\"center\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Render Rectangle\",\"value\":0},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"7picyzk8b\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"geometry\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"geometry\",\"objIn\":\"mngezvib8\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Hover\",\"objIn\":\"s1gixysdm\",\"objOut\":\"b5jmw6pne\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"at2p512yk\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"okfe0jjro\",\"objOut\":\"b5jmw6pne\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"dr5mvrobr\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"Pointer X\",\"value\":0.09725448596467902},{\"name\":\"Pointer Y\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer Y\",\"objIn\":\"dr5mvrobr\",\"objOut\":\"b5jmw6pne\"},{\"portIn\":\"Value\",\"portOut\":\"Pointer Y\",\"objIn\":\"3rgu57nny\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"Top\",\"value\":143.9280012845993},{\"name\":\"Left\",\"value\":1578.6239383220673},{\"name\":\"Right\",\"value\":1681.4469587802887},{\"name\":\"Bottom\",\"value\":795.1404407024384}],\"objName\":\"Ops.Gl.InteractiveRectangle_v2\"},{\"id\":\"uryzrh2kd\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"7gzmyju3f\",\"objOut\":\"uryzrh2kd\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"7picyzk8b\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"f0zxrdgdl\",\"objOut\":\"7picyzk8b\"},{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"1hn64zsny\",\"objOut\":\"7picyzk8b\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"r1trdmnoo\",\"objOut\":\"7picyzk8b\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"cgqxkp1dw\",\"objOut\":\"7picyzk8b\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"hhgw84tqq\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"izi14m4jj\",\"objOut\":\"hhgw84tqq\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"b5jmw6pne\",\"objOut\":\"hhgw84tqq\"},{\"portIn\":\"String In\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"uej7igfhs\",\"objOut\":\"hhgw84tqq\"}]},{\"name\":\"innerOut_lj06d561p\",\"value\":0,\"title\":\"Show Boundings\"}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"r1trdmnoo\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"f0zxrdgdl\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":6},{\"name\":\"easing\",\"value\":\"Cubic In Out\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.7},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"oi1e3c961\",\"objOut\":\"f0zxrdgdl\"}]},{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"uryzrh2kd\",\"objOut\":\"f0zxrdgdl\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"r1trdmnoo\",\"objOut\":\"f0zxrdgdl\"},{\"portIn\":\"Percentage\",\"portOut\":\"value\",\"objIn\":\"s3bh58foh\",\"objOut\":\"f0zxrdgdl\"},{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"tsxnsqish\",\"objOut\":\"f0zxrdgdl\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"izi14m4jj\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1.76},{\"name\":\"y\",\"value\":0.013},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"jtfgofit6\",\"objOut\":\"izi14m4jj\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"7gzmyju3f\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":0.07},{\"name\":\"height\",\"value\":0.01},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":1},{\"name\":\"num rows\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"okfe0jjro\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"5vxvxqmq8\",\"objOut\":\"okfe0jjro\"},{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"cqxu3tj4o\",\"objOut\":\"okfe0jjro\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"q95osg3jr\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_dryMix\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"dmhn9643j\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int dry mix\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"uej7igfhs\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"dryMix\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"4ken8jo2h\",\"objOut\":\"uej7igfhs\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"2kcwcw99k\",\"objOut\":\"uej7igfhs\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"4ken8jo2h\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"905qrz86p\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"kzejscdk9\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_injectedState\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"xp3womx4e\",\"objOut\":\"kzejscdk9\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"2kcwcw99k\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Numbers_1\",\"portOut\":\"Result\",\"objIn\":\"yyj0dn3hl\",\"objOut\":\"2kcwcw99k\"},{\"portIn\":\"Number\",\"portOut\":\"Result\",\"objIn\":\"vrog0zpzu\",\"objOut\":\"2kcwcw99k\"}]},{\"name\":\"Found\",\"value\":0}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"5vxvxqmq8\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonSlider\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"yyj0dn3hl\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"q95osg3jr\",\"objOut\":\"yyj0dn3hl\"},{\"portIn\":\"number1\",\"portOut\":\"Number\",\"objIn\":\"toobytwr4\",\"objOut\":\"yyj0dn3hl\"},{\"portIn\":\"Number\",\"portOut\":\"Number\",\"objIn\":\"xc4wr3qpm\",\"objOut\":\"yyj0dn3hl\"},{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"7picyzk8b\",\"objOut\":\"yyj0dn3hl\"}]},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"xp3womx4e\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":1}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"2kcwcw99k\",\"objOut\":\"xp3womx4e\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"cqxu3tj4o\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Index\",\"portOut\":\"Result\",\"objIn\":\"yyj0dn3hl\",\"objOut\":\"cqxu3tj4o\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"xp3womx4e\",\"objOut\":\"cqxu3tj4o\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"jf5tu10qy\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"905qrz86p\",\"objOut\":\"jf5tu10qy\"},{\"portIn\":\"Numbers_0\",\"portOut\":\"result\",\"objIn\":\"yyj0dn3hl\",\"objOut\":\"jf5tu10qy\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"75ly7ofzk\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Decimal Places\",\"value\":0}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"string1\",\"portOut\":\"Result\",\"objIn\":\"2jmmqaj8y\",\"objOut\":\"75ly7ofzk\"}]}],\"objName\":\"Ops.String.NumberToString_v2\"},{\"id\":\"oi1e3c961\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0.01},{\"name\":\"y\",\"value\":0.61},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"tsxnsqish\",\"objOut\":\"oi1e3c961\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"834yak1b2\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"digits\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"toobytwr4\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":100}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Number\",\"portOut\":\"result\",\"objIn\":\"75ly7ofzk\",\"objOut\":\"toobytwr4\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"2jmmqaj8y\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"string2\",\"value\":\"%\"},{\"name\":\"New Line\",\"value\":0},{\"name\":\"Active\",\"value\":1}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Text\",\"portOut\":\"result\",\"objIn\":\"tsxnsqish\",\"objOut\":\"2jmmqaj8y\"}]}],\"objName\":\"Ops.String.Concat_v2\"},{\"id\":\"xc4wr3qpm\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.VizNumberBar\"},{\"id\":\"utf80cj50\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"portsOut\":[{\"name\":\"Value\",\"value\":\"disengage\"}],\"objName\":\"Ops.Vars.VarGetString\"},{\"id\":\"s1gixysdm\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"result\",\"objIn\":\"f0zxrdgdl\",\"objOut\":\"s1gixysdm\"},{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"uej7igfhs\",\"objOut\":\"s1gixysdm\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"dr5mvrobr\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Value Out\",\"objIn\":\"jf5tu10qy\",\"objOut\":\"dr5mvrobr\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"1hn64zsny\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posX\",\"value\":0},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":1},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"uryzrh2kd\",\"objOut\":\"1hn64zsny\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"jtfgofit6\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.651},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.912},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":0.05},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":-0.04},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"0d2yvn3ee\",\"objOut\":\"jtfgofit6\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"cgqxkp1dw\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"posY\",\"portOut\":\"result\",\"objIn\":\"1hn64zsny\",\"objOut\":\"cgqxkp1dw\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"mngezvib8\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Translate X\",\"value\":0.44},{\"name\":\"Translate Y\",\"value\":0.06},{\"name\":\"Translate Z\",\"value\":-0.5},{\"name\":\"Scale X\",\"value\":0.35},{\"name\":\"Scale Y\",\"value\":1.85},{\"name\":\"Scale Z\",\"value\":1},{\"name\":\"Rotation X\",\"value\":0},{\"name\":\"Rotation Y\",\"value\":0},{\"name\":\"Rotation Z\",\"value\":0}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"Result\",\"objIn\":\"0d2yvn3ee\",\"objOut\":\"mngezvib8\"}]}],\"objName\":\"Ops.Graphics.Geometry.TransformGeometry\"},{\"id\":\"0d2yvn3ee\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Render Mesh\",\"value\":1},{\"name\":\"Add Vertex Numbers\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"qntdf46e3\",\"objOut\":\"0d2yvn3ee\"}]}],\"objName\":\"Ops.Gl.RenderGeometry_v2\"},{\"id\":\"oedh2oj3o\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__lensFlareTexts\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"texture\",\"portOut\":\"Value\",\"objIn\":\"jtfgofit6\",\"objOut\":\"oedh2oj3o\"}]}],\"objName\":\"Ops.Vars.VarGetTexture_v2\"},{\"id\":\"qntdf46e3\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1},{\"name\":\"y\",\"value\":1.52},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"b5jmw6pne\",\"objOut\":\"qntdf46e3\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"},{\"id\":\"s3bh58foh\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":-2},{\"name\":\"Value 2\",\"value\":2}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Result\",\"objIn\":\"7knaraxdk\",\"objOut\":\"s3bh58foh\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"ac4vtthkl\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"at2p512yk\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"ac4vtthkl\",\"objOut\":\"at2p512yk\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"3rgu57nny\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValueOnHover\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"tsxnsqish\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{},\"portsIn\":[{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.06},{\"name\":\"Letter Spacing\",\"value\":0},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":1},{\"name\":\"Align\",\"value\":\"Center\"},{\"name\":\"Vertical Align index\",\"value\":2},{\"name\":\"Vertical Align\",\"value\":\"Middle\"},{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":1},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.3},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.5},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":1},{\"name\":\"Border g\",\"value\":1},{\"name\":\"Border b\",\"value\":1},{\"name\":\"Shadow\",\"value\":0},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.07661015624999999},{\"name\":\"Height\",\"value\":0.05096765873015873},{\"name\":\"Start Y\",\"value\":0.012567658730158734},{\"name\":\"Num Chars\",\"value\":2}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"7knaraxdk\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"result\",\"objIn\":\"jtfgofit6\",\"objOut\":\"7knaraxdk\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"vrog0zpzu\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{},\"objName\":\"Ops.Ui.VizNumberBar\"}]}",};
+const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"b5jmw6pne\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":0.24},{\"name\":\"Height\",\"value\":1},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":0},{\"name\":\"Pivot y\",\"value\":\"center\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Render Rectangle\",\"value\":0},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"7picyzk8b\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"geometry\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"geometry\",\"objIn\":\"mngezvib8\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Hover\",\"objIn\":\"s1gixysdm\",\"objOut\":\"b5jmw6pne\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"at2p512yk\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"okfe0jjro\",\"objOut\":\"b5jmw6pne\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"dr5mvrobr\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"Pointer X\",\"value\":0.09725448596467902},{\"name\":\"Pointer Y\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer Y\",\"objIn\":\"dr5mvrobr\",\"objOut\":\"b5jmw6pne\"},{\"portIn\":\"Value\",\"portOut\":\"Pointer Y\",\"objIn\":\"3rgu57nny\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"Top\",\"value\":143.9280012845993},{\"name\":\"Left\",\"value\":1578.6239383220673},{\"name\":\"Right\",\"value\":1681.4469587802887},{\"name\":\"Bottom\",\"value\":795.1404407024384}],\"objName\":\"Ops.Gl.InteractiveRectangle_v2\"},{\"id\":\"uryzrh2kd\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"7gzmyju3f\",\"objOut\":\"uryzrh2kd\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"7picyzk8b\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"f0zxrdgdl\",\"objOut\":\"7picyzk8b\"},{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"1hn64zsny\",\"objOut\":\"7picyzk8b\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"r1trdmnoo\",\"objOut\":\"7picyzk8b\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"cgqxkp1dw\",\"objOut\":\"7picyzk8b\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"hhgw84tqq\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"izi14m4jj\",\"objOut\":\"hhgw84tqq\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"b5jmw6pne\",\"objOut\":\"hhgw84tqq\"},{\"portIn\":\"String In\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"uej7igfhs\",\"objOut\":\"hhgw84tqq\"}]},{\"name\":\"innerOut_lj06d561p\",\"value\":0,\"title\":\"Show Boundings\"}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"r1trdmnoo\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"f0zxrdgdl\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":6},{\"name\":\"easing\",\"value\":\"Cubic In Out\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.7},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"oi1e3c961\",\"objOut\":\"f0zxrdgdl\"}]},{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"uryzrh2kd\",\"objOut\":\"f0zxrdgdl\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"r1trdmnoo\",\"objOut\":\"f0zxrdgdl\"},{\"portIn\":\"Percentage\",\"portOut\":\"value\",\"objIn\":\"s3bh58foh\",\"objOut\":\"f0zxrdgdl\"},{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"tsxnsqish\",\"objOut\":\"f0zxrdgdl\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"izi14m4jj\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1.76},{\"name\":\"y\",\"value\":0.013},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"jtfgofit6\",\"objOut\":\"izi14m4jj\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"7gzmyju3f\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":0.07},{\"name\":\"height\",\"value\":0.01},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":1},{\"name\":\"num rows\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"okfe0jjro\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"5vxvxqmq8\",\"objOut\":\"okfe0jjro\"},{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"cqxu3tj4o\",\"objOut\":\"okfe0jjro\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"q95osg3jr\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_dryMix\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"dmhn9643j\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int dry mix\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"uej7igfhs\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"dryMix\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"4ken8jo2h\",\"objOut\":\"uej7igfhs\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"2kcwcw99k\",\"objOut\":\"uej7igfhs\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"4ken8jo2h\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"905qrz86p\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"kzejscdk9\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_injectedState\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"xp3womx4e\",\"objOut\":\"kzejscdk9\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"2kcwcw99k\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Numbers_1\",\"portOut\":\"Result\",\"objIn\":\"yyj0dn3hl\",\"objOut\":\"2kcwcw99k\"},{\"portIn\":\"Number\",\"portOut\":\"Result\",\"objIn\":\"vrog0zpzu\",\"objOut\":\"2kcwcw99k\"}]},{\"name\":\"Found\",\"value\":0}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"5vxvxqmq8\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonSlider\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"yyj0dn3hl\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"q95osg3jr\",\"objOut\":\"yyj0dn3hl\"},{\"portIn\":\"number1\",\"portOut\":\"Number\",\"objIn\":\"toobytwr4\",\"objOut\":\"yyj0dn3hl\"},{\"portIn\":\"Number\",\"portOut\":\"Number\",\"objIn\":\"xc4wr3qpm\",\"objOut\":\"yyj0dn3hl\"},{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"7picyzk8b\",\"objOut\":\"yyj0dn3hl\"}]},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"xp3womx4e\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":1}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"2kcwcw99k\",\"objOut\":\"xp3womx4e\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"cqxu3tj4o\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Index\",\"portOut\":\"Result\",\"objIn\":\"yyj0dn3hl\",\"objOut\":\"cqxu3tj4o\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"xp3womx4e\",\"objOut\":\"cqxu3tj4o\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"jf5tu10qy\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"905qrz86p\",\"objOut\":\"jf5tu10qy\"},{\"portIn\":\"Numbers_0\",\"portOut\":\"result\",\"objIn\":\"yyj0dn3hl\",\"objOut\":\"jf5tu10qy\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"75ly7ofzk\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Decimal Places\",\"value\":0}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"string1\",\"portOut\":\"Result\",\"objIn\":\"2jmmqaj8y\",\"objOut\":\"75ly7ofzk\"}]}],\"objName\":\"Ops.String.NumberToString_v2\"},{\"id\":\"oi1e3c961\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0.01},{\"name\":\"y\",\"value\":0.61},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"tsxnsqish\",\"objOut\":\"oi1e3c961\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"834yak1b2\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"digits\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"toobytwr4\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":100}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Number\",\"portOut\":\"result\",\"objIn\":\"75ly7ofzk\",\"objOut\":\"toobytwr4\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"2jmmqaj8y\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"string2\",\"value\":\"%\"},{\"name\":\"New Line\",\"value\":0},{\"name\":\"Active\",\"value\":1}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Text\",\"portOut\":\"result\",\"objIn\":\"tsxnsqish\",\"objOut\":\"2jmmqaj8y\"}]}],\"objName\":\"Ops.String.Concat_v2\"},{\"id\":\"xc4wr3qpm\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.VizNumberBar\"},{\"id\":\"utf80cj50\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"portsOut\":[{\"name\":\"Value\",\"value\":\"disengage\"}],\"objName\":\"Ops.Vars.VarGetString\"},{\"id\":\"s1gixysdm\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"result\",\"objIn\":\"f0zxrdgdl\",\"objOut\":\"s1gixysdm\"},{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"uej7igfhs\",\"objOut\":\"s1gixysdm\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"dr5mvrobr\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Value Out\",\"objIn\":\"jf5tu10qy\",\"objOut\":\"dr5mvrobr\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"1hn64zsny\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posX\",\"value\":0},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":1},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"uryzrh2kd\",\"objOut\":\"1hn64zsny\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"jtfgofit6\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.651},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.912},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":0.05},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":-0.04},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"0d2yvn3ee\",\"objOut\":\"jtfgofit6\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"cgqxkp1dw\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"posY\",\"portOut\":\"result\",\"objIn\":\"1hn64zsny\",\"objOut\":\"cgqxkp1dw\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"mngezvib8\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Translate X\",\"value\":0.44},{\"name\":\"Translate Y\",\"value\":0.06},{\"name\":\"Translate Z\",\"value\":-0.5},{\"name\":\"Scale X\",\"value\":0.35},{\"name\":\"Scale Y\",\"value\":1.85},{\"name\":\"Scale Z\",\"value\":1},{\"name\":\"Rotation X\",\"value\":0},{\"name\":\"Rotation Y\",\"value\":0},{\"name\":\"Rotation Z\",\"value\":0}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"Result\",\"objIn\":\"0d2yvn3ee\",\"objOut\":\"mngezvib8\"}]}],\"objName\":\"Ops.Graphics.Geometry.TransformGeometry\"},{\"id\":\"0d2yvn3ee\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Render Mesh\",\"value\":1},{\"name\":\"Add Vertex Numbers\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"qntdf46e3\",\"objOut\":\"0d2yvn3ee\"}]}],\"objName\":\"Ops.Gl.RenderGeometry_v2\"},{\"id\":\"oedh2oj3o\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__lensFlareTexts\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"texture\",\"portOut\":\"Value\",\"objIn\":\"jtfgofit6\",\"objOut\":\"oedh2oj3o\"}]}],\"objName\":\"Ops.Vars.VarGetTexture_v2\"},{\"id\":\"qntdf46e3\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1},{\"name\":\"y\",\"value\":1.52},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"b5jmw6pne\",\"objOut\":\"qntdf46e3\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"},{\"id\":\"s3bh58foh\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":-2},{\"name\":\"Value 2\",\"value\":2}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Result\",\"objIn\":\"7knaraxdk\",\"objOut\":\"s3bh58foh\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"ac4vtthkl\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"at2p512yk\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"ac4vtthkl\",\"objOut\":\"at2p512yk\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"3rgu57nny\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValueOnHover\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"tsxnsqish\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.06},{\"name\":\"Letter Spacing\",\"value\":0},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":1},{\"name\":\"Align\",\"value\":\"Center\"},{\"name\":\"Vertical Align index\",\"value\":2},{\"name\":\"Vertical Align\",\"value\":\"Middle\"},{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":1},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.3},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.5},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":1},{\"name\":\"Border g\",\"value\":1},{\"name\":\"Border b\",\"value\":1},{\"name\":\"Shadow\",\"value\":0},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.07661015624999999},{\"name\":\"Height\",\"value\":0.05096765873015873},{\"name\":\"Start Y\",\"value\":0.012567658730158734},{\"name\":\"Num Chars\",\"value\":2}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"7knaraxdk\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"result\",\"objIn\":\"jtfgofit6\",\"objOut\":\"7knaraxdk\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"vrog0zpzu\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.VizNumberBar\"}]}",};
 const port_blls2amps=op.inTrigger("blls2amps");
 port_blls2amps.setUiAttribs({title:"Trigger in",});
 
@@ -365,8 +360,8 @@ function initializeSubpatch()
 
 };
 
-Ops.Patch.P4Zknbo.BasicSlider_v5.prototype = new CABLES.Op();
-CABLES.OPS["a69c9b2a-f8c4-4806-aacb-2033c1fd98d0"]={f:Ops.Patch.P4Zknbo.BasicSlider_v5,objName:"Ops.Patch.P4Zknbo.BasicSlider_v5"};
+Ops.Patch.PbdFbHA.BasicSlider_v5.prototype = new CABLES.Op();
+CABLES.OPS["035a569d-f792-4c2d-8b85-43d9bc17b169"]={f:Ops.Patch.PbdFbHA.BasicSlider_v5,objName:"Ops.Patch.PbdFbHA.BasicSlider_v5"};
 
 
 
@@ -2023,11 +2018,11 @@ CABLES.OPS["cf194306-175b-416a-b90e-31ff2192a190"]={f:Ops.Ui.VizBool,objName:"Op
 
 // **************************************************************
 // 
-// Ops.Patch.P4Zknbo.InteractiveRectangle_v25
+// Ops.Patch.PbdFbHA.InteractiveRectangle_v25
 // 
 // **************************************************************
 
-Ops.Patch.P4Zknbo.InteractiveRectangle_v25 = function()
+Ops.Patch.PbdFbHA.InteractiveRectangle_v25 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
@@ -2512,8 +2507,8 @@ function addListeners()
 
 };
 
-Ops.Patch.P4Zknbo.InteractiveRectangle_v25.prototype = new CABLES.Op();
-CABLES.OPS["db1e057a-78bc-43bf-9b66-0fefc9eddfc6"]={f:Ops.Patch.P4Zknbo.InteractiveRectangle_v25,objName:"Ops.Patch.P4Zknbo.InteractiveRectangle_v25"};
+Ops.Patch.PbdFbHA.InteractiveRectangle_v25.prototype = new CABLES.Op();
+CABLES.OPS["b63571d5-544f-40eb-8048-ec0868e5ad33"]={f:Ops.Patch.PbdFbHA.InteractiveRectangle_v25,objName:"Ops.Patch.PbdFbHA.InteractiveRectangle_v25"};
 
 
 
@@ -2545,15 +2540,15 @@ CABLES.OPS["421f5b52-c0fa-47c4-8b7a-012b9e1c864a"]={f:Ops.Vars.VarGetNumber_v2,o
 
 // **************************************************************
 // 
-// Ops.Patch.P4Zknbo.DisengageFlag2
+// Ops.Patch.PbdFbHA.DisengageFlag2
 // 
 // **************************************************************
 
-Ops.Patch.P4Zknbo.DisengageFlag2 = function()
+Ops.Patch.PbdFbHA.DisengageFlag2 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_jqg7l6f5m=op.inFloat(\"jqg7l6f5m\",0);\nport_jqg7l6f5m.setUiAttribs({title:\"Boolean\",display:\"bool\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_jqg7l6f5m = addedOps[i].outNumber(\"innerOut_jqg7l6f5m\");\ninnerOut_jqg7l6f5m.set(port_jqg7l6f5m.get() );\ninnerOut_jqg7l6f5m.setUiAttribs({title:\"Boolean\"});\nport_jqg7l6f5m.on(\"change\", (a,v) => { innerOut_jqg7l6f5m.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"tjwrh5u95\",\"uiAttribs\":{\"subPatch\":\"qs9sxp2nl\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"dlvka8p7u\",\"uiAttribs\":{\"subPatch\":\"qs9sxp2nl\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"tjwrh5u95\",\"objOut\":\"dlvka8p7u\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"eck8hvwot\",\"uiAttribs\":{\"subPatch\":\"qs9sxp2nl\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_jqg7l6f5m\",\"title\":\"Boolean\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"innerOut_jqg7l6f5m\",\"objIn\":\"dlvka8p7u\",\"objOut\":\"eck8hvwot\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"7mxc7zyyb\",\"uiAttribs\":{\"subPatch\":\"qs9sxp2nl\"},\"storage\":{},\"objName\":\"Ops.Ui.SubPatchOutput\"}]}",};
+const attachments=op.attachments={"inc_gen_ports_js":"const port_jqg7l6f5m=op.inFloat(\"jqg7l6f5m\",0);\nport_jqg7l6f5m.setUiAttribs({title:\"Boolean\",display:\"bool\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_jqg7l6f5m = addedOps[i].outNumber(\"innerOut_jqg7l6f5m\");\ninnerOut_jqg7l6f5m.set(port_jqg7l6f5m.get() );\ninnerOut_jqg7l6f5m.setUiAttribs({title:\"Boolean\"});\nport_jqg7l6f5m.on(\"change\", (a,v) => { innerOut_jqg7l6f5m.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"tjwrh5u95\",\"uiAttribs\":{\"subPatch\":\"qs9sxp2nl\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"dlvka8p7u\",\"uiAttribs\":{\"subPatch\":\"qs9sxp2nl\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"tjwrh5u95\",\"objOut\":\"dlvka8p7u\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"eck8hvwot\",\"uiAttribs\":{\"subPatch\":\"qs9sxp2nl\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_jqg7l6f5m\",\"title\":\"Boolean\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"innerOut_jqg7l6f5m\",\"objIn\":\"dlvka8p7u\",\"objOut\":\"eck8hvwot\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"7mxc7zyyb\",\"uiAttribs\":{\"subPatch\":\"qs9sxp2nl\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchOutput\"}]}",};
 const port_jqg7l6f5m=op.inFloat("jqg7l6f5m",0);
 port_jqg7l6f5m.setUiAttribs({title:"Boolean",display:"bool",});
 
@@ -2611,8 +2606,8 @@ function initializeSubpatch()
 
 };
 
-Ops.Patch.P4Zknbo.DisengageFlag2.prototype = new CABLES.Op();
-CABLES.OPS["62217044-a409-4bb6-bbac-6b45623ed8ad"]={f:Ops.Patch.P4Zknbo.DisengageFlag2,objName:"Ops.Patch.P4Zknbo.DisengageFlag2"};
+Ops.Patch.PbdFbHA.DisengageFlag2.prototype = new CABLES.Op();
+CABLES.OPS["beed8071-f26a-4a66-9fd1-f7429503fa49"]={f:Ops.Patch.PbdFbHA.DisengageFlag2,objName:"Ops.Patch.PbdFbHA.DisengageFlag2"};
 
 
 
@@ -2794,15 +2789,15 @@ CABLES.OPS["c8fb181e-0b03-4b41-9e55-06b6267bc634"]={f:Ops.Math.Sum,objName:"Ops.
 
 // **************************************************************
 // 
-// Ops.Patch.P4Zknbo.BasicSlider_v1
+// Ops.Patch.PbdFbHA.BasicSlider_v1
 // 
 // **************************************************************
 
-Ops.Patch.P4Zknbo.BasicSlider_v1 = function()
+Ops.Patch.PbdFbHA.BasicSlider_v1 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"mibecaqps\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"zzuotyuj8\",\"objOut\":\"mibecaqps\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"0lkifp8gr\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posY\",\"value\":0},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":-180},{\"name\":\"rotY\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"mibecaqps\",\"objOut\":\"0lkifp8gr\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"rviscpw5r\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"0lkifp8gr\",\"objOut\":\"rviscpw5r\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"ujv4mg17e\",\"objOut\":\"rviscpw5r\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"0lkifp8gr\",\"objOut\":\"rviscpw5r\"},{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"nor1x0y61\",\"objOut\":\"rviscpw5r\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"iea5ao2y2\",\"objOut\":\"rviscpw5r\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"zzuotyuj8\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"width\",\"value\":0.017},{\"name\":\"height\",\"value\":0.05},{\"name\":\"Draw\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Triangle_v2\"},{\"id\":\"gmc3o0yzj\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"zyly9dj8g\",\"objOut\":\"gmc3o0yzj\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"String In\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"g0k1dqgdc\",\"objOut\":\"gmc3o0yzj\"},{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"mzzhxzxfq\",\"objOut\":\"gmc3o0yzj\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"mzzhxzxfq\",\"objOut\":\"gmc3o0yzj\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"nor1x0y61\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"9bvbbyk9y\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"rviscpw5r\",\"objOut\":\"9bvbbyk9y\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"ujv4mg17e\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.49},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"mibecaqps\",\"objOut\":\"ujv4mg17e\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"nor1x0y61\",\"objOut\":\"ujv4mg17e\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"iea5ao2y2\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rotZ\",\"portOut\":\"result\",\"objIn\":\"0lkifp8gr\",\"objOut\":\"iea5ao2y2\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"zyly9dj8g\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0},{\"name\":\"y\",\"value\":-1.45},{\"name\":\"z\",\"value\":0.02}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bnqxchxdy\",\"objOut\":\"zyly9dj8g\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"i35qt5h52\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"leht2psro\",\"objOut\":\"i35qt5h52\"},{\"portIn\":\"Index\",\"portOut\":\"result\",\"objIn\":\"8vb7jo147\",\"objOut\":\"i35qt5h52\"},{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"mjgge74tk\",\"objOut\":\"i35qt5h52\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"7zp4rrptl\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeLevel\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"w1t4yqcfv\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int ir level\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"g0k1dqgdc\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"scapeLevel\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"ejj3oddhv\",\"objOut\":\"g0k1dqgdc\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"zwg2yqvrf\",\"objOut\":\"g0k1dqgdc\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"ejj3oddhv\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"8kcvz9igq\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"qmk2dl6c4\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_injectedState\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"gknkj3y4x\",\"objOut\":\"qmk2dl6c4\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"zwg2yqvrf\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Numbers_0\",\"portOut\":\"Result\",\"objIn\":\"8vb7jo147\",\"objOut\":\"zwg2yqvrf\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"8vb7jo147\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"7zp4rrptl\",\"objOut\":\"8vb7jo147\"},{\"portIn\":\"number1\",\"portOut\":\"Number\",\"objIn\":\"9bvbbyk9y\",\"objOut\":\"8vb7jo147\"}]},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"gknkj3y4x\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":1}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"zwg2yqvrf\",\"objOut\":\"gknkj3y4x\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"leht2psro\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"gknkj3y4x\",\"objOut\":\"leht2psro\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"mjgge74tk\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonSlider\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"ma5xd9zja\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Value Out\",\"objIn\":\"8kcvz9igq\",\"objOut\":\"ma5xd9zja\"},{\"portIn\":\"Numbers_1\",\"portOut\":\"Value Out\",\"objIn\":\"8vb7jo147\",\"objOut\":\"ma5xd9zja\"},{\"portIn\":\"Number\",\"portOut\":\"Value Out\",\"objIn\":\"o1wvr3kg9\",\"objOut\":\"ma5xd9zja\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"o1wvr3kg9\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.VizNumberBar\"},{\"id\":\"3hftipxyj\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"pk2351zm7\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"3hftipxyj\",\"objOut\":\"pk2351zm7\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"mzzhxzxfq\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":1},{\"name\":\"Height\",\"value\":0.34},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":9},{\"name\":\"Cursor\",\"value\":\"s-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"rviscpw5r\",\"objOut\":\"mzzhxzxfq\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"ujv4mg17e\",\"objOut\":\"mzzhxzxfq\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Hover\",\"objIn\":\"g0k1dqgdc\",\"objOut\":\"mzzhxzxfq\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"pk2351zm7\",\"objOut\":\"mzzhxzxfq\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"i35qt5h52\",\"objOut\":\"mzzhxzxfq\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"ma5xd9zja\",\"objOut\":\"mzzhxzxfq\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"ma5xd9zja\",\"objOut\":\"mzzhxzxfq\"},{\"portIn\":\"Value\",\"portOut\":\"Pointer X\",\"objIn\":\"tc6onu8jl\",\"objOut\":\"mzzhxzxfq\"}]},{\"name\":\"Pointer Y\",\"value\":0.875708644499907},{\"name\":\"Top\",\"value\":652.3148226737976},{\"name\":\"Left\",\"value\":396.1774400472641},{\"name\":\"Right\",\"value\":1405.822559952736},{\"name\":\"Bottom\",\"value\":716.6797173023224}],\"objName\":\"Ops.Patch.P4Zknbo.InteractiveRectangle_v24\"},{\"id\":\"tc6onu8jl\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValueOnHover\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bnqxchxdy\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{},\"portsIn\":[{\"name\":\"x\",\"value\":2.72},{\"name\":\"y\",\"value\":0.51},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"mzzhxzxfq\",\"objOut\":\"bnqxchxdy\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"}]}",};
+const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"mibecaqps\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"zzuotyuj8\",\"objOut\":\"mibecaqps\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"0lkifp8gr\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posY\",\"value\":0},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":-180},{\"name\":\"rotY\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"mibecaqps\",\"objOut\":\"0lkifp8gr\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"rviscpw5r\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"0lkifp8gr\",\"objOut\":\"rviscpw5r\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"ujv4mg17e\",\"objOut\":\"rviscpw5r\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"0lkifp8gr\",\"objOut\":\"rviscpw5r\"},{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"nor1x0y61\",\"objOut\":\"rviscpw5r\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"iea5ao2y2\",\"objOut\":\"rviscpw5r\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"zzuotyuj8\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"width\",\"value\":0.017},{\"name\":\"height\",\"value\":0.05},{\"name\":\"Draw\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Triangle_v2\"},{\"id\":\"gmc3o0yzj\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"zyly9dj8g\",\"objOut\":\"gmc3o0yzj\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"String In\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"g0k1dqgdc\",\"objOut\":\"gmc3o0yzj\"},{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"mzzhxzxfq\",\"objOut\":\"gmc3o0yzj\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"mzzhxzxfq\",\"objOut\":\"gmc3o0yzj\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"nor1x0y61\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"9bvbbyk9y\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"rviscpw5r\",\"objOut\":\"9bvbbyk9y\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"ujv4mg17e\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.49},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"mibecaqps\",\"objOut\":\"ujv4mg17e\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"nor1x0y61\",\"objOut\":\"ujv4mg17e\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"iea5ao2y2\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rotZ\",\"portOut\":\"result\",\"objIn\":\"0lkifp8gr\",\"objOut\":\"iea5ao2y2\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"zyly9dj8g\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0},{\"name\":\"y\",\"value\":-1.45},{\"name\":\"z\",\"value\":0.02}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bnqxchxdy\",\"objOut\":\"zyly9dj8g\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"i35qt5h52\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"leht2psro\",\"objOut\":\"i35qt5h52\"},{\"portIn\":\"Index\",\"portOut\":\"result\",\"objIn\":\"8vb7jo147\",\"objOut\":\"i35qt5h52\"},{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"mjgge74tk\",\"objOut\":\"i35qt5h52\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"7zp4rrptl\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeLevel\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"w1t4yqcfv\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int ir level\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"g0k1dqgdc\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"scapeLevel\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"ejj3oddhv\",\"objOut\":\"g0k1dqgdc\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"zwg2yqvrf\",\"objOut\":\"g0k1dqgdc\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"ejj3oddhv\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"8kcvz9igq\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"qmk2dl6c4\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_injectedState\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"gknkj3y4x\",\"objOut\":\"qmk2dl6c4\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"zwg2yqvrf\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Numbers_0\",\"portOut\":\"Result\",\"objIn\":\"8vb7jo147\",\"objOut\":\"zwg2yqvrf\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"8vb7jo147\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"7zp4rrptl\",\"objOut\":\"8vb7jo147\"},{\"portIn\":\"number1\",\"portOut\":\"Number\",\"objIn\":\"9bvbbyk9y\",\"objOut\":\"8vb7jo147\"}]},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"gknkj3y4x\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":1}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"zwg2yqvrf\",\"objOut\":\"gknkj3y4x\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"leht2psro\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"gknkj3y4x\",\"objOut\":\"leht2psro\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"mjgge74tk\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonSlider\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"ma5xd9zja\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Value Out\",\"objIn\":\"8kcvz9igq\",\"objOut\":\"ma5xd9zja\"},{\"portIn\":\"Numbers_1\",\"portOut\":\"Value Out\",\"objIn\":\"8vb7jo147\",\"objOut\":\"ma5xd9zja\"},{\"portIn\":\"Number\",\"portOut\":\"Value Out\",\"objIn\":\"o1wvr3kg9\",\"objOut\":\"ma5xd9zja\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"o1wvr3kg9\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.VizNumberBar\"},{\"id\":\"3hftipxyj\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"pk2351zm7\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"3hftipxyj\",\"objOut\":\"pk2351zm7\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"mzzhxzxfq\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":1},{\"name\":\"Height\",\"value\":0.34},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":9},{\"name\":\"Cursor\",\"value\":\"s-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"rviscpw5r\",\"objOut\":\"mzzhxzxfq\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"ujv4mg17e\",\"objOut\":\"mzzhxzxfq\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Hover\",\"objIn\":\"g0k1dqgdc\",\"objOut\":\"mzzhxzxfq\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"pk2351zm7\",\"objOut\":\"mzzhxzxfq\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"i35qt5h52\",\"objOut\":\"mzzhxzxfq\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"ma5xd9zja\",\"objOut\":\"mzzhxzxfq\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"ma5xd9zja\",\"objOut\":\"mzzhxzxfq\"},{\"portIn\":\"Value\",\"portOut\":\"Pointer X\",\"objIn\":\"tc6onu8jl\",\"objOut\":\"mzzhxzxfq\"}]},{\"name\":\"Pointer Y\",\"value\":0.875708644499907},{\"name\":\"Top\",\"value\":652.3148226737976},{\"name\":\"Left\",\"value\":396.1774400472641},{\"name\":\"Right\",\"value\":1405.822559952736},{\"name\":\"Bottom\",\"value\":716.6797173023224}],\"objName\":\"Ops.Patch.PbdFbHA.InteractiveRectangle_v24\"},{\"id\":\"tc6onu8jl\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValueOnHover\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bnqxchxdy\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":2.72},{\"name\":\"y\",\"value\":0.51},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"mzzhxzxfq\",\"objOut\":\"bnqxchxdy\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"}]}",};
 const port_blls2amps=op.inTrigger("blls2amps");
 port_blls2amps.setUiAttribs({title:"Trigger in",});
 
@@ -2889,8 +2884,8 @@ function initializeSubpatch()
 
 };
 
-Ops.Patch.P4Zknbo.BasicSlider_v1.prototype = new CABLES.Op();
-CABLES.OPS["55bbeb5d-4c6b-4326-83c2-e979dda40f9b"]={f:Ops.Patch.P4Zknbo.BasicSlider_v1,objName:"Ops.Patch.P4Zknbo.BasicSlider_v1"};
+Ops.Patch.PbdFbHA.BasicSlider_v1.prototype = new CABLES.Op();
+CABLES.OPS["d1a4b416-d230-49fc-bdca-3898d9976559"]={f:Ops.Patch.PbdFbHA.BasicSlider_v1,objName:"Ops.Patch.PbdFbHA.BasicSlider_v1"};
 
 
 
@@ -3677,11 +3672,11 @@ CABLES.OPS["37575d2e-4ba6-4d2b-b00c-c503666867c5"]={f:Ops.Ui.VizNumberBar,objNam
 
 // **************************************************************
 // 
-// Ops.Patch.P4Zknbo.InteractiveRectangle_v24
+// Ops.Patch.PbdFbHA.InteractiveRectangle_v24
 // 
 // **************************************************************
 
-Ops.Patch.P4Zknbo.InteractiveRectangle_v24 = function()
+Ops.Patch.PbdFbHA.InteractiveRectangle_v24 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
@@ -4166,8 +4161,8 @@ function addListeners()
 
 };
 
-Ops.Patch.P4Zknbo.InteractiveRectangle_v24.prototype = new CABLES.Op();
-CABLES.OPS["90cdf708-4629-4ee1-be2e-a623d1c8ee27"]={f:Ops.Patch.P4Zknbo.InteractiveRectangle_v24,objName:"Ops.Patch.P4Zknbo.InteractiveRectangle_v24"};
+Ops.Patch.PbdFbHA.InteractiveRectangle_v24.prototype = new CABLES.Op();
+CABLES.OPS["53773d41-5246-4e6a-bfa8-360f197396bf"]={f:Ops.Patch.PbdFbHA.InteractiveRectangle_v24,objName:"Ops.Patch.PbdFbHA.InteractiveRectangle_v24"};
 
 
 
@@ -5972,15 +5967,15 @@ CABLES.OPS["c974de41-4ce4-4432-b94d-724741109c71"]={f:Ops.Array.StringToArray_v2
 
 // **************************************************************
 // 
-// Ops.Patch.P4Zknbo.BasicSlider_v3
+// Ops.Patch.PbdFbHA.BasicSlider_v3
 // 
 // **************************************************************
 
-Ops.Patch.P4Zknbo.BasicSlider_v3 = function()
+Ops.Patch.PbdFbHA.BasicSlider_v3 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nconst port_h2l1ydpiy=op.outNumber(\"h2l1ydpiy\");\nport_h2l1ydpiy.setUiAttribs({title:\"Hover\",});\nport_h2l1ydpiy.setUiAttribs({\"values\":[\"\"]});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\nconst innerIn_h2l1ydpiy = addedOps[i].inFloat(\"innerIn_h2l1ydpiy\");\ninnerIn_h2l1ydpiy.setUiAttribs({title:\"Hover\"});\ninnerIn_h2l1ydpiy.on(\"change\", (a,v) => { port_h2l1ydpiy.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"uk3um0kyc\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"pv9fy1u1s\",\"objOut\":\"uk3um0kyc\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"vwwgjlizf\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posY\",\"value\":0.005},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Exec\",\"portOut\":\"trigger\",\"objIn\":\"ns66cci5h\",\"objOut\":\"vwwgjlizf\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"b9fhb990j\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"vwwgjlizf\",\"objOut\":\"b9fhb990j\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"xnap82xfe\",\"objOut\":\"b9fhb990j\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"ak207xc99\",\"objOut\":\"b9fhb990j\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"kdn6btjb3\",\"objOut\":\"b9fhb990j\"},{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"vwwgjlizf\",\"objOut\":\"b9fhb990j\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"v8j7nipl3\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"om399w808\",\"objOut\":\"v8j7nipl3\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"String In\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"6tpfx1h1e\",\"objOut\":\"v8j7nipl3\"},{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"c2lnrba6b\",\"objOut\":\"v8j7nipl3\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"c2lnrba6b\",\"objOut\":\"v8j7nipl3\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"ak207xc99\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"},{\"name\":\"innerIn_h2l1ydpiy\",\"title\":\"Hover\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"sp5jwe5ep\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"b9fhb990j\",\"objOut\":\"sp5jwe5ep\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"xnap82xfe\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.6},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"uk3um0kyc\",\"objOut\":\"xnap82xfe\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"ak207xc99\",\"objOut\":\"xnap82xfe\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"kdn6btjb3\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rotZ\",\"portOut\":\"result\",\"objIn\":\"vwwgjlizf\",\"objOut\":\"kdn6btjb3\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"ipgrn686s\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":-0.32},{\"name\":\"y\",\"value\":0.92},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"c2lnrba6b\",\"objOut\":\"ipgrn686s\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"pv9fy1u1s\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":0.02},{\"name\":\"height\",\"value\":0.07},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":1},{\"name\":\"num rows\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"ns66cci5h\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"uk3um0kyc\",\"objOut\":\"ns66cci5h\"}]}],\"objName\":\"Ops.Gl.Matrix.Billboard\"},{\"id\":\"om399w808\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1.73},{\"name\":\"y\",\"value\":1},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"ipgrn686s\",\"objOut\":\"om399w808\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"},{\"id\":\"ixcr22c6p\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_position\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"sp21nyh4q\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int position\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"6tpfx1h1e\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"position\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"k5cx9t2w0\",\"objOut\":\"6tpfx1h1e\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"nzy2b7ut8\",\"objOut\":\"6tpfx1h1e\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"k5cx9t2w0\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"ipyawra4a\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"baridp3mz\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_injectedState\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"l84gnznq4\",\"objOut\":\"baridp3mz\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"nzy2b7ut8\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Number\",\"portOut\":\"Result\",\"objIn\":\"f2to9w0p5\",\"objOut\":\"nzy2b7ut8\"},{\"portIn\":\"Numbers_1\",\"portOut\":\"Result\",\"objIn\":\"typa3qfai\",\"objOut\":\"nzy2b7ut8\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"u4ssrgqtd\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"qc7y3s0cx\",\"objOut\":\"u4ssrgqtd\"},{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"q1fyo45tl\",\"objOut\":\"u4ssrgqtd\"},{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"6tpfx1h1e\",\"objOut\":\"u4ssrgqtd\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"qc7y3s0cx\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonSlider\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"typa3qfai\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"Number\",\"objIn\":\"sp5jwe5ep\",\"objOut\":\"typa3qfai\"},{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"ixcr22c6p\",\"objOut\":\"typa3qfai\"}]},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"l84gnznq4\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":0}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"nzy2b7ut8\",\"objOut\":\"l84gnznq4\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"q1fyo45tl\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"l84gnznq4\",\"objOut\":\"q1fyo45tl\"},{\"portIn\":\"Index\",\"portOut\":\"Result\",\"objIn\":\"typa3qfai\",\"objOut\":\"q1fyo45tl\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"c2lnrba6b\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":1.04},{\"name\":\"Height\",\"value\":0.24},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"b9fhb990j\",\"objOut\":\"c2lnrba6b\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"xnap82xfe\",\"objOut\":\"c2lnrba6b\"},{\"portIn\":\"jqg7l6f5m\",\"portOut\":\"Pointer Hover\",\"objIn\":\"4lgk8235o\",\"objOut\":\"c2lnrba6b\"},{\"portIn\":\"innerIn_h2l1ydpiy\",\"portOut\":\"Pointer Hover\",\"objIn\":\"ak207xc99\",\"objOut\":\"c2lnrba6b\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"u4ssrgqtd\",\"objOut\":\"c2lnrba6b\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"iaaozqt73\",\"objOut\":\"c2lnrba6b\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Pointer X\",\"objIn\":\"t24b96xwy\",\"objOut\":\"c2lnrba6b\"},{\"portIn\":\"Numbers_0\",\"portOut\":\"Pointer X\",\"objIn\":\"typa3qfai\",\"objOut\":\"c2lnrba6b\"},{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"iaaozqt73\",\"objOut\":\"c2lnrba6b\"}]},{\"name\":\"Pointer Y\",\"value\":0.0475698468205169},{\"name\":\"Top\",\"value\":27.819621562957764},{\"name\":\"Left\",\"value\":366.9763829112053},{\"name\":\"Right\",\"value\":1028.1485039144754},{\"name\":\"Bottom\",\"value\":116.01506531238556}],\"objName\":\"Ops.Patch.P4Zknbo.InteractiveRectangle_v22\"},{\"id\":\"5ybabstd4\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"glassy\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"t24b96xwy\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValueOnHover\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"4lgk8235o\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2,\"subPatchVer\":2},\"portsIn\":[{\"name\":\"jqg7l6f5m\",\"title\":\"Boolean\"},{\"name\":\"patchId\",\"value\":\"ww64iitoy\"}],\"objName\":\"Ops.Patch.P4Zknbo.DisengageFlag\"},{\"id\":\"f2to9w0p5\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{},\"objName\":\"Ops.Ui.VizNumberBar\"},{\"id\":\"iaaozqt73\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Value Out\",\"objIn\":\"ipyawra4a\",\"objOut\":\"iaaozqt73\"}]}],\"objName\":\"Ops.Number.GateNumber\"}]}",};
+const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nconst port_h2l1ydpiy=op.outNumber(\"h2l1ydpiy\");\nport_h2l1ydpiy.setUiAttribs({title:\"Hover\",});\nport_h2l1ydpiy.setUiAttribs({\"values\":[\"\"]});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\nconst innerIn_h2l1ydpiy = addedOps[i].inFloat(\"innerIn_h2l1ydpiy\");\ninnerIn_h2l1ydpiy.setUiAttribs({title:\"Hover\"});\ninnerIn_h2l1ydpiy.on(\"change\", (a,v) => { port_h2l1ydpiy.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"uk3um0kyc\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"pv9fy1u1s\",\"objOut\":\"uk3um0kyc\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"vwwgjlizf\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posY\",\"value\":0.005},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Exec\",\"portOut\":\"trigger\",\"objIn\":\"ns66cci5h\",\"objOut\":\"vwwgjlizf\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"b9fhb990j\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"vwwgjlizf\",\"objOut\":\"b9fhb990j\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"xnap82xfe\",\"objOut\":\"b9fhb990j\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"ak207xc99\",\"objOut\":\"b9fhb990j\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"kdn6btjb3\",\"objOut\":\"b9fhb990j\"},{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"vwwgjlizf\",\"objOut\":\"b9fhb990j\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"v8j7nipl3\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"om399w808\",\"objOut\":\"v8j7nipl3\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"String In\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"6tpfx1h1e\",\"objOut\":\"v8j7nipl3\"},{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"c2lnrba6b\",\"objOut\":\"v8j7nipl3\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"c2lnrba6b\",\"objOut\":\"v8j7nipl3\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"ak207xc99\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"},{\"name\":\"innerIn_h2l1ydpiy\",\"title\":\"Hover\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"sp5jwe5ep\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"b9fhb990j\",\"objOut\":\"sp5jwe5ep\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"xnap82xfe\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.6},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"uk3um0kyc\",\"objOut\":\"xnap82xfe\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"ak207xc99\",\"objOut\":\"xnap82xfe\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"kdn6btjb3\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rotZ\",\"portOut\":\"result\",\"objIn\":\"vwwgjlizf\",\"objOut\":\"kdn6btjb3\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"ipgrn686s\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":-0.32},{\"name\":\"y\",\"value\":0.92},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"c2lnrba6b\",\"objOut\":\"ipgrn686s\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"pv9fy1u1s\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":0.02},{\"name\":\"height\",\"value\":0.07},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":1},{\"name\":\"num rows\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"ns66cci5h\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"uk3um0kyc\",\"objOut\":\"ns66cci5h\"}]}],\"objName\":\"Ops.Gl.Matrix.Billboard\"},{\"id\":\"om399w808\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1.73},{\"name\":\"y\",\"value\":1},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"ipgrn686s\",\"objOut\":\"om399w808\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"},{\"id\":\"ixcr22c6p\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_position\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"sp21nyh4q\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int position\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"6tpfx1h1e\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"position\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"k5cx9t2w0\",\"objOut\":\"6tpfx1h1e\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"nzy2b7ut8\",\"objOut\":\"6tpfx1h1e\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"k5cx9t2w0\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"ipyawra4a\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"baridp3mz\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_injectedState\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"l84gnznq4\",\"objOut\":\"baridp3mz\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"nzy2b7ut8\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Number\",\"portOut\":\"Result\",\"objIn\":\"f2to9w0p5\",\"objOut\":\"nzy2b7ut8\"},{\"portIn\":\"Numbers_1\",\"portOut\":\"Result\",\"objIn\":\"typa3qfai\",\"objOut\":\"nzy2b7ut8\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"u4ssrgqtd\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"qc7y3s0cx\",\"objOut\":\"u4ssrgqtd\"},{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"q1fyo45tl\",\"objOut\":\"u4ssrgqtd\"},{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"6tpfx1h1e\",\"objOut\":\"u4ssrgqtd\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"qc7y3s0cx\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonSlider\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"typa3qfai\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"number1\",\"portOut\":\"Number\",\"objIn\":\"sp5jwe5ep\",\"objOut\":\"typa3qfai\"},{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"ixcr22c6p\",\"objOut\":\"typa3qfai\"}]},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"l84gnznq4\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":0}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"nzy2b7ut8\",\"objOut\":\"l84gnznq4\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"q1fyo45tl\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"l84gnznq4\",\"objOut\":\"q1fyo45tl\"},{\"portIn\":\"Index\",\"portOut\":\"Result\",\"objIn\":\"typa3qfai\",\"objOut\":\"q1fyo45tl\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"c2lnrba6b\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":1.04},{\"name\":\"Height\",\"value\":0.24},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"b9fhb990j\",\"objOut\":\"c2lnrba6b\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"xnap82xfe\",\"objOut\":\"c2lnrba6b\"},{\"portIn\":\"jqg7l6f5m\",\"portOut\":\"Pointer Hover\",\"objIn\":\"4lgk8235o\",\"objOut\":\"c2lnrba6b\"},{\"portIn\":\"innerIn_h2l1ydpiy\",\"portOut\":\"Pointer Hover\",\"objIn\":\"ak207xc99\",\"objOut\":\"c2lnrba6b\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"u4ssrgqtd\",\"objOut\":\"c2lnrba6b\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"iaaozqt73\",\"objOut\":\"c2lnrba6b\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Pointer X\",\"objIn\":\"t24b96xwy\",\"objOut\":\"c2lnrba6b\"},{\"portIn\":\"Numbers_0\",\"portOut\":\"Pointer X\",\"objIn\":\"typa3qfai\",\"objOut\":\"c2lnrba6b\"},{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"iaaozqt73\",\"objOut\":\"c2lnrba6b\"}]},{\"name\":\"Pointer Y\",\"value\":0.0475698468205169},{\"name\":\"Top\",\"value\":27.819621562957764},{\"name\":\"Left\",\"value\":366.9763829112053},{\"name\":\"Right\",\"value\":1028.1485039144754},{\"name\":\"Bottom\",\"value\":116.01506531238556}],\"objName\":\"Ops.Patch.PbdFbHA.InteractiveRectangle_v22\"},{\"id\":\"5ybabstd4\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"glassy\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"t24b96xwy\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValueOnHover\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"4lgk8235o\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2,\"subPatchVer\":2},\"portsIn\":[{\"name\":\"jqg7l6f5m\",\"title\":\"Boolean\"},{\"name\":\"patchId\",\"value\":\"ww64iitoy\"}],\"objName\":\"Ops.Patch.PbdFbHA.DisengageFlag\"},{\"id\":\"f2to9w0p5\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.VizNumberBar\"},{\"id\":\"iaaozqt73\",\"uiAttribs\":{\"subPatch\":\"e65ics21e\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Value Out\",\"objIn\":\"ipyawra4a\",\"objOut\":\"iaaozqt73\"}]}],\"objName\":\"Ops.Number.GateNumber\"}]}",};
 const port_blls2amps=op.inTrigger("blls2amps");
 port_blls2amps.setUiAttribs({title:"Trigger in",});
 
@@ -6075,8 +6070,8 @@ function initializeSubpatch()
 
 };
 
-Ops.Patch.P4Zknbo.BasicSlider_v3.prototype = new CABLES.Op();
-CABLES.OPS["3ce2ea3c-8e3e-4b77-965d-de9b6f3ffa56"]={f:Ops.Patch.P4Zknbo.BasicSlider_v3,objName:"Ops.Patch.P4Zknbo.BasicSlider_v3"};
+Ops.Patch.PbdFbHA.BasicSlider_v3.prototype = new CABLES.Op();
+CABLES.OPS["8f0a0b47-5fb3-4e07-8501-69911de3f849"]={f:Ops.Patch.PbdFbHA.BasicSlider_v3,objName:"Ops.Patch.PbdFbHA.BasicSlider_v3"};
 
 
 
@@ -10635,11 +10630,11 @@ CABLES.OPS["cf3544e4-e392-432b-89fd-fcfb5c974388"]={f:Ops.Trigger.TriggerOnce,ob
 
 // **************************************************************
 // 
-// Ops.Patch.P4Zknbo.InteractiveRectangle_v23
+// Ops.Patch.PbdFbHA.InteractiveRectangle_v23
 // 
 // **************************************************************
 
-Ops.Patch.P4Zknbo.InteractiveRectangle_v23 = function()
+Ops.Patch.PbdFbHA.InteractiveRectangle_v23 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
@@ -11124,8 +11119,8 @@ function addListeners()
 
 };
 
-Ops.Patch.P4Zknbo.InteractiveRectangle_v23.prototype = new CABLES.Op();
-CABLES.OPS["b470a61b-ca19-4ff7-b16f-a6dd0749e811"]={f:Ops.Patch.P4Zknbo.InteractiveRectangle_v23,objName:"Ops.Patch.P4Zknbo.InteractiveRectangle_v23"};
+Ops.Patch.PbdFbHA.InteractiveRectangle_v23.prototype = new CABLES.Op();
+CABLES.OPS["3448729f-ce4e-407d-8317-7d2abbf012fc"]={f:Ops.Patch.PbdFbHA.InteractiveRectangle_v23,objName:"Ops.Patch.PbdFbHA.InteractiveRectangle_v23"};
 
 
 
@@ -12079,11 +12074,11 @@ CABLES.OPS["d41e676e-d8a7-4a1e-8abf-f1bddfc982d5"]={f:Ops.Gl.Matrix.Billboard,ob
 
 // **************************************************************
 // 
-// Ops.Patch.P4Zknbo.InteractiveRectangle_v22
+// Ops.Patch.PbdFbHA.InteractiveRectangle_v22
 // 
 // **************************************************************
 
-Ops.Patch.P4Zknbo.InteractiveRectangle_v22 = function()
+Ops.Patch.PbdFbHA.InteractiveRectangle_v22 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
@@ -12568,23 +12563,23 @@ function addListeners()
 
 };
 
-Ops.Patch.P4Zknbo.InteractiveRectangle_v22.prototype = new CABLES.Op();
-CABLES.OPS["e7b5e668-7bb2-4224-9c2f-46015ba41497"]={f:Ops.Patch.P4Zknbo.InteractiveRectangle_v22,objName:"Ops.Patch.P4Zknbo.InteractiveRectangle_v22"};
+Ops.Patch.PbdFbHA.InteractiveRectangle_v22.prototype = new CABLES.Op();
+CABLES.OPS["26c98669-65c5-4f24-8136-08a2443460d0"]={f:Ops.Patch.PbdFbHA.InteractiveRectangle_v22,objName:"Ops.Patch.PbdFbHA.InteractiveRectangle_v22"};
 
 
 
 
 // **************************************************************
 // 
-// Ops.Patch.P4Zknbo.DisengageFlag
+// Ops.Patch.PbdFbHA.DisengageFlag
 // 
 // **************************************************************
 
-Ops.Patch.P4Zknbo.DisengageFlag = function()
+Ops.Patch.PbdFbHA.DisengageFlag = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_jqg7l6f5m=op.inFloat(\"jqg7l6f5m\",0);\nport_jqg7l6f5m.setUiAttribs({title:\"Boolean\",display:\"bool\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_jqg7l6f5m = addedOps[i].outNumber(\"innerOut_jqg7l6f5m\");\ninnerOut_jqg7l6f5m.set(port_jqg7l6f5m.get() );\ninnerOut_jqg7l6f5m.setUiAttribs({title:\"Boolean\"});\nport_jqg7l6f5m.on(\"change\", (a,v) => { innerOut_jqg7l6f5m.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"tjwrh5u95\",\"uiAttribs\":{\"subPatch\":\"ynlymowkj\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"dlvka8p7u\",\"uiAttribs\":{\"subPatch\":\"ynlymowkj\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"tjwrh5u95\",\"objOut\":\"dlvka8p7u\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"eck8hvwot\",\"uiAttribs\":{\"subPatch\":\"ynlymowkj\"},\"storage\":{},\"portsOut\":[{\"name\":\"innerOut_jqg7l6f5m\",\"title\":\"Boolean\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"innerOut_jqg7l6f5m\",\"objIn\":\"dlvka8p7u\",\"objOut\":\"eck8hvwot\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"7mxc7zyyb\",\"uiAttribs\":{\"subPatch\":\"ynlymowkj\"},\"storage\":{},\"objName\":\"Ops.Ui.SubPatchOutput\"}]}",};
+const attachments=op.attachments={"inc_gen_ports_js":"const port_jqg7l6f5m=op.inFloat(\"jqg7l6f5m\",0);\nport_jqg7l6f5m.setUiAttribs({title:\"Boolean\",display:\"bool\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_jqg7l6f5m = addedOps[i].outNumber(\"innerOut_jqg7l6f5m\");\ninnerOut_jqg7l6f5m.set(port_jqg7l6f5m.get() );\ninnerOut_jqg7l6f5m.setUiAttribs({title:\"Boolean\"});\nport_jqg7l6f5m.on(\"change\", (a,v) => { innerOut_jqg7l6f5m.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"tjwrh5u95\",\"uiAttribs\":{\"subPatch\":\"ynlymowkj\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"dlvka8p7u\",\"uiAttribs\":{\"subPatch\":\"ynlymowkj\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"tjwrh5u95\",\"objOut\":\"dlvka8p7u\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"eck8hvwot\",\"uiAttribs\":{\"subPatch\":\"ynlymowkj\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_jqg7l6f5m\",\"title\":\"Boolean\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"innerOut_jqg7l6f5m\",\"objIn\":\"dlvka8p7u\",\"objOut\":\"eck8hvwot\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"7mxc7zyyb\",\"uiAttribs\":{\"subPatch\":\"ynlymowkj\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchOutput\"}]}",};
 const port_jqg7l6f5m=op.inFloat("jqg7l6f5m",0);
 port_jqg7l6f5m.setUiAttribs({title:"Boolean",display:"bool",});
 
@@ -12642,8 +12637,8 @@ function initializeSubpatch()
 
 };
 
-Ops.Patch.P4Zknbo.DisengageFlag.prototype = new CABLES.Op();
-CABLES.OPS["d3d25a0e-a7e1-43f1-a005-8b7062db8e3a"]={f:Ops.Patch.P4Zknbo.DisengageFlag,objName:"Ops.Patch.P4Zknbo.DisengageFlag"};
+Ops.Patch.PbdFbHA.DisengageFlag.prototype = new CABLES.Op();
+CABLES.OPS["723dbdda-b2a6-4b49-a979-a2634f4e472a"]={f:Ops.Patch.PbdFbHA.DisengageFlag,objName:"Ops.Patch.PbdFbHA.DisengageFlag"};
 
 
 
@@ -18553,11 +18548,11 @@ CABLES.OPS["7c96fee9-4c2f-45e1-a41b-096b06d286b8"]={f:Ops.Trigger.IsTriggered,ob
 
 // **************************************************************
 // 
-// Ops.Standalone.MouseButtonsWindow
+// Ops.Patch.PbdFbHA.MouseButtonsWindow
 // 
 // **************************************************************
 
-Ops.Standalone.MouseButtonsWindow = function()
+Ops.Patch.PbdFbHA.MouseButtonsWindow = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
@@ -18699,8 +18694,8 @@ function updateListeners()
 
 };
 
-Ops.Standalone.MouseButtonsWindow.prototype = new CABLES.Op();
-CABLES.OPS["cd56f931-c03b-4fb6-8070-871d3597e8a9"]={f:Ops.Standalone.MouseButtonsWindow,objName:"Ops.Standalone.MouseButtonsWindow"};
+Ops.Patch.PbdFbHA.MouseButtonsWindow.prototype = new CABLES.Op();
+CABLES.OPS["70422b06-659d-4e50-b19f-b01135f15d28"]={f:Ops.Patch.PbdFbHA.MouseButtonsWindow,objName:"Ops.Patch.PbdFbHA.MouseButtonsWindow"};
 
 
 
@@ -19000,11 +18995,11 @@ CABLES.OPS["cf8a883f-cf09-44a6-ba1c-7f9c1220b618"]={f:Ops.String.SwitchStringMul
 
 // **************************************************************
 // 
-// Ops.Patch.P4Zknbo.ArrayOfSrvbValuesFromMap
+// Ops.Patch.PbdFbHA.ArrayOfSrvbValuesFromMap
 // 
 // **************************************************************
 
-Ops.Patch.P4Zknbo.ArrayOfSrvbValuesFromMap = function()
+Ops.Patch.PbdFbHA.ArrayOfSrvbValuesFromMap = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
@@ -19038,8 +19033,8 @@ srcObj.onChange = () =>
 
 };
 
-Ops.Patch.P4Zknbo.ArrayOfSrvbValuesFromMap.prototype = new CABLES.Op();
-CABLES.OPS["8b905906-ea16-42d7-b77c-c5685e063a36"]={f:Ops.Patch.P4Zknbo.ArrayOfSrvbValuesFromMap,objName:"Ops.Patch.P4Zknbo.ArrayOfSrvbValuesFromMap"};
+Ops.Patch.PbdFbHA.ArrayOfSrvbValuesFromMap.prototype = new CABLES.Op();
+CABLES.OPS["1eed1ad9-4b93-4e51-b483-03e68bd580c6"]={f:Ops.Patch.PbdFbHA.ArrayOfSrvbValuesFromMap,objName:"Ops.Patch.PbdFbHA.ArrayOfSrvbValuesFromMap"};
 
 
 
@@ -19302,11 +19297,218 @@ CABLES.OPS["074034c9-9698-4984-897a-849bcb2b9b62"]={f:Ops.Array.ArrayPushString,
 
 // **************************************************************
 // 
-// Ops.Standalone.SideBarStyle
+// Ops.Html.CSS.TransformElement
 // 
 // **************************************************************
 
-Ops.Standalone.SideBarStyle = function()
+Ops.Html.CSS.TransformElement = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    exec = op.inTrigger("Exec"),
+    inEle = op.inObject("Element"),
+    inScale = op.inFloat("Scale", 1),
+    inOrtho = op.inBool("Orthogonal", false),
+    inRotate = op.inFloat("Rotate", 0),
+    inHideBehind = op.inBool("Hide out of view", false),
+    inAlignVert = op.inSwitch("Align Vertical", ["Left", "Center", "Right"], "Left"),
+    inAlignHor = op.inSwitch("Align Horizontal", ["Top", "Center", "Bottom"], "Top"),
+    inActive = op.inBool("Active", true),
+    next = op.outTrigger("Next"),
+    outEle = op.outObject("HTML Element", null, "element");
+
+const cgl = op.patch.cgl;
+let x = 0;
+let y = 0;
+let visible = 0;
+const m = mat4.create();
+const pos = vec3.create();
+const trans = vec3.create();
+
+let cachedTop = -1;
+let cachedLeft = -1;
+let currTransformStr = 0;
+
+exec.onTriggered =
+() =>
+{
+    if (!inActive.get()) return next.trigger();
+
+    setProperties();
+    next.trigger();
+};
+
+op.onDelete = removeProperties;
+
+let oldEle = null;
+
+inAlignHor.onChange =
+    inAlignVert.onChange =
+    inRotate.onChange =
+    inScale.onChange = updateTransform;
+
+function updateTransform()
+{
+    const ele = inEle.get();
+    if (!ele)
+    {
+        oldEle = null;
+        return;
+    }
+
+    let translateStr = "";
+    if (inAlignVert.get() == "Left")translateStr = "0%";
+    if (inAlignVert.get() == "Center")translateStr = "-50%";
+    if (inAlignVert.get() == "Right")translateStr = "-100%";
+
+    translateStr += ", ";
+    if (inAlignHor.get() == "Top")translateStr += "0%";
+    if (inAlignHor.get() == "Center")translateStr += "-50%";
+    if (inAlignHor.get() == "Bottom")translateStr += "-100%";
+
+    const str = "translate(" + translateStr + ") scale(" + inScale.get() + ") rotate(" + inRotate.get() + "deg)";
+
+    // if (currTransformStr != str || oldEle != ele)
+    if (ele.style.transform != str)
+    {
+        currTransformStr = str;
+        ele.style.transform = str;
+        outEle.setRef(ele);
+    }
+}
+
+inEle.onChange = function ()
+{
+    const ele = inEle.get();
+    if (!ele)
+    {
+        removeProperties(oldEle);
+
+        oldEle = null;
+        return;
+    }
+
+    updateTransform();
+    setProperties();
+};
+
+inEle.onLinkChanged = function ()
+{
+    cachedLeft = -1;
+    cachedTop = -1;
+
+    if (!inEle.isLinked())
+    {
+        if (oldEle)
+        {
+            removeProperties(oldEle);
+        }
+    }
+    else
+    {
+        oldEle = inEle.get();
+    }
+    updateTransform();
+};
+
+function getScreenCoord()
+{
+    mat4.multiply(m, cgl.vMatrix, cgl.mMatrix);
+    vec3.transformMat4(pos, [0, 0, 0], m);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const vp = cgl.getViewPort();
+
+    const w = cgl.canvasWidth / cgl.pixelDensity;
+    const h = cgl.canvasHeight / cgl.pixelDensity;
+
+    if (inOrtho.get())
+    {
+        x = ((w * 0.5 + trans[0] * w * 0.5 / 1));
+        y = ((h * 0.5 - trans[1] * h * 0.5 / 1));
+    }
+    else
+    {
+        x = (w - (w * 0.5 - trans[0] * w * 0.5)); //  / trans[2]
+        y = (h - (h * 0.5 + trans[1] * h * 0.5)); //  / trans[2]
+    }
+
+    visible = pos[2] < 0.0 && x > 0 && x < vp[2] && y > 0 && y < vp[3];
+}
+
+function setProperties()
+{
+    const ele = inEle.get();
+    oldEle = ele;
+    if (ele && ele.style)
+    {
+        getScreenCoord();
+        const yy = cgl.canvas.offsetTop + y;
+
+        const top = cgl.canvas.styleMarginTop || 0;
+
+        if (yy + top != cachedTop)
+        {
+            ele.style.top = (yy + top) + "px";
+            outEle.setRef(ele);
+            cachedTop = yy;
+        }
+
+        const left = cgl.canvas.styleMarginLeft || 0;
+
+        if (x + left != cachedLeft)
+        {
+            ele.style.left = (x + left) + "px";
+            outEle.setRef(ele);
+            cachedLeft = x;
+        }
+
+        if (inHideBehind.get())
+        {
+            if (visible)ele.style.display = "initial";
+            else ele.style.display = "none";
+        }
+    }
+}
+
+function removeProperties(ele)
+{
+    cachedLeft = -1;
+    cachedTop = -1;
+
+    if (!ele) ele = inEle.get();
+    if (ele && ele.style)
+    {
+        ele.style.top = "initial";
+        ele.style.left = "initial";
+        ele.style.transform = "initial";
+    }
+}
+
+op.addEventListener("onEnabledChange", function (enabled)
+{
+    if (enabled) setProperties();
+    else removeProperties();
+});
+
+
+};
+
+Ops.Html.CSS.TransformElement.prototype = new CABLES.Op();
+CABLES.OPS["caca0307-d460-47df-8674-b7d2601239ab"]={f:Ops.Html.CSS.TransformElement,objName:"Ops.Html.CSS.TransformElement"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PbdFbHA.SideBarStyle
+// 
+// **************************************************************
+
+Ops.Patch.PbdFbHA.SideBarStyle = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
@@ -19385,8 +19587,8 @@ function onDelete()
 
 };
 
-Ops.Standalone.SideBarStyle.prototype = new CABLES.Op();
-CABLES.OPS["0c482c61-3781-4880-aef5-53a41530075b"]={f:Ops.Standalone.SideBarStyle,objName:"Ops.Standalone.SideBarStyle"};
+Ops.Patch.PbdFbHA.SideBarStyle.prototype = new CABLES.Op();
+CABLES.OPS["3007067b-260a-4fec-aba2-094d25ae697b"]={f:Ops.Patch.PbdFbHA.SideBarStyle,objName:"Ops.Patch.PbdFbHA.SideBarStyle"};
 
 
 
@@ -20879,354 +21081,6 @@ CABLES.OPS["ef15195a-760b-4ac5-9630-322b0ba7b722"]={f:Ops.String.StringEquals,ob
 
 // **************************************************************
 // 
-// Ops.Patch.PxdLHGq.SidebarSlider_v3
-// 
-// **************************************************************
-
-Ops.Patch.PxdLHGq.SidebarSlider_v3 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-// constants
-const STEP_DEFAULT = 0.00001;
-
-// inputs
-const parentPort = op.inObject("link");
-const labelPort = op.inString("Text", "Slider");
-const minPort = op.inValue("Min", 0);
-const maxPort = op.inValue("Max", 1);
-const stepPort = op.inValue("Step", STEP_DEFAULT);
-const labelSuffix = op.inString("Suffix", "");
-
-const inGreyOut = op.inBool("Grey Out", false);
-const inVisible = op.inBool("Visible", true);
-
-const inputValuePort = op.inValue("Input", 0.5);
-const setDefaultValueButtonPort = op.inTriggerButton("Set Default");
-const reset = op.inTriggerButton("Reset");
-
-let parent = null;
-
-const defaultValuePort = op.inValue("Default", 0.5);
-defaultValuePort.setUiAttribs({ "hidePort": true, "greyout": true });
-
-// outputs
-const siblingsPort = op.outObject("childs");
-const valuePort = op.outNumber("Result", defaultValuePort.get());
-const interactionPort = op.outObject("Interaction", {  });
-
-op.toWorkNeedsParent("Ops.Sidebar.Sidebar");
-op.setPortGroup("Range", [minPort, maxPort, stepPort]);
-op.setPortGroup("Display", [inGreyOut, inVisible]);
-
-// vars
-const el = document.createElement("div");
-el.addEventListener("dblclick", function ()
-{
-    valuePort.set(parseFloat(defaultValuePort.get()));
-    inputValuePort.set(parseFloat(defaultValuePort.get()));
-    setValueFieldValue(defaultValuePort.get());
-    interactionPort.set( { "type": "dblclick", "value": parseFloat(defaultValuePort.get()) });
-});
-
-el.addEventListener("mouseenter", function ()
-{
-    interactionPort.set( { "type": "hover", "value": parseFloat(valuePort.get()), "paramId": "scapeOffset"});
-});
-
-el.addEventListener("mousedown", function ()
-{
-    interactionPort.set( { "type": "mousedown", "value": parseFloat(valuePort.get()), "paramId": "scapeOffset"});
-});
-
-
-el.addEventListener("mouseleave", function ()
-{
-    interactionPort.set( { "type": "leave", "value": parseFloat(valuePort.get()), "paramId": "disengage"});
-})
-
-el.dataset.op = op.id;
-el.classList.add("cablesEle");
-
-el.classList.add("sidebar__item");
-el.classList.add("sidebar__slider");
-el.classList.add("sidebar__reloadable");
-
-op.patch.on("sidebarStylesChanged", () => { updateActiveTrack(); });
-
-const label = document.createElement("div");
-label.classList.add("sidebar__item-label");
-
-const greyOut = document.createElement("div");
-greyOut.classList.add("sidebar__greyout");
-el.appendChild(greyOut);
-greyOut.style.display = "none";
-
-const labelText = document.createTextNode(labelPort.get());
-label.appendChild(labelText);
-el.appendChild(label);
-
-const value = document.createElement("input");
-value.value = defaultValuePort.get();
-value.classList.add("sidebar__text-input-input");
-value.setAttribute("type", "text");
-value.oninput = onTextInputChanged;
-el.appendChild(value);
-
-const suffixEle = document.createElement("span");
-// setValueFieldValue(defaultValuePort).get();
-// value.setAttribute("type", "text");
-// value.oninput = onTextInputChanged;
-
-el.appendChild(suffixEle);
-
-labelSuffix.onChange = () =>
-{
-    suffixEle.innerHTML = labelSuffix.get();
-};
-
-const inputWrapper = document.createElement("div");
-inputWrapper.classList.add("sidebar__slider-input-wrapper");
-el.appendChild(inputWrapper);
-
-const activeTrack = document.createElement("div");
-activeTrack.classList.add("sidebar__slider-input-active-track");
-inputWrapper.appendChild(activeTrack);
-const input = document.createElement("input");
-input.classList.add("sidebar__slider-input");
-input.setAttribute("min", minPort.get());
-input.setAttribute("max", maxPort.get());
-input.setAttribute("type", "range");
-input.setAttribute("step", stepPort.get());
-input.setAttribute("value", defaultValuePort.get());
-input.style.display = "block"; /* needed because offsetWidth returns 0 otherwise */
-inputWrapper.appendChild(input);
-
-updateActiveTrack();
-input.addEventListener("input", onSliderInput);
-
-// events
-parentPort.onChange = onParentChanged;
-labelPort.onChange = onLabelTextChanged;
-inputValuePort.onChange = onInputValuePortChanged;
-defaultValuePort.onChange = onDefaultValueChanged;
-setDefaultValueButtonPort.onTriggered = onSetDefaultValueButtonPress;
-minPort.onChange = onMinPortChange;
-maxPort.onChange = onMaxPortChange;
-stepPort.onChange = stepPortChanged;
-op.onDelete = onDelete;
-
-// op.onLoadedValueSet=function()
-op.onLoaded = op.onInit = function ()
-{
-    if (op.patch.config.sidebar)
-    {
-        op.patch.config.sidebar[labelPort.get()];
-        valuePort.set(op.patch.config.sidebar[labelPort.get()]);
-    }
-    else
-    {
-        valuePort.set(parseFloat(defaultValuePort.get()));
-        inputValuePort.set(parseFloat(defaultValuePort.get()));
-        // onInputValuePortChanged();
-    }
-};
-
-reset.onTriggered = function ()
-{
-    const newValue = parseFloat(defaultValuePort.get());
-    valuePort.set(newValue);
-    setValueFieldValue(newValue);
-    setInputFieldValue(newValue);
-    inputValuePort.set(newValue);
-    updateActiveTrack();
-};
-
-inGreyOut.onChange = function ()
-{
-    greyOut.style.display = inGreyOut.get() ? "block" : "none";
-};
-
-inVisible.onChange = function ()
-{
-    el.style.display = inVisible.get() ? "block" : "none";
-};
-
-function onTextInputChanged(ev)
-{
-    let newValue = parseFloat(ev.target.value);
-    if (isNaN(newValue)) newValue = 0;
-    const min = minPort.get();
-    const max = maxPort.get();
-    if (newValue < min) { newValue = min; }
-    else if (newValue > max) { newValue = max; }
-    // setInputFieldValue(newValue);
-    valuePort.set(newValue);
-    updateActiveTrack();
-    inputValuePort.set(newValue);
-    op.refreshParams();
-}
-
-function onInputValuePortChanged()
-{
-    let newValue = parseFloat(inputValuePort.get());
-    const minValue = minPort.get();
-    const maxValue = maxPort.get();
-    if (newValue > maxValue) { newValue = maxValue; }
-    else if (newValue < minValue) { newValue = minValue; }
-    // setValueFieldValue(newValue);
-    setInputFieldValue(newValue);
-    valuePort.set(newValue);
-    updateActiveTrack();
-}
-
-function onSetDefaultValueButtonPress()
-{
-    let newValue = parseFloat(inputValuePort.get());
-    const minValue = minPort.get();
-    const maxValue = maxPort.get();
-    if (newValue > maxValue) { newValue = maxValue; }
-    else if (newValue < minValue) { newValue = minValue; }
-    setValueFieldValue(newValue);
-    setInputFieldValue(newValue);
-    valuePort.set(newValue);
-    defaultValuePort.set(newValue);
-    op.refreshParams();
-
-    updateActiveTrack();
-}
-
-function onSliderInput(ev)
-{
-    ev.preventDefault();
-    ev.stopPropagation();
-    setValueFieldValue(ev.target.value);
-    const inputFloat = parseFloat(ev.target.value);
-    valuePort.set(inputFloat);
-    inputValuePort.set(inputFloat);
-    op.refreshParams();
-
-    updateActiveTrack();
-    interactionPort.set( { "type": "input", "value": inputFloat, "paramId": "scapeOffset" });
-    return false;
-}
-
-function stepPortChanged()
-{
-    const step = stepPort.get();
-    input.setAttribute("step", step);
-    updateActiveTrack();
-}
-
-function updateActiveTrack(val)
-{
-    let valueToUse = parseFloat(input.value);
-    if (typeof val !== "undefined") valueToUse = val;
-    let availableWidth = activeTrack.parentElement.getBoundingClientRect().width || 220;
-    if (parent) availableWidth = parseInt(getComputedStyle(parent.parentElement).getPropertyValue("--sidebar-width")) - 20;
-
-    const trackWidth = CABLES.map(
-        valueToUse,
-        parseFloat(input.min),
-        parseFloat(input.max),
-        0,
-        availableWidth - 16 /* subtract slider thumb width */
-    );
-    activeTrack.style.width = trackWidth + "px";
-}
-
-function onMinPortChange()
-{
-    const min = minPort.get();
-    input.setAttribute("min", min);
-    updateActiveTrack();
-}
-
-function onMaxPortChange()
-{
-    const max = maxPort.get();
-    input.setAttribute("max", max);
-    updateActiveTrack();
-}
-
-function onDefaultValueChanged()
-{
-    const defaultValue = defaultValuePort.get();
-    valuePort.set(parseFloat(defaultValue));
-    onMinPortChange();
-    onMaxPortChange();
-    setInputFieldValue(defaultValue);
-    setValueFieldValue(defaultValue);
-
-    updateActiveTrack(defaultValue); // needs to be passed as argument, is this async?
-}
-
-function onLabelTextChanged()
-{
-    const labelText = labelPort.get();
-    label.textContent = labelText;
-    if (CABLES.UI) op.setUiAttrib({ "extendTitle": labelText });
-}
-
-function onParentChanged()
-{
-    siblingsPort.set(null);
-    parent = parentPort.get();
-    if (parent && parent.parentElement)
-    {
-        parent.parentElement.appendChild(el);
-        siblingsPort.set(parent);
-    }
-    else if (el.parentElement) el.parentElement.removeChild(el);
-
-    updateActiveTrack();
-}
-
-function setValueFieldValue(v)
-{
-    value.value = v;
-}
-
-function setInputFieldValue(v)
-{
-    input.value = v;
-}
-
-function showElement(el)
-{
-    if (el)el.style.display = "block";
-
-}
-
-function hideElement(el)
-{
-    if (el)el.style.display = "none";
-
-}
-
-function onDelete()
-{
-    removeElementFromDOM(el);
-
-}
-
-function removeElementFromDOM(el)
-{
-    if (el && el.parentNode && el.parentNode.removeChild) el.parentNode.removeChild(el);
-}
-
-
-};
-
-Ops.Patch.PxdLHGq.SidebarSlider_v3.prototype = new CABLES.Op();
-CABLES.OPS["22b0ba21-a0c3-45a0-b0bc-2db5d770582e"]={f:Ops.Patch.PxdLHGq.SidebarSlider_v3,objName:"Ops.Patch.PxdLHGq.SidebarSlider_v3"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Extension.Deprecated.ArrayChangedTrigger
 // 
 // **************************************************************
@@ -21903,11 +21757,11 @@ CABLES.OPS["6c3bf614-a734-4539-98cd-7a7d5bfc38c9"]={f:Ops.Ui.VizArrayTable_v2,ob
 
 // **************************************************************
 // 
-// Ops.Patch.PxdLHGq.CountValidElementsInArray
+// Ops.Patch.PbdFbHA.CountValidElementsInArray
 // 
 // **************************************************************
 
-Ops.Patch.PxdLHGq.CountValidElementsInArray = function()
+Ops.Patch.PbdFbHA.CountValidElementsInArray = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
@@ -21933,215 +21787,8 @@ exec.onTriggered = () => {
 
 };
 
-Ops.Patch.PxdLHGq.CountValidElementsInArray.prototype = new CABLES.Op();
-CABLES.OPS["ff256324-41b0-43e6-acc0-526c4538b83b"]={f:Ops.Patch.PxdLHGq.CountValidElementsInArray,objName:"Ops.Patch.PxdLHGq.CountValidElementsInArray"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Html.CSS.TransformElement
-// 
-// **************************************************************
-
-Ops.Html.CSS.TransformElement = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    exec = op.inTrigger("Exec"),
-    inEle = op.inObject("Element"),
-    inScale = op.inFloat("Scale", 1),
-    inOrtho = op.inBool("Orthogonal", false),
-    inRotate = op.inFloat("Rotate", 0),
-    inHideBehind = op.inBool("Hide out of view", false),
-    inAlignVert = op.inSwitch("Align Vertical", ["Left", "Center", "Right"], "Left"),
-    inAlignHor = op.inSwitch("Align Horizontal", ["Top", "Center", "Bottom"], "Top"),
-    inActive = op.inBool("Active", true),
-    next = op.outTrigger("Next"),
-    outEle = op.outObject("HTML Element", null, "element");
-
-const cgl = op.patch.cgl;
-let x = 0;
-let y = 0;
-let visible = 0;
-const m = mat4.create();
-const pos = vec3.create();
-const trans = vec3.create();
-
-let cachedTop = -1;
-let cachedLeft = -1;
-let currTransformStr = 0;
-
-exec.onTriggered =
-() =>
-{
-    if (!inActive.get()) return next.trigger();
-
-    setProperties();
-    next.trigger();
-};
-
-op.onDelete = removeProperties;
-
-let oldEle = null;
-
-inAlignHor.onChange =
-    inAlignVert.onChange =
-    inRotate.onChange =
-    inScale.onChange = updateTransform;
-
-function updateTransform()
-{
-    const ele = inEle.get();
-    if (!ele)
-    {
-        oldEle = null;
-        return;
-    }
-
-    let translateStr = "";
-    if (inAlignVert.get() == "Left")translateStr = "0%";
-    if (inAlignVert.get() == "Center")translateStr = "-50%";
-    if (inAlignVert.get() == "Right")translateStr = "-100%";
-
-    translateStr += ", ";
-    if (inAlignHor.get() == "Top")translateStr += "0%";
-    if (inAlignHor.get() == "Center")translateStr += "-50%";
-    if (inAlignHor.get() == "Bottom")translateStr += "-100%";
-
-    const str = "translate(" + translateStr + ") scale(" + inScale.get() + ") rotate(" + inRotate.get() + "deg)";
-
-    // if (currTransformStr != str || oldEle != ele)
-    if (ele.style.transform != str)
-    {
-        currTransformStr = str;
-        ele.style.transform = str;
-        outEle.setRef(ele);
-    }
-}
-
-inEle.onChange = function ()
-{
-    const ele = inEle.get();
-    if (!ele)
-    {
-        removeProperties(oldEle);
-
-        oldEle = null;
-        return;
-    }
-
-    updateTransform();
-    setProperties();
-};
-
-inEle.onLinkChanged = function ()
-{
-    cachedLeft = -1;
-    cachedTop = -1;
-
-    if (!inEle.isLinked())
-    {
-        if (oldEle)
-        {
-            removeProperties(oldEle);
-        }
-    }
-    else
-    {
-        oldEle = inEle.get();
-    }
-    updateTransform();
-};
-
-function getScreenCoord()
-{
-    mat4.multiply(m, cgl.vMatrix, cgl.mMatrix);
-    vec3.transformMat4(pos, [0, 0, 0], m);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const vp = cgl.getViewPort();
-
-    const w = cgl.canvasWidth / cgl.pixelDensity;
-    const h = cgl.canvasHeight / cgl.pixelDensity;
-
-    if (inOrtho.get())
-    {
-        x = ((w * 0.5 + trans[0] * w * 0.5 / 1));
-        y = ((h * 0.5 - trans[1] * h * 0.5 / 1));
-    }
-    else
-    {
-        x = (w - (w * 0.5 - trans[0] * w * 0.5)); //  / trans[2]
-        y = (h - (h * 0.5 + trans[1] * h * 0.5)); //  / trans[2]
-    }
-
-    visible = pos[2] < 0.0 && x > 0 && x < vp[2] && y > 0 && y < vp[3];
-}
-
-function setProperties()
-{
-    const ele = inEle.get();
-    oldEle = ele;
-    if (ele && ele.style)
-    {
-        getScreenCoord();
-        const yy = cgl.canvas.offsetTop + y;
-
-        const top = cgl.canvas.styleMarginTop || 0;
-
-        if (yy + top != cachedTop)
-        {
-            ele.style.top = (yy + top) + "px";
-            outEle.setRef(ele);
-            cachedTop = yy;
-        }
-
-        const left = cgl.canvas.styleMarginLeft || 0;
-
-        if (x + left != cachedLeft)
-        {
-            ele.style.left = (x + left) + "px";
-            outEle.setRef(ele);
-            cachedLeft = x;
-        }
-
-        if (inHideBehind.get())
-        {
-            if (visible)ele.style.display = "initial";
-            else ele.style.display = "none";
-        }
-    }
-}
-
-function removeProperties(ele)
-{
-    cachedLeft = -1;
-    cachedTop = -1;
-
-    if (!ele) ele = inEle.get();
-    if (ele && ele.style)
-    {
-        ele.style.top = "initial";
-        ele.style.left = "initial";
-        ele.style.transform = "initial";
-    }
-}
-
-op.addEventListener("onEnabledChange", function (enabled)
-{
-    if (enabled) setProperties();
-    else removeProperties();
-});
-
-
-};
-
-Ops.Html.CSS.TransformElement.prototype = new CABLES.Op();
-CABLES.OPS["caca0307-d460-47df-8674-b7d2601239ab"]={f:Ops.Html.CSS.TransformElement,objName:"Ops.Html.CSS.TransformElement"};
+Ops.Patch.PbdFbHA.CountValidElementsInArray.prototype = new CABLES.Op();
+CABLES.OPS["196b6164-3478-4e73-8f19-257c2b38cdb5"]={f:Ops.Patch.PbdFbHA.CountValidElementsInArray,objName:"Ops.Patch.PbdFbHA.CountValidElementsInArray"};
 
 
 
@@ -23815,11 +23462,11 @@ CABLES.OPS["2b60d12d-2884-4ad0-bda4-0caeb6882f5c"]={f:Ops.Ui.VizNumber,objName:"
 
 // **************************************************************
 // 
-// Ops.Patch.Pg3hCDt.DropDown_v2
+// Ops.Patch.PbdFbHA.DropDown_v2
 // 
 // **************************************************************
 
-Ops.Patch.Pg3hCDt.DropDown_v2 = function()
+Ops.Patch.PbdFbHA.DropDown_v2 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
@@ -24116,8 +23763,8 @@ function setDefault()
 
 };
 
-Ops.Patch.Pg3hCDt.DropDown_v2.prototype = new CABLES.Op();
-CABLES.OPS["97aff0eb-8542-4a35-9e49-e48aa66ed364"]={f:Ops.Patch.Pg3hCDt.DropDown_v2,objName:"Ops.Patch.Pg3hCDt.DropDown_v2"};
+Ops.Patch.PbdFbHA.DropDown_v2.prototype = new CABLES.Op();
+CABLES.OPS["15aa2539-fee1-4a29-9bfe-423427a089d5"]={f:Ops.Patch.PbdFbHA.DropDown_v2,objName:"Ops.Patch.PbdFbHA.DropDown_v2"};
 
 
 
@@ -24858,11 +24505,11 @@ CABLES.OPS["6e994ba8-01d1-4da6-98b4-af7e822a2e6c"]={f:Ops.String.SubString_v2,ob
 
 // **************************************************************
 // 
-// Ops.Patch.PKUEypu.ArrayPack3Simple
+// Ops.Patch.PbdFbHA.ArrayPack3Simple
 // 
 // **************************************************************
 
-Ops.Patch.PKUEypu.ArrayPack3Simple = function()
+Ops.Patch.PbdFbHA.ArrayPack3Simple = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
@@ -24938,8 +24585,8 @@ function update()
 
 };
 
-Ops.Patch.PKUEypu.ArrayPack3Simple.prototype = new CABLES.Op();
-CABLES.OPS["e610287d-9f3e-4dd4-916a-e38b7fe6122a"]={f:Ops.Patch.PKUEypu.ArrayPack3Simple,objName:"Ops.Patch.PKUEypu.ArrayPack3Simple"};
+Ops.Patch.PbdFbHA.ArrayPack3Simple.prototype = new CABLES.Op();
+CABLES.OPS["3efaf65a-5e20-430c-84ed-b6e6f33c0ea6"]={f:Ops.Patch.PbdFbHA.ArrayPack3Simple,objName:"Ops.Patch.PbdFbHA.ArrayPack3Simple"};
 
 
 
@@ -24975,189 +24622,11 @@ CABLES.OPS["d75992b7-65e2-44d8-b264-320d4c5a5630"]={f:Ops.Vars.VarTriggerString,
 
 // **************************************************************
 // 
-// Ops.Gl.CanvasInfo_v3
+// Ops.Patch.PbdFbHA.Button_NEL
 // 
 // **************************************************************
 
-Ops.Gl.CanvasInfo_v3 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    width = op.outNumber("CSS Width"),
-    height = op.outNumber("CSS Height"),
-    pixelRatio = op.outNumber("Pixel Ratio"),
-    widthPixel = op.outNumber("Pixel Width"),
-    heightPixel = op.outNumber("Pixel Height"),
-    aspect = op.outNumber("Aspect Ratio"),
-    landscape = op.outBool("Landscape"),
-    outCanvasEle = op.outObject("Canvas", "element"),
-    outCanvasParentEle = op.outObject("Canvas Parent", "element");
-
-let cgl = op.patch.cgl;
-outCanvasEle.set(op.patch.cgl.canvas);
-outCanvasParentEle.set(op.patch.cgl.canvas.parentElement);
-
-cgl.on("resize", update);
-
-update();
-
-function update()
-{
-    let div = 1;
-
-    if (cgl.canvasHeight == 0)setTimeout(update, 100);
-
-    height.set(cgl.canvasHeight / op.patch.cgl.pixelDensity);
-    width.set(cgl.canvasWidth / op.patch.cgl.pixelDensity);
-
-    widthPixel.set(cgl.canvasWidth);
-    heightPixel.set(cgl.canvasHeight);
-
-    pixelRatio.set(op.patch.cgl.pixelDensity); // window.devicePixelRatio
-
-    aspect.set(cgl.canvasWidth / cgl.canvasHeight);
-    landscape.set(cgl.canvasWidth > cgl.canvasHeight ? 1 : 0);
-}
-
-
-};
-
-Ops.Gl.CanvasInfo_v3.prototype = new CABLES.Op();
-CABLES.OPS["be186ff9-427e-409f-b6a4-f8d957bf7bc7"]={f:Ops.Gl.CanvasInfo_v3,objName:"Ops.Gl.CanvasInfo_v3"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Math.Min_v3
-// 
-// **************************************************************
-
-Ops.Math.Min_v3 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    val1 = op.inValue("Value 1", 1),
-    val2 = op.inValue("Value 2", 2),
-    result = op.outNumber("result");
-
-val1.onChange =
-    val2.onChange = exec;
-
-exec();
-
-function exec()
-{
-    let v = Math.min(val1.get(), val2.get());
-    result.set(v);
-}
-
-
-};
-
-Ops.Math.Min_v3.prototype = new CABLES.Op();
-CABLES.OPS["24a9062d-380c-4690-8fe7-6703787fa94c"]={f:Ops.Math.Min_v3,objName:"Ops.Math.Min_v3"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Html.CSS.ElementCss3DTransform
-// 
-// **************************************************************
-
-Ops.Html.CSS.ElementCss3DTransform = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inEle = op.inObject("Element"),
-
-    x = op.inFloat("X", 0),
-    y = op.inFloat("Y", 0),
-    z = op.inFloat("Z", 0),
-
-    rotx = op.inFloat("Rot X", 0),
-    roty = op.inFloat("Rot Y", 0),
-    rotz = op.inFloat("Rot Z", 0),
-
-    persp = op.inFloat("Perspective", 640),
-    backface = op.inBool("Backface-Visibility", true),
-
-    outEle = op.outObject("HTML Element", null, "element");
-
-let ele = null;
-
-inEle.onChange =
-    inEle.onLinkChanged =
-    backface.onChange =
-    x.onChange = y.onChange = z.onChange =
-    rotx.onChange = roty.onChange = rotz.onChange =
-    persp.onChange = update;
-
-op.onDelete = remove;
-
-function remove()
-{
-    if (ele)
-    {
-        ele.style.removeProperty("perspective");
-        ele.style.removeProperty("transform");
-        ele.style.removeProperty("backface-visibility");
-    }
-}
-
-function update()
-{
-    remove();
-    ele = inEle.get();
-
-    if (ele && ele.style)
-    {
-        let tr = "";
-
-        tr += "translate3d(" + x.get() + "px," + y.get() + "px," + z.get() + "px) ";
-
-        tr += "rotateX(" + rotx.get() + "deg)";
-        tr += "rotateY(" + roty.get() + "deg)";
-        tr += "rotateZ(" + rotz.get() + "deg)";
-
-        ele.parentElement.style.perspective = persp.get() + "px";
-        ele.style.transform = tr;
-        ele.style["backface-visibility"] = backface.get() ? "visible" : "hidden";
-    }
-    else
-    {
-        setTimeout(update, 50);
-    }
-
-    if (outEle != inEle.get())
-        outEle.setRef(inEle.get());
-}
-
-
-};
-
-Ops.Html.CSS.ElementCss3DTransform.prototype = new CABLES.Op();
-CABLES.OPS["ee4f2f09-17df-4d26-bda3-9db51cf78b9d"]={f:Ops.Html.CSS.ElementCss3DTransform,objName:"Ops.Html.CSS.ElementCss3DTransform"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Patch.PBktIwq.Button_NEL
-// 
-// **************************************************************
-
-Ops.Patch.PBktIwq.Button_NEL = function()
+Ops.Patch.PbdFbHA.Button_NEL = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
@@ -25303,8 +24772,8 @@ function removeElementFromDOM(el)
 
 };
 
-Ops.Patch.PBktIwq.Button_NEL.prototype = new CABLES.Op();
-CABLES.OPS["e40caa69-8d39-4da3-bf3e-2a7790b0b2f8"]={f:Ops.Patch.PBktIwq.Button_NEL,objName:"Ops.Patch.PBktIwq.Button_NEL"};
+Ops.Patch.PbdFbHA.Button_NEL.prototype = new CABLES.Op();
+CABLES.OPS["8209130b-b6c5-4045-99ba-85dcfd097fd5"]={f:Ops.Patch.PbdFbHA.Button_NEL,objName:"Ops.Patch.PbdFbHA.Button_NEL"};
 
 
 
@@ -25453,6 +24922,351 @@ CABLES.OPS["11381bfe-38b0-4051-aef9-69d83c292f0d"]={f:Ops.Html.CSS.ElementCssTra
 
 // **************************************************************
 // 
+// Ops.Patch.PbdFbHA.OffsetSlider_v3
+// 
+// **************************************************************
+
+Ops.Patch.PbdFbHA.OffsetSlider_v3 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+// constants
+const STEP_DEFAULT = 0.00001;
+
+// inputs
+const parentPort = op.inObject("link");
+const labelPort = op.inString("Text", "Slider");
+const minPort = op.inValue("Min", 0);
+const maxPort = op.inValue("Max", 1);
+const stepPort = op.inValue("Step", STEP_DEFAULT);
+const labelSuffix = op.inString("Suffix", "");
+
+const inGreyOut = op.inBool("Grey Out", false);
+const inVisible = op.inBool("Visible", true);
+
+const inputValuePort = op.inValue("Input", 0.5);
+const setDefaultValueButtonPort = op.inTriggerButton("Set Default");
+const reset = op.inTriggerButton("Reset");
+
+let parent = null;
+
+const defaultValuePort = op.inValue("Default", 0.5);
+defaultValuePort.setUiAttribs({ "hidePort": true, "greyout": true });
+
+// outputs
+const siblingsPort = op.outObject("childs");
+const valuePort = op.outNumber("Result", defaultValuePort.get());
+const interactionPort = op.outObject("Interaction", { });
+
+op.toWorkNeedsParent("Ops.Sidebar.Sidebar");
+op.setPortGroup("Range", [minPort, maxPort, stepPort]);
+op.setPortGroup("Display", [inGreyOut, inVisible]);
+
+// vars
+const el = document.createElement("div");
+el.addEventListener("dblclick", function ()
+{
+    valuePort.set(parseFloat(defaultValuePort.get()));
+    inputValuePort.set(parseFloat(defaultValuePort.get()));
+    setValueFieldValue(defaultValuePort.get());
+    interactionPort.set({ "type": "dblclick", "value": parseFloat(defaultValuePort.get()) });
+});
+
+el.addEventListener("mouseenter", function ()
+{
+    interactionPort.set({ "type": "hover", "value": parseFloat(valuePort.get()), "paramId": "scapeOffset" });
+});
+
+el.addEventListener("mousedown", function ()
+{
+    interactionPort.set({ "type": "mousedown", "value": parseFloat(valuePort.get()), "paramId": "scapeOffset" });
+});
+
+el.addEventListener("mouseleave", function ()
+{
+    interactionPort.set({ "type": "leave", "value": parseFloat(valuePort.get()), "paramId": "disengage" });
+});
+
+el.dataset.op = op.id;
+el.classList.add("cablesEle");
+
+el.classList.add("sidebar__item");
+el.classList.add("sidebar__slider");
+el.classList.add("sidebar__reloadable");
+
+op.patch.on("sidebarStylesChanged", () => { updateActiveTrack(); });
+
+const label = document.createElement("div");
+label.classList.add("sidebar__item-label");
+
+const greyOut = document.createElement("div");
+greyOut.classList.add("sidebar__greyout");
+el.appendChild(greyOut);
+greyOut.style.display = "none";
+
+const labelText = document.createTextNode(labelPort.get());
+label.appendChild(labelText);
+el.appendChild(label);
+
+const value = document.createElement("input");
+value.value = defaultValuePort.get();
+value.classList.add("sidebar__text-input-input");
+value.setAttribute("type", "text");
+value.oninput = onTextInputChanged;
+el.appendChild(value);
+
+const suffixEle = document.createElement("span");
+// setValueFieldValue(defaultValuePort).get();
+// value.setAttribute("type", "text");
+// value.oninput = onTextInputChanged;
+
+el.appendChild(suffixEle);
+
+labelSuffix.onChange = () =>
+{
+    suffixEle.innerHTML = labelSuffix.get();
+};
+
+const inputWrapper = document.createElement("div");
+inputWrapper.id = "startOffset";
+inputWrapper.classList.add("sidebar__slider-input-wrapper");
+el.appendChild(inputWrapper);
+
+const activeTrack = document.createElement("div");
+activeTrack.classList.add("sidebar__slider-input-active-track");
+inputWrapper.appendChild(activeTrack);
+const input = document.createElement("input");
+input.classList.add("sidebar__slider-input");
+input.setAttribute("min", minPort.get());
+input.setAttribute("max", maxPort.get());
+input.setAttribute("type", "range");
+input.setAttribute("step", stepPort.get());
+input.setAttribute("value", defaultValuePort.get());
+input.style.display = "block"; /* needed because offsetWidth returns 0 otherwise */
+inputWrapper.appendChild(input);
+
+updateActiveTrack();
+input.addEventListener("input", onSliderInput);
+
+// events
+parentPort.onChange = onParentChanged;
+labelPort.onChange = onLabelTextChanged;
+inputValuePort.onChange = onInputValuePortChanged;
+defaultValuePort.onChange = onDefaultValueChanged;
+setDefaultValueButtonPort.onTriggered = onSetDefaultValueButtonPress;
+minPort.onChange = onMinPortChange;
+maxPort.onChange = onMaxPortChange;
+stepPort.onChange = stepPortChanged;
+op.onDelete = onDelete;
+
+// op.onLoadedValueSet=function()
+op.onLoaded = op.onInit = function ()
+{
+    if (op.patch.config.sidebar)
+    {
+        op.patch.config.sidebar[labelPort.get()];
+        valuePort.set(op.patch.config.sidebar[labelPort.get()]);
+    }
+    else
+    {
+        valuePort.set(parseFloat(defaultValuePort.get()));
+        inputValuePort.set(parseFloat(defaultValuePort.get()));
+        // onInputValuePortChanged();
+    }
+};
+
+reset.onTriggered = function ()
+{
+    const newValue = parseFloat(defaultValuePort.get());
+    valuePort.set(newValue);
+    setValueFieldValue(newValue);
+    setInputFieldValue(newValue);
+    inputValuePort.set(newValue);
+    updateActiveTrack();
+};
+
+inGreyOut.onChange = function ()
+{
+    greyOut.style.display = inGreyOut.get() ? "block" : "none";
+};
+
+inVisible.onChange = function ()
+{
+    el.style.display = inVisible.get() ? "block" : "none";
+};
+
+function onTextInputChanged(ev)
+{
+    let newValue = parseFloat(ev.target.value);
+    if (isNaN(newValue)) newValue = 0;
+    const min = minPort.get();
+    const max = maxPort.get();
+    if (newValue < min) { newValue = min; }
+    else if (newValue > max) { newValue = max; }
+    // setInputFieldValue(newValue);
+    valuePort.set(newValue);
+    updateActiveTrack();
+    inputValuePort.set(newValue);
+    op.refreshParams();
+}
+
+function onInputValuePortChanged()
+{
+    let newValue = parseFloat(inputValuePort.get());
+    const minValue = minPort.get();
+    const maxValue = maxPort.get();
+    if (newValue > maxValue) { newValue = maxValue; }
+    else if (newValue < minValue) { newValue = minValue; }
+    // setValueFieldValue(newValue);
+    setInputFieldValue(newValue);
+    valuePort.set(newValue);
+    updateActiveTrack();
+}
+
+function onSetDefaultValueButtonPress()
+{
+    let newValue = parseFloat(inputValuePort.get());
+    const minValue = minPort.get();
+    const maxValue = maxPort.get();
+    if (newValue > maxValue) { newValue = maxValue; }
+    else if (newValue < minValue) { newValue = minValue; }
+    setValueFieldValue(newValue);
+    setInputFieldValue(newValue);
+    valuePort.set(newValue);
+    defaultValuePort.set(newValue);
+    op.refreshParams();
+
+    updateActiveTrack();
+}
+
+function onSliderInput(ev)
+{
+    ev.preventDefault();
+    ev.stopPropagation();
+    setValueFieldValue(ev.target.value);
+    const inputFloat = parseFloat(ev.target.value);
+    valuePort.set(inputFloat);
+    inputValuePort.set(inputFloat);
+    op.refreshParams();
+
+    updateActiveTrack();
+    interactionPort.set({ "type": "input", "value": inputFloat, "paramId": "scapeOffset" });
+    return false;
+}
+
+function stepPortChanged()
+{
+    const step = stepPort.get();
+    input.setAttribute("step", step);
+    updateActiveTrack();
+}
+
+function updateActiveTrack(val)
+{
+    let valueToUse = parseFloat(input.value);
+    if (typeof val !== "undefined") valueToUse = val;
+    let availableWidth = activeTrack.parentElement.getBoundingClientRect().width || 220;
+    if (parent) availableWidth = parseInt(getComputedStyle(parent.parentElement).getPropertyValue("--sidebar-width")) - 20;
+
+    const trackWidth = CABLES.map(
+        valueToUse,
+        parseFloat(input.min),
+        parseFloat(input.max),
+        0,
+        availableWidth - 16 /* subtract slider thumb width */
+    );
+    activeTrack.style.width = trackWidth + "px";
+}
+
+function onMinPortChange()
+{
+    const min = minPort.get();
+    input.setAttribute("min", min);
+    updateActiveTrack();
+}
+
+function onMaxPortChange()
+{
+    const max = maxPort.get();
+    input.setAttribute("max", max);
+    updateActiveTrack();
+}
+
+function onDefaultValueChanged()
+{
+    const defaultValue = defaultValuePort.get();
+    valuePort.set(parseFloat(defaultValue));
+    onMinPortChange();
+    onMaxPortChange();
+    setInputFieldValue(defaultValue);
+    setValueFieldValue(defaultValue);
+
+    updateActiveTrack(defaultValue); // needs to be passed as argument, is this async?
+}
+
+function onLabelTextChanged()
+{
+    const labelText = labelPort.get();
+    label.textContent = labelText;
+    if (CABLES.UI) op.setUiAttrib({ "extendTitle": labelText });
+}
+
+function onParentChanged()
+{
+    siblingsPort.set(null);
+    parent = parentPort.get();
+    if (parent && parent.parentElement)
+    {
+        parent.parentElement.appendChild(el);
+        siblingsPort.set(parent);
+    }
+    else if (el.parentElement) el.parentElement.removeChild(el);
+
+    updateActiveTrack();
+}
+
+function setValueFieldValue(v)
+{
+    value.value = v;
+}
+
+function setInputFieldValue(v)
+{
+    input.value = v;
+}
+
+function showElement(el)
+{
+    if (el)el.style.display = "block";
+}
+
+function hideElement(el)
+{
+    if (el)el.style.display = "none";
+}
+
+function onDelete()
+{
+    removeElementFromDOM(el);
+}
+
+function removeElementFromDOM(el)
+{
+    if (el && el.parentNode && el.parentNode.removeChild) el.parentNode.removeChild(el);
+}
+
+
+};
+
+Ops.Patch.PbdFbHA.OffsetSlider_v3.prototype = new CABLES.Op();
+CABLES.OPS["56c55700-64c6-4925-a464-75b74a7c7d66"]={f:Ops.Patch.PbdFbHA.OffsetSlider_v3,objName:"Ops.Patch.PbdFbHA.OffsetSlider_v3"};
+
+
+
+
+// **************************************************************
+// 
 // Ops.Html.CSS.CSSPropertyString
 // 
 // **************************************************************
@@ -25526,6 +25340,170 @@ Ops.Html.CSS.CSSPropertyString.prototype = new CABLES.Op();
 CABLES.OPS["a7abdfb9-4c2a-4ddb-8fc6-55b3fdfbdaf3"]={f:Ops.Html.CSS.CSSPropertyString,objName:"Ops.Html.CSS.CSSPropertyString"};
 
 
+
+
+
+// **************************************************************
+// 
+// Ops.Html.CSS.CSSFilter
+// 
+// **************************************************************
+
+Ops.Html.CSS.CSSFilter = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const inEle = op.inObject("Element");
+const inMethod = op.inValueSelect("method", ["-", "blur", "brightness", "contrast", "grayscale", "hue-rotate", "invert", "opacity", "saturate", "sepia"]);
+const inVal = op.inValue("Value");
+
+let suffix = "";
+let prefix = "";
+
+inVal.onChange = setValue;
+inEle.onChange = setValue;
+
+let oldEle = null;
+
+function getCSSFilterString()
+{
+    return inMethod.get() + "(" + inVal.get() + suffix + ")";
+}
+
+inEle.onLinkChanged = function ()
+{
+    // remove style when deleting op
+    if (inEle.isLinked()) return;
+
+    const ele = oldEle;// inEle.get();
+
+    if (ele && ele.style)
+    {
+        let filter = ele.style.filter;
+        var str = "";
+
+        if (filter && filter.length > 0)
+        {
+            var str = "";
+            let parts = filter.split(" ");
+            for (let i = 0; i < parts.length; i++)
+            {
+                if (parts[i].indexOf(inMethod.get()) == 0)
+                    parts[i] = "";
+            }
+
+            str = parts.join(" ");
+        }
+        ele.style.filter = str;
+    }
+};
+
+function setValue()
+{
+    const ele = inEle.get();
+    let str = "";
+
+    if (ele && ele.style)
+    {
+        if (ele != oldEle) oldEle = ele;
+        let foundMyFilter = false;
+        let filter = ele.style.filter;
+
+        if (filter && filter.length > 0)
+        {
+            let parts = filter.split(" ");
+            for (let i = 0; i < parts.length; i++)
+            {
+                if (parts[i].indexOf(inMethod.get()) == 0)
+                {
+                    foundMyFilter = true;
+                    parts[i] = getCSSFilterString();
+                }
+            }
+
+            str = parts.join(" ");
+        }
+
+        if (!foundMyFilter)
+            str += " " + getCSSFilterString();
+
+        ele.style.filter = str;
+    }
+}
+
+inMethod.onChange = function ()
+{
+    let m = inMethod.get();
+
+    prefix = inMethod.get() + ":";
+
+    if (m == "blur") suffix = "px";
+    if (m == "brightness") suffix = "";
+    if (m == "contrast") suffix = "%";
+    if (m == "grayscale") suffix = "%";
+    if (m == "hue-rotate") suffix = "deg";
+    if (m == "invert") suffix = "%";
+    if (m == "opacity") suffix = "%";
+    if (m == "saturate") suffix = "";
+    if (m == "sepia") suffix = "%";
+    setValue();
+};
+
+
+};
+
+Ops.Html.CSS.CSSFilter.prototype = new CABLES.Op();
+CABLES.OPS["33befabf-7eef-45f6-869f-30e0e4f44739"]={f:Ops.Html.CSS.CSSFilter,objName:"Ops.Html.CSS.CSSFilter"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Json.ObjectDeleteKey
+// 
+// **************************************************************
+
+Ops.Json.ObjectDeleteKey = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inObj1 = op.inObject("Object"),
+    inKey = op.inString("Key", ""),
+    outObj = op.outObject("Object Result");
+
+inObj1.onChange = update;
+
+inKey.onChange = () =>
+{
+    op.setUiAttrib({ "extendTitle": inKey.get() });
+    update();
+};
+
+function update()
+{
+    const o = inObj1.get();
+
+    if (!o)
+    {
+        outObj.set(null);
+        return;
+    }
+
+    const newObj = JSON.parse(JSON.stringify(o));
+    delete newObj[inKey.get()];
+
+    outObj.setRef(newObj);
+}
+
+
+};
+
+Ops.Json.ObjectDeleteKey.prototype = new CABLES.Op();
+CABLES.OPS["57a80386-b565-4915-a365-61b2dccf5ccc"]={f:Ops.Json.ObjectDeleteKey,objName:"Ops.Json.ObjectDeleteKey"};
 
 window.addEventListener('load', function(event) {
 CABLES.jsLoaded=new Event('CABLES.jsLoaded');
