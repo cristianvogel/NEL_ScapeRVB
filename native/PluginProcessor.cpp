@@ -830,15 +830,33 @@ void Processor::initJavaScriptEngine()
 
 // ▮▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮
 // Main function for dispatching state changes to the front end
-// since using WebSockets to sync state, this function
-// only really handles the Bypass toggles and the
-// Reverse toggle. Everything else is handled by the
+// since using WebSockets to sync state, the
+// UI only consumes a few of the UI elements this way
+// * all the toggles
+// * the filenames for view
+// * VFS
+// Everything else is handled by the
 // WebSocket server responding to a requestState message
 // from the front end.
 void Processor::dispatchStateChange()
 {
     auto state_to_dispatch = state;
     util::strip_viewstate_from_state(state_to_dispatch);
+    elem::js::Array irNames;
+    for (const auto& [slot, asset] : assetsMap)
+    {
+        if (asset.has_filename_for_view())
+        {
+            irNames.push_back(asset.get_all_filenames()[0]);
+        }
+        else
+        {
+            irNames.push_back(slotname_to_string(slot));
+        }
+    }
+    state_to_dispatch.insert_or_assign(PERSISTED_USER_FILENAMES,
+                                       irNames);
+
     const auto expr = serialize(jsFunctions::dispatchStateChangeScript, state_to_dispatch);
     // Next we dispatch to the local engine which will evaluate any necessary
     // JavaScript synchronously here on the main thread

@@ -54,6 +54,8 @@ public:
         return propNames;
     }
 
+
+
     // 1. Base template declaration
     template <typename T>
     inline const T& get(Props property) const;
@@ -135,6 +137,15 @@ public:
         userFilenameForView.clear();
     }
 
+    inline bool has_userfile() const
+    {
+        return userStereoFile.exists();
+    }
+
+    inline bool has_filename_for_view() const
+    {
+        return !filenameForView.empty();
+    }
 
     /**
      * @brief a vector containing all three filenames stored in this asset
