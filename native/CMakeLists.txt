@@ -7,7 +7,7 @@ set(ASSETS_DIR ${CMAKE_SOURCE_DIR}/../dist/)
 # sync version manually in constants.ts 
 # messing with Cmake to TypeScript through Vite was getting messy
 
-set(BUILD_VERSION "v0.9.4-dbg")
+set(BUILD_VERSION "v0.9.51-dbg")
 
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
