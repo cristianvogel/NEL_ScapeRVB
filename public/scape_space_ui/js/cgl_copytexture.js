@@ -43,7 +43,7 @@ class Logger
             console.error("[" + this.initiator + "]", ...arguments);
         }
 
-        if (!CABLES.UI && this._options && this._options.onError)
+        if (this._options && this._options.onError)
         {
             this._options.onError(this.initiator, ...arguments);
             // console.log("emitevent onerror...");
@@ -3716,10 +3716,17 @@ Port.prototype.removeLink = function (link)
 
     if (CABLES.UI && this._op.checkLinkTimeWarnings) this._op.checkLinkTimeWarnings();
 
-    if (this.onLinkChanged) this.onLinkChanged();
-    this.emitEvent("onLinkChanged");
-    this.emitEvent("onLinkRemoved");
-    this._op.emitEvent("onLinkChanged");
+    try
+    {
+        if (this.onLinkChanged) this.onLinkChanged();
+        this.emitEvent("onLinkChanged");
+        this.emitEvent("onLinkRemoved");
+        this._op.emitEvent("onLinkChanged");
+    }
+    catch (e)
+    {
+        this._log.error(e);
+    }
 };
 
 /**
@@ -3751,9 +3758,16 @@ Port.prototype.addLink = function (l)
     this.links.push(l);
     if (CABLES.UI && this._op.checkLinkTimeWarnings) this._op.checkLinkTimeWarnings();
 
-    if (this.onLinkChanged) this.onLinkChanged();
-    this.emitEvent("onLinkChanged");
-    this._op.emitEvent("onLinkChanged");
+    try
+    {
+        if (this.onLinkChanged) this.onLinkChanged();
+        this.emitEvent("onLinkChanged");
+        this._op.emitEvent("onLinkChanged");
+    }
+    catch (e)
+    {
+        this._log.error(e);
+    }
 };
 
 /**
@@ -4329,14 +4343,16 @@ class CgUniform
         else this._value = _value;
 
 
-        // console.log(__shader, __type, __name, _value, _port2, _port3, _port4, _structUniformName, _structName, _propertyName);
-
-
+        if (this._value == undefined)
+        {
+            console.log("value undefined", this);
+            this._value = 0;
+        }
 
         this.setValue(this._value);
+
         this.needsUpdate = true;
     }
-
 
     getType()
     {
@@ -6023,7 +6039,7 @@ class CopyTexture
             else this.fb = new CGL.Framebuffer2(cgl, w, h, options);
         }
 
-        cgl.frameStore.renderOffscreen = true;
+        cgl.tempData.renderOffscreen = true;
         this.fb.renderStart(cgl);
 
         cgl.setTexture(0, tex.tex);
@@ -6037,7 +6053,7 @@ class CopyTexture
         cgl.popShader();
 
         this.fb.renderEnd();
-        cgl.frameStore.renderOffscreen = false;
+        cgl.tempData.renderOffscreen = false;
 
         return this.fb.getTextureColor();
     }

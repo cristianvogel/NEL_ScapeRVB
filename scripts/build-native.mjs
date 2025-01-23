@@ -4,6 +4,7 @@
 import os from 'os';
 import path from 'path';
 import fs from 'fs-extra';
+
 import { $ } from 'zx';
 
 let rootDir =  path.resolve(__dirname, '..');
@@ -13,8 +14,22 @@ let buildDir = path.join(rootDir, 'native', 'build', 'scripted');
 //echo(`Build directory: ${buildDir}`);
 
 // Clean the build directory before we build
- await fs.remove(buildDir);
- await fs.ensureDir(buildDir);
+let artefactsDir = path.join(buildDir, 'NEL_scape_space_artefacts');
+let cmakeFilesDir = path.join(buildDir, 'CMakeFiles');
+
+await fs.remove(artefactsDir);
+await fs.remove(cmakeFilesDir);
+
+await fs.ensureDir(artefactsDir);
+await fs.ensureDir(cmakeFilesDir);
+
+
+// remove existing artefacts from the VST3 folder before building
+let vst3Dir = path.join(os.homedir(), 'Library', 'Audio', 'Plug-Ins', 'VST3');
+let filesToDelete = await fs.readdir(vst3Dir);
+filesToDelete = filesToDelete.filter(f => f.startsWith('NEL_'));
+filesToDelete.forEach(f => fs.remove(path.join(vst3Dir, f)));
+
 
 cd(buildDir);
 

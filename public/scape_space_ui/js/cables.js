@@ -964,7 +964,7 @@ class Logger
             console.error("[" + this.initiator + "]", ...arguments);
         }
 
-        if (!CABLES.UI && this._options && this._options.onError)
+        if (this._options && this._options.onError)
         {
             this._options.onError(this.initiator, ...arguments);
             // console.log("emitevent onerror...");
@@ -2884,10 +2884,17 @@ Port.prototype.removeLink = function (link)
 
     if (CABLES.UI && this._op.checkLinkTimeWarnings) this._op.checkLinkTimeWarnings();
 
-    if (this.onLinkChanged) this.onLinkChanged();
-    this.emitEvent("onLinkChanged");
-    this.emitEvent("onLinkRemoved");
-    this._op.emitEvent("onLinkChanged");
+    try
+    {
+        if (this.onLinkChanged) this.onLinkChanged();
+        this.emitEvent("onLinkChanged");
+        this.emitEvent("onLinkRemoved");
+        this._op.emitEvent("onLinkChanged");
+    }
+    catch (e)
+    {
+        this._log.error(e);
+    }
 };
 
 /**
@@ -2919,9 +2926,16 @@ Port.prototype.addLink = function (l)
     this.links.push(l);
     if (CABLES.UI && this._op.checkLinkTimeWarnings) this._op.checkLinkTimeWarnings();
 
-    if (this.onLinkChanged) this.onLinkChanged();
-    this.emitEvent("onLinkChanged");
-    this._op.emitEvent("onLinkChanged");
+    try
+    {
+        if (this.onLinkChanged) this.onLinkChanged();
+        this.emitEvent("onLinkChanged");
+        this._op.emitEvent("onLinkChanged");
+    }
+    catch (e)
+    {
+        this._log.error(e);
+    }
 };
 
 /**
@@ -3869,7 +3883,7 @@ const Op = function ()
     Op.prototype.checkMainloopExists = function ()
     {
         if (!CABLES.UI) return;
-        if (!this.patch.cgl.mainloopOp) this.setUiError("nomainloop", "patch should have a mainloop to use this op");
+        if (!this.patch.tempData.mainloopOp) this.setUiError("nomainloop", "patch should have a mainloop to use this op");
         else this.setUiError("nomainloop", null);
     };
 
@@ -3910,7 +3924,8 @@ const Op = function ()
 
     Op.prototype.isSubPatchOp = function ()
     {
-        if (this.storage) return (this.storage.subPatchVer || 0);
+        if (this.patchId && this.storage) return (this.storage.subPatchVer || this.storage.blueprintVer || 0);
+        return false;
     };
 
     const _setUiAttrib = function (newAttribs)
@@ -4799,7 +4814,7 @@ const Op = function ()
                 "display": "texture"
             })
         );
-        if (v !== undefined) p.set(v || CGL.Texture.getEmptyTexture(this.patch.cgl));
+        if (v !== undefined) p.setRef(v || CGL.Texture.getEmptyTexture(this.patch.cgl));
 
         p.ignoreValueSerialize = true;
         return p;
@@ -6110,14 +6125,16 @@ class CgUniform
         else this._value = _value;
 
 
-        // console.log(__shader, __type, __name, _value, _port2, _port3, _port4, _structUniformName, _structName, _propertyName);
-
-
+        if (this._value == undefined)
+        {
+            console.log("value undefined", this);
+            this._value = 0;
+        }
 
         this.setValue(this._value);
+
         this.needsUpdate = true;
     }
-
 
     getType()
     {
@@ -11997,7 +12014,7 @@ class Shader extends CgShader
         }
 
         if (this._objectIdUniform)
-            this._cgl.gl.uniform1f(this._objectIdUniform, ++this._cgl.frameStore.objectIdCounter);
+            this._cgl.gl.uniform1f(this._objectIdUniform, ++this._cgl.tempData.objectIdCounter);
 
         if (this._materialIdUniform)
             this._cgl.gl.uniform1f(this._materialIdUniform, this._materialId);
@@ -12539,12 +12556,12 @@ class Shader extends CgShader
     {
         if (!uniform)
         {
-            console.log("no uniform given to texturestack", uniform);
+            // console.log("pushtexture: no uniform given to texturestack", "shader:"+this._name,uniform,t,type);
             return;
         }
         if (!t)
         {
-            console.log("no tex...");
+            // if(uniform)this._log.warn("pushtexture: no tex","shader:"+this._name," uniform:"+uniform.name);
             return;
         }
         if (!t.hasOwnProperty("tex") && !(t instanceof WebGLTexture))
@@ -13238,14 +13255,12 @@ MatrixStack.prototype.length = function ()
 
 
 
-
-// const CGState ()
 class CGState extends Events
 {
     constructor(_patch)
     {
         super();
-        this.frameStore = this.frameStore || {};
+        this.tempData = this.frameStore = this.frameStore || {};
         // this.canvas = null;
 
         this.fpsCounter = new CABLES.CG.FpsCounter();
@@ -13669,8 +13684,6 @@ class Context extends CGState
     constructor(_patch)
     {
         super(_patch);
-        // EventTarget.apply(this);
-        // CGState.apply(this);
 
         this.gApi = CG.GAPI_WEBGL;
         this.aborted = false;
@@ -13695,7 +13708,6 @@ class Context extends CGState
         this._isSafariCrap = false;
 
         this.temporaryTexture = null;
-        this.frameStore = {};
         this._onetimeCallbacks = [];
         this.gl = null;
 
@@ -13766,13 +13778,9 @@ class Context extends CGState
         this.mMatrix = m;
     }
 
-
     _setCanvas(canv)
     {
-        if (!canv)
-        {
-            this._log.stack("_setCanvas undef");
-        }
+        if (!canv) this._log.stack("_setCanvas undef");
 
         if (!this.patch.config.canvas) this.patch.config.canvas = {};
         if (!this.patch.config.canvas.hasOwnProperty("preserveDrawingBuffer")) this.patch.config.canvas.preserveDrawingBuffer = false;
@@ -14051,9 +14059,9 @@ class Context extends CGState
     // shader stack
     getShader()
     {
-        if (this._currentShader) if (!this.frameStore || ((this.frameStore.renderOffscreen === true) == this._currentShader.offScreenPass) === true) return this._currentShader;
+        if (this._currentShader) if (!this.tempData || ((this.tempData.renderOffscreen === true) == this._currentShader.offScreenPass) === true) return this._currentShader;
 
-        for (let i = this._shaderStack.length - 1; i >= 0; i--) if (this._shaderStack[i]) if (this.frameStore.renderOffscreen == this._shaderStack[i].offScreenPass) return this._shaderStack[i];
+        for (let i = this._shaderStack.length - 1; i >= 0; i--) if (this._shaderStack[i]) if (this.tempData.renderOffscreen == this._shaderStack[i].offScreenPass) return this._shaderStack[i];
     }
 
     getDefaultShader()
@@ -14072,17 +14080,17 @@ class Context extends CGState
 
     pushShader(shader)
     {
-        if (this.frameStore.forceShaderMods)
+        if (this.tempData.forceShaderMods)
         {
-            for (let i = 0; i < this.frameStore.forceShaderMods.length; i++)
+            for (let i = 0; i < this.tempData.forceShaderMods.length; i++)
             {
-                // if (!currentShader.forcedMod && currentShader != this.frameStore.forceShaderMods[i])
+                // if (!currentShader.forcedMod && currentShader != this.tempData.forceShaderMods[i])
                 // {
-                //     currentShader.forcedMod = this.frameStore.forceShaderMods[i];
-                shader = this.frameStore.forceShaderMods[i].bind(shader, false);
+                //     currentShader.forcedMod = this.tempData.forceShaderMods[i];
+                shader = this.tempData.forceShaderMods[i].bind(shader, false);
                 // }
                 // return currentShader;
-                // if (this.frameStore.forceShaderMods[i].currentShader() && shader != this.frameStore.forceShaderMods[i].currentShader().shader)
+                // if (this.tempData.forceShaderMods[i].currentShader() && shader != this.tempData.forceShaderMods[i].currentShader().shader)
             }
         }
 
@@ -14100,12 +14108,12 @@ class Context extends CGState
      */
     setPreviousShader()
     {
-        if (this.frameStore.forceShaderMods)
+        if (this.tempData.forceShaderMods)
         {
-            for (let i = 0; i < this.frameStore.forceShaderMods.length; i++)
+            for (let i = 0; i < this.tempData.forceShaderMods.length; i++)
             {
                 // const a =
-                this.frameStore.forceShaderMods[i].unbind(false);
+                this.tempData.forceShaderMods[i].unbind(false);
                 // if (a) return;
                 // this.popShader();
             }
@@ -14798,7 +14806,7 @@ Context.prototype.glGetAttribLocation = function (prog, name)
  */
 Context.prototype.shouldDrawHelpers = function (op)
 {
-    if (this.frameStore.shadowPass) return false;
+    if (this.tempData.shadowPass) return false;
     if (!op.patch.isEditorMode()) return false;
 
     // const fb = this.getCurrentFrameBuffer();
@@ -15042,14 +15050,18 @@ class PatchVariable extends Events
  * });
  */
 
-const Patch = function (cfg)
+class Patch extends EventTarget
 {
-    EventTarget.apply(this);
+// const Patch(cfg)
+    constructor(cfg)
+    {
+        super();
+        // EventTarget.apply(this);
 
-    this._log = new Logger("core_patch", { "onError": cfg.onError });
-    this.ops = [];
-    this.settings = {};
-    this.config = cfg ||
+        this._log = new Logger("core_patch", { "onError": cfg.onError });
+        this.ops = [];
+        this.settings = {};
+        this.config = cfg ||
         {
             "glCanvasResizeToWindow": false,
             "prefixAssetPath": "",
@@ -15061,251 +15073,250 @@ const Patch = function (cfg)
             "onPatchLoaded": null,
             "fpsLimit": 0
         };
-    this.timer = new Timer();
-    this.freeTimer = new Timer();
-    this.animFrameOps = [];
-    this.animFrameCallbacks = [];
-    this.gui = false;
-    CABLES.logSilent = this.silent = true;
-    this.profiler = null;
-    this.aborted = false;
-    this._crashedOps = [];
-    this._renderOneFrame = false;
-    this._animReq = null;
-    this._opIdCache = {};
-    this._triggerStack = [];
-    this.storeObjNames = false; // remove after may release
+        this.timer = new Timer();
+        this.freeTimer = new Timer();
+        this.animFrameOps = [];
+        this.animFrameCallbacks = [];
+        this.gui = false;
+        CABLES.logSilent = this.silent = true;
+        this.profiler = null;
+        this.aborted = false;
+        this._crashedOps = [];
+        this._renderOneFrame = false;
+        this._animReq = null;
+        this._opIdCache = {};
+        this._triggerStack = [];
+        this.storeObjNames = false; // remove after may release
 
-    this.loading = new LoadingStatus(this);
+        this.loading = new LoadingStatus(this);
 
-    this._volumeListeners = [];
-    this._paused = false;
-    this._frameNum = 0;
-    // this.instancing = new Instancing();
-    this.onOneFrameRendered = null;
-    this.namedTriggers = {};
+        this._volumeListeners = [];
+        this._paused = false;
+        this._frameNum = 0;
+        this.onOneFrameRendered = null;
+        this.namedTriggers = {};
 
-    this._origData = null;
-    this._frameNext = 0;
-    this._frameInterval = 0;
-    this._lastFrameTime = 0;
-    this._frameWasdelayed = true;
-    this.frameStore = {};
-    this.deSerialized = false;
-    this.reqAnimTimeStamp = 0;
+        this._origData = null;
+        this._frameNext = 0;
+        this._frameInterval = 0;
+        this._lastFrameTime = 0;
+        this._frameWasdelayed = true;
+        this.tempData = this.frameStore = {};
+        this.deSerialized = false;
+        this.reqAnimTimeStamp = 0;
 
-    this.cgCanvas = null;
+        this.cgCanvas = null;
 
-    if (!(function () { return !this; }())) console.log("not in strict mode: core patch");
+        if (!(function () { return !this; }())) console.log("not in strict mode: core patch");
 
-    this._isLocal = document.location.href.indexOf("file:") === 0;
+        this._isLocal = document.location.href.indexOf("file:") === 0;
 
-    if (this.config.hasOwnProperty("silent")) this.silent = CABLES.logSilent = this.config.silent;
-    if (!this.config.hasOwnProperty("doRequestAnimation")) this.config.doRequestAnimation = true;
+        if (this.config.hasOwnProperty("silent")) this.silent = CABLES.logSilent = this.config.silent;
+        if (!this.config.hasOwnProperty("doRequestAnimation")) this.config.doRequestAnimation = true;
 
-    if (!this.config.prefixAssetPath) this.config.prefixAssetPath = "";
-    if (!this.config.prefixJsPath) this.config.prefixJsPath = "";
-    if (!this.config.masterVolume) this.config.masterVolume = 1.0;
+        if (!this.config.prefixAssetPath) this.config.prefixAssetPath = "";
+        if (!this.config.prefixJsPath) this.config.prefixJsPath = "";
+        if (!this.config.masterVolume) this.config.masterVolume = 1.0;
 
-    this._variables = {};
-    this._variableListeners = [];
-    this.vars = {};
-    if (cfg && cfg.vars) this.vars = cfg.vars; // vars is old!
+        this._variables = {};
+        this._variableListeners = [];
+        this.vars = {};
+        if (cfg && cfg.vars) this.vars = cfg.vars; // vars is old!
 
-    this.cgl = new Context(this);
-    this.cgp = null;
+        this.cgl = new Context(this);
+        this.cgp = null;
 
-    this._subpatchOpCache = {};
+        this._subpatchOpCache = {};
 
-    this.cgl.setCanvas(this.config.glCanvasId || this.config.glCanvas || "glcanvas");
-    if (this.config.glCanvasResizeToWindow === true) this.cgl.setAutoResize("window");
-    if (this.config.glCanvasResizeToParent === true) this.cgl.setAutoResize("parent");
-    this.loading.setOnFinishedLoading(this.config.onFinishedLoading);
+        this.cgl.setCanvas(this.config.glCanvasId || this.config.glCanvas || "glcanvas");
+        if (this.config.glCanvasResizeToWindow === true) this.cgl.setAutoResize("window");
+        if (this.config.glCanvasResizeToParent === true) this.cgl.setAutoResize("parent");
+        this.loading.setOnFinishedLoading(this.config.onFinishedLoading);
 
-    if (this.cgl.aborted) this.aborted = true;
-    if (this.cgl.silent) this.silent = true;
+        if (this.cgl.aborted) this.aborted = true;
+        if (this.cgl.silent) this.silent = true;
 
-    this.freeTimer.play();
-    this.exec();
+        this.freeTimer.play();
+        this.exec();
 
-    if (!this.aborted)
-    {
-        if (this.config.patch)
+        if (!this.aborted)
         {
-            this.deSerialize(this.config.patch);
-        }
-        else if (this.config.patchFile)
-        {
-            ajax(
-                this.config.patchFile,
-                (err, _data) =>
-                {
-                    try
+            if (this.config.patch)
+            {
+                this.deSerialize(this.config.patch);
+            }
+            else if (this.config.patchFile)
+            {
+                ajax(
+                    this.config.patchFile,
+                    (err, _data) =>
                     {
-                        const data = JSON.parse(_data);
-                        if (err)
+                        try
                         {
-                            const txt = "";
-                            this._log.error("err", err);
-                            this._log.error("data", data);
-                            this._log.error("data", data.msg);
-                            return;
+                            const data = JSON.parse(_data);
+                            if (err)
+                            {
+                                const txt = "";
+                                this._log.error("err", err);
+                                this._log.error("data", data);
+                                this._log.error("data", data.msg);
+                                return;
+                            }
+                            this.deSerialize(data);
                         }
-                        this.deSerialize(data);
+                        catch (e)
+                        {
+                            this._log.error("could not load/parse patch ", e);
+                        }
                     }
-                    catch (e)
-                    {
-                        this._log.error("could not load/parse patch ", e);
-                    }
-                }
-            );
+                );
+            }
+            this.timer.play();
         }
-        this.timer.play();
-    }
 
     console.log("made with https://cables.gl"); // eslint-disable-line
-};
+    }
 
-Patch.prototype.isPlaying = function ()
-{
-    return !this._paused;
-};
+    isPlaying()
+    {
+        return !this._paused;
+    }
 
-Patch.prototype.isRenderingOneFrame = function ()
-{
-    return this._renderOneFrame;
-};
+    isRenderingOneFrame()
+    {
+        return this._renderOneFrame;
+    }
 
 
-Patch.prototype.renderOneFrame = function ()
-{
-    this._paused = true;
-    this._renderOneFrame = true;
-    this.exec();
-    this._renderOneFrame = false;
-};
+    renderOneFrame()
+    {
+        this._paused = true;
+        this._renderOneFrame = true;
+        this.exec();
+        this._renderOneFrame = false;
+    }
 
-/**
+    /**
  * current number of frames per second
  * @function getFPS
  * @memberof Patch
  * @instance
  * @return {Number} fps
  */
-Patch.prototype.getFPS = function ()
-{
-    this._log.error("deprecated getfps");
-    return 0;
-};
+    getFPS()
+    {
+        this._log.error("deprecated getfps");
+        return 0;
+    }
 
-/**
+    /**
  * returns true if patch is opened in editor/gui mode
  * @function isEditorMode
  * @memberof Patch
  * @instance
  * @return {Boolean} editor mode
  */
-Patch.prototype.isEditorMode = function ()
-{
-    return this.config.editorMode === true;
-};
+    isEditorMode()
+    {
+        return this.config.editorMode === true;
+    }
 
-/**
+    /**
  * pauses patch execution
  * @function pause
  * @memberof Patch
  * @instance
  */
-Patch.prototype.pause = function ()
-{
-    cancelAnimationFrame(this._animReq);
-    this.emitEvent("pause");
-    this._animReq = null;
-    this._paused = true;
-    this.freeTimer.pause();
-};
+    pause()
+    {
+        cancelAnimationFrame(this._animReq);
+        this.emitEvent("pause");
+        this._animReq = null;
+        this._paused = true;
+        this.freeTimer.pause();
+    }
 
-/**
+    /**
  * resumes patch execution
  * @function resume
  * @memberof Patch
  * @instance
  */
-Patch.prototype.resume = function ()
-{
-    if (this._paused)
+    resume()
     {
-        cancelAnimationFrame(this._animReq);
-        this._paused = false;
-        this.freeTimer.play();
-        this.emitEvent("resume");
-        this.exec();
+        if (this._paused)
+        {
+            cancelAnimationFrame(this._animReq);
+            this._paused = false;
+            this.freeTimer.play();
+            this.emitEvent("resume");
+            this.exec();
+        }
     }
-};
 
-/**
+    /**
  * set volume [0-1]
  * @function setVolume
  * @param {Number} v volume
  * @memberof Patch
  * @instance
  */
-Patch.prototype.setVolume = function (v)
-{
-    this.config.masterVolume = v;
-    for (let i = 0; i < this._volumeListeners.length; i++) this._volumeListeners[i].onMasterVolumeChanged(v);
-};
+    setVolume(v)
+    {
+        this.config.masterVolume = v;
+        for (let i = 0; i < this._volumeListeners.length; i++) this._volumeListeners[i].onMasterVolumeChanged(v);
+    }
 
 
-/**
+    /**
  * get asset path
  * @function getAssetPath
  * @memberof Patch
  * @param patchId
  * @instance
  */
-Patch.prototype.getAssetPath = function (patchId = null)
-{
-    if (this.config.hasOwnProperty("assetPath"))
+    getAssetPath(patchId = null)
     {
-        return this.config.assetPath;
+        if (this.config.hasOwnProperty("assetPath"))
+        {
+            return this.config.assetPath;
+        }
+        else if (this.isEditorMode())
+        {
+            let id = patchId || gui.project()._id;
+            return "/assets/" + id + "/";
+        }
+        else if (document.location.href.indexOf("cables.gl") > 0 || document.location.href.indexOf("cables.local") > 0)
+        {
+            const parts = document.location.pathname.split("/");
+            let id = patchId || parts[parts.length - 1];
+            return "/assets/" + id + "/";
+        }
+        else
+        {
+            return "assets/";
+        }
     }
-    else if (this.isEditorMode())
-    {
-        let id = patchId || gui.project()._id;
-        return "/assets/" + id + "/";
-    }
-    else if (document.location.href.indexOf("cables.gl") > 0 || document.location.href.indexOf("cables.local") > 0)
-    {
-        const parts = document.location.pathname.split("/");
-        let id = patchId || parts[parts.length - 1];
-        return "/assets/" + id + "/";
-    }
-    else
-    {
-        return "assets/";
-    }
-};
 
-/**
+    /**
  * get js path
  * @function getJsPath
  * @memberof Patch
  * @instance
  */
-Patch.prototype.getJsPath = function ()
-{
-    if (this.config.hasOwnProperty("jsPath"))
+    getJsPath()
     {
-        return this.config.jsPath;
+        if (this.config.hasOwnProperty("jsPath"))
+        {
+            return this.config.jsPath;
+        }
+        else
+        {
+            return "js/";
+        }
     }
-    else
-    {
-        return "js/";
-    }
-};
 
-/**
+    /**
  * get url/filepath for a filename
  * this uses prefixAssetpath in exported patches
  * @function getFilePath
@@ -15314,29 +15325,1021 @@ Patch.prototype.getJsPath = function ()
  * @param {String} filename
  * @return {String} url
  */
-Patch.prototype.getFilePath = function (filename)
-{
-    if (!filename) return filename;
-    filename = String(filename);
-    if (filename.indexOf("https:") === 0 || filename.indexOf("http:") === 0) return filename;
-    if (filename.indexOf("data:") === 0) return filename;
-    if (filename.indexOf("file:") === 0) return filename;
-    filename = filename.replace("//", "/");
-    if (filename.startsWith(this.config.prefixAssetPath)) filename = filename.replace(this.config.prefixAssetPath, "");
-    return this.config.prefixAssetPath + filename + (this.config.suffixAssetPath || "");
-};
+    getFilePath(filename)
+    {
+        if (!filename) return filename;
+        filename = String(filename);
+        if (filename.indexOf("https:") === 0 || filename.indexOf("http:") === 0) return filename;
+        if (filename.indexOf("data:") === 0) return filename;
+        if (filename.indexOf("file:") === 0) return filename;
+        filename = filename.replace("//", "/");
+        if (filename.startsWith(this.config.prefixAssetPath)) filename = filename.replace(this.config.prefixAssetPath, "");
+        return this.config.prefixAssetPath + filename + (this.config.suffixAssetPath || "");
+    }
 
-Patch.prototype.clear = function ()
-{
-    this.emitEvent("patchClearStart");
-    this.cgl.TextureEffectMesh = null;
-    this.animFrameOps.length = 0;
-    this.timer = new Timer();
-    while (this.ops.length > 0) this.deleteOp(this.ops[0].id);
+    clear()
+    {
+        this.emitEvent("patchClearStart");
+        this.cgl.TextureEffectMesh = null;
+        this.animFrameOps.length = 0;
+        this.timer = new Timer();
+        while (this.ops.length > 0) this.deleteOp(this.ops[0].id);
 
-    this._opIdCache = {};
-    this.emitEvent("patchClearEnd");
-};
+        this._opIdCache = {};
+        this.emitEvent("patchClearEnd");
+    }
+
+
+
+
+    createOp(identifier, id, opName = null)
+    {
+        let op = null;
+        let objName = "";
+
+        try
+        {
+            if (!identifier)
+            {
+                console.error("createop identifier false", identifier);
+                console.log((new Error()).stack);
+                return;
+            }
+            if (identifier.indexOf("Ops.") === -1)
+            {
+                // this should be a uuid, not a namespace
+                // creating ops by id should be the default way from now on!
+                const opId = identifier;
+
+
+
+                if (CABLES.OPS[opId])
+                {
+                    objName = CABLES.OPS[opId].objName;
+                    op = new CABLES.OPS[opId].f(this, objName, id, opId);
+                    op.opId = opId;
+                }
+                else
+                {
+                    if (opName)
+                    {
+                        identifier = opName;
+                        this._log.warn("could not find op by id: " + opId);
+                    }
+                    else
+                    {
+                        throw new Error("could not find op by id: " + opId, { "cause": "opId:" + opId });
+                    }
+                }
+            }
+
+            if (!op)
+            {
+                // fallback: create by objname!
+                objName = identifier;
+                const parts = identifier.split(".");
+                const opObj = Patch.getOpClass(objName);
+
+                if (!opObj)
+                {
+                    this.emitEvent("criticalError", { "title": "unknown op" + objName, "text": "unknown op: " + objName });
+
+                    this._log.error("unknown op: " + objName);
+                    throw new Error("unknown op: " + objName);
+                }
+                else
+                {
+                    if (parts.length == 2) op = new window[parts[0]][parts[1]](this, objName, id);
+                    else if (parts.length == 3) op = new window[parts[0]][parts[1]][parts[2]](this, objName, id);
+                    else if (parts.length == 4) op = new window[parts[0]][parts[1]][parts[2]][parts[3]](this, objName, id);
+                    else if (parts.length == 5) op = new window[parts[0]][parts[1]][parts[2]][parts[3]][parts[4]](this, objName, id);
+                    else if (parts.length == 6) op = new window[parts[0]][parts[1]][parts[2]][parts[3]][parts[4]][parts[5]](this, objName, id);
+                    else if (parts.length == 7) op = new window[parts[0]][parts[1]][parts[2]][parts[3]][parts[4]][parts[5]][parts[6]](this, objName, id);
+                    else if (parts.length == 8) op = new window[parts[0]][parts[1]][parts[2]][parts[3]][parts[4]][parts[5]][parts[6]][parts[7]](this, objName, id);
+                    else if (parts.length == 9) op = new window[parts[0]][parts[1]][parts[2]][parts[3]][parts[4]][parts[5]][parts[6]][parts[7]][parts[8]](this, objName, id);
+                    else if (parts.length == 10) op = new window[parts[0]][parts[1]][parts[2]][parts[3]][parts[4]][parts[5]][parts[6]][parts[7]][parts[8]][parts[9]](this, objName, id);
+                    else console.log("parts.length", parts.length);
+                }
+
+                if (op)
+                {
+                    op.opId = null;
+                    for (const i in CABLES.OPS)
+                    {
+                        if (CABLES.OPS[i].objName == objName) op.opId = i;
+                    }
+                }
+            }
+        }
+        catch (e)
+        {
+            this._crashedOps.push(objName);
+
+            this._log.error("[instancing error] " + objName, e);
+
+            if (!this.isEditorMode())
+            {
+                this._log.error("INSTANCE_ERR", "Instancing Error: " + objName, e);
+                // throw new Error("instancing error 1" + objName);
+            }
+        }
+
+        if (op)
+        {
+            op._objName = objName;
+            op.patch = this;
+        }
+        else
+        {
+            this._log.log("no op was created!?", identifier, id);
+        }
+        return op;
+    }
+
+    /**
+     * create a new op in patch
+     * @function addOp
+     * @memberof Patch
+     * @instance
+     * @param {string} opIdentifier uuid or name, e.g. Ops.Math.Sum
+     * @param {Object} uiAttribs Attributes
+     * @param {string} id
+     * @param {boolean} fromDeserialize
+     * @param {string} opName e.g. Ops.Math.Sum
+     * @example
+     * // add invisible op
+     * patch.addOp('Ops.Math.Sum', { showUiAttribs: false });
+     */
+    addOp(opIdentifier, uiAttribs, id, fromDeserialize, opName)
+    {
+        const op = this.createOp(opIdentifier, id, opName);
+
+        if (op)
+        {
+            uiAttribs = uiAttribs || {};
+            if (uiAttribs.hasOwnProperty("errors")) delete uiAttribs.errors;
+            if (uiAttribs.hasOwnProperty("error")) delete uiAttribs.error;
+            uiAttribs.subPatch = uiAttribs.subPatch || 0;
+
+            op.setUiAttribs(uiAttribs);
+            if (op.onCreate) op.onCreate();
+
+            if (op.hasOwnProperty("onAnimFrame")) this.addOnAnimFrame(op);
+            if (op.hasOwnProperty("onMasterVolumeChanged")) this._volumeListeners.push(op);
+
+            if (this._opIdCache[op.id])
+            {
+                this._log.warn("opid with id " + op.id + " already exists in patch!");
+                this.deleteOp(op.id); // strange with subpatch ops: why is this needed, somehow ops get added twice ???.....
+                // return;
+            }
+
+            this.ops.push(op);
+            this._opIdCache[op.id] = op;
+
+            if (this._subPatchCacheAdd) this._subPatchCacheAdd(uiAttribs.subPatch, op);
+            this.emitEvent("onOpAdd", op, fromDeserialize);
+
+            if (op.init) op.init();
+
+            op.emitEvent("init", fromDeserialize);
+        }
+        else
+        {
+            this._log.error("addop: op could not be created: ", opIdentifier);
+        }
+
+        return op;
+    }
+
+    addOnAnimFrame(op)
+    {
+        for (let i = 0; i < this.animFrameOps.length; i++) if (this.animFrameOps[i] == op) { return; }
+
+        this.animFrameOps.push(op);
+    }
+
+    removeOnAnimFrame(op)
+    {
+        for (let i = 0; i < this.animFrameOps.length; i++)
+        {
+            if (this.animFrameOps[i] == op)
+            {
+                this.animFrameOps.splice(i, 1);
+                return;
+            }
+        }
+    }
+
+    addOnAnimFrameCallback(cb)
+    {
+        this.animFrameCallbacks.push(cb);
+    }
+
+    removeOnAnimCallback(cb)
+    {
+        for (let i = 0; i < this.animFrameCallbacks.length; i++)
+        {
+            if (this.animFrameCallbacks[i] == cb)
+            {
+                this.animFrameCallbacks.splice(i, 1);
+                return;
+            }
+        }
+    }
+
+    deleteOp(opid, tryRelink, reloadingOp)
+    {
+        let found = false;
+        for (const i in this.ops)
+        {
+            if (this.ops[i].id == opid)
+            {
+                const op = this.ops[i];
+                let reLinkP1 = null;
+                let reLinkP2 = null;
+
+                if (op)
+                {
+                    found = true;
+                    if (tryRelink)
+                    {
+                        if (op.portsIn.length > 0 && op.portsIn[0].isLinked() && (op.portsOut.length > 0 && op.portsOut[0].isLinked()))
+                        {
+                            if (op.portsIn[0].getType() == op.portsOut[0].getType() && op.portsIn[0].links[0])
+                            {
+                                reLinkP1 = op.portsIn[0].links[0].getOtherPort(op.portsIn[0]);
+                                reLinkP2 = op.portsOut[0].links[0].getOtherPort(op.portsOut[0]);
+                            }
+                        }
+                    }
+
+                    const opToDelete = this.ops[i];
+                    opToDelete.removeLinks();
+
+                    if (this.onDelete)
+                    {
+                        // todo: remove
+                        this._log.warn("deprecated this.onDelete", this.onDelete);
+                        this.onDelete(opToDelete);
+                    }
+
+                    this.ops.splice(i, 1);
+                    opToDelete.emitEvent("delete", opToDelete);
+                    this.emitEvent("onOpDelete", opToDelete, reloadingOp);
+
+                    if (this.clearSubPatchCache) this.clearSubPatchCache(opToDelete.uiAttribs.subPatch);
+
+                    if (opToDelete.onDelete) opToDelete.onDelete(reloadingOp);
+                    opToDelete.cleanUp();
+
+                    if (reLinkP1 !== null && reLinkP2 !== null)
+                    {
+                        this.link(reLinkP1.op, reLinkP1.getName(), reLinkP2.op, reLinkP2.getName());
+                    }
+
+                    delete this._opIdCache[opid];
+                    break;
+                }
+            }
+        }
+
+        if (!found) this._log.warn("core patch deleteop: not found...", opid);
+    }
+
+    getFrameNum()
+    {
+        return this._frameNum;
+    }
+
+    emitOnAnimFrameEvent(time, delta)
+    {
+        time = time || this.timer.getTime();
+
+        for (let i = 0; i < this.animFrameCallbacks.length; ++i)
+            if (this.animFrameCallbacks[i])
+                this.animFrameCallbacks[i](time, this._frameNum, delta);
+
+        for (let i = 0; i < this.animFrameOps.length; ++i)
+            if (this.animFrameOps[i].onAnimFrame)
+                this.animFrameOps[i].onAnimFrame(time, this._frameNum, delta);
+    }
+
+    renderFrame(timestamp)
+    {
+        this.timer.update(this.reqAnimTimeStamp);
+        this.freeTimer.update(this.reqAnimTimeStamp);
+        const time = this.timer.getTime();
+        const startTime = performance.now();
+        this.cgl.frameStartTime = this.timer.getTime();
+
+        const delta = timestamp - this.reqAnimTimeStamp || timestamp;
+
+        this.emitOnAnimFrameEvent(null, delta);
+
+        this.cgl.profileData.profileFrameDelta = delta;
+        this.reqAnimTimeStamp = timestamp;
+        this.cgl.profileData.profileOnAnimFrameOps = performance.now() - startTime;
+
+        this.emitEvent("onRenderFrame", time);
+
+        this._frameNum++;
+        if (this._frameNum == 1)
+        {
+            if (this.config.onFirstFrameRendered) this.config.onFirstFrameRendered();
+        }
+    }
+
+    exec(timestamp)
+    {
+        if (!this._renderOneFrame && (this._paused || this.aborted)) return;
+        this.emitEvent("reqAnimFrame");
+        cancelAnimationFrame(this._animReq);
+
+        this.config.fpsLimit = this.config.fpsLimit || 0;
+        if (this.config.fpsLimit)
+        {
+            this._frameInterval = 1000 / this.config.fpsLimit;
+        }
+
+        const now = CABLES.now();
+        const frameDelta = now - this._frameNext;
+
+        if (this.isEditorMode())
+        {
+            if (!this._renderOneFrame)
+            {
+                if (now - this._lastFrameTime >= 500 && this._lastFrameTime !== 0 && !this._frameWasdelayed)
+                {
+                    this._lastFrameTime = 0;
+                    setTimeout(this.exec.bind(this), 500);
+                    this.emitEvent("renderDelayStart");
+                    this._frameWasdelayed = true;
+                    return;
+                }
+            }
+        }
+
+        if (this._renderOneFrame || this.config.fpsLimit === 0 || frameDelta > this._frameInterval || this._frameWasdelayed)
+        {
+            this.renderFrame(timestamp);
+
+            if (this._frameInterval) this._frameNext = now - (frameDelta % this._frameInterval);
+        }
+
+        if (this._frameWasdelayed)
+        {
+            this.emitEvent("renderDelayEnd");
+            this._frameWasdelayed = false;
+        }
+
+        if (this._renderOneFrame)
+        {
+            if (this.onOneFrameRendered) this.onOneFrameRendered(); // todo remove everywhere and use propper event...
+            this.emitEvent("renderedOneFrame");
+            this._renderOneFrame = false;
+        }
+
+
+        if (this.config.doRequestAnimation) this._animReq = this.cgl.canvas.ownerDocument.defaultView.requestAnimationFrame(this.exec.bind(this));
+    }
+
+    /**
+     * link two ops/ports
+     * @function link
+     * @memberof Patch
+     * @instance
+     * @param {Op} op1
+     * @param {String} port1Name
+     * @param {Op} op2
+     * @param {String} port2Name
+     * @param {boolean} lowerCase
+     * @param {boolean} fromDeserialize
+     */
+    link(op1, port1Name, op2, port2Name, lowerCase, fromDeserialize)
+    {
+        if (!op1) return this._log.warn("link: op1 is null ");
+        if (!op2) return this._log.warn("link: op2 is null");
+
+        const port1 = op1.getPort(port1Name, lowerCase);
+        const port2 = op2.getPort(port2Name, lowerCase);
+
+        if (!port1) return op1._log.warn("port1 not found! " + port1Name + " (" + op1.objName + ")");
+        if (!port2) return op1._log.warn("port2 not found! " + port2Name + " of " + op2.name + "(" + op2.objName + ")", op2);
+
+        if (!port1.shouldLink(port1, port2) || !port2.shouldLink(port1, port2)) return false;
+
+        if (Link.canLink(port1, port2))
+        {
+            const link = new Link(this);
+            link.link(port1, port2);
+
+            this.emitEvent("onLink", port1, port2, link, fromDeserialize);
+            return link;
+        }
+    }
+
+    serialize(options)
+    {
+        const obj = {};
+
+        options = options || {};
+        obj.ops = [];
+        obj.settings = this.settings;
+        for (const i in this.ops)
+        {
+            const op = this.ops[i];
+            if (op && op.getSerialized)obj.ops.push(op.getSerialized());
+        }
+
+        cleanJson(obj);
+
+        if (options.asObject) return obj;
+        return JSON.stringify(obj);
+    }
+
+    getOpsByRefId(refId)
+    {
+        const perf = CABLES.UI.uiProfiler.start("[corepatchetend] getOpsByRefId");
+        const refOps = [];
+        const ops = gui.corePatch().ops;
+        for (let i = 0; i < ops.length; i++)
+            if (ops[i].storage && ops[i].storage.ref == refId) refOps.push(ops[i]);
+        perf.finish();
+        return refOps;
+    }
+
+    getOpById(opid)
+    {
+        return this._opIdCache[opid];
+    }
+
+    getOpsByName(name)
+    {
+        // TODO: is this still needed ? unclear behaviour....
+        const arr = [];
+        for (const i in this.ops)
+            if (this.ops[i].name == name) arr.push(this.ops[i]);
+        return arr;
+    }
+
+    getOpsByObjName(name)
+    {
+        const arr = [];
+        for (const i in this.ops)
+            if (this.ops[i].objName == name) arr.push(this.ops[i]);
+        return arr;
+    }
+
+    getOpsByOpId(opid)
+    {
+        const arr = [];
+        for (const i in this.ops)
+            if (this.ops[i].opId == opid) arr.push(this.ops[i]);
+        return arr;
+    }
+
+    loadLib(which)
+    {
+        ajaxSync(
+            "/ui/libs/" + which + ".js",
+            (err, res) =>
+            {
+                const se = document.createElement("script");
+                se.type = "text/javascript";
+                se.text = res;
+                document.getElementsByTagName("head")[0].appendChild(se);
+            },
+            "GET",
+        );
+    }
+
+    getSubPatchOpsByName(patchId, objName)
+    {
+        const arr = [];
+        for (const i in this.ops)
+            if (this.ops[i].uiAttribs && this.ops[i].uiAttribs.subPatch == patchId && this.ops[i].objName == objName)
+                arr.push(this.ops[i]);
+
+        return arr;
+    }
+
+    getSubPatchOp(patchId, objName)
+    {
+        return this.getFirstSubPatchOpByName(patchId, objName);
+    }
+
+    getFirstSubPatchOpByName(patchId, objName)
+    {
+        for (const i in this.ops)
+            if (this.ops[i].uiAttribs && this.ops[i].uiAttribs.subPatch == patchId && this.ops[i].objName == objName)
+                return this.ops[i];
+
+        return false;
+    }
+
+    _addLink(opinid, opoutid, inName, outName)
+    {
+        return this.link(this.getOpById(opinid), inName, this.getOpById(opoutid), outName, false, true);
+    }
+
+    deSerialize(obj, options)
+    {
+        options = options || { "genIds": false, "createRef": false };
+        if (this.aborted) return;
+        const newOps = [];
+        const loadingId = this.loading.start("core", "deserialize");
+
+        this.namespace = obj.namespace || "";
+        this.name = obj.name || "";
+
+        if (typeof obj === "string") obj = JSON.parse(obj);
+
+        this.settings = obj.settings;
+
+        this.emitEvent("patchLoadStart");
+
+        obj.ops = obj.ops || [];
+
+        if (window.logStartup)logStartup("add " + obj.ops.length + " ops... ");
+
+        const addedOps = [];
+
+        // add ops...
+        for (let iop = 0; iop < obj.ops.length; iop++)
+        {
+            const start = CABLES.now();
+            const opData = obj.ops[iop];
+            let op = null;
+
+            try
+            {
+                if (opData.opId) op = this.addOp(opData.opId, opData.uiAttribs, opData.id, true, opData.objName);
+                else op = this.addOp(opData.objName, opData.uiAttribs, opData.id, true);
+            }
+            catch (e)
+            {
+                this._log.error("[instancing error] op data:", opData, e);
+                // throw new Error("could not create op by id: <b>" + (opData.objName || opData.opId) + "</b> (" + opData.id + ")");
+            }
+
+            if (op)
+            {
+                addedOps.push(op);
+                if (options.genIds) op.id = shortId();
+                op.portsInData = opData.portsIn;
+                op._origData = JSON.parse(JSON.stringify(opData));
+                op.storage = opData.storage;
+                // if (opData.hasOwnProperty("disabled"))op.setEnabled(!opData.disabled);
+
+                for (const ipi in opData.portsIn)
+                {
+                    const objPort = opData.portsIn[ipi];
+                    if (objPort && objPort.hasOwnProperty("name"))
+                    {
+                        const port = op.getPort(objPort.name);
+
+                        if (port && (port.uiAttribs.display == "bool" || port.uiAttribs.type == "bool") && !isNaN(objPort.value)) objPort.value = objPort.value == true ? 1 : 0;
+                        if (port && objPort.value !== undefined && port.type != CONSTANTS.OP.OP_PORT_TYPE_TEXTURE) port.set(objPort.value);
+
+                        if (port)
+                        {
+                            port.deSerializeSettings(objPort);
+                        }
+                        else
+                        {
+                            // if (port.uiAttribs.hasOwnProperty("title"))
+                            // {
+                            //     op.preservedPortTitles = op.preservedPortTitles || {};
+                            //     op.preservedPortTitles[port.name] = port.uiAttribs.title;
+                            // }
+                            op.preservedPortValues = op.preservedPortValues || {};
+                            op.preservedPortValues[objPort.name] = objPort.value;
+                        }
+                    }
+                }
+
+                for (const ipo in opData.portsOut)
+                {
+                    const objPort = opData.portsOut[ipo];
+                    if (objPort && objPort.hasOwnProperty("name"))
+                    {
+                        const port2 = op.getPort(objPort.name);
+
+                        if (port2)
+                        {
+                            port2.deSerializeSettings(objPort);
+
+                            if (port2.uiAttribs.hasOwnProperty("title"))
+                            {
+                                op.preservedPortTitles = op.preservedPortTitles || {};
+                                op.preservedPortTitles[port2.name] = port2.uiAttribs.title;
+                            }
+
+
+                            if (port2.type != CONSTANTS.OP.OP_PORT_TYPE_TEXTURE && objPort.hasOwnProperty("value"))
+                                port2.set(obj.ops[iop].portsOut[ipo].value);
+
+                            if (objPort.expose) port2.setUiAttribs({ "expose": true });
+                        }
+                    }
+                }
+                newOps.push(op);
+            }
+
+            const timeused = Math.round(100 * (CABLES.now() - start)) / 100;
+            if (!this.silent && timeused > 5) console.log("long op init ", obj.ops[iop].objName, timeused);
+        }
+        if (window.logStartup)logStartup("add ops done");
+
+        for (const i in this.ops)
+        {
+            if (this.ops[i].onLoadedValueSet)
+            {
+                this.ops[i].onLoadedValueSet(this.ops[i]._origData);
+                this.ops[i].onLoadedValueSet = null;
+                this.ops[i]._origData = null;
+            }
+            this.ops[i].emitEvent("loadedValueSet");
+        }
+
+        if (window.logStartup)logStartup("creating links");
+
+        if (options.opsCreated)options.opsCreated(addedOps);
+        // create links...
+        if (obj.ops)
+        {
+            for (let iop = 0; iop < obj.ops.length; iop++)
+            {
+                if (obj.ops[iop].portsIn)
+                {
+                    for (let ipi2 = 0; ipi2 < obj.ops[iop].portsIn.length; ipi2++)
+                    {
+                        if (obj.ops[iop].portsIn[ipi2] && obj.ops[iop].portsIn[ipi2].links)
+                        {
+                            for (let ili = 0; ili < obj.ops[iop].portsIn[ipi2].links.length; ili++)
+                            {
+                                const l = this._addLink(
+                                    obj.ops[iop].portsIn[ipi2].links[ili].objIn,
+                                    obj.ops[iop].portsIn[ipi2].links[ili].objOut,
+                                    obj.ops[iop].portsIn[ipi2].links[ili].portIn,
+                                    obj.ops[iop].portsIn[ipi2].links[ili].portOut);
+
+                                // const took = performance.now - startTime;
+                                // if (took > 100)console.log(obj().ops[iop].portsIn[ipi2].links[ili].objIn, obj.ops[iop].portsIn[ipi2].links[ili].objOut, took);
+                            }
+                        }
+                    }
+                }
+                if (obj.ops[iop].portsOut)
+                    for (let ipi2 = 0; ipi2 < obj.ops[iop].portsOut.length; ipi2++)
+                        if (obj.ops[iop].portsOut[ipi2] && obj.ops[iop].portsOut[ipi2].links)
+                        {
+                            for (let ili = 0; ili < obj.ops[iop].portsOut[ipi2].links.length; ili++)
+                            {
+                                if (obj.ops[iop].portsOut[ipi2].links[ili])
+                                {
+                                    if (obj.ops[iop].portsOut[ipi2].links[ili].subOpRef)
+                                    {
+                                        // lost link
+                                        const outOp = this.getOpById(obj.ops[iop].portsOut[ipi2].links[ili].objOut);
+                                        let dstOp = null;
+                                        let theSubPatch = 0;
+
+                                        for (let i = 0; i < this.ops.length; i++)
+                                        {
+                                            if (
+                                                this.ops[i].storage &&
+                                                this.ops[i].storage.ref == obj.ops[iop].portsOut[ipi2].links[ili].subOpRef &&
+                                                outOp.uiAttribs.subPatch == this.ops[i].uiAttribs.subPatch
+                                            )
+                                            {
+                                                theSubPatch = this.ops[i].patchId.get();
+                                                break;
+                                            }
+                                        }
+
+                                        for (let i = 0; i < this.ops.length; i++)
+                                        {
+                                            if (
+                                                this.ops[i].storage &&
+                                                this.ops[i].storage.ref == obj.ops[iop].portsOut[ipi2].links[ili].refOp &&
+                                                this.ops[i].uiAttribs.subPatch == theSubPatch)
+                                            {
+                                                dstOp = this.ops[i];
+                                                break;
+                                            }
+                                        }
+
+                                        if (!dstOp) this._log.warn("could not find op for lost link");
+                                        else
+                                        {
+                                            const l = this._addLink(
+                                                dstOp.id,
+                                                obj.ops[iop].portsOut[ipi2].links[ili].objOut,
+
+                                                obj.ops[iop].portsOut[ipi2].links[ili].portIn,
+                                                obj.ops[iop].portsOut[ipi2].links[ili].portOut);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        const l = this._addLink(obj.ops[iop].portsOut[ipi2].links[ili].objIn, obj.ops[iop].portsOut[ipi2].links[ili].objOut, obj.ops[iop].portsOut[ipi2].links[ili].portIn, obj.ops[iop].portsOut[ipi2].links[ili].portOut);
+
+                                        if (!l)
+                                        {
+                                            const op1 = this.getOpById(obj.ops[iop].portsOut[ipi2].links[ili].objIn);
+                                            const op2 = this.getOpById(obj.ops[iop].portsOut[ipi2].links[ili].objOut);
+
+                                            if (!op1)console.log("could not find link op1");
+                                            if (!op2)console.log("could not find link op2");
+
+                                            const p1Name = obj.ops[iop].portsOut[ipi2].links[ili].portIn;
+
+                                            if (op1 && !op1.getPort(p1Name))
+                                            {
+                                                // console.log("PRESERVE port 1 not found", p1Name);
+
+                                                op1.preservedPortLinks[p1Name] = op1.preservedPortLinks[p1Name] || [];
+                                                op1.preservedPortLinks[p1Name].push(obj.ops[iop].portsOut[ipi2].links[ili]);
+                                            }
+
+                                            const p2Name = obj.ops[iop].portsOut[ipi2].links[ili].portOut;
+                                            if (op2 && !op2.getPort(p2Name))
+                                            {
+                                                // console.log("PRESERVE port 2 not found", obj.ops[iop].portsOut[ipi2].links[ili].portOut);
+                                                op2.preservedPortLinks[p1Name] = op2.preservedPortLinks[p1Name] || [];
+                                                op2.preservedPortLinks[p1Name].push(obj.ops[iop].portsOut[ipi2].links[ili]);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+            }
+        }
+
+        if (window.logStartup)logStartup("calling ops onloaded");
+
+        for (const i in this.ops)
+        {
+            if (this.ops[i].onLoaded)
+            {
+                // TODO: deprecate!!!
+                this.ops[i].onLoaded();
+                this.ops[i].onLoaded = null;
+            }
+        }
+
+        if (window.logStartup)logStartup("initializing ops...");
+        for (const i in this.ops)
+        {
+            if (this.ops[i].init)
+            {
+                try
+                {
+                    this.ops[i].init();
+                    this.ops[i].init = null;
+                }
+                catch (e)
+                {
+                    console.error("op.init crash", e);
+                }
+            }
+        }
+
+        if (window.logStartup)logStartup("initializing vars...");
+
+        if (this.config.variables)
+            for (const varName in this.config.variables)
+                this.setVarValue(varName, this.config.variables[varName]);
+
+        if (window.logStartup)logStartup("initializing var ports");
+
+        for (const i in this.ops)
+        {
+            this.ops[i].initVarPorts();
+            delete this.ops[i].uiAttribs.pasted;
+        }
+
+        setTimeout(() => { this.loading.finished(loadingId); }, 100);
+
+        if (this.config.onPatchLoaded) this.config.onPatchLoaded(this);
+
+        this.deSerialized = true;
+        this.emitEvent("patchLoadEnd", newOps, obj, options.genIds);
+    }
+
+    profile(enable)
+    {
+        this.profiler = new Profiler(this);
+        for (const i in this.ops)
+        {
+            this.ops[i].profile(enable);
+        }
+    }
+
+    // ----------------------
+
+    /**
+     * set variable value
+     * @function setVariable
+     * @memberof Patch
+     * @instance
+     * @param {String} name of variable
+     * @param {Number|String|Boolean} val value
+     */
+    setVariable(name, val)
+    {
+        // if (this._variables.hasOwnProperty(name))
+        if (this._variables[name] !== undefined)
+        {
+            this._variables[name].setValue(val);
+        }
+        else
+        {
+            this._log.warn("variable " + name + " not found!");
+        }
+    }
+
+    _sortVars()
+    {
+        if (!this.isEditorMode()) return;
+        const ordered = {};
+        Object.keys(this._variables).sort(
+            (a, b) =>
+            { return a.localeCompare(b, "en", { "sensitivity": "base" }); }
+        ).forEach((key) =>
+        {
+            ordered[key] = this._variables[key];
+        });
+        this._variables = ordered;
+    }
+
+    /**
+     * has variable
+     * @function hasVariable
+     * @memberof Patch
+     * @instance
+     * @param {String} name of variable
+     */
+    hasVar(name)
+    {
+        return this._variables[name] !== undefined;
+
+        // return this._variables.hasOwnProperty(name);
+    }
+
+    // used internally
+    setVarValue(name, val, type)
+    {
+        if (this.hasVar(name))
+        {
+            this._variables[name].setValue(val);
+        }
+        else
+        {
+            this._variables[name] = new core_variable(name, val, type);
+            this._sortVars();
+            this.emitEvent("variablesChanged");
+        }
+        return this._variables[name];
+    }
+
+    // old?
+    getVarValue(name, val)
+    {
+        if (this._variables.hasOwnProperty(name)) return this._variables[name].getValue();
+    }
+
+    /**
+     * @function getVar
+     * @memberof Patch
+     * @instance
+     * @param {String} name
+     * @return {Variable} variable
+     */
+    getVar(name)
+    {
+        if (this._variables.hasOwnProperty(name)) return this._variables[name];
+    }
+
+
+    deleteVar(name)
+    {
+        for (let i = 0; i < this.ops.length; i++)
+            for (let j = 0; j < this.ops[i].portsIn.length; j++)
+                if (this.ops[i].portsIn[j].getVariableName() == name)
+                    this.ops[i].portsIn[j].setVariable(null);
+
+        delete this._variables[name];
+        this.emitEvent("variableDeleted", name);
+        this.emitEvent("variablesChanged");
+    }
+
+    /**
+     * @function getVars
+     * @memberof Patch
+     * @instance
+     * @param t
+     * @return {Array<Variable>} variables
+     * @function
+     */
+    getVars(t)
+    {
+        if (t === undefined) return this._variables;
+
+        const vars = [];
+        if (t == CABLES.OP_PORT_TYPE_STRING) t = "string";
+        if (t == CABLES.OP_PORT_TYPE_VALUE) t = "number";
+        if (t == CABLES.OP_PORT_TYPE_ARRAY) t = "array";
+        if (t == CABLES.OP_PORT_TYPE_OBJECT) t = "object";
+
+        for (const i in this._variables)
+        {
+            if (!this._variables[i].type || this._variables[i].type == t) vars.push(this._variables[i]);
+        }
+        return vars;
+    }
+
+
+    /**
+     * @function preRenderOps
+     * @memberof Patch
+     * @instance
+     * @description invoke pre rendering of ops
+     * @function
+     */
+    preRenderOps()
+    {
+        this._log.log("prerendering...");
+
+        for (let i = 0; i < this.ops.length; i++)
+        {
+            if (this.ops[i].preRender)
+            {
+                this.ops[i].preRender();
+                this._log.log("prerender " + this.ops[i].objName);
+            }
+        }
+    }
+
+    /**
+     * @function dispose
+     * @memberof Patch
+     * @instance
+     * @description stop, dispose and cleanup patch
+     */
+    dispose()
+    {
+        this.pause();
+        this.clear();
+        this.cgl.dispose();
+    }
+
+    pushTriggerStack(p)
+    {
+        this._triggerStack.push(p);
+    }
+
+    popTriggerStack()
+    {
+        this._triggerStack.pop();
+    }
+
+    printTriggerStack()
+    {
+        if (this._triggerStack.length == 0)
+        {
+            // console.log("stack length", this._triggerStack.length); // eslint-disable-line
+            return;
+        }
+        console.groupCollapsed( // eslint-disable-line
+            "trigger port stack " + this._triggerStack[this._triggerStack.length - 1].op.objName + "." + this._triggerStack[this._triggerStack.length - 1].name,
+        );
+
+        const rows = [];
+        for (let i = 0; i < this._triggerStack.length; i++)
+        {
+            rows.push(i + ". " + this._triggerStack[i].op.objName + " " + this._triggerStack[i].name);
+        }
+
+        console.table(rows); // eslint-disable-line
+        console.groupEnd(); // eslint-disable-line
+    }
+
+    /**
+     * returns document object of the patch could be != global document object when opening canvas ina popout window
+     * @function getDocument
+     * @memberof Patch
+     * @instance
+     * @return {Object} document
+     */
+    getDocument()
+    {
+        return this.cgl.canvas.ownerDocument;
+    }
+}
 
 Patch.getOpClass = function (objName)
 {
@@ -15362,989 +16365,7 @@ Patch.getOpClass = function (objName)
     }
 };
 
-Patch.prototype.createOp = function (identifier, id, opName = null)
-{
-    let op = null;
-    let objName = "";
 
-    try
-    {
-        if (!identifier)
-        {
-            console.error("createop identifier false", identifier);
-            console.log((new Error()).stack);
-            return;
-        }
-        if (identifier.indexOf("Ops.") === -1)
-        {
-            // this should be a uuid, not a namespace
-            // creating ops by id should be the default way from now on!
-            const opId = identifier;
-
-
-
-            if (CABLES.OPS[opId])
-            {
-                objName = CABLES.OPS[opId].objName;
-                op = new CABLES.OPS[opId].f(this, objName, id, opId);
-                op.opId = opId;
-            }
-            else
-            {
-                if (opName)
-                {
-                    identifier = opName;
-                    this._log.warn("could not find op by id: " + opId);
-                }
-                else
-                {
-                    throw new Error("could not find op by id: " + opId, { "cause": "opId:" + opId });
-                }
-            }
-        }
-
-        if (!op)
-        {
-            // fallback: create by objname!
-            objName = identifier;
-            const parts = identifier.split(".");
-            const opObj = Patch.getOpClass(objName);
-
-            if (!opObj)
-            {
-                this.emitEvent("criticalError", { "title": "unknown op" + objName, "text": "unknown op: " + objName });
-
-                this._log.error("unknown op: " + objName);
-                throw new Error("unknown op: " + objName);
-            }
-            else
-            {
-                if (parts.length == 2) op = new window[parts[0]][parts[1]](this, objName, id);
-                else if (parts.length == 3) op = new window[parts[0]][parts[1]][parts[2]](this, objName, id);
-                else if (parts.length == 4) op = new window[parts[0]][parts[1]][parts[2]][parts[3]](this, objName, id);
-                else if (parts.length == 5) op = new window[parts[0]][parts[1]][parts[2]][parts[3]][parts[4]](this, objName, id);
-                else if (parts.length == 6) op = new window[parts[0]][parts[1]][parts[2]][parts[3]][parts[4]][parts[5]](this, objName, id);
-                else if (parts.length == 7) op = new window[parts[0]][parts[1]][parts[2]][parts[3]][parts[4]][parts[5]][parts[6]](this, objName, id);
-                else if (parts.length == 8) op = new window[parts[0]][parts[1]][parts[2]][parts[3]][parts[4]][parts[5]][parts[6]][parts[7]](this, objName, id);
-                else if (parts.length == 9) op = new window[parts[0]][parts[1]][parts[2]][parts[3]][parts[4]][parts[5]][parts[6]][parts[7]][parts[8]](this, objName, id);
-                else if (parts.length == 10) op = new window[parts[0]][parts[1]][parts[2]][parts[3]][parts[4]][parts[5]][parts[6]][parts[7]][parts[8]][parts[9]](this, objName, id);
-                else console.log("parts.length", parts.length);
-            }
-
-            if (op)
-            {
-                op.opId = null;
-                for (const i in CABLES.OPS)
-                {
-                    if (CABLES.OPS[i].objName == objName) op.opId = i;
-                }
-            }
-        }
-    }
-    catch (e)
-    {
-        this._crashedOps.push(objName);
-
-        this._log.error(e);
-        this._log.error("[instancing error] " + objName, e);
-
-        if (!this.isEditorMode())
-        {
-            this._log.error("INSTANCE_ERR", "Instancing Error: " + objName, e);
-            // throw new Error("instancing error 1" + objName);
-        }
-    }
-
-    if (op)
-    {
-        op._objName = objName;
-        op.patch = this;
-    }
-    else
-    {
-        this._log.log("no op was created!?", identifier, id);
-    }
-    return op;
-};
-
-/**
- * create a new op in patch
- * @function addOp
- * @memberof Patch
- * @instance
- * @param {string} opIdentifier uuid or name, e.g. Ops.Math.Sum
- * @param {Object} uiAttribs Attributes
- * @param {string} id
- * @param {boolean} fromDeserialize
- * @param {string} opName e.g. Ops.Math.Sum
- * @example
- * // add invisible op
- * patch.addOp('Ops.Math.Sum', { showUiAttribs: false });
- */
-Patch.prototype.addOp = function (opIdentifier, uiAttribs, id, fromDeserialize, opName)
-{
-    const op = this.createOp(opIdentifier, id, opName);
-
-    if (op)
-    {
-        uiAttribs = uiAttribs || {};
-        if (uiAttribs.hasOwnProperty("errors")) delete uiAttribs.errors;
-        if (uiAttribs.hasOwnProperty("error")) delete uiAttribs.error;
-        uiAttribs.subPatch = uiAttribs.subPatch || 0;
-
-        op.setUiAttribs(uiAttribs);
-        if (op.onCreate) op.onCreate();
-
-        if (op.hasOwnProperty("onAnimFrame")) this.addOnAnimFrame(op);
-        if (op.hasOwnProperty("onMasterVolumeChanged")) this._volumeListeners.push(op);
-
-        if (this._opIdCache[op.id])
-        {
-            this._log.warn("opid with id " + op.id + " already exists in patch!");
-            this.deleteOp(op.id); // strange with subpatch ops: why is this needed, somehow ops get added twice ???.....
-            // return;
-        }
-
-        this.ops.push(op);
-        this._opIdCache[op.id] = op;
-
-        if (this._subPatchCacheAdd) this._subPatchCacheAdd(uiAttribs.subPatch, op);
-        this.emitEvent("onOpAdd", op, fromDeserialize);
-
-        if (op.init) op.init();
-
-        op.emitEvent("init", fromDeserialize);
-    }
-    else
-    {
-        this._log.error("addop: op could not be created: ", opIdentifier);
-    }
-
-    return op;
-};
-
-Patch.prototype.addOnAnimFrame = function (op)
-{
-    for (let i = 0; i < this.animFrameOps.length; i++) if (this.animFrameOps[i] == op) { return; }
-
-    this.animFrameOps.push(op);
-};
-
-Patch.prototype.removeOnAnimFrame = function (op)
-{
-    for (let i = 0; i < this.animFrameOps.length; i++)
-    {
-        if (this.animFrameOps[i] == op)
-        {
-            this.animFrameOps.splice(i, 1);
-            return;
-        }
-    }
-};
-
-Patch.prototype.addOnAnimFrameCallback = function (cb)
-{
-    this.animFrameCallbacks.push(cb);
-};
-
-Patch.prototype.removeOnAnimCallback = function (cb)
-{
-    for (let i = 0; i < this.animFrameCallbacks.length; i++)
-    {
-        if (this.animFrameCallbacks[i] == cb)
-        {
-            this.animFrameCallbacks.splice(i, 1);
-            return;
-        }
-    }
-};
-
-Patch.prototype.deleteOp = function (opid, tryRelink, reloadingOp)
-{
-    let found = false;
-    for (const i in this.ops)
-    {
-        if (this.ops[i].id == opid)
-        {
-            const op = this.ops[i];
-            let reLinkP1 = null;
-            let reLinkP2 = null;
-
-            if (op)
-            {
-                found = true;
-                if (tryRelink)
-                {
-                    if (op.portsIn.length > 0 && op.portsIn[0].isLinked() && (op.portsOut.length > 0 && op.portsOut[0].isLinked()))
-                    {
-                        if (op.portsIn[0].getType() == op.portsOut[0].getType() && op.portsIn[0].links[0])
-                        {
-                            reLinkP1 = op.portsIn[0].links[0].getOtherPort(op.portsIn[0]);
-                            reLinkP2 = op.portsOut[0].links[0].getOtherPort(op.portsOut[0]);
-                        }
-                    }
-                }
-
-                const opToDelete = this.ops[i];
-                opToDelete.removeLinks();
-
-                if (this.onDelete)
-                {
-                    // todo: remove
-                    this._log.warn("deprecated this.onDelete", this.onDelete);
-                    this.onDelete(opToDelete);
-                }
-
-                this.ops.splice(i, 1);
-                opToDelete.emitEvent("delete", opToDelete);
-                this.emitEvent("onOpDelete", opToDelete, reloadingOp);
-
-                if (this.clearSubPatchCache) this.clearSubPatchCache(opToDelete.uiAttribs.subPatch);
-
-                if (opToDelete.onDelete) opToDelete.onDelete(reloadingOp);
-                opToDelete.cleanUp();
-
-                if (reLinkP1 !== null && reLinkP2 !== null)
-                {
-                    this.link(reLinkP1.op, reLinkP1.getName(), reLinkP2.op, reLinkP2.getName());
-                }
-
-                delete this._opIdCache[opid];
-                break;
-            }
-        }
-    }
-
-    if (!found) this._log.warn("core patch deleteop: not found...", opid);
-};
-
-Patch.prototype.getFrameNum = function ()
-{
-    return this._frameNum;
-};
-
-Patch.prototype.emitOnAnimFrameEvent = function (time, delta)
-{
-    time = time || this.timer.getTime();
-
-    for (let i = 0; i < this.animFrameCallbacks.length; ++i)
-        if (this.animFrameCallbacks[i])
-            this.animFrameCallbacks[i](time, this._frameNum, delta);
-
-    for (let i = 0; i < this.animFrameOps.length; ++i)
-        if (this.animFrameOps[i].onAnimFrame)
-            this.animFrameOps[i].onAnimFrame(time, this._frameNum, delta);
-};
-
-Patch.prototype.renderFrame = function (timestamp)
-{
-    this.timer.update(this.reqAnimTimeStamp);
-    this.freeTimer.update(this.reqAnimTimeStamp);
-    const time = this.timer.getTime();
-    const startTime = performance.now();
-    this.cgl.frameStartTime = this.timer.getTime();
-
-    const delta = timestamp - this.reqAnimTimeStamp || timestamp;
-
-    this.emitOnAnimFrameEvent(null, delta);
-
-    this.cgl.profileData.profileFrameDelta = delta;
-    this.reqAnimTimeStamp = timestamp;
-    this.cgl.profileData.profileOnAnimFrameOps = performance.now() - startTime;
-
-    this.emitEvent("onRenderFrame", time);
-
-    this._frameNum++;
-    if (this._frameNum == 1)
-    {
-        if (this.config.onFirstFrameRendered) this.config.onFirstFrameRendered();
-    }
-};
-
-Patch.prototype.exec = function (timestamp)
-{
-    if (!this._renderOneFrame && (this._paused || this.aborted)) return;
-    this.emitEvent("reqAnimFrame");
-    cancelAnimationFrame(this._animReq);
-
-    this.config.fpsLimit = this.config.fpsLimit || 0;
-    if (this.config.fpsLimit)
-    {
-        this._frameInterval = 1000 / this.config.fpsLimit;
-    }
-
-    const now = CABLES.now();
-    const frameDelta = now - this._frameNext;
-
-    if (this.isEditorMode())
-    {
-        if (!this._renderOneFrame)
-        {
-            if (now - this._lastFrameTime >= 500 && this._lastFrameTime !== 0 && !this._frameWasdelayed)
-            {
-                this._lastFrameTime = 0;
-                setTimeout(this.exec.bind(this), 500);
-                this.emitEvent("renderDelayStart");
-                this._frameWasdelayed = true;
-                return;
-            }
-        }
-    }
-
-    if (this._renderOneFrame || this.config.fpsLimit === 0 || frameDelta > this._frameInterval || this._frameWasdelayed)
-    {
-        this.renderFrame(timestamp);
-
-        if (this._frameInterval) this._frameNext = now - (frameDelta % this._frameInterval);
-    }
-
-    if (this._frameWasdelayed)
-    {
-        this.emitEvent("renderDelayEnd");
-        this._frameWasdelayed = false;
-    }
-
-    if (this._renderOneFrame)
-    {
-        if (this.onOneFrameRendered) this.onOneFrameRendered(); // todo remove everywhere and use propper event...
-        this.emitEvent("renderedOneFrame");
-        this._renderOneFrame = false;
-    }
-
-
-    if (this.config.doRequestAnimation) this._animReq = this.cgl.canvas.ownerDocument.defaultView.requestAnimationFrame(this.exec.bind(this));
-};
-
-/**
- * link two ops/ports
- * @function link
- * @memberof Patch
- * @instance
- * @param {Op} op1
- * @param {String} port1Name
- * @param {Op} op2
- * @param {String} port2Name
- * @param {boolean} lowerCase
- * @param {boolean} fromDeserialize
- */
-Patch.prototype.link = function (op1, port1Name, op2, port2Name, lowerCase, fromDeserialize)
-{
-    if (!op1) return this._log.warn("link: op1 is null ");
-    if (!op2) return this._log.warn("link: op2 is null");
-
-    const port1 = op1.getPort(port1Name, lowerCase);
-    const port2 = op2.getPort(port2Name, lowerCase);
-
-    if (!port1) return op1._log.warn("port1 not found! " + port1Name + " (" + op1.objName + ")");
-    if (!port2) return op1._log.warn("port2 not found! " + port2Name + " of " + op2.name + "(" + op2.objName + ")", op2);
-
-    if (!port1.shouldLink(port1, port2) || !port2.shouldLink(port1, port2)) return false;
-
-    if (Link.canLink(port1, port2))
-    {
-        const link = new Link(this);
-        link.link(port1, port2);
-
-        this.emitEvent("onLink", port1, port2, link, fromDeserialize);
-        return link;
-    }
-};
-
-Patch.prototype.serialize = function (options)
-{
-    const obj = {};
-
-    options = options || {};
-    obj.ops = [];
-    obj.settings = this.settings;
-    for (const i in this.ops)
-    {
-        const op = this.ops[i];
-        if (op && op.getSerialized)obj.ops.push(op.getSerialized());
-    }
-
-    cleanJson(obj);
-
-    if (options.asObject) return obj;
-    return JSON.stringify(obj);
-};
-
-Patch.prototype.getOpsByRefId = function (refId)
-{
-    const perf = CABLES.UI.uiProfiler.start("[corepatchetend] getOpsByRefId");
-    const refOps = [];
-    const ops = gui.corePatch().ops;
-    for (let i = 0; i < ops.length; i++)
-        if (ops[i].storage && ops[i].storage.ref == refId) refOps.push(ops[i]);
-    perf.finish();
-    return refOps;
-};
-
-Patch.prototype.getOpById = function (opid)
-{
-    return this._opIdCache[opid];
-};
-
-Patch.prototype.getOpsByName = function (name)
-{
-    // TODO: is this still needed ? unclear behaviour....
-    const arr = [];
-    for (const i in this.ops)
-        if (this.ops[i].name == name) arr.push(this.ops[i]);
-    return arr;
-};
-
-Patch.prototype.getOpsByObjName = function (name)
-{
-    const arr = [];
-    for (const i in this.ops)
-        if (this.ops[i].objName == name) arr.push(this.ops[i]);
-    return arr;
-};
-
-Patch.prototype.getOpsByOpId = function (opid)
-{
-    const arr = [];
-    for (const i in this.ops)
-        if (this.ops[i].opId == opid) arr.push(this.ops[i]);
-    return arr;
-};
-
-Patch.prototype.loadLib = function (which)
-{
-    ajaxSync(
-        "/ui/libs/" + which + ".js",
-        (err, res) =>
-        {
-            const se = document.createElement("script");
-            se.type = "text/javascript";
-            se.text = res;
-            document.getElementsByTagName("head")[0].appendChild(se);
-        },
-        "GET",
-    );
-};
-
-Patch.prototype.getSubPatchOpsByName = function (patchId, objName)
-{
-    const arr = [];
-    for (const i in this.ops)
-        if (this.ops[i].uiAttribs && this.ops[i].uiAttribs.subPatch == patchId && this.ops[i].objName == objName)
-            arr.push(this.ops[i]);
-
-    return arr;
-};
-
-Patch.prototype.getSubPatchOp =
-Patch.prototype.getFirstSubPatchOpByName = function (patchId, objName)
-{
-    for (const i in this.ops)
-        if (this.ops[i].uiAttribs && this.ops[i].uiAttribs.subPatch == patchId && this.ops[i].objName == objName)
-            return this.ops[i];
-
-    return false;
-};
-
-Patch.prototype._addLink = function (opinid, opoutid, inName, outName)
-{
-    return this.link(this.getOpById(opinid), inName, this.getOpById(opoutid), outName, false, true);
-};
-
-Patch.prototype.deSerialize = function (obj, options)
-{
-    options = options || { "genIds": false, "createRef": false };
-    if (this.aborted) return;
-    const newOps = [];
-    const loadingId = this.loading.start("core", "deserialize");
-
-    this.namespace = obj.namespace || "";
-    this.name = obj.name || "";
-
-    if (typeof obj === "string") obj = JSON.parse(obj);
-
-    this.settings = obj.settings;
-
-    this.emitEvent("patchLoadStart");
-
-    obj.ops = obj.ops || [];
-
-    if (window.logStartup)logStartup("add " + obj.ops.length + " ops... ");
-
-    const addedOps = [];
-
-    // add ops...
-    for (let iop = 0; iop < obj.ops.length; iop++)
-    {
-        const start = CABLES.now();
-        const opData = obj.ops[iop];
-        let op = null;
-
-        try
-        {
-            if (opData.opId) op = this.addOp(opData.opId, opData.uiAttribs, opData.id, true, opData.objName);
-            else op = this.addOp(opData.objName, opData.uiAttribs, opData.id, true);
-        }
-        catch (e)
-        {
-            this._log.error("[instancing error] op data:", opData, e);
-            // throw new Error("could not create op by id: <b>" + (opData.objName || opData.opId) + "</b> (" + opData.id + ")");
-        }
-
-        if (op)
-        {
-            addedOps.push(op);
-            if (options.genIds) op.id = shortId();
-            op.portsInData = opData.portsIn;
-            op._origData = JSON.parse(JSON.stringify(opData));
-            op.storage = opData.storage;
-            // if (opData.hasOwnProperty("disabled"))op.setEnabled(!opData.disabled);
-
-            for (const ipi in opData.portsIn)
-            {
-                const objPort = opData.portsIn[ipi];
-                if (objPort && objPort.hasOwnProperty("name"))
-                {
-                    const port = op.getPort(objPort.name);
-
-                    if (port && (port.uiAttribs.display == "bool" || port.uiAttribs.type == "bool") && !isNaN(objPort.value)) objPort.value = objPort.value == true ? 1 : 0;
-                    if (port && objPort.value !== undefined && port.type != CONSTANTS.OP.OP_PORT_TYPE_TEXTURE) port.set(objPort.value);
-
-                    if (port)
-                    {
-                        port.deSerializeSettings(objPort);
-                    }
-                    else
-                    {
-                        // if (port.uiAttribs.hasOwnProperty("title"))
-                        // {
-                        //     op.preservedPortTitles = op.preservedPortTitles || {};
-                        //     op.preservedPortTitles[port.name] = port.uiAttribs.title;
-                        // }
-                        op.preservedPortValues = op.preservedPortValues || {};
-                        op.preservedPortValues[objPort.name] = objPort.value;
-                    }
-                }
-            }
-
-            for (const ipo in opData.portsOut)
-            {
-                const objPort = opData.portsOut[ipo];
-                if (objPort && objPort.hasOwnProperty("name"))
-                {
-                    const port2 = op.getPort(objPort.name);
-
-                    if (port2)
-                    {
-                        port2.deSerializeSettings(objPort);
-
-                        if (port2.uiAttribs.hasOwnProperty("title"))
-                        {
-                            op.preservedPortTitles = op.preservedPortTitles || {};
-                            op.preservedPortTitles[port2.name] = port2.uiAttribs.title;
-                        }
-
-
-                        if (port2.type != CONSTANTS.OP.OP_PORT_TYPE_TEXTURE && objPort.hasOwnProperty("value"))
-                            port2.set(obj.ops[iop].portsOut[ipo].value);
-
-                        if (objPort.expose) port2.setUiAttribs({ "expose": true });
-                    }
-                }
-            }
-            newOps.push(op);
-        }
-
-        const timeused = Math.round(100 * (CABLES.now() - start)) / 100;
-        if (!this.silent && timeused > 5) console.log("long op init ", obj.ops[iop].objName, timeused);
-    }
-    if (window.logStartup)logStartup("add ops done");
-
-    for (const i in this.ops)
-    {
-        if (this.ops[i].onLoadedValueSet)
-        {
-            this.ops[i].onLoadedValueSet(this.ops[i]._origData);
-            this.ops[i].onLoadedValueSet = null;
-            this.ops[i]._origData = null;
-        }
-        this.ops[i].emitEvent("loadedValueSet");
-    }
-
-    if (window.logStartup)logStartup("creating links");
-
-    if (options.opsCreated)options.opsCreated(addedOps);
-    // create links...
-    if (obj.ops)
-    {
-        for (let iop = 0; iop < obj.ops.length; iop++)
-        {
-            if (obj.ops[iop].portsIn)
-            {
-                for (let ipi2 = 0; ipi2 < obj.ops[iop].portsIn.length; ipi2++)
-                {
-                    if (obj.ops[iop].portsIn[ipi2] && obj.ops[iop].portsIn[ipi2].links)
-                    {
-                        for (let ili = 0; ili < obj.ops[iop].portsIn[ipi2].links.length; ili++)
-                        {
-                            const l = this._addLink(
-                                obj.ops[iop].portsIn[ipi2].links[ili].objIn,
-                                obj.ops[iop].portsIn[ipi2].links[ili].objOut,
-                                obj.ops[iop].portsIn[ipi2].links[ili].portIn,
-                                obj.ops[iop].portsIn[ipi2].links[ili].portOut);
-
-                            // const took = performance.now - startTime;
-                            // if (took > 100)console.log(obj().ops[iop].portsIn[ipi2].links[ili].objIn, obj.ops[iop].portsIn[ipi2].links[ili].objOut, took);
-                        }
-                    }
-                }
-            }
-            if (obj.ops[iop].portsOut)
-                for (let ipi2 = 0; ipi2 < obj.ops[iop].portsOut.length; ipi2++)
-                    if (obj.ops[iop].portsOut[ipi2] && obj.ops[iop].portsOut[ipi2].links)
-                    {
-                        for (let ili = 0; ili < obj.ops[iop].portsOut[ipi2].links.length; ili++)
-                        {
-                            if (obj.ops[iop].portsOut[ipi2].links[ili])
-                            {
-                                if (obj.ops[iop].portsOut[ipi2].links[ili].subOpRef)
-                                {
-                                    // lost link
-                                    const outOp = this.getOpById(obj.ops[iop].portsOut[ipi2].links[ili].objOut);
-                                    let dstOp = null;
-                                    let theSubPatch = 0;
-
-                                    for (let i = 0; i < this.ops.length; i++)
-                                    {
-                                        if (
-                                            this.ops[i].storage &&
-                                            this.ops[i].storage.ref == obj.ops[iop].portsOut[ipi2].links[ili].subOpRef &&
-                                            outOp.uiAttribs.subPatch == this.ops[i].uiAttribs.subPatch
-                                        )
-                                        {
-                                            theSubPatch = this.ops[i].patchId.get();
-                                            break;
-                                        }
-                                    }
-
-                                    for (let i = 0; i < this.ops.length; i++)
-                                    {
-                                        if (
-                                            this.ops[i].storage &&
-                                            this.ops[i].storage.ref == obj.ops[iop].portsOut[ipi2].links[ili].refOp &&
-                                            this.ops[i].uiAttribs.subPatch == theSubPatch)
-                                        {
-                                            dstOp = this.ops[i];
-                                            break;
-                                        }
-                                    }
-
-                                    if (!dstOp) this._log.warn("could not find op for lost link");
-                                    else
-                                    {
-                                        const l = this._addLink(
-                                            dstOp.id,
-                                            obj.ops[iop].portsOut[ipi2].links[ili].objOut,
-
-                                            obj.ops[iop].portsOut[ipi2].links[ili].portIn,
-                                            obj.ops[iop].portsOut[ipi2].links[ili].portOut);
-                                    }
-                                }
-                                else
-                                {
-                                    const l = this._addLink(obj.ops[iop].portsOut[ipi2].links[ili].objIn, obj.ops[iop].portsOut[ipi2].links[ili].objOut, obj.ops[iop].portsOut[ipi2].links[ili].portIn, obj.ops[iop].portsOut[ipi2].links[ili].portOut);
-
-                                    if (!l)
-                                    {
-                                        const op1 = this.getOpById(obj.ops[iop].portsOut[ipi2].links[ili].objIn);
-                                        const op2 = this.getOpById(obj.ops[iop].portsOut[ipi2].links[ili].objOut);
-
-                                        if (!op1)console.log("could not find link op1");
-                                        if (!op2)console.log("could not find link op2");
-
-                                        const p1Name = obj.ops[iop].portsOut[ipi2].links[ili].portIn;
-
-                                        if (op1 && !op1.getPort(p1Name))
-                                        {
-                                            // console.log("PRESERVE port 1 not found", p1Name);
-
-                                            op1.preservedPortLinks[p1Name] = op1.preservedPortLinks[p1Name] || [];
-                                            op1.preservedPortLinks[p1Name].push(obj.ops[iop].portsOut[ipi2].links[ili]);
-                                        }
-
-                                        const p2Name = obj.ops[iop].portsOut[ipi2].links[ili].portOut;
-                                        if (op2 && !op2.getPort(p2Name))
-                                        {
-                                            // console.log("PRESERVE port 2 not found", obj.ops[iop].portsOut[ipi2].links[ili].portOut);
-                                            op2.preservedPortLinks[p1Name] = op2.preservedPortLinks[p1Name] || [];
-                                            op2.preservedPortLinks[p1Name].push(obj.ops[iop].portsOut[ipi2].links[ili]);
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-        }
-    }
-
-    if (window.logStartup)logStartup("calling ops onloaded");
-
-    for (const i in this.ops)
-    {
-        if (this.ops[i].onLoaded)
-        {
-            // TODO: deprecate!!!
-            this.ops[i].onLoaded();
-            this.ops[i].onLoaded = null;
-        }
-    }
-
-    if (window.logStartup)logStartup("initializing ops...");
-    for (const i in this.ops)
-    {
-        if (this.ops[i].init)
-        {
-            try
-            {
-                this.ops[i].init();
-                this.ops[i].init = null;
-            }
-            catch (e)
-            {
-                console.error("op.init crash", e);
-            }
-        }
-    }
-
-    if (window.logStartup)logStartup("initializing vars...");
-
-    if (this.config.variables)
-        for (const varName in this.config.variables)
-            this.setVarValue(varName, this.config.variables[varName]);
-
-    if (window.logStartup)logStartup("initializing var ports");
-
-    for (const i in this.ops)
-    {
-        this.ops[i].initVarPorts();
-        delete this.ops[i].uiAttribs.pasted;
-    }
-
-    setTimeout(() => { this.loading.finished(loadingId); }, 100);
-
-    if (this.config.onPatchLoaded) this.config.onPatchLoaded(this);
-
-    this.deSerialized = true;
-    this.emitEvent("patchLoadEnd", newOps, obj, options.genIds);
-};
-
-Patch.prototype.profile = function (enable)
-{
-    this.profiler = new Profiler(this);
-    for (const i in this.ops)
-    {
-        this.ops[i].profile(enable);
-    }
-};
-
-// ----------------------
-
-/**
- * set variable value
- * @function setVariable
- * @memberof Patch
- * @instance
- * @param {String} name of variable
- * @param {Number|String|Boolean} val value
- */
-Patch.prototype.setVariable = function (name, val)
-{
-    // if (this._variables.hasOwnProperty(name))
-    if (this._variables[name] !== undefined)
-    {
-        this._variables[name].setValue(val);
-    }
-    else
-    {
-        this._log.warn("variable " + name + " not found!");
-    }
-};
-
-Patch.prototype._sortVars = function ()
-{
-    if (!this.isEditorMode()) return;
-    const ordered = {};
-    Object.keys(this._variables).sort(
-        (a, b) =>
-        { return a.localeCompare(b, "en", { "sensitivity": "base" }); }
-    ).forEach((key) =>
-    {
-        ordered[key] = this._variables[key];
-    });
-    this._variables = ordered;
-};
-
-/**
- * has variable
- * @function hasVariable
- * @memberof Patch
- * @instance
- * @param {String} name of variable
- */
-Patch.prototype.hasVar = function (name)
-{
-    return this._variables[name] !== undefined;
-
-    // return this._variables.hasOwnProperty(name);
-};
-
-// used internally
-Patch.prototype.setVarValue = function (name, val, type)
-{
-    if (this.hasVar(name))
-    {
-        this._variables[name].setValue(val);
-    }
-    else
-    {
-        this._variables[name] = new core_variable(name, val, type);
-        this._sortVars();
-        this.emitEvent("variablesChanged");
-    }
-    return this._variables[name];
-};
-// old?
-Patch.prototype.getVarValue = function (name, val)
-{
-    if (this._variables.hasOwnProperty(name)) return this._variables[name].getValue();
-};
-
-/**
- * @function getVar
- * @memberof Patch
- * @instance
- * @param {String} name
- * @return {Variable} variable
- */
-Patch.prototype.getVar = function (name)
-{
-    if (this._variables.hasOwnProperty(name)) return this._variables[name];
-};
-
-
-Patch.prototype.deleteVar = function (name)
-{
-    for (let i = 0; i < this.ops.length; i++)
-        for (let j = 0; j < this.ops[i].portsIn.length; j++)
-            if (this.ops[i].portsIn[j].getVariableName() == name)
-                this.ops[i].portsIn[j].setVariable(null);
-
-    delete this._variables[name];
-    this.emitEvent("variableDeleted", name);
-    this.emitEvent("variablesChanged");
-};
-
-/**
- * @function getVars
- * @memberof Patch
- * @instance
- * @param t
- * @return {Array<Variable>} variables
- * @function
- */
-Patch.prototype.getVars = function (t)
-{
-    if (t === undefined) return this._variables;
-
-    const vars = [];
-    if (t == CABLES.OP_PORT_TYPE_STRING) t = "string";
-    if (t == CABLES.OP_PORT_TYPE_VALUE) t = "number";
-    if (t == CABLES.OP_PORT_TYPE_ARRAY) t = "array";
-    if (t == CABLES.OP_PORT_TYPE_OBJECT) t = "object";
-
-    for (const i in this._variables)
-    {
-        if (!this._variables[i].type || this._variables[i].type == t) vars.push(this._variables[i]);
-    }
-    return vars;
-};
-
-
-/**
- * @function preRenderOps
- * @memberof Patch
- * @instance
- * @description invoke pre rendering of ops
- * @function
- */
-Patch.prototype.preRenderOps = function ()
-{
-    this._log.log("prerendering...");
-
-    for (let i = 0; i < this.ops.length; i++)
-    {
-        if (this.ops[i].preRender)
-        {
-            this.ops[i].preRender();
-            this._log.log("prerender " + this.ops[i].objName);
-        }
-    }
-};
-
-/**
- * @function dispose
- * @memberof Patch
- * @instance
- * @description stop, dispose and cleanup patch
- */
-Patch.prototype.dispose = function ()
-{
-    this.pause();
-    this.clear();
-    this.cgl.dispose();
-};
-
-Patch.prototype.pushTriggerStack = function (p)
-{
-    this._triggerStack.push(p);
-};
-
-Patch.prototype.popTriggerStack = function ()
-{
-    this._triggerStack.pop();
-};
-
-Patch.prototype.printTriggerStack = function ()
-{
-    if (this._triggerStack.length == 0)
-    {
-        // console.log("stack length", this._triggerStack.length); // eslint-disable-line
-        return;
-    }
-    console.groupCollapsed( // eslint-disable-line
-        "trigger port stack " + this._triggerStack[this._triggerStack.length - 1].op.objName + "." + this._triggerStack[this._triggerStack.length - 1].name,
-    );
-
-    const rows = [];
-    for (let i = 0; i < this._triggerStack.length; i++)
-    {
-        rows.push(i + ". " + this._triggerStack[i].op.objName + " " + this._triggerStack[i].name);
-    }
-
-    console.table(rows); // eslint-disable-line
-    console.groupEnd(); // eslint-disable-line
-};
-
-/**
- * returns document object of the patch could be != global document object when opening canvas ina popout window
- * @function getDocument
- * @memberof Patch
- * @instance
- * @return {Object} document
- */
-Patch.prototype.getDocument = function ()
-{
-    return this.cgl.canvas.ownerDocument;
-};
 
 Patch.replaceOpIds = function (json, options)
 {
@@ -16525,7 +16546,6 @@ Patch.replaceOpIds = function (json, options)
 
     return json;
 };
-
 /**
  * remove an eventlistener
  * @instance
@@ -17762,7 +17782,6 @@ class Binding
             return;
         }
 
-
         if (this.uniforms.length == 1 && this.uniforms[0].getType() == "t")
         {
             if (this.uniforms[0].getValue() && this.uniforms[0].getValue().gpuTexture) o.resource = this.uniforms[0].getValue().gpuTexture.createView();
@@ -17770,13 +17789,17 @@ class Binding
         }
         else if (this.uniforms.length == 1 && this.uniforms[0].getType() == "sampler")
         {
-            const sampler = this.uniforms[0]._cgp.device.createSampler({
-                "addressModeU": "repeat",
-                "addressModeV": "repeat",
+            let smplDesc = {
+                "addressModeU": "mirror-repeat",
+                "addressModeV": "mirror-repeat",
                 "magFilter": "linear",
                 "minFilter": "linear",
                 "mipmapFilter": "linear",
-            });
+            };
+
+            if (this.uniforms[0].getValue()) smplDesc = this.uniforms[0].getValue().getSampler();
+
+            const sampler = this.uniforms[0]._cgp.device.createSampler(smplDesc);
             o.resource = sampler;
         }
         else
@@ -17841,6 +17864,7 @@ class Binding
                 }
                 else
                 {
+                    console.log("uni t has no gputexture");
                     b.resource = this._cgp.getErrorTexture().createView();
                 }
 
@@ -17870,22 +17894,16 @@ class Binding
             for (let i = 0; i < this.uniforms.length; i++)
             {
                 info.push(this.uniforms[i].getName() + " " + this.uniforms[i].getValue());
-
-
-
                 this.uniforms[i].copyToBuffer(this.cGpuBuffers[inst].floatArr, off); // todo: check if uniform changed?
-
 
                 // if (isNaN(this.cGpuBuffers[inst].floatArr[0]))
                 // {
                 // console.log("shitttttttt", this.cGpuBuffers[inst].floatArr[0], this.uniforms[i].getName(), this.cGpuBuffers[inst].name, this.uniforms[i]);
                 // }
 
-
                 off += this.uniforms[i].getSizeBytes() / 4;
             }
             if (this._cgp.frameStore.branchProfiler) this._cgp.frameStore.branchStack.push("uni buff", info);
-
 
             // console.log("upodate", inst);
 
@@ -18082,7 +18100,7 @@ class cgp_shader_Shader extends CgShader
         console.log("compile", this._compileReason);
         this._isValid = true;
         this._cgp.pushErrorScope("cgp_shader " + this._name);
-        console.log(this.getProcessedSource());
+        // console.log(this.getProcessedSource());
         this.gpuShaderModule = this._cgp.device.createShaderModule({ "code": this.getProcessedSource(), "label": this._name });
         this._cgp.popErrorScope(this.error.bind(this));
         this._needsRecompile = false;
@@ -18317,6 +18335,14 @@ class cgp_texture_Texture extends CgTexture
 
         this.name = options.name || "unknown";
 
+        this.samplerDesc = {
+            "addressModeU": options.wrap || options.addressModeU || "clamp-to-edge",
+            "addressModeV": options.wrap || options.addressModeV || "clamp-to-edge",
+            "magFilter": options.magFilter || options.filter || "linear",
+            "minFilter": options.minFilter || options.filter || "linear",
+        };
+
+
         this._cgp.on("deviceChange", () =>
         {
             // this.reInit();
@@ -18383,6 +18409,15 @@ class cgp_texture_Texture extends CgTexture
         return this.gpuTexture.createView();
     }
 
+    getSampler()
+    {
+        // "clamp-to-edge"
+        // "repeat"
+        // "mirror-repeat"
+
+        return this.samplerDesc;
+    }
+
     /**
      * @function initFromData
      * @memberof Texture
@@ -18411,6 +18446,17 @@ class cgp_texture_Texture extends CgTexture
             data,
             { "bytesPerRow": w * 4 },
             { "width": w, "height": h });
+    }
+
+
+    setWrap(v)
+    {
+        this.samplerDesc.addressModeU = this.samplerDesc.addressModeV = v;
+    }
+
+    setFilter(v)
+    {
+        this.samplerDesc.minFilter = this.samplerDesc.magFilter = v;
     }
 }
 
@@ -18545,7 +18591,7 @@ class WebGpuContext extends CGState
         {
             this._simpleShader = new cgp_shader_Shader(this, "simple default shader");
             this._simpleShader.setSource(cgl_shader_default);
-            this._simpleShader.addUniformFrag("4f", "color", 1, 1, 0, 1);
+            this._simpleShader.addUniformFrag("4f", "color", [1, 1, 0, 1]);
         }
 
         this.fpsCounter.startFrame();
@@ -18640,7 +18686,6 @@ class WebGpuContext extends CGState
         // for (let i = this._shaderStack.length - 1; i >= 0; i--) if (this._shaderStack[i]) if (this.frameStore.renderOffscreen == this._shaderStack[i].offScreenPass) return this._shaderStack[i];
     }
 
-
     setDevice(device)
     {
         this.device = device;
@@ -18652,8 +18697,6 @@ class WebGpuContext extends CGState
 
         this.emitEvent("deviceChange");
     }
-
-
 
     pushErrorScope(name, options = {})
     {
@@ -18766,10 +18809,8 @@ class WebGpuContext extends CGState
         this._stackDepthWrite.pop();
     }
 
-
     // --------------------------------------
     // state depthfunc
-
 
     /**
      * @function pushDepthFunc
@@ -18805,8 +18846,6 @@ class WebGpuContext extends CGState
         this._stackDepthFunc.pop();
     }
 
-
-
     // --------------------------------------
     // state CullFace
 
@@ -18835,20 +18874,18 @@ class WebGpuContext extends CGState
     }
 
     /**
- * pop face culling enabled state
- * @function popCullFace
- * @memberof Context
- * @instance
- */
+     * pop face culling enabled state
+     * @function popCullFace
+     * @memberof Context
+     * @instance
+     */
     popCullFace()
     {
         this._stackCullFace.pop();
     }
 
-
     // --------------------------------------
     // state CullFace Facing
-
 
     /**
      * push face culling face side
@@ -18890,7 +18927,6 @@ class WebGpuContext extends CGState
         this._stackBlend.push(b);
     }
 
-
     popBlend()
     {
         this._stackBlend.pop();
@@ -18912,7 +18948,7 @@ class WebGpuContext extends CGState
 
     getErrorTexture()
     {
-        if (this._errorTexture) return this._errorTexture;
+        // if (this._errorTexture) return this._errorTexture;
         const size = 256;
         this._errorTexture = new cgp_texture_Texture(this, {});
         this._errorTexture.initFromData(CgTexture.getDefaultTextureData("stripes", size, { "r": 1, "g": 0, "b": 0 }), size, size);
@@ -19024,8 +19060,14 @@ class Pipeline
             this.setShaderListener(this._old.shader, shader);
             needsRebuildReason = "shader changed";
         }
+
+        if (shader.needsPipelineUpdate)
+        {
+            needsRebuildReason = "mesh needs update: " + shader.needsPipelineUpdate;
+            shader.needsPipelineUpdate = false;
+        }
         if (mesh.needsPipelineUpdate)needsRebuildReason = "mesh needs update";
-        if (this.shaderNeedsPipelineUpdate)needsRebuildReason = "shader needs update: " + this.shaderNeedsPipelineUpdate;
+        if (this.shaderNeedsPipelineUpdate)needsRebuildReason = "shader was recompiled: " + this.shaderNeedsPipelineUpdate;
 
         if (this._pipeCfg)
         {
@@ -20350,4 +20392,4 @@ CABLES = __webpack_exports__["default"];
 ;
 
 
-var CABLES = CABLES || {}; CABLES.build = {"timestamp":1731931574112,"created":"2024-11-18T12:06:14.112Z","git":{"branch":"develop","commit":"a8e1939a0dddaa79c9a189263bc027a705179173","date":"1731930901","message":"dev"}};
+var CABLES = CABLES || {}; CABLES.build = {"timestamp":1734517962805,"created":"2024-12-18T10:32:42.805Z","git":{"branch":"master","commit":"20b730583e0a440aa00951d2b66a7e8f3d7db458","date":"1734433453","message":"docs"}};

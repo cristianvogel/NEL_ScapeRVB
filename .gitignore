@@ -37,3 +37,4 @@ previousUI-versions
 *.swp
 
 /public/dsp.main.js
+/cables-ui JSON export/

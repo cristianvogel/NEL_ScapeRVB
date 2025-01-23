@@ -4,9 +4,20 @@
 #include <juce_core/juce_core.h> // Include necessary JUCE dependencies
 #include <string>
 #include <elem/deps/json.hpp>
+/**
+ * @file Asset.h
+ * @brief Class that represents an IR asset, holds necessary data and provides
+ * functions to manage the asset.
+ *
+ * This class represents an IR asset that can be stored in the plugin's memory.
+ * It can be either populated from a default file, a user uploaded file
+ * The class provides functions to manage the IR asset, such as loading and
+ * saving the IR data, generating the IR data, and accessing the IR data.
+ *
+ * @see Asset::Props
+ */
 
-
-// Forward declaration of NEL_fx_plugin to avoid unnecessary inclusion
+// Forward declaration of main Processor to avoid unnecessary inclusion
 class Processor;
 
 
@@ -42,6 +53,8 @@ public:
         };
         return propNames;
     }
+
+
 
     // 1. Base template declaration
     template <typename T>
@@ -112,7 +125,10 @@ public:
     inline Asset() = default;
     inline ~Asset() = default;
 
-    // clear
+    /**
+     * @brief Clears all user-uploaded files from this asset
+     * @public
+     */
     inline void clear_userfiles()
     {
         userStereoFile = juce::File();
@@ -121,6 +137,35 @@ public:
         userFilenameForView.clear();
     }
 
+    inline bool has_userfile() const
+    {
+        return userStereoFile.exists();
+    }
+
+    inline bool has_filename_for_view() const
+    {
+        return !filenameForView.empty();
+    }
+
+    /**
+     * @brief a vector containing all three filenames stored in this asset
+     * @note The return order is: filenameForView, defaultFilenameForView, userFilenameForView
+     */
+    inline std::vector<std::string> get_all_filenames() const
+    {
+        std::vector<std::string> filenames;
+        filenames.push_back(filenameForView);
+        filenames.push_back(defaultFilenameForView);
+        filenames.push_back(userFilenameForView);
+        return filenames;
+    }
+
+    /**
+     * @brief Returns a string containing all of the asset's properties.
+     *        This is useful for seralisation and logging.
+     * @return A string containing all of the asset's properties.
+     * @public
+     */
  inline std::string wrap_asset() const
 {
     nlohmann::json json;

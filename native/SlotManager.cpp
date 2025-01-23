@@ -10,7 +10,7 @@ SlotManager::SlotManager(Processor& processor) : processor(processor)
 {
 }
 
-void SlotManager::wrapPeaksForView(std::map<SlotName, Asset>& assetsMap, elem::js::Object& peaksContainer)
+void SlotManager::wrapPeaksForView(std::map<SlotName, Asset>& assetsMap, elem::js::Object& containerForWrappedPeaks)
 {
     // go through whole assetsMap
     peaks.resize(assetsMap.size());
@@ -24,6 +24,7 @@ void SlotManager::wrapPeaksForView(std::map<SlotName, Asset>& assetsMap, elem::j
         {
             current = asset.get<std::vector<float>>(Props::currentPeakDataInView);
         }
+
         // set the relevant index in the peaks vector
         const int index = getIndexForSlot(targetSlot);
         assert(index >= 0 && index < DEFAULT_SLOT_NAMES.size());
@@ -32,24 +33,28 @@ void SlotManager::wrapPeaksForView(std::map<SlotName, Asset>& assetsMap, elem::j
         peaks[index] = elem::js::Float32Array(current);
     }
     // put the wrapped peaks data of each slot into the passed container keyed by WS_RESPONSE_KEY_FOR_PEAKS
-    peaksContainer.insert_or_assign(WS_RESPONSE_KEY_FOR_PEAKS, peaks);
-    //
-    peaksDirty.store(true);
+    containerForWrappedPeaks.insert_or_assign(WS_RESPONSE_KEY_FOR_PEAKS, peaks);
 }
 
-void SlotManager::wrapStateForView(const std::map<SlotName, Asset>& assetsMap, elem::js::Object& containerForWrappedState)
+void SlotManager::wrapStateForView(const std::map<SlotName, Asset>& assetsMap, elem::js::Object& state_to_dispatch) const
 {
     // prepare extra non-host state for the front end
 
 
-    // --- Wrap filenames
-    names.resize(assetsMap.size());
-    for (const auto& [targetSlot, asset] : processor.assetsMap)
+    elem::js::Array irNames;
+    for (const auto& [slot, asset] : assetsMap)
     {
-        if (targetSlot == SlotName::LAST ) break;
-        const int index = getIndexForSlot(targetSlot);
-        names[index] = elem::js::String(asset.get<std::string>(Props::filenameForView));
+        if (asset.has_filename_for_view())
+        {
+            irNames.push_back(asset.get_all_filenames()[0]);
+        }
+        else
+        {
+            irNames.push_back(slotname_to_string(slot));
+        }
     }
+    state_to_dispatch.insert_or_assign(WS_RESPONSE_FILENAMES,irNames);
+
 
     // --- Wrap Structure param
     // inject a special rounded case for the 'structure' parameter
@@ -63,15 +68,14 @@ void SlotManager::wrapStateForView(const std::map<SlotName, Asset>& assetsMap, e
 
     //
     // Now bundle host and extra state together
-    processor.state.insert_or_assign("currentSlotIndex",
-                                        static_cast<elem::js::Number>(processor.fileLoader->currentSlotIndex));
-    processor.state.insert_or_assign("structure", static_cast<elem::js::Number>(roundedValue));
-    processor.state.insert_or_assign(KEY_FOR_FILENAMES, names);
+    state_to_dispatch.insert_or_assign(WS_CURRENT_SLOT_INDEX, static_cast<elem::js::Number>(processor.fileLoader->currentSlotIndex));
+    state_to_dispatch.insert_or_assign(WS_STRUCTURE_INDEX, static_cast<elem::js::Number>(roundedValue));
+    state_to_dispatch.insert_or_assign(WS_RESPONSE_FILENAMES, irNames);
     // wrap into container
-    containerForWrappedState.insert_or_assign(WS_RESPONSE_KEY_FOR_STATE, processor.state);
+    state_to_dispatch.insert_or_assign(WS_RESPONSE_KEY_FOR_STATE, processor.state);
 }
 
-
+// will flag peaksDirty before going out of scope
 void SlotManager::switchSlotsTo(const bool customScape, const bool pruneVFS = false)
 {
     //

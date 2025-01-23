@@ -17,4 +17,6 @@ namespace util
     bool isOdd(int num);
     elem::js::Number wrapError(ScapeError error);
     juce::String error_to_string( ScapeError error);
+    void strip_viewstate_from_state (elem::js::Object& state_to_dispatch);
+
 } // namespace util

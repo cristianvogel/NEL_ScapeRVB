@@ -99,6 +99,7 @@ void Processor::handleAsyncUpdate()
 
         // initialise, process and load into the runtime all 4 default IR assets
         process_default_IRs();
+        userScapeMode = false;
         //
         for (const auto& [slotName, asset] : assetsMap)
         {
@@ -433,7 +434,7 @@ void Processor::inspectVFS()
         assetsMap.insert_or_assign(slotName, asset);
     }
     //=== dispatch all the keys as one array
-    state.insert_or_assign(VFS_KEYS, allKeys);
+    state.insert_or_assign(WS_RESPONSE_VFS_KEYS, allKeys);
 }
 
 
@@ -462,6 +463,7 @@ void Processor::runWebServer()
         {
             clientInstance = std::make_unique<ViewClientInstance>(*this);
             slotManager->resetStateHashes();
+            slotManager->peaksDirty.store(true);
             return std::move(clientInstance);
         },
         // Handle some kind of server error..
@@ -830,16 +832,20 @@ void Processor::initJavaScriptEngine()
 
 // ▮▮▮js▮▮▮▮▮▮frontend▮▮▮▮▮▮backend▮▮▮▮▮▮messaging▮▮▮▮▮▮
 // Main function for dispatching state changes to the front end
-// since using WebSockets to sync state, this function
-// only really handles the Bypass toggles and the
-// Reverse toggle. Everything else is handled by the
+// since using WebSockets to sync state, the
+// UI only consumes a few of the UI elements this way
+// * all the toggles
+// * the filenames for view
+// * VFS
+// Everything else is handled by the
 // WebSocket server responding to a requestState message
 // from the front end.
 void Processor::dispatchStateChange()
 {
-    auto currentStateMap = state;
-    currentStateMap.insert_or_assign(SAMPLE_RATE_KEY, lastKnownSampleRate);
-    const auto expr = serialize(jsFunctions::dispatchStateChangeScript, currentStateMap);
+    auto state_to_dispatch = state;
+    util::strip_viewstate_from_state(state_to_dispatch);
+
+    const auto expr = serialize(jsFunctions::dispatchStateChangeScript, state_to_dispatch);
     // Next we dispatch to the local engine which will evaluate any necessary
     // JavaScript synchronously here on the main thread
     try
@@ -984,7 +990,7 @@ void Processor::getStateInformation(juce::MemoryBlock& destData)
     // then insert it into the data to be stored by the host
     std::cout << "stashing state..." << std::to_string(assetsMap.size()) << " entries! " << std::endl;
     if (!assetsMap.empty())
-        state.insert_or_assign(PERSISTED_VIEW_STATE, assetHelpers::serialise_assets_map_entries(assetsMap));
+        state.insert_or_assign(PERSISTED_VIEW_STATE_KEY, assetHelpers::serialise_assets_map_entries(assetsMap));
     // seriliase the whole package
     const auto dataToPersist = elem::js::serialize(state);
     // stash
@@ -1017,7 +1023,7 @@ void Processor::setStateInformation(const void* data, int sizeInBytes)
     auto o = allStateParsed.getObject();
     for (auto& [key, value] : o)
     {
-        bool isParam = key != PERSISTED_VIEW_STATE;
+        bool isParam = key != PERSISTED_VIEW_STATE_KEY;
 
         if (isParam)
         {
@@ -1032,8 +1038,8 @@ void Processor::setStateInformation(const void* data, int sizeInBytes)
 
     // just in case, remove view data from the active param state updates
     // so the view data doesn't get sent on every update
-    if (state.contains(PERSISTED_VIEW_STATE))
-        state.erase(PERSISTED_VIEW_STATE);
+    if (state.contains(PERSISTED_VIEW_STATE_KEY))
+        state.erase(PERSISTED_VIEW_STATE_KEY);
 
     std::cout << "Persisted Param State..." << std::endl;
     shouldInitialize.store(true);
