@@ -2323,13 +2323,13 @@
       return sd;
     }
   }
-  function castSequencesToRefs(series, seriesMax, refs4) {
+  function castSequencesToRefs(series, seriesMax, refs3) {
     return series.map((value, j) => {
       let updatedValue = value;
       if (value === null || value === void 0) {
         updatedValue = Math.random() * seriesMax;
       }
-      const t = refs4.getOrCreate(
+      const t = refs3.getOrCreate(
         `node:structureConst:${j}`,
         "const",
         { value: updatedValue, key: `key:structureConst:${j}` },
@@ -3274,11 +3274,11 @@
     ["TEMPLE", { pathStem: "TEMPLE", slotIndex: 2, att: 0.9 }],
     ["DEEPNESS", { pathStem: "DEEPNESS", slotIndex: 3, att: 0.675 }]
   ]);
-  function IR_SlotRefFactory(scape, refs4, slotName, slotIndex, attenuation) {
-    if (!scape || !refs4)
+  function IR_SlotRefFactory(scape, refs3, slotName, slotIndex, attenuation) {
+    if (!scape || !refs3)
       return;
     return {
-      [`${slotName}_0`]: refs4.getOrCreate(
+      [`${slotName}_0`]: refs3.getOrCreate(
         `${slotName}_0`,
         "convolver",
         {
@@ -3290,7 +3290,7 @@
         },
         [stdlib.tapIn({ name: `srvbOut:0` })]
       ),
-      [`${slotName}_1`]: refs4.getOrCreate(
+      [`${slotName}_1`]: refs3.getOrCreate(
         `${slotName}_1`,
         "convolver",
         {
@@ -3304,12 +3304,12 @@
       )
     };
   }
-  function registerConvolverRefs(scape, refs4) {
+  function registerConvolverRefs(scape, refs3) {
     let convolvers = {};
     Slots.forEach((slotData, slotName) => {
       convolvers = {
         ...convolvers,
-        ...IR_SlotRefFactory(scape, refs4, slotName, slotData.slotIndex, slotData.att)
+        ...IR_SlotRefFactory(scape, refs3, slotName, slotData.slotIndex, slotData.att)
       };
     });
     return convolvers;
@@ -3340,9 +3340,9 @@
       let result = usingUserIR ? 0.95 : defaultIR.att;
       return result;
     };
-    const getRef = (refs4, slotName, chan) => {
+    const getRef = (refs3, slotName, chan) => {
       let ref = `${slotName}_${chan}`;
-      refs4.has(ref);
+      refs3.has(ref);
       return ref;
     };
     Slots.forEach((slot, slotName) => {
@@ -3401,21 +3401,19 @@
   var memoized;
   var renderCount = 0;
   var currentVFSKeys;
-  var refs2;
   var structureData = { nodes: [], max: 0 };
-  function handleStateChange(_refs, rawJSON) {
-    refs2 = _refs;
-    currentVFSKeys = refs2.vfsKeys;
-    const { state, srvb, shared, scape } = parseNewState(refs2, rawJSON);
-    const { srvbProps, scapeProps } = getOrCreatePropsForDSP(srvb, shared, scape);
-    structureData = structureSetup(refs2, structureData);
-    if (shouldRender(memoized, state, renderCount)) {
+  function handleStateChange(refs3, rawJSON) {
+    currentVFSKeys = refs3.vfsKeys;
+    const { state, srvb, shared, scape } = parseNewState(refs3, rawJSON);
+    const { srvbProps, scapeProps } = getOrCreatePropsForDSP(refs3, srvb, shared, scape);
+    structureData = structureSetup(refs3, structureData);
+    if (shouldRender(refs3, memoized, state, renderCount)) {
       console.log("STATE::Render: " + renderCount);
       updateMemoizedState(state, srvb, shared, scape);
-      adjustStructurePosition(refs2, srvb, structureData);
-      renderAudioGraph(shared, srvbProps, scapeProps);
+      adjustStructurePosition(refs3, srvb, structureData);
+      renderAudioGraph(refs3, shared, srvbProps, scapeProps);
     } else {
-      updateSignalRefs(refs2, srvb, scape, shared);
+      updateSignalRefs(refs3, srvb, scape, shared);
     }
   }
   function createHermiteVecInterp() {
@@ -3436,26 +3434,25 @@
     );
   }
   var HERMITE = createHermiteVecInterp();
-  function structureSetup(_refs, structureData2) {
+  function structureSetup(refs3, structureData2) {
     const defaultStructure = OEIS_SEQUENCES[0];
     const defaultMax = argMax(defaultStructure, 17);
     structureData2 = {
-      nodes: castSequencesToRefs(defaultStructure, defaultMax, _refs),
+      nodes: castSequencesToRefs(defaultStructure, defaultMax, refs3),
       max: defaultMax
     };
     return structureData2;
   }
-  function parseNewState(_refs, rawState) {
+  function parseNewState(refs3, rawState) {
     const state = JSON.parse(rawState);
-    refs2 = _refs;
     const shared = {
       sampleRate: state.sampleRate,
       dryInputs: [stdlib.in({ channel: 0 }), stdlib.in({ channel: 1 })],
       dryMix: state.dryMix
     };
-    refs2.vfsKeys = state.NEL_VFS_KEYS;
+    refs3.vfsKeys = state.NEL_VFS_KEYS;
     const srvb = {
-      vfsKeys: refs2.vfsKeys,
+      vfsKeys: refs3.vfsKeys,
       structure: roundTo(state.structure || 0, 1 / NUM_SEQUENCES) * NUM_SEQUENCES,
       size: state.size,
       diffuse: state.diffuse,
@@ -3498,18 +3495,18 @@
       userBank: scape.userBank
     };
   }
-  function adjustStructurePosition(refs4, srvb, structureData2) {
+  function adjustStructurePosition(refs3, srvb, structureData2) {
     if (srvb.structure !== memoized?.structure) {
-      structureData2 = buildStructures(refs4, srvb.structure);
+      structureData2 = buildStructures(refs3, srvb.structure);
       structureData2.nodes = rotate(structureData2.nodes, srvb.position * -16);
     }
     return structureData2;
   }
-  function shouldRender(previous, current, renderCount2) {
-    const result = renderCount2 === 0 || refs2.map.size === 0 || current.sampleRate !== previous?.sampleRate || Math.round(current.scapeBypass) !== previous?.scapeBypass || Math.round(current.srvbBypass) !== previous?.srvbBypass || roundedStructureValue(current.structure) !== previous?.structure;
+  function shouldRender(refs3, previous, current, renderCount2) {
+    const result = renderCount2 === 0 || refs3.map.size === 0 || current.sampleRate !== previous?.sampleRate || Math.round(current.scapeBypass) !== previous?.scapeBypass || Math.round(current.srvbBypass) !== previous?.srvbBypass || roundedStructureValue(current.structure) !== previous?.structure;
     return result;
   }
-  function renderAudioGraph(shared, srvbProps, scapeProps) {
+  function renderAudioGraph(refs3, shared, srvbProps, scapeProps) {
     if (srvbProps && scapeProps) {
       const graph = core.render(
         ...SCAPE(
@@ -3522,7 +3519,7 @@
           )
         ).map(
           (node, i) => {
-            return stdlib.add(stdlib.mul(refs2.get("dryMix"), shared.dryInputs[i]), node);
+            return stdlib.add(stdlib.mul(refs3.get("dryMix"), shared.dryInputs[i]), node);
           }
         )
       );
@@ -3530,46 +3527,45 @@
       renderCount++;
     }
   }
-  function updateSignalRefs(_refs, srvb, scape, shared) {
-    refs2 = _refs;
+  function updateSignalRefs(refs3, srvb, scape, shared) {
     if (!srvb.bypass) {
-      refs2.update("size", { value: srvb.size });
-      refs2.update("diffuse", { value: srvb.diffuse });
-      refs2.update("mix", { value: srvb.level });
-      refs2.update("tone", { value: srvb.tone });
-      refs2.update("position", { value: srvb.position });
-      refs2.update("structureMax", { value: srvb.structureMax });
+      refs3.update("size", { value: srvb.size });
+      refs3.update("diffuse", { value: srvb.diffuse });
+      refs3.update("mix", { value: srvb.level });
+      refs3.update("tone", { value: srvb.tone });
+      refs3.update("position", { value: srvb.position });
+      refs3.update("structureMax", { value: srvb.structureMax });
       if (srvb.structure !== memoized.structure) {
-        updateStructureConstants(refs2, srvb);
+        updateStructureConstants(refs3, srvb);
       }
     }
     if (!scape.bypass) {
-      refs2.update("scapeLevel", { value: scape.level });
-      refs2.update("v1", { value: scape.vectorData[0] });
-      refs2.update("v2", { value: scape.vectorData[1] });
-      refs2.update("v3", { value: scape.vectorData[2] });
-      refs2.update("v4", { value: scape.vectorData[3] });
-      refs2.update("scapePosition", { value: scape.position });
-      refs2.update("scapeMode", { value: scape.mode });
-      parseAndUpdateIRRefs(refs2, currentVFSKeys, scape);
+      refs3.update("scapeLevel", { value: scape.level });
+      refs3.update("v1", { value: scape.vectorData[0] });
+      refs3.update("v2", { value: scape.vectorData[1] });
+      refs3.update("v3", { value: scape.vectorData[2] });
+      refs3.update("v4", { value: scape.vectorData[3] });
+      refs3.update("scapePosition", { value: scape.position });
+      refs3.update("scapeMode", { value: scape.mode });
+      parseAndUpdateIRRefs(refs3, currentVFSKeys, scape);
     }
-    refs2.update("dryMix", { value: shared.dryMix });
-    refs2.update("srvbBypass", { value: srvb.bypass });
+    refs3.update("dryMix", { value: shared.dryMix });
+    refs3.update("srvbBypass", { value: srvb.bypass });
   }
-  function getOrCreatePropsForDSP(srvb, shared, scape) {
-    refs2.getOrCreate("dryMix", "const", { value: shared.dryMix }, []);
+  function getOrCreatePropsForDSP(refs3, srvb, shared, scape) {
+    refs3.getOrCreate("dryMix", "const", { value: shared.dryMix }, []);
     const srvbProps = {
       key: "srvb",
       srvbBypass: srvb.bypass,
       dryMix: shared.dryMix,
       sampleRate: shared.sampleRate,
-      size: refs2.getOrCreate("size", "const", { value: srvb.size }, []),
-      decay: refs2.getOrCreate("diffuse", "const", { value: srvb.diffuse }, []),
-      mix: refs2.getOrCreate("mix", "const", { value: srvb.level }, []),
-      tone: refs2.getOrCreate("tone", "const", { value: srvb.tone }, []),
-      position: refs2.getOrCreate("position", "const", { value: srvb.position }, []),
+      size: refs3.getOrCreate("size", "const", { value: srvb.size }, []),
+      decay: refs3.getOrCreate("diffuse", "const", { value: srvb.diffuse }, []),
+      mix: refs3.getOrCreate("mix", "const", { value: srvb.level }, []),
+      tone: refs3.getOrCreate("tone", "const", { value: srvb.tone }, []),
+      position: refs3.getOrCreate("position", "const", { value: srvb.position }, []),
       structure: srvb.structure,
-      structureMax: refs2.getOrCreate("structureMax", "const", { value: structureData.max, key: "structureMax" }, [])
+      structureMax: refs3.getOrCreate("structureMax", "const", { value: structureData.max, key: "structureMax" }, [])
     };
     const scapeProps = {
       key: "scape",
@@ -3580,16 +3576,16 @@
       offset: scape.offset || 0,
       reverse: scape.reverse || 0,
       // RefNodes from now on
-      srvbBypass: refs2.getOrCreate("srvbBypass", "const", { value: srvb.bypass }, []),
-      scapeLevel: refs2.getOrCreate("scapeLevel", "const", { value: scape.level }, []),
-      scapePosition: refs2.getOrCreate("scapePosition", "const", { value: scape.position }, []),
-      scapeMode: refs2.getOrCreate("scapeMode", "const", { value: scape.mode }, []),
+      srvbBypass: refs3.getOrCreate("srvbBypass", "const", { value: srvb.bypass }, []),
+      scapeLevel: refs3.getOrCreate("scapeLevel", "const", { value: scape.level }, []),
+      scapePosition: refs3.getOrCreate("scapePosition", "const", { value: scape.position }, []),
+      scapeMode: refs3.getOrCreate("scapeMode", "const", { value: scape.mode }, []),
       // the Hermite vector interpolation values as signals
-      v1: refs2.getOrCreate("v1", "const", { value: scape.vectorData[0] }, []),
-      v2: refs2.getOrCreate("v2", "const", { value: scape.vectorData[1] }, []),
-      v3: refs2.getOrCreate("v3", "const", { value: scape.vectorData[2] }, []),
-      v4: refs2.getOrCreate("v4", "const", { value: scape.vectorData[3] }, []),
-      ...registerConvolverRefs(scape, refs2)
+      v1: refs3.getOrCreate("v1", "const", { value: scape.vectorData[0] }, []),
+      v2: refs3.getOrCreate("v2", "const", { value: scape.vectorData[1] }, []),
+      v3: refs3.getOrCreate("v3", "const", { value: scape.vectorData[2] }, []),
+      v4: refs3.getOrCreate("v4", "const", { value: scape.vectorData[3] }, []),
+      ...registerConvolverRefs(scape, refs3)
     };
     return { srvbProps, scapeProps };
   }
@@ -3598,9 +3594,9 @@
   var core = new Renderer((batch) => {
     globalThis.__postNativeMessage__(JSON.stringify(batch));
   });
-  var refs3 = new RefMap(core);
+  var refs2 = new RefMap(core);
   globalThis.__receiveStateChange__ = function(rawState) {
-    handleStateChange(refs3, rawState);
+    handleStateChange(refs2, rawState);
   };
   globalThis.__receiveHydrationData__ = (data) => {
     const payload = JSON.parse(data);
