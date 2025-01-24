@@ -1,0 +1,95 @@
+{
+    "id": "70422b06-659d-4e50-b19f-b01135f15d28",
+    "created": 1726500171433,
+    "license": "MIT",
+    "authorName": "unknown",
+    "summary": "Get the state of mouse buttons",
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "Area index",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Active",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 1,
+                "name": "Click Left"
+            },
+            {
+                "type": 1,
+                "name": "Click Right"
+            },
+            {
+                "type": 1,
+                "name": "Double Click"
+            },
+            {
+                "type": 0,
+                "name": "Button pressed Left",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Button pressed Middle",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Button pressed Right",
+                "subType": "boolean"
+            },
+            {
+                "type": 1,
+                "name": "Mouse Down Left"
+            },
+            {
+                "type": 1,
+                "name": "Mouse Down Middle"
+            },
+            {
+                "type": 1,
+                "name": "Mouse Down Right"
+            },
+            {
+                "type": 1,
+                "name": "Mouse Up Left"
+            },
+            {
+                "type": 1,
+                "name": "Mouse Up Middle"
+            },
+            {
+                "type": 1,
+                "name": "Mouse Up Right"
+            }
+        ]
+    },
+    "docs": {
+        "ports": []
+    },
+    "hasExample": false,
+    "libs": [],
+    "youtubeids": [],
+    "exampleProjectId": "",
+    "changelog": [
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "",
+            "date": 1726500171433
+        },
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "cristianvogel",
+            "date": 1737626018000
+        }
+    ]
+}

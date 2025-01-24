@@ -1,0 +1,634 @@
+{
+  "ops": [
+    {
+      "opId": "c9cbb226-46f7-4ca6-8dab-a9d0bdca4331",
+      "id": "85rseo930",
+      "uiAttribs": {
+        "subPatch": "wpimh6dlf",
+        "translate": {
+          "x": 430.39406100435224,
+          "y": -35.85787269118695
+        },
+        "loading": false,
+        "extendTitle": "NEL-Logo",
+        "tempSubOldOpId": null,
+        "blueprintSubpatch2": true
+      },
+      "storage": {
+        "blueprintVer": 2
+      },
+      "portsIn": [
+        {
+          "name": "data",
+          "value": ""
+        },
+        {
+          "name": "glb File",
+          "value": "file:///Users/cristianvogel/Library/CloudStorage/GoogleDrive-cristian.vogel55@gmail.com/My%20Drive/ProgrammingSubFolder/NEL_ScapeRVB/public/assets/NEL-Logo.draco.glb",
+          "display": "file"
+        },
+        {
+          "name": "Draw",
+          "value": 1
+        },
+        {
+          "name": "Camera index",
+          "value": 0
+        },
+        {
+          "name": "Camera",
+          "value": "None"
+        },
+        {
+          "name": "Animation",
+          "value": ""
+        },
+        {
+          "name": "Center index",
+          "value": 2
+        },
+        {
+          "name": "Center",
+          "value": "XZ"
+        },
+        {
+          "name": "Rescale",
+          "value": 1
+        },
+        {
+          "name": "Rescale Size",
+          "value": 2
+        },
+        {
+          "name": "Time",
+          "value": 0
+        },
+        {
+          "name": "Sync to timeline",
+          "value": 0
+        },
+        {
+          "name": "Loop",
+          "value": 1
+        },
+        {
+          "name": "Normals Format index",
+          "value": 0
+        },
+        {
+          "name": "Normals Format",
+          "value": "XYZ"
+        },
+        {
+          "name": "Vertices Format index",
+          "value": 0
+        },
+        {
+          "name": "Vertices Format",
+          "value": "XYZ"
+        },
+        {
+          "name": "Calc Normals index",
+          "value": 0
+        },
+        {
+          "name": "Calc Normals",
+          "value": "Auto"
+        },
+        {
+          "name": "Hide Nodes",
+          "value": 0
+        },
+        {
+          "name": "Use Material Properties",
+          "value": 0
+        },
+        {
+          "name": "Active",
+          "value": 1
+        }
+      ],
+      "portsOut": [
+        {
+          "name": "Generator",
+          "value": "Khronos glTF Blender I/O v4.2.60"
+        },
+        {
+          "name": "GLTF Version",
+          "value": 2
+        },
+        {
+          "name": "Anim Length",
+          "value": 0
+        },
+        {
+          "name": "Anim Time",
+          "value": 0
+        },
+        {
+          "name": "Loading",
+          "value": false
+        }
+      ]
+    },
+    {
+      "opId": "baf968ea-e4df-4fca-9cda-e6ddd38a4200",
+      "id": "nbmadl6p6",
+      "uiAttribs": {
+        "subPatch": "wpimh6dlf",
+        "extendTitle": "mat0",
+        "translate": {
+          "x": 665.1518638026548,
+          "y": -283.5388584939377
+        },
+        "blueprintSubpatch2": true,
+        "tempSubOldOpId": null
+      },
+      "storage": {
+        "blueprintVer": 2
+      },
+      "portsIn": [
+        {
+          "name": "Material Name",
+          "value": "mat0"
+        }
+      ],
+      "portsOut": [
+        {
+          "name": "Material",
+          "links": [
+            {
+              "portIn": "Materials",
+              "portOut": "Material",
+              "objIn": "85rseo930",
+              "objOut": "nbmadl6p6"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "opId": "baf968ea-e4df-4fca-9cda-e6ddd38a4200",
+      "id": "ymzn2u1wr",
+      "uiAttribs": {
+        "subPatch": "wpimh6dlf",
+        "extendTitle": "Material.001",
+        "translate": {
+          "x": 709.9490887545603,
+          "y": -72.51138683690219
+        },
+        "blueprintSubpatch2": true,
+        "tempSubOldOpId": null
+      },
+      "storage": {
+        "blueprintVer": 2
+      },
+      "portsIn": [
+        {
+          "name": "Material Name",
+          "value": "Material.001"
+        }
+      ],
+      "portsOut": [
+        {
+          "name": "Material",
+          "links": [
+            {
+              "portIn": "Materials",
+              "portOut": "Material",
+              "objIn": "85rseo930",
+              "objOut": "ymzn2u1wr"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "opId": "c4e4e933-136e-479e-8de8-0b35b75d9217",
+      "id": "6wtj1mxj5",
+      "uiAttribs": {
+        "subPatch": "wpimh6dlf",
+        "translate": {
+          "x": 432,
+          "y": -400
+        },
+        "blueprintSubpatch2": true,
+        "tempSubOldOpId": null
+      },
+      "storage": {
+        "blueprintVer": 2
+      },
+      "portsOut": [
+        {
+          "name": "innerOut_9fkoygcno",
+          "title": "Render",
+          "links": [
+            {
+              "portIn": "Render",
+              "portOut": "innerOut_9fkoygcno",
+              "objIn": "alz1qp4y2",
+              "objOut": "6wtj1mxj5"
+            },
+            {
+              "portIn": "Render",
+              "portOut": "innerOut_9fkoygcno",
+              "objIn": "ce52znu67",
+              "objOut": "6wtj1mxj5"
+            },
+            {
+              "portIn": "render",
+              "portOut": "innerOut_9fkoygcno",
+              "objIn": "mgntydb26",
+              "objOut": "6wtj1mxj5"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "opId": "02d45073-7936-4830-81ad-59a162febf1f",
+      "id": "lt3kjnr3e",
+      "uiAttribs": {
+        "subPatch": "wpimh6dlf",
+        "translate": {
+          "x": 432,
+          "y": 75.14212730881306
+        },
+        "blueprintSubpatch2": true,
+        "tempSubOldOpId": null
+      },
+      "storage": {
+        "blueprintVer": 2
+      }
+    },
+    {
+      "opId": "c1dd6e76-61b4-471a-b8d1-f550a5a9a4f4",
+      "id": "alz1qp4y2",
+      "uiAttribs": {
+        "subPatch": "wpimh6dlf",
+        "translate": {
+          "x": 697.9490887545603,
+          "y": -146.11313932597506
+        },
+        "blueprintSubpatch2": true
+      },
+      "storage": {
+        "blueprintVer": 2
+      },
+      "portsIn": [
+        {
+          "name": "r",
+          "value": 1
+        },
+        {
+          "name": "g",
+          "value": 0.514
+        },
+        {
+          "name": "b",
+          "value": 0.262
+        },
+        {
+          "name": "Opacity",
+          "value": 1
+        },
+        {
+          "name": "AO Intensity",
+          "value": 1
+        },
+        {
+          "name": "Normal Map Intensity",
+          "value": 0.812
+        },
+        {
+          "name": "Repeat X",
+          "value": 1
+        },
+        {
+          "name": "Repeat Y",
+          "value": 1
+        },
+        {
+          "name": "Offset X",
+          "value": 0
+        },
+        {
+          "name": "Offset Y",
+          "value": 0.02
+        },
+        {
+          "name": "Double Sided",
+          "value": 0
+        },
+        {
+          "name": "Screen Space Normals",
+          "value": 0
+        },
+        {
+          "name": "Calc normal tangents",
+          "value": 1
+        },
+        {
+          "name": "Opacity TexCoords Transform",
+          "value": 0
+        },
+        {
+          "name": "Discard Transparent Pixels",
+          "value": 0
+        },
+        {
+          "name": "Alpha Mask Source index",
+          "value": 0
+        },
+        {
+          "name": "Alpha Mask Source",
+          "value": "Luminance"
+        }
+      ],
+      "portsOut": [
+        {
+          "name": "Shader",
+          "links": [
+            {
+              "portIn": "Shader",
+              "portOut": "Shader",
+              "objIn": "ymzn2u1wr",
+              "objOut": "alz1qp4y2"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "opId": "c1dd6e76-61b4-471a-b8d1-f550a5a9a4f4",
+      "id": "ce52znu67",
+      "uiAttribs": {
+        "subPatch": "wpimh6dlf",
+        "translate": {
+          "x": 727.3613707135084,
+          "y": -203.86408442554492
+        },
+        "blueprintSubpatch2": true
+      },
+      "storage": {
+        "blueprintVer": 2
+      },
+      "portsIn": [
+        {
+          "name": "r",
+          "value": 0.22
+        },
+        {
+          "name": "g",
+          "value": 1
+        },
+        {
+          "name": "b",
+          "value": 0.262
+        },
+        {
+          "name": "Opacity",
+          "value": 1
+        },
+        {
+          "name": "AO Intensity",
+          "value": 1
+        },
+        {
+          "name": "Normal Map Intensity",
+          "value": 0.118
+        },
+        {
+          "name": "Repeat X",
+          "value": 1
+        },
+        {
+          "name": "Repeat Y",
+          "value": 1
+        },
+        {
+          "name": "Offset X",
+          "value": 0
+        },
+        {
+          "name": "Offset Y",
+          "value": 0
+        },
+        {
+          "name": "Double Sided",
+          "value": 0
+        },
+        {
+          "name": "Screen Space Normals",
+          "value": 0
+        },
+        {
+          "name": "Calc normal tangents",
+          "value": 1
+        },
+        {
+          "name": "Opacity TexCoords Transform",
+          "value": 0
+        },
+        {
+          "name": "Discard Transparent Pixels",
+          "value": 0
+        },
+        {
+          "name": "Alpha Mask Source index",
+          "value": 0
+        },
+        {
+          "name": "Alpha Mask Source",
+          "value": "Luminance"
+        }
+      ],
+      "portsOut": [
+        {
+          "name": "Shader",
+          "links": [
+            {
+              "portIn": "Shader",
+              "portOut": "Shader",
+              "objIn": "nbmadl6p6",
+              "objOut": "ce52znu67"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "opId": "790f3702-9833-464e-8e37-6f0f813f7e16",
+      "id": "96qgwcwln",
+      "uiAttribs": {
+        "subPatch": "wpimh6dlf",
+        "translate": {
+          "x": 821.7131276320853,
+          "y": -320
+        },
+        "loading": false,
+        "extendTitle": "NEL_SRVB",
+        "blueprintSubpatch2": true
+      },
+      "storage": {
+        "blueprintVer": 2
+      },
+      "portsIn": [
+        {
+          "name": "File",
+          "value": "file:///Users/cristianvogel/Programming/ProgrammingSubFolder/NEL_ScapeRVB/public/assets/NEL_SRVB.webp",
+          "display": "file"
+        },
+        {
+          "name": "Filter index",
+          "value": 2
+        },
+        {
+          "name": "Filter",
+          "value": "mipmap"
+        },
+        {
+          "name": "Wrap index",
+          "value": 0
+        },
+        {
+          "name": "Wrap",
+          "value": "repeat"
+        },
+        {
+          "name": "Anisotropic index",
+          "value": 0
+        },
+        {
+          "name": "Anisotropic",
+          "value": "0"
+        },
+        {
+          "name": "Data Format index",
+          "value": 3
+        },
+        {
+          "name": "Data Format",
+          "value": "RGBA"
+        },
+        {
+          "name": "Flip",
+          "value": 0
+        },
+        {
+          "name": "Pre Multiplied Alpha",
+          "value": 0
+        },
+        {
+          "name": "Active",
+          "value": 1
+        },
+        {
+          "name": "Save Memory",
+          "value": 1
+        },
+        {
+          "name": "Add Cachebuster",
+          "value": 0
+        }
+      ],
+      "portsOut": [
+        {
+          "name": "Texture",
+          "links": [
+            {
+              "portIn": "Normal",
+              "portOut": "Texture",
+              "objIn": "alz1qp4y2",
+              "objOut": "96qgwcwln"
+            },
+            {
+              "portIn": "Normal",
+              "portOut": "Texture",
+              "objIn": "ce52znu67",
+              "objOut": "96qgwcwln"
+            }
+          ]
+        },
+        {
+          "name": "Width",
+          "value": 256
+        },
+        {
+          "name": "Height",
+          "value": 256
+        },
+        {
+          "name": "Aspect Ratio",
+          "value": 1
+        },
+        {
+          "name": "Loaded",
+          "value": 1
+        },
+        {
+          "name": "Loading",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "opId": "650baeb1-db2d-4781-9af6-ab4e9d4277be",
+      "id": "mgntydb26",
+      "uiAttribs": {
+        "subPatch": "wpimh6dlf",
+        "translate": {
+          "x": 432,
+          "y": -88.51369915773847
+        },
+        "blueprintSubpatch2": true
+      },
+      "storage": {
+        "blueprintVer": 2
+      },
+      "portsIn": [
+        {
+          "name": "posX",
+          "value": 0
+        },
+        {
+          "name": "posY",
+          "value": -0.56
+        },
+        {
+          "name": "posZ",
+          "value": 0.16
+        },
+        {
+          "name": "scale",
+          "value": 1
+        },
+        {
+          "name": "rotX",
+          "value": 0
+        },
+        {
+          "name": "rotY",
+          "value": 0
+        },
+        {
+          "name": "rotZ",
+          "value": 0
+        }
+      ],
+      "portsOut": [
+        {
+          "name": "trigger",
+          "links": [
+            {
+              "portIn": "Render",
+              "portOut": "trigger",
+              "objIn": "85rseo930",
+              "objOut": "mgntydb26"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

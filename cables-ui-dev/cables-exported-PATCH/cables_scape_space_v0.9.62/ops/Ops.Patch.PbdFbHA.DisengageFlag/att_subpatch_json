@@ -1,0 +1,105 @@
+{
+  "ops": [
+    {
+      "opId": "b5249226-6095-4828-8a1c-080654e192fa",
+      "id": "tjwrh5u95",
+      "uiAttribs": {
+        "title": "var set",
+        "subPatch": "ynlymowkj",
+        "extendTitle": "#__sliderLeave",
+        "translate": {
+          "x": -414.6923717132885,
+          "y": 422.6500339342125
+        },
+        "color": "#5dc0fd",
+        "blueprintSubpatch2": true,
+        "tempSubOldOpId": null
+      },
+      "storage": {
+        "blueprintVer": 2
+      },
+      "portsIn": [
+        {
+          "name": "Variable",
+          "value": "__sliderLeave"
+        }
+      ]
+    },
+    {
+      "opId": "6d123c9f-7485-4fd9-a5c2-76e59dcbeb34",
+      "id": "dlvka8p7u",
+      "uiAttribs": {
+        "subPatch": "ynlymowkj",
+        "translate": {
+          "x": -414.6923717132885,
+          "y": 372.0194219006655
+        },
+        "blueprintSubpatch2": true,
+        "color": "#5dc0fd",
+        "tempSubOldOpId": null
+      },
+      "storage": {
+        "blueprintVer": 2
+      },
+      "portsOut": [
+        {
+          "name": "Result",
+          "links": [
+            {
+              "portIn": "Value",
+              "portOut": "Result",
+              "objIn": "tjwrh5u95",
+              "objOut": "dlvka8p7u"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "opId": "c4e4e933-136e-479e-8de8-0b35b75d9217",
+      "id": "eck8hvwot",
+      "uiAttribs": {
+        "subPatch": "ynlymowkj",
+        "translate": {
+          "x": -394.6923717132885,
+          "y": 0
+        },
+        "blueprintSubpatch2": true,
+        "tempSubOldOpId": null
+      },
+      "storage": {
+        "blueprintVer": 2
+      },
+      "portsOut": [
+        {
+          "name": "innerOut_jqg7l6f5m",
+          "title": "Boolean",
+          "links": [
+            {
+              "portIn": "Boolean",
+              "portOut": "innerOut_jqg7l6f5m",
+              "objIn": "dlvka8p7u",
+              "objOut": "eck8hvwot"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "opId": "02d45073-7936-4830-81ad-59a162febf1f",
+      "id": "7mxc7zyyb",
+      "uiAttribs": {
+        "subPatch": "ynlymowkj",
+        "translate": {
+          "x": -394.6923717132885,
+          "y": 533.6500339342125
+        },
+        "blueprintSubpatch2": true,
+        "tempSubOldOpId": null
+      },
+      "storage": {
+        "blueprintVer": 2
+      }
+    }
+  ]
+}

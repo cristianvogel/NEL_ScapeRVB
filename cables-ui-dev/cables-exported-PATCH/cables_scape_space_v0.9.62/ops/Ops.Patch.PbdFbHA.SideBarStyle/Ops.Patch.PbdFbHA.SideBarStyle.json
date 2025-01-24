@@ -1,0 +1,80 @@
+{
+    "id": "3007067b-260a-4fec-aba2-094d25ae697b",
+    "created": 1727711566932,
+    "license": "MIT",
+    "authorName": "unknown",
+    "summary": "adjust appearance of sidebar",
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "link"
+            },
+            {
+                "type": 0,
+                "name": "Width",
+                "subType": "integer"
+            },
+            {
+                "type": 0,
+                "name": "Round Corners",
+                "subType": "number"
+            },
+            {
+                "type": 5,
+                "name": "Special Color"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "childs"
+            },
+            {
+                "type": 2,
+                "name": "Element"
+            }
+        ]
+    },
+    "docs": {
+        "ports": []
+    },
+    "hasExample": false,
+    "libs": [],
+    "youtubeids": [],
+    "exampleProjectId": "",
+    "changelog": [
+        {
+            "message": "created op",
+            "author": "pandur",
+            "date": 1622527751528
+        },
+        {
+            "message": "cloned op from Ops.User.pandur.sidebartabs",
+            "author": "pandur",
+            "date": 1622529549185
+        },
+        {
+            "message": "Ops.User.pandur.SideBarStyle renamed to Ops.Sidebar.SideBarStyle",
+            "author": "pandur",
+            "date": 1622531294836
+        },
+        {
+            "message": "react properly to disconnecting parent",
+            "author": "stephan",
+            "date": 1643888127921
+        },
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "",
+            "date": 1727711566932
+        },
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "cristianvogel",
+            "date": 1737626018247
+        }
+    ]
+}

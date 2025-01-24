@@ -1,0 +1,51 @@
+{
+    "id": "723dbdda-b2a6-4b49-a979-a2634f4e472a",
+    "created": 1726132199841,
+    "license": "MIT",
+    "authorName": "cristianvogel",
+    "summary": "",
+    "layout": {
+        "portsIn": [
+            {
+                "type": 0,
+                "name": "jqg7l6f5m",
+                "uititle": "Boolean",
+                "subType": "boolean"
+            }
+        ],
+        "portsOut": []
+    },
+    "hasExample": false,
+    "libs": [],
+    "youtubeids": [],
+    "exampleProjectId": "",
+    "changelog": [
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "cristianvogel",
+            "date": 1726132199883
+        },
+        {
+            "message": "Ops.Patch.PW10J0o.SubPatch0 renamed to Ops.Patch.PW10J0o.DisengageFlag",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1726132243932
+        },
+        {
+            "message": "Ops.Patch.PW10J0o.DisengageFlag renamed to Ops.Patch.P4Zknbo.DisengageFlag",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1726162360264
+        },
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "cristianvogel",
+            "date": 1737626013604
+        }
+    ],
+    "coreLibs": [
+        "subpatchop"
+    ]
+}

@@ -1,0 +1,110 @@
+{
+    "id": "4bf57488-7686-46d5-a5d6-aff1863da351",
+    "created": 1724497482131,
+    "license": "MIT",
+    "authorName": "cristianvogel",
+    "summary": "",
+    "layout": {
+        "portsIn": [
+            {
+                "type": 1,
+                "name": "9fkoygcno",
+                "uititle": "Render"
+            }
+        ],
+        "portsOut": []
+    },
+    "hasExample": false,
+    "libs": [],
+    "youtubeids": [],
+    "exampleProjectId": "",
+    "changelog": [
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "cristianvogel",
+            "date": 1724497482175
+        },
+        {
+            "message": "Ops.Patch.PuSSdim.SubPatch1 renamed to Ops.Patch.PGcsYsm.SubPatch1",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1724590138255
+        },
+        {
+            "message": "Ops.Patch.PGcsYsm.SubPatch1 renamed to Ops.Patch.PZ51fXm.SubPatch1",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1725037375054
+        },
+        {
+            "message": "Ops.Patch.PZ51fXm.SubPatch1 renamed to Ops.Patch.PAIoPfn.SubPatch1",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1725312020081
+        },
+        {
+            "message": "Ops.Patch.PAIoPfn.SubPatch1 renamed to Ops.Patch.P9S6hjn.SubPatch1",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1725362954244
+        },
+        {
+            "message": "Ops.Patch.P9S6hjn.SubPatch1 renamed to Ops.Patch.Per7Sun.SubPatch1",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1725534314315
+        },
+        {
+            "message": "Ops.Patch.Per7Sun.SubPatch1 renamed to Ops.Patch.PbnNcNn.SubPatch1",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1725805215127
+        },
+        {
+            "message": "Ops.Patch.PbnNcNn.SubPatch1 renamed to Ops.Patch.PU070On.SubPatch1",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1725816968517
+        },
+        {
+            "message": "Ops.Patch.PU070On.SubPatch1 renamed to Ops.Patch.PoS7dRn.SubPatch1",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1725864399293
+        },
+        {
+            "message": "Ops.Patch.PoS7dRn.SubPatch1 renamed to Ops.Patch.P4oPpSn.SubPatch1",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1725882201679
+        },
+        {
+            "message": "Ops.Patch.P4oPpSn.SubPatch1 renamed to Ops.Patch.PDUHsZn.SubPatch1",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1725986322805
+        },
+        {
+            "message": "Ops.Patch.PDUHsZn.SubPatch1 renamed to Ops.Patch.PW10J0o.SubPatch1",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1726004981928
+        },
+        {
+            "message": "Ops.Patch.PW10J0o.SubPatch1 renamed to Ops.Patch.P4Zknbo.SubPatch1",
+            "type": "rename",
+            "author": "cristianvogel",
+            "date": 1726162358414
+        },
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "cristianvogel",
+            "date": 1737626015593
+        }
+    ],
+    "coreLibs": [
+        "subpatchop"
+    ]
+}

@@ -1,0 +1,55 @@
+{
+    "ports": [
+        {
+            "id": "blls2amps",
+            "title": "Trigger in",
+            "dir": 0,
+            "type": 1,
+            "order": 0
+        },
+        {
+            "id": "btagbs7z2",
+            "title": "Class",
+            "dir": 0,
+            "type": 5,
+            "value": "",
+            "order": 1
+        },
+        {
+            "id": "lj06d561p",
+            "title": "Show Boundings",
+            "dir": 0,
+            "type": 0,
+            "uiDisplay": "bool",
+            "value": 0,
+            "order": 2
+        },
+        {
+            "id": "nti406vwi",
+            "title": "Result",
+            "dir": 1,
+            "type": 0,
+            "value": -0.48343014617909447,
+            "order": 1003
+        },
+        {
+            "id": "gjvx0zyv5",
+            "title": "value",
+            "dir": 1,
+            "type": 0,
+            "value": 0.49,
+            "order": 1004
+        },
+        {
+            "id": "h2l1ydpiy",
+            "title": "Hover",
+            "dir": 1,
+            "values": [
+                ""
+            ],
+            "type": 0,
+            "value": 0,
+            "order": 1005
+        }
+    ]
+}

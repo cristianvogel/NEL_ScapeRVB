@@ -1,0 +1,105 @@
+{
+    "authorName": "cristianvogel",
+    "id": "56c55700-64c6-4925-a464-75b74a7c7d66",
+    "created": 1737630876447,
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "link"
+            },
+            {
+                "type": 5,
+                "name": "Text"
+            },
+            {
+                "type": 0,
+                "name": "Min",
+                "group": "Range",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Max",
+                "group": "Range",
+                "subType": "number"
+            },
+            {
+                "type": 0,
+                "name": "Step",
+                "group": "Range",
+                "subType": "number"
+            },
+            {
+                "type": 5,
+                "name": "Suffix"
+            },
+            {
+                "type": 0,
+                "name": "Grey Out",
+                "group": "Display",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Visible",
+                "group": "Display",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Input",
+                "subType": "number"
+            },
+            {
+                "type": 1,
+                "name": "Set Default"
+            },
+            {
+                "type": 1,
+                "name": "Reset"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "childs"
+            },
+            {
+                "type": 0,
+                "name": "Result",
+                "subType": "number"
+            },
+            {
+                "type": 2,
+                "name": "Interaction"
+            }
+        ]
+    },
+    "summary": "Sidebar slider element (range)",
+    "docs": {
+        "ports": []
+    },
+    "changelog": [
+        {
+            "message": "react properly to disconnecting parent",
+            "author": "stephan",
+            "date": 1643888139245
+        },
+        {
+            "message": "Aaccessibility: button has aria-label",
+            "type": "feature",
+            "author": "pandur",
+            "date": 1733326962053
+        },
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "cristianvogel",
+            "date": 1737630876447
+        }
+    ],
+    "issues": "",
+    "caniusequery": "",
+    "license": "MIT"
+}

@@ -1,0 +1,82 @@
+{
+    "id": "8209130b-b6c5-4045-99ba-85dcfd097fd5",
+    "created": 1728312220360,
+    "license": "MIT",
+    "authorName": "unknown",
+    "summary": "sidebar push button/trigger element",
+    "layout": {
+        "portsIn": [
+            {
+                "type": 2,
+                "name": "link"
+            },
+            {
+                "type": 5,
+                "name": "Text"
+            },
+            {
+                "type": 0,
+                "name": "Checksum",
+                "subType": "number"
+            },
+            {
+                "type": 1,
+                "name": "update"
+            },
+            {
+                "type": 0,
+                "name": "Grey Out",
+                "subType": "boolean"
+            },
+            {
+                "type": 0,
+                "name": "Visible",
+                "subType": "boolean"
+            },
+            {
+                "type": 2,
+                "name": "Left Element"
+            }
+        ],
+        "portsOut": [
+            {
+                "type": 2,
+                "name": "childs"
+            },
+            {
+                "type": 2,
+                "name": "element"
+            },
+            {
+                "type": 1,
+                "name": "Pressed Trigger"
+            }
+        ]
+    },
+    "docs": {
+        "ports": []
+    },
+    "hasExample": false,
+    "libs": [],
+    "youtubeids": [],
+    "exampleProjectId": "",
+    "changelog": [
+        {
+            "message": "react properly to disconnecting parent",
+            "author": "stephan",
+            "date": 1643888016994
+        },
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "",
+            "date": 1728312220360
+        },
+        {
+            "message": "op created",
+            "type": "new op",
+            "author": "cristianvogel",
+            "date": 1737626016589
+        }
+    ]
+}
