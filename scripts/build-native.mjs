@@ -12,6 +12,8 @@ let buildDir = path.join(rootDir, 'native', 'build', 'scripted');
 
 //echo(`Root directory: ${rootDir}`);
 //echo(`Build directory: ${buildDir}`);
+// await fs.remove(buildDir);
+// await fs.ensureDir(buildDir);
 
 // Clean the build directory before we build
 let artefactsDir = path.join(buildDir, 'NEL_scape_space_artefacts');
@@ -19,9 +21,6 @@ let cmakeFilesDir = path.join(buildDir, 'CMakeFiles');
 
 await fs.remove(artefactsDir);
 await fs.remove(cmakeFilesDir);
-
-await fs.ensureDir(artefactsDir);
-await fs.ensureDir(cmakeFilesDir);
 
 
 // remove existing artefacts from the VST3 folder before building
@@ -40,8 +39,8 @@ if (os.platform() === 'darwin') {
 
 
     // Uncomment the following lines if you need to build for x86_64 as well
-  //  await $`cmake  -DCMAKE_BUILD_TYPE=${buildType} -DCMAKE_INSTALL_PREFIX=./out/  -DCMAKE_OSX_DEPLOYMENT_TARGET=12 -DCMAKE_OSX_ARCHITECTURES="x86_64" ${devFlag} ../..`;
-  //  await $`cmake --build . --config ${buildType} -j 4`;
+    await $`cmake  -DCMAKE_BUILD_TYPE=${buildType} -DCMAKE_INSTALL_PREFIX=./out/  -DCMAKE_OSX_DEPLOYMENT_TARGET=12 -DCMAKE_OSX_ARCHITECTURES="x86_64" ${devFlag} ../..`;
+    await $`cmake --build . --config ${buildType} -j 4`;
 
     // macOS specific code // -G Xcode for Xcode project
     await $`cmake -DCMAKE_BUILD_TYPE=${buildType} -DCMAKE_INSTALL_PREFIX=./out/  -DCMAKE_OSX_DEPLOYMENT_TARGET=12 -DCMAKE_OSX_ARCHITECTURES="arm64" ${devFlag} ../..`;
