@@ -28,24 +28,24 @@ import { RefMap } from "./RefMap";
 let memoized: null | any;
 let renderCount = 0;
 let currentVFSKeys: Array<string>;
-let refs: RefMap;
+
 let structureData: StructureData = { nodes: [], max: 0 };
 
 
 // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
 // ▮▮▮▮▮▮▮▮ Handle updated state from the backend ▮▮▮▮▮▮▮ //
 // ▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮▮ //
-export function handleStateChange(_refs: RefMap, rawJSON: JSONString ) {
+export function handleStateChange(refs: RefMap, rawJSON: JSONString ) {
     
     // update the local vars
-    refs = _refs;
+    
     currentVFSKeys = refs.vfsKeys;
     
     //  parse the state
     const { state, srvb, shared, scape } = parseNewState( refs, rawJSON) as ProcessorSettings;
     // console.log('STATE::0');
     // then get or create the props for the DSP
-    const { srvbProps, scapeProps } = getOrCreatePropsForDSP(srvb, shared, scape);
+    const { srvbProps, scapeProps } = getOrCreatePropsForDSP( refs, srvb, shared, scape);
    //  console.log('STATE::1');
     // setup the structure series
     structureData = structureSetup( refs, structureData );
@@ -53,11 +53,11 @@ export function handleStateChange(_refs: RefMap, rawJSON: JSONString ) {
     // now render or re-hydrate the graph
     // ▮▮▮▮▮▮▮▮▮▮▮ Elementary Audio Graph Renderer ▮▮▮▮▮▮▮▮▮▮ //
  
-    if (shouldRender(memoized, state, renderCount)) {
+    if (shouldRender( refs, memoized, state, renderCount)) {
         console.log('STATE::Render: ' + renderCount);
         updateMemoizedState(state, srvb, shared, scape);
         adjustStructurePosition(refs, srvb, structureData);
-        renderAudioGraph(shared, srvbProps, scapeProps);
+        renderAudioGraph( refs, shared, srvbProps, scapeProps);
     } else {
       //  console.log('STATE::UPDATE');
         updateSignalRefs( refs, srvb, scape, shared);
@@ -89,19 +89,19 @@ const HERMITE: Ramp<Vec> = createHermiteVecInterp();
 
 //////////////////////////////////////////////////////////////////////
 // setup the structure data
-function structureSetup(_refs: RefMap, structureData?: StructureData) {
+function structureSetup(refs: RefMap, structureData?: StructureData) {
     const defaultStructure = OEIS_SEQUENCES[0];
     const defaultMax = argMax(defaultStructure, 17);
     structureData = {
-        nodes: castSequencesToRefs(defaultStructure, defaultMax, _refs),
+        nodes: castSequencesToRefs(defaultStructure, defaultMax, refs),
         max: defaultMax,
     };
     return structureData;
 }
 
-function parseNewState(_refs: RefMap, rawState: JSONString) {
+function parseNewState(refs: RefMap, rawState: JSONString) {
     const state = JSON.parse(rawState);
-    refs = _refs;
+    
     // interpreted state captured out into respective processor properties.
     // any adjustments should be done here before rendering to the graph
     const shared: SharedSettings = {
@@ -171,7 +171,7 @@ function adjustStructurePosition(refs: RefMap, srvb: SrvbSettings, structureData
     return structureData;
 }
 
-function shouldRender(previous: any, current: any, renderCount: number) {
+function shouldRender( refs:RefMap, previous: any, current: any, renderCount: number) {
     const result =
         renderCount === 0 ||
         refs.map.size === 0 ||
@@ -182,7 +182,7 @@ function shouldRender(previous: any, current: any, renderCount: number) {
     return result;
 }
 
-function renderAudioGraph(shared: SharedSettings, srvbProps: SRVBProps, scapeProps: ScapeProps) {
+function renderAudioGraph(refs:RefMap, shared: SharedSettings, srvbProps: SRVBProps, scapeProps: ScapeProps) {
   
     if (srvbProps && scapeProps) {
         const graph = core.render(
@@ -202,8 +202,8 @@ function renderAudioGraph(shared: SharedSettings, srvbProps: SRVBProps, scapePro
     }
 }
 
-function updateSignalRefs(_refs:RefMap, srvb: SrvbSettings, scape: ScapeSettings, shared: SharedSettings) {
-    refs = _refs;
+function updateSignalRefs(refs:RefMap, srvb: SrvbSettings, scape: ScapeSettings, shared: SharedSettings) {
+    
     if (!srvb.bypass) {
         refs.update("size", { value: srvb.size });
         refs.update("diffuse", { value: srvb.diffuse });
@@ -234,7 +234,7 @@ function updateSignalRefs(_refs:RefMap, srvb: SrvbSettings, scape: ScapeSettings
     refs.update("srvbBypass", { value: srvb.bypass });
 }
 
-function getOrCreatePropsForDSP(srvb: SrvbSettings, shared: SharedSettings, scape: ScapeSettings) {
+function getOrCreatePropsForDSP(refs:RefMap, srvb: SrvbSettings, shared: SharedSettings, scape: ScapeSettings) {
 
     refs.getOrCreate("dryMix", "const", { value: shared.dryMix }, []);
 
