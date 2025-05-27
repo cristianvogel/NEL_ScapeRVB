@@ -38,3 +38,4 @@ previousUI-versions
 
 /public/dsp.main.js
 /cables-ui JSON export/
+scripts/build-native.mjs
