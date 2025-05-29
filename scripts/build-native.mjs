@@ -24,7 +24,7 @@ await fs.ensureDir(buildDir);
 // remove existing artefacts from the VST3 folder before building
 let vst3Dir = path.join(os.homedir(), 'Library', 'Audio', 'Plug-Ins', 'VST3');
 let filesToDelete = await fs.readdir(vst3Dir);
-filesToDelete = filesToDelete.filter(f => f.startsWith('NEL_'));
+filesToDelete = filesToDelete.filter(f => f.startsWith('NEL_scape'));
 filesToDelete.forEach(f => fs.remove(path.join(vst3Dir, f)));
 
 
@@ -37,12 +37,12 @@ if (os.platform() === 'darwin') {
 
 
     // Uncomment the following lines if you need to build for x86_64 as well
-   // await $`cmake  -DCMAKE_BUILD_TYPE=${buildType} -DCMAKE_INSTALL_PREFIX=./out/  -DCMAKE_OSX_DEPLOYMENT_TARGET=12 -DCMAKE_OSX_ARCHITECTURES="x86_64" ${devFlag} ../..`;
-   // await $`cmake --build . --config ${buildType} -j 4`;
+   await $`cmake  -DCMAKE_BUILD_TYPE=${buildType} -DCMAKE_INSTALL_PREFIX=./out/  -DCMAKE_OSX_DEPLOYMENT_TARGET=12 -DCMAKE_OSX_ARCHITECTURES="x86_64" ${devFlag} ../..`;
+   await $`cmake --build . --config ${buildType} -j 14`;
 
     // macOS specific code // -G Xcode for Xcode project
-    await $`cmake -DCMAKE_BUILD_TYPE=${buildType} -DCMAKE_INSTALL_PREFIX=./out/  -DCMAKE_OSX_DEPLOYMENT_TARGET=12 -DCMAKE_OSX_ARCHITECTURES="arm64" ${devFlag} ../..`;
-    await $`cmake --build . --config ${buildType} -j 4`;
+    // await $`cmake -DCMAKE_BUILD_TYPE=${buildType} -DCMAKE_INSTALL_PREFIX=./out/  -DCMAKE_OSX_DEPLOYMENT_TARGET=12 -DCMAKE_OSX_ARCHITECTURES="arm64" ${devFlag} ../..`;
+    // await $`cmake --build . --config ${buildType} -j 14`;
 
 } else if (os.platform() === 'win32') {     //nodejs os returns win32 even on 64-bit Windows.
     await $`cmake -G "Visual Studio 17 2022" -A x64 -DCMAKE_BUILD_TYPE=${buildType} -DCMAKE_INSTALL_PREFIX=./out/ ${devFlag} ../..`;

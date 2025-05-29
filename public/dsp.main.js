@@ -3249,7 +3249,7 @@
   };
 
   // src/stores/constants.ts
-  var BUILD_VERSION = "v0.9.61";
+  var BUILD_VERSION = "v0.9.62";
   var CURRENT_UI_VERSION = `scape_space_${BUILD_VERSION}`;
   var HOST_PARAMS = manifest_default.parameters;
   var IR_Slots = [

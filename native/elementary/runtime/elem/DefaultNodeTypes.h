@@ -14,8 +14,7 @@
 #include "builtins/Math.h"
 #include "builtins/Oscillators.h"
 #include "builtins/Noise.h"
-#include "builtins/Sample.h"
-#include "builtins/SampleSeq.h"
+
 #include "builtins/Seq2.h"
 #include "builtins/SparSeq.h"
 #include "builtins/SparSeq2.h"
@@ -117,9 +116,6 @@ namespace elem
             callback("tapOut",          GenericNodeFactory<TapOutNode<FloatType>>());
 
             // Sample/Buffer nodes
-            callback("sample",          GenericNodeFactory<SampleNode<FloatType>>());
-            callback("sampleseq",       GenericNodeFactory<SampleSeqNode<FloatType>>());
-            callback("sampleseq2",      GenericNodeFactory<SampleSeqWithStretchNode<FloatType>>());
             callback("table",           GenericNodeFactory<TableNode<FloatType>>());
 
             // Oscillator nodes

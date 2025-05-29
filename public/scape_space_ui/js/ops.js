@@ -46,328 +46,6 @@ Ops.Extension.Deprecated=Ops.Extension.Deprecated || {};
 
 // **************************************************************
 // 
-// Ops.Patch.PbdFbHA.SubPatch1
-// 
-// **************************************************************
-
-Ops.Patch.PbdFbHA.SubPatch1 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_9fkoygcno=op.inTrigger(\"9fkoygcno\");\nport_9fkoygcno.setUiAttribs({title:\"Render\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_9fkoygcno = addedOps[i].outTrigger(\"innerOut_9fkoygcno\");\ninnerOut_9fkoygcno.setUiAttribs({title:\"Render\"});\nport_9fkoygcno.onTriggered = () => { innerOut_9fkoygcno.trigger(); };\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"85rseo930\",\"uiAttribs\":{\"subPatch\":\"0pfv0rck7\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"data\",\"value\":\"\"},{\"name\":\"glb File\",\"value\":\"/assets/NEL-Logo.draco.glb\",\"display\":\"file\"},{\"name\":\"Draw\",\"value\":1},{\"name\":\"Camera index\",\"value\":0},{\"name\":\"Camera\",\"value\":\"None\"},{\"name\":\"Animation\",\"value\":\"\"},{\"name\":\"Center index\",\"value\":2},{\"name\":\"Center\",\"value\":\"XZ\"},{\"name\":\"Rescale\",\"value\":1},{\"name\":\"Rescale Size\",\"value\":2},{\"name\":\"Time\",\"value\":0},{\"name\":\"Sync to timeline\",\"value\":0},{\"name\":\"Loop\",\"value\":1},{\"name\":\"Normals Format index\",\"value\":0},{\"name\":\"Normals Format\",\"value\":\"XYZ\"},{\"name\":\"Vertices Format index\",\"value\":0},{\"name\":\"Vertices Format\",\"value\":\"XYZ\"},{\"name\":\"Calc Normals index\",\"value\":0},{\"name\":\"Calc Normals\",\"value\":\"Auto\"},{\"name\":\"Hide Nodes\",\"value\":0},{\"name\":\"Use Material Properties\",\"value\":0},{\"name\":\"Active\",\"value\":1}],\"portsOut\":[{\"name\":\"Generator\",\"value\":\"Khronos glTF Blender I/O v4.2.60\"},{\"name\":\"GLTF Version\",\"value\":2},{\"name\":\"Anim Length\",\"value\":0},{\"name\":\"Anim Time\",\"value\":0},{\"name\":\"Loading\",\"value\":false}],\"objName\":\"Ops.Gl.GLTF.GltfScene_v4\"},{\"id\":\"nbmadl6p6\",\"uiAttribs\":{\"subPatch\":\"0pfv0rck7\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Material Name\",\"value\":\"mat0\"}],\"portsOut\":[{\"name\":\"Material\",\"links\":[{\"portIn\":\"Materials\",\"portOut\":\"Material\",\"objIn\":\"85rseo930\",\"objOut\":\"nbmadl6p6\"}]}],\"objName\":\"Ops.Gl.GLTF.GltfSetMaterial\"},{\"id\":\"ymzn2u1wr\",\"uiAttribs\":{\"subPatch\":\"0pfv0rck7\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Material Name\",\"value\":\"Material.001\"}],\"portsOut\":[{\"name\":\"Material\",\"links\":[{\"portIn\":\"Materials\",\"portOut\":\"Material\",\"objIn\":\"85rseo930\",\"objOut\":\"ymzn2u1wr\"}]}],\"objName\":\"Ops.Gl.GLTF.GltfSetMaterial\"},{\"id\":\"6wtj1mxj5\",\"uiAttribs\":{\"subPatch\":\"0pfv0rck7\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_9fkoygcno\",\"title\":\"Render\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"innerOut_9fkoygcno\",\"objIn\":\"alz1qp4y2\",\"objOut\":\"6wtj1mxj5\"},{\"portIn\":\"Render\",\"portOut\":\"innerOut_9fkoygcno\",\"objIn\":\"ce52znu67\",\"objOut\":\"6wtj1mxj5\"},{\"portIn\":\"render\",\"portOut\":\"innerOut_9fkoygcno\",\"objIn\":\"mgntydb26\",\"objOut\":\"6wtj1mxj5\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"lt3kjnr3e\",\"uiAttribs\":{\"subPatch\":\"0pfv0rck7\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"alz1qp4y2\",\"uiAttribs\":{\"subPatch\":\"0pfv0rck7\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":0.514},{\"name\":\"b\",\"value\":0.262},{\"name\":\"Opacity\",\"value\":1},{\"name\":\"AO Intensity\",\"value\":1},{\"name\":\"Normal Map Intensity\",\"value\":0.812},{\"name\":\"Repeat X\",\"value\":1},{\"name\":\"Repeat Y\",\"value\":1},{\"name\":\"Offset X\",\"value\":0},{\"name\":\"Offset Y\",\"value\":0.02},{\"name\":\"Double Sided\",\"value\":0},{\"name\":\"Screen Space Normals\",\"value\":0},{\"name\":\"Calc normal tangents\",\"value\":1},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"}],\"portsOut\":[{\"name\":\"Shader\",\"links\":[{\"portIn\":\"Shader\",\"portOut\":\"Shader\",\"objIn\":\"ymzn2u1wr\",\"objOut\":\"alz1qp4y2\"}]}],\"objName\":\"Ops.Gl.Shader.MatCapMaterial_v3\"},{\"id\":\"ce52znu67\",\"uiAttribs\":{\"subPatch\":\"0pfv0rck7\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.22},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.262},{\"name\":\"Opacity\",\"value\":1},{\"name\":\"AO Intensity\",\"value\":1},{\"name\":\"Normal Map Intensity\",\"value\":0.118},{\"name\":\"Repeat X\",\"value\":1},{\"name\":\"Repeat Y\",\"value\":1},{\"name\":\"Offset X\",\"value\":0},{\"name\":\"Offset Y\",\"value\":0},{\"name\":\"Double Sided\",\"value\":0},{\"name\":\"Screen Space Normals\",\"value\":0},{\"name\":\"Calc normal tangents\",\"value\":1},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"}],\"portsOut\":[{\"name\":\"Shader\",\"links\":[{\"portIn\":\"Shader\",\"portOut\":\"Shader\",\"objIn\":\"nbmadl6p6\",\"objOut\":\"ce52znu67\"}]}],\"objName\":\"Ops.Gl.Shader.MatCapMaterial_v3\"},{\"id\":\"mgntydb26\",\"uiAttribs\":{\"subPatch\":\"0pfv0rck7\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posX\",\"value\":0},{\"name\":\"posY\",\"value\":-0.56},{\"name\":\"posZ\",\"value\":0.16},{\"name\":\"scale\",\"value\":1},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"85rseo930\",\"objOut\":\"mgntydb26\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"m8tox1gyn\",\"uiAttribs\":{\"subPatch\":\"0pfv0rck7\"},\"portsIn\":[{\"name\":\"Base64 / Data URI\",\"value\":\"\\\"data:image/webp;base64,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\\\"\"},{\"name\":\"filter index\",\"value\":1},{\"name\":\"filter\",\"value\":\"linear\"},{\"name\":\"wrap index\",\"value\":0},{\"name\":\"wrap\",\"value\":\"clamp to edge\"},{\"name\":\"Anisotropic index\",\"value\":0},{\"name\":\"Anisotropic\",\"value\":\"0\"},{\"name\":\"Pre Multiplied Alpha\",\"value\":0}],\"portsOut\":[{\"name\":\"Texture\",\"links\":[{\"portIn\":\"Normal\",\"portOut\":\"Texture\",\"objIn\":\"ce52znu67\",\"objOut\":\"m8tox1gyn\"},{\"portIn\":\"Normal\",\"portOut\":\"Texture\",\"objIn\":\"alz1qp4y2\",\"objOut\":\"m8tox1gyn\"}]},{\"name\":\"Loading\",\"value\":true}],\"storage\":{\"ref\":\"m8tox1gyn\"},\"objName\":\"Ops.Gl.Textures.Base64ToTexture\"}]}",};
-const port_9fkoygcno=op.inTrigger("9fkoygcno");
-port_9fkoygcno.setUiAttribs({title:"Render",});
-
-op.initInnerPorts=function(addedOps)
-{
-  for(let i=0;i<addedOps.length;i++)
-  {
-    if(addedOps[i].innerInput)
-    {
-const innerOut_9fkoygcno = addedOps[i].outTrigger("innerOut_9fkoygcno");
-innerOut_9fkoygcno.setUiAttribs({title:"Render"});
-port_9fkoygcno.onTriggered = () => { innerOut_9fkoygcno.trigger(); };
-
-    }
-if(addedOps[i].innerOutput)
-{
-}
-}
-};
-
-const patchId = "bp2sub_" + op.id;
-
-new CABLES.SubPatchOp(op, { "subId": patchId });
-
-initializeSubpatch();
-
-function initializeSubpatch()
-{
-    const p = JSON.parse(attachments.subpatch_json);
-
-    CABLES.Patch.replaceOpIds(p,
-        {
-            "parentSubPatchId": patchId,
-            "prefixHash": patchId,
-            "oldIdAsRef": true,
-            "doNotUnlinkLostLinks": true
-        });
-
-    for (let i = 0; i < p.ops.length; i++)
-    {
-        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
-    }
-
-    op.loadDependencies(p, () =>
-    {
-        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
-        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
-        op.patch.emitEvent("subpatchExpose", patchId);
-        op.setStorage({ "blueprintVer": 2 });
-        op.patch.emitEvent("subpatchExpose", patchId);
-    });
-}
-
-
-};
-
-Ops.Patch.PbdFbHA.SubPatch1.prototype = new CABLES.Op();
-CABLES.OPS["4bf57488-7686-46d5-a5d6-aff1863da351"]={f:Ops.Patch.PbdFbHA.SubPatch1,objName:"Ops.Patch.PbdFbHA.SubPatch1"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Patch.PbdFbHA.SubPatch3
-// 
-// **************************************************************
-
-Ops.Patch.PbdFbHA.SubPatch3 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_alrh6hig4=op.inTrigger(\"alrh6hig4\");\nport_alrh6hig4.setUiAttribs({title:\"render\",});\n\nconst port_8dittifdh=op.inTrigger(\"8dittifdh\");\nport_8dittifdh.setUiAttribs({title:\"Render\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_alrh6hig4 = addedOps[i].outTrigger(\"innerOut_alrh6hig4\");\ninnerOut_alrh6hig4.setUiAttribs({title:\"render\"});\nport_alrh6hig4.onTriggered = () => { innerOut_alrh6hig4.trigger(); };\n\nconst innerOut_8dittifdh = addedOps[i].outTrigger(\"innerOut_8dittifdh\");\ninnerOut_8dittifdh.setUiAttribs({title:\"Render\"});\nport_8dittifdh.onTriggered = () => { innerOut_8dittifdh.trigger(); };\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"rmprhecho\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posX\",\"value\":-1.74},{\"name\":\"posY\",\"value\":0.97},{\"name\":\"posZ\",\"value\":0.05},{\"name\":\"scale\",\"value\":0.98},{\"name\":\"rotX\",\"value\":13},{\"name\":\"rotY\",\"value\":60.5},{\"name\":\"rotZ\",\"value\":-15}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"69e8cxa7e\",\"objOut\":\"rmprhecho\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"z1zbpc5ex\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Material Name\",\"value\":\"Material_0.001\"}],\"portsOut\":[{\"name\":\"Material\",\"links\":[{\"portIn\":\"Materials\",\"portOut\":\"Material\",\"objIn\":\"yyw9jp0lz\",\"objOut\":\"z1zbpc5ex\"}]}],\"objName\":\"Ops.Gl.GLTF.GltfSetMaterial\"},{\"id\":\"znj0gtwab\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":1},{\"name\":\"Opacity\",\"value\":1},{\"name\":\"AO Intensity\",\"value\":1},{\"name\":\"Normal Map Intensity\",\"value\":0.361},{\"name\":\"Repeat X\",\"value\":0},{\"name\":\"Repeat Y\",\"value\":0},{\"name\":\"Offset X\",\"value\":0},{\"name\":\"Offset Y\",\"value\":0},{\"name\":\"Double Sided\",\"value\":0},{\"name\":\"Screen Space Normals\",\"value\":0},{\"name\":\"Calc normal tangents\",\"value\":1},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"}],\"portsOut\":[{\"name\":\"Shader\",\"links\":[{\"portIn\":\"Shader\",\"portOut\":\"Shader\",\"objIn\":\"z1zbpc5ex\",\"objOut\":\"znj0gtwab\"}]}],\"objName\":\"Ops.Gl.Shader.MatCapMaterial_v3\"},{\"id\":\"13dxix11f\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Gradient\",\"value\":\"{\\\"keys\\\":[{\\\"pos\\\":0,\\\"posy\\\":0.5,\\\"r\\\":0.19606043020884192,\\\"g\\\":0.9551041666666666,\\\"b\\\":0.30280095564822357},{\\\"pos\\\":0,\\\"posy\\\":0.5,\\\"r\\\":0.19606043020884192,\\\"g\\\":0.9551041666666666,\\\"b\\\":0.30280095564822357},{\\\"pos\\\":0.25,\\\"posy\\\":0.7,\\\"r\\\":0.24755528330802917,\\\"g\\\":0.5961175041362186,\\\"b\\\":0.6089322916666666},{\\\"pos\\\":1,\\\"posy\\\":0.5,\\\"r\\\":0.9515885416666666,\\\"g\\\":0.01916651725769043,\\\"b\\\":0.643597891729076},{\\\"pos\\\":1,\\\"posy\\\":0.5,\\\"r\\\":0.9515885416666666,\\\"g\\\":0.01916651725769043,\\\"b\\\":0.643597891729076}]}\"},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"X\"},{\"name\":\"Smoothstep\",\"value\":0},{\"name\":\"Step\",\"value\":1},{\"name\":\"Flip\",\"value\":1},{\"name\":\"sRGB\",\"value\":0},{\"name\":\"Oklab\",\"value\":0},{\"name\":\"Size\",\"value\":8},{\"name\":\"filter index\",\"value\":0},{\"name\":\"filter\",\"value\":\"nearest\"},{\"name\":\"wrap index\",\"value\":0},{\"name\":\"wrap\",\"value\":\"clamp to edge\"},{\"name\":\"Dither\",\"value\":0},{\"name\":\"Gradient Array\",\"value\":0}],\"portsOut\":[{\"name\":\"Texture\",\"links\":[{\"portIn\":\"Normal\",\"portOut\":\"Texture\",\"objIn\":\"znj0gtwab\",\"objOut\":\"13dxix11f\"}]}],\"objName\":\"Ops.Gl.GradientTexture\"},{\"id\":\"69e8cxa7e\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"scale\",\"value\":0.76},{\"name\":\"x\",\"value\":0.99},{\"name\":\"y\",\"value\":1.79},{\"name\":\"z\",\"value\":0.47}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"yyw9jp0lz\",\"objOut\":\"69e8cxa7e\"}]}],\"objName\":\"Ops.Gl.Matrix.Scale\"},{\"id\":\"r9gyvdkvh\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Frequency\",\"value\":1},{\"name\":\"Type index\",\"value\":0},{\"name\":\"Type\",\"value\":\"sine\"},{\"name\":\"Phase\",\"value\":0},{\"name\":\"Range Min\",\"value\":0},{\"name\":\"Range Max\",\"value\":1}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pos\",\"portOut\":\"Result\",\"objIn\":\"qe82kxn0g\",\"objOut\":\"r9gyvdkvh\"}]}],\"objName\":\"Ops.Anim.LFO_v2\"},{\"id\":\"bmv9fqxjh\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Speed\",\"value\":0.05},{\"name\":\"Play\",\"value\":1},{\"name\":\"Sync to timeline\",\"value\":0}],\"portsOut\":[{\"name\":\"Time\",\"links\":[{\"portIn\":\"Time\",\"portOut\":\"Time\",\"objIn\":\"r9gyvdkvh\",\"objOut\":\"bmv9fqxjh\"}]}],\"objName\":\"Ops.Anim.Timer_v2\"},{\"id\":\"we5n3qi4s\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_alrh6hig4\",\"title\":\"render\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_alrh6hig4\",\"objIn\":\"rmprhecho\",\"objOut\":\"we5n3qi4s\"}]},{\"name\":\"innerOut_8dittifdh\",\"title\":\"Render\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"innerOut_8dittifdh\",\"objIn\":\"znj0gtwab\",\"objOut\":\"we5n3qi4s\"},{\"portIn\":\"Render\",\"portOut\":\"innerOut_8dittifdh\",\"objIn\":\"kan5jvxj9\",\"objOut\":\"we5n3qi4s\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"aqkj0fxy7\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"qe82kxn0g\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Blend Mode index\",\"value\":18},{\"name\":\"Blend Mode\",\"value\":\"Math Add\"},{\"name\":\"Alpha Mask index\",\"value\":0},{\"name\":\"Alpha Mask\",\"value\":\"Off\"},{\"name\":\"Amount\",\"value\":1},{\"name\":\"Width\",\"value\":1},{\"name\":\"Type index\",\"value\":3},{\"name\":\"Type\",\"value\":\"Radial\"},{\"name\":\"Smoothstep\",\"value\":0},{\"name\":\"sRGB\",\"value\":0},{\"name\":\"color space index\",\"value\":0},{\"name\":\"color space\",\"value\":\"RGB\"},{\"name\":\"r\",\"value\":0.19606043020884192},{\"name\":\"g\",\"value\":0.9551},{\"name\":\"b\",\"value\":0.3028},{\"name\":\"r2\",\"value\":0.247},{\"name\":\"g2\",\"value\":0.596},{\"name\":\"b2\",\"value\":0.608},{\"name\":\"r3\",\"value\":0.951},{\"name\":\"g3\",\"value\":0.0191},{\"name\":\"b3\",\"value\":0.6436}],\"objName\":\"Ops.Gl.ImageCompose.Gradient_v2\"},{\"id\":\"kan5jvxj9\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Size index\",\"value\":0},{\"name\":\"Size\",\"value\":\"Auto\"},{\"name\":\"Width\",\"value\":640},{\"name\":\"Height\",\"value\":480},{\"name\":\"Filter index\",\"value\":1},{\"name\":\"Filter\",\"value\":\"linear\"},{\"name\":\"Wrap index\",\"value\":1},{\"name\":\"Wrap\",\"value\":\"repeat\"},{\"name\":\"Anisotropic index\",\"value\":0},{\"name\":\"Anisotropic\",\"value\":\"0\"},{\"name\":\"Pixel Format index\",\"value\":9},{\"name\":\"Pixel Format\",\"value\":\"RGBA 16bit float\"},{\"name\":\"Clear\",\"value\":1},{\"name\":\"R\",\"value\":0},{\"name\":\"G\",\"value\":0},{\"name\":\"B\",\"value\":0},{\"name\":\"A\",\"value\":0}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"Next\",\"objIn\":\"qe82kxn0g\",\"objOut\":\"kan5jvxj9\"}]},{\"name\":\"texture_out\",\"links\":[{\"portIn\":\"MatCap\",\"portOut\":\"texture_out\",\"objIn\":\"znj0gtwab\",\"objOut\":\"kan5jvxj9\"}]},{\"name\":\"Aspect Ratio\",\"value\":1.713302752293578},{\"name\":\"Texture Width\",\"value\":1494},{\"name\":\"Texture Height\",\"value\":872}],\"objName\":\"Ops.Gl.ImageCompose.ImageCompose_v4\"},{\"id\":\"yyw9jp0lz\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{},\"portsIn\":[{\"name\":\"data\",\"value\":\"\"},{\"name\":\"glb File\",\"value\":\"/assets/tetragram_fixed_material.draco.glb\",\"display\":\"file\"},{\"name\":\"Draw\",\"value\":1},{\"name\":\"Camera index\",\"value\":0},{\"name\":\"Camera\",\"value\":\"None\"},{\"name\":\"Animation\",\"value\":\"\"},{\"name\":\"Center index\",\"value\":1},{\"name\":\"Center\",\"value\":\"XYZ\"},{\"name\":\"Rescale\",\"value\":1},{\"name\":\"Rescale Size\",\"value\":0.15},{\"name\":\"Time\",\"value\":0},{\"name\":\"Sync to timeline\",\"value\":0},{\"name\":\"Loop\",\"value\":1},{\"name\":\"Normals Format index\",\"value\":0},{\"name\":\"Normals Format\",\"value\":\"XYZ\"},{\"name\":\"Vertices Format index\",\"value\":0},{\"name\":\"Vertices Format\",\"value\":\"XYZ\"},{\"name\":\"Calc Normals index\",\"value\":0},{\"name\":\"Calc Normals\",\"value\":\"Auto\"},{\"name\":\"Hide Nodes\",\"value\":0},{\"name\":\"Use Material Properties\",\"value\":0},{\"name\":\"Active\",\"value\":1}],\"portsOut\":[{\"name\":\"Generator\",\"value\":\"Khronos glTF Blender I/O v4.2.60\"},{\"name\":\"GLTF Version\",\"value\":2},{\"name\":\"Anim Length\",\"value\":0},{\"name\":\"Anim Time\",\"value\":0},{\"name\":\"Loading\",\"value\":false}],\"objName\":\"Ops.Gl.GLTF.GltfScene_v4\"}]}",};
-const port_alrh6hig4=op.inTrigger("alrh6hig4");
-port_alrh6hig4.setUiAttribs({title:"render",});
-
-const port_8dittifdh=op.inTrigger("8dittifdh");
-port_8dittifdh.setUiAttribs({title:"Render",});
-
-op.initInnerPorts=function(addedOps)
-{
-  for(let i=0;i<addedOps.length;i++)
-  {
-    if(addedOps[i].innerInput)
-    {
-const innerOut_alrh6hig4 = addedOps[i].outTrigger("innerOut_alrh6hig4");
-innerOut_alrh6hig4.setUiAttribs({title:"render"});
-port_alrh6hig4.onTriggered = () => { innerOut_alrh6hig4.trigger(); };
-
-const innerOut_8dittifdh = addedOps[i].outTrigger("innerOut_8dittifdh");
-innerOut_8dittifdh.setUiAttribs({title:"Render"});
-port_8dittifdh.onTriggered = () => { innerOut_8dittifdh.trigger(); };
-
-    }
-if(addedOps[i].innerOutput)
-{
-}
-}
-};
-
-const patchId = "bp2sub_" + op.id;
-
-new CABLES.SubPatchOp(op, { "subId": patchId });
-
-initializeSubpatch();
-
-function initializeSubpatch()
-{
-    const p = JSON.parse(attachments.subpatch_json);
-
-    CABLES.Patch.replaceOpIds(p,
-        {
-            "parentSubPatchId": patchId,
-            "prefixHash": patchId,
-            "oldIdAsRef": true,
-            "doNotUnlinkLostLinks": true
-        });
-
-    for (let i = 0; i < p.ops.length; i++)
-    {
-        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
-    }
-
-    op.loadDependencies(p, () =>
-    {
-        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
-        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
-        op.patch.emitEvent("subpatchExpose", patchId);
-        op.setStorage({ "blueprintVer": 2 });
-        op.patch.emitEvent("subpatchExpose", patchId);
-    });
-}
-
-
-};
-
-Ops.Patch.PbdFbHA.SubPatch3.prototype = new CABLES.Op();
-CABLES.OPS["d8ef430e-cac3-4a6b-b046-872e1708ff5d"]={f:Ops.Patch.PbdFbHA.SubPatch3,objName:"Ops.Patch.PbdFbHA.SubPatch3"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Patch.PbdFbHA.UI_Reverse
-// 
-// **************************************************************
-
-Ops.Patch.PbdFbHA.UI_Reverse = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"op.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"qghiiy95s\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Named Trigger\",\"value\":\"exeNoCamera\"}],\"portsOut\":[{\"name\":\"Triggered\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"Triggered\",\"objIn\":\"tid23z5y9\",\"objOut\":\"qghiiy95s\"}]}],\"objName\":\"Ops.Trigger.TriggerReceive\"},{\"id\":\"7utel4c7y\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1.56},{\"name\":\"y\",\"value\":-0.91},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"wjdkfrc11\",\"objOut\":\"7utel4c7y\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"16otblnj7\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":2.35},{\"name\":\"y\",\"value\":-1.41},{\"name\":\"z\",\"value\":-1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"y8y68olnn\",\"objOut\":\"16otblnj7\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"y8y68olnn\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.18},{\"name\":\"g\",\"value\":0.87},{\"name\":\"b\",\"value\":0.7},{\"name\":\"a\",\"value\":0.639},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":1},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":1},{\"name\":\"Tex Offset Y\",\"value\":1},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"update\",\"portOut\":\"trigger\",\"objIn\":\"4rj53xcrb\",\"objOut\":\"y8y68olnn\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"emr97oqar\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":9},{\"name\":\"easing\",\"value\":\"Expo In Out\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"trigger\",\"objIn\":\"sagw7b55r\",\"objOut\":\"emr97oqar\"},{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"kvlx2oltj\",\"objOut\":\"emr97oqar\"}]},{\"name\":\"value\",\"links\":[{\"portIn\":\"Percentage\",\"portOut\":\"value\",\"objIn\":\"zw7w6mo0c\",\"objOut\":\"emr97oqar\"}]},{\"name\":\"finished\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"finished\",\"objIn\":\"eyg6ioae6\",\"objOut\":\"emr97oqar\"}]}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"texsus5w1\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"radius\",\"value\":0.5},{\"name\":\"segments\",\"value\":3},{\"name\":\"percent\",\"value\":1},{\"name\":\"steps\",\"value\":0},{\"name\":\"invertSteps\",\"value\":1},{\"name\":\"mapping index\",\"value\":1},{\"name\":\"mapping\",\"value\":\"round\"},{\"name\":\"Spline\",\"value\":0},{\"name\":\"Draw\",\"value\":0,\"title\":\"Render mesh\"}],\"portsOut\":[{\"name\":\"geometry\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"geometry\",\"objIn\":\"u5vhr44jp\",\"objOut\":\"texsus5w1\"}]}],\"objName\":\"Ops.Gl.Meshes.Circle_v3\"},{\"id\":\"mhkszyupz\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"direction\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"u5vhr44jp\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Translate X\",\"value\":0},{\"name\":\"Translate Y\",\"value\":0.03},{\"name\":\"Translate Z\",\"value\":0},{\"name\":\"Rotation X\",\"value\":0},{\"name\":\"Rotation Z\",\"value\":0}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"Result\",\"objIn\":\"a7obygjuu\",\"objOut\":\"u5vhr44jp\"}]}],\"objName\":\"Ops.Graphics.Geometry.TransformGeometry\"},{\"id\":\"a7obygjuu\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Render Mesh\",\"value\":1},{\"name\":\"Add Vertex Numbers\",\"value\":1}],\"objName\":\"Ops.Gl.RenderGeometry_v2\"},{\"id\":\"sagw7b55r\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"texsus5w1\",\"objOut\":\"sagw7b55r\"}]}],\"objName\":\"Ops.Trigger.GateTrigger\"},{\"id\":\"eyg6ioae6\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"bool 1\",\"portOut\":\"Result\",\"objIn\":\"c3tlwlzty\",\"objOut\":\"eyg6ioae6\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"wjfsknozl\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":8},{\"name\":\"easing\",\"value\":\"Expo Out\"},{\"name\":\"duration\",\"value\":2},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0},{\"name\":\"value true\",\"value\":180}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"a7obygjuu\",\"objOut\":\"wjfsknozl\"}]},{\"name\":\"value\",\"links\":[{\"portIn\":\"Rotation Y\",\"portOut\":\"value\",\"objIn\":\"u5vhr44jp\",\"objOut\":\"wjfsknozl\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"4ic99bue4\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"value\",\"value\":0.3}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Scale X\",\"portOut\":\"result\",\"objIn\":\"u5vhr44jp\",\"objOut\":\"4ic99bue4\"},{\"portIn\":\"Scale Y\",\"portOut\":\"result\",\"objIn\":\"u5vhr44jp\",\"objOut\":\"4ic99bue4\"},{\"portIn\":\"Scale Z\",\"portOut\":\"result\",\"objIn\":\"u5vhr44jp\",\"objOut\":\"4ic99bue4\"}]}],\"objName\":\"Ops.Number.Number\"},{\"id\":\"vnufzl0gr\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__directionHover\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"4rj53xcrb\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Duration\",\"value\":0.1},{\"name\":\"Invert\",\"value\":0}],\"portsOut\":[{\"name\":\"Trigger Out\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"Trigger Out\",\"objIn\":\"wjfsknozl\",\"objOut\":\"4rj53xcrb\"}]},{\"name\":\"Value\",\"links\":[{\"portIn\":\"bool 2\",\"portOut\":\"Value\",\"objIn\":\"c3tlwlzty\",\"objOut\":\"4rj53xcrb\"}]}],\"objName\":\"Ops.Anim.Bang\"},{\"id\":\"c3tlwlzty\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"bool 3\",\"value\":0},{\"name\":\"bool 4\",\"value\":0},{\"name\":\"bool 5\",\"value\":0},{\"name\":\"bool 6\",\"value\":0},{\"name\":\"bool 7\",\"value\":0},{\"name\":\"bool 8\",\"value\":0},{\"name\":\"bool 9\",\"value\":0},{\"name\":\"bool 10\",\"value\":0}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"sagw7b55r\",\"objOut\":\"c3tlwlzty\"}]}],\"objName\":\"Ops.Boolean.Or\"},{\"id\":\"645zi03vl\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Named Trigger\",\"value\":\"mainExe\"}],\"portsOut\":[{\"name\":\"Triggered\",\"links\":[{\"portIn\":\"Exec\",\"portOut\":\"Triggered\",\"objIn\":\"3j312q09a\",\"objOut\":\"645zi03vl\"}]}],\"objName\":\"Ops.Trigger.TriggerReceive\"},{\"id\":\"3j312q09a\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"Bang\",\"portOut\":\"Next\",\"objIn\":\"4rj53xcrb\",\"objOut\":\"3j312q09a\"}]},{\"name\":\"Was Triggered\",\"value\":1}],\"objName\":\"Ops.Trigger.TriggerOnce\"},{\"id\":\"hh1bw1t8x\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Text\",\"value\":\"mirror\"},{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.06},{\"name\":\"Letter Spacing\",\"value\":0},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":1},{\"name\":\"Align\",\"value\":\"Center\"},{\"name\":\"Vertical Align index\",\"value\":2},{\"name\":\"Vertical Align\",\"value\":\"Middle\"},{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":1},{\"name\":\"a\",\"value\":1},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.147},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.085},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":0},{\"name\":\"Border g\",\"value\":0.107},{\"name\":\"Border b\",\"value\":0.196},{\"name\":\"Shadow\",\"value\":0},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.1596796875},{\"name\":\"Height\",\"value\":0.056864533730158734},{\"name\":\"Start Y\",\"value\":0.017550471230158737},{\"name\":\"Num Chars\",\"value\":6}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"kvlx2oltj\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posX\",\"value\":-0.06},{\"name\":\"posY\",\"value\":0},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":1.12},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"hh1bw1t8x\",\"objOut\":\"kvlx2oltj\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"zw7w6mo0c\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0.8},{\"name\":\"Value 2\",\"value\":-1}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"innerRadius\",\"portOut\":\"Result\",\"objIn\":\"texsus5w1\",\"objOut\":\"zw7w6mo0c\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"ujqk5fpaf\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0},{\"name\":\"Value 2\",\"value\":180},{\"name\":\"Percentage\",\"value\":0}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"rotY\",\"portOut\":\"Result\",\"objIn\":\"kvlx2oltj\",\"objOut\":\"ujqk5fpaf\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"1pqb89bjc\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeBypass\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"Value\",\"objIn\":\"tz85ej408\",\"objOut\":\"1pqb89bjc\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"tid23z5y9\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"16otblnj7\",\"objOut\":\"tid23z5y9\"},{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"7utel4c7y\",\"objOut\":\"tid23z5y9\"}]}],\"objName\":\"Ops.Trigger.GateTrigger\"},{\"id\":\"tz85ej408\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"tid23z5y9\",\"objOut\":\"tz85ej408\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"cygi82km5\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"zbffut3f0\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"8ozh9kadw\",\"objOut\":\"zbffut3f0\"},{\"portIn\":\"Index\",\"portOut\":\"result\",\"objIn\":\"0vu10mt62\",\"objOut\":\"zbffut3f0\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"nfsa96rhl\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"value\",\"value\":\"scapeReverse\"}],\"portsOut\":[{\"name\":\"String\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String\",\"objIn\":\"cygi82km5\",\"objOut\":\"nfsa96rhl\"},{\"portIn\":\"String In\",\"portOut\":\"String\",\"objIn\":\"t14aqlug4\",\"objOut\":\"nfsa96rhl\"},{\"portIn\":\"ID\",\"portOut\":\"String\",\"objIn\":\"wjdkfrc11\",\"objOut\":\"nfsa96rhl\"}]}],\"objName\":\"Ops.String.String_v2\"},{\"id\":\"vu19d3bul\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Bool\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Bool\",\"objIn\":\"td9wlsg43\",\"objOut\":\"vu19d3bul\"}]}],\"objName\":\"Ops.Ui.VizBool\"},{\"id\":\"8ozh9kadw\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonToggle\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"90vhc52nh\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeReverse\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"9r76qflhv\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int rev\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"t14aqlug4\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"scapeReverse\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"qvj2rc5yc\",\"objOut\":\"t14aqlug4\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"qvj2rc5yc\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeReverse_mouseEnter_string\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"td9wlsg43\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeReverse\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"0vu10mt62\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_0\",\"value\":0},{\"name\":\"Numbers_1\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"90vhc52nh\",\"objOut\":\"0vu10mt62\"}]},{\"name\":\"Num Values\",\"value\":1}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"o11gp8oqj\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"l212r4h3a\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"wjdkfrc11\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":0.18},{\"name\":\"Height\",\"value\":0.3},{\"name\":\"Class\",\"value\":\"\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":0},{\"name\":\"Pivot y\",\"value\":\"center\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Render Rectangle\",\"value\":0},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":2},{\"name\":\"Cursor\",\"value\":\"pointer\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"Trigger out\",\"objIn\":\"emr97oqar\",\"objOut\":\"wjdkfrc11\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"emr97oqar\",\"objOut\":\"wjdkfrc11\"},{\"portIn\":\"Value\",\"portOut\":\"Pointer Hover\",\"objIn\":\"vnufzl0gr\",\"objOut\":\"wjdkfrc11\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bapp6utku\",\"objOut\":\"wjdkfrc11\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Hover\",\"objIn\":\"t14aqlug4\",\"objOut\":\"wjdkfrc11\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Hover\",\"objIn\":\"om0mg2x2d\",\"objOut\":\"wjdkfrc11\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"zbffut3f0\",\"objOut\":\"wjdkfrc11\"}]},{\"name\":\"Pointer X\",\"value\":0.43427912988118217},{\"name\":\"Pointer Y\",\"value\":0.028793380943673674},{\"name\":\"Top\",\"value\":527.8919612169266},{\"name\":\"Left\",\"value\":957.7120399475098},{\"name\":\"Right\",\"value\":1008.3707027435303},{\"name\":\"Bottom\",\"value\":612.3230167627335},{\"name\":\"Left Click\",\"links\":[{\"portIn\":\"trigger in\",\"portOut\":\"Left Click\",\"objIn\":\"lykqgog3v\",\"objOut\":\"wjdkfrc11\"}]}],\"objName\":\"Ops.Patch.PbdFbHA.InteractiveRectangle_v23\"},{\"id\":\"11sr8l1sw\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bapp6utku\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"11sr8l1sw\",\"objOut\":\"bapp6utku\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"fzdh5f3dx\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Bool\",\"value\":0}],\"objName\":\"Ops.Ui.VizBool\"},{\"id\":\"om0mg2x2d\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"String In\",\"value\":\"enter\"},{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"leave\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"2taefvu7i\",\"objOut\":\"om0mg2x2d\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"2taefvu7i\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeReverse_mouseEnter_string\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"pf3tzra6p\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"host_scapeReverse\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"Value\",\"objIn\":\"fzdh5f3dx\",\"objOut\":\"pf3tzra6p\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"0dafyebwa\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value\",\"value\":0},{\"name\":\"Variable\",\"value\":\"host_scapeReverse\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"6871qjb4g\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2,\"ref\":\"6871qjb4g\"},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"host_scapeReverse\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Value\",\"objIn\":\"10k0ten5d\",\"objOut\":\"6871qjb4g\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"crxc9gthe\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"host_scapeReverse\"}],\"storage\":{\"ref\":\"crxc9gthe\",\"blueprintVer\":2},\"objName\":\"Ops.Vars.VarTriggerNumber\"},{\"id\":\"c8109m2kz\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"portsIn\":[{\"name\":\"Loop min\",\"value\":0},{\"name\":\"Loop max\",\"value\":1}],\"portsOut\":[{\"name\":\"current count\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"current count\",\"objIn\":\"vu19d3bul\",\"objOut\":\"c8109m2kz\"},{\"portIn\":\"bool\",\"portOut\":\"current count\",\"objIn\":\"wjfsknozl\",\"objOut\":\"c8109m2kz\"}]}],\"storage\":{\"ref\":\"c8109m2kz\",\"blueprintVer\":2},\"objName\":\"Ops.Trigger.TriggerCounterLoop\"},{\"id\":\"10k0ten5d\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"portsOut\":[{\"name\":\"True\",\"links\":[{\"portIn\":\"trigger in\",\"portOut\":\"True\",\"objIn\":\"c8109m2kz\",\"objOut\":\"10k0ten5d\"}]},{\"name\":\"False\",\"links\":[{\"portIn\":\"reset\",\"portOut\":\"False\",\"objIn\":\"c8109m2kz\",\"objOut\":\"10k0ten5d\"}]}],\"storage\":{\"ref\":\"10k0ten5d\",\"blueprintVer\":2},\"objName\":\"Ops.Boolean.TriggerOnChangeBoolean\"},{\"id\":\"lykqgog3v\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"portsIn\":[{\"name\":\"Loop min\",\"value\":0},{\"name\":\"Loop max\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger out\",\"links\":[{\"portIn\":\"Trigger\",\"portOut\":\"trigger out\",\"objIn\":\"crxc9gthe\",\"objOut\":\"lykqgog3v\"}]},{\"name\":\"current count\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"current count\",\"objIn\":\"crxc9gthe\",\"objOut\":\"lykqgog3v\"}]}],\"storage\":{\"ref\":\"lykqgog3v\",\"blueprintVer\":2},\"objName\":\"Ops.Trigger.TriggerCounterLoop\"}]}",};
-op.initInnerPorts=function(addedOps)
-{
-  for(let i=0;i<addedOps.length;i++)
-  {
-    if(addedOps[i].innerInput)
-    {
-    }
-if(addedOps[i].innerOutput)
-{
-}
-}
-};
-
-const patchId = "bp2sub_" + op.id;
-
-new CABLES.SubPatchOp(op, { "subId": patchId });
-
-initializeSubpatch();
-
-function initializeSubpatch()
-{
-    const p = JSON.parse(attachments.subpatch_json);
-
-    CABLES.Patch.replaceOpIds(p,
-        {
-            "parentSubPatchId": patchId,
-            "prefixHash": patchId,
-            "oldIdAsRef": true,
-            "doNotUnlinkLostLinks": true
-        });
-
-    for (let i = 0; i < p.ops.length; i++)
-    {
-        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
-    }
-
-    op.loadDependencies(p, () =>
-    {
-        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
-        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
-        op.patch.emitEvent("subpatchExpose", patchId);
-        op.setStorage({ "blueprintVer": 2 });
-        op.patch.emitEvent("subpatchExpose", patchId);
-    });
-}
-
-
-};
-
-Ops.Patch.PbdFbHA.UI_Reverse.prototype = new CABLES.Op();
-CABLES.OPS["6e3eeb5b-6627-43e4-9a42-990df340ab4f"]={f:Ops.Patch.PbdFbHA.UI_Reverse,objName:"Ops.Patch.PbdFbHA.UI_Reverse"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Patch.PbdFbHA.BasicSlider_v5
-// 
-// **************************************************************
-
-Ops.Patch.PbdFbHA.BasicSlider_v5 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"b5jmw6pne\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":0.24},{\"name\":\"Height\",\"value\":1},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":0},{\"name\":\"Pivot y\",\"value\":\"center\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Render Rectangle\",\"value\":0},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"7picyzk8b\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"geometry\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"geometry\",\"objIn\":\"mngezvib8\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Hover\",\"objIn\":\"s1gixysdm\",\"objOut\":\"b5jmw6pne\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"at2p512yk\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"okfe0jjro\",\"objOut\":\"b5jmw6pne\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"dr5mvrobr\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"Pointer X\",\"value\":0.09725448596467902},{\"name\":\"Pointer Y\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer Y\",\"objIn\":\"dr5mvrobr\",\"objOut\":\"b5jmw6pne\"},{\"portIn\":\"Value\",\"portOut\":\"Pointer Y\",\"objIn\":\"3rgu57nny\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"Top\",\"value\":143.9280012845993},{\"name\":\"Left\",\"value\":1578.6239383220673},{\"name\":\"Right\",\"value\":1681.4469587802887},{\"name\":\"Bottom\",\"value\":795.1404407024384}],\"objName\":\"Ops.Gl.InteractiveRectangle_v2\"},{\"id\":\"uryzrh2kd\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"7gzmyju3f\",\"objOut\":\"uryzrh2kd\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"7picyzk8b\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"f0zxrdgdl\",\"objOut\":\"7picyzk8b\"},{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"1hn64zsny\",\"objOut\":\"7picyzk8b\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"r1trdmnoo\",\"objOut\":\"7picyzk8b\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"cgqxkp1dw\",\"objOut\":\"7picyzk8b\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"hhgw84tqq\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"izi14m4jj\",\"objOut\":\"hhgw84tqq\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"b5jmw6pne\",\"objOut\":\"hhgw84tqq\"},{\"portIn\":\"String In\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"uej7igfhs\",\"objOut\":\"hhgw84tqq\"}]},{\"name\":\"innerOut_lj06d561p\",\"value\":0,\"title\":\"Show Boundings\"}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"r1trdmnoo\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"f0zxrdgdl\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":6},{\"name\":\"easing\",\"value\":\"Cubic In Out\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.7},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"oi1e3c961\",\"objOut\":\"f0zxrdgdl\"}]},{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"uryzrh2kd\",\"objOut\":\"f0zxrdgdl\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"r1trdmnoo\",\"objOut\":\"f0zxrdgdl\"},{\"portIn\":\"Percentage\",\"portOut\":\"value\",\"objIn\":\"s3bh58foh\",\"objOut\":\"f0zxrdgdl\"},{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"tsxnsqish\",\"objOut\":\"f0zxrdgdl\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"izi14m4jj\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1.76},{\"name\":\"y\",\"value\":0.013},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"jtfgofit6\",\"objOut\":\"izi14m4jj\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"7gzmyju3f\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":0.07},{\"name\":\"height\",\"value\":0.01},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":1},{\"name\":\"num rows\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"okfe0jjro\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"5vxvxqmq8\",\"objOut\":\"okfe0jjro\"},{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"cqxu3tj4o\",\"objOut\":\"okfe0jjro\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"q95osg3jr\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_dryMix\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"dmhn9643j\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int dry mix\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"uej7igfhs\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"dryMix\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"4ken8jo2h\",\"objOut\":\"uej7igfhs\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"2kcwcw99k\",\"objOut\":\"uej7igfhs\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"4ken8jo2h\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"905qrz86p\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"kzejscdk9\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_injectedState\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"xp3womx4e\",\"objOut\":\"kzejscdk9\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"2kcwcw99k\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Numbers_1\",\"portOut\":\"Result\",\"objIn\":\"yyj0dn3hl\",\"objOut\":\"2kcwcw99k\"},{\"portIn\":\"Number\",\"portOut\":\"Result\",\"objIn\":\"vrog0zpzu\",\"objOut\":\"2kcwcw99k\"}]},{\"name\":\"Found\",\"value\":0}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"5vxvxqmq8\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonSlider\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"yyj0dn3hl\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"q95osg3jr\",\"objOut\":\"yyj0dn3hl\"},{\"portIn\":\"number1\",\"portOut\":\"Number\",\"objIn\":\"toobytwr4\",\"objOut\":\"yyj0dn3hl\"},{\"portIn\":\"Number\",\"portOut\":\"Number\",\"objIn\":\"xc4wr3qpm\",\"objOut\":\"yyj0dn3hl\"},{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"7picyzk8b\",\"objOut\":\"yyj0dn3hl\"}]},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"xp3womx4e\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":1}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"2kcwcw99k\",\"objOut\":\"xp3womx4e\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"cqxu3tj4o\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Index\",\"portOut\":\"Result\",\"objIn\":\"yyj0dn3hl\",\"objOut\":\"cqxu3tj4o\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"xp3womx4e\",\"objOut\":\"cqxu3tj4o\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"jf5tu10qy\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"905qrz86p\",\"objOut\":\"jf5tu10qy\"},{\"portIn\":\"Numbers_0\",\"portOut\":\"result\",\"objIn\":\"yyj0dn3hl\",\"objOut\":\"jf5tu10qy\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"75ly7ofzk\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Decimal Places\",\"value\":0}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"string1\",\"portOut\":\"Result\",\"objIn\":\"2jmmqaj8y\",\"objOut\":\"75ly7ofzk\"}]}],\"objName\":\"Ops.String.NumberToString_v2\"},{\"id\":\"oi1e3c961\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0.01},{\"name\":\"y\",\"value\":0.61},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"tsxnsqish\",\"objOut\":\"oi1e3c961\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"834yak1b2\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"digits\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"toobytwr4\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":100}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Number\",\"portOut\":\"result\",\"objIn\":\"75ly7ofzk\",\"objOut\":\"toobytwr4\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"2jmmqaj8y\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"string2\",\"value\":\"%\"},{\"name\":\"New Line\",\"value\":0},{\"name\":\"Active\",\"value\":1}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Text\",\"portOut\":\"result\",\"objIn\":\"tsxnsqish\",\"objOut\":\"2jmmqaj8y\"}]}],\"objName\":\"Ops.String.Concat_v2\"},{\"id\":\"xc4wr3qpm\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.VizNumberBar\"},{\"id\":\"utf80cj50\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"portsOut\":[{\"name\":\"Value\",\"value\":\"disengage\"}],\"objName\":\"Ops.Vars.VarGetString\"},{\"id\":\"s1gixysdm\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"result\",\"objIn\":\"f0zxrdgdl\",\"objOut\":\"s1gixysdm\"},{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"uej7igfhs\",\"objOut\":\"s1gixysdm\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"dr5mvrobr\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Value Out\",\"objIn\":\"jf5tu10qy\",\"objOut\":\"dr5mvrobr\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"1hn64zsny\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posX\",\"value\":0},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":1},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"uryzrh2kd\",\"objOut\":\"1hn64zsny\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"jtfgofit6\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.651},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.912},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":0.05},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":-0.04},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"0d2yvn3ee\",\"objOut\":\"jtfgofit6\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"cgqxkp1dw\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"posY\",\"portOut\":\"result\",\"objIn\":\"1hn64zsny\",\"objOut\":\"cgqxkp1dw\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"mngezvib8\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Translate X\",\"value\":0.44},{\"name\":\"Translate Y\",\"value\":0.06},{\"name\":\"Translate Z\",\"value\":-0.5},{\"name\":\"Scale X\",\"value\":0.35},{\"name\":\"Scale Y\",\"value\":1.85},{\"name\":\"Scale Z\",\"value\":1},{\"name\":\"Rotation X\",\"value\":0},{\"name\":\"Rotation Y\",\"value\":0},{\"name\":\"Rotation Z\",\"value\":0}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"Result\",\"objIn\":\"0d2yvn3ee\",\"objOut\":\"mngezvib8\"}]}],\"objName\":\"Ops.Graphics.Geometry.TransformGeometry\"},{\"id\":\"0d2yvn3ee\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Render Mesh\",\"value\":1},{\"name\":\"Add Vertex Numbers\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"qntdf46e3\",\"objOut\":\"0d2yvn3ee\"}]}],\"objName\":\"Ops.Gl.RenderGeometry_v2\"},{\"id\":\"oedh2oj3o\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__lensFlareTexts\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"texture\",\"portOut\":\"Value\",\"objIn\":\"jtfgofit6\",\"objOut\":\"oedh2oj3o\"}]}],\"objName\":\"Ops.Vars.VarGetTexture_v2\"},{\"id\":\"qntdf46e3\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1},{\"name\":\"y\",\"value\":1.52},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"b5jmw6pne\",\"objOut\":\"qntdf46e3\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"},{\"id\":\"s3bh58foh\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":-2},{\"name\":\"Value 2\",\"value\":2}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Result\",\"objIn\":\"7knaraxdk\",\"objOut\":\"s3bh58foh\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"ac4vtthkl\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"at2p512yk\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"ac4vtthkl\",\"objOut\":\"at2p512yk\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"3rgu57nny\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValueOnHover\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"tsxnsqish\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.06},{\"name\":\"Letter Spacing\",\"value\":0},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":1},{\"name\":\"Align\",\"value\":\"Center\"},{\"name\":\"Vertical Align index\",\"value\":2},{\"name\":\"Vertical Align\",\"value\":\"Middle\"},{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":1},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.3},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.5},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":1},{\"name\":\"Border g\",\"value\":1},{\"name\":\"Border b\",\"value\":1},{\"name\":\"Shadow\",\"value\":0},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.07661015624999999},{\"name\":\"Height\",\"value\":0.05096765873015873},{\"name\":\"Start Y\",\"value\":0.012567658730158734},{\"name\":\"Num Chars\",\"value\":2}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"7knaraxdk\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"result\",\"objIn\":\"jtfgofit6\",\"objOut\":\"7knaraxdk\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"vrog0zpzu\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.VizNumberBar\"}]}",};
-const port_blls2amps=op.inTrigger("blls2amps");
-port_blls2amps.setUiAttribs({title:"Trigger in",});
-
-const port_btagbs7z2=op.inString("btagbs7z2","");
-port_btagbs7z2.setUiAttribs({title:"Class",});
-
-const port_lj06d561p=op.inFloat("lj06d561p",0);
-port_lj06d561p.setUiAttribs({title:"Show Boundings",display:"bool",});
-
-const port_nti406vwi=op.outNumber("nti406vwi");
-port_nti406vwi.setUiAttribs({title:"Result",});
-
-const port_gjvx0zyv5=op.outNumber("gjvx0zyv5");
-port_gjvx0zyv5.setUiAttribs({title:"value",});
-
-op.initInnerPorts=function(addedOps)
-{
-  for(let i=0;i<addedOps.length;i++)
-  {
-    if(addedOps[i].innerInput)
-    {
-const innerOut_blls2amps = addedOps[i].outTrigger("innerOut_blls2amps");
-innerOut_blls2amps.setUiAttribs({title:"Trigger in"});
-port_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };
-
-const innerOut_btagbs7z2 = addedOps[i].outString("innerOut_btagbs7z2");
-innerOut_btagbs7z2.set(port_btagbs7z2.get() );
-innerOut_btagbs7z2.setUiAttribs({title:"Class"});
-port_btagbs7z2.on("change", (a,v) => { innerOut_btagbs7z2.set(a); });
-
-const innerOut_lj06d561p = addedOps[i].outNumber("innerOut_lj06d561p");
-innerOut_lj06d561p.set(port_lj06d561p.get() );
-innerOut_lj06d561p.setUiAttribs({title:"Show Boundings"});
-port_lj06d561p.on("change", (a,v) => { innerOut_lj06d561p.set(a); });
-
-    }
-if(addedOps[i].innerOutput)
-{
-const innerIn_nti406vwi = addedOps[i].inFloat("innerIn_nti406vwi");
-innerIn_nti406vwi.setUiAttribs({title:"Result"});
-innerIn_nti406vwi.on("change", (a,v) => { port_nti406vwi.set(a); });
-
-const innerIn_gjvx0zyv5 = addedOps[i].inFloat("innerIn_gjvx0zyv5");
-innerIn_gjvx0zyv5.setUiAttribs({title:"value"});
-innerIn_gjvx0zyv5.on("change", (a,v) => { port_gjvx0zyv5.set(a); });
-
-}
-}
-};
-
-const patchId = "bp2sub_" + op.id;
-
-new CABLES.SubPatchOp(op, { "subId": patchId });
-
-initializeSubpatch();
-
-function initializeSubpatch()
-{
-    const p = JSON.parse(attachments.subpatch_json);
-
-    CABLES.Patch.replaceOpIds(p,
-        {
-            "parentSubPatchId": patchId,
-            "prefixHash": patchId,
-            "oldIdAsRef": true,
-            "doNotUnlinkLostLinks": true
-        });
-
-    for (let i = 0; i < p.ops.length; i++)
-    {
-        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
-    }
-
-    op.loadDependencies(p, () =>
-    {
-        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
-        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
-        op.patch.emitEvent("subpatchExpose", patchId);
-        op.setStorage({ "blueprintVer": 2 });
-        op.patch.emitEvent("subpatchExpose", patchId);
-    });
-}
-
-
-};
-
-Ops.Patch.PbdFbHA.BasicSlider_v5.prototype = new CABLES.Op();
-CABLES.OPS["035a569d-f792-4c2d-8b85-43d9bc17b169"]={f:Ops.Patch.PbdFbHA.BasicSlider_v5,objName:"Ops.Patch.PbdFbHA.BasicSlider_v5"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Gl.LayerSequence
 // 
 // **************************************************************
@@ -2018,503 +1696,6 @@ CABLES.OPS["cf194306-175b-416a-b90e-31ff2192a190"]={f:Ops.Ui.VizBool,objName:"Op
 
 // **************************************************************
 // 
-// Ops.Patch.PbdFbHA.InteractiveRectangle_v25
-// 
-// **************************************************************
-
-Ops.Patch.PbdFbHA.InteractiveRectangle_v25 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    render = op.inTrigger("Trigger in"),
-    trigger = op.outTrigger("Trigger out"),
-    width = op.inValue("Width", 1),
-    height = op.inValue("Height", 1),
-    inId = op.inString("ID"),
-    classPort = op.inString("Class"),
-    pivotX = op.inValueSelect("Pivot x", ["center", "left", "right"]),
-    pivotY = op.inValueSelect("Pivot y", ["center", "top", "bottom"]),
-    axis = op.inValueSelect("Axis", ["xy", "xz"]),
-    isInteractive = op.inValueBool("Is Interactive", true),
-    renderRect = op.inValueBool("Render Rectangle", true),
-    divVisible = op.inValueBool("Show Boundings", true),
-    cursorPort = op.inValueSelect("Cursor", ["auto", "crosshair", "pointer", "Hand", "move", "n-resize", "ne-resize", "e-resize", "se-resize", "s-resize", "sw-resize", "w-resize", "nw-resize", "text", "wait", "help", "none"], "pointer"),
-    active = op.inValueBool("Render", true);
-
-const geomOut = op.outObject("geometry");
-geomOut.ignoreValueSerialize = true;
-
-const
-    mouseOver = op.outBoolNum("Pointer Hover", false),
-    mouseDown = op.outBoolNum("Pointer Down", false),
-    outX = op.outNumber("Pointer X"),
-    outY = op.outNumber("Pointer Y"),
-    outTop = op.outNumber("Top"),
-    outLeft = op.outNumber("Left"),
-    outRight = op.outNumber("Right"),
-    outBottom = op.outNumber("Bottom"),
-    mouseClick = op.outTrigger("Left Click");
-
-const elementPort = op.outObject("Dom Element");
-
-active.setUiAttribs({ "title": "Active" });
-
-const cgl = op.patch.cgl;
-axis.set("xy");
-pivotX.set("center");
-pivotY.set("center");
-
-const geom = new CGL.Geometry(op.name);
-let mesh = null;
-let div = null;
-const m = mat4.create();
-const trans = mat4.create();
-const pos = vec3.create();
-const divAlign = vec3.create();
-const divAlignSize = vec3.create();
-
-axis.onChange = rebuild;
-pivotX.onChange = rebuild;
-pivotY.onChange = rebuild;
-width.onChange = rebuild;
-height.onChange = rebuild;
-cursorPort.onChange = updateCursor;
-rebuild();
-
-const modelMatrix = mat4.create();
-const identViewMatrix = mat4.create();
-const zeroVec3 = vec3.create();
-
-render.onTriggered = function ()
-{
-    if (!div)
-    {
-        setUpDiv();
-        addListeners();
-        updateDivVisibility();
-        updateIsInteractive();
-    }
-    updateDivSize();
-
-    if (active.get() && renderRect.get() && mesh) mesh.render(cgl.getShader());
-
-    trigger.trigger();
-};
-
-function rebuild()
-{
-    let w = width.get();
-    let h = height.get();
-    let x = 0;
-    let y = 0;
-
-    if (typeof w == "string")w = parseFloat(w);
-    if (typeof h == "string")h = parseFloat(h);
-
-    if (pivotX.get() == "center")
-    {
-        x = 0;
-        divAlign[0] = -w / 2;
-    }
-    if (pivotX.get() == "right")
-    {
-        x = -w / 2;
-    }
-    if (pivotX.get() == "left")
-    {
-        x = w / 2;
-    }
-
-    if (pivotY.get() == "center")
-    {
-        y = 0;
-        divAlign[1] = -h / 2;
-    }
-    if (pivotY.get() == "top") y = -h / 2;
-    if (pivotY.get() == "bottom") y = +h / 2;
-
-    const verts = [];
-    const tc = [];
-    const norms = [];
-    const indices = [];
-
-    const numRows = 1;
-    const numColumns = 1;
-
-    const stepColumn = w / numColumns;
-    const stepRow = h / numRows;
-
-    let c, r;
-
-    for (r = 0; r <= numRows; r++)
-    {
-        for (c = 0; c <= numColumns; c++)
-        {
-            verts.push(c * stepColumn - width.get() / 2 + x);
-            if (axis.get() == "xz") verts.push(0.0);
-            verts.push(r * stepRow - height.get() / 2 + y);
-            if (axis.get() == "xy") verts.push(0.0);
-
-            tc.push(c / numColumns);
-            tc.push(1.0 - r / numRows);
-
-            if (axis.get() == "xz")
-            {
-                norms.push(0);
-                norms.push(1);
-                norms.push(0);
-            }
-
-            if (axis.get() == "xy")
-            {
-                norms.push(0);
-                norms.push(0);
-                norms.push(-1);
-            }
-        }
-    }
-
-    for (c = 0; c < numColumns; c++)
-    {
-        for (r = 0; r < numRows; r++)
-        {
-            const ind = c + (numColumns + 1) * r;
-            const v1 = ind;
-            const v2 = ind + 1;
-            const v3 = ind + numColumns + 1;
-            const v4 = ind + 1 + numColumns + 1;
-
-            indices.push(v1);
-            indices.push(v3);
-            indices.push(v2);
-
-            indices.push(v2);
-            indices.push(v3);
-            indices.push(v4);
-        }
-    }
-
-    geom.clear();
-    geom.vertices = verts;
-    geom.texCoords = tc;
-    geom.verticesIndices = indices;
-    geom.vertexNormals = norms;
-
-    if (!mesh) mesh = new CGL.Mesh(cgl, geom);
-    else mesh.setGeom(geom);
-
-    geomOut.set(null);
-    geomOut.set(geom);
-}
-
-let divX = 0;
-let divY = 0;
-let divWidth = 0;
-let divHeight = 0;
-
-const mMatrix = mat4.create();
-divVisible.onChange = updateDivVisibility;
-inId.onChange = updateId;
-classPort.onChange = updateClassNames;
-
-function updateDivVisibility()
-{
-    if (div)
-    {
-        if (divVisible.get()) div.style.border = "1px solid red";
-        else div.style.border = "none";
-    }
-}
-
-function updateCursor()
-{
-    if (div)
-    {
-        div.style.cursor = cursorPort.get();
-    }
-}
-
-function updateId()
-{
-    if (div)
-    {
-        div.setAttribute("id", inId.get());
-    }
-}
-
-function updateDivSize()
-{
-    // var vp=cgl.getViewPort();
-
-    mat4.multiply(mMatrix, cgl.vMatrix, cgl.mMatrix);
-    vec3.transformMat4(pos, divAlign, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const top = cgl.canvas.styleMarginTop || 0;
-    const left = cgl.canvas.styleMarginLeft || 0;
-
-    const x1 = (trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2 + left;
-    const y1 = (trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top;
-
-    divAlignSize[0] = divAlign[0] + width.get();
-    divAlignSize[1] = divAlign[1];
-
-    vec3.transformMat4(pos, divAlignSize, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const x2 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
-    const y2 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
-
-    divAlignSize[0] = divAlign[0];
-    divAlignSize[1] = divAlign[1] + height.get();
-
-    vec3.transformMat4(pos, divAlignSize, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const x3 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
-    const y3 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
-
-    divAlignSize[0] = divAlign[0] + width.get();
-    divAlignSize[1] = divAlign[1] + height.get();
-
-    vec3.transformMat4(pos, divAlignSize, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const x4 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
-    const y4 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
-
-    divX = Math.min(x1, x2, x3, x4);
-    divY = Math.min(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
-
-    const xb = Math.max(x1, x2, x3, x4);
-    const yb = Math.max(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
-
-    outTop.set(divY);
-    outLeft.set(divX);
-    outRight.set(xb);
-    outBottom.set(yb);
-
-    divWidth = Math.abs(xb - divX);
-    divHeight = Math.abs(yb - divY);
-
-    divX /= op.patch.cgl.pixelDensity;
-    divY /= op.patch.cgl.pixelDensity;
-    divWidth /= op.patch.cgl.pixelDensity;
-    divHeight /= op.patch.cgl.pixelDensity;
-
-    // div.style.left=divX+'px';
-    // div.style.top=divY+'px';
-    // div.style.width=divWidth+'px';
-    // div.style.height=divHeight+'px';
-
-    const divXpx = divX + "px";
-    const divYpx = divY + "px";
-    const divWidthPx = divWidth + "px";
-    const divHeightPx = divHeight + "px";
-    if (divXpx != div.style.left) div.style.left = divXpx;
-    if (divYpx != div.style.top) div.style.top = divYpx;
-    if (div.style.width != divWidthPx) div.style.width = divWidthPx;
-    if (div.style.height != divHeightPx) div.style.height = divHeightPx;
-}
-
-function updateClassNames()
-{
-    if (div)
-    {
-        div.className = classPort.get();
-    }
-}
-
-op.onDelete = function ()
-{
-    if (div)div.remove();
-};
-
-function setUpDiv()
-{
-    if (!div)
-    {
-        div = document.createElement("div");
-        div.dataset.op = op.id;
-        div.oncontextmenu = function (e)
-        {
-            e.preventDefault();
-        };
-
-        div.style.padding = "0px";
-        div.style.position = "absolute";
-        div.style["box-sizing"] = "border-box";
-        div.style.border = "1px solid red";
-        // div.style['border-left']="1px solid blue";
-        // div.style['border-top']="1px solid green";
-        div.style["z-index"] = "500";
-
-        div.style["-webkit-user-select"] = "none";
-        div.style["user-select"] = "none";
-        div.style["-webkit-tap-highlight-color"] = "rgba(0,0,0,0)";
-        div.style["-webkit-touch-callout"] = "none";
-
-        const canvas = op.patch.cgl.canvas.parentElement;
-        canvas.appendChild(div);
-        updateCursor();
-        updateIsInteractive();
-        updateId();
-        updateClassNames();
-    }
-    updateDivSize();
-    elementPort.set(div);
-}
-
-let listenerElement = null;
-
-function onMouseMove(e)
-{
-    const offsetX = -width.get() / 2;
-    const offsetY = -height.get() / 2;
-
-    outX.set(Math.max(0.0, Math.min(1.0, e.offsetX / divWidth)));
-    outY.set(Math.max(0.0, Math.min(1.0, 1.0 - e.offsetY / divHeight)));
-}
-
-function onMouseLeave(e)
-{
-    mouseDown.set(false);
-    mouseOver.set(false);
-}
-
-function onMouseEnter(e)
-{
-    mouseOver.set(true);
-}
-
-function onMouseDown(e)
-{
-    mouseDown.set(true);
-}
-
-function onMouseUp(e)
-{
-    mouseDown.set(false);
-}
-
-function onmouseclick(e)
-{
-    mouseClick.trigger();
-}
-
-function onTouchMove(e)
-{
-    const targetEle = document.elementFromPoint(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
-
-    if (targetEle == div)
-    {
-        mouseOver.set(true);
-        if (e.touches && e.touches.length > 0)
-        {
-            const rect = div.getBoundingClientRect(); // e.target
-            const x = e.targetTouches[0].pageX - rect.left;
-            const y = e.targetTouches[0].pageY - rect.top;
-
-            const touch = e.touches[0];
-
-            outX.set(Math.max(0.0, Math.min(1.0, x / divWidth)));
-            outY.set(Math.max(0.0, Math.min(1.0, 1.0 - y / divHeight)));
-
-            onMouseMove(touch);
-        }
-    }
-    else
-    {
-        mouseOver.set(false);
-    }
-}
-
-active.onChange = updateActiveRender;
-function updateActiveRender()
-{
-    if (active.get())
-    {
-        addListeners();
-        if (div) div.style.display = "block";
-    }
-    else
-    {
-        removeListeners();
-        if (div) div.style.display = "none";
-    }
-}
-
-isInteractive.onChange = updateIsInteractive;
-function updateIsInteractive()
-{
-    if (isInteractive.get())
-    {
-        addListeners();
-        if (div)div.style["pointer-events"] = "initial";
-    }
-    else
-    {
-        removeListeners();
-        mouseDown.set(false);
-        mouseOver.set(false);
-        if (div)div.style["pointer-events"] = "none";
-    }
-}
-
-function removeListeners()
-{
-    if (listenerElement)
-    {
-        document.removeEventListener("touchmove", onTouchMove);
-        listenerElement.removeEventListener("touchend", onMouseUp);
-        listenerElement.removeEventListener("touchstart", onMouseDown);
-
-        listenerElement.removeEventListener("click", onmouseclick);
-        listenerElement.removeEventListener("mousemove", onMouseMove);
-        listenerElement.removeEventListener("mouseleave", onMouseLeave);
-        listenerElement.removeEventListener("mousedown", onMouseDown);
-        listenerElement.removeEventListener("mouseup", onMouseUp);
-        listenerElement.removeEventListener("mouseenter", onMouseEnter);
-        // listenerElement.removeEventListener('contextmenu', onClickRight);
-        listenerElement = null;
-    }
-}
-
-function addListeners()
-{
-    if (listenerElement)removeListeners();
-
-    listenerElement = div;
-
-    if (listenerElement)
-    {
-        document.addEventListener("touchmove", onTouchMove);
-        listenerElement.addEventListener("touchend", onMouseUp);
-        listenerElement.addEventListener("touchstart", onMouseDown);
-
-        listenerElement.addEventListener("click", onmouseclick);
-        listenerElement.addEventListener("mousemove", onMouseMove);
-        listenerElement.addEventListener("mouseleave", onMouseLeave);
-        listenerElement.addEventListener("mousedown", onMouseDown);
-        listenerElement.addEventListener("mouseup", onMouseUp);
-        listenerElement.addEventListener("mouseenter", onMouseEnter);
-        // listenerElement.addEventListener('contextmenu', onClickRight);
-    }
-}
-
-
-};
-
-Ops.Patch.PbdFbHA.InteractiveRectangle_v25.prototype = new CABLES.Op();
-CABLES.OPS["b63571d5-544f-40eb-8048-ec0868e5ad33"]={f:Ops.Patch.PbdFbHA.InteractiveRectangle_v25,objName:"Ops.Patch.PbdFbHA.InteractiveRectangle_v25"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Vars.VarGetNumber_v2
 // 
 // **************************************************************
@@ -2534,80 +1715,6 @@ new CABLES.VarGetOpWrapper(op, "number", op.varName, val);
 
 Ops.Vars.VarGetNumber_v2.prototype = new CABLES.Op();
 CABLES.OPS["421f5b52-c0fa-47c4-8b7a-012b9e1c864a"]={f:Ops.Vars.VarGetNumber_v2,objName:"Ops.Vars.VarGetNumber_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Patch.PbdFbHA.DisengageFlag2
-// 
-// **************************************************************
-
-Ops.Patch.PbdFbHA.DisengageFlag2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_jqg7l6f5m=op.inFloat(\"jqg7l6f5m\",0);\nport_jqg7l6f5m.setUiAttribs({title:\"Boolean\",display:\"bool\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_jqg7l6f5m = addedOps[i].outNumber(\"innerOut_jqg7l6f5m\");\ninnerOut_jqg7l6f5m.set(port_jqg7l6f5m.get() );\ninnerOut_jqg7l6f5m.setUiAttribs({title:\"Boolean\"});\nport_jqg7l6f5m.on(\"change\", (a,v) => { innerOut_jqg7l6f5m.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"tjwrh5u95\",\"uiAttribs\":{\"subPatch\":\"qs9sxp2nl\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"dlvka8p7u\",\"uiAttribs\":{\"subPatch\":\"qs9sxp2nl\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"tjwrh5u95\",\"objOut\":\"dlvka8p7u\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"eck8hvwot\",\"uiAttribs\":{\"subPatch\":\"qs9sxp2nl\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_jqg7l6f5m\",\"title\":\"Boolean\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"innerOut_jqg7l6f5m\",\"objIn\":\"dlvka8p7u\",\"objOut\":\"eck8hvwot\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"7mxc7zyyb\",\"uiAttribs\":{\"subPatch\":\"qs9sxp2nl\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchOutput\"}]}",};
-const port_jqg7l6f5m=op.inFloat("jqg7l6f5m",0);
-port_jqg7l6f5m.setUiAttribs({title:"Boolean",display:"bool",});
-
-op.initInnerPorts=function(addedOps)
-{
-  for(let i=0;i<addedOps.length;i++)
-  {
-    if(addedOps[i].innerInput)
-    {
-const innerOut_jqg7l6f5m = addedOps[i].outNumber("innerOut_jqg7l6f5m");
-innerOut_jqg7l6f5m.set(port_jqg7l6f5m.get() );
-innerOut_jqg7l6f5m.setUiAttribs({title:"Boolean"});
-port_jqg7l6f5m.on("change", (a,v) => { innerOut_jqg7l6f5m.set(a); });
-
-    }
-if(addedOps[i].innerOutput)
-{
-}
-}
-};
-
-const patchId = "bp2sub_" + op.id;
-
-new CABLES.SubPatchOp(op, { "subId": patchId });
-
-initializeSubpatch();
-
-function initializeSubpatch()
-{
-    const p = JSON.parse(attachments.subpatch_json);
-
-    CABLES.Patch.replaceOpIds(p,
-        {
-            "parentSubPatchId": patchId,
-            "prefixHash": patchId,
-            "oldIdAsRef": true,
-            "doNotUnlinkLostLinks": true
-        });
-
-    for (let i = 0; i < p.ops.length; i++)
-    {
-        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
-    }
-
-    op.loadDependencies(p, () =>
-    {
-        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
-        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
-        op.patch.emitEvent("subpatchExpose", patchId);
-        op.setStorage({ "blueprintVer": 2 });
-        op.patch.emitEvent("subpatchExpose", patchId);
-    });
-}
-
-
-};
-
-Ops.Patch.PbdFbHA.DisengageFlag2.prototype = new CABLES.Op();
-CABLES.OPS["beed8071-f26a-4a66-9fd1-f7429503fa49"]={f:Ops.Patch.PbdFbHA.DisengageFlag2,objName:"Ops.Patch.PbdFbHA.DisengageFlag2"};
 
 
 
@@ -2783,109 +1890,6 @@ function exec()
 
 Ops.Math.Sum.prototype = new CABLES.Op();
 CABLES.OPS["c8fb181e-0b03-4b41-9e55-06b6267bc634"]={f:Ops.Math.Sum,objName:"Ops.Math.Sum"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Patch.PbdFbHA.BasicSlider_v1
-// 
-// **************************************************************
-
-Ops.Patch.PbdFbHA.BasicSlider_v1 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"mibecaqps\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"zzuotyuj8\",\"objOut\":\"mibecaqps\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"0lkifp8gr\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posY\",\"value\":0},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":-180},{\"name\":\"rotY\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"mibecaqps\",\"objOut\":\"0lkifp8gr\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"rviscpw5r\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"0lkifp8gr\",\"objOut\":\"rviscpw5r\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"ujv4mg17e\",\"objOut\":\"rviscpw5r\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"0lkifp8gr\",\"objOut\":\"rviscpw5r\"},{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"nor1x0y61\",\"objOut\":\"rviscpw5r\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"iea5ao2y2\",\"objOut\":\"rviscpw5r\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"zzuotyuj8\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"width\",\"value\":0.017},{\"name\":\"height\",\"value\":0.05},{\"name\":\"Draw\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Triangle_v2\"},{\"id\":\"gmc3o0yzj\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"zyly9dj8g\",\"objOut\":\"gmc3o0yzj\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"String In\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"g0k1dqgdc\",\"objOut\":\"gmc3o0yzj\"},{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"mzzhxzxfq\",\"objOut\":\"gmc3o0yzj\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"mzzhxzxfq\",\"objOut\":\"gmc3o0yzj\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"nor1x0y61\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"9bvbbyk9y\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"rviscpw5r\",\"objOut\":\"9bvbbyk9y\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"ujv4mg17e\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.49},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"mibecaqps\",\"objOut\":\"ujv4mg17e\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"nor1x0y61\",\"objOut\":\"ujv4mg17e\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"iea5ao2y2\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rotZ\",\"portOut\":\"result\",\"objIn\":\"0lkifp8gr\",\"objOut\":\"iea5ao2y2\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"zyly9dj8g\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0},{\"name\":\"y\",\"value\":-1.45},{\"name\":\"z\",\"value\":0.02}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bnqxchxdy\",\"objOut\":\"zyly9dj8g\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"i35qt5h52\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"leht2psro\",\"objOut\":\"i35qt5h52\"},{\"portIn\":\"Index\",\"portOut\":\"result\",\"objIn\":\"8vb7jo147\",\"objOut\":\"i35qt5h52\"},{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"mjgge74tk\",\"objOut\":\"i35qt5h52\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"7zp4rrptl\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeLevel\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"w1t4yqcfv\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int ir level\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"g0k1dqgdc\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"scapeLevel\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"ejj3oddhv\",\"objOut\":\"g0k1dqgdc\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"zwg2yqvrf\",\"objOut\":\"g0k1dqgdc\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"ejj3oddhv\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"8kcvz9igq\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"qmk2dl6c4\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_injectedState\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"gknkj3y4x\",\"objOut\":\"qmk2dl6c4\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"zwg2yqvrf\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Numbers_0\",\"portOut\":\"Result\",\"objIn\":\"8vb7jo147\",\"objOut\":\"zwg2yqvrf\"}]},{\"name\":\"Found\",\"value\":1}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"8vb7jo147\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"7zp4rrptl\",\"objOut\":\"8vb7jo147\"},{\"portIn\":\"number1\",\"portOut\":\"Number\",\"objIn\":\"9bvbbyk9y\",\"objOut\":\"8vb7jo147\"}]},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"gknkj3y4x\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":1}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"zwg2yqvrf\",\"objOut\":\"gknkj3y4x\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"leht2psro\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"gknkj3y4x\",\"objOut\":\"leht2psro\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"mjgge74tk\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonSlider\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"ma5xd9zja\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Value Out\",\"objIn\":\"8kcvz9igq\",\"objOut\":\"ma5xd9zja\"},{\"portIn\":\"Numbers_1\",\"portOut\":\"Value Out\",\"objIn\":\"8vb7jo147\",\"objOut\":\"ma5xd9zja\"},{\"portIn\":\"Number\",\"portOut\":\"Value Out\",\"objIn\":\"o1wvr3kg9\",\"objOut\":\"ma5xd9zja\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"o1wvr3kg9\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.VizNumberBar\"},{\"id\":\"3hftipxyj\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"pk2351zm7\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"3hftipxyj\",\"objOut\":\"pk2351zm7\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"mzzhxzxfq\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":1},{\"name\":\"Height\",\"value\":0.34},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":9},{\"name\":\"Cursor\",\"value\":\"s-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"rviscpw5r\",\"objOut\":\"mzzhxzxfq\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"ujv4mg17e\",\"objOut\":\"mzzhxzxfq\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Hover\",\"objIn\":\"g0k1dqgdc\",\"objOut\":\"mzzhxzxfq\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"pk2351zm7\",\"objOut\":\"mzzhxzxfq\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"i35qt5h52\",\"objOut\":\"mzzhxzxfq\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"ma5xd9zja\",\"objOut\":\"mzzhxzxfq\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"ma5xd9zja\",\"objOut\":\"mzzhxzxfq\"},{\"portIn\":\"Value\",\"portOut\":\"Pointer X\",\"objIn\":\"tc6onu8jl\",\"objOut\":\"mzzhxzxfq\"}]},{\"name\":\"Pointer Y\",\"value\":0.875708644499907},{\"name\":\"Top\",\"value\":652.3148226737976},{\"name\":\"Left\",\"value\":396.1774400472641},{\"name\":\"Right\",\"value\":1405.822559952736},{\"name\":\"Bottom\",\"value\":716.6797173023224}],\"objName\":\"Ops.Patch.PbdFbHA.InteractiveRectangle_v24\"},{\"id\":\"tc6onu8jl\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValueOnHover\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bnqxchxdy\",\"uiAttribs\":{\"subPatch\":\"r6bn9droo\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":2.72},{\"name\":\"y\",\"value\":0.51},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"mzzhxzxfq\",\"objOut\":\"bnqxchxdy\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"}]}",};
-const port_blls2amps=op.inTrigger("blls2amps");
-port_blls2amps.setUiAttribs({title:"Trigger in",});
-
-const port_btagbs7z2=op.inString("btagbs7z2","");
-port_btagbs7z2.setUiAttribs({title:"Class",});
-
-const port_lj06d561p=op.inFloat("lj06d561p",0);
-port_lj06d561p.setUiAttribs({title:"Show Boundings",display:"bool",});
-
-const port_nti406vwi=op.outNumber("nti406vwi");
-port_nti406vwi.setUiAttribs({title:"Result",});
-
-const port_gjvx0zyv5=op.outNumber("gjvx0zyv5");
-port_gjvx0zyv5.setUiAttribs({title:"value",});
-
-op.initInnerPorts=function(addedOps)
-{
-  for(let i=0;i<addedOps.length;i++)
-  {
-    if(addedOps[i].innerInput)
-    {
-const innerOut_blls2amps = addedOps[i].outTrigger("innerOut_blls2amps");
-innerOut_blls2amps.setUiAttribs({title:"Trigger in"});
-port_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };
-
-const innerOut_btagbs7z2 = addedOps[i].outString("innerOut_btagbs7z2");
-innerOut_btagbs7z2.set(port_btagbs7z2.get() );
-innerOut_btagbs7z2.setUiAttribs({title:"Class"});
-port_btagbs7z2.on("change", (a,v) => { innerOut_btagbs7z2.set(a); });
-
-const innerOut_lj06d561p = addedOps[i].outNumber("innerOut_lj06d561p");
-innerOut_lj06d561p.set(port_lj06d561p.get() );
-innerOut_lj06d561p.setUiAttribs({title:"Show Boundings"});
-port_lj06d561p.on("change", (a,v) => { innerOut_lj06d561p.set(a); });
-
-    }
-if(addedOps[i].innerOutput)
-{
-const innerIn_nti406vwi = addedOps[i].inFloat("innerIn_nti406vwi");
-innerIn_nti406vwi.setUiAttribs({title:"Result"});
-innerIn_nti406vwi.on("change", (a,v) => { port_nti406vwi.set(a); });
-
-const innerIn_gjvx0zyv5 = addedOps[i].inFloat("innerIn_gjvx0zyv5");
-innerIn_gjvx0zyv5.setUiAttribs({title:"value"});
-innerIn_gjvx0zyv5.on("change", (a,v) => { port_gjvx0zyv5.set(a); });
-
-}
-}
-};
-
-const patchId = "bp2sub_" + op.id;
-
-new CABLES.SubPatchOp(op, { "subId": patchId });
-
-initializeSubpatch();
-
-function initializeSubpatch()
-{
-    const p = JSON.parse(attachments.subpatch_json);
-
-    CABLES.Patch.replaceOpIds(p,
-        {
-            "parentSubPatchId": patchId,
-            "prefixHash": patchId,
-            "oldIdAsRef": true,
-            "doNotUnlinkLostLinks": true
-        });
-
-    for (let i = 0; i < p.ops.length; i++)
-    {
-        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
-    }
-
-    op.loadDependencies(p, () =>
-    {
-        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
-        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
-        op.patch.emitEvent("subpatchExpose", patchId);
-        op.setStorage({ "blueprintVer": 2 });
-        op.patch.emitEvent("subpatchExpose", patchId);
-    });
-}
-
-
-};
-
-Ops.Patch.PbdFbHA.BasicSlider_v1.prototype = new CABLES.Op();
-CABLES.OPS["d1a4b416-d230-49fc-bdca-3898d9976559"]={f:Ops.Patch.PbdFbHA.BasicSlider_v1,objName:"Ops.Patch.PbdFbHA.BasicSlider_v1"};
 
 
 
@@ -3666,503 +2670,6 @@ op.renderVizLayer = (ctx, layer) =>
 
 Ops.Ui.VizNumberBar.prototype = new CABLES.Op();
 CABLES.OPS["37575d2e-4ba6-4d2b-b00c-c503666867c5"]={f:Ops.Ui.VizNumberBar,objName:"Ops.Ui.VizNumberBar"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Patch.PbdFbHA.InteractiveRectangle_v24
-// 
-// **************************************************************
-
-Ops.Patch.PbdFbHA.InteractiveRectangle_v24 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    render = op.inTrigger("Trigger in"),
-    trigger = op.outTrigger("Trigger out"),
-    width = op.inValue("Width", 1),
-    height = op.inValue("Height", 1),
-    inId = op.inString("ID"),
-    classPort = op.inString("Class"),
-    pivotX = op.inValueSelect("Pivot x", ["center", "left", "right"]),
-    pivotY = op.inValueSelect("Pivot y", ["center", "top", "bottom"]),
-    axis = op.inValueSelect("Axis", ["xy", "xz"]),
-    isInteractive = op.inValueBool("Is Interactive", true),
-    renderRect = op.inValueBool("Render Rectangle", true),
-    divVisible = op.inValueBool("Show Boundings", true),
-    cursorPort = op.inValueSelect("Cursor", ["auto", "crosshair", "pointer", "Hand", "move", "n-resize", "ne-resize", "e-resize", "se-resize", "s-resize", "sw-resize", "w-resize", "nw-resize", "text", "wait", "help", "none"], "pointer"),
-    active = op.inValueBool("Render", true);
-
-const geomOut = op.outObject("geometry");
-geomOut.ignoreValueSerialize = true;
-
-const
-    mouseOver = op.outBoolNum("Pointer Hover", false),
-    mouseDown = op.outBoolNum("Pointer Down", false),
-    outX = op.outNumber("Pointer X"),
-    outY = op.outNumber("Pointer Y"),
-    outTop = op.outNumber("Top"),
-    outLeft = op.outNumber("Left"),
-    outRight = op.outNumber("Right"),
-    outBottom = op.outNumber("Bottom"),
-    mouseClick = op.outTrigger("Left Click");
-
-const elementPort = op.outObject("Dom Element");
-
-active.setUiAttribs({ "title": "Active" });
-
-const cgl = op.patch.cgl;
-axis.set("xy");
-pivotX.set("center");
-pivotY.set("center");
-
-const geom = new CGL.Geometry(op.name);
-let mesh = null;
-let div = null;
-const m = mat4.create();
-const trans = mat4.create();
-const pos = vec3.create();
-const divAlign = vec3.create();
-const divAlignSize = vec3.create();
-
-axis.onChange = rebuild;
-pivotX.onChange = rebuild;
-pivotY.onChange = rebuild;
-width.onChange = rebuild;
-height.onChange = rebuild;
-cursorPort.onChange = updateCursor;
-rebuild();
-
-const modelMatrix = mat4.create();
-const identViewMatrix = mat4.create();
-const zeroVec3 = vec3.create();
-
-render.onTriggered = function ()
-{
-    if (!div)
-    {
-        setUpDiv();
-        addListeners();
-        updateDivVisibility();
-        updateIsInteractive();
-    }
-    updateDivSize();
-
-    if (active.get() && renderRect.get() && mesh) mesh.render(cgl.getShader());
-
-    trigger.trigger();
-};
-
-function rebuild()
-{
-    let w = width.get();
-    let h = height.get();
-    let x = 0;
-    let y = 0;
-
-    if (typeof w == "string")w = parseFloat(w);
-    if (typeof h == "string")h = parseFloat(h);
-
-    if (pivotX.get() == "center")
-    {
-        x = 0;
-        divAlign[0] = -w / 2;
-    }
-    if (pivotX.get() == "right")
-    {
-        x = -w / 2;
-    }
-    if (pivotX.get() == "left")
-    {
-        x = w / 2;
-    }
-
-    if (pivotY.get() == "center")
-    {
-        y = 0;
-        divAlign[1] = -h / 2;
-    }
-    if (pivotY.get() == "top") y = -h / 2;
-    if (pivotY.get() == "bottom") y = +h / 2;
-
-    const verts = [];
-    const tc = [];
-    const norms = [];
-    const indices = [];
-
-    const numRows = 1;
-    const numColumns = 1;
-
-    const stepColumn = w / numColumns;
-    const stepRow = h / numRows;
-
-    let c, r;
-
-    for (r = 0; r <= numRows; r++)
-    {
-        for (c = 0; c <= numColumns; c++)
-        {
-            verts.push(c * stepColumn - width.get() / 2 + x);
-            if (axis.get() == "xz") verts.push(0.0);
-            verts.push(r * stepRow - height.get() / 2 + y);
-            if (axis.get() == "xy") verts.push(0.0);
-
-            tc.push(c / numColumns);
-            tc.push(1.0 - r / numRows);
-
-            if (axis.get() == "xz")
-            {
-                norms.push(0);
-                norms.push(1);
-                norms.push(0);
-            }
-
-            if (axis.get() == "xy")
-            {
-                norms.push(0);
-                norms.push(0);
-                norms.push(-1);
-            }
-        }
-    }
-
-    for (c = 0; c < numColumns; c++)
-    {
-        for (r = 0; r < numRows; r++)
-        {
-            const ind = c + (numColumns + 1) * r;
-            const v1 = ind;
-            const v2 = ind + 1;
-            const v3 = ind + numColumns + 1;
-            const v4 = ind + 1 + numColumns + 1;
-
-            indices.push(v1);
-            indices.push(v3);
-            indices.push(v2);
-
-            indices.push(v2);
-            indices.push(v3);
-            indices.push(v4);
-        }
-    }
-
-    geom.clear();
-    geom.vertices = verts;
-    geom.texCoords = tc;
-    geom.verticesIndices = indices;
-    geom.vertexNormals = norms;
-
-    if (!mesh) mesh = new CGL.Mesh(cgl, geom);
-    else mesh.setGeom(geom);
-
-    geomOut.set(null);
-    geomOut.set(geom);
-}
-
-let divX = 0;
-let divY = 0;
-let divWidth = 0;
-let divHeight = 0;
-
-const mMatrix = mat4.create();
-divVisible.onChange = updateDivVisibility;
-inId.onChange = updateId;
-classPort.onChange = updateClassNames;
-
-function updateDivVisibility()
-{
-    if (div)
-    {
-        if (divVisible.get()) div.style.border = "1px solid red";
-        else div.style.border = "none";
-    }
-}
-
-function updateCursor()
-{
-    if (div)
-    {
-        div.style.cursor = cursorPort.get();
-    }
-}
-
-function updateId()
-{
-    if (div)
-    {
-        div.setAttribute("id", inId.get());
-    }
-}
-
-function updateDivSize()
-{
-    // var vp=cgl.getViewPort();
-
-    mat4.multiply(mMatrix, cgl.vMatrix, cgl.mMatrix);
-    vec3.transformMat4(pos, divAlign, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const top = cgl.canvas.styleMarginTop || 0;
-    const left = cgl.canvas.styleMarginLeft || 0;
-
-    const x1 = (trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2 + left;
-    const y1 = (trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top;
-
-    divAlignSize[0] = divAlign[0] + width.get();
-    divAlignSize[1] = divAlign[1];
-
-    vec3.transformMat4(pos, divAlignSize, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const x2 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
-    const y2 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
-
-    divAlignSize[0] = divAlign[0];
-    divAlignSize[1] = divAlign[1] + height.get();
-
-    vec3.transformMat4(pos, divAlignSize, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const x3 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
-    const y3 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
-
-    divAlignSize[0] = divAlign[0] + width.get();
-    divAlignSize[1] = divAlign[1] + height.get();
-
-    vec3.transformMat4(pos, divAlignSize, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const x4 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
-    const y4 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
-
-    divX = Math.min(x1, x2, x3, x4);
-    divY = Math.min(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
-
-    const xb = Math.max(x1, x2, x3, x4);
-    const yb = Math.max(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
-
-    outTop.set(divY);
-    outLeft.set(divX);
-    outRight.set(xb);
-    outBottom.set(yb);
-
-    divWidth = Math.abs(xb - divX);
-    divHeight = Math.abs(yb - divY);
-
-    divX /= op.patch.cgl.pixelDensity;
-    divY /= op.patch.cgl.pixelDensity;
-    divWidth /= op.patch.cgl.pixelDensity;
-    divHeight /= op.patch.cgl.pixelDensity;
-
-    // div.style.left=divX+'px';
-    // div.style.top=divY+'px';
-    // div.style.width=divWidth+'px';
-    // div.style.height=divHeight+'px';
-
-    const divXpx = divX + "px";
-    const divYpx = divY + "px";
-    const divWidthPx = divWidth + "px";
-    const divHeightPx = divHeight + "px";
-    if (divXpx != div.style.left) div.style.left = divXpx;
-    if (divYpx != div.style.top) div.style.top = divYpx;
-    if (div.style.width != divWidthPx) div.style.width = divWidthPx;
-    if (div.style.height != divHeightPx) div.style.height = divHeightPx;
-}
-
-function updateClassNames()
-{
-    if (div)
-    {
-        div.className = classPort.get();
-    }
-}
-
-op.onDelete = function ()
-{
-    if (div)div.remove();
-};
-
-function setUpDiv()
-{
-    if (!div)
-    {
-        div = document.createElement("div");
-        div.dataset.op = op.id;
-        div.oncontextmenu = function (e)
-        {
-            e.preventDefault();
-        };
-
-        div.style.padding = "0px";
-        div.style.position = "absolute";
-        div.style["box-sizing"] = "border-box";
-        div.style.border = "1px solid red";
-        // div.style['border-left']="1px solid blue";
-        // div.style['border-top']="1px solid green";
-        div.style["z-index"] = "500";
-
-        div.style["-webkit-user-select"] = "none";
-        div.style["user-select"] = "none";
-        div.style["-webkit-tap-highlight-color"] = "rgba(0,0,0,0)";
-        div.style["-webkit-touch-callout"] = "none";
-
-        const canvas = op.patch.cgl.canvas.parentElement;
-        canvas.appendChild(div);
-        updateCursor();
-        updateIsInteractive();
-        updateId();
-        updateClassNames();
-    }
-    updateDivSize();
-    elementPort.set(div);
-}
-
-let listenerElement = null;
-
-function onMouseMove(e)
-{
-    const offsetX = -width.get() / 2;
-    const offsetY = -height.get() / 2;
-
-    outX.set(Math.max(0.0, Math.min(1.0, e.offsetX / divWidth)));
-    outY.set(Math.max(0.0, Math.min(1.0, 1.0 - e.offsetY / divHeight)));
-}
-
-function onMouseLeave(e)
-{
-    mouseDown.set(false);
-    mouseOver.set(false);
-}
-
-function onMouseEnter(e)
-{
-    mouseOver.set(true);
-}
-
-function onMouseDown(e)
-{
-    mouseDown.set(true);
-}
-
-function onMouseUp(e)
-{
-    mouseDown.set(false);
-}
-
-function onmouseclick(e)
-{
-    mouseClick.trigger();
-}
-
-function onTouchMove(e)
-{
-    const targetEle = document.elementFromPoint(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
-
-    if (targetEle == div)
-    {
-        mouseOver.set(true);
-        if (e.touches && e.touches.length > 0)
-        {
-            const rect = div.getBoundingClientRect(); // e.target
-            const x = e.targetTouches[0].pageX - rect.left;
-            const y = e.targetTouches[0].pageY - rect.top;
-
-            const touch = e.touches[0];
-
-            outX.set(Math.max(0.0, Math.min(1.0, x / divWidth)));
-            outY.set(Math.max(0.0, Math.min(1.0, 1.0 - y / divHeight)));
-
-            onMouseMove(touch);
-        }
-    }
-    else
-    {
-        mouseOver.set(false);
-    }
-}
-
-active.onChange = updateActiveRender;
-function updateActiveRender()
-{
-    if (active.get())
-    {
-        addListeners();
-        if (div) div.style.display = "block";
-    }
-    else
-    {
-        removeListeners();
-        if (div) div.style.display = "none";
-    }
-}
-
-isInteractive.onChange = updateIsInteractive;
-function updateIsInteractive()
-{
-    if (isInteractive.get())
-    {
-        addListeners();
-        if (div)div.style["pointer-events"] = "initial";
-    }
-    else
-    {
-        removeListeners();
-        mouseDown.set(false);
-        mouseOver.set(false);
-        if (div)div.style["pointer-events"] = "none";
-    }
-}
-
-function removeListeners()
-{
-    if (listenerElement)
-    {
-        document.removeEventListener("touchmove", onTouchMove);
-        listenerElement.removeEventListener("touchend", onMouseUp);
-        listenerElement.removeEventListener("touchstart", onMouseDown);
-
-        listenerElement.removeEventListener("click", onmouseclick);
-        listenerElement.removeEventListener("mousemove", onMouseMove);
-        listenerElement.removeEventListener("mouseleave", onMouseLeave);
-        listenerElement.removeEventListener("mousedown", onMouseDown);
-        listenerElement.removeEventListener("mouseup", onMouseUp);
-        listenerElement.removeEventListener("mouseenter", onMouseEnter);
-        // listenerElement.removeEventListener('contextmenu', onClickRight);
-        listenerElement = null;
-    }
-}
-
-function addListeners()
-{
-    if (listenerElement)removeListeners();
-
-    listenerElement = div;
-
-    if (listenerElement)
-    {
-        document.addEventListener("touchmove", onTouchMove);
-        listenerElement.addEventListener("touchend", onMouseUp);
-        listenerElement.addEventListener("touchstart", onMouseDown);
-
-        listenerElement.addEventListener("click", onmouseclick);
-        listenerElement.addEventListener("mousemove", onMouseMove);
-        listenerElement.addEventListener("mouseleave", onMouseLeave);
-        listenerElement.addEventListener("mousedown", onMouseDown);
-        listenerElement.addEventListener("mouseup", onMouseUp);
-        listenerElement.addEventListener("mouseenter", onMouseEnter);
-        // listenerElement.addEventListener('contextmenu', onClickRight);
-    }
-}
-
-
-};
-
-Ops.Patch.PbdFbHA.InteractiveRectangle_v24.prototype = new CABLES.Op();
-CABLES.OPS["53773d41-5246-4e6a-bfa8-360f197396bf"]={f:Ops.Patch.PbdFbHA.InteractiveRectangle_v24,objName:"Ops.Patch.PbdFbHA.InteractiveRectangle_v24"};
 
 
 
@@ -5967,6 +4474,79 @@ CABLES.OPS["c974de41-4ce4-4432-b94d-724741109c71"]={f:Ops.Array.StringToArray_v2
 
 // **************************************************************
 // 
+// Ops.Patch.PbdFbHA.SubPatch1
+// 
+// **************************************************************
+
+Ops.Patch.PbdFbHA.SubPatch1 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"inc_gen_ports_js":"const port_9fkoygcno=op.inTrigger(\"9fkoygcno\");\nport_9fkoygcno.setUiAttribs({title:\"Render\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_9fkoygcno = addedOps[i].outTrigger(\"innerOut_9fkoygcno\");\ninnerOut_9fkoygcno.setUiAttribs({title:\"Render\"});\nport_9fkoygcno.onTriggered = () => { innerOut_9fkoygcno.trigger(); };\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"85rseo930\",\"uiAttribs\":{\"subPatch\":\"wpimh6dlf\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"data\",\"value\":\"\"},{\"name\":\"glb File\",\"value\":\"/assets/NEL-Logo.draco.glb\",\"display\":\"file\"},{\"name\":\"Draw\",\"value\":1},{\"name\":\"Camera index\",\"value\":0},{\"name\":\"Camera\",\"value\":\"None\"},{\"name\":\"Animation\",\"value\":\"\"},{\"name\":\"Center index\",\"value\":2},{\"name\":\"Center\",\"value\":\"XZ\"},{\"name\":\"Rescale\",\"value\":1},{\"name\":\"Rescale Size\",\"value\":2},{\"name\":\"Time\",\"value\":0},{\"name\":\"Sync to timeline\",\"value\":0},{\"name\":\"Loop\",\"value\":1},{\"name\":\"Normals Format index\",\"value\":0},{\"name\":\"Normals Format\",\"value\":\"XYZ\"},{\"name\":\"Vertices Format index\",\"value\":0},{\"name\":\"Vertices Format\",\"value\":\"XYZ\"},{\"name\":\"Calc Normals index\",\"value\":0},{\"name\":\"Calc Normals\",\"value\":\"Auto\"},{\"name\":\"Hide Nodes\",\"value\":0},{\"name\":\"Use Material Properties\",\"value\":0},{\"name\":\"Active\",\"value\":1}],\"portsOut\":[{\"name\":\"Generator\",\"value\":\"Khronos glTF Blender I/O v4.2.60\"},{\"name\":\"GLTF Version\",\"value\":2},{\"name\":\"Anim Length\",\"value\":0},{\"name\":\"Anim Time\",\"value\":0},{\"name\":\"Loading\",\"value\":false}],\"objName\":\"Ops.Gl.GLTF.GltfScene_v4\"},{\"id\":\"nbmadl6p6\",\"uiAttribs\":{\"subPatch\":\"wpimh6dlf\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Material Name\",\"value\":\"mat0\"}],\"portsOut\":[{\"name\":\"Material\",\"links\":[{\"portIn\":\"Materials\",\"portOut\":\"Material\",\"objIn\":\"85rseo930\",\"objOut\":\"nbmadl6p6\"}]}],\"objName\":\"Ops.Gl.GLTF.GltfSetMaterial\"},{\"id\":\"ymzn2u1wr\",\"uiAttribs\":{\"subPatch\":\"wpimh6dlf\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Material Name\",\"value\":\"Material.001\"}],\"portsOut\":[{\"name\":\"Material\",\"links\":[{\"portIn\":\"Materials\",\"portOut\":\"Material\",\"objIn\":\"85rseo930\",\"objOut\":\"ymzn2u1wr\"}]}],\"objName\":\"Ops.Gl.GLTF.GltfSetMaterial\"},{\"id\":\"6wtj1mxj5\",\"uiAttribs\":{\"subPatch\":\"wpimh6dlf\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_9fkoygcno\",\"title\":\"Render\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"innerOut_9fkoygcno\",\"objIn\":\"alz1qp4y2\",\"objOut\":\"6wtj1mxj5\"},{\"portIn\":\"Render\",\"portOut\":\"innerOut_9fkoygcno\",\"objIn\":\"ce52znu67\",\"objOut\":\"6wtj1mxj5\"},{\"portIn\":\"render\",\"portOut\":\"innerOut_9fkoygcno\",\"objIn\":\"mgntydb26\",\"objOut\":\"6wtj1mxj5\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"lt3kjnr3e\",\"uiAttribs\":{\"subPatch\":\"wpimh6dlf\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"alz1qp4y2\",\"uiAttribs\":{\"subPatch\":\"wpimh6dlf\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":0.514},{\"name\":\"b\",\"value\":0.262},{\"name\":\"Opacity\",\"value\":1},{\"name\":\"AO Intensity\",\"value\":1},{\"name\":\"Normal Map Intensity\",\"value\":0.812},{\"name\":\"Repeat X\",\"value\":1},{\"name\":\"Repeat Y\",\"value\":1},{\"name\":\"Offset X\",\"value\":0},{\"name\":\"Offset Y\",\"value\":0.02},{\"name\":\"Double Sided\",\"value\":0},{\"name\":\"Screen Space Normals\",\"value\":0},{\"name\":\"Calc normal tangents\",\"value\":1},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"}],\"portsOut\":[{\"name\":\"Shader\",\"links\":[{\"portIn\":\"Shader\",\"portOut\":\"Shader\",\"objIn\":\"ymzn2u1wr\",\"objOut\":\"alz1qp4y2\"}]}],\"objName\":\"Ops.Gl.Shader.MatCapMaterial_v3\"},{\"id\":\"ce52znu67\",\"uiAttribs\":{\"subPatch\":\"wpimh6dlf\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.22},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.262},{\"name\":\"Opacity\",\"value\":1},{\"name\":\"AO Intensity\",\"value\":1},{\"name\":\"Normal Map Intensity\",\"value\":0.118},{\"name\":\"Repeat X\",\"value\":1},{\"name\":\"Repeat Y\",\"value\":1},{\"name\":\"Offset X\",\"value\":0},{\"name\":\"Offset Y\",\"value\":0},{\"name\":\"Double Sided\",\"value\":0},{\"name\":\"Screen Space Normals\",\"value\":0},{\"name\":\"Calc normal tangents\",\"value\":1},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"}],\"portsOut\":[{\"name\":\"Shader\",\"links\":[{\"portIn\":\"Shader\",\"portOut\":\"Shader\",\"objIn\":\"nbmadl6p6\",\"objOut\":\"ce52znu67\"}]}],\"objName\":\"Ops.Gl.Shader.MatCapMaterial_v3\"},{\"id\":\"96qgwcwln\",\"uiAttribs\":{\"subPatch\":\"wpimh6dlf\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"File\",\"value\":\"/assets/NEL_SRVB.webp\",\"display\":\"file\"},{\"name\":\"Filter index\",\"value\":2},{\"name\":\"Filter\",\"value\":\"mipmap\"},{\"name\":\"Wrap index\",\"value\":0},{\"name\":\"Wrap\",\"value\":\"repeat\"},{\"name\":\"Anisotropic index\",\"value\":0},{\"name\":\"Anisotropic\",\"value\":\"0\"},{\"name\":\"Data Format index\",\"value\":3},{\"name\":\"Data Format\",\"value\":\"RGBA\"},{\"name\":\"Flip\",\"value\":0},{\"name\":\"Pre Multiplied Alpha\",\"value\":0},{\"name\":\"Active\",\"value\":1},{\"name\":\"Save Memory\",\"value\":1},{\"name\":\"Add Cachebuster\",\"value\":0}],\"portsOut\":[{\"name\":\"Texture\",\"links\":[{\"portIn\":\"Normal\",\"portOut\":\"Texture\",\"objIn\":\"alz1qp4y2\",\"objOut\":\"96qgwcwln\"},{\"portIn\":\"Normal\",\"portOut\":\"Texture\",\"objIn\":\"ce52znu67\",\"objOut\":\"96qgwcwln\"}]},{\"name\":\"Width\",\"value\":256},{\"name\":\"Height\",\"value\":256},{\"name\":\"Aspect Ratio\",\"value\":1},{\"name\":\"Loaded\",\"value\":1},{\"name\":\"Loading\",\"value\":0}],\"objName\":\"Ops.Gl.Texture_v2\"},{\"id\":\"mgntydb26\",\"uiAttribs\":{\"subPatch\":\"wpimh6dlf\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posX\",\"value\":0},{\"name\":\"posY\",\"value\":-0.56},{\"name\":\"posZ\",\"value\":0.16},{\"name\":\"scale\",\"value\":1},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"85rseo930\",\"objOut\":\"mgntydb26\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"}]}",};
+const port_9fkoygcno=op.inTrigger("9fkoygcno");
+port_9fkoygcno.setUiAttribs({title:"Render",});
+
+op.initInnerPorts=function(addedOps)
+{
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
+    {
+const innerOut_9fkoygcno = addedOps[i].outTrigger("innerOut_9fkoygcno");
+innerOut_9fkoygcno.setUiAttribs({title:"Render"});
+port_9fkoygcno.onTriggered = () => { innerOut_9fkoygcno.trigger(); };
+
+    }
+if(addedOps[i].innerOutput)
+{
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
+    {
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
+    }
+
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
+}
+
+
+};
+
+Ops.Patch.PbdFbHA.SubPatch1.prototype = new CABLES.Op();
+CABLES.OPS["4bf57488-7686-46d5-a5d6-aff1863da351"]={f:Ops.Patch.PbdFbHA.SubPatch1,objName:"Ops.Patch.PbdFbHA.SubPatch1"};
+
+
+
+
+// **************************************************************
+// 
 // Ops.Patch.PbdFbHA.BasicSlider_v3
 // 
 // **************************************************************
@@ -6072,6 +4652,1426 @@ function initializeSubpatch()
 
 Ops.Patch.PbdFbHA.BasicSlider_v3.prototype = new CABLES.Op();
 CABLES.OPS["8f0a0b47-5fb3-4e07-8501-69911de3f849"]={f:Ops.Patch.PbdFbHA.BasicSlider_v3,objName:"Ops.Patch.PbdFbHA.BasicSlider_v3"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PbdFbHA.InteractiveRectangle_v25
+// 
+// **************************************************************
+
+Ops.Patch.PbdFbHA.InteractiveRectangle_v25 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("Trigger in"),
+    trigger = op.outTrigger("Trigger out"),
+    width = op.inValue("Width", 1),
+    height = op.inValue("Height", 1),
+    inId = op.inString("ID"),
+    classPort = op.inString("Class"),
+    pivotX = op.inValueSelect("Pivot x", ["center", "left", "right"]),
+    pivotY = op.inValueSelect("Pivot y", ["center", "top", "bottom"]),
+    axis = op.inValueSelect("Axis", ["xy", "xz"]),
+    isInteractive = op.inValueBool("Is Interactive", true),
+    renderRect = op.inValueBool("Render Rectangle", true),
+    divVisible = op.inValueBool("Show Boundings", true),
+    cursorPort = op.inValueSelect("Cursor", ["auto", "crosshair", "pointer", "Hand", "move", "n-resize", "ne-resize", "e-resize", "se-resize", "s-resize", "sw-resize", "w-resize", "nw-resize", "text", "wait", "help", "none"], "pointer"),
+    active = op.inValueBool("Render", true);
+
+const geomOut = op.outObject("geometry");
+geomOut.ignoreValueSerialize = true;
+
+const
+    mouseOver = op.outBoolNum("Pointer Hover", false),
+    mouseDown = op.outBoolNum("Pointer Down", false),
+    outX = op.outNumber("Pointer X"),
+    outY = op.outNumber("Pointer Y"),
+    outTop = op.outNumber("Top"),
+    outLeft = op.outNumber("Left"),
+    outRight = op.outNumber("Right"),
+    outBottom = op.outNumber("Bottom"),
+    mouseClick = op.outTrigger("Left Click");
+
+const elementPort = op.outObject("Dom Element");
+
+active.setUiAttribs({ "title": "Active" });
+
+const cgl = op.patch.cgl;
+axis.set("xy");
+pivotX.set("center");
+pivotY.set("center");
+
+const geom = new CGL.Geometry(op.name);
+let mesh = null;
+let div = null;
+const m = mat4.create();
+const trans = mat4.create();
+const pos = vec3.create();
+const divAlign = vec3.create();
+const divAlignSize = vec3.create();
+
+axis.onChange = rebuild;
+pivotX.onChange = rebuild;
+pivotY.onChange = rebuild;
+width.onChange = rebuild;
+height.onChange = rebuild;
+cursorPort.onChange = updateCursor;
+rebuild();
+
+const modelMatrix = mat4.create();
+const identViewMatrix = mat4.create();
+const zeroVec3 = vec3.create();
+
+render.onTriggered = function ()
+{
+    if (!div)
+    {
+        setUpDiv();
+        addListeners();
+        updateDivVisibility();
+        updateIsInteractive();
+    }
+    updateDivSize();
+
+    if (active.get() && renderRect.get() && mesh) mesh.render(cgl.getShader());
+
+    trigger.trigger();
+};
+
+function rebuild()
+{
+    let w = width.get();
+    let h = height.get();
+    let x = 0;
+    let y = 0;
+
+    if (typeof w == "string")w = parseFloat(w);
+    if (typeof h == "string")h = parseFloat(h);
+
+    if (pivotX.get() == "center")
+    {
+        x = 0;
+        divAlign[0] = -w / 2;
+    }
+    if (pivotX.get() == "right")
+    {
+        x = -w / 2;
+    }
+    if (pivotX.get() == "left")
+    {
+        x = w / 2;
+    }
+
+    if (pivotY.get() == "center")
+    {
+        y = 0;
+        divAlign[1] = -h / 2;
+    }
+    if (pivotY.get() == "top") y = -h / 2;
+    if (pivotY.get() == "bottom") y = +h / 2;
+
+    const verts = [];
+    const tc = [];
+    const norms = [];
+    const indices = [];
+
+    const numRows = 1;
+    const numColumns = 1;
+
+    const stepColumn = w / numColumns;
+    const stepRow = h / numRows;
+
+    let c, r;
+
+    for (r = 0; r <= numRows; r++)
+    {
+        for (c = 0; c <= numColumns; c++)
+        {
+            verts.push(c * stepColumn - width.get() / 2 + x);
+            if (axis.get() == "xz") verts.push(0.0);
+            verts.push(r * stepRow - height.get() / 2 + y);
+            if (axis.get() == "xy") verts.push(0.0);
+
+            tc.push(c / numColumns);
+            tc.push(1.0 - r / numRows);
+
+            if (axis.get() == "xz")
+            {
+                norms.push(0);
+                norms.push(1);
+                norms.push(0);
+            }
+
+            if (axis.get() == "xy")
+            {
+                norms.push(0);
+                norms.push(0);
+                norms.push(-1);
+            }
+        }
+    }
+
+    for (c = 0; c < numColumns; c++)
+    {
+        for (r = 0; r < numRows; r++)
+        {
+            const ind = c + (numColumns + 1) * r;
+            const v1 = ind;
+            const v2 = ind + 1;
+            const v3 = ind + numColumns + 1;
+            const v4 = ind + 1 + numColumns + 1;
+
+            indices.push(v1);
+            indices.push(v3);
+            indices.push(v2);
+
+            indices.push(v2);
+            indices.push(v3);
+            indices.push(v4);
+        }
+    }
+
+    geom.clear();
+    geom.vertices = verts;
+    geom.texCoords = tc;
+    geom.verticesIndices = indices;
+    geom.vertexNormals = norms;
+
+    if (!mesh) mesh = new CGL.Mesh(cgl, geom);
+    else mesh.setGeom(geom);
+
+    geomOut.set(null);
+    geomOut.set(geom);
+}
+
+let divX = 0;
+let divY = 0;
+let divWidth = 0;
+let divHeight = 0;
+
+const mMatrix = mat4.create();
+divVisible.onChange = updateDivVisibility;
+inId.onChange = updateId;
+classPort.onChange = updateClassNames;
+
+function updateDivVisibility()
+{
+    if (div)
+    {
+        if (divVisible.get()) div.style.border = "1px solid red";
+        else div.style.border = "none";
+    }
+}
+
+function updateCursor()
+{
+    if (div)
+    {
+        div.style.cursor = cursorPort.get();
+    }
+}
+
+function updateId()
+{
+    if (div)
+    {
+        div.setAttribute("id", inId.get());
+    }
+}
+
+function updateDivSize()
+{
+    // var vp=cgl.getViewPort();
+
+    mat4.multiply(mMatrix, cgl.vMatrix, cgl.mMatrix);
+    vec3.transformMat4(pos, divAlign, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const top = cgl.canvas.styleMarginTop || 0;
+    const left = cgl.canvas.styleMarginLeft || 0;
+
+    const x1 = (trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2 + left;
+    const y1 = (trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top;
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1];
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x2 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y2 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0];
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x3 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y3 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x4 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y4 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divX = Math.min(x1, x2, x3, x4);
+    divY = Math.min(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    const xb = Math.max(x1, x2, x3, x4);
+    const yb = Math.max(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    outTop.set(divY);
+    outLeft.set(divX);
+    outRight.set(xb);
+    outBottom.set(yb);
+
+    divWidth = Math.abs(xb - divX);
+    divHeight = Math.abs(yb - divY);
+
+    divX /= op.patch.cgl.pixelDensity;
+    divY /= op.patch.cgl.pixelDensity;
+    divWidth /= op.patch.cgl.pixelDensity;
+    divHeight /= op.patch.cgl.pixelDensity;
+
+    // div.style.left=divX+'px';
+    // div.style.top=divY+'px';
+    // div.style.width=divWidth+'px';
+    // div.style.height=divHeight+'px';
+
+    const divXpx = divX + "px";
+    const divYpx = divY + "px";
+    const divWidthPx = divWidth + "px";
+    const divHeightPx = divHeight + "px";
+    if (divXpx != div.style.left) div.style.left = divXpx;
+    if (divYpx != div.style.top) div.style.top = divYpx;
+    if (div.style.width != divWidthPx) div.style.width = divWidthPx;
+    if (div.style.height != divHeightPx) div.style.height = divHeightPx;
+}
+
+function updateClassNames()
+{
+    if (div)
+    {
+        div.className = classPort.get();
+    }
+}
+
+op.onDelete = function ()
+{
+    if (div)div.remove();
+};
+
+function setUpDiv()
+{
+    if (!div)
+    {
+        div = document.createElement("div");
+        div.dataset.op = op.id;
+        div.oncontextmenu = function (e)
+        {
+            e.preventDefault();
+        };
+
+        div.style.padding = "0px";
+        div.style.position = "absolute";
+        div.style["box-sizing"] = "border-box";
+        div.style.border = "1px solid red";
+        // div.style['border-left']="1px solid blue";
+        // div.style['border-top']="1px solid green";
+        div.style["z-index"] = "500";
+
+        div.style["-webkit-user-select"] = "none";
+        div.style["user-select"] = "none";
+        div.style["-webkit-tap-highlight-color"] = "rgba(0,0,0,0)";
+        div.style["-webkit-touch-callout"] = "none";
+
+        const canvas = op.patch.cgl.canvas.parentElement;
+        canvas.appendChild(div);
+        updateCursor();
+        updateIsInteractive();
+        updateId();
+        updateClassNames();
+    }
+    updateDivSize();
+    elementPort.set(div);
+}
+
+let listenerElement = null;
+
+function onMouseMove(e)
+{
+    const offsetX = -width.get() / 2;
+    const offsetY = -height.get() / 2;
+
+    outX.set(Math.max(0.0, Math.min(1.0, e.offsetX / divWidth)));
+    outY.set(Math.max(0.0, Math.min(1.0, 1.0 - e.offsetY / divHeight)));
+}
+
+function onMouseLeave(e)
+{
+    mouseDown.set(false);
+    mouseOver.set(false);
+}
+
+function onMouseEnter(e)
+{
+    mouseOver.set(true);
+}
+
+function onMouseDown(e)
+{
+    mouseDown.set(true);
+}
+
+function onMouseUp(e)
+{
+    mouseDown.set(false);
+}
+
+function onmouseclick(e)
+{
+    mouseClick.trigger();
+}
+
+function onTouchMove(e)
+{
+    const targetEle = document.elementFromPoint(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
+
+    if (targetEle == div)
+    {
+        mouseOver.set(true);
+        if (e.touches && e.touches.length > 0)
+        {
+            const rect = div.getBoundingClientRect(); // e.target
+            const x = e.targetTouches[0].pageX - rect.left;
+            const y = e.targetTouches[0].pageY - rect.top;
+
+            const touch = e.touches[0];
+
+            outX.set(Math.max(0.0, Math.min(1.0, x / divWidth)));
+            outY.set(Math.max(0.0, Math.min(1.0, 1.0 - y / divHeight)));
+
+            onMouseMove(touch);
+        }
+    }
+    else
+    {
+        mouseOver.set(false);
+    }
+}
+
+active.onChange = updateActiveRender;
+function updateActiveRender()
+{
+    if (active.get())
+    {
+        addListeners();
+        if (div) div.style.display = "block";
+    }
+    else
+    {
+        removeListeners();
+        if (div) div.style.display = "none";
+    }
+}
+
+isInteractive.onChange = updateIsInteractive;
+function updateIsInteractive()
+{
+    if (isInteractive.get())
+    {
+        addListeners();
+        if (div)div.style["pointer-events"] = "initial";
+    }
+    else
+    {
+        removeListeners();
+        mouseDown.set(false);
+        mouseOver.set(false);
+        if (div)div.style["pointer-events"] = "none";
+    }
+}
+
+function removeListeners()
+{
+    if (listenerElement)
+    {
+        document.removeEventListener("touchmove", onTouchMove);
+        listenerElement.removeEventListener("touchend", onMouseUp);
+        listenerElement.removeEventListener("touchstart", onMouseDown);
+
+        listenerElement.removeEventListener("click", onmouseclick);
+        listenerElement.removeEventListener("mousemove", onMouseMove);
+        listenerElement.removeEventListener("mouseleave", onMouseLeave);
+        listenerElement.removeEventListener("mousedown", onMouseDown);
+        listenerElement.removeEventListener("mouseup", onMouseUp);
+        listenerElement.removeEventListener("mouseenter", onMouseEnter);
+        // listenerElement.removeEventListener('contextmenu', onClickRight);
+        listenerElement = null;
+    }
+}
+
+function addListeners()
+{
+    if (listenerElement)removeListeners();
+
+    listenerElement = div;
+
+    if (listenerElement)
+    {
+        document.addEventListener("touchmove", onTouchMove);
+        listenerElement.addEventListener("touchend", onMouseUp);
+        listenerElement.addEventListener("touchstart", onMouseDown);
+
+        listenerElement.addEventListener("click", onmouseclick);
+        listenerElement.addEventListener("mousemove", onMouseMove);
+        listenerElement.addEventListener("mouseleave", onMouseLeave);
+        listenerElement.addEventListener("mousedown", onMouseDown);
+        listenerElement.addEventListener("mouseup", onMouseUp);
+        listenerElement.addEventListener("mouseenter", onMouseEnter);
+        // listenerElement.addEventListener('contextmenu', onClickRight);
+    }
+}
+
+
+};
+
+Ops.Patch.PbdFbHA.InteractiveRectangle_v25.prototype = new CABLES.Op();
+CABLES.OPS["b63571d5-544f-40eb-8048-ec0868e5ad33"]={f:Ops.Patch.PbdFbHA.InteractiveRectangle_v25,objName:"Ops.Patch.PbdFbHA.InteractiveRectangle_v25"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PbdFbHA.BasicSlider_v5
+// 
+// **************************************************************
+
+Ops.Patch.PbdFbHA.BasicSlider_v5 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"b5jmw6pne\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":0.24},{\"name\":\"Height\",\"value\":1},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":0},{\"name\":\"Pivot y\",\"value\":\"center\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Render Rectangle\",\"value\":0},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":5},{\"name\":\"Cursor\",\"value\":\"n-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"7picyzk8b\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"geometry\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"geometry\",\"objIn\":\"mngezvib8\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Hover\",\"objIn\":\"s1gixysdm\",\"objOut\":\"b5jmw6pne\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"at2p512yk\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"okfe0jjro\",\"objOut\":\"b5jmw6pne\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"dr5mvrobr\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"Pointer X\",\"value\":0.09725448596467902},{\"name\":\"Pointer Y\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer Y\",\"objIn\":\"dr5mvrobr\",\"objOut\":\"b5jmw6pne\"},{\"portIn\":\"Value\",\"portOut\":\"Pointer Y\",\"objIn\":\"3rgu57nny\",\"objOut\":\"b5jmw6pne\"}]},{\"name\":\"Top\",\"value\":143.9280012845993},{\"name\":\"Left\",\"value\":1578.6239383220673},{\"name\":\"Right\",\"value\":1681.4469587802887},{\"name\":\"Bottom\",\"value\":795.1404407024384}],\"objName\":\"Ops.Gl.InteractiveRectangle_v2\"},{\"id\":\"uryzrh2kd\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"7gzmyju3f\",\"objOut\":\"uryzrh2kd\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"7picyzk8b\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"f0zxrdgdl\",\"objOut\":\"7picyzk8b\"},{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"1hn64zsny\",\"objOut\":\"7picyzk8b\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"r1trdmnoo\",\"objOut\":\"7picyzk8b\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"cgqxkp1dw\",\"objOut\":\"7picyzk8b\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"hhgw84tqq\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"izi14m4jj\",\"objOut\":\"hhgw84tqq\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"b5jmw6pne\",\"objOut\":\"hhgw84tqq\"},{\"portIn\":\"String In\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"uej7igfhs\",\"objOut\":\"hhgw84tqq\"}]},{\"name\":\"innerOut_lj06d561p\",\"value\":0,\"title\":\"Show Boundings\"}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"r1trdmnoo\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"f0zxrdgdl\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":6},{\"name\":\"easing\",\"value\":\"Cubic In Out\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.7},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"oi1e3c961\",\"objOut\":\"f0zxrdgdl\"}]},{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"uryzrh2kd\",\"objOut\":\"f0zxrdgdl\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"r1trdmnoo\",\"objOut\":\"f0zxrdgdl\"},{\"portIn\":\"Percentage\",\"portOut\":\"value\",\"objIn\":\"s3bh58foh\",\"objOut\":\"f0zxrdgdl\"},{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"tsxnsqish\",\"objOut\":\"f0zxrdgdl\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"izi14m4jj\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1.76},{\"name\":\"y\",\"value\":0.013},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"jtfgofit6\",\"objOut\":\"izi14m4jj\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"7gzmyju3f\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"render\",\"title\":\"Trigger\"},{\"name\":\"Render Mesh\",\"value\":1,\"title\":\"Render\"},{\"name\":\"width\",\"value\":0.07},{\"name\":\"height\",\"value\":0.01},{\"name\":\"pivot x index\",\"value\":1},{\"name\":\"pivot x\",\"value\":\"center\"},{\"name\":\"pivot y index\",\"value\":1},{\"name\":\"pivot y\",\"value\":\"center\"},{\"name\":\"axis index\",\"value\":0},{\"name\":\"axis\",\"value\":\"xy\"},{\"name\":\"Flip TexCoord X\",\"value\":0},{\"name\":\"Flip TexCoord Y\",\"value\":1},{\"name\":\"num columns\",\"value\":1},{\"name\":\"num rows\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Rectangle_v4\"},{\"id\":\"okfe0jjro\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"5vxvxqmq8\",\"objOut\":\"okfe0jjro\"},{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"cqxu3tj4o\",\"objOut\":\"okfe0jjro\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"q95osg3jr\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_dryMix\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"dmhn9643j\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int dry mix\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"uej7igfhs\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"dryMix\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"4ken8jo2h\",\"objOut\":\"uej7igfhs\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"2kcwcw99k\",\"objOut\":\"uej7igfhs\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"4ken8jo2h\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"905qrz86p\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"kzejscdk9\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_injectedState\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"xp3womx4e\",\"objOut\":\"kzejscdk9\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"2kcwcw99k\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Numbers_1\",\"portOut\":\"Result\",\"objIn\":\"yyj0dn3hl\",\"objOut\":\"2kcwcw99k\"},{\"portIn\":\"Number\",\"portOut\":\"Result\",\"objIn\":\"vrog0zpzu\",\"objOut\":\"2kcwcw99k\"}]},{\"name\":\"Found\",\"value\":0}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"5vxvxqmq8\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonSlider\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"yyj0dn3hl\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"q95osg3jr\",\"objOut\":\"yyj0dn3hl\"},{\"portIn\":\"number1\",\"portOut\":\"Number\",\"objIn\":\"toobytwr4\",\"objOut\":\"yyj0dn3hl\"},{\"portIn\":\"Number\",\"portOut\":\"Number\",\"objIn\":\"xc4wr3qpm\",\"objOut\":\"yyj0dn3hl\"},{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"7picyzk8b\",\"objOut\":\"yyj0dn3hl\"}]},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"xp3womx4e\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":1}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"2kcwcw99k\",\"objOut\":\"xp3womx4e\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"cqxu3tj4o\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Index\",\"portOut\":\"Result\",\"objIn\":\"yyj0dn3hl\",\"objOut\":\"cqxu3tj4o\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"xp3womx4e\",\"objOut\":\"cqxu3tj4o\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"jf5tu10qy\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"905qrz86p\",\"objOut\":\"jf5tu10qy\"},{\"portIn\":\"Numbers_0\",\"portOut\":\"result\",\"objIn\":\"yyj0dn3hl\",\"objOut\":\"jf5tu10qy\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"75ly7ofzk\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Decimal Places\",\"value\":0}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"string1\",\"portOut\":\"Result\",\"objIn\":\"2jmmqaj8y\",\"objOut\":\"75ly7ofzk\"}]}],\"objName\":\"Ops.String.NumberToString_v2\"},{\"id\":\"oi1e3c961\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0.01},{\"name\":\"y\",\"value\":0.61},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"tsxnsqish\",\"objOut\":\"oi1e3c961\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"834yak1b2\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"digits\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"toobytwr4\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":100}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Number\",\"portOut\":\"result\",\"objIn\":\"75ly7ofzk\",\"objOut\":\"toobytwr4\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"2jmmqaj8y\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"string2\",\"value\":\"%\"},{\"name\":\"New Line\",\"value\":0},{\"name\":\"Active\",\"value\":1}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Text\",\"portOut\":\"result\",\"objIn\":\"tsxnsqish\",\"objOut\":\"2jmmqaj8y\"}]}],\"objName\":\"Ops.String.Concat_v2\"},{\"id\":\"xc4wr3qpm\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.VizNumberBar\"},{\"id\":\"utf80cj50\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"portsOut\":[{\"name\":\"Value\",\"value\":\"disengage\"}],\"objName\":\"Ops.Vars.VarGetString\"},{\"id\":\"s1gixysdm\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"result\",\"objIn\":\"f0zxrdgdl\",\"objOut\":\"s1gixysdm\"},{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"uej7igfhs\",\"objOut\":\"s1gixysdm\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"dr5mvrobr\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Value Out\",\"objIn\":\"jf5tu10qy\",\"objOut\":\"dr5mvrobr\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"1hn64zsny\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posX\",\"value\":0},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":1},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotY\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"uryzrh2kd\",\"objOut\":\"1hn64zsny\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"jtfgofit6\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.651},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.912},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":0.05},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":-0.04},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"0d2yvn3ee\",\"objOut\":\"jtfgofit6\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"cgqxkp1dw\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"posY\",\"portOut\":\"result\",\"objIn\":\"1hn64zsny\",\"objOut\":\"cgqxkp1dw\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"mngezvib8\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Translate X\",\"value\":0.44},{\"name\":\"Translate Y\",\"value\":0.06},{\"name\":\"Translate Z\",\"value\":-0.5},{\"name\":\"Scale X\",\"value\":0.35},{\"name\":\"Scale Y\",\"value\":1.85},{\"name\":\"Scale Z\",\"value\":1},{\"name\":\"Rotation X\",\"value\":0},{\"name\":\"Rotation Y\",\"value\":0},{\"name\":\"Rotation Z\",\"value\":0}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"Result\",\"objIn\":\"0d2yvn3ee\",\"objOut\":\"mngezvib8\"}]}],\"objName\":\"Ops.Graphics.Geometry.TransformGeometry\"},{\"id\":\"0d2yvn3ee\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Render Mesh\",\"value\":1},{\"name\":\"Add Vertex Numbers\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"qntdf46e3\",\"objOut\":\"0d2yvn3ee\"}]}],\"objName\":\"Ops.Gl.RenderGeometry_v2\"},{\"id\":\"oedh2oj3o\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__lensFlareTexts\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"texture\",\"portOut\":\"Value\",\"objIn\":\"jtfgofit6\",\"objOut\":\"oedh2oj3o\"}]}],\"objName\":\"Ops.Vars.VarGetTexture_v2\"},{\"id\":\"qntdf46e3\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1},{\"name\":\"y\",\"value\":1.52},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"b5jmw6pne\",\"objOut\":\"qntdf46e3\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"},{\"id\":\"s3bh58foh\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":-2},{\"name\":\"Value 2\",\"value\":2}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Result\",\"objIn\":\"7knaraxdk\",\"objOut\":\"s3bh58foh\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"ac4vtthkl\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"at2p512yk\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"ac4vtthkl\",\"objOut\":\"at2p512yk\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"3rgu57nny\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValueOnHover\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"tsxnsqish\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.06},{\"name\":\"Letter Spacing\",\"value\":0},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":1},{\"name\":\"Align\",\"value\":\"Center\"},{\"name\":\"Vertical Align index\",\"value\":2},{\"name\":\"Vertical Align\",\"value\":\"Middle\"},{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":1},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.3},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.5},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":1},{\"name\":\"Border g\",\"value\":1},{\"name\":\"Border b\",\"value\":1},{\"name\":\"Shadow\",\"value\":0},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.07661015624999999},{\"name\":\"Height\",\"value\":0.05096765873015873},{\"name\":\"Start Y\",\"value\":0.012567658730158734},{\"name\":\"Num Chars\",\"value\":2}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"7knaraxdk\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"result\",\"objIn\":\"jtfgofit6\",\"objOut\":\"7knaraxdk\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"vrog0zpzu\",\"uiAttribs\":{\"subPatch\":\"f1m11kbpv\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.VizNumberBar\"}]}",};
+const port_blls2amps=op.inTrigger("blls2amps");
+port_blls2amps.setUiAttribs({title:"Trigger in",});
+
+const port_btagbs7z2=op.inString("btagbs7z2","");
+port_btagbs7z2.setUiAttribs({title:"Class",});
+
+const port_lj06d561p=op.inFloat("lj06d561p",0);
+port_lj06d561p.setUiAttribs({title:"Show Boundings",display:"bool",});
+
+const port_nti406vwi=op.outNumber("nti406vwi");
+port_nti406vwi.setUiAttribs({title:"Result",});
+
+const port_gjvx0zyv5=op.outNumber("gjvx0zyv5");
+port_gjvx0zyv5.setUiAttribs({title:"value",});
+
+op.initInnerPorts=function(addedOps)
+{
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
+    {
+const innerOut_blls2amps = addedOps[i].outTrigger("innerOut_blls2amps");
+innerOut_blls2amps.setUiAttribs({title:"Trigger in"});
+port_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };
+
+const innerOut_btagbs7z2 = addedOps[i].outString("innerOut_btagbs7z2");
+innerOut_btagbs7z2.set(port_btagbs7z2.get() );
+innerOut_btagbs7z2.setUiAttribs({title:"Class"});
+port_btagbs7z2.on("change", (a,v) => { innerOut_btagbs7z2.set(a); });
+
+const innerOut_lj06d561p = addedOps[i].outNumber("innerOut_lj06d561p");
+innerOut_lj06d561p.set(port_lj06d561p.get() );
+innerOut_lj06d561p.setUiAttribs({title:"Show Boundings"});
+port_lj06d561p.on("change", (a,v) => { innerOut_lj06d561p.set(a); });
+
+    }
+if(addedOps[i].innerOutput)
+{
+const innerIn_nti406vwi = addedOps[i].inFloat("innerIn_nti406vwi");
+innerIn_nti406vwi.setUiAttribs({title:"Result"});
+innerIn_nti406vwi.on("change", (a,v) => { port_nti406vwi.set(a); });
+
+const innerIn_gjvx0zyv5 = addedOps[i].inFloat("innerIn_gjvx0zyv5");
+innerIn_gjvx0zyv5.setUiAttribs({title:"value"});
+innerIn_gjvx0zyv5.on("change", (a,v) => { port_gjvx0zyv5.set(a); });
+
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
+    {
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
+    }
+
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
+}
+
+
+};
+
+Ops.Patch.PbdFbHA.BasicSlider_v5.prototype = new CABLES.Op();
+CABLES.OPS["035a569d-f792-4c2d-8b85-43d9bc17b169"]={f:Ops.Patch.PbdFbHA.BasicSlider_v5,objName:"Ops.Patch.PbdFbHA.BasicSlider_v5"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PbdFbHA.SubPatch3
+// 
+// **************************************************************
+
+Ops.Patch.PbdFbHA.SubPatch3 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"inc_gen_ports_js":"const port_alrh6hig4=op.inTrigger(\"alrh6hig4\");\nport_alrh6hig4.setUiAttribs({title:\"render\",});\n\nconst port_8dittifdh=op.inTrigger(\"8dittifdh\");\nport_8dittifdh.setUiAttribs({title:\"Render\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_alrh6hig4 = addedOps[i].outTrigger(\"innerOut_alrh6hig4\");\ninnerOut_alrh6hig4.setUiAttribs({title:\"render\"});\nport_alrh6hig4.onTriggered = () => { innerOut_alrh6hig4.trigger(); };\n\nconst innerOut_8dittifdh = addedOps[i].outTrigger(\"innerOut_8dittifdh\");\ninnerOut_8dittifdh.setUiAttribs({title:\"Render\"});\nport_8dittifdh.onTriggered = () => { innerOut_8dittifdh.trigger(); };\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"rmprhecho\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posX\",\"value\":-1.74},{\"name\":\"posY\",\"value\":0.97},{\"name\":\"posZ\",\"value\":0.05},{\"name\":\"scale\",\"value\":0.98},{\"name\":\"rotX\",\"value\":13},{\"name\":\"rotY\",\"value\":60.5},{\"name\":\"rotZ\",\"value\":-15}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"69e8cxa7e\",\"objOut\":\"rmprhecho\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"z1zbpc5ex\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Material Name\",\"value\":\"Material_0.001\"}],\"portsOut\":[{\"name\":\"Material\",\"links\":[{\"portIn\":\"Materials\",\"portOut\":\"Material\",\"objIn\":\"yyw9jp0lz\",\"objOut\":\"z1zbpc5ex\"}]}],\"objName\":\"Ops.Gl.GLTF.GltfSetMaterial\"},{\"id\":\"znj0gtwab\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":1},{\"name\":\"Opacity\",\"value\":1},{\"name\":\"AO Intensity\",\"value\":1},{\"name\":\"Normal Map Intensity\",\"value\":0.361},{\"name\":\"Repeat X\",\"value\":0},{\"name\":\"Repeat Y\",\"value\":0},{\"name\":\"Offset X\",\"value\":0},{\"name\":\"Offset Y\",\"value\":0},{\"name\":\"Double Sided\",\"value\":0},{\"name\":\"Screen Space Normals\",\"value\":0},{\"name\":\"Calc normal tangents\",\"value\":1},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"}],\"portsOut\":[{\"name\":\"Shader\",\"links\":[{\"portIn\":\"Shader\",\"portOut\":\"Shader\",\"objIn\":\"z1zbpc5ex\",\"objOut\":\"znj0gtwab\"}]}],\"objName\":\"Ops.Gl.Shader.MatCapMaterial_v3\"},{\"id\":\"13dxix11f\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Gradient\",\"value\":\"{\\\"keys\\\":[{\\\"pos\\\":0,\\\"posy\\\":0.5,\\\"r\\\":0.19606043020884192,\\\"g\\\":0.9551041666666666,\\\"b\\\":0.30280095564822357},{\\\"pos\\\":0,\\\"posy\\\":0.5,\\\"r\\\":0.19606043020884192,\\\"g\\\":0.9551041666666666,\\\"b\\\":0.30280095564822357},{\\\"pos\\\":0.25,\\\"posy\\\":0.7,\\\"r\\\":0.24755528330802917,\\\"g\\\":0.5961175041362186,\\\"b\\\":0.6089322916666666},{\\\"pos\\\":1,\\\"posy\\\":0.5,\\\"r\\\":0.9515885416666666,\\\"g\\\":0.01916651725769043,\\\"b\\\":0.643597891729076},{\\\"pos\\\":1,\\\"posy\\\":0.5,\\\"r\\\":0.9515885416666666,\\\"g\\\":0.01916651725769043,\\\"b\\\":0.643597891729076}]}\"},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"X\"},{\"name\":\"Smoothstep\",\"value\":0},{\"name\":\"Step\",\"value\":1},{\"name\":\"Flip\",\"value\":1},{\"name\":\"sRGB\",\"value\":0},{\"name\":\"Oklab\",\"value\":0},{\"name\":\"Size\",\"value\":8},{\"name\":\"filter index\",\"value\":0},{\"name\":\"filter\",\"value\":\"nearest\"},{\"name\":\"wrap index\",\"value\":0},{\"name\":\"wrap\",\"value\":\"clamp to edge\"},{\"name\":\"Dither\",\"value\":0},{\"name\":\"Gradient Array\",\"value\":0}],\"portsOut\":[{\"name\":\"Texture\",\"links\":[{\"portIn\":\"Normal\",\"portOut\":\"Texture\",\"objIn\":\"znj0gtwab\",\"objOut\":\"13dxix11f\"}]}],\"objName\":\"Ops.Gl.GradientTexture\"},{\"id\":\"69e8cxa7e\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"scale\",\"value\":0.76},{\"name\":\"x\",\"value\":0.99},{\"name\":\"y\",\"value\":1.79},{\"name\":\"z\",\"value\":0.47}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"yyw9jp0lz\",\"objOut\":\"69e8cxa7e\"}]}],\"objName\":\"Ops.Gl.Matrix.Scale\"},{\"id\":\"r9gyvdkvh\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Frequency\",\"value\":1},{\"name\":\"Type index\",\"value\":0},{\"name\":\"Type\",\"value\":\"sine\"},{\"name\":\"Phase\",\"value\":0},{\"name\":\"Range Min\",\"value\":0},{\"name\":\"Range Max\",\"value\":1}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pos\",\"portOut\":\"Result\",\"objIn\":\"qe82kxn0g\",\"objOut\":\"r9gyvdkvh\"}]}],\"objName\":\"Ops.Anim.LFO_v2\"},{\"id\":\"bmv9fqxjh\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Speed\",\"value\":0.05},{\"name\":\"Play\",\"value\":1},{\"name\":\"Sync to timeline\",\"value\":0}],\"portsOut\":[{\"name\":\"Time\",\"links\":[{\"portIn\":\"Time\",\"portOut\":\"Time\",\"objIn\":\"r9gyvdkvh\",\"objOut\":\"bmv9fqxjh\"}]}],\"objName\":\"Ops.Anim.Timer_v2\"},{\"id\":\"we5n3qi4s\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_alrh6hig4\",\"title\":\"render\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_alrh6hig4\",\"objIn\":\"rmprhecho\",\"objOut\":\"we5n3qi4s\"}]},{\"name\":\"innerOut_8dittifdh\",\"title\":\"Render\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"innerOut_8dittifdh\",\"objIn\":\"znj0gtwab\",\"objOut\":\"we5n3qi4s\"},{\"portIn\":\"Render\",\"portOut\":\"innerOut_8dittifdh\",\"objIn\":\"kan5jvxj9\",\"objOut\":\"we5n3qi4s\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"aqkj0fxy7\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"qe82kxn0g\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Blend Mode index\",\"value\":18},{\"name\":\"Blend Mode\",\"value\":\"Math Add\"},{\"name\":\"Alpha Mask index\",\"value\":0},{\"name\":\"Alpha Mask\",\"value\":\"Off\"},{\"name\":\"Amount\",\"value\":1},{\"name\":\"Width\",\"value\":1},{\"name\":\"Type index\",\"value\":3},{\"name\":\"Type\",\"value\":\"Radial\"},{\"name\":\"Smoothstep\",\"value\":0},{\"name\":\"sRGB\",\"value\":0},{\"name\":\"color space index\",\"value\":0},{\"name\":\"color space\",\"value\":\"RGB\"},{\"name\":\"r\",\"value\":0.19606043020884192},{\"name\":\"g\",\"value\":0.9551},{\"name\":\"b\",\"value\":0.3028},{\"name\":\"r2\",\"value\":0.247},{\"name\":\"g2\",\"value\":0.596},{\"name\":\"b2\",\"value\":0.608},{\"name\":\"r3\",\"value\":0.951},{\"name\":\"g3\",\"value\":0.0191},{\"name\":\"b3\",\"value\":0.6436}],\"objName\":\"Ops.Gl.ImageCompose.Gradient_v2\"},{\"id\":\"kan5jvxj9\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Size index\",\"value\":0},{\"name\":\"Size\",\"value\":\"Auto\"},{\"name\":\"Width\",\"value\":640},{\"name\":\"Height\",\"value\":480},{\"name\":\"Filter index\",\"value\":1},{\"name\":\"Filter\",\"value\":\"linear\"},{\"name\":\"Wrap index\",\"value\":1},{\"name\":\"Wrap\",\"value\":\"repeat\"},{\"name\":\"Anisotropic index\",\"value\":0},{\"name\":\"Anisotropic\",\"value\":\"0\"},{\"name\":\"Pixel Format index\",\"value\":9},{\"name\":\"Pixel Format\",\"value\":\"RGBA 16bit float\"},{\"name\":\"Clear\",\"value\":1},{\"name\":\"R\",\"value\":0},{\"name\":\"G\",\"value\":0},{\"name\":\"B\",\"value\":0},{\"name\":\"A\",\"value\":0}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"Next\",\"objIn\":\"qe82kxn0g\",\"objOut\":\"kan5jvxj9\"}]},{\"name\":\"texture_out\",\"links\":[{\"portIn\":\"MatCap\",\"portOut\":\"texture_out\",\"objIn\":\"znj0gtwab\",\"objOut\":\"kan5jvxj9\"}]},{\"name\":\"Aspect Ratio\",\"value\":1.713302752293578},{\"name\":\"Texture Width\",\"value\":1494},{\"name\":\"Texture Height\",\"value\":872}],\"objName\":\"Ops.Gl.ImageCompose.ImageCompose_v4\"},{\"id\":\"yyw9jp0lz\",\"uiAttribs\":{\"subPatch\":\"p18v6b9l8\"},\"storage\":{},\"portsIn\":[{\"name\":\"data\",\"value\":\"\"},{\"name\":\"glb File\",\"value\":\"/assets/tetragram_fixed_material.draco.glb\",\"display\":\"file\"},{\"name\":\"Draw\",\"value\":1},{\"name\":\"Camera index\",\"value\":0},{\"name\":\"Camera\",\"value\":\"None\"},{\"name\":\"Animation\",\"value\":\"\"},{\"name\":\"Center index\",\"value\":1},{\"name\":\"Center\",\"value\":\"XYZ\"},{\"name\":\"Rescale\",\"value\":1},{\"name\":\"Rescale Size\",\"value\":0.15},{\"name\":\"Time\",\"value\":0},{\"name\":\"Sync to timeline\",\"value\":0},{\"name\":\"Loop\",\"value\":1},{\"name\":\"Normals Format index\",\"value\":0},{\"name\":\"Normals Format\",\"value\":\"XYZ\"},{\"name\":\"Vertices Format index\",\"value\":0},{\"name\":\"Vertices Format\",\"value\":\"XYZ\"},{\"name\":\"Calc Normals index\",\"value\":0},{\"name\":\"Calc Normals\",\"value\":\"Auto\"},{\"name\":\"Hide Nodes\",\"value\":0},{\"name\":\"Use Material Properties\",\"value\":0},{\"name\":\"Active\",\"value\":1}],\"portsOut\":[{\"name\":\"Generator\",\"value\":\"Khronos glTF Blender I/O v4.2.60\"},{\"name\":\"GLTF Version\",\"value\":2},{\"name\":\"Anim Length\",\"value\":0},{\"name\":\"Anim Time\",\"value\":0},{\"name\":\"Loading\",\"value\":false}],\"objName\":\"Ops.Gl.GLTF.GltfScene_v4\"}]}",};
+const port_alrh6hig4=op.inTrigger("alrh6hig4");
+port_alrh6hig4.setUiAttribs({title:"render",});
+
+const port_8dittifdh=op.inTrigger("8dittifdh");
+port_8dittifdh.setUiAttribs({title:"Render",});
+
+op.initInnerPorts=function(addedOps)
+{
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
+    {
+const innerOut_alrh6hig4 = addedOps[i].outTrigger("innerOut_alrh6hig4");
+innerOut_alrh6hig4.setUiAttribs({title:"render"});
+port_alrh6hig4.onTriggered = () => { innerOut_alrh6hig4.trigger(); };
+
+const innerOut_8dittifdh = addedOps[i].outTrigger("innerOut_8dittifdh");
+innerOut_8dittifdh.setUiAttribs({title:"Render"});
+port_8dittifdh.onTriggered = () => { innerOut_8dittifdh.trigger(); };
+
+    }
+if(addedOps[i].innerOutput)
+{
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
+    {
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
+    }
+
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
+}
+
+
+};
+
+Ops.Patch.PbdFbHA.SubPatch3.prototype = new CABLES.Op();
+CABLES.OPS["d8ef430e-cac3-4a6b-b046-872e1708ff5d"]={f:Ops.Patch.PbdFbHA.SubPatch3,objName:"Ops.Patch.PbdFbHA.SubPatch3"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PbdFbHA.BasicSlider_v1
+// 
+// **************************************************************
+
+Ops.Patch.PbdFbHA.BasicSlider_v1 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"inc_gen_ports_js":"const port_blls2amps=op.inTrigger(\"blls2amps\");\nport_blls2amps.setUiAttribs({title:\"Trigger in\",});\n\nconst port_btagbs7z2=op.inString(\"btagbs7z2\",\"\");\nport_btagbs7z2.setUiAttribs({title:\"Class\",});\n\nconst port_lj06d561p=op.inFloat(\"lj06d561p\",0);\nport_lj06d561p.setUiAttribs({title:\"Show Boundings\",display:\"bool\",});\n\nconst port_nti406vwi=op.outNumber(\"nti406vwi\");\nport_nti406vwi.setUiAttribs({title:\"Result\",});\n\nconst port_gjvx0zyv5=op.outNumber(\"gjvx0zyv5\");\nport_gjvx0zyv5.setUiAttribs({title:\"value\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_blls2amps = addedOps[i].outTrigger(\"innerOut_blls2amps\");\ninnerOut_blls2amps.setUiAttribs({title:\"Trigger in\"});\nport_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };\n\nconst innerOut_btagbs7z2 = addedOps[i].outString(\"innerOut_btagbs7z2\");\ninnerOut_btagbs7z2.set(port_btagbs7z2.get() );\ninnerOut_btagbs7z2.setUiAttribs({title:\"Class\"});\nport_btagbs7z2.on(\"change\", (a,v) => { innerOut_btagbs7z2.set(a); });\n\nconst innerOut_lj06d561p = addedOps[i].outNumber(\"innerOut_lj06d561p\");\ninnerOut_lj06d561p.set(port_lj06d561p.get() );\ninnerOut_lj06d561p.setUiAttribs({title:\"Show Boundings\"});\nport_lj06d561p.on(\"change\", (a,v) => { innerOut_lj06d561p.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\nconst innerIn_nti406vwi = addedOps[i].inFloat(\"innerIn_nti406vwi\");\ninnerIn_nti406vwi.setUiAttribs({title:\"Result\"});\ninnerIn_nti406vwi.on(\"change\", (a,v) => { port_nti406vwi.set(a); });\n\nconst innerIn_gjvx0zyv5 = addedOps[i].inFloat(\"innerIn_gjvx0zyv5\");\ninnerIn_gjvx0zyv5.setUiAttribs({title:\"value\"});\ninnerIn_gjvx0zyv5.on(\"change\", (a,v) => { port_gjvx0zyv5.set(a); });\n\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"mibecaqps\",\"uiAttribs\":{\"subPatch\":\"cg12otsse\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.179},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":0.692},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":0},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":0},{\"name\":\"Tex Offset Y\",\"value\":0},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"zzuotyuj8\",\"objOut\":\"mibecaqps\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"0lkifp8gr\",\"uiAttribs\":{\"subPatch\":\"cg12otsse\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posY\",\"value\":0},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":0.7},{\"name\":\"rotX\",\"value\":-180},{\"name\":\"rotY\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"mibecaqps\",\"objOut\":\"0lkifp8gr\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"rviscpw5r\",\"uiAttribs\":{\"subPatch\":\"cg12otsse\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Separate inc/dec\",\"value\":0},{\"name\":\"Inc factor\",\"value\":2,\"title\":\"Inc/Dec factor\"},{\"name\":\"Dec factor\",\"value\":4}],\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Next\",\"objIn\":\"0lkifp8gr\",\"objOut\":\"rviscpw5r\"},{\"portIn\":\"exe\",\"portOut\":\"Next\",\"objIn\":\"ujv4mg17e\",\"objOut\":\"rviscpw5r\"}]},{\"name\":\"Result\",\"links\":[{\"portIn\":\"posX\",\"portOut\":\"Result\",\"objIn\":\"0lkifp8gr\",\"objOut\":\"rviscpw5r\"},{\"portIn\":\"innerIn_nti406vwi\",\"portOut\":\"Result\",\"objIn\":\"nor1x0y61\",\"objOut\":\"rviscpw5r\"},{\"portIn\":\"number1\",\"portOut\":\"Result\",\"objIn\":\"iea5ao2y2\",\"objOut\":\"rviscpw5r\"}]}],\"objName\":\"Ops.Anim.Smooth\"},{\"id\":\"zzuotyuj8\",\"uiAttribs\":{\"subPatch\":\"cg12otsse\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"width\",\"value\":0.017},{\"name\":\"height\",\"value\":0.05},{\"name\":\"Draw\",\"value\":1}],\"objName\":\"Ops.Gl.Meshes.Triangle_v2\"},{\"id\":\"gmc3o0yzj\",\"uiAttribs\":{\"subPatch\":\"cg12otsse\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_blls2amps\",\"title\":\"Trigger in\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"innerOut_blls2amps\",\"objIn\":\"zyly9dj8g\",\"objOut\":\"gmc3o0yzj\"}]},{\"name\":\"innerOut_btagbs7z2\",\"title\":\"Class\",\"links\":[{\"portIn\":\"String In\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"g0k1dqgdc\",\"objOut\":\"gmc3o0yzj\"},{\"portIn\":\"ID\",\"portOut\":\"innerOut_btagbs7z2\",\"objIn\":\"mzzhxzxfq\",\"objOut\":\"gmc3o0yzj\"}]},{\"name\":\"innerOut_lj06d561p\",\"title\":\"Show Boundings\",\"links\":[{\"portIn\":\"Render Rectangle\",\"portOut\":\"innerOut_lj06d561p\",\"objIn\":\"mzzhxzxfq\",\"objOut\":\"gmc3o0yzj\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"nor1x0y61\",\"uiAttribs\":{\"subPatch\":\"cg12otsse\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"innerIn_nti406vwi\",\"title\":\"Result\"},{\"name\":\"innerIn_gjvx0zyv5\",\"title\":\"value\"}],\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"9bvbbyk9y\",\"uiAttribs\":{\"subPatch\":\"cg12otsse\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":0.5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"rviscpw5r\",\"objOut\":\"9bvbbyk9y\"}]}],\"objName\":\"Ops.Math.Subtract\"},{\"id\":\"ujv4mg17e\",\"uiAttribs\":{\"subPatch\":\"cg12otsse\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":0},{\"name\":\"easing\",\"value\":\"linear\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0.49},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"value\",\"links\":[{\"portIn\":\"a\",\"portOut\":\"value\",\"objIn\":\"mibecaqps\",\"objOut\":\"ujv4mg17e\"},{\"portIn\":\"innerIn_gjvx0zyv5\",\"portOut\":\"value\",\"objIn\":\"nor1x0y61\",\"objOut\":\"ujv4mg17e\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"iea5ao2y2\",\"uiAttribs\":{\"subPatch\":\"cg12otsse\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"number2\",\"value\":5}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"rotZ\",\"portOut\":\"result\",\"objIn\":\"0lkifp8gr\",\"objOut\":\"iea5ao2y2\"}]}],\"objName\":\"Ops.Math.Multiply\"},{\"id\":\"zyly9dj8g\",\"uiAttribs\":{\"subPatch\":\"cg12otsse\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":0},{\"name\":\"y\",\"value\":-1.45},{\"name\":\"z\",\"value\":0.02}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"bnqxchxdy\",\"objOut\":\"zyly9dj8g\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"i35qt5h52\",\"uiAttribs\":{\"subPatch\":\"cg12otsse\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"result\",\"objIn\":\"leht2psro\",\"objOut\":\"i35qt5h52\"},{\"portIn\":\"Index\",\"portOut\":\"result\",\"objIn\":\"8vb7jo147\",\"objOut\":\"i35qt5h52\"},{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"mjgge74tk\",\"objOut\":\"i35qt5h52\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"7zp4rrptl\",\"uiAttribs\":{\"subPatch\":\"cg12otsse\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeLevel\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"w1t4yqcfv\",\"uiAttribs\":{\"subPatch\":\"cg12otsse\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int ir level\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"g0k1dqgdc\",\"uiAttribs\":{\"subPatch\":\"cg12otsse\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"scapeLevel\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"ejj3oddhv\",\"objOut\":\"g0k1dqgdc\"},{\"portIn\":\"Key\",\"portOut\":\"String Out\",\"objIn\":\"zwg2yqvrf\",\"objOut\":\"g0k1dqgdc\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"ejj3oddhv\",\"uiAttribs\":{\"subPatch\":\"cg12otsse\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"8kcvz9igq\",\"uiAttribs\":{\"subPatch\":\"cg12otsse\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValue\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"qmk2dl6c4\",\"uiAttribs\":{\"subPatch\":\"cg12otsse\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ext_injectedState\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Object In\",\"portOut\":\"Value\",\"objIn\":\"gknkj3y4x\",\"objOut\":\"qmk2dl6c4\"}]}],\"objName\":\"Ops.Vars.VarGetObject_v2\"},{\"id\":\"zwg2yqvrf\",\"uiAttribs\":{\"subPatch\":\"cg12otsse\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Numbers_0\",\"portOut\":\"Result\",\"objIn\":\"8vb7jo147\",\"objOut\":\"zwg2yqvrf\"}]},{\"name\":\"Found\",\"value\":0}],\"objName\":\"Ops.Json.ObjectGetNumber_v2\"},{\"id\":\"8vb7jo147\",\"uiAttribs\":{\"subPatch\":\"cg12otsse\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_2\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"7zp4rrptl\",\"objOut\":\"8vb7jo147\"},{\"portIn\":\"number1\",\"portOut\":\"Number\",\"objIn\":\"9bvbbyk9y\",\"objOut\":\"8vb7jo147\"}]},{\"name\":\"Num Values\",\"value\":2}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"gknkj3y4x\",\"uiAttribs\":{\"subPatch\":\"cg12otsse\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last object\"},{\"name\":\"Only Valid Objects\",\"value\":1}],\"portsOut\":[{\"name\":\"Object Out\",\"links\":[{\"portIn\":\"Data\",\"portOut\":\"Object Out\",\"objIn\":\"zwg2yqvrf\",\"objOut\":\"gknkj3y4x\"}]}],\"objName\":\"Ops.Json.GateObject\"},{\"id\":\"leht2psro\",\"uiAttribs\":{\"subPatch\":\"cg12otsse\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"gknkj3y4x\",\"objOut\":\"leht2psro\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"mjgge74tk\",\"uiAttribs\":{\"subPatch\":\"cg12otsse\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonSlider\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"ma5xd9zja\",\"uiAttribs\":{\"subPatch\":\"cg12otsse\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":0},{\"name\":\"When False\",\"value\":\"keep last number\"},{\"name\":\"Custom Value\",\"value\":0}],\"portsOut\":[{\"name\":\"Value Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Value Out\",\"objIn\":\"8kcvz9igq\",\"objOut\":\"ma5xd9zja\"},{\"portIn\":\"Numbers_1\",\"portOut\":\"Value Out\",\"objIn\":\"8vb7jo147\",\"objOut\":\"ma5xd9zja\"},{\"portIn\":\"Number\",\"portOut\":\"Value Out\",\"objIn\":\"o1wvr3kg9\",\"objOut\":\"ma5xd9zja\"}]}],\"objName\":\"Ops.Number.GateNumber\"},{\"id\":\"o1wvr3kg9\",\"uiAttribs\":{\"subPatch\":\"cg12otsse\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.VizNumberBar\"},{\"id\":\"3hftipxyj\",\"uiAttribs\":{\"subPatch\":\"cg12otsse\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"pk2351zm7\",\"uiAttribs\":{\"subPatch\":\"cg12otsse\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"3hftipxyj\",\"objOut\":\"pk2351zm7\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"tc6onu8jl\",\"uiAttribs\":{\"subPatch\":\"cg12otsse\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_normValueOnHover\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bnqxchxdy\",\"uiAttribs\":{\"subPatch\":\"cg12otsse\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":2.72},{\"name\":\"y\",\"value\":0.51},{\"name\":\"z\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"mzzhxzxfq\",\"objOut\":\"bnqxchxdy\"}]}],\"objName\":\"Ops.Gl.Matrix.ScaleXYZViewMatrix\"},{\"id\":\"mzzhxzxfq\",\"uiAttribs\":{\"subPatch\":\"cg12otsse\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":1},{\"name\":\"Height\",\"value\":0.34},{\"name\":\"Class\",\"value\":\"slider_track\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":2},{\"name\":\"Pivot y\",\"value\":\"bottom\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":9},{\"name\":\"Cursor\",\"value\":\"s-resize\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"Update\",\"portOut\":\"Trigger out\",\"objIn\":\"rviscpw5r\",\"objOut\":\"mzzhxzxfq\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"ujv4mg17e\",\"objOut\":\"mzzhxzxfq\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Hover\",\"objIn\":\"g0k1dqgdc\",\"objOut\":\"mzzhxzxfq\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"pk2351zm7\",\"objOut\":\"mzzhxzxfq\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"i35qt5h52\",\"objOut\":\"mzzhxzxfq\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Down\",\"objIn\":\"ma5xd9zja\",\"objOut\":\"mzzhxzxfq\"}]},{\"name\":\"Pointer X\",\"links\":[{\"portIn\":\"Value In\",\"portOut\":\"Pointer X\",\"objIn\":\"ma5xd9zja\",\"objOut\":\"mzzhxzxfq\"},{\"portIn\":\"Value\",\"portOut\":\"Pointer X\",\"objIn\":\"tc6onu8jl\",\"objOut\":\"mzzhxzxfq\"}]},{\"name\":\"Pointer Y\",\"value\":0},{\"name\":\"Top\",\"value\":412.0720465183258},{\"name\":\"Left\",\"value\":113.09988784790039},{\"name\":\"Right\",\"value\":750.9001121520996},{\"name\":\"Bottom\",\"value\":452.73182141780853}],\"objName\":\"Ops.Patch.PbdFbHA.InteractiveRectangle_v24\"}]}",};
+const port_blls2amps=op.inTrigger("blls2amps");
+port_blls2amps.setUiAttribs({title:"Trigger in",});
+
+const port_btagbs7z2=op.inString("btagbs7z2","");
+port_btagbs7z2.setUiAttribs({title:"Class",});
+
+const port_lj06d561p=op.inFloat("lj06d561p",0);
+port_lj06d561p.setUiAttribs({title:"Show Boundings",display:"bool",});
+
+const port_nti406vwi=op.outNumber("nti406vwi");
+port_nti406vwi.setUiAttribs({title:"Result",});
+
+const port_gjvx0zyv5=op.outNumber("gjvx0zyv5");
+port_gjvx0zyv5.setUiAttribs({title:"value",});
+
+op.initInnerPorts=function(addedOps)
+{
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
+    {
+const innerOut_blls2amps = addedOps[i].outTrigger("innerOut_blls2amps");
+innerOut_blls2amps.setUiAttribs({title:"Trigger in"});
+port_blls2amps.onTriggered = () => { innerOut_blls2amps.trigger(); };
+
+const innerOut_btagbs7z2 = addedOps[i].outString("innerOut_btagbs7z2");
+innerOut_btagbs7z2.set(port_btagbs7z2.get() );
+innerOut_btagbs7z2.setUiAttribs({title:"Class"});
+port_btagbs7z2.on("change", (a,v) => { innerOut_btagbs7z2.set(a); });
+
+const innerOut_lj06d561p = addedOps[i].outNumber("innerOut_lj06d561p");
+innerOut_lj06d561p.set(port_lj06d561p.get() );
+innerOut_lj06d561p.setUiAttribs({title:"Show Boundings"});
+port_lj06d561p.on("change", (a,v) => { innerOut_lj06d561p.set(a); });
+
+    }
+if(addedOps[i].innerOutput)
+{
+const innerIn_nti406vwi = addedOps[i].inFloat("innerIn_nti406vwi");
+innerIn_nti406vwi.setUiAttribs({title:"Result"});
+innerIn_nti406vwi.on("change", (a,v) => { port_nti406vwi.set(a); });
+
+const innerIn_gjvx0zyv5 = addedOps[i].inFloat("innerIn_gjvx0zyv5");
+innerIn_gjvx0zyv5.setUiAttribs({title:"value"});
+innerIn_gjvx0zyv5.on("change", (a,v) => { port_gjvx0zyv5.set(a); });
+
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
+    {
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
+    }
+
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
+}
+
+
+};
+
+Ops.Patch.PbdFbHA.BasicSlider_v1.prototype = new CABLES.Op();
+CABLES.OPS["d1a4b416-d230-49fc-bdca-3898d9976559"]={f:Ops.Patch.PbdFbHA.BasicSlider_v1,objName:"Ops.Patch.PbdFbHA.BasicSlider_v1"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PbdFbHA.InteractiveRectangle_v24
+// 
+// **************************************************************
+
+Ops.Patch.PbdFbHA.InteractiveRectangle_v24 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("Trigger in"),
+    trigger = op.outTrigger("Trigger out"),
+    width = op.inValue("Width", 1),
+    height = op.inValue("Height", 1),
+    inId = op.inString("ID"),
+    classPort = op.inString("Class"),
+    pivotX = op.inValueSelect("Pivot x", ["center", "left", "right"]),
+    pivotY = op.inValueSelect("Pivot y", ["center", "top", "bottom"]),
+    axis = op.inValueSelect("Axis", ["xy", "xz"]),
+    isInteractive = op.inValueBool("Is Interactive", true),
+    renderRect = op.inValueBool("Render Rectangle", true),
+    divVisible = op.inValueBool("Show Boundings", true),
+    cursorPort = op.inValueSelect("Cursor", ["auto", "crosshair", "pointer", "Hand", "move", "n-resize", "ne-resize", "e-resize", "se-resize", "s-resize", "sw-resize", "w-resize", "nw-resize", "text", "wait", "help", "none"], "pointer"),
+    active = op.inValueBool("Render", true);
+
+const geomOut = op.outObject("geometry");
+geomOut.ignoreValueSerialize = true;
+
+const
+    mouseOver = op.outBoolNum("Pointer Hover", false),
+    mouseDown = op.outBoolNum("Pointer Down", false),
+    outX = op.outNumber("Pointer X"),
+    outY = op.outNumber("Pointer Y"),
+    outTop = op.outNumber("Top"),
+    outLeft = op.outNumber("Left"),
+    outRight = op.outNumber("Right"),
+    outBottom = op.outNumber("Bottom"),
+    mouseClick = op.outTrigger("Left Click");
+
+const elementPort = op.outObject("Dom Element");
+
+active.setUiAttribs({ "title": "Active" });
+
+const cgl = op.patch.cgl;
+axis.set("xy");
+pivotX.set("center");
+pivotY.set("center");
+
+const geom = new CGL.Geometry(op.name);
+let mesh = null;
+let div = null;
+const m = mat4.create();
+const trans = mat4.create();
+const pos = vec3.create();
+const divAlign = vec3.create();
+const divAlignSize = vec3.create();
+
+axis.onChange = rebuild;
+pivotX.onChange = rebuild;
+pivotY.onChange = rebuild;
+width.onChange = rebuild;
+height.onChange = rebuild;
+cursorPort.onChange = updateCursor;
+rebuild();
+
+const modelMatrix = mat4.create();
+const identViewMatrix = mat4.create();
+const zeroVec3 = vec3.create();
+
+render.onTriggered = function ()
+{
+    if (!div)
+    {
+        setUpDiv();
+        addListeners();
+        updateDivVisibility();
+        updateIsInteractive();
+    }
+    updateDivSize();
+
+    if (active.get() && renderRect.get() && mesh) mesh.render(cgl.getShader());
+
+    trigger.trigger();
+};
+
+function rebuild()
+{
+    let w = width.get();
+    let h = height.get();
+    let x = 0;
+    let y = 0;
+
+    if (typeof w == "string")w = parseFloat(w);
+    if (typeof h == "string")h = parseFloat(h);
+
+    if (pivotX.get() == "center")
+    {
+        x = 0;
+        divAlign[0] = -w / 2;
+    }
+    if (pivotX.get() == "right")
+    {
+        x = -w / 2;
+    }
+    if (pivotX.get() == "left")
+    {
+        x = w / 2;
+    }
+
+    if (pivotY.get() == "center")
+    {
+        y = 0;
+        divAlign[1] = -h / 2;
+    }
+    if (pivotY.get() == "top") y = -h / 2;
+    if (pivotY.get() == "bottom") y = +h / 2;
+
+    const verts = [];
+    const tc = [];
+    const norms = [];
+    const indices = [];
+
+    const numRows = 1;
+    const numColumns = 1;
+
+    const stepColumn = w / numColumns;
+    const stepRow = h / numRows;
+
+    let c, r;
+
+    for (r = 0; r <= numRows; r++)
+    {
+        for (c = 0; c <= numColumns; c++)
+        {
+            verts.push(c * stepColumn - width.get() / 2 + x);
+            if (axis.get() == "xz") verts.push(0.0);
+            verts.push(r * stepRow - height.get() / 2 + y);
+            if (axis.get() == "xy") verts.push(0.0);
+
+            tc.push(c / numColumns);
+            tc.push(1.0 - r / numRows);
+
+            if (axis.get() == "xz")
+            {
+                norms.push(0);
+                norms.push(1);
+                norms.push(0);
+            }
+
+            if (axis.get() == "xy")
+            {
+                norms.push(0);
+                norms.push(0);
+                norms.push(-1);
+            }
+        }
+    }
+
+    for (c = 0; c < numColumns; c++)
+    {
+        for (r = 0; r < numRows; r++)
+        {
+            const ind = c + (numColumns + 1) * r;
+            const v1 = ind;
+            const v2 = ind + 1;
+            const v3 = ind + numColumns + 1;
+            const v4 = ind + 1 + numColumns + 1;
+
+            indices.push(v1);
+            indices.push(v3);
+            indices.push(v2);
+
+            indices.push(v2);
+            indices.push(v3);
+            indices.push(v4);
+        }
+    }
+
+    geom.clear();
+    geom.vertices = verts;
+    geom.texCoords = tc;
+    geom.verticesIndices = indices;
+    geom.vertexNormals = norms;
+
+    if (!mesh) mesh = new CGL.Mesh(cgl, geom);
+    else mesh.setGeom(geom);
+
+    geomOut.set(null);
+    geomOut.set(geom);
+}
+
+let divX = 0;
+let divY = 0;
+let divWidth = 0;
+let divHeight = 0;
+
+const mMatrix = mat4.create();
+divVisible.onChange = updateDivVisibility;
+inId.onChange = updateId;
+classPort.onChange = updateClassNames;
+
+function updateDivVisibility()
+{
+    if (div)
+    {
+        if (divVisible.get()) div.style.border = "1px solid red";
+        else div.style.border = "none";
+    }
+}
+
+function updateCursor()
+{
+    if (div)
+    {
+        div.style.cursor = cursorPort.get();
+    }
+}
+
+function updateId()
+{
+    if (div)
+    {
+        div.setAttribute("id", inId.get());
+    }
+}
+
+function updateDivSize()
+{
+    // var vp=cgl.getViewPort();
+
+    mat4.multiply(mMatrix, cgl.vMatrix, cgl.mMatrix);
+    vec3.transformMat4(pos, divAlign, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const top = cgl.canvas.styleMarginTop || 0;
+    const left = cgl.canvas.styleMarginLeft || 0;
+
+    const x1 = (trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2 + left;
+    const y1 = (trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top;
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1];
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x2 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y2 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0];
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x3 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y3 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x4 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y4 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divX = Math.min(x1, x2, x3, x4);
+    divY = Math.min(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    const xb = Math.max(x1, x2, x3, x4);
+    const yb = Math.max(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    outTop.set(divY);
+    outLeft.set(divX);
+    outRight.set(xb);
+    outBottom.set(yb);
+
+    divWidth = Math.abs(xb - divX);
+    divHeight = Math.abs(yb - divY);
+
+    divX /= op.patch.cgl.pixelDensity;
+    divY /= op.patch.cgl.pixelDensity;
+    divWidth /= op.patch.cgl.pixelDensity;
+    divHeight /= op.patch.cgl.pixelDensity;
+
+    // div.style.left=divX+'px';
+    // div.style.top=divY+'px';
+    // div.style.width=divWidth+'px';
+    // div.style.height=divHeight+'px';
+
+    const divXpx = divX + "px";
+    const divYpx = divY + "px";
+    const divWidthPx = divWidth + "px";
+    const divHeightPx = divHeight + "px";
+    if (divXpx != div.style.left) div.style.left = divXpx;
+    if (divYpx != div.style.top) div.style.top = divYpx;
+    if (div.style.width != divWidthPx) div.style.width = divWidthPx;
+    if (div.style.height != divHeightPx) div.style.height = divHeightPx;
+}
+
+function updateClassNames()
+{
+    if (div)
+    {
+        div.className = classPort.get();
+    }
+}
+
+op.onDelete = function ()
+{
+    if (div)div.remove();
+};
+
+function setUpDiv()
+{
+    if (!div)
+    {
+        div = document.createElement("div");
+        div.dataset.op = op.id;
+        div.oncontextmenu = function (e)
+        {
+            e.preventDefault();
+        };
+
+        div.style.padding = "0px";
+        div.style.position = "absolute";
+        div.style["box-sizing"] = "border-box";
+        div.style.border = "1px solid red";
+        // div.style['border-left']="1px solid blue";
+        // div.style['border-top']="1px solid green";
+        div.style["z-index"] = "500";
+
+        div.style["-webkit-user-select"] = "none";
+        div.style["user-select"] = "none";
+        div.style["-webkit-tap-highlight-color"] = "rgba(0,0,0,0)";
+        div.style["-webkit-touch-callout"] = "none";
+
+        const canvas = op.patch.cgl.canvas.parentElement;
+        canvas.appendChild(div);
+        updateCursor();
+        updateIsInteractive();
+        updateId();
+        updateClassNames();
+    }
+    updateDivSize();
+    elementPort.set(div);
+}
+
+let listenerElement = null;
+
+function onMouseMove(e)
+{
+    const offsetX = -width.get() / 2;
+    const offsetY = -height.get() / 2;
+
+    outX.set(Math.max(0.0, Math.min(1.0, e.offsetX / divWidth)));
+    outY.set(Math.max(0.0, Math.min(1.0, 1.0 - e.offsetY / divHeight)));
+}
+
+function onMouseLeave(e)
+{
+    mouseDown.set(false);
+    mouseOver.set(false);
+}
+
+function onMouseEnter(e)
+{
+    mouseOver.set(true);
+}
+
+function onMouseDown(e)
+{
+    mouseDown.set(true);
+}
+
+function onMouseUp(e)
+{
+    mouseDown.set(false);
+}
+
+function onmouseclick(e)
+{
+    mouseClick.trigger();
+}
+
+function onTouchMove(e)
+{
+    const targetEle = document.elementFromPoint(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
+
+    if (targetEle == div)
+    {
+        mouseOver.set(true);
+        if (e.touches && e.touches.length > 0)
+        {
+            const rect = div.getBoundingClientRect(); // e.target
+            const x = e.targetTouches[0].pageX - rect.left;
+            const y = e.targetTouches[0].pageY - rect.top;
+
+            const touch = e.touches[0];
+
+            outX.set(Math.max(0.0, Math.min(1.0, x / divWidth)));
+            outY.set(Math.max(0.0, Math.min(1.0, 1.0 - y / divHeight)));
+
+            onMouseMove(touch);
+        }
+    }
+    else
+    {
+        mouseOver.set(false);
+    }
+}
+
+active.onChange = updateActiveRender;
+function updateActiveRender()
+{
+    if (active.get())
+    {
+        addListeners();
+        if (div) div.style.display = "block";
+    }
+    else
+    {
+        removeListeners();
+        if (div) div.style.display = "none";
+    }
+}
+
+isInteractive.onChange = updateIsInteractive;
+function updateIsInteractive()
+{
+    if (isInteractive.get())
+    {
+        addListeners();
+        if (div)div.style["pointer-events"] = "initial";
+    }
+    else
+    {
+        removeListeners();
+        mouseDown.set(false);
+        mouseOver.set(false);
+        if (div)div.style["pointer-events"] = "none";
+    }
+}
+
+function removeListeners()
+{
+    if (listenerElement)
+    {
+        document.removeEventListener("touchmove", onTouchMove);
+        listenerElement.removeEventListener("touchend", onMouseUp);
+        listenerElement.removeEventListener("touchstart", onMouseDown);
+
+        listenerElement.removeEventListener("click", onmouseclick);
+        listenerElement.removeEventListener("mousemove", onMouseMove);
+        listenerElement.removeEventListener("mouseleave", onMouseLeave);
+        listenerElement.removeEventListener("mousedown", onMouseDown);
+        listenerElement.removeEventListener("mouseup", onMouseUp);
+        listenerElement.removeEventListener("mouseenter", onMouseEnter);
+        // listenerElement.removeEventListener('contextmenu', onClickRight);
+        listenerElement = null;
+    }
+}
+
+function addListeners()
+{
+    if (listenerElement)removeListeners();
+
+    listenerElement = div;
+
+    if (listenerElement)
+    {
+        document.addEventListener("touchmove", onTouchMove);
+        listenerElement.addEventListener("touchend", onMouseUp);
+        listenerElement.addEventListener("touchstart", onMouseDown);
+
+        listenerElement.addEventListener("click", onmouseclick);
+        listenerElement.addEventListener("mousemove", onMouseMove);
+        listenerElement.addEventListener("mouseleave", onMouseLeave);
+        listenerElement.addEventListener("mousedown", onMouseDown);
+        listenerElement.addEventListener("mouseup", onMouseUp);
+        listenerElement.addEventListener("mouseenter", onMouseEnter);
+        // listenerElement.addEventListener('contextmenu', onClickRight);
+    }
+}
+
+
+};
+
+Ops.Patch.PbdFbHA.InteractiveRectangle_v24.prototype = new CABLES.Op();
+CABLES.OPS["53773d41-5246-4e6a-bfa8-360f197396bf"]={f:Ops.Patch.PbdFbHA.InteractiveRectangle_v24,objName:"Ops.Patch.PbdFbHA.InteractiveRectangle_v24"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PbdFbHA.UI_Reverse
+// 
+// **************************************************************
+
+Ops.Patch.PbdFbHA.UI_Reverse = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"inc_gen_ports_js":"op.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"qghiiy95s\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Named Trigger\",\"value\":\"exeNoCamera\"}],\"portsOut\":[{\"name\":\"Triggered\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"Triggered\",\"objIn\":\"tid23z5y9\",\"objOut\":\"qghiiy95s\"}]}],\"objName\":\"Ops.Trigger.TriggerReceive\"},{\"id\":\"7utel4c7y\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":1.56},{\"name\":\"y\",\"value\":-0.91},{\"name\":\"z\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Trigger in\",\"portOut\":\"trigger\",\"objIn\":\"wjdkfrc11\",\"objOut\":\"7utel4c7y\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"16otblnj7\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"x\",\"value\":2.35},{\"name\":\"y\",\"value\":-1.41},{\"name\":\"z\",\"value\":-1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"y8y68olnn\",\"objOut\":\"16otblnj7\"}]}],\"objName\":\"Ops.Gl.Matrix.Translate\"},{\"id\":\"y8y68olnn\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"r\",\"value\":0.18},{\"name\":\"g\",\"value\":0.87},{\"name\":\"b\",\"value\":0.7},{\"name\":\"a\",\"value\":0.639},{\"name\":\"colorizeTexture\",\"value\":0},{\"name\":\"Vertex Colors\",\"value\":0},{\"name\":\"Alpha Mask Source index\",\"value\":0},{\"name\":\"Alpha Mask Source\",\"value\":\"Luminance\"},{\"name\":\"Opacity TexCoords Transform\",\"value\":0},{\"name\":\"Discard Transparent Pixels\",\"value\":1},{\"name\":\"diffuseRepeatX\",\"value\":1},{\"name\":\"diffuseRepeatY\",\"value\":1},{\"name\":\"Tex Offset X\",\"value\":1},{\"name\":\"Tex Offset Y\",\"value\":1},{\"name\":\"Crop TexCoords\",\"value\":0},{\"name\":\"billboard\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"update\",\"portOut\":\"trigger\",\"objIn\":\"4rj53xcrb\",\"objOut\":\"y8y68olnn\"}]}],\"objName\":\"Ops.Gl.Shader.BasicMaterial_v3\"},{\"id\":\"emr97oqar\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":9},{\"name\":\"easing\",\"value\":\"Expo In Out\"},{\"name\":\"duration\",\"value\":0.25},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0},{\"name\":\"value true\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Execute\",\"portOut\":\"trigger\",\"objIn\":\"sagw7b55r\",\"objOut\":\"emr97oqar\"},{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"kvlx2oltj\",\"objOut\":\"emr97oqar\"}]},{\"name\":\"value\",\"links\":[{\"portIn\":\"Percentage\",\"portOut\":\"value\",\"objIn\":\"zw7w6mo0c\",\"objOut\":\"emr97oqar\"}]},{\"name\":\"finished\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"finished\",\"objIn\":\"eyg6ioae6\",\"objOut\":\"emr97oqar\"}]}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"texsus5w1\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"radius\",\"value\":0.5},{\"name\":\"segments\",\"value\":3},{\"name\":\"percent\",\"value\":1},{\"name\":\"steps\",\"value\":0},{\"name\":\"invertSteps\",\"value\":1},{\"name\":\"mapping index\",\"value\":1},{\"name\":\"mapping\",\"value\":\"round\"},{\"name\":\"Spline\",\"value\":0},{\"name\":\"Draw\",\"value\":0,\"title\":\"Render mesh\"}],\"portsOut\":[{\"name\":\"geometry\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"geometry\",\"objIn\":\"u5vhr44jp\",\"objOut\":\"texsus5w1\"}]}],\"objName\":\"Ops.Gl.Meshes.Circle_v3\"},{\"id\":\"mhkszyupz\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"direction\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"u5vhr44jp\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Translate X\",\"value\":0},{\"name\":\"Translate Y\",\"value\":0.03},{\"name\":\"Translate Z\",\"value\":0},{\"name\":\"Rotation X\",\"value\":0},{\"name\":\"Rotation Z\",\"value\":0}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Geometry\",\"portOut\":\"Result\",\"objIn\":\"a7obygjuu\",\"objOut\":\"u5vhr44jp\"}]}],\"objName\":\"Ops.Graphics.Geometry.TransformGeometry\"},{\"id\":\"a7obygjuu\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Render Mesh\",\"value\":1},{\"name\":\"Add Vertex Numbers\",\"value\":1}],\"objName\":\"Ops.Gl.RenderGeometry_v2\"},{\"id\":\"sagw7b55r\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"texsus5w1\",\"objOut\":\"sagw7b55r\"}]}],\"objName\":\"Ops.Trigger.GateTrigger\"},{\"id\":\"eyg6ioae6\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"bool 1\",\"portOut\":\"Result\",\"objIn\":\"c3tlwlzty\",\"objOut\":\"eyg6ioae6\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"wjfsknozl\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"easing index\",\"value\":8},{\"name\":\"easing\",\"value\":\"Expo Out\"},{\"name\":\"duration\",\"value\":2},{\"name\":\"Direction index\",\"value\":0},{\"name\":\"Direction\",\"value\":\"Both\"},{\"name\":\"value false\",\"value\":0},{\"name\":\"value true\",\"value\":180}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"trigger\",\"objIn\":\"a7obygjuu\",\"objOut\":\"wjfsknozl\"}]},{\"name\":\"value\",\"links\":[{\"portIn\":\"Rotation Y\",\"portOut\":\"value\",\"objIn\":\"u5vhr44jp\",\"objOut\":\"wjfsknozl\"}]},{\"name\":\"finished\",\"value\":1}],\"objName\":\"Ops.Anim.BoolAnim\"},{\"id\":\"4ic99bue4\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"value\",\"value\":0.3}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Scale X\",\"portOut\":\"result\",\"objIn\":\"u5vhr44jp\",\"objOut\":\"4ic99bue4\"},{\"portIn\":\"Scale Y\",\"portOut\":\"result\",\"objIn\":\"u5vhr44jp\",\"objOut\":\"4ic99bue4\"},{\"portIn\":\"Scale Z\",\"portOut\":\"result\",\"objIn\":\"u5vhr44jp\",\"objOut\":\"4ic99bue4\"}]}],\"objName\":\"Ops.Number.Number\"},{\"id\":\"vnufzl0gr\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__directionHover\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"4rj53xcrb\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Duration\",\"value\":0.1},{\"name\":\"Invert\",\"value\":0}],\"portsOut\":[{\"name\":\"Trigger Out\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"Trigger Out\",\"objIn\":\"wjfsknozl\",\"objOut\":\"4rj53xcrb\"}]},{\"name\":\"Value\",\"links\":[{\"portIn\":\"bool 2\",\"portOut\":\"Value\",\"objIn\":\"c3tlwlzty\",\"objOut\":\"4rj53xcrb\"}]}],\"objName\":\"Ops.Anim.Bang\"},{\"id\":\"c3tlwlzty\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"bool 3\",\"value\":0},{\"name\":\"bool 4\",\"value\":0},{\"name\":\"bool 5\",\"value\":0},{\"name\":\"bool 6\",\"value\":0},{\"name\":\"bool 7\",\"value\":0},{\"name\":\"bool 8\",\"value\":0},{\"name\":\"bool 9\",\"value\":0},{\"name\":\"bool 10\",\"value\":0}],\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"result\",\"objIn\":\"sagw7b55r\",\"objOut\":\"c3tlwlzty\"}]}],\"objName\":\"Ops.Boolean.Or\"},{\"id\":\"645zi03vl\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Named Trigger\",\"value\":\"mainExe\"}],\"portsOut\":[{\"name\":\"Triggered\",\"links\":[{\"portIn\":\"Exec\",\"portOut\":\"Triggered\",\"objIn\":\"3j312q09a\",\"objOut\":\"645zi03vl\"}]}],\"objName\":\"Ops.Trigger.TriggerReceive\"},{\"id\":\"3j312q09a\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Next\",\"links\":[{\"portIn\":\"Bang\",\"portOut\":\"Next\",\"objIn\":\"4rj53xcrb\",\"objOut\":\"3j312q09a\"}]},{\"name\":\"Was Triggered\",\"value\":1}],\"objName\":\"Ops.Trigger.TriggerOnce\"},{\"id\":\"hh1bw1t8x\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Text\",\"value\":\"mirror\"},{\"name\":\"Font\",\"value\":\"eb066298-c95b-4900-a9c8-abb0e9ea0930\"},{\"name\":\"Scale\",\"value\":0.06},{\"name\":\"Letter Spacing\",\"value\":0},{\"name\":\"Line Height\",\"value\":1},{\"name\":\"Align index\",\"value\":1},{\"name\":\"Align\",\"value\":\"Center\"},{\"name\":\"Vertical Align index\",\"value\":2},{\"name\":\"Vertical Align\",\"value\":\"Middle\"},{\"name\":\"r\",\"value\":1},{\"name\":\"g\",\"value\":1},{\"name\":\"b\",\"value\":1},{\"name\":\"a\",\"value\":1},{\"name\":\"SDF\",\"value\":1},{\"name\":\"Smoothing\",\"value\":0.147},{\"name\":\"Border\",\"value\":0},{\"name\":\"Border Width\",\"value\":0.085},{\"name\":\"Smoothness\",\"value\":0.25},{\"name\":\"Border r\",\"value\":0},{\"name\":\"Border g\",\"value\":0.107},{\"name\":\"Border b\",\"value\":0.196},{\"name\":\"Shadow\",\"value\":0},{\"name\":\"Positions\",\"value\":0},{\"name\":\"Scalings\",\"value\":0},{\"name\":\"Rotations\",\"value\":0},{\"name\":\"Colors\",\"value\":0}],\"portsOut\":[{\"name\":\"Num Lines\",\"value\":1},{\"name\":\"Width\",\"value\":0.1596796875},{\"name\":\"Height\",\"value\":0.056864533730158734},{\"name\":\"Start Y\",\"value\":0.017550471230158737},{\"name\":\"Num Chars\",\"value\":6}],\"objName\":\"Ops.Gl.TextMeshMSDF_v2\"},{\"id\":\"kvlx2oltj\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"posX\",\"value\":-0.06},{\"name\":\"posY\",\"value\":0},{\"name\":\"posZ\",\"value\":0},{\"name\":\"scale\",\"value\":1.12},{\"name\":\"rotX\",\"value\":0},{\"name\":\"rotZ\",\"value\":0}],\"portsOut\":[{\"name\":\"trigger\",\"links\":[{\"portIn\":\"Render\",\"portOut\":\"trigger\",\"objIn\":\"hh1bw1t8x\",\"objOut\":\"kvlx2oltj\"}]}],\"objName\":\"Ops.Gl.Matrix.Transform\"},{\"id\":\"zw7w6mo0c\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0.8},{\"name\":\"Value 2\",\"value\":-1}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"innerRadius\",\"portOut\":\"Result\",\"objIn\":\"texsus5w1\",\"objOut\":\"zw7w6mo0c\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"ujqk5fpaf\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value 1\",\"value\":0},{\"name\":\"Value 2\",\"value\":180},{\"name\":\"Percentage\",\"value\":0}],\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"rotY\",\"portOut\":\"Result\",\"objIn\":\"kvlx2oltj\",\"objOut\":\"ujqk5fpaf\"}]}],\"objName\":\"Ops.Math.Interpolate\"},{\"id\":\"1pqb89bjc\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeBypass\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"Value\",\"objIn\":\"tz85ej408\",\"objOut\":\"1pqb89bjc\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"tid23z5y9\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"16otblnj7\",\"objOut\":\"tid23z5y9\"},{\"portIn\":\"render\",\"portOut\":\"Trigger out\",\"objIn\":\"7utel4c7y\",\"objOut\":\"tid23z5y9\"}]}],\"objName\":\"Ops.Trigger.GateTrigger\"},{\"id\":\"tz85ej408\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Pass Through\",\"portOut\":\"Result\",\"objIn\":\"tid23z5y9\",\"objOut\":\"tz85ej408\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"cygi82km5\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_mouseIsChangingParamID\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"zbffut3f0\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"result\",\"objIn\":\"8ozh9kadw\",\"objOut\":\"zbffut3f0\"},{\"portIn\":\"Index\",\"portOut\":\"result\",\"objIn\":\"0vu10mt62\",\"objOut\":\"zbffut3f0\"}]}],\"objName\":\"Ops.Ui.Routing.RouteNumber\"},{\"id\":\"nfsa96rhl\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"value\",\"value\":\"scapeReverse\"}],\"portsOut\":[{\"name\":\"String\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String\",\"objIn\":\"cygi82km5\",\"objOut\":\"nfsa96rhl\"},{\"portIn\":\"String In\",\"portOut\":\"String\",\"objIn\":\"t14aqlug4\",\"objOut\":\"nfsa96rhl\"},{\"portIn\":\"ID\",\"portOut\":\"String\",\"objIn\":\"wjdkfrc11\",\"objOut\":\"nfsa96rhl\"}]}],\"objName\":\"Ops.String.String_v2\"},{\"id\":\"vu19d3bul\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Bool\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Bool\",\"objIn\":\"td9wlsg43\",\"objOut\":\"vu19d3bul\"}]}],\"objName\":\"Ops.Ui.VizBool\"},{\"id\":\"8ozh9kadw\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_leftButtonToggle\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"90vhc52nh\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeReverse\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"9r76qflhv\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Title\",\"value\":\"ext/int rev\"}],\"objName\":\"Ops.Ui.Area\"},{\"id\":\"t14aqlug4\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"scapeReverse\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"qvj2rc5yc\",\"objOut\":\"t14aqlug4\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"qvj2rc5yc\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeReverse_mouseEnter_string\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"td9wlsg43\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeReverse\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"0vu10mt62\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Numbers\",\"multiPortNum\":2},{\"name\":\"Numbers_0\",\"value\":0},{\"name\":\"Numbers_1\",\"value\":0,\"title\":\"add port\"}],\"portsOut\":[{\"name\":\"Number\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Number\",\"objIn\":\"90vhc52nh\",\"objOut\":\"0vu10mt62\"}]},{\"name\":\"Num Values\",\"value\":1}],\"objName\":\"Ops.Number.SwitchNumberMultiPort\"},{\"id\":\"o11gp8oqj\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"l212r4h3a\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchOutput\"},{\"id\":\"wjdkfrc11\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Width\",\"value\":0.18},{\"name\":\"Height\",\"value\":0.3},{\"name\":\"Class\",\"value\":\"\"},{\"name\":\"Pivot x index\",\"value\":0},{\"name\":\"Pivot x\",\"value\":\"center\"},{\"name\":\"Pivot y index\",\"value\":0},{\"name\":\"Pivot y\",\"value\":\"center\"},{\"name\":\"Axis index\",\"value\":0},{\"name\":\"Axis\",\"value\":\"xy\"},{\"name\":\"Is Interactive\",\"value\":1},{\"name\":\"Render Rectangle\",\"value\":0},{\"name\":\"Show Boundings\",\"value\":0},{\"name\":\"Cursor index\",\"value\":2},{\"name\":\"Cursor\",\"value\":\"pointer\"},{\"name\":\"Render\",\"value\":1,\"title\":\"Active\"}],\"portsOut\":[{\"name\":\"Trigger out\",\"links\":[{\"portIn\":\"exe\",\"portOut\":\"Trigger out\",\"objIn\":\"emr97oqar\",\"objOut\":\"wjdkfrc11\"}]},{\"name\":\"Pointer Hover\",\"links\":[{\"portIn\":\"bool\",\"portOut\":\"Pointer Hover\",\"objIn\":\"emr97oqar\",\"objOut\":\"wjdkfrc11\"},{\"portIn\":\"Value\",\"portOut\":\"Pointer Hover\",\"objIn\":\"vnufzl0gr\",\"objOut\":\"wjdkfrc11\"},{\"portIn\":\"Boolean\",\"portOut\":\"Pointer Hover\",\"objIn\":\"bapp6utku\",\"objOut\":\"wjdkfrc11\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Hover\",\"objIn\":\"t14aqlug4\",\"objOut\":\"wjdkfrc11\"},{\"portIn\":\"Pass Through\",\"portOut\":\"Pointer Hover\",\"objIn\":\"om0mg2x2d\",\"objOut\":\"wjdkfrc11\"}]},{\"name\":\"Pointer Down\",\"links\":[{\"portIn\":\"value\",\"portOut\":\"Pointer Down\",\"objIn\":\"zbffut3f0\",\"objOut\":\"wjdkfrc11\"}]},{\"name\":\"Pointer X\",\"value\":0.43427912988118217},{\"name\":\"Pointer Y\",\"value\":0.028793380943673674},{\"name\":\"Top\",\"value\":527.8919612169266},{\"name\":\"Left\",\"value\":957.7120399475098},{\"name\":\"Right\",\"value\":1008.3707027435303},{\"name\":\"Bottom\",\"value\":612.3230167627335},{\"name\":\"Left Click\",\"links\":[{\"portIn\":\"trigger in\",\"portOut\":\"Left Click\",\"objIn\":\"lykqgog3v\",\"objOut\":\"wjdkfrc11\"}]}],\"objName\":\"Ops.Patch.PbdFbHA.InteractiveRectangle_v23\"},{\"id\":\"11sr8l1sw\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"bapp6utku\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"11sr8l1sw\",\"objOut\":\"bapp6utku\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"fzdh5f3dx\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Bool\",\"value\":0}],\"objName\":\"Ops.Ui.VizBool\"},{\"id\":\"om0mg2x2d\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"String In\",\"value\":\"enter\"},{\"name\":\"When False index\",\"value\":1},{\"name\":\"When False\",\"value\":\"custom\"},{\"name\":\"Custom Value\",\"value\":\"leave\"}],\"portsOut\":[{\"name\":\"String Out\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"String Out\",\"objIn\":\"2taefvu7i\",\"objOut\":\"om0mg2x2d\"}]}],\"objName\":\"Ops.String.GateString\"},{\"id\":\"2taefvu7i\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"ui_scapeReverse_mouseEnter_string\"}],\"objName\":\"Ops.Vars.VarSetString_v2\"},{\"id\":\"pf3tzra6p\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"host_scapeReverse\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"Value\",\"objIn\":\"fzdh5f3dx\",\"objOut\":\"pf3tzra6p\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"0dafyebwa\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Value\",\"value\":0},{\"name\":\"Variable\",\"value\":\"host_scapeReverse\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"6871qjb4g\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"storage\":{\"blueprintVer\":2,\"ref\":\"6871qjb4g\"},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"host_scapeReverse\"}],\"portsOut\":[{\"name\":\"Value\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Value\",\"objIn\":\"10k0ten5d\",\"objOut\":\"6871qjb4g\"}]}],\"objName\":\"Ops.Vars.VarGetNumber_v2\"},{\"id\":\"crxc9gthe\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"host_scapeReverse\"}],\"storage\":{\"ref\":\"crxc9gthe\",\"blueprintVer\":2},\"objName\":\"Ops.Vars.VarTriggerNumber\"},{\"id\":\"c8109m2kz\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"portsIn\":[{\"name\":\"Loop min\",\"value\":0},{\"name\":\"Loop max\",\"value\":1}],\"portsOut\":[{\"name\":\"current count\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"current count\",\"objIn\":\"vu19d3bul\",\"objOut\":\"c8109m2kz\"},{\"portIn\":\"bool\",\"portOut\":\"current count\",\"objIn\":\"wjfsknozl\",\"objOut\":\"c8109m2kz\"}]}],\"storage\":{\"ref\":\"c8109m2kz\",\"blueprintVer\":2},\"objName\":\"Ops.Trigger.TriggerCounterLoop\"},{\"id\":\"10k0ten5d\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"portsOut\":[{\"name\":\"True\",\"links\":[{\"portIn\":\"trigger in\",\"portOut\":\"True\",\"objIn\":\"c8109m2kz\",\"objOut\":\"10k0ten5d\"}]},{\"name\":\"False\",\"links\":[{\"portIn\":\"reset\",\"portOut\":\"False\",\"objIn\":\"c8109m2kz\",\"objOut\":\"10k0ten5d\"}]}],\"storage\":{\"ref\":\"10k0ten5d\",\"blueprintVer\":2},\"objName\":\"Ops.Boolean.TriggerOnChangeBoolean\"},{\"id\":\"lykqgog3v\",\"uiAttribs\":{\"subPatch\":\"r008xv2ya\"},\"portsIn\":[{\"name\":\"Loop min\",\"value\":0},{\"name\":\"Loop max\",\"value\":1}],\"portsOut\":[{\"name\":\"trigger out\",\"links\":[{\"portIn\":\"Trigger\",\"portOut\":\"trigger out\",\"objIn\":\"crxc9gthe\",\"objOut\":\"lykqgog3v\"}]},{\"name\":\"current count\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"current count\",\"objIn\":\"crxc9gthe\",\"objOut\":\"lykqgog3v\"}]}],\"storage\":{\"ref\":\"lykqgog3v\",\"blueprintVer\":2},\"objName\":\"Ops.Trigger.TriggerCounterLoop\"}]}",};
+op.initInnerPorts=function(addedOps)
+{
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
+    {
+    }
+if(addedOps[i].innerOutput)
+{
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
+    {
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
+    }
+
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
+}
+
+
+};
+
+Ops.Patch.PbdFbHA.UI_Reverse.prototype = new CABLES.Op();
+CABLES.OPS["6e3eeb5b-6627-43e4-9a42-990df340ab4f"]={f:Ops.Patch.PbdFbHA.UI_Reverse,objName:"Ops.Patch.PbdFbHA.UI_Reverse"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PbdFbHA.DisengageFlag2
+// 
+// **************************************************************
+
+Ops.Patch.PbdFbHA.DisengageFlag2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"inc_gen_ports_js":"const port_jqg7l6f5m=op.inFloat(\"jqg7l6f5m\",0);\nport_jqg7l6f5m.setUiAttribs({title:\"Boolean\",display:\"bool\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_jqg7l6f5m = addedOps[i].outNumber(\"innerOut_jqg7l6f5m\");\ninnerOut_jqg7l6f5m.set(port_jqg7l6f5m.get() );\ninnerOut_jqg7l6f5m.setUiAttribs({title:\"Boolean\"});\nport_jqg7l6f5m.on(\"change\", (a,v) => { innerOut_jqg7l6f5m.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"tjwrh5u95\",\"uiAttribs\":{\"subPatch\":\"qs9sxp2nl\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"dlvka8p7u\",\"uiAttribs\":{\"subPatch\":\"qs9sxp2nl\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"tjwrh5u95\",\"objOut\":\"dlvka8p7u\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"eck8hvwot\",\"uiAttribs\":{\"subPatch\":\"qs9sxp2nl\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_jqg7l6f5m\",\"title\":\"Boolean\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"innerOut_jqg7l6f5m\",\"objIn\":\"dlvka8p7u\",\"objOut\":\"eck8hvwot\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"7mxc7zyyb\",\"uiAttribs\":{\"subPatch\":\"qs9sxp2nl\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchOutput\"}]}",};
+const port_jqg7l6f5m=op.inFloat("jqg7l6f5m",0);
+port_jqg7l6f5m.setUiAttribs({title:"Boolean",display:"bool",});
+
+op.initInnerPorts=function(addedOps)
+{
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
+    {
+const innerOut_jqg7l6f5m = addedOps[i].outNumber("innerOut_jqg7l6f5m");
+innerOut_jqg7l6f5m.set(port_jqg7l6f5m.get() );
+innerOut_jqg7l6f5m.setUiAttribs({title:"Boolean"});
+port_jqg7l6f5m.on("change", (a,v) => { innerOut_jqg7l6f5m.set(a); });
+
+    }
+if(addedOps[i].innerOutput)
+{
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
+    {
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
+    }
+
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
+}
+
+
+};
+
+Ops.Patch.PbdFbHA.DisengageFlag2.prototype = new CABLES.Op();
+CABLES.OPS["beed8071-f26a-4a66-9fd1-f7429503fa49"]={f:Ops.Patch.PbdFbHA.DisengageFlag2,objName:"Ops.Patch.PbdFbHA.DisengageFlag2"};
 
 
 
@@ -9186,86 +9186,1506 @@ CABLES.OPS["02d45073-7936-4830-81ad-59a162febf1f"]={f:Ops.Ui.SubPatchOutput,objN
 
 // **************************************************************
 // 
-// Ops.Gl.Textures.Base64ToTexture
+// Ops.Gl.Texture_v2
 // 
 // **************************************************************
 
-Ops.Gl.Textures.Base64ToTexture = function()
+Ops.Gl.Texture_v2 = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
 const attachments=op.attachments={};
 const
-    dataIn = op.inStringEditor("Base64 / Data URI", ""),
-    tfilter = op.inSwitch("filter", ["nearest", "linear", "mipmap"], "linear"),
-    twrap = op.inValueSelect("wrap", ["clamp to edge", "repeat", "mirrored repeat"], "clamp to edge"),
+    filename = op.inUrl("File", [".jpg", ".png", ".webp", ".jpeg", ".avif"]),
+    tfilter = op.inSwitch("Filter", ["nearest", "linear", "mipmap"]),
+    wrap = op.inValueSelect("Wrap", ["repeat", "mirrored repeat", "clamp to edge"], "clamp to edge"),
     aniso = op.inSwitch("Anisotropic", ["0", "1", "2", "4", "8", "16"], "0"),
+    dataFrmt = op.inSwitch("Data Format", ["R", "RG", "RGB", "RGBA", "SRGBA"], "RGBA"),
+    flip = op.inValueBool("Flip", false),
     unpackAlpha = op.inValueBool("Pre Multiplied Alpha", false),
+    active = op.inValueBool("Active", true),
+    inFreeMemory = op.inBool("Save Memory", true),
     textureOut = op.outTexture("Texture"),
-    loadingOut = op.outBool("Loading");
+    addCacheBust = op.inBool("Add Cachebuster", false),
+    inReload = op.inTriggerButton("Reload"),
+    width = op.outNumber("Width"),
+    height = op.outNumber("Height"),
+    ratio = op.outNumber("Aspect Ratio"),
+    loaded = op.outBoolNum("Loaded", 0),
+    loading = op.outBoolNum("Loading", 0);
 
-const image = new Image();
+const cgl = op.patch.cgl;
 
-let doUpdateTex = false;
-let selectedWrap = CGL.Texture.WRAP_CLAMP_TO_EDGE;
-let selectedFilter = CGL.Texture.FILTER_LINEAR;
+op.toWorkPortsNeedToBeLinked(textureOut);
+op.setPortGroup("Size", [width, height]);
 
-function createTex()
-{
-    const tex = CGL.Texture.createFromImage(op.patch.cgl, image,
-        {
-            "filter": selectedFilter,
-            "wrap": selectedWrap,
-            "unpackAlpha": unpackAlpha.get(),
-            "anisotropic": parseFloat(aniso.get())
+let loadedFilename = null;
+let loadingId = null;
+let tex = null;
+let cgl_filter = CGL.Texture.FILTER_MIPMAP;
+let cgl_wrap = CGL.Texture.WRAP_REPEAT;
+let cgl_aniso = 0;
+let timedLoader = 0;
 
-        });
-    textureOut.set(tex);
-    loadingOut.set(false);
-}
-
-image.onload = function (e)
-{
-    op.patch.cgl.addNextFrameOnceCallback(createTex.bind(this));
-};
-
-aniso.onChange =
+unpackAlpha.setUiAttribs({ "hidePort": true });
 unpackAlpha.onChange =
-dataIn.onChange = () =>
+    filename.onChange =
+    dataFrmt.onChange =
+    addCacheBust.onChange =
+    flip.onChange = reloadSoon;
+aniso.onChange = tfilter.onChange = onFilterChange;
+wrap.onChange = onWrapChange;
+
+tfilter.set("mipmap");
+wrap.set("repeat");
+
+textureOut.setRef(CGL.Texture.getEmptyTexture(cgl));
+
+inReload.onTriggered = reloadSoon;
+
+active.onChange = function ()
 {
-    updateTex();
+    if (active.get())
+    {
+        if (loadedFilename != filename.get() || !tex) reloadSoon();
+        else textureOut.setRef(tex);
+    }
+    else
+    {
+        textureOut.setRef(CGL.Texture.getEmptyTexture(cgl));
+        width.set(CGL.Texture.getEmptyTexture(cgl).width);
+        height.set(CGL.Texture.getEmptyTexture(cgl).height);
+        if (tex)tex.delete();
+        op.setUiAttrib({ "extendTitle": "" });
+        tex = null;
+    }
 };
 
-twrap.onChange =
-    tfilter.onChange = () =>
-    {
-        if (tfilter.get() == "nearest") selectedFilter = CGL.Texture.FILTER_NEAREST;
-        else if (tfilter.get() == "linear") selectedFilter = CGL.Texture.FILTER_LINEAR;
-        else if (tfilter.get() == "mipmap") selectedFilter = CGL.Texture.FILTER_MIPMAP;
-
-        if (twrap.get() == "repeat") selectedWrap = CGL.Texture.WRAP_REPEAT;
-        else if (twrap.get() == "mirrored repeat") selectedWrap = CGL.Texture.WRAP_MIRRORED_REPEAT;
-        else if (twrap.get() == "clamp to edge") selectedWrap = CGL.Texture.WRAP_CLAMP_TO_EDGE;
-
-        updateTex();
-    };
-
-function updateTex()
+const setTempTexture = function ()
 {
-    loadingOut.set(true);
-    let data = dataIn.get();
-    if (data && !data.startsWith("data:"))
+    const t = CGL.Texture.getTempTexture(cgl);
+    textureOut.setRef(t);
+};
+
+function reloadSoon(nocache)
+{
+    clearTimeout(timedLoader);
+    timedLoader = setTimeout(function ()
     {
-        data = "data:;base64," + data;
+        realReload(nocache);
+    }, 1);
+}
+
+function getPixelFormat()
+{
+    if (dataFrmt.get() == "R") return CGL.Texture.PFORMATSTR_R8UB;
+    if (dataFrmt.get() == "RG") return CGL.Texture.PFORMATSTR_RG8UB;
+    if (dataFrmt.get() == "RGB") return CGL.Texture.PFORMATSTR_RGB8UB;
+    if (dataFrmt.get() == "SRGBA") return CGL.Texture.PFORMATSTR_SRGBA8;
+
+    return CGL.Texture.PFORMATSTR_RGBA8UB;
+}
+
+function realReload(nocache)
+{
+    op.checkMainloopExists();
+    if (!active.get()) return;
+    if (loadingId)loadingId = cgl.patch.loading.finished(loadingId);
+
+    loadingId = cgl.patch.loading.start(op.objName, filename.get(), op);
+
+    let url = op.patch.getFilePath(String(filename.get()));
+
+    if (addCacheBust.get() || nocache === true) url = CABLES.cacheBust(url);
+
+    if (String(filename.get()).indexOf("data:") == 0) url = filename.get();
+
+    let needsRefresh = false;
+    loadedFilename = filename.get();
+
+    if ((filename.get() && filename.get().length > 1))
+    {
+        loaded.set(false);
+        loading.set(true);
+
+        const fileToLoad = filename.get();
+
+        op.setUiAttrib({ "extendTitle": CABLES.basename(url) });
+        if (needsRefresh) op.refreshParams();
+
+        cgl.patch.loading.addAssetLoadingTask(() =>
+        {
+            op.setUiError("urlerror", null);
+            CGL.Texture.load(cgl, url, function (err, newTex)
+            {
+                cgl.checkFrameStarted("texture inittexture");
+
+                if (filename.get() != fileToLoad)
+                {
+                    loadingId = cgl.patch.loading.finished(loadingId);
+                    return;
+                }
+
+                if (tex)tex.delete();
+
+                if (err)
+                {
+                    const t = CGL.Texture.getErrorTexture(cgl);
+                    textureOut.setRef(t);
+
+                    op.setUiError("urlerror", "could not load texture: \"" + filename.get() + "\"", 2);
+                    loadingId = cgl.patch.loading.finished(loadingId);
+                    return;
+                }
+
+                // textureOut.setRef(newTex);
+
+                width.set(newTex.width);
+                height.set(newTex.height);
+                ratio.set(newTex.width / newTex.height);
+
+                // if (!newTex.isPowerOfTwo()) op.setUiError("npot", "Texture dimensions not power of two! - Texture filtering will not work in WebGL 1.", 0);
+                // else op.setUiError("npot", null);
+
+                tex = newTex;
+                // textureOut.setRef(null);
+                textureOut.setRef(tex);
+
+                loading.set(false);
+                loaded.set(true);
+
+                if (inFreeMemory.get()) tex.image = null;
+
+                if (loadingId)
+                {
+                    loadingId = cgl.patch.loading.finished(loadingId);
+                }
+                op.checkMainloopExists();
+            }, {
+                "anisotropic": cgl_aniso,
+                "wrap": cgl_wrap,
+                "flip": flip.get(),
+                "unpackAlpha": unpackAlpha.get(),
+                "pixelFormat": getPixelFormat(),
+                "filter": cgl_filter
+            });
+
+            op.checkMainloopExists();
+        });
     }
-    image.src = data;
+    else
+    {
+        setTempTexture();
+        loadingId = cgl.patch.loading.finished(loadingId);
+    }
+}
+
+function onFilterChange()
+{
+    if (tfilter.get() == "nearest") cgl_filter = CGL.Texture.FILTER_NEAREST;
+    else if (tfilter.get() == "linear") cgl_filter = CGL.Texture.FILTER_LINEAR;
+    else if (tfilter.get() == "mipmap") cgl_filter = CGL.Texture.FILTER_MIPMAP;
+    else if (tfilter.get() == "Anisotropic") cgl_filter = CGL.Texture.FILTER_ANISOTROPIC;
+    aniso.setUiAttribs({ "greyout": cgl_filter != CGL.Texture.FILTER_MIPMAP });
+
+    cgl_aniso = parseFloat(aniso.get());
+
+    reloadSoon();
+}
+
+function onWrapChange()
+{
+    if (wrap.get() == "repeat") cgl_wrap = CGL.Texture.WRAP_REPEAT;
+    if (wrap.get() == "mirrored repeat") cgl_wrap = CGL.Texture.WRAP_MIRRORED_REPEAT;
+    if (wrap.get() == "clamp to edge") cgl_wrap = CGL.Texture.WRAP_CLAMP_TO_EDGE;
+
+    reloadSoon();
+}
+
+op.onFileChanged = function (fn)
+{
+    if (filename.get() && filename.get().indexOf(fn) > -1)
+    {
+        textureOut.setRef(CGL.Texture.getEmptyTexture(op.patch.cgl));
+        textureOut.setRef(CGL.Texture.getTempTexture(cgl));
+        realReload(true);
+    }
+};
+
+
+};
+
+Ops.Gl.Texture_v2.prototype = new CABLES.Op();
+CABLES.OPS["790f3702-9833-464e-8e37-6f0f813f7e16"]={f:Ops.Gl.Texture_v2,objName:"Ops.Gl.Texture_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.Matrix.Billboard
+// 
+// **************************************************************
+
+Ops.Gl.Matrix.Billboard = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const exec = op.inTrigger("Exec");
+const next = op.outTrigger("Next");
+
+const cgl = op.patch.cgl;
+
+let mm = mat4.create();
+let mv = mat4.create();
+let m = mat4.create();
+let mempty = mat4.create();
+
+exec.onTriggered = function ()
+{
+    mat4.invert(mm, cgl.mMatrix);
+    mat4.invert(mv, cgl.vMatrix);
+
+    mat4.mul(mm, mm, mv);
+
+    mm[12] = 0;
+    mm[13] = 0;
+    mm[14] = 0;
+
+    cgl.pushModelMatrix();
+    cgl.pushViewMatrix();
+    mat4.mul(cgl.mMatrix, cgl.mMatrix, mm);
+    next.trigger();
+    cgl.popViewMatrix();
+    cgl.popModelMatrix();
+};
+
+
+};
+
+Ops.Gl.Matrix.Billboard.prototype = new CABLES.Op();
+CABLES.OPS["d41e676e-d8a7-4a1e-8abf-f1bddfc982d5"]={f:Ops.Gl.Matrix.Billboard,objName:"Ops.Gl.Matrix.Billboard"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PbdFbHA.InteractiveRectangle_v22
+// 
+// **************************************************************
+
+Ops.Patch.PbdFbHA.InteractiveRectangle_v22 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("Trigger in"),
+    trigger = op.outTrigger("Trigger out"),
+    width = op.inValue("Width", 1),
+    height = op.inValue("Height", 1),
+    inId = op.inString("ID"),
+    classPort = op.inString("Class"),
+    pivotX = op.inValueSelect("Pivot x", ["center", "left", "right"]),
+    pivotY = op.inValueSelect("Pivot y", ["center", "top", "bottom"]),
+    axis = op.inValueSelect("Axis", ["xy", "xz"]),
+    isInteractive = op.inValueBool("Is Interactive", true),
+    renderRect = op.inValueBool("Render Rectangle", true),
+    divVisible = op.inValueBool("Show Boundings", true),
+    cursorPort = op.inValueSelect("Cursor", ["auto", "crosshair", "pointer", "Hand", "move", "n-resize", "ne-resize", "e-resize", "se-resize", "s-resize", "sw-resize", "w-resize", "nw-resize", "text", "wait", "help", "none"], "pointer"),
+    active = op.inValueBool("Render", true);
+
+const geomOut = op.outObject("geometry");
+geomOut.ignoreValueSerialize = true;
+
+const
+    mouseOver = op.outBoolNum("Pointer Hover", false),
+    mouseDown = op.outBoolNum("Pointer Down", false),
+    outX = op.outNumber("Pointer X"),
+    outY = op.outNumber("Pointer Y"),
+    outTop = op.outNumber("Top"),
+    outLeft = op.outNumber("Left"),
+    outRight = op.outNumber("Right"),
+    outBottom = op.outNumber("Bottom"),
+    mouseClick = op.outTrigger("Left Click");
+
+const elementPort = op.outObject("Dom Element");
+
+active.setUiAttribs({ "title": "Active" });
+
+const cgl = op.patch.cgl;
+axis.set("xy");
+pivotX.set("center");
+pivotY.set("center");
+
+const geom = new CGL.Geometry(op.name);
+let mesh = null;
+let div = null;
+const m = mat4.create();
+const trans = mat4.create();
+const pos = vec3.create();
+const divAlign = vec3.create();
+const divAlignSize = vec3.create();
+
+axis.onChange = rebuild;
+pivotX.onChange = rebuild;
+pivotY.onChange = rebuild;
+width.onChange = rebuild;
+height.onChange = rebuild;
+cursorPort.onChange = updateCursor;
+rebuild();
+
+const modelMatrix = mat4.create();
+const identViewMatrix = mat4.create();
+const zeroVec3 = vec3.create();
+
+render.onTriggered = function ()
+{
+    if (!div)
+    {
+        setUpDiv();
+        addListeners();
+        updateDivVisibility();
+        updateIsInteractive();
+    }
+    updateDivSize();
+
+    if (active.get() && renderRect.get() && mesh) mesh.render(cgl.getShader());
+
+    trigger.trigger();
+};
+
+function rebuild()
+{
+    let w = width.get();
+    let h = height.get();
+    let x = 0;
+    let y = 0;
+
+    if (typeof w == "string")w = parseFloat(w);
+    if (typeof h == "string")h = parseFloat(h);
+
+    if (pivotX.get() == "center")
+    {
+        x = 0;
+        divAlign[0] = -w / 2;
+    }
+    if (pivotX.get() == "right")
+    {
+        x = -w / 2;
+    }
+    if (pivotX.get() == "left")
+    {
+        x = w / 2;
+    }
+
+    if (pivotY.get() == "center")
+    {
+        y = 0;
+        divAlign[1] = -h / 2;
+    }
+    if (pivotY.get() == "top") y = -h / 2;
+    if (pivotY.get() == "bottom") y = +h / 2;
+
+    const verts = [];
+    const tc = [];
+    const norms = [];
+    const indices = [];
+
+    const numRows = 1;
+    const numColumns = 1;
+
+    const stepColumn = w / numColumns;
+    const stepRow = h / numRows;
+
+    let c, r;
+
+    for (r = 0; r <= numRows; r++)
+    {
+        for (c = 0; c <= numColumns; c++)
+        {
+            verts.push(c * stepColumn - width.get() / 2 + x);
+            if (axis.get() == "xz") verts.push(0.0);
+            verts.push(r * stepRow - height.get() / 2 + y);
+            if (axis.get() == "xy") verts.push(0.0);
+
+            tc.push(c / numColumns);
+            tc.push(1.0 - r / numRows);
+
+            if (axis.get() == "xz")
+            {
+                norms.push(0);
+                norms.push(1);
+                norms.push(0);
+            }
+
+            if (axis.get() == "xy")
+            {
+                norms.push(0);
+                norms.push(0);
+                norms.push(-1);
+            }
+        }
+    }
+
+    for (c = 0; c < numColumns; c++)
+    {
+        for (r = 0; r < numRows; r++)
+        {
+            const ind = c + (numColumns + 1) * r;
+            const v1 = ind;
+            const v2 = ind + 1;
+            const v3 = ind + numColumns + 1;
+            const v4 = ind + 1 + numColumns + 1;
+
+            indices.push(v1);
+            indices.push(v3);
+            indices.push(v2);
+
+            indices.push(v2);
+            indices.push(v3);
+            indices.push(v4);
+        }
+    }
+
+    geom.clear();
+    geom.vertices = verts;
+    geom.texCoords = tc;
+    geom.verticesIndices = indices;
+    geom.vertexNormals = norms;
+
+    if (!mesh) mesh = new CGL.Mesh(cgl, geom);
+    else mesh.setGeom(geom);
+
+    geomOut.set(null);
+    geomOut.set(geom);
+}
+
+let divX = 0;
+let divY = 0;
+let divWidth = 0;
+let divHeight = 0;
+
+const mMatrix = mat4.create();
+divVisible.onChange = updateDivVisibility;
+inId.onChange = updateId;
+classPort.onChange = updateClassNames;
+
+function updateDivVisibility()
+{
+    if (div)
+    {
+        if (divVisible.get()) div.style.border = "1px solid red";
+        else div.style.border = "none";
+    }
+}
+
+function updateCursor()
+{
+    if (div)
+    {
+        div.style.cursor = cursorPort.get();
+    }
+}
+
+function updateId()
+{
+    if (div)
+    {
+        div.setAttribute("id", inId.get());
+    }
+}
+
+function updateDivSize()
+{
+    // var vp=cgl.getViewPort();
+
+    mat4.multiply(mMatrix, cgl.vMatrix, cgl.mMatrix);
+    vec3.transformMat4(pos, divAlign, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const top = cgl.canvas.styleMarginTop || 0;
+    const left = cgl.canvas.styleMarginLeft || 0;
+
+    const x1 = (trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2 + left;
+    const y1 = (trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top;
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1];
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x2 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y2 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0];
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x3 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y3 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x4 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y4 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divX = Math.min(x1, x2, x3, x4);
+    divY = Math.min(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    const xb = Math.max(x1, x2, x3, x4);
+    const yb = Math.max(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    outTop.set(divY);
+    outLeft.set(divX);
+    outRight.set(xb);
+    outBottom.set(yb);
+
+    divWidth = Math.abs(xb - divX);
+    divHeight = Math.abs(yb - divY);
+
+    divX /= op.patch.cgl.pixelDensity;
+    divY /= op.patch.cgl.pixelDensity;
+    divWidth /= op.patch.cgl.pixelDensity;
+    divHeight /= op.patch.cgl.pixelDensity;
+
+    // div.style.left=divX+'px';
+    // div.style.top=divY+'px';
+    // div.style.width=divWidth+'px';
+    // div.style.height=divHeight+'px';
+
+    const divXpx = divX + "px";
+    const divYpx = divY + "px";
+    const divWidthPx = divWidth + "px";
+    const divHeightPx = divHeight + "px";
+    if (divXpx != div.style.left) div.style.left = divXpx;
+    if (divYpx != div.style.top) div.style.top = divYpx;
+    if (div.style.width != divWidthPx) div.style.width = divWidthPx;
+    if (div.style.height != divHeightPx) div.style.height = divHeightPx;
+}
+
+function updateClassNames()
+{
+    if (div)
+    {
+        div.className = classPort.get();
+    }
+}
+
+op.onDelete = function ()
+{
+    if (div)div.remove();
+};
+
+function setUpDiv()
+{
+    if (!div)
+    {
+        div = document.createElement("div");
+        div.dataset.op = op.id;
+        div.oncontextmenu = function (e)
+        {
+            e.preventDefault();
+        };
+
+        div.style.padding = "0px";
+        div.style.position = "absolute";
+        div.style["box-sizing"] = "border-box";
+        div.style.border = "1px solid red";
+        // div.style['border-left']="1px solid blue";
+        // div.style['border-top']="1px solid green";
+        div.style["z-index"] = "500";
+
+        div.style["-webkit-user-select"] = "none";
+        div.style["user-select"] = "none";
+        div.style["-webkit-tap-highlight-color"] = "rgba(0,0,0,0)";
+        div.style["-webkit-touch-callout"] = "none";
+
+        const canvas = op.patch.cgl.canvas.parentElement;
+        canvas.appendChild(div);
+        updateCursor();
+        updateIsInteractive();
+        updateId();
+        updateClassNames();
+    }
+    updateDivSize();
+    elementPort.set(div);
+}
+
+let listenerElement = null;
+
+function onMouseMove(e)
+{
+    const offsetX = -width.get() / 2;
+    const offsetY = -height.get() / 2;
+
+    outX.set(Math.max(0.0, Math.min(1.0, e.offsetX / divWidth)));
+    outY.set(Math.max(0.0, Math.min(1.0, 1.0 - e.offsetY / divHeight)));
+}
+
+function onMouseLeave(e)
+{
+    mouseDown.set(false);
+    mouseOver.set(false);
+}
+
+function onMouseEnter(e)
+{
+    mouseOver.set(true);
+}
+
+function onMouseDown(e)
+{
+    mouseDown.set(true);
+}
+
+function onMouseUp(e)
+{
+    mouseDown.set(false);
+}
+
+function onmouseclick(e)
+{
+    mouseClick.trigger();
+}
+
+function onTouchMove(e)
+{
+    const targetEle = document.elementFromPoint(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
+
+    if (targetEle == div)
+    {
+        mouseOver.set(true);
+        if (e.touches && e.touches.length > 0)
+        {
+            const rect = div.getBoundingClientRect(); // e.target
+            const x = e.targetTouches[0].pageX - rect.left;
+            const y = e.targetTouches[0].pageY - rect.top;
+
+            const touch = e.touches[0];
+
+            outX.set(Math.max(0.0, Math.min(1.0, x / divWidth)));
+            outY.set(Math.max(0.0, Math.min(1.0, 1.0 - y / divHeight)));
+
+            onMouseMove(touch);
+        }
+    }
+    else
+    {
+        mouseOver.set(false);
+    }
+}
+
+active.onChange = updateActiveRender;
+function updateActiveRender()
+{
+    if (active.get())
+    {
+        addListeners();
+        if (div) div.style.display = "block";
+    }
+    else
+    {
+        removeListeners();
+        if (div) div.style.display = "none";
+    }
+}
+
+isInteractive.onChange = updateIsInteractive;
+function updateIsInteractive()
+{
+    if (isInteractive.get())
+    {
+        addListeners();
+        if (div)div.style["pointer-events"] = "initial";
+    }
+    else
+    {
+        removeListeners();
+        mouseDown.set(false);
+        mouseOver.set(false);
+        if (div)div.style["pointer-events"] = "none";
+    }
+}
+
+function removeListeners()
+{
+    if (listenerElement)
+    {
+        document.removeEventListener("touchmove", onTouchMove);
+        listenerElement.removeEventListener("touchend", onMouseUp);
+        listenerElement.removeEventListener("touchstart", onMouseDown);
+
+        listenerElement.removeEventListener("click", onmouseclick);
+        listenerElement.removeEventListener("mousemove", onMouseMove);
+        listenerElement.removeEventListener("mouseleave", onMouseLeave);
+        listenerElement.removeEventListener("mousedown", onMouseDown);
+        listenerElement.removeEventListener("mouseup", onMouseUp);
+        listenerElement.removeEventListener("mouseenter", onMouseEnter);
+        // listenerElement.removeEventListener('contextmenu', onClickRight);
+        listenerElement = null;
+    }
+}
+
+function addListeners()
+{
+    if (listenerElement)removeListeners();
+
+    listenerElement = div;
+
+    if (listenerElement)
+    {
+        document.addEventListener("touchmove", onTouchMove);
+        listenerElement.addEventListener("touchend", onMouseUp);
+        listenerElement.addEventListener("touchstart", onMouseDown);
+
+        listenerElement.addEventListener("click", onmouseclick);
+        listenerElement.addEventListener("mousemove", onMouseMove);
+        listenerElement.addEventListener("mouseleave", onMouseLeave);
+        listenerElement.addEventListener("mousedown", onMouseDown);
+        listenerElement.addEventListener("mouseup", onMouseUp);
+        listenerElement.addEventListener("mouseenter", onMouseEnter);
+        // listenerElement.addEventListener('contextmenu', onClickRight);
+    }
 }
 
 
 };
 
-Ops.Gl.Textures.Base64ToTexture.prototype = new CABLES.Op();
-CABLES.OPS["cd07e587-432a-4a81-a2b7-51273cf32171"]={f:Ops.Gl.Textures.Base64ToTexture,objName:"Ops.Gl.Textures.Base64ToTexture"};
+Ops.Patch.PbdFbHA.InteractiveRectangle_v22.prototype = new CABLES.Op();
+CABLES.OPS["26c98669-65c5-4f24-8136-08a2443460d0"]={f:Ops.Patch.PbdFbHA.InteractiveRectangle_v22,objName:"Ops.Patch.PbdFbHA.InteractiveRectangle_v22"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PbdFbHA.DisengageFlag
+// 
+// **************************************************************
+
+Ops.Patch.PbdFbHA.DisengageFlag = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={"inc_gen_ports_js":"const port_jqg7l6f5m=op.inFloat(\"jqg7l6f5m\",0);\nport_jqg7l6f5m.setUiAttribs({title:\"Boolean\",display:\"bool\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_jqg7l6f5m = addedOps[i].outNumber(\"innerOut_jqg7l6f5m\");\ninnerOut_jqg7l6f5m.set(port_jqg7l6f5m.get() );\ninnerOut_jqg7l6f5m.setUiAttribs({title:\"Boolean\"});\nport_jqg7l6f5m.on(\"change\", (a,v) => { innerOut_jqg7l6f5m.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"tjwrh5u95\",\"uiAttribs\":{\"subPatch\":\"ynlymowkj\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"dlvka8p7u\",\"uiAttribs\":{\"subPatch\":\"ynlymowkj\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"tjwrh5u95\",\"objOut\":\"dlvka8p7u\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"eck8hvwot\",\"uiAttribs\":{\"subPatch\":\"ynlymowkj\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_jqg7l6f5m\",\"title\":\"Boolean\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"innerOut_jqg7l6f5m\",\"objIn\":\"dlvka8p7u\",\"objOut\":\"eck8hvwot\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"7mxc7zyyb\",\"uiAttribs\":{\"subPatch\":\"ynlymowkj\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchOutput\"}]}",};
+const port_jqg7l6f5m=op.inFloat("jqg7l6f5m",0);
+port_jqg7l6f5m.setUiAttribs({title:"Boolean",display:"bool",});
+
+op.initInnerPorts=function(addedOps)
+{
+  for(let i=0;i<addedOps.length;i++)
+  {
+    if(addedOps[i].innerInput)
+    {
+const innerOut_jqg7l6f5m = addedOps[i].outNumber("innerOut_jqg7l6f5m");
+innerOut_jqg7l6f5m.set(port_jqg7l6f5m.get() );
+innerOut_jqg7l6f5m.setUiAttribs({title:"Boolean"});
+port_jqg7l6f5m.on("change", (a,v) => { innerOut_jqg7l6f5m.set(a); });
+
+    }
+if(addedOps[i].innerOutput)
+{
+}
+}
+};
+
+const patchId = "bp2sub_" + op.id;
+
+new CABLES.SubPatchOp(op, { "subId": patchId });
+
+initializeSubpatch();
+
+function initializeSubpatch()
+{
+    const p = JSON.parse(attachments.subpatch_json);
+
+    CABLES.Patch.replaceOpIds(p,
+        {
+            "parentSubPatchId": patchId,
+            "prefixHash": patchId,
+            "oldIdAsRef": true,
+            "doNotUnlinkLostLinks": true
+        });
+
+    for (let i = 0; i < p.ops.length; i++)
+    {
+        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
+    }
+
+    op.loadDependencies(p, () =>
+    {
+        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
+        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
+        op.patch.emitEvent("subpatchExpose", patchId);
+        op.setStorage({ "blueprintVer": 2 });
+        op.patch.emitEvent("subpatchExpose", patchId);
+    });
+}
+
+
+};
+
+Ops.Patch.PbdFbHA.DisengageFlag.prototype = new CABLES.Op();
+CABLES.OPS["723dbdda-b2a6-4b49-a979-a2634f4e472a"]={f:Ops.Patch.PbdFbHA.DisengageFlag,objName:"Ops.Patch.PbdFbHA.DisengageFlag"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.InteractiveRectangle_v2
+// 
+// **************************************************************
+
+Ops.Gl.InteractiveRectangle_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("Trigger in"),
+    trigger = op.outTrigger("Trigger out"),
+    width = op.inValue("Width", 1),
+    height = op.inValue("Height", 1),
+    inId = op.inString("ID"),
+    classPort = op.inString("Class"),
+    pivotX = op.inValueSelect("Pivot x", ["center", "left", "right"]),
+    pivotY = op.inValueSelect("Pivot y", ["center", "top", "bottom"]),
+    axis = op.inValueSelect("Axis", ["xy", "xz"]),
+    isInteractive = op.inValueBool("Is Interactive", true),
+    renderRect = op.inValueBool("Render Rectangle", true),
+    divVisible = op.inValueBool("Show Boundings", true),
+    cursorPort = op.inValueSelect("Cursor", ["auto", "crosshair", "pointer", "Hand", "move", "n-resize", "ne-resize", "e-resize", "se-resize", "s-resize", "sw-resize", "w-resize", "nw-resize", "text", "wait", "help", "none"], "pointer"),
+    active = op.inValueBool("Render", true);
+
+const geomOut = op.outObject("geometry");
+geomOut.ignoreValueSerialize = true;
+
+const
+    mouseOver = op.outBoolNum("Pointer Hover", false),
+    mouseDown = op.outBoolNum("Pointer Down", false),
+    outX = op.outNumber("Pointer X"),
+    outY = op.outNumber("Pointer Y"),
+    outTop = op.outNumber("Top"),
+    outLeft = op.outNumber("Left"),
+    outRight = op.outNumber("Right"),
+    outBottom = op.outNumber("Bottom"),
+    mouseClick = op.outTrigger("Left Click");
+
+const elementPort = op.outObject("Dom Element");
+
+active.setUiAttribs({ "title": "Active" });
+
+const cgl = op.patch.cgl;
+axis.set("xy");
+pivotX.set("center");
+pivotY.set("center");
+
+const geom = new CGL.Geometry(op.name);
+let mesh = null;
+let div = null;
+const m = mat4.create();
+const trans = mat4.create();
+const pos = vec3.create();
+const divAlign = vec3.create();
+const divAlignSize = vec3.create();
+
+axis.onChange = rebuild;
+pivotX.onChange = rebuild;
+pivotY.onChange = rebuild;
+width.onChange = rebuild;
+height.onChange = rebuild;
+cursorPort.onChange = updateCursor;
+rebuild();
+
+const modelMatrix = mat4.create();
+const identViewMatrix = mat4.create();
+const zeroVec3 = vec3.create();
+
+render.onTriggered = function ()
+{
+    if (!div)
+    {
+        setUpDiv();
+        addListeners();
+        updateDivVisibility();
+        updateIsInteractive();
+    }
+    updateDivSize();
+
+    if (active.get() && renderRect.get() && mesh) mesh.render(cgl.getShader());
+
+    trigger.trigger();
+};
+
+function rebuild()
+{
+    let w = width.get();
+    let h = height.get();
+    let x = 0;
+    let y = 0;
+
+    if (typeof w == "string")w = parseFloat(w);
+    if (typeof h == "string")h = parseFloat(h);
+
+    if (pivotX.get() == "center")
+    {
+        x = 0;
+        divAlign[0] = -w / 2;
+    }
+    if (pivotX.get() == "right")
+    {
+        x = -w / 2;
+    }
+    if (pivotX.get() == "left")
+    {
+        x = w / 2;
+    }
+
+    if (pivotY.get() == "center")
+    {
+        y = 0;
+        divAlign[1] = -h / 2;
+    }
+    if (pivotY.get() == "top") y = -h / 2;
+    if (pivotY.get() == "bottom") y = +h / 2;
+
+    const verts = [];
+    const tc = [];
+    const norms = [];
+    const indices = [];
+
+    const numRows = 1;
+    const numColumns = 1;
+
+    const stepColumn = w / numColumns;
+    const stepRow = h / numRows;
+
+    let c, r;
+
+    for (r = 0; r <= numRows; r++)
+    {
+        for (c = 0; c <= numColumns; c++)
+        {
+            verts.push(c * stepColumn - width.get() / 2 + x);
+            if (axis.get() == "xz") verts.push(0.0);
+            verts.push(r * stepRow - height.get() / 2 + y);
+            if (axis.get() == "xy") verts.push(0.0);
+
+            tc.push(c / numColumns);
+            tc.push(1.0 - r / numRows);
+
+            if (axis.get() == "xz")
+            {
+                norms.push(0);
+                norms.push(1);
+                norms.push(0);
+            }
+
+            if (axis.get() == "xy")
+            {
+                norms.push(0);
+                norms.push(0);
+                norms.push(-1);
+            }
+        }
+    }
+
+    for (c = 0; c < numColumns; c++)
+    {
+        for (r = 0; r < numRows; r++)
+        {
+            const ind = c + (numColumns + 1) * r;
+            const v1 = ind;
+            const v2 = ind + 1;
+            const v3 = ind + numColumns + 1;
+            const v4 = ind + 1 + numColumns + 1;
+
+            indices.push(v1);
+            indices.push(v3);
+            indices.push(v2);
+
+            indices.push(v2);
+            indices.push(v3);
+            indices.push(v4);
+        }
+    }
+
+    geom.clear();
+    geom.vertices = verts;
+    geom.texCoords = tc;
+    geom.verticesIndices = indices;
+    geom.vertexNormals = norms;
+
+    if (!mesh) mesh = new CGL.Mesh(cgl, geom);
+    else mesh.setGeom(geom);
+
+    geomOut.set(null);
+    geomOut.set(geom);
+}
+
+let divX = 0;
+let divY = 0;
+let divWidth = 0;
+let divHeight = 0;
+
+const mMatrix = mat4.create();
+divVisible.onChange = updateDivVisibility;
+inId.onChange = updateId;
+classPort.onChange = updateClassNames;
+
+function updateDivVisibility()
+{
+    if (div)
+    {
+        if (divVisible.get()) div.style.border = "1px solid red";
+        else div.style.border = "none";
+    }
+}
+
+function updateCursor()
+{
+    if (div)
+    {
+        div.style.cursor = cursorPort.get();
+    }
+}
+
+function updateId()
+{
+    if (div)
+    {
+        div.setAttribute("id", inId.get());
+    }
+}
+
+function updateDivSize()
+{
+    // var vp=cgl.getViewPort();
+
+    mat4.multiply(mMatrix, cgl.vMatrix, cgl.mMatrix);
+    vec3.transformMat4(pos, divAlign, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const top = cgl.canvas.styleMarginTop || 0;
+    const left = cgl.canvas.styleMarginLeft || 0;
+
+    const x1 = (trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2 + left;
+    const y1 = (trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top;
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1];
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x2 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y2 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0];
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x3 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y3 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divAlignSize[0] = divAlign[0] + width.get();
+    divAlignSize[1] = divAlign[1] + height.get();
+
+    vec3.transformMat4(pos, divAlignSize, mMatrix);
+    vec3.transformMat4(trans, pos, cgl.pMatrix);
+
+    const x4 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
+    const y4 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
+
+    divX = Math.min(x1, x2, x3, x4);
+    divY = Math.min(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    const xb = Math.max(x1, x2, x3, x4);
+    const yb = Math.max(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
+
+    outTop.set(divY);
+    outLeft.set(divX);
+    outRight.set(xb);
+    outBottom.set(yb);
+
+    divWidth = Math.abs(xb - divX);
+    divHeight = Math.abs(yb - divY);
+
+    divX /= op.patch.cgl.pixelDensity;
+    divY /= op.patch.cgl.pixelDensity;
+    divWidth /= op.patch.cgl.pixelDensity;
+    divHeight /= op.patch.cgl.pixelDensity;
+
+    // div.style.left=divX+'px';
+    // div.style.top=divY+'px';
+    // div.style.width=divWidth+'px';
+    // div.style.height=divHeight+'px';
+
+    const divXpx = divX + "px";
+    const divYpx = divY + "px";
+    const divWidthPx = divWidth + "px";
+    const divHeightPx = divHeight + "px";
+    if (divXpx != div.style.left) div.style.left = divXpx;
+    if (divYpx != div.style.top) div.style.top = divYpx;
+    if (div.style.width != divWidthPx) div.style.width = divWidthPx;
+    if (div.style.height != divHeightPx) div.style.height = divHeightPx;
+}
+
+function updateClassNames()
+{
+    if (div)
+    {
+        div.className = classPort.get();
+    }
+}
+
+op.onDelete = function ()
+{
+    if (div)div.remove();
+};
+
+function setUpDiv()
+{
+    if (!div)
+    {
+        div = document.createElement("div");
+        div.dataset.op = op.id;
+        div.oncontextmenu = function (e)
+        {
+            e.preventDefault();
+        };
+
+        div.style.padding = "0px";
+        div.style.position = "absolute";
+        div.style["box-sizing"] = "border-box";
+        div.style.border = "1px solid red";
+        // div.style['border-left']="1px solid blue";
+        // div.style['border-top']="1px solid green";
+        div.style["z-index"] = "500";
+
+        div.style["-webkit-user-select"] = "none";
+        div.style["user-select"] = "none";
+        div.style["-webkit-tap-highlight-color"] = "rgba(0,0,0,0)";
+        div.style["-webkit-touch-callout"] = "none";
+
+        const canvas = op.patch.cgl.canvas.parentElement;
+        canvas.appendChild(div);
+        updateCursor();
+        updateIsInteractive();
+        updateId();
+        updateClassNames();
+    }
+    updateDivSize();
+    elementPort.set(div);
+}
+
+let listenerElement = null;
+
+function onMouseMove(e)
+{
+    const offsetX = -width.get() / 2;
+    const offsetY = -height.get() / 2;
+
+    outX.set(Math.max(0.0, Math.min(1.0, e.offsetX / divWidth)));
+    outY.set(Math.max(0.0, Math.min(1.0, 1.0 - e.offsetY / divHeight)));
+}
+
+function onMouseLeave(e)
+{
+    mouseDown.set(false);
+    mouseOver.set(false);
+}
+
+function onMouseEnter(e)
+{
+    mouseOver.set(true);
+}
+
+function onMouseDown(e)
+{
+    mouseDown.set(true);
+}
+
+function onMouseUp(e)
+{
+    mouseDown.set(false);
+}
+
+function onmouseclick(e)
+{
+    mouseClick.trigger();
+}
+
+function onTouchMove(e)
+{
+    const targetEle = document.elementFromPoint(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
+
+    if (targetEle == div)
+    {
+        mouseOver.set(true);
+        if (e.touches && e.touches.length > 0)
+        {
+            const rect = div.getBoundingClientRect(); // e.target
+            const x = e.targetTouches[0].pageX - rect.left;
+            const y = e.targetTouches[0].pageY - rect.top;
+
+            const touch = e.touches[0];
+
+            outX.set(Math.max(0.0, Math.min(1.0, x / divWidth)));
+            outY.set(Math.max(0.0, Math.min(1.0, 1.0 - y / divHeight)));
+
+            onMouseMove(touch);
+        }
+    }
+    else
+    {
+        mouseOver.set(false);
+    }
+}
+
+active.onChange = updateActiveRender;
+function updateActiveRender()
+{
+    if (active.get())
+    {
+        addListeners();
+        if (div) div.style.display = "block";
+    }
+    else
+    {
+        removeListeners();
+        if (div) div.style.display = "none";
+    }
+}
+
+isInteractive.onChange = updateIsInteractive;
+function updateIsInteractive()
+{
+    if (isInteractive.get())
+    {
+        addListeners();
+        if (div)div.style["pointer-events"] = "initial";
+    }
+    else
+    {
+        removeListeners();
+        mouseDown.set(false);
+        mouseOver.set(false);
+        if (div)div.style["pointer-events"] = "none";
+    }
+}
+
+function removeListeners()
+{
+    if (listenerElement)
+    {
+        document.removeEventListener("touchmove", onTouchMove);
+        listenerElement.removeEventListener("touchend", onMouseUp);
+        listenerElement.removeEventListener("touchstart", onMouseDown);
+
+        listenerElement.removeEventListener("click", onmouseclick);
+        listenerElement.removeEventListener("mousemove", onMouseMove);
+        listenerElement.removeEventListener("mouseleave", onMouseLeave);
+        listenerElement.removeEventListener("mousedown", onMouseDown);
+        listenerElement.removeEventListener("mouseup", onMouseUp);
+        listenerElement.removeEventListener("mouseenter", onMouseEnter);
+        // listenerElement.removeEventListener('contextmenu', onClickRight);
+        listenerElement = null;
+    }
+}
+
+function addListeners()
+{
+    if (listenerElement)removeListeners();
+
+    listenerElement = div;
+
+    if (listenerElement)
+    {
+        document.addEventListener("touchmove", onTouchMove);
+        listenerElement.addEventListener("touchend", onMouseUp);
+        listenerElement.addEventListener("touchstart", onMouseDown);
+
+        listenerElement.addEventListener("click", onmouseclick);
+        listenerElement.addEventListener("mousemove", onMouseMove);
+        listenerElement.addEventListener("mouseleave", onMouseLeave);
+        listenerElement.addEventListener("mousedown", onMouseDown);
+        listenerElement.addEventListener("mouseup", onMouseUp);
+        listenerElement.addEventListener("mouseenter", onMouseEnter);
+        // listenerElement.addEventListener('contextmenu', onClickRight);
+    }
+}
+
+
+};
+
+Ops.Gl.InteractiveRectangle_v2.prototype = new CABLES.Op();
+CABLES.OPS["334728ca-60a2-4a42-a059-d9b5f3fe4d32"]={f:Ops.Gl.InteractiveRectangle_v2,objName:"Ops.Gl.InteractiveRectangle_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.String.NumberToString_v2
+// 
+// **************************************************************
+
+Ops.String.NumberToString_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    val = op.inValue("Number"),
+    decPlaces = op.inInt("Decimal Places", 4),
+    result = op.outString("Result");
+
+let doDec = false;
+let decm = 1;
+decPlaces.onChange = updateDecm;
+val.onChange = update;
+updateDecm();
+update();
+
+function updateDecm()
+{
+    doDec = decPlaces.get() < 100;
+    decm = Math.pow(10, decPlaces.get());
+    update();
+}
+
+function update()
+{
+    if (doDec)
+        result.set(String(Math.round(val.get() * decm) / decm));
+    else
+        result.set(String(val.get() || 0));
+}
+
+
+};
+
+Ops.String.NumberToString_v2.prototype = new CABLES.Op();
+CABLES.OPS["5c6d375a-82db-4366-8013-93f56b4061a9"]={f:Ops.String.NumberToString_v2,objName:"Ops.String.NumberToString_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.String.Concat_v2
+// 
+// **************************************************************
+
+Ops.String.Concat_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    string1 = op.inString("string1", "ABC"),
+    string2 = op.inString("string2", "XYZ"),
+    newLine = op.inValueBool("New Line", false),
+    active = op.inBool("Active", true),
+    result = op.outString("result");
+
+newLine.onChange =
+    string2.onChange =
+    string1.onChange =
+    active.onChange = exec;
+
+exec();
+
+function exec()
+{
+    if (!active.get())
+    {
+        return result.set(string1.get());
+    }
+    let s1 = string1.get();
+    let s2 = string2.get();
+    if (!s1 && !s2)
+    {
+        result.set("");
+        return;
+    }
+    if (!s1)s1 = "";
+    if (!s2)s2 = "";
+
+    let nl = "";
+    if (s1 && s2 && newLine.get())nl = "\n";
+    result.set(String(s1) + nl + String(s2));
+}
+
+
+};
+
+Ops.String.Concat_v2.prototype = new CABLES.Op();
+CABLES.OPS["a52722aa-0ca9-402c-a844-b7e98a6c6e60"]={f:Ops.String.Concat_v2,objName:"Ops.String.Concat_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Vars.VarGetString
+// 
+// **************************************************************
+
+Ops.Vars.VarGetString = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+var val=op.outString("Value");
+op.varName=op.inValueSelect("Variable",[],"",true);
+
+new CABLES.VarGetOpWrapper(op,"string",op.varName,val);
+
+
+};
+
+Ops.Vars.VarGetString.prototype = new CABLES.Op();
+CABLES.OPS["3ad08cfc-bce6-4175-9746-fef2817a3b12"]={f:Ops.Vars.VarGetString,objName:"Ops.Vars.VarGetString"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Vars.VarGetTexture_v2
+// 
+// **************************************************************
+
+Ops.Vars.VarGetTexture_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const val = op.outTexture("Value");
+op.varName = op.inValueSelect("Variable", [], "", true);
+
+new CABLES.VarGetOpWrapper(op, "object", op.varName, val);
+
+
+};
+
+Ops.Vars.VarGetTexture_v2.prototype = new CABLES.Op();
+CABLES.OPS["5f8ce5fc-9787-45c9-9a83-0eebd2c6de15"]={f:Ops.Vars.VarGetTexture_v2,objName:"Ops.Vars.VarGetTexture_v2"};
 
 
 
@@ -9974,6 +11394,95 @@ function doRender()
 
 Ops.Gl.ImageCompose.ImageCompose_v4.prototype = new CABLES.Op();
 CABLES.OPS["17212e2b-d692-464c-8f8d-2d511dd3410a"]={f:Ops.Gl.ImageCompose.ImageCompose_v4,objName:"Ops.Gl.ImageCompose.ImageCompose_v4"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Gl.Meshes.Triangle_v2
+// 
+// **************************************************************
+
+Ops.Gl.Meshes.Triangle_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    render = op.inTrigger("render"),
+    trigger = op.outTrigger("trigger"),
+    sizeW = op.inValueFloat("width", 1),
+    sizeH = op.inValueFloat("height", 1),
+    draw = op.inValueBool("Draw", true),
+    geom = new CGL.Geometry("triangle"),
+    geomOut = op.outObject("geometry");
+
+geomOut.ignoreValueSerialize = true;
+
+op.toWorkPortsNeedToBeLinked(render);
+op.setPortGroup("Size", [sizeW, sizeH]);
+
+const cgl = op.patch.cgl;
+let mesh = null;
+sizeW.onChange = sizeH.onChange = () => { mesh = null; };
+
+render.onLinkChanged = () =>
+{
+    if (!render.isLinked()) geomOut.set(null);
+    else create();
+};
+
+render.onTriggered = function ()
+{
+    if (!mesh)create();
+    if (draw.get() && mesh)mesh.render(cgl.getShader());
+    trigger.trigger();
+};
+
+function create()
+{
+    geom.vertices = [
+        0.0, sizeH.get(), 0.0,
+        -sizeW.get(), -sizeH.get(), 0.0,
+        sizeW.get(), -sizeH.get(), 0.0
+    ];
+
+    geom.vertexNormals = [
+        0.0, 0.0, 1.0,
+        0.0, 0.0, 1.0,
+        0.0, 0.0, 1.0
+    ];
+    geom.tangents = [
+        1, 0, 0,
+        1, 0, 0,
+        1, 0, 0
+    ];
+    geom.biTangents = [
+        0, 1, 0,
+        0, 1, 0,
+        0, 1, 0
+    ];
+
+    geom.texCoords = [
+        0.5, 0.0,
+        1.0, 1.0,
+        0.0, 1.0,
+    ];
+
+    geom.verticesIndices = [
+        0, 1, 2
+    ];
+
+    mesh = new CGL.Mesh(cgl, geom);
+    geomOut.setRef(geom);
+}
+
+
+};
+
+Ops.Gl.Meshes.Triangle_v2.prototype = new CABLES.Op();
+CABLES.OPS["ef522d4a-9712-4063-8a99-c6b409f26456"]={f:Ops.Gl.Meshes.Triangle_v2,objName:"Ops.Gl.Meshes.Triangle_v2"};
 
 
 
@@ -11136,1364 +12645,6 @@ CABLES.OPS["dba19c07-e3c4-4971-a991-c9e6212ca1c8"]={f:Ops.Boolean.TriggerOnChang
 
 // **************************************************************
 // 
-// Ops.Gl.InteractiveRectangle_v2
-// 
-// **************************************************************
-
-Ops.Gl.InteractiveRectangle_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    render = op.inTrigger("Trigger in"),
-    trigger = op.outTrigger("Trigger out"),
-    width = op.inValue("Width", 1),
-    height = op.inValue("Height", 1),
-    inId = op.inString("ID"),
-    classPort = op.inString("Class"),
-    pivotX = op.inValueSelect("Pivot x", ["center", "left", "right"]),
-    pivotY = op.inValueSelect("Pivot y", ["center", "top", "bottom"]),
-    axis = op.inValueSelect("Axis", ["xy", "xz"]),
-    isInteractive = op.inValueBool("Is Interactive", true),
-    renderRect = op.inValueBool("Render Rectangle", true),
-    divVisible = op.inValueBool("Show Boundings", true),
-    cursorPort = op.inValueSelect("Cursor", ["auto", "crosshair", "pointer", "Hand", "move", "n-resize", "ne-resize", "e-resize", "se-resize", "s-resize", "sw-resize", "w-resize", "nw-resize", "text", "wait", "help", "none"], "pointer"),
-    active = op.inValueBool("Render", true);
-
-const geomOut = op.outObject("geometry");
-geomOut.ignoreValueSerialize = true;
-
-const
-    mouseOver = op.outBoolNum("Pointer Hover", false),
-    mouseDown = op.outBoolNum("Pointer Down", false),
-    outX = op.outNumber("Pointer X"),
-    outY = op.outNumber("Pointer Y"),
-    outTop = op.outNumber("Top"),
-    outLeft = op.outNumber("Left"),
-    outRight = op.outNumber("Right"),
-    outBottom = op.outNumber("Bottom"),
-    mouseClick = op.outTrigger("Left Click");
-
-const elementPort = op.outObject("Dom Element");
-
-active.setUiAttribs({ "title": "Active" });
-
-const cgl = op.patch.cgl;
-axis.set("xy");
-pivotX.set("center");
-pivotY.set("center");
-
-const geom = new CGL.Geometry(op.name);
-let mesh = null;
-let div = null;
-const m = mat4.create();
-const trans = mat4.create();
-const pos = vec3.create();
-const divAlign = vec3.create();
-const divAlignSize = vec3.create();
-
-axis.onChange = rebuild;
-pivotX.onChange = rebuild;
-pivotY.onChange = rebuild;
-width.onChange = rebuild;
-height.onChange = rebuild;
-cursorPort.onChange = updateCursor;
-rebuild();
-
-const modelMatrix = mat4.create();
-const identViewMatrix = mat4.create();
-const zeroVec3 = vec3.create();
-
-render.onTriggered = function ()
-{
-    if (!div)
-    {
-        setUpDiv();
-        addListeners();
-        updateDivVisibility();
-        updateIsInteractive();
-    }
-    updateDivSize();
-
-    if (active.get() && renderRect.get() && mesh) mesh.render(cgl.getShader());
-
-    trigger.trigger();
-};
-
-function rebuild()
-{
-    let w = width.get();
-    let h = height.get();
-    let x = 0;
-    let y = 0;
-
-    if (typeof w == "string")w = parseFloat(w);
-    if (typeof h == "string")h = parseFloat(h);
-
-    if (pivotX.get() == "center")
-    {
-        x = 0;
-        divAlign[0] = -w / 2;
-    }
-    if (pivotX.get() == "right")
-    {
-        x = -w / 2;
-    }
-    if (pivotX.get() == "left")
-    {
-        x = w / 2;
-    }
-
-    if (pivotY.get() == "center")
-    {
-        y = 0;
-        divAlign[1] = -h / 2;
-    }
-    if (pivotY.get() == "top") y = -h / 2;
-    if (pivotY.get() == "bottom") y = +h / 2;
-
-    const verts = [];
-    const tc = [];
-    const norms = [];
-    const indices = [];
-
-    const numRows = 1;
-    const numColumns = 1;
-
-    const stepColumn = w / numColumns;
-    const stepRow = h / numRows;
-
-    let c, r;
-
-    for (r = 0; r <= numRows; r++)
-    {
-        for (c = 0; c <= numColumns; c++)
-        {
-            verts.push(c * stepColumn - width.get() / 2 + x);
-            if (axis.get() == "xz") verts.push(0.0);
-            verts.push(r * stepRow - height.get() / 2 + y);
-            if (axis.get() == "xy") verts.push(0.0);
-
-            tc.push(c / numColumns);
-            tc.push(1.0 - r / numRows);
-
-            if (axis.get() == "xz")
-            {
-                norms.push(0);
-                norms.push(1);
-                norms.push(0);
-            }
-
-            if (axis.get() == "xy")
-            {
-                norms.push(0);
-                norms.push(0);
-                norms.push(-1);
-            }
-        }
-    }
-
-    for (c = 0; c < numColumns; c++)
-    {
-        for (r = 0; r < numRows; r++)
-        {
-            const ind = c + (numColumns + 1) * r;
-            const v1 = ind;
-            const v2 = ind + 1;
-            const v3 = ind + numColumns + 1;
-            const v4 = ind + 1 + numColumns + 1;
-
-            indices.push(v1);
-            indices.push(v3);
-            indices.push(v2);
-
-            indices.push(v2);
-            indices.push(v3);
-            indices.push(v4);
-        }
-    }
-
-    geom.clear();
-    geom.vertices = verts;
-    geom.texCoords = tc;
-    geom.verticesIndices = indices;
-    geom.vertexNormals = norms;
-
-    if (!mesh) mesh = new CGL.Mesh(cgl, geom);
-    else mesh.setGeom(geom);
-
-    geomOut.set(null);
-    geomOut.set(geom);
-}
-
-let divX = 0;
-let divY = 0;
-let divWidth = 0;
-let divHeight = 0;
-
-const mMatrix = mat4.create();
-divVisible.onChange = updateDivVisibility;
-inId.onChange = updateId;
-classPort.onChange = updateClassNames;
-
-function updateDivVisibility()
-{
-    if (div)
-    {
-        if (divVisible.get()) div.style.border = "1px solid red";
-        else div.style.border = "none";
-    }
-}
-
-function updateCursor()
-{
-    if (div)
-    {
-        div.style.cursor = cursorPort.get();
-    }
-}
-
-function updateId()
-{
-    if (div)
-    {
-        div.setAttribute("id", inId.get());
-    }
-}
-
-function updateDivSize()
-{
-    // var vp=cgl.getViewPort();
-
-    mat4.multiply(mMatrix, cgl.vMatrix, cgl.mMatrix);
-    vec3.transformMat4(pos, divAlign, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const top = cgl.canvas.styleMarginTop || 0;
-    const left = cgl.canvas.styleMarginLeft || 0;
-
-    const x1 = (trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2 + left;
-    const y1 = (trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top;
-
-    divAlignSize[0] = divAlign[0] + width.get();
-    divAlignSize[1] = divAlign[1];
-
-    vec3.transformMat4(pos, divAlignSize, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const x2 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
-    const y2 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
-
-    divAlignSize[0] = divAlign[0];
-    divAlignSize[1] = divAlign[1] + height.get();
-
-    vec3.transformMat4(pos, divAlignSize, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const x3 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
-    const y3 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
-
-    divAlignSize[0] = divAlign[0] + width.get();
-    divAlignSize[1] = divAlign[1] + height.get();
-
-    vec3.transformMat4(pos, divAlignSize, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const x4 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
-    const y4 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
-
-    divX = Math.min(x1, x2, x3, x4);
-    divY = Math.min(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
-
-    const xb = Math.max(x1, x2, x3, x4);
-    const yb = Math.max(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
-
-    outTop.set(divY);
-    outLeft.set(divX);
-    outRight.set(xb);
-    outBottom.set(yb);
-
-    divWidth = Math.abs(xb - divX);
-    divHeight = Math.abs(yb - divY);
-
-    divX /= op.patch.cgl.pixelDensity;
-    divY /= op.patch.cgl.pixelDensity;
-    divWidth /= op.patch.cgl.pixelDensity;
-    divHeight /= op.patch.cgl.pixelDensity;
-
-    // div.style.left=divX+'px';
-    // div.style.top=divY+'px';
-    // div.style.width=divWidth+'px';
-    // div.style.height=divHeight+'px';
-
-    const divXpx = divX + "px";
-    const divYpx = divY + "px";
-    const divWidthPx = divWidth + "px";
-    const divHeightPx = divHeight + "px";
-    if (divXpx != div.style.left) div.style.left = divXpx;
-    if (divYpx != div.style.top) div.style.top = divYpx;
-    if (div.style.width != divWidthPx) div.style.width = divWidthPx;
-    if (div.style.height != divHeightPx) div.style.height = divHeightPx;
-}
-
-function updateClassNames()
-{
-    if (div)
-    {
-        div.className = classPort.get();
-    }
-}
-
-op.onDelete = function ()
-{
-    if (div)div.remove();
-};
-
-function setUpDiv()
-{
-    if (!div)
-    {
-        div = document.createElement("div");
-        div.dataset.op = op.id;
-        div.oncontextmenu = function (e)
-        {
-            e.preventDefault();
-        };
-
-        div.style.padding = "0px";
-        div.style.position = "absolute";
-        div.style["box-sizing"] = "border-box";
-        div.style.border = "1px solid red";
-        // div.style['border-left']="1px solid blue";
-        // div.style['border-top']="1px solid green";
-        div.style["z-index"] = "500";
-
-        div.style["-webkit-user-select"] = "none";
-        div.style["user-select"] = "none";
-        div.style["-webkit-tap-highlight-color"] = "rgba(0,0,0,0)";
-        div.style["-webkit-touch-callout"] = "none";
-
-        const canvas = op.patch.cgl.canvas.parentElement;
-        canvas.appendChild(div);
-        updateCursor();
-        updateIsInteractive();
-        updateId();
-        updateClassNames();
-    }
-    updateDivSize();
-    elementPort.set(div);
-}
-
-let listenerElement = null;
-
-function onMouseMove(e)
-{
-    const offsetX = -width.get() / 2;
-    const offsetY = -height.get() / 2;
-
-    outX.set(Math.max(0.0, Math.min(1.0, e.offsetX / divWidth)));
-    outY.set(Math.max(0.0, Math.min(1.0, 1.0 - e.offsetY / divHeight)));
-}
-
-function onMouseLeave(e)
-{
-    mouseDown.set(false);
-    mouseOver.set(false);
-}
-
-function onMouseEnter(e)
-{
-    mouseOver.set(true);
-}
-
-function onMouseDown(e)
-{
-    mouseDown.set(true);
-}
-
-function onMouseUp(e)
-{
-    mouseDown.set(false);
-}
-
-function onmouseclick(e)
-{
-    mouseClick.trigger();
-}
-
-function onTouchMove(e)
-{
-    const targetEle = document.elementFromPoint(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
-
-    if (targetEle == div)
-    {
-        mouseOver.set(true);
-        if (e.touches && e.touches.length > 0)
-        {
-            const rect = div.getBoundingClientRect(); // e.target
-            const x = e.targetTouches[0].pageX - rect.left;
-            const y = e.targetTouches[0].pageY - rect.top;
-
-            const touch = e.touches[0];
-
-            outX.set(Math.max(0.0, Math.min(1.0, x / divWidth)));
-            outY.set(Math.max(0.0, Math.min(1.0, 1.0 - y / divHeight)));
-
-            onMouseMove(touch);
-        }
-    }
-    else
-    {
-        mouseOver.set(false);
-    }
-}
-
-active.onChange = updateActiveRender;
-function updateActiveRender()
-{
-    if (active.get())
-    {
-        addListeners();
-        if (div) div.style.display = "block";
-    }
-    else
-    {
-        removeListeners();
-        if (div) div.style.display = "none";
-    }
-}
-
-isInteractive.onChange = updateIsInteractive;
-function updateIsInteractive()
-{
-    if (isInteractive.get())
-    {
-        addListeners();
-        if (div)div.style["pointer-events"] = "initial";
-    }
-    else
-    {
-        removeListeners();
-        mouseDown.set(false);
-        mouseOver.set(false);
-        if (div)div.style["pointer-events"] = "none";
-    }
-}
-
-function removeListeners()
-{
-    if (listenerElement)
-    {
-        document.removeEventListener("touchmove", onTouchMove);
-        listenerElement.removeEventListener("touchend", onMouseUp);
-        listenerElement.removeEventListener("touchstart", onMouseDown);
-
-        listenerElement.removeEventListener("click", onmouseclick);
-        listenerElement.removeEventListener("mousemove", onMouseMove);
-        listenerElement.removeEventListener("mouseleave", onMouseLeave);
-        listenerElement.removeEventListener("mousedown", onMouseDown);
-        listenerElement.removeEventListener("mouseup", onMouseUp);
-        listenerElement.removeEventListener("mouseenter", onMouseEnter);
-        // listenerElement.removeEventListener('contextmenu', onClickRight);
-        listenerElement = null;
-    }
-}
-
-function addListeners()
-{
-    if (listenerElement)removeListeners();
-
-    listenerElement = div;
-
-    if (listenerElement)
-    {
-        document.addEventListener("touchmove", onTouchMove);
-        listenerElement.addEventListener("touchend", onMouseUp);
-        listenerElement.addEventListener("touchstart", onMouseDown);
-
-        listenerElement.addEventListener("click", onmouseclick);
-        listenerElement.addEventListener("mousemove", onMouseMove);
-        listenerElement.addEventListener("mouseleave", onMouseLeave);
-        listenerElement.addEventListener("mousedown", onMouseDown);
-        listenerElement.addEventListener("mouseup", onMouseUp);
-        listenerElement.addEventListener("mouseenter", onMouseEnter);
-        // listenerElement.addEventListener('contextmenu', onClickRight);
-    }
-}
-
-
-};
-
-Ops.Gl.InteractiveRectangle_v2.prototype = new CABLES.Op();
-CABLES.OPS["334728ca-60a2-4a42-a059-d9b5f3fe4d32"]={f:Ops.Gl.InteractiveRectangle_v2,objName:"Ops.Gl.InteractiveRectangle_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.String.NumberToString_v2
-// 
-// **************************************************************
-
-Ops.String.NumberToString_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    val = op.inValue("Number"),
-    decPlaces = op.inInt("Decimal Places", 4),
-    result = op.outString("Result");
-
-let doDec = false;
-let decm = 1;
-decPlaces.onChange = updateDecm;
-val.onChange = update;
-updateDecm();
-update();
-
-function updateDecm()
-{
-    doDec = decPlaces.get() < 100;
-    decm = Math.pow(10, decPlaces.get());
-    update();
-}
-
-function update()
-{
-    if (doDec)
-        result.set(String(Math.round(val.get() * decm) / decm));
-    else
-        result.set(String(val.get() || 0));
-}
-
-
-};
-
-Ops.String.NumberToString_v2.prototype = new CABLES.Op();
-CABLES.OPS["5c6d375a-82db-4366-8013-93f56b4061a9"]={f:Ops.String.NumberToString_v2,objName:"Ops.String.NumberToString_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.String.Concat_v2
-// 
-// **************************************************************
-
-Ops.String.Concat_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    string1 = op.inString("string1", "ABC"),
-    string2 = op.inString("string2", "XYZ"),
-    newLine = op.inValueBool("New Line", false),
-    active = op.inBool("Active", true),
-    result = op.outString("result");
-
-newLine.onChange =
-    string2.onChange =
-    string1.onChange =
-    active.onChange = exec;
-
-exec();
-
-function exec()
-{
-    if (!active.get())
-    {
-        return result.set(string1.get());
-    }
-    let s1 = string1.get();
-    let s2 = string2.get();
-    if (!s1 && !s2)
-    {
-        result.set("");
-        return;
-    }
-    if (!s1)s1 = "";
-    if (!s2)s2 = "";
-
-    let nl = "";
-    if (s1 && s2 && newLine.get())nl = "\n";
-    result.set(String(s1) + nl + String(s2));
-}
-
-
-};
-
-Ops.String.Concat_v2.prototype = new CABLES.Op();
-CABLES.OPS["a52722aa-0ca9-402c-a844-b7e98a6c6e60"]={f:Ops.String.Concat_v2,objName:"Ops.String.Concat_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Vars.VarGetString
-// 
-// **************************************************************
-
-Ops.Vars.VarGetString = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-var val=op.outString("Value");
-op.varName=op.inValueSelect("Variable",[],"",true);
-
-new CABLES.VarGetOpWrapper(op,"string",op.varName,val);
-
-
-};
-
-Ops.Vars.VarGetString.prototype = new CABLES.Op();
-CABLES.OPS["3ad08cfc-bce6-4175-9746-fef2817a3b12"]={f:Ops.Vars.VarGetString,objName:"Ops.Vars.VarGetString"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Vars.VarGetTexture_v2
-// 
-// **************************************************************
-
-Ops.Vars.VarGetTexture_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const val = op.outTexture("Value");
-op.varName = op.inValueSelect("Variable", [], "", true);
-
-new CABLES.VarGetOpWrapper(op, "object", op.varName, val);
-
-
-};
-
-Ops.Vars.VarGetTexture_v2.prototype = new CABLES.Op();
-CABLES.OPS["5f8ce5fc-9787-45c9-9a83-0eebd2c6de15"]={f:Ops.Vars.VarGetTexture_v2,objName:"Ops.Vars.VarGetTexture_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.Meshes.Triangle_v2
-// 
-// **************************************************************
-
-Ops.Gl.Meshes.Triangle_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    render = op.inTrigger("render"),
-    trigger = op.outTrigger("trigger"),
-    sizeW = op.inValueFloat("width", 1),
-    sizeH = op.inValueFloat("height", 1),
-    draw = op.inValueBool("Draw", true),
-    geom = new CGL.Geometry("triangle"),
-    geomOut = op.outObject("geometry");
-
-geomOut.ignoreValueSerialize = true;
-
-op.toWorkPortsNeedToBeLinked(render);
-op.setPortGroup("Size", [sizeW, sizeH]);
-
-const cgl = op.patch.cgl;
-let mesh = null;
-sizeW.onChange = sizeH.onChange = () => { mesh = null; };
-
-render.onLinkChanged = () =>
-{
-    if (!render.isLinked()) geomOut.set(null);
-    else create();
-};
-
-render.onTriggered = function ()
-{
-    if (!mesh)create();
-    if (draw.get() && mesh)mesh.render(cgl.getShader());
-    trigger.trigger();
-};
-
-function create()
-{
-    geom.vertices = [
-        0.0, sizeH.get(), 0.0,
-        -sizeW.get(), -sizeH.get(), 0.0,
-        sizeW.get(), -sizeH.get(), 0.0
-    ];
-
-    geom.vertexNormals = [
-        0.0, 0.0, 1.0,
-        0.0, 0.0, 1.0,
-        0.0, 0.0, 1.0
-    ];
-    geom.tangents = [
-        1, 0, 0,
-        1, 0, 0,
-        1, 0, 0
-    ];
-    geom.biTangents = [
-        0, 1, 0,
-        0, 1, 0,
-        0, 1, 0
-    ];
-
-    geom.texCoords = [
-        0.5, 0.0,
-        1.0, 1.0,
-        0.0, 1.0,
-    ];
-
-    geom.verticesIndices = [
-        0, 1, 2
-    ];
-
-    mesh = new CGL.Mesh(cgl, geom);
-    geomOut.setRef(geom);
-}
-
-
-};
-
-Ops.Gl.Meshes.Triangle_v2.prototype = new CABLES.Op();
-CABLES.OPS["ef522d4a-9712-4063-8a99-c6b409f26456"]={f:Ops.Gl.Meshes.Triangle_v2,objName:"Ops.Gl.Meshes.Triangle_v2"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.Matrix.Billboard
-// 
-// **************************************************************
-
-Ops.Gl.Matrix.Billboard = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const exec = op.inTrigger("Exec");
-const next = op.outTrigger("Next");
-
-const cgl = op.patch.cgl;
-
-let mm = mat4.create();
-let mv = mat4.create();
-let m = mat4.create();
-let mempty = mat4.create();
-
-exec.onTriggered = function ()
-{
-    mat4.invert(mm, cgl.mMatrix);
-    mat4.invert(mv, cgl.vMatrix);
-
-    mat4.mul(mm, mm, mv);
-
-    mm[12] = 0;
-    mm[13] = 0;
-    mm[14] = 0;
-
-    cgl.pushModelMatrix();
-    cgl.pushViewMatrix();
-    mat4.mul(cgl.mMatrix, cgl.mMatrix, mm);
-    next.trigger();
-    cgl.popViewMatrix();
-    cgl.popModelMatrix();
-};
-
-
-};
-
-Ops.Gl.Matrix.Billboard.prototype = new CABLES.Op();
-CABLES.OPS["d41e676e-d8a7-4a1e-8abf-f1bddfc982d5"]={f:Ops.Gl.Matrix.Billboard,objName:"Ops.Gl.Matrix.Billboard"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Patch.PbdFbHA.InteractiveRectangle_v22
-// 
-// **************************************************************
-
-Ops.Patch.PbdFbHA.InteractiveRectangle_v22 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    render = op.inTrigger("Trigger in"),
-    trigger = op.outTrigger("Trigger out"),
-    width = op.inValue("Width", 1),
-    height = op.inValue("Height", 1),
-    inId = op.inString("ID"),
-    classPort = op.inString("Class"),
-    pivotX = op.inValueSelect("Pivot x", ["center", "left", "right"]),
-    pivotY = op.inValueSelect("Pivot y", ["center", "top", "bottom"]),
-    axis = op.inValueSelect("Axis", ["xy", "xz"]),
-    isInteractive = op.inValueBool("Is Interactive", true),
-    renderRect = op.inValueBool("Render Rectangle", true),
-    divVisible = op.inValueBool("Show Boundings", true),
-    cursorPort = op.inValueSelect("Cursor", ["auto", "crosshair", "pointer", "Hand", "move", "n-resize", "ne-resize", "e-resize", "se-resize", "s-resize", "sw-resize", "w-resize", "nw-resize", "text", "wait", "help", "none"], "pointer"),
-    active = op.inValueBool("Render", true);
-
-const geomOut = op.outObject("geometry");
-geomOut.ignoreValueSerialize = true;
-
-const
-    mouseOver = op.outBoolNum("Pointer Hover", false),
-    mouseDown = op.outBoolNum("Pointer Down", false),
-    outX = op.outNumber("Pointer X"),
-    outY = op.outNumber("Pointer Y"),
-    outTop = op.outNumber("Top"),
-    outLeft = op.outNumber("Left"),
-    outRight = op.outNumber("Right"),
-    outBottom = op.outNumber("Bottom"),
-    mouseClick = op.outTrigger("Left Click");
-
-const elementPort = op.outObject("Dom Element");
-
-active.setUiAttribs({ "title": "Active" });
-
-const cgl = op.patch.cgl;
-axis.set("xy");
-pivotX.set("center");
-pivotY.set("center");
-
-const geom = new CGL.Geometry(op.name);
-let mesh = null;
-let div = null;
-const m = mat4.create();
-const trans = mat4.create();
-const pos = vec3.create();
-const divAlign = vec3.create();
-const divAlignSize = vec3.create();
-
-axis.onChange = rebuild;
-pivotX.onChange = rebuild;
-pivotY.onChange = rebuild;
-width.onChange = rebuild;
-height.onChange = rebuild;
-cursorPort.onChange = updateCursor;
-rebuild();
-
-const modelMatrix = mat4.create();
-const identViewMatrix = mat4.create();
-const zeroVec3 = vec3.create();
-
-render.onTriggered = function ()
-{
-    if (!div)
-    {
-        setUpDiv();
-        addListeners();
-        updateDivVisibility();
-        updateIsInteractive();
-    }
-    updateDivSize();
-
-    if (active.get() && renderRect.get() && mesh) mesh.render(cgl.getShader());
-
-    trigger.trigger();
-};
-
-function rebuild()
-{
-    let w = width.get();
-    let h = height.get();
-    let x = 0;
-    let y = 0;
-
-    if (typeof w == "string")w = parseFloat(w);
-    if (typeof h == "string")h = parseFloat(h);
-
-    if (pivotX.get() == "center")
-    {
-        x = 0;
-        divAlign[0] = -w / 2;
-    }
-    if (pivotX.get() == "right")
-    {
-        x = -w / 2;
-    }
-    if (pivotX.get() == "left")
-    {
-        x = w / 2;
-    }
-
-    if (pivotY.get() == "center")
-    {
-        y = 0;
-        divAlign[1] = -h / 2;
-    }
-    if (pivotY.get() == "top") y = -h / 2;
-    if (pivotY.get() == "bottom") y = +h / 2;
-
-    const verts = [];
-    const tc = [];
-    const norms = [];
-    const indices = [];
-
-    const numRows = 1;
-    const numColumns = 1;
-
-    const stepColumn = w / numColumns;
-    const stepRow = h / numRows;
-
-    let c, r;
-
-    for (r = 0; r <= numRows; r++)
-    {
-        for (c = 0; c <= numColumns; c++)
-        {
-            verts.push(c * stepColumn - width.get() / 2 + x);
-            if (axis.get() == "xz") verts.push(0.0);
-            verts.push(r * stepRow - height.get() / 2 + y);
-            if (axis.get() == "xy") verts.push(0.0);
-
-            tc.push(c / numColumns);
-            tc.push(1.0 - r / numRows);
-
-            if (axis.get() == "xz")
-            {
-                norms.push(0);
-                norms.push(1);
-                norms.push(0);
-            }
-
-            if (axis.get() == "xy")
-            {
-                norms.push(0);
-                norms.push(0);
-                norms.push(-1);
-            }
-        }
-    }
-
-    for (c = 0; c < numColumns; c++)
-    {
-        for (r = 0; r < numRows; r++)
-        {
-            const ind = c + (numColumns + 1) * r;
-            const v1 = ind;
-            const v2 = ind + 1;
-            const v3 = ind + numColumns + 1;
-            const v4 = ind + 1 + numColumns + 1;
-
-            indices.push(v1);
-            indices.push(v3);
-            indices.push(v2);
-
-            indices.push(v2);
-            indices.push(v3);
-            indices.push(v4);
-        }
-    }
-
-    geom.clear();
-    geom.vertices = verts;
-    geom.texCoords = tc;
-    geom.verticesIndices = indices;
-    geom.vertexNormals = norms;
-
-    if (!mesh) mesh = new CGL.Mesh(cgl, geom);
-    else mesh.setGeom(geom);
-
-    geomOut.set(null);
-    geomOut.set(geom);
-}
-
-let divX = 0;
-let divY = 0;
-let divWidth = 0;
-let divHeight = 0;
-
-const mMatrix = mat4.create();
-divVisible.onChange = updateDivVisibility;
-inId.onChange = updateId;
-classPort.onChange = updateClassNames;
-
-function updateDivVisibility()
-{
-    if (div)
-    {
-        if (divVisible.get()) div.style.border = "1px solid red";
-        else div.style.border = "none";
-    }
-}
-
-function updateCursor()
-{
-    if (div)
-    {
-        div.style.cursor = cursorPort.get();
-    }
-}
-
-function updateId()
-{
-    if (div)
-    {
-        div.setAttribute("id", inId.get());
-    }
-}
-
-function updateDivSize()
-{
-    // var vp=cgl.getViewPort();
-
-    mat4.multiply(mMatrix, cgl.vMatrix, cgl.mMatrix);
-    vec3.transformMat4(pos, divAlign, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const top = cgl.canvas.styleMarginTop || 0;
-    const left = cgl.canvas.styleMarginLeft || 0;
-
-    const x1 = (trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2 + left;
-    const y1 = (trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top;
-
-    divAlignSize[0] = divAlign[0] + width.get();
-    divAlignSize[1] = divAlign[1];
-
-    vec3.transformMat4(pos, divAlignSize, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const x2 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
-    const y2 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
-
-    divAlignSize[0] = divAlign[0];
-    divAlignSize[1] = divAlign[1] + height.get();
-
-    vec3.transformMat4(pos, divAlignSize, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const x3 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
-    const y3 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
-
-    divAlignSize[0] = divAlign[0] + width.get();
-    divAlignSize[1] = divAlign[1] + height.get();
-
-    vec3.transformMat4(pos, divAlignSize, mMatrix);
-    vec3.transformMat4(trans, pos, cgl.pMatrix);
-
-    const x4 = ((trans[0] * cgl.canvasWidth / 2) + cgl.canvasWidth / 2) + left;
-    const y4 = ((trans[1] * cgl.canvasHeight / 2) + cgl.canvasHeight / 2 + top);
-
-    divX = Math.min(x1, x2, x3, x4);
-    divY = Math.min(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
-
-    const xb = Math.max(x1, x2, x3, x4);
-    const yb = Math.max(cgl.canvasHeight - y1, cgl.canvasHeight - y2, cgl.canvasHeight - y3, cgl.canvasHeight - y4);
-
-    outTop.set(divY);
-    outLeft.set(divX);
-    outRight.set(xb);
-    outBottom.set(yb);
-
-    divWidth = Math.abs(xb - divX);
-    divHeight = Math.abs(yb - divY);
-
-    divX /= op.patch.cgl.pixelDensity;
-    divY /= op.patch.cgl.pixelDensity;
-    divWidth /= op.patch.cgl.pixelDensity;
-    divHeight /= op.patch.cgl.pixelDensity;
-
-    // div.style.left=divX+'px';
-    // div.style.top=divY+'px';
-    // div.style.width=divWidth+'px';
-    // div.style.height=divHeight+'px';
-
-    const divXpx = divX + "px";
-    const divYpx = divY + "px";
-    const divWidthPx = divWidth + "px";
-    const divHeightPx = divHeight + "px";
-    if (divXpx != div.style.left) div.style.left = divXpx;
-    if (divYpx != div.style.top) div.style.top = divYpx;
-    if (div.style.width != divWidthPx) div.style.width = divWidthPx;
-    if (div.style.height != divHeightPx) div.style.height = divHeightPx;
-}
-
-function updateClassNames()
-{
-    if (div)
-    {
-        div.className = classPort.get();
-    }
-}
-
-op.onDelete = function ()
-{
-    if (div)div.remove();
-};
-
-function setUpDiv()
-{
-    if (!div)
-    {
-        div = document.createElement("div");
-        div.dataset.op = op.id;
-        div.oncontextmenu = function (e)
-        {
-            e.preventDefault();
-        };
-
-        div.style.padding = "0px";
-        div.style.position = "absolute";
-        div.style["box-sizing"] = "border-box";
-        div.style.border = "1px solid red";
-        // div.style['border-left']="1px solid blue";
-        // div.style['border-top']="1px solid green";
-        div.style["z-index"] = "500";
-
-        div.style["-webkit-user-select"] = "none";
-        div.style["user-select"] = "none";
-        div.style["-webkit-tap-highlight-color"] = "rgba(0,0,0,0)";
-        div.style["-webkit-touch-callout"] = "none";
-
-        const canvas = op.patch.cgl.canvas.parentElement;
-        canvas.appendChild(div);
-        updateCursor();
-        updateIsInteractive();
-        updateId();
-        updateClassNames();
-    }
-    updateDivSize();
-    elementPort.set(div);
-}
-
-let listenerElement = null;
-
-function onMouseMove(e)
-{
-    const offsetX = -width.get() / 2;
-    const offsetY = -height.get() / 2;
-
-    outX.set(Math.max(0.0, Math.min(1.0, e.offsetX / divWidth)));
-    outY.set(Math.max(0.0, Math.min(1.0, 1.0 - e.offsetY / divHeight)));
-}
-
-function onMouseLeave(e)
-{
-    mouseDown.set(false);
-    mouseOver.set(false);
-}
-
-function onMouseEnter(e)
-{
-    mouseOver.set(true);
-}
-
-function onMouseDown(e)
-{
-    mouseDown.set(true);
-}
-
-function onMouseUp(e)
-{
-    mouseDown.set(false);
-}
-
-function onmouseclick(e)
-{
-    mouseClick.trigger();
-}
-
-function onTouchMove(e)
-{
-    const targetEle = document.elementFromPoint(e.targetTouches[0].pageX, e.targetTouches[0].pageY);
-
-    if (targetEle == div)
-    {
-        mouseOver.set(true);
-        if (e.touches && e.touches.length > 0)
-        {
-            const rect = div.getBoundingClientRect(); // e.target
-            const x = e.targetTouches[0].pageX - rect.left;
-            const y = e.targetTouches[0].pageY - rect.top;
-
-            const touch = e.touches[0];
-
-            outX.set(Math.max(0.0, Math.min(1.0, x / divWidth)));
-            outY.set(Math.max(0.0, Math.min(1.0, 1.0 - y / divHeight)));
-
-            onMouseMove(touch);
-        }
-    }
-    else
-    {
-        mouseOver.set(false);
-    }
-}
-
-active.onChange = updateActiveRender;
-function updateActiveRender()
-{
-    if (active.get())
-    {
-        addListeners();
-        if (div) div.style.display = "block";
-    }
-    else
-    {
-        removeListeners();
-        if (div) div.style.display = "none";
-    }
-}
-
-isInteractive.onChange = updateIsInteractive;
-function updateIsInteractive()
-{
-    if (isInteractive.get())
-    {
-        addListeners();
-        if (div)div.style["pointer-events"] = "initial";
-    }
-    else
-    {
-        removeListeners();
-        mouseDown.set(false);
-        mouseOver.set(false);
-        if (div)div.style["pointer-events"] = "none";
-    }
-}
-
-function removeListeners()
-{
-    if (listenerElement)
-    {
-        document.removeEventListener("touchmove", onTouchMove);
-        listenerElement.removeEventListener("touchend", onMouseUp);
-        listenerElement.removeEventListener("touchstart", onMouseDown);
-
-        listenerElement.removeEventListener("click", onmouseclick);
-        listenerElement.removeEventListener("mousemove", onMouseMove);
-        listenerElement.removeEventListener("mouseleave", onMouseLeave);
-        listenerElement.removeEventListener("mousedown", onMouseDown);
-        listenerElement.removeEventListener("mouseup", onMouseUp);
-        listenerElement.removeEventListener("mouseenter", onMouseEnter);
-        // listenerElement.removeEventListener('contextmenu', onClickRight);
-        listenerElement = null;
-    }
-}
-
-function addListeners()
-{
-    if (listenerElement)removeListeners();
-
-    listenerElement = div;
-
-    if (listenerElement)
-    {
-        document.addEventListener("touchmove", onTouchMove);
-        listenerElement.addEventListener("touchend", onMouseUp);
-        listenerElement.addEventListener("touchstart", onMouseDown);
-
-        listenerElement.addEventListener("click", onmouseclick);
-        listenerElement.addEventListener("mousemove", onMouseMove);
-        listenerElement.addEventListener("mouseleave", onMouseLeave);
-        listenerElement.addEventListener("mousedown", onMouseDown);
-        listenerElement.addEventListener("mouseup", onMouseUp);
-        listenerElement.addEventListener("mouseenter", onMouseEnter);
-        // listenerElement.addEventListener('contextmenu', onClickRight);
-    }
-}
-
-
-};
-
-Ops.Patch.PbdFbHA.InteractiveRectangle_v22.prototype = new CABLES.Op();
-CABLES.OPS["26c98669-65c5-4f24-8136-08a2443460d0"]={f:Ops.Patch.PbdFbHA.InteractiveRectangle_v22,objName:"Ops.Patch.PbdFbHA.InteractiveRectangle_v22"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Patch.PbdFbHA.DisengageFlag
-// 
-// **************************************************************
-
-Ops.Patch.PbdFbHA.DisengageFlag = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={"inc_gen_ports_js":"const port_jqg7l6f5m=op.inFloat(\"jqg7l6f5m\",0);\nport_jqg7l6f5m.setUiAttribs({title:\"Boolean\",display:\"bool\",});\n\nop.initInnerPorts=function(addedOps)\n{\n  for(let i=0;i<addedOps.length;i++)\n  {\n    if(addedOps[i].innerInput)\n    {\nconst innerOut_jqg7l6f5m = addedOps[i].outNumber(\"innerOut_jqg7l6f5m\");\ninnerOut_jqg7l6f5m.set(port_jqg7l6f5m.get() );\ninnerOut_jqg7l6f5m.setUiAttribs({title:\"Boolean\"});\nport_jqg7l6f5m.on(\"change\", (a,v) => { innerOut_jqg7l6f5m.set(a); });\n\n    }\nif(addedOps[i].innerOutput)\n{\n}\n}\n};\n","subpatch_json":"{\"ops\":[{\"id\":\"tjwrh5u95\",\"uiAttribs\":{\"subPatch\":\"ynlymowkj\"},\"storage\":{\"blueprintVer\":2},\"portsIn\":[{\"name\":\"Variable\",\"value\":\"__sliderLeave\"}],\"objName\":\"Ops.Vars.VarSetNumber_v2\"},{\"id\":\"dlvka8p7u\",\"uiAttribs\":{\"subPatch\":\"ynlymowkj\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"Result\",\"links\":[{\"portIn\":\"Value\",\"portOut\":\"Result\",\"objIn\":\"tjwrh5u95\",\"objOut\":\"dlvka8p7u\"}]}],\"objName\":\"Ops.Boolean.Not\"},{\"id\":\"eck8hvwot\",\"uiAttribs\":{\"subPatch\":\"ynlymowkj\"},\"storage\":{\"blueprintVer\":2},\"portsOut\":[{\"name\":\"innerOut_jqg7l6f5m\",\"title\":\"Boolean\",\"links\":[{\"portIn\":\"Boolean\",\"portOut\":\"innerOut_jqg7l6f5m\",\"objIn\":\"dlvka8p7u\",\"objOut\":\"eck8hvwot\"}]}],\"objName\":\"Ops.Ui.SubPatchInput\"},{\"id\":\"7mxc7zyyb\",\"uiAttribs\":{\"subPatch\":\"ynlymowkj\"},\"storage\":{\"blueprintVer\":2},\"objName\":\"Ops.Ui.SubPatchOutput\"}]}",};
-const port_jqg7l6f5m=op.inFloat("jqg7l6f5m",0);
-port_jqg7l6f5m.setUiAttribs({title:"Boolean",display:"bool",});
-
-op.initInnerPorts=function(addedOps)
-{
-  for(let i=0;i<addedOps.length;i++)
-  {
-    if(addedOps[i].innerInput)
-    {
-const innerOut_jqg7l6f5m = addedOps[i].outNumber("innerOut_jqg7l6f5m");
-innerOut_jqg7l6f5m.set(port_jqg7l6f5m.get() );
-innerOut_jqg7l6f5m.setUiAttribs({title:"Boolean"});
-port_jqg7l6f5m.on("change", (a,v) => { innerOut_jqg7l6f5m.set(a); });
-
-    }
-if(addedOps[i].innerOutput)
-{
-}
-}
-};
-
-const patchId = "bp2sub_" + op.id;
-
-new CABLES.SubPatchOp(op, { "subId": patchId });
-
-initializeSubpatch();
-
-function initializeSubpatch()
-{
-    const p = JSON.parse(attachments.subpatch_json);
-
-    CABLES.Patch.replaceOpIds(p,
-        {
-            "parentSubPatchId": patchId,
-            "prefixHash": patchId,
-            "oldIdAsRef": true,
-            "doNotUnlinkLostLinks": true
-        });
-
-    for (let i = 0; i < p.ops.length; i++)
-    {
-        p.ops[i].uiAttribs.blueprintSubpatch2 = true;
-    }
-
-    op.loadDependencies(p, () =>
-    {
-        op.patch.deSerialize(p, { "opsCreated": op.initInnerPorts });
-        if (CABLES.UI)gui.savedState.setSaved("blueprintloaded", patchId);
-        op.patch.emitEvent("subpatchExpose", patchId);
-        op.setStorage({ "blueprintVer": 2 });
-        op.patch.emitEvent("subpatchExpose", patchId);
-    });
-}
-
-
-};
-
-Ops.Patch.PbdFbHA.DisengageFlag.prototype = new CABLES.Op();
-CABLES.OPS["723dbdda-b2a6-4b49-a979-a2634f4e472a"]={f:Ops.Patch.PbdFbHA.DisengageFlag,objName:"Ops.Patch.PbdFbHA.DisengageFlag"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Gl.ClearColor
 // 
 // **************************************************************
@@ -13050,243 +13201,6 @@ inVal.onChange = function ()
 
 Ops.Math.Ease.prototype = new CABLES.Op();
 CABLES.OPS["8f6e4a08-33e6-408f-ac4a-198bd03b417b"]={f:Ops.Math.Ease,objName:"Ops.Math.Ease"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Gl.Texture_v2
-// 
-// **************************************************************
-
-Ops.Gl.Texture_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    filename = op.inUrl("File", [".jpg", ".png", ".webp", ".jpeg", ".avif"]),
-    tfilter = op.inSwitch("Filter", ["nearest", "linear", "mipmap"]),
-    wrap = op.inValueSelect("Wrap", ["repeat", "mirrored repeat", "clamp to edge"], "clamp to edge"),
-    aniso = op.inSwitch("Anisotropic", ["0", "1", "2", "4", "8", "16"], "0"),
-    dataFrmt = op.inSwitch("Data Format", ["R", "RG", "RGB", "RGBA", "SRGBA"], "RGBA"),
-    flip = op.inValueBool("Flip", false),
-    unpackAlpha = op.inValueBool("Pre Multiplied Alpha", false),
-    active = op.inValueBool("Active", true),
-    inFreeMemory = op.inBool("Save Memory", true),
-    textureOut = op.outTexture("Texture"),
-    addCacheBust = op.inBool("Add Cachebuster", false),
-    inReload = op.inTriggerButton("Reload"),
-    width = op.outNumber("Width"),
-    height = op.outNumber("Height"),
-    ratio = op.outNumber("Aspect Ratio"),
-    loaded = op.outBoolNum("Loaded", 0),
-    loading = op.outBoolNum("Loading", 0);
-
-const cgl = op.patch.cgl;
-
-op.toWorkPortsNeedToBeLinked(textureOut);
-op.setPortGroup("Size", [width, height]);
-
-let loadedFilename = null;
-let loadingId = null;
-let tex = null;
-let cgl_filter = CGL.Texture.FILTER_MIPMAP;
-let cgl_wrap = CGL.Texture.WRAP_REPEAT;
-let cgl_aniso = 0;
-let timedLoader = 0;
-
-unpackAlpha.setUiAttribs({ "hidePort": true });
-unpackAlpha.onChange =
-    filename.onChange =
-    dataFrmt.onChange =
-    addCacheBust.onChange =
-    flip.onChange = reloadSoon;
-aniso.onChange = tfilter.onChange = onFilterChange;
-wrap.onChange = onWrapChange;
-
-tfilter.set("mipmap");
-wrap.set("repeat");
-
-textureOut.setRef(CGL.Texture.getEmptyTexture(cgl));
-
-inReload.onTriggered = reloadSoon;
-
-active.onChange = function ()
-{
-    if (active.get())
-    {
-        if (loadedFilename != filename.get() || !tex) reloadSoon();
-        else textureOut.setRef(tex);
-    }
-    else
-    {
-        textureOut.setRef(CGL.Texture.getEmptyTexture(cgl));
-        width.set(CGL.Texture.getEmptyTexture(cgl).width);
-        height.set(CGL.Texture.getEmptyTexture(cgl).height);
-        if (tex)tex.delete();
-        op.setUiAttrib({ "extendTitle": "" });
-        tex = null;
-    }
-};
-
-const setTempTexture = function ()
-{
-    const t = CGL.Texture.getTempTexture(cgl);
-    textureOut.setRef(t);
-};
-
-function reloadSoon(nocache)
-{
-    clearTimeout(timedLoader);
-    timedLoader = setTimeout(function ()
-    {
-        realReload(nocache);
-    }, 1);
-}
-
-function getPixelFormat()
-{
-    if (dataFrmt.get() == "R") return CGL.Texture.PFORMATSTR_R8UB;
-    if (dataFrmt.get() == "RG") return CGL.Texture.PFORMATSTR_RG8UB;
-    if (dataFrmt.get() == "RGB") return CGL.Texture.PFORMATSTR_RGB8UB;
-    if (dataFrmt.get() == "SRGBA") return CGL.Texture.PFORMATSTR_SRGBA8;
-
-    return CGL.Texture.PFORMATSTR_RGBA8UB;
-}
-
-function realReload(nocache)
-{
-    op.checkMainloopExists();
-    if (!active.get()) return;
-    if (loadingId)loadingId = cgl.patch.loading.finished(loadingId);
-
-    loadingId = cgl.patch.loading.start(op.objName, filename.get(), op);
-
-    let url = op.patch.getFilePath(String(filename.get()));
-
-    if (addCacheBust.get() || nocache === true) url = CABLES.cacheBust(url);
-
-    if (String(filename.get()).indexOf("data:") == 0) url = filename.get();
-
-    let needsRefresh = false;
-    loadedFilename = filename.get();
-
-    if ((filename.get() && filename.get().length > 1))
-    {
-        loaded.set(false);
-        loading.set(true);
-
-        const fileToLoad = filename.get();
-
-        op.setUiAttrib({ "extendTitle": CABLES.basename(url) });
-        if (needsRefresh) op.refreshParams();
-
-        cgl.patch.loading.addAssetLoadingTask(() =>
-        {
-            op.setUiError("urlerror", null);
-            CGL.Texture.load(cgl, url, function (err, newTex)
-            {
-                cgl.checkFrameStarted("texture inittexture");
-
-                if (filename.get() != fileToLoad)
-                {
-                    loadingId = cgl.patch.loading.finished(loadingId);
-                    return;
-                }
-
-                if (tex)tex.delete();
-
-                if (err)
-                {
-                    const t = CGL.Texture.getErrorTexture(cgl);
-                    textureOut.setRef(t);
-
-                    op.setUiError("urlerror", "could not load texture: \"" + filename.get() + "\"", 2);
-                    loadingId = cgl.patch.loading.finished(loadingId);
-                    return;
-                }
-
-                // textureOut.setRef(newTex);
-
-                width.set(newTex.width);
-                height.set(newTex.height);
-                ratio.set(newTex.width / newTex.height);
-
-                // if (!newTex.isPowerOfTwo()) op.setUiError("npot", "Texture dimensions not power of two! - Texture filtering will not work in WebGL 1.", 0);
-                // else op.setUiError("npot", null);
-
-                tex = newTex;
-                // textureOut.setRef(null);
-                textureOut.setRef(tex);
-
-                loading.set(false);
-                loaded.set(true);
-
-                if (inFreeMemory.get()) tex.image = null;
-
-                if (loadingId)
-                {
-                    loadingId = cgl.patch.loading.finished(loadingId);
-                }
-                op.checkMainloopExists();
-            }, {
-                "anisotropic": cgl_aniso,
-                "wrap": cgl_wrap,
-                "flip": flip.get(),
-                "unpackAlpha": unpackAlpha.get(),
-                "pixelFormat": getPixelFormat(),
-                "filter": cgl_filter
-            });
-
-            op.checkMainloopExists();
-        });
-    }
-    else
-    {
-        setTempTexture();
-        loadingId = cgl.patch.loading.finished(loadingId);
-    }
-}
-
-function onFilterChange()
-{
-    if (tfilter.get() == "nearest") cgl_filter = CGL.Texture.FILTER_NEAREST;
-    else if (tfilter.get() == "linear") cgl_filter = CGL.Texture.FILTER_LINEAR;
-    else if (tfilter.get() == "mipmap") cgl_filter = CGL.Texture.FILTER_MIPMAP;
-    else if (tfilter.get() == "Anisotropic") cgl_filter = CGL.Texture.FILTER_ANISOTROPIC;
-    aniso.setUiAttribs({ "greyout": cgl_filter != CGL.Texture.FILTER_MIPMAP });
-
-    cgl_aniso = parseFloat(aniso.get());
-
-    reloadSoon();
-}
-
-function onWrapChange()
-{
-    if (wrap.get() == "repeat") cgl_wrap = CGL.Texture.WRAP_REPEAT;
-    if (wrap.get() == "mirrored repeat") cgl_wrap = CGL.Texture.WRAP_MIRRORED_REPEAT;
-    if (wrap.get() == "clamp to edge") cgl_wrap = CGL.Texture.WRAP_CLAMP_TO_EDGE;
-
-    reloadSoon();
-}
-
-op.onFileChanged = function (fn)
-{
-    if (filename.get() && filename.get().indexOf(fn) > -1)
-    {
-        textureOut.setRef(CGL.Texture.getEmptyTexture(op.patch.cgl));
-        textureOut.setRef(CGL.Texture.getTempTexture(cgl));
-        realReload(true);
-    }
-};
-
-
-};
-
-Ops.Gl.Texture_v2.prototype = new CABLES.Op();
-CABLES.OPS["790f3702-9833-464e-8e37-6f0f813f7e16"]={f:Ops.Gl.Texture_v2,objName:"Ops.Gl.Texture_v2"};
 
 
 
@@ -18634,160 +18548,6 @@ CABLES.OPS["7c96fee9-4c2f-45e1-a41b-096b06d286b8"]={f:Ops.Trigger.IsTriggered,ob
 
 // **************************************************************
 // 
-// Ops.Patch.PbdFbHA.MouseButtonsWindow
-// 
-// **************************************************************
-
-Ops.Patch.PbdFbHA.MouseButtonsWindow = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    mouseClickLeft = op.outTrigger("Click Left"),
-    mouseClickRight = op.outTrigger("Click Right"),
-    mouseDoubleClick = op.outTrigger("Double Click"),
-    mouseDownLeft = op.outBoolNum("Button pressed Left", false),
-    mouseDownMiddle = op.outBoolNum("Button pressed Middle", false),
-    mouseDownRight = op.outBoolNum("Button pressed Right", false),
-    triggerMouseDownLeft = op.outTrigger("Mouse Down Left"),
-    triggerMouseDownMiddle = op.outTrigger("Mouse Down Middle"),
-    triggerMouseDownRight = op.outTrigger("Mouse Down Right"),
-    triggerMouseUpLeft = op.outTrigger("Mouse Up Left"),
-    triggerMouseUpMiddle = op.outTrigger("Mouse Up Middle"),
-    triggerMouseUpRight = op.outTrigger("Mouse Up Right"),
-    area = op.inValueSelect("Area", ["Canvas", "Document", "Window"], "Window"),
-    active = op.inValueBool("Active", true);
-
-const cgl = op.patch.cgl;
-let listenerElement = null;
-area.onChange = updateListeners;
-op.onDelete = removeListeners;
-updateListeners();
-
-function onMouseDown(e)
-{
-    if (e.which == 1)
-    {
-        mouseDownLeft.set(true);
-        triggerMouseDownLeft.trigger();
-    }
-    else if (e.which == 2)
-    {
-        mouseDownMiddle.set(true);
-        triggerMouseDownMiddle.trigger();
-    }
-    else if (e.which == 3)
-    {
-        mouseDownRight.set(true);
-        triggerMouseDownRight.trigger();
-    }
-}
-
-function onMouseUp(e)
-{
-    if (e.which == 1)
-    {
-        mouseDownLeft.set(false);
-        triggerMouseUpLeft.trigger();
-    }
-    else if (e.which == 2)
-    {
-        mouseDownMiddle.set(false);
-        triggerMouseUpMiddle.trigger();
-    }
-    else if (e.which == 3)
-    {
-        mouseDownRight.set(false);
-        triggerMouseUpRight.trigger();
-    }
-}
-
-function onClickRight(e)
-{
-    mouseClickRight.trigger();
-    e.preventDefault();
-}
-
-function onDoubleClick(e)
-{
-    mouseDoubleClick.trigger();
-}
-
-function onmouseclick(e)
-{
-    mouseClickLeft.trigger();
-}
-
-function ontouchstart(event)
-{
-    if (event.touches && event.touches.length > 0)
-    {
-        event.touches[0].which = 1;
-        onMouseDown(event.touches[0]);
-    }
-}
-
-function ontouchend(event)
-{
-    onMouseUp({ "which": 1 });
-}
-
-function removeListeners()
-{
-    if (!listenerElement) return;
-    listenerElement.removeEventListener("touchend", ontouchend);
-    listenerElement.removeEventListener("touchcancel", ontouchend);
-    listenerElement.removeEventListener("touchstart", ontouchstart);
-    listenerElement.removeEventListener("dblclick", onDoubleClick);
-    listenerElement.removeEventListener("click", onmouseclick);
-    listenerElement.removeEventListener("mousedown", onMouseDown);
-    listenerElement.removeEventListener("mouseup", onMouseUp);
-    listenerElement.removeEventListener("contextmenu", onClickRight);
-    listenerElement.removeEventListener("mouseleave", onMouseUp);
-    listenerElement = null;
-}
-
-function addListeners()
-{
-    if (listenerElement)removeListeners();
-
-    listenerElement = cgl.canvas;
-    if (area.get() == "Document") listenerElement = document.body;
-    if (area.get() == "Window") listenerElement = globalThis.window;
-
-    listenerElement.addEventListener("touchend", ontouchend);
-    listenerElement.addEventListener("touchcancel", ontouchend);
-    listenerElement.addEventListener("touchstart", ontouchstart);
-    listenerElement.addEventListener("dblclick", onDoubleClick);
-    listenerElement.addEventListener("click", onmouseclick);
-    listenerElement.addEventListener("mousedown", onMouseDown);
-    listenerElement.addEventListener("mouseup", onMouseUp);
-    listenerElement.addEventListener("contextmenu", onClickRight);
-    listenerElement.addEventListener("mouseleave", onMouseUp);
-}
-
-op.onLoaded = updateListeners;
-
-active.onChange = updateListeners;
-
-function updateListeners()
-{
-    removeListeners();
-    if (active.get()) addListeners();
-}
-
-
-};
-
-Ops.Patch.PbdFbHA.MouseButtonsWindow.prototype = new CABLES.Op();
-CABLES.OPS["70422b06-659d-4e50-b19f-b01135f15d28"]={f:Ops.Patch.PbdFbHA.MouseButtonsWindow,objName:"Ops.Patch.PbdFbHA.MouseButtonsWindow"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Json.ObjectGetObject_v2
 // 
 // **************************************************************
@@ -19075,52 +18835,6 @@ inStrs.onChange = () =>
 
 Ops.String.SwitchStringMultiPort.prototype = new CABLES.Op();
 CABLES.OPS["cf8a883f-cf09-44a6-ba1c-7f9c1220b618"]={f:Ops.String.SwitchStringMultiPort,objName:"Ops.String.SwitchStringMultiPort"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Patch.PbdFbHA.ArrayOfSrvbValuesFromMap
-// 
-// **************************************************************
-
-Ops.Patch.PbdFbHA.ArrayOfSrvbValuesFromMap = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-// SRVB params handler
-
-let uiVars = {
-    "size": 0.2,
-    "diffuse": 0,
-    "mix": 0.15,
-    "tone": 0.15,
-};
-
-const
-    srcObj = op.inObject("Object"),
-    result = op.outArray("Result");
-
-srcObj.onChange = () =>
-{
-    if (!srcObj.get()) return;
-    const src = srcObj.get();
-
-    result.set([
-        src.mix,
-        src.diffuse,
-        src.tone,
-        src.size
-    ]);
-};
-
-
-};
-
-Ops.Patch.PbdFbHA.ArrayOfSrvbValuesFromMap.prototype = new CABLES.Op();
-CABLES.OPS["1eed1ad9-4b93-4e51-b483-03e68bd580c6"]={f:Ops.Patch.PbdFbHA.ArrayOfSrvbValuesFromMap,objName:"Ops.Patch.PbdFbHA.ArrayOfSrvbValuesFromMap"};
 
 
 
@@ -19584,97 +19298,6 @@ op.addEventListener("onEnabledChange", function (enabled)
 
 Ops.Html.CSS.TransformElement.prototype = new CABLES.Op();
 CABLES.OPS["caca0307-d460-47df-8674-b7d2601239ab"]={f:Ops.Html.CSS.TransformElement,objName:"Ops.Html.CSS.TransformElement"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Patch.PbdFbHA.SideBarStyle
-// 
-// **************************************************************
-
-Ops.Patch.PbdFbHA.SideBarStyle = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const parentPort = op.inObject("link"),
-    inWidth = op.inInt("Width", 220),
-    inBorderRadius = op.inFloat("Round Corners", 10),
-    inColorSpecial = op.inString("Special Color", "#07f78c"),
-    // inPositionX = op.inInt("Position X", 200),
-    // inPositionY = op.inInt("Position Y", 200),
-    siblingsPort = op.outObject("childs"),
-    elemOut = op.outObject("Element");
-
-inColorSpecial.onChange =
-inBorderRadius.onChange =
-inWidth.onChange = setStyle;
-// inPositionY.onChange = setStyle;
-// inPositionX.onChange = setStyle;
-
-parentPort.onChange = onParentChanged;
-op.onDelete = onDelete;
-
-op.toWorkNeedsParent("Ops.Sidebar.Sidebar");
-
-let sideBarEle = null;
-
-function setStyle()
-{
-    if (!sideBarEle) return;
-
-
-    sideBarEle.style.setProperty("--sidebar-width", inWidth.get() + "px");
-
-    sideBarEle.style.setProperty("--sidebar-color", inColorSpecial.get());
-
-    sideBarEle.style.setProperty("--sidebar-border-radius", Math.round(inBorderRadius.get()) + "px");
-
-    // sideBarEle.style.setProperty( "top", inPositionY.get() + "px");
-    //  sideBarEle.style.setProperty( "left", inPositionX.get() + "px");
-    op.patch.emitEvent("sidebarStylesChanged");
-}
-
-function onParentChanged()
-{
-    siblingsPort.set(null);
-    const parent = parentPort.get();
-    if (parent && parent.parentElement)
-    {
-        siblingsPort.set(parent);
-        sideBarEle = parent.parentElement.parentElement;
-        elemOut.set(sideBarEle);
-        setStyle();
-    }
-    else
-    {
-        sideBarEle = null;
-    }
-}
-
-function showElement(el)
-{
-    if (!el) return;
-    el.style.display = "block";
-}
-
-function hideElement(el)
-{
-    if (!el) return;
-    el.style.display = "none";
-}
-
-function onDelete()
-{
-}
-
-
-};
-
-Ops.Patch.PbdFbHA.SideBarStyle.prototype = new CABLES.Op();
-CABLES.OPS["3007067b-260a-4fec-aba2-094d25ae697b"]={f:Ops.Patch.PbdFbHA.SideBarStyle,objName:"Ops.Patch.PbdFbHA.SideBarStyle"};
 
 
 
@@ -21843,44 +21466,6 @@ CABLES.OPS["6c3bf614-a734-4539-98cd-7a7d5bfc38c9"]={f:Ops.Ui.VizArrayTable_v2,ob
 
 // **************************************************************
 // 
-// Ops.Patch.PbdFbHA.CountValidElementsInArray
-// 
-// **************************************************************
-
-Ops.Patch.PbdFbHA.CountValidElementsInArray = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    exec = op.inTrigger("Trigger"),
-    arr = op.inArray("Array"),
-    result = op.outNumber("Result");
-
-let count = 0;
-
-exec.onTriggered = () => {
-    if (!arr.get()) return;
-
-    count = 0; // Reset count each time the trigger is executed
-
-    for (let arrEl of arr.get()) {
-        if (arrEl.length > 0) count++;
-    }
-
-    result.set(count);
-};
-
-};
-
-Ops.Patch.PbdFbHA.CountValidElementsInArray.prototype = new CABLES.Op();
-CABLES.OPS["196b6164-3478-4e73-8f19-257c2b38cdb5"]={f:Ops.Patch.PbdFbHA.CountValidElementsInArray,objName:"Ops.Patch.PbdFbHA.CountValidElementsInArray"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.Html.Elements.Element_v2
 // 
 // **************************************************************
@@ -23502,315 +23087,6 @@ CABLES.OPS["2b60d12d-2884-4ad0-bda4-0caeb6882f5c"]={f:Ops.Ui.VizNumber,objName:"
 
 // **************************************************************
 // 
-// Ops.Patch.PbdFbHA.DropDown_v2
-// 
-// **************************************************************
-
-Ops.Patch.PbdFbHA.DropDown_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-// inputs
-const parentPort = op.inObject("Link");
-const labelPort = op.inString("Text", "Value");
-const valuesPort = op.inArray("Values");
-const defaultValuePort = op.inString("Default", "");
-const inGreyOut = op.inBool("Grey Out", false);
-const inVisible = op.inBool("Visible", true);
-const inSize = op.inInt("Lines", 1);
-const extIndex = op.inInt("External Index", 0);
-const setDefaultValueButtonPort = op.inTriggerButton("Set Default");
-setDefaultValueButtonPort.onTriggered = setDefault;
-// Add after other vars
-let changeTimer = null;
-// outputs
-const siblingsPort = op.outObject("Children");
-const valuePort = op.outString("Result", defaultValuePort.get());
-const outIndex = op.outNumber("Index");
-const hasChanged = op.outTrigger("Changed");
-
-defaultValuePort.setUiAttribs({ "title": "Input" });
-
-// vars
-const el = document.createElement("div");
-el.addEventListener("dblclick", function ()
-{
-    valuePort.set(defaultValuePort.get());
-    const optionElements = input.querySelectorAll("option");
-    optionElements.forEach(function (optionElement, index)
-    {
-        if (optionElement.value.trim() === defaultValuePort.get())
-        {
-            optionElement.selected = true;
-            outIndex.set(index);
-        }
-        else
-        {
-            optionElement.removeAttribute("selected");
-        }
-    });
-});
-
-el.dataset.op = op.id;
-el.classList.add("cablesEle");
-el.classList.add("sidebar__item");
-el.classList.add("sidebar__select");
-el.classList.add("sidebar__reloadable");
-
-const label = document.createElement("div");
-label.classList.add("sidebar__item-label");
-label.style.marginBottom = "0px";
-label.style.fontSize = "0.8rem";
-const line = document.createElement("hr");
-line.style.marginTop = "0px";
-line.style.marginBottom = "8px";
-line.style.border = "none"; // Remove the default border
-line.style.height = "2px"; // Set the height of the <hr> element
-line.style.backgroundColor = "#555"; // Stylish grey color
-
-
-
-const labelText = document.createTextNode(labelPort.get());
-label.appendChild(labelText);
-el.appendChild(label);
-el.appendChild(line);
-const input = document.createElement("select");
-
-input.classList.add("sidebar__select-select");
-input.setAttribute("style", "font-size: 1.1em; width: 100%;");
-el.appendChild(input);
-input.addEventListener("input", onInput);
-
-const greyOut = document.createElement("div");
-greyOut.classList.add("sidebar__greyout");
-el.appendChild(greyOut);
-greyOut.style.display = "none";
-
-inGreyOut.onChange = function ()
-{
-    greyOut.style.display = inGreyOut.get() ? "block" : "none";
-};
-
-inVisible.onChange = function ()
-{
-    el.style.display = inVisible.get() ? "block" : "none";
-};
-
-// events
-parentPort.onChange = onParentChanged;
-labelPort.onChange = onLabelTextChanged;
-defaultValuePort.onChange = onDefaultValueChanged;
-op.onDelete = onDelete;
-valuesPort.onChange = onValuesPortChange;
-extIndex.onChange = onExternalIndexChange;
-
-let options = [];
-// functions
-
-inSize.onChange = () =>
-{
-    input.setAttribute("size", inSize.get());
-};
-
-op.onLoaded = function ()
-{
-    valuePort.set(defaultValuePort.get());
-};
-
-function onValuesPortChange()
-{
-    // remove all children
-    while (input.lastChild)
-    {
-        input.removeChild(input.lastChild);
-    }
-    options = valuesPort.get();
-    const defaultValue = defaultValuePort.get();
-    if (options)
-    {
-        options.forEach(function (option)
-        {
-            const optionEl = document.createElement("option");
-
-            optionEl.setAttribute("value", option);
-            if (option === defaultValue || option === valuePort.get())
-            {
-                optionEl.setAttribute("selected", "");
-            }
-            const textEl = document.createTextNode(option);
-            optionEl.appendChild(textEl);
-            input.appendChild(optionEl);
-        });
-    }
-    else
-    {
-        valuePort.set("");
-    }
-
-    outIndex.set(0);
-    setSelectedProperty(); /* set the selected property for the default value */
-}
-
-function onExternalIndexChange()
-{
-    const index = extIndex.get();
-    const optionElements = input.querySelectorAll("option");
-    if (index >= 0 && index < optionElements.length)
-    {
-        optionElements.forEach(function (optionElement, i)
-        {
-            if (i === index)
-            {
-                optionElement.selected = true;
-                outIndex.set(i);
-                valuePort.set(optionElement.value);
-            }
-            else
-            {
-                optionElement.removeAttribute("selected");
-            }
-        });
-    }
-}
-let finalIndex = 0;
-
-function setSelectedProperty(defaultinput)
-{
-    const optionElements = input.querySelectorAll("option");
-
-    let finalEle = null;
-
-    optionElements.forEach(function (optionElement, index)
-    {
-        if (optionElement.value.trim() === valuePort.get())
-        {
-            finalEle = optionElement;
-            finalIndex = index;
-        }
-        optionElement.removeAttribute("selected");
-    });
-
-    if (defaultinput)
-    {
-        const defaultItem = defaultValuePort.get() + "".trim();
-
-        optionElements.forEach(function (optionElement, index)
-        {
-            if (optionElement.value.trim() === defaultItem)
-            {
-                finalEle = optionElement;
-                finalIndex = index;
-            }
-
-            optionElement.removeAttribute("selected");
-        });
-    }
-
-    if (finalEle) finalEle.setAttribute("selected", "");
-    outIndex.set(finalIndex);
-}
-
-function onInput(ev)
-{
-     // Clear any existing timer
-     if (changeTimer) {
-        clearTimeout(changeTimer);
-    }
-
-    valuePort.set(ev.target.value);
-    outIndex.set(options.indexOf(ev.target.value));
-    setSelectedProperty();
-
-        // Set new timer
-        changeTimer = setTimeout(() => {
-            hasChanged.trigger();
-        }, 50);
-}
-
-function onDefaultValueChanged()
-{
-    const defaultValue = defaultValuePort.get();
-    valuePort.set(defaultValue);
-    input.value = defaultValue;
-    setSelectedProperty();
-}
-
-function onLabelTextChanged()
-{
-    const lblText = labelPort.get();
-    label.textContent = lblText;
-    if (CABLES.UI) op.setUiAttrib({ "extendTitle": lblText });
-}
-
-function onParentChanged()
-{
-    siblingsPort.set(null);
-    const parent = parentPort.get();
-    if (parent && parent.parentElement)
-    {
-        parent.parentElement.appendChild(el);
-        siblingsPort.set(parent);
-    }
-    else
-    { // detach
-        if (el.parentElement)
-        {
-            el.parentElement.removeChild(el);
-        }
-    }
-}
-
-function showElement(ele)
-{
-    if (ele)
-    {
-        ele.style.display = "block";
-    }
-    setSelectedProperty();
-}
-
-function hideElement(ele)
-{
-    if (ele)
-    {
-        ele.style.display = "none";
-    }
-}
-
-// Add cleanup to onDelete
-function onDelete() {
-    if (changeTimer) {
-        clearTimeout(changeTimer);
-    }
-    removeElementFromDOM(el);
-}
-
-function removeElementFromDOM(ele)
-{
-    if (ele && ele.parentNode && ele.parentNode.removeChild)
-    {
-        ele.parentNode.removeChild(ele);
-    }
-}
-
-function setDefault()
-{
-    defaultValuePort.set(input.value);
-    op.refreshParams();
-}
-
-
-};
-
-Ops.Patch.PbdFbHA.DropDown_v2.prototype = new CABLES.Op();
-CABLES.OPS["15aa2539-fee1-4a29-9bfe-423427a089d5"]={f:Ops.Patch.PbdFbHA.DropDown_v2,objName:"Ops.Patch.PbdFbHA.DropDown_v2"};
-
-
-
-
-// **************************************************************
-// 
 // Ops.String.StringContains_v2
 // 
 // **************************************************************
@@ -24545,6 +23821,903 @@ CABLES.OPS["6e994ba8-01d1-4da6-98b4-af7e822a2e6c"]={f:Ops.String.SubString_v2,ob
 
 // **************************************************************
 // 
+// Ops.Vars.VarTriggerString
+// 
+// **************************************************************
+
+Ops.Vars.VarTriggerString = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    trigger = op.inTriggerButton("Trigger"),
+    val = op.inString("Value", "New String"),
+    next = op.outTrigger("Next");
+
+op.varName = op.inDropDown("Variable", [], "", true);
+
+new CABLES.VarSetOpWrapper(op, "string", val, op.varName, trigger, next);
+
+
+};
+
+Ops.Vars.VarTriggerString.prototype = new CABLES.Op();
+CABLES.OPS["d75992b7-65e2-44d8-b264-320d4c5a5630"]={f:Ops.Vars.VarTriggerString,objName:"Ops.Vars.VarTriggerString"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Html.CSS.ElementCssTransform_v2
+// 
+// **************************************************************
+
+Ops.Html.CSS.ElementCssTransform_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+// todo: remove % unit, does not make sense, try container queries ?
+
+const
+    inEle = op.inObject("Element", null, "element"),
+    inDoTranslate = op.inBool("Translate Active", true),
+    inTransX = op.inFloat("Translate X", 0),
+    inTransY = op.inFloat("Translate Y", 0),
+    inTransUnit = op.inSwitch("Unit", ["px", "%"], "px"),
+
+    inDoScale = op.inBool("Scale Active", true),
+    inScale = op.inFloat("Scale", 1),
+
+    inDoRot = op.inBool("Rotate Active", true),
+    inRot = op.inFloat("Rot Z", 0),
+
+    inDoOrigin = op.inBool("Set Origin", true),
+    inOriginX = op.inSwitch("Origin X", ["left", "center", "right"], "center"),
+    inOriginY = op.inSwitch("Origin Y", ["top", "center", "bottom"], "center"),
+
+    inDoZ = op.inBool("Z Index Active", false),
+    inZ = op.inFloat("Z Index", 100),
+
+    outEle = op.outObject("Passthrough", null, "element");
+
+op.setPortGroup("Element", [inEle]);
+op.setPortGroup("Translation", [inDoTranslate, inTransY, inTransX, inTransUnit]);
+op.setPortGroup("Scaling", [inScale, inDoScale]);
+op.setPortGroup("Rotation", [inDoRot, inRot]);
+op.setPortGroup("Origin", [inDoOrigin, inOriginX, inOriginY]);
+
+inTransUnit.onChange =
+    inOriginX.onChange =
+    inOriginY.onChange =
+    inTransX.onChange =
+    inTransY.onChange =
+    inScale.onChange =
+    inZ.onChange =
+    inRot.onChange = update;
+
+let ele = null;
+let timeoutUpd = null;
+
+inDoTranslate.onChange =
+    inDoOrigin.onChange =
+    inDoScale.onChange =
+    inDoZ.onChange =
+    inDoRot.onChange = updateUi;
+
+inEle.onChange = inEle.onLinkChanged = function ()
+{
+    if (ele && ele.style)
+    {
+        ele.style.transform = "initial";
+
+        if (CABLES.UI && inEle.get() && ele != inEle.get())
+        {
+            if (window.getComputedStyle(ele).position !== "absolute") op.setUiError("oppos", "Element position should be absolute");
+        }
+    }
+    if (CABLES.UI) op.setUiError("oppos", null);
+
+    update();
+    outEle.setRef(inEle.get());
+};
+
+function updateUi()
+{
+    inTransX.setUiAttribs({ "greyout": !inDoTranslate.get() });
+    inTransY.setUiAttribs({ "greyout": !inDoTranslate.get() });
+    inScale.setUiAttribs({ "greyout": !inDoScale.get() });
+    inRot.setUiAttribs({ "greyout": !inDoRot.get() });
+    inZ.setUiAttribs({ "greyout": !inDoZ.get() });
+    inOriginY.setUiAttribs({ "greyout": !inDoOrigin.get() });
+    inOriginX.setUiAttribs({ "greyout": !inDoOrigin.get() });
+
+    update();
+}
+
+function update()
+{
+    ele = inEle.get();
+    if (ele && ele.style)
+    {
+        let str = "";
+
+        if (inDoTranslate.get())
+            str += "translate(" + inTransX.get() + inTransUnit.get() + " , " + inTransY.get() + inTransUnit.get() + ") ";
+
+        if (inDoScale.get())
+            if (inScale.get() != 1.0)
+                str += "scale(" + inScale.get() + ") ";
+
+        if (inDoRot.get())
+            if (inRot.get() != 0.0)
+                str += "rotateZ(" + inRot.get() + "deg) ";
+
+        if (inDoZ.get())
+            ele.style["z-index"] = inZ.get();
+
+        try
+        {
+            ele.style.transform = str;
+
+            if (inDoOrigin.get())
+                ele.style["transform-origin"] = inOriginY.get() + " " + inOriginX.get();
+            else
+                ele.style["transform-origin"] = "initial";
+        }
+        catch (e)
+        {
+            op.logError(e);
+        }
+
+        outEle.setRef(ele);
+    }
+    else
+    {
+        clearTimeout(timeoutUpd);
+        timeoutUpd = setTimeout(update, 150);
+    }
+}
+
+
+};
+
+Ops.Html.CSS.ElementCssTransform_v2.prototype = new CABLES.Op();
+CABLES.OPS["11381bfe-38b0-4051-aef9-69d83c292f0d"]={f:Ops.Html.CSS.ElementCssTransform_v2,objName:"Ops.Html.CSS.ElementCssTransform_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Html.CSS.CSSPropertyString
+// 
+// **************************************************************
+
+Ops.Html.CSS.CSSPropertyString = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inEle = op.inObject("Element"),
+    inProperty = op.inString("Property"),
+    inValue = op.inString("Value"),
+    inActive = op.inBool("Active", true),
+    outEle = op.outObject("HTML Element");
+
+op.setPortGroup("Element", [inEle]);
+op.setPortGroup("Attributes", [inProperty, inValue]);
+
+inProperty.onChange = updateProperty;
+inValue.onChange = update;
+let ele = null;
+
+inEle.onChange =
+    outEle.onLinkChanged =
+    inEle.onLinkChanged = removeProp;
+
+inActive.onChange = () =>
+{
+    if (!inActive.get()) removeProp();
+    else update();
+};
+
+function removeProp()
+{
+    if (ele && ele.style) ele.style[inProperty.get()] = "initial";
+    update();
+}
+
+function updateProperty()
+{
+    update();
+    op.setUiAttrib({ "extendTitle": inProperty.get() + "" });
+}
+
+function update()
+{
+    if (!inActive.get()) return;
+
+    ele = inEle.get();
+    if (ele && ele.style)
+    {
+        const str = inValue.get();
+        try
+        {
+            ele.style[inProperty.get()] = str;
+        }
+        catch (e)
+        {
+            op.logError(e);
+        }
+    }
+
+    outEle.setRef(inEle.get());
+}
+
+
+};
+
+Ops.Html.CSS.CSSPropertyString.prototype = new CABLES.Op();
+CABLES.OPS["a7abdfb9-4c2a-4ddb-8fc6-55b3fdfbdaf3"]={f:Ops.Html.CSS.CSSPropertyString,objName:"Ops.Html.CSS.CSSPropertyString"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Html.CSS.CSSFilter
+// 
+// **************************************************************
+
+Ops.Html.CSS.CSSFilter = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const inEle = op.inObject("Element");
+const inMethod = op.inValueSelect("method", ["-", "blur", "brightness", "contrast", "grayscale", "hue-rotate", "invert", "opacity", "saturate", "sepia"]);
+const inVal = op.inValue("Value");
+
+let suffix = "";
+let prefix = "";
+
+inVal.onChange = setValue;
+inEle.onChange = setValue;
+
+let oldEle = null;
+
+function getCSSFilterString()
+{
+    return inMethod.get() + "(" + inVal.get() + suffix + ")";
+}
+
+inEle.onLinkChanged = function ()
+{
+    // remove style when deleting op
+    if (inEle.isLinked()) return;
+
+    const ele = oldEle;// inEle.get();
+
+    if (ele && ele.style)
+    {
+        let filter = ele.style.filter;
+        var str = "";
+
+        if (filter && filter.length > 0)
+        {
+            var str = "";
+            let parts = filter.split(" ");
+            for (let i = 0; i < parts.length; i++)
+            {
+                if (parts[i].indexOf(inMethod.get()) == 0)
+                    parts[i] = "";
+            }
+
+            str = parts.join(" ");
+        }
+        ele.style.filter = str;
+    }
+};
+
+function setValue()
+{
+    const ele = inEle.get();
+    let str = "";
+
+    if (ele && ele.style)
+    {
+        if (ele != oldEle) oldEle = ele;
+        let foundMyFilter = false;
+        let filter = ele.style.filter;
+
+        if (filter && filter.length > 0)
+        {
+            let parts = filter.split(" ");
+            for (let i = 0; i < parts.length; i++)
+            {
+                if (parts[i].indexOf(inMethod.get()) == 0)
+                {
+                    foundMyFilter = true;
+                    parts[i] = getCSSFilterString();
+                }
+            }
+
+            str = parts.join(" ");
+        }
+
+        if (!foundMyFilter)
+            str += " " + getCSSFilterString();
+
+        ele.style.filter = str;
+    }
+}
+
+inMethod.onChange = function ()
+{
+    let m = inMethod.get();
+
+    prefix = inMethod.get() + ":";
+
+    if (m == "blur") suffix = "px";
+    if (m == "brightness") suffix = "";
+    if (m == "contrast") suffix = "%";
+    if (m == "grayscale") suffix = "%";
+    if (m == "hue-rotate") suffix = "deg";
+    if (m == "invert") suffix = "%";
+    if (m == "opacity") suffix = "%";
+    if (m == "saturate") suffix = "";
+    if (m == "sepia") suffix = "%";
+    setValue();
+};
+
+
+};
+
+Ops.Html.CSS.CSSFilter.prototype = new CABLES.Op();
+CABLES.OPS["33befabf-7eef-45f6-869f-30e0e4f44739"]={f:Ops.Html.CSS.CSSFilter,objName:"Ops.Html.CSS.CSSFilter"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Json.ObjectDeleteKey
+// 
+// **************************************************************
+
+Ops.Json.ObjectDeleteKey = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    inObj1 = op.inObject("Object"),
+    inKey = op.inString("Key", ""),
+    outObj = op.outObject("Object Result");
+
+inObj1.onChange = update;
+
+inKey.onChange = () =>
+{
+    op.setUiAttrib({ "extendTitle": inKey.get() });
+    update();
+};
+
+function update()
+{
+    const o = inObj1.get();
+
+    if (!o)
+    {
+        outObj.set(null);
+        return;
+    }
+
+    const newObj = JSON.parse(JSON.stringify(o));
+    delete newObj[inKey.get()];
+
+    outObj.setRef(newObj);
+}
+
+
+};
+
+Ops.Json.ObjectDeleteKey.prototype = new CABLES.Op();
+CABLES.OPS["57a80386-b565-4915-a365-61b2dccf5ccc"]={f:Ops.Json.ObjectDeleteKey,objName:"Ops.Json.ObjectDeleteKey"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PbdFbHA.CountValidElementsInArray
+// 
+// **************************************************************
+
+Ops.Patch.PbdFbHA.CountValidElementsInArray = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const
+    exec = op.inTrigger("Trigger"),
+    arr = op.inArray("Array"),
+    result = op.outNumber("Result");
+
+let count = 0;
+
+exec.onTriggered = () => {
+    if (!arr.get()) return;
+
+    count = 0; // Reset count each time the trigger is executed
+
+    for (let arrEl of arr.get()) {
+        if (arrEl.length > 0) count++;
+    }
+
+    result.set(count);
+};
+
+};
+
+Ops.Patch.PbdFbHA.CountValidElementsInArray.prototype = new CABLES.Op();
+CABLES.OPS["196b6164-3478-4e73-8f19-257c2b38cdb5"]={f:Ops.Patch.PbdFbHA.CountValidElementsInArray,objName:"Ops.Patch.PbdFbHA.CountValidElementsInArray"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PbdFbHA.SideBarStyle
+// 
+// **************************************************************
+
+Ops.Patch.PbdFbHA.SideBarStyle = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+const parentPort = op.inObject("link"),
+    inWidth = op.inInt("Width", 220),
+    inBorderRadius = op.inFloat("Round Corners", 10),
+    inColorSpecial = op.inString("Special Color", "#07f78c"),
+    // inPositionX = op.inInt("Position X", 200),
+    // inPositionY = op.inInt("Position Y", 200),
+    siblingsPort = op.outObject("childs"),
+    elemOut = op.outObject("Element");
+
+inColorSpecial.onChange =
+inBorderRadius.onChange =
+inWidth.onChange = setStyle;
+// inPositionY.onChange = setStyle;
+// inPositionX.onChange = setStyle;
+
+parentPort.onChange = onParentChanged;
+op.onDelete = onDelete;
+
+op.toWorkNeedsParent("Ops.Sidebar.Sidebar");
+
+let sideBarEle = null;
+
+function setStyle()
+{
+    if (!sideBarEle) return;
+
+
+    sideBarEle.style.setProperty("--sidebar-width", inWidth.get() + "px");
+
+    sideBarEle.style.setProperty("--sidebar-color", inColorSpecial.get());
+
+    sideBarEle.style.setProperty("--sidebar-border-radius", Math.round(inBorderRadius.get()) + "px");
+
+    // sideBarEle.style.setProperty( "top", inPositionY.get() + "px");
+    //  sideBarEle.style.setProperty( "left", inPositionX.get() + "px");
+    op.patch.emitEvent("sidebarStylesChanged");
+}
+
+function onParentChanged()
+{
+    siblingsPort.set(null);
+    const parent = parentPort.get();
+    if (parent && parent.parentElement)
+    {
+        siblingsPort.set(parent);
+        sideBarEle = parent.parentElement.parentElement;
+        elemOut.set(sideBarEle);
+        setStyle();
+    }
+    else
+    {
+        sideBarEle = null;
+    }
+}
+
+function showElement(el)
+{
+    if (!el) return;
+    el.style.display = "block";
+}
+
+function hideElement(el)
+{
+    if (!el) return;
+    el.style.display = "none";
+}
+
+function onDelete()
+{
+}
+
+
+};
+
+Ops.Patch.PbdFbHA.SideBarStyle.prototype = new CABLES.Op();
+CABLES.OPS["3007067b-260a-4fec-aba2-094d25ae697b"]={f:Ops.Patch.PbdFbHA.SideBarStyle,objName:"Ops.Patch.PbdFbHA.SideBarStyle"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PbdFbHA.DropDown_v2
+// 
+// **************************************************************
+
+Ops.Patch.PbdFbHA.DropDown_v2 = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+// inputs
+const parentPort = op.inObject("Link");
+const labelPort = op.inString("Text", "Value");
+const valuesPort = op.inArray("Values");
+const defaultValuePort = op.inString("Default", "");
+const inGreyOut = op.inBool("Grey Out", false);
+const inVisible = op.inBool("Visible", true);
+const inSize = op.inInt("Lines", 1);
+const extIndex = op.inInt("External Index", 0);
+const setDefaultValueButtonPort = op.inTriggerButton("Set Default");
+setDefaultValueButtonPort.onTriggered = setDefault;
+// Add after other vars
+let changeTimer = null;
+// outputs
+const siblingsPort = op.outObject("Children");
+const valuePort = op.outString("Result", defaultValuePort.get());
+const outIndex = op.outNumber("Index");
+const hasChanged = op.outTrigger("Changed");
+
+defaultValuePort.setUiAttribs({ "title": "Input" });
+
+// vars
+const el = document.createElement("div");
+el.addEventListener("dblclick", function ()
+{
+    valuePort.set(defaultValuePort.get());
+    const optionElements = input.querySelectorAll("option");
+    optionElements.forEach(function (optionElement, index)
+    {
+        if (optionElement.value.trim() === defaultValuePort.get())
+        {
+            optionElement.selected = true;
+            outIndex.set(index);
+        }
+        else
+        {
+            optionElement.removeAttribute("selected");
+        }
+    });
+});
+
+el.dataset.op = op.id;
+el.classList.add("cablesEle");
+el.classList.add("sidebar__item");
+el.classList.add("sidebar__select");
+el.classList.add("sidebar__reloadable");
+
+const label = document.createElement("div");
+label.classList.add("sidebar__item-label");
+label.style.marginBottom = "0px";
+label.style.fontSize = "0.8rem";
+const line = document.createElement("hr");
+line.style.marginTop = "0px";
+line.style.marginBottom = "8px";
+line.style.border = "none"; // Remove the default border
+line.style.height = "2px"; // Set the height of the <hr> element
+line.style.backgroundColor = "#555"; // Stylish grey color
+
+
+
+const labelText = document.createTextNode(labelPort.get());
+label.appendChild(labelText);
+el.appendChild(label);
+el.appendChild(line);
+const input = document.createElement("select");
+
+input.classList.add("sidebar__select-select");
+input.setAttribute("style", "font-size: 1.1em; width: 100%;");
+el.appendChild(input);
+input.addEventListener("input", onInput);
+
+const greyOut = document.createElement("div");
+greyOut.classList.add("sidebar__greyout");
+el.appendChild(greyOut);
+greyOut.style.display = "none";
+
+inGreyOut.onChange = function ()
+{
+    greyOut.style.display = inGreyOut.get() ? "block" : "none";
+};
+
+inVisible.onChange = function ()
+{
+    el.style.display = inVisible.get() ? "block" : "none";
+};
+
+// events
+parentPort.onChange = onParentChanged;
+labelPort.onChange = onLabelTextChanged;
+defaultValuePort.onChange = onDefaultValueChanged;
+op.onDelete = onDelete;
+valuesPort.onChange = onValuesPortChange;
+extIndex.onChange = onExternalIndexChange;
+
+let options = [];
+// functions
+
+inSize.onChange = () =>
+{
+    input.setAttribute("size", inSize.get());
+};
+
+op.onLoaded = function ()
+{
+    valuePort.set(defaultValuePort.get());
+};
+
+function onValuesPortChange()
+{
+    // remove all children
+    while (input.lastChild)
+    {
+        input.removeChild(input.lastChild);
+    }
+    options = valuesPort.get();
+    const defaultValue = defaultValuePort.get();
+    if (options)
+    {
+        options.forEach(function (option)
+        {
+            const optionEl = document.createElement("option");
+
+            optionEl.setAttribute("value", option);
+            if (option === defaultValue || option === valuePort.get())
+            {
+                optionEl.setAttribute("selected", "");
+            }
+            const textEl = document.createTextNode(option);
+            optionEl.appendChild(textEl);
+            input.appendChild(optionEl);
+        });
+    }
+    else
+    {
+        valuePort.set("");
+    }
+
+    outIndex.set(0);
+    setSelectedProperty(); /* set the selected property for the default value */
+}
+
+function onExternalIndexChange()
+{
+    const index = extIndex.get();
+    const optionElements = input.querySelectorAll("option");
+    if (index >= 0 && index < optionElements.length)
+    {
+        optionElements.forEach(function (optionElement, i)
+        {
+            if (i === index)
+            {
+                optionElement.selected = true;
+                outIndex.set(i);
+                valuePort.set(optionElement.value);
+            }
+            else
+            {
+                optionElement.removeAttribute("selected");
+            }
+        });
+    }
+}
+let finalIndex = 0;
+
+function setSelectedProperty(defaultinput)
+{
+    const optionElements = input.querySelectorAll("option");
+
+    let finalEle = null;
+
+    optionElements.forEach(function (optionElement, index)
+    {
+        if (optionElement.value.trim() === valuePort.get())
+        {
+            finalEle = optionElement;
+            finalIndex = index;
+        }
+        optionElement.removeAttribute("selected");
+    });
+
+    if (defaultinput)
+    {
+        const defaultItem = defaultValuePort.get() + "".trim();
+
+        optionElements.forEach(function (optionElement, index)
+        {
+            if (optionElement.value.trim() === defaultItem)
+            {
+                finalEle = optionElement;
+                finalIndex = index;
+            }
+
+            optionElement.removeAttribute("selected");
+        });
+    }
+
+    if (finalEle) finalEle.setAttribute("selected", "");
+    outIndex.set(finalIndex);
+}
+
+function onInput(ev)
+{
+     // Clear any existing timer
+     if (changeTimer) {
+        clearTimeout(changeTimer);
+    }
+
+    valuePort.set(ev.target.value);
+    outIndex.set(options.indexOf(ev.target.value));
+    setSelectedProperty();
+
+        // Set new timer
+        changeTimer = setTimeout(() => {
+            hasChanged.trigger();
+        }, 50);
+}
+
+function onDefaultValueChanged()
+{
+    const defaultValue = defaultValuePort.get();
+    valuePort.set(defaultValue);
+    input.value = defaultValue;
+    setSelectedProperty();
+}
+
+function onLabelTextChanged()
+{
+    const lblText = labelPort.get();
+    label.textContent = lblText;
+    if (CABLES.UI) op.setUiAttrib({ "extendTitle": lblText });
+}
+
+function onParentChanged()
+{
+    siblingsPort.set(null);
+    const parent = parentPort.get();
+    if (parent && parent.parentElement)
+    {
+        parent.parentElement.appendChild(el);
+        siblingsPort.set(parent);
+    }
+    else
+    { // detach
+        if (el.parentElement)
+        {
+            el.parentElement.removeChild(el);
+        }
+    }
+}
+
+function showElement(ele)
+{
+    if (ele)
+    {
+        ele.style.display = "block";
+    }
+    setSelectedProperty();
+}
+
+function hideElement(ele)
+{
+    if (ele)
+    {
+        ele.style.display = "none";
+    }
+}
+
+// Add cleanup to onDelete
+function onDelete() {
+    if (changeTimer) {
+        clearTimeout(changeTimer);
+    }
+    removeElementFromDOM(el);
+}
+
+function removeElementFromDOM(ele)
+{
+    if (ele && ele.parentNode && ele.parentNode.removeChild)
+    {
+        ele.parentNode.removeChild(ele);
+    }
+}
+
+function setDefault()
+{
+    defaultValuePort.set(input.value);
+    op.refreshParams();
+}
+
+
+};
+
+Ops.Patch.PbdFbHA.DropDown_v2.prototype = new CABLES.Op();
+CABLES.OPS["15aa2539-fee1-4a29-9bfe-423427a089d5"]={f:Ops.Patch.PbdFbHA.DropDown_v2,objName:"Ops.Patch.PbdFbHA.DropDown_v2"};
+
+
+
+
+// **************************************************************
+// 
+// Ops.Patch.PbdFbHA.ArrayOfSrvbValuesFromMap
+// 
+// **************************************************************
+
+Ops.Patch.PbdFbHA.ArrayOfSrvbValuesFromMap = function()
+{
+CABLES.Op.apply(this,arguments);
+const op=this;
+const attachments=op.attachments={};
+// SRVB params handler
+
+let uiVars = {
+    "size": 0.2,
+    "diffuse": 0,
+    "mix": 0.15,
+    "tone": 0.15,
+};
+
+const
+    srcObj = op.inObject("Object"),
+    result = op.outArray("Result");
+
+srcObj.onChange = () =>
+{
+    if (!srcObj.get()) return;
+    const src = srcObj.get();
+
+    result.set([
+        src.mix,
+        src.diffuse,
+        src.tone,
+        src.size
+    ]);
+};
+
+
+};
+
+Ops.Patch.PbdFbHA.ArrayOfSrvbValuesFromMap.prototype = new CABLES.Op();
+CABLES.OPS["1eed1ad9-4b93-4e51-b483-03e68bd580c6"]={f:Ops.Patch.PbdFbHA.ArrayOfSrvbValuesFromMap,objName:"Ops.Patch.PbdFbHA.ArrayOfSrvbValuesFromMap"};
+
+
+
+
+// **************************************************************
+// 
 // Ops.Patch.PbdFbHA.ArrayPack3Simple
 // 
 // **************************************************************
@@ -24627,35 +24800,6 @@ function update()
 
 Ops.Patch.PbdFbHA.ArrayPack3Simple.prototype = new CABLES.Op();
 CABLES.OPS["3efaf65a-5e20-430c-84ed-b6e6f33c0ea6"]={f:Ops.Patch.PbdFbHA.ArrayPack3Simple,objName:"Ops.Patch.PbdFbHA.ArrayPack3Simple"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Vars.VarTriggerString
-// 
-// **************************************************************
-
-Ops.Vars.VarTriggerString = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    trigger = op.inTriggerButton("Trigger"),
-    val = op.inString("Value", "New String"),
-    next = op.outTrigger("Next");
-
-op.varName = op.inDropDown("Variable", [], "", true);
-
-new CABLES.VarSetOpWrapper(op, "string", val, op.varName, trigger, next);
-
-
-};
-
-Ops.Vars.VarTriggerString.prototype = new CABLES.Op();
-CABLES.OPS["d75992b7-65e2-44d8-b264-320d4c5a5630"]={f:Ops.Vars.VarTriggerString,objName:"Ops.Vars.VarTriggerString"};
 
 
 
@@ -24814,148 +24958,6 @@ function removeElementFromDOM(el)
 
 Ops.Patch.PbdFbHA.Button_NEL.prototype = new CABLES.Op();
 CABLES.OPS["8209130b-b6c5-4045-99ba-85dcfd097fd5"]={f:Ops.Patch.PbdFbHA.Button_NEL,objName:"Ops.Patch.PbdFbHA.Button_NEL"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Html.CSS.ElementCssTransform_v2
-// 
-// **************************************************************
-
-Ops.Html.CSS.ElementCssTransform_v2 = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-// todo: remove % unit, does not make sense, try container queries ?
-
-const
-    inEle = op.inObject("Element", null, "element"),
-    inDoTranslate = op.inBool("Translate Active", true),
-    inTransX = op.inFloat("Translate X", 0),
-    inTransY = op.inFloat("Translate Y", 0),
-    inTransUnit = op.inSwitch("Unit", ["px", "%"], "px"),
-
-    inDoScale = op.inBool("Scale Active", true),
-    inScale = op.inFloat("Scale", 1),
-
-    inDoRot = op.inBool("Rotate Active", true),
-    inRot = op.inFloat("Rot Z", 0),
-
-    inDoOrigin = op.inBool("Set Origin", true),
-    inOriginX = op.inSwitch("Origin X", ["left", "center", "right"], "center"),
-    inOriginY = op.inSwitch("Origin Y", ["top", "center", "bottom"], "center"),
-
-    inDoZ = op.inBool("Z Index Active", false),
-    inZ = op.inFloat("Z Index", 100),
-
-    outEle = op.outObject("Passthrough", null, "element");
-
-op.setPortGroup("Element", [inEle]);
-op.setPortGroup("Translation", [inDoTranslate, inTransY, inTransX, inTransUnit]);
-op.setPortGroup("Scaling", [inScale, inDoScale]);
-op.setPortGroup("Rotation", [inDoRot, inRot]);
-op.setPortGroup("Origin", [inDoOrigin, inOriginX, inOriginY]);
-
-inTransUnit.onChange =
-    inOriginX.onChange =
-    inOriginY.onChange =
-    inTransX.onChange =
-    inTransY.onChange =
-    inScale.onChange =
-    inZ.onChange =
-    inRot.onChange = update;
-
-let ele = null;
-let timeoutUpd = null;
-
-inDoTranslate.onChange =
-    inDoOrigin.onChange =
-    inDoScale.onChange =
-    inDoZ.onChange =
-    inDoRot.onChange = updateUi;
-
-inEle.onChange = inEle.onLinkChanged = function ()
-{
-    if (ele && ele.style)
-    {
-        ele.style.transform = "initial";
-
-        if (CABLES.UI && inEle.get() && ele != inEle.get())
-        {
-            if (window.getComputedStyle(ele).position !== "absolute") op.setUiError("oppos", "Element position should be absolute");
-        }
-    }
-    if (CABLES.UI) op.setUiError("oppos", null);
-
-    update();
-    outEle.setRef(inEle.get());
-};
-
-function updateUi()
-{
-    inTransX.setUiAttribs({ "greyout": !inDoTranslate.get() });
-    inTransY.setUiAttribs({ "greyout": !inDoTranslate.get() });
-    inScale.setUiAttribs({ "greyout": !inDoScale.get() });
-    inRot.setUiAttribs({ "greyout": !inDoRot.get() });
-    inZ.setUiAttribs({ "greyout": !inDoZ.get() });
-    inOriginY.setUiAttribs({ "greyout": !inDoOrigin.get() });
-    inOriginX.setUiAttribs({ "greyout": !inDoOrigin.get() });
-
-    update();
-}
-
-function update()
-{
-    ele = inEle.get();
-    if (ele && ele.style)
-    {
-        let str = "";
-
-        if (inDoTranslate.get())
-            str += "translate(" + inTransX.get() + inTransUnit.get() + " , " + inTransY.get() + inTransUnit.get() + ") ";
-
-        if (inDoScale.get())
-            if (inScale.get() != 1.0)
-                str += "scale(" + inScale.get() + ") ";
-
-        if (inDoRot.get())
-            if (inRot.get() != 0.0)
-                str += "rotateZ(" + inRot.get() + "deg) ";
-
-        if (inDoZ.get())
-            ele.style["z-index"] = inZ.get();
-
-        try
-        {
-            ele.style.transform = str;
-
-            if (inDoOrigin.get())
-                ele.style["transform-origin"] = inOriginY.get() + " " + inOriginX.get();
-            else
-                ele.style["transform-origin"] = "initial";
-        }
-        catch (e)
-        {
-            op.logError(e);
-        }
-
-        outEle.setRef(ele);
-    }
-    else
-    {
-        clearTimeout(timeoutUpd);
-        timeoutUpd = setTimeout(update, 150);
-    }
-}
-
-
-};
-
-Ops.Html.CSS.ElementCssTransform_v2.prototype = new CABLES.Op();
-CABLES.OPS["11381bfe-38b0-4051-aef9-69d83c292f0d"]={f:Ops.Html.CSS.ElementCssTransform_v2,objName:"Ops.Html.CSS.ElementCssTransform_v2"};
 
 
 
@@ -25307,242 +25309,154 @@ CABLES.OPS["56c55700-64c6-4925-a464-75b74a7c7d66"]={f:Ops.Patch.PbdFbHA.OffsetSl
 
 // **************************************************************
 // 
-// Ops.Html.CSS.CSSPropertyString
+// Ops.Patch.PbdFbHA.MouseButtonsWindow
 // 
 // **************************************************************
 
-Ops.Html.CSS.CSSPropertyString = function()
+Ops.Patch.PbdFbHA.MouseButtonsWindow = function()
 {
 CABLES.Op.apply(this,arguments);
 const op=this;
 const attachments=op.attachments={};
 const
-    inEle = op.inObject("Element"),
-    inProperty = op.inString("Property"),
-    inValue = op.inString("Value"),
-    inActive = op.inBool("Active", true),
-    outEle = op.outObject("HTML Element");
+    mouseClickLeft = op.outTrigger("Click Left"),
+    mouseClickRight = op.outTrigger("Click Right"),
+    mouseDoubleClick = op.outTrigger("Double Click"),
+    mouseDownLeft = op.outBoolNum("Button pressed Left", false),
+    mouseDownMiddle = op.outBoolNum("Button pressed Middle", false),
+    mouseDownRight = op.outBoolNum("Button pressed Right", false),
+    triggerMouseDownLeft = op.outTrigger("Mouse Down Left"),
+    triggerMouseDownMiddle = op.outTrigger("Mouse Down Middle"),
+    triggerMouseDownRight = op.outTrigger("Mouse Down Right"),
+    triggerMouseUpLeft = op.outTrigger("Mouse Up Left"),
+    triggerMouseUpMiddle = op.outTrigger("Mouse Up Middle"),
+    triggerMouseUpRight = op.outTrigger("Mouse Up Right"),
+    area = op.inValueSelect("Area", ["Canvas", "Document", "Window"], "Window"),
+    active = op.inValueBool("Active", true);
 
-op.setPortGroup("Element", [inEle]);
-op.setPortGroup("Attributes", [inProperty, inValue]);
+const cgl = op.patch.cgl;
+let listenerElement = null;
+area.onChange = updateListeners;
+op.onDelete = removeListeners;
+updateListeners();
 
-inProperty.onChange = updateProperty;
-inValue.onChange = update;
-let ele = null;
-
-inEle.onChange =
-    outEle.onLinkChanged =
-    inEle.onLinkChanged = removeProp;
-
-inActive.onChange = () =>
+function onMouseDown(e)
 {
-    if (!inActive.get()) removeProp();
-    else update();
-};
-
-function removeProp()
-{
-    if (ele && ele.style) ele.style[inProperty.get()] = "initial";
-    update();
-}
-
-function updateProperty()
-{
-    update();
-    op.setUiAttrib({ "extendTitle": inProperty.get() + "" });
-}
-
-function update()
-{
-    if (!inActive.get()) return;
-
-    ele = inEle.get();
-    if (ele && ele.style)
+    if (e.which == 1)
     {
-        const str = inValue.get();
-        try
-        {
-            ele.style[inProperty.get()] = str;
-        }
-        catch (e)
-        {
-            op.logError(e);
-        }
+        mouseDownLeft.set(true);
+        triggerMouseDownLeft.trigger();
     }
-
-    outEle.setRef(inEle.get());
-}
-
-
-};
-
-Ops.Html.CSS.CSSPropertyString.prototype = new CABLES.Op();
-CABLES.OPS["a7abdfb9-4c2a-4ddb-8fc6-55b3fdfbdaf3"]={f:Ops.Html.CSS.CSSPropertyString,objName:"Ops.Html.CSS.CSSPropertyString"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Html.CSS.CSSFilter
-// 
-// **************************************************************
-
-Ops.Html.CSS.CSSFilter = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const inEle = op.inObject("Element");
-const inMethod = op.inValueSelect("method", ["-", "blur", "brightness", "contrast", "grayscale", "hue-rotate", "invert", "opacity", "saturate", "sepia"]);
-const inVal = op.inValue("Value");
-
-let suffix = "";
-let prefix = "";
-
-inVal.onChange = setValue;
-inEle.onChange = setValue;
-
-let oldEle = null;
-
-function getCSSFilterString()
-{
-    return inMethod.get() + "(" + inVal.get() + suffix + ")";
-}
-
-inEle.onLinkChanged = function ()
-{
-    // remove style when deleting op
-    if (inEle.isLinked()) return;
-
-    const ele = oldEle;// inEle.get();
-
-    if (ele && ele.style)
+    else if (e.which == 2)
     {
-        let filter = ele.style.filter;
-        var str = "";
-
-        if (filter && filter.length > 0)
-        {
-            var str = "";
-            let parts = filter.split(" ");
-            for (let i = 0; i < parts.length; i++)
-            {
-                if (parts[i].indexOf(inMethod.get()) == 0)
-                    parts[i] = "";
-            }
-
-            str = parts.join(" ");
-        }
-        ele.style.filter = str;
+        mouseDownMiddle.set(true);
+        triggerMouseDownMiddle.trigger();
     }
-};
-
-function setValue()
-{
-    const ele = inEle.get();
-    let str = "";
-
-    if (ele && ele.style)
+    else if (e.which == 3)
     {
-        if (ele != oldEle) oldEle = ele;
-        let foundMyFilter = false;
-        let filter = ele.style.filter;
-
-        if (filter && filter.length > 0)
-        {
-            let parts = filter.split(" ");
-            for (let i = 0; i < parts.length; i++)
-            {
-                if (parts[i].indexOf(inMethod.get()) == 0)
-                {
-                    foundMyFilter = true;
-                    parts[i] = getCSSFilterString();
-                }
-            }
-
-            str = parts.join(" ");
-        }
-
-        if (!foundMyFilter)
-            str += " " + getCSSFilterString();
-
-        ele.style.filter = str;
+        mouseDownRight.set(true);
+        triggerMouseDownRight.trigger();
     }
 }
 
-inMethod.onChange = function ()
+function onMouseUp(e)
 {
-    let m = inMethod.get();
-
-    prefix = inMethod.get() + ":";
-
-    if (m == "blur") suffix = "px";
-    if (m == "brightness") suffix = "";
-    if (m == "contrast") suffix = "%";
-    if (m == "grayscale") suffix = "%";
-    if (m == "hue-rotate") suffix = "deg";
-    if (m == "invert") suffix = "%";
-    if (m == "opacity") suffix = "%";
-    if (m == "saturate") suffix = "";
-    if (m == "sepia") suffix = "%";
-    setValue();
-};
-
-
-};
-
-Ops.Html.CSS.CSSFilter.prototype = new CABLES.Op();
-CABLES.OPS["33befabf-7eef-45f6-869f-30e0e4f44739"]={f:Ops.Html.CSS.CSSFilter,objName:"Ops.Html.CSS.CSSFilter"};
-
-
-
-
-// **************************************************************
-// 
-// Ops.Json.ObjectDeleteKey
-// 
-// **************************************************************
-
-Ops.Json.ObjectDeleteKey = function()
-{
-CABLES.Op.apply(this,arguments);
-const op=this;
-const attachments=op.attachments={};
-const
-    inObj1 = op.inObject("Object"),
-    inKey = op.inString("Key", ""),
-    outObj = op.outObject("Object Result");
-
-inObj1.onChange = update;
-
-inKey.onChange = () =>
-{
-    op.setUiAttrib({ "extendTitle": inKey.get() });
-    update();
-};
-
-function update()
-{
-    const o = inObj1.get();
-
-    if (!o)
+    if (e.which == 1)
     {
-        outObj.set(null);
-        return;
+        mouseDownLeft.set(false);
+        triggerMouseUpLeft.trigger();
     }
+    else if (e.which == 2)
+    {
+        mouseDownMiddle.set(false);
+        triggerMouseUpMiddle.trigger();
+    }
+    else if (e.which == 3)
+    {
+        mouseDownRight.set(false);
+        triggerMouseUpRight.trigger();
+    }
+}
 
-    const newObj = JSON.parse(JSON.stringify(o));
-    delete newObj[inKey.get()];
+function onClickRight(e)
+{
+    mouseClickRight.trigger();
+    e.preventDefault();
+}
 
-    outObj.setRef(newObj);
+function onDoubleClick(e)
+{
+    mouseDoubleClick.trigger();
+}
+
+function onmouseclick(e)
+{
+    mouseClickLeft.trigger();
+}
+
+function ontouchstart(event)
+{
+    if (event.touches && event.touches.length > 0)
+    {
+        event.touches[0].which = 1;
+        onMouseDown(event.touches[0]);
+    }
+}
+
+function ontouchend(event)
+{
+    onMouseUp({ "which": 1 });
+}
+
+function removeListeners()
+{
+    if (!listenerElement) return;
+    listenerElement.removeEventListener("touchend", ontouchend);
+    listenerElement.removeEventListener("touchcancel", ontouchend);
+    listenerElement.removeEventListener("touchstart", ontouchstart);
+    listenerElement.removeEventListener("dblclick", onDoubleClick);
+    listenerElement.removeEventListener("click", onmouseclick);
+    listenerElement.removeEventListener("mousedown", onMouseDown);
+    listenerElement.removeEventListener("mouseup", onMouseUp);
+    listenerElement.removeEventListener("contextmenu", onClickRight);
+    listenerElement.removeEventListener("mouseleave", onMouseUp);
+    listenerElement = null;
+}
+
+function addListeners()
+{
+    if (listenerElement)removeListeners();
+
+    listenerElement = cgl.canvas;
+    if (area.get() == "Document") listenerElement = document.body;
+    if (area.get() == "Window") listenerElement = globalThis.window;
+
+    listenerElement.addEventListener("touchend", ontouchend);
+    listenerElement.addEventListener("touchcancel", ontouchend);
+    listenerElement.addEventListener("touchstart", ontouchstart);
+    listenerElement.addEventListener("dblclick", onDoubleClick);
+    listenerElement.addEventListener("click", onmouseclick);
+    listenerElement.addEventListener("mousedown", onMouseDown);
+    listenerElement.addEventListener("mouseup", onMouseUp);
+    listenerElement.addEventListener("contextmenu", onClickRight);
+    listenerElement.addEventListener("mouseleave", onMouseUp);
+}
+
+op.onLoaded = updateListeners;
+
+active.onChange = updateListeners;
+
+function updateListeners()
+{
+    removeListeners();
+    if (active.get()) addListeners();
 }
 
 
 };
 
-Ops.Json.ObjectDeleteKey.prototype = new CABLES.Op();
-CABLES.OPS["57a80386-b565-4915-a365-61b2dccf5ccc"]={f:Ops.Json.ObjectDeleteKey,objName:"Ops.Json.ObjectDeleteKey"};
+Ops.Patch.PbdFbHA.MouseButtonsWindow.prototype = new CABLES.Op();
+CABLES.OPS["70422b06-659d-4e50-b19f-b01135f15d28"]={f:Ops.Patch.PbdFbHA.MouseButtonsWindow,objName:"Ops.Patch.PbdFbHA.MouseButtonsWindow"};
 
 
 
