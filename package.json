@@ -1,7 +1,7 @@
 {
   "name": "ui",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.9.62",
   "type": "module",
   "scripts": {
     "init": "npm install --legacy-peer-deps",
@@ -17,7 +17,8 @@
     "build-native": "zx scripts/build-native.mjs",
     "build-dsp": "esbuild dsp/main.ts --bundle --outfile=public/dsp.main.js",
     "build-ui": "vite build",
-    "build": "npm run build-dsp && npm run build-ui && npm run build-native",
+    "sync-version": "zx scripts/sync-version.mjs",
+    "build": "npm run sync-version && npm run build-dsp && npm run build-ui && npm run build-native",
     "preview": "vite preview"
   },
   "dependencies": {
