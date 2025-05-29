@@ -104,7 +104,9 @@ void SlotManager::switchSlotsTo(const bool customScape, const bool pruneVFS = fa
         {
             // we are back in factory mode
             const auto fn = asset.get<std::string>(Props::defaultFilenameForView);
+            const auto peaksInView = asset.get<std::vector<float>>(Props::defaultPeaksForView);
             asset.set(Props::filenameForView, fn);
+            asset.set(Props::currentPeakDataInView, peaksInView);
             processor.state.insert_or_assign("scapeMode", 0.0);
             processor.userScapeMode = false;
         }

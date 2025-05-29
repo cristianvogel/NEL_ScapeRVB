@@ -46,6 +46,8 @@ Processor::Processor()
     editor = new WebViewEditor(this, util::getAssetsDirectory(), 840, 480);
     // then load default audio assets
     initialiseDefaultFileAssets();
+    // Initialize peaks for immediate UI availability
+    slotManager->switchSlotsTo(false, false); // Start in factory mode
     slotManager->resetStateHashes();
 }
 
@@ -169,7 +171,19 @@ bool Processor::initialiseDefaultFileAssets()
                 if (file.getFileExtension().toLowerCase() == ".wav")
                 {
                     SlotName slotName = slotname_from_string(file.getFileNameWithoutExtension().toStdString());;
+                    
+                    // Calculate peaks data immediately for proper UI initialization
                     std::vector<float> samples;
+                    const auto reader = formatManager.createReaderFor(file);
+                    if (reader != nullptr)
+                    {
+                        auto buffer = juce::AudioBuffer<float>();
+                        buffer.setSize(1, reader->lengthInSamples);
+                        reader->read(&buffer, 0, reader->lengthInSamples, 0, true, false); // Read left channel only
+                        samples = util::reduceBufferToPeaksData(buffer);
+                        delete reader;
+                    }
+                    
                     slotManager->populate_assetsMap_from_File(assetsMap, slotName, false, file, samples);
                 }
             }
