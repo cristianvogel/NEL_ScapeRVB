@@ -136,6 +136,8 @@ target_compile_definitions(${TARGET_NAME}
         JUCE_VST3_CAN_REPLACE_VST2=0
         JUCE_USE_CURL=0
         JUCE_MODAL_LOOPS_PERMITTED=1  # Allow file chooser dialog to open
+        JUCE_DEBUG=1
+        DEBUG=1
 )
 
 target_link_libraries(${TARGET_NAME}

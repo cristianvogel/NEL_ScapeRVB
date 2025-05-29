@@ -40,6 +40,7 @@ if (os.platform() === 'darwin') {
    await $`cmake  -DCMAKE_BUILD_TYPE=${buildType} -DCMAKE_INSTALL_PREFIX=./out/  -DCMAKE_OSX_DEPLOYMENT_TARGET=12 -DCMAKE_OSX_ARCHITECTURES="x86_64" ${devFlag} ../..`;
    await $`cmake --build . --config ${buildType} -j 14`;
 
+
     // macOS specific code // -G Xcode for Xcode project
     // await $`cmake -DCMAKE_BUILD_TYPE=${buildType} -DCMAKE_INSTALL_PREFIX=./out/  -DCMAKE_OSX_DEPLOYMENT_TARGET=12 -DCMAKE_OSX_ARCHITECTURES="arm64" ${devFlag} ../..`;
     // await $`cmake --build . --config ${buildType} -j 14`;

@@ -10,8 +10,6 @@
     "prebuild": "npm run clean",
     "dev": "concurrently \"npm run dev-dsp\" \"vite\"",
     "dev-with-native": "npm run dev-native && concurrently \"npm run dev-dsp\" \"vite\"",
-    "devx": "npm run dev-nativeX && concurrently \"npm run dev-dsp\" \"vite\"",
-    "dev-nativeX": "zx scripts/build-native-XCode.mjs --dev",
     "dev-native": "zx scripts/build-native.mjs --dev",
     "dev-dsp": "esbuild dsp/main.ts --watch --bundle --outfile=public/dsp.main.js",
     "build-native": "zx scripts/build-native.mjs",
