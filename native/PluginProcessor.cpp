@@ -22,22 +22,24 @@ Processor::Processor()
       slotManager(std::make_unique<SlotManager>(*this)),
       fileLoader(std::make_unique<AudioFileLoader>(*this))
 {
-    // Initialize parameters from the manifest file
-#if ELEM_DEV_LOCALHOST
-    auto manifestFile = juce::URL("http://localhost:5173/manifest.json");
-    auto manifestFileContents = manifestFile.readEntireTextStream().toStdString();
-#else
-    auto manifestFile = util::getAssetsDirectory().getChildFile("manifest.json");
-    if (!manifestFile.existsAsFile())
-        return;
-    auto manifestFileContents = manifestFile.loadFileAsString().toStdString();
-#endif
-
-    // Populate the parameters from the manifest file
-    const auto manifest = elem::js::parseJSON(manifestFileContents);
-    if (!manifest.isObject())
-        jassert(false);
-    const auto parameters = manifest.getWithDefault("parameters", elem::js::Array());
+    // Hardcoded parameters - fixed at build time
+    elem::js::Array parameters = {
+        elem::js::Object{{"paramId", "size"}, {"name", "Size"}, {"min", 0.0}, {"max", 1.0}, {"defaultValue", 0.25}, {"isBoolean", false}},
+        elem::js::Object{{"paramId", "diffuse"}, {"name", "Reflections Diffuse"}, {"min", 0.0}, {"max", 1.0}, {"defaultValue", 0.35}, {"isBoolean", false}},
+        elem::js::Object{{"paramId", "mix"}, {"name", "Reflections Level"}, {"min", 0.0}, {"max", 1.0}, {"defaultValue", 1.0}, {"isBoolean", false}},
+        elem::js::Object{{"paramId", "position"}, {"name", "Position"}, {"min", 0.0}, {"max", 1.0}, {"defaultValue", 0.65}, {"isBoolean", false}},
+        elem::js::Object{{"paramId", "tone"}, {"name", "Tone"}, {"min", -1.0}, {"max", 1.0}, {"defaultValue", 0.5}, {"isBoolean", false}},
+        elem::js::Object{{"paramId", "structure"}, {"name", "Structure"}, {"min", 0.0}, {"max", 1.0}, {"defaultValue", 0.0}, {"step", 0.0625}, {"isBoolean", false}},
+        elem::js::Object{{"paramId", "scapeLevel"}, {"name", "Scape Level"}, {"min", 0.0}, {"max", 1.0}, {"defaultValue", 0.0}, {"isBoolean", false}},
+        elem::js::Object{{"paramId", "scapeOffset"}, {"name", "Scape Offset"}, {"min", 0.0}, {"max", 1.0}, {"defaultValue", 0.0}, {"isBoolean", false}},
+        elem::js::Object{{"paramId", "scapeLength"}, {"name", "Scape IR"}, {"min", 0.0}, {"max", 1.0}, {"defaultValue", 0.0}, {"isBoolean", false}},
+        elem::js::Object{{"paramId", "scapeReverse"}, {"name", "Scape Reverse"}, {"min", 0.0}, {"max", 1.0}, {"defaultValue", 0.0}, {"step", 1.0}, {"isBoolean", false}},
+        elem::js::Object{{"paramId", "scapeBypass"}, {"name", "Bypass Scape"}, {"min", 0.0}, {"max", 1.0}, {"defaultValue", 0.0}, {"step", 1.0}, {"isBoolean", false}},
+        elem::js::Object{{"paramId", "srvbBypass"}, {"name", "Bypass Reflectors"}, {"min", 0.0}, {"max", 1.0}, {"defaultValue", 0.0}, {"step", 1.0}, {"isBoolean", false}},
+        elem::js::Object{{"paramId", "dryMix"}, {"name", "Dry Mix"}, {"min", 0.0}, {"max", 1.0}, {"defaultValue", 0.0}, {"isBoolean", false}},
+        elem::js::Object{{"paramId", "scapeMode"}, {"name", "Scape Mode"}, {"min", 0.0}, {"max", 1.0}, {"defaultValue", 0.0}, {"step", 1.0}, {"isBoolean", false}}
+    };
+    
     createParameters(parameters);
     // register audio file formats
     formatManager.registerBasicFormats();
