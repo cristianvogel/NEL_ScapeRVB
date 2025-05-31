@@ -95,6 +95,10 @@ void SlotManager::switchSlotsTo(const bool customScape, const bool pruneVFS = fa
             // toggle scapeMode to custom in the plugin
             processor.state.insert_or_assign("scapeMode", 0.55); // avoiding odd behaviour with 1.0
             processor.userScapeMode = true;
+            
+            // Debug: log current bank when switching to custom
+            std::cout << "SlotManager: Switched to custom mode, current bank: " 
+                      << processor.userBankManager.getUserBank() << std::endl;
         }
         else
         {

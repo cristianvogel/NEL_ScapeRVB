@@ -61,6 +61,11 @@ Processor::~Processor()
     clientInstance.reset();
     // Ensure server is properly closed and released
     server->close();
+    
+    // Safely shutdown Elementary runtime
+    if (elementaryRuntime) {
+        elementaryRuntime.reset();
+    }
 
     // Remove all listeners from params, standard JUCE pattern
     for (auto& p : getParameters())
@@ -73,13 +78,15 @@ Processor::~Processor()
 void Processor::clear_userFiles_in_assets_map()
 {
     // Initial slot
-    std::cout << "Clearing userFiles_in_assets_map..." << std::endl;
+    std::cout << "Clearing userFiles_in_assets_map for current bank " << userBankManager.getUserBank() << "..." << std::endl;
     auto slot = SlotName::LIGHT;
     while (slot != SlotName::LAST)
     {
         assetsMap[slot].clear_userfiles();
         nextSlotNoWrap(slot);
     }
+    // Reset to slot 0 when clearing
+    fileLoader->currentSlotIndex = 0;
 }
 
 //====HOISTED==========================================================================
@@ -102,16 +109,30 @@ void Processor::handleAsyncUpdate()
         // initialise, process and load into the runtime all 4 default IR assets
         process_default_IRs();
         //
+        // Check if we have any user files to restore, but don't process them here
+        // They will be processed during processPersistedAssetState if needed
+        bool hasUserFiles = false;
         for (const auto& [slotName, asset] : assetsMap)
         {
-            SlotName targetSlot = slotName;
             if (asset.hasUserStereoFile())
-                process_user_IR(asset.get<juce::File>(Props::userStereoFile), targetSlot);
-            userScapeMode = true;
+            {
+                hasUserFiles = true;
+                break;
+            }
         }
+        userScapeMode = hasUserFiles;
         // Værsgo!
         initJavaScriptEngine();
         runtimeSwapRequired.store(false);
+        
+        // Process any pending asset state now that runtime is initialized
+        if (!pendingAssetState.empty())
+        {
+            std::cout << "Processing pending asset state after runtime initialization..." << std::endl;
+            processPersistedAssetState(pendingAssetState);
+            pendingAssetState.clear();
+        }
+        
         slotManager->switchSlotsTo(userScapeMode, false);
     }
 
@@ -292,6 +313,10 @@ bool Processor::validateUserUpload(const juce::File& selectedFile)
 bool Processor::process_user_IR(const juce::File& file, const SlotName& targetSlot)
 {
     if (targetSlot == SlotName::LAST ) return false;
+    if (!elementaryRuntime) {
+        std::cout << "process_user_IR: Runtime not initialized, deferring processing" << std::endl;
+        return false;
+    }
     // first validate the upload
     if (!validateUserUpload(file)) return false;
 
@@ -724,9 +749,11 @@ void Processor::processBlock(juce::AudioBuffer<float>& buffer, juce::MidiBuffer&
 void Processor::parameterValueChanged(int parameterIndex, float newValue)
 {
     // Mark the updated parameter value in the dirty list
-    auto& readout = *std::next(parameterReadouts.begin(), parameterIndex);
-    readout.store({newValue, true});
-    triggerAsyncUpdate();
+    if (parameterIndex >= 0 && parameterIndex < static_cast<int>(parameterReadouts.size())) {
+        auto& readout = *std::next(parameterReadouts.begin(), parameterIndex);
+        readout.store({newValue, true});
+        triggerAsyncUpdate();
+    }
 }
 
 void Processor::parameterGestureChanged(int, bool)
@@ -745,6 +772,8 @@ void Processor::initJavaScriptEngine()
     // Install some native interop functions in our JavaScript environment
     jsContext.registerFunction(NATIVE_MESSAGE_FUNCTION_NAME, [this](choc::javascript::ArgumentList args)
     {
+        if (!elementaryRuntime) return choc::value::Value();
+        
         const auto batch = elem::js::parseJSON(args[0]->toString());
         const auto rc = elementaryRuntime->applyInstructions(batch);
 
@@ -987,6 +1016,11 @@ void Processor::getStateInformation(juce::MemoryBlock& destData)
     std::cout << "stashing state..." << std::to_string(assetsMap.size()) << " entries! " << std::endl;
     if (!assetsMap.empty())
         state.insert_or_assign(PERSISTED_VIEW_STATE, assetHelpers::serialise_assets_map_entries(assetsMap));
+    
+    // Store bank state and current slot index
+    state.insert_or_assign("currentUserBank", static_cast<elem::js::Number>(userBankManager.getUserBank()));
+    state.insert_or_assign("currentSlotIndex", static_cast<elem::js::Number>(fileLoader->currentSlotIndex));
+    
     // seriliase the whole package
     const auto dataToPersist = elem::js::serialize(state);
     // stash
@@ -1024,10 +1058,27 @@ void Processor::setStateInformation(const void* data, int sizeInBytes)
         if (isParam)
         {
             state.insert_or_assign(key, value);
+            
+            // Restore bank state and slot index
+            if (key == "currentUserBank")
+            {
+                int bankToRestore = static_cast<int>(value);
+                userBankManager.resetUserBank();
+                for (int i = 0; i < bankToRestore; i++) {
+                    userBankManager.incrementUserBank();
+                }
+                std::cout << "Restored user bank to: " << userBankManager.getUserBank() << std::endl;
+            }
+            else if (key == "currentSlotIndex")
+            {
+                fileLoader->currentSlotIndex = static_cast<int>(value);
+                std::cout << "Restored slot index to: " << fileLoader->currentSlotIndex << std::endl;
+            }
         }
         else
         {
-            processPersistedAssetState(value.getObject());
+            // Store the asset state for processing after runtime initialization
+            pendingAssetState = value.getObject();
         }
     }
 
@@ -1057,6 +1108,24 @@ void Processor::processPersistedAssetState(const elem::js::Object& target_slot_a
         const auto serialisedAsset = v.toString();
         const auto incomingAsset = elem::js::parseJSON(serialisedAsset).getObject();
         Asset convertedAsset = assetHelpers::convert_to_asset(incomingAsset);
+        
+        // Validate that user files still exist before restoring
+        if (convertedAsset.hasUserStereoFile())
+        {
+            const auto& userFile = convertedAsset.get<juce::File>(Asset::Props::userStereoFile);
+            if (userFile.existsAsFile())
+            {
+                std::cout << "Restoring user file for slot " << k << ": " << userFile.getFullPathName() << std::endl;
+                // Re-process the user IR to ensure VFS is properly populated for current bank
+                process_user_IR(userFile, targetSlot);
+            }
+            else
+            {
+                std::cout << "User file no longer exists for slot " << k << ", clearing user data" << std::endl;
+                convertedAsset.clear_userfiles();
+            }
+        }
+        
         slotManager->populate_assetsMap_from_Asset(assetsMap, targetSlot, convertedAsset);
     }
 }

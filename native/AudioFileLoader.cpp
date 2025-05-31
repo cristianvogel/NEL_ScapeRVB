@@ -67,7 +67,16 @@ void AudioFileLoader::handleAsyncUpdate()
         if (processor.process_user_IR(file, slotName))
         {
             processor.slotManager->switchSlotsTo(true, false);
-            currentSlotIndex = (getIndexForSlot(slotName) + 1) % NUM_SLOTS;
+            // Handle bank switching when slot 4 (DEEPNESS) is reached
+            if (currentSlotIndex >= NUM_SLOTS - 1) {
+                // Switch to next bank and reset to slot 0
+                processor.userBankManager.incrementUserBank();
+                currentSlotIndex = 0;
+                std::cout << "AudioFileLoader: Switched to bank " << processor.userBankManager.getUserBank() 
+                          << ", reset to slot 0" << std::endl;
+            } else {
+                currentSlotIndex++;
+            }
         }
 
     }

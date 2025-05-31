@@ -175,6 +175,7 @@ public:
     elem::js::Object state;
     std::map<SlotName, Asset> assetsMap;
     elem::js::Object assetState;
+    elem::js::Object pendingAssetState; // Store asset state for processing after runtime initialization
 
     int userCutoffChoice = HZ_OPTIONS[0];
     std::atomic<bool> userFilesWereImported = false;
