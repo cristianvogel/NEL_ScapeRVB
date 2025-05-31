@@ -12,8 +12,37 @@ let buildDir = path.join(rootDir, 'native', 'build', 'scripted');
 //echo(`Root directory: ${rootDir}`);
 //echo(`Build directory: ${buildDir}`);
 
-// Clean the build directory before we build
-// await fs.remove(buildDir);
+// Clean the build directory before we build, preserving JUCE builds
+if (await fs.pathExists(buildDir)) {
+    console.log(`Cleaning build directory: ${buildDir}`);
+    const items = await fs.readdir(buildDir);
+    console.log(`Found items: ${items.join(', ')}`);
+    for (const item of items) {
+        if (item === 'JUCE') {
+            console.log(`Preserving: ${item}`);
+        } else if (item === 'CMakeFiles') {
+            // Preserve JUCE modules in CMakeFiles but remove other plugin files
+            const cmakeFilesPath = path.join(buildDir, item);
+            const pluginDirPath = path.join(cmakeFilesPath, 'NEL_scape_space.dir');
+            if (await fs.pathExists(pluginDirPath)) {
+                const pluginItems = await fs.readdir(pluginDirPath);
+                for (const pluginItem of pluginItems) {
+                    if (pluginItem !== 'JUCE') {
+                        console.log(`Removing plugin file: ${pluginItem}`);
+                        await fs.remove(path.join(pluginDirPath, pluginItem));
+                    } else {
+                        console.log(`Preserving compiled JUCE modules: ${pluginItem}`);
+                    }
+                }
+            }
+        } else {
+            console.log(`Removing: ${item}`);
+            await fs.remove(path.join(buildDir, item));
+        }
+    }
+} else {
+    console.log(`Build directory does not exist: ${buildDir}`);
+}
 await fs.ensureDir(buildDir);
 
 cd(buildDir);

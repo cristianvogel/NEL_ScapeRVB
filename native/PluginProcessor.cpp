@@ -133,6 +133,15 @@ void Processor::handleAsyncUpdate()
             pendingAssetState.clear();
         }
         
+        // Restore pending slot index if fileLoader is now available
+        if (fileLoader && state.contains("pendingSlotIndex"))
+        {
+            int pendingSlotIndex = static_cast<int>(state.at("pendingSlotIndex"));
+            fileLoader->currentSlotIndex = pendingSlotIndex;
+            std::cout << "Restored pending slot index to: " << pendingSlotIndex << std::endl;
+            state.erase("pendingSlotIndex");
+        }
+        
         slotManager->switchSlotsTo(userScapeMode, false);
     }
 
@@ -772,7 +781,7 @@ void Processor::initJavaScriptEngine()
     // Install some native interop functions in our JavaScript environment
     jsContext.registerFunction(NATIVE_MESSAGE_FUNCTION_NAME, [this](choc::javascript::ArgumentList args)
     {
-        if (!elementaryRuntime) return choc::value::Value();
+        if (!elementaryRuntime || args.numArgs == 0 || args[0] == nullptr) return choc::value::Value();
         
         const auto batch = elem::js::parseJSON(args[0]->toString());
         const auto rc = elementaryRuntime->applyInstructions(batch);
@@ -1062,17 +1071,32 @@ void Processor::setStateInformation(const void* data, int sizeInBytes)
             // Restore bank state and slot index
             if (key == "currentUserBank")
             {
-                int bankToRestore = static_cast<int>(value);
-                userBankManager.resetUserBank();
-                for (int i = 0; i < bankToRestore; i++) {
-                    userBankManager.incrementUserBank();
+                try {
+                    int bankToRestore = static_cast<int>(value);
+                    userBankManager.resetUserBank();
+                    for (int i = 0; i < bankToRestore; i++) {
+                        userBankManager.incrementUserBank();
+                    }
+                    std::cout << "Restored user bank to: " << userBankManager.getUserBank() << std::endl;
+                } catch (const std::exception& e) {
+                    std::cout << "Error restoring user bank: " << e.what() << std::endl;
                 }
-                std::cout << "Restored user bank to: " << userBankManager.getUserBank() << std::endl;
             }
             else if (key == "currentSlotIndex")
             {
-                fileLoader->currentSlotIndex = static_cast<int>(value);
-                std::cout << "Restored slot index to: " << fileLoader->currentSlotIndex << std::endl;
+                try {
+                    int slotIndexToRestore = static_cast<int>(value);
+                    // Only store if the value is valid
+                    if (slotIndexToRestore >= 0 && slotIndexToRestore < 4) {
+                        // Always defer slot index restoration to avoid crashes during preset recall
+                        state.insert_or_assign("pendingSlotIndex", static_cast<elem::js::Number>(slotIndexToRestore));
+                        std::cout << "Deferring slot index " << slotIndexToRestore << " restoration until plugin is fully initialized" << std::endl;
+                    } else {
+                        std::cout << "Invalid slot index value: " << slotIndexToRestore << ", ignoring" << std::endl;
+                    }
+                } catch (const std::exception& e) {
+                    std::cout << "Error restoring slot index, corrupted value detected: " << e.what() << std::endl;
+                }
             }
         }
         else
@@ -1116,8 +1140,15 @@ void Processor::processPersistedAssetState(const elem::js::Object& target_slot_a
             if (userFile.existsAsFile())
             {
                 std::cout << "Restoring user file for slot " << k << ": " << userFile.getFullPathName() << std::endl;
-                // Re-process the user IR to ensure VFS is properly populated for current bank
-                process_user_IR(userFile, targetSlot);
+                // Only process user IR if runtime is initialized
+                if (elementaryRuntime)
+                {
+                    process_user_IR(userFile, targetSlot);
+                }
+                else
+                {
+                    std::cout << "Runtime not initialized, user IR processing will be deferred" << std::endl;
+                }
             }
             else
             {
