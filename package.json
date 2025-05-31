@@ -1,22 +1,22 @@
 {
-  "name": "ui",
+  "name": "scape-space-ui",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.9.3",
   "type": "module",
   "scripts": {
     "init": "npm install --legacy-peer-deps",
     "clean": "rimraf dist",
     "predev": "npm run clean",
     "prebuild": "npm run clean",
-    "dev": "npm run dev-native && concurrently \"npm run dev-dsp\" \"vite\"",
-    "devx": "npm run dev-nativeX && concurrently \"npm run dev-dsp\" \"vite\"",
-    "dev-nativeX": "zx scripts/build-native-XCode.mjs --dev",
+    "dev": "concurrently \"npm run dev-dsp\" \"vite\"",
+    "dev-with-native": "npm run dev-native && concurrently \"npm run dev-dsp\" \"vite\"",
     "dev-native": "zx scripts/build-native.mjs --dev",
     "dev-dsp": "esbuild dsp/main.ts --watch --bundle --outfile=public/dsp.main.js",
     "build-native": "zx scripts/build-native.mjs",
     "build-dsp": "esbuild dsp/main.ts --bundle --outfile=public/dsp.main.js",
     "build-ui": "vite build",
-    "build": "npm run build-dsp && npm run build-ui && npm run build-native",
+    "sync-version": "zx scripts/sync-version.mjs",
+    "build": "npm run sync-version && npm run build-dsp && npm run build-ui && npm run build-native",
     "preview": "vite preview"
   },
   "dependencies": {

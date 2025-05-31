@@ -1,13 +1,15 @@
 cmake_minimum_required(VERSION 3.15)
-project(NEL_scape_space VERSION 1.9.3)
+project(NEL_scape_space VERSION 0.9.3)
 
 set(TARGET_NAME "NEL_scape_space")
 set(ASSETS_DIR ${CMAKE_SOURCE_DIR}/../dist/)
 
-# sync version manually in constants.ts 
-# messing with Cmake to TypeScript through Vite was getting messy
+# Version is synced from package.json via scripts/sync-version.mjs
+# Run 'npm run sync-version' to update all version references
 
-set(BUILD_VERSION "v0.9.3-beta")
+
+set(BUILD_VERSION "v0.9.3")
+
 
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
@@ -19,7 +21,7 @@ option(JUCE_BUILD_EXTRAS "Build JUCE Extras" OFF)
 option(ELEM_DEV_LOCALHOST "Run against localhost for static assets" OFF)
 option(FFTCONVOLVER_USE_SSE "Enable SSE optimizations" ON)   # watch this i have no idea what it does
 
-add_subdirectory(juce) # using the static non-submodule version
+add_subdirectory(JUCE) # using the static non-submodule version
 add_subdirectory(elementary/runtime) # using the static non-submodule version
 
 
@@ -53,50 +55,9 @@ juce_add_plugin(${TARGET_NAME}
         FORMATS AU VST3 STANDALONE # The formats to build. Other valid formats are: AAX Unity VST AU AUv3
         PRODUCT_NAME "NEL_scape_space_${CMAKE_OSX_ARCHITECTURES}${PC_ARCH}_${BUILD_VERSION}") # The name of the final executable, which can differ from the target name
 
-# # Keyzy Client Library
-# # Replace KeyzyClientLibraryX.X.X with your actual library version
-# set(KeyzyClientLibrary_VERSION "v143")
-
-# if(WIN32)
-#   if(MSVC_VERSION EQUAL 1910) # VS 2017
-#     set(VS_VERSION "VS2017")
-#   elseif(MSVC_VERSION EQUAL 1920) # VS 2019
-#     set(VS_VERSION "VS2019")
-#   elseif(MSVC_VERSION GREATER_EQUAL 1930) # VS 2022 or later
-#     set(VS_VERSION "VS2022")
-#   endif()
-
-#   if(CMAKE_SIZEOF_VOID_P EQUAL 8)
-#     set(ARCH "64")
-#   else()
-#     set(ARCH "86")
-#   endif()
-
-#   # Set MD or MT based on your project requirements
-#   set(MD_MT "MT") # The other line of Martin's famous fix
-
-#   set(DEBUG_OR_RELEASE "$<$<CONFIG:Debug>:D>$<$<CONFIG:Release>:R>")
-
-#   set(LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/KeyzyClientLibrary/${VS_VERSION}/${DEBUG_OR_RELEASE}${ARCH}${MD_MT}_x64_${KeyzyClientLibrary_VERSION})
-
-#   target_link_libraries(${TARGET_NAME} PRIVATE ${LIB_DIR}/Lib/KeyzyClient.lib)
-
-# elseif(APPLE)
-#   if(IOS)
-#     set(LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/KeyzyClientLibrary/XcodeiOS)
-#   else()
-#     # Choose the correct library based on your target architectures
-#     set(LIB_DIR ${CMAKE_CURRENT_SOURCE_DIR}/KeyzyClientLibrary/XcodeAppleSiliconIntel64)
-#   endif()
-
-#   find_library(KEYZY_CLIENT_LIB KeyzyClient PATHS ${LIB_DIR}/Lib)
-
-#   if(NOT KEYZY_CLIENT_LIB)
-#     message(FATAL_ERROR "KeyzyClient library not found")
-#   endif()
-
-#   target_link_libraries(${TARGET_NAME} PRIVATE ${KEYZY_CLIENT_LIB})
-# endif()
+target_compile_features(${TARGET_NAME}
+        PRIVATE
+        cxx_std_20)
 
 # Find Boost libraries
 find_package(Boost REQUIRED COMPONENTS system thread)
@@ -104,9 +65,7 @@ find_package(Boost REQUIRED COMPONENTS system thread)
 # Link Boost libraries
 target_link_libraries(${TARGET_NAME} PRIVATE Boost::system Boost::thread)
 
-target_include_directories(${TARGET_NAME} PRIVATE
-        $<BUILD_INTERFACE:${LIB_DIR}/Include>
-        $<BUILD_INTERFACE:${Boost_INCLUDE_DIRS}>)
+# Boost include directories are automatically handled by Boost::system and Boost::thread targets
 
 # Copy static assets post build
 if (NOT ELEM_DEV_LOCALHOST)
@@ -170,9 +129,6 @@ target_include_directories(${TARGET_NAME}
         ${CMAKE_CURRENT_SOURCE_DIR}/FFTConvolver
 )
 
-target_compile_features(${TARGET_NAME}
-        PRIVATE
-        cxx_std_20)
 
 target_compile_definitions(${TARGET_NAME}
         PRIVATE
@@ -180,6 +136,8 @@ target_compile_definitions(${TARGET_NAME}
         JUCE_VST3_CAN_REPLACE_VST2=0
         JUCE_USE_CURL=0
         JUCE_MODAL_LOOPS_PERMITTED=1  # Allow file chooser dialog to open
+        JUCE_DEBUG=1
+        DEBUG=1
 )
 
 target_link_libraries(${TARGET_NAME}
