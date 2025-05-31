@@ -56,3 +56,4 @@
 - **Convolver silence**: Check vectorData array - slots with 0 values will be muted
 - **Bypass logic**: 1=bypassed, 0=active - check initial state from host
 - **Type validation**: Add debug logging to identify specific property causing errors
+- **JS property conflicts**: Use bracket notation state["size"] not state.size to avoid native JS conflicts

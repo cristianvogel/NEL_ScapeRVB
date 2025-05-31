@@ -3446,35 +3446,36 @@
   function parseNewState(refs3, rawState) {
     const state = JSON.parse(rawState);
     const shared = {
-      sampleRate: state.sampleRate,
+      sampleRate: state["sampleRate"],
       dryInputs: [stdlib.in({ channel: 0 }), stdlib.in({ channel: 1 })],
-      dryMix: state.dryMix
+      dryMix: state["dryMix"]
     };
     refs3.vfsKeys = state.NEL_VFS_KEYS;
     const srvb = {
       vfsKeys: refs3.vfsKeys,
-      structure: roundTo(state.structure || 0, 1 / NUM_SEQUENCES) * NUM_SEQUENCES,
-      size: state.size,
-      diffuse: state.diffuse,
-      tone: clamp(state.tone * 2 - 1, -0.99, 1),
-      level: easeIn2(state.mix),
+      structure: roundTo(state["structure"] || 0, 1 / NUM_SEQUENCES) * NUM_SEQUENCES,
+      size: state["size"],
+      // Use bracket notation to avoid JS size property conflict
+      diffuse: state["diffuse"],
+      tone: clamp(state["tone"] * 2 - 1, -0.99, 1),
+      level: easeIn2(state["mix"]),
       // DEPRECATING STRUCTURE MAX
       // doing the normalisation inside SRVB
-      structureMax: Math.round(state.structureMax) || 137,
+      structureMax: Math.round(state["structureMax"]) || 137,
       // handle the case where the max was not computed
-      bypass: Math.round(state.srvbBypass) || 0,
-      position: remapPosition(state.position)
+      bypass: Math.round(state["srvbBypass"]) || 0,
+      position: remapPosition(state["position"])
     };
     const scape = {
-      reverse: Math.round(state.scapeReverse),
-      level: state.scapeLevel * 1.5,
-      ir: state.scapeLength,
-      vectorData: HERMITE.at(state.scapeLength),
-      bypass: Math.round(state.scapeBypass) || 0,
-      mode: Math.round(state.scapeMode) || 0,
-      offset: state.scapeOffset || 0,
-      userBank: state.userBank,
-      position: state.position,
+      reverse: Math.round(state["scapeReverse"]),
+      level: state["scapeLevel"] * 1.5,
+      ir: state["scapeLength"],
+      vectorData: HERMITE.at(state["scapeLength"]),
+      bypass: Math.round(state["scapeBypass"]) || 0,
+      mode: Math.round(state["scapeMode"]) || 0,
+      offset: state["scapeOffset"] || 0,
+      userBank: state["userBank"],
+      position: state["position"],
       hasUserSlots: currentVFSKeys?.some((key) => key.includes("USERBANK"))
     };
     return { state, srvb, shared, scape };
