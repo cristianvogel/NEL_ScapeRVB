@@ -10,6 +10,7 @@
 - Be sure to typecheck when you’re done making a series of code changes
 - Prefer running single tests, and not the whole test suite, for performance
 - add brief console logging using DBG for C++
+- always think harder on a problem before you start coding 
 
 # Libraries
 - Use local versions of juce, choc and elementary libraries, found in /native/

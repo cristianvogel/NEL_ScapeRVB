@@ -91,6 +91,10 @@ void SlotManager::switchSlotsTo(const bool customScape, const bool pruneVFS = fa
                                                                        ? Props::userPeaksForView
                                                                        : Props::defaultPeaksForView);
             asset.set(Props::currentPeakDataInView, peaksInView);
+            // Debug: log what peaks we're setting
+            std::cout << "Setting peaks for " << slotname_to_string(slotName) 
+                      << " size: " << peaksInView.size() 
+                      << " (hasUser: " << asset.hasUserStereoFile() << ")" << std::endl;
             asset.set(Props::filenameForView, croppedName);
             // toggle scapeMode to custom in the plugin
             processor.state.insert_or_assign("scapeMode", 0.55); // avoiding odd behaviour with 1.0
@@ -104,9 +108,14 @@ void SlotManager::switchSlotsTo(const bool customScape, const bool pruneVFS = fa
         {
             // we are back in factory mode
             const auto fn = asset.get<std::string>(Props::defaultFilenameForView);
+            const auto defaultPeaks = asset.get<std::vector<float>>(Props::defaultPeaksForView);
+            asset.set(Props::currentPeakDataInView, defaultPeaks);
             asset.set(Props::filenameForView, fn);
             processor.state.insert_or_assign("scapeMode", 0.0);
             processor.userScapeMode = false;
+            // Debug: log factory mode peaks
+            std::cout << "Setting factory peaks for " << slotname_to_string(slotName) 
+                      << " size: " << defaultPeaks.size() << std::endl;
         }
         lastStateHash = -1;
     }

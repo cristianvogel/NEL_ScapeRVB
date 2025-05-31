@@ -136,9 +136,26 @@ void Processor::handleAsyncUpdate()
         // Restore pending slot index if fileLoader is now available
         if (fileLoader && state.contains("pendingSlotIndex"))
         {
-            int pendingSlotIndex = static_cast<int>(state.at("pendingSlotIndex"));
-            fileLoader->currentSlotIndex = pendingSlotIndex;
-            std::cout << "Restored pending slot index to: " << pendingSlotIndex << std::endl;
+            const auto& pendingSlotValue = state.at("pendingSlotIndex");
+            if (pendingSlotValue.isNumber()) {
+                try {
+                    double numValue = static_cast<elem::js::Number>(pendingSlotValue);
+                    int pendingSlotIndex = static_cast<int>(std::round(numValue));
+                    if (pendingSlotIndex >= 0 && pendingSlotIndex < 4) {
+                        fileLoader->currentSlotIndex = pendingSlotIndex;
+                        std::cout << "Restored pending slot index to: " << pendingSlotIndex << std::endl;
+                    } else {
+                        std::cout << "Invalid pending slot index: " << pendingSlotIndex << ", using default 0" << std::endl;
+                        fileLoader->currentSlotIndex = 0;
+                    }
+                } catch (const std::exception& e) {
+                    std::cout << "Error restoring pending slot index: " << e.what() << ", using default 0" << std::endl;
+                    fileLoader->currentSlotIndex = 0;
+                }
+            } else {
+                std::cout << "Pending slot index is not a number, using default 0" << std::endl;
+                fileLoader->currentSlotIndex = 0;
+            }
             state.erase("pendingSlotIndex");
         }
         
@@ -1036,6 +1053,72 @@ void Processor::getStateInformation(juce::MemoryBlock& destData)
     destData.replaceAll((void*)dataToPersist.c_str(), dataToPersist.size());
 }
 
+// Validate restored stateObject data to prevent bad_variant_access crashes
+// Generic validation function to remove uninitialized, null, or invalid values
+void Processor::validateState(elem::js::Object& stateObject)
+{
+    std::cout << "Running generic state validation..." << std::endl;
+
+    // Collect keys to remove to avoid iterator invalidation
+    std::vector<std::string> keysToRemove;
+
+    // Check all stateObject entries for validity
+    for (auto& [key, value] : stateObject)
+    {
+        bool shouldRemove = false;
+        std::string reason;
+
+        try {
+            // Check for null or undefined values
+            if (value.isNull() || value.isUndefined()) {
+                shouldRemove = true;
+                reason = "null or undefined value";
+            }
+            // Check for invalid numbers (NaN, infinity)
+            else if (value.isNumber()) {
+                double numValue = static_cast<elem::js::Number>(value);
+                if (std::isnan(numValue) || std::isinf(numValue)) {
+                    shouldRemove = true;
+                    reason = "NaN or infinite number";
+                }
+            }
+            // Check for empty strings (optional - uncomment if needed)
+            else if (value.isString()) {
+                std::string strValue = static_cast<elem::js::String>(value);
+                if (strValue.empty()) {
+                    shouldRemove = true;
+                    reason = "empty string";
+                }
+            }
+            // Check for empty arrays (optional - uncomment if needed)
+            else if (value.isArray()) {
+                elem::js::Array arrValue = static_cast<elem::js::Array>(value);
+                if (arrValue.size() == 0) {
+                    shouldRemove = true;
+                    reason = "empty array";
+                }
+            }
+        }
+        catch (const std::exception& e) {
+            shouldRemove = true;
+            reason = std::string("cast exception: ") + e.what();
+        }
+
+        if (shouldRemove) {
+            std::cout << "WARNING: Key '" << key << "' has " << reason << ", marking for removal" << std::endl;
+            keysToRemove.push_back(key);
+        }
+    }
+
+    // Remove invalid keys
+    for (const auto& key : keysToRemove) {
+        stateObject.erase(key);
+        std::cout << "Removed invalid state key: " << key << std::endl;
+    }
+
+    std::cout << "Generic state validation completed, removed " << keysToRemove.size() << " invalid entries" << std::endl;
+}
+
 // ▮▮▮▮▮▮juce▮▮▮▮▮▮ plugin state
 //
 //  RESTORE
@@ -1071,31 +1154,45 @@ void Processor::setStateInformation(const void* data, int sizeInBytes)
             // Restore bank state and slot index
             if (key == "currentUserBank")
             {
-                try {
-                    int bankToRestore = static_cast<int>(value);
-                    userBankManager.resetUserBank();
-                    for (int i = 0; i < bankToRestore; i++) {
-                        userBankManager.incrementUserBank();
+                if (value.isNumber()) {
+                    try {
+                        double numValue = static_cast<elem::js::Number>(value);
+                        int bankToRestore = static_cast<int>(std::round(numValue));
+                        if (bankToRestore >= 0) {
+                            userBankManager.resetUserBank();
+                            for (int i = 0; i < bankToRestore; i++) {
+                                userBankManager.incrementUserBank();
+                            }
+                            std::cout << "Restored user bank to: " << userBankManager.getUserBank() << std::endl;
+                        } else {
+                            std::cout << "Invalid user bank value: " << bankToRestore << ", ignoring" << std::endl;
+                        }
+                    } catch (const std::exception& e) {
+                        std::cout << "Error restoring user bank: " << e.what() << std::endl;
                     }
-                    std::cout << "Restored user bank to: " << userBankManager.getUserBank() << std::endl;
-                } catch (const std::exception& e) {
-                    std::cout << "Error restoring user bank: " << e.what() << std::endl;
+                } else {
+                    std::cout << "Error restoring user bank: value is not a number" << std::endl;
                 }
             }
             else if (key == "currentSlotIndex")
             {
-                try {
-                    int slotIndexToRestore = static_cast<int>(value);
-                    // Only store if the value is valid
-                    if (slotIndexToRestore >= 0 && slotIndexToRestore < 4) {
-                        // Always defer slot index restoration to avoid crashes during preset recall
-                        state.insert_or_assign("pendingSlotIndex", static_cast<elem::js::Number>(slotIndexToRestore));
-                        std::cout << "Deferring slot index " << slotIndexToRestore << " restoration until plugin is fully initialized" << std::endl;
-                    } else {
-                        std::cout << "Invalid slot index value: " << slotIndexToRestore << ", ignoring" << std::endl;
+                if (value.isNumber()) {
+                    try {
+                        double numValue = static_cast<elem::js::Number>(value);
+                        int slotIndexToRestore = static_cast<int>(std::round(numValue));
+                        // Only store if the value is valid
+                        if (slotIndexToRestore >= 0 && slotIndexToRestore < 4) {
+                            // Always defer slot index restoration to avoid crashes during preset recall
+                            state.insert_or_assign("pendingSlotIndex", static_cast<elem::js::Number>(slotIndexToRestore));
+                            std::cout << "Deferring slot index " << slotIndexToRestore << " restoration until plugin is fully initialized" << std::endl;
+                        } else {
+                            std::cout << "Invalid slot index value: " << slotIndexToRestore << ", ignoring" << std::endl;
+                        }
+                    } catch (const std::exception& e) {
+                        std::cout << "Error restoring slot index: " << e.what() << std::endl;
                     }
-                } catch (const std::exception& e) {
-                    std::cout << "Error restoring slot index, corrupted value detected: " << e.what() << std::endl;
+                } else {
+                    std::cout << "Error restoring slot index: value is not a number" << std::endl;
                 }
             }
         }
@@ -1112,9 +1209,13 @@ void Processor::setStateInformation(const void* data, int sizeInBytes)
     if (state.contains(PERSISTED_VIEW_STATE))
         state.erase(PERSISTED_VIEW_STATE);
 
+    // Run sanity check on restored state data
+    validateState( state );
+    validateState( pendingAssetState );
+
     shouldInitialize.store(true);
     // handleAsyncUpdate();
-    // dispatchStateChange();
+     dispatchStateChange();
 }
 
 
@@ -1124,16 +1225,23 @@ void Processor::processPersistedAssetState(const elem::js::Object& target_slot_a
     // Iterate through assetState to collect asset
     // Should be serialised data
     std::cout << "Processing persisted Asset State..." << std::endl;
+    
+    // Track which slots have been processed from saved data
+    std::set<SlotName> processedSlots;
+    
     for (auto& [k, v] : target_slot_and_serialised_asset)
     {
         if (k == "LAST" || k.empty() || !v.isString()) continue;
 
         SlotName targetSlot = slotname_from_string(k);
+        processedSlots.insert(targetSlot);
+        
         const auto serialisedAsset = v.toString();
         const auto incomingAsset = elem::js::parseJSON(serialisedAsset).getObject();
         Asset convertedAsset = assetHelpers::convert_to_asset(incomingAsset);
         
         // Validate that user files still exist before restoring
+        bool fileProcessed = false;
         if (convertedAsset.hasUserStereoFile())
         {
             const auto& userFile = convertedAsset.get<juce::File>(Asset::Props::userStereoFile);
@@ -1144,6 +1252,7 @@ void Processor::processPersistedAssetState(const elem::js::Object& target_slot_a
                 if (elementaryRuntime)
                 {
                     process_user_IR(userFile, targetSlot);
+                    fileProcessed = true;  // Don't overwrite the asset - it has fresh peaks data
                 }
                 else
                 {
@@ -1157,7 +1266,27 @@ void Processor::processPersistedAssetState(const elem::js::Object& target_slot_a
             }
         }
         
-        slotManager->populate_assetsMap_from_Asset(assetsMap, targetSlot, convertedAsset);
+        // Only restore asset if we didn't just process fresh data
+        if (!fileProcessed)
+        {
+            slotManager->populate_assetsMap_from_Asset(assetsMap, targetSlot, convertedAsset);
+        }
+    }
+    
+    // Ensure all slots have valid default data - fill any missing slots
+    auto slot = SlotName::LIGHT;
+    while (slot != SlotName::LAST)
+    {
+        if (!processedSlots.contains(slot))
+        {
+            std::cout << "Slot " << slotname_to_string(slot) << " not found in saved data, ensuring default asset exists" << std::endl;
+            // Check if assetsMap has this slot, if not, it should have been populated during initialization
+            if (!assetsMap.contains(slot))
+            {
+                std::cout << "ERROR: Slot " << slotname_to_string(slot) << " missing from assetsMap - this should not happen" << std::endl;
+            }
+        }
+        nextSlotNoWrap(slot);
     }
 }
 

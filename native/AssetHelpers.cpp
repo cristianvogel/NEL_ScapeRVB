@@ -108,15 +108,15 @@ namespace assetHelpers
         //=== int or valid default hz
         propertySetters["cutOffChoice"] = [&](EJV& value, Asset& asset)
         {
-            const auto cutoff = static_cast<elem::js::Number>(value);
-            if (cutoff)
-            {
-                asset.set(Asset::Props::cutOffChoice, HZ_OPTIONS[0]);
+            if (value.isNumber()) {
+                const auto cutoff = static_cast<int>(std::round(static_cast<elem::js::Number>(value)));
+                asset.set(Asset::Props::cutOffChoice, HZ_OPTIONS[0]); // default
                 for (const int hz : HZ_OPTIONS)
                 {
                     if (cutoff == hz)
                     {
                         asset.set(Asset::Props::cutOffChoice, cutoff);
+                        break;
                     }
                 }
             }

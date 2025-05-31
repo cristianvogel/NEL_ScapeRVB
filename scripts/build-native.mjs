@@ -12,33 +12,15 @@ let buildDir = path.join(rootDir, 'native', 'build', 'scripted');
 //echo(`Root directory: ${rootDir}`);
 //echo(`Build directory: ${buildDir}`);
 
-// Clean the build directory before we build, preserving JUCE builds
+// Check if we need to do any cleaning at all
+const forceClean = argv.clean;
+
 if (await fs.pathExists(buildDir)) {
-    console.log(`Cleaning build directory: ${buildDir}`);
-    const items = await fs.readdir(buildDir);
-    console.log(`Found items: ${items.join(', ')}`);
-    for (const item of items) {
-        if (item === 'JUCE') {
-            console.log(`Preserving: ${item}`);
-        } else if (item === 'CMakeFiles') {
-            // Preserve JUCE modules in CMakeFiles but remove other plugin files
-            const cmakeFilesPath = path.join(buildDir, item);
-            const pluginDirPath = path.join(cmakeFilesPath, 'NEL_scape_space.dir');
-            if (await fs.pathExists(pluginDirPath)) {
-                const pluginItems = await fs.readdir(pluginDirPath);
-                for (const pluginItem of pluginItems) {
-                    if (pluginItem !== 'JUCE') {
-                        console.log(`Removing plugin file: ${pluginItem}`);
-                        await fs.remove(path.join(pluginDirPath, pluginItem));
-                    } else {
-                        console.log(`Preserving compiled JUCE modules: ${pluginItem}`);
-                    }
-                }
-            }
-        } else {
-            console.log(`Removing: ${item}`);
-            await fs.remove(path.join(buildDir, item));
-        }
+    if (forceClean) {
+        console.log(`Force clean requested, removing build directory`);
+        await fs.remove(buildDir);
+    } else {
+        console.log(`Using incremental build - CMake will handle dependency tracking`);
     }
 } else {
     console.log(`Build directory does not exist: ${buildDir}`);
