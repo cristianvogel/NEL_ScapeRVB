@@ -1,7 +1,7 @@
 {
-  "name": "ui",
+  "name": "scape-space-ui",
   "private": true,
-  "version": "0.9.62",
+  "version": "0.9.3",
   "type": "module",
   "scripts": {
     "init": "npm install --legacy-peer-deps",

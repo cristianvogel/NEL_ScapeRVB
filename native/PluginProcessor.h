@@ -7,6 +7,7 @@
 #include <functional> //  std::hash
 #include <future>     //   std::promise and std::future
 #include <map>
+#include <set>
 
 
 // Third-Party Library Headers
@@ -110,6 +111,7 @@ public:
     //==============================================================================
     void getStateInformation(juce::MemoryBlock& destData) override;
     void setStateInformation(const void* data, int sizeInBytes) override;
+    void validateState( elem::js::Object& state );
 
     //==============================================================================
     /** Implement the AudioProcessorParameter::Listener interface. */
@@ -186,6 +188,7 @@ public:
     elem::js::Object state;
     std::map<SlotName, Asset> assetsMap;
     elem::js::Object assetState;
+    elem::js::Object pendingAssetState; // Store asset state for processing after runtime initialization
 
     int userCutoffChoice = HZ_OPTIONS[0];
     std::atomic<bool> userFilesWereImported = false;

@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.15)
-project(NEL_scape_space VERSION 0.9.62)
+project(NEL_scape_space VERSION 0.9.3)
 
 set(TARGET_NAME "NEL_scape_space")
 set(ASSETS_DIR ${CMAKE_SOURCE_DIR}/../dist/)
@@ -8,7 +8,7 @@ set(ASSETS_DIR ${CMAKE_SOURCE_DIR}/../dist/)
 # Run 'npm run sync-version' to update all version references
 
 
-set(BUILD_VERSION "v0.9.62")
+set(BUILD_VERSION "v0.9.3")
 
 
 

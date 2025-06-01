@@ -10,7 +10,7 @@ SlotManager::SlotManager(Processor& processor) : processor(processor)
 {
 }
 
-void SlotManager::wrapPeaksForView(std::map<SlotName, Asset>& assetsMap, elem::js::Object& containerForWrappedPeaks)
+void SlotManager::wrapPeaksForView(std::map<SlotName, Asset>& assetsMap, elem::js::Object& peaksContainer)
 {
     // go through whole assetsMap
     peaks.resize(assetsMap.size());
@@ -24,7 +24,6 @@ void SlotManager::wrapPeaksForView(std::map<SlotName, Asset>& assetsMap, elem::j
         {
             current = asset.get<std::vector<float>>(Props::currentPeakDataInView);
         }
-
         // set the relevant index in the peaks vector
         const int index = getIndexForSlot(targetSlot);
         assert(index >= 0 && index < DEFAULT_SLOT_NAMES.size());
@@ -33,28 +32,24 @@ void SlotManager::wrapPeaksForView(std::map<SlotName, Asset>& assetsMap, elem::j
         peaks[index] = elem::js::Float32Array(current);
     }
     // put the wrapped peaks data of each slot into the passed container keyed by WS_RESPONSE_KEY_FOR_PEAKS
-    containerForWrappedPeaks.insert_or_assign(WS_RESPONSE_KEY_FOR_PEAKS, peaks);
+    peaksContainer.insert_or_assign(WS_RESPONSE_KEY_FOR_PEAKS, peaks);
+    //
+    peaksDirty.store(true);
 }
 
-void SlotManager::wrapStateForView(const std::map<SlotName, Asset>& assetsMap, elem::js::Object& state_to_dispatch) const
+void SlotManager::wrapStateForView(const std::map<SlotName, Asset>& assetsMap, elem::js::Object& containerForWrappedState)
 {
     // prepare extra non-host state for the front end
 
 
-    elem::js::Array irNames;
-    for (const auto& [slot, asset] : assetsMap)
+    // --- Wrap filenames
+    names.resize(assetsMap.size());
+    for (const auto& [targetSlot, asset] : processor.assetsMap)
     {
-        if (asset.has_filename_for_view())
-        {
-            irNames.push_back(asset.get_all_filenames()[0]);
-        }
-        else
-        {
-            irNames.push_back(slotname_to_string(slot));
-        }
+        if (targetSlot == SlotName::LAST ) break;
+        const int index = getIndexForSlot(targetSlot);
+        names[index] = elem::js::String(asset.get<std::string>(Props::filenameForView));
     }
-    state_to_dispatch.insert_or_assign(WS_RESPONSE_FILENAMES,irNames);
-
 
     // --- Wrap Structure param
     // inject a special rounded case for the 'structure' parameter
@@ -68,14 +63,15 @@ void SlotManager::wrapStateForView(const std::map<SlotName, Asset>& assetsMap, e
 
     //
     // Now bundle host and extra state together
-    state_to_dispatch.insert_or_assign(WS_CURRENT_SLOT_INDEX, static_cast<elem::js::Number>(processor.fileLoader->currentSlotIndex));
-    state_to_dispatch.insert_or_assign(WS_STRUCTURE_INDEX, static_cast<elem::js::Number>(roundedValue));
-    state_to_dispatch.insert_or_assign(WS_RESPONSE_FILENAMES, irNames);
+    processor.state.insert_or_assign("currentSlotIndex",
+                                        static_cast<elem::js::Number>(processor.fileLoader->currentSlotIndex));
+    processor.state.insert_or_assign("structure", static_cast<elem::js::Number>(roundedValue));
+    processor.state.insert_or_assign(KEY_FOR_FILENAMES, names);
     // wrap into container
-    state_to_dispatch.insert_or_assign(WS_RESPONSE_KEY_FOR_STATE, processor.state);
+    containerForWrappedState.insert_or_assign(WS_RESPONSE_KEY_FOR_STATE, processor.state);
 }
 
-// will flag peaksDirty before going out of scope
+
 void SlotManager::switchSlotsTo(const bool customScape, const bool pruneVFS = false)
 {
     //
@@ -95,20 +91,31 @@ void SlotManager::switchSlotsTo(const bool customScape, const bool pruneVFS = fa
                                                                        ? Props::userPeaksForView
                                                                        : Props::defaultPeaksForView);
             asset.set(Props::currentPeakDataInView, peaksInView);
+            // Debug: log what peaks we're setting
+            std::cout << "Setting peaks for " << slotname_to_string(slotName) 
+                      << " size: " << peaksInView.size() 
+                      << " (hasUser: " << asset.hasUserStereoFile() << ")" << std::endl;
             asset.set(Props::filenameForView, croppedName);
             // toggle scapeMode to custom in the plugin
             processor.state.insert_or_assign("scapeMode", 0.55); // avoiding odd behaviour with 1.0
             processor.userScapeMode = true;
+            
+            // Debug: log current bank when switching to custom
+            std::cout << "SlotManager: Switched to custom mode, current bank: " 
+                      << processor.userBankManager.getUserBank() << std::endl;
         }
         else
         {
             // we are back in factory mode
             const auto fn = asset.get<std::string>(Props::defaultFilenameForView);
-            const auto peaksInView = asset.get<std::vector<float>>(Props::defaultPeaksForView);
+            const auto defaultPeaks = asset.get<std::vector<float>>(Props::defaultPeaksForView);
+            asset.set(Props::currentPeakDataInView, defaultPeaks);
             asset.set(Props::filenameForView, fn);
-            asset.set(Props::currentPeakDataInView, peaksInView);
             processor.state.insert_or_assign("scapeMode", 0.0);
             processor.userScapeMode = false;
+            // Debug: log factory mode peaks
+            std::cout << "Setting factory peaks for " << slotname_to_string(slotName) 
+                      << " size: " << defaultPeaks.size() << std::endl;
         }
         lastStateHash = -1;
     }
@@ -177,24 +184,7 @@ Asset& SlotManager::getAssetFrom(std::map<SlotName, Asset>& assetsMap, const Slo
     }
 }
 
-std::size_t SlotManager::getIndexForSlot(const SlotName& slotName)
+int SlotManager::getIndexForSlot(const SlotName& slotName)
 {
     return static_cast<int>(slotName);
 }
-
-void SlotManager::resetStateHashes()
-{
-    lastPeaksHash = -1;
-    lastStateHash = -1;
-}
-
-
-std::map< std::string, size_t > SlotManager::getStateHashes()
-{
-    std::map< std::string, size_t > hashes;
-    hashes.insert_or_assign( "state", lastStateHash );
-    hashes.insert_or_assign( "peaks", lastPeaksHash );
-    return hashes;
-}
-
-

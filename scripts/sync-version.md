@@ -1,4 +1,4 @@
-## The `sync-version` script is a version synchronization utility 
+## The `sync-version` script is a version synchronization utility
 
 ---
 ## Purpose
