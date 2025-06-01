@@ -2,6 +2,7 @@
 #define ASSET_H
 
 #include <juce_core/juce_core.h> // Include necessary JUCE dependencies
+#include <juce_data_structures/juce_data_structures.h>
 #include <string>
 #include <elem/deps/json.hpp>
 
@@ -156,6 +157,155 @@ public:
 
     return json.dump();
 }
+
+    // JUCE-based serialization methods
+    inline juce::var toJuceVar() const
+    {
+        auto object = new juce::DynamicObject();
+        
+        // Serialize cutoff choice
+        object->setProperty("cutOffChoice", cutOffChoice);
+        
+        // Serialize filenames
+        if (!filenameForView.empty())
+            object->setProperty("filenameForView", juce::String(filenameForView));
+        if (!defaultFilenameForView.empty())
+            object->setProperty("defaultFilenameForView", juce::String(defaultFilenameForView));
+        if (!userFilenameForView.empty())
+            object->setProperty("userFilenameForView", juce::String(userFilenameForView));
+        
+        // Serialize file paths
+        if (userStereoFile.exists())
+            object->setProperty("userStereoFile", userStereoFile.getFullPathName());
+        if (defaultStereoFile.exists())
+            object->setProperty("defaultStereoFile", defaultStereoFile.getFullPathName());
+        
+        // Serialize peak data arrays
+        if (!userPeaksForView.empty())
+        {
+            juce::Array<juce::var> userPeaks;
+            for (float f : userPeaksForView)
+                userPeaks.add(f);
+            object->setProperty("userPeaksForView", juce::var(userPeaks));
+        }
+        
+        if (!defaultPeaksForView.empty())
+        {
+            juce::Array<juce::var> defaultPeaks;
+            for (float f : defaultPeaksForView)
+                defaultPeaks.add(f);
+            object->setProperty("defaultPeaksForView", juce::var(defaultPeaks));
+        }
+        
+        if (!currentPeakDataInView.empty())
+        {
+            juce::Array<juce::var> currentPeaks;
+            for (float f : currentPeakDataInView)
+                currentPeaks.add(f);
+            object->setProperty("currentPeakDataInView", juce::var(currentPeaks));
+        }
+        
+        // Serialize VFS keys
+        if (!vfs_keys.empty())
+        {
+            juce::Array<juce::var> vfsKeys;
+            for (const auto& key : vfs_keys)
+                vfsKeys.add(juce::String(key));
+            object->setProperty("vfs_keys", juce::var(vfsKeys));
+        }
+        
+        return juce::var(object);
+    }
+    
+    inline void fromJuceVar(const juce::var& var)
+    {
+        if (!var.isObject())
+            return;
+            
+        auto* obj = var.getDynamicObject();
+        if (obj == nullptr)
+            return;
+        
+        // Deserialize cutoff choice
+        if (obj->hasProperty("cutOffChoice"))
+            cutOffChoice = static_cast<int>(obj->getProperty("cutOffChoice"));
+        
+        // Deserialize filenames
+        if (obj->hasProperty("filenameForView"))
+            filenameForView = obj->getProperty("filenameForView").toString().toStdString();
+        if (obj->hasProperty("defaultFilenameForView"))
+            defaultFilenameForView = obj->getProperty("defaultFilenameForView").toString().toStdString();
+        if (obj->hasProperty("userFilenameForView"))
+            userFilenameForView = obj->getProperty("userFilenameForView").toString().toStdString();
+        
+        // Deserialize file paths
+        if (obj->hasProperty("userStereoFile"))
+            userStereoFile = juce::File(obj->getProperty("userStereoFile").toString());
+        if (obj->hasProperty("defaultStereoFile"))
+            defaultStereoFile = juce::File(obj->getProperty("defaultStereoFile").toString());
+        
+        // Deserialize peak data arrays
+        if (obj->hasProperty("userPeaksForView"))
+        {
+            auto peaksVar = obj->getProperty("userPeaksForView");
+            if (peaksVar.isArray())
+            {
+                userPeaksForView.clear();
+                const auto& array = *peaksVar.getArray();
+                for (const auto& element : array)
+                {
+                    if (element.isDouble() || element.isInt())
+                        userPeaksForView.push_back(static_cast<float>(element));
+                }
+            }
+        }
+        
+        if (obj->hasProperty("defaultPeaksForView"))
+        {
+            auto peaksVar = obj->getProperty("defaultPeaksForView");
+            if (peaksVar.isArray())
+            {
+                defaultPeaksForView.clear();
+                const auto& array = *peaksVar.getArray();
+                for (const auto& element : array)
+                {
+                    if (element.isDouble() || element.isInt())
+                        defaultPeaksForView.push_back(static_cast<float>(element));
+                }
+            }
+        }
+        
+        if (obj->hasProperty("currentPeakDataInView"))
+        {
+            auto peaksVar = obj->getProperty("currentPeakDataInView");
+            if (peaksVar.isArray())
+            {
+                currentPeakDataInView.clear();
+                const auto& array = *peaksVar.getArray();
+                for (const auto& element : array)
+                {
+                    if (element.isDouble() || element.isInt())
+                        currentPeakDataInView.push_back(static_cast<float>(element));
+                }
+            }
+        }
+        
+        // Deserialize VFS keys
+        if (obj->hasProperty("vfs_keys"))
+        {
+            auto vfsVar = obj->getProperty("vfs_keys");
+            if (vfsVar.isArray())
+            {
+                vfs_keys.clear();
+                const auto& array = *vfsVar.getArray();
+                for (const auto& element : array)
+                {
+                    if (element.isString())
+                        vfs_keys.push_back(element.toString().toStdString());
+                }
+            }
+        }
+    }
 
     // Generic property setters
     inline void set(Props property, int hz )

@@ -114,6 +114,8 @@ target_sources(${TARGET_NAME}
         Asset.h
         AssetHelpers.cpp
         AssetHelpers.h
+        JuceAssetManager.cpp
+        JuceAssetManager.h
 )
 
 target_include_directories(${TARGET_NAME}

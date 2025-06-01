@@ -19,6 +19,7 @@ Processor::Processor()
 
       jsContext(choc::javascript::createQuickJSContext()),
       server(std::make_unique<choc::network::HTTPServer>()),
+      assetManager(std::make_unique<JuceAssetManager>()),
       slotManager(std::make_unique<SlotManager>(*this)),
       fileLoader(std::make_unique<AudioFileLoader>(*this))
 {
@@ -42,9 +43,10 @@ Processor::Processor()
     // register audio file formats
     formatManager.registerBasicFormats();
 
-    // The view state property has to have some value so that when state is loaded
-    // from the host, the key exists and is populated.
-    assetState.insert_or_assign(PERSISTED_VIEW_STATE, "{}");
+    // Initialize JUCE-based asset management
+    if (!assetManager)
+        assetManager = std::make_unique<JuceAssetManager>();
+    
     // run the famous CHOC WebView
     editor = new WebViewEditor(this, util::getAssetsDirectory(), 840, 480);
     // then load default audio assets
@@ -126,37 +128,40 @@ void Processor::handleAsyncUpdate()
         runtimeSwapRequired.store(false);
         
         // Process any pending asset state now that runtime is initialized
-        if (!pendingAssetState.empty())
-        {
-            std::cout << "Processing pending asset state after runtime initialization..." << std::endl;
-            processPersistedAssetState(pendingAssetState);
-            pendingAssetState.clear();
-        }
+        // Note: Asset state is now handled by the JUCE AssetManager during setStateInformation
         
         // Restore pending slot index if fileLoader is now available
-        if (fileLoader && state.contains("pendingSlotIndex"))
+        if (fileLoader && parameterState.contains("pendingSlotIndex"))
         {
-            const auto& pendingSlotValue = state.at("pendingSlotIndex");
+            const auto& pendingSlotValue = parameterState.at("pendingSlotIndex");
             if (pendingSlotValue.isNumber()) {
                 try {
                     double numValue = static_cast<elem::js::Number>(pendingSlotValue);
                     int pendingSlotIndex = static_cast<int>(std::round(numValue));
                     if (pendingSlotIndex >= 0 && pendingSlotIndex < 4) {
                         fileLoader->currentSlotIndex = pendingSlotIndex;
+                        if (assetManager)
+                            assetManager->setCurrentSlotIndex(pendingSlotIndex);
                         std::cout << "Restored pending slot index to: " << pendingSlotIndex << std::endl;
                     } else {
                         std::cout << "Invalid pending slot index: " << pendingSlotIndex << ", using default 0" << std::endl;
                         fileLoader->currentSlotIndex = 0;
+                        if (assetManager)
+                            assetManager->setCurrentSlotIndex(0);
                     }
                 } catch (const std::exception& e) {
                     std::cout << "Error restoring pending slot index: " << e.what() << ", using default 0" << std::endl;
                     fileLoader->currentSlotIndex = 0;
+                    if (assetManager)
+                        assetManager->setCurrentSlotIndex(0);
                 }
             } else {
                 std::cout << "Pending slot index is not a number, using default 0" << std::endl;
                 fileLoader->currentSlotIndex = 0;
+                if (assetManager)
+                    assetManager->setCurrentSlotIndex(0);
             }
-            state.erase("pendingSlotIndex");
+            parameterState.erase("pendingSlotIndex");
         }
         
         slotManager->switchSlotsTo(userScapeMode, false);
@@ -182,12 +187,21 @@ void Processor::handleAsyncUpdate()
             if (const auto* pf = dynamic_cast<juce::AudioParameterFloat*>(params[i]))
             {
                 auto paramId = pf->paramID.toStdString();
-                state.insert_or_assign(paramId, static_cast<elem::js::Number>(pr.value));
+                parameterState.insert_or_assign(paramId, static_cast<elem::js::Number>(pr.value));
             }
         }
     }
 
-    state.insert_or_assign(USER_BANK_KEY, static_cast<elem::js::Number>(userBankManager.getUserBank()));
+    parameterState.insert_or_assign(USER_BANK_KEY, static_cast<elem::js::Number>(userBankManager.getUserBank()));
+    
+    // Update JUCE asset manager with current state
+    if (assetManager)
+    {
+        assetManager->setCurrentBank(userBankManager.getUserBank());
+        assetManager->setCurrentSlotIndex(fileLoader->currentSlotIndex);
+        assetManager->setUserScapeMode(userScapeMode);
+    }
+    
     // reflect the current asset data in the state
     dispatchStateChange();
 }
@@ -486,7 +500,7 @@ void Processor::inspectVFS()
         assetsMap.insert_or_assign(slotName, asset);
     }
     //=== dispatch all the keys as one array
-    state.insert_or_assign(VFS_KEYS, allKeys);
+    parameterState.insert_or_assign(VFS_KEYS, allKeys);
 }
 
 
@@ -555,7 +569,7 @@ void Processor::createParameters(const std::vector<elem::js::Value>& parameters)
 
         // DEPRECATED :not using boolean host params, they were not functioning
         // as expected.
-        if (const auto isBoolean = parameter.getWithDefault("isBoolean", false))
+        if (parameter.getWithDefault("isBoolean", false))
         {
             auto* p =
                 new juce::AudioParameterBool(juce::ParameterID(paramId, 1), name, static_cast<bool>(defaultValue));
@@ -571,7 +585,7 @@ void Processor::createParameters(const std::vector<elem::js::Value>& parameters)
             parameterReadouts.emplace_back(ParameterReadout{static_cast<float>(defaultValue), false});
 
             // Update our state object with the default parameter value
-            state.insert_or_assign(paramId, defaultValue);
+            parameterState.insert_or_assign(paramId, defaultValue);
         }
         else
         {
@@ -591,7 +605,7 @@ void Processor::createParameters(const std::vector<elem::js::Value>& parameters)
             parameterReadouts.emplace_back(ParameterReadout{static_cast<float>(defaultValue), true});
 
             // Update our state object with the default parameter value
-            state.insert_or_assign(paramId, defaultValue);
+            parameterState.insert_or_assign(paramId, defaultValue);
         }
     }
 }
@@ -893,7 +907,7 @@ void Processor::initJavaScriptEngine()
 // from the front end.
 void Processor::dispatchStateChange()
 {
-    auto currentStateMap = state;
+    auto currentStateMap = parameterState;
     currentStateMap.insert_or_assign(SAMPLE_RATE_KEY, lastKnownSampleRate);
     const auto expr = serialize(jsFunctions::dispatchStateChangeScript, currentStateMap);
     // Next we dispatch to the local engine which will evaluate any necessary
@@ -1037,20 +1051,51 @@ std::string Processor::serialize(const std::string& function, const choc::value:
 
 void Processor::getStateInformation(juce::MemoryBlock& destData)
 {
-    // serialise the secondary store for view state data ( extra non-daw hosted stuff )
-    // then insert it into the data to be stored by the host
-    std::cout << "stashing state..." << std::to_string(assetsMap.size()) << " entries! " << std::endl;
-    if (!assetsMap.empty())
-        state.insert_or_assign(PERSISTED_VIEW_STATE, assetHelpers::serialise_assets_map_entries(assetsMap));
+    std::cout << "Stashing state using JUCE ValueTree..." << std::endl;
     
-    // Store bank state and current slot index
-    state.insert_or_assign("currentUserBank", static_cast<elem::js::Number>(userBankManager.getUserBank()));
-    state.insert_or_assign("currentSlotIndex", static_cast<elem::js::Number>(fileLoader->currentSlotIndex));
-    
-    // seriliase the whole package
-    const auto dataToPersist = elem::js::serialize(state);
-    // stash
-    destData.replaceAll((void*)dataToPersist.c_str(), dataToPersist.size());
+    // Update asset manager with current session state
+    if (assetManager)
+    {
+        assetManager->setCurrentBank(userBankManager.getUserBank());
+        assetManager->setCurrentSlotIndex(fileLoader->currentSlotIndex);
+        assetManager->setUserScapeMode(userScapeMode);
+        
+        // Migrate current assetsMap to asset manager before saving
+        migrateAssetsToJuceManager();
+        
+        // Use JUCE serialization for asset state
+        juce::MemoryBlock assetData;
+        assetManager->getStateInformation(assetData);
+        
+        // Combine parameter state and asset state
+        auto combinedState = parameterState;
+        
+        // Store asset data as base64 string in parameter state
+        juce::String assetDataString = juce::Base64::toBase64(assetData.getData(), assetData.getSize());
+        combinedState.insert_or_assign(PERSISTED_VIEW_STATE, elem::js::String(assetDataString.toStdString()));
+        
+        // Store bank state and current slot index in parameter state for immediate access
+        combinedState.insert_or_assign("currentUserBank", static_cast<elem::js::Number>(userBankManager.getUserBank()));
+        combinedState.insert_or_assign("currentSlotIndex", static_cast<elem::js::Number>(fileLoader->currentSlotIndex));
+        
+        // Serialize the combined state
+        const auto dataToPersist = elem::js::serialize(combinedState);
+        destData.replaceAll((void*)dataToPersist.c_str(), dataToPersist.size());
+    }
+    else
+    {
+        // Fallback to old method if asset manager is not available
+        std::cout << "AssetManager not available, using legacy serialization" << std::endl;
+        auto fallbackState = parameterState;
+        if (!assetsMap.empty())
+            fallbackState.insert_or_assign(PERSISTED_VIEW_STATE, assetHelpers::serialise_assets_map_entries(assetsMap));
+        
+        fallbackState.insert_or_assign("currentUserBank", static_cast<elem::js::Number>(userBankManager.getUserBank()));
+        fallbackState.insert_or_assign("currentSlotIndex", static_cast<elem::js::Number>(fileLoader->currentSlotIndex));
+        
+        const auto dataToPersist = elem::js::serialize(fallbackState);
+        destData.replaceAll((void*)dataToPersist.c_str(), dataToPersist.size());
+    }
 }
 
 // Validate restored stateObject data to prevent bad_variant_access crashes
@@ -1127,10 +1172,12 @@ void Processor::validateState(elem::js::Object& stateObject)
 // ▮▮▮▮▮▮juce▮▮▮▮▮▮ plugin state
 void Processor::setStateInformation(const void* data, int sizeInBytes)
 {
-    std::cout << "recalling state..." << std::endl;
+    std::cout << "Recalling state using JUCE ValueTree..." << std::endl;
     elem::js::Value allStateParsed;
+    
     // restore the data the host stashed previously
     const auto jsonString = std::string(static_cast<const char*>(data), sizeInBytes);
+    
     // try to deserialise the whole stashed data string
     try
     {
@@ -1138,18 +1185,21 @@ void Processor::setStateInformation(const void* data, int sizeInBytes)
     }
     catch (...)
     {
-        // Failed to parse the incoming state, or the state we did parse was not
-        // actually an object type. How you handle it is up to you.
+        // Failed to parse the incoming state
         dispatchError("Data Error:", "Failed to restore plugin state!");
+        return;
     }
+    
     auto o = allStateParsed.getObject();
+    juce::String assetDataString;
+    
     for (auto& [key, value] : o)
     {
         bool isParam = key != PERSISTED_VIEW_STATE;
 
         if (isParam)
         {
-            state.insert_or_assign(key, value);
+            parameterState.insert_or_assign(key, value);
             
             // Restore bank state and slot index
             if (key == "currentUserBank")
@@ -1183,7 +1233,7 @@ void Processor::setStateInformation(const void* data, int sizeInBytes)
                         // Only store if the value is valid
                         if (slotIndexToRestore >= 0 && slotIndexToRestore < 4) {
                             // Always defer slot index restoration to avoid crashes during preset recall
-                            state.insert_or_assign("pendingSlotIndex", static_cast<elem::js::Number>(slotIndexToRestore));
+                            parameterState.insert_or_assign("pendingSlotIndex", static_cast<elem::js::Number>(slotIndexToRestore));
                             std::cout << "Deferring slot index " << slotIndexToRestore << " restoration until plugin is fully initialized" << std::endl;
                         } else {
                             std::cout << "Invalid slot index value: " << slotIndexToRestore << ", ignoring" << std::endl;
@@ -1198,26 +1248,90 @@ void Processor::setStateInformation(const void* data, int sizeInBytes)
         }
         else
         {
-            // Store the asset state for processing after runtime initialization
-            pendingAssetState = value.getObject();
+            // Extract asset state data (now stored as base64 string)
+            if (value.isString())
+            {
+                assetDataString = juce::String(value.toString());
+            }
+            else
+            {
+                // Legacy format - try to process as elem::js::Object for backward compatibility
+                try
+                {
+                    auto legacyAssetState = value.getObject();
+                    processPersistedAssetState(legacyAssetState);
+                    std::cout << "Processed legacy asset state format" << std::endl;
+                }
+                catch (const std::exception& e)
+                {
+                    std::cout << "Failed to process legacy asset state: " << e.what() << std::endl;
+                }
+            }
         }
     }
 
+    // Process JUCE asset state if available
+    if (assetManager && assetDataString.isNotEmpty())
+    {
+        try
+        {
+            juce::MemoryBlock assetData;
+            juce::MemoryOutputStream stream(assetData, false);
+            
+            if (juce::Base64::convertFromBase64(stream, assetDataString))
+            {
+                assetManager->setStateInformation(assetData.getData(), static_cast<int>(assetData.getSize()));
+                
+                // Update session state from asset manager
+                userBankManager.resetUserBank();
+                int restoredBank = assetManager->getCurrentBank();
+                for (int i = 0; i < restoredBank; i++) {
+                    userBankManager.incrementUserBank();
+                }
+                
+                // Update user scape mode
+                userScapeMode = assetManager->getUserScapeMode();
+                
+                std::cout << "Successfully restored JUCE asset state" << std::endl;
+            }
+        }
+        catch (const std::exception& e)
+        {
+            std::cout << "Error processing JUCE asset state: " << e.what() << std::endl;
+        }
+    }
 
     // just in case, remove view data from the active param state updates
     // so the view data doesn't get sent on every update
-    if (state.contains(PERSISTED_VIEW_STATE))
-        state.erase(PERSISTED_VIEW_STATE);
+    if (parameterState.contains(PERSISTED_VIEW_STATE))
+        parameterState.erase(PERSISTED_VIEW_STATE);
 
     // Run sanity check on restored state data
-    validateState( state );
-    validateState( pendingAssetState );
+    validateState(parameterState);
 
     shouldInitialize.store(true);
     handleAsyncUpdate();
-     dispatchStateChange();
+    dispatchStateChange();
 }
 
+void Processor::migrateAssetsToJuceManager()
+{
+    if (!assetManager)
+        return;
+    
+    std::cout << "Migrating assetsMap to JuceAssetManager..." << std::endl;
+    
+    // Migrate all assets from the legacy assetsMap to the new asset manager
+    for (const auto& [slotName, asset] : assetsMap)
+    {
+        if (slotName == SlotName::LAST)
+            continue;
+            
+        assetManager->populateAssetFromAsset(slotName, asset);
+    }
+    
+    std::cout << "Migration completed." << std::endl;
+}
 
 // todo: needs to handle a persisted HPF cutoff value
 void Processor::processPersistedAssetState(const elem::js::Object& target_slot_and_serialised_asset)

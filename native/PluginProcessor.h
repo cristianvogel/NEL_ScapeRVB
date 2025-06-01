@@ -25,6 +25,7 @@
 // Local Headers
 #include "Asset.h"
 #include "AssetHelpers.h"
+#include "JuceAssetManager.h"
 #include "WebViewEditor.h"
 #include "ViewClientInstance.h"
 #include "SlotManager.h"
@@ -101,6 +102,7 @@ public:
     void getStateInformation(juce::MemoryBlock& destData) override;
     void setStateInformation(const void* data, int sizeInBytes) override;
     void validateState( elem::js::Object& state );
+    void migrateAssetsToJuceManager();
 
     //==============================================================================
     /** Implement the AudioProcessorParameter::Listener interface. */
@@ -174,10 +176,14 @@ private:
 public:
     using Results = juce::StringPairArray;
 
-    elem::js::Object state;
+    // Legacy state for parameters that still need elem::js::Value for Elementary engine integration
+    elem::js::Object parameterState;
+    
+    // New JUCE-based asset management
+    std::unique_ptr<JuceAssetManager> assetManager;
+    
+    // Backward compatibility - keep assetsMap for SlotManager until full migration
     std::map<SlotName, Asset> assetsMap;
-    elem::js::Object assetState;
-    elem::js::Object pendingAssetState; // Store asset state for processing after runtime initialization
 
     int userCutoffChoice = HZ_OPTIONS[0];
     std::atomic<bool> userFilesWereImported = false;

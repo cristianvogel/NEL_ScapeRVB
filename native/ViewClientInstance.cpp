@@ -140,7 +140,7 @@ void ViewClientInstance::handleWebSocketMessage(std::string_view message)
             if (hpfValue.isNumber() && processor.parameterMap.contains(key) )
             {
                 float paramValue = static_cast<elem::js::Number>(hpfValue);
-                float stateValue = static_cast<elem::js::Number>(processor.state[key]);
+                float stateValue = static_cast<elem::js::Number>(processor.parameterState[key]);
                 // handle boolean ints here
                 if (key == "srvbBypass" || key == "scapeBypass" || key == "scapeReverse" || key == "scapeMode")
                 {

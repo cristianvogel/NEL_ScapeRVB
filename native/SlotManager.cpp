@@ -56,19 +56,19 @@ void SlotManager::wrapStateForView(const std::map<SlotName, Asset>& assetsMap, e
     // this is needed because host is normalised but the front end
     // expects a value between 0 and 15. Float rounding error is
     // happening in the plugin host, so fix here
-    const auto hostValue = static_cast<elem::js::Number>(processor.state.at("structure"));
+    const auto hostValue = static_cast<elem::js::Number>(processor.parameterState.at("structure"));
     constexpr float stepSize = 1.0f / 16.0f;
     const float roundedValue = std::round(hostValue / stepSize) * stepSize;
 
 
     //
     // Now bundle host and extra state together
-    processor.state.insert_or_assign("currentSlotIndex",
+    processor.parameterState.insert_or_assign("currentSlotIndex",
                                         static_cast<elem::js::Number>(processor.fileLoader->currentSlotIndex));
-    processor.state.insert_or_assign("structure", static_cast<elem::js::Number>(roundedValue));
-    processor.state.insert_or_assign(KEY_FOR_FILENAMES, names);
+    processor.parameterState.insert_or_assign("structure", static_cast<elem::js::Number>(roundedValue));
+    processor.parameterState.insert_or_assign(KEY_FOR_FILENAMES, names);
     // wrap into container
-    containerForWrappedState.insert_or_assign(WS_RESPONSE_KEY_FOR_STATE, processor.state);
+    containerForWrappedState.insert_or_assign(WS_RESPONSE_KEY_FOR_STATE, processor.parameterState);
 }
 
 
@@ -97,7 +97,7 @@ void SlotManager::switchSlotsTo(const bool customScape, const bool pruneVFS = fa
                       << " (hasUser: " << asset.hasUserStereoFile() << ")" << std::endl;
             asset.set(Props::filenameForView, croppedName);
             // toggle scapeMode to custom in the plugin
-            processor.state.insert_or_assign("scapeMode", 0.55); // avoiding odd behaviour with 1.0
+            processor.parameterState.insert_or_assign("scapeMode", 0.55); // avoiding odd behaviour with 1.0
             processor.userScapeMode = true;
             
             // Debug: log current bank when switching to custom
@@ -111,7 +111,7 @@ void SlotManager::switchSlotsTo(const bool customScape, const bool pruneVFS = fa
             const auto defaultPeaks = asset.get<std::vector<float>>(Props::defaultPeaksForView);
             asset.set(Props::currentPeakDataInView, defaultPeaks);
             asset.set(Props::filenameForView, fn);
-            processor.state.insert_or_assign("scapeMode", 0.0);
+            processor.parameterState.insert_or_assign("scapeMode", 0.0);
             processor.userScapeMode = false;
             // Debug: log factory mode peaks
             std::cout << "Setting factory peaks for " << slotname_to_string(slotName) 
