@@ -1214,7 +1214,7 @@ void Processor::setStateInformation(const void* data, int sizeInBytes)
     validateState( pendingAssetState );
 
     shouldInitialize.store(true);
-    // handleAsyncUpdate();
+    handleAsyncUpdate();
      dispatchStateChange();
 }
 
