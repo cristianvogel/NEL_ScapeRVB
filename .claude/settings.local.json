@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm run dev:*)",
+      "Bash(npm run build:*)",
+      "Bash(ls:*)",
+      "Bash(npm run sync-version:*)",
+      "WebFetch(domain:www.elementary.audio)",
+      "WebFetch(domain:www.elementary.audio)",
+      "Bash(find:*)",
+      "Bash(grep:*)",
+      "Bash(ninja)",
+      "Bash(cmake:*)",
+      "Bash(rg:*)"
+    ]
+  },
+  "enableAllProjectMcpServers": false
+}

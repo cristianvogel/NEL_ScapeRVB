@@ -910,6 +910,13 @@ void Processor::dispatchStateChange()
     auto currentStateMap = parameterState;
     currentStateMap.insert_or_assign(SAMPLE_RATE_KEY, lastKnownSampleRate);
     const auto expr = serialize(jsFunctions::dispatchStateChangeScript, currentStateMap);
+    
+    // First try to dispatch to the UI if it's available
+    if (!sendJavascriptToUI(expr))
+    {
+        // UI not available, state will be sent via WebSocket when frontend requests it
+    }
+    
     // Next we dispatch to the local engine which will evaluate any necessary
     // JavaScript synchronously here on the main thread
     try
